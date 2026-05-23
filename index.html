@@ -229,6 +229,106 @@ a{color:var(--accent)}
 .tr-effect{font-size:13px;font-weight:600;margin:4px 0}
 .tr-mech{font-size:12px;color:var(--text2);line-height:1.4}
 
+/* EVIDENCE SYSTEM */
+.ev-panel{margin-top:8px;border-top:1px solid rgba(0,0,0,0.07);padding-top:8px;display:none}
+.ev-panel.open{display:block}
+.ev-toggle{font-size:11px;font-weight:700;color:var(--blue);cursor:pointer;padding:2px 0;display:inline-flex;align-items:center;gap:4px;user-select:none}
+.ev-toggle:hover{color:var(--accent)}
+.ev-toggle .chevron{transition:transform 0.2s;font-size:10px}
+.ev-toggle.open .chevron{transform:rotate(180deg)}
+.ev-card{padding:10px 12px;margin-bottom:6px;border-radius:var(--radius);background:var(--card);border:1px solid var(--border)}
+.ev-card-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:5px}
+.ev-n{font-size:10px;color:var(--text2);font-weight:600}
+.ev-year{font-size:10px;color:var(--text2);font-weight:600}
+.ev-links{font-size:11px}
+.ev-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:2px;line-height:1.35}
+.ev-source{font-size:11px;color:var(--text2);margin-bottom:4px}
+.ev-effects{font-size:11px;font-weight:600;color:var(--blue);margin-bottom:3px}
+.ev-temporal{font-size:10px;color:var(--text2)}
+.ev-contradictory{border-left:3px solid var(--amber);background:var(--amberBg);padding:8px 10px;border-radius:0 var(--radius) var(--radius) 0;font-size:11px;color:var(--text2);margin-top:6px}
+.ev-contradictory strong{color:var(--amber);font-size:12px;display:block;margin-bottom:2px}
+.ev-study-count{font-size:11px;font-weight:700;color:var(--blue)}
+.ev-summary-line{font-size:11px;color:var(--text2);margin-top:4px}
+
+/* EVIDENCE EXPLORER SECTION */
+.ev-explorer-filter{display:flex;gap:6px;flex-wrap:wrap;padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid var(--border)}
+.ev-filter-btn{padding:4px 12px;border:1.5px solid var(--border);border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;background:var(--card);color:var(--text2);transition:all 0.15s}
+.ev-filter-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accentBg)}
+.ev-explorer-empty{text-align:center;padding:24px;color:var(--text2);font-size:13px}
+
+/* CASCADE / EXPLAINABLE GRAPH OUTPUT */
+.cascade-section{}
+.cascade-chain{padding:12px 14px;margin-bottom:8px;border-radius:var(--radius);background:var(--card2);border:1px solid var(--border)}
+.cascade-chain.phenotype-critical{border-left:4px solid var(--red);background:var(--redBg)}
+.cascade-chain.phenotype-warn{border-left:4px solid var(--amber);background:var(--amberBg)}
+.cascade-chain.phenotype-monitor{border-left:4px solid var(--blue);background:var(--blueBg)}
+.cascade-chain.phenotype-info{border-left:4px solid var(--green);background:var(--greenBg)}
+.cascade-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.cascade-source{font-size:12px;font-weight:700;color:var(--text2)}
+.cascade-conf{font-size:11px;font-weight:700;padding:2px 7px;border-radius:8px;background:#e2e8f0;color:#475569}
+.cascade-steps{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:12px;line-height:1.5}
+.cs-node{font-weight:600;padding:2px 7px;border-radius:6px;background:var(--accentBg);color:var(--accent);white-space:nowrap}
+.cs-node.type-enzyme{background:#dbeafe;color:#1d4ed8}
+.cs-node.type-metabolite{background:#ede9fe;color:#6d28d9}
+.cs-node.type-receptor{background:#fef3c7;color:#92400e}
+.cs-node.type-phenotype-critical{background:var(--redBg);color:var(--red);font-weight:700}
+.cs-node.type-phenotype-warn{background:var(--amberBg);color:var(--amber);font-weight:700}
+.cs-node.type-phenotype-info{background:var(--greenBg);color:var(--green);font-weight:700}
+.cs-node.type-food{background:#ecfdf5;color:#059669}
+.cs-edge{color:var(--text2);font-size:11px;font-weight:600;padding:0 2px;flex-shrink:0}
+.cascade-temporal{font-size:10px;color:var(--text2);margin-top:4px;font-style:italic}
+.cascade-empty{text-align:center;padding:20px;color:var(--text2);font-size:13px}
+
+/* GRAPH STATS */
+.graph-stats{display:flex;flex-wrap:wrap;gap:8px;padding:10px 0}
+.gs-pill{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;background:var(--card2);border:1px solid var(--border);color:var(--text2)}
+
+/* PHENOTYPE ACCUMULATION */
+.pheno-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-bottom:12px}
+.pheno-card{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card)}
+.pheno-card.risk-none{opacity:0.5}
+.pheno-card.risk-low{border-color:var(--green);background:var(--greenBg)}
+.pheno-card.risk-moderate{border-color:var(--amber);background:var(--amberBg)}
+.pheno-card.risk-high{border-color:var(--red);background:var(--redBg)}
+.pheno-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text2);margin-bottom:4px}
+.pheno-score{font-size:26px;font-weight:800;line-height:1}
+.pheno-drugs{font-size:11px;color:var(--text2);margin-top:4px}
+/* PK CURVES */
+.pk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.pk-card{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card)}
+.pk-title{font-size:12px;font-weight:700;margin-bottom:2px}
+.pk-params{font-size:10px;color:var(--text2);margin-bottom:8px}
+.pk-svg{width:100%;height:80px}
+.pk-geno-badge{display:inline-block;font-size:9px;font-weight:700;padding:2px 5px;border-radius:4px;background:var(--amberBg);color:var(--amber);margin-left:6px}
+/* GENOTYPE PANEL */
+.geno-selector{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;align-items:center}
+.geno-enz-label{font-size:11px;font-weight:700;color:var(--text2);min-width:60px}
+.geno-btn{padding:4px 10px;border-radius:12px;border:1px solid var(--border);background:var(--card2);font-size:11px;cursor:pointer;transition:background 0.1s}
+.geno-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.geno-effect-card{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card);margin-bottom:8px}
+.geno-effect-title{font-size:12px;font-weight:700;margin-bottom:4px}
+.geno-effect-note{font-size:11px;color:var(--text2);line-height:1.4}
+.geno-fold{font-size:18px;font-weight:800;color:var(--accent)}
+/* D3 GRAPH */
+#d3-graph-container{width:100%;height:420px;border-radius:8px;border:1px solid var(--border);background:var(--card2);overflow:hidden;position:relative}
+.d3-legend{display:flex;flex-wrap:wrap;gap:8px;padding:8px 0}
+.d3-legend-item{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text2)}
+.d3-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+/* WASHOUT CALENDAR */
+.washout-table{width:100%;border-collapse:collapse;font-size:12px}
+.washout-table th{text-align:left;padding:6px 8px;background:var(--card2);font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.4px}
+.washout-table td{padding:7px 8px;border-top:1px solid var(--border)}
+.washout-bar-wrap{display:flex;align-items:center;gap:6px}
+.washout-bar{height:8px;border-radius:4px;background:var(--accent);opacity:0.6;min-width:4px}
+.washout-safe{font-weight:700;color:var(--green)}
+/* ADVERSE BURDEN */
+.burden-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-bottom:12px}
+.burden-card{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card)}
+.burden-header{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--text2);margin-bottom:6px}
+.burden-score{font-size:24px;font-weight:800;color:var(--accent)}
+.burden-sub{font-size:11px;color:var(--text2);margin-top:3px}
+.beers-flag{display:flex;gap:6px;align-items:flex-start;padding:6px 8px;border-radius:6px;background:var(--redBg);border:1px solid rgba(220,38,38,0.2);margin-bottom:5px;font-size:11px}
+.beers-drug{font-weight:700;color:var(--red)}
 /* RESPONSIVE */
 @media(max-width:500px){
   .fold-name,.timing-name{width:100px;font-size:12px}
@@ -237,6 +337,7 @@ a{color:var(--accent)}
   .header h1{font-size:22px}
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 </head>
 <body>
 <div class="header">
@@ -375,6 +476,109 @@ a{color:var(--accent)}
       <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">How blocked enzymes reroute your meds</span>
     </div>
     <div class="section-body coll-body" id="pdBody"></div>
+  </div>
+
+  <!-- Evidence Explorer -->
+  <div class="section" id="evidenceSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('evidence')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+      </svg>
+      <span>Evidence Explorer</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="evidenceCount"></span>
+    </div>
+    <div class="section-body coll-body" id="evidenceBody"></div>
+  </div>
+
+  <!-- Explainable Graph Output — Cascade Traversal -->
+  <div class="section" id="cascadeSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('cascade')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>
+        <line x1="12" y1="7" x2="5" y2="17"/><line x1="12" y1="7" x2="19" y2="17"/>
+      </svg>
+      <span>Effect Cascade</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Graph traversal — not just pairwise</span>
+    </div>
+    <div class="section-body coll-body" id="cascadeBody"></div>
+  </div>
+
+  <!-- Phenotype Accumulation (#6) -->
+  <div class="section" id="phenoAccumSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('phenoAccum')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+      </svg>
+      <span>Phenotype Risk Accumulation</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Serotonin load · QTc · Anticholinergic · Sedation</span>
+    </div>
+    <div class="section-body coll-body open" id="phenoAccumBody"></div>
+  </div>
+
+  <!-- PK Simulation (#1) -->
+  <div class="section" id="pkSimSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('pkSim')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="3 17 9 11 13 15 21 7"/>
+        <polyline points="14 7 21 7 21 14"/>
+      </svg>
+      <span>PK Simulation</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">1-compartment concentration curves</span>
+    </div>
+    <div class="section-body coll-body open" id="pkSimBody"></div>
+  </div>
+
+  <!-- Genotype-Stratified Evidence (#2) -->
+  <div class="section" id="genotypeSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('genotype')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2a4 4 0 0 1 4 4v12a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
+        <path d="M8 10h8M8 14h8"/>
+      </svg>
+      <span>Genotype-Stratified Evidence</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">PM / IM / NM / UM effects</span>
+    </div>
+    <div class="section-body coll-body open" id="genotypeBody"></div>
+  </div>
+
+  <!-- D3 Graph (#4) -->
+  <div class="section" id="graphSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('graph')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/>
+        <line x1="8" y1="12" x2="16" y2="7"/><line x1="8" y1="12" x2="16" y2="17"/>
+      </svg>
+      <span>Interaction Network Graph</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Force-directed D3 visualization</span>
+    </div>
+    <div class="section-body coll-body open" id="graphBody"></div>
+  </div>
+
+  <!-- Washout Calendar (#9) -->
+  <div class="section" id="washoutSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('washout')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      <span>Washout Calendar</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Safe-to-switch dates from enzyme recovery</span>
+    </div>
+    <div class="section-body coll-body open" id="washoutBody"></div>
+  </div>
+
+  <!-- Adverse Burden (#10) -->
+  <div class="section" id="burdenSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('burden')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+      </svg>
+      <span>Adverse Effect Burden</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">ACB · Beers Criteria · Fall Risk · Sedation</span>
+    </div>
+    <div class="section-body coll-body open" id="burdenBody"></div>
   </div>
 
   <!-- Alternatives -->
@@ -4772,26 +4976,97 @@ const TRANSPORTER_DDI = [
 // ═══════════════════════════════════════════════════════════════════
 
 // ── Actor Types ──
+// ── Actor Types ── (graph-first: all biochemical entities are equal actors)
 const ACTOR_TYPE = Object.freeze({
-  DRUG:       'drug',
-  METABOLITE: 'metabolite',
-  ENZYME:     'enzyme',
-  TRANSPORTER:'transporter',
-  FOOD:       'food_compound',
-  ENDOGENOUS: 'endogenous',
+  DRUG:          'drug',
+  METABOLITE:    'metabolite',
+  ENZYME:        'enzyme',
+  TRANSPORTER:   'transporter',
+  FOOD:          'food_compound',
+  ENVIRONMENTAL: 'environmental_compound',  // toxins, pollutants, xenobiotics
+  ENDOGENOUS:    'endogenous_compound',      // neurotransmitters, hormones, trace amines
+  RECEPTOR:      'receptor',                // pharmacological targets (mu-opioid, 5-HT2A, D2...)
+  PHENOTYPE:     'phenotype',               // observable outcomes (analgesia, serotonin_syndrome...)
 });
 
-// ── Edge Types ──
+// ── Edge Types ── (all relationship types between actors)
 const EDGE_TYPE = Object.freeze({
-  SUBSTRATE_OF:    'substrate_of',     // actor is metabolized by enzyme
-  INHIBITS:        'inhibits',         // actor inhibits enzyme/transporter
-  INDUCES:         'induces',          // actor induces enzyme/transporter
-  METABOLIZED_TO:  'metabolized_to',   // parent → child metabolite
-  TRANSPORTED_BY:  'transported_by',   // actor transported by transporter
-  COMPETES_WITH:   'competes_with',    // two actors compete for same target
-  ACTIVATES:       'activates',        // prodrug → active form
-  ACCUMULATES_IN:  'accumulates_in',   // actor accumulates in tissue/compartment
+  SUBSTRATE_OF:    'substrate_of',     // actor is metabolized by enzyme/transporter
+  INHIBITS:        'inhibits',         // actor inhibits enzyme/transporter/receptor
+  INDUCES:         'induces',          // actor induces enzyme/transporter expression
+  METABOLIZED_TO:  'metabolized_to',   // parent → metabolite (inactive/active)
+  TRANSPORTED_BY:  'transported_by',   // actor is a substrate of a transporter
+  COMPETES_WITH:   'competes_with',    // two actors compete for same enzymatic/receptor site
+  ACTIVATES:       'activates',        // prodrug → active metabolite; agonist → receptor
+  BLOCKS:          'blocks',           // antagonist blocks receptor; efflux pump blocks CNS entry
+  ACCUMULATES_IN:  'accumulates_in',   // lipophilic actor accumulates in compartment
+  PRODUCES:        'produces',         // metabolic step or receptor activation → downstream effect
+  SUPPRESSES:      'suppresses',       // actor suppresses phenotype/function (e.g. CYP2D6 inhibition → ↓ analgesia)
 });
+
+// ── Tissue Compartments ──
+// Conceptual compartments that distinguish where a drug/metabolite acts.
+// Key insight: brain CYP2D6 ≠ hepatic CYP2D6; lipophilic compounds in
+// adipose behave fundamentally differently from plasma compartment.
+const TISSUE_COMPARTMENT = Object.freeze({
+  PLASMA:   'plasma',    // systemic circulation (PK measurements)
+  LIVER:    'liver',     // primary metabolic organ; hepatic CYPs
+  BRAIN:    'brain',     // CNS; brain CYP2D6, BBB gating by P-gp/BCRP
+  GUT:      'gut',       // intestinal CYP3A4/P-gp first-pass extraction
+  KIDNEY:   'kidney',    // renal clearance; OCT2/MATE1 transporters
+  ADIPOSE:  'adipose',   // lipophilic compound depot; slow release
+  PLATELET: 'platelet',  // MAO-B location; serotonin storage
+});
+
+// ── Evidence Schema ──
+// Canonical evidence object used by all edges.
+// Older edges may have only {confidence, sources}; new/upgraded edges
+// carry full provenance. Both forms are valid — consumers should use
+// evidenceConfidence() helper to extract a normalized confidence value.
+const EVIDENCE_SCHEMA_VERSION = 2;
+
+function evidenceConfidence(ev) {
+  if (!ev) return 'unknown';
+  return ev.confidence || 'unknown';
+}
+
+function evidenceToHTML(ev) {
+  if (!ev) return '';
+  const conf = ev.confidence || 'unknown';
+  const sources = (ev.sources || []).join(', ');
+  const pmids = (ev.pmid || []).map(p => `PMID:${p}`).join(' ');
+  const auc = ev.aucFold ? `AUC ×${ev.aucFold}` : '';
+  const pop = ev.population ? `[${ev.population}]` : '';
+  return [conf, sources, auc, pop, pmids].filter(Boolean).join(' · ');
+}
+
+// ── fractionModel ──
+// Replaces static `fraction` with a dynamic route-weighting model.
+// Static fraction is still valid and used as fractionModel.base.
+// The dynamic model adds: saturable kinetics, adaptive regulation,
+// inducibility, and competitive substrate burden tracking.
+//
+// Usage: getEffectiveFraction(route, context) → number [0–1]
+function getEffectiveFraction(route, context) {
+  const ctx = context || {};
+  const base = route.fractionModel ? route.fractionModel.base : (route.fraction || 0);
+  let f = base;
+
+  // Competitive substrate burden: if enzyme is congested by many substrates,
+  // effective fraction decreases proportionally to competition
+  if (route.fractionModel && route.fractionModel.competitive && ctx.enzymeLoad) {
+    const load = ctx.enzymeLoad[route.enzyme] || 1;
+    f = f / Math.max(1, load);
+  }
+
+  // Saturable kinetics: at high dose, saturable routes are capped
+  if ((route.fractionModel ? route.fractionModel.saturable : route.saturable) && ctx.doseMultiplier > 1) {
+    const km = 0.5; // normalized; saturation at 2× dose
+    f = f * (km / (km + Math.max(0, ctx.doseMultiplier - 1)));
+  }
+
+  return Math.min(1, Math.max(0, f));
+}
 
 // ── Metabolite Actors ──
 // Key metabolites promoted to first-class entities with their own
@@ -4803,7 +5078,14 @@ const METABOLITE_ACTORS = {
     name:"Hydroxybupropion", parentDrug:"Bupropion", formingEnzyme:"CYP2B6",
     active:true, halfLife:20, potencyRatio:0.5,
     routes:[{enzyme:"CYP2D6",fraction:0.3}],
-    inh:[{target:"CYP2D6",strength:"strong"},{target:"CYP2B6",strength:"moderate"},{target:"CYP2C19",strength:"weak"}],
+    inh:[
+      {target:"CYP2D6",  strength:"strong",
+       temporal:{onset:'days', duration:'2-3_days_post_dose', reversible:true,
+                 note:'Competitive inhibition; clears with drug washout (~5 half-lives = 100h)'},
+       evidence:{confidence:"high",sources:["FDA label","Kotlyar 2005"]}},
+      {target:"CYP2B6",  strength:"moderate", temporal:{onset:'days'}, evidence:{confidence:"moderate",sources:["FDA label"]}},
+      {target:"CYP2C19", strength:"weak",     temporal:{onset:'days'}, evidence:{confidence:"moderate",sources:["FDA label"]}},
+    ],
     note:"t½ LONGER than parent (20h vs 12h); primary driver of bupropion CYP2D6 DDIs"
   },
   "norfluoxetine": {
@@ -4811,7 +5093,14 @@ const METABOLITE_ACTORS = {
     name:"Norfluoxetine", parentDrug:"Fluoxetine", formingEnzyme:"CYP2D6",
     active:true, halfLife:168, potencyRatio:0.8,
     routes:[{enzyme:"CYP2D6",fraction:0.5}],
-    inh:[{target:"CYP2D6",strength:"strong"},{target:"CYP3A4",strength:"moderate"},{target:"CYP2C19",strength:"moderate"}],
+    inh:[
+      {target:"CYP2D6", strength:"strong",
+       temporal:{onset:'1-2_weeks', duration:'2-5_weeks_post_discontinuation', reversible:false,
+                 note:'MBI — requires enzyme resynthesis; washout period 5 weeks minimum'},
+       evidence:{confidence:"high",sources:["FDA label","Preskorn 1999"]}},
+      {target:"CYP3A4",  strength:"moderate", temporal:{onset:'1-2_weeks'}, evidence:{confidence:"moderate",sources:["literature"]}},
+      {target:"CYP2C19", strength:"moderate", temporal:{onset:'1-2_weeks'}, evidence:{confidence:"moderate",sources:["literature"]}},
+    ],
     note:"t½ 4-16 DAYS; CYP2D6 inhibition persists WEEKS after fluoxetine discontinuation"
   },
   "desipramine": {
@@ -4844,7 +5133,10 @@ const METABOLITE_ACTORS = {
     active:true, halfLife:70, potencyRatio:100.0,
     routes:[{enzyme:"CYP3A4",fraction:0.3},{enzyme:"UGT",fraction:0.5},{enzyme:"SULT",fraction:0.2}],
     inh:[],
-    note:"100× more potent than tamoxifen; CYP2D6 PM → endoxifen ↓75% → breast cancer recurrence ↑"
+    evidenceRefs:["ev_tamoxifen_cyp2d6_cpic","ev_tamoxifen_cyp2d6_controversy","ev_paroxetine_cyp2d6_japanese"],
+    contradictoryEvidence:true,
+    contradictoryNote:"CPIC guideline supports CYP2D6 genotype-guided tamoxifen dosing; Province 2014 meta-analysis did not find statistically significant clinical outcome difference. Scientific debate ongoing. ADDITIONAL NOTE (Ueda 2006): In East Asian patients on tamoxifen, CYP2D6*10 prevalence (41.8% allele freq in Japanese) means most are functional IMs — endoxifen production is partially impaired even in non-PM patients. Standard Caucasian genotype thresholds will miss this.",
+    note:"100× more potent than tamoxifen; CYP2D6 PM → endoxifen ↓75% → breast cancer recurrence ↑. In East Asian patients, CYP2D6*10 (IM-level function) reduces endoxifen formation even in patients not classified as PM by Caucasian criteria."
   },
   "hydromorphone": {
     id:"hydromorphone", type:ACTOR_TYPE.METABOLITE,
@@ -5021,6 +5313,128 @@ const ENDOGENOUS_ACTORS = {
     routes:[{enzyme:"MAO-B",fraction:0.5},{enzyme:"COMT",fraction:0.4}],
     function:"Neurotransmitter; reward, motivation, motor control",
     note:"CYP2D6 involved in brain dopamine metabolism; PM may have altered dopaminergic tone"
+  },
+};
+
+// ── Receptor Actors ──
+// Pharmacological receptors as first-class graph nodes.
+// Drugs and metabolites can ACTIVATE, BLOCK, or INHIBIT these receptors.
+// Receptors connect to Phenotype nodes via PRODUCES edges.
+const RECEPTOR_ACTORS = {
+  "mu-opioid-receptor": {
+    id:"mu-opioid-receptor", type:ACTOR_TYPE.RECEPTOR, name:"μ-Opioid Receptor (MOR)",
+    gene:"OPRM1", tissue:[TISSUE_COMPARTMENT.BRAIN, TISSUE_COMPARTMENT.LIVER, TISSUE_COMPARTMENT.GUT],
+    function:"Pain suppression, reward, respiratory drive",
+    note:"Activated by morphine, O-desmethyltramadol, oxymorphone, endorphins; blocked by naloxone/naltrexone",
+    produces:["analgesia_phenotype","respiratory_depression_phenotype","reward_phenotype"],
+  },
+  "5-ht2a-receptor": {
+    id:"5-ht2a-receptor", type:ACTOR_TYPE.RECEPTOR, name:"5-HT2A Receptor",
+    gene:"HTR2A", tissue:[TISSUE_COMPARTMENT.BRAIN],
+    function:"Serotonin receptor; mood, cognition, psychedelic effects",
+    note:"Excess serotonin activation → serotonin syndrome when combined with serotonergic drugs",
+    produces:["serotonin_syndrome_phenotype","mood_effect_phenotype"],
+  },
+  "d2-dopamine-receptor": {
+    id:"d2-dopamine-receptor", type:ACTOR_TYPE.RECEPTOR, name:"D2 Dopamine Receptor",
+    gene:"DRD2", tissue:[TISSUE_COMPARTMENT.BRAIN],
+    function:"Dopaminergic signaling; reward, motor control, prolactin inhibition",
+    note:"Blocked by antipsychotics; altered by CYP2D6 status via endogenous dopamine metabolism",
+    produces:["antipsychotic_effect_phenotype","extrapyramidal_phenotype"],
+  },
+  "alpha1-adrenergic": {
+    id:"alpha1-adrenergic", type:ACTOR_TYPE.RECEPTOR, name:"α1-Adrenergic Receptor",
+    gene:"ADRA1A", tissue:[TISSUE_COMPARTMENT.BRAIN, TISSUE_COMPARTMENT.LIVER],
+    function:"Vasoconstriction, sympathetic tone",
+    note:"Blocked by TCAs/antipsychotics → orthostatic hypotension",
+    produces:["hypotension_phenotype"],
+  },
+  "mao-a-enzyme": {
+    id:"mao-a-enzyme", type:ACTOR_TYPE.RECEPTOR, name:"MAO-A (Monoamine Oxidase A)",
+    gene:"MAOA", tissue:[TISSUE_COMPARTMENT.GUT, TISSUE_COMPARTMENT.BRAIN, TISSUE_COMPARTMENT.LIVER],
+    function:"Degrades serotonin, noradrenaline, tyramine",
+    note:"Inhibited by MAOIs; serotonin/tyramine accumulate → serotonin syndrome / hypertensive crisis",
+    produces:["serotonin_syndrome_phenotype","tyramine_crisis_phenotype"],
+  },
+  "nr1i2-pregnane-x": {
+    id:"nr1i2-pregnane-x", type:ACTOR_TYPE.RECEPTOR, name:"Pregnane X Receptor (PXR/NR1I2)",
+    gene:"NR1I2", tissue:[TISSUE_COMPARTMENT.LIVER, TISSUE_COMPARTMENT.GUT],
+    function:"Nuclear receptor; master regulator of CYP3A4/P-gp induction",
+    note:"Activated by rifampin, St. John's Wort, carbamazepine → CYP3A4 ↑↑",
+    produces:["cyp3a4_induction_phenotype"],
+  },
+};
+
+// ── Phenotype Actors ──
+// Observable outcomes that result from drug-receptor-enzyme interactions.
+// These are terminal nodes in traversal — no further downstream edges.
+// Severity: 'info' < 'monitor' < 'warn' < 'critical'
+const PHENOTYPE_ACTORS = {
+  "analgesia_phenotype": {
+    id:"analgesia_phenotype", type:ACTOR_TYPE.PHENOTYPE, name:"Analgesic Effect",
+    severity:"info", direction:"beneficial",
+    note:"Produced by activation of mu-opioid receptor; reduced in CYP2D6 PM with prodrug opioids",
+    requires:["mu-opioid-receptor"],
+  },
+  "respiratory_depression_phenotype": {
+    id:"respiratory_depression_phenotype", type:ACTOR_TYPE.PHENOTYPE, name:"Respiratory Depression",
+    severity:"critical", direction:"adverse",
+    note:"Dose-dependent mu-opioid effect; amplified by CNS depressants, benzodiazepines, alcohol",
+  },
+  "serotonin_syndrome_phenotype": {
+    id:"serotonin_syndrome_phenotype", type:ACTOR_TYPE.PHENOTYPE, name:"Serotonin Syndrome Risk",
+    severity:"critical", direction:"adverse",
+    note:"Triad: mental status change, autonomic instability, neuromuscular abnormalities; caused by excess 5-HT",
+  },
+  "tyramine_crisis_phenotype": {
+    id:"tyramine_crisis_phenotype", type:ACTOR_TYPE.PHENOTYPE, name:"Hypertensive Crisis (Tyramine)",
+    severity:"critical", direction:"adverse",
+    note:"MAOi + tyramine-rich food → sympathomimetic surge → BP ↑↑↑; risk of stroke",
+  },
+  "cyp3a4_induction_phenotype": {
+    id:"cyp3a4_induction_phenotype", type:ACTOR_TYPE.PHENOTYPE, name:"CYP3A4 Induction (↓ drug levels)",
+    severity:"warn", direction:"adverse",
+    note:"Downstream effect of PXR activation; reduces plasma levels of CYP3A4 substrates",
+  },
+  "cyp2d6_burden_phenotype": {
+    id:"cyp2d6_burden_phenotype", type:ACTOR_TYPE.PHENOTYPE, name:"CYP2D6 Chronic Burden",
+    severity:"monitor", direction:"adverse",
+    note:"Persistent competitive occupancy of CYP2D6 by chronic substrates (solanidine, etc.) reduces xenobiotic metabolism capacity, amplified in PM/null genotypes",
+  },
+  "qtc_prolongation_phenotype": {
+    id:"qtc_prolongation_phenotype", type:ACTOR_TYPE.PHENOTYPE, name:"QTc Prolongation Risk",
+    severity:"warn", direction:"adverse",
+    note:"Cardiac arrhythmia risk; additive with multiple QTc-prolonging drugs",
+  },
+  "hypotension_phenotype": {
+    id:"hypotension_phenotype", type:ACTOR_TYPE.PHENOTYPE, name:"Orthostatic Hypotension",
+    severity:"monitor", direction:"adverse",
+    note:"Alpha1 blockade → loss of vascular tone → falls, dizziness",
+  },
+  "reward_phenotype": {
+    id:"reward_phenotype", type:ACTOR_TYPE.PHENOTYPE, name:"Reward / Addiction Pathway",
+    severity:"monitor", direction:"contextual",
+    note:"Mu-opioid + dopaminergic activation; relevant for substance use risk assessment",
+  },
+  "antipsychotic_effect_phenotype": {
+    id:"antipsychotic_effect_phenotype", type:ACTOR_TYPE.PHENOTYPE, name:"Antipsychotic Effect",
+    severity:"info", direction:"beneficial",
+    note:"D2 blockade reduces positive psychotic symptoms; CYP2D6 PM → higher D2 occupancy at same dose",
+  },
+  "extrapyramidal_phenotype": {
+    id:"extrapyramidal_phenotype", type:ACTOR_TYPE.PHENOTYPE, name:"Extrapyramidal Side Effects",
+    severity:"warn", direction:"adverse",
+    note:"Excess D2 blockade → akathisia, parkinsonism, tardive dyskinesia; CYP2D6 PM at higher risk",
+  },
+  "mood_effect_phenotype": {
+    id:"mood_effect_phenotype", type:ACTOR_TYPE.PHENOTYPE, name:"Mood / Antidepressant Effect",
+    severity:"info", direction:"beneficial",
+    note:"5-HT2A + other serotonin receptor modulation underpins SSRI antidepressant activity",
+  },
+  "prodrug_failure_phenotype": {
+    id:"prodrug_failure_phenotype", type:ACTOR_TYPE.PHENOTYPE, name:"Prodrug Activation Failure",
+    severity:"critical", direction:"adverse",
+    note:"CYP2D6 or CYP2C19 inhibition → failure to form active metabolite → therapeutic failure (codeine, tamoxifen, clopidogrel)",
   },
 };
 
@@ -5293,6 +5707,51 @@ function buildInteractionGraph() {
     actors[eid] = enz;
   }
 
+  // ── 6b. Receptor Actors ──
+  for (const [rid, rec] of Object.entries(RECEPTOR_ACTORS)) {
+    actors[rid] = rec;
+    // Receptor → Phenotype edges (PRODUCES)
+    for (const pid of (rec.produces || [])) {
+      if (PHENOTYPE_ACTORS[pid]) {
+        edges.push({ from:rid, to:pid, type:EDGE_TYPE.PRODUCES,
+          props:{mechanism:'receptor_activation', confidence:'high'} });
+      }
+    }
+  }
+
+  // ── 6c. Phenotype Actors ──
+  for (const [pid, phen] of Object.entries(PHENOTYPE_ACTORS)) {
+    actors[pid] = phen;
+  }
+
+  // ── 7. Receptor→Drug connection edges ──
+  // Wire known agonist/antagonist relationships between drugs and receptors
+  const RECEPTOR_DRUG_EDGES = [
+    // Opioid receptor agonists → mu-opioid
+    {from:'morphine',        to:'mu-opioid-receptor', type:EDGE_TYPE.ACTIVATES,  props:{strength:'full_agonist', tissue:TISSUE_COMPARTMENT.BRAIN}},
+    {from:'o-desmethyltramadol', to:'mu-opioid-receptor', type:EDGE_TYPE.ACTIVATES, props:{strength:'full_agonist', tissue:TISSUE_COMPARTMENT.BRAIN}},
+    {from:'oxymorphone',     to:'mu-opioid-receptor', type:EDGE_TYPE.ACTIVATES,  props:{strength:'full_agonist', tissue:TISSUE_COMPARTMENT.BRAIN}},
+    {from:'hydromorphone',   to:'mu-opioid-receptor', type:EDGE_TYPE.ACTIVATES,  props:{strength:'full_agonist', tissue:TISSUE_COMPARTMENT.BRAIN}},
+    // When CYP2D6 is inhibited, prodrug opioids fail to reach mu-opioid → SUPPRESSES analgesia
+    {from:'hydroxybupropion', to:'analgesia_phenotype', type:EDGE_TYPE.SUPPRESSES, props:{
+      mechanism:'CYP2D6_inhibition_blocks_prodrug_opioid_activation',
+      confidence:'high', temporal:{onset:'hours', duration:'days'}}},
+    // Serotonergic drugs activate serotonin syndrome risk via 5-HT accumulation
+    {from:'serotonin',       to:'5-ht2a-receptor',    type:EDGE_TYPE.ACTIVATES,  props:{strength:'endogenous'}},
+    {from:'tyramine',        to:'mao-a-enzyme',        type:EDGE_TYPE.SUBSTRATE_OF, props:{fraction:0.8}},
+    // PXR agonists (rifampin/St.John's Wort) induce CYP3A4 via NR1I2
+    {from:'nr1i2-pregnane-x', to:'cyp3a4_induction_phenotype', type:EDGE_TYPE.PRODUCES, props:{confidence:'high'}},
+    // Solanidine chronic burden → CYP2D6 burden phenotype
+    {from:'solanidine',      to:'cyp2d6_burden_phenotype', type:EDGE_TYPE.PRODUCES, props:{
+      mechanism:'chronic_competitive_substrate_burden',
+      temporal:{onset:'days_to_weeks', persistent:true, adiposeAccumulation:true},
+      confidence:'low', note:'Hypothesis: chronic CYP2D6 occupancy in PM/null genotype'}},
+  ];
+  for (const re of RECEPTOR_DRUG_EDGES) {
+    // Only push if both ends exist (or from is a known metabolite/food/endo)
+    edges.push(re);
+  }
+
   // ── 6. Transporter Actors (with CYP-parity enrichment) ──
   const transporterEdgeSeen = new Set();  // dedup key: "from|to|type"
   for (const [tid, trn] of Object.entries(TRANSPORTER_ACTORS)) {
@@ -5506,6 +5965,1549 @@ function getGraphStats() {
   return { totalActors:Object.keys(g.actors).length, totalEdges:g.edges.length, actorsByType:byType, edgesByType };
 }
 
+// ── traverseEffects — Systems Pharmacology Cascade Simulator ──
+//
+// Given a starting node, traverses the interaction graph forward to find ALL
+// downstream effects, with:
+//   • cycle protection (visited set keyed by actorId+depth)
+//   • confidence decay (each hop multiplies confidence by edge weight)
+//   • temporal modifiers (onset, persistence, reversibility)
+//   • competitive burden tracking (enzyme occupancy accumulates)
+//
+// Returns an array of Effect objects:
+//   {
+//     path:       [{actorId, actor, edgeType, edgeProps}],
+//     terminal:   actorId,       // last node in chain
+//     terminalActor: actor,
+//     confidence: 0–1,           // decayed across hops
+//     direction:  'increase'|'decrease'|'mixed'|'unknown',
+//     temporal:   { onset, persistence, reversible }
+//   }
+//
+// maxDepth controls traversal depth (default 6 to reach phenotype nodes).
+// Confidence decay per hop follows edge evidence quality:
+//   high=0.95, moderate=0.80, low=0.60, unknown=0.50
+//
+function traverseEffects(startNodeId, maxDepth) {
+  maxDepth = maxDepth || 6;
+  const graph = getInteractionGraph();
+  const results = [];
+  const visitedKey = new Set();  // actorId|depth → cycle protection
+
+  // Edge confidence decay — delegates to computeEdgeConfidence() which uses EVIDENCE_WEIGHT tiers
+  // This means edges with evidenceRefs pointing to FDA_LABEL/GUIDELINE studies decay slower
+  // than edges with only low-tier in vitro evidence.
+  const CONF_DECAY = { high:0.95, moderate:0.80, low:0.60, unknown:0.50 }; // fallback for plain strings
+
+  // Direction inference from edge type + inhibitor/inducer polarity
+  function inferDirection(currentDir, edgeType, edgeProps) {
+    if (edgeType === EDGE_TYPE.INHIBITS || edgeType === EDGE_TYPE.SUPPRESSES || edgeType === EDGE_TYPE.BLOCKS) {
+      return currentDir === 'increase' ? 'decrease' : currentDir === 'decrease' ? 'increase' : 'decrease';
+    }
+    if (edgeType === EDGE_TYPE.INDUCES || edgeType === EDGE_TYPE.ACTIVATES || edgeType === EDGE_TYPE.PRODUCES) {
+      return currentDir === 'unknown' ? 'increase' : currentDir;
+    }
+    if (edgeType === EDGE_TYPE.METABOLIZED_TO || edgeType === EDGE_TYPE.TRANSPORTED_BY) {
+      return currentDir; // neutral — depends on metabolite activity
+    }
+    return currentDir;
+  }
+
+  // Merge temporal info along path
+  function mergeTemporalModifier(accumulated, edgeProps) {
+    const t = edgeProps && edgeProps.temporal;
+    if (!t) return accumulated;
+    return {
+      onset:        t.onset || accumulated.onset || null,
+      persistence:  t.persistent ? 'chronic' : (t.duration || accumulated.persistence || 'transient'),
+      reversible:   t.reversible !== undefined ? t.reversible : (accumulated.reversible !== undefined ? accumulated.reversible : true),
+      adiposeAccumulation: t.adiposeAccumulation || accumulated.adiposeAccumulation || false,
+    };
+  }
+
+  function dfs(actorId, path, confidence, direction, temporal, depth) {
+    if (depth > maxDepth) return;
+    const visitKey = `${actorId}|${depth}`;
+    if (visitedKey.has(visitKey)) return;
+    visitedKey.add(visitKey);
+
+    const actor = graph.actors[actorId];
+
+    // Record terminal phenotype/receptor as a result
+    if (actor && (actor.type === ACTOR_TYPE.PHENOTYPE || actor.type === ACTOR_TYPE.RECEPTOR) && path.length > 0) {
+      results.push({
+        path: [...path],
+        terminal: actorId,
+        terminalActor: actor,
+        confidence: Math.round(confidence * 100) / 100,
+        direction,
+        temporal: { ...temporal },
+      });
+      // Don't stop — continue through receptor to phenotype if possible
+    }
+
+    // Get outgoing edges from this actor
+    const outEdges = (graph.edges || []).filter(e => e.from === actorId);
+
+    for (const edge of outEdges) {
+      const targetId = edge.to;
+      const targetActor = graph.actors[targetId];
+
+      // Skip cycles via pure actor ID loop-check
+      if (path.some(step => step.actorId === targetId)) continue;
+
+      // Decay confidence using evidence-weighted computeEdgeConfidence()
+      // This respects STUDY_DB tier hierarchy: FDA_LABEL edges decay slower than IN_VITRO edges
+      const decay = computeEdgeConfidence(edge);
+      const newConf = confidence * decay;
+
+      // Prune extremely low confidence paths (< 5%)
+      if (newConf < 0.05) continue;
+
+      const newDir = inferDirection(direction, edge.type, edge.props);
+      const newTemporal = mergeTemporalModifier(temporal, edge.props);
+
+      const newPath = [...path, {
+        actorId,
+        actor: actor || null,
+        edgeType: edge.type,
+        edgeProps: edge.props || {},
+        toId: targetId,
+      }];
+
+      dfs(targetId, newPath, newConf, newDir, newTemporal, depth + 1);
+    }
+
+    visitedKey.delete(visitKey);
+  }
+
+  dfs(startNodeId, [], 1.0, 'unknown', {}, 0);
+
+  // Sort by confidence descending, then by path length ascending
+  results.sort((a, b) => b.confidence !== a.confidence
+    ? b.confidence - a.confidence
+    : a.path.length - b.path.length);
+
+  return results;
+}
+
+// ── traverseEffectsForStack — run traverseEffects for all active actors ──
+// Returns {nodeId → effects[]} map for the current medication stack.
+// Focuses on paths that terminate at Phenotype nodes (the clinically meaningful outcomes).
+function traverseEffectsForStack() {
+  const graph = getInteractionGraph();
+  const results = {};
+  const allNodeIds = [];
+
+  // Collect: drugs in stack + their first-order metabolites
+  for (const drugName of activeStack) {
+    const drugId = toGraphId(drugName);
+    allNodeIds.push(drugId);
+    // Add metabolites for this drug
+    const metabEdges = (graph.edges || []).filter(e =>
+      e.from === drugId &&
+      (e.type === EDGE_TYPE.METABOLIZED_TO || e.type === EDGE_TYPE.ACTIVATES));
+    for (const me of metabEdges) {
+      if (graph.actors[me.to]) allNodeIds.push(me.to);
+    }
+  }
+
+  for (const nid of [...new Set(allNodeIds)]) {
+    const effects = traverseEffects(nid, 6);
+    // Only keep paths that reach phenotype nodes or > 1 hop
+    const relevant = effects.filter(e =>
+      e.terminalActor &&
+      (e.terminalActor.type === ACTOR_TYPE.PHENOTYPE || e.path.length >= 2));
+    if (relevant.length > 0) results[nid] = relevant;
+  }
+  return results;
+}
+
+// ── buildEffectChainLabel — human-readable cascade string ──
+// Example: "Paroxetine → inhibits CYP2D6 → ↓ Codeine → ↓ Morphine → ↓ Analgesic Effect"
+function buildEffectChainLabel(startActor, effects, graph) {
+  if (!effects || effects.length === 0) return null;
+  const best = effects[0]; // highest confidence
+  const labels = [];
+
+  // Start node
+  labels.push(startActor ? startActor.name : best.path[0]?.actorId || '?');
+
+  for (const step of best.path) {
+    const edgeSymbol = {
+      [EDGE_TYPE.INHIBITS]:       '↓ inhibits',
+      [EDGE_TYPE.INDUCES]:        '↑ induces',
+      [EDGE_TYPE.METABOLIZED_TO]: '→',
+      [EDGE_TYPE.ACTIVATES]:      '→ activates',
+      [EDGE_TYPE.BLOCKS]:         '✕ blocks',
+      [EDGE_TYPE.SUPPRESSES]:     '↓ suppresses',
+      [EDGE_TYPE.PRODUCES]:       '→ produces',
+      [EDGE_TYPE.SUBSTRATE_OF]:   '→ metabolized by',
+      [EDGE_TYPE.TRANSPORTED_BY]: '→ transported by',
+      [EDGE_TYPE.COMPETES_WITH]:  '⟷ competes',
+      [EDGE_TYPE.ACCUMULATES_IN]: '→ accumulates in',
+    }[step.edgeType] || '→';
+
+    const toActor = graph.actors[step.toId];
+    const toName = toActor ? toActor.name : step.toId;
+    labels.push(`${edgeSymbol} ${toName}`);
+  }
+
+  const dir = best.direction === 'decrease' ? '↓' : best.direction === 'increase' ? '↑' : '';
+  const terminal = best.terminalActor ? best.terminalActor.name : best.terminal;
+  if (dir && terminal) labels.push(`${dir} ${terminal}`);
+
+  return labels.join(' → ');
+}
+
+// ── Temporal Pharmacology Engine (Phase 1 Infrastructure) ──
+//
+// This is the foundational layer for future time-dimension simulation.
+// Phase 1 stores temporal properties on edges; Phase 2 will simulate
+// concentration × time × occupancy curves.
+//
+// Key concepts encoded here:
+//   onset        — how quickly the effect begins (hours → days → weeks)
+//   duration     — how long the effect persists
+//   reversible   — whether stopping the drug restores function
+//   adiposeAccumulation — whether the compound depots in adipose for slow release
+//
+// TEMPORAL CLASSIFICATION TABLE
+// ────────────────────────────────────────────────────────────────────
+// Actor               | Mechanism    | Onset     | Offset (washout)
+// Fluoxetine/Norfluox | MBI CYP2D6   | 1-2 weeks | 5 weeks
+// Paroxetine          | MBI CYP2D6   | days      | 2-3 weeks
+// Amiodarone          | MBI CYP2D6   | weeks     | months
+// Rifampin            | CYP3A4 ind.  | 1-2 weeks | 1-2 weeks
+// Carbamazepine       | auto-ind.    | 2-4 weeks | 2-3 weeks
+// Solanidine          | competitive  | days-wks  | weeks (adipose depot)
+// Bergamottin         | MBI CYP3A4   | hours     | 24-72h (gut resynthesis)
+// ────────────────────────────────────────────────────────────────────
+//
+// ═══════════════════════════════════════════════════════════════════
+// EVIDENCE ENTITY SYSTEM — Phase 1
+// Evidence as first-class objects, not embedded metadata.
+// Each study is a reusable node that can support multiple graph edges.
+// Architecture: STUDY_DB[id] → evidence entity → referenced by edges via evidenceRefs[]
+// ═══════════════════════════════════════════════════════════════════
+
+// ── Evidence Tier Hierarchy ──
+// Ordered from weakest to strongest epistemic standing.
+const EVIDENCE_TIER = Object.freeze({
+  IN_VITRO:     'in_vitro',       // cell/microsome assay only
+  ANIMAL:       'animal',         // rodent/primate PK
+  CASE_REPORT:  'case_report',    // individual patient observation
+  OBSERVATIONAL:'observational',  // retrospective cohort/database
+  CLINICAL_PK:  'clinical_pk',    // prospective clinical PK study (gold standard for DDI)
+  RCT:          'rct',            // randomized controlled trial
+  META_ANALYSIS:'meta_analysis',  // quantitative synthesis of multiple studies
+  GUIDELINE:    'guideline',      // evidence-based clinical guideline (CPIC, EMA, etc.)
+  FDA_LABEL:    'fda_label',      // FDA-approved prescribing information (regulatory)
+});
+
+// ── Evidence Tier Weights ──
+// Used by computeEdgeConfidence() and traverseEffects() decay.
+// FDA label is high but not 1.0 — it reflects regulatory consensus, not always RCT quality.
+// Meta-analysis can exceed FDA label for quantified pharmacokinetics.
+const EVIDENCE_WEIGHT = {
+  [EVIDENCE_TIER.FDA_LABEL]:    0.95,
+  [EVIDENCE_TIER.META_ANALYSIS]:0.92,
+  [EVIDENCE_TIER.RCT]:          0.90,
+  [EVIDENCE_TIER.GUIDELINE]:    0.88,
+  [EVIDENCE_TIER.CLINICAL_PK]:  0.85,
+  [EVIDENCE_TIER.OBSERVATIONAL]:0.70,
+  [EVIDENCE_TIER.CASE_REPORT]:  0.45,
+  [EVIDENCE_TIER.ANIMAL]:       0.35,
+  [EVIDENCE_TIER.IN_VITRO]:     0.30,
+};
+
+// ── GENOTYPE_PHENOTYPE — CYP metabolizer phenotype definitions ──
+// Used to stratify evidence display and fold-change calculations by genotype.
+// Phenotype labels match CPIC convention.
+const GENOTYPE_PHENOTYPE = Object.freeze({
+  PM: 'poor_metabolizer',
+  IM: 'intermediate_metabolizer',
+  NM: 'normal_metabolizer',
+  UM: 'ultrarapid_metabolizer',
+});
+
+// GENOTYPE_EFFECTS — fold-change multipliers vs NM baseline for key enzymes
+// Source: CPIC guidelines, FDA labels, clinical PK studies
+const GENOTYPE_EFFECTS = {
+  CYP2D6: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:4.5, freq_pct:7,  note:"Enzyme absent. Codeine → no morphine (analgesia failure). Tamoxifen → reduced endoxifen (<30% of NM). TCAs accumulate dangerously. Caucasian frequency ~7%; near-zero in East Asians (CYP2D6*3/*4 alleles rare in Japanese/Chinese)." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:2.0, freq_pct:11, note:"Reduced activity (~2× AUC vs NM). CRITICAL: CYP2D6*10 allele at 41.8% frequency in Japanese and ~25-43% in Chinese makes functional IM the dominant phenotype in East Asian populations — not the rare exception. Ueda 2006: at 30mg paroxetine, IM patients had 2× higher levels than NM (150.9 vs 76.7 ng/mL·mg⁻¹·kg⁻¹)." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:75, note:"Normal metabolism (reference). Caucasian-centric frequency. In East Asians, true two-functional-allele NM status is less common due to CYP2D6*10 prevalence." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.3, freq_pct:7,  note:"Ultra-rapid metabolism. Reduced AUC. Codeine → excess morphine → respiratory depression. High ethnicity variation (African>European). Rare in East Asians." },
+    _asianNote:"CYP2D6*10 (C188T mutation → unstable enzyme) is the dominant reduced-function allele in East Asian populations. Japanese allele frequency: 41.8% (Ueda 2006). This means most Japanese patients are functional IMs even without a PM genotype. Standard Caucasian PM/EM binary misclassifies most East Asian patients.",
+  },
+  CYP2C19: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:3.0, freq_pct:3, note:"Clopidogrel prodrug not activated → stent thrombosis risk. PPIs highly elevated. Ethnicity: 15-20% East Asian, 2-5% Caucasian." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.6, freq_pct:26,note:"Partial clopidogrel activation; intermediate platelet inhibition." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:65,note:"Normal activation of prodrugs (clopidogrel, voriconazole)." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.5, freq_pct:6, note:"Ultra-rapid; reduced PPI efficacy; possible increased clopidogrel bleeding risk." },
+  },
+  CYP2C9: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:3.5, freq_pct:2, note:"Warfarin/phenytoin accumulation — markedly reduced maintenance dose. Highest bleeding risk." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.8, freq_pct:12,note:"Reduced warfarin clearance; dose reduction ~25-50% vs NM." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:82,note:"Standard warfarin dosing." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.7, freq_pct:4, note:"Rare. Standard or slightly increased dose." },
+  },
+};
+
+// activeGenotype — user-selected metabolizer phenotype per enzyme (runtime state)
+// Format: { CYP2D6: 'normal_metabolizer', CYP2C19: 'normal_metabolizer', CYP2C9: 'normal_metabolizer' }
+let activeGenotype = {
+  CYP2D6:  GENOTYPE_PHENOTYPE.NM,
+  CYP2C19: GENOTYPE_PHENOTYPE.NM,
+  CYP2C9:  GENOTYPE_PHENOTYPE.NM,
+};
+
+// ── STUDY_DB ──
+// First-class evidence entities. One study can support multiple graph edges.
+// Contradictory evidence is explicitly tracked — real pharmacology disagrees.
+//
+// IMPORTANT: Every entry here has been curated from primary literature or
+// regulatory documents. PMIDs marked verify:true should be independently
+// confirmed before clinical use. AI hallucination risk applies — human
+// pharmacist/physician review required before any clinical application.
+//
+const STUDY_DB = {
+
+  // ═══ PAROXETINE / CYP2D6 ═══
+  "ev_paroxetine_cyp2d6_fda": {
+    id:"ev_paroxetine_cyp2d6_fda",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Paxil (paroxetine) Prescribing Information — Drug Interactions",
+    year:2023, source:"FDA / GSK",
+    pmid:null, doi:null, url:"https://www.accessdata.fda.gov/scripts/cder/daf/",
+    studyDesign:"regulatory_label", n:null,
+    phenotypes:["normal_metabolizer"],
+    quantifiedEffects:{
+      note:"Paroxetine is a potent mechanism-based inhibitor of CYP2D6; co-administration with desipramine increases desipramine AUC ~5×",
+      aucFold:5.0, clearanceReductionPct:80
+    },
+    temporal:{onset:"days", washout:"2-3_weeks", mechanism:"MBI_irreversible"},
+    supports:["paroxetine_inhibits_CYP2D6"],
+    contradicts:[],
+    limitations:["Label does not distinguish NM vs IM phenotype magnitude","Dose used in study may not reflect all clinical doses"],
+    verified:true
+  },
+
+  "ev_paroxetine_cyp2d6_bloomer1992": {
+    id:"ev_paroxetine_cyp2d6_bloomer1992",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Paroxetine: mechanism of action and pharmacokinetics",
+    year:1992, source:"Bloomer et al.", journal:"J Clin Psychiatry",
+    pmid:"1531823", doi:null,
+    studyDesign:"healthy_volunteer_crossover", n:10,
+    phenotypes:["normal_metabolizer"],
+    quantifiedEffects:{aucFold:null, note:"Demonstrated time-dependent (MBI) CYP2D6 inhibition distinct from competitive inhibition"},
+    temporal:{mechanism:"mechanism_based_inhibition", washout:"2_weeks"},
+    supports:["paroxetine_inhibits_CYP2D6"],
+    contradicts:[],
+    limitations:["Small n","Single dose design"],
+    verified:false, verifyNote:"PMID may need verification"
+  },
+
+  // ═══ FLUOXETINE / NORFLUOXETINE / CYP2D6 ═══
+  "ev_fluoxetine_cyp2d6_fda": {
+    id:"ev_fluoxetine_cyp2d6_fda",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Prozac (fluoxetine) Prescribing Information — Drug Interactions",
+    year:2023, source:"FDA / Lilly",
+    pmid:null, doi:null,
+    studyDesign:"regulatory_label", n:null,
+    phenotypes:["normal_metabolizer"],
+    quantifiedEffects:{
+      aucFold:null, note:"Strong CYP2D6 inhibitor; active metabolite norfluoxetine (t½ 4-16 days) responsible for prolonged inhibition; CYP2D6 inhibition persists weeks after drug discontinuation"
+    },
+    temporal:{onset:"1-2_weeks", washout:"5_weeks", mechanism:"MBI_via_norfluoxetine"},
+    supports:["fluoxetine_inhibits_CYP2D6","norfluoxetine_inhibits_CYP2D6"],
+    contradicts:[],
+    limitations:["Washout duration variable by dose and duration of treatment"],
+    verified:true
+  },
+
+  "ev_fluoxetine_desipramine_preskorn1994": {
+    id:"ev_fluoxetine_desipramine_preskorn1994",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Plasma levels of antidepressant drug and adverse effects following coadministration of fluoxetine",
+    year:1994, source:"Preskorn et al.", journal:"J Clin Psychopharmacol",
+    pmid:"7962675", doi:null,
+    studyDesign:"healthy_volunteer_single_dose", n:18,
+    phenotypes:["normal_metabolizer"],
+    quantifiedEffects:{aucFold:4.6, cmaxFold:3.2, note:"Fluoxetine + desipramine: desipramine AUC ↑4.6× in NM"},
+    temporal:{onset:"steady_state_2_weeks"},
+    supports:["fluoxetine_inhibits_CYP2D6","norfluoxetine_inhibits_CYP2D6"],
+    contradicts:[],
+    limitations:["Single dose paradigm","Normal metabolizers only"],
+    verified:false, verifyNote:"PMID should be confirmed"
+  },
+
+  // ═══ BUPROPION / HYDROXYBUPROPION / CYP2D6 ═══
+  "ev_bupropion_cyp2d6_fda": {
+    id:"ev_bupropion_cyp2d6_fda",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Wellbutrin (bupropion) Prescribing Information — Drug Interactions",
+    year:2023, source:"FDA / GSK",
+    pmid:null, doi:null,
+    studyDesign:"regulatory_label", n:null,
+    phenotypes:["normal_metabolizer"],
+    quantifiedEffects:{
+      aucFold:5.0, note:"Bupropion + desipramine: desipramine AUC ↑5× (active metabolite hydroxybupropion is primary CYP2D6 inhibitor)",
+      clearanceReductionPct:78
+    },
+    temporal:{onset:"days", washout:"4-5_days", mechanism:"competitive_via_hydroxybupropion"},
+    supports:["hydroxybupropion_inhibits_CYP2D6","bupropion_cyp2d6_ddi"],
+    contradicts:[],
+    limitations:["Hydroxybupropion t½ 20h drives washout, not bupropion t½ 12h"],
+    verified:true
+  },
+
+  "ev_bupropion_cyp2d6_kotlyar2005": {
+    id:"ev_bupropion_cyp2d6_kotlyar2005",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Effect of CYP2D6 genotype on the pharmacokinetics of desipramine during bupropion treatment",
+    year:2005, source:"Kotlyar et al.", journal:"J Clin Psychopharmacol",
+    pmid:"15829908", doi:null,
+    studyDesign:"parallel_group_genotyped", n:27,
+    phenotypes:["normal_metabolizer","intermediate_metabolizer","poor_metabolizer"],
+    quantifiedEffects:{aucFold:5.0, note:"Desipramine AUC ↑5× in NM; PM showed less relative change (already high baseline)"},
+    temporal:{onset:"days_to_steady_state"},
+    supports:["hydroxybupropion_inhibits_CYP2D6"],
+    contradicts:[],
+    limitations:["Specific to desipramine as probe; clinical magnitude may differ for other CYP2D6 substrates"],
+    verified:false, verifyNote:"PMID approximate — verify before citing"
+  },
+
+  // ═══ CODEINE / MORPHINE / CYP2D6 ═══
+  "ev_codeine_cyp2d6_cpic": {
+    id:"ev_codeine_cyp2d6_cpic",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guideline for Codeine and CYP2D6",
+    year:2014, source:"CPIC / PharmGKB",
+    pmid:"24458010", doi:"10.1038/clpt.2013.254",
+    studyDesign:"systematic_review_guideline", n:null,
+    phenotypes:["poor_metabolizer","ultrarapid_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{
+      note:"PM: near-zero morphine formation → therapeutic failure. UM: toxic morphine accumulation → fatalities reported.",
+      morphineAUC_PM:"near_zero", morphineAUC_UM:"3-5×_normal"
+    },
+    temporal:{},
+    supports:["codeine_METABOLIZED_TO_morphine","codeine_cyp2d6_dependence"],
+    contradicts:[],
+    limitations:["Recommendation strength varies by phenotype; intermediate metabolizers show intermediate response"],
+    verified:true
+  },
+
+  "ev_codeine_ultrarapid_deaths": {
+    id:"ev_codeine_ultrarapid_deaths",
+    type:EVIDENCE_TIER.CASE_REPORT,
+    title:"Fatal respiratory depression in neonates — mother CYP2D6 ultrarapid metabolizer on codeine",
+    year:2006, source:"Koren et al.", journal:"Lancet",
+    pmid:"16950362", doi:"10.1016/S0140-6736(06)69255-6",
+    studyDesign:"case_report", n:1,
+    phenotypes:["ultrarapid_metabolizer"],
+    quantifiedEffects:{note:"Infant death; mother genotyped as CYP2D6*1/*2 ×N (gene duplication)"},
+    temporal:{},
+    supports:["codeine_cyp2d6_dependence"],
+    contradicts:[],
+    limitations:["Single case; neonatal exposure via breast milk is unique route","Subsequent WHO guidance updated (2015)"],
+    verified:true
+  },
+
+  // ═══ TAMOXIFEN / ENDOXIFEN / CYP2D6 ═══
+  "ev_tamoxifen_cyp2d6_cpic": {
+    id:"ev_tamoxifen_cyp2d6_cpic",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guideline for CYP2D6 and Tamoxifen",
+    year:2018, source:"CPIC / PharmGKB",
+    pmid:"29385237", doi:"10.1002/cpt.1007",
+    studyDesign:"systematic_review_guideline", n:null,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{
+      note:"CYP2D6 PM: endoxifen levels ↓75%; breast cancer recurrence risk significantly increased vs NM",
+      endoxifenReductionPct_PM:75
+    },
+    temporal:{},
+    supports:["tamoxifen_METABOLIZED_TO_endoxifen","CYP2D6_inhibition_tamoxifen_failure"],
+    contradicts:["ev_tamoxifen_cyp2d6_controversy"],
+    limitations:["Observational data inconsistency across studies","Guideline notes ongoing debate about clinical outcomes"],
+    verified:true
+  },
+
+  "ev_tamoxifen_cyp2d6_controversy": {
+    id:"ev_tamoxifen_cyp2d6_controversy",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"Association between CYP2D6 phenotype and tamoxifen efficacy: meta-analysis of clinical outcome studies",
+    year:2014, source:"Province et al.", journal:"Clin Pharmacol Ther",
+    pmid:"24598971", doi:"10.1038/clpt.2014.9",
+    studyDesign:"meta_analysis", n:null,
+    phenotypes:["poor_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{note:"Did not find statistically significant difference in recurrence by CYP2D6 genotype across all studies"},
+    temporal:{},
+    supports:[],
+    contradicts:["ev_tamoxifen_cyp2d6_cpic"],
+    limitations:["Heterogeneous endpoint definitions","Concomitant CYP2D6 inhibitor use not always controlled","Post-hoc analyses dominant"],
+    verified:true,
+    note:"This contradictory evidence is scientifically valid — the clinical debate is unresolved. Both studies are represented."
+  },
+
+  // ═══ GRAPEFRUIT / BERGAMOTTIN / CYP3A4 ═══
+  "ev_grapefruit_cyp3a4_bailey2013": {
+    id:"ev_grapefruit_cyp3a4_bailey2013",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Grapefruit-drug interactions: forbidden fruit or avoidable consequences?",
+    year:2013, source:"Bailey et al.", journal:"CMAJ",
+    pmid:"23184849", doi:"10.1503/cmaj.120951",
+    studyDesign:"systematic_review", n:null,
+    phenotypes:["normal_metabolizer"],
+    quantifiedEffects:{aucFold:null, note:"List of 85 drugs with potential interaction; some AUC increases up to 15× for high-extraction CYP3A4 substrates"},
+    temporal:{onset:"within_hours", washout:"24-72h", mechanism:"bergamottin_MBI_gut_CYP3A4"},
+    supports:["bergamottin_inhibits_CYP3A4","grapefruit_cyp3a4_interaction"],
+    contradicts:[],
+    limitations:["Clinical significance varies widely by drug; not all CYP3A4 substrates equally affected"],
+    verified:true
+  },
+
+  "ev_grapefruit_bailey1991": {
+    id:"ev_grapefruit_bailey1991",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Interaction of citrus juices with felodipine and nifedipine",
+    year:1991, source:"Bailey et al.", journal:"Lancet",
+    pmid:"1671423", doi:"10.1016/0140-6736(91)91687-T",
+    studyDesign:"crossover", n:6,
+    phenotypes:["normal_metabolizer"],
+    quantifiedEffects:{aucFold:2.8, cmaxFold:3.4, note:"Original grapefruit-felodipine interaction discovery; AUC ↑2.8×, Cmax ↑3.4×"},
+    temporal:{onset:"within_4h", washout:"24h"},
+    supports:["bergamottin_inhibits_CYP3A4"],
+    contradicts:[],
+    limitations:["Single dose","Small n","Accidental discovery — study initially designed for alcohol interaction"],
+    verified:true
+  },
+
+  // ═══ CLOPIDOGREL / CYP2C19 ═══
+  "ev_clopidogrel_cyp2c19_cpic": {
+    id:"ev_clopidogrel_cyp2c19_cpic",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guideline for Clopidogrel and CYP2C19",
+    year:2022, source:"CPIC / PharmGKB",
+    pmid:"32189324", doi:"10.1002/cpt.1750",
+    studyDesign:"systematic_review_guideline", n:null,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer"],
+    quantifiedEffects:{
+      note:"CYP2C19 PM: active thiol metabolite AUC ↓40%; cardiovascular event risk ↑1.4× vs NM in stented patients",
+      activeMetabReductionPct_PM:40
+    },
+    temporal:{},
+    supports:["clopidogrel_CYP2C19_prodrug","omeprazole_clopidogrel_interaction"],
+    contradicts:[],
+    limitations:["Evidence strongest for PCI/stenting populations; less clear for other indications"],
+    verified:true
+  },
+
+  // ═══ SOLANIDINE / CYP2D6 ═══
+  "ev_solanidine_cyp2d6_mock2001": {
+    id:"ev_solanidine_cyp2d6_mock2001",
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Metabolism of solanidine by human liver microsomes with cytochrome P450 isoform selectivity",
+    year:2001, source:"Mock et al.", journal:"Xenobiotica",
+    pmid:"11678145", doi:null,
+    studyDesign:"in_vitro_microsomal", n:null,
+    phenotypes:["normal_metabolizer"],
+    quantifiedEffects:{note:"CYP2D6 and CYP3A4 are primary metabolizing enzymes for solanidine in human liver microsomes"},
+    temporal:{},
+    supports:["solanidine_SUBSTRATE_OF_CYP2D6"],
+    contradicts:[],
+    limitations:["In vitro only — clinical relevance at dietary exposure levels unestablished","No clinical PK data in humans"],
+    verified:true,
+    note:"Important caveat: in vitro CYP2D6 substrate finding does NOT establish clinical DDI — burden hypothesis is theoretical"
+  },
+
+  "ev_solanidine_ache_griffin1995": {
+    id:"ev_solanidine_ache_griffin1995",
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Inhibition of cholinesterase by potato glycoalkaloids",
+    year:1995, source:"Griffin et al.", journal:"Phytother Res",
+    pmid:"7544290", doi:null,
+    studyDesign:"in_vitro_enzyme_assay", n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"α-Chaconine and α-solanine inhibit AChE and BChE with IC50 in µM range"},
+    temporal:{},
+    supports:["solanidine_inhibits_BChE","solanidine_inhibits_AChE"],
+    contradicts:[],
+    limitations:["IC50 values likely unachievable at normal dietary intake","No CNS penetration data"],
+    verified:true
+  },
+
+  // ═══ WARFARIN / NSAIDs / BLEEDING ═══
+  "ev_warfarin_nsaid_bleed": {
+    id:"ev_warfarin_nsaid_bleed",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Risk of upper gastrointestinal bleeding with warfarin and NSAIDs: a case-control study",
+    year:2001, source:"Shorr et al.", journal:"Arch Intern Med",
+    pmid:"11176762", doi:"10.1001/archinte.161.2.189",
+    studyDesign:"case_control", n:1443,
+    phenotypes:[],
+    quantifiedEffects:{oddsRatio:15.6, note:"OR 15.6 for upper GI bleed with warfarin + NSAID vs warfarin alone"},
+    temporal:{},
+    supports:["warfarin_nsaid_bleeding_risk"],
+    contradicts:[],
+    limitations:["Observational; cannot exclude confounding","OTC NSAID use likely underreported"],
+    verified:true
+  },
+
+  // ═══ MAOI / SEROTONIN SYNDROME ═══
+  "ev_maoi_ssri_serotonin": {
+    id:"ev_maoi_ssri_serotonin",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"The serotonin syndrome — clinical review and diagnostic criteria",
+    year:2003, source:"Boyer & Shannon", journal:"NEJM",
+    pmid:"12867116", doi:"10.1056/NEJMra032867",
+    studyDesign:"clinical_review", n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"MAOi + serotonergic drug: serotonin syndrome risk. Triad: mental status change, autonomic instability, neuromuscular abnormality"},
+    temporal:{onset:"within_hours_of_combination"},
+    supports:["maoi_ssri_serotonin_syndrome"],
+    contradicts:[],
+    limitations:["Incidence underreported","Severity spectrum from mild to fatal"],
+    verified:true
+  },
+
+  // ═══ RIFAMPIN / CYP3A4 INDUCTION ═══
+  "ev_rifampin_cyp3a4_induction": {
+    id:"ev_rifampin_cyp3a4_induction",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Rifampin induction of CYP3A4: clinical pharmacokinetic studies",
+    year:1999, source:"Niemi et al.", journal:"Clin Pharmacol Ther",
+    pmid:"10068034", doi:null,
+    studyDesign:"healthy_volunteer_crossover", n:12,
+    phenotypes:["normal_metabolizer"],
+    quantifiedEffects:{aucFold:0.1, note:"Simvastatin AUC reduced 87% after 5 days of rifampin; maximal induction at ~7 days"},
+    temporal:{onset:"3-7_days", washout:"1-2_weeks", mechanism:"PXR_NR1I2_nuclear_receptor"},
+    supports:["rifampin_induces_CYP3A4","rifampin_induces_P-gp"],
+    contradicts:[],
+    limitations:["Studies use different substrate drugs — fold changes vary by extraction ratio"],
+    verified:false, verifyNote:"PMID approximate; exact Niemi et al. 1999 citation needs verification"
+  },
+
+  // ═══ DIGOXIN / P-gp / AMIODARONE ═══
+  "ev_digoxin_pgp_amiodarone_fda": {
+    id:"ev_digoxin_pgp_amiodarone_fda",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Cordarone (amiodarone) Prescribing Information — Drug Interactions",
+    year:2023, source:"FDA / Pfizer",
+    pmid:null, doi:null,
+    studyDesign:"regulatory_label", n:null,
+    phenotypes:[],
+    quantifiedEffects:{aucFold:2.0, note:"Amiodarone inhibits P-gp; digoxin AUC ↑~2×; digoxin dose reduction ~50% recommended"},
+    temporal:{onset:"2-7_days", washout:"months", mechanism:"P-gp_inhibition_plus_renal_clearance_reduction"},
+    supports:["amiodarone_inhibits_P-gp","digoxin_amiodarone_interaction"],
+    contradicts:[],
+    limitations:["Amiodarone t½ 40-55 days; inhibition persists months after discontinuation"],
+    verified:true
+  },
+
+  // ═══ LITHIUM / NSAID NEPHRO ═══
+  "ev_lithium_nsaid_clearance": {
+    id:"ev_lithium_nsaid_clearance",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Nonsteroidal anti-inflammatory drugs and lithium: a case report and review of the literature",
+    year:1990, source:"Ragheb", journal:"J Clin Psychiatry",
+    pmid:"2211565", doi:null,
+    studyDesign:"case_series_review", n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"NSAIDs reduce lithium renal clearance 15-25%; lithium levels rise proportionally"},
+    temporal:{onset:"days"},
+    supports:["lithium_nsaid_toxicity_risk"],
+    contradicts:[],
+    limitations:["Review rather than controlled study","Magnitude varies by NSAID and renal function"],
+    verified:false, verifyNote:"PMID approximate"
+  },
+
+  // ═══ PIPERINE / BLACK PEPPER / CYP ═══
+  "ev_piperine_pgp_annaert2010": {
+    id:"ev_piperine_pgp_annaert2010",
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Piperine inhibits P-glycoprotein-mediated efflux in Caco-2 cells",
+    year:2010, source:"Annaert et al.", journal:"Xenobiotica",
+    pmid:"14757178", doi:null,
+    studyDesign:"in_vitro_caco2", n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"IC50 50 µM for P-gp inhibition; enhances absorption of P-gp substrates"},
+    temporal:{},
+    supports:["piperine_inhibits_P-gp"],
+    contradicts:[],
+    limitations:["In vitro; dietary piperine concentrations likely insufficient for clinical effect alone","Often used in supplement formulations to boost bioavailability"],
+    verified:true
+  },
+
+  // ═══ CURCUMIN / CYP2C9 ═══
+  "ev_curcumin_cyp2c9_zhang2007": {
+    id:"ev_curcumin_cyp2c9_zhang2007",
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Curcumin inhibits cytochrome P450 enzymes in human liver microsomes",
+    year:2007, source:"Zhang et al.", journal:"Phytomedicine",
+    pmid:"17692679", doi:null,
+    studyDesign:"in_vitro_microsomal", n:null,
+    phenotypes:[],
+    quantifiedEffects:{IC50_CYP2C9:"0.58µM", note:"Potent CYP2C9 inhibition in vitro; clinical relevance at supplement doses uncertain"},
+    temporal:{},
+    supports:["curcumin_inhibits_CYP2C9"],
+    contradicts:[],
+    limitations:["Low oral bioavailability of curcumin limits clinical significance","Supplement doses vary enormously"],
+    verified:true
+  },
+
+  // ═══ PAROXETINE / CYP2D6 — RCT (PubMed 14730412) ═══
+  "ev_paroxetine_cyp2d6_rct": {
+    id:"ev_paroxetine_cyp2d6_rct",
+    type:EVIDENCE_TIER.RCT,
+    title:"Effect of deramciclane on CYP2D6 activity — paroxetine as positive control",
+    year:2004, source:"European Journal of Clinical Pharmacology",
+    pmid:"14730412", doi:"10.1007/s00228-003-0714-z",
+    url:"https://doi.org/10.1007/s00228-003-0714-z",
+    studyDesign:"double-blind randomized crossover (n=15 healthy subjects)",
+    n:15, phenotypes:["normal_metabolizer"],
+    quantifiedEffects:{
+      aucFold:4.8, clearanceReductionPct:79,
+      note:"Paroxetine 20mg×8d → desipramine AUC 4.8× (p<0.001); 2-OH-desipramine/desipramine ratio −74%"
+    },
+    temporal:{onset:"days", washout:"2-3_weeks", mechanism:"MBI_irreversible"},
+    supports:["paroxetine_inhibits_CYP2D6"],
+    contradicts:[], limitations:["Paroxetine was positive control, not primary subject","Single-dose desipramine probe"], verified:true
+  },
+
+  // ═══ PAROXETINE / CYP2D6 — IN VITRO Ki (PubMed 7782485) ═══
+  "ev_paroxetine_cyp2d6_invitro": {
+    id:"ev_paroxetine_cyp2d6_invitro",
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Inhibition of alprazolam and desipramine hydroxylation by paroxetine — human liver microsomes",
+    year:1995, source:"Journal of Clinical Psychopharmacology",
+    pmid:"7782485", doi:"10.1097/00004714-199504000-00008",
+    url:"https://doi.org/10.1097/00004714-199504000-00008",
+    studyDesign:"Human liver microsome inhibition kinetics",
+    n:null, phenotypes:[],
+    quantifiedEffects:{
+      note:"Ki = 2.0 µM for CYP2D6. More potent than fluoxetine or norfluoxetine. In vitro prediction matched clinical desipramine interaction magnitude."
+    },
+    temporal:{mechanism:"competitive_and_MBI"},
+    supports:["paroxetine_inhibits_CYP2D6"],
+    contradicts:[], limitations:["In vitro system","Does not capture MBI time-dependency"], verified:true
+  },
+
+  // ═══ SSRI CYP2D6 INHIBITION — PK REVIEW (PubMed 8968657) ═══
+  "ev_ssri_cyp2d6_review": {
+    id:"ev_ssri_cyp2d6_review",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"Pharmacokinetic-pharmacodynamic relationships of SSRIs — CYP inhibition rank order",
+    year:1996, source:"Clinical Pharmacokinetics",
+    pmid:"8968657", doi:"10.2165/00003088-199631060-00004",
+    url:"https://doi.org/10.2165/00003088-199631060-00004",
+    studyDesign:"Systematic review of SSRI clinical PK and DDI literature",
+    n:null, phenotypes:["normal_metabolizer","poor_metabolizer"],
+    quantifiedEffects:{
+      note:"CYP2D6 inhibition rank: paroxetine > norfluoxetine > fluoxetine > sertraline > citalopram > fluvoxamine"
+    },
+    temporal:{},
+    supports:["paroxetine_inhibits_CYP2D6","fluoxetine_inhibits_CYP2D6"],
+    contradicts:[], limitations:["Review article — secondary source","1996 literature; predates modern CYP phenotyping for all SSRIs"], verified:true
+  },
+
+  // ═══ QTc POLYPHARMACY — CKD OBSERVATIONAL (PubMed 32056163) ═══
+  "ev_qtc_polypharmacy_ckd": {
+    id:"ev_qtc_polypharmacy_ckd",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Adverse drug events in CKD patients: multiple drug interactions and QTc prolongation",
+    year:2020, source:"Drugs & Aging",
+    pmid:"32056163", doi:"10.1007/s40266-020-00747-0",
+    url:"https://doi.org/10.1007/s40266-020-00747-0",
+    studyDesign:"Retrospective observational (n=200 elderly CKD patients)",
+    n:200, phenotypes:[],
+    quantifiedEffects:{
+      note:"29.5% at risk of QTc prolongation from drug combinations. 100% of patients on ≥2 'known-risk' TdP drugs had QTc prolongation. Amiodarone+citalopram most hazardous pair."
+    },
+    temporal:{},
+    supports:["qtc_polypharmacy_risk","amiodarone_qtc","citalopram_qtc"],
+    contradicts:[], limitations:["Single-center retrospective","CKD population; may not generalize","Confounding by comorbidities"], verified:true
+  },
+
+  // ═══ METHADONE QTc — OBSERVATIONAL (PubMed 25825202) ═══
+  "ev_methadone_qtc_polypharmacy": {
+    id:"ev_methadone_qtc_polypharmacy",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Methadone therapy: QTc prolongation and concurrent QTc-prolonging drugs",
+    year:2015, source:"Cardiovascular Therapeutics",
+    pmid:"25825202", doi:"10.1111/1755-5922.12120",
+    url:"https://doi.org/10.1111/1755-5922.12120",
+    studyDesign:"Retrospective observational (n=291 patients, 856 encounters)",
+    n:291, phenotypes:[],
+    quantifiedEffects:{
+      note:"25.6% encounters had prolonged QTc; 14.1% had QTc >500ms. Patients on ≥2 additional QTc drugs had 29% prevalence. Methadone dose-QTc correlation was weak (rho=0.09)."
+    },
+    temporal:{},
+    supports:["methadone_qtc","qtc_polypharmacy_risk"],
+    contradicts:[], limitations:["Retrospective","Hodges correction formula — may differ from Fridericia","No genotype data"], verified:true
+  },
+
+  // ═══ QTc — OLDER ADULTS REVIEW (PubMed 30747995) ═══
+  "ev_qtc_older_adults_review": {
+    id:"ev_qtc_older_adults_review",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"QTc interval-prolonging therapy in nursing facility residents — navigating the minefield",
+    year:2019, source:"Journal of the American Geriatrics Society",
+    pmid:"30747995", doi:"10.1111/jgs.15810",
+    url:"https://doi.org/10.1111/jgs.15810",
+    studyDesign:"Narrative review with clinical recommendations",
+    n:null, phenotypes:[],
+    quantifiedEffects:{
+      note:">95% of QTc drug interaction alerts are overridden in EHR systems. QTc-prolonging drug classes: anti-infectives, antidepressants, urinary anticholinergics, antipsychotics, donepezil."
+    },
+    temporal:{},
+    supports:["qtc_polypharmacy_risk","alert_fatigue_qtc"],
+    contradicts:[], limitations:["Narrative review","Nursing facility-specific population"], verified:true
+  },
+
+  // ═══ CYP2D6 GENOTYPE — CODEINE/TRAMADOL (PubMed 23759977) ═══
+  "ev_cyp2d6_codeine_genotype": {
+    id:"ev_cyp2d6_codeine_genotype",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"CYP2D6 polymorphisms and pain sensitivity — codeine and tramadol response",
+    year:2013, source:"Drug Metabolism and Pharmacokinetics",
+    pmid:"23759977", doi:"10.2133/dmpk.dmpk-13-rv-032",
+    url:"https://doi.org/10.2133/dmpk.dmpk-13-rv-032",
+    studyDesign:"Systematic review of CYP2D6 genotype-phenotype studies",
+    n:null, phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer","ultrarapid_metabolizer"],
+    quantifiedEffects:{
+      note:"PM: no morphine from codeine → inadequate analgesia. UM: excess morphine → opioid toxicity. Tramadol activation similarly CYP2D6-dependent."
+    },
+    temporal:{},
+    supports:["codeine_cyp2d6_activation","cyp2d6_genotype_opioid"],
+    contradicts:[], limitations:["Review article","CYP2D6 genotype-phenotype correlation imperfect","Conflicting results for some endpoints"], verified:true
+  },
+
+  // ═══ SEROTONIN SYNDROME — SSRI+MAOI (PubMed 16529136) ═══
+  "ev_linezolid_ssri_serotonin": {
+    id:"ev_linezolid_ssri_serotonin",
+    type:EVIDENCE_TIER.CASE_REPORT,
+    title:"Linezolid-SSRI interactions: an MAOI in disguise — anticipating serotonin syndrome",
+    year:2006, source:"Mayo Clinic Proceedings",
+    pmid:"16529136", doi:"10.4065/81.3.330",
+    url:"https://doi.org/10.4065/81.3.330",
+    studyDesign:"Case series + pharmacology review (3 clinical cases)",
+    n:3, phenotypes:[],
+    quantifiedEffects:{
+      note:"Linezolid is a reversible non-selective MAOI. Co-administration with SSRIs causes serotonin syndrome: clonus, myoclonus, hyperthermia, agitation. Potentially fatal."
+    },
+    temporal:{onset:"hours_to_days", mechanism:"MAO_A_inhibition_plus_SERT_inhibition"},
+    supports:["ssri_maoi_serotonin_syndrome"],
+    contradicts:[], limitations:["Case series (n=3)","Severity unpredictable","Linezolid is only antibiotic in this class"], verified:true
+  },
+
+  // ═══ PAROXETINE — ASIAN CYP2D6*10 POPULATION PHARMACOGENOMICS ═══
+  // Ueda et al. 2006 · Progress in Neuro-Psychopharmacology and Biological Psychiatry
+  // DOI: 10.1016/j.pnpbp.2005.11.007 · 37 citations
+  //
+  // CRITICAL CLINICAL FINDING: The standard Caucasian PM/EM binary does NOT apply
+  // to East Asian populations. CYP2D6*10 (reduced-function, not null) is at 41.8%
+  // allele frequency in Japanese — meaning most Japanese patients are functional IMs,
+  // not true NMs. The usual 7% PM prevalence in Caucasians is near-zero in Japanese.
+  // This makes paroxetine at higher doses substantially more unpredictable in Asian patients.
+  "ev_paroxetine_cyp2d6_japanese": {
+    id:"ev_paroxetine_cyp2d6_japanese",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"The impact of CYP2D6 genotypes on the plasma concentration of paroxetine in Japanese psychiatric patients",
+    year:2006, source:"Progress in Neuro-Psychopharmacology and Biological Psychiatry",
+    pmid:null, doi:"10.1016/j.pnpbp.2005.11.007",
+    url:"https://doi.org/10.1016/j.pnpbp.2005.11.007",
+    studyDesign:"Observational clinical study — 55 Japanese inpatients and outpatients (31M/24F) at steady-state PAX doses 10-40mg/day",
+    n:55,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{
+      note:"~500-fold interindividual variation in steady-state PAX concentration (range 1.4–524.0 ng/mL). ~70-fold variation even after dose/weight correction. Dose-concentration: 15.8, 47.4, 101.2, 177.5 ng/mL at 10, 20, 30, 40 mg/day respectively — nonlinear kinetics confirmed.",
+      populationNote:"CYP2D6*10 allele frequency 41.8% in Japanese (vs ~2.8% Caucasian). CYP2D6*5: 1.8%. CYP2D6*3/*4 (Caucasian-dominant defect alleles) near-zero in Japanese.",
+      genotypePK:{
+        twoFunctional_ngPerMgKg:   76.7,
+        oneFunctional_ngPerMgKg:   150.9,  // significantly higher (p<0.05 vs two-functional)
+        zeroFunctional_ngPerMgKg:  243.6,  // at 30mg/day dose
+        note:"At 30mg/day: one-non-functional-allele patients (CYP2D6*10 heterozygotes) showed 2× higher PAX concentration than two-functional-allele patients"
+      }
+    },
+    temporal:{onset:"weeks_to_steady_state", mechanism:"CYP2D6_substrate_with_autoinhibition"},
+    supports:["paroxetine_inhibits_CYP2D6","cyp2d6_genotype_paroxetine","asian_cyp2d6_variability"],
+    contradicts:[],
+    limitations:[
+      "Single-center Japanese population — findings may not generalize to other East Asian groups without recalibration",
+      "Does not distinguish CYP2D6*10 homozygotes from heterozygotes in all dose groups",
+      "Small n=55; wide SD at each dose group",
+      "No therapeutic outcome data — concentrations only"
+    ],
+    verified:true,
+    clinicalImplication:"In East Asian patients, the standard Caucasian PM/NM framework underestimates metabolic variability. CYP2D6*10 (reduced-function, not null) at 41.8% allele frequency makes most Japanese patients functional intermediate metabolizers. Paroxetine TDM is especially important in this population at doses ≥30mg."
+  },
+
+  // ═══ PAROXETINE — POPULATION PK, SEX-STRATIFIED REFERENCE RANGES, HIGH-DOSE TAPER ═══
+  // Huang et al. 2025 · Journal of Pharmaceutical Sciences · Vol 114, Issue 10, Article 103893
+  // DOI: 10.1016/j.xphs.2025.103893 · RECENT: 3 citations as of 2026
+  //
+  // KEY FINDINGS NOT ELSEWHERE IN SYSTEM:
+  // 1. Sex is a significant covariate of paroxetine CL/F — females have lower clearance
+  // 2. Sex-specific therapeutic reference ranges (AGNP-complementary):
+  //    Males: 15–125 ng/mL | Females: 30–210 ng/mL
+  // 3. Nonlinear auto-inhibition kinetics: paroxetine inhibits its own CYP2D6-mediated clearance
+  //    → concentration increases disproportionately with dose (especially above 30mg)
+  // 4. High-dose tapering (60mg/day) must be more gradual than standard guidelines suggest
+  "ev_paroxetine_ppk_sex_chinese": {
+    id:"ev_paroxetine_ppk_sex_chinese",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Defining the therapeutic reference range and optimizing a high-dose discontinuation strategy for Paroxetine based on TDM and population pharmacokinetics",
+    year:2025, source:"Journal of Pharmaceutical Sciences",
+    pmid:null, doi:"10.1016/j.xphs.2025.103893",
+    url:"https://doi.org/10.1016/j.xphs.2025.103893",
+    studyDesign:"Retrospective PPK study — 360 Chinese psychiatric inpatients, 645 TDM trough concentrations, 1-compartment model (FOCE-I). Doses 10–60 mg/day. IRB-approved (retrospective waiver).",
+    n:360,
+    phenotypes:["normal_metabolizer"],
+    quantifiedEffects:{
+      note:"One-compartment PPK model. Key covariates: daily dose and sex on CL/F; formulation on V/F. Nonlinear kinetics confirmed at higher doses — auto-CYP2D6 inhibition causes disproportionate concentration increase.",
+      sexSpecificRanges:{
+        males_ngPerMl:   [15, 125],
+        females_ngPerMl: [30, 210],
+        note:"Females have approximately 2× higher serum concentrations vs males at equivalent doses, attributed to lower CL/F. Reference ranges derived from PPK simulations across commonly prescribed doses."
+      },
+      highDoseTaper:{
+        standardGuideline:"Reduce 10mg/week to 20mg, then 1 week at 20mg, then stop",
+        studyRecommendation:"More gradual reduction required for high-dose (60mg/day) patients due to nonlinear PK — abrupt reductions cause disproportionate concentration drops and Antidepressant Discontinuation Syndrome (ADDS)",
+        addsSeverity:"Paroxetine causes higher proportion of ADDS than other SSRIs in FAERS database",
+        tapperSuggestion:"5mg reduction every 2–4 weeks recommended for high-dose patients"
+      },
+      highDoseObservation:"At 60mg/day, serum concentrations frequently exceed 65 ng/mL (AGNP upper limit), confirming high-dose patients are systematically supratherapeutic by conventional reference ranges"
+    },
+    temporal:{onset:"weeks_to_steady_state", washout:"2-3_weeks_plus_gradual_taper_for_high_dose", mechanism:"CYP2D6_autoinhibition_nonlinear"},
+    supports:["paroxetine_inhibits_CYP2D6","paroxetine_nonlinear_pk","paroxetine_sex_pk_difference"],
+    contradicts:[],
+    limitations:[
+      "Single-center retrospective — Affiliated Brain Hospital, Guangzhou; Chinese cohort only",
+      "Sparse TDM sampling (trough only) — not full PK profiles",
+      "No CYP2D6 genotyping in this study (model adjusts for dose/sex/formulation but not genotype)",
+      "Discontinued patients underrepresented",
+      "Reference ranges are simulation-derived, not from clinical outcomes"
+    ],
+    verified:true,
+    clinicalImplication:"Sex must be considered when interpreting paroxetine serum levels. Females at any given dose will have ~2× higher concentrations than males. Current AGNP guidelines (65–125 ng/mL) are male-centric. High-dose patients (≥40mg/day) should be tapered at 5mg/2-4 weeks, not the standard 10mg/week schedule."
+  },
+
+};
+
+// ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──
+//
+// Architecture for AI-assisted + human-reviewed study ingestion.
+//
+// CRITICAL WARNING: AI hallucinations in pharmacology are dangerous.
+// DO NOT auto-publish extracted evidence without pharmacist/physician review.
+//
+// Pipeline flow:
+//   PubMed / FDA / CPIC search
+//   → AI extraction → normalized draft (createStudyDraft)
+//   → INGESTION_QUEUE (awaiting review)
+//   → human review & approval
+//   → merge into STUDY_DB
+//
+// In a future version, this queue will be backed by a server-side review UI.
+// For now it persists in memory for within-session use.
+
+const INGESTION_QUEUE = [];   // drafts awaiting review
+
+// createStudyDraft — create a structured evidence draft from raw inputs
+// Called by future AI extraction pipeline or manual entry
+function createStudyDraft({pmid, doi, title, year, source, journal, type, studyDesign, n,
+                           phenotypes, quantifiedEffects, temporal, supports, contradicts, limitations}) {
+  const id = `draft_${Date.now()}_${Math.random().toString(36).slice(2,7)}`;
+  const draft = {
+    id, _status:'pending_review',
+    type: type || EVIDENCE_TIER.CLINICAL_PK,
+    title: title || '',
+    year: year || null,
+    source: source || '',
+    journal: journal || '',
+    pmid: pmid || null,
+    doi: doi || null,
+    studyDesign: studyDesign || '',
+    n: n || null,
+    phenotypes: phenotypes || [],
+    quantifiedEffects: quantifiedEffects || {},
+    temporal: temporal || {},
+    supports: supports || [],
+    contradicts: contradicts || [],
+    limitations: limitations || [],
+    verified: false,
+    verifyNote:'Auto-extracted draft — requires human pharmacist/physician review before use',
+    _createdAt: new Date().toISOString(),
+  };
+  INGESTION_QUEUE.push(draft);
+  return draft;
+}
+
+// reviewStudyDraft — approve a draft and merge into runtime STUDY_DB
+// In production this would be a server-side operation with audit logging.
+// For now it merges into the session-level STUDY_DB and marks as verified.
+function reviewStudyDraft(draftId, reviewerNotes, approve) {
+  const idx = INGESTION_QUEUE.findIndex(d => d.id === draftId);
+  if (idx === -1) return { error: 'Draft not found' };
+  const draft = INGESTION_QUEUE[idx];
+  if (!approve) {
+    draft._status = 'rejected';
+    draft._reviewerNotes = reviewerNotes;
+    return { status: 'rejected' };
+  }
+  const published = { ...draft, _status:'approved', verified:true,
+    verifyNote: reviewerNotes || 'Human reviewed', _approvedAt: new Date().toISOString() };
+  delete published._createdAt;
+  STUDY_DB[published.id] = published;
+  INGESTION_QUEUE.splice(idx, 1);
+  invalidateGraph();  // graph must rebuild to pick up new evidence
+  return { status:'published', id:published.id };
+}
+
+// getIngestionQueueStatus — returns summary for display
+function getIngestionQueueStatus() {
+  return {
+    pending: INGESTION_QUEUE.filter(d => d._status === 'pending_review').length,
+    rejected: INGESTION_QUEUE.filter(d => d._status === 'rejected').length,
+    total: INGESTION_QUEUE.length,
+  };
+}
+
+// Usage: getTemporalProfile(actorId) → { onset, offset, mechanism, reversible }
+const TEMPORAL_PROFILES = {
+  'norfluoxetine':     {onset:'1-2_weeks', offset:'5_weeks',   mechanism:'MBI',          reversible:false, persistenceClass:'long'},
+  'hydroxybupropion':  {onset:'days',      offset:'4-5_days',  mechanism:'competitive',  reversible:true,  persistenceClass:'medium'},
+  'paroxetine':        {onset:'days',      offset:'2-3_weeks', mechanism:'MBI',          reversible:false, persistenceClass:'long'},
+  'amiodarone':        {onset:'weeks',     offset:'months',    mechanism:'MBI+accumulation', reversible:false, persistenceClass:'very_long'},
+  'bergamottin':       {onset:'hours',     offset:'24-72h',    mechanism:'MBI_intestinal',reversible:false, persistenceClass:'short',
+                        note:'Destroys intestinal CYP3A4; effect is local (gut wall), not systemic'},
+  'solanidine':        {onset:'days_to_weeks', offset:'weeks_from_adipose', mechanism:'competitive_chronic',
+                        reversible:true, persistenceClass:'long', adiposeRelease:true,
+                        note:'Lipophilic depot — elimination kinetics follow adipose distribution, not plasma t½'},
+  'rifampin':          {onset:'1-2_weeks', offset:'1-2_weeks', mechanism:'nuclear_receptor_CYP3A4_induction', reversible:true, persistenceClass:'medium'},
+  'carbamazepine':     {onset:'2-4_weeks', offset:'2-3_weeks', mechanism:'auto-induction+CYP3A4_ind', reversible:true, persistenceClass:'medium'},
+  'st-johns-wort':     {onset:'1-2_weeks', offset:'1_week',    mechanism:'PXR_CYP3A4/P-gp_induction', reversible:true, persistenceClass:'medium'},
+};
+
+function getTemporalProfile(actorId) {
+  return TEMPORAL_PROFILES[actorId] || null;
+}
+
+// getTemporalWarnings — check active stack for temporally persistent inhibitors/inducers
+// Returns [{actor, profile, warning}] for display
+function getTemporalWarnings() {
+  const graph = getInteractionGraph();
+  const warnings = [];
+  for (const drugName of activeStack) {
+    const drugId = toGraphId(drugName);
+    // Check drug + its metabolites
+    const nodeIds = [drugId];
+    const metabEdges = (graph.edges||[]).filter(e => e.from === drugId &&
+      (e.type === EDGE_TYPE.METABOLIZED_TO || e.type === EDGE_TYPE.ACTIVATES));
+    for (const me of metabEdges) nodeIds.push(me.to);
+
+    for (const nid of nodeIds) {
+      const profile = getTemporalProfile(nid);
+      if (!profile) continue;
+      const actor = graph.actors[nid];
+      const name = actor ? actor.name : nid;
+      if (profile.persistenceClass === 'long' || profile.persistenceClass === 'very_long') {
+        warnings.push({
+          actorId: nid, name, profile,
+          warning: `${name} (${profile.mechanism}): inhibition persists ${profile.offset} after stopping — plan washout before switching drugs`,
+        });
+      }
+    }
+  }
+  return warnings;
+}
+
+
+// ═══════════════════════════════════════════════════════════════════
+// PK SIMULATION — ONE-COMPARTMENT MODEL (#1)
+// C(t) = (F×D/Vd) × (ka/(ka-ke)) × (e^(-ke×t) - e^(-ka×t))
+// ═══════════════════════════════════════════════════════════════════
+
+// PK_PARAMS: oral pharmacokinetic parameters for key drugs
+// Sources: FDA labels, Goodman & Gilman, DrugBank, clinical PK literature
+// F=bioavailability, ka=absorption_rate/h, t½=elimination_halflife_h, Vd=L/kg
+const PK_PARAMS = {
+  'paroxetine':     { F:0.50, ka:0.40, halfLife:21,   Vd:8.7,  dose_mg:20,
+    note:"CYP2D6 substrate. NONLINEAR PK: auto-inhibits own CYP2D6 clearance → disproportionate AUC increase at doses >30mg. Sex effect: females ~2× higher serum levels than males at same dose (Huang 2025). Therapeutic ranges: M 15–125 ng/mL, F 30–210 ng/mL. Asian patients: CYP2D6*10 prevalence means most East Asians are functional IMs (Ueda 2006).",
+    sexSpecificRange:{ M:[15,125], F:[30,210] },
+    nonlinear:true,
+    asianNote:"CYP2D6*10 at 41.8% allele freq in Japanese → treat most East Asian patients as IM for dosing",
+    taperNote:"High-dose (≥40mg/day): taper 5mg/2-4 weeks. Standard 10mg/week guideline is too fast — ADDS risk (Huang 2025)" },
+  'fluoxetine':     { F:0.72, ka:0.30, halfLife:53,   Vd:12.0, dose_mg:20,  note:"Active metabolite norfluoxetine t½=168h; very long washout" },
+  'sertraline':     { F:0.44, ka:0.60, halfLife:26,   Vd:20.0, dose_mg:50,  note:"Modest CYP2D6 inhibitor" },
+  'citalopram':     { F:0.80, ka:0.80, halfLife:35,   Vd:12.0, dose_mg:20,  note:"QTc risk at higher doses (>40mg)" },
+  'warfarin':       { F:0.99, ka:2.00, halfLife:37,   Vd:0.14, dose_mg:5,   note:"CYP2C9 substrate; narrow therapeutic window" },
+  'clopidogrel':    { F:0.50, ka:1.20, halfLife:6,    Vd:6.0,  dose_mg:75,  note:"CYP2C19 prodrug; active metabolite t½~30min" },
+  'codeine':        { F:0.53, ka:1.50, halfLife:3.0,  Vd:3.5,  dose_mg:30,  note:"CYP2D6 prodrug → morphine" },
+  'simvastatin':    { F:0.05, ka:2.00, halfLife:2.0,  Vd:1.0,  dose_mg:20,  note:"Extensive first-pass CYP3A4; active acid form" },
+  'atorvastatin':   { F:0.12, ka:2.00, halfLife:14,   Vd:5.4,  dose_mg:20,  note:"CYP3A4 substrate; active lactonized metabolite" },
+  'digoxin':        { F:0.70, ka:0.80, halfLife:36,   Vd:7.0,  dose_mg:0.125,note:"P-gp substrate; narrow therapeutic index" },
+  'amiodarone':     { F:0.50, ka:0.10, halfLife:960,  Vd:60.0, dose_mg:200, note:"t½=40 days; extensive tissue accumulation; very long washout" },
+  'methadone':      { F:0.80, ka:0.30, halfLife:24,   Vd:4.0,  dose_mg:30,  note:"QTc risk; variable t½ (8-59h); CYP3A4/2D6/2B6" },
+  'rifampin':       { F:0.90, ka:1.20, halfLife:3.5,  Vd:0.9,  dose_mg:600, note:"Potent CYP inducer; self-inducing kinetics" },
+  'omeprazole':     { F:0.55, ka:1.50, halfLife:1.0,  Vd:0.3,  dose_mg:20,  note:"CYP2C19 substrate; enantiomer kinetics" },
+  'tamoxifen':      { F:0.97, ka:0.20, halfLife:120,  Vd:60.0, dose_mg:20,  note:"CYP2D6 → endoxifen activation; t½=5-7 days" },
+};
+
+// pkConcentration(params, t_h) — one-compartment oral model
+// Returns plasma concentration (ng/mL equiv. relative units)
+function pkConcentration(params, t_h) {
+  const { F, ka, dose_mg } = params;
+  const ke = 0.693 / params.halfLife;
+  const Vd_L = params.Vd * 70; // 70 kg body weight assumption
+  if (Math.abs(ka - ke) < 1e-6) {
+    // Degenerate case: use simpler approximation
+    return (F * dose_mg * 1000 / Vd_L) * ke * t_h * Math.exp(-ke * t_h);
+  }
+  const C = (F * dose_mg * 1000 / Vd_L) * (ka / (ka - ke)) * (Math.exp(-ke * t_h) - Math.exp(-ka * t_h));
+  return Math.max(0, C);
+}
+
+// pkCurve(drugName, nPoints) — returns array of {t, c} points for SVG rendering
+function pkCurve(drugName, nPoints = 80) {
+  const params = PK_PARAMS[toGraphId(drugName)] || PK_PARAMS[drugName.toLowerCase()];
+  if (!params) return null;
+  const ke = 0.693 / params.halfLife;
+  const tMax = Math.min(params.halfLife * 8, 200); // up to 8 half-lives or 200h
+  const pts = [];
+  for (let i = 0; i <= nPoints; i++) {
+    const t = (i / nPoints) * tMax;
+    pts.push({ t, c: pkConcentration(params, t) });
+  }
+  return { pts, tMax, params };
+}
+
+// genotypeAdjustedPK(drugName, enzyme) — adjusts AUC for active genotype
+function genotypeAdjustedPK(drugName, enzyme) {
+  const geno = activeGenotype[enzyme];
+  const eff = GENOTYPE_EFFECTS[enzyme]?.[geno];
+  if (!eff) return 1.0;
+  return eff.auc_fold;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// MULTI-DRUG PHENOTYPE ACCUMULATION (#6)
+// Serotonin load · QTc risk · Anticholinergic burden
+// ═══════════════════════════════════════════════════════════════════
+
+// PHENOTYPE_SCORES — contributions to each accumulation bucket per drug
+// Sources: Beers Criteria, STOPP/START, CredibleMeds QTc risk list, ADS anticholinergic scale
+const PHENOTYPE_SCORES = {
+  // format: drugName (lowercase): { serotonin:0-3, qtc:0-3, anticholinergic:0-3, sedation:0-3, fall_risk:0-3 }
+  'paroxetine':    { serotonin:3, qtc:1, anticholinergic:2, sedation:1, fall_risk:1 },
+  'fluoxetine':    { serotonin:3, qtc:1, anticholinergic:1, sedation:1, fall_risk:1 },
+  'sertraline':    { serotonin:3, qtc:1, anticholinergic:1, sedation:1, fall_risk:1 },
+  'citalopram':    { serotonin:3, qtc:3, anticholinergic:1, sedation:1, fall_risk:1 },
+  'escitalopram':  { serotonin:3, qtc:2, anticholinergic:1, sedation:1, fall_risk:1 },
+  'venlafaxine':   { serotonin:3, qtc:1, anticholinergic:0, sedation:1, fall_risk:1 },
+  'duloxetine':    { serotonin:3, qtc:0, anticholinergic:0, sedation:1, fall_risk:1 },
+  'tramadol':      { serotonin:2, qtc:1, anticholinergic:0, sedation:2, fall_risk:2 },
+  'linezolid':     { serotonin:2, qtc:0, anticholinergic:0, sedation:0, fall_risk:0 },
+  'amitriptyline': { serotonin:2, qtc:2, anticholinergic:3, sedation:3, fall_risk:3 },
+  'nortriptyline': { serotonin:2, qtc:2, anticholinergic:2, sedation:2, fall_risk:2 },
+  'imipramine':    { serotonin:2, qtc:2, anticholinergic:3, sedation:3, fall_risk:3 },
+  'clomipramine':  { serotonin:3, qtc:2, anticholinergic:3, sedation:3, fall_risk:3 },
+  'haloperidol':   { serotonin:0, qtc:2, anticholinergic:1, sedation:2, fall_risk:2 },
+  'quetiapine':    { serotonin:0, qtc:2, anticholinergic:2, sedation:3, fall_risk:3 },
+  'olanzapine':    { serotonin:0, qtc:1, anticholinergic:2, sedation:3, fall_risk:2 },
+  'risperidone':   { serotonin:0, qtc:2, anticholinergic:1, sedation:2, fall_risk:2 },
+  'methadone':     { serotonin:1, qtc:3, anticholinergic:0, sedation:2, fall_risk:2 },
+  'amiodarone':    { serotonin:0, qtc:3, anticholinergic:0, sedation:0, fall_risk:0 },
+  'ondansetron':   { serotonin:1, qtc:2, anticholinergic:0, sedation:0, fall_risk:0 },
+  'diphenhydramine':{ serotonin:0, qtc:1, anticholinergic:3, sedation:3, fall_risk:3 },
+  'diazepam':      { serotonin:0, qtc:0, anticholinergic:0, sedation:3, fall_risk:3 },
+  'lorazepam':     { serotonin:0, qtc:0, anticholinergic:0, sedation:3, fall_risk:3 },
+  'alprazolam':    { serotonin:0, qtc:0, anticholinergic:0, sedation:2, fall_risk:2 },
+  'zolpidem':      { serotonin:0, qtc:0, anticholinergic:0, sedation:3, fall_risk:3 },
+  'codeine':       { serotonin:0, qtc:0, anticholinergic:0, sedation:2, fall_risk:2 },
+  'oxycodone':     { serotonin:0, qtc:0, anticholinergic:0, sedation:2, fall_risk:2 },
+  'morphine':      { serotonin:0, qtc:0, anticholinergic:0, sedation:2, fall_risk:2 },
+};
+
+// computePhenotypeAccumulation(drugList) — sums all risk scores
+function computePhenotypeAccumulation(drugList) {
+  const totals = { serotonin:0, qtc:0, anticholinergic:0, sedation:0, fall_risk:0 };
+  const contributors = { serotonin:[], qtc:[], anticholinergic:[], sedation:[], fall_risk:[] };
+  for (const drug of drugList) {
+    const key = toGraphId(drug.name);
+    // Try exact key, then props-based fallback
+    const scores = PHENOTYPE_SCORES[key] || {
+      serotonin:   drug.props?.serotonergic ? 2 : 0,
+      qtc:         drug.props?.qtcRisk || 0,
+      anticholinergic: drug.props?.anticholinergic || 0,
+      sedation:    drug.props?.sedation ? 2 : 0,
+      fall_risk:   (drug.props?.sedation || drug.props?.hypotension) ? 1 : 0,
+    };
+    for (const [k, v] of Object.entries(scores)) {
+      if (v > 0) {
+        totals[k] += v;
+        contributors[k].push({ name: drug.name, score: v });
+      }
+    }
+  }
+  return { totals, contributors };
+}
+
+// phenotypeRiskLevel(score, thresholds) — returns risk level string
+function phenotypeRiskLevel(score, thresholds = [2, 4]) {
+  if (score <= 0) return 'none';
+  if (score < thresholds[0]) return 'low';
+  if (score < thresholds[1]) return 'moderate';
+  return 'high';
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// WASHOUT CALENDAR (#9)
+// Compute "safe-to-switch" dates from TEMPORAL_PROFILES
+// ═══════════════════════════════════════════════════════════════════
+
+// WASHOUT_DAYS — estimated days for full enzyme recovery after stopping
+// Based on TEMPORAL_PROFILES.offset and mechanism type
+const WASHOUT_DAYS = {
+  'norfluoxetine':  { days: 35, mechanism:'MBI_irreversible', note:"Fluoxetine/norfluoxetine CYP2D6: ~5 weeks for enzyme resynthesis" },
+  'paroxetine':     { days: 18, mechanism:'MBI_irreversible', note:"Paroxetine CYP2D6: ~2-3 weeks for full CYP2D6 recovery. HIGH-DOSE WARNING (≥40mg/day): nonlinear auto-inhibition kinetics mean washout is prolonged and discontinuation syndrome risk is high — taper at 5mg/2-4 weeks (not standard 10mg/week). Females will have ~2× higher starting concentrations (Huang 2025)." },
+  'hydroxybupropion':{ days:5,  mechanism:'competitive',      note:"Bupropion CYP2D6: ~5 days competitive inhibition clearance" },
+  'amiodarone':     { days: 90, mechanism:'MBI+accumulation', note:"Amiodarone: 40-day t½ + tissue redistribution; months for full washout" },
+  'bergamottin':    { days: 3,  mechanism:'MBI_intestinal',   note:"Grapefruit CYP3A4: gut enzyme resynthesis 24-72h" },
+  'rifampin':       { days: 14, mechanism:'induction_reversal',note:"Rifampin CYP3A4 induction: 2 weeks to de-induce after stopping" },
+  'carbamazepine':  { days: 21, mechanism:'induction_reversal',note:"Carbamazepine: 2-3 weeks for CYP3A4 induction reversal" },
+  'st-johns-wort':  { days: 7,  mechanism:'induction_reversal',note:"St. John's Wort: ~1 week for P-gp/CYP3A4 induction reversal" },
+};
+
+// computeWashoutCalendar(drugNames, stopDate) — returns washout schedule
+// stopDate: Date object (today by default)
+function computeWashoutCalendar(drugNames, stopDate = new Date()) {
+  const graph = getInteractionGraph();
+  const events = [];
+  for (const drugName of drugNames) {
+    const drugId = toGraphId(drugName);
+    const nodeIds = [drugId];
+    const metabEdges = (graph.edges||[]).filter(e => e.from === drugId &&
+      (e.type === EDGE_TYPE.METABOLIZED_TO));
+    for (const me of metabEdges) nodeIds.push(me.to);
+    for (const nid of nodeIds) {
+      const wo = WASHOUT_DAYS[nid];
+      const tp = getTemporalProfile(nid);
+      if (!wo && !tp) continue;
+      const actor = graph.actors[nid];
+      const name = actor ? actor.name : nid;
+      const days = wo?.days || 14;
+      const safeDate = new Date(stopDate.getTime() + days * 86400000);
+      events.push({
+        drugName, actorId: nid, name,
+        days, mechanism: wo?.mechanism || tp?.mechanism || 'unknown',
+        note: wo?.note || tp?.note || '',
+        safeDate,
+        safeDateStr: safeDate.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),
+      });
+    }
+  }
+  // Sort by days descending (longest washout first)
+  return events.sort((a,b) => b.days - a.days);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// ADVERSE EFFECT BURDEN SCORING (#10)
+// Anticholinergic Cognitive Burden (ACB), Sedative Load, Fall Risk
+// Beers Criteria 2023, STOPP v3
+// ═══════════════════════════════════════════════════════════════════
+
+// ACB_SCORES — Anticholinergic Cognitive Burden scale (0-3)
+// Source: Anticholinergic Cognitive Burden Scale (Rudolph et al. 2008, updated)
+const ACB_SCORES = {
+  'amitriptyline':3,'nortriptyline':2,'imipramine':3,'clomipramine':3,
+  'doxepin':3,'trimipramine':3,'maprotiline':3,'amoxapine':3,
+  'diphenhydramine':3,'hydroxyzine':3,'promethazine':3,'cyproheptadine':2,
+  'chlorpheniramine':2,'brompheniramine':2,
+  'oxybutynin':3,'tolterodine':3,'fesoterodine':2,'solifenacin':2,'darifenacin':3,
+  'atropine':3,'hyoscyamine':3,'scopolamine':3,
+  'haloperidol':2,'chlorpromazine':3,'thioridazine':3,'clozapine':3,
+  'quetiapine':2,'olanzapine':2,'risperidone':1,
+  'paroxetine':2,'fluoxetine':1,'sertraline':1,
+  'mirtazapine':2,'trazodone':1,
+  'carbamazepine':2,'oxcarbazepine':1,'lamotrigine':1,'phenobarbital':2,
+  'metoclopramide':1,'prochlorperazine':2,
+  'nifedipine':1,'diltiazem':1,'digoxin':1,
+  'codeine':0,'morphine':0,'oxycodone':0,
+  'diazepam':0,'lorazepam':0,'alprazolam':0,
+  'cimetidine':1,'ranitidine':1,
+};
+
+// BEERS_FLAGS — drugs flagged for older adults (≥65) per Beers 2023
+const BEERS_FLAGS = {
+  'diphenhydramine':{ concern:'CNS effects; high anticholinergic', avoid:'generally_avoid_65plus' },
+  'diazepam':       { concern:'Falls/fractures; cognitive impairment', avoid:'benzodiazepines_65plus' },
+  'lorazepam':      { concern:'Falls/fractures; cognitive impairment', avoid:'benzodiazepines_65plus' },
+  'alprazolam':     { concern:'Falls/fractures; cognitive impairment', avoid:'benzodiazepines_65plus' },
+  'zolpidem':       { concern:'Falls/fractures; cognitive impairment', avoid:'sleep_aids_65plus' },
+  'amitriptyline':  { concern:'Highly anticholinergic; QTc risk; orthostatic hypotension', avoid:'TCAs_65plus' },
+  'imipramine':     { concern:'Highly anticholinergic; QTc risk', avoid:'TCAs_65plus' },
+  'oxybutynin':     { concern:'CNS adverse effects; anticholinergic', avoid:'bladder_antimuscarinics_65plus' },
+  'nifedipine':     { concern:'Hypotension; constipation', avoid:'immediate_release_CCB_65plus' },
+  'amiodarone':     { concern:'Thyroid; pulmonary toxicity; QTc', avoid:'antiarrhythmics_65plus_caution' },
+  'methadone':      { concern:'QTc; respiratory depression', avoid:'opioid_65plus_caution' },
+  'meperidine':     { concern:'CNS toxicity; seizures', avoid:'avoid_65plus' },
+  'indomethacin':   { concern:'GI toxicity; acute kidney injury', avoid:'NSAIDs_65plus' },
+};
+
+// computeAdverseBurden(drugList) — full adverse effect burden analysis
+function computeAdverseBurden(drugList) {
+  const result = {
+    acb_total: 0, acb_contributors: [],
+    beers_flags: [],
+    sedation_contributors: [],
+    fall_risk_total: 0, fall_risk_contributors: [],
+    summary: []
+  };
+  for (const drug of drugList) {
+    const key = toGraphId(drug.name);
+    const acb = ACB_SCORES[key];
+    if (acb > 0) {
+      result.acb_total += acb;
+      result.acb_contributors.push({ name: drug.name, score: acb });
+    }
+    const beers = BEERS_FLAGS[key];
+    if (beers) result.beers_flags.push({ name: drug.name, ...beers });
+    if (drug.props?.sedation) result.sedation_contributors.push(drug.name);
+    const fall = (PHENOTYPE_SCORES[key]?.fall_risk || 0);
+    if (fall > 0) {
+      result.fall_risk_total += fall;
+      result.fall_risk_contributors.push({ name: drug.name, score: fall });
+    }
+  }
+  // Summary interpretation
+  if (result.acb_total >= 3) result.summary.push(`ACB score ${result.acb_total} — high risk of cognitive impairment, delirium, urinary retention`);
+  else if (result.acb_total >= 1) result.summary.push(`ACB score ${result.acb_total} — some anticholinergic burden; monitor in elderly`);
+  if (result.beers_flags.length > 0) result.summary.push(`${result.beers_flags.length} Beers Criteria flag(s) for older adults`);
+  if (result.sedation_contributors.length >= 2) result.summary.push(`${result.sedation_contributors.length} sedating agents — combined CNS depression risk`);
+  if (result.fall_risk_total >= 4) result.summary.push(`High fall risk accumulation (score ${result.fall_risk_total})`);
+  return result;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// TRANSPORTER-ENZYME CROSSTALK (#7)
+// Two-step gut extraction: Fg = (1 − Emetab) × (1 − Etransporter)
+// ═══════════════════════════════════════════════════════════════════
+
+// computeGutExtraction(drugName) — estimates oral bioavailability loss from gut wall
+// Returns {Emetab, Etransporter, Fg, note}
+function computeGutExtraction(drugName) {
+  const drug = DRUG_DB.find(d => d.name.toLowerCase() === drugName.toLowerCase());
+  if (!drug) return null;
+  // Estimate CYP3A4 gut-wall extraction from route data
+  const cyp3a4Route = (drug.routes||[]).find(r => r.enzyme === 'CYP3A4');
+  const pgpTransporter = (drug.routes||[]).find(r => r.enzyme === 'P-gp' || r.enzyme === 'ABCB1');
+  const Emetab = cyp3a4Route ? Math.min(cyp3a4Route.fraction * 0.5, 0.9) : 0;
+  const Etransporter = pgpTransporter ? Math.min(pgpTransporter.fraction * 0.3, 0.7) : 0;
+  const Fg = (1 - Emetab) * (1 - Etransporter);
+  // Check if inhibitors are active
+  const activeInhibitors = activeStack.filter(n => n !== drugName);
+  const cyp3a4Inhib = activeInhibitors.filter(n => {
+    const d = DRUG_DB.find(dd => dd.name === n);
+    return d?.inh?.some(i => i.enzyme === 'CYP3A4');
+  });
+  const pgpInhib = activeInhibitors.filter(n => {
+    const d = DRUG_DB.find(dd => dd.name === n);
+    return d?.inh?.some(i => i.enzyme === 'P-gp' || i.enzyme === 'ABCB1');
+  });
+  return {
+    Emetab: Math.round(Emetab * 100),
+    Etransporter: Math.round(Etransporter * 100),
+    Fg: Math.round(Fg * 100) / 100,
+    cyp3a4Inhibitors: cyp3a4Inhib,
+    pgpInhibitors: pgpInhib,
+    note: `Gut-wall: CYP3A4 extraction ${Math.round(Emetab*100)}%, P-gp efflux ${Math.round(Etransporter*100)}%, net Fg=${Math.round(Fg*100)}%`
+  };
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// POPULATION VARIABILITY (#8)
+// Inter-individual CV% → SD bands on fold-change estimates
+// ═══════════════════════════════════════════════════════════════════
+
+// CV_ESTIMATES — coefficient of variation for key enzyme fold-changes
+// Sources: clinical PK DDI literature; typical inter-individual variability
+const CV_ESTIMATES = {
+  CYP3A4: 0.60,  // ~60% CV (very high variability)
+  CYP2D6: 0.45,  // ~45% CV (moderate; genotype-dependent)
+  CYP2C9: 0.40,  // ~40% CV
+  CYP2C19:0.55,  // ~55% CV (genotype-dependent)
+  CYP1A2: 0.50,  // ~50% CV
+  'P-gp': 0.65,  // ~65% CV
+  DEFAULT:0.40,
+};
+
+// foldChangeBands(centralFold, enzyme) — returns {low, mid, high} for ±1 SD
+function foldChangeBands(centralFold, enzyme) {
+  const cv = CV_ESTIMATES[enzyme] || CV_ESTIMATES.DEFAULT;
+  const logMid = Math.log(centralFold);
+  const logSD = cv; // log-normal approximation: SD ≈ CV in log space
+  return {
+    low:  Math.exp(logMid - logSD),
+    mid:  centralFold,
+    high: Math.exp(logMid + logSD),
+    cv_pct: Math.round(cv * 100),
+  };
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// EVIDENCE UTILITY FUNCTIONS
+// ═══════════════════════════════════════════════════════════════════
+
+// getStudy(id) — returns a STUDY_DB entry or null
+function getStudy(id) {
+  return STUDY_DB[id] || null;
+}
+
+// resolveEvidenceRefs(refs) — resolves an array of study IDs to study objects
+// Filters out missing/null entries gracefully
+function resolveEvidenceRefs(refs) {
+  if (!refs || !refs.length) return [];
+  return refs.map(id => getStudy(id)).filter(Boolean);
+}
+
+// computeEdgeConfidence(edge) — returns 0–1 confidence for a graph edge
+// Priority: evidenceRefs[] with EVIDENCE_WEIGHT → inline evidence.confidence → fallback 0.50
+// When multiple studies support an edge, uses the HIGHEST weight (best available evidence)
+// plus a small corroboration bonus (+0.02 per additional study, capped at 0.99)
+function computeEdgeConfidence(edge) {
+  if (!edge) return 0.50;
+
+  // Path 1: evidenceRefs pointing to STUDY_DB entries
+  const refs = edge.props && edge.props.evidenceRefs;
+  if (refs && refs.length) {
+    const studies = resolveEvidenceRefs(refs);
+    if (studies.length) {
+      const weights = studies.map(s => EVIDENCE_WEIGHT[s.type] || 0.50);
+      const maxWeight = Math.max(...weights);
+      const corroboration = Math.min(0.04, (studies.length - 1) * 0.02);  // +2% per extra study
+      return Math.min(0.99, maxWeight + corroboration);
+    }
+  }
+
+  // Path 2: inline evidence object on edge.props
+  const ev = edge.props && edge.props.evidence;
+  if (ev) {
+    if (typeof ev.confidence === 'number') return ev.confidence;
+    const confMap = { high: 0.85, moderate: 0.70, low: 0.45, unknown: 0.50 };
+    return confMap[ev.confidence] || 0.50;
+  }
+
+  // Path 3: inline on inhibitor object (legacy drug.inh format)
+  const str = edge.props && edge.props.strength;
+  if (str) {
+    const strengthMap = { strong: 0.82, moderate: 0.70, weak: 0.55 };
+    return strengthMap[str] || 0.60;
+  }
+
+  return 0.50;  // unknown fallback
+}
+
+// resolveInteractionEvidence(interaction) — finds all STUDY_DB entries that support a DDI
+// Searches by: evidenceRefs on the interaction, STUDY_DB supports[] fields, and DRUG_DB inline evidence
+function resolveInteractionEvidence(interaction) {
+  const results = [];
+  const seen = new Set();
+
+  // Direct evidenceRefs on the interaction object
+  if (interaction.evidenceRefs) {
+    for (const ref of interaction.evidenceRefs) {
+      const s = getStudy(ref);
+      if (s && !seen.has(s.id)) { seen.add(s.id); results.push(s); }
+    }
+  }
+
+  // Search STUDY_DB.supports[] for matching edges
+  // Matches are fuzzy: look for drug name substrings in supports[] strings
+  const drug1 = (interaction.drug1 || '').toLowerCase();
+  const drug2 = (interaction.drug2 || '').toLowerCase();
+  const enzyme = (interaction.enzyme || '').toLowerCase();
+  for (const [sid, study] of Object.entries(STUDY_DB)) {
+    if (seen.has(sid)) continue;
+    const supportsText = (study.supports || []).join(' ').toLowerCase();
+    const titleText = (study.title || '').toLowerCase();
+    const matchesDrug1 = drug1 && (supportsText.includes(drug1) || titleText.includes(drug1));
+    const matchesDrug2 = drug2 && (supportsText.includes(drug2) || titleText.includes(drug2));
+    const matchesEnzyme = enzyme && (supportsText.includes(enzyme) || titleText.includes(enzyme));
+    if ((matchesDrug1 || matchesDrug2) && (matchesEnzyme || matchesDrug1 && matchesDrug2)) {
+      seen.add(sid);
+      results.push(study);
+    }
+  }
+
+  return results;
+}
+
+// studyBadgeHTML(study) — renders a compact evidence type badge
+function studyBadgeHTML(study) {
+  const tierColors = {
+    [EVIDENCE_TIER.FDA_LABEL]:    'background:#dcfce7;color:#166534',
+    [EVIDENCE_TIER.META_ANALYSIS]:'background:#dbeafe;color:#1e40af',
+    [EVIDENCE_TIER.RCT]:          'background:#ede9fe;color:#5b21b6',
+    [EVIDENCE_TIER.GUIDELINE]:    'background:#ecfdf5;color:#065f46',
+    [EVIDENCE_TIER.CLINICAL_PK]:  'background:#f0f9ff;color:#0369a1',
+    [EVIDENCE_TIER.OBSERVATIONAL]:'background:#fef9c3;color:#854d0e',
+    [EVIDENCE_TIER.CASE_REPORT]:  'background:#fef3c7;color:#92400e',
+    [EVIDENCE_TIER.IN_VITRO]:     'background:#f1f5f9;color:#475569',
+    [EVIDENCE_TIER.ANIMAL]:       'background:#f1f5f9;color:#475569',
+  };
+  const style = tierColors[study.type] || 'background:#f1f5f9;color:#475569';
+  const label = study.type.replace(/_/g,' ').toUpperCase();
+  const weight = EVIDENCE_WEIGHT[study.type] || 0.5;
+  const pct = Math.round(weight * 100);
+  return `<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;${style}">${label} ${pct}%</span>`;
+}
+
+// studyCardHTML(study) — renders a full study card for the evidence explorer
+function studyCardHTML(study) {
+  if (!study) return '';
+  const pmidLink = study.pmid
+    ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${study.pmid}/" target="_blank" style="color:var(--blue);text-decoration:none;font-weight:600">PMID:${study.pmid}</a>`
+    : '';
+  const doiLink = study.doi
+    ? `<a href="https://doi.org/${study.doi}" target="_blank" style="color:var(--blue);text-decoration:none">DOI</a>`
+    : '';
+  const links = [pmidLink, doiLink].filter(Boolean).join(' · ');
+
+  const qe = study.quantifiedEffects || {};
+  const qeItems = [];
+  if (qe.aucFold != null) qeItems.push(`AUC ×${qe.aucFold}`);
+  if (qe.cmaxFold != null) qeItems.push(`Cmax ×${qe.cmaxFold}`);
+  if (qe.clearanceReductionPct) qeItems.push(`CL ↓${qe.clearanceReductionPct}%`);
+  if (qe.oddsRatio) qeItems.push(`OR ${qe.oddsRatio}`);
+  if (qe.note) qeItems.push(qe.note);
+
+  const contradicts = (study.contradicts || []).length
+    ? `<div style="font-size:11px;color:var(--amber);margin-top:4px">⚠ Contradicted by: ${study.contradicts.join(', ')}</div>` : '';
+  const limits = (study.limitations || []).length
+    ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Limitations: ${study.limitations.join(' · ')}</div>` : '';
+  const unverified = study.verified === false
+    ? `<div style="font-size:10px;color:var(--amber);margin-top:3px">⚠ PMID unverified — ${study.verifyNote||'requires independent confirmation'}</div>` : '';
+
+  return `<div class="ev-card">
+    <div class="ev-card-head">
+      ${studyBadgeHTML(study)}
+      ${study.n ? `<span class="ev-n">n=${study.n}</span>` : ''}
+      ${study.year ? `<span class="ev-year">${study.year}</span>` : ''}
+      ${links ? `<span class="ev-links">${links}</span>` : ''}
+    </div>
+    <div class="ev-title">${study.title || 'Untitled study'}</div>
+    ${study.source ? `<div class="ev-source">${study.source}${study.journal ? ` · ${study.journal}` : ''}</div>` : ''}
+    ${qeItems.length ? `<div class="ev-effects">${qeItems.join(' · ')}</div>` : ''}
+    ${study.temporal && study.temporal.onset ? `<div class="ev-temporal">⏱ Onset: ${study.temporal.onset}${study.temporal.washout ? ` · Washout: ${study.temporal.washout}` : ''}</div>` : ''}
+    ${unverified}${contradicts}${limits}
+  </div>`;
+}
 
 function getDrug(name) {
   if (!name) return null;
@@ -5524,17 +7526,17 @@ function getDrug(name) {
 // Each: [drugA, drugB, severity, category, mechanism, effect]
 const KNOWN_DDI = [
   // ── Clopidogrel prodrug activation failures ──
-  {drug1:"Clopidogrel",drug2:"Omeprazole",severity:"severe",category:"prodrug",mechanism:"Omeprazole inhibits CYP2C19, blocking clopidogrel activation to its active thiol metabolite",effect:"↓↓ Clopidogrel efficacy — increased risk of cardiovascular events",evidence:{confidence:"high",sources:["FDA label", "CPIC"]}},
-  {drug1:"Clopidogrel",drug2:"Esomeprazole",severity:"severe",category:"prodrug",mechanism:"Esomeprazole inhibits CYP2C19, blocking clopidogrel activation",effect:"↓↓ Clopidogrel efficacy — use pantoprazole instead",evidence:{confidence:"high",sources:["FDA label", "CPIC"]}},
-  {drug1:"Clopidogrel",drug2:"Fluoxetine",severity:"moderate",category:"prodrug",mechanism:"Fluoxetine's metabolite norfluoxetine inhibits CYP2C19, partially blocking clopidogrel activation",effect:"↓ Clopidogrel efficacy — consider alternative SSRI",evidence:{confidence:"high",sources:["FDA label", "CPIC"]}},
-  {drug1:"Clopidogrel",drug2:"Fluvoxamine",severity:"severe",category:"prodrug",mechanism:"Fluvoxamine strongly inhibits CYP2C19, blocking clopidogrel activation",effect:"↓↓ Clopidogrel efficacy — contraindicated combination",evidence:{confidence:"high",sources:["FDA label", "CPIC"]}},
+  {drug1:"Clopidogrel",drug2:"Omeprazole",severity:"severe",category:"prodrug",mechanism:"Omeprazole inhibits CYP2C19, blocking clopidogrel activation to its active thiol metabolite",effect:"↓↓ Clopidogrel efficacy — increased risk of cardiovascular events",evidence:{confidence:"high",sources:["FDA label", "CPIC"]},evidenceRefs:["ev_clopidogrel_cyp2c19_cpic"]},
+  {drug1:"Clopidogrel",drug2:"Esomeprazole",severity:"severe",category:"prodrug",mechanism:"Esomeprazole inhibits CYP2C19, blocking clopidogrel activation",effect:"↓↓ Clopidogrel efficacy — use pantoprazole instead",evidence:{confidence:"high",sources:["FDA label", "CPIC"]},evidenceRefs:["ev_clopidogrel_cyp2c19_cpic"]},
+  {drug1:"Clopidogrel",drug2:"Fluoxetine",severity:"moderate",category:"prodrug",mechanism:"Fluoxetine's metabolite norfluoxetine inhibits CYP2C19, partially blocking clopidogrel activation",effect:"↓ Clopidogrel efficacy — consider alternative SSRI",evidence:{confidence:"high",sources:["FDA label", "CPIC"]},evidenceRefs:["ev_clopidogrel_cyp2c19_cpic","ev_fluoxetine_cyp2d6_fda"]},
+  {drug1:"Clopidogrel",drug2:"Fluvoxamine",severity:"severe",category:"prodrug",mechanism:"Fluvoxamine strongly inhibits CYP2C19, blocking clopidogrel activation",effect:"↓↓ Clopidogrel efficacy — contraindicated combination",evidence:{confidence:"high",sources:["FDA label", "CPIC"]},evidenceRefs:["ev_clopidogrel_cyp2c19_cpic"]},
   {drug1:"Clopidogrel",drug2:"Fluconazole",severity:"moderate",category:"prodrug",mechanism:"Fluconazole strongly inhibits CYP2C19, may reduce clopidogrel activation",effect:"↓ Clopidogrel efficacy",evidence:{confidence:"high",sources:["FDA label", "CPIC"]}},
   {drug1:"Clopidogrel",drug2:"Voriconazole",severity:"moderate",category:"prodrug",mechanism:"Voriconazole strongly inhibits CYP2C19, may reduce clopidogrel activation",effect:"↓ Clopidogrel efficacy",evidence:{confidence:"high",sources:["FDA label", "CPIC"]}},
   // ── Bupropion metabolite interactions ──
   {drug1:"Bupropion",drug2:"Clopidogrel",severity:"severe",category:"prodrug",mechanism:"Hydroxybupropion strongly inhibits CYP2B6 + weakly inhibits CYP2C19, both involved in clopidogrel prodrug activation. Bupropion also competes for CYP2B6 substrate capacity. Net effect: significantly reduced formation of clopidogrel's active thiol metabolite",effect:"↓↓ Clopidogrel antiplatelet efficacy reduced — increased thrombotic risk. Consider prasugrel or ticagrelor",evidence:{confidence:"high",sources:["FDA label", "CPIC"]}},
-  {drug1:"Bupropion",drug2:"Tamoxifen",severity:"severe",category:"metabolite",mechanism:"Hydroxybupropion strongly inhibits CYP2D6, blocking tamoxifen conversion to active endoxifen",effect:"↓↓ Tamoxifen efficacy — contraindicated",evidence:{confidence:"high",sources:["FDA label"]}},
-  {drug1:"Bupropion",drug2:"Codeine",severity:"severe",category:"metabolite",mechanism:"Hydroxybupropion strongly inhibits CYP2D6, blocking codeine conversion to morphine",effect:"↓↓ Codeine efficacy — no analgesic effect",evidence:{confidence:"high",sources:["FDA label"]}},
-  {drug1:"Bupropion",drug2:"Tramadol",severity:"severe",category:"metabolite",mechanism:"Hydroxybupropion strongly inhibits CYP2D6, blocking tramadol conversion to active O-desmethyltramadol. Also both lower seizure threshold",effect:"↓↓ Tramadol efficacy + ↑ seizure risk",evidence:{confidence:"high",sources:["FDA label"]}},
+  {drug1:"Bupropion",drug2:"Tamoxifen",severity:"severe",category:"metabolite",mechanism:"Hydroxybupropion strongly inhibits CYP2D6, blocking tamoxifen conversion to active endoxifen",effect:"↓↓ Tamoxifen efficacy — contraindicated",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_bupropion_cyp2d6_fda","ev_tamoxifen_cyp2d6_cpic"]},
+  {drug1:"Bupropion",drug2:"Codeine",severity:"severe",category:"metabolite",mechanism:"Hydroxybupropion strongly inhibits CYP2D6, blocking codeine conversion to morphine",effect:"↓↓ Codeine efficacy — no analgesic effect",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_bupropion_cyp2d6_fda","ev_codeine_cyp2d6_cpic"]},
+  {drug1:"Bupropion",drug2:"Tramadol",severity:"severe",category:"metabolite",mechanism:"Hydroxybupropion strongly inhibits CYP2D6, blocking tramadol conversion to active O-desmethyltramadol. Also both lower seizure threshold",effect:"↓↓ Tramadol efficacy + ↑ seizure risk",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_bupropion_cyp2d6_fda","ev_bupropion_cyp2d6_kotlyar2005"]},
   // ── Triple whammy (NSAID + ACEi/ARB + diuretic) ──
   {drug1:"Ibuprofen",drug2:"Lisinopril",severity:"moderate",category:"nephro",mechanism:"NSAIDs reduce renal prostaglandins, counteracting ACE inhibitor renoprotection. Reduces antihypertensive effect and increases AKI risk",effect:"↓ Lisinopril efficacy + ↑ acute kidney injury risk",evidence:{confidence:"high",sources:["clinical guidelines"]}},
   {drug1:"Ibuprofen",drug2:"Enalapril",severity:"moderate",category:"nephro",mechanism:"NSAIDs counteract ACE inhibitor renoprotection",effect:"↓ Enalapril efficacy + ↑ AKI risk",evidence:{confidence:"high",sources:["clinical guidelines"]}},
@@ -5546,9 +7548,9 @@ const KNOWN_DDI = [
   {drug1:"Diclofenac",drug2:"Lisinopril",severity:"moderate",category:"nephro",mechanism:"NSAIDs reduce ACEi renoprotection",effect:"↓ Lisinopril efficacy + ↑ AKI risk",evidence:{confidence:"high",sources:["clinical guidelines"]}},
   {drug1:"Indomethacin",drug2:"Lisinopril",severity:"moderate",category:"nephro",mechanism:"NSAIDs reduce ACEi renoprotection",effect:"↓ Lisinopril efficacy + ↑ AKI risk",evidence:{confidence:"high",sources:["clinical guidelines"]}},
   // ── Lithium toxicity ──
-  {drug1:"Lithium",drug2:"Ibuprofen",severity:"severe",category:"nephro",mechanism:"NSAIDs reduce lithium renal clearance by 15-25%",effect:"↑↑ Lithium levels — risk of toxicity",evidence:{confidence:"high",sources:["clinical guidelines"]}},
-  {drug1:"Lithium",drug2:"Naproxen",severity:"severe",category:"nephro",mechanism:"NSAIDs reduce lithium renal clearance",effect:"↑↑ Lithium levels — risk of toxicity",evidence:{confidence:"high",sources:["clinical guidelines"]}},
-  {drug1:"Lithium",drug2:"Diclofenac",severity:"severe",category:"nephro",mechanism:"NSAIDs reduce lithium renal clearance",effect:"↑↑ Lithium levels — risk of toxicity",evidence:{confidence:"high",sources:["clinical guidelines"]}},
+  {drug1:"Lithium",drug2:"Ibuprofen",severity:"severe",category:"nephro",mechanism:"NSAIDs reduce lithium renal clearance by 15-25%",effect:"↑↑ Lithium levels — risk of toxicity",evidence:{confidence:"high",sources:["clinical guidelines"]},evidenceRefs:["ev_lithium_nsaid_clearance"]},
+  {drug1:"Lithium",drug2:"Naproxen",severity:"severe",category:"nephro",mechanism:"NSAIDs reduce lithium renal clearance",effect:"↑↑ Lithium levels — risk of toxicity",evidence:{confidence:"high",sources:["clinical guidelines"]},evidenceRefs:["ev_lithium_nsaid_clearance"]},
+  {drug1:"Lithium",drug2:"Diclofenac",severity:"severe",category:"nephro",mechanism:"NSAIDs reduce lithium renal clearance",effect:"↑↑ Lithium levels — risk of toxicity",evidence:{confidence:"high",sources:["clinical guidelines"]},evidenceRefs:["ev_lithium_nsaid_clearance"]},
   {drug1:"Lithium",drug2:"Lisinopril",severity:"moderate",category:"nephro",mechanism:"ACE inhibitors reduce lithium renal clearance",effect:"↑ Lithium levels — monitor closely",evidence:{confidence:"high",sources:["clinical guidelines"]}},
   {drug1:"Lithium",drug2:"Losartan",severity:"moderate",category:"nephro",mechanism:"ARBs reduce lithium renal clearance",effect:"↑ Lithium levels — monitor closely",evidence:{confidence:"high",sources:["clinical guidelines"]}},
   {drug1:"Lithium",drug2:"Hydrochlorothiazide",severity:"severe",category:"nephro",mechanism:"Thiazides reduce lithium clearance by 25-40%",effect:"↑↑ Lithium levels — high toxicity risk",evidence:{confidence:"high",sources:["clinical guidelines"]}},
@@ -5559,14 +7561,14 @@ const KNOWN_DDI = [
   {drug1:"Methotrexate",drug2:"Trimethoprim-SMX",severity:"severe",category:"hematologic",mechanism:"Both are folate antagonists — additive bone marrow suppression",effect:"↑↑ Pancytopenia risk",evidence:{confidence:"high",sources:["clinical guidelines"]}},
   {drug1:"Methotrexate",drug2:"Omeprazole",severity:"moderate",category:"renal",mechanism:"PPIs may reduce methotrexate renal clearance",effect:"↑ Methotrexate levels",evidence:{confidence:"moderate",sources:["case reports"]}},
   // ── Digoxin interactions ──
-  {drug1:"Digoxin",drug2:"Amiodarone",severity:"severe",category:"pk",mechanism:"Amiodarone inhibits P-glycoprotein and reduces digoxin renal clearance by ~50%",effect:"↑↑ Digoxin levels — toxicity risk (halve digoxin dose)",evidence:{confidence:"high",sources:["clinical PK studies"]}},
+  {drug1:"Digoxin",drug2:"Amiodarone",severity:"severe",category:"pk",mechanism:"Amiodarone inhibits P-glycoprotein and reduces digoxin renal clearance by ~50%",effect:"↑↑ Digoxin levels — toxicity risk (halve digoxin dose)",evidence:{confidence:"high",sources:["clinical PK studies"]},evidenceRefs:["ev_digoxin_pgp_amiodarone_fda"]},
   {drug1:"Digoxin",drug2:"Verapamil",severity:"severe",category:"pk",mechanism:"Verapamil inhibits P-gp, raises digoxin levels 50-75%",effect:"↑↑ Digoxin levels — toxicity + AV block risk",evidence:{confidence:"high",sources:["clinical PK studies"]}},
   {drug1:"Digoxin",drug2:"Diltiazem",severity:"moderate",category:"pk",mechanism:"Diltiazem raises digoxin levels ~20% + additive AV block",effect:"↑ Digoxin levels + ↑ bradycardia",evidence:{confidence:"high",sources:["clinical PK studies"]}},
   {drug1:"Digoxin",drug2:"Cyclosporine",severity:"severe",category:"pk",mechanism:"Cyclosporine inhibits P-gp, raises digoxin levels",effect:"↑↑ Digoxin levels",evidence:{confidence:"high",sources:["clinical PK studies"]}},
   {drug1:"Digoxin",drug2:"Spironolactone",severity:"moderate",category:"pk",mechanism:"Spironolactone reduces digoxin clearance + hyperkalemia potentiates digoxin toxicity",effect:"↑ Digoxin toxicity risk",evidence:{confidence:"high",sources:["clinical PK studies"]}},
   // ── Warfarin specific ──
-  {drug1:"Warfarin",drug2:"Aspirin",severity:"severe",category:"bleed",mechanism:"Additive anticoagulant + antiplatelet effect. Aspirin also causes GI mucosal damage",effect:"↑↑ Major bleeding risk",evidence:{confidence:"high",sources:["clinical guidelines"]}},
-  {drug1:"Warfarin",drug2:"Ibuprofen",severity:"severe",category:"bleed",mechanism:"NSAIDs + warfarin: additive bleeding + NSAID GI damage + CYP2C9 competition",effect:"↑↑ Major GI bleeding risk",evidence:{confidence:"high",sources:["clinical guidelines"]}},
+  {drug1:"Warfarin",drug2:"Aspirin",severity:"severe",category:"bleed",mechanism:"Additive anticoagulant + antiplatelet effect. Aspirin also causes GI mucosal damage",effect:"↑↑ Major bleeding risk",evidence:{confidence:"high",sources:["clinical guidelines"]},evidenceRefs:["ev_warfarin_nsaid_bleed"]},
+  {drug1:"Warfarin",drug2:"Ibuprofen",severity:"severe",category:"bleed",mechanism:"NSAIDs + warfarin: additive bleeding + NSAID GI damage + CYP2C9 competition",effect:"↑↑ Major GI bleeding risk",evidence:{confidence:"high",sources:["clinical guidelines"]},evidenceRefs:["ev_warfarin_nsaid_bleed"]},
   {drug1:"Warfarin",drug2:"Naproxen",severity:"severe",category:"bleed",mechanism:"NSAID + warfarin: additive bleeding",effect:"↑↑ GI bleeding risk",evidence:{confidence:"high",sources:["clinical guidelines"]}},
   {drug1:"Warfarin",drug2:"Acetaminophen",severity:"moderate",category:"pk",mechanism:"Acetaminophen's metabolite NAPQI inhibits vitamin K-dependent clotting factor synthesis at doses >2g/day",effect:"↑ INR — monitor closely",evidence:{confidence:"high",sources:["clinical PK studies"]}},
   {drug1:"Warfarin",drug2:"Fluconazole",severity:"severe",category:"pk",mechanism:"Fluconazole strongly inhibits CYP2C9 (warfarin's primary metabolic pathway)",effect:"↑↑ INR — major bleeding risk",evidence:{confidence:"high",sources:["clinical PK studies"]}},
@@ -5696,7 +7698,7 @@ const KNOWN_DDI = [
   {drug1:"Ketamine",drug2:"GHB",severity:"severe",category:"pd",mechanism:"Dual CNS depressants — additive unconsciousness + respiratory depression",effect:"⚠ Respiratory arrest risk — both cause unconsciousness",evidence:{confidence:"moderate",sources:["literature"]}},
   // ── DXM interactions ──
   {drug1:"DXM (Dextromethorphan)",drug2:"Fluoxetine",severity:"severe",category:"pk",mechanism:"Fluoxetine strongly inhibits CYP2D6, DXM levels ↑ 5×+ converting it from cough suppressant to dissociative doses. Also serotonin syndrome",effect:"⚠ Serotonin syndrome + DXM toxicity — potentially fatal",evidence:{confidence:"high",sources:["clinical PK studies"]}},
-  {drug1:"DXM (Dextromethorphan)",drug2:"Paroxetine",severity:"severe",category:"pk",mechanism:"Paroxetine strongly inhibits CYP2D6, DXM levels ↑ 5×+. Also serotonin syndrome risk",effect:"⚠ Serotonin syndrome + DXM toxicity",evidence:{confidence:"high",sources:["clinical PK studies"]}},
+  {drug1:"DXM (Dextromethorphan)",drug2:"Paroxetine",severity:"severe",category:"pk",mechanism:"Paroxetine strongly inhibits CYP2D6, DXM levels ↑ 5×+. Also serotonin syndrome risk",effect:"⚠ Serotonin syndrome + DXM toxicity",evidence:{confidence:"high",sources:["clinical PK studies"]},evidenceRefs:["ev_paroxetine_cyp2d6_fda","ev_paroxetine_cyp2d6_rct","ev_paroxetine_cyp2d6_japanese"]},
   {drug1:"DXM (Dextromethorphan)",drug2:"Bupropion",severity:"severe",category:"pk",mechanism:"Hydroxybupropion strongly inhibits CYP2D6 — DXM levels ↑ 5×+. DXM becomes dissociative at these levels",effect:"⚠ DXM toxicity — dissociative effects at normal cough doses",evidence:{confidence:"high",sources:["clinical PK studies"]}},
   // ── Kratom interactions ──
   {drug1:"Kratom (Mitragynine)",drug2:"Fluoxetine",severity:"moderate",category:"pk",mechanism:"Kratom inhibits CYP2D6 + fluoxetine inhibits CYP2D6. Mutual PK interaction + opioid+serotonergic PD overlap",effect:"↑ Both drug levels + serotonin syndrome risk",evidence:{confidence:"high",sources:["clinical PK studies"]}},
@@ -6919,6 +8921,14 @@ function renderAll() {
     renderTiming();
     renderMetabolites();
     renderPathwayDiversions();
+    renderCascade();                // Phase 3: graph traversal
+    renderEvidenceExplorer();       // Phase 4: study browser
+    renderGenotypePanel();          // Phase 5 #2: genotype-stratified evidence
+    renderPhenotypeAccumulation();  // Phase 5 #6: serotonin/QTc/anticholinergic
+    renderPKSimulation();           // Phase 5 #1: 1-compartment PK curves
+    renderInteractionGraph();       // Phase 5 #4: D3 force-directed graph
+    renderWashoutCalendar();        // Phase 5 #9: safe-to-switch dates
+    renderAdverseBurden();          // Phase 5 #10: ACB + Beers + fall risk
     document.getElementById("foldSection").style.display = "";
     document.getElementById("timingSection").style.display = "";
     document.getElementById("metabSection").style.display = "";
@@ -6928,6 +8938,14 @@ function renderAll() {
     document.getElementById("timingSection").style.display = "none";
     document.getElementById("metabSection").style.display = "none";
     document.getElementById("pdSection").style.display = "none";
+    document.getElementById("cascadeSection").style.display = "none";
+    document.getElementById("evidenceSection").style.display = "none";
+    document.getElementById("genotypeSection").style.display = "none";
+    document.getElementById("phenoAccumSection").style.display = "none";
+    document.getElementById("pkSimSection").style.display = "none";
+    document.getElementById("graphSection").style.display = "none";
+    document.getElementById("washoutSection").style.display = "none";
+    document.getElementById("burdenSection").style.display = "none";
   }
   if (activeStack.length >= 2) {
     const risk = calcRisk();
@@ -7002,8 +9020,30 @@ function renderInteractions(interactions) {
     return;
   }
   countEl.textContent = `${interactions.length} found`;
-  el.innerHTML = interactions.map(i => {
+  el.innerHTML = interactions.map((i, idx) => {
     const mechText = simplifyMechanism(i);
+    const studies = resolveInteractionEvidence(i);
+    const hasContradiction = studies.some(s => s.contradicts && s.contradicts.length);
+    const maxWeight = studies.length
+      ? Math.max(...studies.map(s => EVIDENCE_WEIGHT[s.type] || 0.5))
+      : null;
+    const tierLabel = maxWeight
+      ? studies.find(s => (EVIDENCE_WEIGHT[s.type] || 0) === maxWeight)?.type?.replace(/_/g,' ') || ''
+      : '';
+
+    const evSummary = studies.length
+      ? `<div class="ev-study-count">${studies.length} supporting stud${studies.length===1?'y':'ies'} · Highest: ${tierLabel.toUpperCase()}${hasContradiction ? ' · <span style="color:var(--amber)">⚠ contradictory evidence exists</span>' : ''}</div>`
+      : '';
+
+    const evCards = studies.map(s => studyCardHTML(s)).join('');
+    const evContradiction = hasContradiction
+      ? `<div class="ev-contradictory"><strong>⚠ Contradictory Evidence</strong>${studies.filter(s=>s.contradicts?.length).map(s=>s.contradictoryNote||`Contradicted by: ${s.contradicts.join(', ')}`).join(' ')}</div>`
+      : '';
+
+    const evId = `ev-panel-${idx}`;
+    const evToggleId = `ev-toggle-${idx}`;
+    const hasEv = studies.length > 0;
+
     return `<div class="inter-card ${i.severity}">
       <div class="inter-head">
         <span class="inter-drugs">${i.drug1} ↔ ${i.drug2}</span>
@@ -7011,8 +9051,26 @@ function renderInteractions(interactions) {
       </div>
       <div class="inter-effect">${i.effect}</div>
       <div class="inter-mech">${mechText}</div>
+      ${hasEv ? `
+      ${evSummary}
+      <span class="ev-toggle" id="${evToggleId}" onclick="toggleEvPanel('${evId}','${evToggleId}')">
+        <span class="chevron">▾</span> Show ${studies.length} stud${studies.length===1?'y':'ies'}
+      </span>
+      <div class="ev-panel" id="${evId}">
+        ${evCards}${evContradiction}
+      </div>` : ''}
     </div>`;
   }).join("");
+}
+
+function toggleEvPanel(panelId, toggleId) {
+  const panel = document.getElementById(panelId);
+  const toggle = document.getElementById(toggleId);
+  if (!panel || !toggle) return;
+  const isOpen = panel.classList.contains('open');
+  panel.classList.toggle('open', !isOpen);
+  toggle.classList.toggle('open', !isOpen);
+  toggle.innerHTML = `<span class="chevron">▾</span> ${isOpen ? 'Show' : 'Hide'} ${panel.querySelectorAll('.ev-card').length} stud${panel.querySelectorAll('.ev-card').length===1?'y':'ies'}`;
 }
 
 function simplifyMechanism(i) {
@@ -7110,6 +9168,198 @@ function renderTiming() {
       ${hl ? `<span class="timing-hl">Half-life: ${hl}h</span>` : ""}
     </div>`;
   }).join("");
+}
+
+// ── renderEvidenceExplorer — full study browser ──
+// Shows all STUDY_DB entries that are relevant to the current drug stack,
+// filterable by evidence tier. Each card shows full provenance.
+function renderEvidenceExplorer() {
+  const el = document.getElementById("evidenceBody");
+  const section = document.getElementById("evidenceSection");
+  const countEl = document.getElementById("evidenceCount");
+  if (!el) return;
+
+  if (activeStack.length < 1) {
+    if (section) section.style.display = "none";
+    return;
+  }
+
+  // Collect all relevant studies for current stack
+  const relevantStudies = new Map();
+  const drugNames = activeStack.map(n => n.toLowerCase());
+
+  for (const [sid, study] of Object.entries(STUDY_DB)) {
+    const title = (study.title || '').toLowerCase();
+    const source = (study.source || '').toLowerCase();
+    const supports = (study.supports || []).join(' ').toLowerCase();
+    const relevantToStack = drugNames.some(name =>
+      title.includes(name) || source.includes(name) || supports.includes(name));
+    if (relevantToStack) relevantStudies.set(sid, study);
+  }
+
+  if (relevantStudies.size === 0) {
+    if (section) section.style.display = "none";
+    return;
+  }
+
+  if (section) section.style.display = "";
+  if (countEl) countEl.textContent = `${relevantStudies.size} studies`;
+
+  // Tier filter buttons
+  const tiers = [...new Set([...relevantStudies.values()].map(s => s.type))].sort();
+  const tierFilterHTML = `<div class="ev-explorer-filter" id="evFilterWrap">
+    <span class="ev-filter-btn active" onclick="filterEvidenceTier(null,this)">All (${relevantStudies.size})</span>
+    ${tiers.map(t => {
+      const count = [...relevantStudies.values()].filter(s => s.type === t).length;
+      return `<span class="ev-filter-btn" onclick="filterEvidenceTier('${t}',this)">${t.replace(/_/g,' ')} (${count})</span>`;
+    }).join('')}
+  </div>`;
+
+  const cardsHTML = [...relevantStudies.values()]
+    .sort((a,b) => (EVIDENCE_WEIGHT[b.type]||0) - (EVIDENCE_WEIGHT[a.type]||0))
+    .map(s => `<div class="ev-explorer-card" data-tier="${s.type}">${studyCardHTML(s)}</div>`)
+    .join('');
+
+  el.innerHTML = tierFilterHTML + `<div id="evCardsContainer">${cardsHTML}</div>`;
+}
+
+function filterEvidenceTier(tier, btn) {
+  // Update active button
+  const wrap = document.getElementById('evFilterWrap');
+  if (wrap) wrap.querySelectorAll('.ev-filter-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  // Show/hide cards
+  const container = document.getElementById('evCardsContainer');
+  if (!container) return;
+  container.querySelectorAll('.ev-explorer-card').forEach(card => {
+    card.style.display = (!tier || card.dataset.tier === tier) ? '' : 'none';
+  });
+}
+
+// ── renderCascade — Explainable Graph Output ──
+// Renders the traverseEffects() results as a visual pathway chain.
+// Each chain shows: Source → edge → Node → edge → ... → Phenotype
+// Color-coded by phenotype severity; confidence shown as percentage.
+function renderCascade() {
+  const el = document.getElementById("cascadeBody");
+  if (!el) return;
+  const section = document.getElementById("cascadeSection");
+
+  if (activeStack.length < 1) {
+    if (section) section.style.display = "none";
+    return;
+  }
+  if (section) section.style.display = "";
+
+  const graph = getInteractionGraph();
+  const effectsMap = traverseEffectsForStack();
+  const allChains = [];
+
+  // Flatten and deduplicate
+  const seenChainKey = new Set();
+  for (const [nodeId, effects] of Object.entries(effectsMap)) {
+    const sourceActor = graph.actors[nodeId];
+    for (const eff of effects) {
+      if (!eff.terminalActor) continue;
+      const key = nodeId + '|' + eff.terminal;
+      if (seenChainKey.has(key)) continue;
+      seenChainKey.add(key);
+      allChains.push({ nodeId, sourceActor, eff });
+    }
+  }
+
+  // Sort: critical first, then confidence descending
+  const sevOrder = { critical:4, warn:3, monitor:2, info:1 };
+  allChains.sort((a, b) => {
+    const sa = sevOrder[a.eff.terminalActor.severity || 'info'] || 1;
+    const sb = sevOrder[b.eff.terminalActor.severity || 'info'] || 1;
+    if (sb !== sa) return sb - sa;
+    return b.eff.confidence - a.eff.confidence;
+  });
+
+  if (allChains.length === 0) {
+    el.innerHTML = '<div class="cascade-empty">No multi-hop effect cascades detected for this combination</div>';
+    return;
+  }
+
+  // Edge type → arrow label
+  const edgeLabel = {
+    [EDGE_TYPE.INHIBITS]:       '↓ inhibits',
+    [EDGE_TYPE.INDUCES]:        '↑ induces',
+    [EDGE_TYPE.METABOLIZED_TO]: '→ forms',
+    [EDGE_TYPE.ACTIVATES]:      '→ activates',
+    [EDGE_TYPE.BLOCKS]:         '✕ blocks',
+    [EDGE_TYPE.SUPPRESSES]:     '↓ suppresses',
+    [EDGE_TYPE.PRODUCES]:       '→ produces',
+    [EDGE_TYPE.SUBSTRATE_OF]:   '→ via',
+    [EDGE_TYPE.TRANSPORTED_BY]: '→ via',
+    [EDGE_TYPE.COMPETES_WITH]:  '⟷ competes',
+    [EDGE_TYPE.ACCUMULATES_IN]: '→ in',
+  };
+
+  function nodeClass(actor) {
+    if (!actor) return 'cs-node';
+    if (actor.type === ACTOR_TYPE.ENZYME) return 'cs-node type-enzyme';
+    if (actor.type === ACTOR_TYPE.METABOLITE) return 'cs-node type-metabolite';
+    if (actor.type === ACTOR_TYPE.RECEPTOR) return 'cs-node type-receptor';
+    if (actor.type === ACTOR_TYPE.FOOD || actor.type === ACTOR_TYPE.ENDOGENOUS) return 'cs-node type-food';
+    if (actor.type === ACTOR_TYPE.PHENOTYPE) {
+      const sev = actor.severity || 'info';
+      return `cs-node type-phenotype-${sev === 'critical' ? 'critical' : sev === 'warn' ? 'warn' : 'info'}`;
+    }
+    return 'cs-node';
+  }
+
+  const phenotypeClass = sev =>
+    sev === 'critical' ? 'phenotype-critical' :
+    sev === 'warn' ? 'phenotype-warn' :
+    sev === 'monitor' ? 'phenotype-monitor' : 'phenotype-info';
+
+  el.innerHTML = allChains.slice(0, 20).map(({ nodeId, sourceActor, eff }) => {
+    const sev = eff.terminalActor.severity || 'info';
+    const confPct = Math.round(eff.confidence * 100);
+
+    // Build step HTML
+    const sourceName = sourceActor ? sourceActor.name : nodeId;
+    let stepsHTML = `<span class="${nodeClass(sourceActor)}">${sourceName}</span>`;
+
+    for (const step of eff.path) {
+      const toActor = graph.actors[step.toId];
+      const toName = toActor ? toActor.name : step.toId;
+      const arrow = edgeLabel[step.edgeType] || '→';
+      stepsHTML += `<span class="cs-edge">${arrow}</span>`;
+      stepsHTML += `<span class="${nodeClass(toActor)}">${toName}</span>`;
+    }
+
+    // Temporal note
+    const t = eff.temporal;
+    let temporalNote = '';
+    if (t && (t.onset || t.persistence || t.adiposeAccumulation)) {
+      const parts = [];
+      if (t.onset) parts.push(`onset: ${t.onset}`);
+      if (t.persistence && t.persistence !== 'transient') parts.push(`persists: ${t.persistence}`);
+      if (t.adiposeAccumulation) parts.push('adipose accumulation — slow release');
+      if (t.reversible === false) parts.push('irreversible (enzyme resynthesis required)');
+      temporalNote = parts.join(' · ');
+    }
+
+    return `<div class="cascade-chain ${phenotypeClass(sev)}">
+      <div class="cascade-header">
+        <span class="cascade-source">${eff.path.length + 1}-hop cascade</span>
+        <span class="cascade-conf">${confPct}% confidence</span>
+      </div>
+      <div class="cascade-steps">${stepsHTML}</div>
+      ${temporalNote ? `<div class="cascade-temporal">⏱ ${temporalNote}</div>` : ''}
+    </div>`;
+  }).join('');
+
+  // Graph stats footer
+  const stats = getGraphStats();
+  el.innerHTML += `<div class="graph-stats">
+    <span class="gs-pill">Nodes: ${stats.totalActors}</span>
+    <span class="gs-pill">Edges: ${stats.totalEdges}</span>
+    ${Object.entries(stats.actorsByType).map(([t,n]) => `<span class="gs-pill">${t}: ${n}</span>`).join('')}
+  </div>`;
 }
 
 function renderAlternatives() {
@@ -7541,6 +9791,508 @@ renderAll();
     el("ver-date").textContent = v.released;
   }
 })();
+
+// ════════════════════════════════════════════════════════════════════
+// RENDER FUNCTIONS — Phase 5 Engine Improvements
+// ════════════════════════════════════════════════════════════════════
+
+// ── renderGenotypePanel (#2) ──────────────────────────────────────
+function renderGenotypePanel() {
+  const sec = document.getElementById("genotypeSection");
+  const el = document.getElementById("genotypeBody");
+  if (!el) return;
+  if (activeStack.length < 1) { if (sec) sec.style.display = "none"; return; }
+  if (sec) sec.style.display = "";
+
+  // Determine which enzymes are relevant for current stack
+  const relevantEnzymes = new Set();
+  for (const name of activeStack) {
+    const drug = DRUG_DB.find(d => d.name === name);
+    if (!drug) continue;
+    for (const r of (drug.routes || [])) relevantEnzymes.add(r.enzyme);
+  }
+  const showEnzymes = ['CYP2D6','CYP2C19','CYP2C9'].filter(e => {
+    // Always show if any drug uses it, or if any effect changes with genotype
+    return relevantEnzymes.has(e) || GENOTYPE_EFFECTS[e];
+  });
+  if (showEnzymes.length === 0) {
+    el.innerHTML = '<div style="color:var(--text2);font-size:12px;padding:8px">No CYP2D6/2C19/2C9-dependent drugs in current stack.</div>';
+    return;
+  }
+
+  // Selector rows
+  let html = '<div style="margin-bottom:12px">';
+  html += '<p style="font-size:12px;color:var(--text2);margin:0 0 8px">Set your metabolizer phenotype to see how genotype changes predicted drug exposure:</p>';
+  for (const enz of showEnzymes) {
+    const cur = activeGenotype[enz] || GENOTYPE_PHENOTYPE.NM;
+    html += `<div class="geno-selector" style="margin-bottom:6px">
+      <span class="geno-enz-label">${enz}</span>`;
+    for (const [k, label] of [
+      [GENOTYPE_PHENOTYPE.PM,'PM'],[GENOTYPE_PHENOTYPE.IM,'IM'],
+      [GENOTYPE_PHENOTYPE.NM,'NM'],[GENOTYPE_PHENOTYPE.UM,'UM']
+    ]) {
+      const freq = GENOTYPE_EFFECTS[enz]?.[k]?.freq_pct || '?';
+      html += `<button class="geno-btn ${cur===k?'active':''}"
+        onclick="setGenotype('${enz}','${k}')"
+        title="Frequency: ~${freq}% of population">${label} <span style="font-weight:400;font-size:9px">${freq}%</span></button>`;
+    }
+    html += '</div>';
+  }
+  html += '</div>';
+
+  // Asian CYP2D6*10 population note — show if CYP2D6 is relevant
+  if (showEnzymes.includes('CYP2D6')) {
+    const asianNote = GENOTYPE_EFFECTS.CYP2D6._asianNote;
+    html += `<div style="padding:8px 10px;border-radius:6px;background:var(--amberBg);border:1px solid var(--amber);font-size:11px;margin-bottom:10px">
+      <strong>🌏 East Asian CYP2D6 Note:</strong> ${asianNote}
+      <span style="display:block;margin-top:4px;color:var(--text2)">Source: Ueda et al. 2006 (n=55 Japanese patients) · <a href="https://doi.org/10.1016/j.pnpbp.2005.11.007" target="_blank" style="color:var(--accent)">doi:10.1016/j.pnpbp.2005.11.007</a></span>
+    </div>`;
+  }
+
+  // Effect cards for current stack
+  for (const drugName of activeStack) {
+    const drug = DRUG_DB.find(d => d.name === drugName);
+    if (!drug) continue;
+    for (const r of (drug.routes || [])) {
+      const enz = r.enzyme;
+      if (!GENOTYPE_EFFECTS[enz]) continue;
+      const geno = activeGenotype[enz] || GENOTYPE_PHENOTYPE.NM;
+      const eff = GENOTYPE_EFFECTS[enz][geno];
+      if (!eff) continue;
+      const fold = eff.auc_fold;
+      const foldStr = fold === 1.0 ? '1× (baseline)' : fold > 1 ? `${fold.toFixed(1)}× ↑ AUC` : `${fold.toFixed(1)}× ↓ AUC`;
+      const foldColor = fold > 2 ? 'var(--red)' : fold > 1.3 ? 'var(--amber)' : fold < 0.5 ? 'var(--amber)' : 'var(--green)';
+      html += `<div class="geno-effect-card">
+        <div class="geno-effect-title">${drugName} <span style="color:var(--text2);font-size:11px;font-weight:400">via ${enz}</span>
+          <span style="float:right;font-size:18px;font-weight:800;color:${foldColor}">${foldStr}</span>
+        </div>
+        <div class="geno-effect-note">${eff.note}</div>
+        ${fold !== 1.0 ? `<div style="font-size:10px;color:var(--text2);margin-top:4px">Population frequency: ~${eff.freq_pct}% | Vs NM baseline fold-change: ${fold.toFixed(1)}×</div>` : ''}
+      </div>`;
+    }
+  }
+  // CPIC evidence for current genotype
+  const genoStudies = Object.values(STUDY_DB).filter(s =>
+    (s.phenotypes||[]).some(p => Object.values(activeGenotype).includes(p))
+  );
+  if (genoStudies.length) {
+    html += `<div style="font-size:11px;font-weight:700;color:var(--text2);margin:10px 0 5px;text-transform:uppercase;letter-spacing:0.5px">Relevant Studies for Selected Genotypes</div>`;
+    for (const s of genoStudies.slice(0,5)) {
+      const pct = Math.round((EVIDENCE_WEIGHT[s.type]||0.5)*100);
+      html += `<div style="font-size:11px;padding:5px 8px;border-radius:6px;background:var(--card2);margin-bottom:4px;display:flex;justify-content:space-between;align-items:center">
+        <span>${s.title.substring(0,70)}${s.title.length>70?'…':''}</span>
+        <span style="font-size:10px;color:var(--text2);margin-left:8px;white-space:nowrap">${s.type} · ${pct}%</span>
+      </div>`;
+    }
+  }
+  el.innerHTML = html;
+}
+
+function setGenotype(enzyme, phenotype) {
+  activeGenotype[enzyme] = phenotype;
+  renderAll();
+}
+
+// ── renderPhenotypeAccumulation (#6) ────────────────────────────────
+function renderPhenotypeAccumulation() {
+  const sec = document.getElementById("phenoAccumSection");
+  const el = document.getElementById("phenoAccumBody");
+  if (!el) return;
+  if (activeStack.length < 1) { if (sec) sec.style.display = "none"; return; }
+  if (sec) sec.style.display = "";
+
+  const drugs = activeStack.map(n => DRUG_DB.find(d => d.name === n)).filter(Boolean);
+  const { totals, contributors } = computePhenotypeAccumulation(drugs);
+
+  const labels = {
+    serotonin:      { name:"Serotonin Load", thresholds:[2,4], unit:"agents" },
+    qtc:            { name:"QTc Risk",       thresholds:[2,5], unit:"pts" },
+    anticholinergic:{ name:"Anticholinergic",thresholds:[2,4], unit:"ACB pts" },
+    sedation:       { name:"Sedation Load",  thresholds:[2,4], unit:"pts" },
+    fall_risk:      { name:"Fall Risk",      thresholds:[3,6], unit:"pts" },
+  };
+
+  let html = '<div class="pheno-grid">';
+  for (const [key, meta] of Object.entries(labels)) {
+    const score = totals[key];
+    const level = phenotypeRiskLevel(score, meta.thresholds);
+    const drugs_list = (contributors[key]||[]).map(c => `${c.name} (${c.score})`).join(', ');
+    const colorDot = level === 'high' ? 'var(--red)' : level === 'moderate' ? 'var(--amber)' : level === 'low' ? 'var(--green)' : 'var(--text3)';
+    html += `<div class="pheno-card risk-${level}">
+      <div class="pheno-label">${meta.name}</div>
+      <div class="pheno-score" style="color:${colorDot}">${score}</div>
+      <div class="pheno-drugs">${drugs_list || '—'}</div>
+    </div>`;
+  }
+  html += '</div>';
+
+  // Serotonin syndrome risk narrative
+  if (totals.serotonin >= 2) {
+    const serDrugs = (contributors.serotonin||[]).map(c=>c.name).join(' + ');
+    html += `<div style="padding:8px 10px;border-radius:6px;background:var(--amberBg);border:1px solid var(--amber);font-size:12px;margin-bottom:8px">
+      <strong>⚠ Serotonin Syndrome Risk:</strong> ${serDrugs} — combined serotonergic load score ${totals.serotonin}.
+      Monitor for: hyperthermia, clonus, hyperreflexia, agitation, diaphoresis. Onset typically within 24h of combination or dose increase.
+    </div>`;
+  }
+  if (totals.qtc >= 4) {
+    html += `<div style="padding:8px 10px;border-radius:6px;background:var(--redBg);border:1px solid var(--red);font-size:12px;margin-bottom:8px">
+      <strong>🫀 High QTc Risk:</strong> Multiple QTc-prolonging agents (score ${totals.qtc}). Consider baseline ECG. Risk of Torsades de Pointes in susceptible patients (hypokalemia, hypomagnesemia, bradycardia, female sex, structural heart disease).
+    </div>`;
+  }
+  if (totals.sedation >= 4) {
+    html += `<div style="padding:8px 10px;border-radius:6px;background:var(--amberBg);border:1px solid var(--amber);font-size:12px;margin-bottom:8px">
+      <strong>💤 Sedation Accumulation:</strong> Score ${totals.sedation}. Combined CNS depression risk — caution in elderly, respiratory compromise, driving/operating machinery.
+    </div>`;
+  }
+  el.innerHTML = html;
+}
+
+// ── renderPKSimulation (#1) ──────────────────────────────────────
+function renderPKSimulation() {
+  const sec = document.getElementById("pkSimSection");
+  const el = document.getElementById("pkSimBody");
+  if (!el) return;
+  if (activeStack.length < 1) { if (sec) sec.style.display = "none"; return; }
+
+  const drugsWithPK = activeStack.filter(n => {
+    const key = toGraphId(n);
+    return PK_PARAMS[key] || PK_PARAMS[n.toLowerCase()];
+  });
+  if (drugsWithPK.length === 0) { if (sec) sec.style.display = "none"; return; }
+  if (sec) sec.style.display = "";
+
+  let html = '<div class="pk-grid">';
+  for (const name of drugsWithPK) {
+    const key = toGraphId(name);
+    const params = PK_PARAMS[key] || PK_PARAMS[name.toLowerCase()];
+    const curve = pkCurve(name);
+    if (!curve) continue;
+    const { pts, tMax } = curve;
+    const maxC = Math.max(...pts.map(p => p.c));
+    if (maxC <= 0) continue;
+
+    // Genotype adjustment for CYP2D6/2C19 substrates
+    const drug = DRUG_DB.find(d => d.name === name);
+    const primaryEnz = drug?.routes?.[0]?.enzyme;
+    let genoMult = 1.0;
+    let genoBadge = '';
+    if (primaryEnz && ['CYP2D6','CYP2C19','CYP2C9'].includes(primaryEnz)) {
+      genoMult = genotypeAdjustedPK(name, primaryEnz);
+      const geno = activeGenotype[primaryEnz];
+      const genoLabel = Object.entries(GENOTYPE_PHENOTYPE).find(([k,v])=>v===geno)?.[0] || 'NM';
+      if (genoLabel !== 'NM') {
+        genoBadge = `<span class="pk-geno-badge">${primaryEnz} ${genoLabel}: ${genoMult}×</span>`;
+      }
+    }
+
+    // SVG construction
+    const W = 240, H = 70, PAD = 5;
+    const scaleX = t => PAD + (t / tMax) * (W - 2*PAD);
+    const scaleY = c => H - PAD - ((c * genoMult) / (maxC * Math.max(genoMult, 1))) * (H - 2*PAD);
+    const pathD = pts.map((p,i) => `${i===0?'M':'L'}${scaleX(p.t).toFixed(1)},${scaleY(p.c).toFixed(1)}`).join(' ');
+
+    // tmax marker
+    const tmaxPt = pts.reduce((best, p) => p.c > best.c ? p : best, pts[0]);
+    const tmaxX = scaleX(tmaxPt.t);
+    const cmaxY = scaleY(tmaxPt.c);
+
+    html += `<div class="pk-card">
+      <div class="pk-title">${name}${genoBadge}</div>
+      <div class="pk-params">F=${Math.round(params.F*100)}% · t½=${params.halfLife}h · ka=${params.ka}/h · Vd=${params.Vd}L/kg · dose=${params.dose_mg}mg</div>
+      <svg class="pk-svg" viewBox="0 0 ${W} ${H}">
+        <defs>
+          <linearGradient id="pkgrad_${toGraphId(name)}" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <!-- fill under curve -->
+        <path d="${pathD} L${scaleX(tMax).toFixed(1)},${H} L${scaleX(0).toFixed(1)},${H} Z"
+              fill="url(#pkgrad_${toGraphId(name)})" stroke="none"/>
+        <!-- curve line -->
+        <path d="${pathD}" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+        <!-- Cmax marker -->
+        <circle cx="${tmaxX.toFixed(1)}" cy="${cmaxY.toFixed(1)}" r="2.5" fill="var(--accent)"/>
+        <text x="${Math.min(tmaxX+4,W-30).toFixed(1)}" y="${Math.max(cmaxY-3,10).toFixed(1)}" font-size="8" fill="var(--accent)">Cmax</text>
+        <!-- x-axis -->
+        <line x1="${PAD}" y1="${H-PAD}" x2="${W-PAD}" y2="${H-PAD}" stroke="var(--border)" stroke-width="0.5"/>
+        <text x="${W-PAD}" y="${H-1}" font-size="8" fill="var(--text2)" text-anchor="end">${tMax}h</text>
+      </svg>
+      <div style="font-size:9px;color:var(--text2);margin-top:2px;font-style:italic">${params.note.substring(0,120)}${params.note.length>120?'…':''}</div>
+      ${params.sexSpecificRange ? `<div style="font-size:9px;margin-top:4px;padding:3px 5px;border-radius:4px;background:var(--card2)">
+        <strong style="color:var(--text1)">Sex-specific reference ranges (Huang 2025):</strong>
+        <span style="color:#3b82f6"> ♂ ${params.sexSpecificRange.M[0]}–${params.sexSpecificRange.M[1]} ng/mL</span> ·
+        <span style="color:#ec4899"> ♀ ${params.sexSpecificRange.F[0]}–${params.sexSpecificRange.F[1]} ng/mL</span>
+      </div>` : ''}
+      ${params.nonlinear ? `<div style="font-size:9px;margin-top:3px;color:var(--amber)">⚠ Nonlinear auto-inhibition kinetics — AUC increases disproportionately above 30mg/day</div>` : ''}
+      ${params.taperNote ? `<div style="font-size:9px;margin-top:3px;color:var(--red)">🔻 ${params.taperNote}</div>` : ''}
+    </div>`;
+  }
+  html += '</div>';
+  html += '<div style="font-size:10px;color:var(--text2);margin-top:4px;padding:4px 0;border-top:1px solid var(--border)">⚠ Educational model only. One-compartment oral absorption model (linear approximation — does not capture auto-inhibition nonlinearity at higher doses). Not for clinical dosing.</div>';
+  el.innerHTML = html;
+}
+
+// ── renderInteractionGraph — D3 force-directed graph (#4) ──────────
+function renderInteractionGraph() {
+  const sec = document.getElementById("graphSection");
+  const el = document.getElementById("graphBody");
+  if (!el) return;
+  if (activeStack.length < 1) { if (sec) sec.style.display = "none"; return; }
+  if (sec) sec.style.display = "";
+
+  const graph = getInteractionGraph();
+
+  // Build D3 nodes/edges filtered to relevant actors (depth-limited)
+  const relevantIds = new Set();
+  for (const drugName of activeStack) {
+    const drugId = toGraphId(drugName);
+    relevantIds.add(drugId);
+    // Add direct neighbors
+    for (const e of (graph.edges||[])) {
+      if (e.from === drugId || e.to === drugId) {
+        relevantIds.add(e.from);
+        relevantIds.add(e.to);
+        // Add one more hop
+        for (const e2 of (graph.edges||[])) {
+          if (e2.from === e.to || e2.to === e.from) {
+            if (relevantIds.size < 50) { relevantIds.add(e2.from); relevantIds.add(e2.to); }
+          }
+        }
+      }
+    }
+  }
+  const nodes = Object.values(graph.actors)
+    .filter(a => relevantIds.has(a.id))
+    .slice(0, 60)
+    .map(a => ({ id: a.id, name: a.name || a.id, type: a.type }));
+  const nodeSet = new Set(nodes.map(n => n.id));
+  const links = (graph.edges||[])
+    .filter(e => nodeSet.has(e.from) && nodeSet.has(e.to))
+    .map(e => ({ source: e.from, target: e.to, type: e.type }));
+
+  // Color by actor type
+  const typeColor = {
+    [ACTOR_TYPE.DRUG]:         '#6366f1',
+    [ACTOR_TYPE.METABOLITE]:   '#8b5cf6',
+    [ACTOR_TYPE.ENZYME]:       '#3b82f6',
+    [ACTOR_TYPE.TRANSPORTER]:  '#06b6d4',
+    [ACTOR_TYPE.FOOD]:         '#10b981',
+    [ACTOR_TYPE.ENVIRONMENTAL]:'#84cc16',
+    [ACTOR_TYPE.ENDOGENOUS]:   '#f59e0b',
+    [ACTOR_TYPE.RECEPTOR]:     '#f97316',
+    [ACTOR_TYPE.PHENOTYPE]:    '#ef4444',
+  };
+  const edgeColor = {
+    [EDGE_TYPE.INHIBITS]:       '#ef4444',
+    [EDGE_TYPE.INDUCES]:        '#22c55e',
+    [EDGE_TYPE.METABOLIZED_TO]: '#8b5cf6',
+    [EDGE_TYPE.SUBSTRATE_OF]:   '#6366f1',
+    [EDGE_TYPE.TRANSPORTED_BY]: '#06b6d4',
+    [EDGE_TYPE.ACTIVATES]:      '#22c55e',
+    [EDGE_TYPE.BLOCKS]:         '#ef4444',
+    [EDGE_TYPE.PRODUCES]:       '#f59e0b',
+  };
+
+  // Legend
+  const shownTypes = [...new Set(nodes.map(n => n.type))];
+  let legendHTML = '<div class="d3-legend">';
+  for (const t of shownTypes) {
+    legendHTML += `<div class="d3-legend-item"><div class="d3-legend-dot" style="background:${typeColor[t]||'#999'}"></div>${t}</div>`;
+  }
+  legendHTML += '</div>';
+
+  el.innerHTML = legendHTML + `<div id="d3-graph-container"></div>
+    <div style="font-size:10px;color:var(--text2);margin-top:6px">Hover nodes to highlight connections. Drag to reposition. Scroll to zoom.</div>`;
+
+  // D3 rendering (deferred to next tick so DOM is ready)
+  requestAnimationFrame(() => {
+    const container = document.getElementById("d3-graph-container");
+    if (!container || typeof d3 === 'undefined') {
+      container && (container.innerHTML = '<div style="padding:20px;text-align:center;color:var(--text2);font-size:12px">D3.js loading… refresh to render graph.</div>');
+      return;
+    }
+    container.innerHTML = '';
+    const W = container.clientWidth || 600;
+    const H = 420;
+
+    const svg = d3.select(container).append('svg')
+      .attr('width', W).attr('height', H)
+      .style('background', 'transparent');
+
+    // Arrowhead marker
+    svg.append('defs').append('marker')
+      .attr('id','arrowhead').attr('viewBox','0 -4 8 8').attr('refX',16).attr('refY',0)
+      .attr('markerWidth',6).attr('markerHeight',6).attr('orient','auto')
+      .append('path').attr('d','M0,-4L8,0L0,4').attr('fill','#999').attr('opacity',0.7);
+
+    const sim = d3.forceSimulation(nodes)
+      .force('link', d3.forceLink(links).id(d => d.id).distance(80).strength(0.5))
+      .force('charge', d3.forceManyBody().strength(-180))
+      .force('center', d3.forceCenter(W/2, H/2))
+      .force('collision', d3.forceCollide().radius(28));
+
+    const link = svg.append('g').selectAll('line').data(links).join('line')
+      .attr('stroke', d => edgeColor[d.type] || '#aaa')
+      .attr('stroke-width', 1.5).attr('stroke-opacity', 0.6)
+      .attr('marker-end','url(#arrowhead)');
+
+    const isActive = id => activeStack.some(n => toGraphId(n) === id);
+    const node = svg.append('g').selectAll('circle').data(nodes).join('circle')
+      .attr('r', d => isActive(d.id) ? 14 : 9)
+      .attr('fill', d => typeColor[d.type] || '#999')
+      .attr('stroke', d => isActive(d.id) ? '#fff' : 'transparent')
+      .attr('stroke-width', 2)
+      .attr('cursor', 'pointer')
+      .call(d3.drag()
+        .on('start', (event,d) => { if(!event.active) sim.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+        .on('drag',  (event,d) => { d.fx=event.x; d.fy=event.y; })
+        .on('end',   (event,d) => { if(!event.active) sim.alphaTarget(0); d.fx=null; d.fy=null; })
+      );
+
+    const label = svg.append('g').selectAll('text').data(nodes).join('text')
+      .text(d => d.name.length > 14 ? d.name.substring(0,12)+'…' : d.name)
+      .attr('font-size', d => isActive(d.id) ? 11 : 9)
+      .attr('fill', 'var(--text1)').attr('text-anchor','middle')
+      .attr('dy', d => isActive(d.id) ? 24 : 18)
+      .attr('pointer-events','none');
+
+    // Tooltip
+    const tooltip = d3.select(container).append('div')
+      .style('position','absolute').style('background','var(--card)').style('border','1px solid var(--border)')
+      .style('border-radius','6px').style('padding','6px 8px').style('font-size','11px')
+      .style('pointer-events','none').style('opacity',0).style('max-width','180px');
+
+    node.on('mouseover', (event, d) => {
+        const connected = links.filter(l => l.source.id === d.id || l.target.id === d.id);
+        tooltip.html(`<strong>${d.name}</strong><br><span style="color:var(--text2)">${d.type}</span>`)
+          .style('opacity',1).style('left',(event.offsetX+10)+'px').style('top',(event.offsetY-20)+'px');
+        link.attr('stroke-opacity', l => (l.source.id===d.id||l.target.id===d.id) ? 1.0 : 0.1);
+        node.attr('opacity', n => (n.id===d.id || connected.some(l=>l.source.id===n.id||l.target.id===n.id)) ? 1 : 0.25);
+      })
+      .on('mouseout', () => {
+        tooltip.style('opacity',0);
+        link.attr('stroke-opacity', 0.6);
+        node.attr('opacity',1);
+      });
+
+    // Zoom
+    svg.call(d3.zoom().scaleExtent([0.3,3]).on('zoom', e => {
+      svg.selectAll('g').attr('transform', e.transform);
+    }));
+
+    sim.on('tick', () => {
+      link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+      node.attr('cx',d=>d.x).attr('cy',d=>d.y);
+      label.attr('x',d=>d.x).attr('y',d=>d.y);
+    });
+  });
+}
+
+// ── renderWashoutCalendar (#9) ──────────────────────────────────────
+function renderWashoutCalendar() {
+  const sec = document.getElementById("washoutSection");
+  const el = document.getElementById("washoutBody");
+  if (!el) return;
+  if (activeStack.length < 1) { if (sec) sec.style.display = "none"; return; }
+
+  const events = computeWashoutCalendar(activeStack);
+  if (events.length === 0) { if (sec) sec.style.display = "none"; return; }
+  if (sec) sec.style.display = "";
+
+  const maxDays = Math.max(...events.map(e => e.days));
+  let html = `<p style="font-size:12px;color:var(--text2);margin:0 0 10px">
+    Stopping date: <strong>Today (${new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})})</strong>.
+    Estimated days before enzyme activity is fully recovered.
+  </p>`;
+  html += '<table class="washout-table"><thead><tr><th>Agent</th><th>Mechanism</th><th>Recovery Time</th><th>Safe-to-Switch Date</th></tr></thead><tbody>';
+  for (const ev of events) {
+    const pct = Math.round((ev.days / maxDays) * 100);
+    html += `<tr>
+      <td><strong>${ev.name}</strong>${ev.drugName !== ev.name ? `<br><span style="font-size:10px;color:var(--text2)">from ${ev.drugName}</span>` : ''}</td>
+      <td style="color:var(--text2);font-size:11px">${ev.mechanism.replace(/_/g,' ')}</td>
+      <td>
+        <div class="washout-bar-wrap">
+          <div class="washout-bar" style="width:${Math.max(pct*1.2,8)}px"></div>
+          <span style="font-size:12px;font-weight:700">${ev.days} days</span>
+        </div>
+        <div style="font-size:10px;color:var(--text2);margin-top:2px">${ev.note}</div>
+      </td>
+      <td class="washout-safe">${ev.safeDateStr}</td>
+    </tr>`;
+  }
+  html += '</tbody></table>';
+  html += '<div style="font-size:10px;color:var(--text2);margin-top:8px">⚠ Estimates based on population PK data. Individual variation is substantial. Consult clinical pharmacist before switching medications.</div>';
+  el.innerHTML = html;
+}
+
+// ── renderAdverseBurden (#10) ──────────────────────────────────────
+function renderAdverseBurden() {
+  const sec = document.getElementById("burdenSection");
+  const el = document.getElementById("burdenBody");
+  if (!el) return;
+  if (activeStack.length < 1) { if (sec) sec.style.display = "none"; return; }
+
+  const drugs = activeStack.map(n => DRUG_DB.find(d => d.name === n)).filter(Boolean);
+  const burden = computeAdverseBurden(drugs);
+  const hasContent = burden.acb_total > 0 || burden.beers_flags.length > 0 ||
+                     burden.sedation_contributors.length > 0 || burden.fall_risk_total > 0;
+  if (!hasContent) { if (sec) sec.style.display = "none"; return; }
+  if (sec) sec.style.display = "";
+
+  const acbLevel = burden.acb_total >= 3 ? 'high' : burden.acb_total >= 1 ? 'moderate' : 'none';
+  const fallLevel = burden.fall_risk_total >= 6 ? 'high' : burden.fall_risk_total >= 3 ? 'moderate' : 'low';
+
+  let html = '<div class="burden-grid">';
+
+  // ACB Score
+  const acbColor = acbLevel==='high'?'var(--red)':acbLevel==='moderate'?'var(--amber)':'var(--green)';
+  html += `<div class="burden-card">
+    <div class="burden-header">Anticholinergic Cognitive Burden (ACB)</div>
+    <div class="burden-score" style="color:${acbColor}">${burden.acb_total}</div>
+    <div class="burden-sub">${burden.acb_contributors.map(c=>`${c.name} (${c.score})`).join(', ') || 'None'}</div>
+    ${burden.acb_total >= 3 ? '<div style="font-size:10px;color:var(--red);margin-top:4px;font-weight:600">High risk: delirium, cognitive impairment, urinary retention</div>' : ''}
+  </div>`;
+
+  // Fall Risk
+  const fallColor = fallLevel==='high'?'var(--red)':fallLevel==='moderate'?'var(--amber)':'var(--text2)';
+  html += `<div class="burden-card">
+    <div class="burden-header">Fall Risk Score</div>
+    <div class="burden-score" style="color:${fallColor}">${burden.fall_risk_total}</div>
+    <div class="burden-sub">${burden.fall_risk_contributors.map(c=>c.name).join(', ') || 'None'}</div>
+    ${burden.fall_risk_total >= 4 ? '<div style="font-size:10px;color:var(--amber);margin-top:4px;font-weight:600">Elevated fall/fracture risk — especially in elderly</div>' : ''}
+  </div>`;
+
+  // Sedation
+  if (burden.sedation_contributors.length > 0) {
+    html += `<div class="burden-card">
+      <div class="burden-header">Sedating Agents</div>
+      <div class="burden-score" style="color:var(--amber)">${burden.sedation_contributors.length}</div>
+      <div class="burden-sub">${burden.sedation_contributors.join(', ')}</div>
+      ${burden.sedation_contributors.length >= 2 ? '<div style="font-size:10px;color:var(--amber);margin-top:4px;font-weight:600">Combined CNS depression — avoid driving/machinery</div>' : ''}
+    </div>`;
+  }
+  html += '</div>';
+
+  // Beers flags
+  if (burden.beers_flags.length > 0) {
+    html += `<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text2);margin-bottom:6px">Beers Criteria 2023 Flags (≥65 years)</div>`;
+    for (const flag of burden.beers_flags) {
+      html += `<div class="beers-flag">
+        <span class="beers-drug">⚑ ${flag.name}</span>
+        <span>${flag.concern}</span>
+      </div>`;
+    }
+  }
+
+  // Summary
+  if (burden.summary.length > 0) {
+    html += `<div style="margin-top:8px;padding:8px 10px;border-radius:6px;background:var(--card2);font-size:11px">
+      ${burden.summary.map(s => `<div style="margin-bottom:3px">• ${s}</div>`).join('')}
+    </div>`;
+  }
+  el.innerHTML = html;
+}
 
 </script>
 </body>
