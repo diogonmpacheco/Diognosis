@@ -12,6 +12,8 @@ function renderInteractions(interactions) {
   countEl.textContent = `${interactions.length} found`;
   el.innerHTML = interactions.map((i, idx) => {
     const mechText = simplifyMechanism(i);
+    const traceText = buildInteractionTrace(i);
+    const actionText = clinicalActionForInteraction(i);
     const studies = resolveInteractionEvidence(i);
     const hasContradiction = studies.some(s => s.contradicts && s.contradicts.length);
     const maxWeight = studies.length
@@ -41,6 +43,8 @@ function renderInteractions(interactions) {
       </div>
       <div class="inter-effect">${i.effect}</div>
       <div class="inter-mech">${mechText}</div>
+      ${traceText ? `<div class="inter-trace">${traceText}</div>` : ""}
+      ${actionText ? `<div class="inter-action">${actionText}</div>` : ""}
       ${hasEv ? `
       ${evSummary}
       <span class="ev-toggle" id="${evToggleId}" onclick="toggleEvPanel('${evId}','${evToggleId}')">
@@ -72,6 +76,32 @@ function simplifyMechanism(i) {
   if (i.type === "transporter") return `${i.drug1} blocks ${i.enzyme} transporter, increasing ${i.drug2} levels`;
   if (i.type === "metabolite-chain") return `${i.drug1}'s metabolite inhibits ${i.enzyme}, affecting ${i.drug2} metabolism`;
   return "";
+}
+
+function buildInteractionTrace(i) {
+  if (!i) return "";
+  if (i.type === "metabolite-chain") return `${i.drug1} -> active metabolite/inhibitor -> ${i.enzyme || i.category || "pathway"} -> ${i.drug2}`;
+  if (i.type === "inhibition") return `${i.drug1} inhibits ${i.enzyme || "clearance pathway"} -> ${i.drug2} exposure rises`;
+  if (i.type === "induction") return `${i.drug1} induces ${i.enzyme || "clearance pathway"} -> ${i.drug2} exposure falls`;
+  if (i.type === "transporter" || i.category === "transporter") return `${i.drug1} -> transporter effect (${i.enzyme || i.category || "transporter"}) -> ${i.drug2} exposure changes`;
+  if (i.category === "prodrug") return `${i.drug2} activation pathway affected by ${i.drug1} -> active metabolite/clinical effect may fall`;
+  if (i.category === "bleed") return `${i.drug1} + ${i.drug2} -> additive anticoagulant/platelet effect -> bleeding risk`;
+  if (i.category === "serotonin") return `${i.drug1} + ${i.drug2} -> serotonergic effects add up -> serotonin toxicity risk`;
+  if (i.category === "qtc") return `${i.drug1} + ${i.drug2} -> repolarization effects add up -> QTc risk`;
+  if (i.mechanism) return `${i.drug1} + ${i.drug2} -> ${i.mechanism}`;
+  return "";
+}
+
+function clinicalActionForInteraction(i) {
+  if (!i) return "";
+  if (i.severity === "severe") {
+    if (i.category === "bleed") return "Action: avoid or use specialist monitoring for bleeding risk.";
+    if (i.category === "prodrug") return "Action: consider an alternative that does not need the blocked activation pathway.";
+    if (i.category === "transporter") return "Action: avoid combination or monitor levels/toxicity closely.";
+    return "Action: avoid combination when possible or use clinician-guided dose/monitoring plan.";
+  }
+  if (i.severity === "moderate") return "Action: monitor response/adverse effects; dose or timing adjustment may be needed.";
+  return "Action: usually monitor; context matters.";
 }
 
 function renderFoldBars() {
@@ -186,16 +216,36 @@ function renderFoldMetaboliteRow(card) {
     : fold && fold !== 1
     ? `${foldStr} / ${phenotypeEffect.label}${phenotypeEffect.estimated ? " (model estimate)" : ""}`
     : phenotypeEffect.label;
+  const signal = getExposureSignalLabel(effect, phenotypeEffect);
+  const action = effect.clinicalAction || clinicalActionForMetaboliteEffect(effect, phenotypeEffect);
 
   return renderFoldSubRow({
     title:effect.metaboliteName,
     subtitle:`from ${effect.parent}`,
     tagText,
     color,
-    summary,
+    summary:`${signal}: ${summary}${action ? ` · ${action}` : ""}`,
     valueText:foldStr,
     fold,
   });
+}
+
+function getExposureSignalLabel(effect, phenotypeEffect) {
+  const signal = effect.exposureSignal || phenotypeEffect.exposureSignal || "";
+  if (signal === "parent") return "parent context";
+  if (signal === "active_moiety") return "active-moiety context";
+  if (signal === "metabolite" || !signal) return "metabolite level";
+  return signal.replace(/_/g, " ");
+}
+
+function clinicalActionForMetaboliteEffect(effect, phenotypeEffect) {
+  if (!phenotypeEffect || phenotypeEffect.direction === "baseline") return "";
+  if (effect.enzyme === "DPYD") return "avoid or specialist-dose fluoropyrimidines";
+  if (effect.enzyme === "TPMT") return "reduce/avoid thiopurine and monitor CBC";
+  if (effect.enzyme === "UGT1A1") return "monitor CBC and consider lower irinotecan start";
+  if (phenotypeEffect.direction === "decrease" && /prodrug|activation|active metabolite|bioactivation/i.test(effect.note || "")) return "monitor efficacy or consider non-activated alternative";
+  if (phenotypeEffect.direction === "increase") return "monitor toxicity or reduce exposure when clinically appropriate";
+  return "interpret with parent row";
 }
 
 function renderFoldSubRow({ title, subtitle, tagText, color, summary, valueText = "", fold = null }) {

@@ -124,6 +124,8 @@ a{color:var(--accent)}
 .inter-sev.mild{background:var(--blue);color:#fff}
 .inter-effect{font-size:13px;font-weight:600;margin:4px 0}
 .inter-mech{font-size:12px;color:var(--text2);line-height:1.4}
+.inter-trace{font-size:11px;line-height:1.45;margin-top:7px;padding:7px 9px;border-radius:8px;background:rgba(255,255,255,0.62);color:var(--text2)}
+.inter-action{display:inline-block;margin-top:6px;font-size:11px;font-weight:700;padding:3px 8px;border-radius:8px;background:var(--card);border:1px solid rgba(0,0,0,0.08)}
 
 /* FOLD BARS */
 .fold-row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border)}
@@ -343,6 +345,22 @@ a{color:var(--accent)}
 .pk-warning{font-size:9px;margin-top:3px;color:var(--amber)}
 .pk-taper{font-size:9px;margin-top:3px;color:var(--red)}
 .pk-disclaimer{font-size:10px;color:var(--text2);margin-top:6px;padding:5px 0;border-top:1px solid var(--border)}
+/* QUALITY + SCENARIOS */
+.quality-grid,.scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px}
+.quality-tile,.scenario-card{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card2)}
+.quality-num{font-size:20px;font-weight:800;line-height:1;color:var(--accent)}
+.quality-label{font-size:11px;font-weight:700;color:var(--text);margin-top:4px}
+.quality-note,.scenario-note{font-size:10px;color:var(--text2);line-height:1.35;margin-top:3px}
+.quality-list{margin-top:10px;display:grid;gap:6px}
+.quality-item{font-size:11px;line-height:1.4;padding:7px 9px;border-radius:7px;background:var(--card);border:1px solid var(--border)}
+.scenario-title{font-size:12px;font-weight:800;margin-bottom:6px}
+.scenario-row{display:grid;grid-template-columns:1fr auto;gap:8px;font-size:11px;padding:4px 0;border-bottom:1px solid var(--border)}
+.scenario-row:last-child{border-bottom:none}
+.scenario-val{font-weight:800}
+.scenario-val.high{color:var(--amber)}
+.scenario-val.danger{color:var(--red)}
+.scenario-val.low{color:var(--blue)}
+.scenario-action{margin-top:7px;font-size:10px;font-weight:700;color:var(--text);padding:5px 7px;border-radius:6px;background:var(--card)}
 /* GENOTYPE PANEL */
 .geno-selector{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;align-items:center}
 .geno-enz-label{font-size:11px;font-weight:700;color:var(--text2);min-width:60px}
@@ -540,6 +558,18 @@ a{color:var(--accent)}
     <div class="section-body coll-body" id="evidenceBody"></div>
   </div>
 
+  <!-- Database Quality -->
+  <div class="section" id="qualitySection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('quality')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-5"/>
+      </svg>
+      <span>Database Quality</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="qualityCount"></span>
+    </div>
+    <div class="section-body coll-body" id="qualityBody"></div>
+  </div>
+
   <!-- Explainable Graph Output — Cascade Traversal -->
   <div class="section" id="cascadeSection" style="display:none">
     <div class="section-title collapsible" onclick="toggleSection('cascade')">
@@ -576,6 +606,18 @@ a{color:var(--accent)}
       <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">1-compartment concentration curves</span>
     </div>
     <div class="section-body coll-body open" id="pkSimBody"></div>
+  </div>
+
+  <!-- Scenario Comparison -->
+  <div class="section" id="scenarioSection" style="display:none">
+    <div class="section-title collapsible" onclick="toggleSection('scenario')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-7"/>
+      </svg>
+      <span>Dose + Genotype Scenarios</span>
+      <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Compare current vs nearby assumptions</span>
+    </div>
+    <div class="section-body coll-body open" id="scenarioBody"></div>
   </div>
 
   <!-- Genotype-Stratified Evidence (#2) -->

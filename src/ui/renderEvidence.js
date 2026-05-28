@@ -65,6 +65,55 @@ function filterEvidenceTier(tier, btn) {
   });
 }
 
+function renderQualityDashboard() {
+  const section = document.getElementById("qualitySection");
+  const el = document.getElementById("qualityBody");
+  const countEl = document.getElementById("qualityCount");
+  if (!el) return;
+  if (activeStack.length < 1) { if (section) section.style.display = "none"; return; }
+
+  const studies = Object.values(STUDY_DB || {});
+  const publicStudies = studies.filter(s => s.public !== false);
+  const unverified = publicStudies.filter(s => s.verified === false || s.verifyNote);
+  const qualitative = [];
+  const quantified = [];
+  const missingSignals = [];
+  for (const effect of GENOTYPE_METABOLITE_EFFECTS || []) {
+    for (const [phenotype, pe] of Object.entries(effect.effects || {})) {
+      if (!pe || pe.direction === "baseline" || pe.direction === "uncertain") continue;
+      if (pe.qualitative) qualitative.push(`${effect.parent} -> ${effect.metaboliteName} ${phenotype}`);
+      if (pe.fold) quantified.push(`${effect.parent} -> ${effect.metaboliteName} ${phenotype}`);
+    }
+    if (!effect.exposureSignal) missingSignals.push(`${effect.parent} -> ${effect.metaboliteName}`);
+  }
+  const estimatedFoldCount = (document.getElementById("foldBody")?.textContent || "").match(/model estimate/g)?.length || 0;
+  const knownDdiMissingRefs = (KNOWN_DDI || []).filter(d => !d.evidenceRefs || d.evidenceRefs.length === 0).length;
+  const stackStudies = publicStudies.filter(s => activeStack.some(name =>
+    JSON.stringify([s.id,s.title,s.source,s.supports,s.quantifiedEffects]).toLowerCase().includes(name.toLowerCase())
+  ));
+
+  if (section) section.style.display = "";
+  if (countEl) countEl.textContent = `${publicStudies.length} studies · ${qualitative.length} qualitative PGx effects`;
+
+  const issueItems = [
+    ...unverified.slice(0,3).map(s => `<div class="quality-item"><strong>Evidence to verify:</strong> ${s.id} · ${s.verifyNote || "marked unverified"}</div>`),
+    ...missingSignals.slice(0,3).map(x => `<div class="quality-item"><strong>Schema upgrade:</strong> add explicit exposureSignal/action metadata for ${x}</div>`),
+    knownDdiMissingRefs ? `<div class="quality-item"><strong>Interaction provenance:</strong> ${knownDdiMissingRefs} interaction rows still rely on inline evidence instead of STUDY_DB refs.</div>` : ""
+  ].filter(Boolean).join("");
+
+  el.innerHTML = `
+    <div class="quality-grid">
+      <div class="quality-tile"><div class="quality-num">${DRUG_DB.length}</div><div class="quality-label">Drugs</div><div class="quality-note">Current searchable database</div></div>
+      <div class="quality-tile"><div class="quality-num">${publicStudies.length}</div><div class="quality-label">Evidence Records</div><div class="quality-note">${stackStudies.length} relevant to this stack</div></div>
+      <div class="quality-tile"><div class="quality-num">${quantified.length}</div><div class="quality-label">Quantified PGx Effects</div><div class="quality-note">Metabolite/active-form rows with numeric folds</div></div>
+      <div class="quality-tile"><div class="quality-num">${qualitative.length}</div><div class="quality-label">Qualitative PGx Effects</div><div class="quality-note">Shown without invented fold numbers</div></div>
+      <div class="quality-tile"><div class="quality-num">${unverified.length}</div><div class="quality-label">Evidence Review Queue</div><div class="quality-note">Items marked approximate or needing confirmation</div></div>
+      <div class="quality-tile"><div class="quality-num">${estimatedFoldCount}</div><div class="quality-label">Live Model Estimates</div><div class="quality-note">Estimated folds visible in the current stack</div></div>
+    </div>
+    ${issueItems ? `<div class="quality-list">${issueItems}</div>` : `<div class="quality-list"><div class="quality-item"><strong>Current stack:</strong> no structural quality warnings surfaced by the local dashboard.</div></div>`}
+  `;
+}
+
 // ── renderCascade — Explainable Graph Output ──
 // Renders the traverseEffects() results as a visual pathway chain.
 // Each chain shows: Source → edge → Node → edge → ... → Phenotype

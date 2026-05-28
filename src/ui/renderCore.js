@@ -151,9 +151,11 @@ function renderAll() {
     renderPathwayDiversions();
     renderCascade();                // Phase 3: graph traversal
     renderEvidenceExplorer();       // Phase 4: study browser
+    renderQualityDashboard();       // Database quality / curation status
     renderGenotypePanel();          // Phase 5 #2: genotype-stratified evidence
     renderPhenotypeAccumulation();  // Phase 5 #6: serotonin/QTc/anticholinergic
     renderPKSimulation();           // Phase 5 #1: 1-compartment PK curves
+    renderScenarioComparison();     // Dose + genotype scenario comparison
     renderInteractionGraph();       // Phase 5 #4: D3 force-directed graph
     renderWashoutCalendar();        // Phase 5 #9: safe-to-switch dates
     renderAdverseBurden();          // Phase 5 #10: ACB + Beers + fall risk
@@ -168,9 +170,11 @@ function renderAll() {
     document.getElementById("pdSection").style.display = "none";
     document.getElementById("cascadeSection").style.display = "none";
     document.getElementById("evidenceSection").style.display = "none";
+    document.getElementById("qualitySection").style.display = "none";
     document.getElementById("genotypeSection").style.display = "none";
     document.getElementById("phenoAccumSection").style.display = "none";
     document.getElementById("pkSimSection").style.display = "none";
+    document.getElementById("scenarioSection").style.display = "none";
     document.getElementById("graphSection").style.display = "none";
     document.getElementById("washoutSection").style.display = "none";
     document.getElementById("burdenSection").style.display = "none";
@@ -238,4 +242,3 @@ function renderRiskGauge(risk) {
       </div>
     </div>`;
 }
-

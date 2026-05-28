@@ -334,12 +334,14 @@ function renderGenotypeMetaboliteEffectCard(card) {
       return study.pmid ? `PMID:${study.pmid}` : (study.doi ? `DOI:${study.doi}` : ref);
     }).join(' · ')
     : 'Evidence pending';
+  const signal = typeof getExposureSignalLabel === 'function' ? getExposureSignalLabel(effect, phenotypeEffect) : 'metabolite level';
+  const action = effect.clinicalAction || (typeof clinicalActionForMetaboliteEffect === 'function' ? clinicalActionForMetaboliteEffect(effect, phenotypeEffect) : '');
   return `<div class="geno-effect-card">
     <div class="geno-effect-title">${effect.metaboliteName} <span style="color:var(--text2);font-size:11px;font-weight:400">from ${effect.parent} via ${effect.enzyme}</span>
       <span style="float:right;font-size:18px;font-weight:800;color:${foldColor}">${foldStr}</span>
     </div>
     <div class="geno-effect-note">${effect.note}</div>
-    <div style="font-size:10px;color:var(--text2);margin-top:4px">${phenotypeEffect.label} · ${evidenceText}</div>
+    <div style="font-size:10px;color:var(--text2);margin-top:4px">${signal}: ${phenotypeEffect.label}${action ? ` · ${action}` : ""} · ${evidenceText}</div>
   </div>`;
 }
 

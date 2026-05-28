@@ -178,4 +178,90 @@ function renderPKSimulation() {
   el.innerHTML = html;
 }
 
+function renderScenarioComparison() {
+  const section = document.getElementById("scenarioSection");
+  const el = document.getElementById("scenarioBody");
+  if (!el) return;
+  if (activeStack.length < 1) { if (section) section.style.display = "none"; return; }
+  if (section) section.style.display = "";
+
+  const html = `<div class="scenario-grid">${activeStack.map(name => {
+    const drug = getDrug(name);
+    const primary = getScenarioPrimaryEnzyme(drug);
+    const currentFold = calcFold(name).fold;
+    const doseRows = getScenarioDoseRows(name);
+    const genotypeRows = primary ? getScenarioGenotypeRows(name, primary) : [];
+    const action = clinicalActionForFold(currentFold, drug);
+    return `<div class="scenario-card">
+      <div class="scenario-title">${name}</div>
+      ${doseRows.length ? `<div class="scenario-note">Dose sensitivity</div>${doseRows.join("")}` : `<div class="scenario-note">No local dose tiers defined</div>`}
+      ${genotypeRows.length ? `<div class="scenario-note" style="margin-top:7px">${primary} phenotype sensitivity</div>${genotypeRows.join("")}` : ""}
+      <div class="scenario-action">${action}</div>
+    </div>`;
+  }).join("")}</div>
+  <div class="pk-disclaimer">Scenario values are directional checks from the same exposure model, not dosing instructions. Parent and metabolite rows remain separate.</div>`;
+  el.innerHTML = html;
+}
+
+function getScenarioPrimaryEnzyme(drug) {
+  if (!drug) return null;
+  const route = (drug.routes || []).find(r => GENOTYPE_EFFECTS[r.enzyme] || CLINICAL_FOLD[drug.name]?.[r.enzyme]);
+  return route?.enzyme || null;
+}
+
+function getScenarioDoseRows(name) {
+  const tiers = DOSE_TIERS[name]?.tiers;
+  if (!tiers) return [];
+  const current = getDoseTier(name);
+  const candidates = [...new Set(["low", current, "high", "max"].filter(k => tiers[k]))];
+  return candidates.map(tier => {
+    const fold = withTemporaryState(() => {
+      drugDoses[name] = tier;
+      return calcFold(name).fold;
+    });
+    const label = tier === current ? `${tiers[tier].label} current` : tiers[tier].label;
+    return scenarioRow(label, fold);
+  });
+}
+
+function getScenarioGenotypeRows(name, enzyme) {
+  const phenos = [
+    [GENOTYPE_PHENOTYPE.NM, "NM"],
+    [activeGenotype[enzyme] || GENOTYPE_PHENOTYPE.NM, "current"],
+    [GENOTYPE_PHENOTYPE.PM, "PM"],
+  ];
+  return [...new Map(phenos.map(p => [p[0], p])).values()].map(([pheno, label]) => {
+    const fold = withTemporaryState(() => {
+      activeGenotype[enzyme] = pheno;
+      return calcFold(name).fold;
+    });
+    return scenarioRow(`${enzyme} ${label}`, fold);
+  });
+}
+
+function scenarioRow(label, fold) {
+  const cls = fold >= 4 ? "danger" : fold >= 1.5 ? "high" : fold <= 0.5 ? "low" : "";
+  return `<div class="scenario-row"><span>${label}</span><span class="scenario-val ${cls}">${fold.toFixed(fold >= 10 ? 1 : 2)}x</span></div>`;
+}
+
+function withTemporaryState(fn) {
+  const doseSnapshot = { ...drugDoses };
+  const genoSnapshot = { ...activeGenotype };
+  try {
+    return fn();
+  } finally {
+    Object.keys(drugDoses).forEach(k => delete drugDoses[k]);
+    Object.assign(drugDoses, doseSnapshot);
+    activeGenotype = genoSnapshot;
+  }
+}
+
+function clinicalActionForFold(fold, drug) {
+  if (drug?.prodrug && fold <= 0.6) return "Action layer: possible activation failure; consider alternative or response monitoring.";
+  if (fold >= 4) return "Action layer: high exposure signal; avoid strong inhibitors, reduce dose, or use TDM/monitoring when clinically appropriate.";
+  if (fold >= 2) return "Action layer: elevated exposure; monitor adverse effects and consider lower dose/alternative.";
+  if (fold <= 0.5) return "Action layer: low exposure signal; monitor loss of efficacy.";
+  return "Action layer: no major parent-exposure shift in the current model.";
+}
+
 // ── renderInteractionGraph — D3 force-directed graph (#4) ──────────
