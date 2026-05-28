@@ -995,6 +995,70 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_fluconazole_warfarin_black1996": {
+    id:"ev_fluconazole_warfarin_black1996",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Warfarin-fluconazole. II. A metabolically based drug interaction: in vivo studies",
+    year:1996, source:"Black et al.", journal:"Drug Metab Dispos",
+    pmid:"8801057", doi:null,
+    studyDesign:"healthy_volunteer_clinical_pk", n:6,
+    phenotypes:["normal_metabolizer"],
+    quantifiedEffects:{clearanceReductionPct:70, note:"Fluconazole 400 mg/day for 6 days inhibited S-warfarin 6- and 7-hydroxylation by about 70% and increased the magnitude/duration of hypoprothrombinemic effect."},
+    temporal:{onset:"within_6_days", mechanism:"CYP2C9_inhibition_plus_additional_warfarin_pathway_inhibition"},
+    supports:["fluconazole_inhibits_CYP2C9","fluconazole_warfarin_inr_risk"],
+    contradicts:[],
+    limitations:["Small healthy-volunteer study","Clinical INR effect depends on baseline warfarin dose, genotype, diet, and monitoring"],
+    verified:true
+  },
+
+  "ev_ketoconazole_cyclosporine_gomez1995": {
+    id:"ev_ketoconazole_cyclosporine_gomez1995",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"The effects of ketoconazole on the intestinal metabolism and bioavailability of cyclosporine",
+    year:1995, source:"Gomez et al.", journal:"Clin Pharmacol Ther",
+    pmid:"7628178", doi:"10.1016/0009-9236(95)90067-5",
+    studyDesign:"healthy_volunteer_clinical_pk", n:5,
+    phenotypes:["normal_metabolizer"],
+    quantifiedEffects:{bioavailabilityFold:2.5, clearanceReductionPct:44, note:"Ketoconazole increased cyclosporine oral bioavailability from 22.4% to 56.4% and reduced IV clearance from 0.32 to 0.18 L/kg/hr."},
+    temporal:{mechanism:"intestinal_CYP3A_inhibition_with_systemic_clearance_reduction"},
+    supports:["ketoconazole_inhibits_CYP3A4","ketoconazole_cyclosporine_exposure_increase"],
+    contradicts:[],
+    limitations:["Small volunteer study; transplant dosing requires therapeutic drug monitoring"],
+    verified:true
+  },
+
+  "ev_tizanidine_ciprofloxacin_fda": {
+    id:"ev_tizanidine_ciprofloxacin_fda",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Tizanidine prescribing information - ciprofloxacin interaction",
+    year:2025, source:"DailyMed / FDA label",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label_clinical_pk", n:null,
+    phenotypes:[],
+    quantifiedEffects:{aucFold:10, cmaxFold:7, note:"Ciprofloxacin increased tizanidine AUC 10-fold and Cmax 7-fold; concomitant use is contraindicated."},
+    temporal:{onset:"within_days", mechanism:"CYP1A2_inhibition"},
+    supports:["ciprofloxacin_inhibits_CYP1A2","ciprofloxacin_tizanidine_contraindicated"],
+    contradicts:[],
+    limitations:["Label summary; original study details are not fully enumerated in the label text"],
+    verified:true
+  },
+
+  "ev_amiodarone_warfarin_kerin1988": {
+    id:"ev_amiodarone_warfarin_kerin1988",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"The incidence, magnitude, and time course of the amiodarone-warfarin interaction",
+    year:1988, source:"Kerin et al.", journal:"Arch Intern Med",
+    pmid:"3401099", doi:null,
+    studyDesign:"clinical_interaction_timecourse", n:8,
+    phenotypes:[],
+    quantifiedEffects:{doseReductionPct:35, prothrombinTimeIncreasePct:44, note:"PT increased by a mean 44%; warfarin requirement decreased by a mean 35% after amiodarone initiation."},
+    temporal:{onset:"first_2_weeks", monitoring:"weekly_PT_or_INR_for_1_month"},
+    supports:["amiodarone_inhibits_CYP2C9","amiodarone_warfarin_dose_reduction"],
+    contradicts:[],
+    limitations:["Small clinical series; magnitude varies by dose, renal function, baseline INR stability, and duration of amiodarone therapy"],
+    verified:true
+  },
+
   // ═══ MAOI / SEROTONIN SYNDROME ═══
   "ev_maoi_ssri_serotonin": {
     id:"ev_maoi_ssri_serotonin",

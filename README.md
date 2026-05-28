@@ -19,6 +19,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 ### Drug Database
 - **247 drugs** — prescription, OTC, supplements, herbs, recreational, and environmental substances
 - Dose tiers, timing guidance, and alternative suggestions for each entry
+- **Drug DB v1.1.0** — last reviewed 2026-05-28
 
 ### Biochemical Graph Engine
 - **Unified actor model** — 9 node types: DRUG, METABOLITE, ENZYME, TRANSPORTER, FOOD, ENVIRONMENTAL, ENDOGENOUS, RECEPTOR, PHENOTYPE
@@ -30,7 +31,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 - **Dynamic route fractions** — enzyme burden redistributed across residual pathways when one route is inhibited
 
 ### Evidence System
-- **STUDY_DB** — 40+ curated evidence entries with real PMIDs, DOIs, quantified PK effects (AUC fold, clearance reduction %), phenotype stratification, temporal onset/washout data, and explicit contradicts[] links
+- **STUDY_DB** — 75 curated evidence entries with real PMIDs, DOIs, quantified PK effects (AUC fold, clearance reduction %), phenotype stratification, temporal onset/washout data, and explicit contradicts[] links
 - **9-tier evidence hierarchy** — IN_VITRO → ANIMAL → CASE_REPORT → OBSERVATIONAL → CLINICAL_PK → RCT → META_ANALYSIS → GUIDELINE → FDA_LABEL
 - **Evidence weights** — each tier carries a calibrated confidence weight (0.30–0.95) used by `computeEdgeConfidence()` to decay traversal confidence
 - **Contradictory evidence** — explicitly modeled; Province 2014 meta-analysis vs CPIC tamoxifen guideline are both shown without suppression
@@ -44,7 +45,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 - **Safety contract**: no interaction is surfaced as "dangerous" without explicit specification of which pathway, which enzyme, which metabolite, which receptor, which evidence, and what confidence level
 
 ### Genotype-Stratified Evidence
-- **PM / IM / NM / UM selectors** per enzyme (CYP2D6, CYP2C19, CYP2C9)
+- **PM / IM / NM / UM selectors** per enzyme (CYP2D6, CYP2C19, CYP2C9, CYP2B6, DPYD, TPMT, UGT1A1)
 - AUC fold-change multipliers and population frequencies from CPIC guidelines
 - Population-specific interpretation is deferred until ancestry examples are modeled consistently across multiple drugs and enzymes
 - Genotype-adjusted concentration curves in the PK Simulation panel

@@ -2691,10 +2691,10 @@ const DRUG_DB = [
 // ═══════════════════════════════════════════════════════════════════
 const MEDCHECK_VERSION = {
   engine: "3.4.0",
-  drugDb: "1.0.0",
+  drugDb: "1.1.0",
   engineRewrite: true,
   schema: "graph-v1",
-  released: "2026-05-26",
+  released: "2026-05-28",
   features: ["nonlinear-pk", "auto-inhibition", "mechanism-based-inhibition", "dynamic-severity",
     "confidence-weighted-risk", "interaction-graph", "metabolite-actors", "chain-traversal",
     "dynamic-route-fractions", "transporter-parity", "structured-evidence",
