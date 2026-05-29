@@ -1175,6 +1175,96 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_sympathomimetic_toxicity_review": {
+    id:"ev_sympathomimetic_toxicity_review",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"Sympathomimetic toxicity — stimulant class clinical review",
+    year:2024, source:"StatPearls / NCBI Bookshelf",
+    pmid:null, doi:null,
+    url:"https://www.ncbi.nlm.nih.gov/books/NBK430757/",
+    studyDesign:"clinical toxicology review",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Multiple sympathomimetics used together can intensify autonomic instability, seizures, rhabdomyolysis, coronary/cerebral ischemia, hyperthermia, and cardiovascular collapse."},
+    temporal:{mechanism:"additive_monoaminergic_sympathomimetic_toxicity"},
+    supports:["sympathomimetic_polydrug_toxicity","mdma_amphetamine_toxicity","mdma_cocaine_toxicity"],
+    contradicts:[],
+    limitations:["Class-level toxicology review; does not quantify pair-specific fold risk"],
+    verified:true
+  },
+
+  "ev_cocaine_toxicity_review": {
+    id:"ev_cocaine_toxicity_review",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"Cocaine toxicity — cardiovascular and hyperthermic complications",
+    year:2023, source:"StatPearls / NCBI Bookshelf",
+    pmid:null, doi:null,
+    url:"https://www.ncbi.nlm.nih.gov/books/NBK430976/",
+    studyDesign:"clinical toxicology review",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Cocaine toxicity can cause tachydysrhythmia, severe hypertension, acute coronary syndrome, stroke, seizures, hyperthermia, rhabdomyolysis, and cardiovascular collapse."},
+    temporal:{mechanism:"monoamine_reuptake_blockade_alpha_beta_adrenergic_stimulation"},
+    supports:["cocaine_sympathomimetic_cardiotoxicity","cocaine_polydrug_stimulant_toxicity"],
+    contradicts:[],
+    limitations:["Class-level toxicity review; patient-level risk varies with dose, route, comorbidities, and adulterants"],
+    verified:true
+  },
+
+  "ev_cocaine_beta_blocker_unopposed_alpha_review": {
+    id:"ev_cocaine_beta_blocker_unopposed_alpha_review",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"Beta-blockers, cocaine, and the unopposed alpha-stimulation phenomenon",
+    year:2017, source:"Journal of Cardiovascular Pharmacology and Therapeutics",
+    pmid:null, doi:"10.1177/1074248416681644",
+    url:"https://doi.org/10.1177/1074248416681644",
+    studyDesign:"clinical toxicology review",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Unopposed alpha stimulation after beta-blocker use in cocaine toxicity is controversial; historical concern is strongest for nonselective agents, while later clinical evidence is mixed and does not support a blanket contraindication."},
+    temporal:{mechanism:"beta_blockade_during_cocaine_alpha_beta_adrenergic_excess"},
+    supports:["cocaine_beta_blocker_caution","cocaine_propranolol_historical_unopposed_alpha_concern"],
+    contradicts:["cocaine_beta_blocker_absolute_contraindication"],
+    limitations:["Review of heterogeneous case reports, small human studies, and observational evidence; acute management should follow emergency/toxicology guidance"],
+    verified:true
+  },
+
+  "ev_ketamine_alcohol_toxicology_review": {
+    id:"ev_ketamine_alcohol_toxicology_review",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"Ketamine plus alcohol: toxicological mechanisms and clinical concerns",
+    year:2022, source:"Journal of Clinical Medicine",
+    pmid:"35887148", doi:null,
+    url:"https://pubmed.ncbi.nlm.nih.gov/35887148/",
+    studyDesign:"toxicology review",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Ketamine plus ethanol co-use can worsen toxicological effects across central nervous, cardiorespiratory, digestive, urinary, and other systems."},
+    temporal:{mechanism:"NMDA_antagonism_plus_ethanol_CNS_impairment_and_polysystem_toxicity"},
+    supports:["ketamine_alcohol_toxicity","ketamine_alcohol_cns_impairment"],
+    contradicts:[],
+    limitations:["Review-level evidence; acute risk depends on dose, route, tolerance, and co-ingestants"],
+    verified:true
+  },
+
+  "ev_kratom_polysubstance_review": {
+    id:"ev_kratom_polysubstance_review",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"Kratom-drug interactions: from bedside to bench and back",
+    year:2023, source:"Drug Metabolism and Disposition",
+    pmid:null, doi:null,
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC10353077/",
+    studyDesign:"clinical and mechanistic review",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Kratom-related adverse events frequently involve polyintoxication; mechanistic concerns include opioid-like pharmacology and CYP-mediated drug interaction potential."},
+    temporal:{mechanism:"opioid_like_pharmacodynamics_plus_potential_CYP_drug_interactions"},
+    supports:["kratom_polysubstance_toxicity","kratom_opioid_like_pd_overlap","kratom_cyp_interaction_potential"],
+    contradicts:[],
+    limitations:["Human controlled DDI data are limited; many severe reports involve multiple co-ingestants"],
+    verified:true
+  },
+
   // ═══ RIFAMPIN / CYP3A4 INDUCTION ═══
   "ev_rifampin_cyp3a4_induction": {
     id:"ev_rifampin_cyp3a4_induction",

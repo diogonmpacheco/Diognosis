@@ -1,6 +1,6 @@
 {
   "name": "medcheck",
-  "version": "3.5.2",
+  "version": "3.5.3",
   "description": "Systems pharmacology graph engine — drug interactions, PK simulation, genotype-stratified evidence. Single HTML file, no server, no tracking.",
   "type": "module",
   "scripts": {

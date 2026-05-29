@@ -46,9 +46,9 @@ const { window } = dom;
 const doc = window.document;
 
 assert(doc.title.includes('MedCheck'), 'Page title did not load');
-assert(doc.getElementById('ver-engine')?.textContent === '3.5.2', 'Version strip did not render engine 3.5.2');
+assert(doc.getElementById('ver-engine')?.textContent === '3.5.3', 'Version strip did not render engine 3.5.3');
 assert(evalInPage(window, 'DRUG_DB.length') >= 200, 'Drug database did not load');
-assert(evalInPage(window, 'MEDCHECK_VERSION.engine') === '3.5.2', 'MEDCHECK_VERSION is not 3.5.2');
+assert(evalInPage(window, 'MEDCHECK_VERSION.engine') === '3.5.3', 'MEDCHECK_VERSION is not 3.5.3');
 
 window.addDrug('Paroxetine');
 window.addDrug('Codeine');
