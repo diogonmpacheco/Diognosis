@@ -10,7 +10,7 @@ Free, private drug interaction checker. Enter your medications and see how they 
 
 MedCheck started as a drug interaction calculator. It's now a systems pharmacology graph engine — a single HTML file containing a directed biochemical interaction graph with drugs, metabolites, enzymes, transporters, food compounds, receptors, and clinical phenotypes as equal actors. All reasoning is done client-side, with no server calls, no accounts, and no data collection.
 
-The codebase is structured as 28 source modules in `src/` and assembled into a single deployable HTML file by `build.js`. Each module is independently editable; `npm run build` produces the distributable, `npm run smoke` runs a browser-level sanity check, `npm run regression` checks core pharmacology scenarios, and `npm run validate` reports provenance gaps without mutating the database.
+The codebase is structured as 28 source modules in `src/` and assembled into a single deployable HTML file by `build.js`. Each module is independently editable; `npm run build` produces the distributable, `npm run smoke` runs a browser-level sanity check, `npm run regression` checks core pharmacology scenarios, and `npm run validate` reports provenance gaps without mutating the database. Before release, `npm run release:check` rebuilds the bundle, verifies README/version metadata, and runs the full local gate.
 
 ---
 
@@ -111,7 +111,7 @@ src/
   index.template.html  HTML shell with <script>/* MEDCHECK_BUNDLE */</script>
 ```
 
-Build: `npm run build` → `index.html`  |  Smoke check: `npm run smoke`  |  Regression check: `npm run regression`  |  All checks: `npm run test`
+Build: `npm run build` → `index.html`  |  Smoke check: `npm run smoke`  |  Regression check: `npm run regression`  |  Release gate: `npm run release:check`
 
 ### Enzyme Capacity Model (Phase B)
 `computeEnzymeCapacity(enzyme, stack)` calculates net enzymatic capacity as:
@@ -161,10 +161,18 @@ npm run build:min    # → index.html (minified)
 npm run smoke        # builds and verifies core UI/engine behavior
 npm run regression   # checks core pharmacology scenarios
 npm run validate     # non-mutating provenance/reference triage
+npm run release:check # rebuild + metadata + audit + regression + smoke + strict validation
 npm run test         # smoke + regression + validation checks
 ```
 
 The build concatenates all `src/` modules in dependency order and injects the bundle into `src/index.template.html`. Output is always `index.html` at the repo root (GitHub Pages compatible).
+
+**Release checklist:**
+1. Update `MEDCHECK_VERSION` in `src/data/drugs.js` when app behavior changes.
+2. Update Drug DB version/date and README counts when curated data changes.
+3. Run `npm run release:check`.
+4. Commit source changes plus rebuilt `index.html`.
+5. Push `main` to GitHub Pages.
 
 ---
 

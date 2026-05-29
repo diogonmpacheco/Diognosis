@@ -2690,7 +2690,7 @@ const DRUG_DB = [
 // MEDCHECK VERSION & METADATA
 // ═══════════════════════════════════════════════════════════════════
 const MEDCHECK_VERSION = {
-  engine: "3.5.4",
+  engine: "3.5.5",
   drugDb: "1.2.3",
   engineRewrite: true,
   schema: "graph-v1",
@@ -2701,7 +2701,7 @@ const MEDCHECK_VERSION = {
     "enzyme-capacity", "receptor-occupancy", "evidence-provenance",
     "steady-state-pk", "convergence-detection", "genotype-reverse-traversal",
     "actor-exposure-deltas", "validation-harness", "provenance-ledger-cleanup", "interaction-evidence-refs",
-    "polydrug-evidence-refs", "validation-info-channel"],
+    "polydrug-evidence-refs", "validation-info-channel", "release-check-gate"],
   drugCount: DRUG_DB.length,
   graphStats: function() { var g = getInteractionGraph(); return { actors: Object.keys(g.actors).length, edges: g.edges.length }; },
   changes: [
