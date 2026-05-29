@@ -19,7 +19,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 ### Drug Database
 - **247 drugs** — prescription, OTC, supplements, herbs, recreational, and environmental substances
 - Dose tiers, timing guidance, and alternative suggestions for each entry
-- **Drug DB v1.2.1** — last reviewed 2026-05-29
+- **Drug DB v1.2.2** — last reviewed 2026-05-29
 
 ### Biochemical Graph Engine
 - **Unified actor model** — 9 node types: DRUG, METABOLITE, ENZYME, TRANSPORTER, FOOD, ENVIRONMENTAL, ENDOGENOUS, RECEPTOR, PHENOTYPE

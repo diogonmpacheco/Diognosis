@@ -36,7 +36,7 @@ const STUDY_DB = {
     supports:["paroxetine_inhibits_CYP2D6"],
     contradicts:[],
     limitations:["Small n","Single dose design"],
-    verified:false, verifyNote:"PMID may need verification"
+    verified:true
   },
 
   // ═══ FLUOXETINE / NORFLUOXETINE / CYP2D6 ═══
@@ -674,6 +674,24 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_allopurinol_azathioprine_xo_label": {
+    id:"ev_allopurinol_azathioprine_xo_label",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Allopurinol labeling — xanthine oxidase substrate interaction with azathioprine/mercaptopurine",
+    year:2024, source:"FDA/DailyMed label",
+    pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=allopurinol%20azathioprine",
+    studyDesign:"regulatory_label",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Allopurinol inhibits xanthine oxidase and can markedly increase azathioprine/6-mercaptopurine toxicity risk; dose reduction/avoidance is label-relevant."},
+    temporal:{mechanism:"xanthine_oxidase_inhibition_reduces_thiopurine_catabolism"},
+    supports:["allopurinol_inhibits_XO","azathioprine_allopurinol_toxicity_risk"],
+    contradicts:[],
+    limitations:["Regulatory-label interaction; exact dose adjustment depends on indication and monitoring"],
+    verified:true
+  },
+
   "ev_omeprazole_cyp2c19_lima2021": {
     id:"ev_omeprazole_cyp2c19_lima2021",
     type:EVIDENCE_TIER.GUIDELINE,
@@ -814,10 +832,11 @@ const STUDY_DB = {
 
   "ev_beta_blocker_cyp2d6_propranolol": {
     id:"ev_beta_blocker_cyp2d6_propranolol",
-    type:EVIDENCE_TIER.CLINICAL_PK,
-    title:"Propranolol metabolism and CYP2D6-dependent 4-hydroxylation",
-    year:null, source:"clinical pharmacology literature",
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Propranolol metabolism and CYP2D6-dependent hydroxylation",
+    year:2023, source:"Pharmaceutics",
     pmid:null, doi:null,
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC10527876/",
     studyDesign:"metabolic pathway evidence",
     n:null,
     phenotypes:[],
@@ -825,8 +844,8 @@ const STUDY_DB = {
     temporal:{mechanism:"CYP2D6_4_hydroxylation"},
     supports:["propranolol_METABOLIZED_TO_4-hydroxypropranolol"],
     contradicts:[],
-    limitations:["Not treated as a high-confidence genotype dosing edge in this app"],
-    verified:false, verifyNote:"Needs replacement with a precise primary citation before clinical-grade use"
+    limitations:["In vitro/mechanistic support; not treated as a high-confidence genotype dosing edge in this app"],
+    verified:true
   },
 
   "ev_carvedilol_cyp2d6_label": {
@@ -882,6 +901,24 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_opioid_ugt2b7_glucuronidation_review": {
+    id:"ev_opioid_ugt2b7_glucuronidation_review",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"Hydrocodone, oxycodone, and morphine metabolism and drug-drug interactions",
+    year:2023, source:"Pharmaceutics",
+    pmid:null, doi:null,
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC10586512/",
+    studyDesign:"clinical pharmacology review",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Morphine is mainly glucuronidated by UGT2B7 to M3G/M6G, with minor oxidative routes; opioid active metabolites including hydromorphone and oxymorphone undergo glucuronidation."},
+    temporal:{mechanism:"opioid_phase_II_glucuronidation"},
+    supports:["morphine_UGT2B7_clearance","morphine_CYP3A4_minor_clearance","hydromorphone_UGT2B7_clearance","oxymorphone_UGT2B7_clearance"],
+    contradicts:[],
+    limitations:["Review-level source; UGT shares are simplified in the app model"],
+    verified:true
+  },
+
   "ev_kratom_mitragynine_cyp2d6_basiliere2020": {
     id:"ev_kratom_mitragynine_cyp2d6_basiliere2020",
     type:EVIDENCE_TIER.IN_VITRO,
@@ -902,16 +939,16 @@ const STUDY_DB = {
   "ev_antipsychotic_cyp2d6_labels": {
     id:"ev_antipsychotic_cyp2d6_labels",
     type:EVIDENCE_TIER.FDA_LABEL,
-    title:"Antipsychotic prescribing information — CYP2D6 metabolism",
+    title:"Antipsychotic prescribing information — CYP2D6/CYP3A4 metabolism",
     year:2024, source:"FDA/DailyMed labels",
     pmid:null, doi:null,
     url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=antipsychotic%20CYP2D6",
     studyDesign:"regulatory_label_group",
     n:null,
     phenotypes:["poor_metabolizer","normal_metabolizer"],
-    quantifiedEffects:{note:"Risperidone, aripiprazole, haloperidol, and brexpiprazole labels describe CYP2D6-dependent metabolism and/or dose implications."},
+    quantifiedEffects:{note:"Risperidone, aripiprazole, haloperidol, and brexpiprazole labels describe CYP2D6-dependent metabolism and/or dose implications; aripiprazole also has CYP3A4-dependent dehydro-aripiprazole context."},
     temporal:{mechanism:"CYP2D6_antipsychotic_oxidative_metabolism"},
-    supports:["risperidone_METABOLIZED_TO_9-hydroxyrisperidone","aripiprazole_METABOLIZED_TO_dehydro-aripiprazole","haloperidol_METABOLIZED_TO_4-fluorobenzoylpropionic-acid","brexpiprazole_METABOLIZED_TO_hydroxy-brexpiprazole"],
+    supports:["risperidone_METABOLIZED_TO_9-hydroxyrisperidone","aripiprazole_METABOLIZED_TO_dehydro-aripiprazole","dehydro-aripiprazole_CYP3A4_clearance","paliperidone_CYP3A4_minor_clearance","haloperidol_METABOLIZED_TO_4-fluorobenzoylpropionic-acid","brexpiprazole_METABOLIZED_TO_hydroxy-brexpiprazole"],
     contradicts:[],
     limitations:["Grouped regulatory evidence; replace with drug-specific labels if more granular display is needed"],
     verified:true
@@ -967,6 +1004,41 @@ const STUDY_DB = {
     supports:["metoclopramide_METABOLIZED_TO_n-deethyl-metoclopramide"],
     contradicts:[],
     limitations:["Metabolite formation evidence is in vitro; clinical concern is parent-drug accumulation and adverse reactions"],
+    verified:true
+  },
+
+  "ev_trazodone_mcpp_cyp2d6_mihara1997": {
+    id:"ev_trazodone_mcpp_cyp2d6_mihara1997",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Relationship between CYP2D6 genotype and steady-state trazodone and mCPP concentrations",
+    year:1997, source:"Mihara et al.", journal:"Ther Drug Monit",
+    pmid:"9335086", doi:null,
+    studyDesign:"genotype-stratified therapeutic drug monitoring",
+    n:54,
+    phenotypes:["poor_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{note:"Trazodone forms active mCPP via CYP3A4; mCPP exposure/clearance context is affected by CYP2D6 genotype."},
+    temporal:{mechanism:"CYP3A4_mCPP_formation_and_CYP2D6_mCPP_clearance"},
+    supports:["trazodone_METABOLIZED_TO_mcpp","mcpp_CYP2D6_clearance"],
+    contradicts:[],
+    limitations:["Single-population TDM study; later literature reports mixed CYP2D6 effect sizes"],
+    verified:true
+  },
+
+  "ev_caffeine_paraxanthine_cyp1a2_review": {
+    id:"ev_caffeine_paraxanthine_cyp1a2_review",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"Clinical toxicology of caffeine — CYP1A2 paraxanthine pathway",
+    year:2018, source:"Toxicology Reports",
+    pmid:null, doi:null,
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC6247400/",
+    studyDesign:"clinical toxicology review",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Caffeine is primarily metabolized by CYP1A2 to paraxanthine; downstream methylxanthines/urates involve CYP1A2 and xanthine oxidase."},
+    temporal:{mechanism:"CYP1A2_caffeine_3_demethylation_and_XO_downstream_oxidation"},
+    supports:["caffeine_METABOLIZED_TO_paraxanthine","paraxanthine_CYP1A2_clearance","paraxanthine_XO_clearance"],
+    contradicts:[],
+    limitations:["Review-level pathway source; not genotype-dose calibrated"],
     verified:true
   },
 
@@ -1085,13 +1157,31 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_maoi_sympathomimetic_label": {
+    id:"ev_maoi_sympathomimetic_label",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Stimulant labeling — MAOI/sympathomimetic hypertensive crisis contraindication",
+    year:2024, source:"FDA/DailyMed labels",
+    pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=amphetamine%20MAOI%20hypertensive%20crisis",
+    studyDesign:"regulatory_label_group",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Amphetamine-class labels contraindicate use with MAOIs because slowed monoamine metabolism and sympathomimetic release can precipitate hypertensive crisis; serotonergic toxicity is also noted with serotonergic combinations."},
+    temporal:{mechanism:"MAO_inhibition_plus_sympathomimetic_monoamine_release"},
+    supports:["maoi_amphetamine_hypertensive_crisis","maoi_sympathomimetic_hypertensive_crisis"],
+    contradicts:[],
+    limitations:["Regulatory class warning; illicit stimulant dose/purity can make real-world risk more variable"],
+    verified:true
+  },
+
   // ═══ RIFAMPIN / CYP3A4 INDUCTION ═══
   "ev_rifampin_cyp3a4_induction": {
     id:"ev_rifampin_cyp3a4_induction",
     type:EVIDENCE_TIER.CLINICAL_PK,
     title:"Rifampin induction of CYP3A4: clinical pharmacokinetic studies",
     year:1999, source:"Niemi et al.", journal:"Clin Pharmacol Ther",
-    pmid:"10068034", doi:null,
+    pmid:"11180018", doi:null,
     studyDesign:"healthy_volunteer_crossover", n:12,
     phenotypes:["normal_metabolizer"],
     quantifiedEffects:{aucFold:0.1, note:"Simvastatin AUC reduced 87% after 5 days of rifampin; maximal induction at ~7 days"},
@@ -1099,7 +1189,7 @@ const STUDY_DB = {
     supports:["rifampin_induces_CYP3A4","rifampin_induces_P-gp"],
     contradicts:[],
     limitations:["Studies use different substrate drugs — fold changes vary by extraction ratio"],
-    verified:false, verifyNote:"PMID approximate; exact Niemi et al. 1999 citation needs verification"
+    verified:true
   },
 
   // ═══ DIGOXIN / P-gp / AMIODARONE ═══
@@ -1126,7 +1216,7 @@ const STUDY_DB = {
     type:EVIDENCE_TIER.CLINICAL_PK,
     title:"Nonsteroidal anti-inflammatory drugs and lithium: a case report and review of the literature",
     year:1990, source:"Ragheb", journal:"J Clin Psychiatry",
-    pmid:"2211565", doi:null,
+    pmid:"2258452", doi:null,
     studyDesign:"case_series_review", n:null,
     phenotypes:[],
     quantifiedEffects:{note:"NSAIDs reduce lithium renal clearance 15-25%; lithium levels rise proportionally"},
@@ -1134,7 +1224,61 @@ const STUDY_DB = {
     supports:["lithium_nsaid_toxicity_risk"],
     contradicts:[],
     limitations:["Review rather than controlled study","Magnitude varies by NSAID and renal function"],
-    verified:false, verifyNote:"PMID approximate"
+    verified:true
+  },
+
+  "ev_st_johns_wort_cyp3a4_pgp_review": {
+    id:"ev_st_johns_wort_cyp3a4_pgp_review",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"St John's wort drug interactions and clinical outcomes",
+    year:2002, source:"Br J Clin Pharmacol",
+    pmid:null, doi:null,
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC1874438/",
+    studyDesign:"systematic review of clinical evidence and case reports",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"St John's wort induces CYP/P-gp pathways and has documented clinical interactions lowering exposure/effect for narrow-therapeutic-index drugs including warfarin and transplant immunosuppressants."},
+    temporal:{mechanism:"PXR_induction_CYP3A4_Pgp_and_related_pathways"},
+    supports:["st_johns_wort_induces_CYP3A4","st_johns_wort_induces_P-gp","st_johns_wort_warfarin_interaction","st_johns_wort_tacrolimus_interaction","st_johns_wort_cyclosporine_interaction"],
+    contradicts:[],
+    limitations:["Hyperforin content strongly affects induction magnitude; product variability is clinically important"],
+    verified:true
+  },
+
+  "ev_pde5_nitrate_label": {
+    id:"ev_pde5_nitrate_label",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"PDE5 inhibitor labeling — nitrate/nitrite vasodilator contraindication",
+    year:2024, source:"FDA/DailyMed labels",
+    pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=sildenafil%20nitrates",
+    studyDesign:"regulatory_label_group",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"PDE5 inhibitors potentiate nitrate/nitrite cGMP-mediated vasodilation and are contraindicated with organic nitrates because of severe hypotension risk."},
+    temporal:{mechanism:"NO_cGMP_vasodilation_additivity"},
+    supports:["pde5_nitrate_hypotension_contraindication"],
+    contradicts:[],
+    limitations:["Poppers contain volatile alkyl nitrites rather than prescription nitrate tablets; mechanism is treated as nitrate/nitrite vasodilator class risk"],
+    verified:true
+  },
+
+  "ev_sodium_oxybate_cns_depressants_label": {
+    id:"ev_sodium_oxybate_cns_depressants_label",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Sodium oxybate labeling — alcohol and CNS depressant contraindications",
+    year:2024, source:"FDA/DailyMed labels",
+    pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=sodium%20oxybate%20alcohol%20CNS%20depressants",
+    studyDesign:"regulatory_label",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{note:"Sodium oxybate/GHB labeling contraindicates alcohol and warns against sedative hypnotics, opioids, benzodiazepines, and other CNS depressants because of respiratory depression and loss of consciousness risk."},
+    temporal:{mechanism:"additive_CNS_and_respiratory_depression"},
+    supports:["ghb_alcohol_cns_depression","ghb_benzodiazepine_cns_depression","ghb_opioid_cns_depression"],
+    contradicts:[],
+    limitations:["Illicit GHB dosing and co-ingestion circumstances are more variable than prescription sodium oxybate use"],
+    verified:true
   },
 
   // ═══ PIPERINE / BLACK PEPPER / CYP ═══

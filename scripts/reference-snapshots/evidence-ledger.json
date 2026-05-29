@@ -5,9 +5,9 @@
   "source": "Current curated MedCheck codebase before v3.5 provenance hardening; future entries should be generated from a deterministic retrieval step.",
   "mode": "bootstrap",
   "pmids": [
-    "10068034",
     "10604132",
     "11010930",
+    "11180018",
     "11176762",
     "11678145",
     "11687634",
@@ -33,7 +33,7 @@
     "19106084",
     "19445902",
     "20184222",
-    "2211565",
+    "2258452",
     "23162568",
     "23184849",
     "23578650",
@@ -68,6 +68,7 @@
     "8801057",
     "8885123",
     "8968657",
+    "9335086",
     "9869591"
   ]
 }

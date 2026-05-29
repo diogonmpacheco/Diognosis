@@ -1457,8 +1457,9 @@ const METABOLITE_ACTORS = {
     id:"morphine", type:ACTOR_TYPE.METABOLITE,
     name:"Morphine", parentDrug:"Codeine", formingEnzyme:"CYP2D6",
     active:true, halfLife:3, potencyRatio:10.0,
-    routes:[{enzyme:"UGT2B7",fraction:0.6},{enzyme:"CYP3A4",fraction:0.1}],
+    routes:[{enzyme:"UGT2B7",fraction:0.6,evidenceRefs:["ev_opioid_ugt2b7_glucuronidation_review"]},{enzyme:"CYP3A4",fraction:0.1,evidenceRefs:["ev_opioid_ugt2b7_glucuronidation_review"]}],
     inh:[],
+    evidenceRefs:["ev_cyp2d6_codeine_genotype","ev_opioid_cyp2d6_cpic_2020","ev_opioid_ugt2b7_glucuronidation_review"],
     note:"200× more potent than codeine at mu-opioid receptor; CYP2D6 PM → no morphine → no analgesia"
   },
   "o-desmethyltramadol": {
@@ -1485,16 +1486,18 @@ const METABOLITE_ACTORS = {
     id:"hydromorphone", type:ACTOR_TYPE.METABOLITE,
     name:"Hydromorphone", parentDrug:"Hydrocodone", formingEnzyme:"CYP2D6",
     active:true, halfLife:2.5, potencyRatio:5.0,
-    routes:[{enzyme:"UGT2B7",fraction:0.6}],
+    routes:[{enzyme:"UGT2B7",fraction:0.6,evidenceRefs:["ev_opioid_ugt2b7_glucuronidation_review"]}],
     inh:[],
+    evidenceRefs:["ev_opioid_cyp2d6_cpic_2020","ev_opioid_ugt2b7_glucuronidation_review"],
     note:"5× more potent than hydrocodone; CYP2D6 PM → reduced hydromorphone"
   },
   "oxymorphone": {
     id:"oxymorphone", type:ACTOR_TYPE.METABOLITE,
     name:"Oxymorphone", parentDrug:"Oxycodone", formingEnzyme:"CYP2D6",
     active:true, halfLife:7, potencyRatio:14.0,
-    routes:[{enzyme:"UGT2B7",fraction:0.5}],
+    routes:[{enzyme:"UGT2B7",fraction:0.5,evidenceRefs:["ev_opioid_ugt2b7_glucuronidation_review"]}],
     inh:[],
+    evidenceRefs:["ev_opioid_cyp2d6_cpic_2020","ev_opioid_ugt2b7_glucuronidation_review"],
     note:"14× more potent; CYP3A4 inhibitors shunt toward oxymorphone → paradoxical potency increase"
   },
   "4-hydroxyatomoxetine": {
@@ -1609,24 +1612,27 @@ const METABOLITE_ACTORS = {
     id:"dehydro-aripiprazole", type:ACTOR_TYPE.METABOLITE,
     name:"Dehydro-aripiprazole", parentDrug:"Aripiprazole", formingEnzyme:"CYP2D6",
     active:true, halfLife:94, potencyRatio:0.5,
-    routes:[{enzyme:"CYP3A4",fraction:0.4}],
+    routes:[{enzyme:"CYP3A4",fraction:0.4,evidenceRefs:["ev_antipsychotic_cyp2d6_labels"]}],
     inh:[],
+    evidenceRefs:["ev_antipsychotic_cyp2d6_labels"],
     note:"40% of parent activity; contributes to active moiety"
   },
   "paliperidone": {
     id:"paliperidone", type:ACTOR_TYPE.METABOLITE,
     name:"9-Hydroxyrisperidone (Paliperidone)", parentDrug:"Risperidone", formingEnzyme:"CYP2D6",
     active:true, halfLife:21, potencyRatio:1.0,
-    routes:[{enzyme:"UGT",fraction:0.5},{enzyme:"CYP3A4",fraction:0.1}],
+    routes:[{enzyme:"UGT",fraction:0.5,evidenceRefs:["ev_antipsychotic_cyp2d6_labels"]},{enzyme:"CYP3A4",fraction:0.1,evidenceRefs:["ev_antipsychotic_cyp2d6_labels"]}],
     inh:[],
+    evidenceRefs:["ev_antipsychotic_cyp2d6_labels"],
     note:"Equipotent; itself an approved drug; active moiety = parent + metabolite"
   },
   "paraxanthine": {
     id:"paraxanthine", type:ACTOR_TYPE.METABOLITE,
     name:"Paraxanthine", parentDrug:"Caffeine", formingEnzyme:"CYP1A2",
     active:true, halfLife:4, potencyRatio:0.8,
-    routes:[{enzyme:"CYP1A2",fraction:0.5},{enzyme:"XO",fraction:0.2}],
+    routes:[{enzyme:"CYP1A2",fraction:0.5,evidenceRefs:["ev_caffeine_paraxanthine_cyp1a2_review"]},{enzyme:"XO",fraction:0.2,evidenceRefs:["ev_caffeine_paraxanthine_cyp1a2_review"]}],
     inh:[],
+    evidenceRefs:["ev_caffeine_paraxanthine_cyp1a2_review"],
     note:"Primary caffeine metabolite (80%); CNS stimulant + lipolysis"
   },
   "active-thiol-clopidogrel": {
@@ -1641,8 +1647,9 @@ const METABOLITE_ACTORS = {
     id:"mcpp", type:ACTOR_TYPE.METABOLITE,
     name:"m-Chlorophenylpiperazine (mCPP)", parentDrug:"Trazodone", formingEnzyme:"CYP3A4",
     active:true, halfLife:6, potencyRatio:0.3,
-    routes:[{enzyme:"CYP2D6",fraction:0.5}],
+    routes:[{enzyme:"CYP2D6",fraction:0.5,evidenceRefs:["ev_trazodone_mcpp_cyp2d6_mihara1997"]}],
     inh:[],
+    evidenceRefs:["ev_trazodone_mcpp_cyp2d6_mihara1997"],
     note:"5-HT2C agonist — causes anxiety/panic in some patients; accumulates in CYP2D6 PM"
   },
   "hpp-plus": {
