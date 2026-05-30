@@ -406,6 +406,7 @@ a{color:var(--accent)}
 .version-strip{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--text2)}
 .version-strip span{display:inline-flex;gap:4px;align-items:center}
 .version-strip strong{color:var(--text);font-weight:700}
+.stats-line{max-width:700px;margin:10px auto 0;padding:0 16px;color:var(--text2);font-size:12px;text-align:center}
 /* SUMMARY BAR */
 .summary-bar{
   margin:16px 0 0;padding:14px 16px;background:var(--card);border-radius:var(--radius);
@@ -495,6 +496,8 @@ a{color:var(--accent)}
   <div class="mode-btn active" id="searchModeBtn" onclick="setViewMode('search')">Search</div>
   <div class="mode-btn" id="browseModeBtn" onclick="setViewMode('browse')">Browse by Category</div>
 </div>
+
+<div class="stats-line" id="statsLine"></div>
 
 <div class="browse-wrap" id="browseWrap"></div>
 

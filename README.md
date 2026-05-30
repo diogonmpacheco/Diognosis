@@ -14,6 +14,19 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 
 ---
 
+## Live Source Stats
+
+<!-- MEDCHECK_STATS_START -->
+- **247 drugs** in DRUG_DB
+- **88 evidence entries** in STUDY_DB (71 with PMIDs)
+- **160 curated DDI pairs** (103 severe, 53 moderate, 4 mild)
+- **7 genotype genes**, **27 metabolite actors**, **52 receptor score profiles**
+- **13 Beers flags** and **8 washout rules**
+- **779 KB** generated bundle (14648 lines)
+<!-- MEDCHECK_STATS_END -->
+
+---
+
 ## Features
 
 ### Drug Database
@@ -61,7 +74,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 - Nonlinear kinetics warning and high-dose tapering recommendation for paroxetine (5mg/2-4 weeks vs standard 10mg/week)
 
 ### Receptor Occupancy & Syndrome Detection (Phase C)
-- **`RECEPTOR_SCORES`** — affinity profiles for 55+ drugs across 11 receptor/transporter targets: SERT, NET, DAT, H1, M1, alpha1, hERG, GABA-A, mu-opioid, D2, MAO
+- **`RECEPTOR_SCORES`** — affinity profiles across 11 receptor/transporter targets: SERT, NET, DAT, H1, M1, alpha1, hERG, GABA-A, mu-opioid, D2, MAO. Current count is generated in Live Source Stats.
 - **`computeReceptorOccupancy()`** — sums stack-wide occupancy per receptor, identifies the leading contributor per target, and evaluates 8 syndrome threshold rules
 - **8 syndrome rules**: serotonin syndrome (SERT ≥ 3 with MAO co-activity, or combined score ≥ 4), QT prolongation (hERG ≥ 3), anticholinergic syndrome (M1 ≥ 4), CNS/respiratory depression (GABA + mu-opioid ≥ 4), sympathomimetic crisis (NET + DAT ≥ 5), sedative accumulation (H1 + GABA ≥ 5), dopamine suppression (D2 ≥ 4), noradrenergic excess (NET ≥ 4)
 - Each triggered syndrome includes severity, mechanism, clinical note, and a per-receptor leader list
@@ -73,7 +86,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 
 ### Adverse Effect Burden
 - **Anticholinergic Cognitive Burden (ACB) scale** — scored for ~40 drugs; clinical interpretation (delirium risk, urinary retention) at ACB ≥ 3
-- **Beers Criteria 2023** — flags for 15+ drug classes in patients ≥65 years
+- **Beers Criteria 2023** — flags for drug classes in patients ≥65 years. Current flag count is generated in Live Source Stats.
 - Sedation accumulation count and fall risk scoring
 
 ### Washout Calendar
@@ -94,7 +107,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 
 ## Architecture
 
-MedCheck distributes as a single self-contained HTML file (~758 KB development build). All computation runs in the browser with no dependencies except D3.js (loaded from CDN for graph visualization). There is no backend, no API, and no persistent storage.
+MedCheck distributes as a single self-contained HTML file. The current generated size is listed in Live Source Stats. All computation runs in the browser with no dependencies except D3.js (loaded from CDN for graph visualization). There is no backend, no API, and no persistent storage.
 
 The source is structured as **28 modules** in `src/`, assembled in dependency order by `build.js`:
 

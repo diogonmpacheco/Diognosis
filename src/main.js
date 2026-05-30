@@ -22,5 +22,8 @@ renderAll();
     el("ver-schema").textContent = v.schema;
     el("ver-date").textContent = v.released;
   }
+  const statsLine = el("statsLine");
+  if (statsLine && typeof MEDCHECK_STATS !== "undefined") {
+    statsLine.textContent = `${MEDCHECK_STATS.drugs} drugs · ${MEDCHECK_STATS.studies} evidence entries · ${MEDCHECK_STATS.ddiPairs} curated DDI pairs · ${MEDCHECK_STATS.genotypeGenes} genotype genes`;
+  }
 })();
-

@@ -84,10 +84,11 @@ function findInteractions() {
       const key = [ddi.drug1, ddi.drug2, "known"].sort().join("|");
       if (!seen.has(key)) {
         seen.add(key);
+        const calibratedSeverity = calibrateDdiSeverity(ddi);
         interactions.push({
           drug1: ddi.drug1, drug2: ddi.drug2, enzyme: ddi.category,
-          type: "known-ddi", strength: ddi.severity, effect: ddi.effect,
-          severity: ddi.severity, mechanism: ddi.mechanism, source: "known",
+          type: "known-ddi", strength: calibratedSeverity, effect: ddi.effect,
+          severity: calibratedSeverity, rawSeverity: ddi.severity, mechanism: ddi.mechanism, source: "known",
           evidence: ddi.evidence,
           evidenceRefs: ddi.evidenceRefs || [],
           enzymeCapacity: enzymeCapacityMap[ddi.category] || null,

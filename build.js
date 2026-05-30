@@ -7,7 +7,7 @@
 //         npm run build         → index.html
 //         npm run build:min     → index.html (minified)
 
-import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync, mkdirSync, rmSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
@@ -37,6 +37,7 @@ const MODULE_ORDER = [
   'data/pharmacology.js',   // TEMPORAL_PROFILES, PK_PARAMS, PHENOTYPE_SCORES, WASHOUT_DAYS, ACB_SCORES, BEERS_FLAGS
   'data/evidence.js',       // STUDY_DB, INGESTION_QUEUE, createStudyDraft, reviewStudyDraft
   'data/interactions.js',   // PATHWAY_DIVERSION, COMBINATION_PRODUCTS, KNOWN_DDI
+  'data/generatedStats.js', // MEDCHECK_STATS generated from source data
 
   // ── Engine layer (depends on data layer) ──
   'engine/evidenceEngine.js',     // evidenceConfidence, getStudy, computeEdgeConfidence, studyCardHTML
@@ -107,6 +108,12 @@ function buildBundle() {
   return bundle;
 }
 
+function generateStats() {
+  const script = resolve(__dirname, 'scripts/gen-stats.js');
+  if (!existsSync(script)) return;
+  execSync(`"${process.execPath}" "${script}"`, { cwd: __dirname, stdio: 'inherit' });
+}
+
 function injectIntoTemplate(bundle) {
   const templatePath = resolve(SRC, 'index.template.html');
   const template = readFileSync(templatePath, 'utf8');
@@ -126,9 +133,11 @@ function injectIntoTemplate(bundle) {
 // ── Main ──
 try {
   mkdirSync(dirname(OUT_PATH), { recursive: true });
+  generateStats();
   const bundle = buildBundle();
   const html = injectIntoTemplate(bundle);
   writeFileSync(OUT_PATH, html, 'utf8');
+  generateStats();
 
   const sizeKB = Math.round(Buffer.byteLength(html, 'utf8') / 1024);
   const lineCount = html.split('\n').length;

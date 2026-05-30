@@ -4,6 +4,9 @@
   "description": "Systems pharmacology graph engine — drug interactions, PK simulation, genotype-stratified evidence. Single HTML file, no server, no tracking.",
   "type": "module",
   "scripts": {
+    "stats": "node scripts/gen-stats.js",
+    "check:evidence": "node scripts/check-evidence.js",
+    "report:severity": "node scripts/severity-report.js",
     "build": "node build.js",
     "build:min": "node build.js --minify",
     "build:dev": "node build.js --out /tmp/medcheck_dev.html",
@@ -12,7 +15,7 @@
     "validate": "node scripts/validate-db.js",
     "validate:strict": "node scripts/validate-db.js --strict",
     "release:check": "node scripts/release-check.js",
-    "test": "node scripts/smoke-check.js && node scripts/regression-check.js && node scripts/validate-db.js"
+    "test": "node scripts/smoke-check.js && node scripts/regression-check.js && node scripts/validate-db.js && node scripts/check-evidence.js"
   },
   "devDependencies": {
     "esbuild": "^0.28.0",

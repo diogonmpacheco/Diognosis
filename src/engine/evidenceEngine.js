@@ -329,6 +329,37 @@ function assertEvidencedSeverity(severity, drug1, drug2, enzyme) {
   return severity;
 }
 
+function getDdiEvidenceProfile(ddi) {
+  const refs = ddi.evidenceRefs || [];
+  const studies = refs.map(id => STUDY_DB[id]).filter(Boolean);
+  const sourceText = `${(ddi.evidence?.sources || []).join(" ")} ${ddi.evidence?.confidence || ""}`.toLowerCase();
+  const highTiers = new Set([
+    EVIDENCE_TIER.FDA_LABEL,
+    EVIDENCE_TIER.GUIDELINE,
+    EVIDENCE_TIER.RCT,
+    EVIDENCE_TIER.META_ANALYSIS,
+    EVIDENCE_TIER.CLINICAL_PK,
+  ]);
+  return {
+    studies,
+    missingRefs: refs.filter(id => !STUDY_DB[id]),
+    hasHighTierStudy: studies.some(study => highTiers.has(study.type)),
+    hasQuantifiedClinicalPk: studies.some(study =>
+      study.type === EVIDENCE_TIER.CLINICAL_PK &&
+      study.quantifiedEffects &&
+      (study.quantifiedEffects.aucFold || study.quantifiedEffects.clearanceReductionPct || study.quantifiedEffects.oddsRatio)
+    ),
+    hasStrongInline: /fda|label|cpic|guideline|clinical pk|meta-analysis|rct/.test(sourceText) && ddi.evidence?.confidence === "high",
+  };
+}
+
+function calibrateDdiSeverity(ddi) {
+  if (!ddi || ddi.severity !== "severe") return ddi?.severity || "mild";
+  const profile = getDdiEvidenceProfile(ddi);
+  if (profile.hasHighTierStudy || profile.hasQuantifiedClinicalPk || profile.hasStrongInline) return "severe";
+  return "moderate";
+}
+
 // studyCardHTML(study) — renders a full study card for the evidence explorer
 function studyCardHTML(study) {
   if (!study) return '';
@@ -369,4 +400,3 @@ function studyCardHTML(study) {
     ${unverified}${contradicts}${limits}
   </div>`;
 }
-

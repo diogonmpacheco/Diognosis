@@ -1,0 +1,3448 @@
+[
+  {
+    "drug1": "Clopidogrel",
+    "drug2": "Omeprazole",
+    "category": "prodrug",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_clopidogrel_cyp2c19_cpic"
+      ],
+      "studies": [
+        {
+          "id": "ev_clopidogrel_cyp2c19_cpic",
+          "type": "guideline",
+          "pmid": "35034351",
+          "doi": "10.1002/cpt.2526"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Clopidogrel",
+    "drug2": "Esomeprazole",
+    "category": "prodrug",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_clopidogrel_cyp2c19_cpic"
+      ],
+      "studies": [
+        {
+          "id": "ev_clopidogrel_cyp2c19_cpic",
+          "type": "guideline",
+          "pmid": "35034351",
+          "doi": "10.1002/cpt.2526"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Clopidogrel",
+    "drug2": "Fluoxetine",
+    "category": "prodrug",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_clopidogrel_cyp2c19_cpic",
+        "ev_fluoxetine_cyp2d6_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_clopidogrel_cyp2c19_cpic",
+          "type": "guideline",
+          "pmid": "35034351",
+          "doi": "10.1002/cpt.2526"
+        },
+        {
+          "id": "ev_fluoxetine_cyp2d6_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": "10.1097/00004714-199404000-00002"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Clopidogrel",
+    "drug2": "Fluvoxamine",
+    "category": "prodrug",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_clopidogrel_cyp2c19_cpic"
+      ],
+      "studies": [
+        {
+          "id": "ev_clopidogrel_cyp2c19_cpic",
+          "type": "guideline",
+          "pmid": "35034351",
+          "doi": "10.1002/cpt.2526"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Clopidogrel",
+    "drug2": "Fluconazole",
+    "category": "prodrug",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Clopidogrel",
+    "drug2": "Voriconazole",
+    "category": "prodrug",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Bupropion",
+    "drug2": "Clopidogrel",
+    "category": "prodrug",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Bupropion",
+    "drug2": "Tamoxifen",
+    "category": "metabolite",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_bupropion_cyp2d6_fda",
+        "ev_tamoxifen_cyp2d6_cpic"
+      ],
+      "studies": [
+        {
+          "id": "ev_bupropion_cyp2d6_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_tamoxifen_cyp2d6_cpic",
+          "type": "guideline",
+          "pmid": "29385237",
+          "doi": "10.1002/cpt.1007"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Bupropion",
+    "drug2": "Codeine",
+    "category": "metabolite",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_bupropion_cyp2d6_fda",
+        "ev_codeine_cyp2d6_cpic"
+      ],
+      "studies": [
+        {
+          "id": "ev_bupropion_cyp2d6_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_codeine_cyp2d6_cpic",
+          "type": "guideline",
+          "pmid": "24458010",
+          "doi": "10.1038/clpt.2013.254"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Bupropion",
+    "drug2": "Tramadol",
+    "category": "metabolite",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_bupropion_cyp2d6_fda",
+        "ev_bupropion_cyp2d6_kotlyar2005"
+      ],
+      "studies": [
+        {
+          "id": "ev_bupropion_cyp2d6_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_bupropion_cyp2d6_kotlyar2005",
+          "type": "clinical_pk",
+          "pmid": "15876900",
+          "doi": "10.1097/01.jcp.0000162805.46453.e3"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ibuprofen",
+    "drug2": "Lisinopril",
+    "category": "nephro",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ibuprofen",
+    "drug2": "Enalapril",
+    "category": "nephro",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ibuprofen",
+    "drug2": "Ramipril",
+    "category": "nephro",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ibuprofen",
+    "drug2": "Losartan",
+    "category": "nephro",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ibuprofen",
+    "drug2": "Valsartan",
+    "category": "nephro",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Naproxen",
+    "drug2": "Lisinopril",
+    "category": "nephro",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Naproxen",
+    "drug2": "Losartan",
+    "category": "nephro",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Diclofenac",
+    "drug2": "Lisinopril",
+    "category": "nephro",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Indomethacin",
+    "drug2": "Lisinopril",
+    "category": "nephro",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Lithium",
+    "drug2": "Ibuprofen",
+    "category": "nephro",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_lithium_nsaid_clearance"
+      ],
+      "studies": [
+        {
+          "id": "ev_lithium_nsaid_clearance",
+          "type": "clinical_pk",
+          "pmid": "2258452",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Lithium",
+    "drug2": "Naproxen",
+    "category": "nephro",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_lithium_nsaid_clearance"
+      ],
+      "studies": [
+        {
+          "id": "ev_lithium_nsaid_clearance",
+          "type": "clinical_pk",
+          "pmid": "2258452",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Lithium",
+    "drug2": "Diclofenac",
+    "category": "nephro",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_lithium_nsaid_clearance"
+      ],
+      "studies": [
+        {
+          "id": "ev_lithium_nsaid_clearance",
+          "type": "clinical_pk",
+          "pmid": "2258452",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Lithium",
+    "drug2": "Lisinopril",
+    "category": "nephro",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Lithium",
+    "drug2": "Losartan",
+    "category": "nephro",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Lithium",
+    "drug2": "Hydrochlorothiazide",
+    "category": "nephro",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Lithium",
+    "drug2": "Furosemide",
+    "category": "nephro",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Methotrexate",
+    "drug2": "Ibuprofen",
+    "category": "nephro",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Methotrexate",
+    "drug2": "Probenecid",
+    "category": "transporter",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Methotrexate",
+    "drug2": "Naproxen",
+    "category": "nephro",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Methotrexate",
+    "drug2": "Trimethoprim-SMX",
+    "category": "hematologic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Methotrexate",
+    "drug2": "Omeprazole",
+    "category": "renal",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Digoxin",
+    "drug2": "Amiodarone",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_digoxin_pgp_amiodarone_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_digoxin_pgp_amiodarone_fda",
+          "type": "fda_label",
+          "pmid": "12392581",
+          "doi": "10.1046/j.1365-2125.2002.01683.x"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Digoxin",
+    "drug2": "St. John's Wort",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Digoxin",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Digoxin",
+    "drug2": "Verapamil",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Digoxin",
+    "drug2": "Diltiazem",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Digoxin",
+    "drug2": "Cyclosporine",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Digoxin",
+    "drug2": "Spironolactone",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Warfarin",
+    "drug2": "Aspirin",
+    "category": "bleed",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_warfarin_nsaid_bleed"
+      ],
+      "studies": [
+        {
+          "id": "ev_warfarin_nsaid_bleed",
+          "type": "observational",
+          "pmid": "11176762",
+          "doi": "10.1001/archinte.161.2.189"
+        }
+      ],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Warfarin",
+    "drug2": "Ibuprofen",
+    "category": "bleed",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_warfarin_nsaid_bleed"
+      ],
+      "studies": [
+        {
+          "id": "ev_warfarin_nsaid_bleed",
+          "type": "observational",
+          "pmid": "11176762",
+          "doi": "10.1001/archinte.161.2.189"
+        }
+      ],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Warfarin",
+    "drug2": "Naproxen",
+    "category": "bleed",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Warfarin",
+    "drug2": "Acetaminophen",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Warfarin",
+    "drug2": "Fluconazole",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_fluconazole_warfarin_black1996"
+      ],
+      "studies": [
+        {
+          "id": "ev_fluconazole_warfarin_black1996",
+          "type": "clinical_pk",
+          "pmid": "8801057",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Warfarin",
+    "drug2": "Metronidazole",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Warfarin",
+    "drug2": "Trimethoprim-SMX",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Apixaban",
+    "drug2": "Aspirin",
+    "category": "bleed",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rivaroxaban",
+    "drug2": "Aspirin",
+    "category": "bleed",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Apixaban",
+    "drug2": "Clopidogrel",
+    "category": "bleed",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rivaroxaban",
+    "drug2": "Clopidogrel",
+    "category": "bleed",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Dabigatran",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Apixaban",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rivaroxaban",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Edoxaban",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Spironolactone",
+    "drug2": "Lisinopril",
+    "category": "hyperK",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Spironolactone",
+    "drug2": "Losartan",
+    "category": "hyperK",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Spironolactone",
+    "drug2": "Trimethoprim-SMX",
+    "category": "hyperK",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Lisinopril",
+    "drug2": "Trimethoprim-SMX",
+    "category": "hyperK",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Fluoxetine",
+    "drug2": "Tramadol",
+    "category": "serotonin",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sertraline",
+    "drug2": "Tramadol",
+    "category": "serotonin",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Fluoxetine",
+    "drug2": "Sumatriptan",
+    "category": "serotonin",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sertraline",
+    "drug2": "Sumatriptan",
+    "category": "serotonin",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Bupropion",
+    "drug2": "Tramadol",
+    "category": "seizure",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Bupropion",
+    "drug2": "Cyclobenzaprine",
+    "category": "seizure",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Colchicine",
+    "drug2": "Clarithromycin",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Colchicine",
+    "drug2": "Ritonavir",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Colchicine",
+    "drug2": "Itraconazole",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Colchicine",
+    "drug2": "Ketoconazole",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Simvastatin",
+    "drug2": "Clarithromycin",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Simvastatin",
+    "drug2": "Itraconazole",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Simvastatin",
+    "drug2": "Ritonavir",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Simvastatin",
+    "drug2": "Cyclosporine",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Simvastatin",
+    "drug2": "Gemfibrozil",
+    "category": "transporter",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rosuvastatin",
+    "drug2": "Gemfibrozil",
+    "category": "transporter",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Atorvastatin",
+    "drug2": "Gemfibrozil",
+    "category": "transporter",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Pravastatin",
+    "drug2": "Gemfibrozil",
+    "category": "transporter",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rosuvastatin",
+    "drug2": "Eltrombopag",
+    "category": "transporter",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Lovastatin",
+    "drug2": "Clarithromycin",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Atorvastatin",
+    "drug2": "Clarithromycin",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tacrolimus",
+    "drug2": "Fluconazole",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tacrolimus",
+    "drug2": "Voriconazole",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Cyclosporine",
+    "drug2": "Simvastatin",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Cyclosporine",
+    "drug2": "Ketoconazole",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_ketoconazole_cyclosporine_gomez1995"
+      ],
+      "studies": [
+        {
+          "id": "ev_ketoconazole_cyclosporine_gomez1995",
+          "type": "clinical_pk",
+          "pmid": "7628178",
+          "doi": "10.1016/0009-9236(95)90067-5"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": true,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tizanidine",
+    "drug2": "Ciprofloxacin",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_tizanidine_ciprofloxacin_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_tizanidine_ciprofloxacin_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tizanidine",
+    "drug2": "Fluvoxamine",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Theophylline",
+    "drug2": "Ciprofloxacin",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Theophylline",
+    "drug2": "Fluvoxamine",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Clozapine",
+    "drug2": "Ciprofloxacin",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Clozapine",
+    "drug2": "Fluvoxamine",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Midazolam",
+    "drug2": "Clarithromycin",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Midazolam",
+    "drug2": "Ketoconazole",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Midazolam",
+    "drug2": "Ritonavir",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Levothyroxine",
+    "drug2": "Calcium",
+    "category": "absorption",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Levothyroxine",
+    "drug2": "Iron",
+    "category": "absorption",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Levothyroxine",
+    "drug2": "Omeprazole",
+    "category": "absorption",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Levothyroxine",
+    "drug2": "Esomeprazole",
+    "category": "absorption",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Metformin",
+    "drug2": "Alcohol (Ethanol)",
+    "category": "metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Metformin",
+    "drug2": "Trimethoprim-SMX",
+    "category": "transporter",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Allopurinol",
+    "drug2": "Azathioprine",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_allopurinol_azathioprine_xo_label",
+        "ev_azathioprine_tpmt_cpic2019"
+      ],
+      "studies": [
+        {
+          "id": "ev_allopurinol_azathioprine_xo_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_azathioprine_tpmt_cpic2019",
+          "type": "guideline",
+          "pmid": "30447069",
+          "doi": "10.1002/cpt.1304"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sildenafil",
+    "drug2": "Tamsulosin",
+    "category": "hypoT",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tadalafil",
+    "drug2": "Tamsulosin",
+    "category": "hypoT",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "St. John's Wort",
+    "drug2": "Clopidogrel",
+    "category": "induction",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "St. John's Wort",
+    "drug2": "Warfarin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_st_johns_wort_cyp3a4_pgp_review"
+      ],
+      "studies": [
+        {
+          "id": "ev_st_johns_wort_cyp3a4_pgp_review",
+          "type": "meta_analysis",
+          "pmid": "12392581",
+          "doi": "10.1046/j.1365-2125.2002.01683.x"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "St. John's Wort",
+    "drug2": "Tacrolimus",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_st_johns_wort_cyp3a4_pgp_review"
+      ],
+      "studies": [
+        {
+          "id": "ev_st_johns_wort_cyp3a4_pgp_review",
+          "type": "meta_analysis",
+          "pmid": "12392581",
+          "doi": "10.1046/j.1365-2125.2002.01683.x"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "St. John's Wort",
+    "drug2": "Cyclosporine",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_st_johns_wort_cyp3a4_pgp_review"
+      ],
+      "studies": [
+        {
+          "id": "ev_st_johns_wort_cyp3a4_pgp_review",
+          "type": "meta_analysis",
+          "pmid": "12392581",
+          "doi": "10.1046/j.1365-2125.2002.01683.x"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Grapefruit Juice",
+    "drug2": "Simvastatin",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Grapefruit Juice",
+    "drug2": "Felodipine",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Grapefruit Juice",
+    "drug2": "Midazolam",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Grapefruit Juice",
+    "drug2": "Tacrolimus",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sumatriptan",
+    "drug2": "Fluoxetine",
+    "category": "serotonin",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Amiodarone",
+    "drug2": "Warfarin",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_amiodarone_warfarin_kerin1988"
+      ],
+      "studies": [
+        {
+          "id": "ev_amiodarone_warfarin_kerin1988",
+          "type": "clinical_pk",
+          "pmid": "3401099",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Amiodarone",
+    "drug2": "Simvastatin",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Amiodarone",
+    "drug2": "Metoprolol",
+    "category": "cardiac",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Valproic Acid",
+    "drug2": "Lamotrigine",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Valproic Acid",
+    "drug2": "Carbamazepine",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Phenytoin",
+    "drug2": "Valproic Acid",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Cannabis (THC)",
+    "drug2": "Clopidogrel",
+    "category": "pk",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "MDMA (Ecstasy)",
+    "drug2": "Fluoxetine",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_ssri_serotonin",
+        "ev_mdma_meth_cyp2d6_review",
+        "ev_fluoxetine_cyp2d6_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_ssri_serotonin",
+          "type": "guideline",
+          "pmid": "12867116",
+          "doi": "10.1056/NEJMra032867"
+        },
+        {
+          "id": "ev_mdma_meth_cyp2d6_review",
+          "type": "observational",
+          "pmid": "23162568",
+          "doi": "10.3389/fgene.2012.00235"
+        },
+        {
+          "id": "ev_fluoxetine_cyp2d6_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": "10.1097/00004714-199404000-00002"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "MDMA (Ecstasy)",
+    "drug2": "Paroxetine",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_ssri_serotonin",
+        "ev_mdma_meth_cyp2d6_review",
+        "ev_paroxetine_cyp2d6_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_ssri_serotonin",
+          "type": "guideline",
+          "pmid": "12867116",
+          "doi": "10.1056/NEJMra032867"
+        },
+        {
+          "id": "ev_mdma_meth_cyp2d6_review",
+          "type": "observational",
+          "pmid": "23162568",
+          "doi": "10.3389/fgene.2012.00235"
+        },
+        {
+          "id": "ev_paroxetine_cyp2d6_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "MDMA (Ecstasy)",
+    "drug2": "Sertraline",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_ssri_serotonin",
+        "ev_mdma_meth_cyp2d6_review"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_ssri_serotonin",
+          "type": "guideline",
+          "pmid": "12867116",
+          "doi": "10.1056/NEJMra032867"
+        },
+        {
+          "id": "ev_mdma_meth_cyp2d6_review",
+          "type": "observational",
+          "pmid": "23162568",
+          "doi": "10.3389/fgene.2012.00235"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "MDMA (Ecstasy)",
+    "drug2": "Citalopram",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_ssri_serotonin",
+        "ev_mdma_meth_cyp2d6_review"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_ssri_serotonin",
+          "type": "guideline",
+          "pmid": "12867116",
+          "doi": "10.1056/NEJMra032867"
+        },
+        {
+          "id": "ev_mdma_meth_cyp2d6_review",
+          "type": "observational",
+          "pmid": "23162568",
+          "doi": "10.3389/fgene.2012.00235"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "MDMA (Ecstasy)",
+    "drug2": "Escitalopram",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_ssri_serotonin",
+        "ev_mdma_meth_cyp2d6_review"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_ssri_serotonin",
+          "type": "guideline",
+          "pmid": "12867116",
+          "doi": "10.1056/NEJMra032867"
+        },
+        {
+          "id": "ev_mdma_meth_cyp2d6_review",
+          "type": "observational",
+          "pmid": "23162568",
+          "doi": "10.3389/fgene.2012.00235"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "MDMA (Ecstasy)",
+    "drug2": "Venlafaxine",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_ssri_serotonin",
+        "ev_mdma_meth_cyp2d6_review"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_ssri_serotonin",
+          "type": "guideline",
+          "pmid": "12867116",
+          "doi": "10.1056/NEJMra032867"
+        },
+        {
+          "id": "ev_mdma_meth_cyp2d6_review",
+          "type": "observational",
+          "pmid": "23162568",
+          "doi": "10.3389/fgene.2012.00235"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "MDMA (Ecstasy)",
+    "drug2": "Duloxetine",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_ssri_serotonin",
+        "ev_mdma_meth_cyp2d6_review"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_ssri_serotonin",
+          "type": "guideline",
+          "pmid": "12867116",
+          "doi": "10.1056/NEJMra032867"
+        },
+        {
+          "id": "ev_mdma_meth_cyp2d6_review",
+          "type": "observational",
+          "pmid": "23162568",
+          "doi": "10.3389/fgene.2012.00235"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "MDMA (Ecstasy)",
+    "drug2": "Tramadol",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_ssri_serotonin",
+        "ev_mdma_meth_cyp2d6_review",
+        "ev_opioid_cyp2d6_cpic_2020"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_ssri_serotonin",
+          "type": "guideline",
+          "pmid": "12867116",
+          "doi": "10.1056/NEJMra032867"
+        },
+        {
+          "id": "ev_mdma_meth_cyp2d6_review",
+          "type": "observational",
+          "pmid": "23162568",
+          "doi": "10.3389/fgene.2012.00235"
+        },
+        {
+          "id": "ev_opioid_cyp2d6_cpic_2020",
+          "type": "guideline",
+          "pmid": "33387367",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "MDMA (Ecstasy)",
+    "drug2": "Moclobemide",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_ssri_serotonin",
+        "ev_mdma_meth_cyp2d6_review"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_ssri_serotonin",
+          "type": "guideline",
+          "pmid": "12867116",
+          "doi": "10.1056/NEJMra032867"
+        },
+        {
+          "id": "ev_mdma_meth_cyp2d6_review",
+          "type": "observational",
+          "pmid": "23162568",
+          "doi": "10.3389/fgene.2012.00235"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "MDMA (Ecstasy)",
+    "drug2": "Ritonavir",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "MDMA (Ecstasy)",
+    "drug2": "Bupropion",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "MDMA (Ecstasy)",
+    "drug2": "Amphetamine",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_sympathomimetic_toxicity_review",
+        "ev_mdma_meth_cyp2d6_review"
+      ],
+      "studies": [
+        {
+          "id": "ev_sympathomimetic_toxicity_review",
+          "type": "meta_analysis",
+          "pmid": "28613508",
+          "doi": null
+        },
+        {
+          "id": "ev_mdma_meth_cyp2d6_review",
+          "type": "observational",
+          "pmid": "23162568",
+          "doi": "10.3389/fgene.2012.00235"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "MDMA (Ecstasy)",
+    "drug2": "Cocaine",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_sympathomimetic_toxicity_review",
+        "ev_cocaine_toxicity_review",
+        "ev_mdma_meth_cyp2d6_review"
+      ],
+      "studies": [
+        {
+          "id": "ev_sympathomimetic_toxicity_review",
+          "type": "meta_analysis",
+          "pmid": "28613508",
+          "doi": null
+        },
+        {
+          "id": "ev_cocaine_toxicity_review",
+          "type": "meta_analysis",
+          "pmid": "30700023",
+          "doi": null
+        },
+        {
+          "id": "ev_mdma_meth_cyp2d6_review",
+          "type": "observational",
+          "pmid": "23162568",
+          "doi": "10.3389/fgene.2012.00235"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Cocaine",
+    "drug2": "Alcohol (Ethanol)",
+    "category": "metabolite",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Cocaine",
+    "drug2": "Propranolol",
+    "category": "pd",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cocaine_beta_blocker_unopposed_alpha_review",
+        "ev_cocaine_toxicity_review",
+        "ev_beta_blocker_cyp2d6_propranolol"
+      ],
+      "studies": [
+        {
+          "id": "ev_cocaine_beta_blocker_unopposed_alpha_review",
+          "type": "meta_analysis",
+          "pmid": null,
+          "doi": "10.1177/1074248416681644"
+        },
+        {
+          "id": "ev_cocaine_toxicity_review",
+          "type": "meta_analysis",
+          "pmid": "30700023",
+          "doi": null
+        },
+        {
+          "id": "ev_beta_blocker_cyp2d6_propranolol",
+          "type": "in_vitro",
+          "pmid": "37679047",
+          "doi": "10.1124/jpet.123.001651"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Cocaine",
+    "drug2": "Metoprolol",
+    "category": "pd",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cocaine_beta_blocker_unopposed_alpha_review",
+        "ev_cocaine_toxicity_review",
+        "ev_metoprolol_cyp2d6_cpic"
+      ],
+      "studies": [
+        {
+          "id": "ev_cocaine_beta_blocker_unopposed_alpha_review",
+          "type": "meta_analysis",
+          "pmid": null,
+          "doi": "10.1177/1074248416681644"
+        },
+        {
+          "id": "ev_cocaine_toxicity_review",
+          "type": "meta_analysis",
+          "pmid": "30700023",
+          "doi": null
+        },
+        {
+          "id": "ev_metoprolol_cyp2d6_cpic",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ayahuasca (DMT+MAOI)",
+    "drug2": "Fluoxetine",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_ssri_serotonin",
+        "ev_fluoxetine_cyp2d6_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_ssri_serotonin",
+          "type": "guideline",
+          "pmid": "12867116",
+          "doi": "10.1056/NEJMra032867"
+        },
+        {
+          "id": "ev_fluoxetine_cyp2d6_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": "10.1097/00004714-199404000-00002"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ayahuasca (DMT+MAOI)",
+    "drug2": "Paroxetine",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_ssri_serotonin",
+        "ev_paroxetine_cyp2d6_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_ssri_serotonin",
+          "type": "guideline",
+          "pmid": "12867116",
+          "doi": "10.1056/NEJMra032867"
+        },
+        {
+          "id": "ev_paroxetine_cyp2d6_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ayahuasca (DMT+MAOI)",
+    "drug2": "Sertraline",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_ssri_serotonin"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_ssri_serotonin",
+          "type": "guideline",
+          "pmid": "12867116",
+          "doi": "10.1056/NEJMra032867"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ayahuasca (DMT+MAOI)",
+    "drug2": "Venlafaxine",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_ssri_serotonin"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_ssri_serotonin",
+          "type": "guideline",
+          "pmid": "12867116",
+          "doi": "10.1056/NEJMra032867"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ayahuasca (DMT+MAOI)",
+    "drug2": "Tramadol",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_ssri_serotonin",
+        "ev_opioid_cyp2d6_cpic_2020"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_ssri_serotonin",
+          "type": "guideline",
+          "pmid": "12867116",
+          "doi": "10.1056/NEJMra032867"
+        },
+        {
+          "id": "ev_opioid_cyp2d6_cpic_2020",
+          "type": "guideline",
+          "pmid": "33387367",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ayahuasca (DMT+MAOI)",
+    "drug2": "MDMA (Ecstasy)",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_ssri_serotonin",
+        "ev_mdma_meth_cyp2d6_review"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_ssri_serotonin",
+          "type": "guideline",
+          "pmid": "12867116",
+          "doi": "10.1056/NEJMra032867"
+        },
+        {
+          "id": "ev_mdma_meth_cyp2d6_review",
+          "type": "observational",
+          "pmid": "23162568",
+          "doi": "10.3389/fgene.2012.00235"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ayahuasca (DMT+MAOI)",
+    "drug2": "Amphetamine",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_sympathomimetic_label",
+        "ev_amphetamine_cyp2d6_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_sympathomimetic_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_amphetamine_cyp2d6_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ayahuasca (DMT+MAOI)",
+    "drug2": "Cocaine",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_maoi_sympathomimetic_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_maoi_sympathomimetic_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "GHB",
+    "drug2": "Alcohol (Ethanol)",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_sodium_oxybate_cns_depressants_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_sodium_oxybate_cns_depressants_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "GHB",
+    "drug2": "Diazepam",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_sodium_oxybate_cns_depressants_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_sodium_oxybate_cns_depressants_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "GHB",
+    "drug2": "Clonazepam",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_sodium_oxybate_cns_depressants_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_sodium_oxybate_cns_depressants_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "GHB",
+    "drug2": "Morphine",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_sodium_oxybate_cns_depressants_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_sodium_oxybate_cns_depressants_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "GHB",
+    "drug2": "Fentanyl",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_sodium_oxybate_cns_depressants_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_sodium_oxybate_cns_depressants_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Poppers (Amyl Nitrite)",
+    "drug2": "Sildenafil",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_pde5_nitrate_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_pde5_nitrate_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Poppers (Amyl Nitrite)",
+    "drug2": "Tadalafil",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_pde5_nitrate_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_pde5_nitrate_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Poppers (Amyl Nitrite)",
+    "drug2": "Vardenafil",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_pde5_nitrate_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_pde5_nitrate_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ketamine",
+    "drug2": "Alcohol (Ethanol)",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_ketamine_alcohol_toxicology_review"
+      ],
+      "studies": [
+        {
+          "id": "ev_ketamine_alcohol_toxicology_review",
+          "type": "meta_analysis",
+          "pmid": "35887148",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ketamine",
+    "drug2": "GHB",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_sodium_oxybate_cns_depressants_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_sodium_oxybate_cns_depressants_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "DXM (Dextromethorphan)",
+    "drug2": "Fluoxetine",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "DXM (Dextromethorphan)",
+    "drug2": "Paroxetine",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_paroxetine_cyp2d6_fda",
+        "ev_paroxetine_cyp2d6_rct",
+        "ev_paroxetine_cyp2d6_japanese"
+      ],
+      "studies": [
+        {
+          "id": "ev_paroxetine_cyp2d6_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_paroxetine_cyp2d6_rct",
+          "type": "rct",
+          "pmid": "14730412",
+          "doi": "10.1007/s00228-003-0714-z"
+        },
+        {
+          "id": "ev_paroxetine_cyp2d6_japanese",
+          "type": "observational",
+          "pmid": null,
+          "doi": "10.1016/j.pnpbp.2005.11.007"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "DXM (Dextromethorphan)",
+    "drug2": "Bupropion",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Kratom (Mitragynine)",
+    "drug2": "Fluoxetine",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Kratom (Mitragynine)",
+    "drug2": "Tramadol",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_kratom_polysubstance_review",
+        "ev_kratom_mitragynine_cyp2d6_basiliere2020",
+        "ev_opioid_cyp2d6_cpic_2020"
+      ],
+      "studies": [
+        {
+          "id": "ev_kratom_polysubstance_review",
+          "type": "meta_analysis",
+          "pmid": "37286363",
+          "doi": "10.1124/dmd.122.001005"
+        },
+        {
+          "id": "ev_kratom_mitragynine_cyp2d6_basiliere2020",
+          "type": "in_vitro",
+          "pmid": "32008041",
+          "doi": null
+        },
+        {
+          "id": "ev_opioid_cyp2d6_cpic_2020",
+          "type": "guideline",
+          "pmid": "33387367",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Kratom (Mitragynine)",
+    "drug2": "Alcohol (Ethanol)",
+    "category": "pd",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_kratom_polysubstance_review"
+      ],
+      "studies": [
+        {
+          "id": "ev_kratom_polysubstance_review",
+          "type": "meta_analysis",
+          "pmid": "37286363",
+          "doi": "10.1124/dmd.122.001005"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Alcohol (Ethanol)",
+    "drug2": "Metformin",
+    "category": "pd",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Alcohol (Ethanol)",
+    "drug2": "Acetaminophen",
+    "category": "metabolite",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Cannabis (CBD)",
+    "drug2": "Clobazam",
+    "category": "pk",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Cannabis (CBD)",
+    "drug2": "Warfarin",
+    "category": "pk",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  }
+]

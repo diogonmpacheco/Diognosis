@@ -48,8 +48,11 @@ function renderAdverseBurden() {
   const burden = computeAdverseBurden(drugs);
   const hasContent = burden.acb_total > 0 || burden.beers_flags.length > 0 ||
                      burden.sedation_contributors.length > 0 || burden.fall_risk_total > 0;
-  if (!hasContent) { if (sec) sec.style.display = "none"; return; }
   if (sec) sec.style.display = "";
+  if (!hasContent) {
+    el.innerHTML = '<div class="empty-state">No curated adverse burden flags for this stack. Absence of a flag is not evidence of safety.</div>';
+    return;
+  }
 
   const acbLevel = burden.acb_total >= 3 ? 'high' : burden.acb_total >= 1 ? 'moderate' : 'none';
   const fallLevel = burden.fall_risk_total >= 6 ? 'high' : burden.fall_risk_total >= 3 ? 'moderate' : 'low';
@@ -104,4 +107,3 @@ function renderAdverseBurden() {
   }
   el.innerHTML = html;
 }
-
