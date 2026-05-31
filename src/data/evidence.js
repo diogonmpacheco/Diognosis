@@ -300,6 +300,23 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_statin_slco1b1_abcg2_cpic2022": {
+    id:"ev_statin_slco1b1_abcg2_cpic2022",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guideline for SLCO1B1, ABCG2, and CYP2C9 genotypes and statin-associated musculoskeletal symptoms",
+    year:2022, source:"Cooper-DeHoff et al. / CPIC", journal:"Clin Pharmacol Ther",
+    pmid:"35152405", doi:"10.1002/cpt.2557",
+    url:"https://cpicpgx.org/guidelines/cpic-guideline-for-statins/",
+    studyDesign:"systematic_review_guideline",
+    n:null, phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{note:"SLCO1B1 decreased-function variants and ABCG2 reduced-function variants can increase exposure and statin-associated muscle symptom risk for specific statins; recommendations vary by statin and dose."},
+    temporal:{mechanism:"hepatic_uptake_or_efflux_genotype_changes_statin_exposure"},
+    supports:["simvastatin_SUBSTRATE_OF_SLCO1B1","atorvastatin_SUBSTRATE_OF_SLCO1B1","rosuvastatin_SUBSTRATE_OF_SLCO1B1","rosuvastatin_SUBSTRATE_OF_ABCG2"],
+    contradicts:[],
+    limitations:["Guideline recommendations are statin-specific; genotype is one risk factor among dose, age, comorbidity, and interacting drugs"],
+    verified:true
+  },
+
   // ═══ CLOPIDOGREL / CYP2C19 ═══
   "ev_clopidogrel_cyp2c19_cpic": {
     id:"ev_clopidogrel_cyp2c19_cpic",
@@ -668,7 +685,7 @@ const STUDY_DB = {
     phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer"],
     quantifiedEffects:{poor_metabolizer:{note:"TPMT poor metabolizers have greatly increased risk of life-threatening myelosuppression from standard thiopurine doses; CPIC recommends avoiding or using drastically reduced dosing."}},
     temporal:{mechanism:"TPMT_6MP_methylation_reduced_shunts_to_6TGN"},
-    supports:["azathioprine_METABOLIZED_TO_6-thioguanine-nucleotides-6-tgn"],
+    supports:["azathioprine_METABOLIZED_TO_6-thioguanine-nucleotides-6-tgn","azathioprine_NUDT15_thiopurine_toxicity"],
     contradicts:[],
     limitations:["NUDT15 must also be considered, especially in Asian and Hispanic populations; dosing depends on disease indication and therapeutic drug monitoring."],
     verified:true
@@ -1060,6 +1077,24 @@ const STUDY_DB = {
   },
 
   // ═══ WARFARIN / NSAIDs / BLEEDING ═══
+  "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017": {
+    id:"ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update",
+    year:2017, source:"Johnson et al. / CPIC", journal:"Clin Pharmacol Ther",
+    pmid:"28198005", doi:"10.1002/cpt.668",
+    url:"https://cpicpgx.org/guidelines/guideline-for-warfarin-and-cyp2c9-and-vkorc1/",
+    studyDesign:"systematic_review_guideline",
+    n:null,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{note:"CPIC warfarin dosing algorithms incorporate CYP2C9, VKORC1, CYP4F2, and selected ancestry-linked variants when genotype results are available."},
+    temporal:{mechanism:"warfarin_clearance_plus_vitamin_K_cycle_pharmacodynamic_sensitivity"},
+    supports:["warfarin_SUBSTRATE_OF_CYP2C9","warfarin_VKORC1_sensitivity","warfarin_CYP4F2_vitamin_K_oxidation"],
+    contradicts:[],
+    limitations:["Dose algorithms require clinical factors and INR monitoring; allele coverage and ancestry context matter"],
+    verified:true
+  },
+
   "ev_warfarin_nsaid_bleed": {
     id:"ev_warfarin_nsaid_bleed",
     type:EVIDENCE_TIER.OBSERVATIONAL,
@@ -1548,6 +1583,39 @@ const STUDY_DB = {
     temporal:{onset:"hours_to_days", mechanism:"MAO_A_inhibition_plus_SERT_inhibition"},
     supports:["ssri_maoi_serotonin_syndrome"],
     contradicts:[], limitations:["Case series (n=3)","Severity unpredictable","Linezolid is only antibiotic in this class"], verified:true
+  },
+
+  "ev_tyramine_maoi_labels": {
+    id:"ev_tyramine_maoi_labels",
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"MAOI labeling — tyramine-rich foods and hypertensive crisis",
+    year:2025, source:"DailyMed phenelzine/tranylcypromine labels", journal:"DailyMed",
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=phenelzine%20tyramine%20hypertensive%20crisis",
+    studyDesign:"regulatory_label",
+    n:null, phenotypes:[],
+    quantifiedEffects:{note:"Nonselective MAO inhibition can permit dietary tyramine absorption and precipitate hypertensive crisis; labels instruct avoidance of high-tyramine foods during treatment and washout."},
+    temporal:{mechanism:"intestinal_MAO_inhibition_plus_tyramine_pressor_response", washout:"up_to_2_weeks_after_irreversible_MAOI"},
+    supports:["tyramine_rich_foods_MAO_substrate","maoi_tyramine_hypertensive_crisis"],
+    contradicts:[],
+    limitations:["Food tyramine content varies widely by preparation, storage, and spoilage","Risk differs across irreversible MAOIs, reversible MAO-A inhibitors, and selective MAO-B regimens"],
+    verified:true
+  },
+
+  "ev_tacrolimus_cyp3a5_cpic": {
+    id:"ev_tacrolimus_cyp3a5_cpic",
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"Clinical Pharmacogenetics Implementation Consortium Guidelines for CYP3A5 Genotype and Tacrolimus Dosing",
+    year:2015, source:"Birdwell et al. / CPIC", journal:"Clin Pharmacol Ther",
+    pmid:"25801146", doi:"10.1002/cpt.113",
+    url:"https://cpicpgx.org/guidelines/guideline-for-tacrolimus-and-cyp3a5/",
+    studyDesign:"systematic_review_guideline",
+    n:null, phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{doseFold:1.5, note:"CYP3A5 expressers often require about 1.5-2x higher tacrolimus starting doses than non-expressers to reach similar trough concentrations; therapeutic drug monitoring remains mandatory."},
+    temporal:{mechanism:"CYP3A5_expression_changes_tacrolimus_clearance"},
+    supports:["tacrolimus_SUBSTRATE_OF_CYP3A5","cyp3a5_genotype_tacrolimus_dosing"],
+    contradicts:[],
+    limitations:["Guideline addresses starting dose; trough-guided titration remains standard","Transplant type, interacting drugs, hematocrit, time post-transplant, and ancestry can modify dose requirement"],
+    verified:true
   },
 
   // ═══ PAROXETINE — ASIAN CYP2D6*10 POPULATION PHARMACOGENOMICS ═══
@@ -4277,6 +4345,99 @@ const STUDY_DB = {
     reviewRequired:true,
     verified:false,
     verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  // ═══ HLA IMMUNE-RISK PHARMACOGENETICS ═══
+  "ev_carbamazepine_oxcarbazepine_hla_cpic2017": {
+    id:"ev_carbamazepine_oxcarbazepine_hla_cpic2017",
+    public:true,
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guideline for HLA Genotype and Use of Carbamazepine and Oxcarbazepine: 2017 Update",
+    year:2018,
+    source:"CPIC",
+    journal:"Clinical Pharmacology & Therapeutics",
+    pmid:"29385237",
+    doi:"10.1002/cpt.1004",
+    url:"https://cpicpgx.org/guidelines/guideline-for-carbamazepine-and-hla-b/",
+    studyDesign:"clinical_pharmacogenetics_guideline",
+    n:null,
+    phenotypes:["risk_allele_absent","risk_allele_present"],
+    quantifiedEffects:{note:"HLA-B*15:02 and HLA-A*31:01 are used to guide carbamazepine therapy; HLA-B*15:02 is also used for oxcarbazepine SJS/TEN risk."},
+    temporal:{mechanism:"HLA-mediated immune hypersensitivity"},
+    supports:["carbamazepine_HLA-B*15:02_sjs_ten","carbamazepine_HLA-A*31:01_hypersensitivity","oxcarbazepine_HLA-B*15:02_sjs_ten"],
+    contradicts:[],
+    limitations:["Risk varies by ancestry and allele prevalence","Absence of the allele does not eliminate non-HLA hypersensitivity risk"],
+    confidence:"high",
+    verified:true
+  },
+
+  "ev_abacavir_hlab5701_cpic2012": {
+    id:"ev_abacavir_hlab5701_cpic2012",
+    public:true,
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guidelines for HLA-B Genotype and Abacavir Dosing",
+    year:2012,
+    source:"CPIC",
+    journal:"Clinical Pharmacology & Therapeutics",
+    pmid:"22378157",
+    doi:"10.1038/clpt.2011.355",
+    url:"https://cpicpgx.org/guidelines/guideline-for-abacavir-and-hla-b/",
+    studyDesign:"clinical_pharmacogenetics_guideline",
+    n:null,
+    phenotypes:["risk_allele_absent","risk_allele_present"],
+    quantifiedEffects:{note:"HLA-B*57:01 predicts abacavir hypersensitivity; abacavir is not recommended for allele-positive patients."},
+    temporal:{mechanism:"HLA-mediated abacavir hypersensitivity"},
+    supports:["abacavir_HLA-B*57:01_hypersensitivity"],
+    contradicts:[],
+    limitations:["Applies only when HLA-B*57:01 genotype result is known","Clinical diagnosis remains important if symptoms occur"],
+    confidence:"high",
+    verified:true
+  },
+
+  "ev_allopurinol_hlab5801_cpic2015": {
+    id:"ev_allopurinol_hlab5801_cpic2015",
+    public:true,
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guidelines for HLA-B Genotype and Allopurinol Dosing: 2015 Update",
+    year:2015,
+    source:"CPIC",
+    journal:"Clinical Pharmacology & Therapeutics",
+    pmid:"26306456",
+    doi:"10.1002/cpt.161",
+    url:"https://cpicpgx.org/guidelines/guideline-for-allopurinol-and-hla-b/",
+    studyDesign:"clinical_pharmacogenetics_guideline",
+    n:null,
+    phenotypes:["risk_allele_absent","risk_allele_present"],
+    quantifiedEffects:{note:"HLA-B*58:01 is associated with allopurinol severe cutaneous adverse reactions; CPIC recommends allopurinol is contraindicated when present."},
+    temporal:{mechanism:"HLA-mediated severe cutaneous adverse reaction"},
+    supports:["allopurinol_HLA-B*58:01_scar"],
+    contradicts:[],
+    limitations:["Risk also depends on clinical factors such as renal function and starting dose","Allele absence does not eliminate rash or hypersensitivity risk"],
+    confidence:"high",
+    verified:true
+  },
+
+  "ev_phenytoin_cyp2c9_hlab_cpic2020": {
+    id:"ev_phenytoin_cyp2c9_hlab_cpic2020",
+    public:true,
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guideline for CYP2C9 and HLA-B Genotypes and Phenytoin Dosing: 2020 Update",
+    year:2020,
+    source:"CPIC",
+    journal:"Clinical Pharmacology & Therapeutics",
+    pmid:"32779747",
+    doi:null,
+    url:"https://cpicpgx.org/guidelines/guideline-for-phenytoin-and-cyp2c9/",
+    studyDesign:"clinical_pharmacogenetics_guideline",
+    n:null,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer","risk_allele_absent","risk_allele_present"],
+    quantifiedEffects:{note:"CYP2C9 guides phenytoin dose/exposure; HLA-B*15:02 informs severe cutaneous adverse reaction risk."},
+    temporal:{mechanism:"CYP2C9 clearance plus HLA-mediated cutaneous hypersensitivity"},
+    supports:["phenytoin_CYP2C9_dose","phenytoin_HLA-B*15:02_scar"],
+    contradicts:[],
+    limitations:["HLA-B*15:02 allele prevalence differs substantially by ancestry","Therapeutic drug monitoring remains important for phenytoin"],
+    confidence:"high",
+    verified:true
   },
 
 };

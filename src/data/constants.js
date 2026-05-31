@@ -91,6 +91,11 @@ const GENOTYPE_PHENOTYPE = Object.freeze({
   UM: 'ultrarapid_metabolizer',
 });
 
+const GENOTYPE_RISK_STATUS = Object.freeze({
+  ABSENT: 'risk_allele_absent',
+  PRESENT: 'risk_allele_present',
+});
+
 // GENOTYPE_EFFECTS — fold-change multipliers vs NM baseline for key enzymes
 // Source: CPIC guidelines, FDA labels, clinical PK studies
 const GENOTYPE_EFFECTS = {
@@ -118,6 +123,52 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal CYP2B6 activity." },
     [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.5, freq_pct:null, note:"Higher CYP2B6 activity; lower parent exposure for sensitive substrates." },
   },
+  CYP3A5: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.8, freq_pct:null, note:"CYP3A5 non-expresser status. Tacrolimus concentration/dose is higher than in expressers; standard starting dose is usually closer than expresser dosing." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:0.7, freq_pct:null, note:"CYP3A5 expresser/intermediate status. Tacrolimus dose requirements are often higher; use therapeutic drug monitoring." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference CYP3A5 phenotype for this model." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.5, freq_pct:null, note:"High CYP3A5 expression/activity context; sensitive CYP3A5 substrates may require higher exposure-guided dosing." },
+  },
+  CYP2C8: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:2.0, freq_pct:null, note:"Reduced CYP2C8 activity; sensitive substrates such as pioglitazone, repaglinide, montelukast, and hydroxychloroquine may have higher exposure." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.4, freq_pct:null, note:"Intermediate CYP2C8 activity; modest substrate exposure increase possible." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal CYP2C8 activity." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.8, freq_pct:null, note:"Higher CYP2C8 activity context; substrate exposure may be lower." },
+  },
+  CYP2A6: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:3.0, freq_pct:null, note:"Reduced CYP2A6 activity; nicotine and cotinine formation/clearance shift, often lowering smoking intensity but raising nicotine exposure per cigarette." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.6, freq_pct:null, note:"Intermediate CYP2A6 activity; slower nicotine clearance." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal CYP2A6 activity." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.7, freq_pct:null, note:"Higher CYP2A6 activity; faster nicotine clearance." },
+  },
+  NAT2: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:2.0, freq_pct:null, note:"Slow acetylator phenotype; isoniazid and hydralazine exposure/toxicity risk can rise while some efficacy/toxicity tradeoffs differ by indication." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.4, freq_pct:null, note:"Intermediate acetylator phenotype." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference acetylator phenotype for this model." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.7, freq_pct:null, note:"Rapid acetylator phenotype; lower exposure for NAT2 substrates." },
+  },
+  SLCO1B1: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:2.5, freq_pct:null, note:"Decreased OATP1B1 hepatic uptake. Simvastatin acid and several statins can have higher systemic exposure and higher muscle-symptom risk." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.5, freq_pct:null, note:"Decreased/intermediate OATP1B1 function; statin exposure may rise." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal OATP1B1 function." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.8, freq_pct:null, note:"Higher OATP1B1 uptake context; systemic statin exposure may be lower." },
+  },
+  ABCG2: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:2.0, freq_pct:null, note:"Reduced BCRP/ABCG2 efflux. Rosuvastatin and sulfasalazine exposure can rise; gout/urate context may also matter." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.4, freq_pct:null, note:"Intermediate BCRP/ABCG2 function." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal BCRP/ABCG2 function." },
+  },
+  VKORC1: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.8, freq_pct:null, note:"Warfarin-sensitive VKORC1 context; lower maintenance dose is usually needed for the same INR target." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.3, freq_pct:null, note:"Intermediate warfarin sensitivity context." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference VKORC1 warfarin sensitivity context." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.8, freq_pct:null, note:"Relative warfarin-resistant VKORC1 context; higher dose may be required, guided by INR." },
+  },
+  CYP4F2: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:0.9, freq_pct:null, note:"Reduced vitamin K oxidation can modestly increase warfarin dose requirement; effect is smaller than VKORC1/CYP2C9." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:0.95, freq_pct:null, note:"Intermediate CYP4F2 vitamin K oxidation context." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal CYP4F2 vitamin K oxidation." },
+  },
   DPYD: {
     [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:20.0, freq_pct:null, note:"Very low/absent DPYD activity; fluoropyrimidine toxicity risk can be life-threatening." },
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:2.0, freq_pct:null, note:"Reduced DPYD activity; fluoropyrimidine starting dose usually requires major reduction." },
@@ -134,6 +185,100 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.2, freq_pct:null, note:"Intermediate UGT1A1 activity." },
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal UGT1A1 activity." },
   },
+  NUDT15: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:20.0, freq_pct:null, note:"NUDT15 poor function; thiopurine cytotoxic nucleotide intolerance can be profound even when TPMT is normal." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:2.0, freq_pct:null, note:"NUDT15 intermediate function; thiopurine dose reduction and close CBC monitoring are usually needed." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Normal NUDT15 function." },
+  },
+};
+
+const GENOTYPE_RISK_EFFECTS = {
+  "HLA-B*15:02": {
+    gene:"HLA-B",
+    variant:"*15:02",
+    label:"HLA-B*15:02",
+    drugEffects:[
+      {
+        parent:"Carbamazepine",
+        phenotype:"SJS/TEN risk",
+        note:"HLA-B*15:02 is strongly associated with carbamazepine-induced Stevens-Johnson syndrome/toxic epidermal necrolysis. CPIC recommends avoiding carbamazepine in allele-positive patients unless benefits clearly outweigh risks and no alternatives exist.",
+        clinicalAction:"avoid carbamazepine; consider non-aromatic alternatives",
+        evidenceRefs:["ev_carbamazepine_oxcarbazepine_hla_cpic2017"],
+      },
+      {
+        parent:"Oxcarbazepine",
+        phenotype:"SJS/TEN risk",
+        note:"HLA-B*15:02 also increases oxcarbazepine SJS/TEN risk. CPIC recommends avoiding oxcarbazepine in allele-positive patients when possible.",
+        clinicalAction:"avoid oxcarbazepine when possible; consider alternatives",
+        evidenceRefs:["ev_carbamazepine_oxcarbazepine_hla_cpic2017"],
+      },
+      {
+        parent:"Phenytoin",
+        phenotype:"SJS/TEN risk",
+        note:"HLA-B*15:02 is associated with phenytoin-induced severe cutaneous adverse reactions, especially in populations where the allele is more common. CYP2C9 still controls the exposure/dose component.",
+        clinicalAction:"avoid phenytoin/fosphenytoin if possible; use CYP2C9-guided dosing if used",
+        evidenceRefs:["ev_phenytoin_cyp2c9_hlab_cpic2020"],
+      },
+    ],
+    effects:{
+      [GENOTYPE_RISK_STATUS.ABSENT]: { label:"not detected", severity:"baseline", note:"Risk allele not detected. This does not remove ordinary rash or hypersensitivity risk." },
+      [GENOTYPE_RISK_STATUS.PRESENT]: { label:"detected", severity:"high", note:"Risk allele detected. Severe cutaneous adverse reaction risk is elevated for specific drugs." },
+    },
+  },
+  "HLA-A*31:01": {
+    gene:"HLA-A",
+    variant:"*31:01",
+    label:"HLA-A*31:01",
+    drugEffects:[
+      {
+        parent:"Carbamazepine",
+        phenotype:"carbamazepine hypersensitivity risk",
+        note:"HLA-A*31:01 is associated with a broader carbamazepine hypersensitivity spectrum, including maculopapular exanthema, DRESS, and SJS/TEN.",
+        clinicalAction:"avoid carbamazepine when possible; if used, monitor closely",
+        evidenceRefs:["ev_carbamazepine_oxcarbazepine_hla_cpic2017"],
+      },
+    ],
+    effects:{
+      [GENOTYPE_RISK_STATUS.ABSENT]: { label:"not detected", severity:"baseline", note:"Risk allele not detected. This does not remove ordinary rash or hypersensitivity risk." },
+      [GENOTYPE_RISK_STATUS.PRESENT]: { label:"detected", severity:"high", note:"Risk allele detected. Carbamazepine hypersensitivity risk is elevated." },
+    },
+  },
+  "HLA-B*57:01": {
+    gene:"HLA-B",
+    variant:"*57:01",
+    label:"HLA-B*57:01",
+    drugEffects:[
+      {
+        parent:"Abacavir",
+        phenotype:"abacavir hypersensitivity risk",
+        note:"HLA-B*57:01 predicts abacavir hypersensitivity. CPIC and product labeling recommend avoiding abacavir in allele-positive patients.",
+        clinicalAction:"abacavir contraindicated; use alternative antiretroviral",
+        evidenceRefs:["ev_abacavir_hlab5701_cpic2012"],
+      },
+    ],
+    effects:{
+      [GENOTYPE_RISK_STATUS.ABSENT]: { label:"not detected", severity:"baseline", note:"Risk allele not detected; abacavir hypersensitivity risk is substantially reduced but not impossible." },
+      [GENOTYPE_RISK_STATUS.PRESENT]: { label:"detected", severity:"high", note:"Risk allele detected. Abacavir should be avoided." },
+    },
+  },
+  "HLA-B*58:01": {
+    gene:"HLA-B",
+    variant:"*58:01",
+    label:"HLA-B*58:01",
+    drugEffects:[
+      {
+        parent:"Allopurinol",
+        phenotype:"allopurinol SCAR risk",
+        note:"HLA-B*58:01 is strongly associated with allopurinol severe cutaneous adverse reactions, including SJS/TEN and DRESS. CPIC recommends allopurinol is contraindicated in allele-positive patients.",
+        clinicalAction:"allopurinol contraindicated; use alternative urate-lowering strategy",
+        evidenceRefs:["ev_allopurinol_hlab5801_cpic2015"],
+      },
+    ],
+    effects:{
+      [GENOTYPE_RISK_STATUS.ABSENT]: { label:"not detected", severity:"baseline", note:"Risk allele not detected. Renal function, starting dose, and clinical monitoring still matter." },
+      [GENOTYPE_RISK_STATUS.PRESENT]: { label:"detected", severity:"high", note:"Risk allele detected. Allopurinol severe cutaneous reaction risk is elevated." },
+    },
+  },
 };
 
 // activeGenotype — user-selected metabolizer phenotype per enzyme (runtime state)
@@ -142,6 +287,23 @@ let activeGenotype = {
   CYP2D6:  GENOTYPE_PHENOTYPE.NM,
   CYP2C19: GENOTYPE_PHENOTYPE.NM,
   CYP2C9:  GENOTYPE_PHENOTYPE.NM,
+  CYP2B6:  GENOTYPE_PHENOTYPE.NM,
+  CYP3A5:  GENOTYPE_PHENOTYPE.NM,
+  CYP2C8:  GENOTYPE_PHENOTYPE.NM,
+  CYP2A6:  GENOTYPE_PHENOTYPE.NM,
+  NAT2:    GENOTYPE_PHENOTYPE.NM,
+  SLCO1B1: GENOTYPE_PHENOTYPE.NM,
+  ABCG2:   GENOTYPE_PHENOTYPE.NM,
+  VKORC1:  GENOTYPE_PHENOTYPE.NM,
+  CYP4F2:  GENOTYPE_PHENOTYPE.NM,
+  DPYD:    GENOTYPE_PHENOTYPE.NM,
+  TPMT:    GENOTYPE_PHENOTYPE.NM,
+  UGT1A1:  GENOTYPE_PHENOTYPE.NM,
+  NUDT15:  GENOTYPE_PHENOTYPE.NM,
+  "HLA-B*15:02": GENOTYPE_RISK_STATUS.ABSENT,
+  "HLA-A*31:01": GENOTYPE_RISK_STATUS.ABSENT,
+  "HLA-B*57:01": GENOTYPE_RISK_STATUS.ABSENT,
+  "HLA-B*58:01": GENOTYPE_RISK_STATUS.ABSENT,
 };
 
 // ── STUDY_DB ──

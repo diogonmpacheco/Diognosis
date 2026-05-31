@@ -1,14 +1,16 @@
 # MedCheck Severity Report
 
-Generated: 2026-05-31T09:38:36.323Z
+Generated: 2026-05-31T10:14:29.355Z
 
-Known DDI pairs: 160
-Original severe: 103
-Recommended severe: 103
+Known DDI pairs: 162
+Original severe: 104
+Recommended severe: 104
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
 |---|---:|---:|---:|---|---|
+| Warfarin + High Vitamin K Foods | diet | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
+| Ayahuasca (DMT+MAOI) + Tyramine-rich Foods | diet | severe | severe | ev_tyramine_maoi_labels (fda_label) | Severe support threshold met. |
 | Clopidogrel + Omeprazole | prodrug | severe | severe | ev_clopidogrel_cyp2c19_cpic (guideline PMID:35034351 DOI:10.1002/cpt.2526) | Severe support threshold met. |
 | Clopidogrel + Esomeprazole | prodrug | severe | severe | ev_clopidogrel_cyp2c19_cpic (guideline PMID:35034351 DOI:10.1002/cpt.2526) | Severe support threshold met. |
 | Clopidogrel + Fluoxetine | prodrug | moderate | moderate | ev_clopidogrel_cyp2c19_cpic (guideline PMID:35034351 DOI:10.1002/cpt.2526)<br>ev_fluoxetine_cyp2d6_fda (fda_label DOI:10.1097/00004714-199404000-00002) | Kept original severity. |

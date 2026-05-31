@@ -10,6 +10,7 @@ function renderGenotypePanel() {
 
   // Determine which enzymes are relevant for current stack
   const relevantEnzymes = new Set();
+  const relevantRiskAlleles = new Set();
   for (const name of activeStack) {
     const drug = DRUG_DB.find(d => d.name === name);
     if (!drug) continue;
@@ -22,30 +23,55 @@ function renderGenotypePanel() {
     for (const d of (diversion?.diverted || [])) {
       if (d.enzyme) relevantEnzymes.add(d.enzyme);
     }
+    const genotypeMetaboliteEffects = typeof GENOTYPE_METABOLITE_EFFECTS !== 'undefined' ? GENOTYPE_METABOLITE_EFFECTS : [];
+    for (const effect of genotypeMetaboliteEffects) {
+      if (effect.parent === name && effect.enzyme) relevantEnzymes.add(effect.enzyme);
+    }
+    const genotypeRiskEffects = typeof GENOTYPE_RISK_EFFECTS !== 'undefined' ? GENOTYPE_RISK_EFFECTS : {};
+    for (const [riskKey, risk] of Object.entries(genotypeRiskEffects)) {
+      if ((risk.drugEffects || []).some(effect => effect.parent === name)) relevantRiskAlleles.add(riskKey);
+    }
   }
-  const showEnzymes = ['CYP2D6','CYP2C19','CYP2C9'].filter(e => {
-    return relevantEnzymes.has(e);
-  });
-  if (showEnzymes.length === 0) {
-    el.innerHTML = '<div style="color:var(--text2);font-size:12px;padding:8px">No CYP2D6/2C19/2C9-dependent drugs in current stack.</div>';
+  const showEnzymes = Object.keys(GENOTYPE_EFFECTS).filter(e => relevantEnzymes.has(e));
+  const showRiskAlleles = Object.keys(typeof GENOTYPE_RISK_EFFECTS !== 'undefined' ? GENOTYPE_RISK_EFFECTS : {}).filter(e => relevantRiskAlleles.has(e));
+  if (showEnzymes.length === 0 && showRiskAlleles.length === 0) {
+    el.innerHTML = '<div style="color:var(--text2);font-size:12px;padding:8px">No genotype-modeled pathways in current stack.</div>';
     return;
   }
 
   // Selector rows
   let html = '<div style="margin-bottom:12px">';
-  html += '<p style="font-size:12px;color:var(--text2);margin:0 0 8px">Set your metabolizer phenotype to see how genotype changes predicted drug exposure:</p>';
+  html += '<p style="font-size:12px;color:var(--text2);margin:0 0 8px">Set your genotype result to see how it changes predicted exposure or safety risk:</p>';
   for (const enz of showEnzymes) {
     const cur = activeGenotype[enz] || GENOTYPE_PHENOTYPE.NM;
     html += `<div class="geno-selector" style="margin-bottom:6px">
       <span class="geno-enz-label">${enz}</span>`;
-    for (const [k, label] of [
+    const phenotypeButtons = [
       [GENOTYPE_PHENOTYPE.PM,'PM'],[GENOTYPE_PHENOTYPE.IM,'IM'],
       [GENOTYPE_PHENOTYPE.NM,'NM'],[GENOTYPE_PHENOTYPE.UM,'UM']
-    ]) {
+    ].filter(([k]) => GENOTYPE_EFFECTS[enz]?.[k]);
+    for (const [k, label] of phenotypeButtons) {
       const freq = GENOTYPE_EFFECTS[enz]?.[k]?.freq_pct || '?';
       html += `<button class="geno-btn ${cur===k?'active':''}"
         onclick="setGenotype('${enz}','${k}')"
         title="Frequency: ~${freq}% of population">${label} <span style="font-weight:400;font-size:9px">${freq}%</span></button>`;
+    }
+    html += '</div>';
+  }
+  for (const riskKey of showRiskAlleles) {
+    const risk = GENOTYPE_RISK_EFFECTS[riskKey];
+    const cur = activeGenotype[riskKey] || GENOTYPE_RISK_STATUS.ABSENT;
+    const buttons = [
+      [GENOTYPE_RISK_STATUS.ABSENT, 'Absent'],
+      [GENOTYPE_RISK_STATUS.PRESENT, 'Present'],
+    ];
+    html += `<div class="geno-selector" style="margin-bottom:6px">
+      <span class="geno-enz-label">${risk.label}</span>`;
+    for (const [status, label] of buttons) {
+      const effect = risk.effects?.[status];
+      html += `<button class="geno-btn ${cur===status?'active':''}"
+        onclick="setGenotype('${riskKey}','${status}')"
+        title="${effect?.note || ''}">${label}</button>`;
     }
     html += '</div>';
   }
@@ -74,6 +100,9 @@ function renderGenotypePanel() {
     }
     for (const card of getGenotypeMetaboliteEffectCards(drugName)) {
       html += renderGenotypeMetaboliteEffectCard(card);
+    }
+    for (const card of getGenotypeRiskEffectCards(drugName)) {
+      html += renderGenotypeRiskEffectCard(card);
     }
   }
   // CPIC evidence for current genotype, restricted to the active stack.
@@ -164,7 +193,12 @@ function getStackRelevantGenotypeStudies() {
       (s.phenotypes || []).some(p => selectedPhenotypes.includes(p)) &&
       studyMatchesStackContext(s, context)
     )
-    .sort((a,b) => (EVIDENCE_WEIGHT[b.type]||0) - (EVIDENCE_WEIGHT[a.type]||0));
+    .sort((a,b) => {
+      const aDirect = context.evidenceRefs.has(a.id) ? 1 : 0;
+      const bDirect = context.evidenceRefs.has(b.id) ? 1 : 0;
+      if (aDirect !== bDirect) return bDirect - aDirect;
+      return (EVIDENCE_WEIGHT[b.type]||0) - (EVIDENCE_WEIGHT[a.type]||0);
+    });
 }
 
 function getGenotypeMetaboliteEffectCards(drugName) {
@@ -186,6 +220,40 @@ function getGenotypeMetaboliteEffectCards(drugName) {
       return { effect, geno, phenotypeEffect };
     })
     .filter(Boolean);
+}
+
+function getGenotypeRiskEffectCards(drugName) {
+  if (typeof GENOTYPE_RISK_EFFECTS === 'undefined') return [];
+  return Object.entries(GENOTYPE_RISK_EFFECTS)
+    .map(([riskKey, risk]) => {
+      const status = activeGenotype[riskKey] || GENOTYPE_RISK_STATUS.ABSENT;
+      const riskEffect = risk.effects?.[status];
+      const drugEffect = (risk.drugEffects || []).find(effect => effect.parent === drugName);
+      if (!drugEffect || !riskEffect) return null;
+      return { riskKey, risk, status, riskEffect, drugEffect };
+    })
+    .filter(Boolean);
+}
+
+function renderGenotypeRiskEffectCard(card) {
+  const { risk, status, riskEffect, drugEffect } = card;
+  const isPresent = status === GENOTYPE_RISK_STATUS.PRESENT;
+  const label = isPresent ? 'risk allele present' : 'risk allele absent';
+  const foldColor = isPresent ? 'var(--red)' : 'var(--green)';
+  const refs = (drugEffect.evidenceRefs || []).filter(ref => STUDY_DB[ref]);
+  const evidenceText = refs.length
+    ? refs.map(ref => {
+      const study = STUDY_DB[ref];
+      return study.pmid ? `PMID:${study.pmid}` : (study.doi ? `DOI:${study.doi}` : ref);
+    }).join(' · ')
+    : 'Evidence pending';
+  return `<div class="geno-effect-card">
+    <div class="geno-effect-title">${drugEffect.parent} <span style="color:var(--text2);font-size:11px;font-weight:400">with ${risk.label}</span>
+      <span style="float:right;font-size:18px;font-weight:800;color:${foldColor}">${label}</span>
+    </div>
+    <div class="geno-effect-note">${isPresent ? drugEffect.note : riskEffect.note}</div>
+    <div style="font-size:10px;color:var(--text2);margin-top:4px">${drugEffect.phenotype}: ${isPresent ? drugEffect.clinicalAction : riskEffect.label} · ${evidenceText}</div>
+  </div>`;
 }
 
 function getSelectedGenotypePhenotype(enzyme) {
@@ -307,6 +375,7 @@ function getInhibitionMetaboliteEffect(effect, inhibitorContext) {
 
 function showGenotypeMetaboliteEffect(effect) {
   if (!effect || !effect.enzyme || !GENOTYPE_EFFECTS[effect.enzyme]) return false;
+  if (effect.systemic) return true;
   const metId = effect.metaboliteId;
   const listed = (METAB[effect.parent] || []).some(m => getMetaboliteGraphId(m.n) === metId);
   if (listed) return true;

@@ -52,7 +52,8 @@ JSON.stringify((() => {
     moderateDdi: severitySplit.moderate || 0,
     mildDdi: severitySplit.mild || 0,
     severitySplit,
-    genotypeGenes: Object.keys(GENOTYPE_EFFECTS).filter((key) => !key.startsWith('_')).length,
+    genotypeGenes: Object.keys(GENOTYPE_EFFECTS).filter((key) => !key.startsWith('_')).length +
+      (typeof GENOTYPE_RISK_EFFECTS === 'undefined' ? 0 : Object.keys(GENOTYPE_RISK_EFFECTS).length),
     metaboliteActors: Object.keys(METABOLITE_ACTORS).length,
     receptorScores: Object.keys(RECEPTOR_SCORES).length,
     beersFlags: Object.keys(BEERS_FLAGS).length,

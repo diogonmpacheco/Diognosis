@@ -1,5 +1,48 @@
 [
   {
+    "drug1": "Warfarin",
+    "drug2": "High Vitamin K Foods",
+    "category": "diet",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ayahuasca (DMT+MAOI)",
+    "drug2": "Tyramine-rich Foods",
+    "category": "diet",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_tyramine_maoi_labels"
+      ],
+      "studies": [
+        {
+          "id": "ev_tyramine_maoi_labels",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
     "drug1": "Clopidogrel",
     "drug2": "Omeprazole",
     "category": "prodrug",

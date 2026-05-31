@@ -17,12 +17,12 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 ## Live Source Stats
 
 <!-- MEDCHECK_STATS_START -->
-- **247 drugs** in DRUG_DB
-- **164 evidence entries** in STUDY_DB (143 with PMIDs)
-- **160 curated DDI pairs** (103 severe, 53 moderate, 4 mild)
-- **7 genotype genes**, **27 metabolite actors**, **52 receptor score profiles**
+- **254 drugs** in DRUG_DB
+- **172 evidence entries** in STUDY_DB (150 with PMIDs)
+- **162 curated DDI pairs** (104 severe, 54 moderate, 4 mild)
+- **20 genotype genes**, **27 metabolite actors**, **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **876 KB** generated bundle (17283 lines)
+- **907 KB** generated bundle (17811 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---
@@ -30,7 +30,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 ## Features
 
 ### Drug Database
-- **247 drugs** — prescription, OTC, supplements, herbs, recreational, and environmental substances
+- **254 drugs/actors** — prescription, OTC, supplements, foods, herbs, recreational, and environmental substances
 - Dose tiers, timing guidance, and alternative suggestions for each entry
 - **Drug DB v1.2.3** — last reviewed 2026-05-29
 
@@ -45,7 +45,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 - **Dynamic route fractions** — enzyme burden redistributed across residual pathways when one route is inhibited
 
 ### Evidence System
-- **STUDY_DB** — 164 evidence entries: 88 curated entries plus 76 live enrichment entries marked `reviewRequired:true` for pharmacist/physician review before clinical use
+- **STUDY_DB** — 172 evidence entries: 96 curated entries plus 76 live enrichment entries marked `reviewRequired:true` for pharmacist/physician review before clinical use
 - **9-tier evidence hierarchy** — IN_VITRO → ANIMAL → CASE_REPORT → OBSERVATIONAL → CLINICAL_PK → RCT → META_ANALYSIS → GUIDELINE → FDA_LABEL
 - **Evidence weights** — each tier carries a calibrated confidence weight (0.30–0.95) used by `computeEdgeConfidence()` to decay traversal confidence
 - **Contradictory evidence** — explicitly modeled; Province 2014 meta-analysis vs CPIC tamoxifen guideline are both shown without suppression
@@ -61,7 +61,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 - **Safety contract**: no interaction is surfaced as "dangerous" without explicit specification of which pathway, which enzyme, which metabolite, which receptor, which evidence, and what confidence level
 
 ### Genotype-Stratified Evidence
-- **PM / IM / NM / UM selectors** per enzyme (CYP2D6, CYP2C19, CYP2C9, CYP2B6, DPYD, TPMT, UGT1A1)
+- **PM / IM / NM / UM selectors** per modeled metabolism gene plus present/absent HLA risk-allele selectors (CYP2D6, CYP2C19, CYP2C9, CYP2B6, CYP2C8, CYP2A6, CYP3A5, NAT2, SLCO1B1, ABCG2, VKORC1, CYP4F2, DPYD, TPMT, UGT1A1, NUDT15, HLA-B*15:02, HLA-A*31:01, HLA-B*57:01, HLA-B*58:01)
 - AUC fold-change multipliers and population frequencies from CPIC guidelines
 - Genetics-only preview lists affected actors even before a medication stack is added
 - My Medications now shows compact parent/metabolite exposure chips when levels diverge
@@ -147,8 +147,8 @@ where `substrateBurden = min(0.50, (n_competing_substrates − 1) × 0.10)` and 
 | `RECEPTOR_SCORES` | Per-drug affinity scores across 11 receptor targets |
 | `PHENOTYPE_ACTORS` | 13 clinical outcome nodes |
 | `KNOWN_DDI` | Curated pairwise interaction entries with evidenceRefs |
-| `STUDY_DB` | 164 evidence entities with provenance; live enrichment entries remain visibly review-required |
-| `GENOTYPE_EFFECTS` | PM/IM/NM/UM fold-change multipliers per enzyme |
+| `STUDY_DB` | 172 evidence entities with provenance; live enrichment entries remain visibly review-required |
+| `GENOTYPE_EFFECTS` / `GENOTYPE_RISK_EFFECTS` | PM/IM/NM/UM fold-change multipliers per enzyme plus non-PK risk allele rules |
 | `PK_PARAMS` | One-compartment PK parameters for 15 drugs |
 | `TEMPORAL_PROFILES` | Onset/washout profiles for persistent inhibitors |
 | `WASHOUT_DAYS` | Evidence-based enzyme recovery timelines |

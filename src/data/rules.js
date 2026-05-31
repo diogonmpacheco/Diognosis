@@ -309,6 +309,50 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     }
   },
   {
+    parent:"Azathioprine",
+    metaboliteId:"6-thioguanine-nucleotides-6-tgn",
+    metaboliteName:"6-Thioguanine nucleotides (6-TGN)",
+    enzyme:"NUDT15",
+    note:"NUDT15 inactivates thiopurine cytotoxic nucleotide metabolites. NUDT15 poor function can cause severe myelosuppression even when TPMT function is normal.",
+    evidenceRefs:["ev_azathioprine_tpmt_cpic2019"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"NUDT15 loss-of-function: cytotoxic thiopurine nucleotide intolerance",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"very high myelosuppression risk; CPIC: avoid or use drastically reduced dose" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"increased myelosuppression risk; reduce dose and monitor CBC" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
+    parent:"Warfarin",
+    metaboliteId:"warfarin-dose-sensitivity",
+    metaboliteName:"Warfarin dose sensitivity",
+    enzyme:"VKORC1",
+    systemic:true,
+    note:"VKORC1 genotype changes warfarin pharmacodynamic sensitivity at the vitamin K epoxide reductase target. INR-guided dosing remains mandatory.",
+    evidenceRefs:["ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"warfarin-sensitive VKORC1 context; lower maintenance dose likely" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate sensitivity; use pharmacogenomic dosing plus INR" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"decrease", label:"relative resistance context; higher dose may be needed, guided by INR" },
+    }
+  },
+  {
+    parent:"Warfarin",
+    metaboliteId:"vitamin-k-oxidation",
+    metaboliteName:"Vitamin K oxidation",
+    enzyme:"CYP4F2",
+    systemic:true,
+    note:"CYP4F2 V433M reduces vitamin K oxidation and modestly increases warfarin dose requirement; the effect is smaller than VKORC1 and CYP2C9.",
+    evidenceRefs:["ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"modestly higher dose requirement from reduced vitamin K oxidation" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"decrease", label:"small upward dose-pressure signal" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
     parent:"Omeprazole",
     metaboliteId:"5-hydroxyomeprazole",
     metaboliteName:"5-Hydroxyomeprazole",

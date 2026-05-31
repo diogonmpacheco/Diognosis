@@ -62,6 +62,9 @@ const COMBINATION_PRODUCTS = [
 // TRANSPORTER DDI — P-gp, OATP, OCT, OAT mediated interactions
 // ═══════════════════════════════════════════════════════════════════
 const KNOWN_DDI = [
+  // ── Food / diet interactions ──
+  {drug1:"Warfarin",drug2:"High Vitamin K Foods",severity:"moderate",category:"diet",mechanism:"Abrupt increases in vitamin K intake can oppose warfarin anticoagulation and lower INR",effect:"↓ Warfarin effect — keep intake consistent and monitor INR after diet changes",evidence:{confidence:"high",sources:["FDA label","clinical guidelines"]}},
+  {drug1:"Ayahuasca (DMT+MAOI)",drug2:"Tyramine-rich Foods",severity:"severe",category:"diet",mechanism:"MAO-A/MAO-B inhibition reduces gut tyramine clearance; absorbed tyramine can trigger norepinephrine release and hypertensive crisis",effect:"Avoid high-tyramine foods with nonselective MAO inhibition",evidence:{confidence:"high",sources:["DailyMed MAOI labels"]},evidenceRefs:["ev_tyramine_maoi_labels"]},
   // ── Clopidogrel prodrug activation failures ──
   {drug1:"Clopidogrel",drug2:"Omeprazole",severity:"severe",category:"prodrug",mechanism:"Omeprazole inhibits CYP2C19, blocking clopidogrel activation to its active thiol metabolite",effect:"↓↓ Clopidogrel efficacy — increased risk of cardiovascular events",evidence:{confidence:"high",sources:["FDA label", "CPIC"]},evidenceRefs:["ev_clopidogrel_cyp2c19_cpic"]},
   {drug1:"Clopidogrel",drug2:"Esomeprazole",severity:"severe",category:"prodrug",mechanism:"Esomeprazole inhibits CYP2C19, blocking clopidogrel activation",effect:"↓↓ Clopidogrel efficacy — use pantoprazole instead",evidence:{confidence:"high",sources:["FDA label", "CPIC"]},evidenceRefs:["ev_clopidogrel_cyp2c19_cpic"]},

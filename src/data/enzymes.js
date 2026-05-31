@@ -215,12 +215,18 @@ function getPhenotypeMult(enzyme) {
 function setGenetics(enzyme, phenotype) {
   if (phenotype === "normal" || !phenotype) delete userGenetics[enzyme];
   else userGenetics[enzyme] = phenotype;
+  if (typeof activeGenotype !== 'undefined' && GENOTYPE_EFFECTS[enzyme]) {
+    activeGenotype[enzyme] = legacyPhenotypeToGenotype(phenotype);
+  }
   renderGenetics();
   renderAll();
 }
 
 function removeGenetics(enzyme) {
   delete userGenetics[enzyme];
+  if (typeof activeGenotype !== 'undefined' && GENOTYPE_EFFECTS[enzyme]) {
+    activeGenotype[enzyme] = GENOTYPE_PHENOTYPE.NM;
+  }
   renderGenetics();
   renderAll();
 }
@@ -246,6 +252,11 @@ const ENZYME_ACTORS = {
   "CYP2B6":  {id:"CYP2B6",  type:ACTOR_TYPE.ENZYME, name:"CYP2B6",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP2E1":  {id:"CYP2E1",  type:ACTOR_TYPE.ENZYME, name:"CYP2E1",  family:"CYP450", tissue:["liver"],              polymorphic:false,substrateCount:0, inducible:["alcohol","isoniazid","obesity"]},
   "CYP4F2":  {id:"CYP4F2",  type:ACTOR_TYPE.ENZYME, name:"CYP4F2",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
+  "NAT2":    {id:"NAT2",    type:ACTOR_TYPE.ENZYME, name:"NAT2",    family:"NAT",    tissue:["liver"],              polymorphic:true, substrateCount:0},
+  "VKORC1":  {id:"VKORC1",  type:ACTOR_TYPE.ENZYME, name:"VKORC1",  family:"vitamin_K_cycle", tissue:["liver"],      polymorphic:true, substrateCount:0},
+  "NUDT15":  {id:"NUDT15",  type:ACTOR_TYPE.ENZYME, name:"NUDT15",  family:"nucleotide_hydrolase", tissue:["blood","bone_marrow"], polymorphic:true, substrateCount:0},
+  "SLCO1B1": {id:"SLCO1B1", type:ACTOR_TYPE.ENZYME, name:"SLCO1B1/OATP1B1", family:"transporter_gene", tissue:["liver"], polymorphic:true, substrateCount:0},
+  "ABCG2":   {id:"ABCG2",   type:ACTOR_TYPE.ENZYME, name:"ABCG2/BCRP", family:"transporter_gene", tissue:["gut","liver"], polymorphic:true, substrateCount:0},
   "CYP27A1": {id:"CYP27A1", type:ACTOR_TYPE.ENZYME, name:"CYP27A1", family:"CYP450", tissue:["liver","macrophage"], polymorphic:false,substrateCount:0},
   "CYP2R1":  {id:"CYP2R1",  type:ACTOR_TYPE.ENZYME, name:"CYP2R1",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP27B1": {id:"CYP27B1", type:ACTOR_TYPE.ENZYME, name:"CYP27B1", family:"CYP450", tissue:["kidney"],             polymorphic:true, substrateCount:0},
