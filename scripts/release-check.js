@@ -68,7 +68,7 @@ assert(smoke.includes(`'${MEDCHECK_VERSION.engine}'`) || smoke.includes(`"${MEDC
 assert(regression.includes(`'${MEDCHECK_VERSION.engine}'`) || regression.includes(`"${MEDCHECK_VERSION.engine}"`), 'regression-check.js expected engine version is stale');
 assert(readme.includes(`**${DRUG_DB.length} drugs**`), `README drug count is stale; expected ${DRUG_DB.length}`);
 assert(readme.includes(`**Drug DB v${MEDCHECK_VERSION.drugDb}**`), `README Drug DB version is stale; expected ${MEDCHECK_VERSION.drugDb}`);
-assert(readme.includes(`**STUDY_DB** — ${Object.keys(STUDY_DB).length} curated evidence entries`), `README study count is stale; expected ${Object.keys(STUDY_DB).length}`);
+assert(readme.includes(`**${Object.keys(STUDY_DB).length} evidence entries** in STUDY_DB`), `README study count is stale; expected ${Object.keys(STUDY_DB).length}`);
 
 console.log(`✓ Engine ${MEDCHECK_VERSION.engine}`);
 console.log(`✓ Drug DB ${MEDCHECK_VERSION.drugDb}`);

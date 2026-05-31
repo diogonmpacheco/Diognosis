@@ -1644,6 +1644,2641 @@ const STUDY_DB = {
     clinicalImplication:"Sex must be considered when interpreting paroxetine serum levels. Females at any given dose will have ~2× higher concentrations than males. Current AGNP guidelines (65–125 ng/mL) are male-centric. High-dose patients (≥40mg/day) should be tapered at 5mg/2-4 weeks, not the standard 10mg/week schedule."
   },
 
+  // ═══ LIVE ENRICHMENT DRAFTS — UNREVIEWED, REVIEW REQUIRED ═══
+  // Generated from scripts/enrich/drafts.json. These entries contain citation metadata
+  // and paraphrased abstract-level findings only. They are live for review/discovery,
+  // but verified:false and reviewRequired:true prevent treating them as curated evidence.
+  "draft_metformin_oct2_elsby2018_28971610": {
+    id:"draft_metformin_oct2_elsby2018_28971610",
+    public:true,
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Mechanistic in vitro studies confirm that inhibition of the renal apical efflux transporter multidrug and toxin extrusion (MATE) 1, and not altered absorption, underlies the increased metformin exposure observed in clinical interactions with cimetidine, trimethoprim or pyrimethamine.",
+    year:2018,
+    source:"Pharmacology research & perspectives",
+    journal:"Pharmacology research & perspectives",
+    pmid:"28971610",
+    doi:"10.1002/prp2.357",
+    url:"https://doi.org/10.1002/prp2.357",
+    studyDesign:"in_vitro_mechanistic_study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metformin:OCT2, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metformin_OCT2_transport"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:pubmed",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metformin_oct2_asanos2025_40424011": {
+    id:"draft_metformin_oct2_asanos2025_40424011",
+    public:true,
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Predicting OCT2/MATEs-Mediated Drug Interactions in Healthy Volunteers and Patients with Chronic Kidney Disease: Insights from Extended Clearance Concept, Endogenous Biomarkers, and In Vitro Inhibition Studies (Perspectives from the International Transporter Consortium).",
+    year:2025,
+    source:"Clin Pharmacol Ther",
+    journal:"Clin Pharmacol Ther",
+    pmid:"40424011",
+    doi:"10.1002/cpt.3727",
+    url:"https://doi.org/10.1002/cpt.3727",
+    studyDesign:"in_vitro_mechanistic_study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metformin:OCT2, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metformin_OCT2_transport"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metformin_oct2_ailabounias2025_40098288": {
+    id:"draft_metformin_oct2_ailabounias2025_40098288",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Quantitative Contributions of Hepatic and Renal Organic Cation Transporters to the Clinical Pharmacokinetic Cimetidine-Metformin Interaction.",
+    year:2025,
+    source:"Clin Pharmacol Ther",
+    journal:"Clin Pharmacol Ther",
+    pmid:"40098288",
+    doi:"10.1002/cpt.3639",
+    url:"https://doi.org/10.1002/cpt.3639",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metformin:OCT2, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metformin_OCT2_transport"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metformin_oct2_choimk2026_41599173": {
+    id:"draft_metformin_oct2_choimk2026_41599173",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Pharmacokinetics and Drug Interactions.",
+    year:2026,
+    source:"Pharmaceutics",
+    journal:"Pharmaceutics",
+    pmid:"41599173",
+    doi:"10.3390/pharmaceutics18010067",
+    url:"https://doi.org/10.3390/pharmaceutics18010067",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metformin:OCT2, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metformin_OCT2_transport"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metformin_oct2_koishikawat2025_39497599": {
+    id:"draft_metformin_oct2_koishikawat2025_39497599",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Effects of Cimetidine and Dolutegravir on the Endogenous Drug-Drug Interaction Biomarkers for Organic Cation Transporter 2 and Multidrug and Toxin Extrusion Protein 1 in Healthy Volunteers.",
+    year:2025,
+    source:"Clin Pharmacol Ther",
+    journal:"Clin Pharmacol Ther",
+    pmid:"39497599",
+    doi:"10.1002/cpt.3482",
+    url:"https://doi.org/10.1002/cpt.3482",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metformin:OCT2, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metformin_OCT2_transport"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metformin_oct2_ailabounias2025_39997705": {
+    id:"draft_metformin_oct2_ailabounias2025_39997705",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Is <i>N</i>1-Methylnicotinamide a Good Organic Cation Transporter 2 (OCT2) Biomarker?",
+    year:2025,
+    source:"Metabolites",
+    journal:"Metabolites",
+    pmid:"39997705",
+    doi:"10.3390/metabo15020080",
+    url:"https://doi.org/10.3390/metabo15020080",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metformin:OCT2, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metformin_OCT2_transport"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metformin_oct2_giacomini2010_20190787": {
+    id:"draft_metformin_oct2_giacomini2010_20190787",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Membrane transporters in drug development",
+    year:2010,
+    source:"Nature Reviews Drug Discovery",
+    journal:"Nature Reviews Drug Discovery",
+    pmid:"20190787",
+    doi:"10.1038/nrd3028",
+    url:"https://doi.org/10.1038/nrd3028",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metformin:OCT2, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metformin_OCT2_transport"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metformin_oct2_hillgren2013_23588305": {
+    id:"draft_metformin_oct2_hillgren2013_23588305",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Emerging Transporters of Clinical Importance: An Update From the International Transporter Consortium",
+    year:2013,
+    source:"Clinical Pharmacology & Therapeutics",
+    journal:"Clinical Pharmacology & Therapeutics",
+    pmid:"23588305",
+    doi:"10.1038/clpt.2013.74",
+    url:"https://doi.org/10.1038/clpt.2013.74",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metformin:OCT2, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metformin_OCT2_transport"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metformin_oct2_morrissey2012_23140242": {
+    id:"draft_metformin_oct2_morrissey2012_23140242",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Renal Transporters in Drug Development",
+    year:2012,
+    source:"The Annual Review of Pharmacology and Toxicology",
+    journal:"The Annual Review of Pharmacology and Toxicology",
+    pmid:"23140242",
+    doi:"10.1146/annurev-pharmtox-011112-140317",
+    url:"https://doi.org/10.1146/annurev-pharmtox-011112-140317",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metformin:OCT2, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metformin_OCT2_transport"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metformin_oct2_eyal2010_20118196": {
+    id:"draft_metformin_oct2_eyal2010_20118196",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Pharmacokinetics of Metformin during Pregnancy",
+    year:2010,
+    source:"Drug Metabolism and Disposition",
+    journal:"Drug Metabolism and Disposition",
+    pmid:"20118196",
+    doi:"10.1124/dmd.109.031245",
+    url:"https://doi.org/10.1124/dmd.109.031245",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metformin:OCT2, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metformin_OCT2_transport"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metformin_oct2_gervasoni2017_28114188": {
+    id:"draft_metformin_oct2_gervasoni2017_28114188",
+    public:true,
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"How Relevant is the Interaction Between Dolutegravir and Metformin in Real Life?",
+    year:2017,
+    source:"JAIDS Journal of Acquired Immune Deficiency Syndromes",
+    journal:"JAIDS Journal of Acquired Immune Deficiency Syndromes",
+    pmid:"28114188",
+    doi:"10.1097/qai.0000000000001292",
+    url:"https://doi.org/10.1097/qai.0000000000001292",
+    studyDesign:"meta_analysis_or_systematic_review",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metformin:OCT2, but no supported quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metformin_OCT2_transport"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_fluoxetine_cyp2d6_alderman1997_9241008": {
+    id:"draft_fluoxetine_cyp2d6_alderman1997_9241008",
+    public:true,
+    type:EVIDENCE_TIER.RCT,
+    title:"Desipramine pharmacokinetics when coadministered with paroxetine or sertraline in extensive metabolizers.",
+    year:1997,
+    source:"Journal of clinical psychopharmacology",
+    journal:"Journal of clinical psychopharmacology",
+    pmid:"9241008",
+    doi:"10.1097/00004714-199708000-00008",
+    url:"https://doi.org/10.1097/00004714-199708000-00008",
+    studyDesign:"randomized_controlled_trial",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "aucFold": 2,
+      "note": "Abstract-level extraction for fluoxetine:CYP2D6 reports approximately 2-fold exposure change."
+    },
+    temporal:{},
+    supports:[
+      "fluoxetine_inhibits_CYP2D6",
+      "norfluoxetine_inhibits_CYP2D6"
+    ],
+    contradicts:[],
+    limitations:[
+      "Abstract-level extraction only; requires human review before promotion",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"moderate",
+    needsFullText:false,
+    provenance:"search:pubmed",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_fluoxetine_cyp2d6_ereshefsky1996_8846618": {
+    id:"draft_fluoxetine_cyp2d6_ereshefsky1996_8846618",
+    public:true,
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Antidepressant drug interactions and the cytochrome P450 system. The role of cytochrome P450 2D6.",
+    year:1996,
+    source:"Clinical pharmacokinetics",
+    journal:"Clinical pharmacokinetics",
+    pmid:"8846618",
+    doi:"10.2165/00003088-199500291-00004",
+    url:"https://doi.org/10.2165/00003088-199500291-00004",
+    studyDesign:"in_vitro_mechanistic_study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to fluoxetine:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "fluoxetine_inhibits_CYP2D6",
+      "norfluoxetine_inhibits_CYP2D6"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:pubmed",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_fluoxetine_cyp2d6_isoherranenn2026_41494464": {
+    id:"draft_fluoxetine_cyp2d6_isoherranenn2026_41494464",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Role of metabolites in drug-drug interactions.",
+    year:2026,
+    source:"Drug Metab Pharmacokinet",
+    journal:"Drug Metab Pharmacokinet",
+    pmid:"41494464",
+    doi:"10.1016/j.dmpk.2025.101511",
+    url:"https://doi.org/10.1016/j.dmpk.2025.101511",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to fluoxetine:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "fluoxetine_inhibits_CYP2D6",
+      "norfluoxetine_inhibits_CYP2D6"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_fluoxetine_cyp2d6_truongj2025_39870954": {
+    id:"draft_fluoxetine_cyp2d6_truongj2025_39870954",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"An Exploration of the Interplay Between Caffeine and Antidepressants Through the Lens of Pharmacokinetics and Pharmacodynamics.",
+    year:2025,
+    source:"Eur J Drug Metab Pharmacokinet",
+    journal:"Eur J Drug Metab Pharmacokinet",
+    pmid:"39870954",
+    doi:"10.1007/s13318-024-00928-x",
+    url:"https://doi.org/10.1007/s13318-024-00928-x",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to fluoxetine:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "fluoxetine_inhibits_CYP2D6",
+      "norfluoxetine_inhibits_CYP2D6"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_fluoxetine_cyp2d6_tanaudommongkoni2025_40245579": {
+    id:"draft_fluoxetine_cyp2d6_tanaudommongkoni2025_40245579",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"The strong clinical interaction between bupropion and CYP2D6 is primarily mediated through bupropion metabolites and their stereoisomers: A paradigm for evaluating metabolites in drug-drug interaction risk.",
+    year:2025,
+    source:"Drug Metab Dispos",
+    journal:"Drug Metab Dispos",
+    pmid:"40245579",
+    doi:"10.1016/j.dmd.2025.100070",
+    url:"https://doi.org/10.1016/j.dmd.2025.100070",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to fluoxetine:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "fluoxetine_inhibits_CYP2D6",
+      "norfluoxetine_inhibits_CYP2D6"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_fluoxetine_cyp2d6_zakarayaz2024_38543065": {
+    id:"draft_fluoxetine_cyp2d6_zakarayaz2024_38543065",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Pharmacokinetics and Pharmacodynamics: A Comprehensive Analysis of the Absorption, Distribution, Metabolism, and Excretion of Psychiatric Drugs.",
+    year:2024,
+    source:"Pharmaceuticals (Basel)",
+    journal:"Pharmaceuticals (Basel)",
+    pmid:"38543065",
+    doi:"10.3390/ph17030280",
+    url:"https://doi.org/10.3390/ph17030280",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to fluoxetine:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "fluoxetine_inhibits_CYP2D6",
+      "norfluoxetine_inhibits_CYP2D6"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_fluoxetine_cyp2d6_parshenkovm2025_41440979": {
+    id:"draft_fluoxetine_cyp2d6_parshenkovm2025_41440979",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Personalizing Antidepressant Therapy: Integrating Pharmacogenomics, Therapeutic Drug Monitoring, and Digital Tools for Improved Depression Outcomes.",
+    year:2025,
+    source:"J Pers Med",
+    journal:"J Pers Med",
+    pmid:"41440979",
+    doi:"10.3390/jpm15120616",
+    url:"https://doi.org/10.3390/jpm15120616",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to fluoxetine:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "fluoxetine_inhibits_CYP2D6",
+      "norfluoxetine_inhibits_CYP2D6"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_fluoxetine_cyp2d6_hiemke2017_28910830": {
+    id:"draft_fluoxetine_cyp2d6_hiemke2017_28910830",
+    public:true,
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"Consensus Guidelines for Therapeutic Drug Monitoring in Neuropsychopharmacology: Update 2017",
+    year:2017,
+    source:"Pharmacopsychiatry",
+    journal:"Pharmacopsychiatry",
+    pmid:"28910830",
+    doi:"10.1055/s-0043-116492",
+    url:"https://doi.org/10.1055/s-0043-116492",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to fluoxetine:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "fluoxetine_inhibits_CYP2D6",
+      "norfluoxetine_inhibits_CYP2D6"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_fluoxetine_cyp2d6_michalets1998_9469685": {
+    id:"draft_fluoxetine_cyp2d6_michalets1998_9469685",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Update: Clinically Significant Cytochrome P‐450 Drug Interactions",
+    year:1998,
+    source:"Pharmacotherapy The Journal of Human Pharmacology and Drug Therapy",
+    journal:"Pharmacotherapy The Journal of Human Pharmacology and Drug Therapy",
+    pmid:"9469685",
+    doi:"10.1002/j.1875-9114.1998.tb03830.x",
+    url:"https://doi.org/10.1002/j.1875-9114.1998.tb03830.x",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to fluoxetine:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "fluoxetine_inhibits_CYP2D6",
+      "norfluoxetine_inhibits_CYP2D6"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_fluoxetine_cyp2d6_holm1999_null": {
+    id:"draft_fluoxetine_cyp2d6_holm1999_null",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Reboxetine",
+    year:1999,
+    source:"CNS Drugs",
+    journal:"CNS Drugs",
+    pmid:null,
+    doi:"10.2165/00023210-199912010-00006",
+    url:"https://doi.org/10.2165/00023210-199912010-00006",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to fluoxetine:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "fluoxetine_inhibits_CYP2D6",
+      "norfluoxetine_inhibits_CYP2D6"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_hydroxybupropion_cyp2d6_yuj2024_39452902": {
+    id:"draft_hydroxybupropion_cyp2d6_yuj2024_39452902",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Metabolite Measurement in Index Substrate Drug Interaction Studies: A Review of the Literature and Recent New Drug Application Reviews.",
+    year:2024,
+    source:"Metabolites",
+    journal:"Metabolites",
+    pmid:"39452902",
+    doi:"10.3390/metabo14100522",
+    url:"https://doi.org/10.3390/metabo14100522",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to hydroxybupropion:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "hydroxybupropion_inhibits_CYP2D6",
+      "bupropion_cyp2d6_ddi"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_hydroxybupropion_cyp2d6_luechtur2025_40006546": {
+    id:"draft_hydroxybupropion_cyp2d6_luechtur2025_40006546",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Physiologically Based Pharmacokinetic Model of CYP2D6 Associated Interaction Between Venlafaxine and Strong Inhibitor Bupropion-The Influence of Age-Relevant Changes and Inhibitory Dose to Classify Therapeutical Success and Harm.",
+    year:2025,
+    source:"Pharmaceutics",
+    journal:"Pharmaceutics",
+    pmid:"40006546",
+    doi:"10.3390/pharmaceutics17020179",
+    url:"https://doi.org/10.3390/pharmaceutics17020179",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to hydroxybupropion:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "hydroxybupropion_inhibits_CYP2D6",
+      "bupropion_cyp2d6_ddi"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_hydroxybupropion_cyp2d6_rdesheims2025_39953671": {
+    id:"draft_hydroxybupropion_cyp2d6_rdesheims2025_39953671",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"A Comprehensive CYP2D6 Drug-Drug-Gene Interaction Network for Application in Precision Dosing and Drug Development.",
+    year:2025,
+    source:"Clin Pharmacol Ther",
+    journal:"Clin Pharmacol Ther",
+    pmid:"39953671",
+    doi:"10.1002/cpt.3604",
+    url:"https://doi.org/10.1002/cpt.3604",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to hydroxybupropion:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "hydroxybupropion_inhibits_CYP2D6",
+      "bupropion_cyp2d6_ddi"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_hydroxybupropion_cyp2d6_ciocotianim2024_39590825": {
+    id:"draft_hydroxybupropion_cyp2d6_ciocotianim2024_39590825",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Bupropion Increased More than Five Times the Systemic Exposure to Aripiprazole: An In Vivo Study in <i>Wistar albino</i> Rats.",
+    year:2024,
+    source:"Metabolites",
+    journal:"Metabolites",
+    pmid:"39590825",
+    doi:"10.3390/metabo14110588",
+    url:"https://doi.org/10.3390/metabo14110588",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to hydroxybupropion:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "hydroxybupropion_inhibits_CYP2D6",
+      "bupropion_cyp2d6_ddi"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_hydroxybupropion_cyp2d6_bosilkovska2014_24722393": {
+    id:"draft_hydroxybupropion_cyp2d6_bosilkovska2014_24722393",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Geneva Cocktail for Cytochrome P450 and P-Glycoprotein Activity Assessment Using Dried Blood Spots",
+    year:2014,
+    source:"Clinical Pharmacology & Therapeutics",
+    journal:"Clinical Pharmacology & Therapeutics",
+    pmid:"24722393",
+    doi:"10.1038/clpt.2014.83",
+    url:"https://doi.org/10.1038/clpt.2014.83",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to hydroxybupropion:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "hydroxybupropion_inhibits_CYP2D6",
+      "bupropion_cyp2d6_ddi"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_hydroxybupropion_cyp2d6_shirasaka2013_23620487": {
+    id:"draft_hydroxybupropion_cyp2d6_shirasaka2013_23620487",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Inhibition of CYP2C19 and CYP3A4 by Omeprazole Metabolites and Their Contribution to Drug-Drug Interactions",
+    year:2013,
+    source:"Drug Metabolism and Disposition",
+    journal:"Drug Metabolism and Disposition",
+    pmid:"23620487",
+    doi:"10.1124/dmd.113.051722",
+    url:"https://doi.org/10.1124/dmd.113.051722",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to hydroxybupropion:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "hydroxybupropion_inhibits_CYP2D6",
+      "bupropion_cyp2d6_ddi"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_hydroxybupropion_cyp2d6_kirby2011_21930825": {
+    id:"draft_hydroxybupropion_cyp2d6_kirby2011_21930825",
+    public:true,
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Complex Drug Interactions of HIV Protease Inhibitors 2: In Vivo Induction and In Vitro to In Vivo Correlation of Induction of Cytochrome P450 1A2, 2B6, and 2C9 by Ritonavir or Nelfinavir",
+    year:2011,
+    source:"Drug Metabolism and Disposition",
+    journal:"Drug Metabolism and Disposition",
+    pmid:"21930825",
+    doi:"10.1124/dmd.111.038646",
+    url:"https://doi.org/10.1124/dmd.111.038646",
+    studyDesign:"in_vitro_mechanistic_study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to hydroxybupropion:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "hydroxybupropion_inhibits_CYP2D6",
+      "bupropion_cyp2d6_ddi"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_hydroxybupropion_cyp2d6_protti2020_32285503": {
+    id:"draft_hydroxybupropion_cyp2d6_protti2020_32285503",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"New‐generation, non‐SSRI antidepressants: Drug‐drug interactions and therapeutic drug monitoring. Part 2: NaSSAs, NRIs, SNDRIs, MASSAs, NDRIs, and others",
+    year:2020,
+    source:"Medicinal Research Reviews",
+    journal:"Medicinal Research Reviews",
+    pmid:"32285503",
+    doi:"10.1002/med.21671",
+    url:"https://doi.org/10.1002/med.21671",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to hydroxybupropion:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "hydroxybupropion_inhibits_CYP2D6",
+      "bupropion_cyp2d6_ddi"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_vortioxetine_cyp2d6_lorvellecma2024_39444600": {
+    id:"draft_vortioxetine_cyp2d6_lorvellecma2024_39444600",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Pharmacogenetics testing for poor response to antidepressants: a transnosographic case series.",
+    year:2024,
+    source:"Front Pharmacol",
+    journal:"Front Pharmacol",
+    pmid:"39444600",
+    doi:"10.3389/fphar.2024.1440523",
+    url:"https://doi.org/10.3389/fphar.2024.1440523",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to vortioxetine:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "vortioxetine_METABOLIZED_TO_vortioxetine-carboxylic-acid"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_vortioxetine_cyp2d6_lauschkevm2026_41806469": {
+    id:"draft_vortioxetine_cyp2d6_lauschkevm2026_41806469",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"The evolving landscape of pharmacogenomics: Current achievements and future directions.",
+    year:2026,
+    source:"Pharmacol Rev",
+    journal:"Pharmacol Rev",
+    pmid:"41806469",
+    doi:"10.1016/j.pharmr.2026.100122",
+    url:"https://doi.org/10.1016/j.pharmr.2026.100122",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to vortioxetine:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "vortioxetine_METABOLIZED_TO_vortioxetine-carboxylic-acid"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_vortioxetine_cyp2d6_wangsy2025_41019984": {
+    id:"draft_vortioxetine_cyp2d6_wangsy2025_41019984",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Impact of metabolic enzyme activity variability on dabrafenib disposition.",
+    year:2025,
+    source:"Front Pharmacol",
+    journal:"Front Pharmacol",
+    pmid:"41019984",
+    doi:"10.3389/fphar.2025.1643618",
+    url:"https://doi.org/10.3389/fphar.2025.1643618",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to vortioxetine:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "vortioxetine_METABOLIZED_TO_vortioxetine-carboxylic-acid"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_vortioxetine_cyp2d6_chen2013_23975654": {
+    id:"draft_vortioxetine_cyp2d6_chen2013_23975654",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Pharmacokinetic Drug Interactions Involving Vortioxetine (Lu AA21004), a Multimodal Antidepressant",
+    year:2013,
+    source:"Clinical Drug Investigation",
+    journal:"Clinical Drug Investigation",
+    pmid:"23975654",
+    doi:"10.1007/s40261-013-0117-6",
+    url:"https://doi.org/10.1007/s40261-013-0117-6",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to vortioxetine:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "vortioxetine_METABOLIZED_TO_vortioxetine-carboxylic-acid"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_vortioxetine_cyp2d6_strawn2023_36651686": {
+    id:"draft_vortioxetine_cyp2d6_strawn2023_36651686",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Adverse Effects of Antidepressant Medications and their Management in Children and Adolescents",
+    year:2023,
+    source:"Pharmacotherapy The Journal of Human Pharmacology and Drug Therapy",
+    journal:"Pharmacotherapy The Journal of Human Pharmacology and Drug Therapy",
+    pmid:"36651686",
+    doi:"10.1002/phar.2767",
+    url:"https://doi.org/10.1002/phar.2767",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to vortioxetine:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "vortioxetine_METABOLIZED_TO_vortioxetine-carboxylic-acid"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_vortioxetine_cyp2d6_yu2018_29572333": {
+    id:"draft_vortioxetine_cyp2d6_yu2018_29572333",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Risk of Clinically Relevant Pharmacokinetic-Based Drug-Drug Interactions with Drugs Approved by the U.S. Food and Drug Administration Between 2013 and 2016",
+    year:2018,
+    source:"Drug Metabolism and Disposition",
+    journal:"Drug Metabolism and Disposition",
+    pmid:"29572333",
+    doi:"10.1124/dmd.117.078691",
+    url:"https://doi.org/10.1124/dmd.117.078691",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to vortioxetine:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "vortioxetine_METABOLIZED_TO_vortioxetine-carboxylic-acid"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metoclopramide_cyp2d6_desta2002_11854155": {
+    id:"draft_metoclopramide_cyp2d6_desta2002_11854155",
+    public:true,
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"The gastroprokinetic and antiemetic drug metoclopramide is a substrate and inhibitor of cytochrome P450 2D6.",
+    year:2002,
+    source:"Drug metabolism and disposition: the biological fate of chemicals",
+    journal:"Drug metabolism and disposition: the biological fate of chemicals",
+    pmid:"11854155",
+    doi:"10.1124/dmd.30.3.336",
+    url:"https://doi.org/10.1124/dmd.30.3.336",
+    studyDesign:"in_vitro_mechanistic_study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metoclopramide:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metoclopramide_METABOLIZED_TO_n-deethyl-metoclopramide"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:pubmed",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metoclopramide_cyp2d6_lium2026_41820792": {
+    id:"draft_metoclopramide_cyp2d6_lium2026_41820792",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Impact of CYP2D6 Metabolizer Status on Ondansetron Efficacy in Early Pregnancy Induced Nausea and Vomiting: A Case Control Study.",
+    year:2026,
+    source:"Clin Transl Sci",
+    journal:"Clin Transl Sci",
+    pmid:"41820792",
+    doi:"10.1111/cts.70523",
+    url:"https://doi.org/10.1111/cts.70523",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metoclopramide:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metoclopramide_METABOLIZED_TO_n-deethyl-metoclopramide"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metoclopramide_cyp2d6_moorec2025_39899439": {
+    id:"draft_metoclopramide_cyp2d6_moorec2025_39899439",
+    public:true,
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"CYP2D6 genotype and associated 5-HT&lt;sub&gt;3&lt;/sub&gt; receptor antagonist outcomes: A systematic review and meta-analysis.",
+    year:2025,
+    source:"Clin Transl Sci",
+    journal:"Clin Transl Sci",
+    pmid:"39899439",
+    doi:"10.1111/cts.70108",
+    url:"https://doi.org/10.1111/cts.70108",
+    studyDesign:"meta_analysis_or_systematic_review",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metoclopramide:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metoclopramide_METABOLIZED_TO_n-deethyl-metoclopramide"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metoclopramide_cyp2d6_belania2024_39219201": {
+    id:"draft_metoclopramide_cyp2d6_belania2024_39219201",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Challenging pharmacotherapy management of a psychotic disorder due to a delicate pharmacogenetic profile and drug-drug interactions: a case report and literature review.",
+    year:2024,
+    source:"Croat Med J",
+    journal:"Croat Med J",
+    pmid:"39219201",
+    doi:null,
+    url:"https://pubmed.ncbi.nlm.nih.gov/39219201/",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metoclopramide:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metoclopramide_METABOLIZED_TO_n-deethyl-metoclopramide"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metoclopramide_cyp2d6_wittwernl2025_40895400": {
+    id:"draft_metoclopramide_cyp2d6_wittwernl2025_40895400",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"The Prevalence of Potential Drug-Drug-Gene Interactions: A Descriptive Study Using Swiss Claims Data.",
+    year:2025,
+    source:"Pharmgenomics Pers Med",
+    journal:"Pharmgenomics Pers Med",
+    pmid:"40895400",
+    doi:"10.2147/pgpm.s527556",
+    url:"https://doi.org/10.2147/pgpm.s527556",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metoclopramide:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metoclopramide_METABOLIZED_TO_n-deethyl-metoclopramide"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metoclopramide_cyp2d6_williams2001_11573533": {
+    id:"draft_metoclopramide_cyp2d6_williams2001_11573533",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Codeine phosphate in paediatric medicine",
+    year:2001,
+    source:"British Journal of Anaesthesia",
+    journal:"British Journal of Anaesthesia",
+    pmid:"11573533",
+    doi:"10.1093/bja/86.3.413",
+    url:"https://doi.org/10.1093/bja/86.3.413",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metoclopramide:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metoclopramide_METABOLIZED_TO_n-deethyl-metoclopramide"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metoclopramide_cyp2d6_stearns2003_14652237": {
+    id:"draft_metoclopramide_cyp2d6_stearns2003_14652237",
+    public:true,
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Active Tamoxifen Metabolite Plasma Concentrations After Coadministration of Tamoxifen and the Selective Serotonin Reuptake Inhibitor Paroxetine",
+    year:2003,
+    source:"JNCI Journal of the National Cancer Institute",
+    journal:"JNCI Journal of the National Cancer Institute",
+    pmid:"14652237",
+    doi:"10.1093/jnci/djg108",
+    url:"https://doi.org/10.1093/jnci/djg108",
+    studyDesign:"in_vitro_mechanistic_study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metoclopramide:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metoclopramide_METABOLIZED_TO_n-deethyl-metoclopramide"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metoclopramide_cyp2d6_hiemke2011_21969060": {
+    id:"draft_metoclopramide_cyp2d6_hiemke2011_21969060",
+    public:true,
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"AGNP Consensus Guidelines for Therapeutic Drug Monitoring in Psychiatry: Update 2011",
+    year:2011,
+    source:"Pharmacopsychiatry",
+    journal:"Pharmacopsychiatry",
+    pmid:"21969060",
+    doi:"10.1055/s-0031-1286287",
+    url:"https://doi.org/10.1055/s-0031-1286287",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metoclopramide:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metoclopramide_METABOLIZED_TO_n-deethyl-metoclopramide"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_metoclopramide_cyp2d6_zhou2017_28378927": {
+    id:"draft_metoclopramide_cyp2d6_zhou2017_28378927",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Worldwide Distribution of Cytochrome P450 Alleles: A Meta‐analysis of Population‐scale Sequencing Projects",
+    year:2017,
+    source:"Clinical Pharmacology & Therapeutics",
+    journal:"Clinical Pharmacology & Therapeutics",
+    pmid:"28378927",
+    doi:"10.1002/cpt.690",
+    url:"https://doi.org/10.1002/cpt.690",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to metoclopramide:CYP2D6, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "metoclopramide_METABOLIZED_TO_n-deethyl-metoclopramide"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_kratom_cyp_chiang2026_41743842": {
+    id:"draft_kratom_cyp_chiang2026_41743842",
+    public:true,
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Physiologically Based Pharmacokinetic Model for Clinical Translation and Prediction of Drug Interaction of the Major Kratom Alkaloid, Mitragynine.",
+    year:2026,
+    source:"ACS pharmacology & translational science",
+    journal:"ACS pharmacology & translational science",
+    pmid:"41743842",
+    doi:"10.1021/acsptsci.5c00718",
+    url:"https://doi.org/10.1021/acsptsci.5c00718",
+    studyDesign:"in_vitro_mechanistic_study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to kratom:CYP, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "kratom_cyp_interaction_potential",
+      "kratom_polysubstance_toxicity"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:pubmed",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_kratom_cyp_tanna2023_36924284": {
+    id:"draft_kratom_cyp_tanna2023_36924284",
+    public:true,
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Clinical Assessment of the Drug Interaction Potential of the Psychotropic Natural Product Kratom.",
+    year:2023,
+    source:"Clinical pharmacology and therapeutics",
+    journal:"Clinical pharmacology and therapeutics",
+    pmid:"36924284",
+    doi:"10.1002/cpt.2891",
+    url:"https://doi.org/10.1002/cpt.2891",
+    studyDesign:"in_vitro_mechanistic_study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "aucFold": 50,
+      "note": "Abstract-level extraction for kratom:CYP reports approximately 50-fold exposure change."
+    },
+    temporal:{},
+    supports:[
+      "kratom_cyp_interaction_potential",
+      "kratom_polysubstance_toxicity"
+    ],
+    contradicts:[],
+    limitations:[
+      "Abstract-level extraction only; requires human review before promotion",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"moderate",
+    needsFullText:false,
+    provenance:"search:pubmed",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_kratom_cyp_brogdon2022_35165231": {
+    id:"draft_kratom_cyp_brogdon2022_35165231",
+    public:true,
+    type:EVIDENCE_TIER.CASE_REPORT,
+    title:"A Case of Potential Pharmacokinetic Kratom-drug Interactions Resulting in Toxicity and Subsequent Treatment of Kratom Use Disorder With Buprenorphine/Naloxone.",
+    year:2022,
+    source:"Journal of addiction medicine",
+    journal:"Journal of addiction medicine",
+    pmid:"35165231",
+    doi:"10.1097/ADM.0000000000000968",
+    url:"https://doi.org/10.1097/ADM.0000000000000968",
+    studyDesign:"case_report",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to kratom:CYP, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "kratom_cyp_interaction_potential",
+      "kratom_polysubstance_toxicity"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:pubmed",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_kratom_cyp_gnanasegarams2026_42051846": {
+    id:"draft_kratom_cyp_gnanasegarams2026_42051846",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Kratom Consumption Associated With Herb-Induced Liver Injury and a Pharmacokinetic Interaction: A Case Report.",
+    year:2026,
+    source:"Cureus",
+    journal:"Cureus",
+    pmid:"42051846",
+    doi:"10.7759/cureus.106016",
+    url:"https://doi.org/10.7759/cureus.106016",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to kratom:CYP, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "kratom_cyp_interaction_potential",
+      "kratom_polysubstance_toxicity"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_kratom_cyp_akbarnh2025_40642117": {
+    id:"draft_kratom_cyp_akbarnh2025_40642117",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Screening, docking, and molecular dynamics analysis of Mitragyna speciosa (Korth.) compounds for targeting HER2 in breast cancer.",
+    year:2025,
+    source:"Curr Res Struct Biol",
+    journal:"Curr Res Struct Biol",
+    pmid:"40642117",
+    doi:"10.1016/j.crstbi.2025.100171",
+    url:"https://doi.org/10.1016/j.crstbi.2025.100171",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to kratom:CYP, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "kratom_cyp_interaction_potential",
+      "kratom_polysubstance_toxicity"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_kratom_cyp_alfordas2025_40006036": {
+    id:"draft_kratom_cyp_alfordas2025_40006036",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Exploring the Therapeutic Potential of Mitragynine and Corynoxeine: Kratom-Derived Indole and Oxindole Alkaloids for Pain Management.",
+    year:2025,
+    source:"Pharmaceuticals (Basel)",
+    journal:"Pharmaceuticals (Basel)",
+    pmid:"40006036",
+    doi:"10.3390/ph18020222",
+    url:"https://doi.org/10.3390/ph18020222",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to kratom:CYP, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "kratom_cyp_interaction_potential",
+      "kratom_polysubstance_toxicity"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_kratom_cyp_mccurdycr2024_38217374": {
+    id:"draft_kratom_cyp_mccurdycr2024_38217374",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"An update on the clinical pharmacology of kratom: uses, abuse potential, and future considerations.",
+    year:2024,
+    source:"Expert Rev Clin Pharmacol",
+    journal:"Expert Rev Clin Pharmacol",
+    pmid:"38217374",
+    doi:"10.1080/17512433.2024.2305798",
+    url:"https://doi.org/10.1080/17512433.2024.2305798",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to kratom:CYP, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "kratom_cyp_interaction_potential",
+      "kratom_polysubstance_toxicity"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_kratom_cyp_melchertpw2024_39299374": {
+    id:"draft_kratom_cyp_melchertpw2024_39299374",
+    public:true,
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"An in vitro evaluation on metabolism of mitragynine to 9-O-demethylmitragynine.",
+    year:2024,
+    source:"Chem Biol Interact",
+    journal:"Chem Biol Interact",
+    pmid:"39299374",
+    doi:"10.1016/j.cbi.2024.111247",
+    url:"https://doi.org/10.1016/j.cbi.2024.111247",
+    studyDesign:"in_vitro_mechanistic_study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to kratom:CYP, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "kratom_cyp_interaction_potential",
+      "kratom_polysubstance_toxicity"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_kratom_cyp_eastlack2020_31994019": {
+    id:"draft_kratom_cyp_eastlack2020_31994019",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Kratom—Pharmacology, Clinical Implications, and Outlook: A Comprehensive Review",
+    year:2020,
+    source:"Pain and Therapy",
+    journal:"Pain and Therapy",
+    pmid:"31994019",
+    doi:"10.1007/s40122-020-00151-x",
+    url:"https://doi.org/10.1007/s40122-020-00151-x",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to kratom:CYP, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "kratom_cyp_interaction_potential",
+      "kratom_polysubstance_toxicity"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_kratom_cyp_rashid2026_null": {
+    id:"draft_kratom_cyp_rashid2026_null",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Therapeutic Potential, Predictive Pharmaceutical Modeling, and Metabolic Interactions of the Oxindole Kratom Alkaloids",
+    year:2026,
+    source:"Journal of Phytomedicine",
+    journal:"Journal of Phytomedicine",
+    pmid:null,
+    doi:"10.3390/jphytomed1010002",
+    url:"https://doi.org/10.3390/jphytomed1010002",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to kratom:CYP, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "kratom_cyp_interaction_potential",
+      "kratom_polysubstance_toxicity"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_kratom_cyp_veltri2019_31308789": {
+    id:"draft_kratom_cyp_veltri2019_31308789",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"&lt;p&gt;Current perspectives on the impact of Kratom use&lt;/p&gt;",
+    year:2019,
+    source:"Substance Abuse and Rehabilitation",
+    journal:"Substance Abuse and Rehabilitation",
+    pmid:"31308789",
+    doi:"10.2147/sar.s164261",
+    url:"https://doi.org/10.2147/sar.s164261",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to kratom:CYP, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "kratom_cyp_interaction_potential",
+      "kratom_polysubstance_toxicity"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_kratom_cyp_wananukul2015_25995615": {
+    id:"draft_kratom_cyp_wananukul2015_25995615",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Pharmacokinetics of mitragynine in man",
+    year:2015,
+    source:"Drug Design Development and Therapy",
+    journal:"Drug Design Development and Therapy",
+    pmid:"25995615",
+    doi:"10.2147/dddt.s79658",
+    url:"https://doi.org/10.2147/dddt.s79658",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to kratom:CYP, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "kratom_cyp_interaction_potential",
+      "kratom_polysubstance_toxicity"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_kratom_cyp_kong2011_21876481": {
+    id:"draft_kratom_cyp_kong2011_21876481",
+    public:true,
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Evaluation of the Effects of Mitragyna speciosa Alkaloid Extract on Cytochrome P450 Enzymes Using a High Throughput Assay",
+    year:2011,
+    source:"Molecules",
+    journal:"Molecules",
+    pmid:"21876481",
+    doi:"10.3390/molecules16097344",
+    url:"https://doi.org/10.3390/molecules16097344",
+    studyDesign:"in_vitro_mechanistic_study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to kratom:CYP, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "kratom_cyp_interaction_potential",
+      "kratom_polysubstance_toxicity"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_st_johns_wort_cyp3a4_pgp_zahner2020_30739325": {
+    id:"draft_st_johns_wort_cyp3a4_pgp_zahner2020_30739325",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"No Clinically Relevant Interactions of St. John's Wort Extract Ze 117 Low in Hyperforin With Cytochrome P450 Enzymes and P-glycoprotein.",
+    year:2020,
+    source:"Clinical pharmacology and therapeutics",
+    journal:"Clinical pharmacology and therapeutics",
+    pmid:"30739325",
+    doi:"10.1002/cpt.1392",
+    url:"https://doi.org/10.1002/cpt.1392",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to st_johns_wort:CYP3A4_Pgp, but no supported quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "st_johns_wort_induces_CYP3A4",
+      "st_johns_wort_induces_P-gp"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:pubmed",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_st_johns_wort_cyp3a4_pgp_huppertz2019_30192025": {
+    id:"draft_st_johns_wort_cyp3a4_pgp_huppertz2019_30192025",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Rivaroxaban and macitentan can be coadministered without dose adjustment but the combination of rivaroxaban and St John's wort should be avoided.",
+    year:2019,
+    source:"British journal of clinical pharmacology",
+    journal:"British journal of clinical pharmacology",
+    pmid:"30192025",
+    doi:"10.1111/bcp.13757",
+    url:"https://doi.org/10.1111/bcp.13757",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to st_johns_wort:CYP3A4_Pgp, but no supported quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "st_johns_wort_induces_CYP3A4",
+      "st_johns_wort_induces_P-gp"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:pubmed",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_st_johns_wort_cyp3a4_pgp_arold2005_15856409": {
+    id:"draft_st_johns_wort_cyp3a4_pgp_arold2005_15856409",
+    public:true,
+    type:EVIDENCE_TIER.RCT,
+    title:"No relevant interaction with alprazolam, caffeine, tolbutamide, and digoxin by treatment with a low-hyperforin St John's wort extract.",
+    year:2005,
+    source:"Planta medica",
+    journal:"Planta medica",
+    pmid:"15856409",
+    doi:"10.1055/s-2005-864099",
+    url:"https://doi.org/10.1055/s-2005-864099",
+    studyDesign:"randomized_controlled_trial",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to st_johns_wort:CYP3A4_Pgp, but no supported quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "st_johns_wort_induces_CYP3A4",
+      "st_johns_wort_induces_P-gp"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:pubmed",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_st_johns_wort_cyp3a4_pgp_cascorbii2025_40388112": {
+    id:"draft_st_johns_wort_cyp3a4_pgp_cascorbii2025_40388112",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Deciphering the Relative Contribution of CYP3A4 Versus P-Glycoprotein for the Shared Substrate Cyclosporine-Commentary on Lown et al.",
+    year:2025,
+    source:"Clin Pharmacol Ther",
+    journal:"Clin Pharmacol Ther",
+    pmid:"40388112",
+    doi:"10.1002/cpt.3619",
+    url:"https://doi.org/10.1002/cpt.3619",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to st_johns_wort:CYP3A4_Pgp, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "st_johns_wort_induces_CYP3A4",
+      "st_johns_wort_induces_P-gp"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_st_johns_wort_cyp3a4_pgp_coumauc2025_40349292": {
+    id:"draft_st_johns_wort_cyp3a4_pgp_coumauc2025_40349292",
+    public:true,
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"A Systematic Review and Classification of the Effects of P-glycoprotein Inhibitors and Inducers in Humans, Using Digoxin, Fexofenadine, and Dabigatran as Probe Drugs.",
+    year:2025,
+    source:"Clin Pharmacokinet",
+    journal:"Clin Pharmacokinet",
+    pmid:"40349292",
+    doi:"10.1007/s40262-025-01514-3",
+    url:"https://doi.org/10.1007/s40262-025-01514-3",
+    studyDesign:"meta_analysis_or_systematic_review",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to st_johns_wort:CYP3A4_Pgp, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "st_johns_wort_induces_CYP3A4",
+      "st_johns_wort_induces_P-gp"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_st_johns_wort_cyp3a4_pgp_hollanderem2026_41552958": {
+    id:"draft_st_johns_wort_cyp3a4_pgp_hollanderem2026_41552958",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"No relevant pharmacokinetic interaction between the KRAS G12C inhibitor sotorasib and the direct oral anticoagulant rivaroxaban in healthy subjects.",
+    year:2026,
+    source:"Int J Cancer",
+    journal:"Int J Cancer",
+    pmid:"41552958",
+    doi:"10.1002/ijc.70326",
+    url:"https://doi.org/10.1002/ijc.70326",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to st_johns_wort:CYP3A4_Pgp, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "st_johns_wort_induces_CYP3A4",
+      "st_johns_wort_induces_P-gp"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_st_johns_wort_cyp3a4_pgp_nersesjanm2025_38450747": {
+    id:"draft_st_johns_wort_cyp3a4_pgp_nersesjanm2025_38450747",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Paliperidone poisoning and measurable plasma concentrations 2.5 years after last administered dose: A case report.",
+    year:2025,
+    source:"Br J Clin Pharmacol",
+    journal:"Br J Clin Pharmacol",
+    pmid:"38450747",
+    doi:"10.1111/bcp.16036",
+    url:"https://doi.org/10.1111/bcp.16036",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to st_johns_wort:CYP3A4_Pgp, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "st_johns_wort_induces_CYP3A4",
+      "st_johns_wort_induces_P-gp"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_st_johns_wort_cyp3a4_pgp_yaoj2025_41258782": {
+    id:"draft_st_johns_wort_cyp3a4_pgp_yaoj2025_41258782",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Effects of Botrychium ternatum (Thunb) Sw. On Cytochrome P450 Activities in Rats.",
+    year:2025,
+    source:"Pharmacol Res Perspect",
+    journal:"Pharmacol Res Perspect",
+    pmid:"41258782",
+    doi:"10.1002/prp2.70188",
+    url:"https://doi.org/10.1002/prp2.70188",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to st_johns_wort:CYP3A4_Pgp, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "st_johns_wort_induces_CYP3A4",
+      "st_johns_wort_induces_P-gp"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_st_johns_wort_cyp3a4_pgp_huang2004_14749688": {
+    id:"draft_st_johns_wort_cyp3a4_pgp_huang2004_14749688",
+    public:true,
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"Drug interactions with herbal products and grapefruit juice: a conference report",
+    year:2004,
+    source:"Clinical Pharmacology & Therapeutics",
+    journal:"Clinical Pharmacology & Therapeutics",
+    pmid:"14749688",
+    doi:"10.1016/j.clpt.2003.07.002",
+    url:"https://doi.org/10.1016/j.clpt.2003.07.002",
+    studyDesign:"meta_analysis_or_systematic_review",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "clearanceReductionPct": 20,
+      "note": "Abstract-level extraction for st_johns_wort:CYP3A4_Pgp reports about 20% clearance change."
+    },
+    temporal:{},
+    supports:[
+      "st_johns_wort_induces_CYP3A4",
+      "st_johns_wort_induces_P-gp"
+    ],
+    contradicts:[],
+    limitations:[
+      "Abstract-level extraction only; requires human review before promotion",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"moderate",
+    needsFullText:false,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_st_johns_wort_cyp3a4_pgp_motzer2015_26406148": {
+    id:"draft_st_johns_wort_cyp3a4_pgp_motzer2015_26406148",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Nivolumab versus Everolimus in Advanced Renal-Cell Carcinoma",
+    year:2015,
+    source:"New England Journal of Medicine",
+    journal:"New England Journal of Medicine",
+    pmid:"26406148",
+    doi:"10.1056/nejmoa1510665",
+    url:"https://doi.org/10.1056/nejmoa1510665",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to st_johns_wort:CYP3A4_Pgp, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "st_johns_wort_induces_CYP3A4",
+      "st_johns_wort_induces_P-gp"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_st_johns_wort_cyp3a4_pgp_tsunoda2001_null": {
+    id:"draft_st_johns_wort_cyp3a4_pgp_tsunoda2001_null",
+    public:true,
+    type:EVIDENCE_TIER.IN_VITRO,
+    title:"Red wine decreases cyclosporine bioavailability",
+    year:2001,
+    source:"Clinical Pharmacology & Therapeutics",
+    journal:"Clinical Pharmacology & Therapeutics",
+    pmid:null,
+    doi:"10.1016/s0009-9236(01)70992-7",
+    url:"https://doi.org/10.1016/s0009-9236(01)70992-7",
+    studyDesign:"in_vitro_mechanistic_study",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to st_johns_wort:CYP3A4_Pgp, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "st_johns_wort_induces_CYP3A4",
+      "st_johns_wort_induces_P-gp"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_st_johns_wort_cyp3a4_pgp_zhang2017_28986954": {
+    id:"draft_st_johns_wort_cyp3a4_pgp_zhang2017_28986954",
+    public:true,
+    type:EVIDENCE_TIER.CASE_REPORT,
+    title:"Role of CYP3A in Oral Contraceptives Clearance",
+    year:2017,
+    source:"Clinical and Translational Science",
+    journal:"Clinical and Translational Science",
+    pmid:"28986954",
+    doi:"10.1111/cts.12499",
+    url:"https://doi.org/10.1111/cts.12499",
+    studyDesign:"case_report",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "aucFold": 2.7,
+      "note": "Abstract-level extraction for st_johns_wort:CYP3A4_Pgp reports approximately 2.7-fold exposure change."
+    },
+    temporal:{},
+    supports:[
+      "st_johns_wort_induces_CYP3A4",
+      "st_johns_wort_induces_P-gp"
+    ],
+    contradicts:[],
+    limitations:[
+      "Abstract-level extraction only; requires human review before promotion",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"moderate",
+    needsFullText:false,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_clobazam_cyp2c19_huddartr2018_29517622": {
+    id:"draft_clobazam_cyp2c19_huddartr2018_29517622",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"PharmGKB summary: clobazam pathway, pharmacokinetics.",
+    year:2018,
+    source:"Pharmacogenet Genomics",
+    journal:"Pharmacogenet Genomics",
+    pmid:"29517622",
+    doi:"10.1097/fpc.0000000000000327",
+    url:"https://doi.org/10.1097/fpc.0000000000000327",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to clobazam:CYP2C19, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "clobazam_METABOLIZED_TO_n-desmethylclobazam-norclobazam"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_clobazam_cyp2c19_kamh2020_33266292": {
+    id:"draft_clobazam_cyp2c19_kamh2020_33266292",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Pharmacogenomic Biomarkers and Their Applications in Psychiatry.",
+    year:2020,
+    source:"Genes (Basel)",
+    journal:"Genes (Basel)",
+    pmid:"33266292",
+    doi:"10.3390/genes11121445",
+    url:"https://doi.org/10.3390/genes11121445",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to clobazam:CYP2C19, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "clobazam_METABOLIZED_TO_n-desmethylclobazam-norclobazam"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_clobazam_cyp2c19_deleonj2013_23318278": {
+    id:"draft_clobazam_cyp2c19_deleonj2013_23318278",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Clobazam therapeutic drug monitoring:  a comprehensive review of the literature with proposals to improve future studies.",
+    year:2013,
+    source:"Ther Drug Monit",
+    journal:"Ther Drug Monit",
+    pmid:"23318278",
+    doi:"10.1097/ftd.0b013e31827ada88",
+    url:"https://doi.org/10.1097/ftd.0b013e31827ada88",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to clobazam:CYP2C19, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "clobazam_METABOLIZED_TO_n-desmethylclobazam-norclobazam"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:europepmc",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_clobazam_cyp2c19_faulkner2015_26089675": {
+    id:"draft_clobazam_cyp2c19_faulkner2015_26089675",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Comprehensive overview: efficacy, tolerability, and cost-effectiveness of clobazam in Lennox&amp;ndash;Gastaut syndrome",
+    year:2015,
+    source:"Therapeutics and Clinical Risk Management",
+    journal:"Therapeutics and Clinical Risk Management",
+    pmid:"26089675",
+    doi:"10.2147/tcrm.s55930",
+    url:"https://doi.org/10.2147/tcrm.s55930",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to clobazam:CYP2C19, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "clobazam_METABOLIZED_TO_n-desmethylclobazam-norclobazam"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_clobazam_cyp2c19_filipiuc2023_37513960": {
+    id:"draft_clobazam_cyp2c19_filipiuc2023_37513960",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"The Skin and Natural Cannabinoids–Topical and Transdermal Applications",
+    year:2023,
+    source:"Pharmaceuticals",
+    journal:"Pharmaceuticals",
+    pmid:"37513960",
+    doi:"10.3390/ph16071049",
+    url:"https://doi.org/10.3390/ph16071049",
+    studyDesign:"clinical_pk",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to clobazam:CYP2C19, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "clobazam_METABOLIZED_TO_n-desmethylclobazam-norclobazam"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_clobazam_cyp2c19_motycka2018_null": {
+    id:"draft_clobazam_cyp2c19_motycka2018_null",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"The Impact of Medical Marijuana on Pharmacy Practice",
+    year:2018,
+    source:"Advances in Pharmacology and Pharmacy",
+    journal:"Advances in Pharmacology and Pharmacy",
+    pmid:null,
+    doi:"10.13189/app.2018.060102",
+    url:"https://doi.org/10.13189/app.2018.060102",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to clobazam:CYP2C19, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "clobazam_METABOLIZED_TO_n-desmethylclobazam-norclobazam"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
+  "draft_clobazam_cyp2c19_vegagarca2021_33510627": {
+    id:"draft_clobazam_cyp2c19_vegagarca2021_33510627",
+    public:true,
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Cannabinoids: A New Perspective on Epileptogenesis and Seizure Treatment in Early Life in Basic and Clinical Studies",
+    year:2021,
+    source:"Frontiers in Behavioral Neuroscience",
+    journal:"Frontiers in Behavioral Neuroscience",
+    pmid:"33510627",
+    doi:"10.3389/fnbeh.2020.610484",
+    url:"https://doi.org/10.3389/fnbeh.2020.610484",
+    studyDesign:"observational_or_screened_pubmed_record",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{
+      "note": "Citation appears relevant to clobazam:CYP2C19, but no quantitative value was extractable from the abstract."
+    },
+    temporal:{},
+    supports:[
+      "clobazam_METABOLIZED_TO_n-desmethylclobazam-norclobazam"
+    ],
+    contradicts:[],
+    limitations:[
+      "No abstract-extractable quantitative value",
+      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+    ],
+    confidence:"low",
+    needsFullText:true,
+    provenance:"search:openalex",
+    reviewRequired:true,
+    verified:false,
+    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+  },
+
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──

@@ -18,11 +18,11 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 
 <!-- MEDCHECK_STATS_START -->
 - **247 drugs** in DRUG_DB
-- **88 evidence entries** in STUDY_DB (71 with PMIDs)
+- **164 evidence entries** in STUDY_DB (143 with PMIDs)
 - **160 curated DDI pairs** (103 severe, 53 moderate, 4 mild)
 - **7 genotype genes**, **27 metabolite actors**, **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **779 KB** generated bundle (14648 lines)
+- **876 KB** generated bundle (17283 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---
@@ -45,7 +45,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 - **Dynamic route fractions** — enzyme burden redistributed across residual pathways when one route is inhibited
 
 ### Evidence System
-- **STUDY_DB** — 88 curated evidence entries with real PMIDs, DOIs, quantified PK effects (AUC fold, clearance reduction %), phenotype stratification, temporal onset/washout data, and explicit contradicts[] links
+- **STUDY_DB** — 164 evidence entries: 88 curated entries plus 76 live enrichment entries marked `reviewRequired:true` for pharmacist/physician review before clinical use
 - **9-tier evidence hierarchy** — IN_VITRO → ANIMAL → CASE_REPORT → OBSERVATIONAL → CLINICAL_PK → RCT → META_ANALYSIS → GUIDELINE → FDA_LABEL
 - **Evidence weights** — each tier carries a calibrated confidence weight (0.30–0.95) used by `computeEdgeConfidence()` to decay traversal confidence
 - **Contradictory evidence** — explicitly modeled; Province 2014 meta-analysis vs CPIC tamoxifen guideline are both shown without suppression
@@ -147,7 +147,7 @@ where `substrateBurden = min(0.50, (n_competing_substrates − 1) × 0.10)` and 
 | `RECEPTOR_SCORES` | Per-drug affinity scores across 11 receptor targets |
 | `PHENOTYPE_ACTORS` | 13 clinical outcome nodes |
 | `KNOWN_DDI` | Curated pairwise interaction entries with evidenceRefs |
-| `STUDY_DB` | 75 primary evidence entities with full provenance |
+| `STUDY_DB` | 164 evidence entities with provenance; live enrichment entries remain visibly review-required |
 | `GENOTYPE_EFFECTS` | PM/IM/NM/UM fold-change multipliers per enzyme |
 | `PK_PARAMS` | One-compartment PK parameters for 15 drugs |
 | `TEMPORAL_PROFILES` | Onset/washout profiles for persistent inhibitors |
@@ -191,4 +191,4 @@ The build concatenates all `src/` modules in dependency order and injects the bu
 
 ## Disclaimer
 
-This tool is for **educational purposes only**. It does not replace professional medical advice, clinical pharmacist review, or therapeutic drug monitoring. AI hallucinations in pharmacology are dangerous — every STUDY_DB entry requires independent verification by a qualified pharmacist or physician before any clinical application. The evidence ingestion pipeline (`INGESTION_QUEUE`) enforces a mandatory human review gate; AI-extracted evidence is never auto-published. Always consult your doctor or pharmacist before making changes to your medications.
+This tool is for **educational purposes only**. It does not replace professional medical advice, clinical pharmacist review, or therapeutic drug monitoring. AI hallucinations in pharmacology are dangerous — every STUDY_DB entry requires independent verification by a qualified pharmacist or physician before any clinical application. Live enrichment entries are marked `reviewRequired:true` and must not be used for clinical severity escalation until reviewed. Always consult your doctor or pharmacist before making changes to your medications.

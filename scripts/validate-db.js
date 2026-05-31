@@ -102,7 +102,11 @@ for (const pmid of allPmids) {
 }
 
 for (const [id, study] of Object.entries(data.STUDY_DB || {})) {
-  if (!study.verified) add('warnings', 'study_not_marked_verified', `${id} is not marked verified`, id);
+  if (!study.verified && study.reviewRequired) {
+    add('info', 'study_pending_human_review', `${id} is live and pending human review`, id);
+  } else if (!study.verified) {
+    add('warnings', 'study_not_marked_verified', `${id} is not marked verified`, id);
+  }
   if (!study.pmid && !study.doi && !study.url) {
     add('warnings', 'study_without_external_identifier', `${id} lacks PMID, DOI, and URL`, id);
   }
