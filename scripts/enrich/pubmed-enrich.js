@@ -62,11 +62,12 @@ Options:
 
 function parseArgs(argv) {
   const args = {};
+  const booleanArgs = new Set(['self-test', 'help', 'expand-citations']);
   for (let i = 0; i < argv.length; i++) {
     const token = argv[i];
     if (!token.startsWith('--')) continue;
     const key = token.slice(2);
-    if (key === 'self-test' || key === 'help') args[key] = true;
+    if (booleanArgs.has(key)) args[key] = true;
     else args[key] = argv[++i];
   }
   return args;
@@ -499,7 +500,7 @@ function dedupeDrafts(candidates, liveData, existingDrafts) {
   return { kept, skipped };
 }
 
-function writeReport({ relation, query, added, skipped }) {
+function writeReport({ relation, query, added, skipped, providerErrors = [] }) {
   const previous = existsSync(REPORT_PATH) ? readFileSync(REPORT_PATH, 'utf8') : '# MedCheck Enrichment Review Report\n';
   const lines = [
     '',
@@ -509,16 +510,20 @@ function writeReport({ relation, query, added, skipped }) {
     `Query: \`${query}\``,
     `Added drafts: ${added.length}`,
     `Skipped duplicates: ${skipped.length}`,
+    providerErrors.length ? `Provider warnings: ${providerErrors.length}` : null,
     '',
     '| Draft | Tier | PMID/DOI | Provenance | Finding | Confidence | Needs full text |',
     '|---|---|---|---|---|---|---|',
-  ];
+  ].filter(Boolean);
   for (const draft of added) {
     const id = draft.pmid ? `PMID:${draft.pmid}` : draft.doi ? `DOI:${draft.doi}` : 'identifier missing';
     lines.push(`| ${draft.id} | ${draft.type} | ${id} | ${draft.provenance} | ${draft.quantifiedEffects.note} | ${draft.confidence} | ${draft.needsFullText ? 'yes' : 'no'} |`);
   }
   if (skipped.length) {
     lines.push('', 'Skipped:', ...skipped.map(s => `- ${s.reason}: ${s.title}`));
+  }
+  if (providerErrors.length) {
+    lines.push('', 'Provider warnings:', ...providerErrors.map(e => `- ${e.provider}: ${e.message}`));
   }
   writeFileSync(REPORT_PATH, `${previous.trimEnd()}\n${lines.join('\n')}\n`, 'utf8');
 }
@@ -561,14 +566,23 @@ async function main() {
   const existingDrafts = loadExistingDrafts();
   const providers = providersFromArgs(args);
   const articles = [];
+  const providerErrors = [];
   for (const provider of providers) {
-    const found = await searchProvider(provider, query, args);
-    articles.push(...found);
+    try {
+      const found = await searchProvider(provider, query, args);
+      articles.push(...found);
+    } catch (err) {
+      providerErrors.push({ provider, message: err.message });
+      console.warn(`Provider skipped (${provider}): ${err.message}`);
+    }
+  }
+  if (!articles.length && providerErrors.length) {
+    throw new Error(`All providers failed for query: ${query}`);
   }
   const candidates = articles.map(article => makeDraft(article, { ...args, relation }));
   const { kept, skipped } = dedupeDrafts(candidates, liveData, existingDrafts);
   saveDrafts([...existingDrafts, ...kept]);
-  writeReport({ relation, query, added: kept, skipped });
+  writeReport({ relation, query, added: kept, skipped, providerErrors });
   console.log(`Enrichment complete: ${kept.length} draft(s), ${skipped.length} duplicate(s), providers: ${providers.join(',')}.`);
   console.log(`Drafts: ${DRAFTS_PATH}`);
   console.log(`Report: ${REPORT_PATH}`);

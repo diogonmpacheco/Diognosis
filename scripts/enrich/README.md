@@ -39,6 +39,7 @@ Guardrails:
 - never stores full text or verbatim abstracts
 - dedupes by DOI, PMID, and normalized title against live `STUDY_DB` and existing drafts
 - drafts default to `needsFullText:true` and `confidence:"low"` when no abstract-level number is extractable
+- provider failures are recorded in the report without discarding successful results from other providers
 
 Offline self-test:
 
