@@ -36,7 +36,7 @@ The codebase is structured as 28 editable JavaScript source modules in `src/`, p
 ## Features
 
 ### Drug Database
-- **293 drugs/actors** — prescription, OTC, supplements, foods, herbs, recreational, and environmental substances
+- **316 drugs/actors** — prescription, OTC, supplements, foods, herbs, recreational, and environmental substances
 - Dose tiers, timing guidance, and alternative suggestions for each entry
 - **Drug DB v1.2.3** — last reviewed 2026-05-29
 
@@ -51,7 +51,7 @@ The codebase is structured as 28 editable JavaScript source modules in `src/`, p
 - **Dynamic route fractions** — enzyme burden redistributed across residual pathways when one route is inhibited
 
 ### Evidence System
-- **STUDY_DB** — 205 evidence entries: 106 verified entries plus 99 live enrichment entries marked `reviewRequired:true` for pharmacist/physician review before clinical use
+- **STUDY_DB** — 224 evidence entries: 106 verified entries plus 118 live enrichment entries marked `reviewRequired:true` for pharmacist/physician review before clinical use
 - **9-tier evidence hierarchy** — IN_VITRO → ANIMAL → CASE_REPORT → OBSERVATIONAL → CLINICAL_PK → RCT → META_ANALYSIS → GUIDELINE → FDA_LABEL
 - **Evidence weights** — each tier carries a calibrated confidence weight (0.30–0.95) used by `computeEdgeConfidence()` to decay traversal confidence
 - **Contradictory evidence** — explicitly modeled; Province 2014 meta-analysis vs CPIC tamoxifen guideline are both shown without suppression
@@ -153,7 +153,7 @@ where `substrateBurden = min(0.50, (n_competing_substrates − 1) × 0.10)` and 
 | `RECEPTOR_SCORES` | Per-drug affinity scores across 11 receptor targets |
 | `PHENOTYPE_ACTORS` | 13 clinical outcome nodes |
 | `KNOWN_DDI` | Curated pairwise interaction entries with evidenceRefs |
-| `STUDY_DB` | 205 evidence entities with provenance: 106 verified and 99 review-required live enrichment entries |
+| `STUDY_DB` | 224 evidence entities with provenance: 106 verified and 118 review-required live enrichment entries |
 | `GENOTYPE_EFFECTS` / `GENOTYPE_RISK_EFFECTS` | PM/IM/NM/UM fold-change multipliers per enzyme plus non-PK risk allele rules |
 | `PK_PARAMS` | One-compartment PK parameters for 15 drugs |
 | `TEMPORAL_PROFILES` | Onset/washout profiles for persistent inhibitors |
@@ -175,7 +175,7 @@ where `substrateBurden = min(0.50, (n_competing_substrates − 1) × 0.10)` and 
 **Building from source:**
 ```bash
 npm install          # installs esbuild (minification only)
-npm run build        # → index.html (~1025 KB, development)
+npm run build        # → index.html (~1060 KB, development)
 npm run build:min    # → index.html (minified)
 npm run smoke        # builds and verifies core UI/engine behavior
 npm run regression   # checks core pharmacology scenarios
