@@ -17,12 +17,12 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 ## Live Source Stats
 
 <!-- MEDCHECK_STATS_START -->
-- **276 drugs** in DRUG_DB
-- **186 evidence entries** in STUDY_DB (160 with PMIDs)
-- **178 curated DDI pairs** (112 severe, 62 moderate, 4 mild)
+- **293 drugs** in DRUG_DB
+- **205 evidence entries** in STUDY_DB (169 with PMIDs)
+- **217 curated DDI pairs** (134 severe, 79 moderate, 4 mild)
 - **25 genotype genes**, **27 metabolite actors**, **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **962 KB** generated bundle (19529 lines)
+- **1024 KB** generated bundle (21716 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---
@@ -30,7 +30,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 ## Features
 
 ### Drug Database
-- **276 drugs/actors** — prescription, OTC, supplements, foods, herbs, recreational, and environmental substances
+- **293 drugs/actors** — prescription, OTC, supplements, foods, herbs, recreational, and environmental substances
 - Dose tiers, timing guidance, and alternative suggestions for each entry
 - **Drug DB v1.2.3** — last reviewed 2026-05-29
 
@@ -45,7 +45,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 - **Dynamic route fractions** — enzyme burden redistributed across residual pathways when one route is inhibited
 
 ### Evidence System
-- **STUDY_DB** — 186 evidence entries: 105 curated entries plus 81 live enrichment entries marked `reviewRequired:true` for pharmacist/physician review before clinical use
+- **STUDY_DB** — 205 evidence entries: 105 curated entries plus 100 live enrichment entries marked `reviewRequired:true` for pharmacist/physician review before clinical use
 - **9-tier evidence hierarchy** — IN_VITRO → ANIMAL → CASE_REPORT → OBSERVATIONAL → CLINICAL_PK → RCT → META_ANALYSIS → GUIDELINE → FDA_LABEL
 - **Evidence weights** — each tier carries a calibrated confidence weight (0.30–0.95) used by `computeEdgeConfidence()` to decay traversal confidence
 - **Contradictory evidence** — explicitly modeled; Province 2014 meta-analysis vs CPIC tamoxifen guideline are both shown without suppression
@@ -147,7 +147,7 @@ where `substrateBurden = min(0.50, (n_competing_substrates − 1) × 0.10)` and 
 | `RECEPTOR_SCORES` | Per-drug affinity scores across 11 receptor targets |
 | `PHENOTYPE_ACTORS` | 13 clinical outcome nodes |
 | `KNOWN_DDI` | Curated pairwise interaction entries with evidenceRefs |
-| `STUDY_DB` | 186 evidence entities with provenance; live enrichment entries remain visibly review-required |
+| `STUDY_DB` | 205 evidence entities with provenance; live enrichment entries remain visibly review-required |
 | `GENOTYPE_EFFECTS` / `GENOTYPE_RISK_EFFECTS` | PM/IM/NM/UM fold-change multipliers per enzyme plus non-PK risk allele rules |
 | `PK_PARAMS` | One-compartment PK parameters for 15 drugs |
 | `TEMPORAL_PROFILES` | Onset/washout profiles for persistent inhibitors |

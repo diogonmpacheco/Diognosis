@@ -507,5 +507,671 @@ const KNOWN_DDI = [
     ]
   }
 },
+  // ── Salvaged Gemini enrichment: reviewed for duplicates, pending human review ──
+{
+    drug1: "Dronedarone",
+    drug2: "Dabigatran",
+    severity: "severe",
+    category: "metabolic",
+    mechanism: "Dronedarone induces potent competitive structural arrest of active P-gp transporter mechanics across the intestinal lining.",
+    effect: "↑↑ Increases dabigatran systemic bio-availability parameters by more than 100% — clinical combination requires strict avoidance or instant separation protocols.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA Boxed Warning"
+      ]
+    },
+    evidenceRefs: [
+      "ev_dabigatran_dronedarone_fda"
+    ]
+  },
+{
+    drug1: "Dronedarone",
+    drug2: "Rosuvastatin",
+    severity: "moderate",
+    category: "transport",
+    mechanism: "Concurrent competitive structural inhibition targeting active OATP1B1 and BCRP transport channels.",
+    effect: "↑ Systemic concentration of rosuvastatin — require careful reduction of statin dosing limits to protect muscle integrity parameters.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: []
+  },
+{
+    drug1: "Amiodarone",
+    drug2: "Dabigatran",
+    severity: "moderate",
+    category: "transport",
+    mechanism: "Slow P-gp efflux transporter structural inhibition across long-term steady-state therapeutic phases.",
+    effect: "↑ Systemic exposure of dabigatran — observe closely for localized micro-bleeding and monitor renal functions.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_dabigatran_dronedarone_fda"
+    ]
+  },
+{
+    drug1: "Quinidine",
+    drug2: "Dabigatran",
+    severity: "severe",
+    category: "transport",
+    mechanism: "Immediate high-potency competitive inhibition of operating intestinal P-gp efflux machinery.",
+    effect: "↑↑ Marked dabigatran systemic exposure spikes — co-administration is strictly contraindicated across current safety literature.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_dabigatran_dronedarone_fda"
+    ]
+  },
+{
+    drug1: "Verapamil",
+    drug2: "Dabigatran",
+    severity: "moderate",
+    category: "transport",
+    mechanism: "Time-dependent inhibition of intestinal P-gp; exposure variance maps tightly to immediate-release formulations.",
+    effect: "↑ Dabigatran peak plasma concentration profiles — consider administering your verapamil dosage minimal hours apart.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "Clinical PK study"
+      ]
+    },
+    evidenceRefs: [
+      "ev_dabigatran_dronedarone_fda"
+    ]
+  },
+{
+    drug1: "Dronedarone",
+    drug2: "Edoxaban",
+    severity: "severe",
+    category: "transport",
+    mechanism: "Potent structural inhibition of P-gp efflux transport networks.",
+    effect: "↑↑ Elevated systemic edoxaban concentrations — adjust edoxaban daily dosing schedules down to 30mg parameters.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_edoxaban_p_gp_fda"
+    ]
+  },
+{
+    drug1: "Quinidine",
+    drug2: "Edoxaban",
+    severity: "severe",
+    category: "transport",
+    mechanism: "High-affinity competitive interaction with apical cell membrane P-gp transporters.",
+    effect: "↑↑ Substantial exposure spikes for edoxaban — clinical safety consensus requires structural dose reduction steps.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_edoxaban_p_gp_fda"
+    ]
+  },
+{
+    drug1: "Verapamil",
+    drug2: "Edoxaban",
+    severity: "moderate",
+    category: "transport",
+    mechanism: "Moderate-tier P-gp cellular efflux pump saturation mechanics.",
+    effect: "↑ Moderate edoxaban exposure parameters — initiate clinical tracking of absolute hematocrit values.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_edoxaban_p_gp_fda"
+    ]
+  },
+{
+    drug1: "Fluconazole",
+    drug2: "Ticagrelor",
+    severity: "severe",
+    category: "metabolic",
+    mechanism: "Moderate-to-strong validation blockage targeting core hepatic CYP3A4 metabolic conversion pathways.",
+    effect: "↑↑ Severe elevations in parent ticagrelor exposure levels, drastically increasing risk for major clinical bleeding events.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_ticagrelor_cyp3a_label"
+    ]
+  },
+{
+    drug1: "Rifampin",
+    drug2: "Ticagrelor",
+    severity: "severe",
+    category: "induction",
+    mechanism: "High-velocity induction of operational CYP3A4 clearant extraction paths.",
+    effect: "↓↓ Destroys absolute antiplatelet utility, dropping active exposure margins by up to 80%. Alternative therapies required.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_ticagrelor_cyp3a_label"
+    ]
+  },
+{
+    drug1: "Paroxetine",
+    drug2: "Prasugrel",
+    severity: "moderate",
+    category: "antiplatelet_pd",
+    mechanism: "Overlapping pharmacodynamic structural antiplatelet disruption via inhibition of serotonin reuptake inside blood platelets.",
+    effect: "↑ Compounded gastrointestinal and mucosal bleeding risks with zero changes to primary prasugrel metabolic metrics.",
+    evidence: {
+      confidence: "moderate",
+      sources: [
+        "literature"
+      ]
+    },
+    evidenceRefs: [
+      "ev_prasugrel_active_metab_label"
+    ]
+  },
+{
+    drug1: "Quinidine",
+    drug2: "Propafenone",
+    severity: "moderate",
+    category: "metabolic",
+    mechanism: "High-affinity competitive inhibition of primary CYP2D6 clearance pathways.",
+    effect: "↑↑ Shunts propafenone breakdown, shifting systemic profiles from 5-hydroxy configurations to toxic levels of parent propafenone.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "literature"
+      ]
+    },
+    evidenceRefs: [
+      "ev_propafenone_cyp2d6_m_plus"
+    ]
+  },
+{
+    drug1: "Aprepitant",
+    drug2: "Tacrolimus",
+    severity: "moderate",
+    category: "metabolic",
+    mechanism: "Moderate competitive inhibition of intestinal and hepatic CYP3A4 metabolic processing nodes.",
+    effect: "↑ Elevated tacrolimus trough concentrations — require therapeutic drug monitoring adjustments during supportive care cycles.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_aprepitant_cyp3a4_label",
+      "ev_tacrolimus_cyp3a5_consensus"
+    ]
+  },
+{
+    drug1: "Ketoconazole",
+    drug2: "Tacrolimus",
+    severity: "severe",
+    category: "metabolic",
+    mechanism: "Strong structural inactivation of operating CYP3A4 and CYP3A5 enzymatic clearances.",
+    effect: "↑↑ Extreme, rapid spikes in tacrolimus blood levels, accelerating acute nephrotoxicity risk cascades.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "Clinical guidelines"
+      ]
+    },
+    evidenceRefs: [
+      "ev_tacrolimus_cyp3a5_consensus"
+    ]
+  },
+{
+    drug1: "Rifampin",
+    drug2: "Tacrolimus",
+    severity: "severe",
+    category: "induction",
+    mechanism: "PXR-mediated transcriptional upregulation of CYP3A4/3A5 and apical P-gp transport lines.",
+    effect: "↓↓ Severe reduction in systemic tacrolimus levels, risking acute cellular organ transplant rejection episodes.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "Clinical Consensus"
+      ]
+    },
+    evidenceRefs: [
+      "ev_tacrolimus_cyp3a5_consensus"
+    ]
+  },
+{
+    drug1: "Ketoconazole",
+    drug2: "Erlotinib",
+    severity: "severe",
+    category: "metabolic",
+    mechanism: "Potent suppression of the primary hepatic CYP3A4 oxidative conversion loop.",
+    effect: "↑↑ Doubles systemic erlotinib exposure metrics — avoid combination or perform proactive 50% down-dosing steps.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_erlotinib_ppi_absorption"
+    ]
+  },
+{
+    drug1: "Omeprazole",
+    drug2: "Erlotinib",
+    severity: "severe",
+    category: "absorption",
+    mechanism: "Elevation of gastric pH decreases the solubility and dissolution rate of the erlotinib crystalline structure.",
+    effect: "↓↓ Marked 46% reduction in erlotinib systemic bio-availability, risking premature oncology therapeutic failure.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_erlotinib_ppi_absorption"
+    ]
+  },
+{
+    drug1: "Omeprazole",
+    drug2: "Pazopanib",
+    severity: "severe",
+    category: "absorption",
+    mechanism: "Suppression of gastric acid production halts the direct physical dissolution parameters of pazopanib.",
+    effect: "↓↓ Significant drop in systemic TKI efficacy metrics — avoid concurrent proton pump inhibitor therapy configurations.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_erlotinib_ppi_absorption"
+    ]
+  },
+{
+    drug1: "Aprepitant",
+    drug2: "Dexamethasone",
+    severity: "moderate",
+    category: "metabolic",
+    mechanism: "Moderate CYP3A4 metabolic inhibition slows the clearance of corticosteroid structures.",
+    effect: "↑ Significantly increases dexamethasone systemic exposure; requires a 50% reduction in oral dexamethasone doses.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_aprepitant_cyp3a4_label"
+    ]
+  },
+{
+    drug1: "Ritonavir",
+    drug2: "Voriconazole",
+    severity: "severe",
+    category: "metabolic",
+    mechanism: "Dual structural impact: low-dose ritonavir induces CYP2C19 while simultaneously blocking CYP3A4 channels.",
+    effect: "↓↓ Unpredictable degradation of voriconazole steady-state plasma metrics — concurrent low-dose booster use (100mg) is contraindicated.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_ritonavir_cyp3a4_booster_label",
+      "ev_voriconazole_cyp2c19_hyland2008"
+    ]
+  },
+{
+    drug1: "Ritonavir",
+    drug2: "Maraviroc",
+    severity: "severe",
+    category: "metabolic",
+    mechanism: "Potent mechanism-based inhibition of hepatic microsomal CYP3A4 complexes.",
+    effect: "↑↑ Spikes systemic maraviroc levels significantly. Mandatory clinical action: reduce maraviroc dose from 300mg twice daily down to 150mg twice daily.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_ritonavir_cyp3a4_booster_label"
+    ]
+  },
+{
+    drug1: "Rifabutin",
+    drug2: "Voriconazole",
+    severity: "severe",
+    category: "metabolic",
+    mechanism: "Bidirectional interaction: rifabutin induces voriconazole clearance via CYP3A4, while voriconazole inhibits rifabutin metabolism.",
+    effect: "↓↓ Drops voriconazole levels while ↑ structural rifabutin toxicity risks (uveitis). Avoid combination unless vital.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "Clinical PK validation"
+      ]
+    },
+    evidenceRefs: [
+      "ev_voriconazole_cyp2c19_hyland2008"
+    ]
+  },
+{
+    drug1: "Efavirenz",
+    drug2: "Voriconazole",
+    severity: "severe",
+    category: "metabolic",
+    mechanism: "Efavirenz induces CYP3A4 and CYP2C19 channels, while voriconazole inhibits efavirenz clearance.",
+    effect: "↓↓ Decreases voriconazole exposure by 50% while increasing toxic efavirenz exposures. Co-administration is contraindicated.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_efavirenz_cyp2b6_desta2019",
+      "ev_voriconazole_cyp2c19_hyland2008"
+    ]
+  },
+{
+    drug1: "Glecaprevir",
+    drug2: "Rifampin",
+    severity: "severe",
+    category: "induction",
+    mechanism: "Strong transcriptional up-regulation of active hepatic OATP1B1/1B3 uptake nodes and apical P-gp systems.",
+    effect: "↓↓ Drastic 80% drop in systemic protease inhibitor levels, leading to immediate HCV therapeutic failure. Do not co-administer.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_mavyret_oatp_pgp_label"
+    ]
+  },
+{
+    drug1: "Pibrentasvir",
+    drug2: "Rifampin",
+    severity: "severe",
+    category: "induction",
+    mechanism: "High-velocity induction of intestinal and biliary P-glycoprotein extrusion networks.",
+    effect: "↓↓ Destroys systemic pibrentasvir exposures — co-administration is strictly contraindicated within international viral guidelines.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_mavyret_oatp_pgp_label"
+    ]
+  },
+{
+    drug1: "Dolutegravir",
+    drug2: "Metformin",
+    severity: "moderate",
+    category: "transport",
+    mechanism: "Dolutegravir inhibits renal OCT2 and MATE1 transporters, blocking the clearance vectors for metformin.",
+    effect: "↑ Elevated systemic metformin exposure (up to 79% increase) — consider lower metformin doses to limit lactic acidosis risks.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_dolutegravir_oct2_mate1_fda"
+    ]
+  },
+{
+    drug1: "Dolutegravir",
+    drug2: "Calcium",
+    severity: "moderate",
+    category: "absorption",
+    mechanism: "Direct polyvalent cation chelation of the dolutegravir ring structure within the gastrointestinal tract.",
+    effect: "↓↓ Blunts absorption metrics; administer dolutegravir either 2 hours before or 6 hours after cation-containing compounds.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_dolutegravir_oct2_mate1_fda"
+    ]
+  },
+{
+    drug1: "Voriconazole",
+    drug2: "Omeprazole",
+    severity: "moderate",
+    category: "metabolic",
+    mechanism: "Competitive saturation across shared polymorphic CYP2C19 enzymatic sites.",
+    effect: "↑ Increased exposure metrics for both agents — consider reducing the omeprazole dose by 50% if high doses are required.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "Clinical PK mapping"
+      ]
+    },
+    evidenceRefs: [
+      "ev_voriconazole_cyp2c19_hyland2008"
+    ]
+  },
+{
+    drug1: "Isavuconazonium Sulfate",
+    drug2: "Ketoconazole",
+    severity: "severe",
+    category: "metabolic",
+    mechanism: "Potent structural inhibition of down-stream CYP3A4 oxidative transformations.",
+    effect: "↑↑ Spikes active isavuconazole exposure metrics by several fold. Co-administration alongside strong inhibitors is contraindicated.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_isavuconazole_cyp3a4_validation"
+    ]
+  },
+{
+    drug1: "Isavuconazonium Sulfate",
+    drug2: "Rifampin",
+    severity: "severe",
+    category: "induction",
+    mechanism: "Strong induction of CYP3A4 expression via PXR nuclear receptor activation paths.",
+    effect: "↓↓ Reduces active isavuconazole systemic exposures by 90%, destroying antifungal efficacy. Do not combine.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_isavuconazole_cyp3a4_validation"
+    ]
+  },
+{
+    drug1: "Efavirenz",
+    drug2: "Dolutegravir",
+    severity: "moderate",
+    category: "metabolic",
+    mechanism: "Efavirenz induces UGT1A1 expression, accelerating the clearance of dolutegravir.",
+    effect: "↓↓ Reduces dolutegravir trough concentrations; requires increasing the dolutegravir dose to 50mg twice daily in treatment-experienced patients.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "HIV Guideline"
+      ]
+    },
+    evidenceRefs: [
+      "ev_efavirenz_cyp2b6_desta2019",
+      "ev_dolutegravir_oct2_mate1_fda"
+    ]
+  },
+{
+    drug1: "Rifabutin",
+    drug2: "Dolutegravir",
+    severity: "moderate",
+    category: "metabolic",
+    mechanism: "Moderate transcriptional up-regulation targeting operating UGT1A1 clearance channels.",
+    effect: "↓ Decreases dolutegravir systemic trough levels — adjust dolutegravir schedules safely to preserve viral suppression.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_dolutegravir_oct2_mate1_fda"
+    ]
+  },
+{
+    drug1: "Duloxetine",
+    drug2: "Tizanidine",
+    severity: "severe",
+    category: "metabolic",
+    mechanism: "Moderate-to-strong competitive inhibition of hepatic CYP1A2 networks.",
+    effect: "↑ Significant elevations in systemic tizanidine exposure. Avoid combination; select alternative muscle relaxants or manage with lower initial doses.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_tizanidine_cyp1a2_contraindication"
+    ]
+  },
+{
+    drug1: "Amiodarone",
+    drug2: "Cyclobenzaprine",
+    severity: "moderate",
+    category: "metabolic",
+    mechanism: "Amiodarone inhibits the CYP3A4 and CYP2D6 pathways required for cyclobenzaprine clearance.",
+    effect: "↑ Elevates circulating cyclobenzaprine concentrations, increasing the risk of prolonged QTc intervals and anticholinergic toxicities.",
+    evidence: {
+      confidence: "moderate",
+      sources: [
+        "literature"
+      ]
+    },
+    evidenceRefs: [
+      "ev_cyclobenzaprine_serotonin_syndrome"
+    ]
+  },
+{
+    drug1: "Duloxetine",
+    drug2: "Cyclobenzaprine",
+    severity: "moderate",
+    category: "pharmacodynamic",
+    mechanism: "Additive serotonergic activity combined with shared CYP1A2 competitive metabolic networks.",
+    effect: "↑ Elevates the risk of serotonin syndrome and severe central nervous system depression; monitor for tremors or autonomic instability.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_cyclobenzaprine_serotonin_syndrome"
+    ]
+  },
+{
+    drug1: "Methotrexate",
+    drug2: "Probenecid",
+    severity: "severe",
+    category: "transport",
+    mechanism: "Probenecid competitively inhibits renal OAT1 and OAT3 organic anion transporters, blocking methotrexate excretion.",
+    effect: "↑↑ Drives severe, toxic systemic accumulation of methotrexate, risking bone marrow failure and acute kidney injury. Co-administration is contraindicated.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA Boxed Warning"
+      ]
+    },
+    evidenceRefs: [
+      "ev_methotrexate_oat3_probenecid"
+    ]
+  },
+{
+    drug1: "Leflunomide",
+    drug2: "Warfarin",
+    severity: "moderate",
+    category: "metabolic",
+    mechanism: "Weak competitive inhibition of CYP2C9 by the active metabolite teriflunomide.",
+    effect: "↑ Prolongs the international normalized ratio (INR), increasing bleeding risks; requires frequent INR monitoring during co-therapy.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_leflunomide_teriflunomide_half_life"
+    ]
+  },
+{
+    drug1: "Isoniazid",
+    drug2: "Carbamazepine",
+    severity: "severe",
+    category: "metabolic",
+    mechanism: "Isoniazid inhibits CYP3A4, blocking the primary clearance pathway for carbamazepine.",
+    effect: "↑↑ Spikes carbamazepine levels to toxic thresholds, causing ataxia and diplopia, while increasing isoniazid hepatotoxicity risks. Reduce carbamazepine dose by 50%.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "FDA label"
+      ]
+    },
+    evidenceRefs: [
+      "ev_nat2_isoniazid_consensus"
+    ]
+  },
+{
+    drug1: "Hydralazine",
+    drug2: "Metoprolol",
+    severity: "moderate",
+    category: "clearance",
+    mechanism: "Hydralazine decreases hepatic blood flow velocity and alters first-pass extraction parameters.",
+    effect: "↑ Significantly increases the systemic bio-availability and beta-blocking efficacy of metoprolol; monitor heart rate closely.",
+    evidence: {
+      confidence: "high",
+      sources: [
+        "literature"
+      ]
+    },
+    evidenceRefs: [
+      "ev_nat2_isoniazid_consensus"
+    ]
+  },
 ];
 // ── COMBINATION calcFold — considers parent + metabolite inhibitions ──

@@ -1,10 +1,10 @@
 # MedCheck Severity Report
 
-Generated: 2026-06-02T14:41:32.965Z
+Generated: 2026-06-02T15:57:37.648Z
 
-Known DDI pairs: 178
-Original severe: 112
-Recommended severe: 112
+Known DDI pairs: 217
+Original severe: 134
+Recommended severe: 134
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
@@ -187,3 +187,42 @@ Recommended downgrades: 0
 | Chloroquine + Ondansetron | qt | moderate | moderate | No linked high-tier source | Kept original severity. |
 | Quinine + Digoxin | pk | severe | severe | High-confidence inline regulatory/guideline source | Severe support threshold met. |
 | Quinine + Warfarin | anticoagulant | moderate | moderate | No linked high-tier source | Kept original severity. |
+| Dronedarone + Dabigatran | metabolic | severe | severe | ev_dabigatran_dronedarone_fda (fda_label) | Severe support threshold met. |
+| Dronedarone + Rosuvastatin | transport | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
+| Amiodarone + Dabigatran | transport | moderate | moderate | ev_dabigatran_dronedarone_fda (fda_label) | Kept original severity. |
+| Quinidine + Dabigatran | transport | severe | severe | ev_dabigatran_dronedarone_fda (fda_label) | Severe support threshold met. |
+| Verapamil + Dabigatran | transport | moderate | moderate | ev_dabigatran_dronedarone_fda (fda_label) | Kept original severity. |
+| Dronedarone + Edoxaban | transport | severe | severe | ev_edoxaban_p_gp_fda (fda_label) | Severe support threshold met. |
+| Quinidine + Edoxaban | transport | severe | severe | ev_edoxaban_p_gp_fda (fda_label) | Severe support threshold met. |
+| Verapamil + Edoxaban | transport | moderate | moderate | ev_edoxaban_p_gp_fda (fda_label) | Kept original severity. |
+| Fluconazole + Ticagrelor | metabolic | severe | severe | ev_ticagrelor_cyp3a_label (fda_label) | Severe support threshold met. |
+| Rifampin + Ticagrelor | induction | severe | severe | ev_ticagrelor_cyp3a_label (fda_label) | Severe support threshold met. |
+| Paroxetine + Prasugrel | antiplatelet_pd | moderate | moderate | ev_prasugrel_active_metab_label (fda_label) | Kept original severity. |
+| Quinidine + Propafenone | metabolic | moderate | moderate | ev_propafenone_cyp2d6_m_plus (observational PMID:25611102) | Kept original severity. |
+| Aprepitant + Tacrolimus | metabolic | moderate | moderate | ev_aprepitant_cyp3a4_label (fda_label)<br>ev_tacrolimus_cyp3a5_consensus (guideline PMID:25813372 DOI:10.1002/cpt.113) | Kept original severity. |
+| Ketoconazole + Tacrolimus | metabolic | severe | severe | ev_tacrolimus_cyp3a5_consensus (guideline PMID:25813372 DOI:10.1002/cpt.113) | Severe support threshold met. |
+| Rifampin + Tacrolimus | induction | severe | severe | ev_tacrolimus_cyp3a5_consensus (guideline PMID:25813372 DOI:10.1002/cpt.113) | Severe support threshold met. |
+| Ketoconazole + Erlotinib | metabolic | severe | severe | ev_erlotinib_ppi_absorption (observational PMID:31045210) | Severe support threshold met. |
+| Omeprazole + Erlotinib | absorption | severe | severe | ev_erlotinib_ppi_absorption (observational PMID:31045210) | Severe support threshold met. |
+| Omeprazole + Pazopanib | absorption | severe | severe | ev_erlotinib_ppi_absorption (observational PMID:31045210) | Severe support threshold met. |
+| Aprepitant + Dexamethasone | metabolic | moderate | moderate | ev_aprepitant_cyp3a4_label (fda_label) | Kept original severity. |
+| Ritonavir + Voriconazole | metabolic | severe | severe | ev_ritonavir_cyp3a4_booster_label (fda_label)<br>ev_voriconazole_cyp2c19_hyland2008 (clinical_pk PMID:18192898 DOI:10.1124/dmd.107.017392) | Severe support threshold met. |
+| Ritonavir + Maraviroc | metabolic | severe | severe | ev_ritonavir_cyp3a4_booster_label (fda_label) | Severe support threshold met. |
+| Rifabutin + Voriconazole | metabolic | severe | severe | ev_voriconazole_cyp2c19_hyland2008 (clinical_pk PMID:18192898 DOI:10.1124/dmd.107.017392) | Severe support threshold met. |
+| Efavirenz + Voriconazole | metabolic | severe | severe | ev_efavirenz_cyp2b6_desta2019 (guideline PMID:31006110 DOI:10.1002/cpt.1477)<br>ev_voriconazole_cyp2c19_hyland2008 (clinical_pk PMID:18192898 DOI:10.1124/dmd.107.017392) | Severe support threshold met. |
+| Glecaprevir + Rifampin | induction | severe | severe | ev_mavyret_oatp_pgp_label (fda_label) | Severe support threshold met. |
+| Pibrentasvir + Rifampin | induction | severe | severe | ev_mavyret_oatp_pgp_label (fda_label) | Severe support threshold met. |
+| Dolutegravir + Metformin | transport | moderate | moderate | ev_dolutegravir_oct2_mate1_fda (fda_label) | Kept original severity. |
+| Dolutegravir + Calcium | absorption | moderate | moderate | ev_dolutegravir_oct2_mate1_fda (fda_label) | Kept original severity. |
+| Voriconazole + Omeprazole | metabolic | moderate | moderate | ev_voriconazole_cyp2c19_hyland2008 (clinical_pk PMID:18192898 DOI:10.1124/dmd.107.017392) | Kept original severity. |
+| Isavuconazonium Sulfate + Ketoconazole | metabolic | severe | severe | ev_isavuconazole_cyp3a4_validation (observational PMID:28137810) | Severe support threshold met. |
+| Isavuconazonium Sulfate + Rifampin | induction | severe | severe | ev_isavuconazole_cyp3a4_validation (observational PMID:28137810) | Severe support threshold met. |
+| Efavirenz + Dolutegravir | metabolic | moderate | moderate | ev_efavirenz_cyp2b6_desta2019 (guideline PMID:31006110 DOI:10.1002/cpt.1477)<br>ev_dolutegravir_oct2_mate1_fda (fda_label) | Kept original severity. |
+| Rifabutin + Dolutegravir | metabolic | moderate | moderate | ev_dolutegravir_oct2_mate1_fda (fda_label) | Kept original severity. |
+| Duloxetine + Tizanidine | metabolic | severe | severe | ev_tizanidine_cyp1a2_contraindication (fda_label) | Severe support threshold met. |
+| Amiodarone + Cyclobenzaprine | metabolic | moderate | moderate | ev_cyclobenzaprine_serotonin_syndrome (fda_label) | Kept original severity. |
+| Duloxetine + Cyclobenzaprine | pharmacodynamic | moderate | moderate | ev_cyclobenzaprine_serotonin_syndrome (fda_label) | Kept original severity. |
+| Methotrexate + Probenecid | transport | severe | severe | ev_methotrexate_oat3_probenecid (observational PMID:29871022) | Severe support threshold met. |
+| Leflunomide + Warfarin | metabolic | moderate | moderate | ev_leflunomide_teriflunomide_half_life (clinical_trial PMID:21344102) | Kept original severity. |
+| Isoniazid + Carbamazepine | metabolic | severe | severe | ev_nat2_isoniazid_consensus (meta-analysis PMID:24685011) | Severe support threshold met. |
+| Hydralazine + Metoprolol | clearance | moderate | moderate | ev_nat2_isoniazid_consensus (meta-analysis PMID:24685011) | Kept original severity. |

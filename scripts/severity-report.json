@@ -3856,5 +3856,1038 @@
       "hasStrongInline": false,
       "missingRefs": []
     }
+  },
+  {
+    "drug1": "Dronedarone",
+    "drug2": "Dabigatran",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_dabigatran_dronedarone_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_dabigatran_dronedarone_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Dronedarone",
+    "drug2": "Rosuvastatin",
+    "category": "transport",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [],
+      "studies": [],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Amiodarone",
+    "drug2": "Dabigatran",
+    "category": "transport",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dabigatran_dronedarone_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_dabigatran_dronedarone_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Quinidine",
+    "drug2": "Dabigatran",
+    "category": "transport",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_dabigatran_dronedarone_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_dabigatran_dronedarone_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Verapamil",
+    "drug2": "Dabigatran",
+    "category": "transport",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dabigatran_dronedarone_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_dabigatran_dronedarone_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Dronedarone",
+    "drug2": "Edoxaban",
+    "category": "transport",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_edoxaban_p_gp_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_edoxaban_p_gp_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Quinidine",
+    "drug2": "Edoxaban",
+    "category": "transport",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_edoxaban_p_gp_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_edoxaban_p_gp_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Verapamil",
+    "drug2": "Edoxaban",
+    "category": "transport",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_edoxaban_p_gp_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_edoxaban_p_gp_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Fluconazole",
+    "drug2": "Ticagrelor",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_ticagrelor_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_ticagrelor_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rifampin",
+    "drug2": "Ticagrelor",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_ticagrelor_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_ticagrelor_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Paroxetine",
+    "drug2": "Prasugrel",
+    "category": "antiplatelet_pd",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_prasugrel_active_metab_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_prasugrel_active_metab_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Quinidine",
+    "drug2": "Propafenone",
+    "category": "metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_propafenone_cyp2d6_m_plus"
+      ],
+      "studies": [
+        {
+          "id": "ev_propafenone_cyp2d6_m_plus",
+          "type": "observational",
+          "pmid": "25611102",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Aprepitant",
+    "drug2": "Tacrolimus",
+    "category": "metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_aprepitant_cyp3a4_label",
+        "ev_tacrolimus_cyp3a5_consensus"
+      ],
+      "studies": [
+        {
+          "id": "ev_aprepitant_cyp3a4_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_tacrolimus_cyp3a5_consensus",
+          "type": "guideline",
+          "pmid": "25813372",
+          "doi": "10.1002/cpt.113"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ketoconazole",
+    "drug2": "Tacrolimus",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_tacrolimus_cyp3a5_consensus"
+      ],
+      "studies": [
+        {
+          "id": "ev_tacrolimus_cyp3a5_consensus",
+          "type": "guideline",
+          "pmid": "25813372",
+          "doi": "10.1002/cpt.113"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rifampin",
+    "drug2": "Tacrolimus",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_tacrolimus_cyp3a5_consensus"
+      ],
+      "studies": [
+        {
+          "id": "ev_tacrolimus_cyp3a5_consensus",
+          "type": "guideline",
+          "pmid": "25813372",
+          "doi": "10.1002/cpt.113"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ketoconazole",
+    "drug2": "Erlotinib",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_erlotinib_ppi_absorption"
+      ],
+      "studies": [
+        {
+          "id": "ev_erlotinib_ppi_absorption",
+          "type": "observational",
+          "pmid": "31045210",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Omeprazole",
+    "drug2": "Erlotinib",
+    "category": "absorption",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_erlotinib_ppi_absorption"
+      ],
+      "studies": [
+        {
+          "id": "ev_erlotinib_ppi_absorption",
+          "type": "observational",
+          "pmid": "31045210",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Omeprazole",
+    "drug2": "Pazopanib",
+    "category": "absorption",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_erlotinib_ppi_absorption"
+      ],
+      "studies": [
+        {
+          "id": "ev_erlotinib_ppi_absorption",
+          "type": "observational",
+          "pmid": "31045210",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Aprepitant",
+    "drug2": "Dexamethasone",
+    "category": "metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_aprepitant_cyp3a4_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_aprepitant_cyp3a4_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ritonavir",
+    "drug2": "Voriconazole",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_ritonavir_cyp3a4_booster_label",
+        "ev_voriconazole_cyp2c19_hyland2008"
+      ],
+      "studies": [
+        {
+          "id": "ev_ritonavir_cyp3a4_booster_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_voriconazole_cyp2c19_hyland2008",
+          "type": "clinical_pk",
+          "pmid": "18192898",
+          "doi": "10.1124/dmd.107.017392"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ritonavir",
+    "drug2": "Maraviroc",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_ritonavir_cyp3a4_booster_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_ritonavir_cyp3a4_booster_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rifabutin",
+    "drug2": "Voriconazole",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_voriconazole_cyp2c19_hyland2008"
+      ],
+      "studies": [
+        {
+          "id": "ev_voriconazole_cyp2c19_hyland2008",
+          "type": "clinical_pk",
+          "pmid": "18192898",
+          "doi": "10.1124/dmd.107.017392"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Efavirenz",
+    "drug2": "Voriconazole",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_efavirenz_cyp2b6_desta2019",
+        "ev_voriconazole_cyp2c19_hyland2008"
+      ],
+      "studies": [
+        {
+          "id": "ev_efavirenz_cyp2b6_desta2019",
+          "type": "guideline",
+          "pmid": "31006110",
+          "doi": "10.1002/cpt.1477"
+        },
+        {
+          "id": "ev_voriconazole_cyp2c19_hyland2008",
+          "type": "clinical_pk",
+          "pmid": "18192898",
+          "doi": "10.1124/dmd.107.017392"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Glecaprevir",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_mavyret_oatp_pgp_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_mavyret_oatp_pgp_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Pibrentasvir",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_mavyret_oatp_pgp_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_mavyret_oatp_pgp_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Dolutegravir",
+    "drug2": "Metformin",
+    "category": "transport",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dolutegravir_oct2_mate1_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_dolutegravir_oct2_mate1_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Dolutegravir",
+    "drug2": "Calcium",
+    "category": "absorption",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dolutegravir_oct2_mate1_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_dolutegravir_oct2_mate1_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Voriconazole",
+    "drug2": "Omeprazole",
+    "category": "metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_voriconazole_cyp2c19_hyland2008"
+      ],
+      "studies": [
+        {
+          "id": "ev_voriconazole_cyp2c19_hyland2008",
+          "type": "clinical_pk",
+          "pmid": "18192898",
+          "doi": "10.1124/dmd.107.017392"
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Isavuconazonium Sulfate",
+    "drug2": "Ketoconazole",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_isavuconazole_cyp3a4_validation"
+      ],
+      "studies": [
+        {
+          "id": "ev_isavuconazole_cyp3a4_validation",
+          "type": "observational",
+          "pmid": "28137810",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Isavuconazonium Sulfate",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_isavuconazole_cyp3a4_validation"
+      ],
+      "studies": [
+        {
+          "id": "ev_isavuconazole_cyp3a4_validation",
+          "type": "observational",
+          "pmid": "28137810",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Efavirenz",
+    "drug2": "Dolutegravir",
+    "category": "metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_efavirenz_cyp2b6_desta2019",
+        "ev_dolutegravir_oct2_mate1_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_efavirenz_cyp2b6_desta2019",
+          "type": "guideline",
+          "pmid": "31006110",
+          "doi": "10.1002/cpt.1477"
+        },
+        {
+          "id": "ev_dolutegravir_oct2_mate1_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Rifabutin",
+    "drug2": "Dolutegravir",
+    "category": "metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_dolutegravir_oct2_mate1_fda"
+      ],
+      "studies": [
+        {
+          "id": "ev_dolutegravir_oct2_mate1_fda",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Duloxetine",
+    "drug2": "Tizanidine",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_tizanidine_cyp1a2_contraindication"
+      ],
+      "studies": [
+        {
+          "id": "ev_tizanidine_cyp1a2_contraindication",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Amiodarone",
+    "drug2": "Cyclobenzaprine",
+    "category": "metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cyclobenzaprine_serotonin_syndrome"
+      ],
+      "studies": [
+        {
+          "id": "ev_cyclobenzaprine_serotonin_syndrome",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Duloxetine",
+    "drug2": "Cyclobenzaprine",
+    "category": "pharmacodynamic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cyclobenzaprine_serotonin_syndrome"
+      ],
+      "studies": [
+        {
+          "id": "ev_cyclobenzaprine_serotonin_syndrome",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Methotrexate",
+    "drug2": "Probenecid",
+    "category": "transport",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_methotrexate_oat3_probenecid"
+      ],
+      "studies": [
+        {
+          "id": "ev_methotrexate_oat3_probenecid",
+          "type": "observational",
+          "pmid": "29871022",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Leflunomide",
+    "drug2": "Warfarin",
+    "category": "metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_leflunomide_teriflunomide_half_life"
+      ],
+      "studies": [
+        {
+          "id": "ev_leflunomide_teriflunomide_half_life",
+          "type": "clinical_trial",
+          "pmid": "21344102",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Isoniazid",
+    "drug2": "Carbamazepine",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_nat2_isoniazid_consensus"
+      ],
+      "studies": [
+        {
+          "id": "ev_nat2_isoniazid_consensus",
+          "type": "meta-analysis",
+          "pmid": "24685011",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Hydralazine",
+    "drug2": "Metoprolol",
+    "category": "clearance",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_nat2_isoniazid_consensus"
+      ],
+      "studies": [
+        {
+          "id": "ev_nat2_isoniazid_consensus",
+          "type": "meta-analysis",
+          "pmid": "24685011",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": false,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
   }
 ]

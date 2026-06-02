@@ -3366,6 +3366,772 @@ const DRUG_DB = [
     }
   ]
 },
+  // ── Salvaged Gemini enrichment: cardiology, oncology, infectious disease, neurology ──
+{
+    id: "dronedarone",
+    name: "Dronedarone",
+    cls: "Class III Antiarrhythmic",
+    brandNames: [
+      "Multaq"
+    ],
+    hl: 30,
+    timing: "AM-PM",
+    props: {
+      qtProlongationRisk: 2,
+      hepatotoxicityRisk: 2
+    },
+    routes: [
+      {
+        enzyme: "CYP3A4",
+        fraction: 0.8,
+        role: "primary_oxidative_clearance",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    inh: [
+      {
+        target: "CYP3A4",
+        strength: "moderate",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      },
+      {
+        target: "CYP2D6",
+        strength: "moderate",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      },
+      {
+        target: "P-gp",
+        strength: "strong",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    ind: [],
+    note: "Non-iodinated amiodarone analogue. Acts as a potent blocker of P-gp and moderate CYP3A4/2D6 environments. Carries key safety warning flags regarding advanced cardiac failure.",
+    alts: []
+  },
+{
+    id: "propafenone",
+    name: "Propafenone",
+    cls: "Class IC Antiarrhythmic",
+    brandNames: [
+      "Rythmol"
+    ],
+    hl: 6,
+    timing: "AM-PM",
+    props: {
+      qtProlongationRisk: 1
+    },
+    routes: [
+      {
+        enzyme: "CYP2D6",
+        fraction: 0.7,
+        role: "primary_hydroxylation",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "literature"
+          ]
+        }
+      },
+      {
+        enzyme: "CYP3A4",
+        fraction: 0.2,
+        role: "n_depropylation",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    inh: [
+      {
+        target: "CYP2D6",
+        strength: "moderate",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "literature"
+          ]
+        }
+      },
+      {
+        target: "P-gp",
+        strength: "moderate",
+        evidence: {
+          confidence: "moderate",
+          sources: [
+            "literature"
+          ]
+        }
+      }
+    ],
+    ind: [],
+    note: "Sodium channel blocker with minor beta-blocking properties. CYP2D6 poor metabolizers experience marked parent drug accumulation, elevating localized proarrhythmic hazards.",
+    alts: [
+      {
+        name: "Flecainide",
+        reason: "Alternative Class IC agent with highly balanced structural excretion mechanisms."
+      }
+    ]
+  },
+{
+    id: "flecainide",
+    name: "Flecainide",
+    cls: "Class IC Antiarrhythmic",
+    brandNames: [
+      "Tambocor"
+    ],
+    hl: 20,
+    timing: "AM-PM",
+    props: {
+      proarrhythmicRisk: 2
+    },
+    routes: [
+      {
+        enzyme: "CYP2D6",
+        fraction: 0.3,
+        role: "partial_clearance",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    inh: [],
+    ind: [],
+    note: "Narrow therapeutic index agent. One-third of clearance depends on CYP2D6; remaining portions eliminate unchanged via kidney infrastructure.",
+    alts: []
+  },
+{
+    id: "imatinib",
+    name: "Imatinib",
+    cls: "BCR-ABL Tyrosine Kinase Inhibitor",
+    brandNames: [
+      "Gleevec"
+    ],
+    hl: 18,
+    timing: "AM",
+    props: {
+      fluidRetentionRisk: 1
+    },
+    routes: [
+      {
+        enzyme: "CYP3A4",
+        fraction: 0.8,
+        role: "primary_metabolic_clearance",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    inh: [
+      {
+        target: "CYP3A4",
+        strength: "weak",
+        evidence: {
+          confidence: "moderate",
+          sources: [
+            "literature"
+          ]
+        }
+      },
+      {
+        target: "CYP2D6",
+        strength: "weak",
+        evidence: {
+          confidence: "moderate",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    ind: [],
+    note: "First-generation TKI compound profile. Relies strongly on consistent hepatic CYP3A4 activity to avoid unexpected variations in systemic trough concentrations.",
+    alts: []
+  },
+{
+    id: "erlotinib",
+    name: "Erlotinib",
+    cls: "EGFR Tyrosine Kinase Inhibitor",
+    brandNames: [
+      "Tarceva"
+    ],
+    hl: 36,
+    timing: "AM",
+    props: {
+      acneiformRashRisk: 1
+    },
+    routes: [
+      {
+        enzyme: "CYP3A4",
+        fraction: 0.7,
+        role: "primary_oxidative_degradation",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      },
+      {
+        enzyme: "CYP1A2",
+        fraction: 0.2,
+        role: "secondary_clearance_node",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    inh: [],
+    ind: [],
+    note: "Solubility tracks with physiological gastric acid levels. Elevating stomach pH levels drastically reduces systemic bio-availability metrics.",
+    alts: []
+  },
+{
+    id: "pazopanib",
+    name: "Pazopanib",
+    cls: "VEGFR Multi-Kinase Inhibitor",
+    brandNames: [
+      "Votrient"
+    ],
+    hl: 31,
+    timing: "AM",
+    props: {
+      hepatotoxicityRisk: 2,
+      hypertensionRisk: 2
+    },
+    routes: [
+      {
+        enzyme: "CYP3A4",
+        fraction: 0.8,
+        role: "metabolic_clearance_pathway",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    inh: [],
+    ind: [],
+    note: "Requires an acidic gastric micro-environment for proper disintegration. Avoid concurrent proton pump inhibitor therapy options.",
+    alts: []
+  },
+{
+    id: "aprepitant",
+    name: "Aprepitant",
+    cls: "NK1 Receptor Antagonist / Antiemetic",
+    brandNames: [
+      "Emend"
+    ],
+    hl: 11,
+    timing: "AM",
+    props: {
+      enzymeModulatingCapacity: 1
+    },
+    routes: [
+      {
+        enzyme: "CYP3A4",
+        fraction: 0.8,
+        role: "metabolic_breakdown",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    inh: [
+      {
+        target: "CYP3A4",
+        strength: "moderate",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    ind: [
+      {
+        target: "CYP2C9",
+        strength: "moderate",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    note: "Exhibits time-dependent mixed properties: acts as a moderate CYP3A4 inhibitor acutely, followed by inductive effects on CYP2C9 target nodes.",
+    alts: []
+  },
+{
+    id: "glecaprevir",
+    name: "Glecaprevir",
+    cls: "HCV NS3/4A Protease Inhibitor",
+    brandNames: [
+      "Mavyret Component"
+    ],
+    hl: 6,
+    timing: "AM",
+    props: {
+      hepatotoxicityRisk: 1
+    },
+    routes: [
+      {
+        enzyme: "OATP1B1",
+        fraction: 0.6,
+        role: "hepatic_uptake_transport",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      },
+      {
+        enzyme: "P-gp",
+        fraction: 0.3,
+        role: "biliary_efflux",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    inh: [
+      {
+        target: "OATP1B1",
+        strength: "strong",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      },
+      {
+        target: "BCRP",
+        strength: "strong",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    ind: [],
+    note: "Direct-acting anti-hepatitis C compound. Relies heavily on hepatic uptake transport networks; avoid use in patients with advanced child-pugh hepatic impairment.",
+    alts: []
+  },
+{
+    id: "pibrentasvir",
+    name: "Pibrentasvir",
+    cls: "HCV NS5A Inhibitor",
+    brandNames: [
+      "Mavyret Component"
+    ],
+    hl: 23,
+    timing: "AM",
+    props: {
+      panGenotypicEfficacy: 1
+    },
+    routes: [
+      {
+        enzyme: "P-gp",
+        fraction: 0.8,
+        role: "biliary_excretion_unchanged",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    inh: [
+      {
+        target: "P-gp",
+        strength: "moderate",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      },
+      {
+        target: "BCRP",
+        strength: "strong",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    ind: [],
+    note: "Exhibits minimal absolute hepatic oxidative degradation. Excreted almost entirely unchanged via active biliary transport structures.",
+    alts: []
+  },
+{
+    id: "isavuconazonium_sulfate",
+    name: "Isavuconazonium Sulfate",
+    cls: "Triazole Antifungal",
+    brandNames: [
+      "Cresemba"
+    ],
+    hl: 130,
+    timing: "AM",
+    props: {
+      qtShorteningRisk: 1
+    },
+    routes: [
+      {
+        enzyme: "Plasma Esterases",
+        fraction: 0.9,
+        role: "prodrug_hydrolysis_to_isavuconazole",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      },
+      {
+        enzyme: "CYP3A4",
+        fraction: 0.1,
+        role: "downstream_metabolism",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    inh: [
+      {
+        target: "CYP3A4",
+        strength: "moderate",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    ind: [],
+    note: "Water-soluble prodrug configuration. Unlike other azoles, it shortens the absolute QT interval parameter safely rather than lengthening it.",
+    alts: []
+  },
+{
+    id: "rifabutin",
+    name: "Rifabutin",
+    cls: "Antimycobacterial Antibiotic",
+    brandNames: [
+      "Mycobutin"
+    ],
+    hl: 45,
+    timing: "AM",
+    props: {
+      uveitisRisk: 1
+    },
+    routes: [
+      {
+        enzyme: "CYP3A4",
+        fraction: 0.7,
+        role: "metabolic_clearance_and_autoinduction",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    inh: [],
+    ind: [
+      {
+        target: "CYP3A4",
+        strength: "moderate",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    note: "Preferred alternative in HIV/TB co-management configurations due to its lower CYP3A4 induction potency relative to rifampin.",
+    alts: []
+  },
+{
+    id: "maraviroc",
+    name: "Maraviroc",
+    cls: "CCR5 Co-Receptor Antagonist",
+    brandNames: [
+      "Selzentry"
+    ],
+    hl: 10,
+    timing: "AM-PM",
+    props: {
+      tropismRestriction: 1
+    },
+    routes: [
+      {
+        enzyme: "CYP3A4",
+        fraction: 0.9,
+        role: "primary_oxidative_clearance",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    inh: [],
+    ind: [],
+    note: "Requires a core tropism diagnostic screening assay to confirm exclusive CCR5 viral binding status before clinical deployment.",
+    alts: []
+  },
+{
+    id: "hydralazine",
+    name: "Hydralazine",
+    cls: "Vasodilator / Antihypertensive",
+    brandNames: [
+      "Apresoline"
+    ],
+    hl: 3,
+    timing: "AM-PM",
+    props: {
+      drugInducedLupusRisk: 1
+    },
+    routes: [
+      {
+        enzyme: "NAT2",
+        fraction: 0.6,
+        role: "hepatic_first_pass_acetylation",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "literature"
+          ]
+        }
+      }
+    ],
+    inh: [],
+    ind: [],
+    note: "Direct-acting smooth muscle arteriole relaxant. Displays significant first-pass metabolic extraction profiles driven by native acetylation velocities.",
+    alts: []
+  },
+{
+    id: "levodopa",
+    name: "Levodopa",
+    cls: "Dopamine Precursor / Antiparkinsonian",
+    brandNames: [
+      "Inbrija Component"
+    ],
+    hl: 1.5,
+    timing: "AM-PM",
+    props: {
+      motorFluctuationRisk: 1
+    },
+    routes: [
+      {
+        enzyme: "DOPA Decarboxylase",
+        fraction: 0.7,
+        role: "peripheral_conversion_to_dopamine",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      },
+      {
+        enzyme: "COMT",
+        fraction: 0.2,
+        role: "methylation_to_3_omd",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "literature"
+          ]
+        }
+      }
+    ],
+    inh: [],
+    ind: [],
+    note: "Requires permanent co-formulation with decarboxylase inhibitors to prevent extensive premature peripheral degradation before crossing the blood-brain barrier.",
+    alts: []
+  },
+{
+    id: "entacapone",
+    name: "Entacapone",
+    cls: "Peripheral COMT Inhibitor",
+    brandNames: [
+      "Comtan"
+    ],
+    hl: 2,
+    timing: "AM-PM",
+    props: {
+      levodopaPotentiation: 1
+    },
+    routes: [
+      {
+        enzyme: "Isomerization / Glucuronidation",
+        fraction: 0.9,
+        role: "metabolic_inactivation",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    inh: [
+      {
+        target: "COMT",
+        strength: "strong",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    ind: [],
+    note: "Specifically targets peripheral COMT networks. Has no direct central nervous system activity; used solely to optimize levodopa kinetics.",
+    alts: []
+  },
+{
+    id: "carbidopa",
+    name: "Carbidopa",
+    cls: "Peripheral DOPA Decarboxylase Inhibitor",
+    brandNames: [
+      "Lodosyn"
+    ],
+    hl: 2,
+    timing: "AM-PM",
+    props: {
+      peripheralDecarboxylationBlockade: 1
+    },
+    routes: [
+      {
+        enzyme: "Excretion / Unchanged",
+        fraction: 0.7,
+        role: "renal_clearance",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    inh: [
+      {
+        target: "Aromatic L-Amino Acid Decarboxylase",
+        strength: "strong",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    ind: [],
+    note: "Does not penetrate the blood-brain barrier. Safely isolates dopamine synthesis to central neurological target compartments.",
+    alts: []
+  },
+{
+    id: "leflunomide",
+    name: "Leflunomide",
+    cls: "Pyrimidine Synthesis Inhibitor DMARD",
+    brandNames: [
+      "Arava"
+    ],
+    hl: 336,
+    timing: "AM",
+    props: {
+      extremeHalfLife: 2,
+      teratogenicityRisk: 2
+    },
+    routes: [
+      {
+        enzyme: "Non-enzymatic cleavage",
+        fraction: 0.9,
+        role: "instant_conversion_to_teriflunomide",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    inh: [
+      {
+        target: "CYP2C9",
+        strength: "weak",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      }
+    ],
+    ind: [],
+    note: "Exhibits an exceptionally long 2-week half-life due to extensive biliary recycling. Complete elimination can take up to 2 years without an active wash-out protocol.",
+    alts: []
+  },
 ];
 
 // ═══════════════════════════════════════════════════════════════════

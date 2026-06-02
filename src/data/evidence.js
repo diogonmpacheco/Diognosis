@@ -4897,6 +4897,650 @@ const STUDY_DB = {
     verifyNote:"Batch 1 enrichment entry awaiting human pharmacist/physician review; do not use for severity escalation until reviewed"
   },
 
+
+  // ═══ SALVAGED GEMINI ENRICHMENT: CARDIOLOGY / ONCOLOGY / ID / NEUROLOGY ═══
+  "ev_dabigatran_dronedarone_fda": {
+    id: "ev_dabigatran_dronedarone_fda",
+    public: true,
+    type: "fda_label",
+    title: "Pradaxa (dabigatran etexilate) Prescribing Information — P-gp Transport Interaction Mappings",
+    year: 2021,
+    source: "FDA",
+    journal: "Regulatory Label",
+    pmid: null,
+    doi: null,
+    url: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2021/022512s039lbl.pdf",
+    studyDesign: "regulatory_label",
+    n: null,
+    phenotypes: [],
+    quantifiedEffects: {
+      note: "Delineates mandatory clinical action guidelines when handling structural P-gp systemic clearance modifiers."
+    },
+    temporal: {
+      mechanism: "Intestinal transport block leading to immediate hyper-absorption cascades."
+    },
+    supports: [
+      "dabigatran_dronedarone_avoidance"
+    ],
+    contradicts: [],
+    limitations: [
+      "Excludes deep physical clearance mappings across variable high-tier advanced age parameters."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_edoxaban_p_gp_fda": {
+    id: "ev_edoxaban_p_gp_fda",
+    public: true,
+    type: "fda_label",
+    title: "Savaysa (edoxaban) Full Prescribing Information — Transport Scaling Factors",
+    year: 2020,
+    source: "FDA",
+    journal: "Regulatory Label",
+    pmid: null,
+    doi: null,
+    url: "https://www.accessdata.fda.gov/",
+    studyDesign: "regulatory_label",
+    n: null,
+    phenotypes: [],
+    quantifiedEffects: {
+      note: "Mandates clear structural dose modifications under concurrent high-potency P-gp transport blocks."
+    },
+    temporal: {
+      mechanism: "Slowing of structural renal/biliary export vectors."
+    },
+    supports: [
+      "edoxaban_p_gp_adjustments"
+    ],
+    contradicts: [],
+    limitations: [
+      "Does not calculate custom genetic transport variance inside baseline BCRP channel expressions."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_ticagrelor_cyp3a_label": {
+    id: "ev_ticagrelor_cyp3a_label",
+    public: true,
+    type: "fda_label",
+    title: "Brilinta (ticagrelor) Prescribing Information — CYP3A4 Core Dependencies",
+    year: 2022,
+    source: "FDA",
+    journal: "Regulatory Label",
+    pmid: null,
+    doi: null,
+    url: "https://www.fda.gov/",
+    studyDesign: "regulatory_label",
+    n: null,
+    phenotypes: [],
+    quantifiedEffects: {
+      note: "Outlines multi-fold kinetic changes occurring under systemic shifts in oxidative metabolism speed."
+    },
+    temporal: {
+      mechanism: "CYP3A4 oxidative clearance blocks and concurrent reduction of primary metabolite generation speed."
+    },
+    supports: [
+      "ticagrelor_cyp3a4_interactions"
+    ],
+    contradicts: [],
+    limitations: [
+      "Clinical endpoints track major trial indices rather than acute loading phase micro-dynamics."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_prasugrel_active_metab_label": {
+    id: "ev_prasugrel_active_metab_label",
+    public: true,
+    type: "fda_label",
+    title: "Effient (prasugrel) Prescribing Information — Hydrolysis and Activation Mappings",
+    year: 2019,
+    source: "FDA",
+    journal: "Regulatory Label",
+    pmid: null,
+    doi: null,
+    url: "https://www.accessdata.fda.gov/",
+    studyDesign: "regulatory_label",
+    n: null,
+    phenotypes: [
+      "poor_metabolizer"
+    ],
+    quantifiedEffects: {
+      note: "Proves consistent antiplatelet consistency irrespective of variations across individual single-nucleotide CYP2C19 properties."
+    },
+    temporal: {
+      mechanism: "Multi-node parallel metabolic pathway routing via human carboxylesterase 1 systems."
+    },
+    supports: [
+      "prasugrel_cyp2c19_independence"
+    ],
+    contradicts: [],
+    limitations: [
+      "Remains highly sensitive to absolute variations across severe systemic patient body weight thresholds."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_propafenone_cyp2d6_m_plus": {
+    id: "ev_propafenone_cyp2d6_m_plus",
+    public: true,
+    type: "observational",
+    title: "Impact of CYP2D6 Polymorphism on Propafenone Pharmacokinetics and Beta-Blockade",
+    year: 2015,
+    source: "Cardiovascular Literature Review",
+    journal: "Journal of Cardiovascular Pharmacology",
+    pmid: "25611102",
+    doi: null,
+    url: "https://pubmed.ncbi.nlm.nih.gov/",
+    studyDesign: "mechanistic_cohort_tracking",
+    n: 114,
+    phenotypes: [
+      "poor_metabolizer"
+    ],
+    quantifiedEffects: {
+      note: "Identifies a 5-fold escalation in steady-state exposure metrics within poorly operating metabolizer pathways."
+    },
+    temporal: {
+      mechanism: "Arrested ring-hydroxylation shunting parent structure concentrations toward systemic beta-adrenergic target thresholds."
+    },
+    supports: [
+      "propafenone_cyp2d6_toxicity"
+    ],
+    contradicts: [],
+    limitations: [
+      "Requires ongoing confirmation across highly unstable acute rhythm conversion environments."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_flecainide_cyp2d6_safety": {
+    id: "ev_flecainide_cyp2d6_safety",
+    public: true,
+    type: "observational",
+    title: "Flecainide toxicity risks driven by CYP2D6 Poor Metabolizer status and Renal Insufficiency",
+    year: 2018,
+    source: "Clinical Antiarrhythmic Studies",
+    journal: "Europace",
+    pmid: "29325010",
+    doi: null,
+    url: "https://pubmed.ncbi.nlm.nih.gov/",
+    studyDesign: "retrospective_safety_analysis",
+    n: 92,
+    phenotypes: [
+      "poor_metabolizer"
+    ],
+    quantifiedEffects: {
+      note: "Demonstrates that poor metabolic performance compounded by moderate renal impairment risks serious QRS widening anomalies."
+    },
+    temporal: {
+      mechanism: "Loss of alternate metabolic pathway escape vectors for unchanged structural compounds."
+    },
+    supports: [
+      "flecainide_cyp2d6_clearance_risks"
+    ],
+    contradicts: [],
+    limitations: [
+      "Confounded locally by variable serum potassium and electrolyte parameters."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_aprepitant_cyp3a4_label": {
+    id: "ev_aprepitant_cyp3a4_label",
+    public: true,
+    type: "fda_label",
+    title: "Emend (aprepitant) Full Prescribing Information — Kinetic Integration Parameters",
+    year: 2021,
+    source: "FDA",
+    journal: "Regulatory Label",
+    pmid: null,
+    doi: null,
+    url: "https://www.accessdata.fda.gov/",
+    studyDesign: "regulatory_label",
+    n: null,
+    phenotypes: [],
+    quantifiedEffects: {
+      note: "Maps precise drug-drug interaction parameters across co-administered oncologic regimens."
+    },
+    temporal: {
+      mechanism: "Time-limited competitive saturation of localized hepatic microsomal enzymes."
+    },
+    supports: [
+      "aprepitant_cyp3a4_inhibition"
+    ],
+    contradicts: [],
+    limitations: [
+      "Does not track pediatric clearance phenotypes over long-term multi-cycle regimens."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_erlotinib_ppi_absorption": {
+    id: "ev_erlotinib_ppi_absorption",
+    public: true,
+    type: "observational",
+    title: "Effect of Proton Pump Inhibitors on the Pharmacokinetics of Erlotinib in Non-Small Cell Lung Cancer",
+    year: 2019,
+    source: "Oncology Drug Interaction Group",
+    journal: "Targeted Oncology",
+    pmid: "31045210",
+    doi: null,
+    url: "https://pubmed.ncbi.nlm.nih.gov/",
+    studyDesign: "prospective_pharmacokinetic_cross_over",
+    n: 24,
+    phenotypes: [],
+    quantifiedEffects: {
+      note: "Demonstrates a severe drop in mean systemic maximum concentrations under omeprazole therapy."
+    },
+    temporal: {
+      mechanism: "pH-dependent dissolution arrest inside the upper gastrointestinal tract."
+    },
+    supports: [
+      "erlotinib_ppi_contraindication"
+    ],
+    contradicts: [],
+    limitations: [
+      "Co-administration with acidic beverages can partially bypass this interaction mechanism."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_tacrolimus_cyp3a5_consensus": {
+    id: "ev_tacrolimus_cyp3a5_consensus",
+    public: true,
+    type: "guideline",
+    title: "Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for CYP3A5 Genotype and Tacrolimus Dosing",
+    year: 2015,
+    source: "CPIC",
+    journal: "Clinical Pharmacology & Therapeutics",
+    pmid: "25813372",
+    doi: "10.1002/cpt.113",
+    url: "https://cpicpgx.org/guidelines/guideline-for-tacrolimus/",
+    studyDesign: "clinical_pharmacogenetics_guideline",
+    n: null,
+    phenotypes: [
+      "normal_metabolizer",
+      "poor_metabolizer"
+    ],
+    quantifiedEffects: {
+      note: "Recommends a 1.5- to 2-fold increase in initial tacrolimus doses for CYP3A5 expressers (*1 allele carriers)."
+    },
+    temporal: {
+      mechanism: "Rapid systemic clearance driven by highly functional baseline CYP3A5 expression."
+    },
+    supports: [
+      "tacrolimus_cyp3a5_dosing_adjustments"
+    ],
+    contradicts: [],
+    limitations: [
+      "Target therapeutic troughs must still be adjusted based on specific organ transplant types."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_dolutegravir_oct2_mate1_fda": {
+    id: "ev_dolutegravir_oct2_mate1_fda",
+    public: true,
+    type: "fda_label",
+    title: "Tivicay (dolutegravir) Full Prescribing Information — Transporter Inhibition Profiles",
+    year: 2021,
+    source: "FDA",
+    journal: "Regulatory Label",
+    pmid: null,
+    doi: null,
+    url: "https://www.accessdata.fda.gov/",
+    studyDesign: "regulatory_label",
+    n: null,
+    phenotypes: [],
+    quantifiedEffects: {
+      note: "Validates safe increases in serum creatinine markers caused by localized transporter inhibition rather than true renal injury."
+    },
+    temporal: {
+      mechanism: "Competitive inhibition of renal proximal tubule transport cells."
+    },
+    supports: [
+      "dolutegravir_metformin_interaction"
+    ],
+    contradicts: [],
+    limitations: [
+      "Co-morbid diabetic nephropathy variations can obscure baseline creatinine interpretations."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_ritonavir_cyp3a4_booster_label": {
+    id: "ev_ritonavir_cyp3a4_booster_label",
+    public: true,
+    type: "fda_label",
+    title: "Norvir (ritonavir) Prescribing Information — Mechanism-Based Inhibition Matrices",
+    year: 2022,
+    source: "FDA",
+    journal: "Regulatory Label",
+    pmid: null,
+    doi: null,
+    url: "https://www.fda.gov/",
+    studyDesign: "regulatory_label",
+    n: null,
+    phenotypes: [],
+    quantifiedEffects: {
+      note: "Outlines safety parameters for managing strong drug-drug interactions when using ritonavir as an antiviral pharmacokinetic booster."
+    },
+    temporal: {
+      mechanism: "Irreversible inactivation of hepatic microsomal CYP3A4 complexes."
+    },
+    supports: [
+      "ritonavir_cyp3a4_inhibition_boosting"
+    ],
+    contradicts: [],
+    limitations: [
+      "Data focuses on standard booster doses (100mg) rather than historical high-dose antiretroviral therapy."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_mavyret_oatp_pgp_label": {
+    id: "ev_mavyret_oatp_pgp_label",
+    public: true,
+    type: "fda_label",
+    title: "Mavyret (glecaprevir and pibrentasvir) Full Prescribing Information — Transporter Dependencies",
+    year: 2023,
+    source: "FDA",
+    journal: "Regulatory Label",
+    pmid: null,
+    doi: null,
+    url: "https://www.accessdata.fda.gov/",
+    studyDesign: "regulatory_label",
+    n: null,
+    phenotypes: [],
+    quantifiedEffects: {
+      note: "Mandates screening for advanced hepatic impairment to prevent systemic protease inhibitor accumulation and subsequent toxicity."
+    },
+    temporal: {
+      mechanism: "Saturation of cellular entry vectors via OATP1B1/1B3 pathways."
+    },
+    supports: [
+      "glecaprevir_pibrentasvir_transporter_kinetics"
+    ],
+    contradicts: [],
+    limitations: [
+      "Does not track rare genomic mutations within structural BCRP efflux proteins."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_isavuconazole_cyp3a4_validation": {
+    id: "ev_isavuconazole_cyp3a4_validation",
+    public: true,
+    type: "observational",
+    title: "Pharmacokinetics and Drug Interaction Profile of Isavuconazole: A Mechanistic Evaluation",
+    year: 2017,
+    source: "Infectious Disease Research Group",
+    journal: "Antimicrobial Agents and Chemotherapy",
+    pmid: "28137810",
+    doi: null,
+    url: "https://pubmed.ncbi.nlm.nih.gov/",
+    studyDesign: "prospective_cohort_modelling",
+    n: 48,
+    phenotypes: [],
+    quantifiedEffects: {
+      note: "Confirms linear pharmacokinetic predictability and quantifies moderate down-stream CYP3A4 inhibition profiles."
+    },
+    temporal: {
+      mechanism: "Plasma esterase transformation followed by secondary oxidative degradation loops."
+    },
+    supports: [
+      "isavuconazole_linear_kinetics"
+    ],
+    contradicts: [],
+    limitations: [
+      "Monitored primarily in healthy volunteers rather than highly unstable bone marrow transplant recipients."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_nat2_isoniazid_consensus": {
+    id: "ev_nat2_isoniazid_consensus",
+    public: true,
+    type: "meta-analysis",
+    title: "Influence of NAT2 Acetylator Phenotypes on Isoniazid Efficacy and Hepatotoxicity: A Systematic Consensus Evaluation",
+    year: 2014,
+    source: "Global Mycobacterial Network",
+    journal: "International Journal of Tuberculosis and Lung Disease",
+    pmid: "24685011",
+    doi: null,
+    url: "https://pubmed.ncbi.nlm.nih.gov/",
+    studyDesign: "systematic_review_with_meta_analysis",
+    n: 1420,
+    phenotypes: [
+      "slow_acetylator",
+      "rapid_acetylator"
+    ],
+    quantifiedEffects: {
+      note: "Quantifies a 3-fold higher incidence of peripheral neuropathy and drug-induced lupus in verified slow acetylators."
+    },
+    temporal: {
+      mechanism: "Shunting of amine groups into alternative toxic oxidative free-radical pathways."
+    },
+    supports: [
+      "isoniazid_nat2_neuropathy_induction",
+      "hydralazine_dile_induction"
+    ],
+    contradicts: [],
+    limitations: [
+      "Confounded by varying regional nutritional habits and baseline alcohol consumption rates."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_comt_levodopa_parkinson_2012": {
+    id: "ev_comt_levodopa_parkinson_2012",
+    public: true,
+    type: "observational",
+    title: "Impact of COMT Val158Met Polymorphism on Motor Fluctuations and Entacapone Responsiveness in Parkinson's Disease",
+    year: 2012,
+    source: "Movement Disorder Research Consortium",
+    journal: "Neurology Pharmacotherapy",
+    pmid: "22810452",
+    doi: null,
+    url: "https://pubmed.ncbi.nlm.nih.gov/",
+    studyDesign: "prospective_genotype_stratified_cohort",
+    n: 180,
+    phenotypes: [
+      "high_activity"
+    ],
+    quantifiedEffects: {
+      note: "Validates faster wearing-off periods and superior entacapone response profiles in patients with the homozygous Val/Val genotype."
+    },
+    temporal: {
+      mechanism: "Rapid methylation of peripheral levodopa into competitive 3-OMD fragments."
+    },
+    supports: [
+      "levodopa_comt_wearing_off"
+    ],
+    contradicts: [],
+    limitations: [
+      "Concurrent gastric dysmotility variations can alter the absolute timing of levodopa absorption."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_tizanidine_cyp1a2_contraindication": {
+    id: "ev_tizanidine_cyp1a2_contraindication",
+    public: true,
+    type: "fda_label",
+    title: "Zanaflex (tizanidine) Oral Prescribing Information — Core Drug Interaction Safety Profiles",
+    year: 2021,
+    source: "FDA",
+    journal: "Regulatory Label",
+    pmid: null,
+    doi: null,
+    url: "https://www.accessdata.fda.gov/",
+    studyDesign: "regulatory_label",
+    n: null,
+    phenotypes: [],
+    quantifiedEffects: {
+      note: "Imposes a strict contraindication for the concurrent use of strong CYP1A2 inhibitors due to the risk of profound hypotension."
+    },
+    temporal: {
+      mechanism: "Saturation of hepatic microsomal clearance pathways leading to toxic systemic accumulation."
+    },
+    supports: [
+      "tizanidine_cyp1a2_severe_hypotension"
+    ],
+    contradicts: [],
+    limitations: [
+      "Does not evaluate minor interactions with weak smoking-induced enzyme variations."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_leflunomide_teriflunomide_half_life": {
+    id: "ev_leflunomide_teriflunomide_half_life",
+    public: true,
+    type: "clinical_trial",
+    title: "Pharmacokinetic Modeling of Teriflunomide Biliary Excretion and Acceleration with Oral Binding Resins",
+    year: 2011,
+    source: "DMARD Safety Panel",
+    journal: "Arthritis & Rheumatology",
+    pmid: "21344102",
+    doi: null,
+    url: "https://pubmed.ncbi.nlm.nih.gov/",
+    studyDesign: "randomized_cross_over_washout",
+    n: 36,
+    phenotypes: [],
+    quantifiedEffects: {
+      note: "Confirms that cholestyramine administration clears systemic teriflunomide fractions down to safe, undetectable levels within 11 days."
+    },
+    temporal: {
+      mechanism: "Interruption of active enterohepatic recycling loops within the small intestine."
+    },
+    supports: [
+      "leflunomide_cholestyramine_washout"
+    ],
+    contradicts: [],
+    limitations: [
+      "Requires total gastrointestinal tolerance of high resin doses to maintain consistent clearance speeds."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_methotrexate_oat3_probenecid": {
+    id: "ev_methotrexate_oat3_probenecid",
+    public: true,
+    type: "observational",
+    title: "Drug-Drug Interactions at the Renal Basolateral Membrane: Quantitative Evaluation of Transporter Blockade",
+    year: 2018,
+    source: "Nephrology Pharmacology Group",
+    journal: "Journal of the American Society of Nephrology",
+    pmid: "29871022",
+    doi: null,
+    url: "https://pubmed.ncbi.nlm.nih.gov/",
+    studyDesign: "retrospective_toxicological_review",
+    n: 62,
+    phenotypes: [],
+    quantifiedEffects: {
+      note: "Documents a significant increase in methotrexate serum concentrations when probenecid is co-administered."
+    },
+    temporal: {
+      mechanism: "Competitive inhibition of active organic anion transport at the proximal tubule."
+    },
+    supports: [
+      "methotrexate_probenecid_severe_toxicity"
+    ],
+    contradicts: [],
+    limitations: [
+      "Evaluated primarily in high-dose oncology regimens rather than low-dose weekly rheumatoid arthritis tracking."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
+  "ev_cyclobenzaprine_serotonin_syndrome": {
+    id: "ev_cyclobenzaprine_serotonin_syndrome",
+    public: true,
+    type: "fda_label",
+    title: "Amrix (cyclobenzaprine extended-release) Full Prescribing Information — Serotonergic Hazard Disclosures",
+    year: 2022,
+    source: "FDA",
+    journal: "Regulatory Label",
+    pmid: null,
+    doi: null,
+    url: "https://www.fda.gov/",
+    studyDesign: "regulatory_label",
+    n: null,
+    phenotypes: [],
+    quantifiedEffects: {
+      note: "Issues a safety warning regarding the risk of serotonin syndrome when cyclobenzaprine is combined with serotonergic antidepressants."
+    },
+    temporal: {
+      mechanism: "Synergistic inhibition of serotonin reuptake mechanisms at central synaptic junctions."
+    },
+    supports: [
+      "cyclobenzaprine_duloxetine_serotonin_syndrome"
+    ],
+    contradicts: [],
+    limitations: [
+      "Does not track baseline monoamine oxidase expression variations in individual patients."
+    ],
+    verified: false,
+    reviewRequired: true,
+    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    confidence: "moderate"
+  },
+
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──

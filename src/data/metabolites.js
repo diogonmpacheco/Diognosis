@@ -1260,6 +1260,117 @@ const METAB = {
   {n:"Fe²⁺ → Ferritin (storage)",e:"None",a:"active",p:0,note:"No excretion pathway; regulated entirely by absorption (1-2mg/day)"},
   {n:"Fe²⁺ → Transferrin (transport)",e:"Ceruloplasmin",a:"active",p:0,note:"Oxidized to Fe³⁺ for transferrin binding; delivered to marrow for hemoglobin"},
   {n:"Hemosiderin (excess storage)",e:"None",a:"toxic",p:0,note:"Iron overload marker; deposits in liver, heart, pancreas → organ damage"}
+],
+// ── Salvaged Gemini enrichment: new parent metabolite sets ──
+"Propafenone":[
+  {
+    n: "5-Hydroxypropafenone",
+    e: "CYP2D6",
+    a: "active",
+    p: 50,
+    note: "Possesses potent sodium channel blocking properties. This functional structural protection layer disappears within documented CYP2D6 poor metabolizers.",
+    evidenceRefs: [
+      "ev_propafenone_cyp2d6_m_plus"
+    ]
+  }
+],
+"Aprepitant":[
+  {
+    n: "N-dealkylated metabolite",
+    e: "CYP3A4",
+    a: "inactive",
+    p: 10,
+    note: "Demonstrates minimal clinical engagement across target neurokinin central receptors.",
+    evidenceRefs: [
+      "ev_aprepitant_cyp3a4_label"
+    ]
+  }
+],
+"Isavuconazonium Sulfate":[
+  {
+    n: "Isavuconazole",
+    e: "Plasma Esterase Hydrolysis",
+    a: "active_form",
+    role: "active_form",
+    p: 100,
+    note: "The active, long-lived triazole entity driving systemic antifungal cell membrane destruction indices.",
+    evidenceRefs: [
+      "ev_isavuconazole_cyp3a4_validation"
+    ]
+  }
+],
+"Abacavir":[
+  {
+    n: "Abacavir glucuronide",
+    e: "UGT1A1",
+    a: "inactive",
+    p: 35,
+    note: "Secondary parallel clearing configuration operating safely inside liver tissues.",
+    evidenceRefs: [
+      "ev_abacavir_hlab5701_cpic2012"
+    ]
+  }
+],
+"Isoniazid":[
+  {
+    n: "Acetylisoniazid",
+    e: "NAT2",
+    a: "inactive_intermediate",
+    role: "inactive_form",
+    p: 70,
+    note: "Represents the safe, non-toxic pathway for rapid clinical clearance.",
+    evidenceRefs: [
+      "ev_nat2_isoniazid_consensus"
+    ]
+  },
+  {
+    n: "Acetylhydrazine / Monoacetylhydrazine",
+    e: "Downstream hydrolysis",
+    a: "hepatotoxic_reactive_radical",
+    role: "toxic_form",
+    p: 20,
+    note: "Can undergo further micro-activation into reactive species that bind directly to hepatic tissues.",
+    evidenceRefs: [
+      "ev_nat2_isoniazid_consensus"
+    ]
+  }
+],
+"Leflunomide":[
+  {
+    n: "Teriflunomide (A77 1726)",
+    e: "Plasma GI opening",
+    a: "active_immunomodulator",
+    role: "active_form",
+    p: 100,
+    note: "The primary therapeutic metabolite. Inhibits dihydroorotate dehydrogenase to halt fast-replicating autoimmune T-cell lines.",
+    evidenceRefs: [
+      "ev_leflunomide_teriflunomide_half_life"
+    ]
+  }
+],
+"Levodopa":[
+  {
+    n: "Dopamine",
+    e: "DOPA Decarboxylase",
+    a: "active_neurotransmitter",
+    role: "active_form",
+    p: 70,
+    note: "The therapeutic molecule required within central striatal brain receptors to restore motor function.",
+    evidenceRefs: [
+      "ev_comt_levodopa_parkinson_2012"
+    ]
+  },
+  {
+    n: "3-O-Methyldopa (3-OMD)",
+    e: "COMT",
+    a: "inactive_competitor",
+    role: "inactive_form",
+    p: 25,
+    note: "Accumulates in the periphery and competes with remaining levodopa for transport across the blood-brain barrier.",
+    evidenceRefs: [
+      "ev_comt_levodopa_parkinson_2012"
+    ]
+  }
 ]
 };
 
