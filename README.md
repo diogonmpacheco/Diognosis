@@ -16,7 +16,7 @@ Free, private drug interaction checker and pharmacogenomics tool for medication 
 
 MedCheck started as a drug interaction calculator. It's now a systems pharmacology graph engine — a single HTML file containing a directed biochemical interaction graph with drugs, metabolites, enzymes, transporters, food compounds, receptors, and clinical phenotypes as equal actors. All reasoning is done client-side, with no server calls, no accounts, and no data collection.
 
-The codebase is structured as 28 source modules in `src/` and assembled into a single deployable HTML file by `build.js`. Each module is independently editable; `npm run build` produces the distributable, `npm run smoke` runs a browser-level sanity check, `npm run regression` checks core pharmacology scenarios, and `npm run validate` reports provenance gaps without mutating the database. Before release, `npm run release:check` rebuilds the bundle, verifies README/version metadata, and runs the full local gate.
+The codebase is structured as 28 editable JavaScript source modules in `src/`, plus the generated stats file and HTML template, and is assembled into a single deployable HTML file by `build.js`. Each module is independently editable; `npm run build` produces the distributable, `npm run smoke` runs a browser-level sanity check, `npm run regression` checks core pharmacology scenarios, and `npm run validate` reports provenance gaps without mutating the database. Before release, `npm run release:check` rebuilds the bundle, verifies README/version metadata, and runs the full local gate.
 
 ---
 
@@ -51,7 +51,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 - **Dynamic route fractions** — enzyme burden redistributed across residual pathways when one route is inhibited
 
 ### Evidence System
-- **STUDY_DB** — 205 evidence entries: 105 curated entries plus 100 live enrichment entries marked `reviewRequired:true` for pharmacist/physician review before clinical use
+- **STUDY_DB** — 205 evidence entries: 106 verified entries plus 99 live enrichment entries marked `reviewRequired:true` for pharmacist/physician review before clinical use
 - **9-tier evidence hierarchy** — IN_VITRO → ANIMAL → CASE_REPORT → OBSERVATIONAL → CLINICAL_PK → RCT → META_ANALYSIS → GUIDELINE → FDA_LABEL
 - **Evidence weights** — each tier carries a calibrated confidence weight (0.30–0.95) used by `computeEdgeConfidence()` to decay traversal confidence
 - **Contradictory evidence** — explicitly modeled; Province 2014 meta-analysis vs CPIC tamoxifen guideline are both shown without suppression
@@ -91,7 +91,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 - Syndrome-specific clinical warnings: serotonin syndrome criteria (clonus, hyperthermia), TdP risk factors (hypokalemia, female sex, bradycardia), CNS depression
 
 ### Adverse Effect Burden
-- **Anticholinergic Cognitive Burden (ACB) scale** — scored for ~40 drugs; clinical interpretation (delirium risk, urinary retention) at ACB ≥ 3
+- **Anticholinergic Cognitive Burden (ACB) scale** — scored for 51 drugs; clinical interpretation (delirium risk, urinary retention) at ACB ≥ 3
 - **Beers Criteria 2023** — flags for drug classes in patients ≥65 years. Current flag count is generated in Live Source Stats.
 - Sedation accumulation count and fall risk scoring
 
@@ -115,7 +115,7 @@ The codebase is structured as 28 source modules in `src/` and assembled into a s
 
 MedCheck distributes as a single self-contained HTML file. The current generated size is listed in Live Source Stats. All computation runs in the browser with no dependencies except D3.js (loaded from CDN for graph visualization). There is no backend, no API, and no persistent storage.
 
-The source is structured as **28 modules** in `src/`, assembled in dependency order by `build.js`:
+The source is structured as **28 editable JavaScript modules** in `src/`, assembled in dependency order by `build.js`, alongside the generated stats file and HTML template:
 
 ```
 src/
@@ -153,7 +153,7 @@ where `substrateBurden = min(0.50, (n_competing_substrates − 1) × 0.10)` and 
 | `RECEPTOR_SCORES` | Per-drug affinity scores across 11 receptor targets |
 | `PHENOTYPE_ACTORS` | 13 clinical outcome nodes |
 | `KNOWN_DDI` | Curated pairwise interaction entries with evidenceRefs |
-| `STUDY_DB` | 205 evidence entities with provenance; live enrichment entries remain visibly review-required |
+| `STUDY_DB` | 205 evidence entities with provenance: 106 verified and 99 review-required live enrichment entries |
 | `GENOTYPE_EFFECTS` / `GENOTYPE_RISK_EFFECTS` | PM/IM/NM/UM fold-change multipliers per enzyme plus non-PK risk allele rules |
 | `PK_PARAMS` | One-compartment PK parameters for 15 drugs |
 | `TEMPORAL_PROFILES` | Onset/washout profiles for persistent inhibitors |
@@ -175,7 +175,7 @@ where `substrateBurden = min(0.50, (n_competing_substrates − 1) × 0.10)` and 
 **Building from source:**
 ```bash
 npm install          # installs esbuild (minification only)
-npm run build        # → index.html (~612 KB, development)
+npm run build        # → index.html (~1025 KB, development)
 npm run build:min    # → index.html (minified)
 npm run smoke        # builds and verifies core UI/engine behavior
 npm run regression   # checks core pharmacology scenarios
