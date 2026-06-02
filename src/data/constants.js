@@ -279,6 +279,123 @@ const GENOTYPE_RISK_EFFECTS = {
       [GENOTYPE_RISK_STATUS.PRESENT]: { label:"detected", severity:"high", note:"Risk allele detected. Allopurinol severe cutaneous reaction risk is elevated." },
     },
   },
+  "G6PD deficiency": {
+    gene:"G6PD",
+    variant:"deficiency (class I-III)",
+    label:"G6PD deficiency",
+    drugEffects:[
+      {
+        parent:"Rasburicase",
+        phenotype:"acute hemolytic anemia / methemoglobinemia",
+        note:"Rasburicase is contraindicated in G6PD deficiency: oxidative stress from hydrogen peroxide can overwhelm deficient erythrocytes, causing acute hemolytic anemia and methemoglobinemia.",
+        clinicalAction:"contraindicated; use another urate-lowering strategy",
+        evidenceRefs:["ev_rasburicase_g6pd_cpic2014"],
+      },
+      {
+        parent:"Primaquine",
+        phenotype:"acute hemolytic anemia",
+        note:"8-aminoquinolines can impose oxidative stress and trigger acute hemolysis in G6PD-deficient patients.",
+        clinicalAction:"avoid unless G6PD status and specialist plan support use",
+        evidenceRefs:["ev_rasburicase_g6pd_cpic2014"],
+      },
+      {
+        parent:"Dapsone",
+        phenotype:"hemolysis / methemoglobinemia",
+        note:"Dapsone can cause oxidative hemolysis and methemoglobinemia, with higher risk in G6PD deficiency.",
+        clinicalAction:"avoid or use close hematologic monitoring if unavoidable",
+        evidenceRefs:["ev_rasburicase_g6pd_cpic2014"],
+      },
+      {
+        parent:"Nitrofurantoin",
+        phenotype:"acute hemolytic anemia",
+        note:"Nitrofurantoin is an oxidative-stress drug that can precipitate hemolysis in G6PD-deficient patients.",
+        clinicalAction:"avoid in known G6PD deficiency when alternatives exist",
+        evidenceRefs:["ev_rasburicase_g6pd_cpic2014"],
+      },
+    ],
+    effects:{
+      [GENOTYPE_RISK_STATUS.ABSENT]: { label:"normal G6PD", severity:"baseline", note:"Normal G6PD activity assumed. Ordinary precautions apply; this does not exclude other causes of hemolysis." },
+      [GENOTYPE_RISK_STATUS.PRESENT]: { label:"G6PD deficient", severity:"high", note:"G6PD deficiency present. Oxidative drugs can trigger acute hemolytic anemia; rasburicase is contraindicated." },
+    },
+  },
+  "MT-RNR1 m.1555A>G": {
+    gene:"MT-RNR1",
+    variant:"m.1555A>G / m.1494C>T / m.1095T>C",
+    label:"MT-RNR1 ototoxicity-risk variant",
+    drugEffects:[
+      {
+        parent:"Gentamicin",
+        phenotype:"irreversible aminoglycoside ototoxicity",
+        note:"MT-RNR1 risk variants markedly increase risk of irreversible aminoglycoside-induced sensorineural hearing loss, which can occur at therapeutic serum levels.",
+        clinicalAction:"avoid aminoglycosides unless no safe alternative exists",
+        evidenceRefs:["ev_aminoglycoside_mtrnr1_cpic2021"],
+      },
+      {
+        parent:"Amikacin",
+        phenotype:"irreversible aminoglycoside ototoxicity",
+        note:"MT-RNR1 risk variants markedly increase aminoglycoside ototoxicity risk, including with amikacin.",
+        clinicalAction:"avoid; use an alternative antibiotic where possible",
+        evidenceRefs:["ev_aminoglycoside_mtrnr1_cpic2021"],
+      },
+      {
+        parent:"Tobramycin",
+        phenotype:"irreversible aminoglycoside ototoxicity",
+        note:"MT-RNR1 risk variants markedly increase aminoglycoside ototoxicity risk, including with tobramycin.",
+        clinicalAction:"avoid; use an alternative antibiotic where possible",
+        evidenceRefs:["ev_aminoglycoside_mtrnr1_cpic2021"],
+      },
+      {
+        parent:"Streptomycin",
+        phenotype:"irreversible aminoglycoside ototoxicity",
+        note:"MT-RNR1 risk variants markedly increase aminoglycoside ototoxicity risk, including with streptomycin.",
+        clinicalAction:"avoid; use an alternative antibiotic where possible",
+        evidenceRefs:["ev_aminoglycoside_mtrnr1_cpic2021"],
+      },
+    ],
+    effects:{
+      [GENOTYPE_RISK_STATUS.ABSENT]: { label:"not detected", severity:"baseline", note:"MT-RNR1 risk variant not detected. A negative result does not eliminate dose- or duration-related aminoglycoside ototoxicity." },
+      [GENOTYPE_RISK_STATUS.PRESENT]: { label:"detected", severity:"high", note:"MT-RNR1 risk variant present. Aminoglycosides may cause irreversible hearing loss even at therapeutic levels." },
+    },
+  },
+  "RYR1/CACNA1S MH variant": {
+    gene:"RYR1/CACNA1S",
+    variant:"malignant-hyperthermia-associated variant",
+    label:"Malignant hyperthermia susceptibility",
+    drugEffects:[
+      {
+        parent:"Succinylcholine",
+        phenotype:"malignant hyperthermia trigger",
+        note:"In carriers of malignant-hyperthermia-associated RYR1/CACNA1S variants, succinylcholine can precipitate a life-threatening hypermetabolic crisis.",
+        clinicalAction:"avoid; use non-triggering anesthesia",
+        evidenceRefs:["ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019"],
+      },
+      {
+        parent:"Sevoflurane",
+        phenotype:"malignant hyperthermia trigger",
+        note:"Sevoflurane is a potent volatile anesthetic and malignant hyperthermia trigger in susceptible RYR1/CACNA1S variant carriers.",
+        clinicalAction:"avoid; use non-triggering anesthesia",
+        evidenceRefs:["ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019"],
+      },
+      {
+        parent:"Isoflurane",
+        phenotype:"malignant hyperthermia trigger",
+        note:"Isoflurane is a potent volatile anesthetic and malignant hyperthermia trigger in susceptible RYR1/CACNA1S variant carriers.",
+        clinicalAction:"avoid; use non-triggering anesthesia",
+        evidenceRefs:["ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019"],
+      },
+      {
+        parent:"Desflurane",
+        phenotype:"malignant hyperthermia trigger",
+        note:"Desflurane is a potent volatile anesthetic and malignant hyperthermia trigger in susceptible RYR1/CACNA1S variant carriers.",
+        clinicalAction:"avoid; use non-triggering anesthesia",
+        evidenceRefs:["ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019"],
+      },
+    ],
+    effects:{
+      [GENOTYPE_RISK_STATUS.ABSENT]: { label:"no MH-associated variant", severity:"baseline", note:"No MH-associated RYR1/CACNA1S variant detected. A negative genotype does not fully exclude malignant hyperthermia susceptibility; personal and family history still matter." },
+      [GENOTYPE_RISK_STATUS.PRESENT]: { label:"MH-susceptible", severity:"high", note:"Malignant-hyperthermia-associated variant present. Potent volatile anesthetics and succinylcholine can trigger a life-threatening crisis." },
+    },
+  },
 };
 
 // activeGenotype — user-selected metabolizer phenotype per enzyme (runtime state)
@@ -304,6 +421,9 @@ let activeGenotype = {
   "HLA-A*31:01": GENOTYPE_RISK_STATUS.ABSENT,
   "HLA-B*57:01": GENOTYPE_RISK_STATUS.ABSENT,
   "HLA-B*58:01": GENOTYPE_RISK_STATUS.ABSENT,
+  "G6PD deficiency": GENOTYPE_RISK_STATUS.ABSENT,
+  "MT-RNR1 m.1555A>G": GENOTYPE_RISK_STATUS.ABSENT,
+  "RYR1/CACNA1S MH variant": GENOTYPE_RISK_STATUS.ABSENT,
 };
 
 // ── STUDY_DB ──

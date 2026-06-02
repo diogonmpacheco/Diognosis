@@ -4440,6 +4440,75 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_rasburicase_g6pd_cpic2014": {
+    id:"ev_rasburicase_g6pd_cpic2014",
+    public:true,
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guidelines for Rasburicase Therapy in the Context of G6PD Deficiency Genotype",
+    year:2014,
+    source:"CPIC",
+    journal:"Clinical Pharmacology & Therapeutics",
+    pmid:"24787449",
+    doi:"10.1038/clpt.2014.97",
+    url:"https://pubmed.ncbi.nlm.nih.gov/24787449/",
+    studyDesign:"clinical_pharmacogenetics_guideline",
+    n:null,
+    phenotypes:["risk_allele_absent","risk_allele_present"],
+    quantifiedEffects:{note:"Rasburicase is contraindicated in G6PD deficiency because of acute hemolytic anemia and methemoglobinemia risk; G6PD deficiency also increases susceptibility to oxidative-stress hemolysis from selected drugs."},
+    temporal:{onset:"hours_to_days", mechanism:"oxidative_hemolysis"},
+    supports:["rasburicase_G6PD_deficiency_contraindication","g6pd_oxidative_drug_hemolysis"],
+    contradicts:[],
+    limitations:["Clinical risk varies by G6PD activity, dose, and oxidative stress burden","G6PD status may require enzyme testing rather than genotype alone in some settings"],
+    confidence:"high",
+    verified:true
+  },
+
+  "ev_aminoglycoside_mtrnr1_cpic2021": {
+    id:"ev_aminoglycoside_mtrnr1_cpic2021",
+    public:true,
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guideline for the Use of Aminoglycosides Based on MT-RNR1 Genotype",
+    year:2021,
+    source:"CPIC",
+    journal:"Clinical Pharmacology & Therapeutics",
+    pmid:"34032273",
+    doi:"10.1002/cpt.2309",
+    url:"https://pubmed.ncbi.nlm.nih.gov/34032273/",
+    studyDesign:"clinical_pharmacogenetics_guideline",
+    n:null,
+    phenotypes:["risk_allele_absent","risk_allele_present"],
+    quantifiedEffects:{note:"MT-RNR1 m.1555A>G, m.1494C>T, and m.1095T>C increase risk of irreversible aminoglycoside-induced hearing loss, even at therapeutic levels."},
+    temporal:{onset:"single_dose_to_days", mechanism:"mitochondrial_12s_rRNA_aminoglycoside_binding"},
+    supports:["mtrnr1_aminoglycoside_ototoxicity"],
+    contradicts:[],
+    limitations:["Negative genotype does not remove ordinary dose-, duration-, or renal-function-related ototoxicity risk","Urgent infection contexts may require risk-benefit decisions when alternatives are unsuitable"],
+    confidence:"high",
+    verified:true
+  },
+
+  "ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019": {
+    id:"ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019",
+    public:true,
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"CPIC Guideline for Potent Volatile Anesthetic Agents and Succinylcholine in the Context of RYR1 or CACNA1S Genotypes",
+    year:2019,
+    source:"CPIC",
+    journal:"Clinical Pharmacology & Therapeutics",
+    pmid:"30499100",
+    doi:"10.1002/cpt.1319",
+    url:"https://pubmed.ncbi.nlm.nih.gov/30499100/",
+    studyDesign:"clinical_pharmacogenetics_guideline",
+    n:null,
+    phenotypes:["risk_allele_absent","risk_allele_present"],
+    quantifiedEffects:{note:"Malignant-hyperthermia-associated RYR1/CACNA1S variants indicate susceptibility; CPIC recommends avoiding succinylcholine and potent volatile anesthetics and using non-triggering anesthesia."},
+    temporal:{onset:"minutes_intraoperative", mechanism:"dysregulated_skeletal_muscle_calcium_release"},
+    supports:["ryr1_cacna1s_mh_trigger","succinylcholine_mh_trigger","volatile_anesthetic_mh_trigger"],
+    contradicts:[],
+    limitations:["A negative genotype does not fully exclude malignant hyperthermia susceptibility","Personal and family anesthesia history remain clinically important"],
+    confidence:"high",
+    verified:true
+  },
+
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──

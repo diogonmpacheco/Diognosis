@@ -1,6 +1,6 @@
 # MedCheck Severity Report
 
-Generated: 2026-05-31T10:14:29.355Z
+Generated: 2026-06-02T14:01:13.523Z
 
 Known DDI pairs: 162
 Original severe: 104
