@@ -28,7 +28,7 @@ The codebase is structured as 28 editable JavaScript source modules in `src/`, p
 - **235 curated DDI pairs** (147 severe, 83 moderate, 5 mild)
 - **25 genotype genes**, **27 metabolite actors**, **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **1060 KB** generated bundle (21975 lines)
+- **1065 KB** generated bundle (22032 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---
@@ -75,7 +75,7 @@ The codebase is structured as 28 editable JavaScript source modules in `src/`, p
 - Genotype-adjusted concentration curves in the PK Simulation panel
 
 ### PK Simulation
-- One-compartment oral absorption model for 15 drugs (paroxetine, fluoxetine, warfarin, clopidogrel, digoxin, amiodarone, methadone, and more)
+- One-compartment oral absorption model for 50 drugs (paroxetine, fluoxetine, warfarin, clopidogrel, digoxin, amiodarone, methadone, nebivolol, metformin, tacrolimus, and more)
 - SVG concentration-time curves with Cmax markers and genotype-adjusted AUC scaling
 - Nonlinear kinetics warning and high-dose tapering recommendation for paroxetine (5mg/2-4 weeks vs standard 10mg/week)
 
@@ -155,7 +155,7 @@ where `substrateBurden = min(0.50, (n_competing_substrates − 1) × 0.10)` and 
 | `KNOWN_DDI` | Curated pairwise interaction entries with evidenceRefs |
 | `STUDY_DB` | 224 evidence entities with provenance: 106 verified and 118 review-required live enrichment entries |
 | `GENOTYPE_EFFECTS` / `GENOTYPE_RISK_EFFECTS` | PM/IM/NM/UM fold-change multipliers per enzyme plus non-PK risk allele rules |
-| `PK_PARAMS` | One-compartment PK parameters for 15 drugs |
+| `PK_PARAMS` | One-compartment PK parameters for 50 drugs |
 | `TEMPORAL_PROFILES` | Onset/washout profiles for persistent inhibitors |
 | `WASHOUT_DAYS` | Evidence-based enzyme recovery timelines |
 | `ACB_SCORES` / `BEERS_FLAGS` | Adverse burden lookup tables |

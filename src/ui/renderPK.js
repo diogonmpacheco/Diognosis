@@ -152,6 +152,9 @@ function renderPKSimulation() {
     // ── Metrics row ────────────────────────────────────────────────
     const fmt = n => n < 0.1 ? n.toExponential(1) : n < 10 ? n.toFixed(1) : Math.round(n).toLocaleString();
     const daysStr = baseMetrics.t_to_ss_days < 1 ? `${Math.round(baseMetrics.t_to_ss_h)}h` : `${baseMetrics.t_to_ss_days}d`;
+    const noteHtml = params.note
+      ? `<div class="pk-note">${params.note.substring(0,140)}${params.note.length>140?'…':''}</div>`
+      : '';
 
     const metricsHtml = `
     <div class="pk-metrics">
@@ -167,7 +170,7 @@ function renderPKSimulation() {
       <div class="pk-params">F=${Math.round(params.F*100)}% · t½=${params.halfLife}h · τ=${tau}h · dose=${params.dose_mg}mg · Vd=${params.Vd}L/kg</div>
       ${svg}
       ${metricsHtml}
-      <div class="pk-note">${params.note.substring(0,140)}${params.note.length>140?'…':''}</div>
+      ${noteHtml}
       ${params.nonlinear ? `<div class="pk-warning">⚠ Nonlinear auto-inhibition kinetics — AUC increases disproportionately above 30mg/day. Steady-state model underestimates at higher doses.</div>` : ''}
       ${params.taperNote ? `<div class="pk-taper">🔻 ${params.taperNote}</div>` : ''}
     </div>`;
