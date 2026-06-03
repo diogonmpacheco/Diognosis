@@ -25,7 +25,7 @@ const start = '<!-- MEDCHECK_STATS_START -->';
 const end = '<!-- MEDCHECK_STATS_END -->';
 const statsBlock = `${start}
 - **${stats.drugs} drugs** in DRUG_DB
-- **${stats.studies} evidence entries** in STUDY_DB (${stats.studiesWithPmid} with PMIDs)
+- **${stats.verifiedStudies ?? stats.studies} verified evidence entries** in STUDY_DB (${stats.studiesWithPmid} with PMIDs)${stats.reviewQueue ? `, plus **${stats.reviewQueue} quarantined enrichment drafts** awaiting human review` : ''}
 - **${stats.ddiPairs} curated DDI pairs** (${stats.severeDdi} severe, ${stats.moderateDdi} moderate, ${stats.mildDdi} mild)
 - **${stats.genotypeGenes} genotype genes**, **${stats.metaboliteActors} metabolite actors**, **${stats.receptorScores} receptor score profiles**
 - **${stats.beersFlags} Beers flags** and **${stats.washoutRules} washout rules**

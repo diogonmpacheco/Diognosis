@@ -45,6 +45,8 @@ JSON.stringify((() => {
     bundleLines: 0,
     drugs: DRUG_DB.length,
     studies: studyValues.length,
+    verifiedStudies: studyValues.filter((study) => study.reviewRequired !== true).length,
+    reviewQueue: studyValues.filter((study) => study.reviewRequired === true).length,
     studiesWithPmid: studyValues.filter((study) => !!study.pmid).length,
     nonRegulatoryUncited: nonRegulatoryUncited.length,
     ddiPairs: KNOWN_DDI.length,

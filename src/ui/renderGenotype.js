@@ -191,6 +191,7 @@ function getStackRelevantGenotypeStudies() {
   return Object.values(STUDY_DB)
     .filter(s =>
       s.public !== false &&
+      s.reviewRequired !== true &&   // quarantine: keep unreviewed drafts out of genotype evidence
       (s.phenotypes || []).some(p => selectedPhenotypes.includes(p)) &&
       studyMatchesStackContext(s, context)
     )

@@ -146,6 +146,10 @@ renderAll();
   }
   const statsLine = el("statsLine");
   if (statsLine && typeof MEDCHECK_STATS !== "undefined") {
-    statsLine.textContent = `${MEDCHECK_STATS.drugs} drugs · ${MEDCHECK_STATS.studies} evidence entries · ${MEDCHECK_STATS.ddiPairs} curated DDI pairs · ${MEDCHECK_STATS.genotypeGenes} genotype genes`;
+    const verified = MEDCHECK_STATS.verifiedStudies ?? MEDCHECK_STATS.studies;
+    const evidenceLabel = MEDCHECK_STATS.reviewQueue
+      ? `${verified} verified evidence (+${MEDCHECK_STATS.reviewQueue} in review)`
+      : `${MEDCHECK_STATS.studies} evidence entries`;
+    statsLine.textContent = `${MEDCHECK_STATS.drugs} drugs · ${evidenceLabel} · ${MEDCHECK_STATS.ddiPairs} curated DDI pairs · ${MEDCHECK_STATS.genotypeGenes} genotype genes`;
   }
 })();
