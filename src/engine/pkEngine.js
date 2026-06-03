@@ -84,15 +84,14 @@ function pkInteractionAdjustedParams(params, fold) {
 // pkGetInteractionFold — returns CYP-inhibition fold for this drug's primary enzyme
 // Uses existing calcFold() from enzymeEngine and the active stack
 function pkGetInteractionFold(drugName) {
-  const drug = DRUG_DB.find(d => d.name === drugName);
+  const drug = getDrug(drugName);
   if (!drug) return 1;
-  const primaryEnz = drug.routes && drug.routes[0] && drug.routes[0].enzyme;
-  if (!primaryEnz) return 1;
   const others = activeStack.filter(n => n !== drugName);
   if (!others.length) return 1;
   try {
-    const fold = calcFold(primaryEnz, activeStack);
-    return (fold && fold > 1.1) ? Math.min(fold, 20) : 1; // cap at 20× for display safety
+    const result = calcFold(drugName);
+    const fold = result && Number.isFinite(result.fold) ? result.fold : 1;
+    return fold > 1.1 ? Math.min(fold, 20) : 1; // cap at 20× for display safety
   } catch (_) { return 1; }
 }
 

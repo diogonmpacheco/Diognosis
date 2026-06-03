@@ -44,6 +44,7 @@ const MODULE_ORDER = [
   'engine/pathwayEngine.js',      // buildInteractionGraph, traverseEffects, getTemporalProfile
   'engine/enzymeEngine.js',       // getAllInhibitions, calcFold, computeGutExtraction, foldChangeBands
   'engine/pkEngine.js',           // pkConcentration, pkCurve, genotypeAdjustedPK
+  'engine/pkRelativeEngine.js',   // pkRelativeForDrug, universal relative exposure fallback
   'engine/phenotypeEngine.js',    // computePhenotypeAccumulation, computeWashoutCalendar
   'engine/scoringEngine.js',      // computeAdverseBurden
   'engine/interactionEngine.js',  // findInteractions, calcRisk, analyzeMetabolites

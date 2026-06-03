@@ -28,7 +28,7 @@ The codebase is structured as 28 editable JavaScript source modules in `src/`, p
 - **235 curated DDI pairs** (147 severe, 83 moderate, 5 mild)
 - **25 genotype genes**, **27 metabolite actors**, **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **1065 KB** generated bundle (22032 lines)
+- **1071 KB** generated bundle (22201 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---
@@ -76,7 +76,7 @@ The codebase is structured as 28 editable JavaScript source modules in `src/`, p
 
 ### PK Simulation
 - One-compartment oral absorption model for 50 drugs (paroxetine, fluoxetine, warfarin, clopidogrel, digoxin, amiodarone, methadone, nebivolol, metformin, tacrolimus, and more)
-- SVG concentration-time curves with Cmax markers and genotype-adjusted AUC scaling
+- SVG concentration-time curves with Cmax markers, genotype-adjusted AUC scaling, and relative-exposure fallback curves for drugs with half-life data but incomplete absolute PK parameters
 - Nonlinear kinetics warning and high-dose tapering recommendation for paroxetine (5mg/2-4 weeks vs standard 10mg/week)
 
 ### Receptor Occupancy & Syndrome Detection (Phase C)
