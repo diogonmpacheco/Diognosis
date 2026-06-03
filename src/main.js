@@ -33,13 +33,13 @@ const DEMO_CASES = {
 };
 
 function loadUrlDemoState() {
-  const params = parseQueryParams(window.location.search || '');
+  const params = getUrlStateParams();
   const demo = DEMO_CASES[params.demo || ''];
   const drugParam = params.drugs;
   const drugNames = demo ? demo.drugs : (drugParam ? drugParam.split(',').map(d => d.trim()) : []);
   if (drugNames.length) {
     activeStack = drugNames
-      .map(name => getDrug(name)?.name)
+      .map(resolveUrlDrugName)
       .filter((name, idx, arr) => name && arr.indexOf(name) === idx);
   }
 
@@ -61,6 +61,20 @@ function loadUrlDemoState() {
   if (['safety', 'pgx', 'pk', 'evidence'].includes(tab)) activeTab = tab;
 }
 
+function getUrlStateParams() {
+  const searchParams = parseQueryParams(window.location.search || '');
+  const hashParams = parseHashParams(window.location.hash || '');
+  return { ...searchParams, ...hashParams };
+}
+
+function parseHashParams(hash) {
+  const raw = String(hash || '').replace(/^#/, '').replace(/^\/?/, '');
+  if (!raw) return {};
+  if (raw.includes('=') || raw.includes('&')) return parseQueryParams(raw.replace(/^\?/, ''));
+  if (DEMO_CASES[raw]) return { demo:raw };
+  return {};
+}
+
 function parseQueryParams(search) {
   const out = {};
   String(search || '').replace(/^\?/, '').split('&').forEach(part => {
@@ -73,6 +87,22 @@ function parseQueryParams(search) {
     if (key) out[key] = val;
   });
   return out;
+}
+
+function resolveUrlDrugName(value) {
+  const raw = String(value || '').trim();
+  if (!raw) return null;
+  const direct = getDrug(raw);
+  if (direct) return direct.name;
+  const slug = toGraphId(raw);
+  const match = DRUG_DB.find(d =>
+    d.id === raw ||
+    d.id === slug ||
+    d.name.toLowerCase() === raw.toLowerCase() ||
+    toGraphId(d.name) === slug ||
+    (BRAND_NAMES[d.name] || []).some(brand => brand.toLowerCase() === raw.toLowerCase() || toGraphId(brand) === slug)
+  );
+  return match ? match.name : null;
 }
 
 // Initialize

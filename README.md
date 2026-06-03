@@ -22,15 +22,15 @@ These links open the live app with example medication stacks already loaded:
 
 | Demo | What it shows |
 |---|---|
-| [SSRI switch / washout](https://diogonmpacheco.github.io/medcheck/?demo=ssri-switch) | Long half-life, persistent CYP2D6 inhibition, serotonin/QT context |
-| [Clopidogrel + CYP2C19 PM](https://diogonmpacheco.github.io/medcheck/?demo=clopidogrel-cyp2c19) | Prodrug activation, genotype effect, PPI interaction |
-| [Codeine + CYP2D6 PM](https://diogonmpacheco.github.io/medcheck/?demo=codeine-cyp2d6) | Active-metabolite failure risk with CYP2D6 poor metabolism |
-| [Simvastatin + clarithromycin](https://diogonmpacheco.github.io/medcheck/?demo=statin-inhibitor) | CYP3A4 inhibition, exposure shift, PK simulation |
-| [Older-adult burden](https://diogonmpacheco.github.io/medcheck/?demo=older-adult-burden) | Anticholinergic, sedative, fall-risk, and Beers-style burden |
+| [SSRI switch / washout](https://diogonmpacheco.github.io/medcheck/index.html?demo=ssri-switch) | Long half-life, persistent CYP2D6 inhibition, serotonin/QT context |
+| [Clopidogrel + CYP2C19 PM](https://diogonmpacheco.github.io/medcheck/index.html?demo=clopidogrel-cyp2c19) | Prodrug activation, genotype effect, PPI interaction |
+| [Codeine + CYP2D6 PM](https://diogonmpacheco.github.io/medcheck/index.html?demo=codeine-cyp2d6) | Active-metabolite failure risk with CYP2D6 poor metabolism |
+| [Simvastatin + clarithromycin](https://diogonmpacheco.github.io/medcheck/index.html?demo=statin-inhibitor) | CYP3A4 inhibition, exposure shift, PK simulation |
+| [Older-adult burden](https://diogonmpacheco.github.io/medcheck/index.html?demo=older-adult-burden) | Anticholinergic, sedative, fall-risk, and Beers-style burden |
 
 You can also build custom share links with:
 
-`https://diogonmpacheco.github.io/medcheck/?drugs=Warfarin,Ibuprofen&tab=safety`
+`https://diogonmpacheco.github.io/medcheck/index.html?drugs=Warfarin,Ibuprofen&tab=safety`
 
 ---
 
@@ -68,7 +68,7 @@ The project is intended for education, research, and review workflows. It is not
 - **235 curated DDI pairs** (147 severe, 83 moderate, 5 mild)
 - **25 genotype genes**, **27 metabolite actors**, **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **1073 KB** generated bundle (22270 lines)
+- **1074 KB** generated bundle (22300 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---

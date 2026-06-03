@@ -118,6 +118,13 @@ The live app supports preloaded examples:
 ?demo=older-adult-burden
 ```
 
+Hash links are also supported for static-hosting compatibility:
+
+```text
+#demo=ssri-switch
+#clopidogrel-cyp2c19
+```
+
 Custom links can use:
 
 ```text
