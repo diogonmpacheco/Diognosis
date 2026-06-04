@@ -2,7 +2,7 @@
 
 Generated for release date: 2026-06-04
 
-Known DDI pairs: 351
+Known DDI pairs: 358
 Original severe: 221
 Recommended severe: 221
 Recommended downgrades: 0
@@ -360,3 +360,10 @@ Recommended downgrades: 0
 | Memantine + Sodium Bicarbonate | renal_ph | moderate | moderate | ev_memantine_urine_ph_label (fda_label) | Kept original severity. |
 | Oseltamivir + Probenecid | renal_transport | mild | mild | ev_oseltamivir_probenecid_label (fda_label) | Kept original severity. |
 | Acyclovir + Probenecid | renal_transport | moderate | moderate | ev_acyclovir_probenecid_label (fda_label) | Kept original severity. |
+| Leflunomide + Cholestyramine | metabolite_elimination | moderate | moderate | ev_leflunomide_teriflunomide_half_life (clinical_trial PMID:21344102) | Kept original severity. |
+| Leflunomide + Rosuvastatin | transporter | moderate | moderate | ev_leflunomide_teriflunomide_label (fda_label) | Kept original severity. |
+| Teriflunomide + Rosuvastatin | transporter | moderate | moderate | ev_leflunomide_teriflunomide_label (fda_label) | Kept original severity. |
+| Mycophenolate + Cholestyramine | enterohepatic_recycling | moderate | moderate | ev_mycophenolate_enterohepatic_label (fda_label) | Kept original severity. |
+| Primidone + Combined Oral Contraceptive | induction | moderate | moderate | ev_primidone_metabolites_label (fda_label)<br>ev_coc_label (fda_label) | Kept original severity. |
+| Phenobarbital + Combined Oral Contraceptive | induction | moderate | moderate | ev_primidone_metabolites_label (fda_label)<br>ev_coc_label (fda_label) | Kept original severity. |
+| Phenobarbital + Warfarin | induction | moderate | moderate | ev_primidone_metabolites_label (fda_label) | Kept original severity. |

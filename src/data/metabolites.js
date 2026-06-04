@@ -474,6 +474,16 @@ const METAB = {
   {n:"3-Oxo-VPA",e:"β-oxidation",a:"inactive",p:25},
   {n:"3-Hydroxy-VPA",e:"β-oxidation",a:"inactive",p:15}
 ],
+"Primidone":[
+  {n:"Phenobarbital",e:"Hepatic oxidation",a:"active_form",role:"active_form",p:25,t:96,note:"Long-lived active barbiturate metabolite. Much of chronic enzyme-induction burden follows this metabolite, not parent primidone alone.",evidenceRefs:["ev_primidone_metabolites_label"]},
+  {n:"Phenylethylmalonamide (PEMA)",e:"Amidase/oxidation",a:"active",p:50,t:16,note:"Active anticonvulsant metabolite with weaker sedative/inducing profile than phenobarbital.",evidenceRefs:["ev_primidone_metabolites_label"]},
+  {n:"Primidone (unchanged)",e:"Renal",a:"active",p:25,t:10,note:"Parent primidone also has anticonvulsant activity; do not model as a simple prodrug only.",evidenceRefs:["ev_primidone_metabolites_label"]}
+],
+"Phenobarbital":[
+  {n:"p-Hydroxyphenobarbital",e:"CYP2C9",a:"inactive",p:50,t:96,note:"Major oxidative metabolite; parent phenobarbital remains long-lived and inducing."},
+  {n:"Phenobarbital glucuronide",e:"UGT",a:"inactive",p:25},
+  {n:"Phenobarbital (unchanged renal)",e:"Renal",a:"active",p:25,note:"Renal excretion contributes to long persistence."}
+],
 
 // ── ANTIPSYCHOTICS ──
 "Quetiapine":[
@@ -540,7 +550,7 @@ const METAB = {
 "Acetaminophen":[
   {n:"Acetaminophen glucuronide",e:"UGT1A1",a:"inactive",p:52,note:"Main safe pathway"},
   {n:"Acetaminophen sulfate",e:"SULT",a:"inactive",p:30,note:"Safe pathway"},
-  {n:"NAPQI (N-acetyl-p-benzoquinone imine)",e:"CYP2E1",a:"toxic",p:5,note:"TOXIC — normally detoxified by glutathione. Liver failure when GSH depleted (overdose/alcohol)"},
+  {n:"NAPQI (N-acetyl-p-benzoquinone imine)",e:"CYP2E1",a:"toxic",p:5,note:"TOXIC — normally detoxified by glutathione. Liver failure when GSH depleted (overdose/alcohol)",evidenceRefs:["ev_apap_alcohol_riordan2002"]},
   {n:"Cysteine/mercapturic acid conjugate",e:"GST",a:"inactive",p:5,note:"NAPQI detoxification product"},
   {n:"3-Hydroxy-acetaminophen",e:"CYP1A2",a:"inactive",p:3},
   {n:"Methoxy-acetaminophen",e:"COMT",a:"inactive",p:2}
@@ -1013,8 +1023,8 @@ const METAB = {
   {n:"Budesonide (systemic, after first pass)",e:"CYP3A4",a:"active",p:10,note:"~90% first-pass metabolism → low systemic bioavailability"}
 ],
 "Mycophenolate":[
-  {n:"Mycophenolic acid (MPA)",e:"Esterases",a:"active",p:95,t:17,note:"Active metabolite from mycophenolate mofetil (prodrug)"},
-  {n:"MPA glucuronide (MPAG)",e:"UGT1A9",a:"inactive",p:85,note:"Major elimination; undergoes enterohepatic recycling"},
+  {n:"Mycophenolic acid (MPA)",e:"Esterases",a:"active",p:95,t:17,note:"Active metabolite from mycophenolate mofetil (prodrug)",evidenceRefs:["ev_mycophenolate_enterohepatic_label"]},
+  {n:"MPA glucuronide (MPAG)",e:"UGT1A9",a:"inactive",p:85,note:"Major elimination; undergoes enterohepatic recycling",evidenceRefs:["ev_mycophenolate_enterohepatic_label"]},
   {n:"Acyl-MPAG",e:"UGT2B7",a:"toxic",p:10,note:"Reactive acyl glucuronide → GI toxicity, possible leukopenia"}
 ],
 "Sirolimus":[
@@ -1102,7 +1112,7 @@ const METAB = {
   {n:"Sumatriptan (unchanged, renal)",e:"None",a:"active",p:20,t:2,note:"Short-acting; multiple doses often needed"}
 ],
 "Allopurinol":[
-  {n:"Oxypurinol (alloxanthine)",e:"Xanthine oxidase",a:"active",p:70,t:23,note:"Active metabolite; same enzyme inhibition as parent but much longer acting"},
+  {n:"Oxypurinol (alloxanthine)",e:"Xanthine oxidase",a:"active",p:70,t:23,note:"Active metabolite; same enzyme inhibition as parent but much longer acting",evidenceRefs:["ev_allopurinol_oxypurinol_label"]},
   {n:"Allopurinol riboside",e:"HPRT",a:"inactive",p:5,note:"Nucleoside analog"}
 ],
 "Cyclobenzaprine":[
@@ -1370,6 +1380,33 @@ const METAB = {
     evidenceRefs: [
       "ev_comt_levodopa_parkinson_2012"
     ]
+  }
+],
+"Dapsone":[
+  {
+    n:"Dapsone hydroxylamine (DDS-NHOH)",
+    e:"CYP2C9",
+    a:"toxic",
+    p:30,
+    note:"Primary hematotoxic metabolite that drives dose-dependent methemoglobinemia and oxidative hemolysis, amplified in G6PD deficiency. Also formed via CYP3A4.",
+    inh:[],
+    evidenceRefs:[
+      "ev_dapsone_ddsnhoh_metabolite"
+    ]
+  },
+  {
+    n:"N-Acetyldapsone (MADDS)",
+    e:"NAT2",
+    a:"inactive",
+    p:40,
+    note:"Acetylation pathway; reversible to dapsone. NAT2 phenotype shifts the acetyl/hydroxylamine balance."
+  },
+  {
+    n:"Dapsone (unchanged)",
+    e:"Renal",
+    a:"active",
+    p:20,
+    note:"Long half-life supports metabolite accumulation with chronic dosing."
   }
 ]
 };

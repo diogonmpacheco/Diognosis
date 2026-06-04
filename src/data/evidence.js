@@ -7078,6 +7078,58 @@ const STUDY_DB = {
     limitations:["Clinical importance is greater with IV/high-dose acyclovir, renal impairment, dehydration, and older age."],
     verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
   },
+  "ev_leflunomide_teriflunomide_label": {
+    id:"ev_leflunomide_teriflunomide_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Leflunomide prescribing information - active teriflunomide metabolite, washout, and transporter interactions",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=91712aad-d96c-4ef0-97e7-b31ed18ca6d8",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{washout:"cholestyramine 8 g three times daily for 11 days", rosuvastatinMaxDoseMg:10, note:"Leflunomide labeling frames clinical persistence around the active metabolite teriflunomide; cholestyramine or activated charcoal accelerates elimination, and rosuvastatin dose should be limited because of transporter inhibition."},
+    temporal:{mechanism:"active_metabolite_persistence_enterohepatic_recycling_and_transporter_inhibition"},
+    supports:["leflunomide_teriflunomide_active_metabolite","leflunomide_cholestyramine_washout","teriflunomide_rosuvastatin_transporter_interaction"],
+    contradicts:[],
+    limitations:["Washout can be therapeutic when toxicity, pregnancy planning, or severe adverse reaction management is intended; interaction severity is context-dependent."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending human review"
+  },
+  "ev_mycophenolate_enterohepatic_label": {
+    id:"ev_mycophenolate_enterohepatic_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Mycophenolate mofetil prescribing information - MPA active metabolite and enterohepatic recirculation",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=721564bc-7c0b-4418-ab49-0af362e74eb7",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Mycophenolate mofetil undergoes rapid metabolism to active mycophenolic acid (MPA). MPAG can be converted back to MPA through enterohepatic recirculation, and bile-acid sequestrants such as cholestyramine reduce MPA exposure by interrupting this cycle."},
+    temporal:{mechanism:"active_metabolite_and_enterohepatic_recycling"},
+    supports:["mycophenolate_mpa_active_metabolite","mycophenolate_mpag_enterohepatic_recycling","cholestyramine_reduces_mpa_exposure"],
+    contradicts:[],
+    limitations:["Magnitude varies by formulation, transplant organ, timing post-transplant, renal function, and concurrent immunosuppressants."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending human review"
+  },
+  "ev_allopurinol_oxypurinol_label": {
+    id:"ev_allopurinol_oxypurinol_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Allopurinol prescribing information - oxypurinol active metabolite persistence",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Allopurinol is converted by xanthine oxidase to oxypurinol, an active xanthine oxidase inhibitor with longer persistence; xanthine oxidase inhibition drives thiopurine toxicity risk."},
+    temporal:{mechanism:"active_metabolite_xanthine_oxidase_inhibition"},
+    supports:["allopurinol_oxypurinol_active_metabolite","allopurinol_xo_inhibition_thiopurine_context"],
+    contradicts:[],
+    limitations:["Oxypurinol exposure is strongly renal-function dependent; thiopurine management requires dose reduction and blood-count monitoring."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending human review"
+  },
+  "ev_primidone_metabolites_label": {
+    id:"ev_primidone_metabolites_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Primidone prescribing information - phenobarbital and PEMA active metabolites",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Primidone labeling states that primidone itself has anticonvulsant activity as do its two metabolites, phenobarbital and phenylethylmalonamide (PEMA). Phenobarbital explains much of chronic sedative and enzyme-induction burden."},
+    temporal:{mechanism:"active_metabolite_phenobarbital_and_PEMA"},
+    supports:["primidone_phenobarbital_active_metabolite","primidone_pema_active_metabolite","primidone_metabolite_induction_context"],
+    contradicts:[],
+    limitations:["The exact parent/metabolite contribution varies by dose, duration, age, renal/hepatic function, and therapeutic drug monitoring."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending human review"
+  },
 
 };
 

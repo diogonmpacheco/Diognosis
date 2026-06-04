@@ -3893,23 +3893,35 @@ const DRUG_DB = [
 {
     id: "leflunomide",
     name: "Leflunomide",
-    cls: "Pyrimidine Synthesis Inhibitor DMARD",
+    cls: "DMARD / Pyrimidine Synthesis Inhibitor Prodrug",
     brandNames: [
       "Arava"
     ],
-    hl: 336,
+    hl: 360,
     timing: "AM",
     props: {
       extremeHalfLife: 2,
-      teratogenicityRisk: 2
+      teratogenicityRisk: 3,
+      hepatotoxicityRisk: 3,
+      myelo: 2
     },
     routes: [
       {
-        enzyme: "Non-enzymatic cleavage",
-        fraction: 0.9,
+        enzyme: "Plasma/GI Activation to Teriflunomide",
+        fraction: 0.95,
         role: "instant_conversion_to_teriflunomide",
         evidence: {
           confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      },
+      {
+        enzyme: "Biliary/Renal Elimination",
+        fraction: 0.05,
+        evidence: {
+          confidence: "moderate",
           sources: [
             "FDA label"
           ]
@@ -3921,6 +3933,26 @@ const DRUG_DB = [
         target: "CYP2C9",
         strength: "weak",
         evidence: {
+          confidence: "moderate",
+          sources: [
+            "FDA label"
+          ]
+        }
+      },
+      {
+        target: "BCRP",
+        strength: "moderate",
+        evidence: {
+          confidence: "high",
+          sources: [
+            "FDA label"
+          ]
+        }
+      },
+      {
+        target: "OATP1B1",
+        strength: "moderate",
+        evidence: {
           confidence: "high",
           sources: [
             "FDA label"
@@ -3929,8 +3961,18 @@ const DRUG_DB = [
       }
     ],
     ind: [],
-    note: "Exhibits an exceptionally long 2-week half-life due to extensive biliary recycling. Complete elimination can take up to 2 years without an active wash-out protocol.",
-    alts: []
+    prodrug: true,
+    note: "Nearly completely converted to active teriflunomide, which has a very long half-life and enterohepatic recirculation. Cholestyramine or activated charcoal washout removes the active metabolite; parent leflunomide alone is the wrong clinical frame.",
+    alts: [
+      {
+        name: "Methotrexate",
+        reason: "Common DMARD alternative with different metabolite and renal-transport risks"
+      },
+      {
+        name: "Sulfasalazine",
+        reason: "DMARD alternative with NAT2/TPMT-context interactions"
+      }
+    ]
   },
 // ──────────── Curated Gemini salvage batch 2: missing high-value actors ────────────
 {id:"albuterol",name:"Albuterol",cls:"Short-Acting Beta-2 Agonist",brandNames:["Ventolin","ProAir","Proventil"],hl:5,timing:"PRN",props:{sympathomimetic:1},routes:[{enzyme:"SULT1A3",fraction:0.8,evidence:{confidence:"moderate",sources:["FDA label"]}},{enzyme:"Renal Excretion Unchanged",fraction:0.2,evidence:{confidence:"moderate",sources:["FDA label"]}}],inh:[],ind:[],note:"Inhaled beta-2 agonist for bronchospasm. Nonselective beta-blockers can antagonize bronchodilation.",alts:[{name:"Levalbuterol",reason:"Same pathway with similar interaction logic"}]},
@@ -4032,6 +4074,10 @@ const DRUG_DB = [
 {id:"sodium_bicarbonate",name:"Sodium Bicarbonate",cls:"Alkalinizing Agent / Antacid",brandNames:["baking soda","NaHCO3"],hl:1,timing:"PRN",props:{alkalinizesUrine:2,sodiumLoad:2},routes:[{enzyme:"Renal Bicarbonate Handling",fraction:1.0,evidence:{confidence:"moderate",sources:["FDA label"]}}],inh:[],ind:[],note:"Alkalinizing agent used as antacid and medically for selected acidosis/toxicity contexts. Can change urinary elimination of pH-sensitive drugs such as memantine.",alts:[{name:"Calcium",reason:"Alternative antacid/mineral context, but different interaction profile"}]},
 {id:"oseltamivir",name:"Oseltamivir",cls:"Influenza Antiviral / Neuraminidase Inhibitor",brandNames:["Tamiflu"],hl:6,timing:"AM-PM",props:{renalDoseSensitive:2},routes:[{enzyme:"Esterase Activation to Oseltamivir Carboxylate",fraction:0.2,evidence:{confidence:"high",sources:["FDA label"]}},{enzyme:"Renal Excretion Unchanged",fraction:0.8,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],prodrug:true,note:"Influenza antiviral with low CYP interaction burden. Probenecid approximately doubles active metabolite exposure by reducing renal tubular secretion; usually no dose change is needed, but renal function matters.",alts:[{name:"Baloxavir",reason:"Single-dose influenza antiviral with cation-binding interaction considerations"}]},
 {id:"acyclovir",name:"Acyclovir",cls:"Antiviral / Guanosine Analog",brandNames:["Zovirax"],hl:3,timing:"AM-PM",props:{renalDoseSensitive:3,neurotoxicityRisk:1},routes:[{enzyme:"Renal Excretion Unchanged",fraction:0.9,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"HSV/VZV antiviral. Renal function strongly determines exposure; probenecid increases acyclovir half-life and AUC by reducing renal clearance, especially relevant for IV/high-dose use.",alts:[{name:"Valacyclovir",reason:"Oral prodrug with simpler dosing"},{name:"Famciclovir",reason:"Alternative herpes antiviral"}]},
+{id:"teriflunomide",name:"Teriflunomide",cls:"Active Leflunomide Metabolite / DHODH Inhibitor",brandNames:["Aubagio"],hl:432,timing:"AM",props:{hepatotoxicityRisk:3,teratogenicity:3,myelo:2},routes:[{enzyme:"Biliary/Renal Elimination",fraction:0.6,evidence:{confidence:"high",sources:["FDA label"]}},{enzyme:"Enterohepatic Recycling",fraction:0.4,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[{target:"CYP2C9",strength:"weak",evidence:{confidence:"moderate",sources:["FDA label"]}},{target:"BCRP",strength:"moderate",evidence:{confidence:"high",sources:["FDA label"]}},{target:"OATP1B1",strength:"moderate",evidence:{confidence:"high",sources:["FDA label"]}}],ind:[],note:"The long-lived active metabolite of leflunomide and a marketed MS drug. Interaction risk is driven by teriflunomide persistence, transporter inhibition, CYP2C9 effects, and washout procedures.",alts:[{name:"Leflunomide",reason:"Prodrug source of the same active metabolite in rheumatology"}]},
+{id:"cholestyramine",name:"Cholestyramine",cls:"Bile Acid Sequestrant / Binding Resin",brandNames:["Questran","Prevalite"],hl:0,timing:"WithFood",props:{bindsDrugs:3},routes:[{enzyme:"GI Binding / Fecal Elimination",fraction:1.0,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"Nonabsorbed binding resin. Clinically important because it interrupts enterohepatic recirculation and removes active metabolites such as teriflunomide and mycophenolic acid/MPAG; separate from many oral drugs.",alts:[{name:"Activated Charcoal",reason:"Also used for selected accelerated elimination contexts, but different indication/logistics"}]},
+{id:"primidone",name:"Primidone",cls:"Anticonvulsant / Barbiturate Prodrug-Like Agent",brandNames:["Mysoline"],hl:10,timing:"AM-PM",props:{sedation:2,fallsRisk:2,porphyriaContraindication:3},routes:[{enzyme:"Metabolism to Phenobarbital",fraction:0.25,evidence:{confidence:"high",sources:["FDA label"]}},{enzyme:"Metabolism to PEMA",fraction:0.5,evidence:{confidence:"high",sources:["FDA label"]}},{enzyme:"Renal Excretion Unchanged",fraction:0.25,evidence:{confidence:"moderate",sources:["FDA label"]}}],inh:[],ind:[{target:"CYP3A4",strength:"strong",evidence:{confidence:"moderate",sources:["FDA label"]}},{target:"CYP2C9",strength:"moderate",evidence:{confidence:"moderate",sources:["FDA label"]}}],note:"Antiseizure/tremor drug where parent primidone and metabolites phenobarbital plus PEMA all contribute. Long-term interaction burden often follows phenobarbital-like enzyme induction, not parent-only clearance.",alts:[{name:"Levetiracetam",reason:"Antiseizure alternative with minimal CYP induction"},{name:"Propranolol",reason:"Essential tremor option when clinically appropriate"}]},
+{id:"phenobarbital",name:"Phenobarbital",cls:"Barbiturate Anticonvulsant / Enzyme Inducer",brandNames:["Luminal"],hl:96,timing:"PM",props:{sedation:3,fallsRisk:3,respiratoryDepressionRisk:2},routes:[{enzyme:"CYP2C9",fraction:0.45,evidence:{confidence:"moderate",sources:["FDA label"]}},{enzyme:"Renal Excretion Unchanged",fraction:0.25,evidence:{confidence:"moderate",sources:["FDA label"]}},{enzyme:"Glucuronidation",fraction:0.25,evidence:{confidence:"moderate",sources:["FDA label"]}}],inh:[],ind:[{target:"CYP3A4",strength:"strong",evidence:{confidence:"high",sources:["FDA label"]}},{target:"CYP2C9",strength:"moderate",evidence:{confidence:"moderate",sources:["FDA label"]}},{target:"UGT1A4",strength:"moderate",evidence:{confidence:"moderate",sources:["FDA label"]}}],note:"Long-lived active metabolite of primidone and standalone anticonvulsant. Strong enzyme induction can reduce exposure of oral contraceptives, anticoagulants, immunosuppressants, and many CYP/UGT substrates.",alts:[{name:"Levetiracetam",reason:"Antiseizure alternative without broad enzyme induction"}]},
 
 ];
 
