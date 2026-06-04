@@ -27,7 +27,8 @@ const statsBlock = `${start}
 - **${stats.drugs} drugs** in DRUG_DB
 - **${stats.studies} evidence entries** in STUDY_DB (${stats.studiesWithPmid} with PMIDs)${stats.reviewQueue ? ` — **${stats.verifiedStudies} verified**, **${stats.reviewQueue} quarantined enrichment drafts** awaiting human review` : ''}
 - **${stats.ddiPairs} curated DDI pairs** (${stats.severeDdi} severe, ${stats.moderateDdi} moderate, ${stats.mildDdi} mild)
-- **${stats.genotypeGenes} genotype genes**, **${stats.metaboliteEntries} curated metabolite entries** across **${stats.metaboliteParents} parent substances**, **${stats.metaboliteActors} first-class metabolite actors**, **${stats.receptorScores} receptor score profiles**
+- **${stats.metaboliteEntries} curated metabolite entries** across **${stats.metaboliteParents} parent substances** (${stats.metaboliteActors} first-class metabolite actors)
+- **${stats.genotypeGenes} genotype genes** and **${stats.receptorScores} receptor score profiles**
 - **${stats.beersFlags} Beers flags** and **${stats.washoutRules} washout rules**
 - **${stats.bundleKB || 'Not yet built'} KB** generated bundle${stats.bundleLines ? ` (${stats.bundleLines} lines)` : ''}
 ${end}`;

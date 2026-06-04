@@ -150,6 +150,15 @@ renderAll();
     const evidenceLabel = MEDCHECK_STATS.reviewQueue
       ? `${verified} verified evidence (+${MEDCHECK_STATS.reviewQueue} in review)`
       : `${MEDCHECK_STATS.studies} evidence entries`;
-    statsLine.textContent = `${MEDCHECK_STATS.drugs} drugs · ${evidenceLabel} · ${MEDCHECK_STATS.ddiPairs} curated DDI pairs · ${MEDCHECK_STATS.genotypeGenes} genotype genes`;
+    const metaboliteLabel = MEDCHECK_STATS.metaboliteEntries
+      ? `${MEDCHECK_STATS.metaboliteEntries} metabolites across ${MEDCHECK_STATS.metaboliteParents} parent substances`
+      : null;
+    statsLine.textContent = [
+      `${MEDCHECK_STATS.drugs} drugs`,
+      evidenceLabel,
+      `${MEDCHECK_STATS.ddiPairs} curated DDI pairs`,
+      metaboliteLabel,
+      `${MEDCHECK_STATS.genotypeGenes} genotype genes`,
+    ].filter(Boolean).join(" · ");
   }
 })();

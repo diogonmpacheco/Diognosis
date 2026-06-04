@@ -65,11 +65,12 @@ The project is intended for education, research, and review workflows. It is not
 
 <!-- MEDCHECK_STATS_START -->
 - **377 drugs** in DRUG_DB
-- **323 evidence entries** in STUDY_DB (222 with PMIDs) — **145 verified**, **178 quarantined enrichment drafts** awaiting human review
+- **332 evidence entries** in STUDY_DB (223 with PMIDs) — **145 verified**, **187 quarantined enrichment drafts** awaiting human review
 - **358 curated DDI pairs** (221 severe, 127 moderate, 10 mild)
-- **32 genotype genes**, **786 curated metabolite entries** across **267 parent substances**, **27 first-class metabolite actors**, **52 receptor score profiles**
+- **845 curated metabolite entries** across **292 parent substances** (27 first-class metabolite actors)
+- **32 genotype genes** and **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **1319 KB** generated bundle (24615 lines)
+- **1344 KB** generated bundle (25254 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---

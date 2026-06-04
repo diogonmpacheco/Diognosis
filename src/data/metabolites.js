@@ -1775,6 +1775,519 @@ const METAB = {
     p:40,
     note:"Unchanged parent drug contributes strongly to narrow-therapeutic-index and QT risk."
   }
+],
+"Paclitaxel":[
+  {
+    n:"6-alpha-hydroxypaclitaxel",
+    e:"CYP2C8",
+    a:"inactive",
+    p:70,
+    note:"Primary hydroxylated metabolite. CYP2C8 inhibition raises parent paclitaxel exposure, so toxicity is parent-driven rather than active-metabolite-driven.",
+    evidenceRefs:["ev_paclitaxel_cyp2c8_label"]
+  },
+  {
+    n:"3-p-hydroxypaclitaxel",
+    e:"CYP3A4",
+    a:"inactive",
+    p:20,
+    note:"Secondary CYP3A4 metabolite; clinically less important than CYP2C8 parent clearance.",
+    evidenceRefs:["ev_paclitaxel_cyp2c8_label"]
+  },
+  {
+    n:"Paclitaxel (unchanged)",
+    e:"Biliary",
+    a:"active",
+    p:10,
+    note:"Parent exposure drives neuropathy, myelosuppression, and hypersensitivity risk."
+  }
+],
+"Docetaxel":[
+  {
+    n:"Hydroxydocetaxel metabolites",
+    e:"CYP3A4/CYP3A5",
+    a:"inactive",
+    p:80,
+    note:"Main oxidative clearance products. Strong CYP3A inhibition increases parent docetaxel toxicity rather than creating a more active metabolite.",
+    evidenceRefs:["ev_docetaxel_cyp3a4_label"]
+  },
+  {
+    n:"Docetaxel (unchanged)",
+    e:"Biliary",
+    a:"active",
+    p:10,
+    note:"Parent drug is the clinically relevant taxane exposure; premedication is used for fluid retention and hypersensitivity prevention.",
+    evidenceRefs:["ev_docetaxel_cyp3a4_label"]
+  }
+],
+"Flecainide":[
+  {
+    n:"m-O-dealkylated flecainide",
+    e:"CYP2D6",
+    a:"inactive",
+    p:35,
+    note:"Major oxidative clearance metabolite; CYP2D6 PM or inhibition raises parent flecainide exposure and proarrhythmic risk.",
+    evidenceRefs:["ev_flecainide_cyp2d6_pgx","ev_flecainide_cyp2d6_safety"]
+  },
+  {
+    n:"m-O-dealkylated lactam of flecainide",
+    e:"CYP2D6",
+    a:"inactive",
+    p:20,
+    note:"Downstream inactive metabolite; parent flecainide and renal clearance remain clinically central.",
+    evidenceRefs:["ev_flecainide_cyp2d6_pgx","ev_flecainide_cyp2d6_safety"]
+  },
+  {
+    n:"Flecainide (unchanged)",
+    e:"Renal",
+    a:"active",
+    p:30,
+    note:"Unchanged parent contributes materially to narrow-therapeutic-index exposure, especially with reduced renal function."
+  }
+],
+"Mexiletine":[
+  {
+    n:"p-Hydroxymexiletine",
+    e:"CYP2D6",
+    a:"inactive",
+    p:35,
+    note:"Major oxidative metabolite; CYP2D6 inhibition or poor metabolism raises parent mexiletine exposure.",
+    evidenceRefs:["ev_mexiletine_label"]
+  },
+  {
+    n:"Hydroxymethylmexiletine",
+    e:"CYP1A2/CYP2D6",
+    a:"inactive",
+    p:25,
+    note:"Major oxidative metabolite with downstream glucuronidation; smoking/CYP1A2 induction can lower parent exposure.",
+    evidenceRefs:["ev_mexiletine_label"]
+  },
+  {
+    n:"N-Hydroxymexiletine",
+    e:"CYP2D6/CYP1A2",
+    a:"inactive",
+    p:15,
+    note:"Oxidative clearance metabolite.",
+    evidenceRefs:["ev_mexiletine_label"]
+  },
+  {
+    n:"N-Methylmexiletine",
+    e:"CYP2D6/CYP1A2",
+    a:"active",
+    p:5,
+    note:"Minor active metabolite; label describes activity as less than 20% of parent mexiletine.",
+    evidenceRefs:["ev_mexiletine_label"]
+  }
+],
+"Quinidine":[
+  {
+    n:"3-Hydroxyquinidine",
+    e:"CYP3A4",
+    a:"active",
+    p:50,
+    note:"Most important quinidine metabolite; levels can exceed quinidine in some patients and the metabolite has antiarrhythmic activity.",
+    evidenceRefs:["ev_quinidine_label"]
+  },
+  {
+    n:"Quinidine N-oxide",
+    e:"Oxidation",
+    a:"inactive",
+    p:10,
+    note:"Minor oxidative metabolite; parent drug remains the narrow-therapeutic-index and CYP2D6-inhibition actor."
+  },
+  {
+    n:"Quinidine (unchanged)",
+    e:"Renal",
+    a:"active",
+    p:20,
+    note:"Unchanged parent contributes to exposure and is strongly affected by renal/hepatic status and CYP3A inhibition."
+  }
+],
+"Dofetilide":[
+  {
+    n:"Dofetilide (unchanged)",
+    e:"Renal cation transport",
+    a:"active",
+    p:80,
+    note:"The clinically important exposure is unchanged parent drug; renal cation transport inhibitors raise concentration-dependent QT/torsades risk.",
+    evidenceRefs:["ev_dofetilide_renal_cation_label"]
+  },
+  {
+    n:"Minor inactive oxidative metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:20,
+    note:"Minor pathway; CYP interactions are less important than renal cation transport and renal function.",
+    evidenceRefs:["ev_dofetilide_renal_cation_label"]
+  }
+],
+"Sotalol":[
+  {
+    n:"Sotalol (unchanged)",
+    e:"Renal",
+    a:"active",
+    p:90,
+    note:"Not meaningfully metabolized; renal clearance and electrolyte/QT co-risk determine exposure and torsades risk.",
+    evidenceRefs:["ev_sotalol_qt_renal_label"]
+  }
+],
+"Dasatinib":[
+  {
+    n:"Active dasatinib metabolite",
+    e:"CYP3A4",
+    a:"active",
+    p:10,
+    note:"Label describes an active CYP3A4-formed metabolite, but parent dasatinib exposure and acid-dependent absorption remain the dominant clinical signals.",
+    evidenceRefs:["ev_dasatinib_cyp3a_acid_label"]
+  },
+  {
+    n:"Dasatinib (unchanged)",
+    e:"CYP3A4/transport",
+    a:"active",
+    p:70,
+    note:"Parent drug exposure is increased by strong CYP3A inhibition and reduced by gastric acid suppression."
+  }
+],
+"Nilotinib":[
+  {
+    n:"Nilotinib oxidative metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:20,
+    note:"Oxidative clearance products; parent nilotinib exposure is the QT-relevant signal.",
+    evidenceRefs:["ev_nilotinib_qt_cyp3a_label"]
+  },
+  {
+    n:"Nilotinib (unchanged)",
+    e:"Hepatic/biliary",
+    a:"active",
+    p:70,
+    note:"Parent drug is the clinically relevant QT and food/CYP3A interaction actor.",
+    evidenceRefs:["ev_nilotinib_qt_cyp3a_label"]
+  }
+],
+"Venetoclax":[
+  {
+    n:"M27 venetoclax metabolite",
+    e:"CYP3A4",
+    a:"weak",
+    p:15,
+    note:"Major plasma metabolite with much weaker BCL-2 inhibition than parent; CYP3A/P-gp interactions are parent-exposure driven.",
+    evidenceRefs:["ev_venetoclax_cyp3a_pgp_label"]
+  },
+  {
+    n:"Venetoclax (unchanged)",
+    e:"CYP3A4/P-gp",
+    a:"active",
+    p:70,
+    note:"Parent exposure drives tumor-lysis and myelosuppression risk, especially during ramp-up with CYP3A/P-gp inhibitors.",
+    evidenceRefs:["ev_venetoclax_cyp3a_pgp_label"]
+  }
+],
+"Palbociclib":[
+  {
+    n:"Palbociclib oxidative metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:55,
+    note:"Oxidative metabolism contributes to clearance; strong CYP3A inhibition raises parent exposure and neutropenia risk.",
+    evidenceRefs:["ev_palbociclib_cyp3a_label"]
+  },
+  {
+    n:"Palbociclib sulfation products",
+    e:"SULT2A1",
+    a:"inactive",
+    p:15,
+    note:"Sulfation pathway included because parent drug should not be treated as a simple CYP3A-only actor.",
+    evidenceRefs:["ev_palbociclib_cyp3a_label"]
+  }
+],
+"Everolimus":[
+  {
+    n:"Hydroxy-everolimus metabolites",
+    e:"CYP3A4",
+    a:"weak",
+    p:45,
+    note:"Multiple hydroxylated metabolites; parent/trough concentration remains the therapeutic monitoring target.",
+    evidenceRefs:["ev_everolimus_cyp3a_pgp_label"]
+  },
+  {
+    n:"Everolimus (unchanged)",
+    e:"CYP3A4/P-gp",
+    a:"active",
+    p:45,
+    note:"Parent exposure is highly sensitive to CYP3A/P-gp inhibitors and inducers; TDM is central.",
+    evidenceRefs:["ev_everolimus_cyp3a_pgp_label"]
+  }
+],
+"Erlotinib":[
+  {
+    n:"OSI-420 / O-desmethyl erlotinib",
+    e:"CYP3A4/CYP1A2",
+    a:"active",
+    p:20,
+    note:"Active metabolite, but parent erlotinib and smoking/CYP1A2 induction remain the main exposure signal.",
+    evidenceRefs:["ev_erlotinib_cyp3a_label"]
+  },
+  {
+    n:"Erlotinib oxidative metabolites",
+    e:"CYP3A4/CYP1A2",
+    a:"inactive",
+    p:40,
+    note:"Oxidative clearance products; acid suppression separately reduces absorption.",
+    evidenceRefs:["ev_erlotinib_cyp3a_label","ev_erlotinib_ppi_absorption"]
+  }
+],
+"Gefitinib":[
+  {
+    n:"O-Desmethyl gefitinib",
+    e:"CYP2D6",
+    a:"weak",
+    p:14,
+    note:"Major active component among identified metabolites, but much weaker in cell-based assays; CYP2D6 PM reduces metabolite formation while parent exposure remains clinically important.",
+    evidenceRefs:["ev_gefitinib_label"]
+  },
+  {
+    n:"Gefitinib oxidative metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:45,
+    note:"CYP3A4 is the dominant parent clearance pathway; strong inducers can require dose adjustment.",
+    evidenceRefs:["ev_gefitinib_label"]
+  }
+],
+"Imatinib":[
+  {
+    n:"N-demethylated piperazine derivative (CGP74588)",
+    e:"CYP3A4",
+    a:"active",
+    p:20,
+    t:40,
+    note:"Main circulating active metabolite with longer half-life than parent imatinib.",
+    evidenceRefs:["ev_imatinib_label"]
+  },
+  {
+    n:"Imatinib (unchanged)",
+    e:"CYP3A4/transport",
+    a:"active",
+    p:60,
+    note:"Parent exposure remains central to CYP3A interaction management."
+  }
+],
+"Pazopanib":[
+  {
+    n:"Pazopanib monooxygenated metabolites",
+    e:"CYP3A4/CYP1A2/CYP2C8",
+    a:"weak",
+    p:10,
+    note:"Pazopanib is mostly parent-driven; metabolites are a small circulating fraction and generally much less active.",
+    evidenceRefs:["ev_pazopanib_label"]
+  },
+  {
+    n:"Pazopanib (unchanged)",
+    e:"Hepatic/biliary",
+    a:"active",
+    p:80,
+    note:"Parent exposure drives hepatotoxicity, hypertension, and CYP3A/P-gp interaction context.",
+    evidenceRefs:["ev_pazopanib_label"]
+  }
+],
+"Terbinafine":[
+  {
+    n:"Terbinafine carboxylic acid metabolites",
+    e:"CYP2C9/CYP1A2/CYP3A4/CYP2C8",
+    a:"inactive",
+    p:45,
+    note:"Oxidative clearance products; parent terbinafine is the clinically important CYP2D6 inhibitor.",
+    evidenceRefs:["ev_terbinafine_cyp2d6_label"]
+  },
+  {
+    n:"N-Desmethyl terbinafine",
+    e:"CYP2C9/CYP1A2/CYP3A4",
+    a:"inactive",
+    p:15,
+    note:"Minor metabolite included to avoid reducing terbinafine to a single-enzyme substrate.",
+    evidenceRefs:["ev_terbinafine_cyp2d6_label"]
+  },
+  {
+    n:"Terbinafine (unchanged)",
+    e:"Hepatic/tissue depot",
+    a:"active",
+    p:20,
+    note:"Parent persistence in keratin-rich tissues contributes to prolonged CYP2D6 inhibition after stopping."
+  }
+],
+"Trimethoprim/Sulfamethoxazole":[
+  {
+    n:"Sulfamethoxazole hydroxylamine",
+    e:"CYP2C9",
+    a:"toxic",
+    p:10,
+    note:"Reactive oxidative metabolite associated with sulfonamide hypersensitivity/oxidative toxicity context; parent TMP-SMX interactions remain multifactorial.",
+    evidenceRefs:["ev_tmp_smx_label"]
+  },
+  {
+    n:"Sulfamethoxazole N-acetyl metabolite",
+    e:"NAT2",
+    a:"inactive",
+    p:35,
+    note:"Acetylation pathway for sulfamethoxazole; NAT2 context can shift sulfonamide metabolite balance.",
+    evidenceRefs:["ev_tmp_smx_label"]
+  },
+  {
+    n:"Trimethoprim (unchanged)",
+    e:"Renal/OCT2",
+    a:"active",
+    p:50,
+    note:"Trimethoprim inhibits OCT2 and can raise creatinine/metformin context while also contributing to hyperkalemia.",
+    evidenceRefs:["ev_tmp_smx_label"]
+  },
+  {
+    n:"Sulfamethoxazole (unchanged)",
+    e:"Renal",
+    a:"active",
+    p:30,
+    note:"Parent sulfonamide contributes to folate-antagonist and hypersensitivity context."
+  }
+],
+"Teriflunomide":[
+  {
+    n:"Teriflunomide (unchanged)",
+    e:"Biliary/renal",
+    a:"active",
+    p:80,
+    note:"Teriflunomide is itself the active leflunomide metabolite; clinical persistence is mostly unchanged parent plus enterohepatic recycling.",
+    evidenceRefs:["ev_leflunomide_teriflunomide_label","ev_teriflunomide_label"]
+  },
+  {
+    n:"Teriflunomide minor renal metabolites",
+    e:"Oxidation/hydrolysis",
+    a:"inactive",
+    p:20,
+    note:"Renally excreted metabolites are secondary; accelerated elimination targets circulating unchanged teriflunomide.",
+    evidenceRefs:["ev_teriflunomide_label"]
+  }
+],
+"Cholestyramine":[
+  {
+    n:"Cholestyramine resin (unabsorbed)",
+    e:"GI binding / no metabolism",
+    a:"inactive",
+    p:100,
+    note:"Not systemically absorbed or metabolized. Interaction value comes from binding bile acids and other oral drugs in the gut.",
+    evidenceRefs:["ev_cholestyramine_label","ev_mycophenolate_enterohepatic_label"]
+  },
+  {
+    n:"Bound bile acid/drug complexes",
+    e:"Fecal elimination",
+    a:"inactive",
+    p:100,
+    note:"Represents the sequestration mechanism that can lower exposure to co-administered drugs or interrupt enterohepatic recycling."
+  }
+],
+"Chlorpromazine":[
+  {
+    n:"7-Hydroxychlorpromazine",
+    e:"CYP2D6/CYP1A2",
+    a:"active",
+    p:25,
+    note:"Phenothiazine hydroxylated metabolite; CYP2D6 lower activity can shift parent/metabolite exposure and adverse-effect risk.",
+    evidenceRefs:["ev_chlorpromazine_cyp2d6_label"]
+  },
+  {
+    n:"N-Desmethylchlorpromazine",
+    e:"CYP3A4/CYP2D6",
+    a:"active",
+    p:20,
+    note:"Active metabolite in a broad phenothiazine metabolite mixture; parent anticholinergic/QT/sedation burden remains dominant.",
+    evidenceRefs:["ev_chlorpromazine_cyp2d6_label"]
+  },
+  {
+    n:"Chlorpromazine sulfoxide",
+    e:"FMO/CYP",
+    a:"inactive",
+    p:20,
+    note:"Oxidative clearance product."
+  }
+],
+"Memantine":[
+  {
+    n:"Memantine (unchanged)",
+    e:"Renal / urine pH dependent",
+    a:"active",
+    p:80,
+    note:"Minimal metabolism. Alkaline urine sharply reduces renal elimination, raising parent exposure.",
+    evidenceRefs:["ev_memantine_urine_ph_label"]
+  },
+  {
+    n:"Minor hydroxylated memantine metabolites",
+    e:"Non-CYP oxidation",
+    a:"inactive",
+    p:20,
+    note:"Minor pathway; renal clearance of unchanged parent is the practical interaction signal.",
+    evidenceRefs:["ev_memantine_urine_ph_label"]
+  }
+],
+"Nirmatrelvir/Ritonavir":[
+  {
+    n:"Nirmatrelvir (unchanged)",
+    e:"Renal",
+    a:"active",
+    p:55,
+    note:"Ritonavir intentionally blocks CYP3A metabolism to maintain active nirmatrelvir exposure; renal function determines dose adjustment.",
+    evidenceRefs:["ev_paxlovid_cyp3a_label"]
+  },
+  {
+    n:"Nirmatrelvir oxidative metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:20,
+    note:"Metabolism is intentionally suppressed by ritonavir boosting.",
+    evidenceRefs:["ev_paxlovid_cyp3a_label"]
+  },
+  {
+    n:"Ritonavir oxidative metabolites",
+    e:"CYP3A4/CYP2D6",
+    a:"weak",
+    p:25,
+    note:"Ritonavir is the pharmacokinetic booster; its parent inhibition of CYP3A/P-gp/OATP drives most interaction risk.",
+    evidenceRefs:["ev_paxlovid_cyp3a_label","ev_ritonavir_cyp3a4_booster_label"]
+  }
+],
+"Propylthiouracil":[
+  {
+    n:"Propylthiouracil glucuronide",
+    e:"UGT",
+    a:"inactive",
+    p:70,
+    note:"Primary conjugated clearance route. Hepatotoxicity risk is not explained by a simple active metabolite model.",
+    evidenceRefs:["ev_propylthiouracil_label"]
+  },
+  {
+    n:"Propylthiouracil sulfate / sulfur-containing metabolites",
+    e:"Sulfation/oxidation",
+    a:"inactive",
+    p:20,
+    note:"Secondary sulfur-containing metabolites; parent PTU also blocks peripheral T4-to-T3 conversion.",
+    evidenceRefs:["ev_propylthiouracil_label"]
+  }
+],
+"Acyclovir":[
+  {
+    n:"Acyclovir (unchanged)",
+    e:"Renal",
+    a:"active",
+    p:90,
+    note:"Minimal metabolism. Parent acyclovir exposure rises with reduced renal clearance and probenecid/cimetidine context.",
+    evidenceRefs:["ev_acyclovir_probenecid_label"]
+  },
+  {
+    n:"9-Carboxymethoxymethylguanine (CMMG)",
+    e:"Aldehyde oxidase",
+    a:"toxic",
+    p:5,
+    note:"Minor metabolite associated with renal-impairment neurotoxicity context.",
+    evidenceRefs:["ev_acyclovir_probenecid_label"]
+  }
 ]
 };
 
