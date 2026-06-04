@@ -2,9 +2,9 @@
 
 Generated for release date: 2026-06-04
 
-Known DDI pairs: 340
-Original severe: 218
-Recommended severe: 218
+Known DDI pairs: 351
+Original severe: 221
+Recommended severe: 221
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
@@ -349,3 +349,14 @@ Recommended downgrades: 0
 | Valacyclovir + Probenecid | renal_transport | mild | mild | ev_valacyclovir_probenecid_label (fda_label) | Kept original severity. |
 | Valacyclovir + Cimetidine | renal_transport | mild | mild | ev_valacyclovir_probenecid_label (fda_label) | Kept original severity. |
 | Ceftriaxone + Calcium | precipitation | severe | severe | ev_ceftriaxone_calcium_label (fda_label) | Severe support threshold met. |
+| Combined Oral Contraceptive + Rifampin | induction | severe | severe | ev_coc_label (fda_label) | Severe support threshold met. |
+| Combined Oral Contraceptive + Carbamazepine | induction | moderate | moderate | ev_coc_label (fda_label) | Kept original severity. |
+| Combined Oral Contraceptive + Lamotrigine | metabolic | moderate | moderate | ev_coc_label (fda_label) | Kept original severity. |
+| Combined Oral Contraceptive + St. John's Wort | induction | moderate | moderate | ev_coc_label (fda_label) | Kept original severity. |
+| Chlorthalidone + Lithium | renal_clearance | severe | severe | ev_chlorthalidone_lithium_label (fda_label) | Severe support threshold met. |
+| Chlorthalidone + Digoxin | electrolyte | moderate | moderate | ev_chlorthalidone_lithium_label (fda_label) | Kept original severity. |
+| Torsemide + Lithium | renal_clearance | severe | severe | ev_torsemide_lithium_label (fda_label) | Severe support threshold met. |
+| Torsemide + Digoxin | electrolyte | moderate | moderate | ev_torsemide_lithium_label (fda_label) | Kept original severity. |
+| Memantine + Sodium Bicarbonate | renal_ph | moderate | moderate | ev_memantine_urine_ph_label (fda_label) | Kept original severity. |
+| Oseltamivir + Probenecid | renal_transport | mild | mild | ev_oseltamivir_probenecid_label (fda_label) | Kept original severity. |
+| Acyclovir + Probenecid | renal_transport | moderate | moderate | ev_acyclovir_probenecid_label (fda_label) | Kept original severity. |

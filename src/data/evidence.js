@@ -7000,6 +7000,84 @@ const STUDY_DB = {
     limitations:["The severe pair is neonatal/protocol-context dependent; non-neonate administration rules differ by institution and product labeling details."],
     verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
   },
+  "ev_coc_label": {
+    id:"ev_coc_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Combined oral contraceptive prescribing information - enzyme induction and lamotrigine interaction",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{lamotrigineAucReductionPct:52, lamotrigineCmaxReductionPct:39, note:"COC labeling lists enzyme inducers including rifampin, carbamazepine, topiramate, and St. John's Wort as reducing contraceptive exposure; lamotrigine labeling reports approximately 2-fold clearance increase with ethinyl estradiol/levonorgestrel."},
+    temporal:{mechanism:"CYP3A_induction_and_UGT_lamotrigine_glucuronidation"},
+    supports:["coc_enzyme_inducer_contraceptive_failure","coc_lamotrigine_level_reduction","coc_st_johns_wort_breakthrough_bleeding"],
+    contradicts:[],
+    limitations:["Magnitude depends on contraceptive formulation, inducer strength/duration, adherence, and whether backup/non-hormonal contraception is used."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_chlorthalidone_lithium_label": {
+    id:"ev_chlorthalidone_lithium_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Chlorthalidone prescribing information - lithium and electrolyte-risk interactions",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Chlorthalidone labeling warns about electrolyte imbalance including hypokalemia and patient counseling includes lithium/digitalis contexts; Thalitone labeling notes reduced lithium renal clearance and increased lithium toxicity risk."},
+    temporal:{mechanism:"diuretic_lithium_clearance_reduction_and_electrolyte_loss"},
+    supports:["chlorthalidone_lithium_toxicity","chlorthalidone_digoxin_hypokalemia_context"],
+    contradicts:[],
+    limitations:["Lithium and digoxin risk depends on renal function, dose, baseline electrolytes, hydration, and monitoring intensity."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_torsemide_lithium_label": {
+    id:"ev_torsemide_lithium_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Torsemide prescribing information - lithium toxicity and electrolyte loss",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Torsemide labeling warns that torsemide reduces renal lithium clearance and can induce high lithium toxicity risk. It also warns about hypokalemia, hyponatremia, hypomagnesemia, and hypocalcemia."},
+    temporal:{mechanism:"loop_diuretic_lithium_clearance_reduction_and_electrolyte_loss"},
+    supports:["torsemide_lithium_toxicity","torsemide_digoxin_hypokalemia_context"],
+    contradicts:[],
+    limitations:["Risk depends on renal function, volume status, diuretic dose, concurrent RAAS therapy, and electrolyte monitoring."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_memantine_urine_ph_label": {
+    id:"ev_memantine_urine_ph_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Memantine prescribing information - urine alkalinization reduces renal elimination",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{clearanceReductionPct:80, note:"Memantine labeling reports clearance reduced by about 80% under alkaline urine conditions and lists sodium bicarbonate/carbonic anhydrase inhibitors as urine-alkalinizing examples."},
+    temporal:{mechanism:"urine_pH_dependent_memantine_clearance"},
+    supports:["memantine_alkaline_urine_exposure_increase","memantine_sodium_bicarbonate_context"],
+    contradicts:[],
+    limitations:["Sustained urine alkalinization matters more than occasional antacid use; renal function and dose also affect exposure."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_oseltamivir_probenecid_label": {
+    id:"ev_oseltamivir_probenecid_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Oseltamivir prescribing information - probenecid renal tubular secretion interaction",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{activeMetaboliteAucFold:2, note:"Oseltamivir labeling reports probenecid approximately doubles exposure to oseltamivir carboxylate by decreasing active anionic tubular secretion in the kidney."},
+    temporal:{mechanism:"renal_anion_transport_inhibition"},
+    supports:["oseltamivir_probenecid_exposure_increase"],
+    contradicts:[],
+    limitations:["Labeling indicates no dose adjustment is usually required due to safety margin, but renal impairment can change context."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_acyclovir_probenecid_label": {
+    id:"ev_acyclovir_probenecid_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Acyclovir prescribing information - probenecid renal-clearance interaction",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Acyclovir labeling reports that probenecid coadministration with intravenous acyclovir increases acyclovir half-life and AUC by reducing renal clearance."},
+    temporal:{mechanism:"renal_tubular_clearance_reduction"},
+    supports:["acyclovir_probenecid_exposure_increase","acyclovir_renal_function_context"],
+    contradicts:[],
+    limitations:["Clinical importance is greater with IV/high-dose acyclovir, renal impairment, dehydration, and older age."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
 
 };
 
