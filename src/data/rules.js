@@ -40,6 +40,18 @@ const PK_DOSE_INTERVALS = {
   warfarin:24,    clopidogrel:24, codeine:6,     simvastatin:24, atorvastatin:24,
   digoxin:24,     amiodarone:24,  methadone:8,   rifampin:24, omeprazole:24,
   tamoxifen:24,   metoprolol:12,
+  // Antiarrhythmics
+  flecainide:12,  propafenone:8,  mexiletine:8,   procainamide:6, disopyramide:6, dronedarone:12,
+  // ADHD / alpha-2
+  methylphenidate:4, guanfacine:24, clonidine_adhd:12,
+  // MAOIs
+  phenelzine:12,  tranylcypromine:12, selegiline:24,
+  // Typical APs
+  thioridazine:12, chlorpromazine:8, perphenazine:12, fluphenazine:12,
+  // Anti-infective
+  linezolid:12,   cobicistat:24,  atazanavir:24,  sofosbuvir:24,
+  // Oncology
+  cyclophosphamide:24, palbociclib:24, erlotinib:24, gefitinib:24, everolimus:24,
 };
 
 // Phenotype burden panel labels and thresholds.
