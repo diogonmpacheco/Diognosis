@@ -2,9 +2,9 @@
 
 Generated for release date: 2026-06-04
 
-Known DDI pairs: 235
-Original severe: 147
-Recommended severe: 147
+Known DDI pairs: 303
+Original severe: 201
+Recommended severe: 201
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
@@ -244,3 +244,71 @@ Recommended downgrades: 0
 | Rocuronium + Sugammadex | reversal | mild | mild | ev_sugammadex_rocuronium_reversal (fda_label) | Kept original severity. |
 | Sugammadex + Ethinyl Estradiol | binding | moderate | moderate | ev_sugammadex_contraception_label (fda_label) | Kept original severity. |
 | Propofol + Midazolam | pharmacodynamic | moderate | moderate | ev_propofol_midazolam_sedation (guideline) | Kept original severity. |
+| Dofetilide + Cimetidine | renal_transport | severe | severe | ev_dofetilide_renal_cation_label (fda_label) | Severe support threshold met. |
+| Dofetilide + Trimethoprim-SMX | renal_transport | severe | severe | ev_dofetilide_renal_cation_label (fda_label) | Severe support threshold met. |
+| Dofetilide + Verapamil | renal_transport | severe | severe | ev_dofetilide_renal_cation_label (fda_label) | Severe support threshold met. |
+| Dofetilide + Hydrochlorothiazide | renal_transport | severe | severe | ev_dofetilide_renal_cation_label (fda_label) | Severe support threshold met. |
+| Dofetilide + Ketoconazole | renal_transport | severe | severe | ev_dofetilide_renal_cation_label (fda_label) | Severe support threshold met. |
+| Sotalol + Hydrochlorothiazide | qt_electrolyte | moderate | moderate | ev_sotalol_qt_renal_label (fda_label) | Kept original severity. |
+| Sotalol + Amiodarone | qt | severe | severe | ev_sotalol_qt_renal_label (fda_label)<br>ev_qt_torsades_tisdale2016 (observational PMID:27212965 DOI:10.1177/1715163516641136) | Severe support threshold met. |
+| Ranolazine + Ketoconazole | metabolic | severe | severe | ev_ranolazine_cyp3a_label (fda_label) | Severe support threshold met. |
+| Ranolazine + Diltiazem | metabolic | moderate | moderate | ev_ranolazine_cyp3a_label (fda_label) | Kept original severity. |
+| Ranolazine + Metformin | transporter | moderate | moderate | ev_ranolazine_cyp3a_label (fda_label) | Kept original severity. |
+| Venetoclax + Ritonavir | metabolic | severe | severe | ev_venetoclax_cyp3a_pgp_label (fda_label) | Severe support threshold met. |
+| Venetoclax + Rifampin | induction | severe | severe | ev_venetoclax_cyp3a_pgp_label (fda_label) | Severe support threshold met. |
+| Ibrutinib + Itraconazole | metabolic | severe | severe | ev_ibrutinib_cyp3a_label (fda_label) | Severe support threshold met. |
+| Ibrutinib + Rifampin | induction | severe | severe | ev_ibrutinib_cyp3a_label (fda_label) | Severe support threshold met. |
+| Nilotinib + Ketoconazole | metabolic_qt | severe | severe | ev_nilotinib_qt_cyp3a_label (fda_label) | Severe support threshold met. |
+| Nilotinib + Amiodarone | qt | severe | severe | ev_nilotinib_qt_cyp3a_label (fda_label)<br>ev_qt_torsades_tisdale2016 (observational PMID:27212965 DOI:10.1177/1715163516641136) | Severe support threshold met. |
+| Dasatinib + Omeprazole | absorption | moderate | moderate | ev_dasatinib_cyp3a_acid_label (fda_label) | Kept original severity. |
+| Dasatinib + Ketoconazole | metabolic | severe | severe | ev_dasatinib_cyp3a_acid_label (fda_label) | Severe support threshold met. |
+| Osimertinib + Rifampin | induction | severe | severe | ev_osimertinib_cyp3a_qt_label (fda_label) | Severe support threshold met. |
+| Osimertinib + Amiodarone | qt | moderate | moderate | ev_osimertinib_cyp3a_qt_label (fda_label)<br>ev_qt_torsades_tisdale2016 (observational PMID:27212965 DOI:10.1177/1715163516641136) | Kept original severity. |
+| Flecainide + Fluoxetine | metabolic | severe | severe | ev_flecainide_cyp2d6_pgx (fda_label PMID:9626731) | Severe support threshold met. |
+| Flecainide + Paroxetine | metabolic | severe | severe | ev_flecainide_cyp2d6_pgx (fda_label PMID:9626731) | Severe support threshold met. |
+| Flecainide + Amiodarone | metabolic_pd | severe | severe | ev_flecainide_cyp2d6_pgx (fda_label PMID:9626731) | Severe support threshold met. |
+| Propafenone + Metoprolol | metabolic_pd | moderate | moderate | ev_propafenone_cyp2d6_pgx (fda_label) | Kept original severity. |
+| Propafenone + Digoxin | transporter | moderate | moderate | ev_propafenone_cyp2d6_pgx (fda_label) | Kept original severity. |
+| Propafenone + Warfarin | metabolic | moderate | moderate | ev_propafenone_cyp2d6_pgx (fda_label) | Kept original severity. |
+| Dronedarone + Digoxin | transporter | severe | severe | ev_dronedarone_cyp3a_pgp_label (fda_label) | Severe support threshold met. |
+| Dronedarone + Simvastatin | metabolic | severe | severe | ev_dronedarone_cyp3a_pgp_label (fda_label) | Severe support threshold met. |
+| Dronedarone + Dabigatran | transporter | severe | severe | ev_dronedarone_cyp3a_pgp_label (fda_label) | Severe support threshold met. |
+| Dronedarone + Ciclosporin | metabolic | severe | severe | ev_dronedarone_cyp3a_pgp_label (fda_label) | Severe support threshold met. |
+| Sofosbuvir + Amiodarone | unknown_pd | severe | severe | ev_sofosbuvir_amiodarone_bradycardia (fda_label PMID:26264977) | Severe support threshold met. |
+| Sofosbuvir + Rifampin | induction | severe | severe | ev_sofosbuvir_pgp_induction (fda_label) | Severe support threshold met. |
+| Sofosbuvir + Carbamazepine | induction | severe | severe | ev_sofosbuvir_pgp_induction (fda_label) | Severe support threshold met. |
+| Phenelzine + Sertraline | serotonin | severe | severe | ev_maoi_ssri_serotonin_fda (fda_label) | Severe support threshold met. |
+| Phenelzine + Fluoxetine | serotonin | severe | severe | ev_maoi_ssri_serotonin_fda (fda_label) | Severe support threshold met. |
+| Phenelzine + Venlafaxine | serotonin | severe | severe | ev_maoi_ssri_serotonin_fda (fda_label) | Severe support threshold met. |
+| Phenelzine + Tramadol | serotonin_opioid | severe | severe | ev_maoi_ssri_serotonin_fda (fda_label) | Severe support threshold met. |
+| Tranylcypromine + Sertraline | serotonin | severe | severe | ev_maoi_ssri_serotonin_fda (fda_label) | Severe support threshold met. |
+| Tranylcypromine + Tyramine-rich Foods | diet | severe | severe | ev_maoi_tyramine_fda (fda_label) | Severe support threshold met. |
+| Selegiline + Fluoxetine | serotonin | severe | severe | ev_selegiline_ssri_fda (fda_label) | Severe support threshold met. |
+| Linezolid + Sertraline | serotonin | severe | severe | ev_linezolid_serotonin_fda2011 (fda_label PMID:21416684) | Severe support threshold met. |
+| Linezolid + Venlafaxine | serotonin | severe | severe | ev_linezolid_serotonin_fda2011 (fda_label PMID:21416684) | Severe support threshold met. |
+| Linezolid + Tramadol | serotonin_opioid | severe | severe | ev_linezolid_serotonin_fda2011 (fda_label PMID:21416684) | Severe support threshold met. |
+| Methylphenidate + Phenelzine | sympathomimetic_maoi | severe | severe | ev_stimulant_maoi_fda (fda_label) | Severe support threshold met. |
+| Methylphenidate + Tranylcypromine | sympathomimetic_maoi | severe | severe | ev_stimulant_maoi_fda (fda_label) | Severe support threshold met. |
+| Thioridazine + Paroxetine | metabolic_qt | severe | severe | ev_thioridazine_qt_cyp2d6_fda (fda_label PMID:11302276) | Severe support threshold met. |
+| Thioridazine + Fluoxetine | metabolic_qt | severe | severe | ev_thioridazine_qt_cyp2d6_fda (fda_label PMID:11302276) | Severe support threshold met. |
+| Thioridazine + Moxifloxacin | qt | severe | severe | ev_thioridazine_qt_cyp2d6_fda (fda_label PMID:11302276) | Severe support threshold met. |
+| Cobicistat + Simvastatin | metabolic | severe | severe | ev_cobicistat_cyp3a_label (fda_label PMID:24297288) | Severe support threshold met. |
+| Cobicistat + Rifampin | induction | severe | severe | ev_cobicistat_cyp3a_label (fda_label PMID:24297288) | Severe support threshold met. |
+| Cobicistat + Midazolam | metabolic | severe | severe | ev_cobicistat_cyp3a_label (fda_label PMID:24297288) | Severe support threshold met. |
+| Cobicistat + Atorvastatin | metabolic | moderate | moderate | ev_cobicistat_cyp3a_label (fda_label PMID:24297288) | Kept original severity. |
+| Atazanavir + Omeprazole | absorption | severe | severe | ev_atazanavir_cyp3a_ugt1a1_label (fda_label PMID:14982100) | Severe support threshold met. |
+| Atazanavir + Rifampin | induction | severe | severe | ev_atazanavir_cyp3a_ugt1a1_label (fda_label PMID:14982100) | Severe support threshold met. |
+| Atazanavir + Rosuvastatin | transporter | moderate | moderate | ev_atazanavir_cyp3a_ugt1a1_label (fda_label PMID:14982100) | Kept original severity. |
+| Cyclophosphamide + Allopurinol | metabolic | moderate | moderate | ev_cyclophosphamide_cyp2b6_label (fda_label PMID:11595511) | Kept original severity. |
+| Paclitaxel + Gemfibrozil | metabolic | moderate | moderate | ev_paclitaxel_cyp2c8_label (fda_label PMID:9526529) | Kept original severity. |
+| Docetaxel + Ketoconazole | metabolic | severe | severe | ev_docetaxel_cyp3a4_label (fda_label PMID:10086396) | Severe support threshold met. |
+| Docetaxel + Rifampin | induction | severe | severe | ev_docetaxel_cyp3a4_label (fda_label PMID:10086396) | Severe support threshold met. |
+| Palbociclib + Itraconazole | metabolic | severe | severe | ev_palbociclib_cyp3a_label (fda_label) | Severe support threshold met. |
+| Palbociclib + Rifampin | induction | severe | severe | ev_palbociclib_cyp3a_label (fda_label) | Severe support threshold met. |
+| Everolimus + Ketoconazole | metabolic | severe | severe | ev_everolimus_cyp3a_pgp_label (fda_label PMID:17609476) | Severe support threshold met. |
+| Everolimus + Rifampin | induction | severe | severe | ev_everolimus_cyp3a_pgp_label (fda_label PMID:17609476) | Severe support threshold met. |
+| Erlotinib + Rifampin | induction | severe | severe | ev_erlotinib_cyp3a_label (fda_label PMID:16203810) | Severe support threshold met. |
+| Erlotinib + Ciprofloxacin | metabolic | moderate | moderate | ev_erlotinib_cyp3a_label (fda_label PMID:16203810) | Kept original severity. |
+| Guanfacine + Rifampin | induction | severe | severe | ev_guanfacine_cyp3a_label (fda_label PMID:19572803) | Severe support threshold met. |
+| Guanfacine + Valproate | metabolic | moderate | moderate | ev_guanfacine_cyp3a_label (fda_label PMID:19572803) | Kept original severity. |
+| Guanfacine + Carbamazepine | induction | severe | severe | ev_guanfacine_cyp3a_label (fda_label PMID:19572803) | Severe support threshold met. |
