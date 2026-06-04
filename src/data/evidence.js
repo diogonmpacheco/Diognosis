@@ -6922,6 +6922,84 @@ const STUDY_DB = {
     limitations:["Hypoglycemia risk depends on insulin dose, meals, renal function, exercise, age, and concurrent glucose-lowering therapy."],
     verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
   },
+  "ev_tmp_smx_label": {
+    id:"ev_tmp_smx_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Sulfamethoxazole/trimethoprim prescribing information - warfarin, OCT2/CYP2C8, and folate-toxicity context",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"TMP-SMX labeling notes warfarin/prothrombin-time monitoring, trimethoprim inhibition of CYP2C8 and OCT2, and clinically relevant toxicity cautions that support INR, potassium, renal, and marrow-toxicity monitoring."},
+    temporal:{mechanism:"CYP2C9_anticoagulation_OCT2_and_folate_antagonism_context"},
+    supports:["tmp_smx_warfarin_inr_monitoring","tmp_smx_oct2_cyp2c8_inhibition","tmp_smx_folate_marrow_toxicity_context","tmp_smx_hyperkalemia_context"],
+    contradicts:[],
+    limitations:["Hyperkalemia and marrow-toxicity risk are strongly patient-context dependent, especially renal function, age, dose, and folate-antagonist co-therapy."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_eplerenone_cyp3a_label": {
+    id:"ev_eplerenone_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Eplerenone prescribing information - CYP3A inhibitors and hyperkalemia risk",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Eplerenone labeling states metabolism is predominantly CYP3A-mediated, strong CYP3A inhibitors are contraindicated, moderate CYP3A inhibitors require dose limits, and ACE inhibitors/ARBs increase hyperkalemia risk."},
+    temporal:{mechanism:"CYP3A4_exposure_increase_and_RAAS_hyperkalemia"},
+    supports:["eplerenone_strong_cyp3a_contraindication","eplerenone_moderate_cyp3a_dose_limit","eplerenone_ace_arb_hyperkalemia_monitoring"],
+    contradicts:[],
+    limitations:["Potassium risk depends on kidney function, diabetes, baseline potassium, dose, and concurrent RAAS/NSAID/potassium therapy."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_lacosamide_pr_label": {
+    id:"ev_lacosamide_pr_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Lacosamide prescribing information - PR interval and cardiac conduction medicines",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Lacosamide labeling describes dose-dependent PR-interval prolongation and cautions with concomitant medicines that affect cardiac conduction, including beta-blockers, calcium-channel blockers, sodium-channel blockers, potassium-channel blockers, and other PR-prolonging agents."},
+    temporal:{mechanism:"additive_PR_interval_and_AV_node_conduction_slowing"},
+    supports:["lacosamide_pr_prolongation","lacosamide_conduction_medicine_caution"],
+    contradicts:[],
+    limitations:["Risk depends on baseline conduction disease, dose, route, renal/hepatic function, and other AV-node or sodium-channel effects."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_donepezil_bradycardia_label": {
+    id:"ev_donepezil_bradycardia_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Donepezil prescribing information - vagotonic bradycardia and CYP3A4/2D6 metabolism",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Donepezil labeling warns cholinesterase inhibitors may have vagotonic effects on SA/AV nodes causing bradycardia or heart block. Donepezil is metabolized through CYP3A4 and CYP2D6 pathways."},
+    temporal:{mechanism:"cholinesterase_vagotonic_conduction_effect_and_CYP_inhibition_context"},
+    supports:["donepezil_bradycardia_heart_block_warning","donepezil_cyp3a4_cyp2d6_metabolism"],
+    contradicts:[],
+    limitations:["Clinical risk depends on baseline conduction disease, age, dose, frailty, and concurrent rate-lowering medicines."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_valacyclovir_probenecid_label": {
+    id:"ev_valacyclovir_probenecid_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Valacyclovir prescribing information - cimetidine/probenecid renal-clearance interaction",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{cimetidineProbenecidCmaxIncreasePct:30, cimetidineProbenecidAucIncreasePct:78, note:"Valacyclovir labeling reports increased acyclovir Cmax and AUC after cimetidine plus probenecid, primarily from reduced renal clearance."},
+    temporal:{mechanism:"renal_tubular_clearance_reduction"},
+    supports:["valacyclovir_cimetidine_probenecid_acyclovir_exposure_increase","valacyclovir_renal_function_context"],
+    contradicts:[],
+    limitations:["Single-agent cimetidine or probenecid effects are usually modest; risk rises with renal impairment, dehydration, older age, or high-dose antiviral therapy."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_ceftriaxone_calcium_label": {
+    id:"ev_ceftriaxone_calcium_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Ceftriaxone prescribing information - calcium-containing IV solution precipitation risk",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Ceftriaxone labeling contraindicates use in neonates requiring calcium-containing IV solutions because of ceftriaxone-calcium precipitation risk; adult sequential administration depends on line flushing and protocol."},
+    temporal:{mechanism:"ceftriaxone_calcium_precipitation"},
+    supports:["ceftriaxone_neonate_calcium_contraindication","ceftriaxone_calcium_precipitation_context"],
+    contradicts:[],
+    limitations:["The severe pair is neonatal/protocol-context dependent; non-neonate administration rules differ by institution and product labeling details."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
 
 };
 

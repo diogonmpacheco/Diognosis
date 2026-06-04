@@ -2,9 +2,9 @@
 
 Generated for release date: 2026-06-04
 
-Known DDI pairs: 328
-Original severe: 214
-Recommended severe: 214
+Known DDI pairs: 340
+Original severe: 218
+Recommended severe: 218
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
@@ -337,3 +337,15 @@ Recommended downgrades: 0
 | Cefuroxime + Probenecid | renal_transport | moderate | moderate | ev_cefuroxime_probenecid_label (fda_label) | Kept original severity. |
 | Insulin Glargine + Metoprolol | pharmacodynamic | moderate | moderate | ev_insulin_glargine_beta_blocker_label (fda_label) | Kept original severity. |
 | Insulin Glargine + Tirzepatide | pharmacodynamic | moderate | moderate | ev_insulin_glargine_beta_blocker_label (fda_label)<br>ev_tirzepatide_oral_absorption_label (fda_label) | Kept original severity. |
+| Trimethoprim/Sulfamethoxazole + Warfarin | anticoagulation | severe | severe | ev_tmp_smx_label (fda_label) | Severe support threshold met. |
+| Trimethoprim/Sulfamethoxazole + Lisinopril | electrolyte | moderate | moderate | ev_tmp_smx_label (fda_label) | Kept original severity. |
+| Trimethoprim/Sulfamethoxazole + Methotrexate | pharmacodynamic | severe | severe | ev_tmp_smx_label (fda_label)<br>ev_methotrexate_oat3_probenecid (observational PMID:29871022) | Severe support threshold met. |
+| Eplerenone + Itraconazole | metabolic | severe | severe | ev_eplerenone_cyp3a_label (fda_label) | Severe support threshold met. |
+| Eplerenone + Lisinopril | electrolyte | moderate | moderate | ev_eplerenone_cyp3a_label (fda_label) | Kept original severity. |
+| Lacosamide + Metoprolol | cardiac_conduction | moderate | moderate | ev_lacosamide_pr_label (fda_label) | Kept original severity. |
+| Lacosamide + Diltiazem | cardiac_conduction | moderate | moderate | ev_lacosamide_pr_label (fda_label) | Kept original severity. |
+| Donepezil + Metoprolol | cardiac_conduction | moderate | moderate | ev_donepezil_bradycardia_label (fda_label) | Kept original severity. |
+| Donepezil + Ketoconazole | metabolic | moderate | moderate | ev_donepezil_bradycardia_label (fda_label) | Kept original severity. |
+| Valacyclovir + Probenecid | renal_transport | mild | mild | ev_valacyclovir_probenecid_label (fda_label) | Kept original severity. |
+| Valacyclovir + Cimetidine | renal_transport | mild | mild | ev_valacyclovir_probenecid_label (fda_label) | Kept original severity. |
+| Ceftriaxone + Calcium | precipitation | severe | severe | ev_ceftriaxone_calcium_label (fda_label) | Severe support threshold met. |

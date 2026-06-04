@@ -197,7 +197,7 @@ function getBrowseCategory(drug) {
 
   if (
     textHasAny(cls, ["ssri", "snri", "tca", "maoi", "rima", "antidepressant", "atypical ad", "nassa", "anxiolytic"]) ||
-    textHasAny(cls, ["antipsychotic", "atypical ap", "typical ap", "mood stabilizer", "anticonvulsant", "antiepileptic", "triptan", "dopamine", "dopa", "comt inhibitor"])
+    textHasAny(cls, ["antipsychotic", "atypical ap", "typical ap", "mood stabilizer", "anticonvulsant", "antiepileptic", "triptan", "dopamine", "dopa", "comt inhibitor", "dementia", "acetylcholinesterase"])
   ) return "Mental Health & Neurology";
 
   if (

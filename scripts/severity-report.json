@@ -8424,5 +8424,324 @@
       "hasStrongInline": true,
       "missingRefs": []
     }
+  },
+  {
+    "drug1": "Trimethoprim/Sulfamethoxazole",
+    "drug2": "Warfarin",
+    "category": "anticoagulation",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_tmp_smx_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_tmp_smx_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Trimethoprim/Sulfamethoxazole",
+    "drug2": "Lisinopril",
+    "category": "electrolyte",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_tmp_smx_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_tmp_smx_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Trimethoprim/Sulfamethoxazole",
+    "drug2": "Methotrexate",
+    "category": "pharmacodynamic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_tmp_smx_label",
+        "ev_methotrexate_oat3_probenecid"
+      ],
+      "studies": [
+        {
+          "id": "ev_tmp_smx_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_methotrexate_oat3_probenecid",
+          "type": "observational",
+          "pmid": "29871022",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Eplerenone",
+    "drug2": "Itraconazole",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_eplerenone_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_eplerenone_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Eplerenone",
+    "drug2": "Lisinopril",
+    "category": "electrolyte",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_eplerenone_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_eplerenone_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Lacosamide",
+    "drug2": "Metoprolol",
+    "category": "cardiac_conduction",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_lacosamide_pr_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_lacosamide_pr_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Lacosamide",
+    "drug2": "Diltiazem",
+    "category": "cardiac_conduction",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_lacosamide_pr_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_lacosamide_pr_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Donepezil",
+    "drug2": "Metoprolol",
+    "category": "cardiac_conduction",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_donepezil_bradycardia_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_donepezil_bradycardia_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Donepezil",
+    "drug2": "Ketoconazole",
+    "category": "metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_donepezil_bradycardia_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_donepezil_bradycardia_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Valacyclovir",
+    "drug2": "Probenecid",
+    "category": "renal_transport",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_valacyclovir_probenecid_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_valacyclovir_probenecid_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Valacyclovir",
+    "drug2": "Cimetidine",
+    "category": "renal_transport",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_valacyclovir_probenecid_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_valacyclovir_probenecid_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ceftriaxone",
+    "drug2": "Calcium",
+    "category": "precipitation",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_ceftriaxone_calcium_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_ceftriaxone_calcium_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
   }
 ]
