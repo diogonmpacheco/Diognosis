@@ -4247,22 +4247,100 @@ const MEDCHECK_VERSION = {
 
 
 // ═══════════════════════════════════════════════════════════════════
-// BRAND NAME LOOKUP MAPS — built from DRUG_DB.brandNames
+// BRAND NAME + SAME-SUBSTANCE LOOKUP MAPS — built from DRUG_DB.brandNames
 // ═══════════════════════════════════════════════════════════════════
+const DRUG_SAME_SUBSTANCE_ALIASES = {
+  "Alcohol (Ethanol)": ["Ethanol"],
+  "Cannabis (CBD)": ["Cannabidiol"],
+  "Cannabis (THC)": ["THC", "Delta-9 THC", "Tetrahydrocannabinol"],
+  "MDMA (Ecstasy)": ["Ecstasy", "Molly", "3,4-MDMA"],
+  "DXM (Dextromethorphan)": ["Dextromethorphan"],
+  "Heroin (Diacetylmorphine)": ["Diacetylmorphine", "Diamorphine"],
+  "Kratom (Mitragynine)": ["Mitragynine", "7-Hydroxymitragynine"],
+  "Milk Thistle (Silymarin)": ["Silymarin"],
+  "Potatoes (Solanine/Solanidine)": ["Solanine", "Solanidine", "Green Potatoes"],
+  "Ascorbic Acid (Vitamin C)": ["Vitamin C", "Ascorbate"],
+  "Aspirin (Low-Dose)": ["Low-dose aspirin", "Baby aspirin", "81 mg aspirin"],
+  "St. John's Wort": ["Hypericum", "SJW", "St Johns Wort"],
+  "Turmeric/Curcumin": ["Curcumin", "Turmeric"],
+  "Curcumin (Turmeric)": ["Turmeric", "Curcumin"],
+  "Fish Oil (Omega-3)": ["Omega-3", "EPA", "DHA"],
+  "Acetaminophen": ["Paracetamol"],
+  "Fluorouracil": ["5-FU", "5 Fluorouracil"],
+  "Trimethoprim-SMX": ["TMP-SMX", "Co-trimoxazole", "Trimethoprim/Sulfamethoxazole"],
+  "Artemether/Lumefantrine": ["Artemether-Lumefantrine"],
+  "Tenofovir Alafenamide": ["TAF"],
+  "Tenofovir": ["TDF", "Tenofovir disoproxil fumarate"],
+  "Lamivudine": ["3TC"],
+  "Emtricitabine": ["FTC"],
+  "Zidovudine": ["AZT"],
+  "Sodium Bicarbonate": ["Baking soda", "NaHCO3"],
+  "Potassium Chloride": ["K-Dur", "Klor-Con", "Potassium supplement"],
+  "Meal / Food": ["Food", "Meal", "With food", "High-fat meal"],
+};
+
 const BRAND_NAMES = {};
 const BRAND_TO_GENERIC = {};
+const DRUG_ALIASES = {};
+const DRUG_ALIAS_TO_GENERIC = {};
 (function buildBrandMaps() {
   for (const drug of DRUG_DB) {
+    const aliases = [];
     if (drug.brandNames && drug.brandNames.length) {
       BRAND_NAMES[drug.name] = drug.brandNames;
       for (const brand of drug.brandNames) {
         BRAND_TO_GENERIC[brand.toLowerCase()] = drug.name;
+        aliases.push(brand);
       }
     }
+    for (const alias of DRUG_SAME_SUBSTANCE_ALIASES[drug.name] || []) aliases.push(alias);
+    const uniqueAliases = [...new Set(aliases.filter(alias => alias && alias !== drug.name))];
+    if (uniqueAliases.length) DRUG_ALIASES[drug.name] = uniqueAliases;
+    for (const alias of uniqueAliases) DRUG_ALIAS_TO_GENERIC[normalizeDrugLookupKey(alias)] = drug.name;
+    DRUG_ALIAS_TO_GENERIC[normalizeDrugLookupKey(drug.name)] = drug.name;
+    if (drug.id) DRUG_ALIAS_TO_GENERIC[normalizeDrugLookupKey(drug.id)] = drug.name;
   }
 })();
 
 DRUG_DB.sort((a,b)=>a.name.localeCompare(b.name));
+
+function normalizeDrugLookupKey(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getDrugBrandNames(drugOrName) {
+  const drug = typeof drugOrName === "string" ? getDrug(drugOrName) : drugOrName;
+  return drug ? (BRAND_NAMES[drug.name] || []) : [];
+}
+
+function getDrugAliases(drugOrName) {
+  const drug = typeof drugOrName === "string" ? getDrug(drugOrName) : drugOrName;
+  return drug ? (DRUG_ALIASES[drug.name] || []) : [];
+}
+
+function getDrugSearchTerms(drugOrName) {
+  const drug = typeof drugOrName === "string" ? getDrug(drugOrName) : drugOrName;
+  if (!drug) return [];
+  return [...new Set([drug.name, drug.id, drug.cls, ...(drug.brandNames || []), ...(DRUG_SAME_SUBSTANCE_ALIASES[drug.name] || [])].filter(Boolean))];
+}
+
+function getDrugDisplayName(drugOrName) {
+  const drug = typeof drugOrName === "string" ? getDrug(drugOrName) : drugOrName;
+  return drug ? drug.name : String(drugOrName || "");
+}
+
+function getDrugSecondaryLabel(drugOrName, limit = 3) {
+  const aliases = getDrugAliases(drugOrName);
+  if (!aliases.length) return "";
+  const shown = aliases.slice(0, limit).join(", ");
+  return `Also: ${shown}${aliases.length > limit ? "..." : ""}`;
+}
 
 /* ================================================================
    INTERACTION ENGINE
@@ -4417,8 +4495,8 @@ function getDrug(name) {
   // Direct match by generic name
   const direct = DRUG_DB.find(d => d.name === name);
   if (direct) return direct;
-  // Try brand name lookup
-  const generic = BRAND_TO_GENERIC[name.toLowerCase()];
+  // Try brand/same-substance alias lookup
+  const generic = BRAND_TO_GENERIC[name.toLowerCase()] || DRUG_ALIAS_TO_GENERIC[normalizeDrugLookupKey(name)];
   if (generic) return DRUG_DB.find(d => d.name === generic);
   // Case-insensitive fallback
   const lower = name.toLowerCase();

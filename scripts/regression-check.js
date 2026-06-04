@@ -200,9 +200,18 @@ const batchAuditFixes = window.eval(`(() => {
   const hasPair = (a,b) => KNOWN_DDI.some(i =>
     (i.drug1 === a && i.drug2 === b) || (i.drug1 === b && i.drug2 === a)
   );
+  const resolve = name => getDrug(name)?.name || null;
   return {
     amphetamineBrands: drug('Amphetamine')?.brandNames || [],
     lisdexamfetamine: drug('Lisdexamfetamine'),
+    aliasResolution: {
+      prozac: resolve('Prozac'),
+      paracetamol: resolve('Paracetamol'),
+      diacetylmorphine: resolve('Diacetylmorphine'),
+      babyAspirin: resolve('baby aspirin'),
+      fiveFu: resolve('5-FU'),
+      vyvanse: resolve('Vyvanse'),
+    },
     simvastatinProdrug: !!drug('Simvastatin')?.prodrug,
     dabigatranProdrug: !!drug('Dabigatran')?.prodrug,
     hasGemfibrozilStatin: hasPair('Simvastatin','Gemfibrozil') && hasPair('Rosuvastatin','Gemfibrozil'),
@@ -212,6 +221,12 @@ const batchAuditFixes = window.eval(`(() => {
 })()`);
 assert(!batchAuditFixes.amphetamineBrands.includes('Vyvanse') && !batchAuditFixes.amphetamineBrands.includes('Elvanse'), 'Vyvanse/Elvanse should not be Amphetamine brands');
 assert(batchAuditFixes.lisdexamfetamine?.prodrug, 'Lisdexamfetamine should be modeled as a separate prodrug');
+assert(batchAuditFixes.aliasResolution.prozac === 'Fluoxetine', 'Prozac should resolve to Fluoxetine');
+assert(batchAuditFixes.aliasResolution.paracetamol === 'Acetaminophen', 'Paracetamol should resolve to Acetaminophen');
+assert(batchAuditFixes.aliasResolution.diacetylmorphine === 'Heroin (Diacetylmorphine)', 'Diacetylmorphine should resolve to Heroin');
+assert(batchAuditFixes.aliasResolution.babyAspirin === 'Aspirin (Low-Dose)', 'Baby aspirin should resolve to Aspirin (Low-Dose)');
+assert(batchAuditFixes.aliasResolution.fiveFu === 'Fluorouracil', '5-FU should resolve to Fluorouracil');
+assert(batchAuditFixes.aliasResolution.vyvanse === 'Lisdexamfetamine', 'Vyvanse should resolve to Lisdexamfetamine, not Amphetamine');
 assert(batchAuditFixes.simvastatinProdrug && batchAuditFixes.dabigatranProdrug, 'Batch prodrug flags should be present');
 assert(batchAuditFixes.hasGemfibrozilStatin, 'Gemfibrozil statin DDIs should be present');
 assert(batchAuditFixes.hasRifampinDoacs, 'Rifampin DOAC DDIs should be present');

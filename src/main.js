@@ -101,7 +101,8 @@ function resolveUrlDrugName(value) {
     d.id === slug ||
     d.name.toLowerCase() === raw.toLowerCase() ||
     toGraphId(d.name) === slug ||
-    (BRAND_NAMES[d.name] || []).some(brand => brand.toLowerCase() === raw.toLowerCase() || toGraphId(brand) === slug)
+    (typeof getDrugSearchTerms === "function" ? getDrugSearchTerms(d) : (BRAND_NAMES[d.name] || []))
+      .some(term => String(term || "").toLowerCase() === raw.toLowerCase() || toGraphId(term) === slug)
   );
   return match ? match.name : null;
 }

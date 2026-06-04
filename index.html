@@ -46,7 +46,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 a{color:var(--accent)}
 
 /* HEADER */
-.header{background:linear-gradient(135deg,#e85d26,#f97316);color:#fff;padding:10px 24px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(232,93,38,0.3);display:flex;align-items:center;justify-content:center;gap:12px}
+.header{background:linear-gradient(135deg,#e85d26,#f97316);color:#fff;padding:10px 24px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(232,93,38,0.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
 .header h1{font-size:20px;font-weight:700;letter-spacing:-0.5px}
 .header p{font-size:12px;opacity:0.85}
 
@@ -62,12 +62,13 @@ a{color:var(--accent)}
 .sr-item:hover{background:var(--accentBg)}
 .sr-item:last-child{border-bottom:none}
 .sr-name{font-weight:600;font-size:15px}
+.sr-secondary{display:block;font-size:11px;color:var(--text2);margin-top:2px;line-height:1.3}
 .sr-class{font-size:12px;color:var(--text2);background:var(--card2);padding:2px 8px;border-radius:10px}
 .sr-added{color:var(--green);font-size:12px;font-weight:600}
 .sr-cat{font-size:11px;font-weight:700;color:var(--accent);padding:8px 20px;background:var(--accentBg);text-transform:uppercase;letter-spacing:1px;position:sticky;top:0;z-index:1}
 
 /* MODE TOGGLE */
-.mode-toggle{display:flex;gap:8px;max-width:700px;margin:16px auto 0;padding:0 16px}
+.mode-toggle{display:flex;flex-direction:column;gap:8px;max-width:700px;margin:16px auto 0;padding:0 16px}
 .mode-btn{flex:1;padding:10px;border:2px solid var(--border);border-radius:var(--radius);background:var(--card);cursor:pointer;font-size:13px;font-weight:600;color:var(--text2);text-align:center;transition:all 0.2s}
 .mode-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accentBg)}
 .mode-btn:hover{border-color:var(--accent2)}
@@ -86,20 +87,23 @@ a{color:var(--accent)}
 .browse-chip:hover{border-color:var(--accent);background:var(--accentBg)}
 .browse-chip.added{border-color:var(--green);background:var(--greenBg);color:var(--green)}
 .browse-chip-class{display:block;font-size:9px;color:var(--text2);font-weight:600;margin-top:1px;max-width:150px;overflow:hidden;text-overflow:ellipsis}
+.browse-chip-alias{display:block;font-size:9px;color:var(--text2);font-weight:500;margin-top:1px;max-width:150px;overflow:hidden;text-overflow:ellipsis}
 
 /* MAIN WORKSPACE */
-.main{max-width:1120px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px;align-items:start}
-.input-rail,.result-area{display:flex;flex-direction:column;gap:16px;min-width:0}
-.input-rail{position:sticky;top:72px}
+.main{max-width:860px;margin:20px auto;padding:0 16px;display:flex;flex-direction:column;gap:16px}
+.input-rail,.result-area{display:flex;flex-direction:column;gap:16px;min-width:0;width:100%}
 .section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
 .section-title{font-size:15px;font-weight:700;padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
 .section-title svg{color:var(--accent)}
 .section-body{padding:12px 16px;overflow-x:auto}
 
-.med-chip{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;margin:4px;border-radius:20px;background:var(--accentBg);border:1.5px solid var(--accent);font-size:14px;font-weight:500;color:var(--accent)}
-.med-chip .x{cursor:pointer;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--accent);transition:all 0.15s}
+.med-chip{display:flex;flex-direction:column;align-items:stretch;gap:8px;width:100%;max-width:100%;justify-content:flex-start;padding:10px 14px;margin:4px 0;border-radius:16px;background:var(--accentBg);border:1.5px solid var(--accent);font-size:14px;font-weight:500;color:var(--accent)}
+.med-chip .x{cursor:pointer;width:100%;height:28px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--accent);transition:all 0.15s;border:1px solid color-mix(in srgb, var(--accent) 35%, transparent)}
 .med-chip .x:hover{background:var(--accent);color:#fff}
-.med-chip .dose-select{background:var(--accent);color:#fff;border:1.5px solid rgba(255,255,255,0.3);border-radius:10px;padding:3px 6px;font-size:12px;font-weight:600;cursor:pointer;outline:none;min-width:70px;text-align:center}
+.med-chip-name{display:inline-flex;flex-direction:column;line-height:1.15;min-width:0}
+.med-chip-primary{font-weight:700}
+.med-chip-secondary{font-size:10px;color:var(--text2);font-weight:600;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.med-chip .dose-select{background:var(--accent);color:#fff;border:1.5px solid rgba(255,255,255,0.3);border-radius:10px;padding:6px 8px;font-size:12px;font-weight:600;cursor:pointer;outline:none;width:100%;min-width:70px;text-align:center}
 .med-chip .dose-select:hover{border-color:#fff;background:color-mix(in srgb, var(--accent) 85%, #000)}
 .med-chip .dose-select option{background:var(--bg);color:var(--text);padding:4px}
 .empty-state{text-align:center;padding:30px 20px;color:var(--text2);font-size:14px}
@@ -342,7 +346,7 @@ a{color:var(--accent)}
 .cs-pill-warn{background:rgba(239,68,68,0.1);border-color:var(--red);color:var(--red)}
 
 /* PHENOTYPE ACCUMULATION */
-.pheno-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-bottom:12px}
+.pheno-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:12px}
 .pheno-card{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card)}
 .pheno-card.risk-none{opacity:0.5}
 .pheno-card.risk-low{border-color:var(--green);background:var(--greenBg)}
@@ -352,7 +356,7 @@ a{color:var(--accent)}
 .pheno-score{font-size:26px;font-weight:800;line-height:1}
 .pheno-drugs{font-size:11px;color:var(--text2);margin-top:4px}
 /* PK CURVES — Phase E */
-.pk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.pk-grid{display:grid;grid-template-columns:1fr;gap:10px}
 .pk-card{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card)}
 .pk-title{font-size:12px;font-weight:700;margin-bottom:2px;display:flex;flex-wrap:wrap;align-items:center;gap:4px}
 .pk-params{font-size:10px;color:var(--text2);margin-bottom:6px}
@@ -367,7 +371,7 @@ a{color:var(--accent)}
 .pk-taper{font-size:9px;margin-top:3px;color:var(--red)}
 .pk-disclaimer{font-size:10px;color:var(--text2);margin-top:6px;padding:5px 0;border-top:1px solid var(--border)}
 /* QUALITY + SCENARIOS */
-.quality-grid,.scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px}
+.quality-grid,.scenario-grid{display:grid;grid-template-columns:1fr;gap:8px}
 .quality-tile,.scenario-card{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card2)}
 .quality-num{font-size:20px;font-weight:800;line-height:1;color:var(--accent)}
 .quality-label{font-size:11px;font-weight:700;color:var(--text);margin-top:4px}
@@ -413,31 +417,31 @@ a{color:var(--accent)}
 .washout-bar{height:8px;border-radius:4px;background:var(--accent);opacity:0.6;min-width:4px}
 .washout-safe{font-weight:700;color:var(--green)}
 /* ADVERSE BURDEN */
-.burden-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-bottom:12px}
+.burden-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:12px}
 .burden-card{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card)}
 .burden-header{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--text2);margin-bottom:6px}
 .burden-score{font-size:24px;font-weight:800;color:var(--accent)}
 .burden-sub{font-size:11px;color:var(--text2);margin-top:3px}
 .beers-flag{display:flex;gap:6px;align-items:flex-start;padding:6px 8px;border-radius:6px;background:var(--redBg);border:1px solid rgba(220,38,38,0.2);margin-bottom:5px;font-size:11px}
 .beers-drug{font-weight:700;color:var(--red)}
-.version-strip{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--text2)}
-.version-strip span{display:inline-flex;gap:4px;align-items:center}
+.version-strip{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;margin-top:10px;font-size:11px;color:var(--text2);text-align:center}
+.version-strip span{display:inline-flex;gap:4px;align-items:center;justify-content:center}
 .version-strip strong{color:var(--text);font-weight:700}
 .version-strip a{color:var(--accent);font-weight:700;text-decoration:none}
 .version-strip a:hover{text-decoration:underline}
-.stats-line{max-width:1120px;margin:10px auto 0;padding:0 16px;color:var(--text2);font-size:12px;text-align:center}
+.stats-line{max-width:700px;margin:10px auto 0;padding:0 16px;color:var(--text2);font-size:12px;text-align:center;line-height:1.7}
 /* SUMMARY CARD */
 .summary-bar{
   padding:18px;background:linear-gradient(180deg,#fff 0%,#fefcf9 100%);border-radius:var(--radius);
   box-shadow:var(--shadow2);border:1px solid var(--border);
 }
 .summary-card{display:grid;gap:14px}
-.summary-main{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:start}
+.summary-main{display:grid;grid-template-columns:1fr;gap:12px;align-items:start}
 .summary-kicker{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:5px}
 .summary-title{font-size:24px;line-height:1.08;font-weight:800;color:var(--text);letter-spacing:0}
 .summary-copy{font-size:13px;color:var(--text2);line-height:1.45;margin-top:7px;max-width:620px}
 .summary-risk{
-  min-width:104px;border-radius:14px;padding:12px 10px;text-align:center;color:#fff;box-shadow:0 8px 18px rgba(61,44,30,.12);
+  width:100%;min-width:0;border-radius:14px;padding:12px 10px;text-align:center;color:#fff;box-shadow:0 8px 18px rgba(61,44,30,.12);
 }
 .summary-risk.high{background:var(--red)}
 .summary-risk.moderate{background:var(--amber)}
@@ -445,7 +449,7 @@ a{color:var(--accent)}
 .summary-risk.neutral{background:var(--text2)}
 .summary-risk .num{font-size:30px;line-height:1;font-weight:900}
 .summary-risk .lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-top:3px}
-.summary-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.summary-metrics{display:grid;grid-template-columns:1fr;gap:8px}
 .summary-metric{padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--card);min-width:0}
 .summary-metric strong{display:block;font-size:19px;line-height:1;color:var(--text)}
 .summary-metric span{display:block;font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-top:4px;white-space:normal}
@@ -473,7 +477,7 @@ a{color:var(--accent)}
 .finding-sev.moderate{background:var(--amber)}
 .finding-sev.mild{background:var(--blue)}
 .finding-effect{font-size:13px;line-height:1.45;color:var(--text);font-weight:650;margin-bottom:10px}
-.finding-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:8px 0}
+.finding-grid{display:grid;grid-template-columns:1fr;gap:8px;margin:8px 0}
 .finding-detail{padding:8px 9px;border-radius:9px;background:rgba(255,255,255,.68);border:1px solid rgba(61,44,30,.08);font-size:11px;line-height:1.4;color:var(--text2)}
 .finding-detail strong{display:block;color:var(--text);font-size:10px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
 .finding-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}
@@ -507,17 +511,11 @@ a{color:var(--accent)}
 @media(max-width:700px){
   .main,.search-wrap,.mode-toggle,.browse-wrap,.disclaimer{max-width:none}
   body{overflow-x:hidden}
-  .main{display:flex;flex-direction:column;width:100%;max-width:100%;overflow-x:hidden}
+  .main{width:100%;max-width:100%;overflow-x:hidden}
   .result-area,.input-rail,.summary-bar,.tab-panel,.section{width:100%;max-width:100%;min-width:0}
-  .result-area{order:1}
-  .input-rail{order:2;position:static}
   .header{padding:10px 16px}
-  .summary-main{grid-template-columns:1fr}
   .summary-title{font-size:22px;overflow-wrap:break-word}
-  .summary-risk{width:100%;min-width:0}
-  .summary-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
   .summary-copy,.summary-next span:last-child{min-width:0;overflow-wrap:break-word}
-  .finding-grid{grid-template-columns:1fr}
 }
 @media(max-width:480px){
   .fold-name,.timing-name{width:100px;font-size:12px}
@@ -527,7 +525,7 @@ a{color:var(--accent)}
   .fold-metabolite-note{width:100%;font-size:11px;color:var(--text2);padding-left:0}
   .search-box{padding:12px 16px}
   .section-body{padding:10px 12px}
-  .med-chip{display:flex;width:100%;max-width:100%;justify-content:space-between;border-radius:16px;margin:4px 0}
+  .med-chip-secondary{max-width:180px}
   .med-chip .dose-select{min-width:76px;flex-shrink:0}
   .med-chip .x{flex-shrink:0}
   .header h1{font-size:22px}
@@ -845,7 +843,7 @@ a{color:var(--accent)}
 </div>
 
 <script>
-// MedCheck bundle — built 2026-06-04T15:41:39.817Z
+// MedCheck bundle — built 2026-06-04T19:13:34.074Z
 // DO NOT EDIT: auto-generated by build.js
 
 
@@ -6381,22 +6379,100 @@ const MEDCHECK_VERSION = {
 
 
 // ═══════════════════════════════════════════════════════════════════
-// BRAND NAME LOOKUP MAPS — built from DRUG_DB.brandNames
+// BRAND NAME + SAME-SUBSTANCE LOOKUP MAPS — built from DRUG_DB.brandNames
 // ═══════════════════════════════════════════════════════════════════
+const DRUG_SAME_SUBSTANCE_ALIASES = {
+  "Alcohol (Ethanol)": ["Ethanol"],
+  "Cannabis (CBD)": ["Cannabidiol"],
+  "Cannabis (THC)": ["THC", "Delta-9 THC", "Tetrahydrocannabinol"],
+  "MDMA (Ecstasy)": ["Ecstasy", "Molly", "3,4-MDMA"],
+  "DXM (Dextromethorphan)": ["Dextromethorphan"],
+  "Heroin (Diacetylmorphine)": ["Diacetylmorphine", "Diamorphine"],
+  "Kratom (Mitragynine)": ["Mitragynine", "7-Hydroxymitragynine"],
+  "Milk Thistle (Silymarin)": ["Silymarin"],
+  "Potatoes (Solanine/Solanidine)": ["Solanine", "Solanidine", "Green Potatoes"],
+  "Ascorbic Acid (Vitamin C)": ["Vitamin C", "Ascorbate"],
+  "Aspirin (Low-Dose)": ["Low-dose aspirin", "Baby aspirin", "81 mg aspirin"],
+  "St. John's Wort": ["Hypericum", "SJW", "St Johns Wort"],
+  "Turmeric/Curcumin": ["Curcumin", "Turmeric"],
+  "Curcumin (Turmeric)": ["Turmeric", "Curcumin"],
+  "Fish Oil (Omega-3)": ["Omega-3", "EPA", "DHA"],
+  "Acetaminophen": ["Paracetamol"],
+  "Fluorouracil": ["5-FU", "5 Fluorouracil"],
+  "Trimethoprim-SMX": ["TMP-SMX", "Co-trimoxazole", "Trimethoprim/Sulfamethoxazole"],
+  "Artemether/Lumefantrine": ["Artemether-Lumefantrine"],
+  "Tenofovir Alafenamide": ["TAF"],
+  "Tenofovir": ["TDF", "Tenofovir disoproxil fumarate"],
+  "Lamivudine": ["3TC"],
+  "Emtricitabine": ["FTC"],
+  "Zidovudine": ["AZT"],
+  "Sodium Bicarbonate": ["Baking soda", "NaHCO3"],
+  "Potassium Chloride": ["K-Dur", "Klor-Con", "Potassium supplement"],
+  "Meal / Food": ["Food", "Meal", "With food", "High-fat meal"],
+};
+
 const BRAND_NAMES = {};
 const BRAND_TO_GENERIC = {};
+const DRUG_ALIASES = {};
+const DRUG_ALIAS_TO_GENERIC = {};
 (function buildBrandMaps() {
   for (const drug of DRUG_DB) {
+    const aliases = [];
     if (drug.brandNames && drug.brandNames.length) {
       BRAND_NAMES[drug.name] = drug.brandNames;
       for (const brand of drug.brandNames) {
         BRAND_TO_GENERIC[brand.toLowerCase()] = drug.name;
+        aliases.push(brand);
       }
     }
+    for (const alias of DRUG_SAME_SUBSTANCE_ALIASES[drug.name] || []) aliases.push(alias);
+    const uniqueAliases = [...new Set(aliases.filter(alias => alias && alias !== drug.name))];
+    if (uniqueAliases.length) DRUG_ALIASES[drug.name] = uniqueAliases;
+    for (const alias of uniqueAliases) DRUG_ALIAS_TO_GENERIC[normalizeDrugLookupKey(alias)] = drug.name;
+    DRUG_ALIAS_TO_GENERIC[normalizeDrugLookupKey(drug.name)] = drug.name;
+    if (drug.id) DRUG_ALIAS_TO_GENERIC[normalizeDrugLookupKey(drug.id)] = drug.name;
   }
 })();
 
 DRUG_DB.sort((a,b)=>a.name.localeCompare(b.name));
+
+function normalizeDrugLookupKey(value) {
+  return String(value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getDrugBrandNames(drugOrName) {
+  const drug = typeof drugOrName === "string" ? getDrug(drugOrName) : drugOrName;
+  return drug ? (BRAND_NAMES[drug.name] || []) : [];
+}
+
+function getDrugAliases(drugOrName) {
+  const drug = typeof drugOrName === "string" ? getDrug(drugOrName) : drugOrName;
+  return drug ? (DRUG_ALIASES[drug.name] || []) : [];
+}
+
+function getDrugSearchTerms(drugOrName) {
+  const drug = typeof drugOrName === "string" ? getDrug(drugOrName) : drugOrName;
+  if (!drug) return [];
+  return [...new Set([drug.name, drug.id, drug.cls, ...(drug.brandNames || []), ...(DRUG_SAME_SUBSTANCE_ALIASES[drug.name] || [])].filter(Boolean))];
+}
+
+function getDrugDisplayName(drugOrName) {
+  const drug = typeof drugOrName === "string" ? getDrug(drugOrName) : drugOrName;
+  return drug ? drug.name : String(drugOrName || "");
+}
+
+function getDrugSecondaryLabel(drugOrName, limit = 3) {
+  const aliases = getDrugAliases(drugOrName);
+  if (!aliases.length) return "";
+  const shown = aliases.slice(0, limit).join(", ");
+  return `Also: ${shown}${aliases.length > limit ? "..." : ""}`;
+}
 
 /* ================================================================
    INTERACTION ENGINE
@@ -6551,8 +6627,8 @@ function getDrug(name) {
   // Direct match by generic name
   const direct = DRUG_DB.find(d => d.name === name);
   if (direct) return direct;
-  // Try brand name lookup
-  const generic = BRAND_TO_GENERIC[name.toLowerCase()];
+  // Try brand/same-substance alias lookup
+  const generic = BRAND_TO_GENERIC[name.toLowerCase()] || DRUG_ALIAS_TO_GENERIC[normalizeDrugLookupKey(name)];
   if (generic) return DRUG_DB.find(d => d.name === generic);
   // Case-insensitive fallback
   const lower = name.toLowerCase();
@@ -22095,10 +22171,10 @@ const KNOWN_DDI = [
 // ═══ data/generatedStats.js ═══
 // Auto-generated by scripts/gen-stats.js. Do not edit by hand.
 const MEDCHECK_STATS = {
-  "generatedAt": "2026-06-04T15:41:39.810Z",
-  "bundleBytes": 1699366,
-  "bundleKB": 1660,
-  "bundleLines": 28609,
+  "generatedAt": "2026-06-04T19:13:34.066Z",
+  "bundleBytes": 1703633,
+  "bundleKB": 1664,
+  "bundleLines": 28690,
   "drugs": 511,
   "studies": 392,
   "verifiedStudies": 146,
@@ -25803,10 +25879,9 @@ function onSearch(q) {
   const seen = new Set();
   const matches = DRUG_DB.filter(d => {
     if (seen.has(d.name)) return false;
-    const nameMatch = d.name.toLowerCase().includes(ql) || d.cls.toLowerCase().includes(ql);
-    const brands = BRAND_NAMES[d.name] || [];
-    const brandMatch = brands.some(b => b.toLowerCase().includes(ql));
-    if (nameMatch || brandMatch) { seen.add(d.name); return true; }
+    const terms = typeof getDrugSearchTerms === "function" ? getDrugSearchTerms(d) : [d.name, d.cls, ...(BRAND_NAMES[d.name] || [])];
+    const matched = terms.some(term => String(term || "").toLowerCase().includes(ql));
+    if (matched) { seen.add(d.name); return true; }
     return false;
   });
   if (!matches.length) { el.innerHTML = '<div class="sr-item"><span class="sr-name" style="color:var(--text2)">No matches found</span></div>'; el.classList.add("show"); return; }
@@ -25824,12 +25899,13 @@ function onSearch(q) {
     if (matches.length > 5) html += `<div class="sr-cat">${cls}</div>`;
     drugs.forEach(d => {
       const added = activeStack.includes(d.name);
-      const brands = BRAND_NAMES[d.name] || [];
-      const brandStr = brands.length ? `<span style="font-size:11px;color:var(--text2);margin-left:4px">(${brands.slice(0,3).join(", ")}${brands.length>3?"…":""})</span>` : "";
-      const matchedBrand = brands.find(b => b.toLowerCase().includes(ql));
-      const displayName = matchedBrand ? `${highlight(matchedBrand, q)} → ${d.name}` : highlight(d.name, q);
+      const terms = typeof getDrugSearchTerms === "function" ? getDrugSearchTerms(d) : [d.name, ...(BRAND_NAMES[d.name] || [])];
+      const matchedAlias = terms.find(term => term !== d.name && term !== d.id && String(term || "").toLowerCase().includes(ql));
+      const secondary = typeof getDrugSecondaryLabel === "function" ? getDrugSecondaryLabel(d) : "";
+      const displayName = matchedAlias ? `${highlight(matchedAlias, q)} -> ${d.name}` : highlight(d.name, q);
+      const secondaryHtml = secondary ? `<span class="sr-secondary">${secondary}</span>` : "";
       html += `<div class="sr-item" onclick="${added ? `removeDrug('${d.name.replace(/'/g,"\\'")}')` : `addDrug('${d.name.replace(/'/g,"\\'")}')` }">
-        <span><span class="sr-name">${displayName}</span>${!matchedBrand ? brandStr : ""}</span>
+        <span><span class="sr-name">${displayName}</span>${secondaryHtml}</span>
         <span>${added ? '<span class="sr-added">✓ Added</span>' : `<span class="sr-class">${d.cls}</span>`}</span>
       </div>`;
     });
@@ -25941,9 +26017,10 @@ function renderBrowse() {
         <span class="arrow">▶</span>
       </div>
       <div class="browse-items" data-cat="${cat}">
-        ${groups[cat].sort((a,b)=>a.name.localeCompare(b.name)).map(d =>
-          `<div class="browse-chip ${activeStack.includes(d.name)?'added':''}" onclick="toggleDrug('${d.name.replace(/'/g,"\\'")}')">${d.name}<span class="browse-chip-class">${d.cls}</span></div>`
-        ).join("")}
+        ${groups[cat].sort((a,b)=>a.name.localeCompare(b.name)).map(d => {
+          const alias = typeof getDrugSecondaryLabel === "function" ? getDrugSecondaryLabel(d, 2) : "";
+          return `<div class="browse-chip ${activeStack.includes(d.name)?'added':''}" onclick="toggleDrug('${d.name.replace(/'/g,"\\'")}')">${d.name}<span class="browse-chip-class">${d.cls}</span>${alias ? `<span class="browse-chip-alias">${alias}</span>` : ""}</div>`;
+        }).join("")}
       </div>
     </div>
   `).join("");
@@ -26051,7 +26128,10 @@ function renderMedList() {
       ).join("");
       doseHtml = `<select class="dose-select" onclick="event.stopPropagation()" onchange="setDoseTier('${escaped}',this.value)">${opts}</select>`;
     }
-    return `<span class="med-chip">${name}${doseHtml}<span class="x" onclick="removeDrug('${escaped}')">×</span></span>`;
+    const drug = getDrug(name);
+    const secondary = typeof getDrugSecondaryLabel === "function" ? getDrugSecondaryLabel(drug, 2) : "";
+    const labelHtml = `<span class="med-chip-name"><span class="med-chip-primary">${getDrugDisplayName(drug || name)}</span>${secondary ? `<span class="med-chip-secondary">${secondary}</span>` : ""}</span>`;
+    return `<span class="med-chip" title="${secondary ? secondary.replace(/"/g, "&quot;") : ""}">${labelHtml}${doseHtml}<span class="x" onclick="removeDrug('${escaped}')">×</span></span>`;
   }).join("") + renderActorExposureSummary();
 }
 
@@ -28537,7 +28617,8 @@ function resolveUrlDrugName(value) {
     d.id === slug ||
     d.name.toLowerCase() === raw.toLowerCase() ||
     toGraphId(d.name) === slug ||
-    (BRAND_NAMES[d.name] || []).some(brand => brand.toLowerCase() === raw.toLowerCase() || toGraphId(brand) === slug)
+    (typeof getDrugSearchTerms === "function" ? getDrugSearchTerms(d) : (BRAND_NAMES[d.name] || []))
+      .some(term => String(term || "").toLowerCase() === raw.toLowerCase() || toGraphId(term) === slug)
   );
   return match ? match.name : null;
 }

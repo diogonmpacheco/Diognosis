@@ -186,10 +186,9 @@ function onSearch(q) {
   const seen = new Set();
   const matches = DRUG_DB.filter(d => {
     if (seen.has(d.name)) return false;
-    const nameMatch = d.name.toLowerCase().includes(ql) || d.cls.toLowerCase().includes(ql);
-    const brands = BRAND_NAMES[d.name] || [];
-    const brandMatch = brands.some(b => b.toLowerCase().includes(ql));
-    if (nameMatch || brandMatch) { seen.add(d.name); return true; }
+    const terms = typeof getDrugSearchTerms === "function" ? getDrugSearchTerms(d) : [d.name, d.cls, ...(BRAND_NAMES[d.name] || [])];
+    const matched = terms.some(term => String(term || "").toLowerCase().includes(ql));
+    if (matched) { seen.add(d.name); return true; }
     return false;
   });
   if (!matches.length) { el.innerHTML = '<div class="sr-item"><span class="sr-name" style="color:var(--text2)">No matches found</span></div>'; el.classList.add("show"); return; }
@@ -207,12 +206,13 @@ function onSearch(q) {
     if (matches.length > 5) html += `<div class="sr-cat">${cls}</div>`;
     drugs.forEach(d => {
       const added = activeStack.includes(d.name);
-      const brands = BRAND_NAMES[d.name] || [];
-      const brandStr = brands.length ? `<span style="font-size:11px;color:var(--text2);margin-left:4px">(${brands.slice(0,3).join(", ")}${brands.length>3?"…":""})</span>` : "";
-      const matchedBrand = brands.find(b => b.toLowerCase().includes(ql));
-      const displayName = matchedBrand ? `${highlight(matchedBrand, q)} → ${d.name}` : highlight(d.name, q);
+      const terms = typeof getDrugSearchTerms === "function" ? getDrugSearchTerms(d) : [d.name, ...(BRAND_NAMES[d.name] || [])];
+      const matchedAlias = terms.find(term => term !== d.name && term !== d.id && String(term || "").toLowerCase().includes(ql));
+      const secondary = typeof getDrugSecondaryLabel === "function" ? getDrugSecondaryLabel(d) : "";
+      const displayName = matchedAlias ? `${highlight(matchedAlias, q)} -> ${d.name}` : highlight(d.name, q);
+      const secondaryHtml = secondary ? `<span class="sr-secondary">${secondary}</span>` : "";
       html += `<div class="sr-item" onclick="${added ? `removeDrug('${d.name.replace(/'/g,"\\'")}')` : `addDrug('${d.name.replace(/'/g,"\\'")}')` }">
-        <span><span class="sr-name">${displayName}</span>${!matchedBrand ? brandStr : ""}</span>
+        <span><span class="sr-name">${displayName}</span>${secondaryHtml}</span>
         <span>${added ? '<span class="sr-added">✓ Added</span>' : `<span class="sr-class">${d.cls}</span>`}</span>
       </div>`;
     });
@@ -324,9 +324,10 @@ function renderBrowse() {
         <span class="arrow">▶</span>
       </div>
       <div class="browse-items" data-cat="${cat}">
-        ${groups[cat].sort((a,b)=>a.name.localeCompare(b.name)).map(d =>
-          `<div class="browse-chip ${activeStack.includes(d.name)?'added':''}" onclick="toggleDrug('${d.name.replace(/'/g,"\\'")}')">${d.name}<span class="browse-chip-class">${d.cls}</span></div>`
-        ).join("")}
+        ${groups[cat].sort((a,b)=>a.name.localeCompare(b.name)).map(d => {
+          const alias = typeof getDrugSecondaryLabel === "function" ? getDrugSecondaryLabel(d, 2) : "";
+          return `<div class="browse-chip ${activeStack.includes(d.name)?'added':''}" onclick="toggleDrug('${d.name.replace(/'/g,"\\'")}')">${d.name}<span class="browse-chip-class">${d.cls}</span>${alias ? `<span class="browse-chip-alias">${alias}</span>` : ""}</div>`;
+        }).join("")}
       </div>
     </div>
   `).join("");
@@ -434,7 +435,10 @@ function renderMedList() {
       ).join("");
       doseHtml = `<select class="dose-select" onclick="event.stopPropagation()" onchange="setDoseTier('${escaped}',this.value)">${opts}</select>`;
     }
-    return `<span class="med-chip">${name}${doseHtml}<span class="x" onclick="removeDrug('${escaped}')">×</span></span>`;
+    const drug = getDrug(name);
+    const secondary = typeof getDrugSecondaryLabel === "function" ? getDrugSecondaryLabel(drug, 2) : "";
+    const labelHtml = `<span class="med-chip-name"><span class="med-chip-primary">${getDrugDisplayName(drug || name)}</span>${secondary ? `<span class="med-chip-secondary">${secondary}</span>` : ""}</span>`;
+    return `<span class="med-chip" title="${secondary ? secondary.replace(/"/g, "&quot;") : ""}">${labelHtml}${doseHtml}<span class="x" onclick="removeDrug('${escaped}')">×</span></span>`;
   }).join("") + renderActorExposureSummary();
 }
 
