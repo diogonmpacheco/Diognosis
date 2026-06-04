@@ -3287,6 +3287,206 @@ const METAB = {
     note:"Physiologic buffering endpoint rather than drug metabolism.",
     evidenceRefs:["ev_memantine_urine_ph_label"]
   }
+],
+"Clonidine":[
+  {
+    n:"p-Hydroxyclonidine",
+    e:"CYP2D6",
+    a:"inactive",
+    p:25,
+    note:"Minor oxidative metabolite. Renal unchanged clearance and pharmacodynamic rebound/bradycardia risks are more clinically important than CYP2D6 metabolism.",
+    evidenceRefs:["ev_clonidine_cyp2d6_4hydroxylation"]
+  },
+  {
+    n:"Clonidine (unchanged renal elimination)",
+    e:"Renal",
+    a:"active",
+    p:40,
+    note:"Substantial unchanged renal clearance; abrupt withdrawal can produce rebound hypertension independent of metabolite formation."
+  }
+],
+"Glecaprevir":[
+  {
+    n:"Glecaprevir (biliary/fecal unchanged)",
+    e:"OATP1B1/P-gp/Biliary",
+    a:"active",
+    p:90,
+    note:"Minimal metabolism; hepatic uptake/efflux transport determines exposure. Strong inducers can markedly reduce antiviral concentrations.",
+    evidenceRefs:["ev_mavyret_oatp_pgp_label"]
+  },
+  {
+    n:"Glecaprevir minor oxidative metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:10,
+    note:"Minor route; transporter induction/inhibition is the practical DDI signal.",
+    evidenceRefs:["ev_mavyret_oatp_pgp_label"]
+  }
+],
+"Pibrentasvir":[
+  {
+    n:"Pibrentasvir (fecal unchanged)",
+    e:"P-gp/Biliary",
+    a:"active",
+    p:90,
+    note:"Minimal metabolism; P-gp/BCRP and hepatic transporter context determines clinically relevant exposure shifts.",
+    evidenceRefs:["ev_mavyret_oatp_pgp_label"]
+  }
+],
+"High Vitamin K Foods":[
+  {
+    n:"Vitamin K1 (phylloquinone)",
+    e:"Dietary vitamin",
+    a:"active",
+    p:100,
+    note:"Active dietary vitamin that opposes warfarin anticoagulation by supporting hepatic clotting-factor gamma-carboxylation. Consistency matters more than avoidance."
+  },
+  {
+    n:"Vitamin K epoxide",
+    e:"VKORC1 cycle",
+    a:"recycled",
+    p:100,
+    note:"Warfarin blocks VKORC1 recycling of vitamin K epoxide; abrupt dietary vitamin K changes can shift INR."
+  }
+],
+"Albuterol":[
+  {
+    n:"Albuterol 4-O-sulfate",
+    e:"SULT1A3",
+    a:"inactive",
+    p:80,
+    note:"Primary inactive sulfate conjugate. Interaction risk is mainly beta-agonist pharmacodynamics and beta-blocker antagonism, not CYP metabolism."
+  },
+  {
+    n:"Albuterol (unchanged renal elimination)",
+    e:"Renal",
+    a:"active",
+    p:20,
+    note:"Unchanged urinary clearance contributes to elimination after systemic absorption."
+  }
+],
+"Entacapone":[
+  {
+    n:"Entacapone glucuronide",
+    e:"UGT",
+    a:"inactive",
+    p:60,
+    note:"Major conjugated clearance product. Therapeutic effect is parent COMT inhibition that prolongs levodopa exposure.",
+    evidenceRefs:["ev_comt_levodopa_parkinson_2012"]
+  },
+  {
+    n:"cis-Entacapone isomer",
+    e:"Isomerization",
+    a:"weak",
+    p:20,
+    note:"Isomerization product; not the main active COMT inhibition signal.",
+    evidenceRefs:["ev_comt_levodopa_parkinson_2012"]
+  }
+],
+"Carbidopa":[
+  {
+    n:"Carbidopa (unchanged renal elimination)",
+    e:"Renal",
+    a:"active",
+    p:60,
+    note:"Peripheral DOPA decarboxylase inhibition is parent-drug driven; metabolism is not a major DDI pathway."
+  },
+  {
+    n:"Carbidopa hydrazine metabolites",
+    e:"Hepatic/renal",
+    a:"inactive",
+    p:30,
+    note:"Minor metabolite family; levodopa-combination pharmacodynamics dominate clinical relevance."
+  }
+],
+"Flucloxacillin":[
+  {
+    n:"Flucloxacillin hydroxymethyl metabolite",
+    e:"Hydroxylation",
+    a:"inactive",
+    p:20,
+    note:"Minor metabolite. The high-value signal is HLA-B*57:01 idiosyncratic liver injury rather than predictable metabolite toxicity.",
+    evidenceRefs:["ev_flucloxacillin_hlab5701_daly2009"]
+  },
+  {
+    n:"Flucloxacillin (unchanged renal/biliary elimination)",
+    e:"Renal/Biliary",
+    a:"active",
+    p:70,
+    note:"Substantial unchanged elimination; delayed cholestatic DILI remains idiosyncratic.",
+    evidenceRefs:["ev_flucloxacillin_hlab5701_daly2009"]
+  }
+],
+"Vancomycin":[
+  {
+    n:"Vancomycin (unchanged renal elimination)",
+    e:"Renal",
+    a:"active",
+    p:90,
+    note:"No meaningful metabolism. Exposure is renal/TDM driven; HLA-A*32:01 is a DRESS risk signal rather than a metabolite pathway.",
+    evidenceRefs:["ev_vancomycin_hla_a3201_konvinse2019"]
+  }
+],
+"Succinylcholine":[
+  {
+    n:"Succinylmonocholine",
+    e:"Butyrylcholinesterase",
+    a:"weak",
+    p:80,
+    note:"Rapid hydrolysis product. Prolonged paralysis relates to cholinesterase activity, while malignant hyperthermia risk is RYR1/CACNA1S-triggered.",
+    evidenceRefs:["ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019"]
+  },
+  {
+    n:"Succinic acid + choline",
+    e:"Butyrylcholinesterase",
+    a:"inactive",
+    p:80,
+    note:"Final hydrolysis products after neuromuscular blockade offset.",
+    evidenceRefs:["ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019"]
+  }
+],
+"Lactulose":[
+  {
+    n:"Lactic acid / acetic acid colonic metabolites",
+    e:"Colonic bacterial fermentation",
+    a:"active",
+    p:80,
+    note:"Luminal organic acids acidify colonic contents and trap ammonia as ammonium. Minimal systemic PK interactions."
+  },
+  {
+    n:"Ammonium trapping signal",
+    e:"Colonic acidification",
+    a:"active",
+    p:0,
+    note:"Not a metabolite: captures lactulose's ammonia-lowering mechanism in hepatic encephalopathy."
+  }
+],
+"Lumacaftor":[
+  {
+    n:"Lumacaftor (fecal unchanged)",
+    e:"Fecal",
+    a:"active",
+    p:90,
+    note:"Mostly eliminated unchanged; the practical DDI signal is CYP3A/P-gp induction lowering other drugs and ivacaftor exposure."
+  }
+],
+"Primaquine":[
+  {
+    n:"Carboxyprimaquine",
+    e:"MAO-A",
+    a:"inactive",
+    p:60,
+    note:"Major metabolite. Oxidative hemolysis risk in G6PD deficiency is not fully captured by this inactive metabolite alone.",
+    evidenceRefs:["ev_g6pd_oxidative_antimalarials"]
+  },
+  {
+    n:"Primaquine hydroxylamine / quinone-imine metabolites",
+    e:"CYP/oxidation",
+    a:"toxic",
+    p:10,
+    note:"Reactive oxidative metabolite family implicated in hemolysis/methemoglobinemia risk, especially in G6PD deficiency.",
+    evidenceRefs:["ev_g6pd_oxidative_antimalarials"]
+  }
 ]
 };
 

@@ -6766,6 +6766,19 @@ const STUDY_DB = {
     limitations:["FDA label specifies dose adjustments for both CYP3A4 inhibitors and inducers."],
     verified:false, reviewRequired:true, verifyNote:"Enrichment batch — ADHD alpha-2 agonist"
   },
+  "ev_clonidine_cyp2d6_4hydroxylation": {
+    id:"ev_clonidine_cyp2d6_4hydroxylation", public:true, type:EVIDENCE_TIER.IN_VITRO,
+    title:"CYP2D6 mediates 4-hydroxylation of clonidine in vitro: implication for pregnancy-induced changes in clonidine clearance",
+    year:2010, source:"Claessens et al.", journal:"Drug Metabolism and Disposition", pmid:"20570945", doi:"10.1124/dmd.110.033878",
+    url:"https://pubmed.ncbi.nlm.nih.gov/20570945/",
+    studyDesign:"human_liver_microsome_in_vitro", n:null, phenotypes:["CYP2D6"],
+    quantifiedEffects:{note:"Human liver microsome work identified CYP2D6 as the main contributor to clonidine 4-hydroxylation, with CYP1A2/CYP3A contributors also present."},
+    temporal:{mechanism:"CYP2D6_4_hydroxylation"},
+    supports:["clonidine_METABOLIZED_TO_p-hydroxyclonidine","clonidine_cyp2d6_minor_clearance_context"],
+    contradicts:[],
+    limitations:["In vitro concentrations exceeded typical therapeutic plasma concentrations; renal unchanged clearance remains clinically important."],
+    verified:true
+  },
   "ev_buspirone_cyp3a_label": {
     id:"ev_buspirone_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
     title:"Buspirone prescribing information - CYP3A4 inhibitors and grapefruit juice",
