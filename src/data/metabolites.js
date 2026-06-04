@@ -2288,6 +2288,462 @@ const METAB = {
     note:"Minor metabolite associated with renal-impairment neurotoxicity context.",
     evidenceRefs:["ev_acyclovir_probenecid_label"]
   }
+],
+
+// ── PRIORITY METABOLITE COVERAGE BATCH: hormone, HIV, immunology, cardiology ──
+"Combined Oral Contraceptive":[
+  {
+    n:"Ethinyl estradiol sulfate / glucuronide conjugates",
+    e:"SULT/UGT",
+    a:"inactive",
+    p:45,
+    note:"Estrogen component undergoes conjugation and enterohepatic recycling; enzyme induction can lower contraceptive hormone exposure.",
+    evidenceRefs:["ev_coc_label"]
+  },
+  {
+    n:"2-Hydroxyethinyl estradiol",
+    e:"CYP3A4",
+    a:"inactive",
+    p:25,
+    note:"Oxidative estrogen metabolite. CYP3A induction is the practical failure signal, especially with rifamycins and enzyme-inducing anticonvulsants.",
+    evidenceRefs:["ev_coc_label"]
+  },
+  {
+    n:"Levonorgestrel reduced / conjugated metabolites",
+    e:"CYP3A4/UGT",
+    a:"inactive",
+    p:30,
+    note:"Progestin component clearance increases with strong CYP3A induction; parent hormone exposure is the clinical target.",
+    evidenceRefs:["ev_coc_label"]
+  }
+],
+"Ethinyl Estradiol":[
+  {
+    n:"Ethinyl estradiol sulfate",
+    e:"SULT",
+    a:"inactive",
+    p:35,
+    note:"Major conjugated pool with enterohepatic recycling relevance.",
+    evidenceRefs:["ev_coc_label"]
+  },
+  {
+    n:"Ethinyl estradiol glucuronide",
+    e:"UGT1A1",
+    a:"inactive",
+    p:25,
+    note:"Glucuronide conjugate; induction can reduce systemic estrogen exposure.",
+    evidenceRefs:["ev_coc_label"]
+  },
+  {
+    n:"2-Hydroxyethinyl estradiol",
+    e:"CYP3A4",
+    a:"inactive",
+    p:25,
+    note:"Oxidative metabolite used here to make CYP3A induction risk visible without treating it as the active form.",
+    evidenceRefs:["ev_coc_label"]
+  }
+],
+"Levonorgestrel":[
+  {
+    n:"3α,5β-Tetrahydrolevonorgestrel",
+    e:"CYP3A4/reduction",
+    a:"inactive",
+    p:40,
+    note:"Reduced metabolite family; parent levonorgestrel exposure is the contraceptive efficacy signal.",
+    evidenceRefs:["ev_coc_label"]
+  },
+  {
+    n:"Levonorgestrel glucuronide / sulfate conjugates",
+    e:"UGT/SULT",
+    a:"inactive",
+    p:45,
+    note:"Conjugated metabolites; strong enzyme induction can reduce progestin exposure and increase contraceptive failure risk.",
+    evidenceRefs:["ev_coc_label"]
+  }
+],
+"Cobicistat":[
+  {
+    n:"Cobicistat oxidative metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:60,
+    note:"Cobicistat interaction risk is parent-drug CYP3A/P-gp/OATP inhibition; metabolites are not the booster signal.",
+    evidenceRefs:["ev_cobicistat_cyp3a_label"]
+  },
+  {
+    n:"Cobicistat CYP2D6 minor metabolites",
+    e:"CYP2D6",
+    a:"inactive",
+    p:10,
+    note:"Minor CYP2D6 pathway. CYP3A inhibition and induction dominate clinical management.",
+    evidenceRefs:["ev_cobicistat_cyp3a_label"]
+  }
+],
+"Atazanavir":[
+  {
+    n:"Atazanavir oxidative metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:70,
+    note:"CYP3A4 clearance pathway; strong inducers lower parent atazanavir exposure and can cause virologic failure.",
+    evidenceRefs:["ev_atazanavir_cyp3a_ugt1a1_label"]
+  },
+  {
+    n:"Unconjugated bilirubin accumulation signal",
+    e:"UGT1A1",
+    a:"toxic",
+    p:0,
+    note:"Not an atazanavir metabolite: atazanavir inhibits UGT1A1, raising indirect bilirubin. Kept as a pathway signal because genotype and toxicity context matter.",
+    evidenceRefs:["ev_atazanavir_cyp3a_ugt1a1_label"]
+  }
+],
+"Dolutegravir":[
+  {
+    n:"Dolutegravir glucuronide",
+    e:"UGT1A1",
+    a:"inactive",
+    p:55,
+    note:"Primary clearance pathway. UGT1A1/CYP3A induction lowers parent dolutegravir exposure.",
+    evidenceRefs:["ev_dolutegravir_oct2_mate1_fda"]
+  },
+  {
+    n:"Dolutegravir oxidative metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:10,
+    note:"Minor oxidative route; parent dolutegravir also inhibits OCT2/MATE1 and can raise creatinine without true GFR loss.",
+    evidenceRefs:["ev_dolutegravir_oct2_mate1_fda"]
+  }
+],
+"Tofacitinib":[
+  {
+    n:"Tofacitinib oxidative metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:55,
+    note:"Major hepatic clearance route. Strong CYP3A inhibitors raise parent exposure; strong inducers can cause therapeutic failure.",
+    evidenceRefs:["ev_tofacitinib_cyp3a4_label"]
+  },
+  {
+    n:"Tofacitinib CYP2C19 minor metabolites",
+    e:"CYP2C19",
+    a:"inactive",
+    p:20,
+    note:"Minor contribution that becomes relevant when CYP3A4 and CYP2C19 are jointly inhibited.",
+    evidenceRefs:["ev_tofacitinib_cyp3a4_label"]
+  }
+],
+"Upadacitinib":[
+  {
+    n:"Upadacitinib oxidative metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:60,
+    note:"Parent-exposure driven JAK inhibitor risk; strong CYP3A induction lowers exposure and strong inhibition increases adverse-event burden.",
+    evidenceRefs:["ev_upadacitinib_cyp3a4_label"]
+  }
+],
+"Ibrutinib":[
+  {
+    n:"Dihydrodiol ibrutinib metabolite (PCI-45227)",
+    e:"CYP3A4",
+    a:"active",
+    p:40,
+    t:6,
+    note:"Active metabolite with lower BTK inhibitory activity than parent. CYP3A inhibition/induction remains the dominant clinical signal.",
+    evidenceRefs:["ev_ibrutinib_cyp3a_label"]
+  },
+  {
+    n:"Ibrutinib minor oxidative metabolites",
+    e:"CYP2D6",
+    a:"inactive",
+    p:10,
+    note:"Minor CYP2D6 contribution; not the main dose-adjustment pathway.",
+    evidenceRefs:["ev_ibrutinib_cyp3a_label"]
+  }
+],
+"Lacosamide":[
+  {
+    n:"O-Desmethyl lacosamide",
+    e:"CYP2C19",
+    a:"inactive",
+    p:30,
+    note:"Inactive metabolite. Parent lacosamide and renal clearance drive PR-interval and CNS adverse-effect monitoring.",
+    evidenceRefs:["ev_lacosamide_pr_label"]
+  },
+  {
+    n:"Lacosamide (unchanged)",
+    e:"Renal",
+    a:"active",
+    p:40,
+    note:"Substantial unchanged renal excretion; renal impairment and additive conduction-slowing drugs matter clinically.",
+    evidenceRefs:["ev_lacosamide_pr_label"]
+  }
+],
+"Phenelzine":[
+  {
+    n:"Phenelzine acetylated metabolites",
+    e:"NAT2",
+    a:"inactive",
+    p:40,
+    note:"NAT2 acetylation contributes to clearance, but irreversible MAO-A/B inhibition and washout timing drive the clinical interaction risk.",
+    evidenceRefs:["ev_maoi_ssri_serotonin_fda"]
+  },
+  {
+    n:"Phenelzine hydrazine metabolites",
+    e:"MAO-A",
+    a:"active",
+    p:30,
+    note:"Reactive hydrazine-related metabolism contributes to irreversible MAO inhibition; avoid interpreting parent half-life as offset of effect.",
+    evidenceRefs:["ev_maoi_ssri_serotonin_fda"]
+  }
+],
+"Buspirone":[
+  {
+    n:"1-(2-pyrimidinyl)piperazine (1-PP)",
+    e:"CYP3A4",
+    a:"active",
+    p:30,
+    t:6,
+    note:"Active metabolite with alpha-2 adrenergic activity; CYP3A inhibition raises parent buspirone and can shift active-moiety exposure.",
+    evidenceRefs:["ev_buspirone_cyp3a_label"]
+  },
+  {
+    n:"6-Hydroxybuspirone",
+    e:"CYP3A4",
+    a:"active",
+    p:35,
+    note:"Hydroxylated active metabolite. Parent buspirone exposure is still the main label interaction signal.",
+    evidenceRefs:["ev_buspirone_cyp3a_label"]
+  }
+],
+"Ranolazine":[
+  {
+    n:"O-Desmethyl ranolazine",
+    e:"CYP3A4",
+    a:"active",
+    p:35,
+    note:"Active metabolite family; parent ranolazine accumulation is most important for QT and adverse-effect risk.",
+    evidenceRefs:["ev_ranolazine_cyp3a_label"]
+  },
+  {
+    n:"Ranolazine CYP2D6 minor metabolites",
+    e:"CYP2D6",
+    a:"weak",
+    p:10,
+    note:"Minor pathway. CYP3A inhibition/induction and P-gp context dominate interaction handling.",
+    evidenceRefs:["ev_ranolazine_cyp3a_label"]
+  }
+],
+"Methylphenidate":[
+  {
+    n:"Ritalinic acid",
+    e:"CES1A1",
+    a:"inactive",
+    p:80,
+    note:"Primary inactive hydrolysis product. Methylphenidate is not a classic CYP prodrug; MAOI contraindication is pharmacodynamic.",
+    evidenceRefs:["ev_stimulant_maoi_fda"]
+  }
+],
+"Tranylcypromine":[
+  {
+    n:"Tranylcypromine oxidative metabolites",
+    e:"CYP2C19",
+    a:"inactive",
+    p:30,
+    note:"CYP2C19-linked clearance context. Irreversible MAO inhibition means clinical offset follows enzyme resynthesis, not parent half-life.",
+    evidenceRefs:["ev_maoi_ssri_serotonin_fda","ev_maoi_tyramine_fda"]
+  },
+  {
+    n:"Tranylcypromine MAO adduct / irreversible inhibition signal",
+    e:"MAO-A",
+    a:"active",
+    p:0,
+    note:"Pathway signal for irreversible MAO-A/B inhibition; tyramine and serotonergic interaction risks persist after parent drug falls.",
+    evidenceRefs:["ev_maoi_ssri_serotonin_fda","ev_maoi_tyramine_fda"]
+  }
+],
+"Fluphenazine":[
+  {
+    n:"7-Hydroxyfluphenazine",
+    e:"CYP2D6",
+    a:"active",
+    p:35,
+    note:"Phenothiazine hydroxylated metabolite family; CYP2D6 poor metabolism mainly raises parent fluphenazine and EPS risk.",
+    evidenceRefs:["ev_antipsychotic_cyp2d6_labels"]
+  },
+  {
+    n:"Fluphenazine sulfoxide / N-dealkylated metabolites",
+    e:"CYP1A2",
+    a:"inactive",
+    p:25,
+    note:"Secondary oxidative metabolites. Smoking/CYP1A2 context may shift exposure but CYP2D6 is the main genotype axis.",
+    evidenceRefs:["ev_antipsychotic_cyp2d6_labels"]
+  }
+],
+"Perphenazine":[
+  {
+    n:"7-Hydroxyperphenazine",
+    e:"CYP2D6",
+    a:"active",
+    p:40,
+    note:"Hydroxylated phenothiazine metabolite. CYP2D6 PM increases parent exposure and adverse-effect risk.",
+    evidenceRefs:["ev_antipsychotic_cyp2d6_labels"]
+  },
+  {
+    n:"Perphenazine sulfoxide / N-dealkylated metabolites",
+    e:"CYP1A2",
+    a:"inactive",
+    p:25,
+    note:"Secondary pathway; included to avoid treating parent-only CYP2D6 exposure as the entire metabolic story.",
+    evidenceRefs:["ev_antipsychotic_cyp2d6_labels"]
+  }
+],
+"Guanfacine":[
+  {
+    n:"3-Hydroxyguanfacine sulfate",
+    e:"CYP3A4/SULT",
+    a:"inactive",
+    p:35,
+    note:"Representative oxidative/conjugated metabolite. Parent guanfacine exposure is strongly reduced by CYP3A induction.",
+    evidenceRefs:["ev_guanfacine_cyp3a_label"]
+  },
+  {
+    n:"Guanfacine (unchanged)",
+    e:"Renal",
+    a:"active",
+    p:50,
+    note:"Substantial unchanged clearance; CYP3A interactions still drive most label dose changes.",
+    evidenceRefs:["ev_guanfacine_cyp3a_label"]
+  }
+],
+"Nitroglycerin":[
+  {
+    n:"1,2-Glyceryl dinitrate",
+    e:"ALDH2/denitration",
+    a:"active",
+    p:45,
+    note:"Active denitrated metabolite contributing to vasodilation. PDE5 inhibitor contraindication is pharmacodynamic cGMP stacking.",
+    evidenceRefs:["ev_nitrate_pde5_label"]
+  },
+  {
+    n:"1,3-Glyceryl dinitrate",
+    e:"ALDH2/denitration",
+    a:"active",
+    p:45,
+    note:"Active nitrate metabolite; parent and metabolites are not CYP-driven.",
+    evidenceRefs:["ev_nitrate_pde5_label"]
+  }
+],
+"Isosorbide Mononitrate":[
+  {
+    n:"Isosorbide mononitrate glucuronide",
+    e:"UGT",
+    a:"inactive",
+    p:65,
+    note:"Conjugated clearance product. The clinically critical interaction is additive nitrate/PDE5 vasodilation rather than CYP metabolism.",
+    evidenceRefs:["ev_nitrate_pde5_label"]
+  },
+  {
+    n:"Isosorbide",
+    e:"Denitration",
+    a:"inactive",
+    p:25,
+    note:"Denitrated metabolite after nitrate bioactivation.",
+    evidenceRefs:["ev_nitrate_pde5_label"]
+  }
+],
+"Donepezil":[
+  {
+    n:"6-O-Desmethyldonepezil",
+    e:"CYP2D6",
+    a:"active",
+    p:20,
+    note:"Active metabolite with cholinesterase inhibition; parent donepezil and vagotonic bradycardia risk remain the main clinical signal.",
+    evidenceRefs:["ev_donepezil_bradycardia_label"]
+  },
+  {
+    n:"Donepezil N-oxide / hydroxylated metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:35,
+    note:"CYP3A4-mediated metabolite family; strong inhibitors may raise parent donepezil exposure.",
+    evidenceRefs:["ev_donepezil_bradycardia_label"]
+  }
+],
+"Eplerenone":[
+  {
+    n:"6β-Hydroxyeplerenone",
+    e:"CYP3A4",
+    a:"inactive",
+    p:45,
+    note:"Major inactive CYP3A metabolite. Strong CYP3A inhibition is contraindicated because parent eplerenone exposure and hyperkalemia risk rise.",
+    evidenceRefs:["ev_eplerenone_cyp3a_label"]
+  },
+  {
+    n:"21-Hydroxyeplerenone",
+    e:"CYP3A4",
+    a:"inactive",
+    p:25,
+    note:"Secondary inactive hydroxylated metabolite.",
+    evidenceRefs:["ev_eplerenone_cyp3a_label"]
+  }
+],
+"Ivabradine":[
+  {
+    n:"N-Desmethyl ivabradine (S18982)",
+    e:"CYP3A4",
+    a:"active",
+    p:40,
+    note:"Active metabolite with similar heart-rate lowering pharmacology; CYP3A inhibitors raise active-moiety exposure.",
+    evidenceRefs:["ev_ivabradine_cyp3a_label"]
+  }
+],
+"Torsemide":[
+  {
+    n:"Torsemide M1 metabolite",
+    e:"CYP2C9",
+    a:"weak",
+    p:20,
+    note:"Hydroxylated metabolite with weaker diuretic activity. Parent renal/hemodynamic effects and lithium/electrolyte context dominate risk.",
+    evidenceRefs:["ev_torsemide_lithium_label"]
+  },
+  {
+    n:"Torsemide M3 / carboxylic acid metabolites",
+    e:"CYP2C9",
+    a:"inactive",
+    p:45,
+    note:"Inactive oxidative metabolites; CYP2C9 contributes to clearance.",
+    evidenceRefs:["ev_torsemide_lithium_label"]
+  }
+],
+"Zileuton":[
+  {
+    n:"Zileuton glucuronide",
+    e:"UGT1A1",
+    a:"inactive",
+    p:55,
+    note:"Major conjugated clearance product. Parent zileuton inhibits CYP1A2 and raises theophylline exposure.",
+    evidenceRefs:["ev_zileuton_theophylline_label"]
+  },
+  {
+    n:"N-Hydroxyzileuton",
+    e:"CYP1A2",
+    a:"inactive",
+    p:20,
+    note:"Oxidative metabolite; parent CYP1A2 inhibition remains the key interaction signal.",
+    evidenceRefs:["ev_zileuton_theophylline_label"]
+  }
+],
+"Zafirlukast":[
+  {
+    n:"Hydroxyzafirlukast metabolites",
+    e:"CYP2C9",
+    a:"inactive",
+    p:45,
+    note:"CYP2C9-linked oxidative metabolism. Parent zafirlukast can increase warfarin anticoagulant response.",
+    evidenceRefs:["ev_zafirlukast_warfarin_label"]
+  }
 ]
 };
 

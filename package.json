@@ -9,6 +9,7 @@
     "check:evidence": "node scripts/check-evidence.js",
     "report:severity": "node scripts/severity-report.js",
     "audit:genotype-gaps": "node scripts/audit/genotype-gap-audit.js",
+    "audit:metabolite-coverage": "node scripts/audit/metabolite-coverage-audit.js",
     "enrich": "node scripts/enrich/pubmed-enrich.js",
     "enrich:pubmed": "node scripts/enrich/pubmed-enrich.js --providers pubmed",
     "enrich:self-test": "node scripts/enrich/pubmed-enrich.js --self-test",
