@@ -2,9 +2,9 @@
 
 Generated for release date: 2026-06-04
 
-Known DDI pairs: 303
-Original severe: 201
-Recommended severe: 201
+Known DDI pairs: 328
+Original severe: 214
+Recommended severe: 214
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
@@ -273,7 +273,7 @@ Recommended downgrades: 0
 | Dronedarone + Digoxin | transporter | severe | severe | ev_dronedarone_cyp3a_pgp_label (fda_label) | Severe support threshold met. |
 | Dronedarone + Simvastatin | metabolic | severe | severe | ev_dronedarone_cyp3a_pgp_label (fda_label) | Severe support threshold met. |
 | Dronedarone + Dabigatran | transporter | severe | severe | ev_dronedarone_cyp3a_pgp_label (fda_label) | Severe support threshold met. |
-| Dronedarone + Ciclosporin | metabolic | severe | severe | ev_dronedarone_cyp3a_pgp_label (fda_label) | Severe support threshold met. |
+| Dronedarone + Cyclosporine | metabolic | severe | severe | ev_dronedarone_cyp3a_pgp_label (fda_label) | Severe support threshold met. |
 | Sofosbuvir + Amiodarone | unknown_pd | severe | severe | ev_sofosbuvir_amiodarone_bradycardia (fda_label PMID:26264977) | Severe support threshold met. |
 | Sofosbuvir + Rifampin | induction | severe | severe | ev_sofosbuvir_pgp_induction (fda_label) | Severe support threshold met. |
 | Sofosbuvir + Carbamazepine | induction | severe | severe | ev_sofosbuvir_pgp_induction (fda_label) | Severe support threshold met. |
@@ -310,5 +310,30 @@ Recommended downgrades: 0
 | Erlotinib + Rifampin | induction | severe | severe | ev_erlotinib_cyp3a_label (fda_label PMID:16203810) | Severe support threshold met. |
 | Erlotinib + Ciprofloxacin | metabolic | moderate | moderate | ev_erlotinib_cyp3a_label (fda_label PMID:16203810) | Kept original severity. |
 | Guanfacine + Rifampin | induction | severe | severe | ev_guanfacine_cyp3a_label (fda_label PMID:19572803) | Severe support threshold met. |
-| Guanfacine + Valproate | metabolic | moderate | moderate | ev_guanfacine_cyp3a_label (fda_label PMID:19572803) | Kept original severity. |
+| Guanfacine + Valproic Acid | metabolic | moderate | moderate | ev_guanfacine_cyp3a_label (fda_label PMID:19572803) | Kept original severity. |
 | Guanfacine + Carbamazepine | induction | severe | severe | ev_guanfacine_cyp3a_label (fda_label PMID:19572803) | Severe support threshold met. |
+| Buspirone + Itraconazole | metabolic | severe | severe | ev_buspirone_cyp3a_label (fda_label) | Severe support threshold met. |
+| Buspirone + Diltiazem | metabolic | moderate | moderate | ev_buspirone_cyp3a_label (fda_label) | Kept original severity. |
+| Buspirone + Grapefruit Juice | food_metabolic | moderate | moderate | ev_buspirone_cyp3a_label (fda_label) | Kept original severity. |
+| Terbinafine + Metoprolol | metabolic | moderate | moderate | ev_terbinafine_cyp2d6_label (fda_label) | Kept original severity. |
+| Terbinafine + Nortriptyline | metabolic | moderate | moderate | ev_terbinafine_cyp2d6_label (fda_label) | Kept original severity. |
+| Cephalexin + Metformin | renal_transport | mild | mild | ev_cephalexin_metformin_label (fda_label) | Kept original severity. |
+| Nitroglycerin + Sildenafil | pharmacodynamic | severe | severe | ev_nitrate_pde5_label (fda_label) | Severe support threshold met. |
+| Nitroglycerin + Tadalafil | pharmacodynamic | severe | severe | ev_nitrate_pde5_label (fda_label) | Severe support threshold met. |
+| Isosorbide Mononitrate + Sildenafil | pharmacodynamic | severe | severe | ev_nitrate_pde5_label (fda_label) | Severe support threshold met. |
+| Isosorbide Mononitrate + Tadalafil | pharmacodynamic | severe | severe | ev_nitrate_pde5_label (fda_label) | Severe support threshold met. |
+| Sacubitril/Valsartan + Lisinopril | angioedema | severe | severe | ev_sacubitril_valsartan_label (fda_label) | Severe support threshold met. |
+| Sacubitril/Valsartan + Spironolactone | electrolyte | moderate | moderate | ev_sacubitril_valsartan_label (fda_label) | Kept original severity. |
+| Tirzepatide + Warfarin | absorption | mild | mild | ev_tirzepatide_oral_absorption_label (fda_label) | Kept original severity. |
+| Nirmatrelvir/Ritonavir + Simvastatin | metabolic | severe | severe | ev_paxlovid_cyp3a_label (fda_label) | Severe support threshold met. |
+| Nirmatrelvir/Ritonavir + Amiodarone | metabolic | severe | severe | ev_paxlovid_cyp3a_label (fda_label) | Severe support threshold met. |
+| Nirmatrelvir/Ritonavir + Quetiapine | metabolic | severe | severe | ev_paxlovid_cyp3a_label (fda_label) | Severe support threshold met. |
+| Nirmatrelvir/Ritonavir + Rifampin | induction | severe | severe | ev_paxlovid_cyp3a_label (fda_label) | Severe support threshold met. |
+| Hydroxyzine + Amiodarone | qtc | severe | severe | ev_hydroxyzine_qt_label (fda_label) | Severe support threshold met. |
+| Hydroxyzine + Azithromycin | qtc | moderate | moderate | ev_hydroxyzine_qt_label (fda_label) | Kept original severity. |
+| Ivabradine + Clarithromycin | metabolic | severe | severe | ev_ivabradine_cyp3a_label (fda_label) | Severe support threshold met. |
+| Ivabradine + Diltiazem | metabolic | severe | severe | ev_ivabradine_cyp3a_label (fda_label) | Severe support threshold met. |
+| Amoxicillin/Clavulanate + Warfarin | anticoagulation | moderate | moderate | ev_amox_clav_warfarin_label (fda_label) | Kept original severity. |
+| Cefuroxime + Probenecid | renal_transport | moderate | moderate | ev_cefuroxime_probenecid_label (fda_label) | Kept original severity. |
+| Insulin Glargine + Metoprolol | pharmacodynamic | moderate | moderate | ev_insulin_glargine_beta_blocker_label (fda_label) | Kept original severity. |
+| Insulin Glargine + Tirzepatide | pharmacodynamic | moderate | moderate | ev_insulin_glargine_beta_blocker_label (fda_label)<br>ev_tirzepatide_oral_absorption_label (fda_label) | Kept original severity. |

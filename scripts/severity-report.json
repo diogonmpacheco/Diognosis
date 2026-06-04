@@ -6756,7 +6756,7 @@
   },
   {
     "drug1": "Dronedarone",
-    "drug2": "Ciclosporin",
+    "drug2": "Cyclosporine",
     "category": "metabolic",
     "oldSeverity": "severe",
     "recommendedSeverity": "severe",
@@ -7718,7 +7718,7 @@
   },
   {
     "drug1": "Guanfacine",
-    "drug2": "Valproate",
+    "drug2": "Valproic Acid",
     "category": "metabolic",
     "oldSeverity": "moderate",
     "recommendedSeverity": "moderate",
@@ -7759,6 +7759,663 @@
           "id": "ev_guanfacine_cyp3a_label",
           "type": "fda_label",
           "pmid": "19572803",
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Buspirone",
+    "drug2": "Itraconazole",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_buspirone_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_buspirone_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Buspirone",
+    "drug2": "Diltiazem",
+    "category": "metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_buspirone_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_buspirone_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Buspirone",
+    "drug2": "Grapefruit Juice",
+    "category": "food_metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_buspirone_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_buspirone_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Terbinafine",
+    "drug2": "Metoprolol",
+    "category": "metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_terbinafine_cyp2d6_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_terbinafine_cyp2d6_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Terbinafine",
+    "drug2": "Nortriptyline",
+    "category": "metabolic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_terbinafine_cyp2d6_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_terbinafine_cyp2d6_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Cephalexin",
+    "drug2": "Metformin",
+    "category": "renal_transport",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cephalexin_metformin_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_cephalexin_metformin_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Nitroglycerin",
+    "drug2": "Sildenafil",
+    "category": "pharmacodynamic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_nitrate_pde5_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_nitrate_pde5_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Nitroglycerin",
+    "drug2": "Tadalafil",
+    "category": "pharmacodynamic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_nitrate_pde5_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_nitrate_pde5_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Isosorbide Mononitrate",
+    "drug2": "Sildenafil",
+    "category": "pharmacodynamic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_nitrate_pde5_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_nitrate_pde5_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Isosorbide Mononitrate",
+    "drug2": "Tadalafil",
+    "category": "pharmacodynamic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_nitrate_pde5_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_nitrate_pde5_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sacubitril/Valsartan",
+    "drug2": "Lisinopril",
+    "category": "angioedema",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_sacubitril_valsartan_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_sacubitril_valsartan_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sacubitril/Valsartan",
+    "drug2": "Spironolactone",
+    "category": "electrolyte",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_sacubitril_valsartan_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_sacubitril_valsartan_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Tirzepatide",
+    "drug2": "Warfarin",
+    "category": "absorption",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_tirzepatide_oral_absorption_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_tirzepatide_oral_absorption_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Nirmatrelvir/Ritonavir",
+    "drug2": "Simvastatin",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_paxlovid_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_paxlovid_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Nirmatrelvir/Ritonavir",
+    "drug2": "Amiodarone",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_paxlovid_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_paxlovid_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Nirmatrelvir/Ritonavir",
+    "drug2": "Quetiapine",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_paxlovid_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_paxlovid_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Nirmatrelvir/Ritonavir",
+    "drug2": "Rifampin",
+    "category": "induction",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_paxlovid_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_paxlovid_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Hydroxyzine",
+    "drug2": "Amiodarone",
+    "category": "qtc",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_hydroxyzine_qt_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_hydroxyzine_qt_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Hydroxyzine",
+    "drug2": "Azithromycin",
+    "category": "qtc",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_hydroxyzine_qt_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_hydroxyzine_qt_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ivabradine",
+    "drug2": "Clarithromycin",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_ivabradine_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_ivabradine_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Ivabradine",
+    "drug2": "Diltiazem",
+    "category": "metabolic",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_ivabradine_cyp3a_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_ivabradine_cyp3a_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Amoxicillin/Clavulanate",
+    "drug2": "Warfarin",
+    "category": "anticoagulation",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_amox_clav_warfarin_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_amox_clav_warfarin_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Cefuroxime",
+    "drug2": "Probenecid",
+    "category": "renal_transport",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_cefuroxime_probenecid_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_cefuroxime_probenecid_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Insulin Glargine",
+    "drug2": "Metoprolol",
+    "category": "pharmacodynamic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_insulin_glargine_beta_blocker_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_insulin_glargine_beta_blocker_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Insulin Glargine",
+    "drug2": "Tirzepatide",
+    "category": "pharmacodynamic",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_insulin_glargine_beta_blocker_label",
+        "ev_tirzepatide_oral_absorption_label"
+      ],
+      "studies": [
+        {
+          "id": "ev_insulin_glargine_beta_blocker_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_tirzepatide_oral_absorption_label",
+          "type": "fda_label",
+          "pmid": null,
           "doi": null
         }
       ],

@@ -6844,6 +6844,84 @@ const STUDY_DB = {
     limitations:["Warfarin pair is a conservative narrow-therapeutic-margin monitoring rule, not a direct contraindication."],
     verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
   },
+  "ev_paxlovid_cyp3a_label": {
+    id:"ev_paxlovid_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Paxlovid prescribing information - CYP3A inhibition and strong inducer contraindications",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8a99d6d6-fd9e-45bb-b1bf-48c7f761232a",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Paxlovid contains ritonavir, a strong CYP3A inhibitor and inhibitor of CYP2D6, P-gp, and OATP1B1. Labeling contraindicates drugs highly dependent on CYP3A where elevated concentrations cause serious reactions and strong CYP3A inducers that may reduce antiviral effect."},
+    temporal:{mechanism:"ritonavir_CYP3A_inhibition_and_inducer_antiviral_failure"},
+    supports:["paxlovid_strong_cyp3a_inhibitor","paxlovid_simvastatin_contraindication","paxlovid_antiarrhythmic_contraindication","paxlovid_rifampin_antiviral_failure"],
+    contradicts:[],
+    limitations:["Paxlovid interaction management depends on renal function, infection timing, temporary holds, and local COVID treatment guidance."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_hydroxyzine_qt_label": {
+    id:"ev_hydroxyzine_qt_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Hydroxyzine prescribing information - QT prolongation and torsades risk",
+    year:2025, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Hydroxyzine labeling describes post-marketing QT prolongation and torsades reports, usually in patients with other QT risk factors, cardiac disease, electrolyte abnormalities, or concomitant arrhythmogenic drugs."},
+    temporal:{mechanism:"additive_QT_prolongation_context"},
+    supports:["hydroxyzine_qt_tdp_warning","hydroxyzine_qt_risk_with_arrhythmogenic_drugs"],
+    contradicts:[],
+    limitations:["Absolute QT risk varies by dose, age, cardiac disease, electrolyte status, and concomitant QT-risk medications."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_ivabradine_cyp3a_label": {
+    id:"ev_ivabradine_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Ivabradine prescribing information - CYP3A4 inhibitor contraindications",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Ivabradine is primarily metabolized by CYP3A4. Labeling contraindicates strong CYP3A4 inhibitors and advises avoiding moderate CYP3A4 inhibitors because exposure increases and bradycardia risk rises."},
+    temporal:{mechanism:"CYP3A4_primary_metabolism_and_heart_rate_lowering"},
+    supports:["ivabradine_strong_cyp3a4_inhibitor_contraindication","ivabradine_moderate_cyp3a4_inhibitor_avoid"],
+    contradicts:[],
+    limitations:["Bradycardia risk depends on baseline heart rate, conduction disease, dose, and concurrent rate-lowering medicines."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_amox_clav_warfarin_label": {
+    id:"ev_amox_clav_warfarin_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Amoxicillin/clavulanate prescribing information - oral anticoagulant prothrombin-time interaction",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Amoxicillin/clavulanate labeling notes that concomitant use with oral anticoagulants may increase prolongation of prothrombin time."},
+    temporal:{mechanism:"antibiotic_anticoagulation_monitoring_context"},
+    supports:["amoxicillin_clavulanate_warfarin_inr_monitoring"],
+    contradicts:[],
+    limitations:["INR changes may reflect infection, diet, gut flora changes, and anticoagulant dose as well as the antibiotic."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_cefuroxime_probenecid_label": {
+    id:"ev_cefuroxime_probenecid_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Cefuroxime axetil prescribing information - probenecid exposure increase",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Cefuroxime axetil labeling states that coadministration with probenecid increases cefuroxime systemic exposure and is not recommended."},
+    temporal:{mechanism:"renal_tubular_secretion_inhibition"},
+    supports:["cefuroxime_probenecid_exposure_increase"],
+    contradicts:[],
+    limitations:["Clinical relevance depends on renal function, infection severity, and antibiotic dose/duration."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
+  "ev_insulin_glargine_beta_blocker_label": {
+    id:"ev_insulin_glargine_beta_blocker_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Insulin glargine prescribing information - hypoglycemia masking and insulin combination risk",
+    year:2026, source:"FDA / DailyMed", journal:null, pmid:null, doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Insulin glargine labeling notes that beta-blockers and other antiadrenergic medicines can blunt hypoglycemia warning symptoms; glucose-lowering combinations can require dose adjustment and closer monitoring."},
+    temporal:{mechanism:"pharmacodynamic_hypoglycemia_warning_masking"},
+    supports:["insulin_beta_blocker_hypoglycemia_masking","insulin_combination_glucose_monitoring"],
+    contradicts:[],
+    limitations:["Hypoglycemia risk depends on insulin dose, meals, renal function, exercise, age, and concurrent glucose-lowering therapy."],
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+  },
 
 };
 
