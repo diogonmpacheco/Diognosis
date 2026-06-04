@@ -2744,6 +2744,549 @@ const METAB = {
     note:"CYP2C9-linked oxidative metabolism. Parent zafirlukast can increase warfarin anticoagulant response.",
     evidenceRefs:["ev_zafirlukast_warfarin_label"]
   }
+],
+
+// ── PRIORITY METABOLITE COVERAGE BATCH 2: transporter, antiviral, renal-clearance context ──
+"Gemfibrozil":[
+  {
+    n:"Gemfibrozil 1-O-β-glucuronide",
+    e:"UGT",
+    a:"active",
+    p:45,
+    note:"Acyl-glucuronide metabolite implicated in mechanism-based CYP2C8 inhibition; this helps explain high-risk statin and CYP2C8-substrate interactions beyond parent fibrate exposure.",
+    evidenceRefs:["ev_statin_gemfibrozil_schneck2004"]
+  },
+  {
+    n:"Hydroxygemfibrozil / carboxygemfibrozil metabolites",
+    e:"CYP/UGT",
+    a:"inactive",
+    p:35,
+    note:"Oxidative/conjugated clearance products. Clinically, transporter and CYP2C8 inhibition dominate the interaction profile.",
+    evidenceRefs:["ev_statin_gemfibrozil_schneck2004"]
+  }
+],
+"Probenecid":[
+  {
+    n:"Probenecid glucuronide",
+    e:"UGT",
+    a:"inactive",
+    p:45,
+    note:"Conjugated clearance product. Parent probenecid is the clinically important OAT1/OAT3 inhibitor that raises renal-transport substrates.",
+    evidenceRefs:["ev_methotrexate_oat3_probenecid","ev_cefuroxime_probenecid_label"]
+  },
+  {
+    n:"Probenecid (unchanged renal transport signal)",
+    e:"Renal/OAT1/OAT3",
+    a:"active",
+    p:55,
+    note:"Not a metabolite: included as a clearance signal because unchanged probenecid competitively inhibits renal organic anion transporters.",
+    evidenceRefs:["ev_methotrexate_oat3_probenecid","ev_valacyclovir_probenecid_label","ev_oseltamivir_probenecid_label","ev_acyclovir_probenecid_label"]
+  }
+],
+"Febuxostat":[
+  {
+    n:"Febuxostat acyl glucuronide",
+    e:"UGT",
+    a:"inactive",
+    p:45,
+    note:"Major conjugated clearance product. Parent xanthine oxidase inhibition drives the dangerous thiopurine interaction.",
+    evidenceRefs:["ev_allopurinol_azathioprine_xo_label","ev_thiopurine_tpmt_nudt15_cpic2025"]
+  },
+  {
+    n:"Hydroxyfebuxostat metabolites",
+    e:"CYP",
+    a:"weak",
+    p:25,
+    note:"Oxidative metabolite family; not treated as the active urate-lowering signal in this model.",
+    evidenceRefs:["ev_allopurinol_azathioprine_xo_label"]
+  }
+],
+"Rifabutin":[
+  {
+    n:"25-O-Desacetyl rifabutin",
+    e:"CYP3A4",
+    a:"active",
+    p:30,
+    t:45,
+    note:"Active metabolite with long persistence; CYP3A inhibitors can raise rifabutin/metabolite exposure and uveitis/toxicity risk.",
+    evidenceRefs:["ev_ritonavir_cyp3a4_booster_label"]
+  },
+  {
+    n:"Rifabutin oxidative metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:35,
+    note:"CYP3A-mediated clearance products. Rifabutin is a weaker inducer than rifampin but still relevant in HIV/TB co-treatment.",
+    evidenceRefs:["ev_ritonavir_cyp3a4_booster_label","ev_dolutegravir_oct2_mate1_fda"]
+  }
+],
+"Cinacalcet":[
+  {
+    n:"Cinacalcet oxidative metabolites",
+    e:"CYP3A4/CYP2D6",
+    a:"inactive",
+    p:70,
+    note:"Parent cinacalcet exposure is increased by CYP2D6 inhibitors; cinacalcet itself also inhibits CYP2D6 substrates.",
+    evidenceRefs:["ev_cinacalcet_cyp2d6_label"]
+  },
+  {
+    n:"Cinacalcet glucuronide conjugates",
+    e:"UGT",
+    a:"inactive",
+    p:20,
+    note:"Secondary conjugated clearance. Hypocalcemia risk is parent-exposure driven.",
+    evidenceRefs:["ev_cinacalcet_cyp2d6_label"]
+  }
+],
+"Linezolid":[
+  {
+    n:"Linezolid aminoethoxyacetic acid metabolite",
+    e:"Non-enzymatic oxidation",
+    a:"inactive",
+    p:35,
+    note:"Non-CYP oxidative metabolite; linezolid's major interaction risk is reversible MAO inhibition, not CYP competition.",
+    evidenceRefs:["ev_linezolid_serotonin_fda2011","ev_linezolid_ssri_serotonin"]
+  },
+  {
+    n:"Linezolid hydroxyethyl glycine metabolite",
+    e:"Non-enzymatic oxidation",
+    a:"inactive",
+    p:30,
+    note:"Second major inactive oxidative metabolite; renal impairment can alter metabolite accumulation while parent MAOI effects remain clinically central.",
+    evidenceRefs:["ev_linezolid_serotonin_fda2011"]
+  }
+],
+"Maraviroc":[
+  {
+    n:"Maraviroc oxidative metabolites",
+    e:"CYP3A4",
+    a:"inactive",
+    p:65,
+    note:"CYP3A4 clearance route; ritonavir/cobicistat boosting raises parent maraviroc exposure and requires dose adjustment.",
+    evidenceRefs:["ev_ritonavir_cyp3a4_booster_label"]
+  },
+  {
+    n:"Maraviroc (unchanged)",
+    e:"Renal/Fecal",
+    a:"active",
+    p:25,
+    note:"Residual unchanged elimination; parent exposure remains the therapeutic and toxicity signal.",
+    evidenceRefs:["ev_ritonavir_cyp3a4_booster_label"]
+  }
+],
+"Methylene Blue":[
+  {
+    n:"Leucomethylene blue",
+    e:"NADPH-dependent reduction",
+    a:"active",
+    p:60,
+    note:"Reduced active redox form used in methemoglobinemia treatment. G6PD deficiency impairs NADPH-dependent reduction and increases oxidative hemolysis risk.",
+    evidenceRefs:["ev_methylene_blue_maoi_fda"]
+  },
+  {
+    n:"Methylene blue N-demethylated metabolites",
+    e:"CYP",
+    a:"weak",
+    p:20,
+    note:"Minor metabolites; the key safety signal is parent/redox MAO-A inhibition plus G6PD-linked oxidant risk.",
+    evidenceRefs:["ev_methylene_blue_maoi_fda"]
+  }
+],
+"Mifepristone":[
+  {
+    n:"N-Demethyl mifepristone metabolites",
+    e:"CYP3A4",
+    a:"active",
+    p:35,
+    t:45,
+    note:"Active metabolite family contributing to long pharmacologic persistence. Chronic Cushing-syndrome dosing can strongly inhibit CYP3A substrates.",
+    evidenceRefs:["ev_mifepristone_cyp3a4_label"]
+  },
+  {
+    n:"Hydroxylated mifepristone metabolites",
+    e:"CYP3A4",
+    a:"active",
+    p:25,
+    note:"Active/weak active oxidative metabolites; parent and active-moiety persistence matter for interaction washout.",
+    evidenceRefs:["ev_mifepristone_cyp3a4_label"]
+  }
+],
+"Propofol":[
+  {
+    n:"Propofol glucuronide",
+    e:"UGT1A9",
+    a:"inactive",
+    p:55,
+    note:"Major inactive conjugate. Interaction risk with midazolam and opioids is pharmacodynamic sedation/respiratory depression rather than CYP-mediated competition.",
+    evidenceRefs:["ev_propofol_midazolam_sedation"]
+  },
+  {
+    n:"4-Hydroxypropofol sulfate / glucuronide",
+    e:"CYP2B6/UGT/SULT",
+    a:"inactive",
+    p:30,
+    note:"Oxidative-conjugated metabolite family; rapid redistribution plus conjugation explain short procedural effect.",
+    evidenceRefs:["ev_propofol_midazolam_sedation"]
+  }
+],
+"Selegiline":[
+  {
+    n:"L-Methamphetamine",
+    e:"CYP2B6/CYP3A4/CYP2C19",
+    a:"active",
+    p:35,
+    t:10,
+    note:"Active amphetamine-like metabolite from selegiline; CYP2B6 poor metabolism may raise parent exposure while metabolites add stimulant context.",
+    evidenceRefs:["ev_selegiline_ssri_fda"]
+  },
+  {
+    n:"L-Amphetamine",
+    e:"CYP2B6/CYP3A4",
+    a:"active",
+    p:20,
+    t:10,
+    note:"Active metabolite relevant to insomnia/sympathomimetic burden; serotonin/MAOI warnings remain the dominant safety issue.",
+    evidenceRefs:["ev_selegiline_ssri_fda"]
+  },
+  {
+    n:"Desmethylselegiline",
+    e:"CYP2B6",
+    a:"active",
+    p:20,
+    note:"Active intermediate metabolite in selegiline clearance.",
+    evidenceRefs:["ev_selegiline_ssri_fda"]
+  }
+],
+"Sofosbuvir":[
+  {
+    n:"GS-461203 triphosphate",
+    e:"Intracellular phosphorylation",
+    a:"active_form",
+    role:"active_form",
+    p:80,
+    note:"Intracellular active nucleotide triphosphate that inhibits HCV NS5B polymerase. This activation is not CYP-mediated.",
+    evidenceRefs:["ev_sofosbuvir_pgp_induction","ev_sofosbuvir_amiodarone_bradycardia"]
+  },
+  {
+    n:"GS-331007",
+    e:"Dephosphorylation/renal elimination",
+    a:"inactive",
+    p:70,
+    note:"Major circulating inactive metabolite, renally cleared. P-gp/BCRP induction reduces parent absorption before active-form generation.",
+    evidenceRefs:["ev_sofosbuvir_pgp_induction"]
+  }
+],
+"Black Pepper (Piperine)":[
+  {
+    n:"Piperine glucuronide / sulfate conjugates",
+    e:"UGT/SULT",
+    a:"inactive",
+    p:60,
+    note:"Conjugated metabolites. Parent piperine is modeled mainly as a food/xenobiotic inhibitor of transport and metabolism.",
+    evidenceRefs:["ev_piperine_pgp_annaert2010"]
+  },
+  {
+    n:"Hydroxypiperine metabolites",
+    e:"CYP3A4",
+    a:"weak",
+    p:25,
+    note:"Oxidative metabolite family; clinical DDI relevance remains much less established than grapefruit-like food interactions.",
+    evidenceRefs:["ev_piperine_pgp_annaert2010"]
+  }
+],
+"Chlorthalidone":[
+  {
+    n:"Chlorthalidone (unchanged renal elimination)",
+    e:"Renal",
+    a:"active",
+    p:70,
+    note:"Not a metabolite: included as a clearance signal because chlorthalidone is largely excreted unchanged and alters lithium/electrolyte risk through renal and pharmacodynamic mechanisms.",
+    evidenceRefs:["ev_chlorthalidone_lithium_label"]
+  }
+],
+"Insulin Glargine":[
+  {
+    n:"Insulin glargine M1 metabolite",
+    e:"Proteolytic degradation",
+    a:"active_form",
+    role:"active_form",
+    p:70,
+    note:"Main active metabolite after subcutaneous conversion; beta-blockers can mask hypoglycemia warning symptoms without changing CYP metabolism.",
+    evidenceRefs:["ev_insulin_glargine_beta_blocker_label"]
+  },
+  {
+    n:"Insulin glargine M2 metabolite",
+    e:"Proteolytic degradation",
+    a:"active_form",
+    role:"active_form",
+    p:20,
+    note:"Secondary active metabolite from proteolytic processing.",
+    evidenceRefs:["ev_insulin_glargine_beta_blocker_label"]
+  }
+],
+"Sugammadex":[
+  {
+    n:"Sugammadex-rocuronium inclusion complex",
+    e:"Binding",
+    a:"inactive",
+    p:100,
+    note:"Purposeful binding complex that reverses rocuronium blockade. Renal clearance eliminates the unchanged complex.",
+    evidenceRefs:["ev_sugammadex_rocuronium_reversal"]
+  },
+  {
+    n:"Sugammadex (unchanged renal elimination)",
+    e:"Renal",
+    a:"active",
+    p:95,
+    note:"Not a metabolite: included to make clear that sugammadex is cleared unchanged and can transiently bind steroidal hormones.",
+    evidenceRefs:["ev_sugammadex_contraception_label"]
+  }
+],
+"Dantrolene":[
+  {
+    n:"5-Hydroxydantrolene",
+    e:"CYP3A4",
+    a:"active",
+    p:35,
+    note:"Active hydroxylated metabolite; acute malignant-hyperthermia safety context is dominated by calcium-handling pharmacodynamics and organ support."
+  },
+  {
+    n:"Dantrolene acetylamino metabolite",
+    e:"Nitroreduction/acetylation",
+    a:"inactive",
+    p:25,
+    note:"Secondary metabolite family; not treated as a CYP interaction driver."
+  }
+],
+"Hydralazine":[
+  {
+    n:"Acetylhydralazine",
+    e:"NAT2",
+    a:"inactive",
+    p:45,
+    note:"NAT2 acetylation product; slow acetylation is relevant to dose-related adverse-effect context rather than a classic active-metabolite pathway."
+  },
+  {
+    n:"Hydralazine hydrazone / pyruvic acid conjugates",
+    e:"Nonenzymatic conjugation",
+    a:"inactive",
+    p:35,
+    note:"Conjugated metabolite family; parent vasodilation and reflex physiology drive most interactions."
+  }
+],
+"Ivacaftor":[
+  {
+    n:"M1 hydroxymethyl ivacaftor",
+    e:"CYP3A4",
+    a:"active",
+    p:35,
+    note:"Active metabolite with lower CFTR potentiator activity than parent. CYP3A inhibitors/inducers alter active-moiety exposure."
+  },
+  {
+    n:"M6 ivacaftor carboxylate",
+    e:"CYP3A4",
+    a:"inactive",
+    p:45,
+    note:"Inactive major metabolite; parent ivacaftor exposure is the key interaction signal."
+  }
+],
+"Tiotropium":[
+  {
+    n:"Tiotropium (unchanged renal elimination)",
+    e:"Renal",
+    a:"active",
+    p:70,
+    note:"Not a metabolite: inhaled tiotropium is largely cleared unchanged; systemic interaction burden is more anticholinergic than metabolic."
+  },
+  {
+    n:"Tiotropium ester hydrolysis products",
+    e:"Nonenzymatic ester hydrolysis",
+    a:"inactive",
+    p:20,
+    note:"Inactive hydrolysis products; CYP3A4/CYP2D6 contribution is minor."
+  }
+],
+"Tirzepatide":[
+  {
+    n:"Tirzepatide peptide fragments",
+    e:"Proteolytic degradation",
+    a:"inactive",
+    p:80,
+    note:"Peptide/protein catabolism rather than CYP metabolism. Delayed gastric emptying is the clinically relevant interaction mechanism.",
+    evidenceRefs:["ev_tirzepatide_oral_absorption_label"]
+  },
+  {
+    n:"Tirzepatide fatty-diacid catabolites",
+    e:"Beta-oxidation/proteolysis",
+    a:"inactive",
+    p:20,
+    note:"Expected catabolic products from the albumin-binding side chain; not a CYP-mediated interaction pathway.",
+    evidenceRefs:["ev_tirzepatide_oral_absorption_label"]
+  }
+],
+"Tyramine-rich Foods":[
+  {
+    n:"Tyramine",
+    e:"Dietary amine",
+    a:"active",
+    p:100,
+    note:"Pressor amine normally cleared by gut/liver MAO-A. MAOIs allow absorption and catecholamine release, causing hypertensive crisis.",
+    evidenceRefs:["ev_maoi_tyramine_fda"]
+  },
+  {
+    n:"p-Hydroxyphenylacetic acid",
+    e:"MAO-A/ALDH",
+    a:"inactive",
+    p:80,
+    note:"Normal inactive tyramine catabolite; formation is blocked when MAO-A is inhibited.",
+    evidenceRefs:["ev_maoi_tyramine_fda"]
+  }
+],
+"Alendronate":[
+  {
+    n:"Alendronate (bone-bound unchanged)",
+    e:"Bone matrix incorporation",
+    a:"active",
+    p:50,
+    note:"Not metabolized; binds bone mineral and remains pharmacologically relevant at remodeling surfaces. Oral cations reduce absorption before systemic exposure.",
+    evidenceRefs:["ev_alendronate_cation_absorption"]
+  },
+  {
+    n:"Alendronate (unchanged renal elimination)",
+    e:"Renal",
+    a:"active",
+    p:50,
+    note:"Systemically absorbed fraction is eliminated unchanged by kidney or incorporated into bone.",
+    evidenceRefs:["ev_alendronate_cation_absorption"]
+  }
+],
+"Amoxicillin/Clavulanate":[
+  {
+    n:"Amoxicillin (unchanged renal elimination)",
+    e:"Renal",
+    a:"active",
+    p:60,
+    note:"Amoxicillin is largely cleared unchanged. INR interaction context is pharmacodynamic/microbiome/illness-linked rather than CYP metabolism.",
+    evidenceRefs:["ev_amox_clav_warfarin_label"]
+  },
+  {
+    n:"Clavulanic acid metabolites",
+    e:"Hydrolysis/renal elimination",
+    a:"inactive",
+    p:40,
+    note:"Clavulanate undergoes hydrolysis and renal clearance; hepatic adverse events are not modeled as a single active metabolite.",
+    evidenceRefs:["ev_amox_clav_warfarin_label"]
+  }
+],
+"Cefuroxime":[
+  {
+    n:"Cefuroxime (unchanged renal elimination)",
+    e:"Renal/OAT",
+    a:"active",
+    p:90,
+    note:"Cefuroxime is not meaningfully metabolized. Probenecid raises exposure by inhibiting renal tubular secretion.",
+    evidenceRefs:["ev_cefuroxime_probenecid_label"]
+  }
+],
+"Cephalexin":[
+  {
+    n:"Cephalexin (unchanged renal elimination)",
+    e:"Renal/OCT",
+    a:"active",
+    p:90,
+    note:"Mostly unchanged renal clearance; label PK data show metformin exposure can rise with coadministration.",
+    evidenceRefs:["ev_cephalexin_metformin_label"]
+  }
+],
+"Ceftriaxone":[
+  {
+    n:"Ceftriaxone (unchanged renal/biliary elimination)",
+    e:"Renal/Biliary",
+    a:"active",
+    p:90,
+    note:"Not meaningfully metabolized. Calcium precipitation risk is a formulation/solubility issue rather than CYP metabolism.",
+    evidenceRefs:["ev_ceftriaxone_calcium_label"]
+  },
+  {
+    n:"Ceftriaxone-calcium precipitate",
+    e:"Precipitation",
+    a:"toxic",
+    p:0,
+    note:"Pathway signal for the neonatal calcium-containing IV fluid contraindication.",
+    evidenceRefs:["ev_ceftriaxone_calcium_label"]
+  }
+],
+"Eltrombopag":[
+  {
+    n:"Eltrombopag glucuronide",
+    e:"UGT",
+    a:"inactive",
+    p:35,
+    note:"Conjugated metabolite. Parent eltrombopag inhibits OATP1B1/BCRP and can raise rosuvastatin exposure.",
+    evidenceRefs:["ev_rosuvastatin_label"]
+  },
+  {
+    n:"Eltrombopag oxidative/cleavage metabolites",
+    e:"CYP/cleavage",
+    a:"inactive",
+    p:30,
+    note:"Secondary metabolite family; transporter inhibition by parent drug is the main DDI signal.",
+    evidenceRefs:["ev_rosuvastatin_label"]
+  }
+],
+"Rifaximin":[
+  {
+    n:"Rifaximin (fecal unchanged)",
+    e:"Fecal",
+    a:"active",
+    p:97,
+    note:"Minimal systemic absorption and mostly fecal unchanged elimination. P-gp/OATP inhibition can increase systemic exposure.",
+    evidenceRefs:["ev_rifaximin_cyclosporine_transporter"]
+  },
+  {
+    n:"25-Desacetyl rifaximin",
+    e:"Hydrolysis",
+    a:"weak",
+    p:2,
+    note:"Minor metabolite; usually less important than gut-luminal parent drug exposure.",
+    evidenceRefs:["ev_rifaximin_cyclosporine_transporter"]
+  }
+],
+"Rocuronium":[
+  {
+    n:"Rocuronium (unchanged biliary elimination)",
+    e:"Biliary",
+    a:"active",
+    p:70,
+    note:"Cleared mostly unchanged; neuromuscular blockade can be reversed by sugammadex binding rather than metabolism.",
+    evidenceRefs:["ev_sugammadex_rocuronium_reversal"]
+  },
+  {
+    n:"Rocuronium-sugammadex complex",
+    e:"Binding",
+    a:"inactive",
+    p:100,
+    note:"Purposeful inactive inclusion complex after sugammadex administration.",
+    evidenceRefs:["ev_sugammadex_rocuronium_reversal"]
+  }
+],
+"Sodium Bicarbonate":[
+  {
+    n:"Bicarbonate buffer pool",
+    e:"Renal bicarbonate handling",
+    a:"active",
+    p:100,
+    note:"Not a metabolite: bicarbonate changes systemic/urinary pH, which can alter renal elimination of pH-sensitive drugs such as memantine.",
+    evidenceRefs:["ev_memantine_urine_ph_label"]
+  },
+  {
+    n:"Carbon dioxide + water",
+    e:"Carbonic anhydrase / buffering",
+    a:"inactive",
+    p:100,
+    note:"Physiologic buffering endpoint rather than drug metabolism.",
+    evidenceRefs:["ev_memantine_urine_ph_label"]
+  }
 ]
 };
 
