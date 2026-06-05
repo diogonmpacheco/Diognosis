@@ -2,9 +2,9 @@
 
 Generated for release date: 2026-06-04
 
-Known DDI pairs: 551
-Original severe: 296
-Recommended severe: 296
+Known DDI pairs: 563
+Original severe: 297
+Recommended severe: 297
 Recommended downgrades: 0
 
 | Pair | Category | Old | Recommended | Evidence | Rationale |
@@ -560,3 +560,15 @@ Recommended downgrades: 0
 | Calcium Chloride + Digoxin | calcium_digoxin | severe | severe | ev_cabg_perioperative_medications (guideline) | Severe support threshold met. |
 | Calcium Gluconate + Digoxin | calcium_digoxin | moderate | moderate | ev_cabg_perioperative_medications (guideline) | Kept original severity. |
 | Magnesium Sulfate + Rocuronium | neuromuscular_blockade | moderate | moderate | ev_cabg_perioperative_medications (guideline) | Kept original severity. |
+| Piperacillin/Tazobactam + Vancomycin | nephrotoxicity | moderate | moderate | ev_icu_sepsis_shock_workflow (guideline) | Kept original severity. |
+| Meropenem + Valproic Acid | active_level_loss | severe | severe | ev_icu_sepsis_shock_workflow (guideline) | Severe support threshold met. |
+| Dexmedetomidine + Metoprolol | bradycardia_hypotension | moderate | moderate | ev_icu_sepsis_shock_workflow (guideline) | Kept original severity. |
+| Dexmedetomidine + Propofol | sedation_hemodynamics | moderate | moderate | ev_icu_sepsis_shock_workflow (guideline) | Kept original severity. |
+| Dexmedetomidine + Fentanyl | sedation_respiratory | moderate | moderate | ev_icu_sepsis_shock_workflow (guideline) | Kept original severity. |
+| Cisatracurium + Magnesium Sulfate | neuromuscular_blockade | moderate | moderate | ev_icu_sepsis_shock_workflow (guideline) | Kept original severity. |
+| Vecuronium + Magnesium Sulfate | neuromuscular_blockade | moderate | moderate | ev_icu_sepsis_shock_workflow (guideline) | Kept original severity. |
+| Vecuronium + Sugammadex | intentional_reversal | mild | mild | ev_sugammadex_rocuronium_reversal (fda_label)<br>ev_icu_sepsis_shock_workflow (guideline) | Kept original severity. |
+| Hydrocortisone + Furosemide | electrolyte | moderate | moderate | ev_icu_sepsis_shock_workflow (guideline) | Kept original severity. |
+| Sodium Chloride 0.9% + Sodium Bicarbonate | sodium_acid_base_load | mild | mild | ev_icu_sepsis_shock_workflow (guideline) | Kept original severity. |
+| Albumin Human + Phenytoin | protein_binding_interpretation | moderate | moderate | ev_icu_sepsis_shock_workflow (guideline) | Kept original severity. |
+| Lactated Ringer's Solution + Ceftriaxone | line_compatibility | mild | mild | ev_ceftriaxone_calcium_label (fda_label)<br>ev_icu_sepsis_shock_workflow (guideline) | Kept original severity. |

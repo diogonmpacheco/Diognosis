@@ -8054,6 +8054,19 @@ const STUDY_DB = {
     verified:false, reviewRequired:true, verifyNote:"Label-backed anticoagulation enrichment pending cardiology/hematology/pharmacy review"
   },
 
+  "ev_icu_sepsis_shock_workflow": {
+    id:"ev_icu_sepsis_shock_workflow", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"ICU/sepsis/shock medication workflow coverage: resuscitation fluids, vasoactives, sedation, paralysis, broad-spectrum antibiotics, and stress-dose steroids",
+    year:2026, source:"SCCM Surviving Sepsis Campaign / PADIS / NMBA guidance / FDA label synthesis", journal:"Guideline and label synthesis", pmid:null, doi:null,
+    url:"https://www.sccm.org/Clinical-Resources/Guidelines/Guidelines/Surviving-Sepsis-Guidelines-2021",
+    studyDesign:"guideline_label_synthesis", n:null, phenotypes:[],
+    quantifiedEffects:{note:"Sepsis/shock workflows emphasize early antimicrobials/source control, balanced crystalloid resuscitation, norepinephrine-first vasopressor support with vasopressin/epinephrine/dobutamine context, corticosteroids in vasopressor-refractory shock, non-benzodiazepine ICU sedation such as propofol or dexmedetomidine, and protocolized neuromuscular blockade only with adequate sedation/monitoring."},
+    temporal:{mechanism:"ICU_sepsis_shock_workflow", onset:"minutes_to_hours", offset:"hours_to_days"},
+    supports:["sepsis_norepinephrine_first_line","sepsis_vasopressin_epinephrine_dobutamine_context","sepsis_balanced_crystalloid_resuscitation","icu_nonbenzodiazepine_sedation","icu_neuromuscular_blockade_monitoring","sepsis_stress_dose_hydrocortisone_context"],
+    contradicts:[],
+    limitations:["This is a workflow coverage synthesis, not a patient-specific sepsis protocol. Local antibiograms, infection source, renal/hepatic function, hemodynamics, ventilation strategy, and ICU protocols govern exact use."],
+    verified:false, reviewRequired:true, verifyNote:"ICU/sepsis enrichment batch synthesized from guideline/label sources; pending intensivist/pharmacist review"
+  },
   "ev_cabg_perioperative_medications": {
     id:"ev_cabg_perioperative_medications", public:true, type:EVIDENCE_TIER.GUIDELINE,
     title:"CABG/cardiac surgery perioperative medication coverage: antithrombotics, hemostasis, vasoactives, inotropes, and secondary prevention",

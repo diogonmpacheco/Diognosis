@@ -14556,5 +14556,331 @@
       "hasStrongInline": false,
       "missingRefs": []
     }
+  },
+  {
+    "drug1": "Piperacillin/Tazobactam",
+    "drug2": "Vancomycin",
+    "category": "nephrotoxicity",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_icu_sepsis_shock_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_icu_sepsis_shock_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Meropenem",
+    "drug2": "Valproic Acid",
+    "category": "active_level_loss",
+    "oldSeverity": "severe",
+    "recommendedSeverity": "severe",
+    "changed": false,
+    "rationale": "Severe support threshold met.",
+    "evidence": {
+      "refs": [
+        "ev_icu_sepsis_shock_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_icu_sepsis_shock_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Dexmedetomidine",
+    "drug2": "Metoprolol",
+    "category": "bradycardia_hypotension",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_icu_sepsis_shock_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_icu_sepsis_shock_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Dexmedetomidine",
+    "drug2": "Propofol",
+    "category": "sedation_hemodynamics",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_icu_sepsis_shock_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_icu_sepsis_shock_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Dexmedetomidine",
+    "drug2": "Fentanyl",
+    "category": "sedation_respiratory",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_icu_sepsis_shock_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_icu_sepsis_shock_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Cisatracurium",
+    "drug2": "Magnesium Sulfate",
+    "category": "neuromuscular_blockade",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_icu_sepsis_shock_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_icu_sepsis_shock_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Vecuronium",
+    "drug2": "Magnesium Sulfate",
+    "category": "neuromuscular_blockade",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_icu_sepsis_shock_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_icu_sepsis_shock_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Vecuronium",
+    "drug2": "Sugammadex",
+    "category": "intentional_reversal",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_sugammadex_rocuronium_reversal",
+        "ev_icu_sepsis_shock_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_sugammadex_rocuronium_reversal",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_icu_sepsis_shock_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Hydrocortisone",
+    "drug2": "Furosemide",
+    "category": "electrolyte",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_icu_sepsis_shock_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_icu_sepsis_shock_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Sodium Chloride 0.9%",
+    "drug2": "Sodium Bicarbonate",
+    "category": "sodium_acid_base_load",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_icu_sepsis_shock_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_icu_sepsis_shock_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Albumin Human",
+    "drug2": "Phenytoin",
+    "category": "protein_binding_interpretation",
+    "oldSeverity": "moderate",
+    "recommendedSeverity": "moderate",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_icu_sepsis_shock_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_icu_sepsis_shock_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": false,
+      "missingRefs": []
+    }
+  },
+  {
+    "drug1": "Lactated Ringer's Solution",
+    "drug2": "Ceftriaxone",
+    "category": "line_compatibility",
+    "oldSeverity": "mild",
+    "recommendedSeverity": "mild",
+    "changed": false,
+    "rationale": "Kept original severity.",
+    "evidence": {
+      "refs": [
+        "ev_ceftriaxone_calcium_label",
+        "ev_icu_sepsis_shock_workflow"
+      ],
+      "studies": [
+        {
+          "id": "ev_ceftriaxone_calcium_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_icu_sepsis_shock_workflow",
+          "type": "guideline",
+          "pmid": null,
+          "doi": null
+        }
+      ],
+      "hasHighTierStudy": true,
+      "hasQuantifiedClinicalPk": false,
+      "hasStrongInline": true,
+      "missingRefs": []
+    }
   }
 ]

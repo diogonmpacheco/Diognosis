@@ -4518,6 +4518,27 @@ const METAB = {
 ],
 "Magnesium Sulfate":[
   {n:"Magnesium ion",e:"Renal",a:"active",p:100,note:"Not a metabolite: renal excretion controls magnesium exposure; can potentiate neuromuscular blockade.",evidenceRefs:["ev_cabg_perioperative_medications"]}
+],
+"Dexmedetomidine":[
+  {n:"Dexmedetomidine glucuronides",e:"UGT",a:"inactive",p:45,note:"Major conjugated metabolites; hepatic dysfunction can increase sedative/hemodynamic exposure.",evidenceRefs:["ev_icu_sepsis_shock_workflow"]},
+  {n:"N-methyl/O-hydroxy dexmedetomidine metabolites",e:"CYP2A6",a:"inactive",p:35,note:"Oxidative metabolites; clinical interaction signal is additive bradycardia/hypotension rather than CYP inhibition.",evidenceRefs:["ev_icu_sepsis_shock_workflow"]}
+],
+"Cisatracurium":[
+  {n:"Laudanosine",e:"Hofmann elimination",a:"weak",p:60,note:"Organ-independent degradation product; less accumulation than atracurium but prolonged infusions still need monitoring.",evidenceRefs:["ev_icu_sepsis_shock_workflow"]},
+  {n:"Monoquaternary acrylate metabolite",e:"Hofmann elimination/ester hydrolysis",a:"inactive",p:30,note:"Non-CYP clearance supports use in organ dysfunction, but paralysis monitoring remains essential.",evidenceRefs:["ev_icu_sepsis_shock_workflow"]}
+],
+"Vecuronium":[
+  {n:"3-desacetyl vecuronium",e:"Hepatic deacetylation",a:"active",p:35,note:"Active metabolite can accumulate in renal/hepatic dysfunction and prolong blockade.",evidenceRefs:["ev_icu_sepsis_shock_workflow"]},
+  {n:"Vecuronium unchanged biliary/renal elimination",e:"Biliary/Renal",a:"active",p:55,note:"Parent clearance depends on organ function; magnesium and aminoglycosides can potentiate blockade.",evidenceRefs:["ev_icu_sepsis_shock_workflow"]}
+],
+"Lactated Ringer's Solution":[
+  {n:"Lactate to bicarbonate",e:"Hepatic metabolism",a:"buffer",p:100,note:"Not a drug metabolite: lactate buffer is metabolized to bicarbonate; fluid/electrolyte and calcium compatibility context matter.",evidenceRefs:["ev_icu_sepsis_shock_workflow"]}
+],
+"Sodium Chloride 0.9%":[
+  {n:"Sodium/chloride distribution",e:"Renal/electrolyte handling",a:"active",p:100,note:"Not metabolized; high chloride and sodium load shape acid-base/kidney context during resuscitation.",evidenceRefs:["ev_icu_sepsis_shock_workflow"]}
+],
+"Albumin Human":[
+  {n:"Albumin amino acid catabolism",e:"Reticuloendothelial/protein catabolism",a:"inactive",p:100,note:"Albumin is catabolized as a protein; clinical relevance is oncotic/volume effect and protein-binding interpretation.",evidenceRefs:["ev_icu_sepsis_shock_workflow"]}
 ]
 };
 
