@@ -289,6 +289,26 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.1, freq_pct:null, note:"Intermediate DRD2 response context; do not override clinical response, dose, CYP2D6 exposure, or adverse-effect monitoring." },
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference DRD2 response context." },
   },
+  ALDH2: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:0.4, freq_pct:null, note:"Low/deficient ALDH2 context. Nitroglycerin bioactivation and ethanol-derived acetaldehyde clearance can be reduced; this is a response/toxicity-context marker, not a CYP-style clearance rule." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:0.7, freq_pct:null, note:"Intermediate ALDH2 context; nitrate response may be blunted and alcohol/disulfiram-like reactions may be more pronounced." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference ALDH2 aldehyde detoxification and nitrate bioactivation context." },
+  },
+  SLC22A1: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:0.7, freq_pct:null, note:"Reduced OCT1 hepatic uptake context. Metformin hepatic delivery and glycemic response may be lower; GI intolerance and transporter inhibitors can complicate interpretation." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:0.85, freq_pct:null, note:"Intermediate OCT1 hepatic uptake context; metformin response may be modestly shifted." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference OCT1 hepatic uptake context." },
+  },
+  SLC22A2: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.4, freq_pct:null, note:"Reduced OCT2 renal cation transport context. Metformin renal handling and transporter inhibitor sensitivity may shift; kidney function remains the dominant safety variable." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.2, freq_pct:null, note:"Intermediate OCT2 renal transport context; interpret with eGFR, dose, and OCT2/MATE inhibitors such as cimetidine, dolutegravir, or trimethoprim." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference OCT2 renal cation transport context." },
+  },
+  SLC47A1: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.3, freq_pct:null, note:"Reduced MATE1 efflux context. Metformin renal/hepatic efflux may be lower, especially when MATE/OCT inhibitors or renal impairment are present." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.15, freq_pct:null, note:"Intermediate MATE1 transport context; monitor metformin tolerability and renal context rather than changing dose from genotype alone." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference MATE1 efflux context." },
+  },
 };
 
 const GENOTYPE_RISK_EFFECTS = {
@@ -784,6 +804,10 @@ let activeGenotype = {
   HTR2A:   GENOTYPE_PHENOTYPE.NM,
   HTR2C:   GENOTYPE_PHENOTYPE.NM,
   DRD2:    GENOTYPE_PHENOTYPE.NM,
+  ALDH2:   GENOTYPE_PHENOTYPE.NM,
+  SLC22A1: GENOTYPE_PHENOTYPE.NM,
+  SLC22A2: GENOTYPE_PHENOTYPE.NM,
+  SLC47A1: GENOTYPE_PHENOTYPE.NM,
   "HLA-B*15:02": GENOTYPE_RISK_STATUS.ABSENT,
   "HLA-A*31:01": GENOTYPE_RISK_STATUS.ABSENT,
   "HLA-B*57:01": GENOTYPE_RISK_STATUS.ABSENT,

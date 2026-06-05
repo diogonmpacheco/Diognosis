@@ -4,7 +4,7 @@
 const GENE_ENZYMES = [
   "CYP1A2","CYP2B6","CYP2C8","CYP2C9","CYP2C19","CYP2D6","CYP2E1","CYP3A4","CYP3A5",
   "UGT1A1","UGT1A4","UGT1A9","UGT2B7","UGT2B15","UGT2B17","DPYD","TPMT","NAT2","COMT","CYP2A6","CYP4F2",
-  "SLCO1B1","ABCB1","ABCG2","BCHE","IFNL3","IFNL4","OPRM1","SLC6A4","HTR2A","HTR2C","DRD2","SCN1A","SCN2A","KCNH2","MAO-A","MAO-B"
+  "SLCO1B1","ABCB1","ABCG2","BCHE","IFNL3","IFNL4","OPRM1","SLC6A4","HTR2A","HTR2C","DRD2","ALDH2","SLC22A1","SLC22A2","SLC47A1","SCN1A","SCN2A","KCNH2","MAO-A","MAO-B"
 ];
 const PHENOTYPE_OPTIONS = [
   { id: "ultrarapid", label: "Ultrarapid Metabolizer", mult: 0.3, cssClass: "ultrarapid" },
@@ -336,6 +336,40 @@ const PHARMGKB_EVIDENCE = {
       {drug:"Haloperidol",level:"C",action:"Long-QT susceptibility context; route/dose and QT stacking matter"}
     ]
   },
+  "ALDH2":{
+    grade:"B",
+    guideline:"Clinical pharmacology literature",
+    pairs:[
+      {drug:"Nitroglycerin",level:"B",action:"Reduced ALDH2 function can blunt nitrate bioactivation/vasodilatory response"},
+      {drug:"Isosorbide Dinitrate",level:"C",action:"Denitration/nitrate-response context; evidence weaker than nitroglycerin"},
+      {drug:"Metronidazole",level:"C",action:"Alcohol/disulfiram-like reaction context; avoid alcohol per label regardless of genotype"}
+    ]
+  },
+  "SLC22A1":{
+    grade:"B",
+    guideline:"PharmGKB/literature",
+    pairs:[
+      {drug:"Metformin",level:"B",action:"OCT1 hepatic uptake context; response and GI intolerance may vary"},
+      {drug:"Cimetidine",level:"C",action:"OCT transporter interaction context; kidney function and inhibitors dominate"}
+    ]
+  },
+  "SLC22A2":{
+    grade:"B",
+    guideline:"Transporter pharmacology literature",
+    pairs:[
+      {drug:"Metformin",level:"B",action:"OCT2 renal transport context; interpret with eGFR and OCT2/MATE inhibitors"},
+      {drug:"Dolutegravir",level:"C",action:"OCT2/MATE inhibition can raise creatinine/metformin context; genotype is a modifier, not a dose rule"},
+      {drug:"Trimethoprim/Sulfamethoxazole",level:"C",action:"Trimethoprim OCT2 inhibition can add to renal/metformin handling context"}
+    ]
+  },
+  "SLC47A1":{
+    grade:"B",
+    guideline:"Transporter pharmacology literature",
+    pairs:[
+      {drug:"Metformin",level:"B",action:"MATE1 efflux context; renal function and transporter inhibitors dominate"},
+      {drug:"Dolutegravir",level:"C",action:"MATE/OCT inhibitor context for metformin and creatinine interpretation"}
+    ]
+  },
   "MAO-A":{
     grade:"C",
     guideline:"PharmGKB",
@@ -432,6 +466,10 @@ const ENZYME_ACTORS = {
   "HTR2A":   {id:"HTR2A",   type:ACTOR_TYPE.ENZYME, name:"HTR2A/5-HT2A receptor", family:"receptor_gene", tissue:["brain","platelets"], polymorphic:true, substrateCount:0},
   "HTR2C":   {id:"HTR2C",   type:ACTOR_TYPE.ENZYME, name:"HTR2C/5-HT2C receptor", family:"receptor_gene", tissue:["brain","hypothalamus"], polymorphic:true, substrateCount:0},
   "DRD2":    {id:"DRD2",    type:ACTOR_TYPE.ENZYME, name:"DRD2/dopamine D2 receptor", family:"receptor_gene", tissue:["brain","pituitary"], polymorphic:true, substrateCount:0},
+  "ALDH2":   {id:"ALDH2",   type:ACTOR_TYPE.ENZYME, name:"ALDH2", family:"aldehyde_dehydrogenase", tissue:["liver","vasculature","mitochondria"], polymorphic:true, substrateCount:0},
+  "SLC22A1": {id:"SLC22A1", type:ACTOR_TYPE.ENZYME, name:"SLC22A1/OCT1", family:"transporter_gene", tissue:["liver","gut"], polymorphic:true, substrateCount:0},
+  "SLC22A2": {id:"SLC22A2", type:ACTOR_TYPE.ENZYME, name:"SLC22A2/OCT2", family:"transporter_gene", tissue:["kidney"], polymorphic:true, substrateCount:0},
+  "SLC47A1": {id:"SLC47A1", type:ACTOR_TYPE.ENZYME, name:"SLC47A1/MATE1", family:"transporter_gene", tissue:["kidney","liver"], polymorphic:true, substrateCount:0},
   "SCN1A":   {id:"SCN1A",   type:ACTOR_TYPE.ENZYME, name:"SCN1A/Nav1.1", family:"ion_channel_gene", tissue:["brain"], polymorphic:true, substrateCount:0},
   "SCN2A":   {id:"SCN2A",   type:ACTOR_TYPE.ENZYME, name:"SCN2A/Nav1.2", family:"ion_channel_gene", tissue:["brain"], polymorphic:true, substrateCount:0},
   "KCNH2":   {id:"KCNH2",   type:ACTOR_TYPE.ENZYME, name:"KCNH2/hERG", family:"ion_channel_gene", tissue:["heart"], polymorphic:true, substrateCount:0},

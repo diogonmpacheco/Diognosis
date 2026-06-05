@@ -670,6 +670,9 @@ function normalizePharmGxGene(value) {
     IL28B: "IFNL3",
     MUOPIOIDRECEPTOR: "OPRM1",
     MOR: "OPRM1",
+    OCT1: "SLC22A1",
+    OCT2: "SLC22A2",
+    MATE1: "SLC47A1",
   };
   if (genotypeAliases[gene] && GENOTYPE_EFFECTS[genotypeAliases[gene]]) return genotypeAliases[gene];
   if (typeof GENOTYPE_RISK_EFFECTS === 'undefined') return null;

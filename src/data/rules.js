@@ -1559,4 +1559,102 @@ const GENOTYPE_METABOLITE_EFFECTS = [
       [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline tolerability context" },
     }
   },
+  {
+    parent:"Nitroglycerin",
+    metaboliteId:"aldh2-nitroglycerin-bioactivation",
+    metaboliteName:"Nitroglycerin bioactivation response",
+    enzyme:"ALDH2",
+    systemic:true,
+    note:"ALDH2 contributes to nitroglycerin bioactivation. Reduced ALDH2 function can blunt vasodilatory response, but acute angina treatment still depends on symptoms, blood pressure, nitrate tolerance, PDE5/sGC contraindications, and urgent-care context.",
+    evidenceRefs:["ev_aldh2_nitroglycerin_human_2005","ev_aldh2_nitroglycerin_variant_2020"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"ALDH2 deficient/reduced: nitroglycerin response may be blunted; do not ignore persistent chest pain" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"decrease", label:"intermediate ALDH2 context: possible reduced nitrate response" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline nitrate bioactivation context" },
+    }
+  },
+  {
+    parent:"Metronidazole",
+    metaboliteId:"aldh2-alcohol-reaction-context",
+    metaboliteName:"Alcohol/aldehyde intolerance context",
+    enzyme:"ALDH2",
+    systemic:true,
+    note:"Reduced ALDH2 function increases acetaldehyde intolerance biology. For metronidazole, alcohol avoidance is label/clinical advice regardless of genotype; ALDH2 adds context for why reactions may be more pronounced in some patients.",
+    evidenceRefs:["ev_aldh2_alcohol_intolerance_context"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"ALDH2 deficient/reduced: higher acetaldehyde intolerance context; avoid alcohol per medication advice" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate ALDH2 context: alcohol reaction susceptibility may be higher" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline aldehyde detox context" },
+    }
+  },
+  {
+    parent:"Metformin",
+    metaboliteId:"slc22a1-metformin-hepatic-uptake",
+    metaboliteName:"Metformin hepatic OCT1 uptake",
+    enzyme:"SLC22A1",
+    systemic:true,
+    note:"OCT1/SLC22A1 helps move metformin into hepatocytes, a relevant site for glucose-lowering action. Reduced OCT1 function may lower response or alter intolerance, but eGFR, dose, adherence, GI effects, and interacting transport inhibitors dominate safety decisions.",
+    evidenceRefs:["ev_metformin_transporter_pgx_review"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"reduced OCT1 hepatic uptake context; metformin response may be lower or intolerance higher" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate OCT1 context; monitor A1c response and GI tolerability" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline OCT1 uptake context" },
+    }
+  },
+  {
+    parent:"Metformin",
+    metaboliteId:"slc22a2-metformin-renal-transport",
+    metaboliteName:"Metformin renal OCT2 transport",
+    enzyme:"SLC22A2",
+    systemic:true,
+    note:"OCT2/SLC22A2 contributes to renal cation transport. Reduced OCT2 function or OCT2 inhibition can shift metformin handling; kidney function and MATE/OCT inhibitor stacking remain more actionable than genotype alone.",
+    evidenceRefs:["ev_metformin_transporter_pgx_review","draft_metformin_oct2_giacomini2010_20190787"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced OCT2 renal transport context; review eGFR, dose, and OCT2/MATE inhibitors" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate OCT2 context; monitor renal context and tolerability" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline OCT2 context" },
+    }
+  },
+  {
+    parent:"Metformin",
+    metaboliteId:"slc47a1-metformin-efflux",
+    metaboliteName:"Metformin MATE1 efflux",
+    enzyme:"SLC47A1",
+    systemic:true,
+    note:"MATE1/SLC47A1 contributes to metformin efflux in kidney/liver transport. Reduced MATE1 function or inhibitor stacking can raise concern for intolerance/exposure in the wrong renal context, but genotype is not a standalone dose rule.",
+    evidenceRefs:["ev_metformin_transporter_pgx_review"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced MATE1 efflux context; review eGFR and MATE/OCT inhibitor stack" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate MATE1 context; monitor tolerability and renal context" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline MATE1 efflux context" },
+    }
+  },
+  {
+    parent:"Dolutegravir",
+    metaboliteId:"dolutegravir-slc22a2-slc47a1-metformin-context",
+    metaboliteName:"OCT2/MATE metformin-creatinine context",
+    enzyme:"SLC22A2",
+    systemic:true,
+    note:"Dolutegravir inhibits OCT2/MATE transporters and can raise serum creatinine without true GFR decline; it can also increase metformin exposure. SLC22A2 reduced-function context is a modifier, while label dose limits and renal function remain central.",
+    evidenceRefs:["ev_metformin_transporter_pgx_review","ev_dolutegravir_metformin_oct2_2016"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced OCT2 context plus dolutegravir transporter inhibition: review metformin dose/tolerability and creatinine interpretation" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate OCT2 context; monitor metformin tolerability and creatinine trend" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline OCT2 context" },
+    }
+  },
+  {
+    parent:"Trimethoprim/Sulfamethoxazole",
+    metaboliteId:"tmp-smx-slc22a2-renal-cation-context",
+    metaboliteName:"OCT2 renal cation transport context",
+    enzyme:"SLC22A2",
+    systemic:true,
+    note:"Trimethoprim inhibits OCT2 and can raise creatinine by reducing tubular secretion. SLC22A2 reduced-function context can make renal-cation transport interpretation more nuanced, especially with metformin, CKD, or hyperkalemia risk.",
+    evidenceRefs:["ev_tmp_smx_label","ev_metformin_transporter_pgx_review"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced OCT2 context: creatinine/metformin/hyperkalemia review has higher priority" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate OCT2 context; review renal and potassium monitoring" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline OCT2 context" },
+    }
+  },
 ];

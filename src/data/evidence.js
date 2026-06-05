@@ -1643,6 +1643,92 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_aldh2_nitroglycerin_human_2005": {
+    id:"ev_aldh2_nitroglycerin_human_2005",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Aldehyde dehydrogenase 2 plays a role in the bioactivation of nitroglycerin in humans",
+    year:2005, source:"Clinical Pharmacology & Therapeutics",
+    pmid:"16051882", doi:null,
+    studyDesign:"human pharmacogenetic/pharmacodynamic study",
+    n:null,
+    phenotypes:["ALDH2_loss_of_function","nitroglycerin_response"],
+    quantifiedEffects:{note:"Human ALDH2 inhibition and ALDH2 Glu504Lys loss-of-function contexts were associated with reduced nitroglycerin response, supporting ALDH2 as a clinically relevant nitrate-bioactivation pathway."},
+    temporal:{mechanism:"ALDH2_nitroglycerin_bioactivation"},
+    supports:["nitroglycerin_ALDH2_RESPONSE_CONTEXT"],
+    contradicts:[],
+    limitations:["Response is pharmacodynamic and acute-care context dependent; not a genotype-only angina management rule"],
+    verified:true
+  },
+
+  "ev_aldh2_nitroglycerin_variant_2020": {
+    id:"ev_aldh2_nitroglycerin_variant_2020",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Presence of the aldehyde dehydrogenase 2 variant ALDH2*2 considerably increases EC50 of nitroglycerin",
+    year:2020, source:"Naunyn-Schmiedeberg's Archives of Pharmacology",
+    pmid:"33040175", doi:null,
+    studyDesign:"pharmacodynamic variant study",
+    n:null,
+    phenotypes:["ALDH2*2","nitroglycerin_response"],
+    quantifiedEffects:{note:"ALDH2*2 reduced-function context was associated with a right-shifted nitroglycerin response curve, reinforcing reduced nitrate bioactivation/sensitivity."},
+    temporal:{mechanism:"ALDH2_star2_nitroglycerin_response"},
+    supports:["nitroglycerin_ALDH2_RESPONSE_CONTEXT"],
+    contradicts:[],
+    limitations:["Use as response context; acute chest-pain evaluation and contraindications remain primary"],
+    verified:true
+  },
+
+  "ev_aldh2_alcohol_intolerance_context": {
+    id:"ev_aldh2_alcohol_intolerance_context",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"Alcohol dehydrogenases, aldehyde dehydrogenases and alcohol use disorders: a critical review",
+    year:2018, source:"Alcoholism: Clinical and Experimental Research",
+    pmid:"30320893", doi:"10.1111/acer.13904",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC6286250/",
+    studyDesign:"critical review",
+    n:null,
+    phenotypes:["ALDH2_deficiency","acetaldehyde_intolerance"],
+    quantifiedEffects:{note:"ALDH2 reduced-function variants contribute to acetaldehyde accumulation and alcohol intolerance biology; medications with alcohol/disulfiram-like cautions should still follow label advice regardless of genotype."},
+    temporal:{mechanism:"ALDH2_acetaldehyde_clearance"},
+    supports:["metronidazole_ALDH2_ALCOHOL_REACTION_CONTEXT"],
+    contradicts:[],
+    limitations:["Not a medication dose rule and not a reason to relax alcohol avoidance advice in normal ALDH2 contexts"],
+    verified:true
+  },
+
+  "ev_metformin_transporter_pgx_review": {
+    id:"ev_metformin_transporter_pgx_review",
+    type:EVIDENCE_TIER.META_ANALYSIS,
+    title:"Organic cation transporters (OCTs, MATEs), in vitro and in vivo evidence for the importance in drug therapy",
+    year:2011, source:"Handbook of Experimental Pharmacology",
+    pmid:"21103969", doi:"10.1007/978-3-642-14541-4_4",
+    studyDesign:"transporter pharmacology review",
+    n:null,
+    phenotypes:["SLC22A1_OCT1","SLC22A2_OCT2","SLC47A1_MATE1","metformin_transport"],
+    quantifiedEffects:{note:"OCT1/SLC22A1, OCT2/SLC22A2, and MATE/SLC47 transporters shape metformin tissue uptake and elimination. Genetic variants can reduce transporter activity, but clinical interpretation depends on renal function and inhibitor context."},
+    temporal:{mechanism:"metformin_OCT_MATE_transport"},
+    supports:["metformin_SLC22A1_CONTEXT","metformin_SLC22A2_CONTEXT","metformin_SLC47A1_CONTEXT"],
+    contradicts:[],
+    limitations:["Transporter genotype is a modifier, not a standalone metformin dose algorithm"],
+    verified:true
+  },
+
+  "ev_dolutegravir_metformin_oct2_2016": {
+    id:"ev_dolutegravir_metformin_oct2_2016",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"The effect of dolutegravir on the pharmacokinetics of metformin in healthy subjects",
+    year:2016, source:"Journal of Acquired Immune Deficiency Syndromes",
+    pmid:"26974526", doi:null,
+    studyDesign:"open-label crossover drug interaction study",
+    n:null,
+    phenotypes:["OCT2_inhibition","metformin_exposure"],
+    quantifiedEffects:{note:"Dolutegravir increased metformin plasma exposure, partly explained by OCT2 inhibition; clinical management should follow label renal function and metformin dose/tolerability guidance."},
+    temporal:{mechanism:"dolutegravir_OCT2_metformin_interaction"},
+    supports:["dolutegravir_METFORMIN_OCT2_CONTEXT"],
+    contradicts:[],
+    limitations:["Study is DDI-focused rather than genotype-stratified; SLC22A2 genotype is a contextual modifier"],
+    verified:true
+  },
+
   "ev_opioid_ugt2b7_glucuronidation_review": {
     id:"ev_opioid_ugt2b7_glucuronidation_review",
     type:EVIDENCE_TIER.META_ANALYSIS,
