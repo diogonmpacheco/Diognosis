@@ -1873,4 +1873,64 @@ const GENOTYPE_METABOLITE_EFFECTS = [
       [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"uncertain", label:"higher NAT1 context; no routine clinical action" },
     }
   },
+  {
+    parent:"Acetaminophen",
+    metaboliteId:"napqi-cyp2e1-formation-context",
+    metaboliteName:"NAPQI formation context",
+    enzyme:"CYP2E1",
+    systemic:true,
+    note:"CYP2E1 forms the toxic acetaminophen metabolite NAPQI, but clinical risk is not a simple parent-drug exposure rule. Dose, chronic alcohol/withdrawal timing, fasting, liver disease, glutathione reserve, and GST detox context dominate.",
+    evidenceRefs:["ev_apap_alcohol_riordan2002"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"low CYP2E1 context: possibly less NAPQI formation, but do not relax dose/alcohol/liver precautions" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate CYP2E1 context; risk depends on dose, alcohol, fasting, liver disease and GST reserve" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline CYP2E1/NAPQI context" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"increase", label:"higher/induced CYP2E1 context: more NAPQI formation possible; avoid risk stacking" },
+    }
+  },
+  {
+    parent:"Chlorzoxazone",
+    metaboliteId:"6-hydroxychlorzoxazone",
+    metaboliteName:"6-hydroxychlorzoxazone",
+    enzyme:"CYP2E1",
+    systemic:true,
+    note:"Chlorzoxazone is useful as a CYP2E1 activity probe. In routine care, sedation and liver context matter more than genotype-guided dosing.",
+    evidenceRefs:["ev_cyp2e1_chlorzoxazone_probe"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"low CYP2E1 context: lower 6-hydroxychlorzoxazone formation possible" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"decrease", label:"intermediate CYP2E1 activity context" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline CYP2E1 probe context" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"increase", label:"higher/induced CYP2E1 context: faster 6-hydroxylation possible" },
+    }
+  },
+  {
+    parent:"Halothane",
+    metaboliteId:"halothane-trifluoroacetylated-intermediates",
+    metaboliteName:"Reactive trifluoroacetylated intermediates",
+    enzyme:"CYP2E1",
+    systemic:true,
+    note:"Halothane is a historical but high-yield CYP2E1 example: parent anesthetic metabolism can create reactive intermediates linked to immune-mediated hepatitis. This is anesthesia/toxicology context, not a patient-facing genotype dose rule.",
+    evidenceRefs:["ev_cyp2e1_volatile_anesthetic_livertox"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"low CYP2E1 context: lower reactive-intermediate formation possible; anesthesia history still dominates" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate CYP2E1 context; historical exposure review" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline CYP2E1 volatile-anesthetic context" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"increase", label:"higher/induced CYP2E1 context: reactive-intermediate formation concern; use anesthesia review" },
+    }
+  },
+  {
+    parent:"Benzene",
+    metaboliteId:"benzene-cyp2e1-reactive-metabolites",
+    metaboliteName:"Reactive benzene metabolites",
+    enzyme:"CYP2E1",
+    systemic:true,
+    note:"Benzene is included as an occupational/environmental toxicant to support null-impact reasoning. Exposure control dominates; genotype is only a susceptibility/context flag.",
+    evidenceRefs:["ev_cyp2e1_chlorzoxazone_probe"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"low CYP2E1 context: possibly less activation, but exposure avoidance remains essential" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"intermediate CYP2E1 toxicant context" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline toxicant context" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"increase", label:"higher/induced CYP2E1 context: toxicant activation concern" },
+    }
+  },
 ];

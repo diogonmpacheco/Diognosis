@@ -155,6 +155,12 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference CYP1A2 activity." },
     [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.6, freq_pct:null, note:"Higher or inducible CYP1A2 activity context; sensitive substrate exposure may fall. Smoking, charbroiled foods, and other induction context should be reviewed separately." },
   },
+  CYP2E1: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.8, freq_pct:null, note:"Low CYP2E1 activity context. For acetaminophen, lower CYP2E1 may reduce NAPQI formation, but glutathione reserve, dose, alcohol timing, fasting, liver disease, and interacting drugs dominate." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.3, freq_pct:null, note:"Intermediate CYP2E1 context. Useful for chlorzoxazone/probe, acetaminophen-NAPQI, alcohol/isoniazid induction, and selected toxicant review." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference CYP2E1 activity. CYP2E1 is highly environmentally modulated by alcohol, fasting, obesity, diabetes, and inflammation." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.6, freq_pct:null, note:"Higher/induced CYP2E1 context. This can increase reactive metabolite formation for acetaminophen, halogenated solvents, and older volatile anesthetics; use as a risk-stack flag, not a dose rule." },
+  },
   NAT2: {
     [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:2.0, freq_pct:null, note:"Slow acetylator phenotype; isoniazid and hydralazine exposure/toxicity risk can rise while some efficacy/toxicity tradeoffs differ by indication." },
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.4, freq_pct:null, note:"Intermediate acetylator phenotype." },
@@ -795,6 +801,7 @@ let activeGenotype = {
   CYP2C8:  GENOTYPE_PHENOTYPE.NM,
   CYP2A6:  GENOTYPE_PHENOTYPE.NM,
   CYP1A2:  GENOTYPE_PHENOTYPE.NM,
+  CYP2E1:  GENOTYPE_PHENOTYPE.NM,
   NAT2:    GENOTYPE_PHENOTYPE.NM,
   NAT1:    GENOTYPE_PHENOTYPE.NM,
   SLCO1B1: GENOTYPE_PHENOTYPE.NM,

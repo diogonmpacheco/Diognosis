@@ -1117,6 +1117,34 @@ const STUDY_DB = {
     limitations:["Risk depends strongly on dose, product coumarin content, chronicity, liver disease, and species differences; not a standalone dietary contraindication"],
     verified:false, reviewRequired:true, verifyNote:"Coumarin/CYP2A6 enrichment pending toxicology review"
   },
+  "ev_cyp2e1_chlorzoxazone_probe": {
+    id:"ev_cyp2e1_chlorzoxazone_probe", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Chlorzoxazone as a selective probe for phenotyping CYP2E1 in humans",
+    year:1999, source:"Chlorzoxazone CYP2E1 phenotyping study", journal:"Pharmacogenetics", pmid:"10471070", doi:null,
+    url:"https://pubmed.ncbi.nlm.nih.gov/10471070/",
+    studyDesign:"human phenotyping/probe substrate study", n:null,
+    phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM, GENOTYPE_PHENOTYPE.NM, GENOTYPE_PHENOTYPE.UM],
+    quantifiedEffects:{note:"Study supports CYP2E1 as the major enzyme for chlorzoxazone 6-hydroxylation, with CYP3A contribution described as minor in the examined conditions."},
+    temporal:{mechanism:"chlorzoxazone 6-hydroxylation as CYP2E1 activity probe"},
+    supports:["chlorzoxazone_CYP2E1_probe_context","CYP2E1_activity_phenotyping_context"],
+    contradicts:["chlorzoxazone_is_not_a_therapeutic_genotype_dose_rule"],
+    limitations:["Probe interpretation is affected by dose, environmental induction, liver function, and probe-cocktail design."],
+    verified:false, reviewRequired:true, verifyNote:"CYP2E1/chlorzoxazone enrichment pending pharmacology review"
+  },
+  "ev_cyp2e1_volatile_anesthetic_livertox": {
+    id:"ev_cyp2e1_volatile_anesthetic_livertox", public:true, type:EVIDENCE_TIER.REVIEW,
+    title:"CYP2E1 as the principal catalyst of human oxidative halothane metabolism in vitro",
+    year:1997, source:"Halothane CYP2E1 metabolism study", journal:"Anesthesiology", pmid:"9103523", doi:null,
+    url:"https://pubmed.ncbi.nlm.nih.gov/9103523/",
+    studyDesign:"human liver microsome / enzyme kinetics study", n:null,
+    phenotypes:[GENOTYPE_PHENOTYPE.NM, GENOTYPE_PHENOTYPE.UM],
+    quantifiedEffects:{note:"Study reports human halothane oxidative metabolism to TFA/reactive intermediates with CYP2E1 as the predominant catalytic isoform and CYP2A6 also participating."},
+    temporal:{mechanism:"CYP2E1-linked oxidative metabolism of older volatile anesthetics to reactive intermediates"},
+    supports:["halothane_CYP2E1_reactive_intermediate_context","volatile_anesthetic_hepatotoxicity_review_context"],
+    contradicts:["modern_volatile_anesthetic_risk_is_not_driven_by_CYP2E1_genotype_alone"],
+    limitations:["In vitro metabolism evidence; modern anesthesia choice depends on availability, patient factors, malignant hyperthermia risk, and anesthesiologist judgment."],
+    verified:false, reviewRequired:true, verifyNote:"Volatile anesthetic/CYP2E1 context pending anesthesia review"
+  },
 
   "ev_solanidine_ache_griffin1995": {
     id:"ev_solanidine_ache_griffin1995",

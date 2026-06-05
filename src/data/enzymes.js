@@ -143,6 +143,15 @@ const PHARMGKB_EVIDENCE = {
       {drug:"Fluvoxamine",level:"B",action:"Strong CYP1A2 inhibitor — affects all 1A2 substrates"}
     ]
   },
+  "CYP2E1":{
+    grade:"C",
+    guideline:"PharmGKB/literature",
+    pairs:[
+      {drug:"Chlorzoxazone",level:"C",action:"CYP2E1 phenotyping probe; useful for activity context rather than treatment selection"},
+      {drug:"Acetaminophen",level:"C",action:"CYP2E1 forms toxic NAPQI; dose, alcohol, fasting, liver disease, and glutathione reserve dominate"},
+      {drug:"Halothane",level:"C",action:"Older volatile anesthetic with CYP2E1 oxidative metabolism to reactive trifluoroacetylated intermediates"}
+    ]
+  },
   "DPYD":{
     grade:"A",
     guideline:"CPIC",
@@ -477,7 +486,7 @@ const ENZYME_ACTORS = {
   "CYP1A2":  {id:"CYP1A2",  type:ACTOR_TYPE.ENZYME, name:"CYP1A2",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0, inducible:["smoking","cruciferous","charbroiled"]},
   "CYP2A6":  {id:"CYP2A6",  type:ACTOR_TYPE.ENZYME, name:"CYP2A6",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP2B6":  {id:"CYP2B6",  type:ACTOR_TYPE.ENZYME, name:"CYP2B6",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
-  "CYP2E1":  {id:"CYP2E1",  type:ACTOR_TYPE.ENZYME, name:"CYP2E1",  family:"CYP450", tissue:["liver"],              polymorphic:false,substrateCount:0, inducible:["alcohol","isoniazid","obesity"]},
+  "CYP2E1":  {id:"CYP2E1",  type:ACTOR_TYPE.ENZYME, name:"CYP2E1",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0, inducible:["alcohol","isoniazid","obesity","fasting"]},
   "CYP4F2":  {id:"CYP4F2",  type:ACTOR_TYPE.ENZYME, name:"CYP4F2",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "BCHE":    {id:"BCHE",    type:ACTOR_TYPE.ENZYME, name:"BCHE",    family:"esterase", tissue:["plasma","liver"],    polymorphic:true, substrateCount:0},
   "NAT1":    {id:"NAT1",    type:ACTOR_TYPE.ENZYME, name:"NAT1",    family:"NAT",    tissue:["liver","gut","many_tissues"], polymorphic:true, substrateCount:0},
