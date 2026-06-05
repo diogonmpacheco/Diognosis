@@ -1,0 +1,55 @@
+{
+  "description": "High-value public-facts enrichment discovery. Paywalled full text is not required for public abstract/metadata signals; precision-only gaps remain flagged for review.",
+  "queries": [
+    {
+      "relation": "tramadol:CYP2D6_CYP2B6_metabolites",
+      "query": "tramadol O-desmethyltramadol CYP2D6 CYP2B6 genotype pharmacokinetics metabolite AUC poor ultrarapid metabolizer",
+      "supports": ["tramadol_CYP2D6_active_metabolite_context", "tramadol_CYP2B6_secondary_metabolism_context"]
+    },
+    {
+      "relation": "metoprolol:CYP2D6_enantiomer_PK",
+      "query": "metoprolol CYP2D6 poor metabolizer ultrarapid metabolizer enantiomer pharmacokinetics AUC heart rate",
+      "supports": ["metoprolol_CYP2D6_enantiomer_exposure_context", "metoprolol_CYP2D6_bradycardia_context"]
+    },
+    {
+      "relation": "escitalopram:CYP2C19_CYP2D6_serum",
+      "query": "escitalopram CYP2C19 CYP2D6 genotype serum concentration desmethylcitalopram steady state ultrarapid poor metabolizer",
+      "supports": ["escitalopram_CYP2C19_serum_concentration_context", "escitalopram_CYP2C19_UM_failure_context"]
+    },
+    {
+      "relation": "simvastatin:SLCO1B1_ABCG2_CYP_multigene",
+      "query": "simvastatin simvastatin acid SLCO1B1 ABCG2 ABCB1 CYP2D6 CYP3A5 pharmacokinetics genotype AUC",
+      "supports": ["simvastatin_multigene_transporter_exposure_context", "simvastatin_acid_SLCO1B1_ABCG2_context"]
+    },
+    {
+      "relation": "clobazam:CYP2C19_N_desmethylclobazam",
+      "query": "clobazam N-desmethylclobazam CYP2C19 poor metabolizer plasma concentration dose ratio adverse effects",
+      "supports": ["clobazam_CYP2C19_active_metabolite_accumulation_context", "n_desmethylclobazam_CYP2C19_clearance_context"]
+    },
+    {
+      "relation": "voriconazole:CYP2C19_PK_TDM",
+      "query": "voriconazole CYP2C19 genotype pharmacokinetics AUC trough therapeutic drug monitoring poor ultrarapid metabolizer",
+      "supports": ["voriconazole_CYP2C19_exposure_TDM_context", "voriconazole_CYP2C19_UM_subtherapeutic_context"]
+    },
+    {
+      "relation": "clopidogrel:CYP2C19_active_metabolite",
+      "query": "clopidogrel CYP2C19 active metabolite pharmacokinetics platelet inhibition poor intermediate ultrarapid metabolizer",
+      "supports": ["clopidogrel_CYP2C19_active_metabolite_context", "clopidogrel_CYP2C19_platelet_response_context"]
+    },
+    {
+      "relation": "efavirenz:CYP2B6_CYP2A6_UGT2B7",
+      "query": "efavirenz CYP2B6 CYP2A6 UGT2B7 pharmacokinetics slow metabolizer genotype concentration neurotoxicity",
+      "supports": ["efavirenz_CYP2B6_slow_metabolizer_exposure_context", "efavirenz_secondary_pathway_CYP2A6_UGT2B7_context"]
+    },
+    {
+      "relation": "irinotecan:UGT1A1_SN38_PK",
+      "query": "irinotecan SN-38 SN-38G UGT1A1 genotype pharmacokinetics AUC neutropenia diarrhea",
+      "supports": ["irinotecan_UGT1A1_SN38_exposure_context", "SN38_glucuronidation_toxicity_context"]
+    },
+    {
+      "relation": "atomoxetine:CYP2D6_pediatric_PK",
+      "query": "atomoxetine CYP2D6 genotype stratified pharmacokinetics children ADHD AUC poor intermediate metabolizer 4-hydroxyatomoxetine",
+      "supports": ["atomoxetine_CYP2D6_pediatric_exposure_context", "atomoxetine_4_hydroxy_metabolite_context"]
+    }
+  ]
+}
