@@ -73,7 +73,7 @@ The project is intended for education, research, and review workflows. It is not
 - **146 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **32 genotype genes** and **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **1825 KB** generated bundle (29989 lines)
+- **1828 KB** generated bundle (30023 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---

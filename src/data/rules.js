@@ -78,6 +78,7 @@ const WASHOUT_SOURCE_ALIASES = {
 const HIGH_IMPACT_METABOLITE_RELATIONS = [
   { parent:"Codeine", metaboliteId:"morphine", requiredEvidenceRefs:["ev_codeine_cyp2d6_cpic"] },
   { parent:"Tramadol", metaboliteId:"o-desmethyltramadol", requiredEvidenceRefs:["ev_cyp2d6_codeine_genotype"] },
+  { parent:"Hydrocodone", metaboliteId:"hydromorphone", requiredEvidenceRefs:["ev_opioid_cyp2d6_cpic_2020"] },
   { parent:"Clopidogrel", metaboliteId:"active-thiol-clopidogrel", requiredEvidenceRefs:["ev_clopidogrel_cyp2c19_cpic"] },
   { parent:"Tamoxifen", metaboliteId:"endoxifen", requiredEvidenceRefs:["ev_tamoxifen_cyp2d6_cpic"] },
   { parent:"Bupropion", metaboliteId:"hydroxybupropion", requiredEvidenceRefs:["ev_bupropion_cyp2d6_fda"] },
@@ -89,6 +90,7 @@ const HIGH_IMPACT_METABOLITE_RELATIONS = [
   { parent:"Nebivolol", metaboliteId:"4-hydroxy-nebivolol", requiredEvidenceRefs:["ev_nebivolol_cyp2d6_label"] },
   { parent:"Clobazam", metaboliteId:"n-desmethylclobazam-norclobazam", requiredEvidenceRefs:["ev_clobazam_cyp2c19_fda_onfi"] },
   { parent:"Losartan", metaboliteId:"exp-3174-e-3174", requiredEvidenceRefs:["ev_losartan_cyp2c9_sica2002"] },
+  { parent:"Proguanil", metaboliteId:"cycloguanil", requiredEvidenceRefs:["ev_malarone_label"] },
   { parent:"Azathioprine", metaboliteId:"6-thioguanine-nucleotides-6-tgn", requiredEvidenceRefs:["ev_azathioprine_tpmt_cpic2019"] },
   { parent:"Omeprazole", metaboliteId:"5-hydroxyomeprazole", requiredEvidenceRefs:["ev_omeprazole_cyp2c19_lima2021"] },
   { parent:"Voriconazole", metaboliteId:"voriconazole-n-oxide", requiredEvidenceRefs:["ev_voriconazole_cyp2c19_hyland2008"] },
@@ -260,6 +262,22 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     }
   },
   {
+    parent:"Hydrocodone",
+    metaboliteId:"hydromorphone",
+    metaboliteName:"Hydromorphone",
+    enzyme:"CYP2D6",
+    note:"Hydrocodone is a partial prodrug-style case: CYP2D6 forms more potent hydromorphone, but parent hydrocodone remains active. CYP2D6 PM status may reduce hydromorphone contribution; clinical actionability is weaker than codeine or tramadol.",
+    evidenceRefs:["ev_opioid_cyp2d6_cpic_2020","ev_opioid_ugt2b7_glucuronidation_review"],
+    inhibitionDirection:"decrease",
+    inhibitionLabel:"CYP2D6 inhibition/phenoconversion context: lower hydromorphone formation expected, but parent hydrocodone remains active",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"hydromorphone formation reduced; parent hydrocodone still active, so response loss is less predictable than codeine/tramadol" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"decrease", label:"possible intermediate hydromorphone reduction; monitor analgesia and sedation clinically" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"increase", label:"higher hydromorphone formation possible; opioid toxicity signal remains less certain than codeine" },
+    }
+  },
+  {
     parent:"DXM (Dextromethorphan)",
     metaboliteId:"dextrorphan-dxo",
     metaboliteName:"Dextrorphan",
@@ -349,6 +367,22 @@ const GENOTYPE_METABOLITE_EFFECTS = [
       [GENOTYPE_PHENOTYPE.PM]: { fold:0.5, direction:"decrease", label:"EXP3174 AUC about 50% lower; antihypertensive effect may be reduced" },
       [GENOTYPE_PHENOTYPE.IM]: { fold:0.75, direction:"decrease", label:"intermediate EXP3174 reduction; monitor blood pressure response" },
       [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
+    parent:"Proguanil",
+    metaboliteId:"cycloguanil",
+    metaboliteName:"Cycloguanil",
+    enzyme:"CYP2C19",
+    note:"Proguanil is CYP2C19-activated to cycloguanil, an active DHFR inhibitor. CYP2C19 PM/IM status can reduce cycloguanil formation, but atovaquone/proguanil efficacy also depends strongly on atovaquone food-dependent absorption, adherence, vomiting/diarrhea, resistance geography, and indication.",
+    evidenceRefs:["ev_malarone_label"],
+    inhibitionDirection:"decrease",
+    inhibitionLabel:"CYP2C19 inhibition/phenoconversion context: lower cycloguanil formation expected; evaluate antimalarial regimen context",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"cycloguanil formation reduced; do not interpret as standalone Malarone failure without atovaquone exposure and clinical context" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"decrease", label:"possible partial cycloguanil reduction; monitor indication and exposure context" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"increase", label:"higher cycloguanil formation possible; clinical relevance uncertain in combination therapy" },
     }
   },
   {
