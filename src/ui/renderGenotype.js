@@ -1,6 +1,10 @@
 // MedCheck — Genotype panel and phenotype selector
 // Phase A: modular source — concatenated by build.js
 
+const GENOTYPE_METABOLITE_RISK_KEYS = {
+  G6PD: "G6PD deficiency",
+};
+
 function renderGenotypePanel() {
   const sec = document.getElementById("genotypeSection");
   const el = document.getElementById("genotypeBody");
@@ -376,6 +380,13 @@ function renderGenotypeRiskEffectCard(card) {
 }
 
 function getSelectedGenotypePhenotype(enzyme) {
+  const riskKey = GENOTYPE_METABOLITE_RISK_KEYS[enzyme];
+  if (riskKey && activeGenotype[enzyme]) return activeGenotype[enzyme];
+  if (riskKey) {
+    return activeGenotype[riskKey] === GENOTYPE_RISK_STATUS.PRESENT
+      ? GENOTYPE_PHENOTYPE.PM
+      : GENOTYPE_PHENOTYPE.NM;
+  }
   return activeGenotype[enzyme] || GENOTYPE_PHENOTYPE.NM;
 }
 
@@ -480,7 +491,8 @@ function getInhibitionMetaboliteEffect(effect, inhibitorContext) {
 }
 
 function showGenotypeMetaboliteEffect(effect) {
-  if (!effect || !effect.enzyme || !GENOTYPE_EFFECTS[effect.enzyme]) return false;
+  if (!effect || !effect.enzyme) return false;
+  if (!GENOTYPE_EFFECTS[effect.enzyme] && !GENOTYPE_METABOLITE_RISK_KEYS[effect.enzyme]) return false;
   if (effect.systemic) return true;
   const metId = effect.metaboliteId;
   const listed = (METAB[effect.parent] || []).some(m => getMetaboliteGraphId(m.n) === metId);

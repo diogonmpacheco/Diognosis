@@ -109,6 +109,10 @@ const HIGH_IMPACT_METABOLITE_RELATIONS = [
   { parent:"Primidone", metaboliteId:"phenobarbital", requiredEvidenceRefs:["ev_primidone_metabolites_label"] },
   { parent:"Acetaminophen", metaboliteId:"napqi", requiredEvidenceRefs:["ev_apap_alcohol_riordan2002"] },
   { parent:"Dapsone", metaboliteId:"dapsone-hydroxylamine-dds-nhoh", requiredEvidenceRefs:["ev_dapsone_ddsnhoh_metabolite"] },
+  { parent:"Mercaptopurine", metaboliteId:"6-thioguanine-nucleotides-6-tgn", requiredEvidenceRefs:["ev_thiopurine_tpmt_nudt15_cpic2025"] },
+  { parent:"Thioguanine", metaboliteId:"6-thioguanine-nucleotides-6-tgn", requiredEvidenceRefs:["ev_thiopurine_tpmt_nudt15_cpic2025"] },
+  { parent:"Tafenoquine", metaboliteId:"tafenoquine-oxidative-metabolites", requiredEvidenceRefs:["ev_tafenoquine_g6pd_fda"] },
+  { parent:"Primaquine", metaboliteId:"primaquine-hydroxylamine-quinone-imine-metabolites", requiredEvidenceRefs:["ev_g6pd_oxidative_antimalarials"] },
   { parent:"Lisdexamfetamine", metaboliteId:"d-amphetamine-dextroamphetamine", requiredEvidenceRefs:["ev_lisdexamfetamine_rbc_activation"] },
   { parent:"Amphetamine", metaboliteId:"4-hydroxyamphetamine", requiredEvidenceRefs:["ev_amphetamine_cyp2d6_fda"] },
   { parent:"Methamphetamine", metaboliteId:"amphetamine", requiredEvidenceRefs:["ev_mdma_meth_cyp2d6_review"] },
@@ -702,6 +706,125 @@ const GENOTYPE_METABOLITE_EFFECTS = [
       [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"slow acetylator: sulfapyridine adverse effects more likely; monitor GI, headache, rash, blood counts, and hemolysis risk context" },
       [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate acetylator: moderate sulfapyridine adverse-effect signal; monitor tolerability" },
       [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
+    parent:"Mercaptopurine",
+    metaboliteId:"6-thioguanine-nucleotides-6-tgn",
+    metaboliteName:"6-Thioguanine nucleotides (6-TGN)",
+    enzyme:"TPMT",
+    note:"Mercaptopurine is shunted away from cytotoxic 6-TGN by TPMT methylation. TPMT poor/intermediate function shifts exposure toward 6-TGN and severe marrow toxicity; xanthine oxidase inhibitors can amplify this pathway separately.",
+    evidenceRefs:["ev_thiopurine_tpmt_nudt15_cpic2025","ev_azathioprine_tpmt_cpic2019"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"TPMT loss-of-function: less methylation, more cytotoxic 6-TGN",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"6-TGN toxic accumulation; CPIC: avoid or use drastically reduced dose with close CBC/TDM" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"increased 6-TGN exposure; reduce starting dose and monitor CBC/TDM" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"decrease", label:"possible low 6-TGN/high 6-MMP shunting; use metabolite monitoring when available" },
+    }
+  },
+  {
+    parent:"Mercaptopurine",
+    metaboliteId:"6-thioguanine-nucleotides-6-tgn",
+    metaboliteName:"6-Thioguanine nucleotides (6-TGN)",
+    enzyme:"NUDT15",
+    note:"NUDT15 loss-of-function does not simply raise parent mercaptopurine. It reduces cellular cleanup of cytotoxic thioguanine nucleotide triphosphates, increasing DNA-thioguanine burden and myelosuppression risk even with normal TPMT.",
+    evidenceRefs:["ev_thiopurine_tpmt_nudt15_cpic2025"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"NUDT15 loss-of-function: cytotoxic thiopurine nucleotide intolerance",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"very high myelosuppression risk; CPIC: avoid or use drastically reduced dose" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"increased myelosuppression risk; reduce dose and monitor CBC" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
+    parent:"Thioguanine",
+    metaboliteId:"6-thioguanine-nucleotides-6-tgn",
+    metaboliteName:"6-Thioguanine nucleotides (6-TGN)",
+    enzyme:"NUDT15",
+    note:"Thioguanine enters the active 6-TGN pathway more directly than mercaptopurine. NUDT15 poor/intermediate function increases sensitivity to DNA-thioguanine and severe myelosuppression; TPMT still contributes to methylated metabolite balance.",
+    evidenceRefs:["ev_thiopurine_tpmt_nudt15_cpic2025"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"NUDT15 loss-of-function: direct thioguanine nucleotide toxicity risk",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"very high DNA-thioguanine/myelosuppression risk; avoid or drastically reduce with specialist monitoring" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"higher myelosuppression risk; reduce dose and monitor CBC closely" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
+    parent:"Dapsone",
+    metaboliteId:"dapsone-hydroxylamine-dds-nhoh",
+    metaboliteName:"Dapsone hydroxylamine (DDS-NHOH)",
+    enzyme:"G6PD",
+    note:"Dapsone hydroxylamine is the hematotoxic metabolite. G6PD deficiency reduces red-cell oxidative-stress reserve, so the same hydroxylamine burden can produce more methemoglobinemia or hemolysis. CYP2C9/CYP3A4 formation and dose still matter.",
+    evidenceRefs:["ev_dapsone_ddsnhoh_metabolite","ev_rasburicase_g6pd_cpic2014"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"G6PD deficiency: less erythrocyte protection against hydroxylamine oxidant stress",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"G6PD deficient: higher hemolysis/methemoglobinemia concern; avoid or use specialist monitoring depending on indication" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"partial deficiency/intermediate activity: elevated oxidant-risk context; check enzyme activity and monitor blood counts/methemoglobin" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline red-cell oxidative reserve" },
+    }
+  },
+  {
+    parent:"Tafenoquine",
+    metaboliteId:"tafenoquine-oxidative-metabolites",
+    metaboliteName:"Tafenoquine oxidative metabolites",
+    enzyme:"G6PD",
+    note:"Tafenoquine is an 8-aminoquinoline with prolonged oxidant exposure. G6PD deficiency is contraindicated because hemolysis can be delayed and hard to reverse after a long-half-life dose.",
+    evidenceRefs:["ev_tafenoquine_g6pd_fda"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"G6PD deficiency: inadequate red-cell defense against prolonged 8-aminoquinoline oxidant stress",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"contraindicated: G6PD deficiency/unknown status can cause delayed hemolysis; quantitative testing required before use" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate activity can be missed by qualitative screens; confirm quantitative G6PD activity before tafenoquine" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline, if quantitative G6PD activity is normal" },
+    }
+  },
+  {
+    parent:"Primaquine",
+    metaboliteId:"primaquine-hydroxylamine-quinone-imine-metabolites",
+    metaboliteName:"Primaquine hydroxylamine / quinone-imine metabolites",
+    enzyme:"G6PD",
+    note:"Primaquine hemolysis risk is driven by reactive oxidative metabolite families plus host red-cell antioxidant reserve. G6PD deficiency changes the safety frame even when the parent dose looks ordinary.",
+    evidenceRefs:["ev_g6pd_oxidative_antimalarials"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"G6PD deficiency: reactive oxidative metabolite hemolysis risk",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"high hemolysis concern; use G6PD-guided regimen selection and monitoring" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate activity: dose/regimen-specific hemolysis risk; confirm quantitative activity when possible" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline red-cell oxidative reserve" },
+    }
+  },
+  {
+    parent:"Rasburicase",
+    metaboliteId:"rasburicase-g6pd-oxidant-risk",
+    metaboliteName:"Rasburicase oxidant hemolysis risk",
+    enzyme:"G6PD",
+    systemic:true,
+    note:"Rasburicase generates hydrogen peroxide while oxidizing uric acid. G6PD deficiency removes key NADPH-dependent red-cell protection, making hemolysis and methemoglobinemia a contraindication-level risk.",
+    evidenceRefs:["ev_rasburicase_g6pd_cpic2014"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"contraindicated: G6PD deficiency can cause acute hemolytic anemia/methemoglobinemia" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"possible deficiency/intermediate activity: verify enzyme activity before rasburicase when risk ancestry or history suggests" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline, if G6PD activity is normal" },
+    }
+  },
+  {
+    parent:"Methylene Blue",
+    metaboliteId:"methylene-blue-g6pd-redox-risk",
+    metaboliteName:"Methylene blue redox effect",
+    enzyme:"G6PD",
+    systemic:true,
+    note:"Methylene blue requires NADPH-dependent reduction to work as a methemoglobinemia antidote. In G6PD deficiency it may fail and can worsen oxidative hemolysis; its MAO-A inhibition remains a separate serotonin-toxicity risk.",
+    evidenceRefs:["ev_methylene_blue_maoi_fda"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"contraindicated/avoid: G6PD deficiency can cause hemolysis and poor antidote response" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"reduced activity context: avoid or use specialist toxicology guidance with alternatives" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline redox capacity" },
     }
   },
   {
