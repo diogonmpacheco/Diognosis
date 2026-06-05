@@ -130,6 +130,47 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     }
   },
   {
+    parent:"Potatoes (Solanine/Solanidine)",
+    metaboliteId:"4-oh-solanidine",
+    metaboliteName:"4-OH-solanidine / SSDA",
+    enzyme:"CYP2D6",
+    note:"Solanidine metabolite ratios are a null-impact biomarker pattern: CYP2D6 loss or strong inhibition lowers 4-OH-solanidine and SSDA formation while parent solanidine rises. This is not a potato-toxicity threshold.",
+    evidenceRefs:["ev_solanidine_metabolites_tamoxifen_2024","ev_solanidine_cyp2d6_hellden2024"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"CYP2D6 product formation expected very low; parent solanidine accumulation signal dominates" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"decrease", label:"reduced 4-OH/SSDA formation; interpret parent/metabolite ratios cautiously" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline metabolite formation" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"increase", label:"higher metabolite/parent ratio expected; parent solanidine may be lower" },
+    }
+  },
+  {
+    parent:"Cinnamon / Coumarin",
+    metaboliteId:"7-hydroxycoumarin",
+    metaboliteName:"7-Hydroxycoumarin",
+    enzyme:"CYP2A6",
+    note:"Coumarin illustrates detox-route null impact: CYP2A6 normally forms the lower-risk 7-hydroxycoumarin pathway. Reduced CYP2A6 may increase reliance on minor ring-opening metabolites, especially with chronic high-coumarin cassia cinnamon exposure.",
+    evidenceRefs:["ev_coumarin_cyp2a6_hepatotoxicity_review"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"7-hydroxylation markedly reduced; review chronic cassia/coumarin exposure and liver risk stack" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"decrease", label:"intermediate detox-route capacity; monitor dose/exposure context" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline detox pathway" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"increase", label:"higher 7-hydroxylation capacity; ordinary exposure limits still apply" },
+    }
+  },
+  {
+    parent:"Cruciferous Vegetables (Isothiocyanates)",
+    metaboliteId:"isothiocyanate-mercapturic-acids",
+    metaboliteName:"Isothiocyanate mercapturic acids",
+    enzyme:"GSTM1",
+    note:"Cruciferous isothiocyanates are a useful opposite-pattern example: GSTM1 null can slow conjugation/excretion and prolong bioactive isothiocyanate exposure. This may be beneficial or adverse depending on context; do not treat it as a simple toxicity flag.",
+    evidenceRefs:["ev_cruciferous_isothiocyanate_gstm1_2005","ev_watercress_itc_gst_2009"],
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"GSTM1 null: slower GST-mediated conjugation/excretion; exposure may be more sustained" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"uncertain", label:"possible intermediate GST context; GSTT1 and diet/microbiome also matter" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline GSTM1-present context" },
+    }
+  },
+  {
     parent:"Bupropion",
     metaboliteId:"hydroxybupropion",
     metaboliteName:"Hydroxybupropion",

@@ -163,7 +163,18 @@ const METAB = {
 ],
 "Potatoes (Solanine/Solanidine)":[
   {n:"Solanidine (α-solanine aglycone)",e:"Gut hydrolysis",a:"active",p:60,t:48,note:"Potato glycoalkaloid aglycone; in vitro CYP2D6/CYP3A4 substrate and diet-derived CYP2D6 activity biomarker. Clinical DDI burden remains theoretical.",evidenceRefs:["ev_solanidine_cyp2d6_mock2001","ev_solanidine_cyp2d6_hellden2024"]},
+  {n:"4-OH-solanidine",e:"CYP2D6",a:"inactive",p:25,t:8,note:"CYP2D6-formed solanidine metabolite. Metabolite/parent ratio falls sharply with strong CYP2D6 inhibition and likely CYP2D6 null function.",evidenceRefs:["ev_solanidine_metabolites_tamoxifen_2024"]},
+  {n:"3,4-seco-solanidine-3,4-dioic acid (SSDA)",e:"CYP2D6",a:"inactive",p:15,t:12,note:"Urinary/plasma solanidine-derived downstream oxidation biomarker. SSDA/solanidine ratio is a sensitive CYP2D6 activity signal.",evidenceRefs:["ev_solanidine_metabolites_tamoxifen_2024","ev_solanidine_ssda_tay2022"]},
   {n:"α-Solanine / α-Chaconine",e:"Dietary glycoalkaloids",a:"active",p:40,note:"Potato glycoalkaloids; cholinesterase inhibition shown in vitro.",evidenceRefs:["ev_solanidine_ache_griffin1995"]}
+],
+"Cruciferous Vegetables (Isothiocyanates)":[
+  {n:"Sulforaphane",e:"Myrosinase / gut microbiome",a:"active",p:45,t:2,note:"Bioactive isothiocyanate formed from glucoraphanin; GST-mediated mercapturic acid pathway controls elimination and exposure duration.",evidenceRefs:["ev_cruciferous_isothiocyanate_gstm1_2005","ev_watercress_itc_gst_2009"]},
+  {n:"Phenethyl isothiocyanate (PEITC)",e:"Myrosinase / gut microbiome",a:"active",p:35,t:2,note:"Watercress-derived isothiocyanate. GSTM1/GSTT1 null status can slow excretion and prolong exposure.",evidenceRefs:["ev_watercress_itc_gst_2009"]},
+  {n:"Isothiocyanate mercapturic acids",e:"GST/GSH → mercapturic acid pathway",a:"inactive",p:80,t:6,note:"Urinary conjugates used to track isothiocyanate clearance. Null GST genotypes can change elimination kinetics.",evidenceRefs:["ev_cruciferous_isothiocyanate_gstm1_2005","ev_watercress_itc_gst_2009"]}
+],
+"Cinnamon / Coumarin":[
+  {n:"7-Hydroxycoumarin",e:"CYP2A6",a:"inactive",p:80,t:2,note:"Primary human detoxification product. CYP2A6 poor/intermediate function can reduce this preferred pathway.",evidenceRefs:["ev_coumarin_cyp2a6_hepatotoxicity_review"]},
+  {n:"Coumarin-3,4-epoxide / o-HPA",e:"CYP2E1",a:"toxic",p:10,t:1,note:"Minor CYP1A2/CYP2E1/CYP3A4 ring-opening pathway linked to hepatotoxicity concern. More relevant when 7-hydroxylation is low or exposure is high/chronic.",evidenceRefs:["ev_coumarin_cyp2a6_hepatotoxicity_review"]}
 ],
 
 // ── DEPRESSANTS ──

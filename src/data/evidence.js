@@ -1033,6 +1033,91 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_solanidine_metabolites_tamoxifen_2024": {
+    id:"ev_solanidine_metabolites_tamoxifen_2024",
+    type:EVIDENCE_TIER.OBSERVATIONAL,
+    title:"Solanidine metabolites as diet-derived biomarkers of CYP2D6-mediated tamoxifen metabolism in breast cancer patients",
+    year:2024, source:"Clinical Pharmacology & Therapeutics / PubMed", journal:"Clinical Pharmacology & Therapeutics",
+    pmid:"39039708", doi:null,
+    url:"https://pubmed.ncbi.nlm.nih.gov/39039708/",
+    studyDesign:"observational metabolomics in breast cancer patients receiving tamoxifen", n:null,
+    phenotypes:["CYP2D6 activity","CYP2D6 inhibitor exposure"],
+    quantifiedEffects:{note:"Study reports CYP2D6-mediated solanidine metabolites including 4-OH-solanidine and SSDA; strong CYP2D6 inhibitor use lowered 4-OH-solanidine/solanidine by 77.6% and SSDA/solanidine by 94.2%."},
+    temporal:{mechanism:"dietary_solanidine_CYP2D6_metabolite_ratio"},
+    supports:["solanidine_METABOLIZED_TO_4-OH-solanidine","solanidine_METABOLIZED_TO_SSDA","CYP2D6_inhibition_lowers_solanidine_metabolite_ratios"],
+    contradicts:[],
+    limitations:["Biomarker/metabolite-ratio evidence, not a clinical solanine toxicity threshold","Dietary intake and oncology medication context influence interpretation"],
+    verified:false, reviewRequired:true, verifyNote:"Solanidine metabolite-ratio enrichment pending pharmacology review"
+  },
+
+  "ev_solanidine_ssda_tay2022": {
+    id:"ev_solanidine_ssda_tay2022",
+    type:EVIDENCE_TIER.MECHANISTIC,
+    title:"Isolation and identification of 3,4-seco-solanidine-3,4-dioic acid as a urinary biomarker of CYP2D6 activity",
+    year:2022, source:"Drug Metabolism and Disposition / PMC", journal:"Drug Metabolism and Disposition",
+    pmid:"35878926", doi:"10.1124/dmd.122.000957",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC9513856/",
+    studyDesign:"metabolite identification and CYP2D6 biomarker development", n:null,
+    phenotypes:["CYP2D6 activity"],
+    quantifiedEffects:{note:"Identified SSDA as a diet-derived solanidine metabolite useful for CYP2D6 activity assessment; emphasizes solanidine is dietary rather than endogenous."},
+    temporal:{mechanism:"solanidine_downstream_oxidation_to_SSDA"},
+    supports:["SSDA_as_solanidine_derived_CYP2D6_biomarker","solanidine_is_diet_derived_not_endogenous"],
+    contradicts:[],
+    limitations:["Biomarker development evidence; not a direct clinical toxicity or dosing study"],
+    verified:false, reviewRequired:true, verifyNote:"SSDA metabolite enrichment pending pharmacology review"
+  },
+
+  "ev_cruciferous_isothiocyanate_gstm1_2005": {
+    id:"ev_cruciferous_isothiocyanate_gstm1_2005",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Glutathione S-transferase M1 polymorphism and metabolism of sulforaphane from standard and high-glucosinolate broccoli",
+    year:2005, source:"American Journal of Clinical Nutrition", journal:"American Journal of Clinical Nutrition",
+    pmid:"16332662", doi:"10.1093/ajcn/82.6.1283",
+    url:"https://pubmed.ncbi.nlm.nih.gov/16332662/",
+    studyDesign:"controlled broccoli feeding study stratified by GSTM1 genotype", n:null,
+    phenotypes:["GSTM1 null","GSTM1 positive"],
+    quantifiedEffects:{note:"Human feeding study comparing sulforaphane metabolism after standard and high-glucosinolate broccoli by GSTM1 genotype."},
+    temporal:{mechanism:"sulforaphane_GST_mercapturic_acid_pathway"},
+    supports:["sulforaphane_GST_conjugation_context","GSTM1_modifies_isothiocyanate_metabolism"],
+    contradicts:[],
+    limitations:["Nutrition/xenobiotic bioavailability study; direction may reflect sustained exposure rather than simple toxicity"],
+    verified:false, reviewRequired:true, verifyNote:"Cruciferous/GSTM1 enrichment pending nutrition pharmacology review"
+  },
+
+  "ev_watercress_itc_gst_2009": {
+    id:"ev_watercress_itc_gst_2009",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Metabolism of isothiocyanates in individuals with positive and null GSTT1 and GSTM1 genotypes after drinking watercress juice",
+    year:2010, source:"Clinical Nutrition / PMC", journal:"Clinical Nutrition",
+    pmid:null, doi:"10.1016/j.clnu.2010.06.010",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC2987275/",
+    studyDesign:"watercress juice feeding study with urinary isothiocyanate metabolite measurement", n:null,
+    phenotypes:["GSTM1 null","GSTT1 null","GSTM1/GSTT1 positive"],
+    quantifiedEffects:{note:"Study tested whether GSTT1/GSTM1 null genotypes alter urinary excretion kinetics of watercress-derived isothiocyanate metabolites through the mercapturic acid pathway."},
+    temporal:{mechanism:"isothiocyanate_GSH_GST_mercapturic_acid_clearance"},
+    supports:["GST_null_status_modifies_isothiocyanate_excretion","PEITC_mercapturic_acid_pathway"],
+    contradicts:[],
+    limitations:["Dietary exposure study; GSTT1 is not yet a first-class MedCheck genotype selector, and bioavailability is not equivalent to harm"],
+    verified:false, reviewRequired:true, verifyNote:"Watercress isothiocyanate enrichment pending nutrition pharmacology review"
+  },
+
+  "ev_coumarin_cyp2a6_hepatotoxicity_review": {
+    id:"ev_coumarin_cyp2a6_hepatotoxicity_review",
+    type:EVIDENCE_TIER.MECHANISTIC,
+    title:"Coumarin-induced hepatotoxicity: metabolism, CYP2A6 7-hydroxylation, and toxic ring-opening pathway",
+    year:2022, source:"Molecules / PMC", journal:"Molecules",
+    pmid:"36558195", doi:"10.3390/molecules27249063",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC9783661/",
+    studyDesign:"narrative review and mechanistic synthesis", n:null,
+    phenotypes:["CYP2A6 reduced function","CYP2A6 normal function"],
+    quantifiedEffects:{note:"Review describes CYP2A6-mediated 7-hydroxylation as the main human coumarin pathway, while CYP1A1/CYP1A2/CYP2E1/CYP3A4 can contribute to 3,4-epoxide/ring-opening metabolites linked to hepatotoxicity concern."},
+    temporal:{mechanism:"coumarin_CYP2A6_detox_vs_ring_opening_diversion"},
+    supports:["coumarin_CYP2A6_7_hydroxylation_detox_context","coumarin_o_HPA_toxic_diversion_context"],
+    contradicts:[],
+    limitations:["Risk depends strongly on dose, product coumarin content, chronicity, liver disease, and species differences; not a standalone dietary contraindication"],
+    verified:false, reviewRequired:true, verifyNote:"Coumarin/CYP2A6 enrichment pending toxicology review"
+  },
+
   "ev_solanidine_ache_griffin1995": {
     id:"ev_solanidine_ache_griffin1995",
     type:EVIDENCE_TIER.IN_VITRO,
