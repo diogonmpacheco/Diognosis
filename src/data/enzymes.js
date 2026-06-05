@@ -3,7 +3,7 @@
 
 const GENE_ENZYMES = [
   "CYP1A2","CYP2B6","CYP2C8","CYP2C9","CYP2C19","CYP2D6","CYP2E1","CYP3A4","CYP3A5",
-  "UGT1A1","UGT2B7","UGT2B15","DPYD","TPMT","NAT2","COMT","CYP2A6","CYP4F2",
+  "UGT1A1","UGT1A4","UGT1A9","UGT2B7","UGT2B15","UGT2B17","DPYD","TPMT","NAT2","COMT","CYP2A6","CYP4F2",
   "SLCO1B1","ABCB1","ABCG2","BCHE","MAO-A","MAO-B"
 ];
 const PHENOTYPE_OPTIONS = [
@@ -167,6 +167,42 @@ const PHARMGKB_EVIDENCE = {
       {drug:"Irinotecan",level:"A",action:"*28/*28: reduce dose 30%; severe neutropenia risk"}
     ]
   },
+  "UGT1A4":{
+    grade:"C",
+    guideline:"PharmGKB/FDA labels",
+    pairs:[
+      {drug:"Lamotrigine",level:"B",action:"Glucuronidation-sensitive; valproate/estrogens/inducers often dominate genotype"},
+      {drug:"Asenapine",level:"C",action:"UGT1A4/CYP1A2 clearance; sedation/orthostasis context matters"},
+      {drug:"Lorlatinib",level:"C",action:"Minor UGT1A4 contribution; CYP3A induction/inhibition usually dominates"}
+    ]
+  },
+  "UGT1A9":{
+    grade:"C",
+    guideline:"PharmGKB/FDA labels",
+    pairs:[
+      {drug:"Propofol",level:"C",action:"UGT1A9 is a major clearance route; procedural titration dominates genotype"},
+      {drug:"Mycophenolate",level:"C",action:"MPAG formation/enterohepatic recycling context; TDM and transplant protocol dominate"},
+      {drug:"Sorafenib",level:"C",action:"CYP3A4/UGT1A9 oncology clearance context"},
+      {drug:"Regorafenib",level:"C",action:"CYP3A4/UGT1A9 active-metabolite context"}
+    ]
+  },
+  "UGT2B15":{
+    grade:"C",
+    guideline:"PharmGKB/FDA labels",
+    pairs:[
+      {drug:"Lorazepam",level:"C",action:"Glucuronidated benzodiazepine; age/renal/sedation burden dominates genotype"},
+      {drug:"Oxazepam",level:"C",action:"Glucuronidation context; less CYP interaction burden than diazepam"},
+      {drug:"Dabigatran",level:"C",action:"Active acyl-glucuronide context; renal/P-gp effects dominate"}
+    ]
+  },
+  "UGT2B17":{
+    grade:"C",
+    guideline:"PharmGKB/FDA labels",
+    pairs:[
+      {drug:"Oxazepam",level:"C",action:"Possible glucuronidation modifier; not a standalone dose rule"},
+      {drug:"Temazepam",level:"C",action:"Possible glucuronidation modifier; sedation/falls context dominates"}
+    ]
+  },
   "SLCO1B1":{
     grade:"A",
     guideline:"CPIC",
@@ -295,6 +331,11 @@ const ENZYME_ACTORS = {
   "CYP27B1": {id:"CYP27B1", type:ACTOR_TYPE.ENZYME, name:"CYP27B1", family:"CYP450", tissue:["kidney"],             polymorphic:true, substrateCount:0},
   "CYP24A1": {id:"CYP24A1", type:ACTOR_TYPE.ENZYME, name:"CYP24A1", family:"CYP450", tissue:["kidney","liver"],     polymorphic:false,substrateCount:0},
   "UGT2B7":  {id:"UGT2B7",  type:ACTOR_TYPE.ENZYME, name:"UGT2B7",  family:"UGT",    tissue:["liver","kidney"],      polymorphic:true, substrateCount:0},
+  "UGT1A4":  {id:"UGT1A4",  type:ACTOR_TYPE.ENZYME, name:"UGT1A4",  family:"UGT",    tissue:["liver","gut"],         polymorphic:true, substrateCount:0},
+  "UGT1A9":  {id:"UGT1A9",  type:ACTOR_TYPE.ENZYME, name:"UGT1A9",  family:"UGT",    tissue:["liver","kidney"],      polymorphic:true, substrateCount:0},
+  "UGT2B15": {id:"UGT2B15", type:ACTOR_TYPE.ENZYME, name:"UGT2B15", family:"UGT",    tissue:["liver"],               polymorphic:true, substrateCount:0},
+  "UGT2B17": {id:"UGT2B17", type:ACTOR_TYPE.ENZYME, name:"UGT2B17", family:"UGT",    tissue:["liver","extrahepatic"],polymorphic:true, substrateCount:0},
+  "COMT":    {id:"COMT",    type:ACTOR_TYPE.ENZYME, name:"COMT",    family:"methyltransferase", tissue:["liver","brain","synapse"], polymorphic:true, substrateCount:0},
   "MAO-A":   {id:"MAO-A",   type:ACTOR_TYPE.ENZYME, name:"MAO-A",   family:"MAO",    tissue:["gut","liver","brain"],  polymorphic:false,substrateCount:0},
   "MAO-B":   {id:"MAO-B",   type:ACTOR_TYPE.ENZYME, name:"MAO-B",   family:"MAO",    tissue:["brain","platelets"],    polymorphic:false,substrateCount:0},
 };

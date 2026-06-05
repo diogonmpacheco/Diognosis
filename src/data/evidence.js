@@ -5236,6 +5236,29 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_lorazepam_oxazepam_temazepam_ugt_label": {
+    id:"ev_lorazepam_oxazepam_temazepam_ugt_label",
+    public:true,
+    type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Lorazepam, oxazepam, and temazepam labeling - direct glucuronidation context",
+    year:2024,
+    source:"FDA / DailyMed",
+    journal:null,
+    pmid:null,
+    doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"regulatory_label",
+    n:null,
+    phenotypes:["UGT2B15","UGT2B17"],
+    quantifiedEffects:{note:"Lorazepam, oxazepam, and temazepam avoid major CYP oxidative pathways but are still glucuronidated; sedation, falls, age, hepatic/renal context, and other CNS depressants remain the dominant clinical safety drivers."},
+    temporal:{mechanism:"direct_benzodiazepine_glucuronidation"},
+    supports:["lorazepam_UGT2B15_glucuronidation","oxazepam_UGT2B15_UGT2B17_glucuronidation","temazepam_UGT2B15_UGT2B17_glucuronidation"],
+    contradicts:[],
+    limitations:["UGT genotype effects are not treated as standalone dose rules; clinical sedation/fall risk and organ function dominate"],
+    confidence:"moderate",
+    verified:true
+  },
+
   // ═══ ENRICHMENT BATCH 1 ═══
   "ev_dapsone_hlab1301_zhang2013":{
     id:"ev_dapsone_hlab1301_zhang2013",
