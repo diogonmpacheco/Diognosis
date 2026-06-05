@@ -516,6 +516,45 @@ function getBrowseCategory(drug) {
   return "Other Specialized Agents";
 }
 
+const MEDICATION_CLASS_GUIDES = [
+  {
+    title:"Anticoagulants and antiplatelets",
+    note:"Bleeding, CYP2C9/VKORC1, antiplatelet activation, NSAIDs, SSRIs, azoles, and transporter overlap.",
+    tags:["bleeding","CYP2C19","CYP2C9","transporters"],
+    drugs:["Warfarin","Fluconazole","Ibuprofen"],
+    tab:"safety"
+  },
+  {
+    title:"Psychiatry and neurology",
+    note:"CYP2D6/CYP2C19 shifts, active-metabolite failures, QT, serotonin toxicity, sedation, and anticholinergic burden.",
+    tags:["CYP2D6","CYP2C19","serotonin/QT","burden"],
+    drugs:["Paroxetine","Fluoxetine"],
+    tab:"safety"
+  },
+  {
+    title:"Cardiology and QT risk",
+    note:"Antiarrhythmics, narrow therapeutic index drugs, CYP2D6 metabolism, QT stacking, and electrolyte-sensitive combinations.",
+    tags:["QT","NTI","CYP2D6"],
+    drugs:["Flecainide","Fluoxetine"],
+    genotype:{ CYP2D6:GENOTYPE_PHENOTYPE.PM },
+    tab:"pgx"
+  },
+  {
+    title:"Antibiotics, antifungals, antivirals",
+    note:"Macrolides, azoles, rifamycins, boosters, CYP3A4, CYP2C9, P-gp, and OATP pathway risk.",
+    tags:["CYP3A4","CYP2C9","P-gp"],
+    drugs:["Simvastatin","Clarithromycin"],
+    tab:"pk"
+  },
+  {
+    title:"Oncology, immunology, transplant",
+    note:"Narrow windows, prodrug activation, genotype actionability, transporters, and strong inhibitor or inducer sensitivity.",
+    tags:["NTI","prodrugs","PGx"],
+    drugs:["Tacrolimus","Fluconazole"],
+    tab:"pk"
+  }
+];
+
 function renderBrowse() {
   const el = document.getElementById("browseWrap");
   const groups = {};
@@ -541,7 +580,7 @@ function renderBrowse() {
   ];
   const sortedCats = [...new Set([...catOrder, ...Object.keys(groups)])];
 
-  el.innerHTML = sortedCats.filter(c => groups[c]).map(cat => `
+  el.innerHTML = renderBrowseClassGuides() + sortedCats.filter(c => groups[c]).map(cat => `
     <div class="browse-cat">
       <div class="browse-cat-title" onclick="toggleBrowseCat(this)">
         ${cat} <span style="font-weight:400;font-size:12px;color:var(--text2)">(${groups[cat].length})</span>
@@ -555,6 +594,30 @@ function renderBrowse() {
       </div>
     </div>
   `).join("");
+}
+
+function renderBrowseClassGuides() {
+  return `<div class="class-guide-list">
+    ${MEDICATION_CLASS_GUIDES.map((guide, idx) => `<div class="class-guide-card" onclick="loadMedicationClassGuide(${idx})">
+      <div class="class-guide-title">${guide.title}</div>
+      <div class="class-guide-note">${guide.note}</div>
+      <div class="class-guide-tags">${guide.tags.map(tag => `<span class="class-guide-tag">${tag}</span>`).join("")}</div>
+      <div class="class-guide-action">Load example: ${guide.drugs.join(" + ")}</div>
+    </div>`).join("")}
+  </div>`;
+}
+
+function loadMedicationClassGuide(index) {
+  const guide = MEDICATION_CLASS_GUIDES[index];
+  if (!guide) return;
+  activeStack = guide.drugs
+    .map(name => typeof resolveUrlDrugName === "function" ? resolveUrlDrugName(name) : name)
+    .filter(Boolean);
+  for (const [gene, phenotype] of Object.entries(guide.genotype || {})) {
+    if (GENOTYPE_EFFECTS[gene] && GENOTYPE_EFFECTS[gene][phenotype]) setGenotypeState(gene, phenotype);
+  }
+  activeTab = guide.tab || "safety";
+  renderAll();
 }
 
 function toggleBrowseCat(el) {

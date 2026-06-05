@@ -66,14 +66,14 @@ The project is intended for education, research, and review workflows. It is not
 ## Live Source Stats
 
 <!-- MEDCHECK_STATS_START -->
-- **511 drugs** in DRUG_DB
+- **509 drugs** in DRUG_DB
 - **392 evidence entries** in STUDY_DB (225 with PMIDs) — **146 verified**, **246 quarantined enrichment drafts** awaiting human review
 - **517 curated DDI pairs** (288 severe, 214 moderate, 15 mild)
-- **1105 curated metabolite entries** across **429 parent substances** (27 first-class metabolite actors)
+- **1099 curated metabolite entries** across **427 parent substances** (27 first-class metabolite actors)
 - **146 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **32 genotype genes** and **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **1687 KB** generated bundle (29139 lines)
+- **1689 KB** generated bundle (29182 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---

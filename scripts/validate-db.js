@@ -41,6 +41,7 @@ globalThis.__VALIDATE__ = {
   DRUG_DB, STUDY_DB, KNOWN_DDI, METAB, METABOLITE_ACTORS, GENOTYPE_EFFECTS,
   GENOTYPE_METABOLITE_EFFECTS, HIGH_IMPACT_METABOLITE_RELATIONS,
   ENZYME_ACTORS, TRANSPORTER_ACTORS, EVIDENCE_TIER,
+  resolveUrlDrugName, normalizeDrugLookupKey, getDrugAliases,
 };`, context);
   return context.__VALIDATE__;
 }
@@ -117,6 +118,76 @@ for (const ddi of data.KNOWN_DDI || []) {
   for (const ref of missingRefs) add('errors', 'missing_ddi_evidence_ref', `${ddi.drug1}+${ddi.drug2} references missing study ${ref}`, `${ddi.drug1}/${ddi.drug2}`);
   if (ddi.severity === 'severe' && !(ddi.evidenceRefs || []).length && ddi.evidence?.confidence !== 'high') {
     add('warnings', 'severe_ddi_weak_provenance', `${ddi.drug1}+${ddi.drug2} is severe without linked evidence refs`, `${ddi.drug1}/${ddi.drug2}`);
+  }
+}
+
+function normalizedKey(value) {
+  if (typeof data.normalizeDrugLookupKey === 'function') return data.normalizeDrugLookupKey(value);
+  return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+function aliasTermsForDrug(drug) {
+  const terms = new Set([
+    drug.name,
+    drug.id,
+    ...(drug.brandNames || []),
+  ].filter(Boolean));
+  if (typeof data.getDrugAliases === 'function') {
+    for (const term of data.getDrugAliases(drug) || []) terms.add(term);
+  }
+  return [...terms];
+}
+
+const exactNames = new Map();
+for (const drug of data.DRUG_DB || []) {
+  const key = normalizedKey(drug.name);
+  if (exactNames.has(key)) {
+    add('errors', 'duplicate_drug_name', `${drug.name} duplicates ${exactNames.get(key)} after normalization`, drug.name);
+  } else {
+    exactNames.set(key, drug.name);
+  }
+}
+
+const aliasOwners = new Map();
+for (const drug of data.DRUG_DB || []) {
+  for (const term of aliasTermsForDrug(drug)) {
+    const key = normalizedKey(term);
+    if (!key) continue;
+    const owner = aliasOwners.get(key);
+    if (owner && owner !== drug.name) {
+      add('errors', 'duplicate_drug_alias', `"${term}" maps to both ${owner} and ${drug.name}`, term);
+    } else {
+      aliasOwners.set(key, drug.name);
+    }
+  }
+}
+
+const linkSources = [
+  ['README.md', readFileSync('README.md', 'utf8')],
+  ['medication-classes.html', readFileSync('medication-classes.html', 'utf8')],
+];
+const savedLinkPattern = /https:\/\/diogonmpacheco\.github\.io\/medcheck\/index\.html\?[^)\s"']+|\.\/index\.html\?[^"\s']+/g;
+for (const [source, text] of linkSources) {
+  for (const match of text.matchAll(savedLinkPattern)) {
+    const raw = match[0].replace(/\)$/g, '');
+    const url = new URL(raw, 'https://diogonmpacheco.github.io/medcheck/');
+    const substances = url.searchParams.get('substances') || url.searchParams.get('drugs') || url.searchParams.get('medications');
+    if (!substances) continue;
+    for (const token of substances.split(',').map(s => s.trim()).filter(Boolean)) {
+      const resolved = data.resolveUrlDrugName(token);
+      if (!resolved) {
+        add('errors', 'saved_link_unresolved_substance', `${source} link ${raw} cannot resolve substance "${token}"`, `${source}:${token}`);
+      }
+    }
+    const genotype = url.searchParams.get('genotype');
+    if (genotype) {
+      for (const pair of genotype.split(/[;,]/).filter(Boolean)) {
+        const [gene, phenotype] = pair.split(':').map(v => v && v.trim());
+        if (!gene || !phenotype || !data.GENOTYPE_EFFECTS[gene] || !data.GENOTYPE_EFFECTS[gene][phenotype]) {
+          add('errors', 'saved_link_unresolved_genotype', `${source} link ${raw} cannot resolve genotype "${pair}"`, `${source}:${pair}`);
+        }
+      }
+    }
   }
 }
 

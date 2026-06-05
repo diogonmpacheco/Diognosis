@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-04T14:32:34.157Z",
+  "generated": "2026-06-04T21:22:02.562Z",
   "medcheckVersion": "3.5.5",
   "genotypePanel": [
     "ABCB1",
@@ -275,7 +275,7 @@
           "Cimetidine",
           "Dolutegravir",
           "Metformin",
-          "Trimethoprim-SMX"
+          "Trimethoprim/Sulfamethoxazole"
         ],
         "nullImpactScore": 22,
         "nullImpactClass": "MODERATE",
@@ -294,6 +294,7 @@
           "DRUG_DB",
           "KNOWN_DDI",
           "METABOLITE_ACTORS",
+          "STUDY_DB",
           "TRANSPORTER_ACTORS",
           "TRANSPORTER_DDI"
         ],
@@ -305,7 +306,7 @@
         "drugsAffected": [
           "Cimetidine",
           "Metformin",
-          "Trimethoprim-SMX"
+          "Trimethoprim/Sulfamethoxazole"
         ],
         "nullImpactScore": 19,
         "nullImpactClass": "LOW",

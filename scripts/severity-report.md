@@ -39,7 +39,7 @@ Recommended downgrades: 0
 | Lithium + Furosemide | nephro | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
 | Methotrexate + Ibuprofen | nephro | severe | severe | ev_mtx_interactions_bannwarth1996 (clinical_pk PMID:8882301 DOI:10.2165/00003088-199630030-00002) | Severe support threshold met. |
 | Methotrexate + Naproxen | nephro | severe | severe | ev_mtx_interactions_bannwarth1996 (clinical_pk PMID:8882301 DOI:10.2165/00003088-199630030-00002) | Severe support threshold met. |
-| Methotrexate + Trimethoprim-SMX | hematologic | severe | severe | ev_mtx_interactions_bannwarth1996 (clinical_pk PMID:8882301 DOI:10.2165/00003088-199630030-00002) | Severe support threshold met. |
+| Methotrexate + Trimethoprim/Sulfamethoxazole | hematologic | severe | severe | ev_mtx_interactions_bannwarth1996 (clinical_pk PMID:8882301 DOI:10.2165/00003088-199630030-00002) | Severe support threshold met. |
 | Methotrexate + Omeprazole | renal | moderate | moderate | No linked high-tier source | Kept original severity. |
 | Digoxin + Amiodarone | pk | severe | severe | ev_digoxin_pgp_amiodarone_fda (fda_label PMID:12392581 DOI:10.1046/j.1365-2125.2002.01683.x) | Severe support threshold met. |
 | Digoxin + St. John's Wort | induction | severe | severe | ev_sjw_digoxin_durr2000 (clinical_pk PMID:11180019 DOI:10.1067/mcp.2000.112240) | Severe support threshold met. |
@@ -54,7 +54,7 @@ Recommended downgrades: 0
 | Warfarin + Acetaminophen | pk | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
 | Warfarin + Fluconazole | pk | severe | severe | ev_fluconazole_warfarin_black1996 (clinical_pk PMID:8801057) | Severe support threshold met. |
 | Warfarin + Metronidazole | pk | severe | severe | ev_warfarin_abx_lane2014 (observational PMID:24657899 DOI:10.1016/j.amjmed.2014.01.044) | Severe support threshold met. |
-| Warfarin + Trimethoprim-SMX | pk | severe | severe | ev_warfarin_abx_lane2014 (observational PMID:24657899 DOI:10.1016/j.amjmed.2014.01.044) | Severe support threshold met. |
+| Warfarin + Trimethoprim/Sulfamethoxazole | pk | severe | severe | ev_warfarin_abx_lane2014 (observational PMID:24657899 DOI:10.1016/j.amjmed.2014.01.044) | Severe support threshold met. |
 | Apixaban + Aspirin | bleed | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
 | Rivaroxaban + Aspirin | bleed | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
 | Apixaban + Clopidogrel | bleed | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
@@ -65,8 +65,8 @@ Recommended downgrades: 0
 | Edoxaban + Rifampin | induction | severe | severe | ev_doac_rifampin_hartter2012 (clinical_pk PMID:22348256 DOI:10.1111/j.1365-2125.2012.04218.x)<br>ev_doac_rifampin_label (fda_label) | Severe support threshold met. |
 | Spironolactone + Lisinopril | hyperK | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
 | Spironolactone + Losartan | hyperK | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
-| Spironolactone + Trimethoprim-SMX | hyperK | severe | severe | ev_spironolactone_tmpsmx_antoniou2011 (observational PMID:21911446 DOI:10.1136/bmj.d5228) | Severe support threshold met. |
-| Lisinopril + Trimethoprim-SMX | hyperK | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
+| Spironolactone + Trimethoprim/Sulfamethoxazole | hyperK | severe | severe | ev_spironolactone_tmpsmx_antoniou2011 (observational PMID:21911446 DOI:10.1136/bmj.d5228) | Severe support threshold met. |
+| Lisinopril + Trimethoprim/Sulfamethoxazole | hyperK | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
 | Fluoxetine + Tramadol | serotonin | severe | severe | ev_tramadol_serotonin_beakley2015 (observational PMID:26218943)<br>ev_ssri_cyp2d6_liston2002 (clinical_pk PMID:11910262 DOI:10.1097/00004714-200204000-00010) | Severe support threshold met. |
 | Sertraline + Tramadol | serotonin | severe | severe | ev_tramadol_serotonin_beakley2015 (observational PMID:26218943) | Severe support threshold met. |
 | Fluoxetine + Sumatriptan | serotonin | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
@@ -104,7 +104,7 @@ Recommended downgrades: 0
 | Levothyroxine + Omeprazole | absorption | mild | mild | ev_levothyroxine_absorption_label (fda_label) | Kept original severity. |
 | Levothyroxine + Esomeprazole | absorption | mild | mild | ev_levothyroxine_absorption_label (fda_label) | Kept original severity. |
 | Metformin + Alcohol (Ethanol) | metabolic | moderate | moderate | No linked high-tier source | Kept original severity. |
-| Metformin + Trimethoprim-SMX | transporter | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
+| Metformin + Trimethoprim/Sulfamethoxazole | transporter | moderate | moderate | High-confidence inline regulatory/guideline source | Kept original severity. |
 | Allopurinol + Azathioprine | metabolic | severe | severe | ev_allopurinol_azathioprine_xo_label (fda_label)<br>ev_azathioprine_tpmt_cpic2019 (guideline PMID:30447069 DOI:10.1002/cpt.1304) | Severe support threshold met. |
 | Sildenafil + Tamsulosin | hypoT | moderate | moderate | No linked high-tier source | Kept original severity. |
 | Tadalafil + Tamsulosin | hypoT | moderate | moderate | No linked high-tier source | Kept original severity. |
@@ -173,7 +173,7 @@ Recommended downgrades: 0
 | Sulfasalazine + Mercaptopurine | metabolic | moderate | moderate | ev_sulfasalazine_tpmt_inhibition (observational PMID:7640156) | Kept original severity. |
 | Sulfasalazine + Methotrexate | hematologic | moderate | moderate | No linked high-tier source | Kept original severity. |
 | Sulfasalazine + Digoxin | pk | moderate | moderate | No linked high-tier source | Kept original severity. |
-| Dapsone + Trimethoprim-SMX | toxicity | moderate | moderate | ev_dapsone_ddsnhoh_metabolite (clinical_pk PMID:8703658) | Kept original severity. |
+| Dapsone + Trimethoprim/Sulfamethoxazole | toxicity | moderate | moderate | ev_dapsone_ddsnhoh_metabolite (clinical_pk PMID:8703658) | Kept original severity. |
 | Dapsone + Rifampin | induction | moderate | moderate | ev_dapsone_ddsnhoh_metabolite (clinical_pk PMID:8703658) | Kept original severity. |
 | Methylene Blue + Sertraline | serotonergic | severe | severe | ev_methylene_blue_maoi_fda (fda_label) | Severe support threshold met. |
 | Methylene Blue + Venlafaxine | serotonergic | severe | severe | ev_methylene_blue_maoi_fda (fda_label) | Severe support threshold met. |
@@ -245,7 +245,7 @@ Recommended downgrades: 0
 | Sugammadex + Ethinyl Estradiol | binding | moderate | moderate | ev_sugammadex_contraception_label (fda_label) | Kept original severity. |
 | Propofol + Midazolam | pharmacodynamic | moderate | moderate | ev_propofol_midazolam_sedation (guideline) | Kept original severity. |
 | Dofetilide + Cimetidine | renal_transport | severe | severe | ev_dofetilide_renal_cation_label (fda_label) | Severe support threshold met. |
-| Dofetilide + Trimethoprim-SMX | renal_transport | severe | severe | ev_dofetilide_renal_cation_label (fda_label) | Severe support threshold met. |
+| Dofetilide + Trimethoprim/Sulfamethoxazole | renal_transport | severe | severe | ev_dofetilide_renal_cation_label (fda_label) | Severe support threshold met. |
 | Dofetilide + Verapamil | renal_transport | severe | severe | ev_dofetilide_renal_cation_label (fda_label) | Severe support threshold met. |
 | Dofetilide + Hydrochlorothiazide | renal_transport | severe | severe | ev_dofetilide_renal_cation_label (fda_label) | Severe support threshold met. |
 | Dofetilide + Ketoconazole | renal_transport | severe | severe | ev_dofetilide_renal_cation_label (fda_label) | Severe support threshold met. |

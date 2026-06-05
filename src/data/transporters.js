@@ -36,7 +36,7 @@ const TRANSPORTER_DDI = [
   evidence:{confidence:"high",sources:["FDA label"],pmid:["7584966"],foldChange:1.5,studyType:"clinical"}},
 {substrate:"Metformin",inhibitor:"Dolutegravir",transporter:"OCT2",effect:"Metformin AUC ↑ 79%",severity:"moderate",mechanism:"OCT2+MATE1 inhibition; dose adjustment needed",
   evidence:{confidence:"high",sources:["FDA label","literature"],pmid:["24218476"],foldChange:1.79,studyType:"clinical"}},
-{substrate:"Metformin",inhibitor:"Trimethoprim-SMX",transporter:"OCT2/MATE1",effect:"Metformin AUC ↑ ~40%",severity:"moderate",mechanism:"Trimethoprim inhibits renal OCT2 and MATE1 secretion",
+{substrate:"Metformin",inhibitor:"Trimethoprim/Sulfamethoxazole",transporter:"OCT2/MATE1",effect:"Metformin AUC ↑ ~40%",severity:"moderate",mechanism:"Trimethoprim inhibits renal OCT2 and MATE1 secretion",
   evidence:{confidence:"high",sources:["clinical PK studies"],pmid:["26953265"],foldChange:1.4,studyType:"clinical"}}
 ];
 

@@ -834,18 +834,6 @@ const DRUG_DB = [
  inh:[],
  ind:[],
  alts:[]},
-// ──────────── Sulfonamide ────────────
-{id:"trimethoprim-smx",
- name:"Trimethoprim-SMX",
- cls:"Sulfonamide",
- brandNames:["Bactrim", "Septra"],
- hl:10,
- timing:"AM-PM",
- props:{nephrotoxic:1,hyperkalemia:1},
- routes:[],
- inh:[{target:"CYP2C8",strength:"weak",evidence:{confidence:"high",sources:["FDA label"]}}],
- ind:[],
- alts:[]},
 // ──────────── Rifamycin ────────────
 {id:"rifampin",
  name:"Rifampin",
@@ -2210,17 +2198,7 @@ const DRUG_DB = [
  note:"Polycyclic aromatic hydrocarbons can induce CYP1A2 with repeated exposure; model as weak unless intake is frequent.",
  alts:[]},
 // ──────────── Supplement ────────────
-{id:"turmeric_curcumin",
- name:"Turmeric/Curcumin",
- cls:"Supplement",
- brandNames:["Turmeric Extract"],
- hl:0,
- timing:"ANY",
- props:{},
- routes:[],
- inh:[{target:"CYP3A4",strength:"weak",evidence:{confidence:"high",sources:["FDA label"]}},{target:"CYP2C9",strength:"weak",evidence:{confidence:"high",sources:["FDA label"]}},{target:"CYP1A2",strength:"weak",evidence:{confidence:"high",sources:["FDA label"]}}],
- ind:[],
- alts:[]},{id:"green_tea_extract",
+{id:"green_tea_extract",
  name:"Green Tea Extract",
  cls:"Supplement",
  brandNames:["EGCG", "Green Tea", "Matcha"],
@@ -2333,12 +2311,12 @@ const DRUG_DB = [
  alts:[]},{id:"curcumin_turmeric",
  name:"Curcumin (Turmeric)",
  cls:"Supplement",
- brandNames:["Turmeric", "Curcumin"],
+ brandNames:["Turmeric", "Curcumin", "Turmeric Extract"],
  hl:8,
  timing:"ANY",
  props:{bleedingRisk:1},
  routes:[{enzyme:"CYP3A4",fraction:0.3,evidence:{confidence:"moderate",sources:["FDA label"]}}],
- inh:[{target:"CYP3A4",strength:"weak",evidence:{confidence:"high",sources:["FDA label"]}},{target:"CYP2D6",strength:"weak",evidence:{confidence:"high",sources:["FDA label"]}},{target:"CYP2C9",strength:"weak",evidence:{confidence:"high",sources:["FDA label"]}}],
+ inh:[{target:"CYP3A4",strength:"weak",evidence:{confidence:"high",sources:["FDA label"]}},{target:"CYP2D6",strength:"weak",evidence:{confidence:"high",sources:["FDA label"]}},{target:"CYP2C9",strength:"weak",evidence:{confidence:"high",sources:["FDA label"]}},{target:"CYP1A2",strength:"weak",evidence:{confidence:"moderate",sources:["literature"]}}],
  ind:[],
  alts:[]},{id:"cranberry",
  name:"Cranberry",
@@ -3506,7 +3484,7 @@ const DRUG_DB = [
     name: "Glecaprevir",
     cls: "HCV NS3/4A Protease Inhibitor",
     brandNames: [
-      "Mavyret Component"
+      "Mavyret glecaprevir component"
     ],
     hl: 6,
     timing: "AM",
@@ -3568,7 +3546,7 @@ const DRUG_DB = [
     name: "Pibrentasvir",
     cls: "HCV NS5A Inhibitor",
     brandNames: [
-      "Mavyret Component"
+      "Mavyret pibrentasvir component"
     ],
     hl: 23,
     timing: "AM",
@@ -4018,7 +3996,7 @@ const DRUG_DB = [
 
 
 // ──────────── ADHD ────────────
-{id:"methylphenidate",name:"Methylphenidate",cls:"ADHD Stimulant",brandNames:["Ritalin","Concerta","Focalin","Quillivant"],hl:3,timing:"AM",props:{cardiovascularRisk:1,appetiteSuppression:2,insomnia:2},routes:[{enzyme:"CES1A1",fraction:0.9,evidence:{confidence:"high",sources:["FDA label","literature"],pmid:["20029219"]}},{enzyme:"MAO",fraction:0.05,evidence:{confidence:"low",sources:["literature"]}}],inh:[{target:"CYP2D6",strength:"weak",evidence:{confidence:"low",sources:["literature"]}}],ind:[],note:"CES1A1 (carboxylesterase 1A1) variant p.Gly143Glu abolishes metabolism → exposure ↑↑. d-methylphenidate (Focalin) is the active enantiomer. Avoid with MAOIs (hypertensive crisis). Minimal CYP2D6 involvement — different from amphetamines.",alts:[{name:"Amphetamine",reason:"Different metabolic route; also ADHD first-line"},{name:"Atomoxetine",reason:"Non-stimulant alternative; CYP2D6-dependent"}]},
+{id:"methylphenidate",name:"Methylphenidate",cls:"ADHD Stimulant",brandNames:["Ritalin","Concerta","Quillivant"],hl:3,timing:"AM",props:{cardiovascularRisk:1,appetiteSuppression:2,insomnia:2},routes:[{enzyme:"CES1A1",fraction:0.9,evidence:{confidence:"high",sources:["FDA label","literature"],pmid:["20029219"]}},{enzyme:"MAO",fraction:0.05,evidence:{confidence:"low",sources:["literature"]}}],inh:[{target:"CYP2D6",strength:"weak",evidence:{confidence:"low",sources:["literature"]}}],ind:[],note:"CES1A1 (carboxylesterase 1A1) variant p.Gly143Glu abolishes metabolism → exposure ↑↑. d-methylphenidate (Focalin) is the active enantiomer. Avoid with MAOIs (hypertensive crisis). Minimal CYP2D6 involvement — different from amphetamines.",alts:[{name:"Amphetamine",reason:"Different metabolic route; also ADHD first-line"},{name:"Atomoxetine",reason:"Non-stimulant alternative; CYP2D6-dependent"}]},
 {id:"guanfacine",name:"Guanfacine",cls:"Alpha-2A Agonist",brandNames:["Intuniv","Tenex"],hl:18,timing:"PM",props:{bradycardiaRisk:1,hypotension:1,sedation:2},routes:[{enzyme:"CYP3A4",fraction:0.7,evidence:{confidence:"high",sources:["FDA label"],pmid:["19572803"]}},{enzyme:"Renal Excretion Unchanged",fraction:0.3,evidence:{confidence:"moderate",sources:["FDA label"]}}],inh:[],ind:[],note:"Alpha-2A agonist for ADHD (Intuniv) and hypertension (Tenex). CYP3A4 inhibitors (ketoconazole, valproate) can raise exposure 2×; inducers (rifampin, carbamazepine) reduce it 70%. QTc monitoring recommended at high doses.",alts:[{name:"Clonidine",reason:"Similar alpha-2 mechanism; more CYP2D6 involved"},{name:"Atomoxetine",reason:"NRI stimulant alternative"}]},
 {id:"clonidine_adhd",name:"Clonidine",cls:"Alpha-2 Agonist",brandNames:["Kapvay","Catapres"],hl:13,timing:"PM",props:{bradycardiaRisk:2,hypotension:2,rebound:3,sedation:3},routes:[{enzyme:"CYP2D6",fraction:0.25,evidence:{confidence:"moderate",sources:["literature"],pmid:["11001891"]}},{enzyme:"Renal Excretion Unchanged",fraction:0.4,evidence:{confidence:"high",sources:["FDA label"]}},{enzyme:"Hepatic Metabolism",fraction:0.35,evidence:{confidence:"moderate",sources:["FDA label"]}}],inh:[],ind:[],note:"Alpha-2 agonist for ADHD, hypertension, opioid withdrawal, and anxiety. Abrupt discontinuation → rebound hypertension (crisis risk). Additive hypotension/bradycardia with beta-blockers. CYP2D6 minor pathway.",alts:[{name:"Guanfacine",reason:"Longer half-life, smoother dosing, less rebound"},{name:"Methylphenidate",reason:"Stimulant alternative"}]},
 // ──────────── MAOIs ────────────
@@ -4189,8 +4167,8 @@ const DRUG_DB = [
 {id:"albendazole",name:"Albendazole",cls:"Anthelmintic",brandNames:["Albenza"],hl:9,timing:"WithFood",props:{hepatotoxicityRisk:2,myelo:1},routes:[{enzyme:"CYP3A4",fraction:0.45,evidence:{confidence:"moderate",sources:["FDA label"]}},{enzyme:"FMO",fraction:0.35,evidence:{confidence:"moderate",sources:["FDA label"]}}],inh:[],ind:[],prodrug:true,note:"Converted to active albendazole sulfoxide; CYP/FMO context and hepatotoxic/myelosuppressive monitoring matter with prolonged therapy.",alts:[{name:"Mebendazole",reason:"Anthelmintic alternative"},{name:"Praziquantel",reason:"Different antiparasitic spectrum"}]},
 {id:"ivermectin",name:"Ivermectin",cls:"Antiparasitic / Macrocyclic Lactone",brandNames:["Stromectol"],hl:18,timing:"EmptyStomach",props:{neurotoxicityRisk:1},routes:[{enzyme:"CYP3A4",fraction:0.75,evidence:{confidence:"moderate",sources:["FDA label"]}},{enzyme:"P-gp Efflux",fraction:0.15,evidence:{confidence:"moderate",sources:["literature"]}}],inh:[],ind:[],note:"CYP3A/P-gp substrate; strong P-gp/CYP3A inhibitors can raise neurotoxicity risk, especially with blood-brain barrier vulnerability.",alts:[{name:"Albendazole",reason:"Anthelmintic alternative for selected infections"},{name:"Praziquantel",reason:"Antiparasitic alternative for trematodes/cestodes"}]},
 {id:"praziquantel",name:"Praziquantel",cls:"Antiparasitic / Anthelmintic",brandNames:["Biltricide"],hl:1.5,timing:"WithFood",props:{sedation:1},routes:[{enzyme:"CYP3A4",fraction:0.8,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"High first-pass CYP3A substrate; rifampin can markedly reduce exposure and should be avoided.",alts:[{name:"Albendazole",reason:"Anthelmintic alternative for selected infections"},{name:"Ivermectin",reason:"Antiparasitic alternative for nematodes"}]},
-{id:"atovaquone",name:"Atovaquone",cls:"Antimalarial / Antiparasitic",brandNames:["Mepron","Malarone component"],hl:70,timing:"WithFood",props:{},routes:[{enzyme:"Biliary Excretion Unchanged",fraction:0.85,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"Highly food-dependent absorption; rifampin/rifabutin and tetracyclines can reduce exposure, risking treatment failure.",alts:[{name:"Artemether/Lumefantrine",reason:"Antimalarial alternative"},{name:"Primaquine",reason:"G6PD-dependent antimalarial context"}]},
-{id:"proguanil",name:"Proguanil",cls:"Antimalarial Prodrug",brandNames:["Paludrine","Malarone component"],hl:14,timing:"WithFood",props:{},routes:[{enzyme:"CYP2C19",fraction:0.55,evidence:{confidence:"moderate",sources:["FDA label"]}},{enzyme:"Renal Excretion",fraction:0.3,evidence:{confidence:"moderate",sources:["FDA label"]}}],inh:[],ind:[],prodrug:true,note:"CYP2C19 converts proguanil to cycloguanil; phenotype can alter active metabolite formation, though atovaquone/proguanil efficacy is multi-factorial.",alts:[{name:"Atovaquone",reason:"Combination partner"},{name:"Doxycycline",reason:"Malaria prophylaxis alternative"}]},
+{id:"atovaquone",name:"Atovaquone",cls:"Antimalarial / Antiparasitic",brandNames:["Mepron","Malarone atovaquone component"],hl:70,timing:"WithFood",props:{},routes:[{enzyme:"Biliary Excretion Unchanged",fraction:0.85,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"Highly food-dependent absorption; rifampin/rifabutin and tetracyclines can reduce exposure, risking treatment failure.",alts:[{name:"Artemether/Lumefantrine",reason:"Antimalarial alternative"},{name:"Primaquine",reason:"G6PD-dependent antimalarial context"}]},
+{id:"proguanil",name:"Proguanil",cls:"Antimalarial Prodrug",brandNames:["Paludrine","Malarone proguanil component"],hl:14,timing:"WithFood",props:{},routes:[{enzyme:"CYP2C19",fraction:0.55,evidence:{confidence:"moderate",sources:["FDA label"]}},{enzyme:"Renal Excretion",fraction:0.3,evidence:{confidence:"moderate",sources:["FDA label"]}}],inh:[],ind:[],prodrug:true,note:"CYP2C19 converts proguanil to cycloguanil; phenotype can alter active metabolite formation, though atovaquone/proguanil efficacy is multi-factorial.",alts:[{name:"Atovaquone",reason:"Combination partner"},{name:"Doxycycline",reason:"Malaria prophylaxis alternative"}]},
 {id:"artemether_lumefantrine",name:"Artemether/Lumefantrine",cls:"Antimalarial Combination",brandNames:["Coartem"],hl:96,timing:"WithFood",props:{qtcRisk:1},routes:[{enzyme:"CYP3A4",fraction:0.7,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"CYP3A substrate antimalarial; strong CYP3A inducers reduce exposure and QT context matters with other QT drugs.",alts:[{name:"Atovaquone",reason:"Antimalarial alternative"},{name:"Mefloquine",reason:"Antimalarial alternative with neuropsychiatric/QT concerns"}]},
 {id:"mefloquine",name:"Mefloquine",cls:"Antimalarial",brandNames:["Lariam"],hl:504,timing:"Weekly",props:{neuropsychiatricRisk:3,qtcRisk:1},routes:[{enzyme:"CYP3A4",fraction:0.75,evidence:{confidence:"moderate",sources:["FDA label"]}}],inh:[],ind:[],note:"Very long half-life antimalarial; CYP3A and additive QT/neuropsychiatric risk drive interactions.",alts:[{name:"Doxycycline",reason:"Malaria prophylaxis alternative"},{name:"Atovaquone",reason:"Antimalarial alternative"}]},
 {id:"belinostat",name:"Belinostat",cls:"HDAC Inhibitor / Oncology",brandNames:["Beleodaq"],hl:1,timing:"Infusion",props:{myelo:3,hepatotoxicityRisk:2},routes:[{enzyme:"UGT1A1",fraction:0.8,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"UGT1A1-metabolized oncology drug; UGT1A1 poor function can increase toxicity risk.",alts:[{name:"Romidepsin",reason:"HDAC inhibitor alternative"},{name:"Vorinostat",reason:"Oral HDAC inhibitor alternative"}]},
@@ -4262,12 +4240,11 @@ const DRUG_SAME_SUBSTANCE_ALIASES = {
   "Ascorbic Acid (Vitamin C)": ["Vitamin C", "Ascorbate"],
   "Aspirin (Low-Dose)": ["Low-dose aspirin", "Baby aspirin", "81 mg aspirin"],
   "St. John's Wort": ["Hypericum", "SJW", "St Johns Wort"],
-  "Turmeric/Curcumin": ["Curcumin", "Turmeric"],
-  "Curcumin (Turmeric)": ["Turmeric", "Curcumin"],
+  "Curcumin (Turmeric)": ["Turmeric", "Curcumin", "Turmeric/Curcumin"],
   "Fish Oil (Omega-3)": ["Omega-3", "EPA", "DHA"],
   "Acetaminophen": ["Paracetamol"],
   "Fluorouracil": ["5-FU", "5 Fluorouracil"],
-  "Trimethoprim-SMX": ["TMP-SMX", "Co-trimoxazole", "Trimethoprim/Sulfamethoxazole"],
+  "Trimethoprim/Sulfamethoxazole": ["TMP-SMX", "Trimethoprim-SMX", "Co-trimoxazole", "Bactrim", "Septra"],
   "Artemether/Lumefantrine": ["Artemether-Lumefantrine"],
   "Tenofovir Alafenamide": ["TAF"],
   "Tenofovir": ["TDF", "Tenofovir disoproxil fumarate"],

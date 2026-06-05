@@ -541,7 +541,7 @@ const GENOTYPE_RISK_EFFECTS = {
         evidenceRefs:["ev_mthfr_c677t_methotrexate_toxicity_meta"],
       },
       {
-        parent:"Trimethoprim-SMX",
+        parent:"Trimethoprim/Sulfamethoxazole",
         phenotype:"additive antifolate context",
         note:"MTHFR C677T does not by itself define trimethoprim-sulfamethoxazole toxicity, but it can be useful context when stacking antifolate drugs with methotrexate.",
         clinicalAction:"avoid or closely monitor high-risk antifolate stacks",

@@ -216,7 +216,7 @@ const batchAuditFixes = window.eval(`(() => {
     dabigatranProdrug: !!drug('Dabigatran')?.prodrug,
     hasGemfibrozilStatin: hasPair('Simvastatin','Gemfibrozil') && hasPair('Rosuvastatin','Gemfibrozil'),
     hasRifampinDoacs: hasPair('Dabigatran','Rifampin') && hasPair('Apixaban','Rifampin') && hasPair('Rivaroxaban','Rifampin'),
-    hasTransporterPairs: hasPair('Digoxin', "St. John's Wort") && hasPair('Metformin','Trimethoprim-SMX') && hasPair('Methotrexate','Probenecid'),
+    hasTransporterPairs: hasPair('Digoxin', "St. John's Wort") && hasPair('Metformin','Trimethoprim/Sulfamethoxazole') && hasPair('Methotrexate','Probenecid'),
   };
 })()`);
 assert(!batchAuditFixes.amphetamineBrands.includes('Vyvanse') && !batchAuditFixes.amphetamineBrands.includes('Elvanse'), 'Vyvanse/Elvanse should not be Amphetamine brands');

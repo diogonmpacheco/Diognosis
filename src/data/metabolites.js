@@ -824,7 +824,7 @@ const METAB = {
   {n:"Amoxicillin (unchanged, renal)",e:"None",a:"active",p:60,t:1.2,note:"60% excreted unchanged in urine"},
   {n:"Diketopiperazine",e:"Spontaneous",a:"inactive",p:5,note:"Intramolecular cyclization"}
 ],
-"Trimethoprim-SMX":[
+"Trimethoprim/Sulfamethoxazole":[
   {n:"TMP oxide metabolites",e:"CYP2C9/3A4",a:"inactive",p:20,t:10,note:"Trimethoprim: 80% renal unchanged"},
   {n:"N4-acetyl-sulfamethoxazole",e:"NAT2",a:"inactive",p:40,t:10,note:"Major SMX metabolite; NAT2 acetylation (slow acetylators: toxicity↑)"},
   {n:"SMX hydroxylamine",e:"CYP2C9",a:"toxic",p:5,note:"Reactive metabolite → hypersensitivity reactions; detoxified by glutathione"}
@@ -1223,15 +1223,10 @@ const METAB = {
   {n:"Furanocoumarins (bergamottin, DHB)",e:"Irreversible CYP3A4 binding",a:"active",p:0,note:"Mechanism-based inactivation ('suicide inhibition') of intestinal CYP3A4"},
   {n:"Naringin → Naringenin",e:"Gut flora",a:"weak",p:50,note:"Flavanone with weak CYP3A4 inhibition; also inhibits OATP1A2 uptake"}
 ],
-"Turmeric/Curcumin":[
-  {n:"Curcumin glucuronide",e:"UGT1A1/1A8",a:"weak",p:40,note:"Major Phase II metabolite; very low oral bioavailability (<1%)"},
-  {n:"Curcumin sulfate",e:"SULT1A1",a:"weak",p:25,note:"Sulfation conjugate"},
-  {n:"Tetrahydrocurcumin",e:"Gut reductases",a:"active",p:20,note:"Reduced form with antioxidant activity; may inhibit CYP2C9"}
-],
 "Curcumin (Turmeric)":[
-  {n:"Curcumin glucuronide",e:"UGT1A1/1A8",a:"weak",p:40,note:"Major conjugate; explains poor bioavailability"},
+  {n:"Curcumin glucuronide",e:"UGT1A1/1A8",a:"weak",p:40,note:"Major Phase II conjugate; explains very low oral bioavailability (<1%)"},
   {n:"Curcumin sulfate",e:"SULT1A1",a:"weak",p:25,note:"Sulfation"},
-  {n:"Tetrahydrocurcumin",e:"Gut reductases",a:"active",p:20,note:"Reduced metabolite with antioxidant properties"}
+  {n:"Tetrahydrocurcumin",e:"Gut reductases",a:"active",p:20,note:"Reduced metabolite with antioxidant properties; may inhibit CYP2C9"}
 ],
 "Green Tea Extract":[
   {n:"EGCG glucuronide",e:"UGT1A1/1A8",a:"weak",p:30,note:"Major catechin conjugate"},
@@ -4401,7 +4396,7 @@ const SIDER_PD = {
   "Tramadol":{seizure:1},
   "Trazodone":{hypoT:1},
   "Triazolam":{sed:1},
-  "Trimethoprim-SMX":{hyperK:1,photoSens:1,myelo:1},
+  "Trimethoprim/Sulfamethoxazole":{hyperK:1,photoSens:1,myelo:1},
   "Valerian":{sed:1},
   "Valproic Acid":{hepato:2,hypoNa:1,myelo:1},
   "Vardenafil":{hypoT:1},

@@ -665,7 +665,7 @@
   },
   {
     "drug1": "Methotrexate",
-    "drug2": "Trimethoprim-SMX",
+    "drug2": "Trimethoprim/Sulfamethoxazole",
     "category": "hematologic",
     "oldSeverity": "severe",
     "recommendedSeverity": "severe",
@@ -1010,7 +1010,7 @@
   },
   {
     "drug1": "Warfarin",
-    "drug2": "Trimethoprim-SMX",
+    "drug2": "Trimethoprim/Sulfamethoxazole",
     "category": "pk",
     "oldSeverity": "severe",
     "recommendedSeverity": "severe",
@@ -1270,7 +1270,7 @@
   },
   {
     "drug1": "Spironolactone",
-    "drug2": "Trimethoprim-SMX",
+    "drug2": "Trimethoprim/Sulfamethoxazole",
     "category": "hyperK",
     "oldSeverity": "severe",
     "recommendedSeverity": "severe",
@@ -1296,7 +1296,7 @@
   },
   {
     "drug1": "Lisinopril",
-    "drug2": "Trimethoprim-SMX",
+    "drug2": "Trimethoprim/Sulfamethoxazole",
     "category": "hyperK",
     "oldSeverity": "moderate",
     "recommendedSeverity": "moderate",
@@ -2296,7 +2296,7 @@
   },
   {
     "drug1": "Metformin",
-    "drug2": "Trimethoprim-SMX",
+    "drug2": "Trimethoprim/Sulfamethoxazole",
     "category": "transporter",
     "oldSeverity": "moderate",
     "recommendedSeverity": "moderate",
@@ -4170,7 +4170,7 @@
   },
   {
     "drug1": "Dapsone",
-    "drug2": "Trimethoprim-SMX",
+    "drug2": "Trimethoprim/Sulfamethoxazole",
     "category": "toxicity",
     "oldSeverity": "moderate",
     "recommendedSeverity": "moderate",
@@ -6043,7 +6043,7 @@
   },
   {
     "drug1": "Dofetilide",
-    "drug2": "Trimethoprim-SMX",
+    "drug2": "Trimethoprim/Sulfamethoxazole",
     "category": "renal_transport",
     "oldSeverity": "severe",
     "recommendedSeverity": "severe",

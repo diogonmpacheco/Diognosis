@@ -237,7 +237,7 @@ const requiredDdiPairs = [
   ['Rivaroxaban','Rifampin'],
   ['Digoxin',"St. John's Wort"],
   ['Digoxin','Rifampin'],
-  ['Metformin','Trimethoprim-SMX'],
+  ['Metformin','Trimethoprim/Sulfamethoxazole'],
   ['Methotrexate','Probenecid'],
   ['Rosuvastatin','Eltrombopag'],
 ];
