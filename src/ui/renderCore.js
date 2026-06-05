@@ -649,6 +649,7 @@ function renderAll() {
     renderEvidenceExplorer();       // Phase 4: study browser
     renderQualityDashboard();       // Database quality / curation status
     renderGenotypePanel();          // Phase 5 #2: genotype-stratified evidence
+    renderMechanisticPredictions(); // Experimental model predictions
     renderPhenotypeAccumulation();  // Phase 5 #6: serotonin/QTc/anticholinergic
     renderPKSimulation();           // Phase 5 #1: 1-compartment PK curves
     renderScenarioComparison();     // Dose + genotype scenario comparison
@@ -668,6 +669,7 @@ function renderAll() {
     document.getElementById("evidenceSection").style.display = "none";
     document.getElementById("qualitySection").style.display = "none";
     document.getElementById("genotypeSection").style.display = "none";
+    document.getElementById("mechanisticSection").style.display = "none";
     document.getElementById("phenoAccumSection").style.display = "none";
     document.getElementById("pkSimSection").style.display = "none";
     document.getElementById("scenarioSection").style.display = "none";

@@ -605,8 +605,8 @@ const METAB = {
   {n:"Di-desethylamiodarone",e:"CYP3A4",a:"inactive",p:10}
 ],
 "Tacrolimus":[
-  {n:"13-O-Desmethyltacrolimus",e:"CYP3A4",a:"active",p:40,note:"~10% immunosuppressive activity"},
-  {n:"31-O-Desmethyltacrolimus",e:"CYP3A5",a:"active",p:20},
+  {n:"13-O-Desmethyltacrolimus",e:"CYP3A4",a:"active",p:40,note:"~10% immunosuppressive activity; transplant troughs are shaped by CYP3A4/CYP3A5 plus P-gp context and donor/recipient genetics",evidenceRefs:["ev_tacrolimus_cyp3a5_cpic","ev_tacrolimus_liver_multigene_ladd2025"]},
+  {n:"31-O-Desmethyltacrolimus",e:"CYP3A5",a:"active",p:20,evidenceRefs:["ev_tacrolimus_cyp3a5_cpic","ev_tacrolimus_renal_dose_model_srinivas2023"]},
   {n:"15-O-Desmethyltacrolimus",e:"CYP3A4",a:"inactive",p:10}
 ],
 "Cyclosporine":[
@@ -1055,9 +1055,9 @@ const METAB = {
   {n:"Budesonide (systemic, after first pass)",e:"CYP3A4",a:"active",p:10,note:"~90% first-pass metabolism → low systemic bioavailability"}
 ],
 "Mycophenolate":[
-  {n:"Mycophenolic acid (MPA)",e:"Esterases",a:"active",p:95,t:17,note:"Active metabolite from mycophenolate mofetil (prodrug)",evidenceRefs:["ev_mycophenolate_enterohepatic_label"]},
+  {n:"Mycophenolic acid (MPA)",e:"Esterases",a:"active",p:95,t:17,note:"Active metabolite from mycophenolate mofetil (prodrug); ABCG2 c.421C>A is an exposure-review flag, not a standalone dose rule",evidenceRefs:["ev_mycophenolate_enterohepatic_label","ev_mycophenolate_abcg2_boribilui2022"]},
   {n:"MPA glucuronide (MPAG)",e:"UGT1A9",a:"inactive",p:85,note:"Major elimination; undergoes enterohepatic recycling",evidenceRefs:["ev_mycophenolate_enterohepatic_label"]},
-  {n:"Acyl-MPAG",e:"UGT2B7",a:"toxic",p:10,note:"Reactive acyl glucuronide → GI toxicity, possible leukopenia"}
+  {n:"Acyl-MPAG",e:"UGT2B7",a:"toxic",p:10,note:"Reactive acyl glucuronide linked to GI/toxicity context; UGT2B7 variant signals need transplant-pharmacy review",evidenceRefs:["ev_mycophenolate_ugt2b7_ting2009"]}
 ],
 "Sirolimus":[
   {n:"Hydroxy-sirolimus",e:"CYP3A4",a:"weak",p:30,t:62,note:"7 major metabolites identified; all weak immunosuppressive activity"},
@@ -1125,7 +1125,7 @@ const METAB = {
 "Ondansetron":[
   {n:"7-Hydroxy-ondansetron",e:"CYP3A4",a:"inactive",p:30,t:4,note:"Hydroxylation and subsequent glucuronidation"},
   {n:"8-Hydroxy-ondansetron",e:"CYP1A2",a:"inactive",p:20,note:"CYP1A2 route; induced by smoking"},
-  {n:"Ondansetron glucuronide",e:"UGT",a:"inactive",p:20,note:"Direct glucuronidation"}
+  {n:"Ondansetron glucuronide",e:"UGT",a:"inactive",p:20,note:"Direct glucuronidation; CYP2D6 ultrarapid status is mainly a response/reduced-exposure context",evidenceRefs:["ev_ondansetron_cyp2d6_cpic2017"]}
 ],
 "Metoclopramide":[
   {n:"Metoclopramide sulfate",e:"SULT",a:"inactive",p:20,t:5,note:"Sulfation conjugate"},
@@ -1164,8 +1164,8 @@ const METAB = {
   {n:"HCQ (unchanged, renal)",e:"None",a:"active",p:25,t:40,note:"Very long t½ (40 days); takes months to reach steady state"}
 ],
 "Methotrexate":[
-  {n:"7-Hydroxy-methotrexate",e:"Aldehyde oxidase",a:"weak",p:30,t:8,note:"Hepatic; less folate antagonism but nephrotoxic at high doses"},
-  {n:"MTX polyglutamates (intracellular)",e:"FPGS",a:"active",p:0,note:"Retained intracellularly; responsible for sustained immunosuppression"},
+  {n:"7-Hydroxy-methotrexate",e:"Aldehyde oxidase",a:"weak",p:30,t:8,note:"Hepatic; less folate antagonism but nephrotoxic at high doses",evidenceRefs:["ev_methotrexate_hdmtx_pgpk_taylor2021"]},
+  {n:"MTX polyglutamates (intracellular)",e:"FPGS",a:"active",p:0,note:"Retained intracellularly; responsible for sustained immunosuppression; MTHFR/transporter signals are context flags, not standalone dose rules",evidenceRefs:["ev_mthfr_c677t_methotrexate_toxicity_meta","ev_methotrexate_pgtox_meta_song2021"]},
   {n:"DAMPA (4-amino-4-deoxy-N10-methylpteroic acid)",e:"Gut flora",a:"inactive",p:5,note:"Bacterial cleavage product"},
   {n:"Methotrexate (unchanged, renal)",e:"None",a:"active",p:60,t:8,note:"80-90% renal excretion unchanged — requires adequate GFR"}
 ],
@@ -1494,14 +1494,15 @@ const METAB = {
     a:"toxic",
     p:20,
     note:"Oxidative metabolite context for erythrocyte oxidative stress; clinically amplified in G6PD deficiency. Activation is less fully defined than primaquine.",
-    evidenceRefs:["ev_tafenoquine_g6pd_fda"]
+    evidenceRefs:["ev_tafenoquine_g6pd_fda","ev_tafenoquine_relapse_lacerda2019"]
   },
   {
     n:"Tafenoquine (unchanged)",
     e:"Hepatic/biliary",
     a:"active",
     p:80,
-    note:"Long-circulating parent drug with prolonged terminal half-life, so oxidative exposure cannot be rapidly stopped after dosing."
+    note:"Long-circulating parent drug with prolonged terminal half-life, so oxidative exposure cannot be rapidly stopped after dosing.",
+    evidenceRefs:["ev_tafenoquine_relapse_lacerda2019"]
   }
 ],
 "Chloroquine":[
@@ -3676,7 +3677,7 @@ const METAB = {
     a:"inactive",
     p:60,
     note:"Major metabolite. Oxidative hemolysis risk in G6PD deficiency is not fully captured by this inactive metabolite alone.",
-    evidenceRefs:["ev_g6pd_oxidative_antimalarials"]
+    evidenceRefs:["ev_g6pd_oxidative_antimalarials","ev_primaquine_g6pd_safety_bastiaens2018"]
   },
   {
     n:"Primaquine hydroxylamine / quinone-imine metabolites",
@@ -3684,7 +3685,7 @@ const METAB = {
     a:"toxic",
     p:10,
     note:"Reactive oxidative metabolite family implicated in hemolysis/methemoglobinemia risk, especially in G6PD deficiency.",
-    evidenceRefs:["ev_g6pd_oxidative_antimalarials"]
+    evidenceRefs:["ev_g6pd_oxidative_antimalarials","ev_primaquine_g6pd_safety_bastiaens2018","ev_tafenoquine_relapse_lacerda2019"]
   }
 ],
 "Famciclovir":[

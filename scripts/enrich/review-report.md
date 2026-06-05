@@ -1420,3 +1420,284 @@ Skipped/rejected:
 - relation_mismatch: Pharmacometabolomics Detects Unreported Clopidogrel Metabolites in the Urine of Kidney and Liver Transplant Recipients.
 - relation_mismatch: Clinical Pharmacogenetics Implementation Consortium (CPIC) Guidelines for <i>CYP2C19</i> and Voriconazole Therapy
 - relation_mismatch: Pharmacogenomics of Drug Metabolizing Enzymes and Transporters: Relevance to Precision Medicine
+## dapsone:CYP2C9_CYP3A_N_hydroxylamine_G6PD
+Run: 2026-06-05T09:39:51.541Z
+Query: `dapsone hydroxylamine CYP2C9 CYP3A N-hydroxylation G6PD methemoglobinemia hemolysis pharmacokinetics`
+Added drafts: 0
+Skipped/rejected: 3
+Query memory overlap: 0%
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- relation_mismatch: Synthetic Pharmacotherapy for Systemic Lupus Erythematosus: Potential Mechanisms of Action, Efficacy, and Safety.
+- relation_mismatch: Clinical Applications and Methemoglobinemia Induced by Dapsone
+- relation_mismatch: Alterações oxidativas e inflamatórias induzidas pela dapsona no sangue e no córtex pré-frontal de camundongos: efeitos do ácido alfa-lipóico
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=dapsone+hydroxylamine+CYP2C9+CYP3A+N-hydroxylation+G6PD+methemoglobinemia+hemolysis+pharmacokinetics&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## primaquine:CYP2D6_G6PD_active_metabolites
+Run: 2026-06-05T09:39:53.868Z
+Query: `primaquine CYP2D6 active metabolites G6PD hemolysis pharmacokinetics relapse radical cure`
+Added drafts: 4
+Skipped/rejected: 8
+Query memory overlap: 0%
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+| draft_primaquine_cyp2d6_g6pd_active_metabolites_lacerda2019_30650322 | clinical_pk | PMID:30650322 | 95 | new PMID; new DOI; new title; new public metric sentences | search:openalex | [OA](https://www.nejm.org/doi/pdf/10.1056/NEJMoa1710775?articleTools=true) bronze | Public abstract/metadata extraction for primaquine:CYP2D6_G6PD_active_metabolites found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_primaquine_cyp2d6_g6pd_active_metabolites_habtamu2022_36522671 | clinical_pk | PMID:36522671 | 55 | new PMID; new DOI; new title | search:openalex | [OA](https://tdtmvjournal.biomedcentral.com/counter/pdf/10.1186/s40794-022-00185-3) gold | Citation appears relevant to primaquine:CYP2D6_G6PD_active_metabolites, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_primaquine_cyp2d6_g6pd_active_metabolites_hounkpatin2019_30881061 | observational | PMID:30881061 | 80 | new PMID; new DOI; new title; new public metric sentences | search:openalex | [OA](https://www.dovepress.com/getfile.php?fileID=48436) gold | Citation appears relevant to primaquine:CYP2D6_G6PD_active_metabolites, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_primaquine_cyp2d6_g6pd_active_metabolites_bastiaens2018_29324864 | observational | PMID:29324864 | 95 | new PMID; new DOI; new title; new public metric sentences | search:openalex | [OA](https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0190272&type=printable) gold | Public abstract/metadata extraction for primaquine:CYP2D6_G6PD_active_metabolites found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+
+Skipped/rejected:
+- relation_mismatch: Mechanistic perspectives on antimalarial agents: from FDA-approved drugs to next-generation candidates.
+- relation_mismatch: Pharmacogenetics of the Treatment of Neglected Diseases.
+- relation_mismatch: Plasmodium vivax: the potential obstacles it presents to malaria elimination and eradication.
+- relation_mismatch: Effects of Host Genetic Polymorphisms on the Efficacy of the Radical Cure Malaria Drug Primaquine.
+- relation_mismatch: Monitoring Plasmodium vivax resistance to antimalarials: Persisting challenges and future directions.
+- relation_mismatch: Determinants of Primaquine and Carboxyprimaquine Exposures in Children and Adults with Plasmodium vivax Malaria.
+- relation_mismatch: The prevention and treatment of Plasmodium vivax malaria
+- relation_mismatch: Tafenoquine and its potential in the treatment and relapse prevention of &lt;em&gt;Plasmodium vivax&lt;/em&gt; malaria: the evidence to date
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=primaquine+CYP2D6+active+metabolites+G6PD+hemolysis+pharmacokinetics+relapse+radical+cure&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## tacrolimus:CYP3A5_ABCB1_dose_trough
+Run: 2026-06-05T09:39:57.747Z
+Query: `tacrolimus CYP3A5 ABCB1 genotype trough concentration dose requirement transplant pharmacokinetics`
+Added drafts: 20
+Skipped/rejected: 4
+Query memory overlap: 0%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_ladd2025_40604035 | clinical_pk | PMID:40604035 | 95 | new PMID; new DOI; new title; new public metric sentences | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_kwakyi2024_39080672 | clinical_pk | PMID:39080672 | 80 | new PMID; new DOI; new title; new public metric sentences | search:pubmed | paywalled/unknown | Citation appears relevant to tacrolimus:CYP3A5_ABCB1_dose_trough, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_srinivas2023_34916931 | clinical_pk | PMID:34916931 | 90 | new PMID; new DOI; new title; new public metric sentences | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_chen2022_34089513 | clinical_pk | PMID:34089513 | 80 | new PMID; new DOI; new title; new public metric sentence | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_jing2021_33768546 | guideline | PMID:33768546 | 95 | new PMID; new DOI; new title; new public metric sentences | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_muller2020_32657689 | clinical_pk | PMID:32657689 | 95 | new PMID; new DOI; new title; new public metric sentences | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_wuy2026_41660740 | observational | PMID:41660740 | 55 | new PMID; new DOI; new title | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12884575/) oa | Citation appears relevant to tacrolimus:CYP3A5_ABCB1_dose_trough, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_xajilramosly2025_40432883 | clinical_pk | PMID:40432883 | 55 | new PMID; new DOI; new title | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12107630/) oa | Citation appears relevant to tacrolimus:CYP3A5_ABCB1_dose_trough, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_yangq2024_39290868 | observational | PMID:39290868 | 55 | new PMID; new DOI; new title | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC11405193/) oa | Citation appears relevant to tacrolimus:CYP3A5_ABCB1_dose_trough, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_haufroid2004_15167702 | clinical_pk | PMID:15167702 | 95 | new PMID; new DOI; new title; new public metric sentences | search:openalex | [OA](https://doi.org/10.1097/00008571-200403000-00002) closed | Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found approximately 1.6-fold change and 3 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_wang2006_16628701 | clinical_pk | PMID:16628701 | 95 | new PMID; new DOI; new title; new public metric sentences | search:openalex | [OA](https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/lt.20709) bronze | Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_haufroid2006_17049058 | guideline | PMID:17049058 | 55 | new PMID; new DOI; new title | search:openalex | [OA](http://www.amjtransplant.org/article/S1600613522028805/pdf) bronze | Citation appears relevant to tacrolimus:CYP3A5_ABCB1_dose_trough, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_gijsen2011_21930396 | observational | PMID:21930396 | 55 | new PMID; new DOI; new title | search:openalex | [OA](http://hdl.handle.net/1765/34131) green | Citation appears relevant to tacrolimus:CYP3A5_ABCB1_dose_trough, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_li2015_26543771 | clinical_pk | PMID:26543771 | 95 | new PMID; new DOI; new title; new public metric sentences | search:openalex | [OA](https://springerplus.springeropen.com/counter/pdf/10.1186/s40064-015-1425-5) diamond | Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_jrower2026_41727590 | clinical_pk | PMID:41727590 | 55 | new PMID; new DOI; new title | search:semanticscholar | paywalled/unknown | Citation appears relevant to tacrolimus:CYP3A5_ABCB1_dose_trough, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_vgoel2025_null | rct | DOI:10.1093/ndt/gfaf116.114 | 70 | new DOI; new title; new public metric sentences; extractable quantitative signal | search:semanticscholar | paywalled/unknown | Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 3 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_jeverton2021_33398393 | observational | PMID:33398393 | 55 | new PMID; new DOI; new title | search:semanticscholar | paywalled/unknown | Citation appears relevant to tacrolimus:CYP3A5_ABCB1_dose_trough, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_cwheeler2024_39041443 | clinical_pk | PMID:39041443 | 95 | new PMID; new DOI; new title; new public metric sentences | search:semanticscholar | paywalled/unknown | Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_evalatorremoreno2024_38674430 | clinical_pk | PMID:38674430 | 95 | new PMID; new DOI; new title; new public metric sentences | search:semanticscholar | [OA](https://www.mdpi.com/2073-4425/15/4/497/pdf?version=1713262046) oa | Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 3 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_tacrolimus_cyp3a5_abcb1_dose_trough_danielnmarco2024_38794124 | clinical_pk | PMID:38794124 | 95 | new PMID; new DOI; new title; new public metric sentences | search:semanticscholar | [OA](https://www.mdpi.com/1424-8247/17/5/553/pdf?version=1714044350) oa | Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+
+Skipped/rejected:
+- already_in_drafts: A descriptive study of the single-nucleotide polymorphisms known to affect the Tacrolimus trough concentration per dose, among a population of kidney failure patients in a tertiary hospital in Ghana.
+- relation_mismatch: Donor and recipient genetic variants in drug metabolizing enzymes and transporters affect early tacrolimus pharmacokinetics after liver transplantation.
+- relation_mismatch: Artificial Intelligence and Predictive Modelling for Precision Dosing of Immunosuppressants in Kidney Transplantation.
+- relation_mismatch: Effect of CYP3A and ABCB1 Single Nucleotide Polymorphisms on the Pharmacokinetics and Pharmacodynamics of Calcineurin Inhibitors: Part I
+## mycophenolic_acid:UGT1A9_UGT2B7_ABCG2_MPA_glucuronide
+Run: 2026-06-05T09:40:00.127Z
+Query: `mycophenolic acid UGT1A9 UGT2B7 ABCG2 MPAG AcMPAG pharmacokinetics enterohepatic recirculation genotype`
+Added drafts: 3
+Skipped/rejected: 7
+Query memory overlap: 0%
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+| draft_mycophenolic_acid_ugt1a9_ugt2b7_abcg2_mpa_glucuronide_boribilui2022_null | observational | DOI:10.21203/rs.3.rs-2247771/v1 | 70 | new DOI; new title; new public metric sentences; extractable quantitative signal | search:openalex | [OA](https://www.researchsquare.com/article/rs-2247771/latest.pdf) green | Public abstract/metadata extraction for mycophenolic_acid:UGT1A9_UGT2B7_ABCG2_MPA_glucuronide found 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_mycophenolic_acid_ugt1a9_ugt2b7_abcg2_mpa_glucuronide_ting2009_null | clinical_pk | DOI:10.14288/1.0067071 | 70 | new DOI; new title; new public metric sentences; extractable quantitative signal | search:openalex | [OA](http://hdl.handle.net/2429/6081) green | Public abstract/metadata extraction for mycophenolic_acid:UGT1A9_UGT2B7_ABCG2_MPA_glucuronide found approximately 3-fold change and 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_mycophenolic_acid_ugt1a9_ugt2b7_abcg2_mpa_glucuronide_kegro2023_null | clinical_pk | DOI:10.22541/au.169224396.69995901/v1 | 70 | new DOI; new title; new public metric sentences; extractable quantitative signal | search:openalex | [OA](https://www.authorea.com/doi/pdf/10.22541/au.169224396.69995901) gold | Public abstract/metadata extraction for mycophenolic_acid:UGT1A9_UGT2B7_ABCG2_MPA_glucuronide found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+
+Skipped/rejected:
+- already_in_drafts: Biopharmaceutical Factors Involved in the Disposition of Mycophenolic Acid: A Comprehensive Review of ADME Properties and Their Potential Impact on Mycophenolic Acid Plasma Exposure.
+- already_in_drafts: Mycophenolic acid AUC in Thai kidney transplant recipients receiving low dose mycophenolate and its association with UGT2B7 polymorphisms.
+- already_in_drafts: Mycophenolic acid AUC in Thai kidney transplant recipients receiving low dose mycophenolate and its association with UGT2B7 polymorphisms
+- already_in_drafts: Pharmacokinetics of free and total mycophenolic acid in paediatric and adult renal transplant recipients: Exploratory analysis of the effects of clinical factors and gene variants
+- low_novelty score=20: Mycophenolic acid pharmacogenomics in kidney transplantation (new title; new public metric sentence)
+- relation_mismatch: Pharmacogenetics of Mycophenolic Acid in Patients of African Descent: Underrepresentation of African Data.
+- relation_mismatch: Influence of genetic polymorphisms on pharmacokinetics and treatment response of mycophenolic acid: a scoping review.
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=mycophenolic+acid+UGT1A9+UGT2B7+ABCG2+MPAG+AcMPAG+pharmacokinetics+enterohepatic+recirculation+genotype&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## methotrexate:SLCO1B1_ABCC2_MTHFR_polyglutamate
+Run: 2026-06-05T09:40:02.911Z
+Query: `methotrexate SLCO1B1 ABCC2 MTHFR polyglutamate pharmacokinetics toxicity genotype clearance`
+Added drafts: 3
+Skipped/rejected: 9
+Query memory overlap: 0%
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+| draft_methotrexate_slco1b1_abcc2_mthfr_polyglutamate_wangp2026_41554112 | observational | PMID:41554112 | 55 | new PMID; new DOI; new title | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC13021033/) oa | Citation appears relevant to methotrexate:SLCO1B1_ABCC2_MTHFR_polyglutamate, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_methotrexate_slco1b1_abcc2_mthfr_polyglutamate_taylor2021_34200242 | guideline | PMID:34200242 | 80 | new PMID; new DOI; new title; new public metric sentences | search:openalex | [OA](https://www.mdpi.com/2072-6694/13/11/2837/pdf?version=1623059624) gold | Citation appears relevant to methotrexate:SLCO1B1_ABCC2_MTHFR_polyglutamate, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_methotrexate_slco1b1_abcc2_mthfr_polyglutamate_song2021_34744734 | guideline | PMID:34744734 | 95 | new PMID; new DOI; new title; new public metric sentences | search:openalex | [OA](https://www.frontiersin.org/articles/10.3389/fphar.2021.757464/pdf) gold | Public abstract/metadata extraction for methotrexate:SLCO1B1_ABCC2_MTHFR_polyglutamate found about 95% change. Requires human review before promotion. | moderate | yes | no |
+
+Skipped/rejected:
+- relation_mismatch: Impact of Pharmacogenetics on High-Dose Methotrexate Toxicity in Pediatric Oncology.
+- relation_mismatch: Gene polymorphisms associated with immunosuppressant adverse effects in systemic lupus erythematosus: a narrative review.
+- relation_mismatch: Integration of genomics, clinical characteristics and baseline biological profiles to predict the risk of liver injury induced by high-dose methotrexate.
+- relation_mismatch: Emerging mechanistic trends and clinical efficacy for methotrexate: Applications to inflammatory bowel disease.
+- relation_mismatch: Effects of genetic polymorphisms on methotrexate levels and toxicity in Chinese patients with acute lymphoblastic leukemia.
+- relation_mismatch: Genotypes Affecting the Pharmacokinetics of Anticancer Drugs
+- relation_mismatch: Pharmacogenomics in Pediatric Oncology: Review of Gene—Drug Associations for Clinical Use
+- relation_mismatch: Towards Personalized Medicine in Psoriasis: Current Progress
+- relation_mismatch: Characterization of pharmacogenetic markers related to Acute Lymphoblastic Leukemia toxicity in Amazonian native Americans population
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=methotrexate+SLCO1B1+ABCC2+MTHFR+polyglutamate+pharmacokinetics+toxicity+genotype+clearance&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## azathioprine:TPMT_NUDT15_6TGN_6MMP
+Run: 2026-06-05T09:40:05.108Z
+Query: `azathioprine TPMT NUDT15 6-thioguanine nucleotide 6-MMP metabolite myelosuppression pharmacokinetics`
+Added drafts: 2
+Skipped/rejected: 10
+Query memory overlap: 0%
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+| draft_azathioprine_tpmt_nudt15_6tgn_6mmp_sharma2022_36262539 | guideline | PMID:36262539 | 80 | new PMID; new DOI; new title; new public metric sentences | search:openalex | [OA](https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/jgh3.12829) gold | Citation appears relevant to azathioprine:TPMT_NUDT15_6TGN_6MMP, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_azathioprine_tpmt_nudt15_6tgn_6mmp_lim2018_30349479 | clinical_pk | PMID:30349479 | 65 | new PMID; new DOI; new title; new public metric sentence | search:openalex | [OA](https://www.frontiersin.org/articles/10.3389/fphar.2018.01107/pdf) gold | Citation appears relevant to azathioprine:TPMT_NUDT15_6TGN_6MMP, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped/rejected:
+- relation_mismatch: Pharmacogenomics of Thiopurine Drugs: A Bench-To-Bedside Success Story in Thailand.
+- relation_mismatch: From Genotype to Functional Risk: A Multi-Omic Approach to Predicting Thiopurine and Methotrexate Co-Therapy-Induced Liver Injury.
+- relation_mismatch: Pharmacogenetic Analysis of TPMT and NUDT15 in a European Pediatric Cohort with IBD and Autoimmune Diseases: Frequency Data and Clinical Relevance.
+- relation_mismatch: Development and Validation of a Sensitive Liquid Chromatography-Tandem Mass Spectrometry (LC-MS/MS) Method for the Simultaneous Quantification of Thiopurine Nucleotides in Human Red Blood Cells.
+- relation_mismatch: Gene polymorphisms associated with immunosuppressant adverse effects in systemic lupus erythematosus: a narrative review.
+- relation_mismatch: Beyond rheumatology: Reconsidering methotrexate for Crohn's disease in the biologic era.
+- relation_mismatch: The Medical Management of Paediatric Crohn’s Disease: an ECCO-ESPGHAN Guideline Update
+- relation_mismatch: Pharmacogenetics of thiopurines for inflammatory bowel disease in East Asia: prospects for clinical application of NUDT15 genotyping
+- relation_mismatch: Systematic review with meta‐analysis: risk factors for thiopurine‐induced leukopenia in IBD
+- relation_mismatch: The continuous rediscovery and the benefit–risk ratio of thioguanine, a comprehensive review
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=azathioprine+TPMT+NUDT15+6-thioguanine+nucleotide+6-MMP+metabolite+myelosuppression+pharmacokinetics&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## cisplatin:OCT2_MATE1_nephrotoxicity
+Run: 2026-06-05T09:40:08.139Z
+Query: `cisplatin OCT2 MATE1 SLC22A2 SLC47A1 genotype nephrotoxicity pharmacokinetics transporter`
+Added drafts: 1
+Skipped/rejected: 11
+Query memory overlap: 0%
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+| draft_cisplatin_oct2_mate1_nephrotoxicity_xia2014_24641901 | observational | PMID:24641901 | 80 | new PMID; new DOI; new title; new public metric sentences | search:openalex | [OA](http://ajp.amjpathol.org/article/S000294401400100X/pdf) hybrid | Citation appears relevant to cisplatin:OCT2_MATE1_nephrotoxicity, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped/rejected:
+- relation_mismatch: Influence of OCT2 gene variants on metformin efficacy in type 2 diabetes: insights into pharmacogenomics and drug interactions.
+- relation_mismatch: The role of genetic variants in the prediction of hearing loss due to cisplatin chemoradiotherapy.
+- relation_mismatch: Impact of genetic variants in the solute carrier (<i>SLC</i>) genes encoding drug uptake transporters on the response to anticancer chemotherapy.
+- relation_mismatch: <i>In Vitro</i> and <i>In Vivo</i> Inhibition of MATE1 by Tyrosine Kinase Inhibitors.
+- relation_mismatch: The Association Between Genetic Polymorphisms of Transporter Genes and Prognosis of Platinum-Based Chemotherapy in Lung Cancer Patients.
+- relation_mismatch: Solute Carrier Transportome in Chemotherapy-Induced Adverse Drug Reactions.
+- relation_mismatch: Xenobiotic, Bile Acid, and Cholesterol Transporters: Function and Regulation
+- relation_mismatch: Importance of the multidrug and toxin extrusion MATE/SLC47A family to pharmacokinetics, pharmacodynamics/toxicodynamics and pharmacogenomics
+- relation_mismatch: Organic Cation Transporter OCTs (SLC22) and MATEs (SLC47) in the Human Kidney
+- relation_mismatch: Proton Pump Inhibitors Inhibit Metformin Uptake by Organic Cation Transporters (OCTs)
+- relation_mismatch: Abundance of Drug Transporters in the Human Kidney Cortex as Quantified by Quantitative Targeted Proteomics
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=cisplatin+OCT2+MATE1+SLC22A2+SLC47A1+genotype+nephrotoxicity+pharmacokinetics+transporter&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## ondansetron:CYP2D6_QT_response
+Run: 2026-06-05T09:40:10.841Z
+Query: `ondansetron CYP2D6 ultrarapid poor metabolizer response pharmacokinetics QT genotype antiemetic`
+Added drafts: 1
+Skipped/rejected: 11
+Query memory overlap: 0%
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+| draft_ondansetron_cyp2d6_qt_response_bellgc2017_28002639 | guideline | PMID:28002639 | 55 | new PMID; new DOI; new title | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC5479760/) | Citation appears relevant to ondansetron:CYP2D6_QT_response, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped/rejected:
+- already_in_drafts: Clinical Pharmacogenetics Implementation Consortium (CPIC) guideline for<i>CYP2D6</i>genotype and use of ondansetron and tropisetron
+- low_novelty score=0: Impact of CYP2D6 Metabolizer Status on Ondansetron Efficacy in Early Pregnancy Induced Nausea and Vomiting: A Case Control Study.
+- low_novelty score=10: <i>CYP2D6</i> genotype and associated 5‐<scp>HT<sub>3</sub></scp> receptor antagonist outcomes: A systematic review and meta‐analysis (new title)
+- relation_mismatch: CYP2D6 genotype and associated 5-HT&lt;sub&gt;3&lt;/sub&gt; receptor antagonist outcomes: A systematic review and meta-analysis.
+- relation_mismatch: Pharmacogenomics of Medications Commonly Used in the Intensive Care Unit.
+- relation_mismatch: 15th Congress of the European Association for Clinical Pharmacology and Therapeutics (EACPT)
+- relation_mismatch: Management of postoperative nausea and vomiting: focus on palonosetron.
+- relation_mismatch: Management of postoperative nausea and vomiting: focus on palonosetron
+- relation_mismatch: Pain Management in Patients with Cancer: Focus on Opioid Analgesics
+- relation_mismatch: Pharmacogenomics of Medications Commonly Used in the Intensive Care Unit
+- relation_mismatch: Precision Medicine in Oncology Pharmacy Practice
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=ondansetron+CYP2D6+ultrarapid+poor+metabolizer+response+pharmacokinetics+QT+genotype+antiemetic&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## haloperidol:CYP2D6_CYP3A_HPP_plus_neurotoxicity
+Run: 2026-06-05T09:40:13.534Z
+Query: `haloperidol CYP2D6 CYP3A pyridinium HPP+ metabolite neurotoxicity pharmacokinetics genotype`
+Added drafts: 0
+Skipped/rejected: 2
+Query memory overlap: 0%
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- low_novelty score=10: PHARMACOGENETICS OF CYP2D6: CLINICAL IMPLICATIONS IN PSYCHIATRIC PATIENTS TREATED WITH ANTIPSYCHOTIC DRUGS (new title)
+- relation_mismatch: Formation of potentially toxic metabolites of drugs in reactions catalyzed by human drug-metabolizing enzymes
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=haloperidol+CYP2D6+CYP3A+pyridinium+HPP%2B+metabolite+neurotoxicity+pharmacokinetics+genotype&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## succinylcholine:BCHE_pseudocholinesterase_apnea
+Run: 2026-06-05T09:40:15.726Z
+Query: `succinylcholine BCHE pseudocholinesterase deficiency dibucaine number prolonged apnea pharmacogenetics`
+Added drafts: 1
+Skipped/rejected: 11
+Query memory overlap: 0%
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+| draft_succinylcholine_bche_pseudocholinesterase_apnea_sridhar2024_38590305 | observational | PMID:38590305 | 65 | new PMID; new DOI; new title; new public metric sentence | search:openalex | [OA](https://doi.org/10.5493/wjem.v14.i1.87202) diamond | Citation appears relevant to succinylcholine:BCHE_pseudocholinesterase_apnea, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped/rejected:
+- relation_mismatch: Prolonged paralysis following mivacurium administration in a pediatric patient with previously undiagnosed pseudocholinesterase deficiency: a case report.
+- relation_mismatch: Personalized pediatric anesthesia and pain management: problem-based review.
+- relation_mismatch: PharmGKB summary: succinylcholine pathway, pharmacokinetics/pharmacodynamics.
+- relation_mismatch: Characterization of a novel BCHE "silent" allele: point mutation (p.Val204Asp) causes loss of activity and prolonged apnea with suxamethonium.
+- relation_mismatch: Identification of a frameshift mutation responsible for the silent phenotype of human serum cholinesterase, Gly 117 (GGT----GGAG).
+- relation_mismatch: Cholinesterase Newfoundland: a new succinylcholine-sensitive variant of cholinesterase at locus 1.
+- relation_mismatch: Characterization of a Novel BCHE “Silent” Allele: Point Mutation (p.Val204Asp) Causes Loss of Activity and Prolonged Apnea with Suxamethonium
+- relation_mismatch: A Patient with Prolonged Paralysis
+- relation_mismatch: Investigation of Association between Susceptibility to Leprosy and SNPs inside and near the<i>BCHE</i>Gene of Butyrylcholinesterase
+- relation_mismatch: Mechanisms and implications in gene polymorphism mediated diverse reponses to sedatives, analgesics and muscle relaxants
+- relation_mismatch: Prolonged paralysis following mivacurium administration in a pediatric patient with previously undiagnosed pseudocholinesterase deficiency: a case report
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=succinylcholine+BCHE+pseudocholinesterase+deficiency+dibucaine+number+prolonged+apnea+pharmacogenetics&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## tacrolimus:CYP3A5_ABCB1_dose_trough
+Run: 2026-06-05T09:41:17.602Z
+Query: `tacrolimus CYP3A5 ABCB1 genotype trough concentration dose requirement transplant pharmacokinetics`
+Added drafts: 0
+Skipped/rejected: 24
+Query memory overlap: 100%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- repeat_query_exhausted score=0: Donor and recipient genetic variants in drug metabolizing enzymes and transporters affect early tacrolimus pharmacokinetics after liver transplantation. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: A descriptive study of the single-nucleotide polymorphisms known to affect the Tacrolimus trough concentration per dose, among a population of kidney failure patients in a tertiary hospital in Ghana. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Pharmacogenetics Based Dose Prediction Model for Initial Tacrolimus Dosing in Renal Transplant Recipients. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: The impact of IL-10 and CYP3A5 gene polymorphisms on dose-adjusted trough blood tacrolimus concentrations in early post-renal transplant recipients. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Population pharmacokinetic analysis and dosing guidelines for tacrolimus co-administration with Wuzhi capsule in Chinese renal transplant recipients. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: CYP3A5 polymorphisms and their effects on tacrolimus exposure in an ethnically diverse South African renal transplant population. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Cohort Study to Determine the Impact of CYP3A5 Genotype on Tacrolimus Dosing Requirements and Trough Concentrations in Heart Transplant Recipients. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Impact of CYP3A5 1* and 3* single nucleotide variants on tacrolimus pharmacokinetics and graft rejection risk in pediatric kidney transplant patients. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Drug-drug interaction between diltiazem and tacrolimus in relation to CYP3A5 genotype status in Chinese pediatric patients with nephrotic range proteinuria: a retrospective study. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: A descriptive study of the single-nucleotide polymorphisms known to affect the Tacrolimus trough concentration per dose, among a population of kidney failure patients in a tertiary hospital in Ghana. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: The effect of CYP3A5 and MDR1 (ABCB1) polymorphisms on cyclosporine and tacrolimus dose requirements and trough blood levels in stable renal transplant patients (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Tacrolimus dose requirement in relation to donor and recipientABCB1 andCYP3A5 gene polymorphisms in Chinese liver transplant patients (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: CYP3A5 and ABCB1 Polymorphisms and Tacrolimus Pharmacokinetics in Renal Transplant Candidates: Guidelines from an Experimental Study (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Age and CYP3A5 genotype affect tacrolimus dosing requirements after transplant in pediatric heart recipients (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: CYP3A5 and ABCB1 genotype influence tacrolimus and sirolimus pharmacokinetics in renal transplant recipients (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: The Impact of CYP3A5 Genotype on Tacrolimus Pharmacokinetics in Children following Heart Transplant. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: #3028 Outcomes of standard versus CYP3A5 genotype-adapted dosing of tacrolimus in renal transplant recipients: a randomized control study (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: CYP3A5 and PPARA genetic variants are associated with low trough concentration to dose ratio of tacrolimus in kidney transplant recipients (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Impact of donor CYP3A5 genotype on pharmacokinetics of tacrolimus in South African paediatric liver transplant patients. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Association of CYP3A4-392A/G, CYP3A5-6986A/G, and ABCB1-3435C/T Polymorphisms with Tacrolimus Dose, Serum Concentration, and Biochemical Parameters in Mexican Patients with Kidney Transplant (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Effects of CYP3A5 Genotype on Tacrolimus Pharmacokinetics and Graft-versus-Host Disease Incidence in Allogeneic Hematopoietic Stem Cell Transplantation (same top results as previous run (100% overlap))
+- relation_mismatch: Donor and recipient genetic variants in drug metabolizing enzymes and transporters affect early tacrolimus pharmacokinetics after liver transplantation.
+- relation_mismatch: Artificial Intelligence and Predictive Modelling for Precision Dosing of Immunosuppressants in Kidney Transplantation.
+- relation_mismatch: Effect of CYP3A and ABCB1 Single Nucleotide Polymorphisms on the Pharmacokinetics and Pharmacodynamics of Calcineurin Inhibitors: Part I

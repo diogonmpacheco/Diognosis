@@ -74,6 +74,57 @@
         "dose_model",
         "infection_population"
       ]
+    },
+    "tacrolimus:CYP3A5_ABCB1_dose_trough": {
+      "status": "basic_relation_saturated",
+      "acceptOnlyIfAdds": [
+        "donor_recipient",
+        "initial_dose_model",
+        "pediatric",
+        "liver_transplant",
+        "kidney_transplant",
+        "ABCB1",
+        "CYP3A4_22",
+        "trough_per_dose",
+        "toxicity",
+        "rejection"
+      ]
+    },
+    "primaquine:CYP2D6_G6PD_active_metabolites": {
+      "status": "basic_relation_saturated",
+      "acceptOnlyIfAdds": [
+        "active_metabolite",
+        "CYP2D6",
+        "G6PD",
+        "hemolysis",
+        "relapse",
+        "radical_cure",
+        "tafenoquine"
+      ]
+    },
+    "azathioprine:TPMT_NUDT15_6TGN_6MMP": {
+      "status": "basic_relation_saturated",
+      "acceptOnlyIfAdds": [
+        "6TGN",
+        "6MMP",
+        "NUDT15",
+        "TPMT",
+        "myelosuppression",
+        "dose_adjustment",
+        "therapeutic_drug_monitoring"
+      ]
+    },
+    "methotrexate:SLCO1B1_ABCC2_MTHFR_polyglutamate": {
+      "status": "basic_relation_saturated",
+      "acceptOnlyIfAdds": [
+        "polyglutamate",
+        "high_dose",
+        "clearance",
+        "SLCO1B1",
+        "ABCC2",
+        "toxicity",
+        "pediatric"
+      ]
     }
   },
   "missingFields": {
@@ -136,6 +187,72 @@
       "N_desmethylatomoxetine",
       "activity_score",
       "target_concentration"
+    ],
+    "tacrolimus:CYP3A5_ABCB1_dose_trough": [
+      "trough_per_dose",
+      "initial_dose",
+      "CYP3A5_expresser",
+      "ABCB1",
+      "donor_recipient",
+      "rejection",
+      "nephrotoxicity"
+    ],
+    "primaquine:CYP2D6_G6PD_active_metabolites": [
+      "active_metabolite",
+      "CYP2D6",
+      "G6PD",
+      "hemolysis",
+      "relapse",
+      "radical_cure"
+    ],
+    "mycophenolic_acid:UGT1A9_UGT2B7_ABCG2_MPA_glucuronide": [
+      "MPAG",
+      "AcMPAG",
+      "AUC",
+      "enterohepatic",
+      "ABCG2",
+      "UGT1A9",
+      "UGT2B7"
+    ],
+    "methotrexate:SLCO1B1_ABCC2_MTHFR_polyglutamate": [
+      "polyglutamate",
+      "SLCO1B1",
+      "ABCC2",
+      "MTHFR",
+      "clearance",
+      "toxicity"
+    ],
+    "azathioprine:TPMT_NUDT15_6TGN_6MMP": [
+      "6TGN",
+      "6MMP",
+      "TPMT",
+      "NUDT15",
+      "myelosuppression",
+      "hepatotoxicity"
+    ],
+    "cisplatin:OCT2_MATE1_nephrotoxicity": [
+      "OCT2",
+      "MATE1",
+      "SLC22A2",
+      "SLC47A1",
+      "nephrotoxicity",
+      "accumulation"
+    ],
+    "ondansetron:CYP2D6_QT_response": [
+      "CYP2D6",
+      "ultrarapid",
+      "poor_metabolizer",
+      "response",
+      "QT",
+      "Cmax"
+    ],
+    "succinylcholine:BCHE_pseudocholinesterase_apnea": [
+      "BCHE",
+      "dibucaine",
+      "apnea",
+      "paralysis",
+      "duration",
+      "pseudocholinesterase"
     ]
   },
   "knownQueryFingerprints": {
@@ -440,6 +557,299 @@
       "keptCount": 0,
       "skippedCount": 9,
       "keptIds": []
+    },
+    "1aae494dc0e0b24889f7fd9a19d82fa6fb36aa960762355e8b8d5f391416966c": {
+      "relation": "dapsone:CYP2C9_CYP3A_N_hydroxylamine_G6PD",
+      "query": "dapsone hydroxylamine CYP2C9 CYP3A N-hydroxylation G6PD methemoglobinemia hemolysis pharmacokinetics",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:39:51.539Z",
+      "resultFingerprint": [
+        "doi:10.5935/0103-5053.20140168",
+        "pmid:36676680",
+        "title:altera es oxidativas e inflamat rias induzidas pela dapsona no sangue e no c rtex pr frontal de camundongos efeitos do cido alfa lip ico"
+      ],
+      "resultCount": 3,
+      "keptCount": 0,
+      "skippedCount": 3,
+      "keptIds": []
+    },
+    "0ec962a8a3ffee149175078561be9bf54dc000ba275d0e97722bc0e2e3f184af": {
+      "relation": "primaquine:CYP2D6_G6PD_active_metabolites",
+      "query": "primaquine CYP2D6 active metabolites G6PD hemolysis pharmacokinetics relapse radical cure",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:39:53.867Z",
+      "resultFingerprint": [
+        "pmid:27528800",
+        "pmid:29324864",
+        "pmid:30650322",
+        "pmid:30881061",
+        "pmid:33360105",
+        "pmid:33891587",
+        "pmid:34398667",
+        "pmid:35008050",
+        "pmid:36522671",
+        "pmid:39858601",
+        "pmid:42006802"
+      ],
+      "resultCount": 11,
+      "keptCount": 4,
+      "skippedCount": 8,
+      "keptIds": [
+        "pmid:30650322",
+        "pmid:36522671",
+        "pmid:30881061",
+        "pmid:29324864"
+      ]
+    },
+    "fa0e8b972d7a72b6bdb05cf8af67dd27ca92df4610555a83beff0f10e394689c": {
+      "relation": "tacrolimus:CYP3A5_ABCB1_dose_trough",
+      "query": "tacrolimus CYP3A5 ABCB1 genotype trough concentration dose requirement transplant pharmacokinetics",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:41:17.601Z",
+      "resultFingerprint": [
+        "doi:10.1093/ndt/gfaf116.114",
+        "pmid:15167702",
+        "pmid:16628701",
+        "pmid:17049058",
+        "pmid:20170205",
+        "pmid:21930396",
+        "pmid:26543771",
+        "pmid:32657689",
+        "pmid:33398393",
+        "pmid:33768546",
+        "pmid:34089513",
+        "pmid:34916931",
+        "pmid:38674430",
+        "pmid:38794124",
+        "pmid:39041443",
+        "pmid:39080672",
+        "pmid:39290868",
+        "pmid:40432883",
+        "pmid:40604035",
+        "pmid:41599762",
+        "pmid:41660740",
+        "pmid:41727590"
+      ],
+      "resultCount": 22,
+      "keptCount": 0,
+      "skippedCount": 24,
+      "keptIds": []
+    },
+    "fa655ad13c13d0bfce611e99581483304af058717af4ded9ae317215079abebe": {
+      "relation": "mycophenolic_acid:UGT1A9_UGT2B7_ABCG2_MPA_glucuronide",
+      "query": "mycophenolic acid UGT1A9 UGT2B7 ABCG2 MPAG AcMPAG pharmacokinetics enterohepatic recirculation genotype",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:40:00.126Z",
+      "resultFingerprint": [
+        "doi:10.14288/1.0067071",
+        "doi:10.20517/jtgg.2020.37",
+        "doi:10.21203/rs.3.rs-2247771/v1",
+        "doi:10.22541/au.169224396.69995901/v1",
+        "pmid:25540593",
+        "pmid:35567285",
+        "pmid:38884938",
+        "pmid:40873215",
+        "pmid:42137999"
+      ],
+      "resultCount": 9,
+      "keptCount": 3,
+      "skippedCount": 7,
+      "keptIds": [
+        "doi:10.21203/rs.3.rs-2247771/v1",
+        "doi:10.14288/1.0067071",
+        "doi:10.22541/au.169224396.69995901/v1"
+      ]
+    },
+    "e92e816f2ccbf50e63899f549695f3ba1fa4b5df66982b715a873454ed225279": {
+      "relation": "methotrexate:SLCO1B1_ABCC2_MTHFR_polyglutamate",
+      "query": "methotrexate SLCO1B1 ABCC2 MTHFR polyglutamate pharmacokinetics toxicity genotype clearance",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:40:02.910Z",
+      "resultFingerprint": [
+        "pmid:27618021",
+        "pmid:27641154",
+        "pmid:32581388",
+        "pmid:34200242",
+        "pmid:34744734",
+        "pmid:36071793",
+        "pmid:36742186",
+        "pmid:39669197",
+        "pmid:40430876",
+        "pmid:40630120",
+        "pmid:41554112",
+        "pmid:41950802"
+      ],
+      "resultCount": 12,
+      "keptCount": 3,
+      "skippedCount": 9,
+      "keptIds": [
+        "pmid:41554112",
+        "pmid:34200242",
+        "pmid:34744734"
+      ]
+    },
+    "6632543a683bcc256d6f019301ef0ef97f71343c489afad46502265f40babafb": {
+      "relation": "azathioprine:TPMT_NUDT15_6TGN_6MMP",
+      "query": "azathioprine TPMT NUDT15 6-thioguanine nucleotide 6-MMP metabolite myelosuppression pharmacokinetics",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:40:05.107Z",
+      "resultFingerprint": [
+        "doi:10.1080/17425255.2020.1719996",
+        "pmid:29192347",
+        "pmid:30349479",
+        "pmid:31342537",
+        "pmid:33026087",
+        "pmid:36262539",
+        "pmid:40630120",
+        "pmid:41300822",
+        "pmid:41523492",
+        "pmid:41551829",
+        "pmid:41555632",
+        "pmid:42198405"
+      ],
+      "resultCount": 12,
+      "keptCount": 2,
+      "skippedCount": 10,
+      "keptIds": [
+        "pmid:36262539",
+        "pmid:30349479"
+      ]
+    },
+    "bae2d2aa795432a51c3930a74ede599e88649c756ba465827e1516e3e7735576": {
+      "relation": "cisplatin:OCT2_MATE1_nephrotoxicity",
+      "query": "cisplatin OCT2 MATE1 SLC22A2 SLC47A1 genotype nephrotoxicity pharmacokinetics transporter",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:40:08.138Z",
+      "resultFingerprint": [
+        "pmid:20103563",
+        "pmid:21457222",
+        "pmid:21779389",
+        "pmid:23435786",
+        "pmid:24641901",
+        "pmid:27621205",
+        "pmid:32761456",
+        "pmid:34959286",
+        "pmid:36131844",
+        "pmid:39143954",
+        "pmid:39159054",
+        "pmid:40775340"
+      ],
+      "resultCount": 12,
+      "keptCount": 1,
+      "skippedCount": 11,
+      "keptIds": [
+        "pmid:24641901"
+      ]
+    },
+    "f9069daad86b143b8bdeca3e781212924bcdbf9c9a7fdd03d84c44d8f1bc527d": {
+      "relation": "ondansetron:CYP2D6_QT_response",
+      "query": "ondansetron CYP2D6 ultrarapid poor metabolizer response pharmacokinetics QT genotype antiemetic",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:40:10.840Z",
+      "resultFingerprint": [
+        "doi:10.5644/ama2006-124.246",
+        "pmid:19436621",
+        "pmid:21479998",
+        "pmid:28002639",
+        "pmid:30564130",
+        "pmid:39899439",
+        "pmid:41820792",
+        "title:15th congress of the european association for clinical pharmacology and therapeutics eacpt"
+      ],
+      "resultCount": 8,
+      "keptCount": 1,
+      "skippedCount": 11,
+      "keptIds": [
+        "pmid:28002639"
+      ]
+    },
+    "899ba5609fe278dfdbbfb26216f69e519324da3b724bbe706d1aa8ef64bfef48": {
+      "relation": "haloperidol:CYP2D6_CYP3A_HPP_plus_neurotoxicity",
+      "query": "haloperidol CYP2D6 CYP3A pyridinium HPP+ metabolite neurotoxicity pharmacokinetics genotype",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:40:13.533Z",
+      "resultFingerprint": [
+        "pmid:38520539",
+        "title:pharmacogenetics of cyp2d6 clinical implications in psychiatric patients treated with antipsychotic drugs"
+      ],
+      "resultCount": 2,
+      "keptCount": 0,
+      "skippedCount": 2,
+      "keptIds": []
+    },
+    "56a1fa8cb303be2eda45cbb1e7d4820be239d43caaee63c4b4d5e7a3590df45d": {
+      "relation": "succinylcholine:BCHE_pseudocholinesterase_apnea",
+      "query": "succinylcholine BCHE pseudocholinesterase deficiency dibucaine number prolonged apnea pharmacogenetics",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed",
+        "semanticscholar"
+      ],
+      "lastRun": "2026-06-05T09:40:15.725Z",
+      "resultFingerprint": [
+        "pmid:22378569",
+        "pmid:22523498",
+        "pmid:2339692",
+        "pmid:25054547",
+        "pmid:26398623",
+        "pmid:31849281",
+        "pmid:36935389",
+        "pmid:38590305",
+        "pmid:40790181",
+        "pmid:7246542"
+      ],
+      "resultCount": 10,
+      "keptCount": 1,
+      "skippedCount": 11,
+      "keptIds": [
+        "pmid:38590305"
+      ]
     }
   },
   "description": "Memory-guided novelty rules for enrichment discovery. Keep this compact: it steers searches away from saturated basics and toward missing public facts.",

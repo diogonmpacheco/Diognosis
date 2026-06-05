@@ -1,0 +1,55 @@
+{
+  "description": "Novelty-first exploratory enrichment across less-saturated medication/gene/metabolite blind spots.",
+  "queries": [
+    {
+      "relation": "dapsone:CYP2C9_CYP3A_N_hydroxylamine_G6PD",
+      "query": "dapsone hydroxylamine CYP2C9 CYP3A N-hydroxylation G6PD methemoglobinemia hemolysis pharmacokinetics",
+      "supports": ["dapsone_hydroxylamine_methemoglobinemia_context", "G6PD_dapsone_hemolysis_context"]
+    },
+    {
+      "relation": "primaquine:CYP2D6_G6PD_active_metabolites",
+      "query": "primaquine CYP2D6 active metabolites G6PD hemolysis pharmacokinetics relapse radical cure",
+      "supports": ["primaquine_CYP2D6_active_metabolite_context", "G6PD_primaquine_hemolysis_context"]
+    },
+    {
+      "relation": "tacrolimus:CYP3A5_ABCB1_dose_trough",
+      "query": "tacrolimus CYP3A5 ABCB1 genotype trough concentration dose requirement transplant pharmacokinetics",
+      "supports": ["tacrolimus_CYP3A5_dose_trough_context", "tacrolimus_ABCB1_transporter_context"]
+    },
+    {
+      "relation": "mycophenolic_acid:UGT1A9_UGT2B7_ABCG2_MPA_glucuronide",
+      "query": "mycophenolic acid UGT1A9 UGT2B7 ABCG2 MPAG AcMPAG pharmacokinetics enterohepatic recirculation genotype",
+      "supports": ["mycophenolic_acid_UGT_ABCG2_exposure_context", "MPAG_AcMPAG_enterohepatic_context"]
+    },
+    {
+      "relation": "methotrexate:SLCO1B1_ABCC2_MTHFR_polyglutamate",
+      "query": "methotrexate SLCO1B1 ABCC2 MTHFR polyglutamate pharmacokinetics toxicity genotype clearance",
+      "supports": ["methotrexate_SLCO1B1_ABCC2_clearance_context", "methotrexate_polyglutamate_MTHFR_context"]
+    },
+    {
+      "relation": "azathioprine:TPMT_NUDT15_6TGN_6MMP",
+      "query": "azathioprine TPMT NUDT15 6-thioguanine nucleotide 6-MMP metabolite myelosuppression pharmacokinetics",
+      "supports": ["azathioprine_TPMT_NUDT15_6TGN_context", "thiopurine_6MMP_metabolite_context"]
+    },
+    {
+      "relation": "cisplatin:OCT2_MATE1_nephrotoxicity",
+      "query": "cisplatin OCT2 MATE1 SLC22A2 SLC47A1 genotype nephrotoxicity pharmacokinetics transporter",
+      "supports": ["cisplatin_OCT2_MATE1_nephrotoxicity_context", "cisplatin_transporter_genotype_context"]
+    },
+    {
+      "relation": "ondansetron:CYP2D6_QT_response",
+      "query": "ondansetron CYP2D6 ultrarapid poor metabolizer response pharmacokinetics QT genotype antiemetic",
+      "supports": ["ondansetron_CYP2D6_response_context", "ondansetron_QT_genotype_context"]
+    },
+    {
+      "relation": "haloperidol:CYP2D6_CYP3A_HPP_plus_neurotoxicity",
+      "query": "haloperidol CYP2D6 CYP3A pyridinium HPP+ metabolite neurotoxicity pharmacokinetics genotype",
+      "supports": ["haloperidol_HPP_plus_neurotoxicity_context", "haloperidol_CYP2D6_CYP3A_metabolite_context"]
+    },
+    {
+      "relation": "succinylcholine:BCHE_pseudocholinesterase_apnea",
+      "query": "succinylcholine BCHE pseudocholinesterase deficiency dibucaine number prolonged apnea pharmacogenetics",
+      "supports": ["succinylcholine_BCHE_pseudocholinesterase_apnea_context", "BCHE_dibucaine_number_context"]
+    }
+  ]
+}

@@ -8609,5 +8609,2504 @@
         "diarrhea"
       ]
     }
+  },
+  {
+    "id": "draft_primaquine_cyp2d6_g6pd_active_metabolites_lacerda2019_30650322",
+    "_status": "promoted_to_live_review_required",
+    "type": "clinical_pk",
+    "title": "Single-Dose Tafenoquine to Prevent Relapse of <i>Plasmodium vivax</i> Malaria",
+    "year": 2019,
+    "source": "New England Journal of Medicine",
+    "journal": "New England Journal of Medicine",
+    "pmid": "30650322",
+    "doi": "10.1056/nejmoa1710775",
+    "url": "https://doi.org/10.1056/nejmoa1710775",
+    "studyDesign": "clinical_pk",
+    "n": 522,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "ratio",
+          "values": [
+            0.3,
+            95,
+            0.22,
+            0.001,
+            0.26,
+            95,
+            0.18,
+            0.001
+          ],
+          "context": "The hazard ratio for the risk of recurrence was 0.30 (95% CI, 0.22 to 0.40) with tafenoquine as compared with placebo (P<0.001) and 0.26 (95% CI, 0.18 to 0.39) with primaquine as compared with placebo (P<0.001)."
+        }
+      ],
+      "publicMetricSentences": [
+        "vivax infection (>100 to <100,000 parasites per microliter) and normal glucose-6-phosphate dehydrogenase (G6PD) activity (with normal activity defined as ≥70% of the median value determined at each trial site among 36 healthy male volunteers who were otherwise not involved in the trial).",
+        "vivax clearance without recurrent parasitemia.",
+        "In the intention-to-treat population, the percentage of patients who were free from recurrence at 6 months was 62.4% in the tafenoquine group (95% confidence interval [CI], 54.9 to 69.0), 27.7% in the placebo group (95% CI, 19.6 to 36.6), and 69.6% in the primaquine group (95% CI, 60.2 to 77.1)."
+      ],
+      "note": "Public abstract/metadata extraction for primaquine:CYP2D6_G6PD_active_metabolites found 1 public metric sentence with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "primaquine_CYP2D6_active_metabolite_context",
+      "G6PD_primaquine_hemolysis_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "bronze",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "https://www.nejm.org/doi/pdf/10.1056/NEJMoa1710775?articleTools=true",
+      "pdfUrl": "https://www.nejm.org/doi/pdf/10.1056/NEJMoa1710775?articleTools=true",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:53.857Z",
+    "novelty": {
+      "score": 95,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    },
+    "promotedEvidenceId": "ev_tafenoquine_relapse_lacerda2019",
+    "promotedAt": "2026-06-05T09:50:09.606Z"
+  },
+  {
+    "id": "draft_primaquine_cyp2d6_g6pd_active_metabolites_habtamu2022_36522671",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Plasmodium vivax: the potential obstacles it presents to malaria elimination and eradication",
+    "year": 2022,
+    "source": "Tropical Diseases Travel Medicine and Vaccines",
+    "journal": "Tropical Diseases Travel Medicine and Vaccines",
+    "pmid": "36522671",
+    "doi": "10.1186/s40794-022-00185-3",
+    "url": "https://doi.org/10.1186/s40794-022-00185-3",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to primaquine:CYP2D6_G6PD_active_metabolites, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "primaquine_CYP2D6_active_metabolite_context",
+      "G6PD_primaquine_hemolysis_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://tdtmvjournal.biomedcentral.com/counter/pdf/10.1186/s40794-022-00185-3",
+      "pdfUrl": "https://tdtmvjournal.biomedcentral.com/counter/pdf/10.1186/s40794-022-00185-3",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:53.858Z",
+    "novelty": {
+      "score": 55,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_primaquine_cyp2d6_g6pd_active_metabolites_hounkpatin2019_30881061",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "&lt;p&gt;Clinical utility of tafenoquine in the prevention of relapse of &lt;em&gt;Plasmodium vivax&lt;/em&gt; malaria: a review on the mode of action and emerging trial data&lt;/p&gt;",
+    "year": 2019,
+    "source": "Infection and Drug Resistance",
+    "journal": "Infection and Drug Resistance",
+    "pmid": "30881061",
+    "doi": "10.2147/idr.s151031",
+    "url": "https://doi.org/10.2147/idr.s151031",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "publicMetricSentences": [
+        "Its long half-life of ~15 days is allowing for a single exposure regimen.",
+        "It has been under development since 1980 and received approval by the US Food and Drug Administration in summer 2018 as an anti-relapse drug for P.",
+        "Prior to tafenoquine administration, glucose-6-phosphate dehydrogenase (G6PD) deficiency needs to be excluded by testing."
+      ],
+      "note": "Citation appears relevant to primaquine:CYP2D6_G6PD_active_metabolites, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "primaquine_CYP2D6_active_metabolite_context",
+      "G6PD_primaquine_hemolysis_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by-nc",
+      "landingUrl": "https://www.dovepress.com/getfile.php?fileID=48436",
+      "pdfUrl": "https://www.dovepress.com/getfile.php?fileID=48436",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:53.858Z",
+    "novelty": {
+      "score": 80,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_primaquine_cyp2d6_g6pd_active_metabolites_bastiaens2018_29324864",
+    "_status": "promoted_to_live_review_required",
+    "type": "observational",
+    "title": "Safety of single low-dose primaquine in glucose-6-phosphate dehydrogenase deficient falciparum-infected African males: Two open-label, randomized, safety trials",
+    "year": 2018,
+    "source": "PLoS ONE",
+    "journal": "PLoS ONE",
+    "pmid": "29324864",
+    "doi": "10.1371/journal.pone.0190272",
+    "url": "https://doi.org/10.1371/journal.pone.0190272",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "concentration",
+          "values": [
+            1.83,
+            95,
+            2.19,
+            1.47,
+            6,
+            0.25
+          ],
+          "context": "In The Gambia, the mean maximum absolute change in hemoglobin concentration was -1.83 g/dL (95% CI, -2.19, -1.47) in G6PDd individuals receiving 0.25 PQ mg/kg."
+        }
+      ],
+      "publicMetricSentences": [
+        "The primary study endpoint was change in hemoglobin concentration during the 28-day follow-up.",
+        "In Burkina Faso, the mean maximum absolute change in hemoglobin was -2.13 g/dL (95% confidence interval [CI], -2.78, -1.49) in G6PDd individuals randomized to 0.25 PQ mg/kg and -2.29 g/dL (95% CI, -2.79, -1.79) in those receiving 0.40 PQ mg/kg.",
+        "In The Gambia, the mean maximum absolute change in hemoglobin concentration was -1.83 g/dL (95% CI, -2.19, -1.47) in G6PDd individuals receiving 0.25 PQ mg/kg."
+      ],
+      "note": "Public abstract/metadata extraction for primaquine:CYP2D6_G6PD_active_metabolites found 1 public metric sentence with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "primaquine_CYP2D6_active_metabolite_context",
+      "G6PD_primaquine_hemolysis_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0190272&type=printable",
+      "pdfUrl": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0190272&type=printable",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:53.859Z",
+    "novelty": {
+      "score": 95,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    },
+    "promotedEvidenceId": "ev_primaquine_g6pd_safety_bastiaens2018",
+    "promotedAt": "2026-06-05T09:50:09.606Z"
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_ladd2025_40604035",
+    "_status": "promoted_to_live_review_required",
+    "type": "clinical_pk",
+    "title": "Donor and recipient genetic variants in drug metabolizing enzymes and transporters affect early tacrolimus pharmacokinetics after liver transplantation.",
+    "year": 2025,
+    "source": "Scientific reports",
+    "journal": "Scientific reports",
+    "pmid": "40604035",
+    "doi": "10.1038/s41598-025-09296-1",
+    "url": "https://doi.org/10.1038/s41598-025-09296-1",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "trough",
+          "values": [
+            3,
+            4,
+            3,
+            5,
+            1,
+            4,
+            1
+          ],
+          "context": "This study examines the influence of single nucleotide polymorphisms in drug metabolizing enzymes CYP3A4, CYP3A5, and UGT1A4, and the transporter ABCB1 on tacrolimus dose requirements and blood trough level variability in the period immediately after liver transplantation."
+        },
+        {
+          "metric": "concentration",
+          "values": [
+            0,
+            3,
+            4,
+            1,
+            2740,
+            77.5,
+            60.7,
+            143.8
+          ],
+          "context": "Additionally, higher tacrolimus concentration/weight-adjusted dose ratios [C 0 /D ratio, (ng/mL)/(mg/kg/d)] were observed in recipients with CYP3A4*1B rs2740574 genotype TT (77.5 [60.7, 143.8] versus 47.5 [26.3, 64.0] (ng/mL)/(mg/kg/d), p = 0.0001), or CYP3A5*3 rs776746 genotype GG (74.9 [55.7, 147.4] versus 59.3 [36.1, 79.0] (ng/mL)/(mg/kg/d), p = 0.011), and in donor livers with CYP3A4*22 genotype GA/AA (131.5 [86.2, 187.1] versus 68.2 [47.1, 108.7] (ng/mL)/(mg/kg/d), p = 0.028)."
+        }
+      ],
+      "publicMetricSentences": [
+        "This study examines the influence of single nucleotide polymorphisms in drug metabolizing enzymes CYP3A4, CYP3A5, and UGT1A4, and the transporter ABCB1 on tacrolimus dose requirements and blood trough level variability in the period immediately after liver transplantation.",
+        "donor CYP3A4*22 GG (1.68 [1.01, 2.29] versus 0.68 [0.42, 1.46] ng/mL/day, p = 0.016), recipient ABCB1 rs2032582 CT/TT (2.07 [1.68, 2.39] versus 1.37 [0.76, 1.95] ng/mL/day , p = 0.013), and donor UGT1A4*3 TT (1.69 [1.02, 2.42] versus 1.33 [0.54, 1.79] ng/mL/day , p = 0.043).",
+        "Additionally, higher tacrolimus concentration/weight-adjusted dose ratios [C 0 /D ratio, (ng/mL)/(mg/kg/d)] were observed in recipients with CYP3A4*1B rs2740574 genotype TT (77.5 [60.7, 143.8] versus 47.5 [26.3, 64.0] (ng/mL)/(mg/kg/d), p = 0.0001), or CYP3A5*3 rs776746 genotype GG (74.9 [55.7, 147.4] versus 59.3 [36.1, 79.0] (ng/mL)/(mg/kg/d), p = 0.011), and in donor livers with CYP3A4*22 genotype GA/AA (131.5 [86.2, 187.1] versus 68.2 [47.1, 108.7] (ng/mL)/(mg/kg/d), p = 0.028)."
+      ],
+      "note": "Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 2 public metric sentences with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:pubmed",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.723Z",
+    "novelty": {
+      "score": 95,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    },
+    "promotedEvidenceId": "ev_tacrolimus_liver_multigene_ladd2025",
+    "promotedAt": "2026-06-05T09:50:09.606Z"
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_kwakyi2024_39080672",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "A descriptive study of the single-nucleotide polymorphisms known to affect the Tacrolimus trough concentration per dose, among a population of kidney failure patients in a tertiary hospital in Ghana.",
+    "year": 2024,
+    "source": "BMC research notes",
+    "journal": "BMC research notes",
+    "pmid": "39080672",
+    "doi": "10.1186/s13104-024-06868-8",
+    "url": "https://doi.org/10.1186/s13104-024-06868-8",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "publicMetricSentences": [
+        "The burden of chronic kidney disease (CKD) and kidney failure in Ghana is on the ascendency, with the prevalence of CKD estimated at 13.3%.",
+        "Participants, 58/82 (70.73%) harbored the wildtype CYP3A5*1/*1 AA genotype, 20/82 (24.39%) carried the heterozygous CYP3A5*1/*3 AG genotype, and 4/82 (4.88%) had the homozygous mutant CYP3A5*3/*3 GG genotype.",
+        "Also, 6/82 (7.32%) carried the wildtype AA genotype, 11/82 (13.41%) had the heterozygous AG genotype, and 65/82 (79.27%) harbored the homozygous mutant GG genotype of CYP3A4*1B (-290 A>G)."
+      ],
+      "note": "Citation appears relevant to tacrolimus:CYP3A5_ABCB1_dose_trough, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:pubmed",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.725Z",
+    "novelty": {
+      "score": 80,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_srinivas2023_34916931",
+    "_status": "promoted_to_live_review_required",
+    "type": "clinical_pk",
+    "title": "Pharmacogenetics Based Dose Prediction Model for Initial Tacrolimus Dosing in Renal Transplant Recipients.",
+    "year": 2023,
+    "source": "Frontiers in pharmacology",
+    "journal": "Frontiers in pharmacology",
+    "pmid": "34916931",
+    "doi": "10.3389/fphar.2021.726784",
+    "url": "https://doi.org/10.3389/fphar.2021.726784",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "trough",
+          "values": [
+            3,
+            5,
+            3,
+            4,
+            1
+          ],
+          "context": "We studied the effect of CYP3A5 , CYP3A4 , and ABCB1 gene polymorphisms on tacrolimus trough concentrations in South Indian renal transplant recipients from Kerala to formulate a genotype-based dosing equation to calculate the required starting daily dose of tacrolimus to be given to each patient to attain optimal initial post-transplant period drug level."
+        },
+        {
+          "metric": "trough",
+          "values": [
+            0,
+            0,
+            6,
+            6,
+            1
+          ],
+          "context": "Clinical data including tacrolimus daily doses, trough levels (C 0 ) and dose-adjusted tacrolimus trough concentration (C 0 /D) in blood at three time points (day 6, 6 months, and 1-year post-transplantation), adverse drug effects, rejection episodes, serum creatinine levels, etc., were recorded."
+        }
+      ],
+      "publicMetricSentences": [
+        "We studied the effect of CYP3A5 , CYP3A4 , and ABCB1 gene polymorphisms on tacrolimus trough concentrations in South Indian renal transplant recipients from Kerala to formulate a genotype-based dosing equation to calculate the required starting daily dose of tacrolimus to be given to each patient to attain optimal initial post-transplant period drug level.",
+        "Clinical data including tacrolimus daily doses, trough levels (C 0 ) and dose-adjusted tacrolimus trough concentration (C 0 /D) in blood at three time points (day 6, 6 months, and 1-year post-transplantation), adverse drug effects, rejection episodes, serum creatinine levels, etc., were recorded."
+      ],
+      "note": "Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 2 public metric sentences with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:pubmed",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.725Z",
+    "novelty": {
+      "score": 90,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    },
+    "promotedEvidenceId": "ev_tacrolimus_renal_dose_model_srinivas2023",
+    "promotedAt": "2026-06-05T09:50:09.606Z"
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_chen2022_34089513",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "The impact of IL-10 and CYP3A5 gene polymorphisms on dose-adjusted trough blood tacrolimus concentrations in early post-renal transplant recipients.",
+    "year": 2022,
+    "source": "Pharmacological reports : PR",
+    "journal": "Pharmacological reports : PR",
+    "pmid": "34089513",
+    "doi": "10.1007/s43440-021-00288-2",
+    "url": "https://doi.org/10.1007/s43440-021-00288-2",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "trough",
+          "values": [
+            10,
+            3,
+            5,
+            2,
+            8,
+            1,
+            0
+          ],
+          "context": "Here, we investigate the influence of genotypes of IL-10, CYP3A5, CYP2C8, and ABCB1 on dose-adjusted trough blood concentrations (the C 0 /D ratio) of TAC to reveal unclear genetic factors that may affect TAC dose requirements for renal transplant recipients."
+        }
+      ],
+      "publicMetricSentences": [
+        "Here, we investigate the influence of genotypes of IL-10, CYP3A5, CYP2C8, and ABCB1 on dose-adjusted trough blood concentrations (the C 0 /D ratio) of TAC to reveal unclear genetic factors that may affect TAC dose requirements for renal transplant recipients."
+      ],
+      "note": "Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 1 public metric sentence with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:pubmed",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.725Z",
+    "novelty": {
+      "score": 80,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentence",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_jing2021_33768546",
+    "_status": "pending_review",
+    "type": "guideline",
+    "title": "Population pharmacokinetic analysis and dosing guidelines for tacrolimus co-administration with Wuzhi capsule in Chinese renal transplant recipients.",
+    "year": 2021,
+    "source": "Journal of clinical pharmacy and therapeutics",
+    "journal": "Journal of clinical pharmacy and therapeutics",
+    "pmid": "33768546",
+    "doi": "10.1111/jcpt.13407",
+    "url": "https://doi.org/10.1111/jcpt.13407",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "clearance",
+          "values": [
+            3,
+            5,
+            3
+          ],
+          "context": "The haematocrit (HCT), postoperative time (POD) and CYP3A5*3 genotypes had a significant influence on TAC clearance when combined with WZC."
+        },
+        {
+          "metric": "trough",
+          "values": [
+            3,
+            5,
+            3,
+            3,
+            30,
+            10,
+            4,
+            12
+          ],
+          "context": "For patients carrying the CYP3A5*3/*3 allele and with 30% HCT, the required TAC dose to achieve target trough concentrations of 10-15 ng/ml was 4 mg twice daily (q12h)."
+        }
+      ],
+      "publicMetricSentences": [
+        "The aims of this study were to assess the effect of TAC+WZC co-administration and genetic polymorphism on the pharmacokinetics of TAC, by using a population pharmacokinetic (PPK) model.",
+        "The medical records of 165 adult patients with kidney transplant and their 824 TAC concentrations from two kidney transplantation centres were reviewed.",
+        "The haematocrit (HCT), postoperative time (POD) and CYP3A5*3 genotypes had a significant influence on TAC clearance when combined with WZC."
+      ],
+      "note": "Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 2 public metric sentences with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:pubmed",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.725Z",
+    "novelty": {
+      "score": 95,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_muller2020_32657689",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "CYP3A5 polymorphisms and their effects on tacrolimus exposure in an ethnically diverse South African renal transplant population.",
+    "year": 2020,
+    "source": "South African medical journal = Suid-Afrikaanse tydskrif vir geneeskunde",
+    "journal": "South African medical journal = Suid-Afrikaanse tydskrif vir geneeskunde",
+    "pmid": "32657689",
+    "doi": "10.7196/samj.2020.v110i2.13969",
+    "url": "https://doi.org/10.7196/samj.2020.v110i2.13969",
+    "studyDesign": "clinical_pk",
+    "n": 43,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "trough",
+          "values": [
+            3,
+            5,
+            3,
+            3,
+            5,
+            0
+          ],
+          "context": "CYP3A5*3) single-nucleotide polymorphism in CYP3A5 alters tacrolimus predose trough concentration (C0) and may also affect IPV, which may lead to immune- and/or drug-mediated allograft injury."
+        }
+      ],
+      "publicMetricSentences": [
+        "CYP3A5*3) single-nucleotide polymorphism in CYP3A5 alters tacrolimus predose trough concentration (C0) and may also affect IPV, which may lead to immune- and/or drug-mediated allograft injury.",
+        "To determine the frequencies and effect of CYP3A5 and adenosine triphosphate-binding cassette subfamily B member 1 (ABCB1) polymorphisms on tacrolimus C0/dose ratios in different ethnic groups attending a tertiary renal transplant clinic in SA, and other factors that may explain inter- and IPV in tacrolimus C0.",
+        "Tacrolimus concentrations were obtained using a microparticle enzyme immunoassay method (ARCHITECT analyser, Abbott Laboratories)."
+      ],
+      "note": "Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 1 public metric sentence with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:pubmed",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.726Z",
+    "novelty": {
+      "score": 95,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_wuy2026_41660740",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Cohort Study to Determine the Impact of CYP3A5 Genotype on Tacrolimus Dosing Requirements and Trough Concentrations in Heart Transplant Recipients.",
+    "year": 2026,
+    "source": "Pharmacotherapy",
+    "journal": "Pharmacotherapy",
+    "pmid": "41660740",
+    "doi": "10.1002/phar.70116",
+    "url": "https://doi.org/10.1002/phar.70116",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to tacrolimus:CYP3A5_ABCB1_dose_trough, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_citation_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12884575/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.726Z",
+    "novelty": {
+      "score": 55,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_xajilramosly2025_40432883",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Impact of CYP3A5 1* and 3* single nucleotide variants on tacrolimus pharmacokinetics and graft rejection risk in pediatric kidney transplant patients.",
+    "year": 2025,
+    "source": "Front Pharmacol",
+    "journal": "Front Pharmacol",
+    "pmid": "40432883",
+    "doi": "10.3389/fphar.2025.1592134",
+    "url": "https://doi.org/10.3389/fphar.2025.1592134",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to tacrolimus:CYP3A5_ABCB1_dose_trough, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_citation_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12107630/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.726Z",
+    "novelty": {
+      "score": 55,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_yangq2024_39290868",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Drug-drug interaction between diltiazem and tacrolimus in relation to CYP3A5 genotype status in Chinese pediatric patients with nephrotic range proteinuria: a retrospective study.",
+    "year": 2024,
+    "source": "Front Pharmacol",
+    "journal": "Front Pharmacol",
+    "pmid": "39290868",
+    "doi": "10.3389/fphar.2024.1463595",
+    "url": "https://doi.org/10.3389/fphar.2024.1463595",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to tacrolimus:CYP3A5_ABCB1_dose_trough, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_citation_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11405193/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.726Z",
+    "novelty": {
+      "score": 55,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_haufroid2004_15167702",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "The effect of CYP3A5 and MDR1 (ABCB1) polymorphisms on cyclosporine and tacrolimus dose requirements and trough blood levels in stable renal transplant patients",
+    "year": 2004,
+    "source": "Pharmacogenetics",
+    "journal": "Pharmacogenetics",
+    "pmid": "15167702",
+    "doi": "10.1097/00008571-200403000-00002",
+    "url": "https://doi.org/10.1097/00008571-200403000-00002",
+    "studyDesign": "clinical_pk",
+    "n": 3,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "foldChange": 1.6,
+      "groupMetricValues": [
+        {
+          "metric": "trough",
+          "values": [
+            3,
+            5,
+            1,
+            1
+          ],
+          "context": "The objective of this study was to investigate the effect of CYP3A5 and MDR1 (ABCB1) polymorphisms on cyclosporine and tacrolimus dose requirements and trough blood concentrations in stable transplant patients."
+        },
+        {
+          "metric": "trough",
+          "values": [
+            3,
+            5,
+            1
+          ],
+          "context": "Dose-adjusted trough blood levels (ng/ml per mg/kg body weight) as well as doses (mg/kg body weight) required to achieve target blood concentrations were compared among patients according to allelic status for CYP3A5 and MDR1."
+        },
+        {
+          "metric": "trough",
+          "values": [
+            1.6,
+            3,
+            5,
+            3,
+            3,
+            3,
+            5,
+            1
+          ],
+          "context": "Dose-adjusted trough concentrations were three-fold and 1.6-fold higher in CYP3A5*3/*3 patients than in CYP3A5*1/*3 patients for tacrolimus and cyclosporine, respectively."
+        }
+      ],
+      "publicMetricSentences": [
+        "The objective of this study was to investigate the effect of CYP3A5 and MDR1 (ABCB1) polymorphisms on cyclosporine and tacrolimus dose requirements and trough blood concentrations in stable transplant patients.",
+        "Dose-adjusted trough blood levels (ng/ml per mg/kg body weight) as well as doses (mg/kg body weight) required to achieve target blood concentrations were compared among patients according to allelic status for CYP3A5 and MDR1.",
+        "Dose-adjusted trough concentrations were three-fold and 1.6-fold higher in CYP3A5*3/*3 patients than in CYP3A5*1/*3 patients for tacrolimus and cyclosporine, respectively."
+      ],
+      "note": "Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found approximately 1.6-fold change and 3 public metric sentences with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "closed",
+      "source": null,
+      "license": null,
+      "landingUrl": "https://doi.org/10.1097/00008571-200403000-00002",
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.726Z",
+    "novelty": {
+      "score": 95,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_wang2006_16628701",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Tacrolimus dose requirement in relation to donor and recipientABCB1 andCYP3A5 gene polymorphisms in Chinese liver transplant patients",
+    "year": 2006,
+    "source": "Liver Transplantation",
+    "journal": "Liver Transplantation",
+    "pmid": "16628701",
+    "doi": "10.1002/lt.20709",
+    "url": "https://doi.org/10.1002/lt.20709",
+    "studyDesign": "clinical_pk",
+    "n": 23,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "trough",
+          "values": [
+            1,
+            3,
+            5
+          ],
+          "context": "Doses required to achieve target blood concentrations and dose-adjusted trough concentrations (concentration/dose [C/D] ratios) were compared among patients according to allelic status of ABCB1 and CYP3A5."
+        },
+        {
+          "metric": "trough",
+          "values": [
+            1,
+            3435,
+            3435
+          ],
+          "context": "ABCB1 C3435T polymorphism is a major determinant of tacrolimus trough concentration in Chinese liver transplant recipients, and recipients with 3435CC genotype will require higher dose of tacrolimus."
+        }
+      ],
+      "publicMetricSentences": [
+        "Tacrolimus whole-blood trough concentrations were measured by immunoassays on the IMx analyzers (Abbott Diagnostics Laboratories, Abbott-Park, IL).",
+        "Doses required to achieve target blood concentrations and dose-adjusted trough concentrations (concentration/dose [C/D] ratios) were compared among patients according to allelic status of ABCB1 and CYP3A5.",
+        "The ABCB1 3435CC was observed in 23 subjects (23%), whereas 64 (64%) carried 3435CT and 13 (13%) carried 3435TT."
+      ],
+      "note": "Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 2 public metric sentences with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "bronze",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/lt.20709",
+      "pdfUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/lt.20709",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.726Z",
+    "novelty": {
+      "score": 95,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_haufroid2006_17049058",
+    "_status": "pending_review",
+    "type": "guideline",
+    "title": "CYP3A5 and ABCB1 Polymorphisms and Tacrolimus Pharmacokinetics in Renal Transplant Candidates: Guidelines from an Experimental Study",
+    "year": 2006,
+    "source": "American Journal of Transplantation",
+    "journal": "American Journal of Transplantation",
+    "pmid": "17049058",
+    "doi": "10.1111/j.1600-6143.2006.01518.x",
+    "url": "https://doi.org/10.1111/j.1600-6143.2006.01518.x",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to tacrolimus:CYP3A5_ABCB1_dose_trough, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_citation_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "bronze",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "http://www.amjtransplant.org/article/S1600613522028805/pdf",
+      "pdfUrl": "http://www.amjtransplant.org/article/S1600613522028805/pdf",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.726Z",
+    "novelty": {
+      "score": 55,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_gijsen2011_21930396",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Age and CYP3A5 genotype affect tacrolimus dosing requirements after transplant in pediatric heart recipients",
+    "year": 2011,
+    "source": "The Journal of Heart and Lung Transplantation",
+    "journal": "The Journal of Heart and Lung Transplantation",
+    "pmid": "21930396",
+    "doi": "10.1016/j.healun.2011.08.001",
+    "url": "https://doi.org/10.1016/j.healun.2011.08.001",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to tacrolimus:CYP3A5_ABCB1_dose_trough, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_citation_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "green",
+      "source": "openalex",
+      "license": "other-oa",
+      "landingUrl": "http://hdl.handle.net/1765/34131",
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.726Z",
+    "novelty": {
+      "score": 55,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_li2015_26543771",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "CYP3A5 and ABCB1 genotype influence tacrolimus and sirolimus pharmacokinetics in renal transplant recipients",
+    "year": 2015,
+    "source": "SpringerPlus",
+    "journal": "SpringerPlus",
+    "pmid": "26543771",
+    "doi": "10.1186/s40064-015-1425-5",
+    "url": "https://doi.org/10.1186/s40064-015-1425-5",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "concentration",
+          "values": [
+            3,
+            5,
+            3,
+            3,
+            1
+          ],
+          "context": "The TAC and SRL concentration/dose ratio (C/D) in recipients with CYP3A5 (*)3/(*)3 were significantly higher than that of those with (*)1 allele (P G) can influence the TAC and SRL pharmacokinetics in renal transplant recipients."
+        }
+      ],
+      "publicMetricSentences": [
+        "CYP3A5 and ABCB1 polymorphisms have been shown to influence tacrolimus blood concentrations and dose requirements, but the conclusion in the current reports were inconformity.",
+        "The aim was to determine whether these polymorphisms affect tacrolimus (TAC) and sirolimus (SRL) trough concentrations and dose requirements after renal transplantation.",
+        "The trough concentration and daily dose of TAC and SRL were gained from each recipient."
+      ],
+      "note": "Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 1 public metric sentence with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "diamond",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://springerplus.springeropen.com/counter/pdf/10.1186/s40064-015-1425-5",
+      "pdfUrl": "https://springerplus.springeropen.com/counter/pdf/10.1186/s40064-015-1425-5",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.726Z",
+    "novelty": {
+      "score": 95,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_jrower2026_41727590",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "The Impact of CYP3A5 Genotype on Tacrolimus Pharmacokinetics in Children following Heart Transplant.",
+    "year": 2026,
+    "source": "Research Square",
+    "journal": "Research Square",
+    "pmid": "41727590",
+    "doi": "10.21203/rs.3.rs-8780228/v1",
+    "url": "https://doi.org/10.21203/rs.3.rs-8780228/v1",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to tacrolimus:CYP3A5_ABCB1_dose_trough, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_citation_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:semanticscholar",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.726Z",
+    "novelty": {
+      "score": 55,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_vgoel2025_null",
+    "_status": "pending_review",
+    "type": "rct",
+    "title": "#3028 Outcomes of standard versus CYP3A5 genotype-adapted dosing of tacrolimus in renal transplant recipients: a randomized control study",
+    "year": 2025,
+    "source": "Nephrology, Dialysis and Transplantation",
+    "journal": "Nephrology, Dialysis and Transplantation",
+    "pmid": null,
+    "doi": "10.1093/ndt/gfaf116.114",
+    "url": "https://doi.org/10.1093/ndt/gfaf116.114",
+    "studyDesign": "randomized_controlled_trial",
+    "n": 113,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "trough",
+          "values": [
+            8,
+            5
+          ],
+          "context": "Target tacrolimus trough level was considered to be 8–10 ng/ml for the first month after transplant and 5–8 ng/ml for subsequent months."
+        },
+        {
+          "metric": "trough",
+          "values": [
+            3,
+            0.029
+          ],
+          "context": "Greater number of patients achieved the target tacrolimus trough levels on and POD3 (p value 0.029) who received genotype adapted dosing."
+        },
+        {
+          "metric": "trough",
+          "values": [
+            3,
+            5
+          ],
+          "context": "To conclude, we have observed significant association of CYP3A5 adapted dosing with trough levels of tacrolimus on early post operative days in our study."
+        }
+      ],
+      "publicMetricSentences": [
+        "Therapeutic drug monitoring of tacrolimus is thus very essential and trough blood concentration (C0) is the usually accepted tool because empiric dosing does not lead to predictable systemic drug concentrations.",
+        "The aims of the study were to compare the proportion of patients within the target trough levels of tacrolimus on post-operative day 3, between the genotype-adapted dosing group and the control group in renal transplant recipients.",
+        "All the patients were serially monitored for tacrolimus trough levels, graft function and complications for 3 months."
+      ],
+      "note": "Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 3 public metric sentences with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:semanticscholar",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.726Z",
+    "novelty": {
+      "score": 70,
+      "reasons": [
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_jeverton2021_33398393",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "CYP3A5 and PPARA genetic variants are associated with low trough concentration to dose ratio of tacrolimus in kidney transplant recipients",
+    "year": 2021,
+    "source": "European Journal of Clinical Pharmacology",
+    "journal": "European Journal of Clinical Pharmacology",
+    "pmid": "33398393",
+    "doi": "10.1007/s00228-020-03076-8",
+    "url": "https://doi.org/10.1007/s00228-020-03076-8",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to tacrolimus:CYP3A5_ABCB1_dose_trough, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_citation_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:semanticscholar",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.726Z",
+    "novelty": {
+      "score": 55,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_cwheeler2024_39041443",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Impact of donor CYP3A5 genotype on pharmacokinetics of tacrolimus in South African paediatric liver transplant patients.",
+    "year": 2024,
+    "source": "South African medical journal = Suid-Afrikaanse tydskrif vir geneeskunde",
+    "journal": "South African medical journal = Suid-Afrikaanse tydskrif vir geneeskunde",
+    "pmid": "39041443",
+    "doi": "10.7196/samj.2024.v114i3b.1367",
+    "url": "https://doi.org/10.7196/samj.2024.v114i3b.1367",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "concentration",
+          "values": [
+            3,
+            5,
+            1,
+            1,
+            1,
+            3,
+            3,
+            3
+          ],
+          "context": "Clinically, to reach the same tacrolimus concentration-to-dose ratio (CDR), expressors (CYP3A5*1/*1 and *1/*3) require a higher tacrolimus dose than non-expressors (*3/*3)."
+        },
+        {
+          "metric": "ratio",
+          "values": [
+            3,
+            5,
+            0.05
+          ],
+          "context": "In addition, graft-to-recipient weight ratio and the CYP3A5 donor genotypes were independent factors that significantly (p<0.05) affected mean tacrolimus CDRs in recipients."
+        }
+      ],
+      "publicMetricSentences": [
+        "It is characterised by a narrow therapeutic index and wide interpatient variability, necessitating therapeutic drug monitoring of whole-blood concentrations.",
+        "Clinically, to reach the same tacrolimus concentration-to-dose ratio (CDR), expressors (CYP3A5*1/*1 and *1/*3) require a higher tacrolimus dose than non-expressors (*3/*3).",
+        "In addition, graft-to-recipient weight ratio and the CYP3A5 donor genotypes were independent factors that significantly (p<0.05) affected mean tacrolimus CDRs in recipients."
+      ],
+      "note": "Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 2 public metric sentences with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:semanticscholar",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.726Z",
+    "novelty": {
+      "score": 95,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_evalatorremoreno2024_38674430",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Association of CYP3A4-392A/G, CYP3A5-6986A/G, and ABCB1-3435C/T Polymorphisms with Tacrolimus Dose, Serum Concentration, and Biochemical Parameters in Mexican Patients with Kidney Transplant",
+    "year": 2024,
+    "source": "Genes",
+    "journal": "Genes",
+    "pmid": "38674430",
+    "doi": "10.3390/genes15040497",
+    "url": "https://doi.org/10.3390/genes15040497",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "concentration",
+          "values": [
+            3,
+            4,
+            3,
+            5,
+            1
+          ],
+          "context": "This study aims to evaluate the association among CYP3A4-392A/G, CYP3A5-6986A/G, and ABCB1-3435C/T polymorphisms and TAC, serum concentration, and biochemical parameters that may affect TAC pharmacokinetics in Mexican kidney transplant (KT) patients."
+        },
+        {
+          "metric": "concentration",
+          "values": [
+            0.028,
+            9.52,
+            95
+          ],
+          "context": "p = 0.028) and the use of medications or drugs that increase serum TAC concentration OR 9.52 (95%CI:"
+        },
+        {
+          "metric": "concentration",
+          "values": [
+            3,
+            5,
+            15
+          ],
+          "context": "The findings of this study of the Mexican population showed that CYP3A5-6986 A/G GG genotype is associated with a four-fold increase in the likelihood of encountering a TAC concentration of more than 15 ng/dL."
+        }
+      ],
+      "publicMetricSentences": [
+        "This study aims to evaluate the association among CYP3A4-392A/G, CYP3A5-6986A/G, and ABCB1-3435C/T polymorphisms and TAC, serum concentration, and biochemical parameters that may affect TAC pharmacokinetics in Mexican kidney transplant (KT) patients.",
+        "Serum TAC concentration (as measured) and intervening variables were assessed.",
+        "Logistic regression analyses were performed at baseline and after one month to assess the extent of the association between the polymorphisms, intervening variables, and TAC concentration."
+      ],
+      "note": "Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 3 public metric sentences with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "semanticscholar",
+      "license": null,
+      "landingUrl": "https://www.mdpi.com/2073-4425/15/4/497/pdf?version=1713262046",
+      "pdfUrl": "https://www.mdpi.com/2073-4425/15/4/497/pdf?version=1713262046",
+      "evidence": null
+    },
+    "provenance": "search:semanticscholar",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.727Z",
+    "novelty": {
+      "score": 95,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_tacrolimus_cyp3a5_abcb1_dose_trough_danielnmarco2024_38794124",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Effects of CYP3A5 Genotype on Tacrolimus Pharmacokinetics and Graft-versus-Host Disease Incidence in Allogeneic Hematopoietic Stem Cell Transplantation",
+    "year": 2024,
+    "source": "Pharmaceuticals",
+    "journal": "Pharmaceuticals",
+    "pmid": "38794124",
+    "doi": "10.3390/ph17050553",
+    "url": "https://doi.org/10.3390/ph17050553",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "trough",
+          "values": [
+            3,
+            5,
+            0
+          ],
+          "context": "The CYP3A5 genotype and a low Tac trough concentration/dose ratio (Tac C0/D ratio) can be used to identify fast metabolizers and predict the required Tac dose to achieve target concentrations earlier."
+        },
+        {
+          "metric": "ratio",
+          "values": [
+            62,
+            0,
+            1.5,
+            3,
+            5
+          ],
+          "context": "We examined 62 Caucasian alloHSCT recipients with a fast metabolizer phenotype (C0/dose ratio ≤ 1.5 ng/mL/mg), assessing CYP3A5 genotypes and acute GVHD incidence."
+        }
+      ],
+      "publicMetricSentences": [
+        "The CYP3A5 genotype and a low Tac trough concentration/dose ratio (Tac C0/D ratio) can be used to identify fast metabolizers and predict the required Tac dose to achieve target concentrations earlier.",
+        "We examined 62 Caucasian alloHSCT recipients with a fast metabolizer phenotype (C0/dose ratio ≤ 1.5 ng/mL/mg), assessing CYP3A5 genotypes and acute GVHD incidence.",
+        "Forty-nine patients (79%) were poor metabolizers (2 copies of the variant *3 allele) and 13 (21%) were CYP3A5 expressers (CYP3A5*1/*1 or CYP3A5*1/*3 genotypes)."
+      ],
+      "note": "Public abstract/metadata extraction for tacrolimus:CYP3A5_ABCB1_dose_trough found 2 public metric sentences with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "tacrolimus_CYP3A5_dose_trough_context",
+      "tacrolimus_ABCB1_transporter_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "semanticscholar",
+      "license": null,
+      "landingUrl": "https://www.mdpi.com/1424-8247/17/5/553/pdf?version=1714044350",
+      "pdfUrl": "https://www.mdpi.com/1424-8247/17/5/553/pdf?version=1714044350",
+      "evidence": null
+    },
+    "provenance": "search:semanticscholar",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:39:57.727Z",
+    "novelty": {
+      "score": 95,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_mycophenolic_acid_ugt1a9_ugt2b7_abcg2_mpa_glucuronide_boribilui2022_null",
+    "_status": "promoted_to_live_review_required",
+    "type": "observational",
+    "title": "Loss of function ABCG2 c.421C&amp;gt;A (rs2231142) polymorphism increases steady-state exposure to mycophenolic acid in stable renal transplant recipients: exploratory matched cohort study",
+    "year": 2022,
+    "source": "Research Square",
+    "journal": "Research Square",
+    "pmid": null,
+    "doi": "10.21203/rs.3.rs-2247771/v1",
+    "url": "https://doi.org/10.21203/rs.3.rs-2247771/v1",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "clearance",
+          "values": [
+            1.38,
+            95,
+            1.07,
+            30,
+            0.66,
+            0.58
+          ],
+          "context": "Bayes = 1.38, 95%CrI 1.07–1.81) and by around 30% lower total body clearance (frequentist GMR = 0.66, 0.58–0.90;"
+        },
+        {
+          "metric": "clearance",
+          "values": [
+            0.73,
+            0.58,
+            0.71,
+            0.54
+          ],
+          "context": "clearance GMR = 0.73 (0.58–0.93) frequentist, 0.71 (0.54–0.95) Bayes."
+        }
+      ],
+      "publicMetricSentences": [
+        "wild-type (wt) patients were matched in respect to demographic, biopharmaceutic and genetic variables (full optimal combined with exact matching) and compared for dose-adjusted steady-state MPA pharmacokinetics (frequentist and Bayes [skeptical neutral prior] estimates of geometric means ratios, GMR).",
+        "56 wt patients) indicated by around 40% higher total exposure (frequentist GMR = 1.45, 95%CI 1.10–1.91;",
+        "Bayes = 1.38, 95%CrI 1.07–1.81) and by around 30% lower total body clearance (frequentist GMR = 0.66, 0.58–0.90;"
+      ],
+      "note": "Public abstract/metadata extraction for mycophenolic_acid:UGT1A9_UGT2B7_ABCG2_MPA_glucuronide found 2 public metric sentences with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "mycophenolic_acid_UGT_ABCG2_exposure_context",
+      "MPAG_AcMPAG_enterohepatic_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "green",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://www.researchsquare.com/article/rs-2247771/latest.pdf",
+      "pdfUrl": "https://www.researchsquare.com/article/rs-2247771/latest.pdf",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:40:00.115Z",
+    "novelty": {
+      "score": 70,
+      "reasons": [
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    },
+    "promotedEvidenceId": "ev_mycophenolate_abcg2_boribilui2022",
+    "promotedAt": "2026-06-05T09:50:09.606Z"
+  },
+  {
+    "id": "draft_mycophenolic_acid_ugt1a9_ugt2b7_abcg2_mpa_glucuronide_ting2009_null",
+    "_status": "promoted_to_live_review_required",
+    "type": "clinical_pk",
+    "title": "Pharmacokinetics, limited sampling strategies, and pharmacogenetics of mycophenolic acid in thoracic transplant recipients",
+    "year": 2009,
+    "source": "cIRcle (University of British Columbia)",
+    "journal": "cIRcle (University of British Columbia)",
+    "pmid": null,
+    "doi": "10.14288/1.0067071",
+    "url": "https://doi.org/10.14288/1.0067071",
+    "studyDesign": "clinical_pk",
+    "n": 64,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "foldChange": 3,
+      "aucFold": 3,
+      "groupMetricValues": [
+        {
+          "metric": "AUC",
+          "values": [
+            2,
+            7,
+            802,
+            2,
+            138,
+            2,
+            3,
+            10
+          ],
+          "context": "For both transplant groups, UGT2B7 variants 802T (*2a) and -138A (*2g) were associated with increased AcMPAG AUC (~3-fold) and AcMPAG/MPA (~10-fold) in multivariate analyses, respectively, and high AcMPAG exposure and metabolic ratio were associated with poor clinical outcomes."
+        }
+      ],
+      "publicMetricSentences": [
+        "Increasing evidence supports monitoring MPA area-under-the-concentration-time-curve;",
+        "Plasma concentrations of MPA, MPAG, AcMPAG, and free MPA were measured by a high performance liquid chromatography-ultraviolet detection method, and conventional dose-normalized pharmacokinetic parameters were determined via non-compartmental methods.",
+        "For both transplant groups, UGT2B7 variants 802T (*2a) and -138A (*2g) were associated with increased AcMPAG AUC (~3-fold) and AcMPAG/MPA (~10-fold) in multivariate analyses, respectively, and high AcMPAG exposure and metabolic ratio were associated with poor clinical outcomes."
+      ],
+      "note": "Public abstract/metadata extraction for mycophenolic_acid:UGT1A9_UGT2B7_ABCG2_MPA_glucuronide found approximately 3-fold change and 1 public metric sentence with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "mycophenolic_acid_UGT_ABCG2_exposure_context",
+      "MPAG_AcMPAG_enterohepatic_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "green",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "http://hdl.handle.net/2429/6081",
+      "pdfUrl": "http://hdl.handle.net/2429/6081",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:40:00.115Z",
+    "novelty": {
+      "score": 70,
+      "reasons": [
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    },
+    "promotedEvidenceId": "ev_mycophenolate_ugt2b7_ting2009",
+    "promotedAt": "2026-06-05T09:50:09.606Z"
+  },
+  {
+    "id": "draft_mycophenolic_acid_ugt1a9_ugt2b7_abcg2_mpa_glucuronide_kegro2023_null",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "The reduced function allele SLCO1B1 c.521T&gt;C is of no practical relevance for the renal graft function over the first post-transplant year in patients treated with mycophenolic acid",
+    "year": 2023,
+    "source": "",
+    "journal": "",
+    "pmid": null,
+    "doi": "10.22541/au.169224396.69995901/v1",
+    "url": "https://doi.org/10.22541/au.169224396.69995901/v1",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "clearance",
+          "values": [
+            23,
+            45,
+            17
+          ],
+          "context": "The pharmacokinetic substudy did not signal that treated and control patients differed with respect to MPA clearance, peak, trough or total exposure, overall (treated n=23, control n=45), if cotreated with cyclosporine (n=17 vs."
+        }
+      ],
+      "publicMetricSentences": [
+        "To estimate the effect of the reduced-function polymorphism SLCO1B1 c.521T&gt;C on the renal graft function (estimated glomerular filtration rate, eGFR) over 12 months in patients treated with mycophenolic acid (MPA).",
+        "The adjusted eGFR slopes from day 1 to day 28 (peak), and from day 28 to day 365 were practically identical in treated (n=86) and control (n=168) patients (GMR=0.99, 95%CI 0.92-1.06, and GMR=0.98, 0.94-1.01, respectively).",
+        "The pharmacokinetic substudy did not signal that treated and control patients differed with respect to MPA clearance, peak, trough or total exposure, overall (treated n=23, control n=45), if cotreated with cyclosporine (n=17 vs."
+      ],
+      "note": "Public abstract/metadata extraction for mycophenolic_acid:UGT1A9_UGT2B7_ABCG2_MPA_glucuronide found 1 public metric sentence with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "mycophenolic_acid_UGT_ABCG2_exposure_context",
+      "MPAG_AcMPAG_enterohepatic_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "https://www.authorea.com/doi/pdf/10.22541/au.169224396.69995901",
+      "pdfUrl": "https://www.authorea.com/doi/pdf/10.22541/au.169224396.69995901",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:40:00.115Z",
+    "novelty": {
+      "score": 70,
+      "reasons": [
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_methotrexate_slco1b1_abcc2_mthfr_polyglutamate_wangp2026_41554112",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "MTX pathway gene variants, erythrocyte methotrexate polyglutamates, and treatment outcomes in rheumatoid arthritis.",
+    "year": 2026,
+    "source": "Biomol Biomed",
+    "journal": "Biomol Biomed",
+    "pmid": "41554112",
+    "doi": "10.17305/bb.2026.13544",
+    "url": "https://doi.org/10.17305/bb.2026.13544",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to methotrexate:SLCO1B1_ABCC2_MTHFR_polyglutamate, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "methotrexate_SLCO1B1_ABCC2_clearance_context",
+      "methotrexate_polyglutamate_MTHFR_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_citation_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13021033/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:40:02.896Z",
+    "novelty": {
+      "score": 55,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_methotrexate_slco1b1_abcc2_mthfr_polyglutamate_taylor2021_34200242",
+    "_status": "promoted_to_live_review_required",
+    "type": "guideline",
+    "title": "Systematic Review of Pharmacogenetic Factors That Influence High-Dose Methotrexate Pharmacokinetics in Pediatric Malignancies",
+    "year": 2021,
+    "source": "Cancers",
+    "journal": "Cancers",
+    "pmid": "34200242",
+    "doi": "10.3390/cancers13112837",
+    "url": "https://doi.org/10.3390/cancers13112837",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "publicMetricSentences": [
+        "Delayed MTX clearance can lead to prolonged, elevated exposure, causing increased risks for nephrotoxicity, mucositis, seizures, and neutropenia.",
+        "Numerous pharmacogenetic studies have investigated the effects of several genes and polymorphisms on MTX clearance in an attempt to better understand the pharmacokinetic variability and improve patient outcomes.",
+        "To date, several genes and polymorphisms that affect MTX clearance have been identified."
+      ],
+      "note": "Citation appears relevant to methotrexate:SLCO1B1_ABCC2_MTHFR_polyglutamate, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "methotrexate_SLCO1B1_ABCC2_clearance_context",
+      "methotrexate_polyglutamate_MTHFR_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://www.mdpi.com/2072-6694/13/11/2837/pdf?version=1623059624",
+      "pdfUrl": "https://www.mdpi.com/2072-6694/13/11/2837/pdf?version=1623059624",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:40:02.900Z",
+    "novelty": {
+      "score": 80,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    },
+    "promotedEvidenceId": "ev_methotrexate_hdmtx_pgpk_taylor2021",
+    "promotedAt": "2026-06-05T09:50:09.606Z"
+  },
+  {
+    "id": "draft_methotrexate_slco1b1_abcc2_mthfr_polyglutamate_song2021_34744734",
+    "_status": "promoted_to_live_review_required",
+    "type": "guideline",
+    "title": "The Role of Genetic Polymorphisms in High-Dose Methotrexate Toxicity and Response in Hematological Malignancies: A Systematic Review and Meta-Analysis",
+    "year": 2021,
+    "source": "Frontiers in Pharmacology",
+    "journal": "Frontiers in Pharmacology",
+    "pmid": "34744734",
+    "doi": "10.3389/fphar.2021.757464",
+    "url": "https://doi.org/10.3389/fphar.2021.757464",
+    "studyDesign": "clinical_pk",
+    "n": 4102,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "percentChange": 95,
+      "publicMetricSentences": [
+        "Meta-analysis was conducted by using Cochrane Collaboration Review Manager software 5.3.",
+        "The odds ratios (ORs) or hazard ratios (HRs) with 95% confidence interval (95% CI) were analyzed to evaluate the associations between SNPs and clinical outcomes.",
+        "MTHFR 677C&amp;gt;T and hepatotoxicity (dominant, OR=1.52, 95% CI=1.03-2.23;"
+      ],
+      "note": "Public abstract/metadata extraction for methotrexate:SLCO1B1_ABCC2_MTHFR_polyglutamate found about 95% change. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "methotrexate_SLCO1B1_ABCC2_clearance_context",
+      "methotrexate_polyglutamate_MTHFR_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://www.frontiersin.org/articles/10.3389/fphar.2021.757464/pdf",
+      "pdfUrl": "https://www.frontiersin.org/articles/10.3389/fphar.2021.757464/pdf",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:40:02.902Z",
+    "novelty": {
+      "score": 95,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    },
+    "promotedEvidenceId": "ev_methotrexate_pgtox_meta_song2021",
+    "promotedAt": "2026-06-05T09:50:09.606Z"
+  },
+  {
+    "id": "draft_azathioprine_tpmt_nudt15_6tgn_6mmp_sharma2022_36262539",
+    "_status": "pending_review",
+    "type": "guideline",
+    "title": "Personalized medicine to implementation science: Thiopurines set for the leap",
+    "year": 2022,
+    "source": "JGH Open",
+    "journal": "JGH Open",
+    "pmid": "36262539",
+    "doi": "10.1002/jgh3.12829",
+    "url": "https://doi.org/10.1002/jgh3.12829",
+    "studyDesign": "clinical_pk",
+    "n": 28,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "publicMetricSentences": [
+        "30–70% of dose Homozygous:",
+        "Avoid or 10% Nudix hydrolase or nucleoside diphosphate-linked moiety X-type motif 15 NUDT15 Preferentially hydrolyzes 6-thio-guanosine triphosphate to 6-thio (deoxy)-guanosine monophosphate Reduced incorporation into DNA and lower cytotoxic and immunosuppressant effects Deficiency increased the triphosphate levels and may increase cytopenias Heterozygous:",
+        "30–70% of dose Homozygous:"
+      ],
+      "note": "Citation appears relevant to azathioprine:TPMT_NUDT15_6TGN_6MMP, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "azathioprine_TPMT_NUDT15_6TGN_context",
+      "thiopurine_6MMP_metabolite_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/jgh3.12829",
+      "pdfUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/jgh3.12829",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:40:05.098Z",
+    "novelty": {
+      "score": 80,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_azathioprine_tpmt_nudt15_6tgn_6mmp_lim2018_30349479",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Revisiting the Role of Thiopurines in Inflammatory Bowel Disease Through Pharmacogenomics and Use of Novel Methods for Therapeutic Drug Monitoring",
+    "year": 2018,
+    "source": "Frontiers in Pharmacology",
+    "journal": "Frontiers in Pharmacology",
+    "pmid": "30349479",
+    "doi": "10.3389/fphar.2018.01107",
+    "url": "https://doi.org/10.3389/fphar.2018.01107",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "publicMetricSentences": [
+        "The recent discovery of novel Asian-specific DNA variants, namely those in the NUDT15 gene, and their link to thiopurine toxicity, have led clinicians and scientists to revisit the utility of Caucasian biomarkers for Asian individuals with inflammatory bowel disease."
+      ],
+      "note": "Citation appears relevant to azathioprine:TPMT_NUDT15_6TGN_6MMP, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "azathioprine_TPMT_NUDT15_6TGN_context",
+      "thiopurine_6MMP_metabolite_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by",
+      "landingUrl": "https://www.frontiersin.org/articles/10.3389/fphar.2018.01107/pdf",
+      "pdfUrl": "https://www.frontiersin.org/articles/10.3389/fphar.2018.01107/pdf",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:40:05.100Z",
+    "novelty": {
+      "score": 65,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentence"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_cisplatin_oct2_mate1_nephrotoxicity_xia2014_24641901",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Transgenic Expression of the Human MRP2 Transporter Reduces Cisplatin Accumulation and Nephrotoxicity in Mrp2-Null Mice",
+    "year": 2014,
+    "source": "American Journal Of Pathology",
+    "journal": "American Journal Of Pathology",
+    "pmid": "24641901",
+    "doi": "10.1016/j.ajpath.2014.01.025",
+    "url": "https://doi.org/10.1016/j.ajpath.2014.01.025",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "publicMetricSentences": [
+        "By 24 hours, twofold higher concentrations of platinum were detected in the kidneys and livers of Mrp2-null mice compared with wild types.",
+        "Enhanced platinum concentrations in Mrp2-null mice were observed in DNA and cytosolic fractions of the kidneys.",
+        "By 24 hours, twofold higher concentrations of platinum were detected in the kidneys and livers of Mrp2-null mice compared with wild types."
+      ],
+      "note": "Citation appears relevant to cisplatin:OCT2_MATE1_nephrotoxicity, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "cisplatin_OCT2_MATE1_nephrotoxicity_context",
+      "cisplatin_transporter_genotype_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "hybrid",
+      "source": "openalex",
+      "license": "cc-by-nc-nd",
+      "landingUrl": "http://ajp.amjpathol.org/article/S000294401400100X/pdf",
+      "pdfUrl": "http://ajp.amjpathol.org/article/S000294401400100X/pdf",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:40:08.132Z",
+    "novelty": {
+      "score": 80,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_ondansetron_cyp2d6_qt_response_bellgc2017_28002639",
+    "_status": "promoted_to_live_review_required",
+    "type": "guideline",
+    "title": "Clinical Pharmacogenetics Implementation Consortium (CPIC) guideline for CYP2D6 genotype and use of ondansetron and tropisetron.",
+    "year": 2017,
+    "source": "Clin Pharmacol Ther",
+    "journal": "Clin Pharmacol Ther",
+    "pmid": "28002639",
+    "doi": "10.1002/cpt.598",
+    "url": "https://doi.org/10.1002/cpt.598",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to ondansetron:CYP2D6_QT_response, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "ondansetron_CYP2D6_response_context",
+      "ondansetron_QT_genotype_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_citation_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": null,
+      "source": "europepmc",
+      "license": null,
+      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5479760/",
+      "pdfUrl": null,
+      "evidence": "Europe PMC reports PDF availability"
+    },
+    "provenance": "search:europepmc",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:40:10.832Z",
+    "novelty": {
+      "score": 55,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    },
+    "promotedEvidenceId": "ev_ondansetron_cyp2d6_cpic2017",
+    "promotedAt": "2026-06-05T09:50:09.606Z"
+  },
+  {
+    "id": "draft_succinylcholine_bche_pseudocholinesterase_apnea_sridhar2024_38590305",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Emerging significance of butyrylcholinesterase",
+    "year": 2024,
+    "source": "World Journal of Experimental Medicine",
+    "journal": "World Journal of Experimental Medicine",
+    "pmid": "38590305",
+    "doi": "10.5493/wjem.v14.i1.87202",
+    "url": "https://doi.org/10.5493/wjem.v14.i1.87202",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "publicMetricSentences": [
+        "BChE is well-known due to variant forms of the enzyme with little or no hydrolytic activity which exist in some endogamous communities and result in prolonged apnea following the administration of succinylcholine."
+      ],
+      "note": "Citation appears relevant to succinylcholine:BCHE_pseudocholinesterase_apnea, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "succinylcholine_BCHE_pseudocholinesterase_apnea_context",
+      "BCHE_dibucaine_number_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "diamond",
+      "source": "openalex",
+      "license": "cc-by-nc",
+      "landingUrl": "https://doi.org/10.5493/wjem.v14.i1.87202",
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:40:15.718Z",
+    "novelty": {
+      "score": 65,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentence"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
   }
 ]

@@ -6,6 +6,8 @@ This page keeps implementation details out of the README front page while preser
 
 MedCheck distributes as a single self-contained HTML file. All computation runs in the browser with no backend, no API, no accounts, and no persistent storage. D3.js is loaded from CDN for graph visualization.
 
+The central design principle is synergy: drugs, genes, metabolites, receptors, transporters, foods, and time are modeled as connected actors because the clinically interesting signal often emerges from the whole system rather than from isolated parts.
+
 The source is structured as editable JavaScript modules in `src/`, assembled in dependency order by `build.js`, alongside the generated stats file and HTML template:
 
 ```text

@@ -1,6 +1,6 @@
 # MedCheck
 
-A private, client-side pharmacology graph for exploring drug interactions, pharmacogenomics, metabolites, foods, transporters, receptor burden, washout timing, and PK exposure.
+A private, client-side pharmacology graph for exploring how drugs, genes, metabolites, foods, transporters, receptor burden, washout timing, and PK exposure act together as one system.
 
 **Live app:** [diogonmpacheco.github.io/medcheck](https://diogonmpacheco.github.io/medcheck/)
 
@@ -38,7 +38,9 @@ For class-based entry points, see the [Medication Class Guides](https://diogonmp
 
 ## Why It Exists
 
-Most interaction checkers return isolated warnings. MedCheck tries to show the underlying pharmacology:
+Most interaction checkers return isolated warnings. MedCheck is built around a different premise: medication risk is often synergistic, and **the whole is greater than the sum of its parts**.
+
+The goal is not to treat each drug, genotype, metabolite, or pathway as a separate lookup item. The goal is to show how those parts combine into a pharmacology system:
 
 - which enzyme, transporter, metabolite, receptor, or phenotype is involved
 - whether the issue is parent-drug accumulation, active-metabolite failure, receptor burden, or washout timing
@@ -67,13 +69,13 @@ The project is intended for education, research, and review workflows. It is not
 
 <!-- MEDCHECK_STATS_START -->
 - **625 drugs** in DRUG_DB
-- **443 evidence entries** in STUDY_DB (264 with PMIDs) — **161 verified**, **282 quarantined enrichment drafts** awaiting human review
+- **452 evidence entries** in STUDY_DB (271 with PMIDs) — **161 verified**, **291 quarantined enrichment drafts** awaiting human review
 - **631 curated DDI pairs** (326 severe, 281 moderate, 24 mild)
 - **1167 curated metabolite entries** across **465 parent substances** (33 first-class metabolite actors)
 - **146 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **57 genotype genes** and **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **2038 KB** generated bundle (32577 lines)
+- **2068 KB** generated bundle (33060 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---

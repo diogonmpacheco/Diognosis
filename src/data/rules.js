@@ -981,13 +981,30 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     metaboliteName:"Tacrolimus exposure / trough requirement",
     enzyme:"CYP3A5",
     systemic:true,
-    note:"Tacrolimus is a narrow-therapeutic-index calcineurin inhibitor. CYP3A5 expressers clear tacrolimus faster and often need higher starting doses; non-expressers have higher concentration/dose at the same dose. Therapeutic drug monitoring remains mandatory.",
-    evidenceRefs:["ev_tacrolimus_cyp3a5_cpic","ev_tacrolimus_cyp3a5_consensus"],
+    note:"Tacrolimus is a narrow-therapeutic-index calcineurin inhibitor. CYP3A5 expressers clear tacrolimus faster and often need higher starting doses; non-expressers have higher concentration/dose at the same dose. Liver and renal transplant data also support ABCB1/CYP3A4 donor-recipient context, but therapeutic drug monitoring remains mandatory.",
+    evidenceRefs:["ev_tacrolimus_cyp3a5_cpic","ev_tacrolimus_cyp3a5_consensus","ev_tacrolimus_liver_multigene_ladd2025","ev_tacrolimus_renal_dose_model_srinivas2023"],
     effects:{
       [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"CYP3A5 non-expresser: higher tacrolimus concentration/dose; standard starting dose is usually closer than expresser dosing, then TDM" },
       [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"decrease", label:"CYP3A5 expresser/intermediate: lower troughs at standard dose; CPIC recommends 1.5-2x higher starting dose with TDM" },
       [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
       [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"decrease", label:"high-expression context: higher dose pressure; use trough-guided dosing and interaction review" },
+    }
+  },
+  {
+    parent:"Ondansetron",
+    metaboliteId:"ondansetron-cyp2d6-response-context",
+    metaboliteName:"Ondansetron antiemetic response",
+    enzyme:"CYP2D6",
+    systemic:true,
+    note:"Ondansetron is not just a QT drug in genotype review. CPIC frames CYP2D6 ultrarapid metabolism as a reduced-response/lower-exposure context for ondansetron and tropisetron; QT risk still depends more on dose, route, electrolytes, cardiac disease, and co-medications.",
+    evidenceRefs:["ev_ondansetron_cyp2d6_cpic2017"],
+    inhibitionDirection:"decrease",
+    inhibitionLabel:"CYP2D6 ultrarapid metabolism: lower ondansetron response probability",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"slower CYP2D6 clearance context; review QT/sedation burden but CYP2D6 PM is not the CPIC reduced-response concern" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"baseline", label:"intermediate CYP2D6: usually no genotype-only antiemetic change; review QT and co-medications" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline antiemetic response context" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"decrease", label:"CYP2D6 ultrarapid: reduced ondansetron/tropisetron response possible; consider non-CYP2D6-dependent antiemetic options if failure risk matters" },
     }
   },
   {
@@ -1115,7 +1132,7 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     metaboliteName:"Tafenoquine oxidative metabolites",
     enzyme:"G6PD",
     note:"Tafenoquine is an 8-aminoquinoline with prolonged oxidant exposure. G6PD deficiency is contraindicated because hemolysis can be delayed and hard to reverse after a long-half-life dose.",
-    evidenceRefs:["ev_tafenoquine_g6pd_fda"],
+    evidenceRefs:["ev_tafenoquine_g6pd_fda","ev_tafenoquine_relapse_lacerda2019"],
     inhibitionDirection:"increase",
     inhibitionLabel:"G6PD deficiency: inadequate red-cell defense against prolonged 8-aminoquinoline oxidant stress",
     effects:{
@@ -1130,7 +1147,7 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     metaboliteName:"Primaquine hydroxylamine / quinone-imine metabolites",
     enzyme:"G6PD",
     note:"Primaquine hemolysis risk is driven by reactive oxidative metabolite families plus host red-cell antioxidant reserve. G6PD deficiency changes the safety frame even when the parent dose looks ordinary.",
-    evidenceRefs:["ev_g6pd_oxidative_antimalarials"],
+    evidenceRefs:["ev_g6pd_oxidative_antimalarials","ev_primaquine_g6pd_safety_bastiaens2018","ev_tafenoquine_relapse_lacerda2019"],
     inhibitionDirection:"increase",
     inhibitionLabel:"G6PD deficiency: reactive oxidative metabolite hemolysis risk",
     effects:{

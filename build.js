@@ -48,10 +48,12 @@ const MODULE_ORDER = [
   'engine/phenotypeEngine.js',    // computePhenotypeAccumulation, computeWashoutCalendar
   'engine/scoringEngine.js',      // computeAdverseBurden
   'engine/interactionEngine.js',  // findInteractions, calcRisk, analyzeMetabolites
+  'engine/mechanisticPredictionEngine.js', // experimental route/metabolite predictions
 
   // ── UI layer (depends on engine + data) ──
   'ui/renderCore.js',         // addDrug, removeDrug, renderAll, renderMedList
   'ui/renderInteractions.js', // renderInteractions, renderFoldBars, renderMatrix, renderTiming
+  'ui/renderMechanisticPredictions.js', // experimental predictions below warnings
   'ui/renderEvidence.js',     // renderEvidenceExplorer
   'ui/renderCascade.js',      // renderCascade
   'ui/renderAlternatives.js', // renderAlternatives, renderGenetics, renderMetabolites, etc.
@@ -115,6 +117,12 @@ function generateStats() {
   execSync(`"${process.execPath}" "${script}"`, { cwd: __dirname, stdio: 'inherit' });
 }
 
+function generateMechanisticCurationGaps() {
+  const script = resolve(__dirname, 'scripts/audit/mechanistic-curation-gaps.js');
+  if (!existsSync(script)) return;
+  execSync(`"${process.execPath}" "${script}"`, { cwd: __dirname, stdio: 'inherit' });
+}
+
 function injectIntoTemplate(bundle) {
   const templatePath = resolve(SRC, 'index.template.html');
   const template = readFileSync(templatePath, 'utf8');
@@ -135,6 +143,7 @@ function injectIntoTemplate(bundle) {
 try {
   mkdirSync(dirname(OUT_PATH), { recursive: true });
   generateStats();
+  generateMechanisticCurationGaps();
   const bundle = buildBundle();
   const html = injectIntoTemplate(bundle);
   writeFileSync(OUT_PATH, html, 'utf8');

@@ -576,6 +576,35 @@ assert(
   'Diazepam + Morphine should cross respiratory depression receptor threshold'
 );
 
+loadCase(window, ['Apalutamide', 'Fentanyl']);
+const mechanisticMedicationPredictions = window.eval('getMechanisticPredictions(activeStack)');
+assert(
+  mechanisticMedicationPredictions.some(p =>
+    p.kind === 'medication-enzyme' &&
+    p.drugs.includes('Apalutamide') &&
+    p.drugs.includes('Fentanyl') &&
+    p.pathway === 'CYP3A4'
+  ),
+  'Experimental mechanistic predictions should surface undocumented enzyme-mediated medication relations'
+);
+
+loadCase(window, ['Atazanavir']);
+window.eval(`setGenotypeState('UGT1A1', GENOTYPE_PHENOTYPE.PM); renderAll();`);
+const mechanisticGenotypePredictions = window.eval('getMechanisticPredictions(activeStack)');
+assert(
+  mechanisticGenotypePredictions.some(p =>
+    p.kind === 'genotype-metabolite' &&
+    p.drugs.includes('Atazanavir') &&
+    p.pathway === 'UGT1A1'
+  ),
+  'Experimental mechanistic predictions should surface genotype-metabolite relations without direct rules'
+);
+assert(
+  window.document.getElementById('mechanisticSection').style.display !== 'none' &&
+  window.document.querySelectorAll('#mechanisticBody .mechanistic-card').length >= 1,
+  'Experimental mechanistic prediction block should render below main safety warnings'
+);
+
 const browseCategoryAudit = window.eval(`(() => {
   const byName = Object.fromEntries(DRUG_DB.map(d => [d.name, getBrowseCategory(d)]));
   const counts = DRUG_DB.reduce((acc, d) => {
