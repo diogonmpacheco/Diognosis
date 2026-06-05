@@ -247,6 +247,13 @@ const GENOTYPE_RISK_EFFECTS = {
         clinicalAction:"avoid phenytoin/fosphenytoin if possible; use CYP2C9-guided dosing if used",
         evidenceRefs:["ev_phenytoin_cyp2c9_hlab_cpic2020"],
       },
+      {
+        parent:"Fosphenytoin",
+        phenotype:"SJS/TEN risk after conversion to phenytoin",
+        note:"Fosphenytoin is rapidly converted to phenytoin, so the same HLA-B*15:02 severe cutaneous adverse reaction risk applies after conversion. This immune-risk signal is separate from infusion-related cardiac effects and CYP2C9 exposure sensitivity.",
+        clinicalAction:"avoid fosphenytoin if HLA-B*15:02 positive when alternatives exist; if used, apply phenytoin CYP2C9/TDM and rash monitoring",
+        evidenceRefs:["ev_phenytoin_cyp2c9_hlab_cpic2020"],
+      },
     ],
     effects:{
       [GENOTYPE_RISK_STATUS.ABSENT]: { label:"not detected", severity:"baseline", note:"Risk allele not detected. This does not remove ordinary rash or hypersensitivity risk." },
