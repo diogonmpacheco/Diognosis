@@ -245,7 +245,7 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     metaboliteName:"Active thiol metabolite",
     enzyme:"CYP2C19",
     note:"Clopidogrel is a prodrug. CYP2C19 loss-of-function sharply lowers active thiol metabolite exposure and platelet inhibition; the strongest evidence applies to ACS/PCI settings.",
-    evidenceRefs:["ev_clopidogrel_cyp2c19_cpic","ev_clopidogrel_active_thiol_kim2014","ev_clopidogrel_cyp2c19_mega2009"],
+    evidenceRefs:["ev_clopidogrel_cyp2c19_cpic","ev_clopidogrel_active_thiol_kim2014","ev_clopidogrel_cyp2c19_mega2009","ev_clopidogrel_dose_escalation_horenstein2014"],
     inhibitionDirection:"decrease",
     inhibitionLabel:"CYP2C19 inhibition/phenoconversion context: lower active thiol formation expected",
     effects:{
@@ -320,8 +320,8 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     metaboliteId:"4-hydroxyatomoxetine",
     metaboliteName:"4-Hydroxyatomoxetine",
     enzyme:"CYP2D6",
-    note:"4-Hydroxyatomoxetine is equipotent to parent at NET. CYP2D6 PM reduces 4-OH formation while parent atomoxetine accumulates substantially; active moiety is maintained at lower doses.",
-    evidenceRefs:["ev_atomoxetine_cyp2d6_cpic"],
+    note:"4-Hydroxyatomoxetine is equipotent to parent at NET. CYP2D6 PM reduces 4-OH formation while parent atomoxetine accumulates substantially; pediatric population PK evidence supports large CYP2D6 activity-score effects on clearance and metabolite balance.",
+    evidenceRefs:["ev_atomoxetine_cyp2d6_cpic","ev_atomoxetine_pop_pk_shen2023","ev_atomoxetine_pop_pk_tobin2026"],
     inhibitionDirection:"decrease",
     inhibitionLabel:"CYP2D6 inhibition/phenoconversion: 4-OH formation reduced; parent accumulates",
     effects:{
@@ -367,8 +367,8 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     metaboliteId:"n-desmethylclobazam-norclobazam",
     metaboliteName:"Norclobazam (N-Desmethylclobazam)",
     enzyme:"CYP2C19",
-    note:"Norclobazam is active and cleared by CYP2C19. CYP2C19 PM impairs norclobazam clearance, producing metabolite accumulation; this fold belongs on the metabolite row.",
-    evidenceRefs:["ev_clobazam_cyp2c19_fda_onfi"],
+    note:"Norclobazam is active and cleared by CYP2C19. CYP2C19 PM impairs norclobazam clearance, producing metabolite accumulation; public case/TDM data report N-CLB/CLB ratios 10- to 27-fold above matched medians in presumed CYP2C19 PM children.",
+    evidenceRefs:["ev_clobazam_cyp2c19_fda_onfi","ev_clobazam_cyp2c19_contin2003","ev_clobazam_cbd_ddi_morrison2019"],
     inhibitionDirection:"increase",
     inhibitionLabel:"CYP2C19 inhibition/phenoconversion: norclobazam clearance impaired -> accumulation",
     effects:{
@@ -609,7 +609,7 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     metaboliteName:"Voriconazole N-oxide",
     enzyme:"CYP2C19",
     note:"Voriconazole N-oxide is inactive. CYP2C19 PM reduces N-oxide formation while parent voriconazole accumulates; TDM is mandatory.",
-    evidenceRefs:["ev_voriconazole_cyp2c19_hyland2008"],
+    evidenceRefs:["ev_voriconazole_cyp2c19_hyland2008","ev_voriconazole_pop_pk_wang2013"],
     inhibitionDirection:"decrease",
     inhibitionLabel:"CYP2C19 inhibition/phenoconversion: N-oxide formation reduced; parent accumulates",
     effects:{
@@ -795,8 +795,8 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     metaboliteId:"sn-38-7-ethyl-10-hydroxycamptothecin",
     metaboliteName:"SN-38",
     enzyme:"UGT1A1",
-    note:"SN-38 is the active cytotoxic metabolite of irinotecan. UGT1A1 poor function impairs SN-38 glucuronidation to inactive SN-38G, increasing severe neutropenia risk.",
-    evidenceRefs:["ev_irinotecan_ugt1a1_ramsey2014"],
+    note:"SN-38 is the active cytotoxic metabolite of irinotecan. UGT1A1 poor function impairs SN-38 glucuronidation to inactive SN-38G, increasing severe neutropenia risk; public PK abstracts reinforce lower SN-38G/SN-38 ratios in reduced UGT1A contexts.",
+    evidenceRefs:["ev_irinotecan_ugt1a1_ramsey2014","ev_irinotecan_ugt1a1_stewart2007","ev_irinotecan_ugt1a_han2006","ev_irinotecan_sn38_review_mathijssen2001"],
     inhibitionDirection:"increase",
     inhibitionLabel:"UGT1A1 loss-of-function: SN-38 glucuronidation impaired -> SN-38 accumulates",
     effects:{
@@ -1174,7 +1174,7 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     enzyme:"SLCO1B1",
     systemic:true,
     note:"Simvastatin acid depends on OATP1B1/SLCO1B1 hepatic uptake. Decreased-function SLCO1B1 phenotypes raise systemic statin-acid exposure and statin-associated muscle symptom risk, especially at higher doses or with interacting drugs.",
-    evidenceRefs:["ev_statin_slco1b1_abcg2_cpic2022"],
+    evidenceRefs:["ev_statin_slco1b1_abcg2_cpic2022","ev_simvastatin_multigene_choi2016"],
     effects:{
       [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"decreased function: avoid high-dose simvastatin; prefer lower-risk statin/dose per CPIC and monitor muscle symptoms" },
       [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"intermediate function: higher simvastatin-acid exposure; use lower dose/intensity or alternative statin if risk stack is high" },

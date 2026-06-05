@@ -1502,7 +1502,7 @@
     "source": "Journal of addiction medicine",
     "journal": "Journal of addiction medicine",
     "pmid": "35165231",
-    "doi": "10.1097/ADM.0000000000000968",
+    "doi": "10.1097/adm.0000000000000968",
     "url": "https://doi.org/10.1097/ADM.0000000000000968",
     "studyDesign": "case_report",
     "n": null,
@@ -2739,7 +2739,7 @@
     "source": "Clinical pharmacology and therapeutics",
     "journal": "Clinical pharmacology and therapeutics",
     "pmid": "9951426",
-    "doi": "10.1016/S0009-9236(99)70117-7",
+    "doi": "10.1016/s0009-9236(99)70117-7",
     "url": "https://doi.org/10.1016/S0009-9236(99)70117-7",
     "studyDesign": "randomized_controlled_trial",
     "n": null,
@@ -5808,96 +5808,6 @@
     "_createdAt": "2026-06-05T08:54:40.580Z"
   },
   {
-    "id": "draft_tramadol_cyp2d6_cyp2b6_metabolites_mahajnam2024_38440181",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Influence of cytochrome <i>P450 2D6*10/*10</i> genotype on the risk for tramadol associated adverse effects: a retrospective cohort study.",
-    "year": 2024,
-    "source": "Front Pharmacol",
-    "journal": "Front Pharmacol",
-    "pmid": "38440181",
-    "doi": "10.3389/fphar.2024.1358549",
-    "url": "https://doi.org/10.3389/fphar.2024.1358549",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "tramadol_CYP2D6_active_metabolite_context",
-      "tramadol_CYP2B6_secondary_metabolism_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10910298/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:28.649Z"
-  },
-  {
-    "id": "draft_tramadol_cyp2d6_cyp2b6_metabolites_giovanninie2024_38539313",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Fetal and Infant Effects of Maternal Opioid Use during Pregnancy: A Literature Review including Clinical, Toxicological, Pharmacogenomic, and Epigenetic Aspects for Forensic Evaluation.",
-    "year": 2024,
-    "source": "Children (Basel)",
-    "journal": "Children (Basel)",
-    "pmid": "38539313",
-    "doi": "10.3390/children11030278",
-    "url": "https://doi.org/10.3390/children11030278",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "tramadol_CYP2D6_active_metabolite_context",
-      "tramadol_CYP2B6_secondary_metabolism_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10969201/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:28.649Z"
-  },
-  {
     "id": "draft_tramadol_cyp2d6_cyp2b6_metabolites_haagep2018_29992026",
     "_status": "pending_review",
     "type": "clinical_pk",
@@ -5912,7 +5822,7 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -5940,142 +5850,7 @@
     "provenance": "search:europepmc",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:28.649Z"
-  },
-  {
-    "id": "draft_tramadol_cyp2d6_cyp2b6_metabolites_zebalaja2019_31005596",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Desmetramadol Has the Safety and Analgesic Profile of Tramadol Without Its Metabolic Liabilities: Consecutive Randomized, Double-Blind, Placebo- and Active Comparator-Controlled Trials.",
-    "year": 2019,
-    "source": "J Pain",
-    "journal": "J Pain",
-    "pmid": "31005596",
-    "doi": "10.1016/j.jpain.2019.04.005",
-    "url": "https://doi.org/10.1016/j.jpain.2019.04.005",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "tramadol_CYP2D6_active_metabolite_context",
-      "tramadol_CYP2B6_secondary_metabolism_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": null,
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6790288/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:28.649Z"
-  },
-  {
-    "id": "draft_tramadol_cyp2d6_cyp2b6_metabolites_smith2009_19567715",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Opioid Metabolism",
-    "year": 2009,
-    "source": "Mayo Clinic Proceedings",
-    "journal": "Mayo Clinic Proceedings",
-    "pmid": "19567715",
-    "doi": "10.1016/s0025-6196(11)60750-7",
-    "url": "https://doi.org/10.1016/s0025-6196(11)60750-7",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "tramadol_CYP2D6_active_metabolite_context",
-      "tramadol_CYP2B6_secondary_metabolism_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "bronze",
-      "source": "openalex",
-      "license": null,
-      "landingUrl": "http://www.mayoclinicproceedings.org/article/S0025619611607507/pdf",
-      "pdfUrl": "http://www.mayoclinicproceedings.org/article/S0025619611607507/pdf",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:28.649Z"
-  },
-  {
-    "id": "draft_tramadol_cyp2d6_cyp2b6_metabolites_tornio2018_29801580",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Cytochrome P450 in Pharmacogenetics: An Update",
-    "year": 2018,
-    "source": "Advances in pharmacology",
-    "journal": "Advances in pharmacology",
-    "pmid": "29801580",
-    "doi": "10.1016/bs.apha.2018.04.007",
-    "url": "https://doi.org/10.1016/bs.apha.2018.04.007",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "tramadol_CYP2D6_active_metabolite_context",
-      "tramadol_CYP2B6_secondary_metabolism_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "green",
-      "source": "openalex",
-      "license": "other-oa",
-      "landingUrl": "http://hdl.handle.net/10138/300396",
-      "pdfUrl": "http://hdl.handle.net/10138/300396",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:28.649Z"
+    "_createdAt": "2026-06-05T09:24:34.492Z"
   },
   {
     "id": "draft_tramadol_cyp2d6_cyp2b6_metabolites_leppert2011_21494059",
@@ -6092,7 +5867,10 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from the abstract."
+      "publicMetricSentences": [
+        "All these drugs are metabolized through CYP2D6, an important enzyme for approximately 25% of all drugs administered in clinical practice."
+      ],
+      "note": "Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -6120,97 +5898,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:28.649Z"
-  },
-  {
-    "id": "draft_tramadol_cyp2d6_cyp2b6_metabolites_agarwal2017_28409480",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Genetic Testing for Opioid Pain Management: A Primer",
-    "year": 2017,
-    "source": "Pain and Therapy",
-    "journal": "Pain and Therapy",
-    "pmid": "28409480",
-    "doi": "10.1007/s40122-017-0069-2",
-    "url": "https://doi.org/10.1007/s40122-017-0069-2",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "tramadol_CYP2D6_active_metabolite_context",
-      "tramadol_CYP2B6_secondary_metabolism_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "gold",
-      "source": "openalex",
-      "license": "cc-by-nc",
-      "landingUrl": "https://link.springer.com/content/pdf/10.1007%2Fs40122-017-0069-2.pdf",
-      "pdfUrl": "https://link.springer.com/content/pdf/10.1007%2Fs40122-017-0069-2.pdf",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:28.649Z"
-  },
-  {
-    "id": "draft_tramadol_cyp2d6_cyp2b6_metabolites_leppert2011_21479998",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "Pain Management in Patients with Cancer: Focus on Opioid Analgesics",
-    "year": 2011,
-    "source": "Current Pain and Headache Reports",
-    "journal": "Current Pain and Headache Reports",
-    "pmid": "21479998",
-    "doi": "10.1007/s11916-011-0201-7",
-    "url": "https://doi.org/10.1007/s11916-011-0201-7",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "tramadol_CYP2D6_active_metabolite_context",
-      "tramadol_CYP2B6_secondary_metabolism_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "hybrid",
-      "source": "openalex",
-      "license": "cc-by-nc",
-      "landingUrl": "https://link.springer.com/content/pdf/10.1007/s11916-011-0201-7.pdf",
-      "pdfUrl": "https://link.springer.com/content/pdf/10.1007/s11916-011-0201-7.pdf",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:28.649Z"
+    "_createdAt": "2026-06-05T09:24:34.494Z"
   },
   {
     "id": "draft_metoprolol_cyp2d6_enantiomer_pk_rdesheims2020_33322314",
@@ -6227,7 +5915,7 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -6255,7 +5943,7 @@
     "provenance": "search:europepmc",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:31.037Z"
+    "_createdAt": "2026-06-05T09:24:34.811Z"
   },
   {
     "id": "draft_metoprolol_cyp2d6_enantiomer_pk_blakecm2013_23665868",
@@ -6272,7 +5960,7 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -6300,412 +5988,7 @@
     "provenance": "search:europepmc",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:31.039Z"
-  },
-  {
-    "id": "draft_metoprolol_cyp2d6_enantiomer_pk_briciuc2015_26528073",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Phenotypic differences in nebivolol metabolism and bioavailability in healthy volunteers.",
-    "year": 2015,
-    "source": "Clujul Med",
-    "journal": "Clujul Med",
-    "pmid": "26528073",
-    "doi": "10.15386/cjmed-395",
-    "url": "https://doi.org/10.15386/cjmed-395",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "metoprolol_CYP2D6_enantiomer_exposure_context",
-      "metoprolol_CYP2D6_bradycardia_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4576779/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:31.039Z"
-  },
-  {
-    "id": "draft_metoprolol_cyp2d6_enantiomer_pk_westerveltp2014_25210416",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Drug-gene interactions: inherent variability in drug maintenance dose requirements.",
-    "year": 2014,
-    "source": "P T",
-    "journal": "P T",
-    "pmid": "25210416",
-    "doi": null,
-    "url": "https://pubmed.ncbi.nlm.nih.gov/25210416/",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "metoprolol_CYP2D6_enantiomer_exposure_context",
-      "metoprolol_CYP2D6_bradycardia_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": null,
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4159057/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:31.039Z"
-  },
-  {
-    "id": "draft_metoprolol_cyp2d6_enantiomer_pk_daviesbj2008_17875193",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "Steady-state pharmacokinetics of the enantiomers of perhexiline in CYP2D6 poor and extensive metabolizers administered Rac-perhexiline.",
-    "year": 2008,
-    "source": "Br J Clin Pharmacol",
-    "journal": "Br J Clin Pharmacol",
-    "pmid": "17875193",
-    "doi": "10.1111/j.1365-2125.2007.03015.x",
-    "url": "https://doi.org/10.1111/j.1365-2125.2007.03015.x",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "metoprolol_CYP2D6_enantiomer_exposure_context",
-      "metoprolol_CYP2D6_bradycardia_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": null,
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2291239/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:31.039Z"
-  },
-  {
-    "id": "draft_metoprolol_cyp2d6_enantiomer_pk_ahmed2016_27729266",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Pharmacogenomics of Drug Metabolizing Enzymes and Transporters: Relevance to Precision Medicine",
-    "year": 2016,
-    "source": "Genomics Proteomics & Bioinformatics",
-    "journal": "Genomics Proteomics & Bioinformatics",
-    "pmid": "27729266",
-    "doi": "10.1016/j.gpb.2016.03.008",
-    "url": "https://doi.org/10.1016/j.gpb.2016.03.008",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "metoprolol_CYP2D6_enantiomer_exposure_context",
-      "metoprolol_CYP2D6_bradycardia_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "gold",
-      "source": "openalex",
-      "license": "cc-by",
-      "landingUrl": "https://academic.oup.com/gpb/article-pdf/14/5/298/57485665/gpb_14_5_298.pdf",
-      "pdfUrl": "https://academic.oup.com/gpb/article-pdf/14/5/298/57485665/gpb_14_5_298.pdf",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:31.039Z"
-  },
-  {
-    "id": "draft_metoprolol_cyp2d6_enantiomer_pk_henriques2020_33363564",
-    "_status": "pending_review",
-    "type": "guideline",
-    "title": "How Can Drug Metabolism and Transporter Genetics Inform Psychotropic Prescribing?",
-    "year": 2020,
-    "source": "Frontiers in Genetics",
-    "journal": "Frontiers in Genetics",
-    "pmid": "33363564",
-    "doi": "10.3389/fgene.2020.491895",
-    "url": "https://doi.org/10.3389/fgene.2020.491895",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "metoprolol_CYP2D6_enantiomer_exposure_context",
-      "metoprolol_CYP2D6_bradycardia_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "gold",
-      "source": "openalex",
-      "license": "cc-by",
-      "landingUrl": "https://www.frontiersin.org/articles/10.3389/fgene.2020.491895/pdf",
-      "pdfUrl": "https://www.frontiersin.org/articles/10.3389/fgene.2020.491895/pdf",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:31.039Z"
-  },
-  {
-    "id": "draft_metoprolol_cyp2d6_enantiomer_pk_zhou2018_30564130",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Pharmacogenomics of Medications Commonly Used in the Intensive Care Unit",
-    "year": 2018,
-    "source": "Frontiers in Pharmacology",
-    "journal": "Frontiers in Pharmacology",
-    "pmid": "30564130",
-    "doi": "10.3389/fphar.2018.01436",
-    "url": "https://doi.org/10.3389/fphar.2018.01436",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "metoprolol_CYP2D6_enantiomer_exposure_context",
-      "metoprolol_CYP2D6_bradycardia_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "gold",
-      "source": "openalex",
-      "license": "cc-by",
-      "landingUrl": "https://www.frontiersin.org/articles/10.3389/fphar.2018.01436/pdf",
-      "pdfUrl": "https://www.frontiersin.org/articles/10.3389/fphar.2018.01436/pdf",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:31.040Z"
-  },
-  {
-    "id": "draft_metoprolol_cyp2d6_enantiomer_pk_ryu2017_28296334",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "A Study on<i>CYP2C19</i>and<i>CYP2D6</i>Polymorphic Effects on Pharmacokinetics and Pharmacodynamics of Amitriptyline in Healthy Koreans",
-    "year": 2017,
-    "source": "Clinical and Translational Science",
-    "journal": "Clinical and Translational Science",
-    "pmid": "28296334",
-    "doi": "10.1111/cts.12451",
-    "url": "https://doi.org/10.1111/cts.12451",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "metoprolol_CYP2D6_enantiomer_exposure_context",
-      "metoprolol_CYP2D6_bradycardia_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "gold",
-      "source": "openalex",
-      "license": "cc-by-nc-nd",
-      "landingUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/cts.12451",
-      "pdfUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/cts.12451",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:31.040Z"
-  },
-  {
-    "id": "draft_escitalopram_cyp2c19_cyp2d6_serum_blambilal2026_42147327",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Pharmacogenetics of antidepressant response: a focused review on CYP2C19, CYP2D6, SLC6A4, and HTR2A polymorphisms.",
-    "year": 2026,
-    "source": "Front Pharmacol",
-    "journal": "Front Pharmacol",
-    "pmid": "42147327",
-    "doi": "10.3389/fphar.2026.1773677",
-    "url": "https://doi.org/10.3389/fphar.2026.1773677",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "escitalopram_CYP2C19_serum_concentration_context",
-      "escitalopram_CYP2C19_UM_failure_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13171527/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:33.200Z"
-  },
-  {
-    "id": "draft_escitalopram_cyp2c19_cyp2d6_serum_bonasserlss2024_39598373",
-    "_status": "pending_review",
-    "type": "meta_analysis",
-    "title": "<i>CYP2C19</i> Genetic Variants and Major Depressive Disorder: A Systematic Review.",
-    "year": 2024,
-    "source": "Pharmaceuticals (Basel)",
-    "journal": "Pharmaceuticals (Basel)",
-    "pmid": "39598373",
-    "doi": "10.3390/ph17111461",
-    "url": "https://doi.org/10.3390/ph17111461",
-    "studyDesign": "meta_analysis_or_systematic_review",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "escitalopram_CYP2C19_serum_concentration_context",
-      "escitalopram_CYP2C19_UM_failure_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11597809/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:33.202Z"
+    "_createdAt": "2026-06-05T09:24:34.812Z"
   },
   {
     "id": "draft_escitalopram_cyp2c19_cyp2d6_serum_bishopjr2015_26313485",
@@ -6722,7 +6005,7 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -6750,97 +6033,7 @@
     "provenance": "search:europepmc",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:33.202Z"
-  },
-  {
-    "id": "draft_escitalopram_cyp2c19_cyp2d6_serum_deligiannidiskm2014_24525634",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "Pharmacotherapy for mood disorders in pregnancy: a review of pharmacokinetic changes and clinical recommendations for therapeutic drug monitoring.",
-    "year": 2014,
-    "source": "J Clin Psychopharmacol",
-    "journal": "J Clin Psychopharmacol",
-    "pmid": "24525634",
-    "doi": "10.1097/jcp.0000000000000087",
-    "url": "https://doi.org/10.1097/jcp.0000000000000087",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "escitalopram_CYP2C19_serum_concentration_context",
-      "escitalopram_CYP2C19_UM_failure_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": null,
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4105343/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:33.202Z"
-  },
-  {
-    "id": "draft_escitalopram_cyp2c19_cyp2d6_serum_lucirey2011_23226054",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Antidepressant-induced akathisia-related homicides associated with diminishing mutations in metabolizing genes of the CYP450 family.",
-    "year": 2011,
-    "source": "Pharmgenomics Pers Med",
-    "journal": "Pharmgenomics Pers Med",
-    "pmid": "23226054",
-    "doi": "10.2147/pgpm.s17445",
-    "url": "https://doi.org/10.2147/pgpm.s17445",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "escitalopram_CYP2C19_serum_concentration_context",
-      "escitalopram_CYP2C19_UM_failure_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3513220/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:33.202Z"
+    "_createdAt": "2026-06-05T09:24:35.470Z"
   },
   {
     "id": "draft_escitalopram_cyp2c19_cyp2d6_serum_aldrich2019_30837874",
@@ -6857,7 +6050,10 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from the abstract."
+      "publicMetricSentences": [
+        "These results highlight a disparity in treatment outcomes with es/citalopram treatment in youth with anxiety and/or depressive disorders when standardized dosing strategies were used without consideration of CYP2C19 metabolizer status."
+      ],
+      "note": "Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -6885,7 +6081,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:33.202Z"
+    "_createdAt": "2026-06-05T09:24:35.473Z"
   },
   {
     "id": "draft_escitalopram_cyp2c19_cyp2d6_serum_islam2022_36068210",
@@ -6902,7 +6098,24 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from the abstract."
+      "groupMetricValues": [
+        {
+          "metric": "ratio",
+          "values": [
+            2,
+            6,
+            2,
+            6
+          ],
+          "context": "Instead, ESC + ARI showed an association between CYP2D6 metabolizer group and ARI metabolite-to-drug ratio suggesting potential competition between ESC and ARI for CYP2D6."
+        }
+      ],
+      "publicMetricSentences": [
+        "We investigated the effects of CYP2C19 and CYP2D6 gene variants on response, tolerability, and serum concentrations.",
+        "Patients (N = 178) were treated with escitalopram (ESC) from weeks 0-8 (Phase I), and at week 8, either continued ESC if they were responders or were augmented with aripiprazole (ARI) if they were non-responders (<50% reduction in Montgomery-Åsberg Depression Rating Scale from baseline) for weeks 8-16 (Phase II).",
+        "The differences in the findings between ESC-Only and ESC + ARI may be due to the altered pharmacokinetics of ESC by ARI coadministration in ESC + ARI."
+      ],
+      "note": "Public abstract/metadata extraction for escitalopram:CYP2C19_CYP2D6_serum found 1 public metric sentence with grouped values. Requires human review before promotion."
     },
     "temporal": {},
     "supports": [
@@ -6911,13 +6124,13 @@
     ],
     "contradicts": [],
     "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+      "Public abstract/metadata extraction only; requires human review before promotion"
     ],
-    "confidence": "low",
+    "confidence": "moderate",
     "publicFactsUsable": true,
     "sourceBasis": "public_abstract_or_metadata",
     "needsFullText": false,
-    "needsFullTextForPrecision": true,
+    "needsFullTextForPrecision": false,
     "openAccess": {
       "isOpenAccess": true,
       "status": "gold",
@@ -6930,52 +6143,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:33.202Z"
-  },
-  {
-    "id": "draft_escitalopram_cyp2c19_cyp2d6_serum_grundmann2013_23549513",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "Therapeutic monitoring of psychoactive drugs - antidepressants: A review",
-    "year": 2013,
-    "source": "Biomedical Papers",
-    "journal": "Biomedical Papers",
-    "pmid": "23549513",
-    "doi": "10.5507/bp.2013.020",
-    "url": "https://doi.org/10.5507/bp.2013.020",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "escitalopram_CYP2C19_serum_concentration_context",
-      "escitalopram_CYP2C19_UM_failure_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "gold",
-      "source": "openalex",
-      "license": "cc-by",
-      "landingUrl": "http://biomed.papers.upol.cz/doi/10.5507/bp.2013.020.pdf",
-      "pdfUrl": "http://biomed.papers.upol.cz/doi/10.5507/bp.2013.020.pdf",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:33.202Z"
+    "_createdAt": "2026-06-05T09:24:35.473Z"
   },
   {
     "id": "draft_escitalopram_cyp2c19_cyp2d6_serum_han2013_24302953",
@@ -6989,10 +6157,10 @@
     "doi": "10.4306/pi.2013.10.3.286",
     "url": "https://doi.org/10.4306/pi.2013.10.3.286",
     "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
+    "n": 94,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -7020,7 +6188,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:33.202Z"
+    "_createdAt": "2026-06-05T09:24:35.474Z"
   },
   {
     "id": "draft_simvastatin_slco1b1_abcg2_cyp_multigene_choi2016_26367500",
@@ -7031,13 +6199,53 @@
     "source": "Pharmacogenetics and genomics",
     "journal": "Pharmacogenetics and genomics",
     "pmid": "26367500",
-    "doi": "10.1097/FPC.0000000000000176",
+    "doi": "10.1097/fpc.0000000000000176",
     "url": "https://doi.org/10.1097/FPC.0000000000000176",
     "studyDesign": "randomized_controlled_trial",
-    "n": null,
+    "n": 133,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to simvastatin:SLCO1B1_ABCG2_CYP_multigene, but no quantitative value was extractable from the abstract."
+      "groupMetricValues": [
+        {
+          "metric": "area under the curve (AUC) for simvastatin",
+          "values": [
+            2,
+            6,
+            5,
+            2,
+            6,
+            14,
+            1,
+            1
+          ],
+          "context": "CYP2D6*5 and CYP2D6*14 were found to be associated with a higher area under the curve (AUC) for simvastatin, whereas the AUC of simvastatin acid was significantly increased in patients with the SLCO1B1 rs4149056, ABCG2 rs2231142, and CYP2D6*41 allele variants."
+        },
+        {
+          "metric": "concentration",
+          "values": [
+            2,
+            6,
+            41
+          ],
+          "context": "Patients with the CYP2D6*41 variant showed a higher peak serum concentration (Cmax) of both simvastatin and simvastatin acid."
+        },
+        {
+          "metric": "AUC",
+          "values": [
+            1,
+            1,
+            4149,
+            4149
+          ],
+          "context": "The SLCO1B1 rs4149056 and rs4149015 polymorphisms were associated with an increased AUC ratio (i.e."
+        }
+      ],
+      "publicMetricSentences": [
+        "Plasma concentration data for simvastatin and simvastatin acid were pooled from four phase I studies comprising 133 participants.",
+        "CYP2D6*5 and CYP2D6*14 were found to be associated with a higher area under the curve (AUC) for simvastatin, whereas the AUC of simvastatin acid was significantly increased in patients with the SLCO1B1 rs4149056, ABCG2 rs2231142, and CYP2D6*41 allele variants.",
+        "Patients with the CYP2D6*41 variant showed a higher peak serum concentration (Cmax) of both simvastatin and simvastatin acid."
+      ],
+      "note": "Public abstract/metadata extraction for simvastatin:SLCO1B1_ABCG2_CYP_multigene found 3 public metric sentences with grouped values. Requires human review before promotion."
     },
     "temporal": {},
     "supports": [
@@ -7046,13 +6254,13 @@
     ],
     "contradicts": [],
     "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+      "Public abstract/metadata extraction only; requires human review before promotion"
     ],
-    "confidence": "low",
+    "confidence": "moderate",
     "publicFactsUsable": true,
     "sourceBasis": "public_abstract_or_metadata",
     "needsFullText": false,
-    "needsFullTextForPrecision": true,
+    "needsFullTextForPrecision": false,
     "openAccess": {
       "isOpenAccess": false,
       "status": null,
@@ -7065,367 +6273,7 @@
     "provenance": "search:pubmed",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:35.513Z"
-  },
-  {
-    "id": "draft_simvastatin_slco1b1_abcg2_cyp_multigene_boinan2021_34187111",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Drug-drug-gene interactions as mediators of adverse drug reactions to diclofenac and statins: a case report and literature review.",
-    "year": 2021,
-    "source": "Arh Hig Rada Toksikol",
-    "journal": "Arh Hig Rada Toksikol",
-    "pmid": "34187111",
-    "doi": "10.2478/aiht-2021-72-3549",
-    "url": "https://doi.org/10.2478/aiht-2021-72-3549",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to simvastatin:SLCO1B1_ABCG2_CYP_multigene, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "simvastatin_multigene_transporter_exposure_context",
-      "simvastatin_acid_SLCO1B1_ABCG2_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8265195/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:35.515Z"
-  },
-  {
-    "id": "draft_simvastatin_slco1b1_abcg2_cyp_multigene_keeps2020_33193687",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Pharmacogenetics of Statin-Induced Myotoxicity.",
-    "year": 2020,
-    "source": "Front Genet",
-    "journal": "Front Genet",
-    "pmid": "33193687",
-    "doi": "10.3389/fgene.2020.575678",
-    "url": "https://doi.org/10.3389/fgene.2020.575678",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to simvastatin:SLCO1B1_ABCG2_CYP_multigene, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "simvastatin_multigene_transporter_exposure_context",
-      "simvastatin_acid_SLCO1B1_ABCG2_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7596698/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:35.515Z"
-  },
-  {
-    "id": "draft_simvastatin_slco1b1_abcg2_cyp_multigene_frickegalindoi2021_33807592",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Pharmacogenetics Approach for the Improvement of COVID-19 Treatment.",
-    "year": 2021,
-    "source": "Viruses",
-    "journal": "Viruses",
-    "pmid": "33807592",
-    "doi": "10.3390/v13030413",
-    "url": "https://doi.org/10.3390/v13030413",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to simvastatin:SLCO1B1_ABCG2_CYP_multigene, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "simvastatin_multigene_transporter_exposure_context",
-      "simvastatin_acid_SLCO1B1_ABCG2_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7998786/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:35.515Z"
-  },
-  {
-    "id": "draft_simvastatin_slco1b1_abcg2_cyp_multigene_shnayderna2021_33922084",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "Using Pharmacogenetics of Direct Oral Anticoagulants to Predict Changes in Their Pharmacokinetics and the Risk of Adverse Drug Reactions.",
-    "year": 2021,
-    "source": "Biomedicines",
-    "journal": "Biomedicines",
-    "pmid": "33922084",
-    "doi": "10.3390/biomedicines9050451",
-    "url": "https://doi.org/10.3390/biomedicines9050451",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to simvastatin:SLCO1B1_ABCG2_CYP_multigene, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "simvastatin_multigene_transporter_exposure_context",
-      "simvastatin_acid_SLCO1B1_ABCG2_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8143539/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:35.515Z"
-  },
-  {
-    "id": "draft_simvastatin_slco1b1_abcg2_cyp_multigene_choi2015_26367500",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "Impact of CYP2D6, CYP3A5, CYP2C19, CYP2A6, SLCO1B1, ABCB1, and ABCG2 gene polymorphisms on the pharmacokinetics of simvastatin and simvastatin acid",
-    "year": 2015,
-    "source": "Pharmacogenetics and Genomics",
-    "journal": "Pharmacogenetics and Genomics",
-    "pmid": "26367500",
-    "doi": "10.1097/fpc.0000000000000176",
-    "url": "https://doi.org/10.1097/fpc.0000000000000176",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to simvastatin:SLCO1B1_ABCG2_CYP_multigene, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "simvastatin_multigene_transporter_exposure_context",
-      "simvastatin_acid_SLCO1B1_ABCG2_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "closed",
-      "source": null,
-      "license": null,
-      "landingUrl": "https://doi.org/10.1097/fpc.0000000000000176",
-      "pdfUrl": null,
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:35.515Z"
-  },
-  {
-    "id": "draft_simvastatin_slco1b1_abcg2_cyp_multigene_turner2019_31861911",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "Statin-Related Myotoxicity: A Comprehensive Review of Pharmacokinetic, Pharmacogenomic and Muscle Components",
-    "year": 2019,
-    "source": "Journal of Clinical Medicine",
-    "journal": "Journal of Clinical Medicine",
-    "pmid": "31861911",
-    "doi": "10.3390/jcm9010022",
-    "url": "https://doi.org/10.3390/jcm9010022",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to simvastatin:SLCO1B1_ABCG2_CYP_multigene, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "simvastatin_multigene_transporter_exposure_context",
-      "simvastatin_acid_SLCO1B1_ABCG2_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "gold",
-      "source": "openalex",
-      "license": "cc-by",
-      "landingUrl": "https://www.mdpi.com/2077-0383/9/1/22/pdf?version=1577413979",
-      "pdfUrl": "https://www.mdpi.com/2077-0383/9/1/22/pdf?version=1577413979",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:35.515Z"
-  },
-  {
-    "id": "draft_simvastatin_slco1b1_abcg2_cyp_multigene_malki2019_31792369",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "Drug–drug–gene interactions and adverse drug reactions",
-    "year": 2019,
-    "source": "The Pharmacogenomics Journal",
-    "journal": "The Pharmacogenomics Journal",
-    "pmid": "31792369",
-    "doi": "10.1038/s41397-019-0122-0",
-    "url": "https://doi.org/10.1038/s41397-019-0122-0",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to simvastatin:SLCO1B1_ABCG2_CYP_multigene, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "simvastatin_multigene_transporter_exposure_context",
-      "simvastatin_acid_SLCO1B1_ABCG2_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "hybrid",
-      "source": "openalex",
-      "license": "cc-by",
-      "landingUrl": "https://www.nature.com/articles/s41397-019-0122-0.pdf",
-      "pdfUrl": "https://www.nature.com/articles/s41397-019-0122-0.pdf",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:35.515Z"
-  },
-  {
-    "id": "draft_simvastatin_slco1b1_abcg2_cyp_multigene_lee2016_27936281",
-    "_status": "pending_review",
-    "type": "in_vitro",
-    "title": "Interindividual and interethnic variability in drug disposition: polymorphisms in organic anion transporting polypeptide 1B1 (OATP1B1; <i>SLCO1B1</i>)",
-    "year": 2016,
-    "source": "British Journal of Clinical Pharmacology",
-    "journal": "British Journal of Clinical Pharmacology",
-    "pmid": "27936281",
-    "doi": "10.1111/bcp.13207",
-    "url": "https://doi.org/10.1111/bcp.13207",
-    "studyDesign": "in_vitro_mechanistic_study",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to simvastatin:SLCO1B1_ABCG2_CYP_multigene, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "simvastatin_multigene_transporter_exposure_context",
-      "simvastatin_acid_SLCO1B1_ABCG2_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "bronze",
-      "source": "openalex",
-      "license": null,
-      "landingUrl": "https://bpspubs.onlinelibrary.wiley.com/doi/pdfdirect/10.1111/bcp.13207",
-      "pdfUrl": "https://bpspubs.onlinelibrary.wiley.com/doi/pdfdirect/10.1111/bcp.13207",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:35.515Z"
+    "_createdAt": "2026-06-05T09:24:36.131Z"
   },
   {
     "id": "draft_clobazam_cyp2c19_n_desmethylclobazam_contin2003_12451290",
@@ -7442,7 +6290,33 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from the abstract."
+      "foldChange": 27,
+      "groupMetricValues": [
+        {
+          "metric": "concentration",
+          "values": [
+            2,
+            19
+          ],
+          "context": "Two children on CLB treatment showing extremely high plasma concentration/dose ratio (C/D) of N-CLB and metabolite/parent drug ratio (N-CLB/CLB), suggestive of a putative poor metabolizer (PM) phenotype, were tested for CYP2C19 polymorphisms."
+        },
+        {
+          "metric": "ratio",
+          "values": [
+            2,
+            19,
+            10,
+            27
+          ],
+          "context": "In the two presumed CYP2C19 PM patients, the N-CLB/CLB ratio was 10- to 27-fold higher than matched median values of the control epileptic patients."
+        }
+      ],
+      "publicMetricSentences": [
+        "Two children on CLB treatment showing extremely high plasma concentration/dose ratio (C/D) of N-CLB and metabolite/parent drug ratio (N-CLB/CLB), suggestive of a putative poor metabolizer (PM) phenotype, were tested for CYP2C19 polymorphisms.",
+        "In the two presumed CYP2C19 PM patients, the N-CLB/CLB ratio was 10- to 27-fold higher than matched median values of the control epileptic patients.",
+        "According to genotyping, subjects carrying one or two copies of the defective CYP2C19*2 allele might develop markedly elevated steady-state plasma concentrations of N-CLB and be at higher risk of adverse effects."
+      ],
+      "note": "Public abstract/metadata extraction for clobazam:CYP2C19_N_desmethylclobazam found approximately 27-fold change and 2 public metric sentences with grouped values. Requires human review before promotion."
     },
     "temporal": {},
     "supports": [
@@ -7451,13 +6325,13 @@
     ],
     "contradicts": [],
     "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+      "Public abstract/metadata extraction only; requires human review before promotion"
     ],
-    "confidence": "low",
+    "confidence": "moderate",
     "publicFactsUsable": true,
     "sourceBasis": "public_abstract_or_metadata",
     "needsFullText": false,
-    "needsFullTextForPrecision": true,
+    "needsFullTextForPrecision": false,
     "openAccess": {
       "isOpenAccess": false,
       "status": null,
@@ -7470,52 +6344,7 @@
     "provenance": "search:pubmed",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:38.292Z"
-  },
-  {
-    "id": "draft_clobazam_cyp2c19_n_desmethylclobazam_kalakm2025_41465160",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Medical Marijuana and Treatment Personalization: The Role of Genetics and Epigenetics in Response to THC and CBD.",
-    "year": 2025,
-    "source": "Genes (Basel)",
-    "journal": "Genes (Basel)",
-    "pmid": "41465160",
-    "doi": "10.3390/genes16121487",
-    "url": "https://doi.org/10.3390/genes16121487",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "clobazam_CYP2C19_active_metabolite_accumulation_context",
-      "n_desmethylclobazam_CYP2C19_clearance_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12732823/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:38.293Z"
+    "_createdAt": "2026-06-05T09:24:36.471Z"
   },
   {
     "id": "draft_clobazam_cyp2c19_n_desmethylclobazam_zillgitta2025_40734774",
@@ -7532,7 +6361,7 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -7560,232 +6389,7 @@
     "provenance": "search:europepmc",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:38.293Z"
-  },
-  {
-    "id": "draft_clobazam_cyp2c19_n_desmethylclobazam_caicedoda2025_40142983",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "An Overview of the Potential for Pharmacokinetic Interactions Between Drugs and Cannabis Products in Humans.",
-    "year": 2025,
-    "source": "Pharmaceutics",
-    "journal": "Pharmaceutics",
-    "pmid": "40142983",
-    "doi": "10.3390/pharmaceutics17030319",
-    "url": "https://doi.org/10.3390/pharmaceutics17030319",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "clobazam_CYP2C19_active_metabolite_accumulation_context",
-      "n_desmethylclobazam_CYP2C19_clearance_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11945156/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:38.293Z"
-  },
-  {
-    "id": "draft_clobazam_cyp2c19_n_desmethylclobazam_debellism2025_40709084",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Adverse effects of antiseizure medications: a review of the impact of pharmacogenetics and drugs interactions in clinical practice.",
-    "year": 2025,
-    "source": "Front Pharmacol",
-    "journal": "Front Pharmacol",
-    "pmid": "40709084",
-    "doi": "10.3389/fphar.2025.1584566",
-    "url": "https://doi.org/10.3389/fphar.2025.1584566",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "clobazam_CYP2C19_active_metabolite_accumulation_context",
-      "n_desmethylclobazam_CYP2C19_clearance_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12287013/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:38.293Z"
-  },
-  {
-    "id": "draft_clobazam_cyp2c19_n_desmethylclobazam_qianl2024_38675145",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "CBD and THC in Special Populations: Pharmacokinetics and Drug-Drug Interactions.",
-    "year": 2024,
-    "source": "Pharmaceutics",
-    "journal": "Pharmaceutics",
-    "pmid": "38675145",
-    "doi": "10.3390/pharmaceutics16040484",
-    "url": "https://doi.org/10.3390/pharmaceutics16040484",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "clobazam_CYP2C19_active_metabolite_accumulation_context",
-      "n_desmethylclobazam_CYP2C19_clearance_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11054161/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:38.293Z"
-  },
-  {
-    "id": "draft_clobazam_cyp2c19_n_desmethylclobazam_garcagonzlezx2023_36983567",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Pharmacogenetics in the Treatment of Huntington's Disease: Review and Future Perspectives.",
-    "year": 2023,
-    "source": "J Pers Med",
-    "journal": "J Pers Med",
-    "pmid": "36983567",
-    "doi": "10.3390/jpm13030385",
-    "url": "https://doi.org/10.3390/jpm13030385",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "clobazam_CYP2C19_active_metabolite_accumulation_context",
-      "n_desmethylclobazam_CYP2C19_clearance_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10056055/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:38.293Z"
-  },
-  {
-    "id": "draft_clobazam_cyp2c19_n_desmethylclobazam_taylor2018_30374683",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "A Phase I, Randomized, Double-Blind, Placebo-Controlled, Single Ascending Dose, Multiple Dose, and Food Effect Trial of the Safety, Tolerability and Pharmacokinetics of Highly Purified Cannabidiol in Healthy Subjects",
-    "year": 2018,
-    "source": "CNS Drugs",
-    "journal": "CNS Drugs",
-    "pmid": "30374683",
-    "doi": "10.1007/s40263-018-0578-5",
-    "url": "https://doi.org/10.1007/s40263-018-0578-5",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "clobazam_CYP2C19_active_metabolite_accumulation_context",
-      "n_desmethylclobazam_CYP2C19_clearance_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "hybrid",
-      "source": "openalex",
-      "license": "cc-by-nc",
-      "landingUrl": "https://link.springer.com/content/pdf/10.1007/s40263-018-0578-5.pdf",
-      "pdfUrl": "https://link.springer.com/content/pdf/10.1007/s40263-018-0578-5.pdf",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:38.294Z"
+    "_createdAt": "2026-06-05T09:24:36.472Z"
   },
   {
     "id": "draft_clobazam_cyp2c19_n_desmethylclobazam_morrison2019_30791225",
@@ -7802,7 +6406,32 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no supported quantitative value was extractable from the abstract."
+      "percentChange": 29,
+      "groupMetricValues": [
+        {
+          "metric": "concentration",
+          "values": [
+            1.2,
+            3.4,
+            1.3
+          ],
+          "context": "Concomitant cannabidiol had little effect on clobazam exposure (maximum concentration [C max ] and area under the concentration‐time curve [AUC], 1.2‐fold), N‐desmethylclobazam exposure increased (C max and AUC, 3.4‐fold), stiripentol exposure increased slightly (C max , 1.3‐fold;"
+        },
+        {
+          "metric": "AUC",
+          "values": [
+            1.5,
+            7
+          ],
+          "context": "AUC, 1.5‐fold), without notable 7‐COOH‐CBD or cannabidiol increases."
+        }
+      ],
+      "publicMetricSentences": [
+        "Concomitant cannabidiol had little effect on clobazam exposure (maximum concentration [C max ] and area under the concentration‐time curve [AUC], 1.2‐fold), N‐desmethylclobazam exposure increased (C max and AUC, 3.4‐fold), stiripentol exposure increased slightly (C max , 1.3‐fold;",
+        "AUC, 1.6‐fold), while no clinically relevant effect on valproate exposure was observed.",
+        "Concomitant clobazam with cannabidiol increased 7‐OH‐CBD exposure (C max , 1.7‐fold;"
+      ],
+      "note": "Public abstract/metadata extraction for clobazam:CYP2C19_N_desmethylclobazam found about 29% change and 2 public metric sentences with grouped values. Requires human review before promotion."
     },
     "temporal": {},
     "supports": [
@@ -7811,13 +6440,13 @@
     ],
     "contradicts": [],
     "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+      "Public abstract/metadata extraction only; requires human review before promotion"
     ],
-    "confidence": "low",
+    "confidence": "moderate",
     "publicFactsUsable": true,
     "sourceBasis": "public_abstract_or_metadata",
     "needsFullText": false,
-    "needsFullTextForPrecision": true,
+    "needsFullTextForPrecision": false,
     "openAccess": {
       "isOpenAccess": true,
       "status": "bronze",
@@ -7830,97 +6459,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:38.294Z"
-  },
-  {
-    "id": "draft_clobazam_cyp2c19_n_desmethylclobazam_alsherbiny2018_30583596",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "Medicinal Cannabis—Potential Drug Interactions",
-    "year": 2018,
-    "source": "Medicines",
-    "journal": "Medicines",
-    "pmid": "30583596",
-    "doi": "10.3390/medicines6010003",
-    "url": "https://doi.org/10.3390/medicines6010003",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "clobazam_CYP2C19_active_metabolite_accumulation_context",
-      "n_desmethylclobazam_CYP2C19_clearance_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "gold",
-      "source": "openalex",
-      "license": "cc-by",
-      "landingUrl": "https://www.mdpi.com/2305-6320/6/1/3/pdf?version=1545644277",
-      "pdfUrl": "https://www.mdpi.com/2305-6320/6/1/3/pdf?version=1545644277",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:38.294Z"
-  },
-  {
-    "id": "draft_clobazam_cyp2c19_n_desmethylclobazam_fasinu2016_27285147",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Current Status and Prospects for Cannabidiol Preparations as New Therapeutic Agents",
-    "year": 2016,
-    "source": "Pharmacotherapy The Journal of Human Pharmacology and Drug Therapy",
-    "journal": "Pharmacotherapy The Journal of Human Pharmacology and Drug Therapy",
-    "pmid": "27285147",
-    "doi": "10.1002/phar.1780",
-    "url": "https://doi.org/10.1002/phar.1780",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "clobazam_CYP2C19_active_metabolite_accumulation_context",
-      "n_desmethylclobazam_CYP2C19_clearance_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "bronze",
-      "source": "openalex",
-      "license": null,
-      "landingUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/phar.1780",
-      "pdfUrl": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/phar.1780",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:38.294Z"
+    "_createdAt": "2026-06-05T09:24:36.473Z"
   },
   {
     "id": "draft_voriconazole_cyp2c19_pk_tdm_wehbee2026_42153394",
@@ -7937,7 +6476,7 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -7965,52 +6504,7 @@
     "provenance": "search:europepmc",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:40.918Z"
-  },
-  {
-    "id": "draft_voriconazole_cyp2c19_pk_tdm_singamh2025_41010003",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "The Impact of Genetic Polymorphisms on the Clinical Efficacy of Azole Antifungals.",
-    "year": 2025,
-    "source": "Genes (Basel)",
-    "journal": "Genes (Basel)",
-    "pmid": "41010003",
-    "doi": "10.3390/genes16091058",
-    "url": "https://doi.org/10.3390/genes16091058",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "voriconazole_CYP2C19_exposure_TDM_context",
-      "voriconazole_CYP2C19_UM_subtherapeutic_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12469605/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:40.919Z"
+    "_createdAt": "2026-06-05T09:24:36.808Z"
   },
   {
     "id": "draft_voriconazole_cyp2c19_pk_tdm_leey2025_41304736",
@@ -8027,7 +6521,7 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -8055,97 +6549,7 @@
     "provenance": "search:europepmc",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:40.919Z"
-  },
-  {
-    "id": "draft_voriconazole_cyp2c19_pk_tdm_wuyp2025_41027046",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "Pharmacogenetics of steady-state metabolism, pharmacokinetics, and adverse effects of voriconazole in healthy participants.",
-    "year": 2025,
-    "source": "Drug Metab Dispos",
-    "journal": "Drug Metab Dispos",
-    "pmid": "41027046",
-    "doi": "10.1016/j.dmd.2025.100156",
-    "url": "https://doi.org/10.1016/j.dmd.2025.100156",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "voriconazole_CYP2C19_exposure_TDM_context",
-      "voriconazole_CYP2C19_UM_subtherapeutic_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": null,
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12818346/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:40.919Z"
-  },
-  {
-    "id": "draft_voriconazole_cyp2c19_pk_tdm_lebretonl2025_39584620",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "French-Speaking Network of Pharmacogenetics (RNPGx) Recommendations for Clinical Use of Mavacamten.",
-    "year": 2025,
-    "source": "Clin Pharmacol Ther",
-    "journal": "Clin Pharmacol Ther",
-    "pmid": "39584620",
-    "doi": "10.1002/cpt.3502",
-    "url": "https://doi.org/10.1002/cpt.3502",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "voriconazole_CYP2C19_exposure_TDM_context",
-      "voriconazole_CYP2C19_UM_subtherapeutic_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11739748/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:40.919Z"
+    "_createdAt": "2026-06-05T09:24:36.809Z"
   },
   {
     "id": "draft_voriconazole_cyp2c19_pk_tdm_resztakm2024_39240338",
@@ -8162,7 +6566,7 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -8190,7 +6594,7 @@
     "provenance": "search:europepmc",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:40.919Z"
+    "_createdAt": "2026-06-05T09:24:36.809Z"
   },
   {
     "id": "draft_voriconazole_cyp2c19_pk_tdm_wang2013_24084636",
@@ -8204,10 +6608,34 @@
     "doi": "10.1093/jac/dkt369",
     "url": "https://doi.org/10.1093/jac/dkt369",
     "studyDesign": "clinical_pk",
-    "n": null,
+    "n": 151,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from the abstract."
+      "groupMetricValues": [
+        {
+          "metric": "clearance",
+          "values": [
+            6.95,
+            200,
+            89.5
+          ],
+          "context": "The voriconazole clearance (CL) was 6.95 L/h, the volume of distribution (V) was 200 L and the oral bioavailability (F) was 89.5%."
+        },
+        {
+          "metric": "concentration",
+          "values": [
+            2,
+            19
+          ],
+          "context": "CL was significantly associated with age, the serum concentration of alkaline phosphatase and the CYP2C19 genotype."
+        }
+      ],
+      "publicMetricSentences": [
+        "Voriconazole plasma concentrations were measured by HPLC.",
+        "The voriconazole clearance (CL) was 6.95 L/h, the volume of distribution (V) was 200 L and the oral bioavailability (F) was 89.5%.",
+        "CL was significantly associated with age, the serum concentration of alkaline phosphatase and the CYP2C19 genotype."
+      ],
+      "note": "Public abstract/metadata extraction for voriconazole:CYP2C19_PK_TDM found 2 public metric sentences with grouped values. Requires human review before promotion."
     },
     "temporal": {},
     "supports": [
@@ -8216,13 +6644,13 @@
     ],
     "contradicts": [],
     "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+      "Public abstract/metadata extraction only; requires human review before promotion"
     ],
-    "confidence": "low",
+    "confidence": "moderate",
     "publicFactsUsable": true,
     "sourceBasis": "public_abstract_or_metadata",
     "needsFullText": false,
-    "needsFullTextForPrecision": true,
+    "needsFullTextForPrecision": false,
     "openAccess": {
       "isOpenAccess": true,
       "status": "bronze",
@@ -8235,52 +6663,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:40.920Z"
-  },
-  {
-    "id": "draft_voriconazole_cyp2c19_pk_tdm_kiser2015_25645660",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "Evaluation of sulfobutylether-β-cyclodextrin (SBECD) accumulation and voriconazole pharmacokinetics in critically ill patients undergoing continuous renal replacement therapy",
-    "year": 2015,
-    "source": "Critical Care",
-    "journal": "Critical Care",
-    "pmid": "25645660",
-    "doi": "10.1186/s13054-015-0753-8",
-    "url": "https://doi.org/10.1186/s13054-015-0753-8",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "voriconazole_CYP2C19_exposure_TDM_context",
-      "voriconazole_CYP2C19_UM_subtherapeutic_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "gold",
-      "source": "openalex",
-      "license": "cc-by",
-      "landingUrl": "https://ccforum.biomedcentral.com/counter/pdf/10.1186/s13054-015-0753-8",
-      "pdfUrl": "https://ccforum.biomedcentral.com/counter/pdf/10.1186/s13054-015-0753-8",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:40.920Z"
+    "_createdAt": "2026-06-05T09:24:36.810Z"
   },
   {
     "id": "draft_voriconazole_cyp2c19_pk_tdm_chau2014_25482746",
@@ -8297,7 +6680,11 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from the abstract."
+      "publicMetricSentences": [
+        "Antifungal agents may be associated with significant toxicity or drug interactions leading to sub-therapeutic antifungal drug concentrations and poorer clinical outcomes for patients with haematological malignancy.",
+        "Specific measures, such as the optimal timing of oral drug administration in relation to meals, use of pre-hydration and electrolyte supplementation may also be required."
+      ],
+      "note": "Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -8325,52 +6712,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:40.920Z"
-  },
-  {
-    "id": "draft_voriconazole_cyp2c19_pk_tdm_laverdire2014_25587296",
-    "_status": "pending_review",
-    "type": "guideline",
-    "title": "Therapeutic drug monitoring for triazoles: A needs assessment review and recommendations from a Canadian perspective",
-    "year": 2014,
-    "source": "Canadian Journal of Infectious Diseases and Medical Microbiology",
-    "journal": "Canadian Journal of Infectious Diseases and Medical Microbiology",
-    "pmid": "25587296",
-    "doi": "10.1155/2014/340586",
-    "url": "https://doi.org/10.1155/2014/340586",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "voriconazole_CYP2C19_exposure_TDM_context",
-      "voriconazole_CYP2C19_UM_subtherapeutic_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "gold",
-      "source": "openalex",
-      "license": "cc-by",
-      "landingUrl": "https://downloads.hindawi.com/journals/cjidmm/2014/340586.pdf",
-      "pdfUrl": "https://downloads.hindawi.com/journals/cjidmm/2014/340586.pdf",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:40.920Z"
+    "_createdAt": "2026-06-05T09:24:36.810Z"
   },
   {
     "id": "draft_clopidogrel_cyp2c19_active_metabolite_saizrodrguez2020_31128980",
@@ -8387,7 +6729,35 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from the abstract."
+      "groupMetricValues": [
+        {
+          "metric": "ratio",
+          "values": [
+            2,
+            19,
+            2,
+            2,
+            19,
+            17,
+            0.149
+          ],
+          "context": "The carriage of the CYP2C19*2 allele was strongly associated with hyporesponse to clopidogrel, while the CYP2C19*17 allele was a protective factor for the development of ischemic events (odds ratio = 0.149;"
+        },
+        {
+          "metric": "ratio",
+          "values": [
+            0.002,
+            3.6
+          ],
+          "context": "P = 0.002) but a risk factor for bleeding (odds ratio = 3.60;"
+        }
+      ],
+      "publicMetricSentences": [
+        "The carriage of the CYP2C19*2 allele was strongly associated with hyporesponse to clopidogrel, while the CYP2C19*17 allele was a protective factor for the development of ischemic events (odds ratio = 0.149;",
+        "P = 0.002) but a risk factor for bleeding (odds ratio = 3.60;",
+        "In fact, the percentage of responders was significantly higher in the group carrying the mutated haplotype compared to the wild type (80.8% vs 43.3%;"
+      ],
+      "note": "Public abstract/metadata extraction for clopidogrel:CYP2C19_active_metabolite found 2 public metric sentences with grouped values. Requires human review before promotion."
     },
     "temporal": {},
     "supports": [
@@ -8396,13 +6766,13 @@
     ],
     "contradicts": [],
     "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+      "Public abstract/metadata extraction only; requires human review before promotion"
     ],
-    "confidence": "low",
+    "confidence": "moderate",
     "publicFactsUsable": true,
     "sourceBasis": "public_abstract_or_metadata",
     "needsFullText": false,
-    "needsFullTextForPrecision": true,
+    "needsFullTextForPrecision": false,
     "openAccess": {
       "isOpenAccess": false,
       "status": null,
@@ -8415,142 +6785,7 @@
     "provenance": "search:pubmed",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:43.964Z"
-  },
-  {
-    "id": "draft_clopidogrel_cyp2c19_active_metabolite_leekj2026_41656635",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Clinical Application of Pharmacogenomics in Stroke Management: Current Evidence and Future Directions.",
-    "year": 2026,
-    "source": "J Stroke",
-    "journal": "J Stroke",
-    "pmid": "41656635",
-    "doi": "10.5853/jos.2025.04595",
-    "url": "https://doi.org/10.5853/jos.2025.04595",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "clopidogrel_CYP2C19_active_metabolite_context",
-      "clopidogrel_CYP2C19_platelet_response_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12883885/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:43.966Z"
-  },
-  {
-    "id": "draft_clopidogrel_cyp2c19_active_metabolite_bharathg2025_41028360",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Integrative pharmacogenomics analysis predicts the platelet response in clopidogrel treated coronary artery disease (CAD) patients of South India.",
-    "year": 2025,
-    "source": "Sci Rep",
-    "journal": "Sci Rep",
-    "pmid": "41028360",
-    "doi": "10.1038/s41598-025-96338-3",
-    "url": "https://doi.org/10.1038/s41598-025-96338-3",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "clopidogrel_CYP2C19_active_metabolite_context",
-      "clopidogrel_CYP2C19_platelet_response_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12484572/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:43.966Z"
-  },
-  {
-    "id": "draft_clopidogrel_cyp2c19_active_metabolite_aurinsalol2026_41390976",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Repeated Intake of Grapefruit Juice Inhibits CYP2B6, CYP2C9, CYP2C19, and CYP3A4 while Lingonberry Powder Does Not Induce Major CYP Enzymes in Humans.",
-    "year": 2026,
-    "source": "Clin Pharmacol Ther",
-    "journal": "Clin Pharmacol Ther",
-    "pmid": "41390976",
-    "doi": "10.1002/cpt.70165",
-    "url": "https://doi.org/10.1002/cpt.70165",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "clopidogrel_CYP2C19_active_metabolite_context",
-      "clopidogrel_CYP2C19_platelet_response_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12997508/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:43.966Z"
+    "_createdAt": "2026-06-05T09:24:36.880Z"
   },
   {
     "id": "draft_clopidogrel_cyp2c19_active_metabolite_dellorussoc2026_41338248",
@@ -8567,7 +6802,7 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -8595,97 +6830,7 @@
     "provenance": "search:europepmc",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:43.966Z"
-  },
-  {
-    "id": "draft_clopidogrel_cyp2c19_active_metabolite_grafenederj2024_39430173",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "Prospective Trial on the Pharmacokinetics of Clopidogrel in Hemodialysis Patients.",
-    "year": 2024,
-    "source": "Kidney Int Rep",
-    "journal": "Kidney Int Rep",
-    "pmid": "39430173",
-    "doi": "10.1016/j.ekir.2024.07.029",
-    "url": "https://doi.org/10.1016/j.ekir.2024.07.029",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "clopidogrel_CYP2C19_active_metabolite_context",
-      "clopidogrel_CYP2C19_platelet_response_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11489422/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:43.966Z"
-  },
-  {
-    "id": "draft_clopidogrel_cyp2c19_active_metabolite_piccolottoc2026_41893359",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Pharmacometabolomics Detects Unreported Clopidogrel Metabolites in the Urine of Kidney and Liver Transplant Recipients.",
-    "year": 2026,
-    "source": "Metabolites",
-    "journal": "Metabolites",
-    "pmid": "41893359",
-    "doi": "10.3390/metabo16030210",
-    "url": "https://doi.org/10.3390/metabo16030210",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "clopidogrel_CYP2C19_active_metabolite_context",
-      "clopidogrel_CYP2C19_platelet_response_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13028800/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:43.966Z"
+    "_createdAt": "2026-06-05T09:24:36.881Z"
   },
   {
     "id": "draft_clopidogrel_cyp2c19_active_metabolite_scott2013_23698643",
@@ -8702,7 +6847,7 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -8730,7 +6875,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:43.966Z"
+    "_createdAt": "2026-06-05T09:24:36.881Z"
   },
   {
     "id": "draft_clopidogrel_cyp2c19_active_metabolite_par2010_20979470",
@@ -8747,7 +6892,12 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from the abstract."
+      "publicMetricSentences": [
+        "The effect of clopidogrel in reducing the rate of the primary efficacy outcome was similar in patients who were heterozygous or homozygous for loss-of-function alleles and in those who were not carriers of the alleles (rate among carriers, 8.0% with clopidogrel vs.",
+        "11.6% with placebo;",
+        "hazard ratio with clopidogrel, 0.69;"
+      ],
+      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -8775,24 +6925,194 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:43.966Z"
+    "_createdAt": "2026-06-05T09:24:36.881Z"
   },
   {
-    "id": "draft_clopidogrel_cyp2c19_active_metabolite_moriyama2016_27981572",
+    "id": "draft_clopidogrel_cyp2c19_active_metabolite_nassimdjebli2015_25609219",
     "_status": "pending_review",
-    "type": "guideline",
-    "title": "Clinical Pharmacogenetics Implementation Consortium (CPIC) Guidelines for <i>CYP2C19</i> and Voriconazole Therapy",
-    "year": 2016,
-    "source": "Clinical Pharmacology & Therapeutics",
-    "journal": "Clinical Pharmacology & Therapeutics",
-    "pmid": "27981572",
-    "doi": "10.1002/cpt.583",
-    "url": "https://doi.org/10.1002/cpt.583",
-    "studyDesign": "observational_or_screened_pubmed_record",
+    "type": "clinical_pk",
+    "title": "Physiologically Based Pharmacokinetic Modeling for Sequential Metabolism: Effect of CYP2C19 Genetic Polymorphism on Clopidogrel and Clopidogrel Active Metabolite Pharmacokinetics",
+    "year": 2015,
+    "source": "Drug Metabolism And Disposition",
+    "journal": "Drug Metabolism And Disposition",
+    "pmid": "25609219",
+    "doi": "10.1124/dmd.114.062596",
+    "url": "https://doi.org/10.1124/dmd.114.062596",
+    "studyDesign": "clinical_pk",
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "clopidogrel_CYP2C19_active_metabolite_context",
+      "clopidogrel_CYP2C19_platelet_response_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_citation_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "semanticscholar",
+      "license": null,
+      "landingUrl": "http://dmd.aspetjournals.org/content/dmd/43/4/510.full.pdf",
+      "pdfUrl": "http://dmd.aspetjournals.org/content/dmd/43/4/510.full.pdf",
+      "evidence": null
+    },
+    "provenance": "search:semanticscholar",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:24:36.881Z"
+  },
+  {
+    "id": "draft_clopidogrel_cyp2c19_active_metabolite_gbharath2025_41028360",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Integrative pharmacogenomics analysis predicts the platelet response in clopidogrel treated coronary artery disease (CAD) patients of South India",
+    "year": 2025,
+    "source": "Scientific Reports",
+    "journal": "Scientific Reports",
+    "pmid": "41028360",
+    "doi": "10.1038/s41598-025-96338-3",
+    "url": "https://doi.org/10.1038/s41598-025-96338-3",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "publicMetricSentences": [
+        "We observed a high prevalence of the poor metabolizer CYP2C19*2 (34%) variant and CYP2C19-based high-risk metabolizer phenotype such intermediate and poor metabolizer (IM + PM) with 68.5% in CAD patients.",
+        "The platelet function test revealed that 31% of the CAD cases were HTPR phenotypes (VASP PRI > 50%).",
+        "The CYP2C19*2 [OR 2.37 (95% CI 1.16–4.84), p = 0.02], high risk CYP2C19 metabolizer phenotypes [OR 1.72 (95% CI 1.08–2.77), p = 0.02] showed increased risk of HTPR."
+      ],
+      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "clopidogrel_CYP2C19_active_metabolite_context",
+      "clopidogrel_CYP2C19_platelet_response_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": false,
+      "status": null,
+      "source": null,
+      "license": null,
+      "landingUrl": null,
+      "pdfUrl": null,
+      "evidence": null
+    },
+    "provenance": "search:semanticscholar",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:24:36.882Z"
+  },
+  {
+    "id": "draft_clopidogrel_cyp2c19_active_metabolite_rhorenstein2014_24710841",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Effectiveness of clopidogrel dose escalation to normalize active metabolite exposure and antiplatelet effects in CYP2C19 poor metabolizers",
+    "year": 2014,
+    "source": "Journal of clinical pharmacology",
+    "journal": "Journal of clinical pharmacology",
+    "pmid": "24710841",
+    "doi": "10.1002/jcph.293",
+    "url": "https://doi.org/10.1002/jcph.293",
+    "studyDesign": "clinical_pk",
+    "n": 18,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "area under the curve (AUC) differed among genotype groups (P",
+          "values": [
+            4,
+            4,
+            5
+          ],
+          "context": "In each period, maximal platelet aggregation 4 hours post‐dose (MPA4) and active metabolite area under the curve (AUC) differed among genotype groups (P < .05 for all)."
+        },
+        {
+          "metric": "AUC",
+          "values": [
+            300,
+            75,
+            37.7,
+            33.5
+          ],
+          "context": "Similarly, PMs needed 300 mg daily to achieve active metabolite concentrations that were similar to EMs on 75 mg (AUC 37.7 and 33.5 ng h/mL, respectively)."
+        }
+      ],
+      "publicMetricSentences": [
+        "In each period, maximal platelet aggregation 4 hours post‐dose (MPA4) and active metabolite area under the curve (AUC) differed among genotype groups (P < .05 for all).",
+        "At day 8, PMs needed 300 mg daily and IMs needed 150 mg daily to attain a similar MPA4 as EMs on the 75 mg dose (32.6%, 33.2%, 31.3%, respectively).",
+        "Similarly, PMs needed 300 mg daily to achieve active metabolite concentrations that were similar to EMs on 75 mg (AUC 37.7 and 33.5 ng h/mL, respectively)."
+      ],
+      "note": "Public abstract/metadata extraction for clopidogrel:CYP2C19_active_metabolite found 2 public metric sentences with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "clopidogrel_CYP2C19_active_metabolite_context",
+      "clopidogrel_CYP2C19_platelet_response_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "oa",
+      "source": "semanticscholar",
+      "license": null,
+      "landingUrl": "https://europepmc.org/articles/pmc4113831?pdf=render",
+      "pdfUrl": "https://europepmc.org/articles/pmc4113831?pdf=render",
+      "evidence": null
+    },
+    "provenance": "search:semanticscholar",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-05T09:24:36.882Z"
+  },
+  {
+    "id": "draft_clopidogrel_cyp2c19_active_metabolite_hyao2019_31092394",
+    "_status": "pending_review",
+    "type": "in_vitro",
+    "title": "Enhanced Platelet Response to Clopidogrel in Zucker Diabetic Fatty Rats due to Impaired Clopidogrel Inactivation by Carboxylesterase 1 and Increased Exposure to Active Metabolite",
+    "year": 2019,
+    "source": "Drug Metabolism And Disposition",
+    "journal": "Drug Metabolism And Disposition",
+    "pmid": "31092394",
+    "doi": "10.1124/dmd.118.085126",
+    "url": "https://doi.org/10.1124/dmd.118.085126",
+    "studyDesign": "in_vitro_mechanistic_study",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "publicMetricSentences": [
+        "Patients with type 2 diabetes (T2DM) tend to have a poor response to Clop due to reduced generation of Clop-AM.",
+        "In contrast to clinical findings, Clop-treated ZDF rats displayed significantly less (50%) maximum platelet aggregation at 4 hours than control rats;"
+      ],
+      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -8810,39 +7130,44 @@
     "needsFullTextForPrecision": true,
     "openAccess": {
       "isOpenAccess": true,
-      "status": "bronze",
-      "source": "openalex",
+      "status": "oa",
+      "source": "semanticscholar",
       "license": null,
-      "landingUrl": "https://ascpt.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/cpt.583",
-      "pdfUrl": "https://ascpt.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/cpt.583",
+      "landingUrl": "https://dmd.aspetjournals.org/content/dmd/47/8/794.full.pdf",
+      "pdfUrl": "https://dmd.aspetjournals.org/content/dmd/47/8/794.full.pdf",
       "evidence": null
     },
-    "provenance": "search:openalex",
+    "provenance": "search:semanticscholar",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:43.966Z"
+    "_createdAt": "2026-06-05T09:24:36.882Z"
   },
   {
-    "id": "draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_hardih2025_41216483",
+    "id": "draft_clopidogrel_cyp2c19_active_metabolite_apareek2025_39933830",
     "_status": "pending_review",
-    "type": "meta_analysis",
-    "title": "Pharmacogenetics in Tuberculosis-HIV Coinfected Populations: A Systematic Review of Genetic Variants Influencing Antiretroviral and Anti-Tuberculosis Drug Response.",
+    "type": "clinical_pk",
+    "title": "Phase 1 study of novel anti-platelet agent to overcome pharmacogenomic limitations of clopidogrel",
     "year": 2025,
-    "source": "J Multidiscip Healthc",
-    "journal": "J Multidiscip Healthc",
-    "pmid": "41216483",
-    "doi": "10.2147/jmdh.s555909",
-    "url": "https://doi.org/10.2147/jmdh.s555909",
-    "studyDesign": "meta_analysis_or_systematic_review",
-    "n": null,
+    "source": "Open Heart",
+    "journal": "Open Heart",
+    "pmid": "39933830",
+    "doi": "10.1136/openhrt-2024-003088",
+    "url": "https://doi.org/10.1136/openhrt-2024-003088",
+    "studyDesign": "clinical_pk",
+    "n": 20,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from the abstract."
+      "publicMetricSentences": [
+        "Each study period lasted 6 days including administration of loading and maintenance doses of AT-10 (40 mg/10 mg) or clopidogrel (300 mg/75 mg).",
+        "Results Overall result of pharmacodynamic parameters showed that mean %inhibition of platelet aggregation between AT-10 and clopidogrel in all subjects at 6 hours postdose (loading dose) (AT-10:",
+        "73.30% vs 18.53%) and 6 hours postdose on day 6 (maintenance dose) (AT-10:"
+      ],
+      "note": "Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
-      "efavirenz_CYP2B6_slow_metabolizer_exposure_context",
-      "efavirenz_secondary_pathway_CYP2A6_UGT2B7_context"
+      "clopidogrel_CYP2C19_active_metabolite_context",
+      "clopidogrel_CYP2C19_platelet_response_context"
     ],
     "contradicts": [],
     "limitations": [
@@ -8850,67 +7175,22 @@
     ],
     "confidence": "low",
     "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
+    "sourceBasis": "public_abstract_or_metadata",
     "needsFullText": false,
     "needsFullTextForPrecision": true,
     "openAccess": {
       "isOpenAccess": true,
       "status": "oa",
-      "source": "europepmc",
+      "source": "semanticscholar",
       "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12596893/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
+      "landingUrl": "https://doi.org/10.1136/openhrt-2024-003088",
+      "pdfUrl": "https://doi.org/10.1136/openhrt-2024-003088",
+      "evidence": null
     },
-    "provenance": "search:europepmc",
+    "provenance": "search:semanticscholar",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:46.226Z"
-  },
-  {
-    "id": "draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_aungak2014_25495412",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Pharmacogenomics of antimicrobial agents.",
-    "year": 2014,
-    "source": "Pharmacogenomics",
-    "journal": "Pharmacogenomics",
-    "pmid": "25495412",
-    "doi": "10.2217/pgs.14.147",
-    "url": "https://doi.org/10.2217/pgs.14.147",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "efavirenz_CYP2B6_slow_metabolizer_exposure_context",
-      "efavirenz_secondary_pathway_CYP2A6_UGT2B7_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": null,
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4296903/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:46.227Z"
+    "_createdAt": "2026-06-05T09:24:36.882Z"
   },
   {
     "id": "draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_zanger2013_23467454",
@@ -8927,7 +7207,11 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from the abstract."
+      "publicMetricSentences": [
+        "The most common functionally deficient allele is CYP2B6*6 [Q172H, K262R], which occurs at frequencies of 15 to over 60% in different populations.",
+        "Another important variant, CYP2B6*18 [I328T], occurs predominantly in Africans (4-12%) and does not express functional protein."
+      ],
+      "note": "Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -8955,52 +7239,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:46.227Z"
-  },
-  {
-    "id": "draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_apostolova2015_26203180",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "Efavirenz and the CNS: what we already know and questions that need to be answered",
-    "year": 2015,
-    "source": "Journal of Antimicrobial Chemotherapy",
-    "journal": "Journal of Antimicrobial Chemotherapy",
-    "pmid": "26203180",
-    "doi": "10.1093/jac/dkv183",
-    "url": "https://doi.org/10.1093/jac/dkv183",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "efavirenz_CYP2B6_slow_metabolizer_exposure_context",
-      "efavirenz_secondary_pathway_CYP2A6_UGT2B7_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "bronze",
-      "source": "openalex",
-      "license": null,
-      "landingUrl": "https://academic.oup.com/jac/article-pdf/70/10/2693/2475819/dkv183.pdf",
-      "pdfUrl": "https://academic.oup.com/jac/article-pdf/70/10/2693/2475819/dkv183.pdf",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:46.227Z"
+    "_createdAt": "2026-06-05T09:24:37.495Z"
   },
   {
     "id": "draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_hedrich2016_27709010",
@@ -9017,7 +7256,10 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from the abstract."
+      "publicMetricSentences": [
+        "CYP2B6 has been demonstrated to play a role in the metabolism of 2%-10% of clinically used drugs including widely used antineoplastic agents cyclophosphamide and ifosfamide, anesthetics propofol and ketamine, synthetic opioids pethidine and methadone, and the antiretrovirals nevirapine and efavirenz, among others."
+      ],
+      "note": "Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -9045,7 +7287,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:46.228Z"
+    "_createdAt": "2026-06-05T09:24:37.496Z"
   },
   {
     "id": "draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_mukonzo2013_23734829",
@@ -9062,7 +7304,12 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from the abstract."
+      "publicMetricSentences": [
+        "Efavirenz plasma concentrations were serially quantified at 3rd day, 1st, 2nd, 4th, 6th, 8th and 12th weeks during therapy.",
+        "During the first twelve weeks of ART, 73.6% of the patients experienced at least one efavirenz related neuropsychiatric symptom.",
+        "Commonest symptoms experienced were sleep disorders 60.5% (n=124) and hallucination 30.7% (n=63)."
+      ],
+      "note": "Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -9090,52 +7337,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:46.228Z"
-  },
-  {
-    "id": "draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_dalwadi2018_29945900",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Adverse Neuropsychiatric Events and Recreational Use of Efavirenz and Other HIV-1 Antiretroviral Drugs",
-    "year": 2018,
-    "source": "Pharmacological Reviews",
-    "journal": "Pharmacological Reviews",
-    "pmid": "29945900",
-    "doi": "10.1124/pr.117.013706",
-    "url": "https://doi.org/10.1124/pr.117.013706",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "efavirenz_CYP2B6_slow_metabolizer_exposure_context",
-      "efavirenz_secondary_pathway_CYP2A6_UGT2B7_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "bronze",
-      "source": "openalex",
-      "license": null,
-      "landingUrl": "https://pharmrev.aspetjournals.org/content/pharmrev/70/3/684.full.pdf",
-      "pdfUrl": "https://pharmrev.aspetjournals.org/content/pharmrev/70/3/684.full.pdf",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:46.228Z"
+    "_createdAt": "2026-06-05T09:24:37.497Z"
   },
   {
     "id": "draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_wang2019_31324697",
@@ -9152,7 +7354,7 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -9180,7 +7382,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:46.228Z"
+    "_createdAt": "2026-06-05T09:24:37.497Z"
   },
   {
     "id": "draft_irinotecan_ugt1a1_sn38_pk_wang2013_23236239",
@@ -9197,7 +7399,37 @@
     "n": 34,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no supported quantitative value was extractable from the abstract."
+      "percentChange": 69.9,
+      "groupMetricValues": [
+        {
+          "metric": "concentration",
+          "values": [
+            38,
+            38
+          ],
+          "context": "Plasma concentration of irinotecan and its active metabolite SN-38 and inactive metabolite SN-38G were determined by high performance liquid chromatography."
+        },
+        {
+          "metric": "area under concentration curve (AUC) of irinotecan and SN-38",
+          "values": [
+            34,
+            38,
+            38,
+            38,
+            1,
+            1,
+            28,
+            7
+          ],
+          "context": "Irinotecan PK was investigated in 34 patients, which showed high area under concentration curve (AUC) of irinotecan and SN-38, but low AUC ratio (SN-38G / SN-38) in those patients with UGT1A1*28 TA7/7."
+        }
+      ],
+      "publicMetricSentences": [
+        "Plasma concentration of irinotecan and its active metabolite SN-38 and inactive metabolite SN-38G were determined by high performance liquid chromatography.",
+        "Patients showed a higher frequency of wild-type UGT1A1*28 (TA6/6) compared with a Caucasian population (69.9% vs 45.2%).",
+        "No significant difference was found between response rates and UGT1A1 genotype, although wild-type showed lower response rates compared with other variants (17.9% vs 24.2% for UGT1A1*28, 15.7% vs 26.8% for UGT1A1*6)."
+      ],
+      "note": "Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found about 69.9% change and 2 public metric sentences with grouped values. Requires human review before promotion."
     },
     "temporal": {},
     "supports": [
@@ -9206,13 +7438,13 @@
     ],
     "contradicts": [],
     "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+      "Public abstract/metadata extraction only; requires human review before promotion"
     ],
-    "confidence": "low",
+    "confidence": "moderate",
     "publicFactsUsable": true,
     "sourceBasis": "public_abstract_or_metadata",
     "needsFullText": false,
-    "needsFullTextForPrecision": true,
+    "needsFullTextForPrecision": false,
     "openAccess": {
       "isOpenAccess": false,
       "status": null,
@@ -9225,7 +7457,7 @@
     "provenance": "search:pubmed",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:48.853Z"
+    "_createdAt": "2026-06-05T09:24:38.160Z"
   },
   {
     "id": "draft_irinotecan_ugt1a1_sn38_pk_stewart2007_17577039",
@@ -9236,13 +7468,30 @@
     "source": "Journal of clinical oncology : official journal of the American Society of Clinical Oncology",
     "journal": "Journal of clinical oncology : official journal of the American Society of Clinical Oncology",
     "pmid": "17577039",
-    "doi": "10.1200/JCO.2006.10.2301",
+    "doi": "10.1200/jco.2006.10.2301",
     "url": "https://doi.org/10.1200/JCO.2006.10.2301",
     "studyDesign": "clinical_pk",
-    "n": null,
+    "n": 74,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from the abstract."
+      "groupMetricValues": [
+        {
+          "metric": "area under the plasma time-concentration curve (AUC) values and lower SN-38G/SN-38 AUC ratios",
+          "values": [
+            7,
+            7,
+            38,
+            38,
+            38
+          ],
+          "context": "However, patients with the 7/7 genotype tended to have higher SN-38 area under the plasma time-concentration curve (AUC) values and lower SN-38G/SN-38 AUC ratios."
+        }
+      ],
+      "publicMetricSentences": [
+        "The frequencies of 6/6, 6/7, and 7/7 genotypes were 27 (36.5%), 36 (48.6%), and 9 (12.2%) of 74 patients, respectively.",
+        "However, patients with the 7/7 genotype tended to have higher SN-38 area under the plasma time-concentration curve (AUC) values and lower SN-38G/SN-38 AUC ratios."
+      ],
+      "note": "Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 1 public metric sentence with grouped values. Requires human review before promotion."
     },
     "temporal": {},
     "supports": [
@@ -9251,13 +7500,13 @@
     ],
     "contradicts": [],
     "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+      "Public abstract/metadata extraction only; requires human review before promotion"
     ],
-    "confidence": "low",
+    "confidence": "moderate",
     "publicFactsUsable": true,
     "sourceBasis": "public_abstract_or_metadata",
     "needsFullText": false,
-    "needsFullTextForPrecision": true,
+    "needsFullTextForPrecision": false,
     "openAccess": {
       "isOpenAccess": false,
       "status": null,
@@ -9270,7 +7519,7 @@
     "provenance": "search:pubmed",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:48.854Z"
+    "_createdAt": "2026-06-05T09:24:38.161Z"
   },
   {
     "id": "draft_irinotecan_ugt1a1_sn38_pk_han2006_16636344",
@@ -9281,13 +7530,32 @@
     "source": "Journal of clinical oncology : official journal of the American Society of Clinical Oncology",
     "journal": "Journal of clinical oncology : official journal of the American Society of Clinical Oncology",
     "pmid": "16636344",
-    "doi": "10.1200/JCO.2005.03.0239",
+    "doi": "10.1200/jco.2005.03.0239",
     "url": "https://doi.org/10.1200/JCO.2005.03.0239",
     "studyDesign": "clinical_pk",
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from the abstract."
+      "groupMetricValues": [
+        {
+          "metric": "area under the time-concentration curve (AUC) SN-38G to SN-38 (AUC(SN-38G)/AUC(SN-38)) ratio (P",
+          "values": [
+            1,
+            1,
+            6,
+            6,
+            6,
+            1,
+            7,
+            3
+          ],
+          "context": "In genotype-PK association analysis, UGT1A1*6/*6 (n = 6), UGT1A7*3/*3 (n = 6), and UGT1A9-118(dT)9/9 (n = 11) were associated with significantly lower area under the time-concentration curve (AUC) SN-38G to SN-38 (AUC(SN-38G)/AUC(SN-38)) ratio (P = .002, P = .009, and P = .001, respectively)."
+        }
+      ],
+      "publicMetricSentences": [
+        "In genotype-PK association analysis, UGT1A1*6/*6 (n = 6), UGT1A7*3/*3 (n = 6), and UGT1A9-118(dT)9/9 (n = 11) were associated with significantly lower area under the time-concentration curve (AUC) SN-38G to SN-38 (AUC(SN-38G)/AUC(SN-38)) ratio (P = .002, P = .009, and P = .001, respectively)."
+      ],
+      "note": "Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 1 public metric sentence with grouped values. Requires human review before promotion."
     },
     "temporal": {},
     "supports": [
@@ -9296,13 +7564,13 @@
     ],
     "contradicts": [],
     "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+      "Public abstract/metadata extraction only; requires human review before promotion"
     ],
-    "confidence": "low",
+    "confidence": "moderate",
     "publicFactsUsable": true,
     "sourceBasis": "public_abstract_or_metadata",
     "needsFullText": false,
-    "needsFullTextForPrecision": true,
+    "needsFullTextForPrecision": false,
     "openAccess": {
       "isOpenAccess": false,
       "status": null,
@@ -9315,7 +7583,7 @@
     "provenance": "search:pubmed",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:48.855Z"
+    "_createdAt": "2026-06-05T09:24:38.161Z"
   },
   {
     "id": "draft_irinotecan_ugt1a1_sn38_pk_ando2002_11805731",
@@ -9329,10 +7597,45 @@
     "doi": "10.1097/00007691-200202000-00018",
     "url": "https://doi.org/10.1097/00007691-200202000-00018",
     "studyDesign": "clinical_pk",
-    "n": null,
+    "n": 4,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from the abstract."
+      "groupMetricValues": [
+        {
+          "metric": "area under the concentration-time curve (AUC) ratios of SN-38 to SN-38G (AUC(SN-38)/AUC(SN-38G)) using pooled pharmacokinetic data from four independent study groups in Japan was explored",
+          "values": [
+            38,
+            38,
+            38,
+            38
+          ],
+          "context": "As a surrogate for the UGT activity, the polymorphic frequency distribution of the area under the concentration-time curve (AUC) ratios of SN-38 to SN-38G (AUC(SN-38)/AUC(SN-38G)) using pooled pharmacokinetic data from four independent study groups in Japan was explored."
+        },
+        {
+          "metric": "AUC",
+          "values": [
+            38,
+            38,
+            0.4,
+            0.3
+          ],
+          "context": "The median ratios of AUC(SN-38)/AUC(SN-38G) was 0.40 (interquartile range, 0.30 to 0.55;"
+        },
+        {
+          "metric": "AUC",
+          "values": [
+            38,
+            38
+          ],
+          "context": "Frequency distribution of the AUC (SN-38)/AUC(SN-38G) was skewed to the right without bimodality and the patient population could not be segregated into discrete subgroups that differ in the UGT activity by the AUC ratios."
+        }
+      ],
+      "publicMetricSentences": [
+        "As a surrogate for the UGT activity, the polymorphic frequency distribution of the area under the concentration-time curve (AUC) ratios of SN-38 to SN-38G (AUC(SN-38)/AUC(SN-38G)) using pooled pharmacokinetic data from four independent study groups in Japan was explored.",
+        "The median ratios of AUC(SN-38)/AUC(SN-38G) was 0.40 (interquartile range, 0.30 to 0.55;",
+        "Frequency distribution of the AUC (SN-38)/AUC(SN-38G) was skewed to the right without bimodality and the patient population could not be segregated into discrete subgroups that differ in the UGT activity by the AUC ratios."
+      ],
+      "note": "Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 3 public metric sentences with grouped values. Requires human review before promotion."
     },
     "temporal": {},
     "supports": [
@@ -9341,13 +7644,13 @@
     ],
     "contradicts": [],
     "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+      "Public abstract/metadata extraction only; requires human review before promotion"
     ],
-    "confidence": "low",
+    "confidence": "moderate",
     "publicFactsUsable": true,
     "sourceBasis": "public_abstract_or_metadata",
     "needsFullText": false,
-    "needsFullTextForPrecision": true,
+    "needsFullTextForPrecision": false,
     "openAccess": {
       "isOpenAccess": false,
       "status": null,
@@ -9360,52 +7663,7 @@
     "provenance": "search:pubmed",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:48.855Z"
-  },
-  {
-    "id": "draft_irinotecan_ugt1a1_sn38_pk_goedhartt2026_41472517",
-    "_status": "pending_review",
-    "type": "meta_analysis",
-    "title": "Pre-Therapeutic UGT1A1 Genotyping in Breast Cancer Patients Receiving Sacituzumab Govitecan to Improve Safety: A Meta-Analysis and Recommendation.",
-    "year": 2026,
-    "source": "Clin Transl Sci",
-    "journal": "Clin Transl Sci",
-    "pmid": "41472517",
-    "doi": "10.1111/cts.70462",
-    "url": "https://doi.org/10.1111/cts.70462",
-    "studyDesign": "meta_analysis_or_systematic_review",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "irinotecan_UGT1A1_SN38_exposure_context",
-      "SN38_glucuronidation_toxicity_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12754263/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:48.855Z"
+    "_createdAt": "2026-06-05T09:24:38.161Z"
   },
   {
     "id": "draft_irinotecan_ugt1a1_sn38_pk_ohirag2026_42122174",
@@ -9422,7 +7680,7 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -9450,97 +7708,7 @@
     "provenance": "search:europepmc",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:48.855Z"
-  },
-  {
-    "id": "draft_irinotecan_ugt1a1_sn38_pk_martnezprezm2026_null",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "The Early Safety Signal of Sacituzumab Govitecan-Related Toxicity and the UGT1A1*28 Genotype in Metastatic Breast Cancer: A Real-World Preliminary Report",
-    "year": 2026,
-    "source": "J Clin Med",
-    "journal": "J Clin Med",
-    "pmid": null,
-    "doi": null,
-    "url": "https://europepmc.org/article/PMC/PMC12985489",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "irinotecan_UGT1A1_SN38_exposure_context",
-      "SN38_glucuronidation_toxicity_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12985489/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:48.855Z"
-  },
-  {
-    "id": "draft_irinotecan_ugt1a1_sn38_pk_dellorussoc2026_40936312",
-    "_status": "pending_review",
-    "type": "meta_analysis",
-    "title": "UGT1A1 and Sacituzumab Govitecan Toxicity: A Systematic Review and Meta-Analysis.",
-    "year": 2026,
-    "source": "Clin Pharmacol Ther",
-    "journal": "Clin Pharmacol Ther",
-    "pmid": "40936312",
-    "doi": "10.1002/cpt.70060",
-    "url": "https://doi.org/10.1002/cpt.70060",
-    "studyDesign": "meta_analysis_or_systematic_review",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "irinotecan_UGT1A1_SN38_exposure_context",
-      "SN38_glucuronidation_toxicity_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12746514/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:48.855Z"
+    "_createdAt": "2026-06-05T09:24:38.161Z"
   },
   {
     "id": "draft_irinotecan_ugt1a1_sn38_pk_dazvillamarnx2025_40430836",
@@ -9557,7 +7725,7 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -9585,142 +7753,7 @@
     "provenance": "search:europepmc",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:48.855Z"
-  },
-  {
-    "id": "draft_irinotecan_ugt1a1_sn38_pk_kanesadag2025_40285634",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "The C11orf24 Gene as a Useful Biomarker for Predicting Severe Neutropenia in Modified FOLFIRINOX for Pancreatic Cancer.",
-    "year": 2025,
-    "source": "Cancer Sci",
-    "journal": "Cancer Sci",
-    "pmid": "40285634",
-    "doi": "10.1111/cas.70087",
-    "url": "https://doi.org/10.1111/cas.70087",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "irinotecan_UGT1A1_SN38_exposure_context",
-      "SN38_glucuronidation_toxicity_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "oa",
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12210038/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:48.855Z"
-  },
-  {
-    "id": "draft_irinotecan_ugt1a1_sn38_pk_han2006_16636344",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "Comprehensive Analysis of<i>UGT1A</i>Polymorphisms Predictive for Pharmacokinetics and Treatment Outcome in Patients With Non–Small-Cell Lung Cancer Treated With Irinotecan and Cisplatin",
-    "year": 2006,
-    "source": "Journal of Clinical Oncology",
-    "journal": "Journal of Clinical Oncology",
-    "pmid": "16636344",
-    "doi": "10.1200/jco.2005.03.0239",
-    "url": "https://doi.org/10.1200/jco.2005.03.0239",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "irinotecan_UGT1A1_SN38_exposure_context",
-      "SN38_glucuronidation_toxicity_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "bronze",
-      "source": "openalex",
-      "license": null,
-      "landingUrl": "https://ascopubs.org/doi/pdfdirect/10.1200/JCO.2005.03.0239?role=tab",
-      "pdfUrl": "https://ascopubs.org/doi/pdfdirect/10.1200/JCO.2005.03.0239?role=tab",
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:48.855Z"
-  },
-  {
-    "id": "draft_irinotecan_ugt1a1_sn38_pk_stewart2007_17577039",
-    "_status": "pending_review",
-    "type": "clinical_pk",
-    "title": "<i>UGT1A1</i>Promoter Genotype Correlates With SN-38 Pharmacokinetics, but Not Severe Toxicity in Patients Receiving Low-Dose Irinotecan",
-    "year": 2007,
-    "source": "Journal of Clinical Oncology",
-    "journal": "Journal of Clinical Oncology",
-    "pmid": "17577039",
-    "doi": "10.1200/jco.2006.10.2301",
-    "url": "https://doi.org/10.1200/jco.2006.10.2301",
-    "studyDesign": "clinical_pk",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "irinotecan_UGT1A1_SN38_exposure_context",
-      "SN38_glucuronidation_toxicity_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_abstract_or_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": "closed",
-      "source": null,
-      "license": null,
-      "landingUrl": "https://doi.org/10.1200/jco.2006.10.2301",
-      "pdfUrl": null,
-      "evidence": null
-    },
-    "provenance": "search:openalex",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:48.855Z"
+    "_createdAt": "2026-06-05T09:24:38.161Z"
   },
   {
     "id": "draft_irinotecan_ugt1a1_sn38_pk_innocenti2004_15007088",
@@ -9734,10 +7767,25 @@
     "doi": "10.1200/jco.2004.07.173",
     "url": "https://doi.org/10.1200/jco.2004.07.173",
     "studyDesign": "clinical_pk",
-    "n": null,
+    "n": 6,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from the abstract."
+      "groupMetricValues": [
+        {
+          "metric": "area under the concentration versus time curve were significant predictors of ln(absolute neutrophil count nadir",
+          "values": [
+            3156,
+            38
+          ],
+          "context": "The -3156 genotype and the SN-38 area under the concentration versus time curve were significant predictors of ln(absolute neutrophil count nadir;"
+        }
+      ],
+      "publicMetricSentences": [
+        "The prevalence of grade 4 neutropenia was 9.5%.",
+        "50%) compared with 6/7 (3 of 24 patients;",
+        "12.5%) and 6/6 (0 of 29 patients;"
+      ],
+      "note": "Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 1 public metric sentence with grouped values. Requires human review before promotion."
     },
     "temporal": {},
     "supports": [
@@ -9746,13 +7794,13 @@
     ],
     "contradicts": [],
     "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+      "Public abstract/metadata extraction only; requires human review before promotion"
     ],
-    "confidence": "low",
+    "confidence": "moderate",
     "publicFactsUsable": true,
     "sourceBasis": "public_abstract_or_metadata",
     "needsFullText": false,
-    "needsFullTextForPrecision": true,
+    "needsFullTextForPrecision": false,
     "openAccess": {
       "isOpenAccess": true,
       "status": "bronze",
@@ -9765,7 +7813,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:48.856Z"
+    "_createdAt": "2026-06-05T09:24:38.162Z"
   },
   {
     "id": "draft_irinotecan_ugt1a1_sn38_pk_kroetz2006_16895999",
@@ -9782,7 +7830,20 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from the abstract."
+      "groupMetricValues": [
+        {
+          "metric": "area under the curve (AUC) of SN-38 was positively correlated with the hepatic retention of the imaging agents",
+          "values": [
+            38,
+            38
+          ],
+          "context": "The area under the curve (AUC) of SN-38 was positively correlated with the hepatic retention of the imaging agents, a significant finding since SN-38 exposure is linked to the neutropenia and late-onset diarrhea associated with irinotecan therapy."
+        }
+      ],
+      "publicMetricSentences": [
+        "The area under the curve (AUC) of SN-38 was positively correlated with the hepatic retention of the imaging agents, a significant finding since SN-38 exposure is linked to the neutropenia and late-onset diarrhea associated with irinotecan therapy."
+      ],
+      "note": "Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 1 public metric sentence with grouped values. Requires human review before promotion."
     },
     "temporal": {},
     "supports": [
@@ -9791,13 +7852,13 @@
     ],
     "contradicts": [],
     "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+      "Public abstract/metadata extraction only; requires human review before promotion"
     ],
-    "confidence": "low",
+    "confidence": "moderate",
     "publicFactsUsable": true,
     "sourceBasis": "public_abstract_or_metadata",
     "needsFullText": false,
-    "needsFullTextForPrecision": true,
+    "needsFullTextForPrecision": false,
     "openAccess": {
       "isOpenAccess": true,
       "status": "closed",
@@ -9810,7 +7871,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:48.856Z"
+    "_createdAt": "2026-06-05T09:24:38.164Z"
   },
   {
     "id": "draft_irinotecan_ugt1a1_sn38_pk_mathijssen2001_11489791",
@@ -9827,7 +7888,16 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from the abstract."
+      "foldRange": {
+        "min": 100,
+        "max": 1000,
+        "context": "CPT-11 belongs to the class of topoisomerase I inhibitors, and it acts as a prodrug of SN-38, which is approximately 100-1000-fold more cytotoxic than the parent drug."
+      },
+      "publicMetricSentences": [
+        "CPT-11 belongs to the class of topoisomerase I inhibitors, and it acts as a prodrug of SN-38, which is approximately 100-1000-fold more cytotoxic than the parent drug.",
+        "Strategies to individualize CPT-11 administration schedules based on patient differences in enzyme or protein expression or by coadministration of specific agents modulating side effects are under way and may ultimately lead to more selective chemotherapeutic use of this agent."
+      ],
+      "note": "Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 100-1000-fold range. Requires human review before promotion."
     },
     "temporal": {},
     "supports": [
@@ -9836,13 +7906,13 @@
     ],
     "contradicts": [],
     "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+      "Public abstract/metadata extraction only; requires human review before promotion"
     ],
-    "confidence": "low",
+    "confidence": "moderate",
     "publicFactsUsable": true,
     "sourceBasis": "public_abstract_or_metadata",
     "needsFullText": false,
-    "needsFullTextForPrecision": true,
+    "needsFullTextForPrecision": false,
     "openAccess": {
       "isOpenAccess": true,
       "status": "green",
@@ -9855,52 +7925,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:48.856Z"
-  },
-  {
-    "id": "draft_atomoxetine_cyp2d6_pediatric_pk_dinhjc2016_27052878",
-    "_status": "pending_review",
-    "type": "observational",
-    "title": "Characterization of Atomoxetine Biotransformation and Implications for Development of PBPK Models for Dose Individualization in Children.",
-    "year": 2016,
-    "source": "Drug Metab Dispos",
-    "journal": "Drug Metab Dispos",
-    "pmid": "27052878",
-    "doi": "10.1124/dmd.116.069518",
-    "url": "https://doi.org/10.1124/dmd.116.069518",
-    "studyDesign": "observational_or_screened_pubmed_record",
-    "n": null,
-    "phenotypes": [],
-    "quantifiedEffects": {
-      "note": "Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from the abstract."
-    },
-    "temporal": {},
-    "supports": [
-      "atomoxetine_CYP2D6_pediatric_exposure_context",
-      "atomoxetine_4_hydroxy_metabolite_context"
-    ],
-    "contradicts": [],
-    "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
-    ],
-    "confidence": "low",
-    "publicFactsUsable": true,
-    "sourceBasis": "public_citation_metadata",
-    "needsFullText": false,
-    "needsFullTextForPrecision": true,
-    "openAccess": {
-      "isOpenAccess": true,
-      "status": null,
-      "source": "europepmc",
-      "license": null,
-      "landingUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4931890/",
-      "pdfUrl": null,
-      "evidence": "Europe PMC reports PDF availability"
-    },
-    "provenance": "search:europepmc",
-    "verified": false,
-    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:50.881Z"
+    "_createdAt": "2026-06-05T09:24:38.164Z"
   },
   {
     "id": "draft_atomoxetine_cyp2d6_pediatric_pk_brownjt2016_26660002",
@@ -9917,7 +7942,7 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -9945,7 +7970,7 @@
     "provenance": "search:europepmc",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:50.881Z"
+    "_createdAt": "2026-06-05T09:24:38.846Z"
   },
   {
     "id": "draft_atomoxetine_cyp2d6_pediatric_pk_shimizu2023_37879849",
@@ -9962,7 +7987,7 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -9990,7 +8015,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:50.881Z"
+    "_createdAt": "2026-06-05T09:24:38.847Z"
   },
   {
     "id": "draft_atomoxetine_cyp2d6_pediatric_pk_shen2023_38117180",
@@ -10007,7 +8032,23 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from the abstract."
+      "foldChange": 7,
+      "groupMetricValues": [
+        {
+          "metric": "clearance",
+          "values": [
+            2,
+            6,
+            4
+          ],
+          "context": "CYP2D6 AS was a significant determinant of ATX apparent oral clearance (CL/F), fraction metabolized to 4-OH, and systemic exposure of NDA."
+        }
+      ],
+      "publicMetricSentences": [
+        "CYP2D6 AS was a significant determinant of ATX apparent oral clearance (CL/F), fraction metabolized to 4-OH, and systemic exposure of NDA.",
+        "CL/F of ATX varied almost 7-fold across the CYP2D6 AS groups:"
+      ],
+      "note": "Public abstract/metadata extraction for atomoxetine:CYP2D6_pediatric_PK found approximately 7-fold change and 1 public metric sentence with grouped values. Requires human review before promotion."
     },
     "temporal": {},
     "supports": [
@@ -10016,13 +8057,13 @@
     ],
     "contradicts": [],
     "limitations": [
-      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+      "Public abstract/metadata extraction only; requires human review before promotion"
     ],
-    "confidence": "low",
+    "confidence": "moderate",
     "publicFactsUsable": true,
     "sourceBasis": "public_abstract_or_metadata",
     "needsFullText": false,
-    "needsFullTextForPrecision": true,
+    "needsFullTextForPrecision": false,
     "openAccess": {
       "isOpenAccess": true,
       "status": "bronze",
@@ -10035,7 +8076,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:50.881Z"
+    "_createdAt": "2026-06-05T09:24:38.848Z"
   },
   {
     "id": "draft_atomoxetine_cyp2d6_pediatric_pk_tobin2026_41906544",
@@ -10052,8 +8093,30 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
+      "percentChange": 81.6,
       "clearanceReductionPct": 81.6,
-      "note": "Abstract-level extraction for atomoxetine:CYP2D6_pediatric_PK reports about 81.6% clearance change."
+      "groupMetricValues": [
+        {
+          "metric": "clearance",
+          "values": [
+            2,
+            6,
+            2,
+            19,
+            2,
+            6,
+            81.6,
+            64.5
+          ],
+          "context": "Using actual body weight, relative bioavailability based on CYP2D6 or CYP2C19 phenotype, and CYP2D6 clearance effects in the model reduced the variability from 81.6% to 64.5% and 92.4% to 75.5% for apparent volume and apparent clearance, respectively."
+        }
+      ],
+      "publicMetricSentences": [
+        "A population pharmacokinetic (PK) model was developed to evaluate steady-state atomoxetine exposures after oral administration in a large, heterogeneous population of children and adolescents with different metabolic phenotypes.",
+        "First, the individual atomoxetine parameters were estimated using a one-compartment distribution model with zero-order duration into a depot compartment followed by first-order absorption into the central compartment with linear elimination.",
+        "Using actual body weight, relative bioavailability based on CYP2D6 or CYP2C19 phenotype, and CYP2D6 clearance effects in the model reduced the variability from 81.6% to 64.5% and 92.4% to 75.5% for apparent volume and apparent clearance, respectively."
+      ],
+      "note": "Public abstract/metadata extraction for atomoxetine:CYP2D6_pediatric_PK found about 81.6% change and 1 public metric sentence with grouped values. Requires human review before promotion."
     },
     "temporal": {},
     "supports": [
@@ -10081,7 +8144,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:50.881Z"
+    "_createdAt": "2026-06-05T09:24:38.848Z"
   },
   {
     "id": "draft_atomoxetine_cyp2d6_pediatric_pk_guo2024_39534083",
@@ -10098,7 +8161,7 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from the abstract."
+      "note": "Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -10126,7 +8189,7 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:50.882Z"
+    "_createdAt": "2026-06-05T09:24:38.849Z"
   },
   {
     "id": "draft_atomoxetine_cyp2d6_pediatric_pk_fu2022_null",
@@ -10143,7 +8206,12 @@
     "n": null,
     "phenotypes": [],
     "quantifiedEffects": {
-      "note": "Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from the abstract."
+      "publicMetricSentences": [
+        "Atomoxetine is the first non-stimulant medication approved by the US Food and Drug Administration for the treatment of attention deficit/hyperactivity disorder (ADHD).",
+        "This review summarized some factors affecting peak concentrations of atomoxetine, including food, CYP2D6 and CYP2C19 phenotypes, and drug-drug interactions.",
+        "Based on the well-developed and validated assays for monitoring plasma concentrations of atomoxetine, the therapeutic reference range in pediatric patients with ADHD proposed by several studies was summarized."
+      ],
+      "note": "Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from public abstract/metadata."
     },
     "temporal": {},
     "supports": [
@@ -10171,6 +8239,6 @@
     "provenance": "search:openalex",
     "verified": false,
     "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
-    "_createdAt": "2026-06-05T09:19:50.882Z"
+    "_createdAt": "2026-06-05T09:24:38.850Z"
   }
 ]

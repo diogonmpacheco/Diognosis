@@ -623,3 +623,505 @@ Skipped:
 
 Provider warnings:
 - semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=atomoxetine+CYP2D6+genotype+stratified+pharmacokinetics+children+ADHD+AUC+poor+intermediate+metabolizer+4-hydroxyatomoxetine&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## tramadol:CYP2D6_CYP2B6_metabolites
+Run: 2026-06-05T09:22:46.679Z
+Query: `tramadol O-desmethyltramadol CYP2D6 CYP2B6 genotype pharmacokinetics metabolite AUC poor ultrarapid metabolizer`
+Added drafts: 9
+Skipped duplicates: 3
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_tramadol_cyp2d6_cyp2b6_metabolites_mahajnam2024_38440181 | observational | PMID:38440181 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC10910298/) oa | Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tramadol_cyp2d6_cyp2b6_metabolites_giovanninie2024_38539313 | observational | PMID:38539313 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC10969201/) oa | Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tramadol_cyp2d6_cyp2b6_metabolites_haagep2018_29992026 | clinical_pk | PMID:29992026 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC6034060/) oa | Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tramadol_cyp2d6_cyp2b6_metabolites_zebalaja2019_31005596 | observational | PMID:31005596 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC6790288/) | Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tramadol_cyp2d6_cyp2b6_metabolites_smith2009_19567715 | observational | PMID:19567715 | search:openalex | [OA](http://www.mayoclinicproceedings.org/article/S0025619611607507/pdf) bronze | Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tramadol_cyp2d6_cyp2b6_metabolites_tornio2018_29801580 | observational | PMID:29801580 | search:openalex | [OA](http://hdl.handle.net/10138/300396) green | Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tramadol_cyp2d6_cyp2b6_metabolites_leppert2011_21494059 | clinical_pk | PMID:21494059 | search:openalex | [OA](https://karger.com/pha/article-pdf/87/5-6/274/3421456/000326085.pdf) bronze | Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tramadol_cyp2d6_cyp2b6_metabolites_agarwal2017_28409480 | observational | PMID:28409480 | search:openalex | [OA](https://link.springer.com/content/pdf/10.1007%2Fs40122-017-0069-2.pdf) gold | Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tramadol_cyp2d6_cyp2b6_metabolites_leppert2011_21479998 | clinical_pk | PMID:21479998 | search:openalex | [OA](https://link.springer.com/content/pdf/10.1007/s11916-011-0201-7.pdf) hybrid | Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped:
+- already_in_STUDY_DB: The evolving landscape of pharmacogenomics: Current achievements and future directions.
+- already_in_STUDY_DB: Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2D6, OPRM1, and COMT Genotypes and Select Opioid Therapy.
+- already_in_STUDY_DB: Clinical Pharmacogenetics Implementation Consortium Guideline for <i>CYP2D6</i>, <i>OPRM1</i>, and <i>COMT</i> Genotypes and Select Opioid Therapy
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=tramadol+O-desmethyltramadol+CYP2D6+CYP2B6+genotype+pharmacokinetics+metabolite+AUC+poor+ultrarapid+metabolizer&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## metoprolol:CYP2D6_enantiomer_PK
+Run: 2026-06-05T09:22:47.340Z
+Query: `metoprolol CYP2D6 poor metabolizer ultrarapid metabolizer enantiomer pharmacokinetics AUC heart rate`
+Added drafts: 9
+Skipped duplicates: 3
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_metoprolol_cyp2d6_enantiomer_pk_rdesheims2020_33322314 | clinical_pk | PMID:33322314 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC7763912/) oa | Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_metoprolol_cyp2d6_enantiomer_pk_blakecm2013_23665868 | meta_analysis | PMID:23665868 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC3818912/) oa | Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_metoprolol_cyp2d6_enantiomer_pk_briciuc2015_26528073 | observational | PMID:26528073 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC4576779/) oa | Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_metoprolol_cyp2d6_enantiomer_pk_westerveltp2014_25210416 | observational | PMID:25210416 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC4159057/) | Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_metoprolol_cyp2d6_enantiomer_pk_daviesbj2008_17875193 | clinical_pk | PMID:17875193 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC2291239/) | Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_metoprolol_cyp2d6_enantiomer_pk_ahmed2016_27729266 | observational | PMID:27729266 | search:openalex | [OA](https://academic.oup.com/gpb/article-pdf/14/5/298/57485665/gpb_14_5_298.pdf) gold | Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_metoprolol_cyp2d6_enantiomer_pk_henriques2020_33363564 | guideline | PMID:33363564 | search:openalex | [OA](https://www.frontiersin.org/articles/10.3389/fgene.2020.491895/pdf) gold | Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_metoprolol_cyp2d6_enantiomer_pk_zhou2018_30564130 | observational | PMID:30564130 | search:openalex | [OA](https://www.frontiersin.org/articles/10.3389/fphar.2018.01436/pdf) gold | Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_metoprolol_cyp2d6_enantiomer_pk_ryu2017_28296334 | clinical_pk | PMID:28296334 | search:openalex | [OA](https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/cts.12451) gold | Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped:
+- already_in_drafts: 15th Congress of the European Association for Clinical Pharmacology and Therapeutics (EACPT)
+- already_in_drafts: Physiologically Based Pharmacokinetic Modeling of Metoprolol Enantiomers and α-Hydroxymetoprolol to Describe CYP2D6 Drug-Gene Interactions
+- already_in_drafts: Phenotypic differences in nebivolol metabolism and bioavailability in healthy volunteers
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=metoprolol+CYP2D6+poor+metabolizer+ultrarapid+metabolizer+enantiomer+pharmacokinetics+AUC+heart+rate&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## escitalopram:CYP2C19_CYP2D6_serum
+Run: 2026-06-05T09:22:47.675Z
+Query: `escitalopram CYP2C19 CYP2D6 genotype serum concentration desmethylcitalopram steady state ultrarapid poor metabolizer`
+Added drafts: 9
+Skipped duplicates: 3
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_escitalopram_cyp2c19_cyp2d6_serum_blambilal2026_42147327 | observational | PMID:42147327 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC13171527/) oa | Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_escitalopram_cyp2c19_cyp2d6_serum_bonasserlss2024_39598373 | meta_analysis | PMID:39598373 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC11597809/) oa | Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_escitalopram_cyp2c19_cyp2d6_serum_bishopjr2015_26313485 | observational | PMID:26313485 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC4591203/) | Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_escitalopram_cyp2c19_cyp2d6_serum_deligiannidiskm2014_24525634 | clinical_pk | PMID:24525634 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC4105343/) | Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_escitalopram_cyp2c19_cyp2d6_serum_lucirey2011_23226054 | observational | PMID:23226054 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC3513220/) oa | Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_escitalopram_cyp2c19_cyp2d6_serum_aldrich2019_30837874 | observational | PMID:30837874 | search:openalex | [OA](https://www.frontiersin.org/articles/10.3389/fphar.2019.00099/pdf) gold | Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_escitalopram_cyp2c19_cyp2d6_serum_islam2022_36068210 | clinical_pk | PMID:36068210 | search:openalex | [OA](https://www.nature.com/articles/s41398-022-02124-4.pdf) gold | Public abstract/metadata extraction for escitalopram:CYP2C19_CYP2D6_serum found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_escitalopram_cyp2c19_cyp2d6_serum_grundmann2013_23549513 | clinical_pk | PMID:23549513 | search:openalex | [OA](http://biomed.papers.upol.cz/doi/10.5507/bp.2013.020.pdf) gold | Public abstract/metadata extraction for escitalopram:CYP2C19_CYP2D6_serum found approximately 20-fold change. Requires human review before promotion. | moderate | yes | no |
+| draft_escitalopram_cyp2c19_cyp2d6_serum_han2013_24302953 | observational | PMID:24302953 | search:openalex | [OA](https://www.psychiatryinvestigation.org/upload/pdf/pi-10-286.pdf) hybrid | Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped:
+- already_in_drafts: How Can Drug Metabolism and Transporter Genetics Inform Psychotropic Prescribing?
+- already_in_drafts: Tools for optimising pharmacotherapy in psychiatry (therapeutic drug monitoring, molecular brain imaging and pharmacogenetic tests): focus on antidepressants
+- already_in_drafts: Antidepressant-induced akathisia-related homicides associated with diminishing mutations in metabolizing genes of the CYP450 family
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=escitalopram+CYP2C19+CYP2D6+genotype+serum+concentration+desmethylcitalopram+steady+state+ultrarapid+poor+metabolizer&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## simvastatin:SLCO1B1_ABCG2_CYP_multigene
+Run: 2026-06-05T09:22:48.004Z
+Query: `simvastatin simvastatin acid SLCO1B1 ABCG2 ABCB1 CYP2D6 CYP3A5 pharmacokinetics genotype AUC`
+Added drafts: 9
+Skipped duplicates: 4
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_simvastatin_slco1b1_abcg2_cyp_multigene_choi2016_26367500 | rct | PMID:26367500 | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for simvastatin:SLCO1B1_ABCG2_CYP_multigene found 3 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_simvastatin_slco1b1_abcg2_cyp_multigene_boinan2021_34187111 | observational | PMID:34187111 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC8265195/) oa | Citation appears relevant to simvastatin:SLCO1B1_ABCG2_CYP_multigene, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_simvastatin_slco1b1_abcg2_cyp_multigene_keeps2020_33193687 | observational | PMID:33193687 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC7596698/) oa | Citation appears relevant to simvastatin:SLCO1B1_ABCG2_CYP_multigene, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_simvastatin_slco1b1_abcg2_cyp_multigene_frickegalindoi2021_33807592 | observational | PMID:33807592 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC7998786/) oa | Citation appears relevant to simvastatin:SLCO1B1_ABCG2_CYP_multigene, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_simvastatin_slco1b1_abcg2_cyp_multigene_shnayderna2021_33922084 | clinical_pk | PMID:33922084 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC8143539/) oa | Citation appears relevant to simvastatin:SLCO1B1_ABCG2_CYP_multigene, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_simvastatin_slco1b1_abcg2_cyp_multigene_choi2015_26367500 | clinical_pk | PMID:26367500 | search:openalex | [OA](https://doi.org/10.1097/fpc.0000000000000176) closed | Public abstract/metadata extraction for simvastatin:SLCO1B1_ABCG2_CYP_multigene found 3 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_simvastatin_slco1b1_abcg2_cyp_multigene_turner2019_31861911 | clinical_pk | PMID:31861911 | search:openalex | [OA](https://www.mdpi.com/2077-0383/9/1/22/pdf?version=1577413979) gold | Citation appears relevant to simvastatin:SLCO1B1_ABCG2_CYP_multigene, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_simvastatin_slco1b1_abcg2_cyp_multigene_malki2019_31792369 | clinical_pk | PMID:31792369 | search:openalex | [OA](https://www.nature.com/articles/s41397-019-0122-0.pdf) hybrid | Citation appears relevant to simvastatin:SLCO1B1_ABCG2_CYP_multigene, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_simvastatin_slco1b1_abcg2_cyp_multigene_lee2016_27936281 | in_vitro | PMID:27936281 | search:openalex | [OA](https://bpspubs.onlinelibrary.wiley.com/doi/pdfdirect/10.1111/bcp.13207) bronze | Public abstract/metadata extraction for simvastatin:SLCO1B1_ABCG2_CYP_multigene found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+
+Skipped:
+- already_in_STUDY_DB: The evolving landscape of pharmacogenomics: Current achievements and future directions.
+- already_in_drafts: Drug-Drug-Gene Interactions in Cardiovascular Medicine.
+- already_in_drafts: Pharmacogenomics of Drug Metabolizing Enzymes and Transporters: Relevance to Precision Medicine
+- already_in_drafts: Pharmacogenetics of Statin-Induced Myotoxicity
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=simvastatin+simvastatin+acid+SLCO1B1+ABCG2+ABCB1+CYP2D6+CYP3A5+pharmacokinetics+genotype+AUC&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## clobazam:CYP2C19_N_desmethylclobazam
+Run: 2026-06-05T09:22:48.335Z
+Query: `clobazam N-desmethylclobazam CYP2C19 poor metabolizer plasma concentration dose ratio adverse effects`
+Added drafts: 11
+Skipped duplicates: 2
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_clobazam_cyp2c19_n_desmethylclobazam_contin2003_12451290 | case_report | PMID:12451290 | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for clobazam:CYP2C19_N_desmethylclobazam found approximately 27-fold change and 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_clobazam_cyp2c19_n_desmethylclobazam_kalakm2025_41465160 | observational | PMID:41465160 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12732823/) oa | Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clobazam_cyp2c19_n_desmethylclobazam_zillgitta2025_40734774 | observational | PMID:40734774 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12304684/) oa | Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clobazam_cyp2c19_n_desmethylclobazam_caicedoda2025_40142983 | clinical_pk | PMID:40142983 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC11945156/) oa | Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clobazam_cyp2c19_n_desmethylclobazam_debellism2025_40709084 | observational | PMID:40709084 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12287013/) oa | Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clobazam_cyp2c19_n_desmethylclobazam_qianl2024_38675145 | clinical_pk | PMID:38675145 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC11054161/) oa | Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clobazam_cyp2c19_n_desmethylclobazam_garcagonzlezx2023_36983567 | observational | PMID:36983567 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC10056055/) oa | Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clobazam_cyp2c19_n_desmethylclobazam_taylor2018_30374683 | clinical_pk | PMID:30374683 | search:openalex | [OA](https://link.springer.com/content/pdf/10.1007/s40263-018-0578-5.pdf) hybrid | Public abstract/metadata extraction for clobazam:CYP2C19_N_desmethylclobazam found approximately 1.9-fold change and 3 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_clobazam_cyp2c19_n_desmethylclobazam_morrison2019_30791225 | clinical_pk | PMID:30791225 | search:openalex | [OA](https://accp1.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/cpdd.665) bronze | Public abstract/metadata extraction for clobazam:CYP2C19_N_desmethylclobazam found about 29% change and 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_clobazam_cyp2c19_n_desmethylclobazam_alsherbiny2018_30583596 | clinical_pk | PMID:30583596 | search:openalex | [OA](https://www.mdpi.com/2305-6320/6/1/3/pdf?version=1545644277) gold | Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clobazam_cyp2c19_n_desmethylclobazam_fasinu2016_27285147 | observational | PMID:27285147 | search:openalex | [OA](https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/phar.1780) bronze | Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped:
+- already_in_drafts: Evidence of Polymorphic CYP2C19 Involvement in the Human Metabolism of N-Desmethylclobazam
+- already_in_STUDY_DB: Consensus Guidelines for Therapeutic Drug Monitoring in Neuropsychopharmacology: Update 2017
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=clobazam+N-desmethylclobazam+CYP2C19+poor+metabolizer+plasma+concentration+dose+ratio+adverse+effects&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## voriconazole:CYP2C19_PK_TDM
+Run: 2026-06-05T09:22:49.069Z
+Query: `voriconazole CYP2C19 genotype pharmacokinetics AUC trough therapeutic drug monitoring poor ultrarapid metabolizer`
+Added drafts: 10
+Skipped duplicates: 2
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_voriconazole_cyp2c19_pk_tdm_wehbee2026_42153394 | observational | PMID:42153394 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC13184621/) oa | Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_voriconazole_cyp2c19_pk_tdm_singamh2025_41010003 | observational | PMID:41010003 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12469605/) oa | Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_voriconazole_cyp2c19_pk_tdm_leey2025_41304736 | clinical_pk | PMID:41304736 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12655191/) oa | Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_voriconazole_cyp2c19_pk_tdm_wuyp2025_41027046 | clinical_pk | PMID:41027046 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12818346/) | Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_voriconazole_cyp2c19_pk_tdm_lebretonl2025_39584620 | observational | PMID:39584620 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC11739748/) oa | Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_voriconazole_cyp2c19_pk_tdm_resztakm2024_39240338 | observational | PMID:39240338 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC11458732/) oa | Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_voriconazole_cyp2c19_pk_tdm_wang2013_24084636 | clinical_pk | PMID:24084636 | search:openalex | [OA](https://academic.oup.com/jac/article-pdf/69/2/463/2107192/dkt369.pdf) bronze | Public abstract/metadata extraction for voriconazole:CYP2C19_PK_TDM found 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_voriconazole_cyp2c19_pk_tdm_kiser2015_25645660 | clinical_pk | PMID:25645660 | search:openalex | [OA](https://ccforum.biomedcentral.com/counter/pdf/10.1186/s13054-015-0753-8) gold | Public abstract/metadata extraction for voriconazole:CYP2C19_PK_TDM found about 15% change and 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_voriconazole_cyp2c19_pk_tdm_chau2014_25482746 | guideline | PMID:25482746 | search:openalex | [OA](https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/imj.12600) bronze | Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_voriconazole_cyp2c19_pk_tdm_laverdire2014_25587296 | guideline | PMID:25587296 | search:openalex | [OA](https://downloads.hindawi.com/journals/cjidmm/2014/340586.pdf) gold | Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped:
+- already_in_STUDY_DB: Consensus Guidelines for Therapeutic Drug Monitoring in Neuropsychopharmacology: Update 2017
+- already_in_drafts: Cytochrome P450 in Pharmacogenetics: An Update
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=voriconazole+CYP2C19+genotype+pharmacokinetics+AUC+trough+therapeutic+drug+monitoring+poor+ultrarapid+metabolizer&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## clopidogrel:CYP2C19_active_metabolite
+Run: 2026-06-05T09:22:49.943Z
+Query: `clopidogrel CYP2C19 active metabolite pharmacokinetics platelet inhibition poor intermediate ultrarapid metabolizer`
+Added drafts: 14
+Skipped duplicates: 5
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_clopidogrel_cyp2c19_active_metabolite_saizrodrguez2020_31128980 | guideline | PMID:31128980 | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for clopidogrel:CYP2C19_active_metabolite found 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_clopidogrel_cyp2c19_active_metabolite_leekj2026_41656635 | observational | PMID:41656635 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12883885/) oa | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clopidogrel_cyp2c19_active_metabolite_bharathg2025_41028360 | observational | PMID:41028360 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12484572/) oa | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clopidogrel_cyp2c19_active_metabolite_aurinsalol2026_41390976 | observational | PMID:41390976 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12997508/) oa | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clopidogrel_cyp2c19_active_metabolite_dellorussoc2026_41338248 | guideline | PMID:41338248 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12850553/) oa | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clopidogrel_cyp2c19_active_metabolite_grafenederj2024_39430173 | clinical_pk | PMID:39430173 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC11489422/) oa | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clopidogrel_cyp2c19_active_metabolite_piccolottoc2026_41893359 | observational | PMID:41893359 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC13028800/) oa | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clopidogrel_cyp2c19_active_metabolite_scott2013_23698643 | guideline | PMID:23698643 | search:openalex | [OA](https://onlinelibrary.wiley.com/doi/pdfdirect/10.1038/clpt.2013.105) bronze | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clopidogrel_cyp2c19_active_metabolite_par2010_20979470 | observational | PMID:20979470 | search:openalex | [OA](https://www.nejm.org/doi/pdf/10.1056/NEJMoa1008410?articleTools=true) bronze | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clopidogrel_cyp2c19_active_metabolite_moriyama2016_27981572 | guideline | PMID:27981572 | search:openalex | [OA](https://ascpt.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/cpt.583) bronze | Public abstract/metadata extraction for clopidogrel:CYP2C19_active_metabolite found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_clopidogrel_cyp2c19_active_metabolite_nassimdjebli2015_25609219 | clinical_pk | PMID:25609219 | search:semanticscholar | [OA](http://dmd.aspetjournals.org/content/dmd/43/4/510.full.pdf) oa | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clopidogrel_cyp2c19_active_metabolite_rhorenstein2014_24710841 | clinical_pk | PMID:24710841 | search:semanticscholar | [OA](https://europepmc.org/articles/pmc4113831?pdf=render) oa | Public abstract/metadata extraction for clopidogrel:CYP2C19_active_metabolite found 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_clopidogrel_cyp2c19_active_metabolite_hyao2019_31092394 | in_vitro | PMID:31092394 | search:semanticscholar | [OA](https://dmd.aspetjournals.org/content/dmd/47/8/794.full.pdf) oa | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clopidogrel_cyp2c19_active_metabolite_apareek2025_39933830 | clinical_pk | PMID:39933830 | search:semanticscholar | [OA](https://doi.org/10.1136/openhrt-2024-003088) oa | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped:
+- already_in_STUDY_DB: Cytochrome P-450 Polymorphisms and Response to Clopidogrel
+- already_in_drafts: Pharmacogenomics of Drug Metabolizing Enzymes and Transporters: Relevance to Precision Medicine
+- already_in_drafts: Applications of CYP450 Testing in the Clinical Setting
+- already_in_drafts: Integrative pharmacogenomics analysis predicts the platelet response in clopidogrel treated coronary artery disease (CAD) patients of South India
+- already_in_STUDY_DB: Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update
+## efavirenz:CYP2B6_CYP2A6_UGT2B7
+Run: 2026-06-05T09:22:50.610Z
+Query: `efavirenz CYP2B6 CYP2A6 UGT2B7 pharmacokinetics slow metabolizer genotype concentration neurotoxicity`
+Added drafts: 8
+Skipped duplicates: 0
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_hardih2025_41216483 | meta_analysis | PMID:41216483 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12596893/) oa | Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_aungak2014_25495412 | observational | PMID:25495412 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC4296903/) | Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_zanger2013_23467454 | in_vitro | PMID:23467454 | search:openalex | [OA](https://www.frontiersin.org/articles/10.3389/fgene.2013.00024/pdf) gold | Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_apostolova2015_26203180 | clinical_pk | PMID:26203180 | search:openalex | [OA](https://academic.oup.com/jac/article-pdf/70/10/2693/2475819/dkv183.pdf) bronze | Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_hedrich2016_27709010 | observational | PMID:27709010 | search:openalex | [OA](https://ars.els-cdn.com/content/image/1-s2.0-S2211383516302532-fx1_lrg.jpg) diamond | Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_mukonzo2013_23734829 | observational | PMID:23734829 | search:openalex | [OA](https://bmcinfectdis.biomedcentral.com/counter/pdf/10.1186/1471-2334-13-261) gold | Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_dalwadi2018_29945900 | observational | PMID:29945900 | search:openalex | [OA](https://pharmrev.aspetjournals.org/content/pharmrev/70/3/684.full.pdf) bronze | Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_wang2019_31324697 | observational | PMID:31324697 | search:openalex | [OA](https://dmd.aspetjournals.org/content/dmd/47/10/1195.full.pdf) bronze | Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=efavirenz+CYP2B6+CYP2A6+UGT2B7+pharmacokinetics+slow+metabolizer+genotype+concentration+neurotoxicity&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## irinotecan:UGT1A1_SN38_PK
+Run: 2026-06-05T09:22:51.261Z
+Query: `irinotecan SN-38 SN-38G UGT1A1 genotype pharmacokinetics AUC neutropenia diarrhea`
+Added drafts: 15
+Skipped duplicates: 1
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_irinotecan_ugt1a1_sn38_pk_wang2013_23236239 | clinical_pk | PMID:23236239 | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found about 69.9% change and 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_irinotecan_ugt1a1_sn38_pk_stewart2007_17577039 | clinical_pk | PMID:17577039 | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_irinotecan_ugt1a1_sn38_pk_han2006_16636344 | clinical_pk | PMID:16636344 | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_irinotecan_ugt1a1_sn38_pk_ando2002_11805731 | clinical_pk | PMID:11805731 | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 3 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_irinotecan_ugt1a1_sn38_pk_goedhartt2026_41472517 | meta_analysis | PMID:41472517 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12754263/) oa | Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_irinotecan_ugt1a1_sn38_pk_ohirag2026_42122174 | observational | PMID:42122174 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC13162618/) oa | Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_irinotecan_ugt1a1_sn38_pk_martnezprezm2026_null | observational | identifier missing | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12985489/) oa | Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_irinotecan_ugt1a1_sn38_pk_dellorussoc2026_40936312 | meta_analysis | PMID:40936312 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12746514/) oa | Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_irinotecan_ugt1a1_sn38_pk_dazvillamarnx2025_40430836 | meta_analysis | PMID:40430836 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12114900/) oa | Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_irinotecan_ugt1a1_sn38_pk_kanesadag2025_40285634 | observational | PMID:40285634 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12210038/) oa | Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_irinotecan_ugt1a1_sn38_pk_han2006_16636344 | clinical_pk | PMID:16636344 | search:openalex | [OA](https://ascopubs.org/doi/pdfdirect/10.1200/JCO.2005.03.0239?role=tab) bronze | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_irinotecan_ugt1a1_sn38_pk_stewart2007_17577039 | clinical_pk | PMID:17577039 | search:openalex | [OA](https://doi.org/10.1200/jco.2006.10.2301) closed | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_irinotecan_ugt1a1_sn38_pk_innocenti2004_15007088 | clinical_pk | PMID:15007088 | search:openalex | [OA](https://ascopubs.org/doi/pdfdirect/10.1200/JCO.2004.07.173?role=tab) bronze | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_irinotecan_ugt1a1_sn38_pk_kroetz2006_16895999 | clinical_pk | PMID:16895999 | search:openalex | [OA](https://doi.org/10.1200/jco.2006.07.2355) closed | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_irinotecan_ugt1a1_sn38_pk_mathijssen2001_11489791 | clinical_pk | PMID:11489791 | search:openalex | [OA](https://pure.eur.nl/en/publications/0a79999b-2355-414e-8a33-5bb9b5cd136a) green | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 100-1000-fold range. Requires human review before promotion. | moderate | yes | no |
+
+Skipped:
+- already_in_drafts: <i>UGT1A1</i>predicts outcome in colorectal cancer treated with irinotecan and fluorouracil
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=irinotecan+SN-38+SN-38G+UGT1A1+genotype+pharmacokinetics+AUC+neutropenia+diarrhea&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## atomoxetine:CYP2D6_pediatric_PK
+Run: 2026-06-05T09:22:51.904Z
+Query: `atomoxetine CYP2D6 genotype stratified pharmacokinetics children ADHD AUC poor intermediate metabolizer 4-hydroxyatomoxetine`
+Added drafts: 7
+Skipped duplicates: 2
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_atomoxetine_cyp2d6_pediatric_pk_dinhjc2016_27052878 | observational | PMID:27052878 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC4931890/) | Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_atomoxetine_cyp2d6_pediatric_pk_brownjt2016_26660002 | clinical_pk | PMID:26660002 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC4862932/) | Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_atomoxetine_cyp2d6_pediatric_pk_shimizu2023_37879849 | clinical_pk | PMID:37879849 | search:openalex | [OA](https://dmd.aspetjournals.org/content/dmd/52/1/35.full.pdf) bronze | Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_atomoxetine_cyp2d6_pediatric_pk_shen2023_38117180 | clinical_pk | PMID:38117180 | search:openalex | [OA](https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/cpt.3155) bronze | Public abstract/metadata extraction for atomoxetine:CYP2D6_pediatric_PK found approximately 7-fold change and 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_atomoxetine_cyp2d6_pediatric_pk_tobin2026_41906544 | clinical_pk | PMID:41906544 | search:openalex | [OA](https://doi.org/10.1002/jcph.70168) hybrid | Public abstract/metadata extraction for atomoxetine:CYP2D6_pediatric_PK found about 81.6% change and 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_atomoxetine_cyp2d6_pediatric_pk_guo2024_39534083 | guideline | PMID:39534083 | search:openalex | [OA](https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2024.1484512/pdf) gold | Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_atomoxetine_cyp2d6_pediatric_pk_fu2022_null | clinical_pk | DOI:10.22541/au.165771198.87924835/v1 | search:openalex | [OA](https://www.authorea.com/doi/pdf/10.22541/au.165771198.87924835) gold | Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped:
+- already_in_STUDY_DB: Clinical Pharmacogenetics Implementation Consortium Guideline for Cytochrome P450 (CYP)2D6 Genotype and Atomoxetine Therapy.
+- already_in_STUDY_DB: Clinical Pharmacogenetics Implementation Consortium Guideline for <scp>Cytochrome P450 (<i>CYP</i>)</scp><i>2D6</i> Genotype and Atomoxetine Therapy
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=atomoxetine+CYP2D6+genotype+stratified+pharmacokinetics+children+ADHD+AUC+poor+intermediate+metabolizer+4-hydroxyatomoxetine&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## tramadol:CYP2D6_CYP2B6_metabolites
+Run: 2026-06-05T09:24:34.497Z
+Query: `tramadol O-desmethyltramadol CYP2D6 CYP2B6 genotype pharmacokinetics metabolite AUC poor ultrarapid metabolizer`
+Added drafts: 2
+Skipped duplicates: 10
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_tramadol_cyp2d6_cyp2b6_metabolites_haagep2018_29992026 | clinical_pk | PMID:29992026 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC6034060/) oa | Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_tramadol_cyp2d6_cyp2b6_metabolites_leppert2011_21494059 | clinical_pk | PMID:21494059 | search:openalex | [OA](https://karger.com/pha/article-pdf/87/5-6/274/3421456/000326085.pdf) bronze | Citation appears relevant to tramadol:CYP2D6_CYP2B6_metabolites, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped:
+- already_in_STUDY_DB: Clinical Pharmacogenetics Implementation Consortium Guideline for <i>CYP2D6</i>, <i>OPRM1</i>, and <i>COMT</i> Genotypes and Select Opioid Therapy
+- relation_mismatch: The evolving landscape of pharmacogenomics: Current achievements and future directions.
+- relation_mismatch: Influence of cytochrome <i>P450 2D6*10/*10</i> genotype on the risk for tramadol associated adverse effects: a retrospective cohort study.
+- relation_mismatch: Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2D6, OPRM1, and COMT Genotypes and Select Opioid Therapy.
+- relation_mismatch: Fetal and Infant Effects of Maternal Opioid Use during Pregnancy: A Literature Review including Clinical, Toxicological, Pharmacogenomic, and Epigenetic Aspects for Forensic Evaluation.
+- relation_mismatch: Desmetramadol Has the Safety and Analgesic Profile of Tramadol Without Its Metabolic Liabilities: Consecutive Randomized, Double-Blind, Placebo- and Active Comparator-Controlled Trials.
+- relation_mismatch: Opioid Metabolism
+- relation_mismatch: Cytochrome P450 in Pharmacogenetics: An Update
+- relation_mismatch: Genetic Testing for Opioid Pain Management: A Primer
+- relation_mismatch: Pain Management in Patients with Cancer: Focus on Opioid Analgesics
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=tramadol+O-desmethyltramadol+CYP2D6+CYP2B6+genotype+pharmacokinetics+metabolite+AUC+poor+ultrarapid+metabolizer&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## metoprolol:CYP2D6_enantiomer_PK
+Run: 2026-06-05T09:24:34.817Z
+Query: `metoprolol CYP2D6 poor metabolizer ultrarapid metabolizer enantiomer pharmacokinetics AUC heart rate`
+Added drafts: 2
+Skipped duplicates: 10
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_metoprolol_cyp2d6_enantiomer_pk_rdesheims2020_33322314 | clinical_pk | PMID:33322314 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC7763912/) oa | Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_metoprolol_cyp2d6_enantiomer_pk_blakecm2013_23665868 | meta_analysis | PMID:23665868 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC3818912/) oa | Citation appears relevant to metoprolol:CYP2D6_enantiomer_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped:
+- already_in_drafts: Physiologically Based Pharmacokinetic Modeling of Metoprolol Enantiomers and α-Hydroxymetoprolol to Describe CYP2D6 Drug-Gene Interactions
+- relation_mismatch: Phenotypic differences in nebivolol metabolism and bioavailability in healthy volunteers.
+- relation_mismatch: Drug-gene interactions: inherent variability in drug maintenance dose requirements.
+- relation_mismatch: Steady-state pharmacokinetics of the enantiomers of perhexiline in CYP2D6 poor and extensive metabolizers administered Rac-perhexiline.
+- relation_mismatch: 15th Congress of the European Association for Clinical Pharmacology and Therapeutics (EACPT)
+- relation_mismatch: Pharmacogenomics of Drug Metabolizing Enzymes and Transporters: Relevance to Precision Medicine
+- relation_mismatch: How Can Drug Metabolism and Transporter Genetics Inform Psychotropic Prescribing?
+- relation_mismatch: Pharmacogenomics of Medications Commonly Used in the Intensive Care Unit
+- relation_mismatch: A Study on<i>CYP2C19</i>and<i>CYP2D6</i>Polymorphic Effects on Pharmacokinetics and Pharmacodynamics of Amitriptyline in Healthy Koreans
+- relation_mismatch: Phenotypic differences in nebivolol metabolism and bioavailability in healthy volunteers
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=metoprolol+CYP2D6+poor+metabolizer+ultrarapid+metabolizer+enantiomer+pharmacokinetics+AUC+heart+rate&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## escitalopram:CYP2C19_CYP2D6_serum
+Run: 2026-06-05T09:24:35.477Z
+Query: `escitalopram CYP2C19 CYP2D6 genotype serum concentration desmethylcitalopram steady state ultrarapid poor metabolizer`
+Added drafts: 4
+Skipped duplicates: 8
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_escitalopram_cyp2c19_cyp2d6_serum_bishopjr2015_26313485 | observational | PMID:26313485 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC4591203/) | Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_escitalopram_cyp2c19_cyp2d6_serum_aldrich2019_30837874 | observational | PMID:30837874 | search:openalex | [OA](https://www.frontiersin.org/articles/10.3389/fphar.2019.00099/pdf) gold | Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_escitalopram_cyp2c19_cyp2d6_serum_islam2022_36068210 | clinical_pk | PMID:36068210 | search:openalex | [OA](https://www.nature.com/articles/s41398-022-02124-4.pdf) gold | Public abstract/metadata extraction for escitalopram:CYP2C19_CYP2D6_serum found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_escitalopram_cyp2c19_cyp2d6_serum_han2013_24302953 | observational | PMID:24302953 | search:openalex | [OA](https://www.psychiatryinvestigation.org/upload/pdf/pi-10-286.pdf) hybrid | Citation appears relevant to escitalopram:CYP2C19_CYP2D6_serum, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped:
+- relation_mismatch: Pharmacogenetics of antidepressant response: a focused review on CYP2C19, CYP2D6, SLC6A4, and HTR2A polymorphisms.
+- relation_mismatch: <i>CYP2C19</i> Genetic Variants and Major Depressive Disorder: A Systematic Review.
+- relation_mismatch: How Can Drug Metabolism and Transporter Genetics Inform Psychotropic Prescribing?
+- relation_mismatch: Pharmacotherapy for mood disorders in pregnancy: a review of pharmacokinetic changes and clinical recommendations for therapeutic drug monitoring.
+- relation_mismatch: Antidepressant-induced akathisia-related homicides associated with diminishing mutations in metabolizing genes of the CYP450 family.
+- relation_mismatch: Tools for optimising pharmacotherapy in psychiatry (therapeutic drug monitoring, molecular brain imaging and pharmacogenetic tests): focus on antidepressants
+- relation_mismatch: Antidepressant-induced akathisia-related homicides associated with diminishing mutations in metabolizing genes of the CYP450 family
+- relation_mismatch: Therapeutic monitoring of psychoactive drugs - antidepressants: A review
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=escitalopram+CYP2C19+CYP2D6+genotype+serum+concentration+desmethylcitalopram+steady+state+ultrarapid+poor+metabolizer&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## simvastatin:SLCO1B1_ABCG2_CYP_multigene
+Run: 2026-06-05T09:24:36.136Z
+Query: `simvastatin simvastatin acid SLCO1B1 ABCG2 ABCB1 CYP2D6 CYP3A5 pharmacokinetics genotype AUC`
+Added drafts: 2
+Skipped duplicates: 11
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_simvastatin_slco1b1_abcg2_cyp_multigene_choi2016_26367500 | rct | PMID:26367500 | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for simvastatin:SLCO1B1_ABCG2_CYP_multigene found 3 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_simvastatin_slco1b1_abcg2_cyp_multigene_choi2015_26367500 | clinical_pk | PMID:26367500 | search:openalex | [OA](https://doi.org/10.1097/fpc.0000000000000176) closed | Public abstract/metadata extraction for simvastatin:SLCO1B1_ABCG2_CYP_multigene found 3 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+
+Skipped:
+- relation_mismatch: The evolving landscape of pharmacogenomics: Current achievements and future directions.
+- relation_mismatch: Drug-drug-gene interactions as mediators of adverse drug reactions to diclofenac and statins: a case report and literature review.
+- relation_mismatch: Drug-Drug-Gene Interactions in Cardiovascular Medicine.
+- relation_mismatch: Pharmacogenetics of Statin-Induced Myotoxicity.
+- relation_mismatch: Pharmacogenetics Approach for the Improvement of COVID-19 Treatment.
+- relation_mismatch: Using Pharmacogenetics of Direct Oral Anticoagulants to Predict Changes in Their Pharmacokinetics and the Risk of Adverse Drug Reactions.
+- relation_mismatch: Pharmacogenomics of Drug Metabolizing Enzymes and Transporters: Relevance to Precision Medicine
+- relation_mismatch: Statin-Related Myotoxicity: A Comprehensive Review of Pharmacokinetic, Pharmacogenomic and Muscle Components
+- relation_mismatch: Drug–drug–gene interactions and adverse drug reactions
+- relation_mismatch: Interindividual and interethnic variability in drug disposition: polymorphisms in organic anion transporting polypeptide 1B1 (OATP1B1; <i>SLCO1B1</i>)
+- relation_mismatch: Pharmacogenetics of Statin-Induced Myotoxicity
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=simvastatin+simvastatin+acid+SLCO1B1+ABCG2+ABCB1+CYP2D6+CYP3A5+pharmacokinetics+genotype+AUC&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## clobazam:CYP2C19_N_desmethylclobazam
+Run: 2026-06-05T09:24:36.477Z
+Query: `clobazam N-desmethylclobazam CYP2C19 poor metabolizer plasma concentration dose ratio adverse effects`
+Added drafts: 3
+Skipped duplicates: 10
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_clobazam_cyp2c19_n_desmethylclobazam_contin2003_12451290 | case_report | PMID:12451290 | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for clobazam:CYP2C19_N_desmethylclobazam found approximately 27-fold change and 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_clobazam_cyp2c19_n_desmethylclobazam_zillgitta2025_40734774 | observational | PMID:40734774 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12304684/) oa | Citation appears relevant to clobazam:CYP2C19_N_desmethylclobazam, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clobazam_cyp2c19_n_desmethylclobazam_morrison2019_30791225 | clinical_pk | PMID:30791225 | search:openalex | [OA](https://accp1.onlinelibrary.wiley.com/doi/pdfdirect/10.1002/cpdd.665) bronze | Public abstract/metadata extraction for clobazam:CYP2C19_N_desmethylclobazam found about 29% change and 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+
+Skipped:
+- already_in_drafts: Evidence of Polymorphic CYP2C19 Involvement in the Human Metabolism of N-Desmethylclobazam
+- relation_mismatch: Medical Marijuana and Treatment Personalization: The Role of Genetics and Epigenetics in Response to THC and CBD.
+- relation_mismatch: An Overview of the Potential for Pharmacokinetic Interactions Between Drugs and Cannabis Products in Humans.
+- relation_mismatch: Adverse effects of antiseizure medications: a review of the impact of pharmacogenetics and drugs interactions in clinical practice.
+- relation_mismatch: CBD and THC in Special Populations: Pharmacokinetics and Drug-Drug Interactions.
+- relation_mismatch: Pharmacogenetics in the Treatment of Huntington's Disease: Review and Future Perspectives.
+- relation_mismatch: Consensus Guidelines for Therapeutic Drug Monitoring in Neuropsychopharmacology: Update 2017
+- relation_mismatch: A Phase I, Randomized, Double-Blind, Placebo-Controlled, Single Ascending Dose, Multiple Dose, and Food Effect Trial of the Safety, Tolerability and Pharmacokinetics of Highly Purified Cannabidiol in Healthy Subjects
+- relation_mismatch: Medicinal Cannabis—Potential Drug Interactions
+- relation_mismatch: Current Status and Prospects for Cannabidiol Preparations as New Therapeutic Agents
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=clobazam+N-desmethylclobazam+CYP2C19+poor+metabolizer+plasma+concentration+dose+ratio+adverse+effects&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## voriconazole:CYP2C19_PK_TDM
+Run: 2026-06-05T09:24:36.813Z
+Query: `voriconazole CYP2C19 genotype pharmacokinetics AUC trough therapeutic drug monitoring poor ultrarapid metabolizer`
+Added drafts: 5
+Skipped duplicates: 7
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_voriconazole_cyp2c19_pk_tdm_wehbee2026_42153394 | observational | PMID:42153394 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC13184621/) oa | Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_voriconazole_cyp2c19_pk_tdm_leey2025_41304736 | clinical_pk | PMID:41304736 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12655191/) oa | Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_voriconazole_cyp2c19_pk_tdm_resztakm2024_39240338 | observational | PMID:39240338 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC11458732/) oa | Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_voriconazole_cyp2c19_pk_tdm_wang2013_24084636 | clinical_pk | PMID:24084636 | search:openalex | [OA](https://academic.oup.com/jac/article-pdf/69/2/463/2107192/dkt369.pdf) bronze | Public abstract/metadata extraction for voriconazole:CYP2C19_PK_TDM found 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_voriconazole_cyp2c19_pk_tdm_chau2014_25482746 | guideline | PMID:25482746 | search:openalex | [OA](https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/imj.12600) bronze | Citation appears relevant to voriconazole:CYP2C19_PK_TDM, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped:
+- relation_mismatch: The Impact of Genetic Polymorphisms on the Clinical Efficacy of Azole Antifungals.
+- relation_mismatch: Pharmacogenetics of steady-state metabolism, pharmacokinetics, and adverse effects of voriconazole in healthy participants.
+- relation_mismatch: French-Speaking Network of Pharmacogenetics (RNPGx) Recommendations for Clinical Use of Mavacamten.
+- relation_mismatch: Consensus Guidelines for Therapeutic Drug Monitoring in Neuropsychopharmacology: Update 2017
+- relation_mismatch: Cytochrome P450 in Pharmacogenetics: An Update
+- relation_mismatch: Evaluation of sulfobutylether-β-cyclodextrin (SBECD) accumulation and voriconazole pharmacokinetics in critically ill patients undergoing continuous renal replacement therapy
+- relation_mismatch: Therapeutic drug monitoring for triazoles: A needs assessment review and recommendations from a Canadian perspective
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=voriconazole+CYP2C19+genotype+pharmacokinetics+AUC+trough+therapeutic+drug+monitoring+poor+ultrarapid+metabolizer&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## clopidogrel:CYP2C19_active_metabolite
+Run: 2026-06-05T09:24:36.883Z
+Query: `clopidogrel CYP2C19 active metabolite pharmacokinetics platelet inhibition poor intermediate ultrarapid metabolizer`
+Added drafts: 9
+Skipped duplicates: 10
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_clopidogrel_cyp2c19_active_metabolite_saizrodrguez2020_31128980 | guideline | PMID:31128980 | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for clopidogrel:CYP2C19_active_metabolite found 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_clopidogrel_cyp2c19_active_metabolite_dellorussoc2026_41338248 | guideline | PMID:41338248 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12850553/) oa | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clopidogrel_cyp2c19_active_metabolite_scott2013_23698643 | guideline | PMID:23698643 | search:openalex | [OA](https://onlinelibrary.wiley.com/doi/pdfdirect/10.1038/clpt.2013.105) bronze | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clopidogrel_cyp2c19_active_metabolite_par2010_20979470 | observational | PMID:20979470 | search:openalex | [OA](https://www.nejm.org/doi/pdf/10.1056/NEJMoa1008410?articleTools=true) bronze | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clopidogrel_cyp2c19_active_metabolite_nassimdjebli2015_25609219 | clinical_pk | PMID:25609219 | search:semanticscholar | [OA](http://dmd.aspetjournals.org/content/dmd/43/4/510.full.pdf) oa | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clopidogrel_cyp2c19_active_metabolite_gbharath2025_41028360 | clinical_pk | PMID:41028360 | search:semanticscholar | paywalled/unknown | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clopidogrel_cyp2c19_active_metabolite_rhorenstein2014_24710841 | clinical_pk | PMID:24710841 | search:semanticscholar | [OA](https://europepmc.org/articles/pmc4113831?pdf=render) oa | Public abstract/metadata extraction for clopidogrel:CYP2C19_active_metabolite found 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_clopidogrel_cyp2c19_active_metabolite_hyao2019_31092394 | in_vitro | PMID:31092394 | search:semanticscholar | [OA](https://dmd.aspetjournals.org/content/dmd/47/8/794.full.pdf) oa | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_clopidogrel_cyp2c19_active_metabolite_apareek2025_39933830 | clinical_pk | PMID:39933830 | search:semanticscholar | [OA](https://doi.org/10.1136/openhrt-2024-003088) oa | Citation appears relevant to clopidogrel:CYP2C19_active_metabolite, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped:
+- already_in_STUDY_DB: Cytochrome P-450 Polymorphisms and Response to Clopidogrel
+- already_in_drafts: Applications of CYP450 Testing in the Clinical Setting
+- already_in_STUDY_DB: Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update
+- relation_mismatch: Clinical Application of Pharmacogenomics in Stroke Management: Current Evidence and Future Directions.
+- relation_mismatch: Integrative pharmacogenomics analysis predicts the platelet response in clopidogrel treated coronary artery disease (CAD) patients of South India.
+- relation_mismatch: Repeated Intake of Grapefruit Juice Inhibits CYP2B6, CYP2C9, CYP2C19, and CYP3A4 while Lingonberry Powder Does Not Induce Major CYP Enzymes in Humans.
+- relation_mismatch: Prospective Trial on the Pharmacokinetics of Clopidogrel in Hemodialysis Patients.
+- relation_mismatch: Pharmacometabolomics Detects Unreported Clopidogrel Metabolites in the Urine of Kidney and Liver Transplant Recipients.
+- relation_mismatch: Clinical Pharmacogenetics Implementation Consortium (CPIC) Guidelines for <i>CYP2C19</i> and Voriconazole Therapy
+- relation_mismatch: Pharmacogenomics of Drug Metabolizing Enzymes and Transporters: Relevance to Precision Medicine
+## efavirenz:CYP2B6_CYP2A6_UGT2B7
+Run: 2026-06-05T09:24:37.501Z
+Query: `efavirenz CYP2B6 CYP2A6 UGT2B7 pharmacokinetics slow metabolizer genotype concentration neurotoxicity`
+Added drafts: 4
+Skipped duplicates: 4
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_zanger2013_23467454 | in_vitro | PMID:23467454 | search:openalex | [OA](https://www.frontiersin.org/articles/10.3389/fgene.2013.00024/pdf) gold | Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_hedrich2016_27709010 | observational | PMID:27709010 | search:openalex | [OA](https://ars.els-cdn.com/content/image/1-s2.0-S2211383516302532-fx1_lrg.jpg) diamond | Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_mukonzo2013_23734829 | observational | PMID:23734829 | search:openalex | [OA](https://bmcinfectdis.biomedcentral.com/counter/pdf/10.1186/1471-2334-13-261) gold | Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_efavirenz_cyp2b6_cyp2a6_ugt2b7_wang2019_31324697 | observational | PMID:31324697 | search:openalex | [OA](https://dmd.aspetjournals.org/content/dmd/47/10/1195.full.pdf) bronze | Citation appears relevant to efavirenz:CYP2B6_CYP2A6_UGT2B7, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped:
+- relation_mismatch: Pharmacogenetics in Tuberculosis-HIV Coinfected Populations: A Systematic Review of Genetic Variants Influencing Antiretroviral and Anti-Tuberculosis Drug Response.
+- relation_mismatch: Pharmacogenomics of antimicrobial agents.
+- relation_mismatch: Efavirenz and the CNS: what we already know and questions that need to be answered
+- relation_mismatch: Adverse Neuropsychiatric Events and Recreational Use of Efavirenz and Other HIV-1 Antiretroviral Drugs
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=efavirenz+CYP2B6+CYP2A6+UGT2B7+pharmacokinetics+slow+metabolizer+genotype+concentration+neurotoxicity&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## irinotecan:UGT1A1_SN38_PK
+Run: 2026-06-05T09:24:38.167Z
+Query: `irinotecan SN-38 SN-38G UGT1A1 genotype pharmacokinetics AUC neutropenia diarrhea`
+Added drafts: 11
+Skipped duplicates: 5
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_irinotecan_ugt1a1_sn38_pk_wang2013_23236239 | clinical_pk | PMID:23236239 | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found about 69.9% change and 2 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_irinotecan_ugt1a1_sn38_pk_stewart2007_17577039 | clinical_pk | PMID:17577039 | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_irinotecan_ugt1a1_sn38_pk_han2006_16636344 | clinical_pk | PMID:16636344 | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_irinotecan_ugt1a1_sn38_pk_ando2002_11805731 | clinical_pk | PMID:11805731 | search:pubmed | paywalled/unknown | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 3 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_irinotecan_ugt1a1_sn38_pk_ohirag2026_42122174 | observational | PMID:42122174 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC13162618/) oa | Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_irinotecan_ugt1a1_sn38_pk_dazvillamarnx2025_40430836 | meta_analysis | PMID:40430836 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC12114900/) oa | Citation appears relevant to irinotecan:UGT1A1_SN38_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_irinotecan_ugt1a1_sn38_pk_han2006_16636344 | clinical_pk | PMID:16636344 | search:openalex | [OA](https://ascopubs.org/doi/pdfdirect/10.1200/JCO.2005.03.0239?role=tab) bronze | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_irinotecan_ugt1a1_sn38_pk_stewart2007_17577039 | clinical_pk | PMID:17577039 | search:openalex | [OA](https://doi.org/10.1200/jco.2006.10.2301) closed | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_irinotecan_ugt1a1_sn38_pk_innocenti2004_15007088 | clinical_pk | PMID:15007088 | search:openalex | [OA](https://ascopubs.org/doi/pdfdirect/10.1200/JCO.2004.07.173?role=tab) bronze | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_irinotecan_ugt1a1_sn38_pk_kroetz2006_16895999 | clinical_pk | PMID:16895999 | search:openalex | [OA](https://doi.org/10.1200/jco.2006.07.2355) closed | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_irinotecan_ugt1a1_sn38_pk_mathijssen2001_11489791 | clinical_pk | PMID:11489791 | search:openalex | [OA](https://pure.eur.nl/en/publications/0a79999b-2355-414e-8a33-5bb9b5cd136a) green | Public abstract/metadata extraction for irinotecan:UGT1A1_SN38_PK found 100-1000-fold range. Requires human review before promotion. | moderate | yes | no |
+
+Skipped:
+- already_in_drafts: <i>UGT1A1</i>predicts outcome in colorectal cancer treated with irinotecan and fluorouracil
+- relation_mismatch: Pre-Therapeutic UGT1A1 Genotyping in Breast Cancer Patients Receiving Sacituzumab Govitecan to Improve Safety: A Meta-Analysis and Recommendation.
+- relation_mismatch: The Early Safety Signal of Sacituzumab Govitecan-Related Toxicity and the UGT1A1*28 Genotype in Metastatic Breast Cancer: A Real-World Preliminary Report
+- relation_mismatch: UGT1A1 and Sacituzumab Govitecan Toxicity: A Systematic Review and Meta-Analysis.
+- relation_mismatch: The C11orf24 Gene as a Useful Biomarker for Predicting Severe Neutropenia in Modified FOLFIRINOX for Pancreatic Cancer.
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=irinotecan+SN-38+SN-38G+UGT1A1+genotype+pharmacokinetics+AUC+neutropenia+diarrhea&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf
+## atomoxetine:CYP2D6_pediatric_PK
+Run: 2026-06-05T09:24:38.854Z
+Query: `atomoxetine CYP2D6 genotype stratified pharmacokinetics children ADHD AUC poor intermediate metabolizer 4-hydroxyatomoxetine`
+Added drafts: 6
+Skipped duplicates: 3
+Provider warnings: 1
+| Draft | Tier | PMID/DOI | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---|---|---|---|---|---|
+| draft_atomoxetine_cyp2d6_pediatric_pk_brownjt2016_26660002 | clinical_pk | PMID:26660002 | search:europepmc | [OA](https://pmc.ncbi.nlm.nih.gov/articles/PMC4862932/) | Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_atomoxetine_cyp2d6_pediatric_pk_shimizu2023_37879849 | clinical_pk | PMID:37879849 | search:openalex | [OA](https://dmd.aspetjournals.org/content/dmd/52/1/35.full.pdf) bronze | Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_atomoxetine_cyp2d6_pediatric_pk_shen2023_38117180 | clinical_pk | PMID:38117180 | search:openalex | [OA](https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/cpt.3155) bronze | Public abstract/metadata extraction for atomoxetine:CYP2D6_pediatric_PK found approximately 7-fold change and 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_atomoxetine_cyp2d6_pediatric_pk_tobin2026_41906544 | clinical_pk | PMID:41906544 | search:openalex | [OA](https://doi.org/10.1002/jcph.70168) hybrid | Public abstract/metadata extraction for atomoxetine:CYP2D6_pediatric_PK found about 81.6% change and 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_atomoxetine_cyp2d6_pediatric_pk_guo2024_39534083 | guideline | PMID:39534083 | search:openalex | [OA](https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2024.1484512/pdf) gold | Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+| draft_atomoxetine_cyp2d6_pediatric_pk_fu2022_null | clinical_pk | DOI:10.22541/au.165771198.87924835/v1 | search:openalex | [OA](https://www.authorea.com/doi/pdf/10.22541/au.165771198.87924835) gold | Citation appears relevant to atomoxetine:CYP2D6_pediatric_PK, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped:
+- already_in_STUDY_DB: Clinical Pharmacogenetics Implementation Consortium Guideline for <scp>Cytochrome P450 (<i>CYP</i>)</scp><i>2D6</i> Genotype and Atomoxetine Therapy
+- relation_mismatch: Clinical Pharmacogenetics Implementation Consortium Guideline for Cytochrome P450 (CYP)2D6 Genotype and Atomoxetine Therapy.
+- relation_mismatch: Characterization of Atomoxetine Biotransformation and Implications for Development of PBPK Models for Dose Individualization in Children.
+
+Provider warnings:
+- semanticscholar: Fetch failed 429 : https://api.semanticscholar.org/graph/v1/paper/search?query=atomoxetine+CYP2D6+genotype+stratified+pharmacokinetics+children+ADHD+AUC+poor+intermediate+metabolizer+4-hydroxyatomoxetine&limit=6&fields=paperId%2Ctitle%2Cyear%2Cvenue%2Cauthors%2Cabstract%2CexternalIds%2CpublicationTypes%2CcitationCount%2CisOpenAccess%2CopenAccessPdf

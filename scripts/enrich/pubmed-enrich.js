@@ -298,7 +298,7 @@ function firstAuthorName(authors) {
 }
 
 function normalizeArticle(article) {
-  const doi = article.doi ? String(article.doi).replace(/^https?:\/\/doi\.org\//i, '') : null;
+  const doi = article.doi ? String(article.doi).replace(/^https?:\/\/doi\.org\//i, '').toLowerCase() : null;
   const pmid = article.pmid ? String(article.pmid).replace(/^https?:\/\/pubmed\.ncbi\.nlm\.nih\.gov\//i, '').replace(/\/$/, '') : null;
   const url = article.url || (doi ? `https://doi.org/${doi}` : pmid ? `https://pubmed.ncbi.nlm.nih.gov/${pmid}/` : null);
   return {
@@ -499,6 +499,30 @@ async function searchProvider(provider, query, args) {
   throw new Error(`Unknown provider: ${provider}`);
 }
 
+function relationTokens(relation) {
+  const raw = String(relation || '');
+  const [primaryRaw, secondaryRaw = ''] = raw.split(':');
+  const normalize = value => String(value || '')
+    .toLowerCase()
+    .replace(/<[^>]+>/g, ' ')
+    .split(/[^a-z0-9]+/)
+    .filter(token => token.length >= 3 && !['and', 'the', 'with', 'active', 'context', 'metabolite', 'metabolites', 'serum', 'exposure'].includes(token));
+  return {
+    primary: normalize(primaryRaw),
+    secondary: normalize(secondaryRaw),
+  };
+}
+
+function articleMatchesRelation(article, relation) {
+  const { primary, secondary } = relationTokens(relation);
+  if (!primary.length && !secondary.length) return true;
+  const haystack = normalizeTitle(`${article.title || ''} ${article.abstract || ''}`);
+  const hasAny = tokens => tokens.some(token => haystack.includes(token));
+  const primaryOk = primary.length ? hasAny(primary) : true;
+  const secondaryOk = secondary.length ? hasAny(secondary) : true;
+  return primaryOk && secondaryOk;
+}
+
 function tierFromArticle(article) {
   const haystack = `${article.pubTypes.join(' ')} ${article.title} ${article.abstract}`.toLowerCase();
   if (haystack.includes('guideline')) return TYPE.GUIDELINE;
@@ -514,21 +538,74 @@ function tierFromArticle(article) {
 function extractQuantifiedEffects(abstract, relation) {
   const text = abstract || '';
   const effects = {};
-  const foldMatch = text.match(/(?:AUC|area under the curve|Cmax|exposure)[^.;]{0,80}?(?:increased|decreased|higher|lower|raised|reduced)?[^.;]{0,40}?(\d+(?:\.\d+)?)\s*(?:-| )?fold/i);
-  const pctMatch = text.match(/(?:clearance|AUC|Cmax|exposure)[^.;]{0,80}?(\d+(?:\.\d+)?)\s*%/i);
-  const nMatch = text.match(/\b(?:n\s*=\s*|in\s+)(\d{1,5})\s+(?:subjects|patients|volunteers|participants)\b/i);
-  if (foldMatch) effects.aucFold = Number(foldMatch[1]);
-  if (pctMatch && /clearance/i.test(pctMatch[0])) effects.clearanceReductionPct = Number(pctMatch[1]);
-  const hasExtractedMetric = Number.isFinite(effects.aucFold) || Number.isFinite(effects.clearanceReductionPct);
-  if (foldMatch || pctMatch) {
+  const cleanText = text.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const metricSentences = cleanText
+    .split(/(?<=[.;:])\s+/)
+    .map(s => s.trim())
+    .filter(s => /auc|area under|cmax|trough|concentration|clearance|half-?life|ratio|fold|%|ng\/ml|µm|um\*h|ng x h|ng\*h|dose-corrected/i.test(s));
+
+  const nMatch = cleanText.match(/\b(?:n\s*=\s*|in\s+|including\s+|from\s+)(\d{1,5})\s+(?:healthy\s+)?(?:subjects|patients|volunteers|participants|children|adults|individuals)\b/i) ||
+    cleanText.match(/\b(\d{1,5})\s+(?:healthy\s+)?(?:subjects|patients|volunteers|participants|children|adults|individuals)\b/i);
+
+  const foldRanges = [];
+  const foldValues = [];
+  for (const sentence of metricSentences) {
+    for (const match of sentence.matchAll(/(\d+(?:\.\d+)?)\s*(?:-|–|to)\s*(\d+(?:\.\d+)?)\s*(?:-| )?fold/gi)) {
+      foldRanges.push({ min: Number(match[1]), max: Number(match[2]), context: sentence });
+    }
+    for (const match of sentence.matchAll(/(?:varied|differed|increased|decreased|higher|lower|raised|reduced|exposure|auc|cmax|concentration|clearance|ratio)[^.;]{0,100}?(\d+(?:\.\d+)?)\s*(?:-| )?fold/gi)) {
+      foldValues.push({ value: Number(match[1]), context: sentence });
+    }
+    for (const match of sentence.matchAll(/(\d+(?:\.\d+)?)\s*(?:-| )?fold\s+(?:higher|lower|increase|decrease|difference|change|variation)/gi)) {
+      foldValues.push({ value: Number(match[1]), context: sentence });
+    }
+  }
+
+  const pctChanges = [];
+  for (const sentence of metricSentences) {
+    for (const match of sentence.matchAll(/(?:clearance|auc|cmax|exposure|concentration|ratio|formation|inhibition|response)[^.;]{0,100}?(\d+(?:\.\d+)?)\s*%/gi)) {
+      pctChanges.push({ value: Number(match[1]), context: sentence });
+    }
+  }
+
+  const groupValues = [];
+  for (const sentence of metricSentences) {
+    const metric = (sentence.match(/\b(AUC(?:0-[∞\w]+)?|area under[^,.;:]*|Cmax|clearance|trough|concentration|half-?life|ratio)\b/i) || [])[1];
+    const valueMatches = [...sentence.matchAll(/(\d{1,4}(?:,\d{3})*(?:\.\d+)?)\s*(?:±|\+\/-|to|-|–)?\s*(?:\d{1,4}(?:,\d{3})*(?:\.\d+)?)?\s*(?:ng\/ml\s*x\s*h|ng\/ml\*h|ng\*h\/ml|ng\/ml|µm\*h|μm\*h|um\*h|l\/h|h\b|hours?\b)?/gi)]
+      .map(m => Number(m[1].replace(/,/g, '')))
+      .filter(v => Number.isFinite(v));
+    if (metric && valueMatches.length >= 2) {
+      groupValues.push({ metric: metric.replace(/\s+/g, ' '), values: valueMatches.slice(0, 8), context: sentence });
+    }
+  }
+
+  if (foldRanges.length) effects.foldRange = foldRanges[0];
+  if (foldValues.length) {
+    effects.foldChange = foldValues[0].value;
+    if (/auc|area under|exposure/i.test(foldValues[0].context)) effects.aucFold = foldValues[0].value;
+  }
+  if (pctChanges.length) {
+    effects.percentChange = pctChanges[0].value;
+    if (/clearance/i.test(pctChanges[0].context)) effects.clearanceReductionPct = pctChanges[0].value;
+  }
+  if (groupValues.length) effects.groupMetricValues = groupValues.slice(0, 3);
+  if (metricSentences.length) effects.publicMetricSentences = metricSentences.slice(0, 3);
+
+  const hasExtractedMetric = Boolean(
+    foldRanges.length ||
+    foldValues.length ||
+    pctChanges.length ||
+    groupValues.length
+  );
+  if (hasExtractedMetric) {
     const bits = [];
-    if (effects.aucFold) bits.push(`approximately ${effects.aucFold}-fold exposure change`);
-    if (effects.clearanceReductionPct) bits.push(`about ${effects.clearanceReductionPct}% clearance change`);
-    effects.note = hasExtractedMetric
-      ? `Abstract-level extraction for ${relation || 'target relation'} reports ${bits.join(' and ')}.`
-      : `Citation appears relevant to ${relation || 'target relation'}, but no supported quantitative value was extractable from the abstract.`;
+    if (effects.foldRange) bits.push(`${effects.foldRange.min}-${effects.foldRange.max}-fold range`);
+    else if (effects.foldChange) bits.push(`approximately ${effects.foldChange}-fold change`);
+    if (effects.percentChange) bits.push(`about ${effects.percentChange}% change`);
+    if (effects.groupMetricValues) bits.push(`${effects.groupMetricValues.length} public metric sentence${effects.groupMetricValues.length === 1 ? '' : 's'} with grouped values`);
+    effects.note = `Public abstract/metadata extraction for ${relation || 'target relation'} found ${bits.join(' and ')}. Requires human review before promotion.`;
   } else {
-    effects.note = `Citation appears relevant to ${relation || 'target relation'}, but no quantitative value was extractable from the abstract.`;
+    effects.note = `Citation appears relevant to ${relation || 'target relation'}, but no quantitative value was extractable from public abstract/metadata.`;
   }
   return { effects, n: nMatch ? Number(nMatch[1]) : null, hasNumber: hasExtractedMetric };
 }
@@ -551,7 +628,8 @@ function draftId(article, relation) {
 function makeDraft(article, args) {
   const tier = tierFromArticle(article);
   const extraction = extractQuantifiedEffects(article.abstract, args.relation);
-  const doiUrl = article.doi ? ensureAllowedOutputUrl(`https://doi.org/${article.doi}`) : null;
+  const doi = article.doi ? String(article.doi).toLowerCase() : null;
+  const doiUrl = doi ? ensureAllowedOutputUrl(`https://doi.org/${doi}`) : null;
   const sourceBasis = article.abstract
     ? 'public_abstract_or_metadata'
     : 'public_citation_metadata';
@@ -564,7 +642,7 @@ function makeDraft(article, args) {
     source: article.source,
     journal: article.journal,
     pmid: article.pmid || null,
-    doi: article.doi || null,
+    doi,
     url: doiUrl || article.url,
     studyDesign: studyDesign(article, tier),
     n: extraction.n,
@@ -591,15 +669,15 @@ function makeDraft(article, args) {
 
 function dedupeDrafts(candidates, liveData, existingDrafts) {
   const livePmids = new Set(liveData.identifiers.map(x => x.pmid).filter(Boolean).map(String));
-  const liveDois = new Set(liveData.identifiers.map(x => x.doi).filter(Boolean).map(String));
+  const liveDois = new Set(liveData.identifiers.map(x => x.doi).filter(Boolean).map(x => String(x).toLowerCase()));
   const liveTitles = new Set(liveData.identifiers.map(x => normalizeTitle(x.title)).filter(Boolean));
-  const draftKeys = new Set(existingDrafts.map(d => d.doi || d.pmid || normalizeTitle(d.title)).filter(Boolean));
+  const draftKeys = new Set(existingDrafts.map(d => d.doi ? String(d.doi).toLowerCase() : d.pmid || normalizeTitle(d.title)).filter(Boolean));
   const kept = [];
   const skipped = [];
   for (const draft of candidates) {
-    const key = draft.doi || draft.pmid || normalizeTitle(draft.title);
+    const key = draft.doi ? String(draft.doi).toLowerCase() : draft.pmid || normalizeTitle(draft.title);
     const liveHit = (draft.pmid && livePmids.has(String(draft.pmid))) ||
-      (draft.doi && liveDois.has(String(draft.doi))) ||
+      (draft.doi && liveDois.has(String(draft.doi).toLowerCase())) ||
       liveTitles.has(normalizeTitle(draft.title));
     if (liveHit) skipped.push({ id: draft.id, reason: 'already_in_STUDY_DB', title: draft.title });
     else if (draftKeys.has(key)) skipped.push({ id: draft.id, reason: 'already_in_drafts', title: draft.title });
@@ -669,6 +747,12 @@ function selfTest() {
   }
   const oaAbstract = reconstructOpenAlexAbstract({ Drug: [0], exposure: [1], increased: [2] });
   if (oaAbstract !== 'Drug exposure increased') throw new Error('OpenAlex abstract reconstruction self-test failed');
+  if (!articleMatchesRelation({ title:'Clopidogrel active metabolite by CYP2C19 phenotype', abstract:'' }, 'clopidogrel:CYP2C19_active_metabolite')) {
+    throw new Error('Relation positive-match self-test failed');
+  }
+  if (articleMatchesRelation({ title:'Voriconazole therapy and CYP2C19 phenotype', abstract:'' }, 'clopidogrel:CYP2C19_active_metabolite')) {
+    throw new Error('Relation mismatch self-test failed');
+  }
   console.log('Enrichment self-test passed.');
 }
 
@@ -701,12 +785,18 @@ async function main() {
   if (!articles.length && providerErrors.length) {
     throw new Error(`All providers failed for query: ${query}`);
   }
-  const articlesWithOpenAccess = await enrichOpenAccess(articles, args);
+  const relationMatchedArticles = [];
+  const relationSkipped = [];
+  for (const article of articles) {
+    if (articleMatchesRelation(article, relation)) relationMatchedArticles.push(article);
+    else relationSkipped.push({ id: article.pmid || article.doi || normalizeTitle(article.title), reason: 'relation_mismatch', title: article.title });
+  }
+  const articlesWithOpenAccess = await enrichOpenAccess(relationMatchedArticles, args);
   const candidates = articlesWithOpenAccess.map(article => makeDraft(article, { ...args, relation }));
   const { kept, skipped } = dedupeDrafts(candidates, liveData, existingDrafts);
   saveDrafts([...existingDrafts, ...kept]);
-  writeReport({ relation, query, added: kept, skipped, providerErrors });
-  console.log(`Enrichment complete: ${kept.length} draft(s), ${skipped.length} duplicate(s), providers: ${providers.join(',')}.`);
+  writeReport({ relation, query, added: kept, skipped: skipped.concat(relationSkipped), providerErrors });
+  console.log(`Enrichment complete: ${kept.length} draft(s), ${skipped.length} duplicate(s), ${relationSkipped.length} relation mismatch(es), providers: ${providers.join(',')}.`);
   console.log(`Drafts: ${DRAFTS_PATH}`);
   console.log(`Report: ${REPORT_PATH}`);
 }

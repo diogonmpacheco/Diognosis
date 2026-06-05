@@ -868,6 +868,24 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_simvastatin_multigene_choi2016": {
+    id:"ev_simvastatin_multigene_choi2016",
+    type:EVIDENCE_TIER.RCT,
+    title:"Impact of CYP2D6, CYP3A5, CYP2C19, CYP2A6, SLCO1B1, ABCB1, and ABCG2 gene polymorphisms on the pharmacokinetics of simvastatin and simvastatin acid",
+    year:2016, source:"Pharmacogenetics and Genomics", journal:"Pharmacogenetics and Genomics",
+    pmid:"26367500", doi:"10.1097/fpc.0000000000000176",
+    url:"https://pubmed.ncbi.nlm.nih.gov/26367500/",
+    studyDesign:"pooled phase I simvastatin/simvastatin-acid pharmacokinetic genotype analysis",
+    n:133,
+    phenotypes:["SLCO1B1 rs4149056","ABCG2 rs2231142","CYP2D6*41","CYP2D6*5","CYP2D6*14"],
+    quantifiedEffects:{note:"Public abstract reports CYP2D6*5/*14 associated with higher simvastatin AUC, and SLCO1B1 rs4149056, ABCG2 rs2231142, and CYP2D6*41 associated with increased simvastatin-acid AUC; CYP2D6*41 also increased Cmax for both parent and acid."},
+    temporal:{mechanism:"multigene_simvastatin_lactone_and_acid_exposure"},
+    supports:["simvastatin_multigene_transporter_exposure_context","simvastatin_acid_SLCO1B1_ABCG2_context"],
+    contradicts:[],
+    limitations:["Public-abstract extraction only; exact allele-specific effect sizes require full-text/table review","Statin muscle risk remains modified by dose, age, comorbidity, and interacting drugs"],
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending cardiology/pharmacology review"
+  },
+
   // ═══ CLOPIDOGREL / CYP2C19 ═══
   "ev_clopidogrel_cyp2c19_cpic": {
     id:"ev_clopidogrel_cyp2c19_cpic",
@@ -932,6 +950,24 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_clopidogrel_dose_escalation_horenstein2014": {
+    id:"ev_clopidogrel_dose_escalation_horenstein2014",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Effectiveness of clopidogrel dose escalation to normalize active metabolite exposure and antiplatelet effects in CYP2C19 poor metabolizers",
+    year:2014, source:"Journal of Clinical Pharmacology", journal:"Journal of Clinical Pharmacology",
+    pmid:"24710841", doi:"10.1002/jcph.293",
+    url:"https://pubmed.ncbi.nlm.nih.gov/24710841/",
+    studyDesign:"genotype-stratified clopidogrel dose-escalation PK/PD study",
+    n:18,
+    phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer"],
+    quantifiedEffects:{note:"Public abstract reports that CYP2C19 PMs needed 300 mg/day and IMs 150 mg/day to approximate platelet aggregation seen in EMs on 75 mg/day; PM active-metabolite AUC on 300 mg was similar to EMs on 75 mg."},
+    temporal:{mechanism:"CYP2C19_clopidogrel_activation_dose_response"},
+    supports:["clopidogrel_CYP2C19_active_metabolite_context","clopidogrel_CYP2C19_platelet_response_context"],
+    contradicts:[],
+    limitations:["Small PK/PD study; not a substitute for CPIC antiplatelet selection guidance","Public-abstract extraction only; full-text review needed for exact subgroup tables"],
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending cardiology/pharmacology review"
+  },
+
   // ═══ ALPRAZOLAM / CYP3A5 ═══
   "ev_alprazolam_cyp3a5_park2006": {
     id:"ev_alprazolam_cyp3a5_park2006",
@@ -990,6 +1026,42 @@ const STUDY_DB = {
     contradicts:[],
     limitations:["Model-based synthesis; specific metabolite concentrations depend on model assumptions and population"],
     verified:true
+  },
+
+  "ev_atomoxetine_pop_pk_shen2023": {
+    id:"ev_atomoxetine_pop_pk_shen2023",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Population pharmacokinetic analysis of atomoxetine and its metabolites in children and adolescents with ADHD",
+    year:2023, source:"Clinical Pharmacology & Therapeutics", journal:"Clinical Pharmacology & Therapeutics",
+    pmid:"38117180", doi:"10.1002/cpt.3155",
+    url:"https://pubmed.ncbi.nlm.nih.gov/38117180/",
+    studyDesign:"pediatric/adolescent population PK model including atomoxetine metabolites",
+    n:null,
+    phenotypes:["CYP2D6 activity score groups"],
+    quantifiedEffects:{aucFold:7.0, note:"Public abstract reports atomoxetine apparent oral clearance varied almost 7-fold across CYP2D6 activity-score groups and CYP2D6 activity affected 4-hydroxyatomoxetine formation and N-desmethylatomoxetine exposure."},
+    temporal:{mechanism:"CYP2D6_activity_score_atomoxetine_clearance_and_metabolite_balance"},
+    supports:["atomoxetine_CYP2D6_pediatric_exposure_context","atomoxetine_4_hydroxy_metabolite_context"],
+    contradicts:[],
+    limitations:["Population PK model; public-abstract extraction only; concentration-based dose decisions require specialist review"],
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending pediatric psychopharmacology review"
+  },
+
+  "ev_atomoxetine_pop_pk_tobin2026": {
+    id:"ev_atomoxetine_pop_pk_tobin2026",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Understanding atomoxetine exposure variability in children and adolescents with ADHD through population pharmacokinetics",
+    year:2026, source:"Journal of Clinical Pharmacology", journal:"Journal of Clinical Pharmacology",
+    pmid:"41906544", doi:"10.1002/jcph.70168",
+    url:"https://pubmed.ncbi.nlm.nih.gov/41906544/",
+    studyDesign:"pediatric/adolescent population PK model",
+    n:null,
+    phenotypes:["CYP2D6 phenotype","CYP2C19 phenotype"],
+    quantifiedEffects:{note:"Public abstract reports that including CYP2D6/CYP2C19 phenotype and CYP2D6 clearance effects reduced apparent volume and clearance variability in pediatric atomoxetine PK modeling."},
+    temporal:{mechanism:"CYP2D6_CYP2C19_phenotype_atomoxetine_population_PK_variability"},
+    supports:["atomoxetine_CYP2D6_pediatric_exposure_context"],
+    contradicts:[],
+    limitations:["Model-based synthesis; specific metabolite concentrations depend on model assumptions and population"],
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending pediatric psychopharmacology review"
   },
 
   // ═══ SOLANIDINE / CYP2D6 ═══
@@ -1375,6 +1447,42 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_clobazam_cyp2c19_contin2003": {
+    id:"ev_clobazam_cyp2c19_contin2003",
+    type:EVIDENCE_TIER.CASE_REPORT,
+    title:"Evidence of polymorphic CYP2C19 involvement in the human metabolism of N-desmethylclobazam",
+    year:2003, source:"Therapeutic Drug Monitoring", journal:"Therapeutic Drug Monitoring",
+    pmid:"12451290", doi:"10.1097/00007691-200212000-00009",
+    url:"https://pubmed.ncbi.nlm.nih.gov/12451290/",
+    studyDesign:"case/control therapeutic drug monitoring and CYP2C19 genotyping signal",
+    n:null,
+    phenotypes:["CYP2C19 poor_metabolizer","CYP2C19 normal_metabolizer"],
+    quantifiedEffects:{foldRange:{min:10,max:27}, note:"Public abstract reports two presumed CYP2C19 PM pediatric patients had N-desmethylclobazam/clobazam ratios 10- to 27-fold higher than matched control medians."},
+    temporal:{mechanism:"CYP2C19_norclobazam_clearance_impaired"},
+    supports:["clobazam_CYP2C19_active_metabolite_accumulation_context","n_desmethylclobazam_CYP2C19_clearance_context"],
+    contradicts:[],
+    limitations:["Small case-based signal; label/guideline evidence should remain primary","Public-abstract extraction only"],
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending neurology/pharmacology review"
+  },
+
+  "ev_clobazam_cbd_ddi_morrison2019": {
+    id:"ev_clobazam_cbd_ddi_morrison2019",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Pharmacokinetic trial of interactions between clobazam, stiripentol, or valproate and cannabidiol in healthy subjects",
+    year:2019, source:"Clinical Pharmacology in Drug Development", journal:"Clinical Pharmacology in Drug Development",
+    pmid:"30791225", doi:"10.1002/cpdd.665",
+    url:"https://pubmed.ncbi.nlm.nih.gov/30791225/",
+    studyDesign:"phase 1 open-label drug-interaction PK study",
+    n:null,
+    phenotypes:["healthy_volunteers"],
+    quantifiedEffects:{note:"Public abstract reports cannabidiol had little effect on clobazam exposure but increased N-desmethylclobazam Cmax and AUC about 3.4-fold, consistent with norclobazam clearance interaction risk."},
+    temporal:{mechanism:"cannabidiol_CYP2C19_clobazam_norclobazam_interaction"},
+    supports:["clobazam_CYP2C19_active_metabolite_accumulation_context","cannabidiol_clobazam_norclobazam_interaction"],
+    contradicts:[],
+    limitations:["Healthy-volunteer interaction study; epilepsy patients and chronic dosing may differ","Public-abstract extraction only"],
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending neurology/pharmacology review"
+  },
+
   "ev_losartan_cyp2c9_sica2002": {
     id:"ev_losartan_cyp2c9_sica2002",
     type:EVIDENCE_TIER.CLINICAL_PK,
@@ -1461,6 +1569,24 @@ const STUDY_DB = {
     verified:true
   },
 
+  "ev_voriconazole_pop_pk_wang2013": {
+    id:"ev_voriconazole_pop_pk_wang2013",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Factors influencing voriconazole pharmacokinetics and dosage optimization based on Monte Carlo simulation in invasive fungal infections",
+    year:2013, source:"Journal of Antimicrobial Chemotherapy", journal:"Journal of Antimicrobial Chemotherapy",
+    pmid:"24084636", doi:"10.1093/jac/dkt369",
+    url:"https://pubmed.ncbi.nlm.nih.gov/24084636/",
+    studyDesign:"population PK model and Monte Carlo dosage simulation",
+    n:151,
+    phenotypes:["CYP2C19 genotype"],
+    quantifiedEffects:{clearance_L_h:6.95, bioavailabilityPct:89.5, note:"Public abstract reports voriconazole clearance was associated with CYP2C19 genotype, age, and alkaline phosphatase; TDM remains required."},
+    temporal:{mechanism:"CYP2C19_voriconazole_clearance_population_PK"},
+    supports:["voriconazole_CYP2C19_exposure_TDM_context","voriconazole_CYP2C19_UM_subtherapeutic_context"],
+    contradicts:[],
+    limitations:["Population model; exact genotype subgroup dosing requires full-text/model review and TDM"],
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending infectious disease/pharmacology review"
+  },
+
   "ev_efavirenz_cyp2b6_desta2019": {
     id:"ev_efavirenz_cyp2b6_desta2019",
     type:EVIDENCE_TIER.GUIDELINE,
@@ -1510,6 +1636,60 @@ const STUDY_DB = {
     contradicts:[],
     limitations:["Dose-reduction recommendations depend on irinotecan regimen/dose and population; SN-38 fold varies across studies."],
     verified:true
+  },
+
+  "ev_irinotecan_ugt1a1_stewart2007": {
+    id:"ev_irinotecan_ugt1a1_stewart2007",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"UGT1A1 promoter genotype correlates with SN-38 pharmacokinetics, but not severe toxicity in patients receiving low-dose irinotecan",
+    year:2007, source:"Journal of Clinical Oncology", journal:"Journal of Clinical Oncology",
+    pmid:"17577039", doi:"10.1200/jco.2006.10.2301",
+    url:"https://pubmed.ncbi.nlm.nih.gov/17577039/",
+    studyDesign:"clinical irinotecan PK/genotype association study",
+    n:74,
+    phenotypes:["UGT1A1*28 6/6","UGT1A1*28 6/7","UGT1A1*28 7/7"],
+    quantifiedEffects:{note:"Public abstract reports UGT1A1*28 7/7 patients tended to have higher SN-38 AUC and lower SN-38G/SN-38 AUC ratios during low-dose irinotecan."},
+    temporal:{mechanism:"UGT1A1_SN38_glucuronidation_to_SN38G"},
+    supports:["irinotecan_UGT1A1_SN38_exposure_context","SN38_glucuronidation_toxicity_context"],
+    contradicts:["low_dose_irinotecan_toxicity_not_fully_predicted_by_UGT1A1"],
+    limitations:["Low-dose regimen; severe toxicity signal was not significant in this abstract","Public-abstract extraction only"],
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending oncology/pharmacology review"
+  },
+
+  "ev_irinotecan_ugt1a_han2006": {
+    id:"ev_irinotecan_ugt1a_han2006",
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Comprehensive analysis of UGT1A polymorphisms predictive for pharmacokinetics and treatment outcome in irinotecan/cisplatin",
+    year:2006, source:"Journal of Clinical Oncology", journal:"Journal of Clinical Oncology",
+    pmid:"16636344", doi:"10.1200/jco.2005.03.0239",
+    url:"https://pubmed.ncbi.nlm.nih.gov/16636344/",
+    studyDesign:"clinical genotype-PK association study",
+    n:null,
+    phenotypes:["UGT1A1*6/*6","UGT1A7*3/*3","UGT1A9-118(dT)9/9"],
+    quantifiedEffects:{note:"Public abstract reports UGT1A1*6/*6, UGT1A7*3/*3, and UGT1A9-118(dT)9/9 were associated with significantly lower SN-38G/SN-38 AUC ratios."},
+    temporal:{mechanism:"UGT1A_family_SN38_glucuronidation"},
+    supports:["irinotecan_UGT1A1_SN38_exposure_context","SN38_glucuronidation_toxicity_context"],
+    contradicts:[],
+    limitations:["Multi-UGT signal; not reducible to UGT1A1*28 alone","Public-abstract extraction only"],
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending oncology/pharmacology review"
+  },
+
+  "ev_irinotecan_sn38_review_mathijssen2001": {
+    id:"ev_irinotecan_sn38_review_mathijssen2001",
+    type:EVIDENCE_TIER.REVIEW,
+    title:"Clinical pharmacokinetics and metabolism of irinotecan (CPT-11)",
+    year:2001, source:"Clinical Cancer Research / PubMed", journal:"Clinical Cancer Research",
+    pmid:"11489791", doi:null,
+    url:"https://pubmed.ncbi.nlm.nih.gov/11489791/",
+    studyDesign:"clinical pharmacokinetics and metabolism review",
+    n:null,
+    phenotypes:[],
+    quantifiedEffects:{foldRange:{min:100,max:1000}, note:"Public abstract describes irinotecan as a prodrug of SN-38, with SN-38 approximately 100- to 1000-fold more cytotoxic than the parent drug."},
+    temporal:{mechanism:"CES_activation_to_SN38_and_UGT1A1_detoxification"},
+    supports:["irinotecan_METABOLIZED_TO_sn-38-7-ethyl-10-hydroxycamptothecin","SN38_is_active_cytotoxic_metabolite"],
+    contradicts:[],
+    limitations:["Review-level abstract; exact cytotoxicity depends on assay/model"],
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending oncology/pharmacology review"
   },
 
   "ev_venlafaxine_cyp2d6_ncbi": {

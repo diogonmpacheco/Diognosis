@@ -46,7 +46,7 @@ const METAB = {
   {n:"Hydroxynorcocaine",e:"CYP3A4",a:"toxic",p:2,note:"Further hepatotoxic metabolite"}
 ],
 "Atomoxetine":[
-  {n:"4-Hydroxyatomoxetine",e:"CYP2D6",a:"active",p:60,t:6,note:"Primary active metabolite; equipotent NET inhibitor. Formation severely impaired in CYP2D6 PM",evidenceRefs:["ev_atomoxetine_cyp2d6_cpic","ev_atomoxetine_cyp2d6_pbpk2018"]},
+  {n:"4-Hydroxyatomoxetine",e:"CYP2D6",a:"active",p:60,t:6,note:"Primary active metabolite; equipotent NET inhibitor. Formation severely impaired in CYP2D6 PM; pediatric population PK public abstracts support large CYP2D6 activity-score effects on clearance and metabolite balance.",evidenceRefs:["ev_atomoxetine_cyp2d6_cpic","ev_atomoxetine_cyp2d6_pbpk2018","ev_atomoxetine_pop_pk_shen2023","ev_atomoxetine_pop_pk_tobin2026"]},
   {n:"4-Hydroxyatomoxetine glucuronide",e:"UGT1A2",a:"inactive",p:25,note:"Major excretory metabolite"},
   {n:"N-Desmethylatomoxetine",e:"CYP2C19",a:"weak",p:10,t:8,note:"Minor pathway; modest NET activity"},
   {n:"Atomoxetine (unchanged)",e:"Renal",a:"active",p:5,note:"<3% unchanged in urine"}
@@ -317,7 +317,7 @@ const METAB = {
   {n:"β-Oxidation products",e:"CYP3A4",a:"inactive",p:15}
 ],
 "Simvastatin":[
-  {n:"Simvastatin acid (SVA)",e:"Esterase",a:"active_form",role:"active_form",p:60,t:2,note:"THE active form — simvastatin is a lactone prodrug"},
+  {n:"Simvastatin acid (SVA)",e:"Esterase",a:"active_form",role:"active_form",p:60,t:2,note:"THE active form — simvastatin is a lactone prodrug. Multigene PK evidence links SLCO1B1 rs4149056, ABCG2 rs2231142, and CYP2D6*41 variants with higher simvastatin-acid exposure.",evidenceRefs:["ev_simvastatin_multigene_choi2016"]},
   {n:"6'-Hydroxy-SVA",e:"CYP3A4",a:"active",p:15},
   {n:"3',5'-Dihydrodiol-SVA",e:"CYP3A4",a:"inactive",p:10}
 ],
@@ -411,7 +411,7 @@ const METAB = {
   {n:"1'-Hydroxymidazolam glucuronide",e:"UGT",a:"inactive",p:30,note:"Accumulates in renal failure → prolonged sedation"}
 ],
 "Clobazam":[
-  {n:"N-Desmethylclobazam (norclobazam)",e:"CYP3A4",a:"active",p:80,t:71,note:"Active metabolite formed mainly by CYP3A4 and cleared mainly by CYP2C19. CYP2C19 PMs accumulate norclobazam 5x+",evidenceRefs:["ev_clobazam_cyp2c19_fda_onfi"]},
+  {n:"N-Desmethylclobazam (norclobazam)",e:"CYP3A4",a:"active",p:80,t:71,note:"Active metabolite formed mainly by CYP3A4 and cleared mainly by CYP2C19. CYP2C19 PMs accumulate norclobazam 5x+; public case/TDM data report N-CLB/CLB ratios 10- to 27-fold above matched medians in presumed CYP2C19 PM children.",evidenceRefs:["ev_clobazam_cyp2c19_fda_onfi","ev_clobazam_cyp2c19_contin2003","ev_clobazam_cbd_ddi_morrison2019"]},
   {n:"4'-Hydroxyclobazam",e:"CYP2C19",a:"inactive",p:10},
   {n:"Clobazam glucuronide",e:"UGT",a:"inactive",p:5}
 ],
@@ -419,7 +419,7 @@ const METAB = {
 // ── ANTIPLATELETS ──
 "Clopidogrel":[
   {n:"2-Oxo-clopidogrel",e:"CYP2C19",a:"active",p:15,t:0.5,note:"Intermediate — requires SECOND CYP activation step"},
-  {n:"Active thiol metabolite (R-130964)",e:"CYP3A4",a:"active_form",role:"active_form",p:2,t:0.5,note:"THE active antiplatelet — irreversibly binds P2Y12. Only ~2% of dose!",evidenceRefs:["ev_clopidogrel_cyp2c19_cpic"]},
+  {n:"Active thiol metabolite (R-130964)",e:"CYP3A4",a:"active_form",role:"active_form",p:2,t:0.5,note:"THE active antiplatelet — irreversibly binds P2Y12. Only ~2% of dose; CYP2C19 PM dose-escalation PK/PD data show much higher doses may be needed to approximate EM active-metabolite exposure, but CPIC generally prefers alternative antiplatelets in ACS/PCI.",evidenceRefs:["ev_clopidogrel_cyp2c19_cpic","ev_clopidogrel_dose_escalation_horenstein2014"]},
   {n:"Clopidogrel carboxylic acid (SR26334)",e:"Esterase",a:"inactive",p:85,note:"85% WASTED by esterases → explains why CYP2C19 PMs have no response"},
   {n:"Acyl glucuronide",e:"UGT",a:"inactive",p:5,note:"Potent CYP2C8 inhibitor (OATP interaction source)"}
 ],
@@ -876,7 +876,7 @@ const METAB = {
   {n:"Clindamycin (biliary excretion)",e:"None",a:"active",p:30,t:3,note:"Significant biliary excretion → C. difficile risk"}
 ],
 "Voriconazole":[
-  {n:"Voriconazole N-oxide",e:"CYP2C19",a:"inactive",p:50,t:6,note:"Inactive major metabolite; CYP2C19 PMs form less N-oxide while parent voriconazole accumulates",evidenceRefs:["ev_voriconazole_cyp2c19_hyland2008"]},
+  {n:"Voriconazole N-oxide",e:"CYP2C19",a:"inactive",p:50,t:6,note:"Inactive major metabolite; CYP2C19 PMs form less N-oxide while parent voriconazole accumulates. Population PK data reinforce that CYP2C19 genotype affects clearance, but therapeutic drug monitoring supersedes genotype-only prediction.",evidenceRefs:["ev_voriconazole_cyp2c19_hyland2008","ev_voriconazole_pop_pk_wang2013"]},
   {n:"Hydroxy-voriconazole",e:"CYP3A4",a:"inactive",p:15,note:"Secondary oxidation"},
   {n:"Dihydroxy-voriconazole",e:"CYP2C19/3A4",a:"inactive",p:10,note:"Further oxidation; all metabolites inactive against fungi"}
 ],
@@ -1078,8 +1078,8 @@ const METAB = {
 ],
 // ── CHEMOTHERAPY ──
 "Irinotecan":[
-  {n:"SN-38 (7-ethyl-10-hydroxycamptothecin)",e:"CES1/CES2",a:"active_form",role:"active_form",p:5,t:12,note:"Active cytotoxic metabolite. Detoxified by UGT1A1 to inactive SN-38G; UGT1A1 PMs accumulate SN-38.",evidenceRefs:["ev_irinotecan_ugt1a1_ramsey2014"]},
-  {n:"SN-38G (SN-38 glucuronide)",e:"UGT1A1",a:"inactive",p:60,t:24,note:"Inactive glucuronide elimination pathway.",evidenceRefs:["ev_irinotecan_ugt1a1_ramsey2014"]},
+  {n:"SN-38 (7-ethyl-10-hydroxycamptothecin)",e:"CES1/CES2",a:"active_form",role:"active_form",p:5,t:12,note:"Active cytotoxic metabolite. Detoxified by UGT1A1 to inactive SN-38G; UGT1A1 PMs accumulate SN-38. Public PK review abstracts describe SN-38 as roughly 100- to 1000-fold more cytotoxic than irinotecan parent.",evidenceRefs:["ev_irinotecan_ugt1a1_ramsey2014","ev_irinotecan_ugt1a1_stewart2007","ev_irinotecan_ugt1a_han2006","ev_irinotecan_sn38_review_mathijssen2001"]},
+  {n:"SN-38G (SN-38 glucuronide)",e:"UGT1A1",a:"inactive",p:60,t:24,note:"Inactive glucuronide elimination pathway. Lower SN-38G/SN-38 AUC ratios in UGT1A reduced-function contexts support the metabolite-balance risk model.",evidenceRefs:["ev_irinotecan_ugt1a1_ramsey2014","ev_irinotecan_ugt1a1_stewart2007","ev_irinotecan_ugt1a_han2006"]},
   {n:"APC (7-ethyl-10-[4-N-(5-aminopentanoic acid)-1-piperidino]carbonyloxycamptothecin)",e:"CYP3A4",a:"inactive",p:25,note:"Inactive oxidative metabolite. CYP3A4 inducers can increase APC and reduce SN-38."}
 ],
 "Fluorouracil":[
