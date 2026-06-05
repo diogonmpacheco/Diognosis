@@ -5533,6 +5533,32 @@ const STUDY_DB = {
     verifyNote:"Batch 1 enrichment entry awaiting human pharmacist/physician review; do not use for severity escalation until reviewed"
   },
 
+  "ev_sulfasalazine_abcg2_probe_adkison2010":{
+    id:"ev_sulfasalazine_abcg2_probe_adkison2010",
+    public:true,
+    type:EVIDENCE_TIER.CLINICAL_PK,
+    title:"Oral sulfasalazine as a clinical BCRP probe substrate: pharmacokinetic effects of genetic variation (C421A) and pantoprazole coadministration",
+    year:2010,
+    source:"Adkison et al.",
+    journal:"Journal of Pharmaceutical Sciences",
+    pmid:"19569219",
+    doi:"10.1002/jps.21968",
+    url:"https://pubmed.ncbi.nlm.nih.gov/19569219/",
+    studyDesign:"controlled_pharmacokinetic_genotype_probe_study",
+    n:null,
+    phenotypes:["ABCG2 421CC","ABCG2 421CA","ABCG2 421AA"],
+    quantifiedEffects:{
+      note:"Sulfasalazine was evaluated as a BCRP/ABCG2 probe substrate; ABCG2 C421A genotype changed plasma sulfasalazine exposure, with highest AUC in 421AA subjects."
+    },
+    temporal:{mechanism:"reduced intestinal BCRP/ABCG2 efflux increases sulfasalazine exposure"},
+    supports:["sulfasalazine_ABCG2_BCRP_probe_substrate","ABCG2_421A_sulfasalazine_exposure"],
+    contradicts:[],
+    limitations:["Small genotype-stratified PK probe study; clinical tolerability impact is not a standalone prescribing rule."],
+    verified:false,
+    reviewRequired:true,
+    verifyNote:"Added for transporter-genotype enrichment; pending pharmacist/physician review before severity escalation."
+  },
+
 
   // ═══ SALVAGED GEMINI ENRICHMENT: CARDIOLOGY / ONCOLOGY / ID / NEUROLOGY ═══
   "ev_dabigatran_dronedarone_fda": {
