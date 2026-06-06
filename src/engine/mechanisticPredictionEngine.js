@@ -1,5 +1,5 @@
-// MedCheck — Experimental mechanistic predictions
-// These predictions are deliberately separated from evidence-backed warnings.
+// MedCheck — Mechanistic interpretation layer
+// Evidence-backed warnings remain authoritative; this layer explains pathway math.
 
 const MECHANISTIC_PREDICTION_GENES = [
   "CYP2D6","CYP2C19","CYP2C9","CYP3A5","CYP2B6","UGT1A1",
@@ -47,13 +47,23 @@ function knownDdiCoversPair(a, b, pathway) {
   });
 }
 
+function curatedDdiForPair(a, b) {
+  const pa = String(a || "").toLowerCase();
+  const pb = String(b || "").toLowerCase();
+  return (KNOWN_DDI || []).find(ddi => {
+    const d1 = String(ddi.drug1 || "").toLowerCase();
+    const d2 = String(ddi.drug2 || "").toLowerCase();
+    return (d1 === pa && d2 === pb) || (d1 === pb && d2 === pa);
+  });
+}
+
 function routeFraction(route) {
   return Number.isFinite(route?.fraction) ? route.fraction : 0.25;
 }
 
 function estimateDrugEnzymePrediction(perpetratorName, victimName, mode, mod, route) {
-  const isKnown = knownDdiCoversPair(perpetratorName, victimName, route.enzyme);
-  if (isKnown) return null;
+  const curatedDdi = curatedDdiForPair(perpetratorName, victimName);
+  const pathwayCurated = knownDdiCoversPair(perpetratorName, victimName, route.enzyme);
 
   const fraction = routeFraction(route);
   const strength = mod.strength || "moderate";
@@ -77,7 +87,9 @@ function estimateDrugEnzymePrediction(perpetratorName, victimName, mode, mod, ro
     id:`mech-ddi-${toGraphId(perpetratorName)}-${toGraphId(victimName)}-${route.enzyme}-${mode}`,
     kind:"medication-enzyme",
     title:`${perpetratorName} may ${mode === "inhibition" ? "raise" : "lower"} ${victimName} exposure through ${route.enzyme}`,
-    subtitle:`Model prediction from ${perpetratorName} ${mode} of ${route.enzyme}; no direct curated pair study linked.`,
+    subtitle:curatedDdi
+      ? `Mechanistic read-through of a curated ${curatedDdi.severity || "known"} interaction.`
+      : `Model prediction from ${perpetratorName} ${mode} of ${route.enzyme}; no direct curated pair study linked.`,
     pathway:route.enzyme,
     drugs:[perpetratorName, victimName],
     direction,
@@ -90,7 +102,8 @@ function estimateDrugEnzymePrediction(perpetratorName, victimName, mode, mod, ro
     estimate:Number.isFinite(estimatedFold) ? Number(estimatedFold.toFixed(2)) : null,
     confidence:route.evidence?.confidence || mod.evidence?.confidence || "modeled",
     source:"route_plus_enzyme_modifier",
-    documented:false,
+    documented:!!curatedDdi || pathwayCurated,
+    curatedSeverity:curatedDdi?.severity || null,
   };
 }
 
@@ -120,6 +133,60 @@ function getMedicationEnzymeMechanisticPredictions(stack = activeStack) {
           out.push(pred);
         }
       }
+    }
+  }
+  return out;
+}
+
+function estimateDrugGenotypePrediction(parentName, route, phenotype) {
+  const gene = route.enzyme;
+  const effect = GENOTYPE_EFFECTS[gene]?.[phenotype];
+  if (!effect) return null;
+  const fraction = routeFraction(route);
+  const fold = Number.isFinite(effect.auc_fold)
+    ? ((1 - fraction) + fraction * effect.auc_fold)
+    : null;
+  const drug = getDrug(parentName);
+  const prodrug = !!drug?.prodrug;
+  const enzymeDirection = phenotypeDirectionForEnzyme(gene, phenotype);
+  if (enzymeDirection === "reference") return null;
+  const direction = enzymeDirection === "slower"
+    ? (prodrug ? "reduced active-metabolite formation" : "higher parent exposure")
+    : (prodrug ? "higher active-metabolite formation" : "lower parent exposure");
+  return {
+    id:`mech-pgx-drug-${toGraphId(parentName)}-${gene}`,
+    kind:"genotype-drug",
+    title:`${gene} ${phenotypeLabel(phenotype)} may change ${parentName}`,
+    subtitle:"Mechanistic genotype read-through from the selected phenotype and the drug's modeled pathway fraction.",
+    pathway:gene,
+    drugs:[parentName],
+    direction,
+    clinicalMeaning:prodrug
+      ? `${parentName} is active-metabolite dependent, so ${gene} ${phenotypeLabel(phenotype)} may change effect more than parent exposure.`
+      : `${parentName} uses ${gene} for about ${Math.round(fraction * 100)}% of modeled clearance, so this phenotype may shift exposure.`,
+    action:"Use this as pathway context alongside the evidence-backed pharmacogenomics warning and dose guidance.",
+    estimate:Number.isFinite(fold) ? Number(fold.toFixed(2)) : null,
+    confidence:route.evidence?.confidence || effect.confidence || "modeled",
+    source:"drug_route_plus_genotype",
+    documented:!!(PHARMGKB_EVIDENCE[gene]?.pairs || []).some(pair => pair.drug === parentName),
+  };
+}
+
+function getDrugGenotypeMechanisticPredictions(stack = activeStack) {
+  const out = [];
+  const seen = new Set();
+  for (const parentName of stack || []) {
+    const drug = getDrug(parentName);
+    if (!drug) continue;
+    for (const route of (drug.routes || [])) {
+      const gene = route.enzyme;
+      if (!isMechanisticPredictionGene(gene) || !GENOTYPE_EFFECTS[gene]) continue;
+      const phenotype = selectedMechanisticPhenotype(gene);
+      if (!phenotypeIsNonReference(phenotype)) continue;
+      const pred = estimateDrugGenotypePrediction(parentName, route, phenotype);
+      if (!pred || seen.has(pred.id)) continue;
+      seen.add(pred.id);
+      out.push(pred);
     }
   }
   return out;
@@ -172,7 +239,7 @@ function getMetaboliteGenotypeMechanisticPredictions(stack = activeStack) {
       if (!isMechanisticPredictionGene(gene) || !GENOTYPE_EFFECTS[gene]) continue;
       const phenotype = selectedMechanisticPhenotype(gene);
       if (!phenotypeIsNonReference(phenotype)) continue;
-      if (hasExplicitGenotypeMetaboliteRule(parentName, met.n, gene)) continue;
+      const documented = hasExplicitGenotypeMetaboliteRule(parentName, met.n, gene);
       const impact = metaboliteClinicalDirection(met, gene, phenotype, "formation");
       if (!impact) continue;
       const key = `${parentName}|${met.n}|${gene}|formation`;
@@ -182,7 +249,9 @@ function getMetaboliteGenotypeMechanisticPredictions(stack = activeStack) {
         id:`mech-pgx-${toGraphId(parentName)}-${getMetaboliteGraphId(met.n)}-${gene}`,
         kind:"genotype-metabolite",
         title:`${gene} ${phenotypeLabel(phenotype)} may change ${met.n}`,
-        subtitle:`Model prediction from ${parentName} -> ${met.n}; no direct genotype-metabolite rule linked.`,
+        subtitle:documented
+          ? `Mechanistic read-through of a curated genotype-metabolite rule for ${parentName}.`
+          : `Model prediction from ${parentName} -> ${met.n}; no direct genotype-metabolite rule linked.`,
         pathway:gene,
         drugs:[parentName],
         metabolite:met.n,
@@ -194,7 +263,7 @@ function getMetaboliteGenotypeMechanisticPredictions(stack = activeStack) {
         estimate:null,
         confidence:met.evidenceRefs?.length ? "curated_pathway" : "modeled",
         source:"metabolite_pathway_plus_genotype",
-        documented:false,
+        documented,
       });
     }
   }
@@ -212,7 +281,7 @@ function getMetaboliteGenotypeMechanisticPredictions(stack = activeStack) {
           if (!isMechanisticPredictionGene(gene) || !GENOTYPE_EFFECTS[gene]) continue;
           const phenotype = selectedMechanisticPhenotype(gene);
           if (!phenotypeIsNonReference(phenotype)) continue;
-          if (hasExplicitGenotypeMetaboliteRule(parentName, actor.name, gene)) continue;
+          const documented = hasExplicitGenotypeMetaboliteRule(parentName, actor.name, gene);
           const met = { n:actor.name, a:actor.active ? "active" : "inactive", note:actor.note || actor.toxicity?.mechanism || "" };
           const impact = metaboliteClinicalDirection(met, gene, phenotype, "clearance");
           if (!impact) continue;
@@ -223,7 +292,9 @@ function getMetaboliteGenotypeMechanisticPredictions(stack = activeStack) {
             id:`mech-pgx-clear-${toGraphId(parentName)}-${actor.id}-${gene}`,
             kind:"genotype-metabolite",
             title:`${gene} ${phenotypeLabel(phenotype)} may change ${actor.name}`,
-            subtitle:`Model prediction from metabolite clearance route; no direct genotype-metabolite rule linked.`,
+            subtitle:documented
+              ? `Mechanistic read-through of a curated metabolite-clearance rule for ${parentName}.`
+              : `Model prediction from metabolite clearance route; no direct genotype-metabolite rule linked.`,
             pathway:gene,
             drugs:[parentName],
             metabolite:actor.name,
@@ -235,7 +306,7 @@ function getMetaboliteGenotypeMechanisticPredictions(stack = activeStack) {
             estimate:null,
             confidence:route.evidence?.confidence || "modeled",
             source:"metabolite_clearance_plus_genotype",
-            documented:false,
+            documented,
           });
         }
       }
@@ -248,6 +319,7 @@ function getMetaboliteGenotypeMechanisticPredictions(stack = activeStack) {
 function getMechanisticPredictions(stack = activeStack) {
   const predictions = [
     ...getMedicationEnzymeMechanisticPredictions(stack),
+    ...getDrugGenotypeMechanisticPredictions(stack),
     ...getMetaboliteGenotypeMechanisticPredictions(stack),
   ];
   return predictions

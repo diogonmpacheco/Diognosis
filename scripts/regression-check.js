@@ -585,7 +585,20 @@ assert(
     p.drugs.includes('Fentanyl') &&
     p.pathway === 'CYP3A4'
   ),
-  'Experimental mechanistic predictions should surface undocumented enzyme-mediated medication relations'
+  'Mechanistic interpretation should surface undocumented enzyme-mediated medication relations'
+);
+
+loadCase(window, ['Bupropion', 'Codeine']);
+const documentedMechanisticPredictions = window.eval('getMechanisticPredictions(activeStack)');
+assert(
+  documentedMechanisticPredictions.some(p =>
+    p.kind === 'medication-enzyme' &&
+    p.documented === true &&
+    p.drugs.includes('Bupropion') &&
+    p.drugs.includes('Codeine') &&
+    p.pathway === 'CYP2D6'
+  ),
+  'Mechanistic interpretation should include documented medication interactions as pathway read-throughs'
 );
 
 loadCase(window, ['Atazanavir']);
@@ -597,12 +610,24 @@ assert(
     p.drugs.includes('Atazanavir') &&
     p.pathway === 'UGT1A1'
   ),
-  'Experimental mechanistic predictions should surface genotype-metabolite relations without direct rules'
+  'Mechanistic interpretation should surface genotype-metabolite relations'
+);
+
+loadCase(window, ['Codeine']);
+window.eval(`setGenotypeState('CYP2D6', GENOTYPE_PHENOTYPE.PM); renderAll();`);
+const mechanisticGenotypeDrugPredictions = window.eval('getMechanisticPredictions(activeStack)');
+assert(
+  mechanisticGenotypeDrugPredictions.some(p =>
+    p.kind === 'genotype-drug' &&
+    p.drugs.includes('Codeine') &&
+    p.pathway === 'CYP2D6'
+  ),
+  'Mechanistic interpretation should surface genotype-drug pathway calculations'
 );
 assert(
   window.document.getElementById('mechanisticSection').style.display !== 'none' &&
   window.document.querySelectorAll('#mechanisticBody .mechanistic-card').length >= 1,
-  'Experimental mechanistic prediction block should render below main safety warnings'
+  'Mechanistic interpretation block should render below main safety warnings'
 );
 
 const browseCategoryAudit = window.eval(`(() => {
