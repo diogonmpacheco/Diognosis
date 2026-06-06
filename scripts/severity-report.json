@@ -665,32 +665,6 @@
   },
   {
     "drug1": "Methotrexate",
-    "drug2": "Trimethoprim/Sulfamethoxazole",
-    "category": "hematologic",
-    "oldSeverity": "severe",
-    "recommendedSeverity": "severe",
-    "changed": false,
-    "rationale": "Severe support threshold met.",
-    "evidence": {
-      "refs": [
-        "ev_mtx_interactions_bannwarth1996"
-      ],
-      "studies": [
-        {
-          "id": "ev_mtx_interactions_bannwarth1996",
-          "type": "clinical_pk",
-          "pmid": "8882301",
-          "doi": "10.2165/00003088-199630030-00002"
-        }
-      ],
-      "hasHighTierStudy": true,
-      "hasQuantifiedClinicalPk": false,
-      "hasStrongInline": true,
-      "missingRefs": []
-    }
-  },
-  {
-    "drug1": "Methotrexate",
     "drug2": "Omeprazole",
     "category": "renal",
     "oldSeverity": "moderate",
@@ -1009,32 +983,6 @@
     }
   },
   {
-    "drug1": "Warfarin",
-    "drug2": "Trimethoprim/Sulfamethoxazole",
-    "category": "pk",
-    "oldSeverity": "severe",
-    "recommendedSeverity": "severe",
-    "changed": false,
-    "rationale": "Severe support threshold met.",
-    "evidence": {
-      "refs": [
-        "ev_warfarin_abx_lane2014"
-      ],
-      "studies": [
-        {
-          "id": "ev_warfarin_abx_lane2014",
-          "type": "observational",
-          "pmid": "24657899",
-          "doi": "10.1016/j.amjmed.2014.01.044"
-        }
-      ],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
-      "hasStrongInline": true,
-      "missingRefs": []
-    }
-  },
-  {
     "drug1": "Apixaban",
     "drug2": "Aspirin",
     "category": "bleed",
@@ -1288,23 +1236,6 @@
           "doi": "10.1136/bmj.d5228"
         }
       ],
-      "hasHighTierStudy": false,
-      "hasQuantifiedClinicalPk": false,
-      "hasStrongInline": true,
-      "missingRefs": []
-    }
-  },
-  {
-    "drug1": "Lisinopril",
-    "drug2": "Trimethoprim/Sulfamethoxazole",
-    "category": "hyperK",
-    "oldSeverity": "moderate",
-    "recommendedSeverity": "moderate",
-    "changed": false,
-    "rationale": "Kept original severity.",
-    "evidence": {
-      "refs": [],
-      "studies": [],
       "hasHighTierStudy": false,
       "hasQuantifiedClinicalPk": false,
       "hasStrongInline": true,
@@ -4386,32 +4317,6 @@
   },
   {
     "drug1": "Dronedarone",
-    "drug2": "Dabigatran",
-    "category": "metabolic",
-    "oldSeverity": "severe",
-    "recommendedSeverity": "severe",
-    "changed": false,
-    "rationale": "Severe support threshold met.",
-    "evidence": {
-      "refs": [
-        "ev_dabigatran_dronedarone_fda"
-      ],
-      "studies": [
-        {
-          "id": "ev_dabigatran_dronedarone_fda",
-          "type": "fda_label",
-          "pmid": null,
-          "doi": null
-        }
-      ],
-      "hasHighTierStudy": true,
-      "hasQuantifiedClinicalPk": false,
-      "hasStrongInline": true,
-      "missingRefs": []
-    }
-  },
-  {
-    "drug1": "Dronedarone",
     "drug2": "Rosuvastatin",
     "category": "transport",
     "oldSeverity": "moderate",
@@ -6774,11 +6679,18 @@
     "rationale": "Severe support threshold met.",
     "evidence": {
       "refs": [
-        "ev_dronedarone_cyp3a_pgp_label"
+        "ev_dronedarone_cyp3a_pgp_label",
+        "ev_dabigatran_dronedarone_fda"
       ],
       "studies": [
         {
           "id": "ev_dronedarone_cyp3a_pgp_label",
+          "type": "fda_label",
+          "pmid": null,
+          "doi": null
+        },
+        {
+          "id": "ev_dabigatran_dronedarone_fda",
           "type": "fda_label",
           "pmid": null,
           "doi": null
@@ -8889,7 +8801,8 @@
     "rationale": "Severe support threshold met.",
     "evidence": {
       "refs": [
-        "ev_tmp_smx_label"
+        "ev_tmp_smx_label",
+        "ev_warfarin_abx_lane2014"
       ],
       "studies": [
         {
@@ -8897,6 +8810,12 @@
           "type": "fda_label",
           "pmid": null,
           "doi": null
+        },
+        {
+          "id": "ev_warfarin_abx_lane2014",
+          "type": "observational",
+          "pmid": "24657899",
+          "doi": "10.1016/j.amjmed.2014.01.044"
         }
       ],
       "hasHighTierStudy": true,
@@ -8942,7 +8861,8 @@
     "evidence": {
       "refs": [
         "ev_tmp_smx_label",
-        "ev_methotrexate_oat3_probenecid"
+        "ev_methotrexate_oat3_probenecid",
+        "ev_mtx_interactions_bannwarth1996"
       ],
       "studies": [
         {
@@ -8956,6 +8876,12 @@
           "type": "observational",
           "pmid": "29871022",
           "doi": null
+        },
+        {
+          "id": "ev_mtx_interactions_bannwarth1996",
+          "type": "clinical_pk",
+          "pmid": "8882301",
+          "doi": "10.2165/00003088-199630030-00002"
         }
       ],
       "hasHighTierStudy": true,
