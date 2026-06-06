@@ -103,7 +103,6 @@ const KNOWN_DDI = [
   // ── Methotrexate toxicity ──
   {drug1:"Methotrexate",drug2:"Ibuprofen",severity:"severe",category:"nephro",mechanism:"NSAIDs reduce methotrexate renal clearance",effect:"↑↑ Methotrexate levels — bone marrow toxicity risk",evidence:{confidence:"high",sources:["clinical guidelines"]},evidenceRefs:["ev_mtx_interactions_bannwarth1996"]},
   {drug1:"Methotrexate",drug2:"Naproxen",severity:"severe",category:"nephro",mechanism:"NSAIDs reduce methotrexate renal clearance",effect:"↑↑ Methotrexate levels — toxicity risk",evidence:{confidence:"high",sources:["clinical guidelines"]},evidenceRefs:["ev_mtx_interactions_bannwarth1996"]},
-  {drug1:"Methotrexate",drug2:"Trimethoprim/Sulfamethoxazole",severity:"severe",category:"hematologic",mechanism:"Both are folate antagonists — additive bone marrow suppression",effect:"↑↑ Pancytopenia risk",evidence:{confidence:"high",sources:["clinical guidelines"]},evidenceRefs:["ev_mtx_interactions_bannwarth1996"]},
   {drug1:"Methotrexate",drug2:"Omeprazole",severity:"moderate",category:"renal",mechanism:"PPIs may reduce methotrexate renal clearance",effect:"↑ Methotrexate levels",evidence:{confidence:"moderate",sources:["case reports"]}},
   // ── Digoxin interactions ──
   {drug1:"Digoxin",drug2:"Amiodarone",severity:"severe",category:"pk",mechanism:"Amiodarone inhibits P-glycoprotein and reduces digoxin renal clearance by ~50%",effect:"↑↑ Digoxin levels — toxicity risk (halve digoxin dose)",evidence:{confidence:"high",sources:["clinical PK studies"]},evidenceRefs:["ev_digoxin_pgp_amiodarone_fda"]},
@@ -120,7 +119,6 @@ const KNOWN_DDI = [
   {drug1:"Warfarin",drug2:"Acetaminophen",severity:"moderate",category:"pk",mechanism:"Acetaminophen's metabolite NAPQI inhibits vitamin K-dependent clotting factor synthesis at doses >2g/day",effect:"↑ INR — monitor closely",evidence:{confidence:"high",sources:["clinical PK studies"]}},
   {drug1:"Warfarin",drug2:"Fluconazole",severity:"severe",category:"pk",mechanism:"Fluconazole strongly inhibits CYP2C9 (warfarin's primary metabolic pathway)",effect:"↑↑ INR — major bleeding risk",evidence:{confidence:"high",sources:["clinical PK studies"]},evidenceRefs:["ev_fluconazole_warfarin_black1996"]},
   {drug1:"Warfarin",drug2:"Metronidazole",severity:"severe",category:"pk",mechanism:"Metronidazole inhibits warfarin metabolism",effect:"↑↑ INR — bleeding risk",evidence:{confidence:"high",sources:["clinical PK studies"]},evidenceRefs:["ev_warfarin_abx_lane2014"]},
-  {drug1:"Warfarin",drug2:"Trimethoprim/Sulfamethoxazole",severity:"severe",category:"pk",mechanism:"TMP-SMX inhibits CYP2C9 + displaces warfarin from albumin + folate antagonism",effect:"↑↑ INR — bleeding risk",evidence:{confidence:"high",sources:["clinical PK studies"]},evidenceRefs:["ev_warfarin_abx_lane2014"]},
   // ── DOAC specific ──
   {drug1:"Apixaban",drug2:"Aspirin",severity:"moderate",category:"bleed",mechanism:"Additive anticoagulant + antiplatelet bleeding risk",effect:"↑ Bleeding risk",evidence:{confidence:"high",sources:["clinical guidelines"]}},
   {drug1:"Rivaroxaban",drug2:"Aspirin",severity:"moderate",category:"bleed",mechanism:"Additive bleeding risk",effect:"↑ Bleeding risk",evidence:{confidence:"high",sources:["clinical guidelines"]}},
@@ -134,7 +132,6 @@ const KNOWN_DDI = [
   {drug1:"Spironolactone",drug2:"Lisinopril",severity:"moderate",category:"hyperK",mechanism:"Both cause potassium retention — additive hyperkalemia risk",effect:"↑ Hyperkalemia — monitor K+ closely",evidence:{confidence:"high",sources:["clinical guidelines"]}},
   {drug1:"Spironolactone",drug2:"Losartan",severity:"moderate",category:"hyperK",mechanism:"Both cause potassium retention",effect:"↑ Hyperkalemia risk",evidence:{confidence:"high",sources:["clinical guidelines"]}},
   {drug1:"Spironolactone",drug2:"Trimethoprim/Sulfamethoxazole",severity:"severe",category:"hyperK",mechanism:"Both block potassium excretion via different mechanisms",effect:"↑↑ Severe hyperkalemia risk",evidence:{confidence:"high",sources:["clinical guidelines"]},evidenceRefs:["ev_spironolactone_tmpsmx_antoniou2011"]},
-  {drug1:"Lisinopril",drug2:"Trimethoprim/Sulfamethoxazole",severity:"moderate",category:"hyperK",mechanism:"Both promote potassium retention",effect:"↑ Hyperkalemia risk",evidence:{confidence:"high",sources:["clinical guidelines"]}},
   // ── Serotonin syndrome specific pairs ──
   {drug1:"Fluoxetine",drug2:"Tramadol",severity:"severe",category:"serotonin",mechanism:"SSRI + serotonergic opioid — high serotonin syndrome risk. Also fluoxetine blocks tramadol activation via CYP2D6",effect:"↑↑ Serotonin syndrome + ↓↓ tramadol efficacy",evidence:{confidence:"high",sources:["FDA warning"]},evidenceRefs:["ev_tramadol_serotonin_beakley2015","ev_ssri_cyp2d6_liston2002"]},
   {drug1:"Sertraline",drug2:"Tramadol",severity:"severe",category:"serotonin",mechanism:"SSRI + serotonergic opioid",effect:"↑↑ Serotonin syndrome risk",evidence:{confidence:"high",sources:["FDA warning"]},evidenceRefs:["ev_tramadol_serotonin_beakley2015"]},
@@ -510,23 +507,6 @@ const KNOWN_DDI = [
   }
 },
   // ── Salvaged Gemini enrichment: reviewed for duplicates, pending human review ──
-{
-    drug1: "Dronedarone",
-    drug2: "Dabigatran",
-    severity: "severe",
-    category: "metabolic",
-    mechanism: "Dronedarone induces potent competitive structural arrest of active P-gp transporter mechanics across the intestinal lining.",
-    effect: "↑↑ Increases dabigatran systemic bio-availability parameters by more than 100% — clinical combination requires strict avoidance or instant separation protocols.",
-    evidence: {
-      confidence: "high",
-      sources: [
-        "FDA Boxed Warning"
-      ]
-    },
-    evidenceRefs: [
-      "ev_dabigatran_dronedarone_fda"
-    ]
-  },
 {
     drug1: "Dronedarone",
     drug2: "Rosuvastatin",
@@ -1230,7 +1210,7 @@ const KNOWN_DDI = [
   {drug1:"Propafenone",drug2:"Warfarin",severity:"moderate",category:"metabolic",mechanism:"Propafenone inhibits CYP2C9, reducing S-warfarin clearance and elevating INR.",effect:"Bleeding risk ↑; check INR within 1 week of starting propafenone and adjust warfarin dose.",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_propafenone_cyp2d6_pgx"]},
   {drug1:"Dronedarone",drug2:"Digoxin",severity:"severe",category:"transporter",mechanism:"Dronedarone inhibits P-gp, reducing digoxin renal secretion. Digoxin levels can double.",effect:"Digoxin toxicity (nausea, bradycardia, heart block); halve digoxin dose, monitor levels.",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_dronedarone_cyp3a_pgp_label"]},
   {drug1:"Dronedarone",drug2:"Simvastatin",severity:"severe",category:"metabolic",mechanism:"Dronedarone inhibits CYP3A4 and OATP1B1, raising simvastatin acid AUC ~4×.",effect:"Rhabdomyolysis risk; avoid simvastatin >10mg or switch to pravastatin/rosuvastatin.",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_dronedarone_cyp3a_pgp_label"]},
-  {drug1:"Dronedarone",drug2:"Dabigatran",severity:"severe",category:"transporter",mechanism:"Dronedarone inhibits P-gp, raising dabigatran exposure 1.7-2× via reduced renal P-gp efflux.",effect:"Increased bleeding risk; reduce dabigatran dose or use alternative anticoagulant.",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_dronedarone_cyp3a_pgp_label"]},
+  {drug1:"Dronedarone",drug2:"Dabigatran",severity:"severe",category:"transporter",mechanism:"Dronedarone inhibits P-gp, raising dabigatran exposure 1.7-2× via reduced renal P-gp efflux.",effect:"Increased bleeding risk; reduce dabigatran dose or use alternative anticoagulant.",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_dronedarone_cyp3a_pgp_label","ev_dabigatran_dronedarone_fda"]},
   {drug1:"Dronedarone",drug2:"Cyclosporine",severity:"severe",category:"metabolic",mechanism:"Both are CYP3A4 substrates; dronedarone increases cyclosporine exposure.",effect:"Nephrotoxicity risk ↑; avoid or monitor levels closely.",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_dronedarone_cyp3a_pgp_label"]},
   {drug1:"Sofosbuvir",drug2:"Amiodarone",severity:"severe",category:"unknown_pd",mechanism:"Mechanism unclear but likely involves adenosine signalling modulation. Multiple cases of severe symptomatic bradycardia and sinus arrest reported.",effect:"FDA/EMA contraindication. Can occur within hours to days; cases have required pacemaker.",evidence:{confidence:"high",sources:["FDA label","FDA Drug Safety Communication 2015"]},evidenceRefs:["ev_sofosbuvir_amiodarone_bradycardia"]},
   {drug1:"Sofosbuvir",drug2:"Rifampin",severity:"severe",category:"induction",mechanism:"Rifampin strongly induces P-gp and BCRP, reducing sofosbuvir AUC by ~72%.",effect:"CONTRAINDICATED — loss of HCV antiviral efficacy.",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_sofosbuvir_pgp_induction"]},
@@ -1320,9 +1300,9 @@ const KNOWN_DDI = [
   {drug1:"Progesterone",drug2:"Rifampin",severity:"moderate",category:"induction",mechanism:"Rifampin induces CYP3A pathways involved in progesterone clearance.",effect:"Reduced progestogen exposure with possible bleeding or symptom-control loss; use route/formulation-specific guidance.",evidence:{confidence:"moderate",sources:["FDA label","clinical guidance"]},evidenceRefs:["ev_rifampin_hormonal_contraception"]},
   {drug1:"Medroxyprogesterone",drug2:"Rifampin",severity:"moderate",category:"induction",mechanism:"Rifampin induces CYP3A metabolism of progestins; magnitude is formulation-dependent.",effect:"Reduced oral progestin exposure or contraceptive concern; depot medroxyprogesterone is less clearly affected but should be reviewed.",evidence:{confidence:"moderate",sources:["FDA label","clinical guidance"]},evidenceRefs:["ev_rifampin_hormonal_contraception"]},
   // ── Clinician workflow batch 3: primary care, neurology, cardiology handoffs ──
-  {drug1:"Trimethoprim/Sulfamethoxazole",drug2:"Warfarin",severity:"severe",category:"anticoagulation",mechanism:"Sulfamethoxazole/trimethoprim can prolong prothrombin time in patients receiving warfarin; CYP2C9 inhibition and illness-related factors can both raise INR.",effect:"High bleeding risk. Prefer an alternative when possible, or pre-plan close INR monitoring and warfarin adjustment.",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_tmp_smx_label"]},
+  {drug1:"Trimethoprim/Sulfamethoxazole",drug2:"Warfarin",severity:"severe",category:"anticoagulation",mechanism:"Sulfamethoxazole/trimethoprim can prolong prothrombin time in patients receiving warfarin; CYP2C9 inhibition and illness-related factors can both raise INR.",effect:"High bleeding risk. Prefer an alternative when possible, or pre-plan close INR monitoring and warfarin adjustment.",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_tmp_smx_label","ev_warfarin_abx_lane2014"]},
   {drug1:"Trimethoprim/Sulfamethoxazole",drug2:"Lisinopril",severity:"moderate",category:"electrolyte",mechanism:"Trimethoprim can reduce renal potassium excretion, and ACE inhibition also raises potassium.",effect:"Hyperkalemia risk, especially in older adults, CKD, diabetes, or high-dose TMP-SMX; check potassium/renal function or choose an alternative.",evidence:{confidence:"moderate",sources:["FDA label"]},evidenceRefs:["ev_tmp_smx_label"]},
-  {drug1:"Trimethoprim/Sulfamethoxazole",drug2:"Methotrexate",severity:"severe",category:"pharmacodynamic",mechanism:"Both drugs impair folate pathways and can add renal/marrow toxicity; TMP-SMX also has transporter effects relevant to methotrexate clearance context.",effect:"Avoid when possible due to severe myelosuppression/mucositis risk; use specialist guidance if unavoidable.",evidence:{confidence:"moderate",sources:["FDA label"]},evidenceRefs:["ev_tmp_smx_label","ev_methotrexate_oat3_probenecid"]},
+  {drug1:"Trimethoprim/Sulfamethoxazole",drug2:"Methotrexate",severity:"severe",category:"pharmacodynamic",mechanism:"Both drugs impair folate pathways and can add renal/marrow toxicity; TMP-SMX also has transporter effects relevant to methotrexate clearance context.",effect:"Avoid when possible due to severe myelosuppression/mucositis risk; use specialist guidance if unavoidable.",evidence:{confidence:"moderate",sources:["FDA label"]},evidenceRefs:["ev_tmp_smx_label","ev_methotrexate_oat3_probenecid","ev_mtx_interactions_bannwarth1996"]},
   {drug1:"Eplerenone",drug2:"Itraconazole",severity:"severe",category:"metabolic",mechanism:"Itraconazole is a strong CYP3A inhibitor and eplerenone is predominantly metabolized by CYP3A.",effect:"CONTRAINDICATED — high eplerenone exposure and hyperkalemia risk.",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_eplerenone_cyp3a_label"]},
   {drug1:"Eplerenone",drug2:"Lisinopril",severity:"moderate",category:"electrolyte",mechanism:"ACE inhibitors increase hyperkalemia risk when combined with eplerenone.",effect:"Check potassium and creatinine soon after initiation or dose changes, and avoid in high-risk renal/potassium states.",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_eplerenone_cyp3a_label"]},
   {drug1:"Lacosamide",drug2:"Metoprolol",severity:"moderate",category:"cardiac_conduction",mechanism:"Lacosamide can prolong PR interval; beta-blockers can slow AV nodal conduction.",effect:"Bradycardia or AV block risk; consider ECG/heart-rate monitoring in cardiac disease or higher doses.",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_lacosamide_pr_label"]},
