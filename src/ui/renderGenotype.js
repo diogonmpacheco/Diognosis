@@ -209,6 +209,7 @@ function phenotypeLabel(phenotype) {
 
 function phenotypeLabelForGene(gene, phenotype) {
   const semantics = getGeneSemantics(gene);
+  if (semantics.phenotypeLabels?.[phenotype]) return semantics.phenotypeLabels[phenotype];
   if (semantics.axis === GENE_SEMANTIC_AXIS.EXPRESSION) {
     if (phenotype === GENOTYPE_PHENOTYPE.PM) return "non-expresser";
     if (phenotype === GENOTYPE_PHENOTYPE.IM) return "intermediate expresser";
@@ -229,6 +230,12 @@ function phenotypeLabelForGene(gene, phenotype) {
     if (phenotype === GENOTYPE_PHENOTYPE.PM) return "increased sensitivity";
     if (phenotype === GENOTYPE_PHENOTYPE.UM) return "relative resistance";
     return phenotypeLabel(phenotype).replace("metabolizer", "context");
+  }
+  if (semantics.axis === GENE_SEMANTIC_AXIS.RESPONSE) {
+    if (phenotype === GENOTYPE_PHENOTYPE.PM) return "reduced/unfavorable response context";
+    if (phenotype === GENOTYPE_PHENOTYPE.IM) return "intermediate response context";
+    if (phenotype === GENOTYPE_PHENOTYPE.UM) return "higher/alternate response context";
+    return "reference response context";
   }
   if (semantics.axis === GENE_SEMANTIC_AXIS.TRANSPORT) {
     if (phenotype === GENOTYPE_PHENOTYPE.PM) return "low transporter function";
@@ -696,11 +703,29 @@ function parsePharmGxObjectRow(row) {
   ].map(normalizePharmGxGene).find(Boolean);
   if (!gene) return null;
   const value = row.phenotype || row.Phenotype || row.metabolizerStatus || row.status || row.result || row.value;
+  const reportedLabel = pharmGxObjectReportedLabel(row, value);
   const phenotype = phenotypeTextToGenotype(value, gene);
   const status = riskTextToStatus(value, gene);
-  if (GENOTYPE_EFFECTS[gene] && phenotype?.phenotype) return { gene, phenotype:phenotype.phenotype, interpretation:phenotype };
-  if (typeof GENOTYPE_RISK_EFFECTS !== 'undefined' && GENOTYPE_RISK_EFFECTS[gene] && status) return { gene, status, interpretation:buildRiskInterpretation(gene, status, { reportedLabel:String(value || "").trim() }) };
+  if (GENOTYPE_EFFECTS[gene] && phenotype?.phenotype) {
+    return { gene, phenotype:phenotype.phenotype, interpretation:{ ...phenotype, reportedLabel } };
+  }
+  if (typeof GENOTYPE_RISK_EFFECTS !== 'undefined' && GENOTYPE_RISK_EFFECTS[gene] && status) {
+    return { gene, status, interpretation:buildRiskInterpretation(gene, status, { reportedLabel }) };
+  }
   return null;
+}
+
+function pharmGxObjectReportedLabel(row, value) {
+  const reported = [
+    row.genotype,
+    row.Genotype,
+    row.diplotype,
+    row.Diplotype,
+    row.alleles,
+    row.Alleles,
+    value,
+  ].map(v => String(v || "").trim()).filter(Boolean);
+  return [...new Set(reported)].join(" / ") || String(value || "").trim();
 }
 
 function parsePharmGxLine(line) {
@@ -718,9 +743,19 @@ function parsePharmGxLine(line) {
   const phenotype = phenotypeTextToGenotype(phenotypeText || clean, gene);
   const statusText = parts.slice().reverse().find(p => riskTextToStatus(p, gene));
   const status = riskTextToStatus(statusText || clean, gene);
-  if (GENOTYPE_EFFECTS[gene] && phenotype?.phenotype) return { gene, phenotype:phenotype.phenotype, interpretation:phenotype };
-  if (typeof GENOTYPE_RISK_EFFECTS !== 'undefined' && GENOTYPE_RISK_EFFECTS[gene] && status) return { gene, status, interpretation:buildRiskInterpretation(gene, status, { reportedLabel:statusText || clean }) };
+  const reportedLabel = pharmGxLineReportedLabel(parts, gene, phenotypeText || statusText || clean);
+  if (GENOTYPE_EFFECTS[gene] && phenotype?.phenotype) {
+    return { gene, phenotype:phenotype.phenotype, interpretation:{ ...phenotype, reportedLabel } };
+  }
+  if (typeof GENOTYPE_RISK_EFFECTS !== 'undefined' && GENOTYPE_RISK_EFFECTS[gene] && status) {
+    return { gene, status, interpretation:buildRiskInterpretation(gene, status, { reportedLabel }) };
+  }
   return null;
+}
+
+function pharmGxLineReportedLabel(parts, gene, fallback) {
+  const reported = parts.filter(part => normalizePharmGxGene(part) !== gene);
+  return reported.length ? reported.join(" / ") : String(fallback || "").trim();
 }
 
 function normalizePharmGxGene(value) {

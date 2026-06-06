@@ -252,6 +252,173 @@ const GENE_SEMANTICS = {
   DRD2:  { axis:GENE_SEMANTIC_AXIS.RESPONSE, phenotypeStateLabel:"dopamine receptor response context", modelUseLabel:"response/tolerability context", phenoconversion:false, compartments:["brain/CNS"] },
 };
 
+const ACTIVITY_PHENOTYPE_LABELS = {
+  [GENOTYPE_PHENOTYPE.PM]:"poor metabolizer",
+  [GENOTYPE_PHENOTYPE.IM]:"intermediate metabolizer",
+  [GENOTYPE_PHENOTYPE.NM]:"normal metabolizer",
+  [GENOTYPE_PHENOTYPE.UM]:"ultrarapid metabolizer",
+};
+
+const REDUCED_ACTIVITY_LABELS = {
+  [GENOTYPE_PHENOTYPE.PM]:"very low activity",
+  [GENOTYPE_PHENOTYPE.IM]:"reduced activity",
+  [GENOTYPE_PHENOTYPE.NM]:"reference activity",
+  [GENOTYPE_PHENOTYPE.UM]:"higher activity",
+};
+
+const SLOW_ACETYLATOR_LABELS = {
+  [GENOTYPE_PHENOTYPE.PM]:"slow acetylator",
+  [GENOTYPE_PHENOTYPE.IM]:"intermediate acetylator",
+  [GENOTYPE_PHENOTYPE.NM]:"reference acetylator",
+  [GENOTYPE_PHENOTYPE.UM]:"rapid acetylator",
+};
+
+const RESPONSE_PHENOTYPE_LABELS = {
+  [GENOTYPE_PHENOTYPE.PM]:"reduced/unfavorable response context",
+  [GENOTYPE_PHENOTYPE.IM]:"intermediate response context",
+  [GENOTYPE_PHENOTYPE.NM]:"reference response context",
+  [GENOTYPE_PHENOTYPE.UM]:"higher/alternate response context",
+};
+
+function addActivitySemantics(genes, options = {}) {
+  for (const gene of genes) {
+    GENE_SEMANTICS[gene] = {
+      axis:GENE_SEMANTIC_AXIS.ACTIVITY_SCORE,
+      phenotypeStateLabel:options.phenotypeStateLabel || `${gene} activity phenotype`,
+      modelUseLabel:options.modelUseLabel || `${gene} exposure behavior`,
+      phenoconversion:options.phenoconversion !== undefined ? options.phenoconversion : true,
+      compartments:options.compartments || ["liver","systemic"],
+      phenotypeLabels:options.phenotypeLabels || ACTIVITY_PHENOTYPE_LABELS,
+      optionLabels:options.optionLabels,
+    };
+  }
+}
+
+addActivitySemantics(["CYP2C19","CYP2C9","CYP2B6","CYP3A4","CYP2C8","CYP2A6","CYP1A2"], {
+  compartments:["liver","gut","systemic"],
+});
+addActivitySemantics(["CYP3A7"], {
+  phenotypeStateLabel:"CYP3A7 adult expression/activity context",
+  modelUseLabel:"CYP3A7 persistent-expression review context",
+  phenoconversion:false,
+  compartments:["liver","developmental"],
+  phenotypeLabels:REDUCED_ACTIVITY_LABELS,
+});
+addActivitySemantics(["CYP2E1"], {
+  phenotypeStateLabel:"CYP2E1 activity/environmental induction context",
+  modelUseLabel:"reactive-metabolite risk-stack context",
+  compartments:["liver","environmental toxicants"],
+  phenotypeLabels:REDUCED_ACTIVITY_LABELS,
+});
+addActivitySemantics(["NAT1","NAT2"], {
+  phenotypeStateLabel:"acetylator phenotype",
+  modelUseLabel:"acetylation exposure/toxicity context",
+  compartments:["liver","systemic"],
+  phenotypeLabels:SLOW_ACETYLATOR_LABELS,
+  optionLabels:{
+    [GENOTYPE_PHENOTYPE.PM]:"Slow",
+    [GENOTYPE_PHENOTYPE.IM]:"Inter.",
+    [GENOTYPE_PHENOTYPE.NM]:"Ref.",
+    [GENOTYPE_PHENOTYPE.UM]:"Rapid",
+  },
+});
+addActivitySemantics(["UGT1A1","UGT1A4","UGT1A9","UGT2B7","UGT2B15","UGT2B17"], {
+  phenotypeStateLabel:"UGT glucuronidation activity context",
+  modelUseLabel:"glucuronidation exposure context",
+  compartments:["liver","systemic"],
+  phenotypeLabels:REDUCED_ACTIVITY_LABELS,
+});
+addActivitySemantics(["CYP4F2"], {
+  phenotypeStateLabel:"vitamin K oxidation context",
+  modelUseLabel:"warfarin dose-modifier context",
+  phenoconversion:false,
+  compartments:["liver","coagulation"],
+  phenotypeLabels:REDUCED_ACTIVITY_LABELS,
+});
+
+Object.assign(GENE_SEMANTICS, {
+  DPYD: {
+    axis:GENE_SEMANTIC_AXIS.DEFICIENCY,
+    nullMechanism:"inherited_deficiency",
+    nullStateLabel:"DPYD severe deficiency / very low fluoropyrimidine catabolism",
+    phenotypeStateLabel:"DPYD fluoropyrimidine catabolism capacity",
+    modelUseLabel:"fluoropyrimidine toxicity-risk exposure behavior",
+    phenoconversion:false,
+    legacyNull:false,
+    compartments:["liver","systemic"],
+    phenotypeLabels:{
+      [GENOTYPE_PHENOTYPE.PM]:"DPYD deficient / very low activity",
+      [GENOTYPE_PHENOTYPE.IM]:"partial DPYD activity",
+      [GENOTYPE_PHENOTYPE.NM]:"normal DPYD activity",
+    },
+  },
+  TPMT: {
+    axis:GENE_SEMANTIC_AXIS.DEFICIENCY,
+    nullMechanism:"inherited_deficiency",
+    nullStateLabel:"TPMT very low activity",
+    phenotypeStateLabel:"TPMT thiopurine methylation capacity",
+    modelUseLabel:"thiopurine myelosuppression-risk context",
+    phenoconversion:false,
+    legacyNull:false,
+    compartments:["blood","systemic"],
+    phenotypeLabels:REDUCED_ACTIVITY_LABELS,
+  },
+  NUDT15: {
+    axis:GENE_SEMANTIC_AXIS.DEFICIENCY,
+    nullMechanism:"inherited_deficiency",
+    nullStateLabel:"NUDT15 poor function",
+    phenotypeStateLabel:"NUDT15 thiopurine tolerance capacity",
+    modelUseLabel:"thiopurine cytotoxicity-risk context",
+    phenoconversion:false,
+    legacyNull:false,
+    compartments:["blood","systemic"],
+    phenotypeLabels:{
+      [GENOTYPE_PHENOTYPE.PM]:"poor NUDT15 function",
+      [GENOTYPE_PHENOTYPE.IM]:"intermediate NUDT15 function",
+      [GENOTYPE_PHENOTYPE.NM]:"normal NUDT15 function",
+    },
+  },
+  GSTP1: {
+    axis:GENE_SEMANTIC_AXIS.DEFICIENCY,
+    phenotypeStateLabel:"GSTP1 detoxification activity context",
+    modelUseLabel:"oncology detoxification/toxicity context",
+    phenoconversion:false,
+    legacyNull:false,
+    compartments:["liver","tumor/tissue","environmental detox"],
+    phenotypeLabels:REDUCED_ACTIVITY_LABELS,
+  },
+  COMT: {
+    axis:GENE_SEMANTIC_AXIS.RESPONSE,
+    phenotypeStateLabel:"COMT catechol methylation response context",
+    modelUseLabel:"pharmacodynamic catechol-response context",
+    phenoconversion:false,
+    compartments:["brain/CNS","cardiovascular"],
+    phenotypeLabels:{
+      [GENOTYPE_PHENOTYPE.PM]:"low COMT activity context",
+      [GENOTYPE_PHENOTYPE.IM]:"intermediate COMT context",
+      [GENOTYPE_PHENOTYPE.NM]:"reference COMT context",
+      [GENOTYPE_PHENOTYPE.UM]:"higher COMT activity context",
+    },
+  },
+  IFNL3: { axis:GENE_SEMANTIC_AXIS.RESPONSE, phenotypeStateLabel:"IFNL3 interferon-response context", modelUseLabel:"antiviral response context, not clearance", phenoconversion:false, compartments:["immune","liver"], phenotypeLabels:RESPONSE_PHENOTYPE_LABELS },
+  IFNL4: { axis:GENE_SEMANTIC_AXIS.RESPONSE, phenotypeStateLabel:"IFNL4 interferon-response context", modelUseLabel:"antiviral response context, not clearance", phenoconversion:false, compartments:["immune","liver"], phenotypeLabels:RESPONSE_PHENOTYPE_LABELS },
+  ALDH2: {
+    axis:GENE_SEMANTIC_AXIS.RESPONSE,
+    phenotypeStateLabel:"ALDH2 aldehyde detoxification/bioactivation context",
+    modelUseLabel:"aldehyde/nitrate response-toxicity context",
+    phenoconversion:false,
+    compartments:["liver","cardiovascular"],
+    phenotypeLabels:{
+      [GENOTYPE_PHENOTYPE.PM]:"low/deficient ALDH2 context",
+      [GENOTYPE_PHENOTYPE.IM]:"intermediate ALDH2 context",
+      [GENOTYPE_PHENOTYPE.NM]:"reference ALDH2 context",
+    },
+  },
+  SLC22A1: { axis:GENE_SEMANTIC_AXIS.TRANSPORT, phenotypeStateLabel:"OCT1 hepatic uptake function", modelUseLabel:"transporter response/exposure context", phenoconversion:false, compartments:["liver"], phenotypeLabels:{ [GENOTYPE_PHENOTYPE.PM]:"low OCT1 uptake", [GENOTYPE_PHENOTYPE.IM]:"reduced OCT1 uptake", [GENOTYPE_PHENOTYPE.NM]:"normal OCT1 uptake" } },
+  SLC22A2: { axis:GENE_SEMANTIC_AXIS.TRANSPORT, phenotypeStateLabel:"OCT2 renal cation transport function", modelUseLabel:"renal transporter exposure context", phenoconversion:false, compartments:["kidney"], phenotypeLabels:{ [GENOTYPE_PHENOTYPE.PM]:"low OCT2 transport", [GENOTYPE_PHENOTYPE.IM]:"reduced OCT2 transport", [GENOTYPE_PHENOTYPE.NM]:"normal OCT2 transport" } },
+  SLC47A1: { axis:GENE_SEMANTIC_AXIS.TRANSPORT, phenotypeStateLabel:"MATE1 efflux function", modelUseLabel:"renal/hepatic transporter exposure context", phenoconversion:false, compartments:["kidney","liver"], phenotypeLabels:{ [GENOTYPE_PHENOTYPE.PM]:"low MATE1 efflux", [GENOTYPE_PHENOTYPE.IM]:"reduced MATE1 efflux", [GENOTYPE_PHENOTYPE.NM]:"normal MATE1 efflux" } },
+});
+
 // GENOTYPE_EFFECTS — fold-change multipliers vs NM baseline for key enzymes
 // Source: CPIC guidelines, FDA labels, clinical PK studies
 const GENOTYPE_EFFECTS = {
@@ -1108,8 +1275,9 @@ function buildGeneInterpretation(gene, phenotype, details = {}) {
   const mechanism = details.mechanism ||
     (phenotype === GENOTYPE_PHENOTYPE.NM ? "reference" : "reported_phenotype");
   const isNullLike = ["inherited_no_function","copy_number_null","inherited_deficiency","erythrocyte_deficiency"].includes(mechanism);
+  const isLowExpression = mechanism === "inherited_low_expression" && phenotype === GENOTYPE_PHENOTYPE.PM;
   const state = details.functionalState ||
-    (isNullLike && semantics.nullStateLabel ? semantics.nullStateLabel : semantics.phenotypeStateLabel);
+    ((isNullLike || isLowExpression) && semantics.nullStateLabel ? semantics.nullStateLabel : semantics.phenotypeStateLabel);
   return {
     gene,
     reportedLabel:report,

@@ -83,6 +83,39 @@ assert(
   'Repeated genotype URL params should be preserved as an array'
 );
 
+const genotypeSemanticsAudit = window.eval(`(() => {
+  const missing = [];
+  const missingAxis = [];
+  const missingState = [];
+  const unsafeLegacyNull = [];
+  const legacyNullGenes = [];
+  for (const gene of Object.keys(GENOTYPE_EFFECTS)) {
+    const semantics = GENE_SEMANTICS[gene];
+    if (!semantics) {
+      missing.push(gene);
+      continue;
+    }
+    if (!semantics.axis) missingAxis.push(gene);
+    if (!semantics.phenotypeStateLabel) missingState.push(gene);
+    activeGenotypeDetails = {};
+    userGenetics = {};
+    setGenotypeState(gene, "null");
+    if (userGenetics[gene] === "null") legacyNullGenes.push(gene);
+    if (userGenetics[gene] === "null" && semantics.legacyNull !== true) unsafeLegacyNull.push(gene);
+  }
+  return { missing, missingAxis, missingState, unsafeLegacyNull, legacyNullGenes };
+})()`);
+assert(genotypeSemanticsAudit.missing.length === 0, `GENOTYPE_EFFECTS genes missing GENE_SEMANTICS: ${genotypeSemanticsAudit.missing.join(', ')}`);
+assert(genotypeSemanticsAudit.missingAxis.length === 0, `GENOTYPE_EFFECTS genes missing semantic axis: ${genotypeSemanticsAudit.missingAxis.join(', ')}`);
+assert(genotypeSemanticsAudit.missingState.length === 0, `GENOTYPE_EFFECTS genes missing state label: ${genotypeSemanticsAudit.missingState.join(', ')}`);
+assert(genotypeSemanticsAudit.unsafeLegacyNull.length === 0, `Legacy null used where not allowed: ${genotypeSemanticsAudit.unsafeLegacyNull.join(', ')}`);
+assert(
+  genotypeSemanticsAudit.legacyNullGenes.length === 2 &&
+  genotypeSemanticsAudit.legacyNullGenes.includes('CYP2D6') &&
+  genotypeSemanticsAudit.legacyNullGenes.includes('BCHE'),
+  `Only CYP2D6 and BCHE should map reported null/no-function to legacy null, got ${genotypeSemanticsAudit.legacyNullGenes.join(', ')}`
+);
+
 const drugUniqueness = window.eval(`(() => {
   const names = new Map();
   const ids = new Map();
@@ -433,6 +466,67 @@ assert(pharmGxImportAudit.abcb1 === 'intermediate_metabolizer', 'Importer should
 assert(pharmGxImportAudit.mthfr === 'risk_allele_present', 'Importer should map MTHFR HOM_TT to risk allele present');
 assert(pharmGxImportAudit.gabrg2 === 'risk_allele_present', 'Importer should map GABRG2 HOM_ALT_contraindicated to risk allele present');
 
+const reportedVsInterpretedAudit = window.eval(`(() => {
+  activeGenotypeDetails = {};
+  userGenetics = {};
+  const rows = parsePharmGxImportDetailed([
+    "CYP3A5 | *3/*3 | non_expresser",
+    "GSTM1 | deletion | null",
+    "GSTT1 | deletion | null",
+    "CYP2C19 | *2/*2 | Poor Metabolizer"
+  ].join("\\n")).rows;
+  rows.forEach(row => applyPharmGxRow(row));
+  return {
+    cyp3a5: { phenotype:activeGenotype.CYP3A5, legacy:userGenetics.CYP3A5, detail:activeGenotypeDetails.CYP3A5 },
+    gstm1: { phenotype:activeGenotype.GSTM1, legacy:userGenetics.GSTM1, detail:activeGenotypeDetails.GSTM1 },
+    gstt1: { phenotype:activeGenotype.GSTT1, legacy:userGenetics.GSTT1, detail:activeGenotypeDetails.GSTT1 },
+    cyp2c19: { phenotype:activeGenotype.CYP2C19, legacy:userGenetics.CYP2C19, detail:activeGenotypeDetails.CYP2C19 },
+  };
+})()`);
+assert(reportedVsInterpretedAudit.cyp3a5.phenotype === 'poor_metabolizer', 'CYP3A5 non-expresser should stay in the PM calculation bucket');
+assert(reportedVsInterpretedAudit.cyp3a5.legacy === 'poor', 'CYP3A5 non-expresser should not use legacy null');
+assert(reportedVsInterpretedAudit.cyp3a5.detail.reportedLabel.includes('*3/*3') && reportedVsInterpretedAudit.cyp3a5.detail.reportedLabel.includes('non_expresser'), 'Importer should preserve reported CYP3A5 diplotype/status text');
+assert(reportedVsInterpretedAudit.cyp3a5.detail.functionalState === 'CYP3A5 non-expresser', 'CYP3A5 non-expresser should display as expression status');
+assert(reportedVsInterpretedAudit.gstm1.legacy === 'poor' && reportedVsInterpretedAudit.gstt1.legacy === 'poor', 'GSTM1/GSTT1 null should not use legacy null');
+assert(reportedVsInterpretedAudit.gstm1.detail.reportedLabel.includes('deletion') && reportedVsInterpretedAudit.gstm1.detail.reportedLabel.includes('null'), 'Importer should preserve GSTM1 reported deletion/null text');
+assert(reportedVsInterpretedAudit.gstm1.detail.functionalState.includes('GSTM1 null') && reportedVsInterpretedAudit.gstt1.detail.functionalState.includes('GSTT1 null'), 'GSTM1/GSTT1 null should display as copy-number detox context');
+assert(reportedVsInterpretedAudit.cyp2c19.legacy === 'poor', 'CYP2C19 poor metabolizer should not imply legacy null');
+assert(reportedVsInterpretedAudit.cyp2c19.detail.reportedLabel.includes('*2/*2') && reportedVsInterpretedAudit.cyp2c19.detail.reportedLabel.includes('Poor Metabolizer'), 'Importer should preserve reported CYP2C19 diplotype/status text');
+
+const riskMarkerSemanticsAudit = window.eval(`(() => {
+  return {
+    hla: {
+      gene: normalizePharmGxGene("HLA-B*57:01"),
+      hasEffect: !!GENOTYPE_EFFECTS["HLA-B*57:01"],
+      status: riskTextToStatus("detected", "HLA-B*57:01"),
+      detail: buildRiskInterpretation("HLA-B*57:01", GENOTYPE_RISK_STATUS.PRESENT, { reportedLabel:"detected" }),
+    },
+    g6pd: {
+      gene: normalizePharmGxGene("G6PD"),
+      hasEffect: !!GENOTYPE_EFFECTS.G6PD,
+      detail: buildRiskInterpretation("G6PD deficiency", GENOTYPE_RISK_STATUS.PRESENT, { reportedLabel:"deficient" }),
+    },
+    ryr1: {
+      gene: normalizePharmGxGene("RYR1"),
+      hasEffect: !!GENOTYPE_EFFECTS.RYR1,
+      detail: buildRiskInterpretation("RYR1/CACNA1S MH variant", GENOTYPE_RISK_STATUS.PRESENT, { reportedLabel:"variant detected" }),
+    },
+    mtrnr1: {
+      gene: normalizePharmGxGene("MT-RNR1"),
+      hasEffect: !!GENOTYPE_EFFECTS["MT-RNR1"],
+      detail: buildRiskInterpretation("MT-RNR1 m.1555A>G", GENOTYPE_RISK_STATUS.PRESENT, { reportedLabel:"detected" }),
+    },
+  };
+})()`);
+assert(riskMarkerSemanticsAudit.hla.gene === 'HLA-B*57:01' && !riskMarkerSemanticsAudit.hla.hasEffect, 'HLA should remain a risk marker, not GENOTYPE_EFFECTS');
+assert(riskMarkerSemanticsAudit.g6pd.gene === 'G6PD deficiency' && !riskMarkerSemanticsAudit.g6pd.hasEffect, 'G6PD should remain a deficiency/risk marker, not generic metabolism');
+assert(riskMarkerSemanticsAudit.ryr1.gene === 'RYR1/CACNA1S MH variant' && !riskMarkerSemanticsAudit.ryr1.hasEffect, 'RYR1 should remain a malignant-hyperthermia risk marker');
+assert(riskMarkerSemanticsAudit.mtrnr1.gene === 'MT-RNR1 m.1555A>G' && !riskMarkerSemanticsAudit.mtrnr1.hasEffect, 'MT-RNR1 should remain an ototoxicity risk marker');
+assert(
+  [riskMarkerSemanticsAudit.hla.detail, riskMarkerSemanticsAudit.g6pd.detail, riskMarkerSemanticsAudit.ryr1.detail, riskMarkerSemanticsAudit.mtrnr1.detail].every(detail => detail.axis === 'risk_allele' && detail.modelUse === 'risk-allele safety context'),
+  'G6PD/HLA/RYR1/MT-RNR1 details should display as risk/deficiency markers'
+);
+
 const nullVsPoorAudit = window.eval(`(() => {
   activeGenotypeDetails = {};
   userGenetics = {};
@@ -467,6 +561,26 @@ assert(urlNullAudit.phenotype === 'poor_metabolizer', 'URL CYP2D6:null should us
 assert(urlNullAudit.legacy === 'null', 'URL CYP2D6:null should preserve inherited null legacy state');
 assert(urlNullAudit.detail.mechanism === 'inherited_no_function', 'URL CYP2D6:null should preserve no-function semantics');
 assert(urlNullAudit.tab === 'pgx', 'URL state should still restore the requested tab');
+
+const urlReportedValueAudit = window.eval(`(() => {
+  activeStack = [];
+  activeGenotypeDetails = {};
+  userGenetics = {};
+  window.history.replaceState(null, '', '/index.html?substances=tacrolimus,busulfan&genotype=CYP3A5:non_expresser&genotype=GSTM1:null&genotype=GSTT1:null&tab=pgx');
+  loadUrlDemoState();
+  return {
+    cyp3a5: { phenotype:activeGenotype.CYP3A5, legacy:userGenetics.CYP3A5, detail:activeGenotypeDetails.CYP3A5 },
+    gstm1: { phenotype:activeGenotype.GSTM1, legacy:userGenetics.GSTM1, detail:activeGenotypeDetails.GSTM1 },
+    gstt1: { phenotype:activeGenotype.GSTT1, legacy:userGenetics.GSTT1, detail:activeGenotypeDetails.GSTT1 },
+    params:parseQueryParams(window.location.search).genotype,
+  };
+})()`);
+assert(Array.isArray(urlReportedValueAudit.params) && urlReportedValueAudit.params.length === 3, 'Repeated URL genotype params should preserve every reported value');
+assert(urlReportedValueAudit.cyp3a5.detail.reportedLabel === 'non_expresser', 'URL CYP3A5 should preserve reported non_expresser value');
+assert(urlReportedValueAudit.cyp3a5.detail.functionalState === 'CYP3A5 non-expresser', 'URL CYP3A5 non_expresser should display as expression status');
+assert(urlReportedValueAudit.cyp3a5.legacy === 'poor', 'URL CYP3A5 non_expresser should not use legacy null');
+assert(urlReportedValueAudit.gstm1.detail.reportedLabel === 'null' && urlReportedValueAudit.gstt1.detail.reportedLabel === 'null', 'URL GSTM1/GSTT1 should preserve reported null value');
+assert(urlReportedValueAudit.gstm1.legacy === 'poor' && urlReportedValueAudit.gstt1.legacy === 'poor', 'URL GSTM1/GSTT1 null should not use legacy null');
 
 const nullPhenoconversionAudit = window.eval(`(() => {
   activeStack = ['Metoprolol'];
@@ -534,6 +648,24 @@ const expandedGenotypeRuleAudit = window.eval(`(() => {
 })()`);
 assert(expandedGenotypeRuleAudit.missing.length === 0, `Expanded genotype rules missing cards: ${expandedGenotypeRuleAudit.missing.join(', ')}`);
 assert(expandedGenotypeRuleAudit.missingRefs.length === 0, `Expanded genotype rules missing evidence refs: ${expandedGenotypeRuleAudit.missingRefs.join(', ')}`);
+
+loadCase(window, ['Tacrolimus', 'Busulfan', 'Cisplatin']);
+window.eval(`
+  setGenotypeState('CYP3A5', 'non_expresser');
+  setGenotypeState('GSTM1', 'null');
+  setGenotypeState('GSTT1', 'null');
+  renderAll();
+`);
+const semanticsPanelText = window.document.getElementById('genotypeBody').textContent;
+assert(semanticsPanelText.includes('CYP3A5 non-expresser'), 'CYP3A5 PM bucket should render as non-expresser expression status');
+assert(semanticsPanelText.includes('GSTM1 null/absent detoxification capacity'), 'GSTM1 null should render as copy-number detoxification context');
+assert(semanticsPanelText.includes('GSTT1 null/absent detoxification capacity'), 'GSTT1 null should render as copy-number detoxification context');
+assert(
+  !/GSTM1[^\\n]{0,120}poor metabolizer/i.test(semanticsPanelText) &&
+  !/GSTT1[^\\n]{0,120}poor metabolizer/i.test(semanticsPanelText) &&
+  !/CYP3A5[^\\n]{0,120}poor metabolizer/i.test(semanticsPanelText),
+  'GSTM1/GSTT1/CYP3A5 UI should not display generic poor-metabolizer language'
+);
 
 assert(
   window.eval(`parsePharmGxImportDetailed(JSON.stringify({ "HLA-B": "detected" })).skipped.length`) === 1,
