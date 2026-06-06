@@ -642,7 +642,6 @@ function renderAll() {
   renderGenetics();
   if (activeStack.length >= 1) {
     renderFoldBars();
-    renderTiming();
     renderMetabolites();
     renderPathwayDiversions();
     renderCascade();                // Phase 3: graph traversal
@@ -652,17 +651,14 @@ function renderAll() {
     renderMechanisticPredictions(); // Experimental model predictions
     renderPhenotypeAccumulation();  // Phase 5 #6: serotonin/QTc/anticholinergic
     renderPKSimulation();           // Phase 5 #1: 1-compartment PK curves
-    renderScenarioComparison();     // Dose + genotype scenario comparison
     renderInteractionGraph();       // Phase 5 #4: D3 force-directed graph
     renderWashoutCalendar();        // Phase 5 #9: safe-to-switch dates
     renderAdverseBurden();          // Phase 5 #10: ACB + Beers + fall risk
     document.getElementById("foldSection").style.display = "";
-    document.getElementById("timingSection").style.display = "";
     document.getElementById("metabSection").style.display = "";
     document.getElementById("pdSection").style.display = "";
   } else {
     document.getElementById("foldSection").style.display = "none";
-    document.getElementById("timingSection").style.display = "none";
     document.getElementById("metabSection").style.display = "none";
     document.getElementById("pdSection").style.display = "none";
     document.getElementById("cascadeSection").style.display = "none";
@@ -672,7 +668,6 @@ function renderAll() {
     document.getElementById("mechanisticSection").style.display = "none";
     document.getElementById("phenoAccumSection").style.display = "none";
     document.getElementById("pkSimSection").style.display = "none";
-    document.getElementById("scenarioSection").style.display = "none";
     document.getElementById("graphSection").style.display = "none";
     document.getElementById("washoutSection").style.display = "none";
     document.getElementById("burdenSection").style.display = "none";

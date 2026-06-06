@@ -194,25 +194,6 @@ a{color:var(--accent)}
 .gene-add select{flex:1;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px}
 .gene-add button{padding:6px 16px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:12px}
 
-/* TIMING */
-.timing-row{display:flex;align-items:center;gap:12px;padding:8px 4px;border-bottom:1px solid var(--border)}
-.timing-row:last-child{border-bottom:none}
-.timing-name{width:140px;font-weight:600;font-size:13px;flex-shrink:0}
-.timing-badge{padding:4px 12px;border-radius:8px;font-size:12px;font-weight:600}
-.timing-badge.AM{background:#dbeafe;color:#1d4ed8}
-.timing-badge.PM{background:#ede9fe;color:#6d28d9}
-.timing-badge.BID{background:#fef3c7;color:#92400e}
-.timing-badge.ANY{background:#e2e8f0;color:#64748b}
-.timing-badge.AM-PM{background:#fef3c7;color:#92400e}
-.timing-hl{font-size:11px;color:var(--text2)}
-.timeline-box{margin-top:12px;padding-top:10px;border-top:1px solid var(--border);display:grid;gap:8px}
-.timeline-title{font-size:12px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.04em}
-.timeline-item{padding:9px 10px;border-radius:8px;border-left:3px solid var(--blue);background:var(--card2)}
-.timeline-item.severe{border-color:var(--red);background:var(--redBg)}
-.timeline-item.moderate{border-color:var(--amber);background:var(--amberBg)}
-.timeline-item.long{border-color:var(--accent);background:var(--accentBg)}
-.timeline-phase{font-size:11px;font-weight:800;color:var(--text);margin-bottom:2px}
-.timeline-text{font-size:12px;color:var(--text2);line-height:1.4}
 
 /* ALTERNATIVES */
 .alt-card{padding:10px 14px;margin-bottom:6px;background:var(--greenBg);border-radius:var(--radius);border:1px solid #bbf7d0}
@@ -388,22 +369,14 @@ a{color:var(--accent)}
 .pk-warning{font-size:9px;margin-top:3px;color:var(--amber)}
 .pk-taper{font-size:9px;margin-top:3px;color:var(--red)}
 .pk-disclaimer{font-size:10px;color:var(--text2);margin-top:6px;padding:5px 0;border-top:1px solid var(--border)}
-/* QUALITY + SCENARIOS */
-.quality-grid,.scenario-grid{display:grid;grid-template-columns:1fr;gap:8px}
-.quality-tile,.scenario-card{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card2)}
+/* QUALITY */
+.quality-grid{display:grid;grid-template-columns:1fr;gap:8px}
+.quality-tile{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card2)}
 .quality-num{font-size:20px;font-weight:800;line-height:1;color:var(--accent)}
 .quality-label{font-size:11px;font-weight:700;color:var(--text);margin-top:4px}
-.quality-note,.scenario-note{font-size:10px;color:var(--text2);line-height:1.35;margin-top:3px}
+.quality-note{font-size:10px;color:var(--text2);line-height:1.35;margin-top:3px}
 .quality-list{margin-top:10px;display:grid;gap:6px}
 .quality-item{font-size:11px;line-height:1.4;padding:7px 9px;border-radius:7px;background:var(--card);border:1px solid var(--border)}
-.scenario-title{font-size:12px;font-weight:800;margin-bottom:6px}
-.scenario-row{display:grid;grid-template-columns:1fr auto;gap:8px;font-size:11px;padding:4px 0;border-bottom:1px solid var(--border)}
-.scenario-row:last-child{border-bottom:none}
-.scenario-val{font-weight:800}
-.scenario-val.high{color:var(--amber)}
-.scenario-val.danger{color:var(--red)}
-.scenario-val.low{color:var(--blue)}
-.scenario-action{margin-top:7px;font-size:10px;font-weight:700;color:var(--text);padding:5px 7px;border-radius:6px;background:var(--card)}
 /* GENOTYPE PANEL */
 .geno-selector{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;align-items:center}
 .geno-enz-label{font-size:11px;font-weight:700;color:var(--text2);min-width:60px}
@@ -546,7 +519,7 @@ a{color:var(--accent)}
   .summary-copy,.summary-next span:last-child{min-width:0;overflow-wrap:break-word}
 }
 @media(max-width:480px){
-  .fold-name,.timing-name{width:100px;font-size:12px}
+  .fold-name{width:100px;font-size:12px}
   .fold-metabolite-row{flex-wrap:wrap;gap:6px;padding-left:12px}
   .fold-metabolite-name{width:100%;font-size:12px}
   .fold-metabolite-val{width:54px;font-size:11px}
@@ -778,25 +751,6 @@ a{color:var(--accent)}
       <div class="section-body coll-body open" id="pkSimBody"></div>
     </div>
 
-  <div class="section" id="scenarioSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('scenario')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-7"/>
-        </svg>
-        <span>Dose + Genotype Scenarios</span>
-        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Compare current vs nearby assumptions</span>
-      </div>
-      <div class="section-body coll-body open" id="scenarioBody"></div>
-    </div>
-
-  <div class="section" id="timingSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('timing')">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        Best Times to Take Each Med
-      </div>
-      <div class="section-body coll-body" id="timingBody"></div>
-    </div>
-
   <div class="section" id="washoutSection" style="display:none">
       <div class="section-title collapsible" onclick="toggleSection('washout')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -880,7 +834,7 @@ a{color:var(--accent)}
 </div>
 
 <script>
-// MedCheck bundle — built 2026-06-06T05:22:37.068Z
+// MedCheck bundle — built 2026-06-06T05:31:29.615Z
 // DO NOT EDIT: auto-generated by build.js
 
 
@@ -25694,10 +25648,10 @@ const KNOWN_DDI = [
 // ═══ data/generatedStats.js ═══
 // Auto-generated by scripts/gen-stats.js. Do not edit by hand.
 const MEDCHECK_STATS = {
-  "generatedAt": "2026-06-06T05:22:36.925Z",
-  "bundleBytes": 2121779,
-  "bundleKB": 2072,
-  "bundleLines": 33137,
+  "generatedAt": "2026-06-06T05:31:29.453Z",
+  "bundleBytes": 2119193,
+  "bundleKB": 2070,
+  "bundleLines": 33094,
   "drugs": 625,
   "studies": 452,
   "verifiedStudies": 161,
@@ -30192,7 +30146,6 @@ function renderAll() {
   renderGenetics();
   if (activeStack.length >= 1) {
     renderFoldBars();
-    renderTiming();
     renderMetabolites();
     renderPathwayDiversions();
     renderCascade();                // Phase 3: graph traversal
@@ -30202,17 +30155,14 @@ function renderAll() {
     renderMechanisticPredictions(); // Experimental model predictions
     renderPhenotypeAccumulation();  // Phase 5 #6: serotonin/QTc/anticholinergic
     renderPKSimulation();           // Phase 5 #1: 1-compartment PK curves
-    renderScenarioComparison();     // Dose + genotype scenario comparison
     renderInteractionGraph();       // Phase 5 #4: D3 force-directed graph
     renderWashoutCalendar();        // Phase 5 #9: safe-to-switch dates
     renderAdverseBurden();          // Phase 5 #10: ACB + Beers + fall risk
     document.getElementById("foldSection").style.display = "";
-    document.getElementById("timingSection").style.display = "";
     document.getElementById("metabSection").style.display = "";
     document.getElementById("pdSection").style.display = "";
   } else {
     document.getElementById("foldSection").style.display = "none";
-    document.getElementById("timingSection").style.display = "none";
     document.getElementById("metabSection").style.display = "none";
     document.getElementById("pdSection").style.display = "none";
     document.getElementById("cascadeSection").style.display = "none";
@@ -30222,7 +30172,6 @@ function renderAll() {
     document.getElementById("mechanisticSection").style.display = "none";
     document.getElementById("phenoAccumSection").style.display = "none";
     document.getElementById("pkSimSection").style.display = "none";
-    document.getElementById("scenarioSection").style.display = "none";
     document.getElementById("graphSection").style.display = "none";
     document.getElementById("washoutSection").style.display = "none";
     document.getElementById("burdenSection").style.display = "none";
@@ -30666,92 +30615,6 @@ function renderMatrix(interactions) {
 }
 
 function severityRank(s) { return s === "severe" ? 3 : s === "moderate" ? 2 : 1; }
-
-function renderTiming() {
-  const el = document.getElementById("timingBody");
-  const timingLabels = { AM: "Morning", PM: "Evening", BID: "Twice Daily", ANY: "Any Time" };
-  const timingRows = activeStack.map(name => {
-    const drug = getDrug(name);
-    const t = drug ? drug.timing : "ANY";
-    const hl = drug ? drug.hl : 0;
-    return `<div class="timing-row">
-      <div class="timing-name">${name}</div>
-      <span class="timing-badge ${t}">${timingLabels[t] || t}</span>
-      ${hl ? `<span class="timing-hl">Half-life: ${hl}h</span>` : ""}
-    </div>`;
-  }).join("");
-  el.innerHTML = timingRows + renderInteractionTimeline();
-}
-
-function renderInteractionTimeline() {
-  if (!activeStack.length) return "";
-  let interactions = [];
-  try {
-    interactions = activeStack.length >= 2 ? (calcRisk().interactions || []) : [];
-  } catch (e) {
-    interactions = [];
-  }
-  const rows = [];
-  activeStack.forEach(name => {
-    const drug = getDrug(name);
-    if (drug && drug.hl >= 48) {
-      const days = Math.ceil((drug.hl * 5) / 24);
-      rows.push({
-        phase:"Persists after stopping",
-        text:`${name} has a long half-life; meaningful exposure may remain for about ${days} days after the last dose.`,
-        className:"long"
-      });
-    }
-  });
-  interactions.slice(0, 6).forEach(ix => {
-    const severe = ix.severity === "severe" || ix.severity === "critical";
-    if (ix.type === "induction" || /induc/i.test(ix.mechanism || "")) {
-      rows.push({
-        phase:"Builds over days",
-        text:`${ix.drug1} may gradually increase ${ix.enzyme || "clearance"} activity, so the ${ix.drug2} effect can change over several days and may take 1-2 weeks to settle after stopping.`,
-        className:severe ? "severe" : "moderate"
-      });
-    } else if (ix.type === "inhibition" || /inhibit|block/i.test(ix.mechanism || "")) {
-      const text = ix.type === "inhibition"
-        ? `${ix.drug1} can reduce ${ix.enzyme || "clearance"} capacity for ${ix.drug2}; level changes often begin within the first few doses and persist while the inhibitor remains present.`
-        : `${ix.drug1} plus ${ix.drug2} includes an inhibition signal; level changes often begin within the first few doses and persist while the inhibitor remains present.`;
-      rows.push({
-        phase:"Can happen quickly",
-        text,
-        className:severe ? "severe" : "moderate"
-      });
-    } else if (ix.category === "pd" || ix.type === "pharmacodynamic") {
-      rows.push({
-        phase:"Effect adds immediately",
-        text:`${ix.drug1} and ${ix.drug2} can add pharmacodynamic burden as soon as both are active, even if blood levels are unchanged.`,
-        className:severe ? "severe" : "moderate"
-      });
-    } else if (ix.category === "metabolite" || ix.type === "metabolite-chain") {
-      rows.push({
-        phase:"Metabolite dependent",
-        text:`${ix.drug1} and ${ix.drug2} involve a metabolite pathway, so onset depends on parent-drug clearance and metabolite formation.`,
-        className:severe ? "severe" : "moderate"
-      });
-    }
-  });
-  const unique = [];
-  const seen = new Set();
-  rows.forEach(row => {
-    const key = `${row.phase}|${row.text}`;
-    if (!seen.has(key)) {
-      seen.add(key);
-      unique.push(row);
-    }
-  });
-  if (!unique.length) return "";
-  return `<div class="timeline-box">
-    <div class="timeline-title">Interaction timeline</div>
-    ${unique.slice(0, 8).map(row => `<div class="timeline-item ${row.className}">
-      <div class="timeline-phase">${row.phase}</div>
-      <div class="timeline-text">${row.text}</div>
-    </div>`).join("")}
-  </div>`;
-}
 
 // ── renderEvidenceExplorer — full study browser ──
 // Shows all STUDY_DB entries that are relevant to the current drug stack,
@@ -32597,94 +32460,6 @@ function pkRelativeInterpretationLabel(key) {
   return labels[key] || 'Exposure near reference';
 }
 
-function renderScenarioComparison() {
-  const section = document.getElementById("scenarioSection");
-  const el = document.getElementById("scenarioBody");
-  if (!el) return;
-  if (activeStack.length < 1) { if (section) section.style.display = "none"; return; }
-  if (section) section.style.display = "";
-
-  const html = `<div class="scenario-grid">${activeStack.map(name => {
-    const drug = getDrug(name);
-    const primary = getScenarioPrimaryEnzyme(drug);
-    const currentFold = calcFold(name).fold;
-    const doseRows = getScenarioDoseRows(name);
-    const genotypeRows = primary ? getScenarioGenotypeRows(name, primary) : [];
-    const action = clinicalActionForFold(currentFold, drug);
-    return `<div class="scenario-card">
-      <div class="scenario-title">${name}</div>
-      ${doseRows.length ? `<div class="scenario-note">Dose sensitivity</div>${doseRows.join("")}` : `<div class="scenario-note">No local dose tiers defined</div>`}
-      ${genotypeRows.length ? `<div class="scenario-note" style="margin-top:7px">${primary} phenotype sensitivity</div>${genotypeRows.join("")}` : ""}
-      <div class="scenario-action">${action}</div>
-    </div>`;
-  }).join("")}</div>
-  <div class="pk-disclaimer">Scenario values are directional checks from the same exposure model, not dosing instructions. Parent and metabolite rows remain separate.</div>`;
-  el.innerHTML = html;
-}
-
-function getScenarioPrimaryEnzyme(drug) {
-  if (!drug) return null;
-  const route = (drug.routes || []).find(r => GENOTYPE_EFFECTS[r.enzyme] || CLINICAL_FOLD[drug.name]?.[r.enzyme]);
-  return route?.enzyme || null;
-}
-
-function getScenarioDoseRows(name) {
-  const tiers = DOSE_TIERS[name]?.tiers;
-  if (!tiers) return [];
-  const current = getDoseTier(name);
-  const candidates = [...new Set(["low", current, "high", "max"].filter(k => tiers[k]))];
-  return candidates.map(tier => {
-    const fold = withTemporaryState(() => {
-      drugDoses[name] = tier;
-      return calcFold(name).fold;
-    });
-    const label = tier === current ? `${tiers[tier].label} current` : tiers[tier].label;
-    return scenarioRow(label, fold);
-  });
-}
-
-function getScenarioGenotypeRows(name, enzyme) {
-  const phenos = [
-    [GENOTYPE_PHENOTYPE.NM, "NM"],
-    [activeGenotype[enzyme] || GENOTYPE_PHENOTYPE.NM, "current"],
-    [GENOTYPE_PHENOTYPE.PM, "PM"],
-  ];
-  return [...new Map(phenos.map(p => [p[0], p])).values()].map(([pheno, label]) => {
-    const fold = withTemporaryState(() => {
-      setGenotypeState(enzyme, pheno);
-      return calcFold(name).fold;
-    });
-    return scenarioRow(`${enzyme} ${label}`, fold);
-  });
-}
-
-function scenarioRow(label, fold) {
-  const cls = fold >= 4 ? "danger" : fold >= 1.5 ? "high" : fold <= 0.5 ? "low" : "";
-  return `<div class="scenario-row"><span>${label}</span><span class="scenario-val ${cls}">${fold.toFixed(fold >= 10 ? 1 : 2)}x</span></div>`;
-}
-
-function withTemporaryState(fn) {
-  const doseSnapshot = { ...drugDoses };
-  const genoSnapshot = { ...activeGenotype };
-  const legacyGenoSnapshot = { ...userGenetics };
-  try {
-    return fn();
-  } finally {
-    Object.keys(drugDoses).forEach(k => delete drugDoses[k]);
-    Object.assign(drugDoses, doseSnapshot);
-    activeGenotype = genoSnapshot;
-    Object.keys(userGenetics).forEach(k => delete userGenetics[k]);
-    Object.assign(userGenetics, legacyGenoSnapshot);
-  }
-}
-
-function clinicalActionForFold(fold, drug) {
-  if (drug?.prodrug && fold <= 0.6) return "Action layer: possible activation failure; consider alternative or response monitoring.";
-  if (fold >= 4) return "Action layer: high exposure signal; avoid strong inhibitors, reduce dose, or use TDM/monitoring when clinically appropriate.";
-  if (fold >= 2) return "Action layer: elevated exposure; monitor adverse effects and consider lower dose/alternative.";
-  if (fold <= 0.5) return "Action layer: low exposure signal; monitor loss of efficacy.";
-  return "Action layer: no major parent-exposure shift in the current model.";
-}
 
 // ── renderInteractionGraph — D3 force-directed graph (#4) ──────────
 
