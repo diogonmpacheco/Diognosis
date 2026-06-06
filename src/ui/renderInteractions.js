@@ -4,13 +4,14 @@
 function renderInteractions(interactions) {
   const el = document.getElementById("interBody");
   const countEl = document.getElementById("interCount");
-  if (!interactions.length) {
-    el.innerHTML = '<div class="finding-empty">No significant pairwise interactions detected for this stack.</div>';
+  const curatedInteractions = interactions.filter(isCuratedInteractionWarning);
+  if (!curatedInteractions.length) {
+    el.innerHTML = '<div class="finding-empty">No curated interaction warning is documented for this stack. Check Mechanistic Interpretation for modeled pathway read-through.</div>';
     countEl.textContent = "";
     return;
   }
-  countEl.textContent = `${interactions.length} found`;
-  el.innerHTML = interactions.map((i, idx) => {
+  countEl.textContent = `${curatedInteractions.length} curated`;
+  el.innerHTML = curatedInteractions.map((i, idx) => {
     const mechText = simplifyMechanism(i);
     const traceText = buildInteractionTrace(i);
     const actionText = clinicalActionForInteraction(i);
@@ -27,13 +28,6 @@ function renderInteractions(interactions) {
       ? `<div class="ev-study-count">${studies.length} supporting stud${studies.length===1?'y':'ies'} · Highest: ${tierLabel.toUpperCase()}${hasContradiction ? ' · <span style="color:var(--amber)">⚠ contradictory evidence exists</span>' : ''}</div>`
       : '';
 
-    const evCards = studies.map(s => studyCardHTML(s)).join('');
-    const evContradiction = hasContradiction
-      ? `<div class="ev-contradictory"><strong>⚠ Contradictory Evidence</strong>${studies.filter(s=>s.contradicts?.length).map(s=>s.contradictoryNote||`Contradicted by: ${s.contradicts.join(', ')}`).join(' ')}</div>`
-      : '';
-
-    const evId = `ev-panel-${idx}`;
-    const evToggleId = `ev-toggle-${idx}`;
     const hasEv = studies.length > 0;
     const reviewLabel = studies.some(s => s.reviewStatus === "verified") ? "human-reviewed evidence" : "needs evidence review";
     const reviewClass = studies.some(s => s.reviewStatus === "verified") ? "review" : "warn";
@@ -60,16 +54,15 @@ function renderInteractions(interactions) {
         ${hasEv ? `<span class="finding-tag">${studies.length} stud${studies.length===1?'y':'ies'}</span>` : '<span class="finding-tag warn">no linked study yet</span>'}
         ${hasEv ? `<span class="finding-tag ${reviewClass}">${reviewLabel}</span>` : ""}
       </div>
-      ${hasEv ? `
-      ${evSummary}
-      <span class="ev-toggle" id="${evToggleId}" onclick="toggleEvPanel('${evId}','${evToggleId}')">
-        <span class="chevron">▾</span> Show ${studies.length} stud${studies.length===1?'y':'ies'}
-      </span>
-      <div class="ev-panel" id="${evId}">
-        ${evCards}${evContradiction}
-      </div>` : ''}
+      ${hasEv ? `${evSummary}<div class="ev-summary-line"><span class="summary-jump" onclick="setTab('evidence')">Open Evidence tab</span> for citations and review status.</div>` : ''}
     </div>`;
   }).join("");
+}
+
+function isCuratedInteractionWarning(interaction) {
+  if (!interaction) return false;
+  if (interaction.type === "known-ddi" || interaction.source === "known" || interaction.sourceEngine === "curated") return true;
+  return !!(interaction.evidenceRefs && interaction.evidenceRefs.length && interaction.evidenceStatus === "explicit");
 }
 
 function buildFindingTitle(i) {
@@ -94,16 +87,6 @@ function buildFindingTitle(i) {
     return `${i.drug1} may raise ${i.drug2} exposure`;
   }
   return `${i.drug1} and ${i.drug2} need review`;
-}
-
-function toggleEvPanel(panelId, toggleId) {
-  const panel = document.getElementById(panelId);
-  const toggle = document.getElementById(toggleId);
-  if (!panel || !toggle) return;
-  const isOpen = panel.classList.contains('open');
-  panel.classList.toggle('open', !isOpen);
-  toggle.classList.toggle('open', !isOpen);
-  toggle.innerHTML = `<span class="chevron">▾</span> ${isOpen ? 'Show' : 'Hide'} ${panel.querySelectorAll('.ev-card').length} stud${panel.querySelectorAll('.ev-card').length===1?'y':'ies'}`;
 }
 
 function simplifyMechanism(i) {

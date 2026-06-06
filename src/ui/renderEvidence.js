@@ -19,6 +19,9 @@ function renderEvidenceExplorer() {
   const relevantStudies = new Map();   // verified / curated
   const reviewStudies = new Map();     // reviewRequired drafts (quarantined)
   const drugNames = activeStack.map(n => n.toLowerCase());
+  const stackContext = typeof getStackEvidenceContext === "function"
+    ? getStackEvidenceContext()
+    : { evidenceRefs:new Set() };
 
   for (const [sid, study] of Object.entries(STUDY_DB)) {
     if (study.public === false) continue;
@@ -26,7 +29,8 @@ function renderEvidenceExplorer() {
     const source = (study.source || '').toLowerCase();
     const supports = (study.supports || []).join(' ').toLowerCase();
     const relevantToStack = drugNames.some(name =>
-      title.includes(name) || source.includes(name) || supports.includes(name));
+      title.includes(name) || source.includes(name) || supports.includes(name)) ||
+      stackContext.evidenceRefs?.has?.(sid);
     if (!relevantToStack) continue;
     if (study.reviewRequired === true) reviewStudies.set(sid, study);
     else relevantStudies.set(sid, study);

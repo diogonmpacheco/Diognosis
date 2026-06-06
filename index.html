@@ -263,12 +263,6 @@ a{color:var(--accent)}
 .tr-mech{font-size:12px;color:var(--text2);line-height:1.4}
 
 /* EVIDENCE SYSTEM */
-.ev-panel{margin-top:8px;border-top:1px solid rgba(0,0,0,0.07);padding-top:8px;display:none}
-.ev-panel.open{display:block}
-.ev-toggle{font-size:11px;font-weight:700;color:var(--blue);cursor:pointer;padding:2px 0;display:inline-flex;align-items:center;gap:4px;user-select:none}
-.ev-toggle:hover{color:var(--accent)}
-.ev-toggle .chevron{transition:transform 0.2s;font-size:10px}
-.ev-toggle.open .chevron{transform:rotate(180deg)}
 .ev-card{padding:10px 12px;margin-bottom:6px;border-radius:var(--radius);background:var(--card);border:1px solid var(--border)}
 .ev-card-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:5px}
 .ev-review-badge{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.2px;padding:2px 6px;border-radius:6px;border:1px solid transparent}
@@ -433,11 +427,6 @@ a{color:var(--accent)}
 .summary-copy{font-size:13px;color:var(--text2);line-height:1.45;margin-top:7px;max-width:620px}
 .summary-story{display:grid;gap:7px;padding:10px 12px;border-radius:10px;background:var(--card2);border:1px solid var(--border);font-size:12px;line-height:1.4;color:var(--text2)}
 .summary-story-row strong{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--text);margin-bottom:2px}
-.summary-confidence{display:flex;flex-direction:column;align-items:flex-start;gap:5px}
-.summary-confidence-pill{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;border-radius:999px;padding:4px 8px;background:var(--greenBg);color:var(--green);border:1px solid rgba(34,197,94,0.25)}
-.summary-confidence-pill.moderate{background:var(--amberBg);color:var(--amber);border-color:rgba(245,158,11,0.3)}
-.summary-confidence-pill.limited{background:var(--card);color:var(--text2);border-color:var(--border)}
-.summary-confidence-note{font-size:11px;color:var(--text2)}
 .summary-risk{
   width:100%;min-width:0;border-radius:14px;padding:12px 10px;text-align:center;color:#fff;box-shadow:0 8px 18px rgba(61,44,30,.12);
 }
@@ -447,19 +436,8 @@ a{color:var(--accent)}
 .summary-risk.neutral{background:var(--text2)}
 .summary-risk .num{font-size:30px;line-height:1;font-weight:900}
 .summary-risk .lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-top:3px}
-.summary-metrics{display:grid;grid-template-columns:1fr;gap:8px}
-.summary-metric{padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--card);min-width:0}
-.summary-metric strong{display:block;font-size:19px;line-height:1;color:var(--text)}
-.summary-metric span{display:block;font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-top:4px;white-space:normal}
 .summary-next{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;background:var(--accentBg);color:var(--text);font-size:12px;line-height:1.35;border:1px solid #fed7aa}
 .summary-next-pill{font-size:10px;font-weight:800;text-transform:uppercase;color:var(--accent);background:#fff;border:1px solid #fed7aa;border-radius:999px;padding:3px 8px;white-space:nowrap}
-.summary-syndromes{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-.syndrome-chip{
-  display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:16px;
-  font-size:12px;font-weight:600;border:1.5px solid;
-}
-.syndrome-chip.critical,.syndrome-chip.severe{background:var(--redBg);border-color:var(--red);color:var(--red)}
-.syndrome-chip.moderate{background:var(--amberBg);border-color:var(--amber);color:var(--amber)}
 .summary-jump{font-size:12px;color:var(--accent);cursor:pointer;font-weight:800;text-decoration:underline}
 
 /* PRIORITIZED FINDINGS */
@@ -629,7 +607,7 @@ a{color:var(--accent)}
   <div class="section" id="interSection" style="display:none">
       <div class="section-title collapsible" onclick="toggleSection('inter')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-        <span>How Your Meds Affect Each Other</span>
+        <span>Known Interactions</span>
         <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="interCount"></span>
       </div>
       <div class="section-body coll-body open" id="interBody"></div>
@@ -692,7 +670,7 @@ a{color:var(--accent)}
   <div class="section" id="foldSection" style="display:none">
       <div class="section-title collapsible" onclick="toggleSection('fold')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-        <span>How Each Med's Level Changes</span>
+        <span>Fold / PK Exposure</span>
       </div>
       <div class="section-body coll-body open" id="foldBody"></div>
     </div>
@@ -703,8 +681,8 @@ a{color:var(--accent)}
           <path d="M12 2a4 4 0 0 1 4 4v12a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
           <path d="M8 10h8M8 14h8"/>
         </svg>
-        <span>Genotype-Stratified Evidence</span>
-        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">PM / IM / NM / UM effects</span>
+        <span>Genotype Effects</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Controls and selected-genotype explanations</span>
       </div>
       <div class="section-body coll-body open" id="genotypeBody"></div>
     </div>
@@ -803,7 +781,7 @@ a{color:var(--accent)}
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
         </svg>
-        <span>Evidence Explorer</span>
+        <span>Evidence</span>
         <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="evidenceCount"></span>
       </div>
       <div class="section-body coll-body" id="evidenceBody"></div>
@@ -843,7 +821,7 @@ a{color:var(--accent)}
 </div>
 
 <script>
-// MedCheck bundle — built 2026-06-06T11:04:24.850Z
+// MedCheck bundle — built 2026-06-06T11:25:21.129Z
 // DO NOT EDIT: auto-generated by build.js
 
 
@@ -25976,10 +25954,10 @@ const KNOWN_DDI = [
 // ═══ data/generatedStats.js ═══
 // Auto-generated by scripts/gen-stats.js. Do not edit by hand.
 const MEDCHECK_STATS = {
-  "generatedAt": "2026-06-06T11:04:24.710Z",
-  "bundleBytes": 2134316,
-  "bundleKB": 2084,
-  "bundleLines": 33408,
+  "generatedAt": "2026-06-06T11:25:20.971Z",
+  "bundleBytes": 2128763,
+  "bundleKB": 2079,
+  "bundleLines": 33315,
   "drugs": 625,
   "studies": 452,
   "verifiedStudies": 161,
@@ -29949,13 +29927,10 @@ function renderSummaryBar() {
   let summaryCopy = "";
   let nextStep = "";
   let severeCount = 0;
-  let moderateCount = 0;
-  let evidenceCount = 0;
   let interactionScore = 0;
   let genotypePriority = null;
   let priorityInteraction = null;
   let priorityStory = null;
-  let priorityEvidence = null;
   if (activeStack.length >= 2) {
     const risk = calcRisk();
     interactionScore = risk.score;
@@ -29965,8 +29940,6 @@ function renderSummaryBar() {
     const severePairs = uniqueInteractionPairLabels(severeInteractions);
     const moderatePairs = uniqueInteractionPairLabels(moderateInteractions);
     severeCount = severePairs.length;
-    moderateCount = moderatePairs.length;
-    evidenceCount = new Set(risk.interactions.flatMap(i => i.evidenceRefs || [])).size;
     riskClass = severeCount || interactionScore >= 60 ? "high" : interactionScore >= 30 ? "moderate" : "low";
     scoreValue = interactionScore;
     scoreLabel = risk.level.split(" ")[0];
@@ -29982,7 +29955,6 @@ function renderSummaryBar() {
       : "Review level changes and genotype notes for dose-sensitive medications.";
     if (priorityInteraction) {
       priorityStory = buildInteractionPriorityStory(priorityInteraction);
-      priorityEvidence = getPriorityEvidenceLayer(priorityInteraction.evidenceRefs || [], priorityInteraction.evidence, priorityInteraction.sourceEngine || priorityInteraction.source);
     }
   } else {
     genotypePriority = typeof getHighestGenotypePrioritySignal === "function" ? getHighestGenotypePrioritySignal() : null;
@@ -29994,8 +29966,6 @@ function renderSummaryBar() {
   if (!genotypePriority && typeof getHighestGenotypePrioritySignal === "function") {
     genotypePriority = getHighestGenotypePrioritySignal();
   }
-  const genotypeActionable = genotypePriority && genotypePriority.score >= 45 ? 1 : 0;
-  const genotypeEvidenceCount = genotypePriority ? (genotypePriority.evidenceRefs || []).length : 0;
   if (genotypePriority && genotypePriority.score > interactionScore) {
     riskClass = genotypePriority.score >= 70 ? "high" : genotypePriority.score >= 45 ? "moderate" : "low";
     scoreValue = genotypePriority.score;
@@ -30004,60 +29974,27 @@ function renderSummaryBar() {
     summaryCopy = genotypePriority.summary;
     nextStep = genotypePriority.nextStep;
     priorityStory = genotypePriority.story || buildGenotypePriorityStory(genotypePriority);
-    priorityEvidence = getPriorityEvidenceLayer(genotypePriority.evidenceRefs || [], null, "genotype");
   }
-  evidenceCount += genotypeEvidenceCount;
   if (!priorityStory) {
     priorityStory = buildDefaultPriorityStory(activeStack.length);
-    priorityEvidence = priorityEvidence || getPriorityEvidenceLayer([], null, "model");
   }
 
-  const activeGenotypes = Object.values({ ...(activeGenotype || {}), ...(userGenetics || {}) })
-    .filter(value =>
-      value &&
-      value !== "normal" &&
-      value !== GENOTYPE_PHENOTYPE.NM &&
-      value !== GENOTYPE_RISK_STATUS.ABSENT
-    )
-    .length;
-  const actionableCount = severeCount + moderateCount + genotypeActionable;
   const jumpTab = genotypePriority && genotypePriority.score > interactionScore ? "pgx" : "safety";
-
-  let syndromeHtml = "";
-  try {
-    const occ = computeReceptorOccupancy(activeStack);
-    if (occ && occ.active_syndromes && occ.active_syndromes.length) {
-      const chips = occ.active_syndromes.map(s => {
-        const note = (s.clinical_note || "").replace(/"/g, "&quot;");
-        return `<span class="syndrome-chip ${s.severity}" title="${note}">${s.name}</span>`;
-      }).join("");
-      syndromeHtml = `<div class="summary-syndromes">${chips}</div>`;
-    }
-  } catch (e) {
-    // Summary should never block the rest of the UI.
-  }
 
   bar.innerHTML = `<div class="summary-card">
     <div class="summary-main">
       <div>
         <div class="summary-kicker">Highest Priority</div>
         <div class="summary-title">${headline}</div>
-        <div class="summary-copy">${summaryCopy} <span class="summary-jump" onclick="setTab('${jumpTab}')">View findings</span></div>
+        <div class="summary-copy">${summaryCopy ? `${summaryCopy} ` : ""}<span class="summary-jump" onclick="setTab('${jumpTab}')">View finding</span></div>
       </div>
       <div class="summary-risk ${riskClass}">
         <div class="num">${scoreValue}</div>
         <div class="lbl">${scoreLabel}</div>
       </div>
     </div>
-    ${renderPriorityStory(priorityStory, priorityEvidence)}
-    <div class="summary-metrics">
-      <div class="summary-metric"><strong>${activeStack.length}</strong><span>Substances</span></div>
-      <div class="summary-metric"><strong>${actionableCount}</strong><span>Actionable Findings</span></div>
-      <div class="summary-metric"><strong>${activeGenotypes}</strong><span>Genotype Inputs</span></div>
-      <div class="summary-metric"><strong>${evidenceCount}</strong><span>Evidence Links</span></div>
-    </div>
-    <div class="summary-next"><span class="summary-next-pill">Next</span><span>${nextStep}</span></div>
-    ${syndromeHtml}
+    ${renderPriorityStory(priorityStory)}
+    <div class="summary-next"><span class="summary-next-pill">Next review</span><span>${nextStep}</span></div>
   </div>`;
   const badge = severeCount > 0 ? `<span class="tab-badge">${severeCount}</span>` : "";
   if (safetyBtn) safetyBtn.innerHTML = "Summary" + badge;
@@ -30144,17 +30081,12 @@ function getPriorityEvidenceLayer(refs = [], inlineEvidence = null, source = "")
   return { label:"Modeled review signal", className:"limited", note:"This is a conservative model signal; use the detailed tabs and evidence links for context." };
 }
 
-function renderPriorityStory(story, evidence) {
+function renderPriorityStory(story) {
   if (!story) return "";
-  const ev = evidence || getPriorityEvidenceLayer();
   return `<div class="summary-story">
     <div class="summary-story-row"><strong>Why this matters</strong>${story.why}</div>
     <div class="summary-story-row"><strong>What changes</strong>${story.changes}</div>
-    <div class="summary-story-row"><strong>What to review</strong>${story.review}</div>
-    <div class="summary-confidence">
-      <span class="summary-confidence-pill ${ev.className === "strong" ? "" : ev.className}">${ev.label}</span>
-      <span class="summary-confidence-note">${ev.note}</span>
-    </div>
+    <div class="summary-story-row"><strong>Next review step</strong>${story.review}</div>
   </div>`;
 }
 
@@ -30184,10 +30116,13 @@ function updateEmptyTabs() {
 
 function arrangeAdvancedSections() {
   const advanced = document.getElementById("tab-advanced");
+  const levels = document.getElementById("tab-pk");
   const network = document.getElementById("tab-network");
   const contributor = document.getElementById("tab-contributor");
   if (!advanced || typeof advanced.appendChild !== "function") return;
-  ["matrixSection","pdSection","cascadeSection"].forEach(id => {
+  const foldSection = document.getElementById("foldSection");
+  if (levels && foldSection && levels.firstElementChild !== foldSection) levels.insertBefore(foldSection, levels.firstElementChild);
+  ["matrixSection","pdSection","cascadeSection","metabSection","phenoAccumSection","washoutSection","burdenSection"].forEach(id => {
     const section = document.getElementById(id);
     if (section && section.parentElement !== advanced) advanced.appendChild(section);
   });
@@ -30652,13 +30587,14 @@ function renderRiskGauge(risk) {
 function renderInteractions(interactions) {
   const el = document.getElementById("interBody");
   const countEl = document.getElementById("interCount");
-  if (!interactions.length) {
-    el.innerHTML = '<div class="finding-empty">No significant pairwise interactions detected for this stack.</div>';
+  const curatedInteractions = interactions.filter(isCuratedInteractionWarning);
+  if (!curatedInteractions.length) {
+    el.innerHTML = '<div class="finding-empty">No curated interaction warning is documented for this stack. Check Mechanistic Interpretation for modeled pathway read-through.</div>';
     countEl.textContent = "";
     return;
   }
-  countEl.textContent = `${interactions.length} found`;
-  el.innerHTML = interactions.map((i, idx) => {
+  countEl.textContent = `${curatedInteractions.length} curated`;
+  el.innerHTML = curatedInteractions.map((i, idx) => {
     const mechText = simplifyMechanism(i);
     const traceText = buildInteractionTrace(i);
     const actionText = clinicalActionForInteraction(i);
@@ -30675,13 +30611,6 @@ function renderInteractions(interactions) {
       ? `<div class="ev-study-count">${studies.length} supporting stud${studies.length===1?'y':'ies'} · Highest: ${tierLabel.toUpperCase()}${hasContradiction ? ' · <span style="color:var(--amber)">⚠ contradictory evidence exists</span>' : ''}</div>`
       : '';
 
-    const evCards = studies.map(s => studyCardHTML(s)).join('');
-    const evContradiction = hasContradiction
-      ? `<div class="ev-contradictory"><strong>⚠ Contradictory Evidence</strong>${studies.filter(s=>s.contradicts?.length).map(s=>s.contradictoryNote||`Contradicted by: ${s.contradicts.join(', ')}`).join(' ')}</div>`
-      : '';
-
-    const evId = `ev-panel-${idx}`;
-    const evToggleId = `ev-toggle-${idx}`;
     const hasEv = studies.length > 0;
     const reviewLabel = studies.some(s => s.reviewStatus === "verified") ? "human-reviewed evidence" : "needs evidence review";
     const reviewClass = studies.some(s => s.reviewStatus === "verified") ? "review" : "warn";
@@ -30708,16 +30637,15 @@ function renderInteractions(interactions) {
         ${hasEv ? `<span class="finding-tag">${studies.length} stud${studies.length===1?'y':'ies'}</span>` : '<span class="finding-tag warn">no linked study yet</span>'}
         ${hasEv ? `<span class="finding-tag ${reviewClass}">${reviewLabel}</span>` : ""}
       </div>
-      ${hasEv ? `
-      ${evSummary}
-      <span class="ev-toggle" id="${evToggleId}" onclick="toggleEvPanel('${evId}','${evToggleId}')">
-        <span class="chevron">▾</span> Show ${studies.length} stud${studies.length===1?'y':'ies'}
-      </span>
-      <div class="ev-panel" id="${evId}">
-        ${evCards}${evContradiction}
-      </div>` : ''}
+      ${hasEv ? `${evSummary}<div class="ev-summary-line"><span class="summary-jump" onclick="setTab('evidence')">Open Evidence tab</span> for citations and review status.</div>` : ''}
     </div>`;
   }).join("");
+}
+
+function isCuratedInteractionWarning(interaction) {
+  if (!interaction) return false;
+  if (interaction.type === "known-ddi" || interaction.source === "known" || interaction.sourceEngine === "curated") return true;
+  return !!(interaction.evidenceRefs && interaction.evidenceRefs.length && interaction.evidenceStatus === "explicit");
 }
 
 function buildFindingTitle(i) {
@@ -30742,16 +30670,6 @@ function buildFindingTitle(i) {
     return `${i.drug1} may raise ${i.drug2} exposure`;
   }
   return `${i.drug1} and ${i.drug2} need review`;
-}
-
-function toggleEvPanel(panelId, toggleId) {
-  const panel = document.getElementById(panelId);
-  const toggle = document.getElementById(toggleId);
-  if (!panel || !toggle) return;
-  const isOpen = panel.classList.contains('open');
-  panel.classList.toggle('open', !isOpen);
-  toggle.classList.toggle('open', !isOpen);
-  toggle.innerHTML = `<span class="chevron">▾</span> ${isOpen ? 'Show' : 'Hide'} ${panel.querySelectorAll('.ev-card').length} stud${panel.querySelectorAll('.ev-card').length===1?'y':'ies'}`;
 }
 
 function simplifyMechanism(i) {
@@ -31012,20 +30930,17 @@ function renderMechanisticPredictions() {
     return;
   }
 
-  const predictions = getMechanisticPredictions(activeStack);
+  const predictions = getMechanisticPredictions(activeStack).filter(p => !p.documented);
   if (!predictions.length) {
     sec.style.display = "none";
     return;
   }
 
   sec.style.display = "";
-  const documentedCount = predictions.filter(p => p.documented).length;
-  if (countEl) countEl.textContent = documentedCount
-    ? `${predictions.length} model${predictions.length === 1 ? "" : "s"} (${documentedCount} documented)`
-    : `${predictions.length} model${predictions.length === 1 ? "" : "s"}`;
+  if (countEl) countEl.textContent = `${predictions.length} model${predictions.length === 1 ? "" : "s"}`;
   el.innerHTML = `
     <div class="mechanistic-note">
-      This section explains pathway-level calculations from MedCheck's enzyme, transporter, genotype, and metabolite data. Documented rows are mechanistic interpretations of known warnings; undocumented rows are review prompts.
+      This section shows model-only pathway read-through from MedCheck's enzyme, transporter, genotype, and metabolite data. Confirmed warnings stay in Known Interactions; citations and review status stay in Evidence.
     </div>
     ${predictions.slice(0, 12).map(renderMechanisticPredictionCard).join("")}
     ${predictions.length > 12 ? `<div class="finding-empty">Showing 12 of ${predictions.length} model predictions for readability.</div>` : ""}
@@ -31088,6 +31003,9 @@ function renderEvidenceExplorer() {
   const relevantStudies = new Map();   // verified / curated
   const reviewStudies = new Map();     // reviewRequired drafts (quarantined)
   const drugNames = activeStack.map(n => n.toLowerCase());
+  const stackContext = typeof getStackEvidenceContext === "function"
+    ? getStackEvidenceContext()
+    : { evidenceRefs:new Set() };
 
   for (const [sid, study] of Object.entries(STUDY_DB)) {
     if (study.public === false) continue;
@@ -31095,7 +31013,8 @@ function renderEvidenceExplorer() {
     const source = (study.source || '').toLowerCase();
     const supports = (study.supports || []).join(' ').toLowerCase();
     const relevantToStack = drugNames.some(name =>
-      title.includes(name) || source.includes(name) || supports.includes(name));
+      title.includes(name) || source.includes(name) || supports.includes(name)) ||
+      stackContext.evidenceRefs?.has?.(sid);
     if (!relevantToStack) continue;
     if (study.reviewRequired === true) reviewStudies.set(sid, study);
     else relevantStudies.set(sid, study);
@@ -32001,18 +31920,6 @@ function renderGenotypePanel() {
     }
     for (const card of getGenotypeRiskEffectCards(drugName)) {
       html += renderGenotypeRiskEffectCard(card);
-    }
-  }
-  // CPIC evidence for current genotype, restricted to the active stack.
-  const genoStudies = getStackRelevantGenotypeStudies();
-  if (genoStudies.length) {
-    html += `<div style="font-size:11px;font-weight:700;color:var(--text2);margin:10px 0 5px;text-transform:uppercase;letter-spacing:0.5px">Relevant Studies for Selected Genotypes</div>`;
-    for (const s of genoStudies.slice(0,5)) {
-      const pct = Math.round((EVIDENCE_WEIGHT[s.type]||0.5)*100);
-      html += `<div style="font-size:11px;padding:5px 8px;border-radius:6px;background:var(--card2);margin-bottom:4px;display:flex;justify-content:space-between;align-items:center">
-        <span>${s.title.substring(0,70)}${s.title.length>70?'…':''}</span>
-        <span style="font-size:10px;color:var(--text2);margin-left:8px;white-space:nowrap">${s.type} · ${pct}%</span>
-      </div>`;
     }
   }
   el.innerHTML = html;

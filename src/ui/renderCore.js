@@ -73,13 +73,10 @@ function renderSummaryBar() {
   let summaryCopy = "";
   let nextStep = "";
   let severeCount = 0;
-  let moderateCount = 0;
-  let evidenceCount = 0;
   let interactionScore = 0;
   let genotypePriority = null;
   let priorityInteraction = null;
   let priorityStory = null;
-  let priorityEvidence = null;
   if (activeStack.length >= 2) {
     const risk = calcRisk();
     interactionScore = risk.score;
@@ -89,8 +86,6 @@ function renderSummaryBar() {
     const severePairs = uniqueInteractionPairLabels(severeInteractions);
     const moderatePairs = uniqueInteractionPairLabels(moderateInteractions);
     severeCount = severePairs.length;
-    moderateCount = moderatePairs.length;
-    evidenceCount = new Set(risk.interactions.flatMap(i => i.evidenceRefs || [])).size;
     riskClass = severeCount || interactionScore >= 60 ? "high" : interactionScore >= 30 ? "moderate" : "low";
     scoreValue = interactionScore;
     scoreLabel = risk.level.split(" ")[0];
@@ -106,7 +101,6 @@ function renderSummaryBar() {
       : "Review level changes and genotype notes for dose-sensitive medications.";
     if (priorityInteraction) {
       priorityStory = buildInteractionPriorityStory(priorityInteraction);
-      priorityEvidence = getPriorityEvidenceLayer(priorityInteraction.evidenceRefs || [], priorityInteraction.evidence, priorityInteraction.sourceEngine || priorityInteraction.source);
     }
   } else {
     genotypePriority = typeof getHighestGenotypePrioritySignal === "function" ? getHighestGenotypePrioritySignal() : null;
@@ -118,8 +112,6 @@ function renderSummaryBar() {
   if (!genotypePriority && typeof getHighestGenotypePrioritySignal === "function") {
     genotypePriority = getHighestGenotypePrioritySignal();
   }
-  const genotypeActionable = genotypePriority && genotypePriority.score >= 45 ? 1 : 0;
-  const genotypeEvidenceCount = genotypePriority ? (genotypePriority.evidenceRefs || []).length : 0;
   if (genotypePriority && genotypePriority.score > interactionScore) {
     riskClass = genotypePriority.score >= 70 ? "high" : genotypePriority.score >= 45 ? "moderate" : "low";
     scoreValue = genotypePriority.score;
@@ -128,60 +120,27 @@ function renderSummaryBar() {
     summaryCopy = genotypePriority.summary;
     nextStep = genotypePriority.nextStep;
     priorityStory = genotypePriority.story || buildGenotypePriorityStory(genotypePriority);
-    priorityEvidence = getPriorityEvidenceLayer(genotypePriority.evidenceRefs || [], null, "genotype");
   }
-  evidenceCount += genotypeEvidenceCount;
   if (!priorityStory) {
     priorityStory = buildDefaultPriorityStory(activeStack.length);
-    priorityEvidence = priorityEvidence || getPriorityEvidenceLayer([], null, "model");
   }
 
-  const activeGenotypes = Object.values({ ...(activeGenotype || {}), ...(userGenetics || {}) })
-    .filter(value =>
-      value &&
-      value !== "normal" &&
-      value !== GENOTYPE_PHENOTYPE.NM &&
-      value !== GENOTYPE_RISK_STATUS.ABSENT
-    )
-    .length;
-  const actionableCount = severeCount + moderateCount + genotypeActionable;
   const jumpTab = genotypePriority && genotypePriority.score > interactionScore ? "pgx" : "safety";
-
-  let syndromeHtml = "";
-  try {
-    const occ = computeReceptorOccupancy(activeStack);
-    if (occ && occ.active_syndromes && occ.active_syndromes.length) {
-      const chips = occ.active_syndromes.map(s => {
-        const note = (s.clinical_note || "").replace(/"/g, "&quot;");
-        return `<span class="syndrome-chip ${s.severity}" title="${note}">${s.name}</span>`;
-      }).join("");
-      syndromeHtml = `<div class="summary-syndromes">${chips}</div>`;
-    }
-  } catch (e) {
-    // Summary should never block the rest of the UI.
-  }
 
   bar.innerHTML = `<div class="summary-card">
     <div class="summary-main">
       <div>
         <div class="summary-kicker">Highest Priority</div>
         <div class="summary-title">${headline}</div>
-        <div class="summary-copy">${summaryCopy} <span class="summary-jump" onclick="setTab('${jumpTab}')">View findings</span></div>
+        <div class="summary-copy">${summaryCopy ? `${summaryCopy} ` : ""}<span class="summary-jump" onclick="setTab('${jumpTab}')">View finding</span></div>
       </div>
       <div class="summary-risk ${riskClass}">
         <div class="num">${scoreValue}</div>
         <div class="lbl">${scoreLabel}</div>
       </div>
     </div>
-    ${renderPriorityStory(priorityStory, priorityEvidence)}
-    <div class="summary-metrics">
-      <div class="summary-metric"><strong>${activeStack.length}</strong><span>Substances</span></div>
-      <div class="summary-metric"><strong>${actionableCount}</strong><span>Actionable Findings</span></div>
-      <div class="summary-metric"><strong>${activeGenotypes}</strong><span>Genotype Inputs</span></div>
-      <div class="summary-metric"><strong>${evidenceCount}</strong><span>Evidence Links</span></div>
-    </div>
-    <div class="summary-next"><span class="summary-next-pill">Next</span><span>${nextStep}</span></div>
-    ${syndromeHtml}
+    ${renderPriorityStory(priorityStory)}
+    <div class="summary-next"><span class="summary-next-pill">Next review</span><span>${nextStep}</span></div>
   </div>`;
   const badge = severeCount > 0 ? `<span class="tab-badge">${severeCount}</span>` : "";
   if (safetyBtn) safetyBtn.innerHTML = "Summary" + badge;
@@ -268,17 +227,12 @@ function getPriorityEvidenceLayer(refs = [], inlineEvidence = null, source = "")
   return { label:"Modeled review signal", className:"limited", note:"This is a conservative model signal; use the detailed tabs and evidence links for context." };
 }
 
-function renderPriorityStory(story, evidence) {
+function renderPriorityStory(story) {
   if (!story) return "";
-  const ev = evidence || getPriorityEvidenceLayer();
   return `<div class="summary-story">
     <div class="summary-story-row"><strong>Why this matters</strong>${story.why}</div>
     <div class="summary-story-row"><strong>What changes</strong>${story.changes}</div>
-    <div class="summary-story-row"><strong>What to review</strong>${story.review}</div>
-    <div class="summary-confidence">
-      <span class="summary-confidence-pill ${ev.className === "strong" ? "" : ev.className}">${ev.label}</span>
-      <span class="summary-confidence-note">${ev.note}</span>
-    </div>
+    <div class="summary-story-row"><strong>Next review step</strong>${story.review}</div>
   </div>`;
 }
 
@@ -308,10 +262,13 @@ function updateEmptyTabs() {
 
 function arrangeAdvancedSections() {
   const advanced = document.getElementById("tab-advanced");
+  const levels = document.getElementById("tab-pk");
   const network = document.getElementById("tab-network");
   const contributor = document.getElementById("tab-contributor");
   if (!advanced || typeof advanced.appendChild !== "function") return;
-  ["matrixSection","pdSection","cascadeSection"].forEach(id => {
+  const foldSection = document.getElementById("foldSection");
+  if (levels && foldSection && levels.firstElementChild !== foldSection) levels.insertBefore(foldSection, levels.firstElementChild);
+  ["matrixSection","pdSection","cascadeSection","metabSection","phenoAccumSection","washoutSection","burdenSection"].forEach(id => {
     const section = document.getElementById(id);
     if (section && section.parentElement !== advanced) advanced.appendChild(section);
   });

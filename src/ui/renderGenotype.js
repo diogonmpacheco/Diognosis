@@ -113,18 +113,6 @@ function renderGenotypePanel() {
       html += renderGenotypeRiskEffectCard(card);
     }
   }
-  // CPIC evidence for current genotype, restricted to the active stack.
-  const genoStudies = getStackRelevantGenotypeStudies();
-  if (genoStudies.length) {
-    html += `<div style="font-size:11px;font-weight:700;color:var(--text2);margin:10px 0 5px;text-transform:uppercase;letter-spacing:0.5px">Relevant Studies for Selected Genotypes</div>`;
-    for (const s of genoStudies.slice(0,5)) {
-      const pct = Math.round((EVIDENCE_WEIGHT[s.type]||0.5)*100);
-      html += `<div style="font-size:11px;padding:5px 8px;border-radius:6px;background:var(--card2);margin-bottom:4px;display:flex;justify-content:space-between;align-items:center">
-        <span>${s.title.substring(0,70)}${s.title.length>70?'…':''}</span>
-        <span style="font-size:10px;color:var(--text2);margin-left:8px;white-space:nowrap">${s.type} · ${pct}%</span>
-      </div>`;
-    }
-  }
   el.innerHTML = html;
 }
 

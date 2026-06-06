@@ -263,12 +263,6 @@ a{color:var(--accent)}
 .tr-mech{font-size:12px;color:var(--text2);line-height:1.4}
 
 /* EVIDENCE SYSTEM */
-.ev-panel{margin-top:8px;border-top:1px solid rgba(0,0,0,0.07);padding-top:8px;display:none}
-.ev-panel.open{display:block}
-.ev-toggle{font-size:11px;font-weight:700;color:var(--blue);cursor:pointer;padding:2px 0;display:inline-flex;align-items:center;gap:4px;user-select:none}
-.ev-toggle:hover{color:var(--accent)}
-.ev-toggle .chevron{transition:transform 0.2s;font-size:10px}
-.ev-toggle.open .chevron{transform:rotate(180deg)}
 .ev-card{padding:10px 12px;margin-bottom:6px;border-radius:var(--radius);background:var(--card);border:1px solid var(--border)}
 .ev-card-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:5px}
 .ev-review-badge{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.2px;padding:2px 6px;border-radius:6px;border:1px solid transparent}
@@ -433,11 +427,6 @@ a{color:var(--accent)}
 .summary-copy{font-size:13px;color:var(--text2);line-height:1.45;margin-top:7px;max-width:620px}
 .summary-story{display:grid;gap:7px;padding:10px 12px;border-radius:10px;background:var(--card2);border:1px solid var(--border);font-size:12px;line-height:1.4;color:var(--text2)}
 .summary-story-row strong{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--text);margin-bottom:2px}
-.summary-confidence{display:flex;flex-direction:column;align-items:flex-start;gap:5px}
-.summary-confidence-pill{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;border-radius:999px;padding:4px 8px;background:var(--greenBg);color:var(--green);border:1px solid rgba(34,197,94,0.25)}
-.summary-confidence-pill.moderate{background:var(--amberBg);color:var(--amber);border-color:rgba(245,158,11,0.3)}
-.summary-confidence-pill.limited{background:var(--card);color:var(--text2);border-color:var(--border)}
-.summary-confidence-note{font-size:11px;color:var(--text2)}
 .summary-risk{
   width:100%;min-width:0;border-radius:14px;padding:12px 10px;text-align:center;color:#fff;box-shadow:0 8px 18px rgba(61,44,30,.12);
 }
@@ -447,19 +436,8 @@ a{color:var(--accent)}
 .summary-risk.neutral{background:var(--text2)}
 .summary-risk .num{font-size:30px;line-height:1;font-weight:900}
 .summary-risk .lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-top:3px}
-.summary-metrics{display:grid;grid-template-columns:1fr;gap:8px}
-.summary-metric{padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--card);min-width:0}
-.summary-metric strong{display:block;font-size:19px;line-height:1;color:var(--text)}
-.summary-metric span{display:block;font-size:10px;font-weight:700;color:var(--text2);text-transform:uppercase;margin-top:4px;white-space:normal}
 .summary-next{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;background:var(--accentBg);color:var(--text);font-size:12px;line-height:1.35;border:1px solid #fed7aa}
 .summary-next-pill{font-size:10px;font-weight:800;text-transform:uppercase;color:var(--accent);background:#fff;border:1px solid #fed7aa;border-radius:999px;padding:3px 8px;white-space:nowrap}
-.summary-syndromes{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-.syndrome-chip{
-  display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:16px;
-  font-size:12px;font-weight:600;border:1.5px solid;
-}
-.syndrome-chip.critical,.syndrome-chip.severe{background:var(--redBg);border-color:var(--red);color:var(--red)}
-.syndrome-chip.moderate{background:var(--amberBg);border-color:var(--amber);color:var(--amber)}
 .summary-jump{font-size:12px;color:var(--accent);cursor:pointer;font-weight:800;text-decoration:underline}
 
 /* PRIORITIZED FINDINGS */
@@ -629,7 +607,7 @@ a{color:var(--accent)}
   <div class="section" id="interSection" style="display:none">
       <div class="section-title collapsible" onclick="toggleSection('inter')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-        <span>How Your Meds Affect Each Other</span>
+        <span>Known Interactions</span>
         <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="interCount"></span>
       </div>
       <div class="section-body coll-body open" id="interBody"></div>
@@ -692,7 +670,7 @@ a{color:var(--accent)}
   <div class="section" id="foldSection" style="display:none">
       <div class="section-title collapsible" onclick="toggleSection('fold')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-        <span>How Each Med's Level Changes</span>
+        <span>Fold / PK Exposure</span>
       </div>
       <div class="section-body coll-body open" id="foldBody"></div>
     </div>
@@ -703,8 +681,8 @@ a{color:var(--accent)}
           <path d="M12 2a4 4 0 0 1 4 4v12a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
           <path d="M8 10h8M8 14h8"/>
         </svg>
-        <span>Genotype-Stratified Evidence</span>
-        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">PM / IM / NM / UM effects</span>
+        <span>Genotype Effects</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Controls and selected-genotype explanations</span>
       </div>
       <div class="section-body coll-body open" id="genotypeBody"></div>
     </div>
@@ -803,7 +781,7 @@ a{color:var(--accent)}
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
         </svg>
-        <span>Evidence Explorer</span>
+        <span>Evidence</span>
         <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="evidenceCount"></span>
       </div>
       <div class="section-body coll-body" id="evidenceBody"></div>
