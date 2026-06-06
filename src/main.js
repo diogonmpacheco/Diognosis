@@ -46,11 +46,16 @@ function loadUrlDemoState() {
   const genotypeSpec = { ...(demo?.genotype || {}) };
   const genotypeParam = params.genotype;
   if (genotypeParam) {
-    genotypeParam.split(/[;,]/).forEach(pair => {
-      const [gene, phenotype] = pair.split(':').map(v => v && v.trim());
-      if (gene && phenotype && GENOTYPE_EFFECTS[gene] && GENOTYPE_EFFECTS[gene][phenotype]) {
-        genotypeSpec[gene] = phenotype;
-      }
+    const genotypeParams = Array.isArray(genotypeParam) ? genotypeParam : [genotypeParam];
+    genotypeParams.forEach(param => {
+      String(param || '').split(/[;,]/).forEach(pair => {
+        const [rawGene, rawPhenotype] = pair.split(':').map(v => v && v.trim());
+        const gene = rawGene ? rawGene.toUpperCase() : "";
+        const phenotype = normalizeUrlPhenotype(rawPhenotype);
+        if (gene && phenotype && GENOTYPE_EFFECTS[gene] && GENOTYPE_EFFECTS[gene][phenotype]) {
+          genotypeSpec[gene] = phenotype;
+        }
+      });
     });
   }
   for (const [gene, phenotype] of Object.entries(genotypeSpec)) {
@@ -58,7 +63,7 @@ function loadUrlDemoState() {
   }
 
   const tab = params.tab || demo?.tab;
-  if (['safety', 'pgx', 'pk', 'evidence'].includes(tab)) activeTab = tab;
+  if (MEDCHECK_TABS.includes(tab)) activeTab = tab;
   if (demo && params.demo && !params.substances) replaceDemoUrlWithSubstances(demo);
 }
 
@@ -85,9 +90,44 @@ function parseQueryParams(search) {
     const rawVal = eq >= 0 ? part.slice(eq + 1) : '';
     const key = decodeURIComponent(rawKey.replace(/\+/g, ' '));
     const val = decodeURIComponent(rawVal.replace(/\+/g, ' '));
-    if (key) out[key] = val;
+    if (!key) return;
+    if (key === 'genotype') {
+      if (!Array.isArray(out.genotype)) out.genotype = out.genotype ? [out.genotype] : [];
+      out.genotype.push(val);
+    } else {
+      out[key] = val;
+    }
   });
   return out;
+}
+
+function normalizeUrlPhenotype(value) {
+  const raw = String(value || '').trim();
+  const key = raw.toUpperCase().replace(/[-\s]+/g, '_');
+  const aliases = {
+    PM: GENOTYPE_PHENOTYPE.PM,
+    POOR: GENOTYPE_PHENOTYPE.PM,
+    POOR_METABOLIZER: GENOTYPE_PHENOTYPE.PM,
+    IM: GENOTYPE_PHENOTYPE.IM,
+    INTERMEDIATE: GENOTYPE_PHENOTYPE.IM,
+    INTERMEDIATE_METABOLIZER: GENOTYPE_PHENOTYPE.IM,
+    NM: GENOTYPE_PHENOTYPE.NM,
+    NORMAL: GENOTYPE_PHENOTYPE.NM,
+    NORMAL_METABOLIZER: GENOTYPE_PHENOTYPE.NM,
+    RM: GENOTYPE_PHENOTYPE.RM,
+    RAPID: GENOTYPE_PHENOTYPE.RM,
+    RAPID_METABOLIZER: GENOTYPE_PHENOTYPE.RM,
+    UM: GENOTYPE_PHENOTYPE.UM,
+    ULTRARAPID: GENOTYPE_PHENOTYPE.UM,
+    ULTRA_RAPID: GENOTYPE_PHENOTYPE.UM,
+    ULTRARAPID_METABOLIZER: GENOTYPE_PHENOTYPE.UM,
+    NULL: GENOTYPE_PHENOTYPE.NULL,
+    NO_FUNCTION: GENOTYPE_PHENOTYPE.NULL,
+    INCREASED_FUNCTION: GENOTYPE_PHENOTYPE.UM,
+    REDUCED_FUNCTION: GENOTYPE_PHENOTYPE.IM,
+    DECREASED_FUNCTION: GENOTYPE_PHENOTYPE.PM,
+  };
+  return aliases[key] || raw;
 }
 
 function resolveUrlDrugName(value) {

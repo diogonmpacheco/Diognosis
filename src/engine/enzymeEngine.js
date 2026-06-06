@@ -363,11 +363,11 @@ function computeGutExtraction(drugName) {
   const activeInhibitors = activeStack.filter(n => n !== drugName);
   const cyp3a4Inhib = activeInhibitors.filter(n => {
     const d = DRUG_DB.find(dd => dd.name === n);
-    return d?.inh?.some(i => i.enzyme === 'CYP3A4');
+    return d?.inh?.some(i => i.target === 'CYP3A4');
   });
   const pgpInhib = activeInhibitors.filter(n => {
     const d = DRUG_DB.find(dd => dd.name === n);
-    return d?.inh?.some(i => i.enzyme === 'P-gp' || i.enzyme === 'ABCB1');
+    return d?.inh?.some(i => i.target === 'P-gp' || i.target === 'ABCB1');
   });
   return {
     Emetab: Math.round(Emetab * 100),

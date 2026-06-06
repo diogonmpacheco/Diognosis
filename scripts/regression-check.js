@@ -74,6 +74,14 @@ assert(window.eval('PK_DOSE_INTERVALS.codeine') === 6, 'PK dose interval rules d
 assert(window.eval('PHENOTYPE_RISK_RULES.qtc.thresholds[1]') === 5, 'Phenotype risk rules did not load');
 assert(window.eval('EDGE_TYPE_BASE_WEIGHT[EDGE_TYPE.SUBSTRATE_OF]') === 0.92, 'Edge base weight rules did not load');
 
+const repeatedGenotypeParams = window.eval(`parseQueryParams('?genotype=CYP2D6:PM&genotype=CYP2C19:UM')`);
+assert(
+  Array.isArray(repeatedGenotypeParams.genotype) &&
+  repeatedGenotypeParams.genotype.includes('CYP2D6:PM') &&
+  repeatedGenotypeParams.genotype.includes('CYP2C19:UM'),
+  'Repeated genotype URL params should be preserved as an array'
+);
+
 const drugUniqueness = window.eval(`(() => {
   const names = new Map();
   const ids = new Map();
@@ -544,6 +552,33 @@ assert(hasInteraction(window, {
 }), 'Grapefruit Juice + Simvastatin should flag severe rhabdomyolysis risk');
 const grapefruitWashout = window.eval('computeWashoutCalendar(["Grapefruit Juice"]).find(e => e.actorId === "bergamottin")');
 assert(grapefruitWashout && grapefruitWashout.days === 3, 'Grapefruit/bergamottin washout should remain 3 days');
+
+loadCase(window, ['Ketoconazole', 'Midazolam']);
+const midazolamGut = window.eval('computeGutExtraction("Midazolam")');
+assert(
+  midazolamGut && midazolamGut.cyp3a4Inhibitors.includes('Ketoconazole'),
+  'Gut extraction should detect Ketoconazole as an active CYP3A4 inhibitor for Midazolam'
+);
+
+loadCase(window, ['Ketoconazole', 'Voriconazole']);
+const bidirectionalCyp3a4 = interactions(window).filter((i) =>
+  i.type === 'inhibition' &&
+  i.enzyme === 'CYP3A4' &&
+  ((i.drug1 === 'Ketoconazole' && i.drug2 === 'Voriconazole') ||
+   (i.drug1 === 'Voriconazole' && i.drug2 === 'Ketoconazole'))
+);
+assert(
+  bidirectionalCyp3a4.length === 2,
+  `Directed CYP3A4 inhibition should preserve both directions, got ${bidirectionalCyp3a4.length}`
+);
+
+loadCase(window, ['Haloperidol', 'Azithromycin', 'Methadone']);
+const qtcAlerts = interactions(window).filter((i) => i.enzyme === 'QTc' && i.type === 'pharmacodynamic');
+assert(qtcAlerts.length === 1, `QTc burden should remain one aggregate warning, got ${qtcAlerts.length}`);
+assert(
+  ['Haloperidol', 'Azithromycin', 'Methadone'].every((name) => qtcAlerts[0].contributingDrugs.includes(name)),
+  'Aggregate QTc warning should preserve all contributing drugs'
+);
 
 loadCase(window, ['Rifampin', 'Simvastatin']);
 const cyp3a4Cap = window.eval('computeEnzymeCapacity("CYP3A4", activeStack)');

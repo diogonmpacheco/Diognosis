@@ -3,6 +3,10 @@
 
 function normalizeInteractionRisk(interaction) {
   const evidenceRefs = [...new Set(interaction.evidenceRefs || [])];
+  const contributingDrugs = [...new Set(
+    (interaction.contributorDrugs || interaction.contributingDrugs || [interaction.drug1, interaction.drug2])
+      .filter(Boolean)
+  )];
   const confidence = interaction.confidence ||
     interaction.evidence?.confidence ||
     (evidenceRefs.length ? "high" : "moderate");
@@ -26,7 +30,7 @@ function normalizeInteractionRisk(interaction) {
     ].join("|").replace(/\s+/g, "_").toLowerCase(),
     sourceEngine,
     affectedPathway: interaction.enzyme || interaction.category || "unknown",
-    contributingDrugs: [interaction.drug1, interaction.drug2].filter(Boolean),
+    contributingDrugs,
     evidenceRefs,
     evidenceStatus,
     confidence,
@@ -34,7 +38,7 @@ function normalizeInteractionRisk(interaction) {
   }, interaction, {
     sourceEngine,
     affectedPathway: interaction.enzyme || interaction.category || "unknown",
-    contributingDrugs: [interaction.drug1, interaction.drug2].filter(Boolean),
+    contributingDrugs,
     evidenceRefs,
     evidenceStatus,
     confidence,
@@ -112,7 +116,7 @@ function findInteractions() {
       for (const inh of allInh) {
         for (const route of victim.routes) {
           if (inh.target === route.enzyme) {
-            const key = [activeStack[i], activeStack[j], inh.target, "inh"].sort().join("|");
+            const key = [activeStack[i], activeStack[j], inh.target, "inh"].join("|");
             const knownKey = [activeStack[i], activeStack[j], "known"].sort().join("|");
             if (!seen.has(key) && !seen.has(knownKey)) {
               seen.add(key);
@@ -195,7 +199,7 @@ function findInteractions() {
       for (const ind of perpetrator.ind) {
         for (const route of victim.routes) {
           if (ind.target === route.enzyme) {
-            const key = [activeStack[i], activeStack[j], ind.target, "ind"].sort().join("|");
+            const key = [activeStack[i], activeStack[j], ind.target, "ind"].join("|");
             const knownKey = [activeStack[i], activeStack[j], "known"].sort().join("|");
             if (!seen.has(key) && !seen.has(knownKey)) {
               seen.add(key);
@@ -239,13 +243,18 @@ function findInteractions() {
   // QTc additivity
   const qtcDrugs = drugs.filter(d => (d.props.qtcRisk||0) >= 2);
   if (qtcDrugs.length >= 2) {
-    interactions.push({
-      drug1: qtcDrugs[0].name, drug2: qtcDrugs[1].name, enzyme: "QTc",
-      type: "pharmacodynamic", strength: "additive",
-      effect: "↑ QTc prolongation risk",
-      severity: "severe",
-      mechanism: `Multiple QTc-prolonging agents: ${qtcDrugs.map(d=>d.name).join(", ")}`
-    });
+    const key = "qtc-additive";
+    if (!seen.has(key)) {
+      seen.add(key);
+      interactions.push({
+        drug1: qtcDrugs[0].name, drug2: qtcDrugs[1].name, enzyme: "QTc",
+        type: "pharmacodynamic", strength: "additive",
+        effect: "↑ QTc prolongation risk",
+        severity: "severe",
+        mechanism: `Multiple QTc-prolonging agents: ${qtcDrugs.map(d=>d.name).join(", ")}`,
+        contributorDrugs: qtcDrugs.map(d => d.name),
+      });
+    }
   }
 
   // Serotonin syndrome
@@ -259,7 +268,8 @@ function findInteractions() {
         type: "pharmacodynamic", strength: "additive",
         effect: "↑ Serotonin syndrome risk",
         severity: "severe",
-        mechanism: `Multiple serotonergic agents: ${seroDrugs.map(d=>d.name).join(", ")}`
+        mechanism: `Multiple serotonergic agents: ${seroDrugs.map(d=>d.name).join(", ")}`,
+        contributorDrugs: seroDrugs.map(d => d.name),
       });
     }
   }
@@ -267,13 +277,18 @@ function findInteractions() {
   // CNS depression
   const sedDrugs = drugs.filter(d => d.props.sedation);
   if (sedDrugs.length >= 2) {
-    interactions.push({
-      drug1: sedDrugs[0].name, drug2: sedDrugs[1].name, enzyme: "CNS",
-      type: "pharmacodynamic", strength: "additive",
-      effect: "↑ Sedation / CNS depression",
-      severity: sedDrugs.length >= 3 ? "severe" : "moderate",
-      mechanism: `Multiple CNS depressants: ${sedDrugs.map(d=>d.name).join(", ")}`
-    });
+    const key = "cns-depression-additive";
+    if (!seen.has(key)) {
+      seen.add(key);
+      interactions.push({
+        drug1: sedDrugs[0].name, drug2: sedDrugs[1].name, enzyme: "CNS",
+        type: "pharmacodynamic", strength: "additive",
+        effect: "↑ Sedation / CNS depression",
+        severity: sedDrugs.length >= 3 ? "severe" : "moderate",
+        mechanism: `Multiple CNS depressants: ${sedDrugs.map(d=>d.name).join(", ")}`,
+        contributorDrugs: sedDrugs.map(d => d.name),
+      });
+    }
   }
 
   // BLEEDING RISK — anticoagulants + antiplatelets + NSAIDs + SSRIs/SNRIs
@@ -289,7 +304,8 @@ function findInteractions() {
         type: "pharmacodynamic", strength: "additive",
         effect: "↑ Bleeding risk",
         severity: sev,
-        mechanism: `Multiple agents affecting hemostasis: ${bleedDrugs.map(d=>d.name+" ("+d.cls+")").join(", ")}`
+        mechanism: `Multiple agents affecting hemostasis: ${bleedDrugs.map(d=>d.name+" ("+d.cls+")").join(", ")}`,
+        contributorDrugs: bleedDrugs.map(d => d.name),
       });
     }
   }
@@ -298,13 +314,18 @@ function findInteractions() {
   const achDrugs = drugs.filter(d => (d.props.anticholinergic||0) >= 1);
   if (achDrugs.length >= 2) {
     const totalBurden = achDrugs.reduce((s,d) => s + (d.props.anticholinergic||0), 0);
-    interactions.push({
-      drug1: achDrugs[0].name, drug2: achDrugs[1].name, enzyme: "ACh",
-      type: "pharmacodynamic", strength: "additive",
-      effect: "↑ Anticholinergic burden (confusion, dry mouth, constipation, urinary retention)",
-      severity: totalBurden >= 4 ? "severe" : "moderate",
-      mechanism: `Cumulative anticholinergic load (score ${totalBurden}): ${achDrugs.map(d=>d.name).join(", ")}`
-    });
+    const key = "anticholinergic-additive";
+    if (!seen.has(key)) {
+      seen.add(key);
+      interactions.push({
+        drug1: achDrugs[0].name, drug2: achDrugs[1].name, enzyme: "ACh",
+        type: "pharmacodynamic", strength: "additive",
+        effect: "↑ Anticholinergic burden (confusion, dry mouth, constipation, urinary retention)",
+        severity: totalBurden >= 4 ? "severe" : "moderate",
+        mechanism: `Cumulative anticholinergic load (score ${totalBurden}): ${achDrugs.map(d=>d.name).join(", ")}`,
+        contributorDrugs: achDrugs.map(d => d.name),
+      });
+    }
   }
 
   // NEPHROTOXICITY — Triple whammy and others
@@ -313,15 +334,20 @@ function findInteractions() {
     const isTripleWhammy = nephroDrugs.some(d=>d.cls.includes("NSAID")) &&
       nephroDrugs.some(d=>d.cls.includes("ACE")||d.cls.includes("ARB")) &&
       nephroDrugs.some(d=>d.cls.includes("Diuretic"));
-    interactions.push({
-      drug1: nephroDrugs[0].name, drug2: nephroDrugs[1].name, enzyme: "Renal",
-      type: "pharmacodynamic", strength: "additive",
-      effect: isTripleWhammy ? "↑↑ Acute kidney injury risk (TRIPLE WHAMMY)" : "↑ Nephrotoxicity risk",
-      severity: isTripleWhammy ? "severe" : "moderate",
-      mechanism: isTripleWhammy
-        ? `NSAID + RAAS blocker + diuretic: ${nephroDrugs.map(d=>d.name).join(", ")} — 30% increased AKI risk`
-        : `Multiple nephrotoxic agents: ${nephroDrugs.map(d=>d.name).join(", ")}`
-    });
+    const key = "nephrotoxicity-additive";
+    if (!seen.has(key)) {
+      seen.add(key);
+      interactions.push({
+        drug1: nephroDrugs[0].name, drug2: nephroDrugs[1].name, enzyme: "Renal",
+        type: "pharmacodynamic", strength: "additive",
+        effect: isTripleWhammy ? "↑↑ Acute kidney injury risk (TRIPLE WHAMMY)" : "↑ Nephrotoxicity risk",
+        severity: isTripleWhammy ? "severe" : "moderate",
+        mechanism: isTripleWhammy
+          ? `NSAID + RAAS blocker + diuretic: ${nephroDrugs.map(d=>d.name).join(", ")} — 30% increased AKI risk`
+          : `Multiple nephrotoxic agents: ${nephroDrugs.map(d=>d.name).join(", ")}`,
+        contributorDrugs: nephroDrugs.map(d => d.name),
+      });
+    }
   }
 
   // HYPERKALEMIA
@@ -332,7 +358,8 @@ function findInteractions() {
       type: "pharmacodynamic", strength: "additive",
       effect: "↑ Hyperkalemia risk",
       severity: hkDrugs.length >= 3 ? "severe" : "moderate",
-      mechanism: `Multiple potassium-retaining agents: ${hkDrugs.map(d=>d.name).join(", ")}`
+      mechanism: `Multiple potassium-retaining agents: ${hkDrugs.map(d=>d.name).join(", ")}`,
+      contributorDrugs: hkDrugs.map(d => d.name),
     });
   }
 
@@ -344,7 +371,8 @@ function findInteractions() {
       type: "pharmacodynamic", strength: "additive",
       effect: "↑ Seizure risk (lowered threshold)",
       severity: szDrugs.length >= 3 ? "severe" : "moderate",
-      mechanism: `Multiple drugs that lower seizure threshold: ${szDrugs.map(d=>d.name).join(", ")}`
+      mechanism: `Multiple drugs that lower seizure threshold: ${szDrugs.map(d=>d.name).join(", ")}`,
+      contributorDrugs: szDrugs.map(d => d.name),
     });
   }
 
@@ -356,7 +384,8 @@ function findInteractions() {
       type: "pharmacodynamic", strength: "additive",
       effect: "↑ Hypotension / orthostatic risk",
       severity: htDrugs.length >= 4 ? "severe" : "moderate",
-      mechanism: `${htDrugs.length} blood pressure-lowering agents: ${htDrugs.map(d=>d.name).join(", ")}`
+      mechanism: `${htDrugs.length} blood pressure-lowering agents: ${htDrugs.map(d=>d.name).join(", ")}`,
+      contributorDrugs: htDrugs.map(d => d.name),
     });
   }
 
@@ -373,7 +402,8 @@ function findInteractions() {
         type: "pharmacodynamic", strength: "additive",
         effect: "\u2191 Hepatotoxicity risk (additive liver injury)",
         severity: highHepato.length >= 2 ? "severe" : "moderate",
-        mechanism: `Multiple hepatotoxic agents: ${hepatoDrugs.map(d=>d.name).join(", ")}`
+        mechanism: `Multiple hepatotoxic agents: ${hepatoDrugs.map(d=>d.name).join(", ")}`,
+        contributorDrugs: hepatoDrugs.map(d => d.name),
       });
     }
   }
@@ -389,7 +419,8 @@ function findInteractions() {
         type: "pharmacodynamic", strength: "additive",
         effect: "\u2191 Hyponatremia risk (SIADH/dilutional)",
         severity: hypoNaDrugs.some(d => (d.props.hyponatremia||0) >= 2) ? "severe" : "moderate",
-        mechanism: `Multiple hyponatremia-inducing agents: ${hypoNaDrugs.map(d=>d.name).join(", ")}`
+        mechanism: `Multiple hyponatremia-inducing agents: ${hypoNaDrugs.map(d=>d.name).join(", ")}`,
+        contributorDrugs: hypoNaDrugs.map(d => d.name),
       });
     }
   }
@@ -406,7 +437,8 @@ function findInteractions() {
         type: "pharmacodynamic", strength: "additive",
         effect: hasStatin ? "\u2191 Rhabdomyolysis risk (statin + myotoxic agent)" : "\u2191 Myopathy/tendinopathy risk",
         severity: hasStatin ? "severe" : "moderate",
-        mechanism: `Multiple myotoxic agents: ${musculoDrugs.map(d=>d.name).join(", ")}${hasStatin ? " — monitor CK levels" : ""}`
+        mechanism: `Multiple myotoxic agents: ${musculoDrugs.map(d=>d.name).join(", ")}${hasStatin ? " — monitor CK levels" : ""}`,
+        contributorDrugs: musculoDrugs.map(d => d.name),
       });
     }
   }
@@ -422,7 +454,8 @@ function findInteractions() {
         type: "pharmacodynamic", strength: "additive",
         effect: "\u2191 Myelosuppression risk (pancytopenia, neutropenia)",
         severity: myeloDrugs.filter(d => (d.props.myelosuppression||0) >= 2).length >= 2 ? "severe" : "moderate",
-        mechanism: `Multiple myelosuppressive agents: ${myeloDrugs.map(d=>d.name).join(", ")} — monitor CBC`
+        mechanism: `Multiple myelosuppressive agents: ${myeloDrugs.map(d=>d.name).join(", ")} — monitor CBC`,
+        contributorDrugs: myeloDrugs.map(d => d.name),
       });
     }
   }
@@ -438,7 +471,8 @@ function findInteractions() {
         type: "pharmacodynamic", strength: "additive",
         effect: "\u2191 Photosensitivity risk — increased sun burn/phototoxicity",
         severity: "mild",
-        mechanism: `Multiple photosensitizing agents: ${photoDrugs.map(d=>d.name).join(", ")} — use SPF 50+ sunscreen`
+        mechanism: `Multiple photosensitizing agents: ${photoDrugs.map(d=>d.name).join(", ")} — use SPF 50+ sunscreen`,
+        contributorDrugs: photoDrugs.map(d => d.name),
       });
     }
   }
@@ -506,10 +540,10 @@ function findInteractions() {
       if (!sourceInStack || !victimInStack) continue;
       if (sourceInStack === victimInStack) continue; // skip self-interactions
 
-      const chainKey = [sourceInStack, victimInStack, chain.enzyme, chain.type].sort().join("|");
+      const chainKey = [sourceInStack, victimInStack, chain.enzyme, chain.type].join("|");
       // Check if the pairwise approach already found this interaction
-      const pairwiseKey = [sourceInStack, victimInStack, chain.enzyme, "inh"].sort().join("|");
-      const pairwiseKey2 = [sourceInStack, victimInStack, chain.enzyme, "ind"].sort().join("|");
+      const pairwiseKey = [sourceInStack, victimInStack, chain.enzyme, "inh"].join("|");
+      const pairwiseKey2 = [sourceInStack, victimInStack, chain.enzyme, "ind"].join("|");
       const knownKey = [sourceInStack, victimInStack, "known"].sort().join("|");
 
       if (seen.has(chainKey) || seen.has(pairwiseKey) || seen.has(pairwiseKey2) || seen.has(knownKey)) continue;
@@ -647,21 +681,21 @@ function calcRisk() {
   // PD risk — confidence-weighted: use evidence from DRUG_DB props where available
   const drugs = activeStack.map(getDrug).filter(Boolean);
   const qtcDrugs = drugs.filter(d=>(d.props.qtcRisk||0)>=2);
-  if (qtcDrugs.length >= 2) { score += 20; factors.push({ label: "QTc prolongation risk", color: "red" }); }
+  if (qtcDrugs.length >= 2) factors.push({ label: "QTc prolongation risk", color: "red" });
   const seroDrugs = drugs.filter(d=>d.props.serotonergic);
-  if (seroDrugs.length >= 2) { score += 15; factors.push({ label: "Serotonin syndrome risk", color: "red" }); }
-  if (drugs.filter(d=>(d.props.bleedingRisk||0)>=2).length >= 2) { score += 15; factors.push({ label: "High bleeding risk", color: "red" }); }
+  if (seroDrugs.length >= 2) factors.push({ label: "Serotonin syndrome risk", color: "red" });
+  if (drugs.filter(d=>(d.props.bleedingRisk||0)>=2).length >= 2) factors.push({ label: "High bleeding risk", color: "red" });
   else if (drugs.filter(d=>(d.props.bleedingRisk||0)>=1).length >= 2) factors.push({ label: "Bleeding risk", color: "amber" });
   const achDrugs = drugs.filter(d=>(d.props.anticholinergic||0)>=1);
   if (achDrugs.length >= 2) {
     const totalBurden = achDrugs.reduce((s,d) => s + (d.props.anticholinergic||0), 0);
-    if (totalBurden >= 4) { score += 15; factors.push({ label: `High anticholinergic burden (score ${totalBurden})`, color: "red" }); }
+    if (totalBurden >= 4) factors.push({ label: `High anticholinergic burden (score ${totalBurden})`, color: "red" });
     else factors.push({ label: "Anticholinergic burden", color: "amber" });
   }
-  if (drugs.filter(d=>d.props.nephrotoxic).length >= 2) { score += 10; factors.push({ label: "Nephrotoxicity risk", color: "amber" }); }
-  if (drugs.filter(d=>d.props.hyperkalemia).length >= 2) { score += 10; factors.push({ label: "Hyperkalemia risk", color: "amber" }); }
-  if (drugs.filter(d=>d.props.seizureRisk).length >= 2) { score += 10; factors.push({ label: "Seizure threshold lowered", color: "amber" }); }
-  if (drugs.filter(d=>d.props.sedation).length >= 3) { score += 10; factors.push({ label: "Heavy CNS depression", color: "red" }); }
+  if (drugs.filter(d=>d.props.nephrotoxic).length >= 2) factors.push({ label: "Nephrotoxicity risk", color: "amber" });
+  if (drugs.filter(d=>d.props.hyperkalemia).length >= 2) factors.push({ label: "Hyperkalemia risk", color: "amber" });
+  if (drugs.filter(d=>d.props.seizureRisk).length >= 2) factors.push({ label: "Seizure threshold lowered", color: "amber" });
+  if (drugs.filter(d=>d.props.sedation).length >= 3) factors.push({ label: "Heavy CNS depression", color: "red" });
   if (activeStack.length >= 8) factors.push({ label: `${activeStack.length} medications (polypharmacy)`, color: "amber" });
 
   // Combination product risk
