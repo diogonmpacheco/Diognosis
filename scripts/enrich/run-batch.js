@@ -8,10 +8,18 @@ import { resolve } from 'path';
 const root = resolve(new URL('../..', import.meta.url).pathname);
 const DEFAULT_BATCH = resolve(root, 'scripts/enrich/legal-literature-batch.json');
 const ENRICH_SCRIPT = resolve(root, 'scripts/enrich/pubmed-enrich.js');
+const AREA_BATCHES = {
+  '1': 'scripts/enrich/primary-care-common-chronic-batch.json',
+  'primary-care/common chronic meds': 'scripts/enrich/primary-care-common-chronic-batch.json',
+  'primary care/common chronic meds': 'scripts/enrich/primary-care-common-chronic-batch.json',
+  'primary-care': 'scripts/enrich/primary-care-common-chronic-batch.json',
+  'primary care': 'scripts/enrich/primary-care-common-chronic-batch.json',
+};
 
 function usage() {
   return `Usage:
   node scripts/enrich/run-batch.js [--batch scripts/enrich/legal-literature-batch.json] [--limit 8] [--providers pubmed,europepmc,openalex,semanticscholar] [--oa --oa-email you@example.com]
+  node scripts/enrich/run-batch.js --area 1
 
 Runs each batch query through pubmed-enrich.js. Provider responses are cached and drafts are deduped.
 `;
@@ -43,7 +51,9 @@ function main() {
     return;
   }
 
-  const batchPath = resolve(root, args.batch || DEFAULT_BATCH);
+  const areaBatch = args.area ? AREA_BATCHES[String(args.area).toLowerCase()] : null;
+  if (args.area && !areaBatch) throw new Error(`Unknown enrichment area: ${args.area}`);
+  const batchPath = resolve(root, args.batch || areaBatch || DEFAULT_BATCH);
   if (!existsSync(batchPath)) throw new Error(`Batch file not found: ${batchPath}`);
   const batch = JSON.parse(readFileSync(batchPath, 'utf8'));
   const queries = batch.queries || [];

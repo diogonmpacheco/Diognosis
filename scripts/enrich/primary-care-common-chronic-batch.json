@@ -1,0 +1,228 @@
+{
+  "id": "primary-care-common-chronic-2026-06",
+  "area": "Primary care/common chronic meds",
+  "description": "Primary-care/common chronic medication enrichment batch. Public label/guideline facts only; intended for human clinical review before promotion.",
+  "reviewRequired": true,
+  "substances": [
+    {
+      "id": "tirzepatide",
+      "name": "Tirzepatide",
+      "brandNames": ["Mounjaro", "Zepbound"],
+      "class": "GIP/GLP-1 receptor agonist",
+      "routes": [{ "pathway": "proteolytic degradation", "clinicalRelevance": "No CYP-mediated clearance; initiation and dose escalation can delay gastric emptying and affect absorption timing of oral medicines." }],
+      "inhibitors": [],
+      "inducers": [],
+      "substrates": ["oral narrow-therapeutic-index absorption timing context"],
+      "transporterRelevance": "No clinically dominant transporter pathway identified in label-level public facts.",
+      "importantMetabolites": [],
+      "evidenceRefs": ["ev_tirzepatide_oral_absorption_label"],
+      "reviewRequired": true
+    },
+    {
+      "id": "eplerenone",
+      "name": "Eplerenone",
+      "brandNames": ["Inspra"],
+      "class": "Mineralocorticoid receptor antagonist / potassium-sparing diuretic",
+      "routes": [{ "pathway": "CYP3A4", "clinicalRelevance": "Primary metabolic route; strong CYP3A inhibitors are clinically important." }],
+      "inhibitors": [],
+      "inducers": [],
+      "substrates": ["CYP3A4"],
+      "transporterRelevance": "Transporter effects are not the main clinically actionable interaction mechanism.",
+      "importantMetabolites": ["inactive metabolites"],
+      "evidenceRefs": ["ev_eplerenone_cyp3a_label"],
+      "reviewRequired": true
+    },
+    {
+      "id": "sacubitril_valsartan",
+      "name": "Sacubitril/Valsartan",
+      "brandNames": ["Entresto"],
+      "class": "ARNI / ARB / neprilysin inhibitor",
+      "routes": [
+        { "pathway": "esterase activation to LBQ657", "clinicalRelevance": "Sacubitril is activated to neprilysin inhibitor LBQ657." },
+        { "pathway": "renal and biliary excretion", "clinicalRelevance": "Renal function and potassium context shape safety." }
+      ],
+      "inhibitors": [],
+      "inducers": [],
+      "substrates": ["non-CYP activation/excretion context"],
+      "transporterRelevance": "OATP transporter effects are label-relevant for some statins but less central than ACE-inhibitor and potassium workflows.",
+      "importantMetabolites": ["LBQ657"],
+      "evidenceRefs": ["ev_sacubitril_valsartan_label"],
+      "reviewRequired": true
+    },
+    {
+      "id": "insulin_glargine",
+      "name": "Insulin Glargine",
+      "brandNames": ["Lantus", "Basaglar", "Toujeo", "Semglee"],
+      "class": "Long-acting basal insulin",
+      "routes": [{ "pathway": "proteolytic degradation", "clinicalRelevance": "No CYP metabolism; interaction relevance is pharmacodynamic hypoglycemia and masking of warning symptoms." }],
+      "inhibitors": [],
+      "inducers": [],
+      "substrates": [],
+      "transporterRelevance": "No clinically dominant transporter interaction pathway.",
+      "importantMetabolites": [],
+      "evidenceRefs": ["ev_insulin_glargine_beta_blocker_label", "ev_tirzepatide_oral_absorption_label"],
+      "reviewRequired": true
+    },
+    {
+      "id": "chlorthalidone",
+      "name": "Chlorthalidone",
+      "brandNames": ["Thalitone", "Hygroton"],
+      "class": "Thiazide-like diuretic / antihypertensive",
+      "routes": [{ "pathway": "renal excretion unchanged", "clinicalRelevance": "Renal handling and electrolyte effects drive clinically meaningful interactions." }],
+      "inhibitors": [],
+      "inducers": [],
+      "substrates": [],
+      "transporterRelevance": "Renal tubular electrolyte handling is clinically relevant; no specific CYP transporter substrate role is the main signal.",
+      "importantMetabolites": [],
+      "evidenceRefs": ["ev_chlorthalidone_lithium_label"],
+      "reviewRequired": true
+    },
+    {
+      "id": "torsemide",
+      "name": "Torsemide",
+      "brandNames": ["Demadex"],
+      "class": "Loop diuretic",
+      "routes": [
+        { "pathway": "CYP2C9", "clinicalRelevance": "Partial hepatic metabolism." },
+        { "pathway": "renal/biliary excretion", "clinicalRelevance": "Volume and electrolyte changes drive lithium and digoxin risk." }
+      ],
+      "inhibitors": [],
+      "inducers": [],
+      "substrates": ["CYP2C9"],
+      "transporterRelevance": "Transporter interactions are less actionable than renal clearance and electrolyte context.",
+      "importantMetabolites": ["inactive hydroxylated metabolites"],
+      "evidenceRefs": ["ev_torsemide_lithium_label"],
+      "reviewRequired": true
+    },
+    {
+      "id": "donepezil",
+      "name": "Donepezil",
+      "brandNames": ["Aricept"],
+      "class": "Acetylcholinesterase inhibitor",
+      "routes": [
+        { "pathway": "CYP3A4", "clinicalRelevance": "Metabolic route with inhibitor exposure relevance." },
+        { "pathway": "CYP2D6", "clinicalRelevance": "Metabolic route with inhibitor exposure relevance." }
+      ],
+      "inhibitors": [],
+      "inducers": [],
+      "substrates": ["CYP3A4", "CYP2D6"],
+      "transporterRelevance": "No primary transporter interaction signal in public label facts.",
+      "importantMetabolites": ["6-O-desmethyl donepezil and other inactive/minor metabolites"],
+      "evidenceRefs": ["ev_donepezil_bradycardia_label"],
+      "reviewRequired": true
+    },
+    {
+      "id": "memantine",
+      "name": "Memantine",
+      "brandNames": ["Namenda"],
+      "class": "NMDA receptor antagonist",
+      "routes": [{ "pathway": "renal excretion unchanged", "clinicalRelevance": "Urine alkalinization can reduce elimination and increase exposure." }],
+      "inhibitors": [],
+      "inducers": [],
+      "substrates": [],
+      "transporterRelevance": "Renal pH-dependent clearance is clinically more actionable than CYP/transporter modulation.",
+      "importantMetabolites": [],
+      "evidenceRefs": ["ev_memantine_urine_ph_label"],
+      "reviewRequired": true
+    }
+  ],
+  "ddiPairs": [
+    {
+      "drug1": "Tirzepatide",
+      "drug2": "Insulin Glargine",
+      "severity": "moderate",
+      "category": "pharmacodynamic",
+      "mechanism": "Improved glycemic control can increase hypoglycemia risk when tirzepatide is added to insulin.",
+      "effect": "Consider insulin dose reduction and closer glucose monitoring during initiation and escalation.",
+      "evidenceRefs": ["ev_tirzepatide_oral_absorption_label", "ev_insulin_glargine_beta_blocker_label"],
+      "reviewRequired": true
+    },
+    {
+      "drug1": "Eplerenone",
+      "drug2": "Itraconazole",
+      "severity": "severe",
+      "category": "metabolic",
+      "mechanism": "Itraconazole strongly inhibits CYP3A4, the main eplerenone clearance route.",
+      "effect": "Contraindicated due to high eplerenone exposure and hyperkalemia risk.",
+      "evidenceRefs": ["ev_eplerenone_cyp3a_label"],
+      "reviewRequired": true
+    },
+    {
+      "drug1": "Sacubitril/Valsartan",
+      "drug2": "Lisinopril",
+      "severity": "severe",
+      "category": "angioedema",
+      "mechanism": "Neprilysin inhibition plus ACE inhibition increases bradykinin-mediated angioedema risk.",
+      "effect": "Contraindicated; use a 36-hour washout when switching to or from an ACE inhibitor.",
+      "evidenceRefs": ["ev_sacubitril_valsartan_label"],
+      "reviewRequired": true
+    },
+    {
+      "drug1": "Chlorthalidone",
+      "drug2": "Lithium",
+      "severity": "severe",
+      "category": "renal_clearance",
+      "mechanism": "Thiazide-like diuretics can reduce lithium renal clearance.",
+      "effect": "High lithium toxicity risk; avoid if possible or reduce dose and monitor serum lithium.",
+      "evidenceRefs": ["ev_chlorthalidone_lithium_label"],
+      "reviewRequired": true
+    },
+    {
+      "drug1": "Torsemide",
+      "drug2": "Digoxin",
+      "severity": "moderate",
+      "category": "electrolyte",
+      "mechanism": "Loop-diuretic hypokalemia and hypomagnesemia can increase digoxin arrhythmia risk.",
+      "effect": "Monitor potassium, magnesium, renal function, and digoxin toxicity signs.",
+      "evidenceRefs": ["ev_torsemide_lithium_label"],
+      "reviewRequired": true
+    },
+    {
+      "drug1": "Donepezil",
+      "drug2": "Metoprolol",
+      "severity": "moderate",
+      "category": "cardiac_conduction",
+      "mechanism": "Donepezil vagotonic effects plus beta-blockade can increase bradycardia or heart-block risk.",
+      "effect": "Monitor pulse, syncope, and conduction symptoms after initiation or dose changes.",
+      "evidenceRefs": ["ev_donepezil_bradycardia_label"],
+      "reviewRequired": true
+    },
+    {
+      "drug1": "Memantine",
+      "drug2": "Sodium Bicarbonate",
+      "severity": "moderate",
+      "category": "renal_ph",
+      "mechanism": "Urine alkalinization can reduce memantine renal elimination.",
+      "effect": "Avoid sustained alkalinization or monitor for dizziness, confusion, and CNS adverse effects.",
+      "evidenceRefs": ["ev_memantine_urine_ph_label"],
+      "reviewRequired": true
+    }
+  ],
+  "queries": [
+    {
+      "relation": "tirzepatide:oral_absorption_insulin_hypoglycemia",
+      "query": "tirzepatide delayed gastric emptying oral drug absorption warfarin insulin hypoglycemia label",
+      "supports": ["tirzepatide_oral_absorption_context", "tirzepatide_insulin_hypoglycemia_context"]
+    },
+    {
+      "relation": "eplerenone:CYP3A4_hyperkalemia",
+      "query": "eplerenone CYP3A4 inhibitor contraindicated itraconazole hyperkalemia label pharmacokinetics",
+      "supports": ["eplerenone_CYP3A4_substrate_context", "eplerenone_hyperkalemia_context"]
+    },
+    {
+      "relation": "sacubitril_valsartan:ACEI_angioedema_potassium",
+      "query": "sacubitril valsartan ACE inhibitor 36 hour washout angioedema hyperkalemia label",
+      "supports": ["sacubitril_valsartan_ACEI_washout_context", "sacubitril_valsartan_potassium_context"]
+    },
+    {
+      "relation": "diuretics:lithium_digoxin_electrolytes",
+      "query": "chlorthalidone torsemide lithium digoxin hypokalemia pharmacokinetics label",
+      "supports": ["chlorthalidone_lithium_clearance_context", "torsemide_digoxin_electrolyte_context"]
+    },
+    {
+      "relation": "dementia:donepezil_memantine_primary_care",
+      "query": "donepezil metoprolol bradycardia CYP3A4 CYP2D6 memantine urine alkalinization sodium bicarbonate label",
+      "supports": ["donepezil_bradycardia_CYP_context", "memantine_urine_alkalinization_context"]
+    }
+  ]
+}
