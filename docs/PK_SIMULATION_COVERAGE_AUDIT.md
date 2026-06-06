@@ -6,8 +6,8 @@ Scope: `DRUG_DB` coverage against `PK_PARAMS`, with priority given to common sel
 
 ## Summary
 
-- Absolute PK profiles increased from 146 to 206.
-- 60 high-value profiles were added from public-label pharmacokinetic fields.
+- Absolute PK profiles increased from 146 to 206 in the first batch, then to 506 in the second batch.
+- 360 high-value profiles were added from public-label pharmacokinetic fields and label-style caveat categories.
 - Remaining gaps are mostly non-systemic products, biologics, clinical contexts, supplements/foods, environmental toxicants, or drugs where a one-compartment oral curve is not the main useful representation.
 
 ## Top selected/common drugs without PK_PARAMS before this batch
@@ -44,3 +44,11 @@ Renal clearance or renal toxicity caveats were added for amoxicillin, cephalexin
 ## Added profile set
 
 pravastatin, lovastatin, fluvastatin, pitavastatin, alprazolam, lorazepam, clonazepam, oxazepam, temazepam, triazolam, zolpidem, eszopiclone, buspirone, trazodone, vortioxetine, desvenlafaxine, milnacipran, imipramine, clomipramine, doxepin, desipramine, linezolid, azithromycin, erythromycin, amoxicillin, cephalexin, cefuroxime, ceftriaxone, cefepime, piperacillin_tazobactam, vancomycin, gentamicin, tobramycin, acyclovir, valacyclovir, oseltamivir, atazanavir, ritonavir, lopinavir, dolutegravir, raltegravir, efavirenz, nevirapine, posaconazole, isavuconazonium_sulfate, terbinafine, hydroxychloroquine, methotrexate, colchicine, allopurinol, probenecid, celecoxib, diclofenac, indomethacin, piroxicam, diltiazem, verapamil, nifedipine, felodipine, eplerenone.
+
+## Second Batch
+
+The second expansion added 300 more systemic `DRUG_DB` entries. The compact table in `src/data/pharmacology.js` stores drug id, bioavailability/route approximation, tmax, half-life, volume of distribution, representative dose, and caveat note, then materializes normal `PK_PARAMS` records at load time.
+
+Priority groups covered: antimicrobials, antiretrovirals/antivirals, oncology drugs, antipsychotics/antidepressants, sedatives, cardiovascular drugs, renal-clearance drugs, hemostasis drugs, antiseizure drugs, endocrine/metabolic drugs, antiparasitics, and transplant/immunology agents.
+
+Batch count check: 300 source rows, 300 materialized absolute profiles, total `PK_PARAMS` count 506.
