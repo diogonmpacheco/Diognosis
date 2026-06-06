@@ -11,11 +11,11 @@ This audit checked the generated launch bundle (`index.html`) after rebuilding f
 | Metric | Count |
 | --- | ---: |
 | Drugs in `DRUG_DB` | 625 |
-| Evidence entries in `STUDY_DB` | 452 |
-| Public evidence entries | 450 |
+| Evidence entries in `STUDY_DB` | 455 |
+| Public evidence entries | 453 |
 | Verified evidence entries, all `STUDY_DB` | 161 |
 | Verified public evidence entries shown by live quality dashboard | 159 |
-| Review queue entries | 291 |
+| Review queue entries | 294 |
 | Curated DDI pairs after fixes | 627 |
 | Severe/critical curated DDI pairs after fixes | 323 |
 
@@ -58,8 +58,8 @@ The remaining queue is expected launch review work, not a structural data failur
 
 | Queue | Count |
 | --- | ---: |
-| `reviewRequired:true` evidence entries | 291 |
-| Review-queue entries with PMID, DOI, or URL | 291 |
+| `reviewRequired:true` evidence entries | 294 |
+| Review-queue entries with PMID, DOI, or URL | 294 |
 | Review-queue entries accidentally marked verified | 0 |
 | Review-queue entries used as verified evidence | 0 |
 

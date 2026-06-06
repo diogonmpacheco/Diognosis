@@ -36,36 +36,21 @@ For class-based entry points, see the [Medication Class Guides](https://diogonmp
 
 ---
 
-## Why It Exists
+## Privacy
 
-Most interaction checkers return isolated warnings. MedCheck is built around a different premise: medication risk is often synergistic, and **the whole is greater than the sum of its parts**.
+MedCheck is a static client-side app. It does not use accounts, analytics, cookies, tracking pixels, backend logging, or medication-data collection. Searches, medication stacks, genotype settings, and pasted report rows stay in your browser.
 
-The goal is not to treat each drug, genotype, metabolite, or pathway as a separate lookup item. The goal is to show how those parts combine into a pharmacology system:
+---
 
-- which enzyme, transporter, metabolite, receptor, or phenotype is involved
-- whether the issue is parent-drug accumulation, active-metabolite failure, receptor burden, or washout timing
-- how genotype and co-medications change predicted exposure
-- which evidence entries support the signal, and which entries still require human review
+## What It Shows
+
+Most interaction checkers return isolated warnings. MedCheck instead shows how a medication stack behaves as a connected system: interaction warnings, pharmacogenomics, metabolites, PK curves, evidence, receptor burden, Beers-style flags, and washout timing.
 
 The project is intended for education, research, and review workflows. It is not a clinical decision system.
 
 ---
 
-## What It Can Explore
-
-- Drug-drug interactions and known curated DDI pairs
-- CYP and transporter substrate/inhibitor/inducer pathways
-- Pharmacogenomics across CYP2D6, CYP2C19, CYP2C9, CYP3A5, SLCO1B1, HLA risk alleles, G6PD, DPYD, TPMT, UGT1A1, NUDT15, and more
-- Local DNA / PharmGx report paste-in for supported gene phenotype and risk-allele rows, designed as a first bridge toward ClawBio-style pharmacogenetics workflows
-- Parent/metabolite divergence for prodrugs and active or toxic metabolites
-- PK curves with absolute parameters where available, plus relative-exposure fallback curves when only half-life data exists
-- Receptor occupancy and syndrome-style burden detection
-- Anticholinergic, sedative, fall-risk, Beers, and washout summaries
-- Evidence browsing with review-required entries clearly separated
-
----
-
-## Live Source Stats
+## Launch Stats
 
 <!-- MEDCHECK_STATS_START -->
 - **625 drugs** in DRUG_DB
@@ -75,7 +60,7 @@ The project is intended for education, research, and review workflows. It is not
 - **506 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **57 genotype genes** and **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **2154 KB** generated bundle (33972 lines)
+- **2154 KB** generated bundle (33979 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---
@@ -88,15 +73,17 @@ The project is intended for education, research, and review workflows. It is not
 4. Set genotype phenotypes where relevant, or paste supported PharmGx report rows in the pharmacogenomics panel.
 5. Treat every result as an explanation to review, not as medical advice.
 
-For implementation details, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md). For the current launch-readiness pass, see [Launch Audit](docs/LAUNCH_AUDIT.md).
+For internals, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md). For launch readiness, see the [Launch QA Matrix](docs/LAUNCH_QA_MATRIX.md) and [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md).
 
 ---
 
-## Review Status
+## Contribute / Review Data
 
 MedCheck contains curated data and live enrichment entries. Live enrichment entries are marked `reviewRequired:true` and are intended for pharmacist or physician review before any clinical use.
 
 The safety contract is simple: a warning should explain the pathway, affected actor, predicted direction, and supporting evidence. Severity should not be treated as clinically final without human review.
+
+Helpful contributions include data review, missing evidence refs, duplicate or stale interaction reports, reproducible app bugs, and focused pull requests. For data review, start with the review queue in [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md), cite public sources such as labels, guidelines, PubMed records, PMIDs, DOIs, or URLs, and keep unverified enrichment marked `reviewRequired:true` until reviewed.
 
 ---
 

@@ -20,6 +20,7 @@
     "build:min": "node build.js --minify",
     "build:dev": "node build.js --out /tmp/medcheck_dev.html",
     "smoke": "node scripts/smoke-check.js",
+    "launch:qa": "node scripts/launch-qa-audit.js",
     "regression": "node scripts/regression-check.js",
     "validate": "node scripts/validate-db.js",
     "validate:strict": "node scripts/validate-db.js --strict",

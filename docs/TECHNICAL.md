@@ -8,6 +8,22 @@ MedCheck distributes as a single self-contained HTML file. All computation runs 
 
 The central design principle is synergy: drugs, genes, metabolites, receptors, transporters, foods, and time are modeled as connected actors because the clinically interesting signal often emerges from the whole system rather than from isolated parts.
 
+## Capability Surface
+
+MedCheck currently models:
+
+- Drug-drug interactions and known curated DDI pairs
+- CYP and transporter substrate, inhibitor, and inducer pathways
+- Pharmacogenomics across CYP2D6, CYP2C19, CYP2C9, CYP3A5, SLCO1B1, HLA risk alleles, G6PD, DPYD, TPMT, UGT1A1, NUDT15, and related genes
+- Local DNA / PharmGx report paste-in for supported gene phenotype and risk-allele rows, as a report-row bridge rather than a raw DNA caller
+- Parent/metabolite divergence for prodrugs and active or toxic metabolites
+- PK curves with absolute parameters where available, plus relative-exposure fallback curves when only half-life data exists
+- Receptor occupancy and syndrome-style burden detection
+- Anticholinergic, sedative, fall-risk, Beers, and washout summaries
+- Evidence browsing with review-required entries clearly separated
+
+## Source Layout
+
 The source is structured as editable JavaScript modules in `src/`, assembled in dependency order by `build.js`, alongside the generated stats file and HTML template:
 
 ```text

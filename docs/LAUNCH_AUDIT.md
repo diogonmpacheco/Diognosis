@@ -1,6 +1,6 @@
 # MedCheck Launch Audit
 
-Date: 2026-06-04
+Date: 2026-06-06
 
 This audit covers engineering consistency, release metadata, automated validation, and data-integrity checks for the public static app. It does not replace pharmacist, physician, or domain-expert review of individual clinical claims.
 
@@ -29,13 +29,13 @@ The release gate rebuilds the app and runs:
 
 Current release stats:
 
-- 316 drugs
-- 265 evidence entries
-- 235 curated DDI pairs
-- 32 genotype genes
-- 27 metabolite actors
+- 625 drugs
+- 455 evidence entries
+- 627 curated DDI pairs
+- 57 genotype genes
+- 33 metabolite actors
 - 52 receptor score profiles
-- 125 quarantined enrichment drafts awaiting human review
+- 294 quarantined enrichment drafts awaiting human review
 
 ## Additional Audit Checks
 
@@ -66,7 +66,7 @@ No blocking issues were found in those checks.
 
 ## Residual Risks
 
-- The 125 quarantined enrichment drafts are visible for review workflows but remain unverified until human review.
+- The 294 quarantined enrichment drafts are visible for review workflows but remain unverified until human review.
 - MedCheck is an explanatory and educational tool, not a clinical decision system.
 - The PharmGx importer accepts normalized phenotype and risk-marker rows; it is not a raw DNA or star-allele caller.
 - D3.js is loaded from a CDN for graph visualization, so the graph panel depends on that external asset being reachable.

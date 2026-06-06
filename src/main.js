@@ -52,7 +52,9 @@ function loadUrlDemoState() {
     const genotypeParams = Array.isArray(genotypeParam) ? genotypeParam : [genotypeParam];
     genotypeParams.forEach(param => {
       String(param || '').split(/[;,]/).forEach(pair => {
-        const [rawGene, rawPhenotype] = pair.split(':').map(v => v && v.trim());
+        const sep = pair.lastIndexOf(':');
+        const rawGene = sep >= 0 ? pair.slice(0, sep).trim() : pair.trim();
+        const rawPhenotype = sep >= 0 ? pair.slice(sep + 1).trim() : "";
         const gene = rawGene && typeof normalizePharmGxGene === "function"
           ? (normalizePharmGxGene(rawGene) || rawGene.toUpperCase())
           : (rawGene ? rawGene.toUpperCase() : "");
@@ -116,6 +118,10 @@ function parseQueryParams(search) {
 function normalizeUrlPhenotype(geneOrValue, maybeValue) {
   const gene = maybeValue === undefined ? null : geneOrValue;
   const value = maybeValue === undefined ? geneOrValue : maybeValue;
+  if (gene && typeof GENOTYPE_RISK_EFFECTS !== "undefined" && GENOTYPE_RISK_EFFECTS[gene]) {
+    const status = typeof riskTextToStatus === "function" ? riskTextToStatus(value, gene) : null;
+    if (status) return { gene, status, reportedLabel:String(value || "").trim(), mechanism:status };
+  }
   const parsed = typeof normalizeGenePhenotypeInput === "function"
     ? normalizeGenePhenotypeInput(gene, value)
     : null;

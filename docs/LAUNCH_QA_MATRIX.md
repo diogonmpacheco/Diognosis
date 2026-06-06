@@ -1,0 +1,25 @@
+# Launch QA Matrix
+
+Generated from `node scripts/launch-qa-audit.js` on 2026-06-06.
+
+The matrix validates that each launch stack has a highest-priority signal, a known warning, a mechanistic explanation, genotype/metabolite context, linked evidence, and a shareable URL state.
+
+| # | Stack | Expected highest priority | Expected known warning | Expected mechanistic block | Expected genotype/metabolite card | Expected evidence link | Expected URL link |
+|---:|---|---|---|---|---|---|---|
+| 1 | Paroxetine + Fluoxetine | `HIGH - High-priority interaction found` | Serotonin/CYP2D6 interaction warning | CYP2D6 plus serotonergic burden | CYP2D6/Norfluoxetine context | FDA access data / SSRI CYP2D6 evidence: `https://www.accessdata.fda.gov/scripts/cder/daf/` | `index.html?substances=paroxetine,fluoxetine&tab=safety` |
+| 2 | Metoprolol + Fluoxetine + CYP2D6:null | `HIGH - High-priority interaction found` | Bradycardia/hypotension risk | Fluoxetine inhibits CYP2D6-mediated metoprolol clearance; inherited null is not double-counted | No-function CYP2D6 + Metoprolol exposure card | CPIC beta-blocker guidance: `https://cpicpgx.org/guidelines/cpic-guideline-for-beta-blockers/` | `index.html?substances=metoprolol,fluoxetine&genotype=CYP2D6:null&tab=pgx` |
+| 3 | Clopidogrel + Omeprazole + CYP2C19:PM | `HIGH - High-priority interaction found` | Active-metabolite loss / stent thrombosis risk | Omeprazole inhibits CYP2C19 clopidogrel bioactivation | Active thiol metabolite via CYP2C19 | CPIC clopidogrel/CYP2C19: `https://doi.org/10.1002/cpt.2526` | `index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&tab=pgx` |
+| 4 | Simvastatin + Clarithromycin + SLCO1B1 reduced | `HIGH - High-priority interaction found` | Rhabdomyolysis risk | Clarithromycin blocks CYP3A4/P-gp; SLCO1B1 reduced uptake adds statin exposure context | SLCO1B1 + Simvastatin card | Statin PGx / DDI evidence: `https://pubmed.ncbi.nlm.nih.gov/26367500/` | `index.html?substances=simvastatin,clarithromycin&genotype=SLCO1B1:reduced_function&tab=pgx` |
+| 5 | Warfarin + TMP-SMX + CYP2C9 PM + VKORC1 sensitive | `PGx High - CYP2C9 genotype may change Warfarin exposure` | Bleeding/INR risk | CYP2C9 poor clearance plus TMP-SMX antibiotic interaction; VKORC1 sensitivity card present | CYP2C9 + VKORC1 warfarin cards | Warfarin label/guideline evidence: `https://dailymed.nlm.nih.gov/dailymed/` | `index.html?substances=warfarin,trimethoprim-sulfamethoxazole&genotype=CYP2C9:PM&genotype=VKORC1:sensitive&tab=pgx` |
+| 6 | Codeine + Bupropion + CYP2D6 PM/null | `PGx High - CYP2D6 genotype may reduce Morphine` | Codeine activation blocked / analgesia failure | CYP2D6 no-function plus bupropion/hydroxybupropion inhibition blocks morphine formation | Morphine from Codeine via CYP2D6 | CPIC opioid/CYP2D6: `https://doi.org/10.1038/clpt.2013.254` | `index.html?substances=codeine,bupropion&genotype=CYP2D6:null&tab=pgx` |
+| 7 | Azathioprine + Allopurinol + TPMT/NUDT15 | `PGx High - TPMT genotype may increase 6-Thioguanine nucleotides (6-TGN)` | Myelosuppression/toxicity risk | Allopurinol inhibits xanthine oxidase and shifts thiopurine pathway toward cytotoxic 6-TGN | 6-TGN via TPMT/NUDT15 cards | CPIC thiopurine guidance: `https://doi.org/10.1002/cpt.1304` | `index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=pgx` |
+| 8 | Rasburicase / Primaquine / Dapsone + G6PD deficiency | `PGx High - G6PD deficiency conflicts with Rasburicase` | Hemolysis/methemoglobinemia risk | Oxidant stress with deficient red-cell G6PD reserve | G6PD deficiency risk cards for oxidant drugs | CPIC / Medical Genetics Summaries G6PD context: `https://www.ncbi.nlm.nih.gov/books/NBK591833/` | `index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency&tab=pgx` |
+| 9 | Abacavir + HLA-B*57:01 | `PGx High - HLA-B*57:01 conflicts with Abacavir` | Abacavir hypersensitivity risk | HLA-B*57:01 immune risk marker | HLA-B*57:01 + Abacavir risk card | CPIC abacavir/HLA-B: `https://cpicpgx.org/guidelines/guideline-for-abacavir-and-hla-b/` | `index.html?substances=abacavir&genotype=HLA-B*57:01:present&tab=pgx` |
+| 10 | Succinylcholine + BCHE deficiency + RYR1/CACNA1S variant | `PGx High - BCHE genotype may change Succinylcholine exposure` | Prolonged apnea and malignant-hyperthermia susceptibility warnings | BCHE impaired hydrolysis plus RYR1/CACNA1S malignant-hyperthermia risk marker | BCHE + RYR1/CACNA1S cards | Anesthesia PGx evidence: `https://pubmed.ncbi.nlm.nih.gov/30499100/` | `index.html?substances=succinylcholine&genotype=BCHE:null&genotype=RYR1:present&tab=pgx` |
+
+## Fixes Implemented
+
+- URL genotype parser now splits genotype key/value at the last colon, preserving allele names such as `HLA-B*57:01`.
+- URL risk-marker normalization now evaluates risk markers before generic metabolizer phenotypes, so `G6PD:deficiency` resolves to risk-marker present.
+- Thiopurine qualitative PGx scoring now treats CPIC avoid/drastic dose-reduction/myelosuppression language as `PGx High`.
+- Added `scripts/launch-qa-audit.js` and `npm run launch:qa` for repeatable launch-matrix validation.

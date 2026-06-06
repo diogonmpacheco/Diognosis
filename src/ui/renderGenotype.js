@@ -297,7 +297,8 @@ function scoreGenotypeMetaboliteSignal(effect, phenotypeEffect) {
     else if (fold >= 3 || fold <= 0.5) score = 65;
     else if (fold >= 2 || fold <= 0.7) score = 50;
   }
-  if (/contraindicat|avoid|life-threatening|fatal|severe|toxicity|failure risk|analgesia failure|stent thrombosis|myelosuppression|respiratory depression/.test(text)) score += 20;
+  if (/contraindicat|avoid|life-threatening|fatal|severe|toxicity|failure risk|analgesia failure|stent thrombosis|myelosuppression|respiratory depression|drastically reduced|weekly cbc|close cbc/.test(text)) score += 20;
+  if (/cpic/.test(text) && /avoid|drastically reduced|myelosuppression/.test(text)) score = Math.max(score, 75);
   if (/prodrug|active metabolite|key active|opioid-active/.test(text) && phenotypeEffect.direction === "decrease") score += 10;
   return Math.min(95, score);
 }
