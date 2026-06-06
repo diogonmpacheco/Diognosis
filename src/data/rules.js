@@ -791,6 +791,21 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     }
   },
   {
+    parent:"Tegafur",
+    metaboliteId:"5-fluorouracil",
+    metaboliteName:"5-Fluorouracil",
+    enzyme:"DPYD",
+    note:"Tegafur is converted to active 5-FU, and DPYD loss-of-function impairs 5-FU catabolism. Treat reduced DPYD function as a fluoropyrimidine toxicity signal even though CYP2A6 controls much of tegafur activation.",
+    evidenceRefs:["ev_tegafur_cyp2a6_activation_pubmed","ev_fluorouracil_dpyd_amstutz2018"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"DPYD loss-of-function: 5-FU from tegafur accumulates",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"5-FU from tegafur accumulates -> life-threatening fluoropyrimidine toxicity risk" },
+      [GENOTYPE_PHENOTYPE.IM]: { fold:2.0, direction:"increase", label:"higher 5-FU exposure risk; use fluoropyrimidine PGx dosing precautions" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    }
+  },
+  {
     parent:"Irinotecan",
     metaboliteId:"sn-38-7-ethyl-10-hydroxycamptothecin",
     metaboliteName:"SN-38",

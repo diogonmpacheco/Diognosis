@@ -23,7 +23,7 @@ const METAB = {
 ],
 // ── STIMULANTS & SOCIAL ──
 "Caffeine":[
-  {n:"Paraxanthine (1,7-DMX)",e:"CYP1A2",a:"active",p:80,t:4,note:"Primary metabolite, CNS stimulant, ↑ lipolysis"},
+  {n:"Paraxanthine (1,7-DMX)",e:"CYP1A2",a:"active",p:80,t:4,note:"Primary metabolite, CNS stimulant, ↑ lipolysis",evidenceRefs:["ev_caffeine_paraxanthine_cyp1a2_review"]},
   {n:"Theobromine (3,7-DMX)",e:"CYP1A2",a:"active",p:11,t:7,note:"Vasodilator, mild diuretic, found in chocolate"},
   {n:"Theophylline (1,3-DMX)",e:"CYP2E1",a:"active",p:4,t:8,note:"Bronchodilator — narrow therapeutic index drug",inh:[{e:"CYP1A2",s:"weak"}]},
   {n:"1-Methylxanthine",e:"CYP1A2",a:"inactive",p:3},
@@ -251,7 +251,7 @@ const METAB = {
   {n:"Nortriptyline glucuronide",e:"UGT",a:"inactive",p:15}
 ],
 "Imipramine":[
-  {n:"Desipramine",e:"CYP2C19",a:"active",p:50,t:20,note:"Active — itself a marketed TCA (potent NRI)"},
+  {n:"Desipramine",e:"CYP2C19",a:"active",p:50,t:20,note:"Active — itself a marketed TCA (potent NRI)",evidenceRefs:["ev_tca_cyp2d6_cpic"]},
   {n:"2-Hydroxyimipramine",e:"CYP2D6",a:"active",p:15,evidenceRefs:["ev_tca_cyp2d6_cpic"]},
   {n:"2-Hydroxydesipramine",e:"CYP2D6",a:"active",p:10,evidenceRefs:["ev_tca_cyp2d6_cpic"]},
   {n:"Iminodibenzyl",e:"CYP1A2",a:"inactive",p:10}
@@ -281,7 +281,7 @@ const METAB = {
   {n:"Mirtazapine glucuronide",e:"UGT",a:"inactive",p:10}
 ],
 "Trazodone":[
-  {n:"m-Chlorophenylpiperazine (mCPP)",e:"CYP3A4",a:"active",p:20,t:6,note:"5-HT2C agonist — causes anxiety in some patients"},
+  {n:"m-Chlorophenylpiperazine (mCPP)",e:"CYP3A4",a:"active",p:20,t:6,note:"5-HT2C agonist — causes anxiety in some patients",evidenceRefs:["ev_trazodone_mcpp_cyp2d6_mihara1997"]},
   {n:"Triazolopyridine carboxylic acid",e:"CYP3A4",a:"inactive",p:50},
   {n:"Trazodone glucuronide",e:"UGT",a:"inactive",p:15}
 ],
@@ -541,7 +541,7 @@ const METAB = {
   {n:"Reduced haloperidol",e:"Carbonyl-R",a:"active",p:25,t:18,note:"Back-converted to haloperidol — creates metabolic cycling"},
   {n:"Haloperidol glucuronide",e:"UGT",a:"inactive",p:30},
   {n:"4-Fluorobenzoylpropionic acid",e:"CYP2D6",a:"inactive",p:15,evidenceRefs:["ev_antipsychotic_cyp2d6_labels"]},
-  {n:"Pyridinium metabolite (HPP+)",e:"CYP3A4",a:"toxic",p:5,note:"Neurotoxic, similar to MPP+"}
+  {n:"Pyridinium metabolite (HPP+)",e:"CYP3A4",a:"toxic",p:5,note:"Neurotoxic, similar to MPP+; animal and human detection literature supports this as a toxic-metabolite review signal rather than a calibrated dose rule.",evidenceRefs:["ev_haloperidol_hpp_neurotoxicity"]}
 ],
 "Clozapine":[
   {n:"N-Desmethylclozapine (norclozapine)",e:"CYP1A2",a:"active",p:40,t:12,note:"Active — muscarinic M1 agonist (different from parent)"},
@@ -590,7 +590,7 @@ const METAB = {
 
 // ── MISC DRUGS WITH KNOWN METABOLITES ──
 "Losartan":[
-  {n:"EXP 3174 (E-3174)",e:"CYP2C9",a:"active_form",role:"active_form",p:14,t:6,note:"THE active metabolite — 10-40× more potent AT1 antagonist than losartan"},
+  {n:"EXP 3174 (E-3174)",e:"CYP2C9",a:"active_form",role:"active_form",p:14,t:6,note:"THE active metabolite — 10-40× more potent AT1 antagonist than losartan",evidenceRefs:["ev_losartan_cyp2c9_sica2002"]},
   {n:"EXP 3179",e:"CYP3A4",a:"active",p:5},
   {n:"Losartan carboxylic acid",e:"CYP2C9",a:"inactive",p:40}
 ],
@@ -4439,6 +4439,47 @@ const METAB = {
     evidenceRefs:["ev_gpiibiiia_bleeding_label"]
   }
 ],
+"Misoprostol":[
+  {
+    n:"Misoprostol acid",
+    e:"Esterase",
+    a:"active_form",
+    role:"active_form",
+    p:100,
+    t:0.5,
+    note:"Active free-acid metabolite responsible for clinical prostaglandin activity; oral label PK describes rapid de-esterification and short misoprostol-acid half-life.",
+    evidenceRefs:["ev_misoprostol_active_acid_label"]
+  },
+  {
+    n:"Misoprostol beta/omega-oxidation products",
+    e:"Beta/Omega oxidation",
+    a:"inactive",
+    p:80,
+    note:"Downstream oxidation products after active acid formation; interaction value is route/dose/uterotonic context rather than CYP genotype.",
+    evidenceRefs:["ev_misoprostol_active_acid_label"]
+  }
+],
+"Tegafur":[
+  {
+    n:"5-Fluorouracil",
+    e:"CYP2A6",
+    a:"active_form",
+    role:"active_form",
+    p:65,
+    t:0.25,
+    note:"Active fluoropyrimidine generated from tegafur. CYP2A6 forms 5-FU from tegafur, while DPYD loss-of-function impairs downstream 5-FU catabolism and raises severe toxicity risk.",
+    evidenceRefs:["ev_tegafur_cyp2a6_activation_pubmed","ev_fluorouracil_dpyd_amstutz2018"]
+  },
+  {
+    n:"Dihydrofluorouracil (DHFU)",
+    e:"DPYD",
+    a:"inactive",
+    p:60,
+    t:24,
+    note:"Inactive 5-FU catabolite. DPYD reduced function lowers DHFU formation while active 5-FU exposure rises.",
+    evidenceRefs:["ev_fluorouracil_dpyd_amstutz2018"]
+  }
+],
 "Albendazole":[
   {
     n:"Albendazole sulfoxide",
@@ -4962,6 +5003,7 @@ const METABOLITE_ACTORS = {
     active:true, halfLife:0.5, potencyRatio:100.0,
     routes:[],
     inh:[],
+    evidenceRefs:["ev_clopidogrel_cyp2c19_cpic","ev_clopidogrel_active_thiol_kim2014","ev_clopidogrel_dose_escalation_horenstein2014"],
     note:"Only 15% of clopidogrel reaches active form; CYP2C19 PM → 70% ↓ → stent thrombosis"
   },
   "mcpp": {
@@ -4979,6 +5021,7 @@ const METABOLITE_ACTORS = {
     active:false, halfLife:72, potencyRatio:0,
     routes:[],
     inh:[],
+    evidenceRefs:["ev_haloperidol_hpp_neurotoxicity"],
     toxicity:{target:"dopaminergic_neurons", mechanism:"MPP+-like mitochondrial complex I inhibitor"},
     note:"NEUROTOXIC; similar to MPTP → tardive dyskinesia risk; ↑ in CYP2D6 PM"
   },
@@ -5040,8 +5083,9 @@ const METABOLITE_ACTORS = {
     id:"napqi", type:ACTOR_TYPE.METABOLITE,
     name:"NAPQI", parentDrug:"Acetaminophen", formingEnzyme:"CYP2E1",
     active:false, halfLife:0.01, potencyRatio:0,
-    routes:[{enzyme:"GST",fraction:0.95}],
+    routes:[{enzyme:"GST",fraction:0.95,evidenceRefs:["ev_apap_alcohol_riordan2002"]}],
     inh:[],
+    evidenceRefs:["ev_apap_alcohol_riordan2002"],
     toxicity:{target:"hepatocytes", mechanism:"Glutathione depletion → covalent protein binding → necrosis"},
     note:"Normally detoxified by glutathione; CYP2E1 inducers (alcohol, isoniazid) ↑ NAPQI production 3-5×"
   },

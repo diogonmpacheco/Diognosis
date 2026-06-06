@@ -8552,6 +8552,45 @@ const STUDY_DB = {
     limitations:["Use can be intentional in some parasitic regimens; risk depends on course length, liver function, cyst location, and CBC reserve."],
     verified:false, reviewRequired:true, verifyNote:"Label-backed antiparasitic active-metabolite enrichment pending infectious-disease/pharmacy review"
   },
+  "ev_misoprostol_active_acid_label": {
+    id:"ev_misoprostol_active_acid_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Misoprostol prescribing information and PK review - rapid conversion to active misoprostol acid",
+    year:2026, source:"FDA / DailyMed + PubMed review", journal:null, pmid:"3122274", doi:null,
+    url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=misoprostol%20acid%20pharmacokinetics",
+    studyDesign:"regulatory_label_and_pk_review", n:null, phenotypes:[],
+    quantifiedEffects:{tmaxMinutes:"12 +/- 3", halfLifeMinutes:"20-40", note:"Label and PK review describe rapid de-esterification to misoprostol acid, the clinically active free-acid metabolite; unchanged parent is not the plasma driver."},
+    temporal:{mechanism:"esterase_activation_to_misoprostol_acid", onset:"minutes", offset:"same_day"},
+    supports:["misoprostol_to_misoprostol_acid","misoprostol_acid_short_half_life"],
+    contradicts:[],
+    limitations:["Route, dose, pregnancy context, and local tissue effects are more clinically important than genotype-based metabolism for most use cases."],
+    verified:false, reviewRequired:true, verifyNote:"Label/PubMed-backed prodrug metabolite enrichment pending obstetric/pharmacy review"
+  },
+  "ev_tegafur_cyp2a6_activation_pubmed": {
+    id:"ev_tegafur_cyp2a6_activation_pubmed", public:true, type:EVIDENCE_TIER.IN_VITRO,
+    title:"Tegafur CYP2A6 bioactivation to 5-fluorouracil in human liver systems",
+    year:2011, source:"PubMed / human liver microsome pharmacogenetic study", journal:"Pharmacogenomics", pmid:"21521021", doi:null,
+    url:"https://pubmed.ncbi.nlm.nih.gov/21521021/",
+    studyDesign:"human_liver_microsome_genotype_association", n:45, phenotypes:["CYP2A6"],
+    quantifiedEffects:{note:"Public abstract states tegafur is primarily converted to 5-FU by CYP2A6 in human liver and tested CYP2A6 genotype/haplotype associations with 5-FU formation rates."},
+    temporal:{mechanism:"CYP2A6_activation_to_5_FU"},
+    supports:["tegafur_to_5-fluorouracil","tegafur_cyp2a6_activation_context"],
+    contradicts:[],
+    limitations:["In vitro liver formation does not replace regimen-specific oncology dosing; DPYD toxicity risk remains the safety-critical fluoropyrimidine layer."],
+    verified:false, reviewRequired:true, verifyNote:"PubMed-backed tegafur prodrug enrichment pending oncology/pharmacy review"
+  },
+  "ev_haloperidol_hpp_neurotoxicity": {
+    id:"ev_haloperidol_hpp_neurotoxicity", public:true, type:EVIDENCE_TIER.ANIMAL,
+    title:"Haloperidol pyridinium metabolite HPP+ - CYP3A formation and neurotoxicity context",
+    year:2013, source:"PubMed / Neurotoxicology plus earlier metabolism literature", journal:"Neurotoxicology", pmid:"24107597", doi:"10.1016/j.neuro.2013.09.005",
+    url:"https://pubmed.ncbi.nlm.nih.gov/24107597/",
+    studyDesign:"preclinical_neurotoxicity_and_metabolite_detection_context", n:null, phenotypes:["CYP3A4"],
+    quantifiedEffects:{note:"HPP+ is a pyridinium haloperidol metabolite structurally related to MPP+; earlier literature supports CYP3A involvement in HPP+ formation and human detection, while clinical dosing remains parent/exposure and EPS/QT driven."},
+    temporal:{mechanism:"CYP3A4_pyridinium_metabolite_formation"},
+    supports:["haloperidol_METABOLIZED_TO_hpp-plus","hpp_plus_neurotoxicity_context"],
+    contradicts:[],
+    limitations:["Most data are preclinical or metabolite-detection studies; this is a network visibility/toxic-metabolite signal, not a calibrated human dose adjustment rule."],
+    verified:false, reviewRequired:true, verifyNote:"PMID-backed toxic-metabolite enrichment pending psychiatry/pharmacy review"
+  },
   "ev_griseofulvin_induction_label": {
     id:"ev_griseofulvin_induction_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
     title:"Griseofulvin prescribing information - warfarin, hormonal contraceptives, alcohol intolerance, and induction context",
