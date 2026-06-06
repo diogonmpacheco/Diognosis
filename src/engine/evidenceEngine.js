@@ -133,6 +133,7 @@ function resolveInteractionEvidence(interaction) {
 
 // studyBadgeHTML(study) — renders a compact evidence type badge
 function studyBadgeHTML(study) {
+  const type = study?.type || "evidence";
   const tierColors = {
     [EVIDENCE_TIER.FDA_LABEL]:    'background:#dcfce7;color:#166534',
     [EVIDENCE_TIER.META_ANALYSIS]:'background:#dbeafe;color:#1e40af',
@@ -144,9 +145,9 @@ function studyBadgeHTML(study) {
     [EVIDENCE_TIER.IN_VITRO]:     'background:#f1f5f9;color:#475569',
     [EVIDENCE_TIER.ANIMAL]:       'background:#f1f5f9;color:#475569',
   };
-  const style = tierColors[study.type] || 'background:#f1f5f9;color:#475569';
-  const label = study.type.replace(/_/g,' ').toUpperCase();
-  const weight = EVIDENCE_WEIGHT[study.type] || 0.5;
+  const style = tierColors[type] || 'background:#f1f5f9;color:#475569';
+  const label = type.replace(/_/g,' ').toUpperCase();
+  const weight = EVIDENCE_WEIGHT[type] || 0.5;
   const pct = Math.round(weight * 100);
   return `<span style="font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;${style}">${label} ${pct}%</span>`;
 }

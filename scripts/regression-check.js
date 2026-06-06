@@ -340,11 +340,8 @@ const clopidogrelSummary = {
   title: window.document.querySelector('.summary-title')?.textContent || '',
   label: window.document.querySelector('.summary-risk .lbl')?.textContent || '',
   story: window.document.querySelector('.summary-story')?.textContent || '',
-  confidence: window.document.querySelector('.summary-confidence-pill')?.textContent || '',
-  metrics: Array.from(window.document.querySelectorAll('.summary-metric')).map(el => ({
-    value: el.querySelector('strong')?.textContent || '',
-    label: el.querySelector('span')?.textContent || '',
-  })),
+  metrics: window.document.querySelectorAll('.summary-metric').length,
+  genotypeText: window.document.getElementById('genotypeBody')?.textContent || '',
 };
 assert(
   clopidogrelSummary.title.includes('CYP2C19 genotype') &&
@@ -353,15 +350,16 @@ assert(
   'Clopidogrel + CYP2C19 PM should be highest-priority PGx, not a generic single-medication prompt'
 );
 assert(
-  clopidogrelSummary.metrics.some(m => m.value === '1' && m.label === 'Genotype Inputs'),
-  'Summary should count only non-baseline genotype inputs'
+  clopidogrelSummary.metrics === 0 &&
+  clopidogrelSummary.genotypeText.includes('CYP2C19') &&
+  clopidogrelSummary.genotypeText.includes('Active thiol metabolite'),
+  'Genotype inputs and explanations should live in Genetics, not Summary metrics'
 );
 assert(
   clopidogrelSummary.story.includes('Why this matters') &&
   clopidogrelSummary.story.includes('What changes') &&
-  clopidogrelSummary.story.includes('What to review') &&
-  clopidogrelSummary.confidence.includes('Strong clinical guidance'),
-  'Highest-priority PGx summary should include clinical narrative and confidence layer'
+  clopidogrelSummary.story.includes('Next review step'),
+  'Highest-priority PGx summary should include only clinical narrative and next review step'
 );
 
 loadCase(window, ['Abacavir']);
@@ -700,7 +698,12 @@ assert(
     p.drugs.includes('Codeine') &&
     p.pathway === 'CYP2D6'
   ),
-  'Mechanistic interpretation should include documented medication interactions as pathway read-throughs'
+  'Mechanistic engine should still identify documented medication pathway read-throughs'
+);
+assert(
+  window.document.getElementById('mechanisticSection').style.display === 'none' ||
+  !/documented|already curated/i.test(window.document.getElementById('mechanisticBody').textContent),
+  'Mechanistic UI should keep documented interactions out of the model-only read-through section'
 );
 
 loadCase(window, ['Atazanavir']);
@@ -727,9 +730,9 @@ assert(
   'Mechanistic interpretation should surface genotype-drug pathway calculations'
 );
 assert(
-  window.document.getElementById('mechanisticSection').style.display !== 'none' &&
+  mechanisticGenotypeDrugPredictions.some(p => p.documented) ||
   window.document.querySelectorAll('#mechanisticBody .mechanistic-card').length >= 1,
-  'Mechanistic interpretation block should render below main safety warnings'
+  'Mechanistic renderer should show model-only genotype-drug cards and leave documented PGx to Genetics/Evidence'
 );
 
 const browseCategoryAudit = window.eval(`(() => {
