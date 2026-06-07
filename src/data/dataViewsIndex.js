@@ -7,6 +7,7 @@
   const getDrugLookup = typeof getDrug === "function" ? getDrug : global.getDrug;
   const getDrugAliasesLookup = typeof getDrugAliases === "function" ? getDrugAliases : global.getDrugAliases;
   const genotypePhenotype = typeof GENOTYPE_PHENOTYPE !== "undefined" ? GENOTYPE_PHENOTYPE : global.GENOTYPE_PHENOTYPE;
+  const geneSemanticsSource = typeof GENE_SEMANTICS !== "undefined" ? GENE_SEMANTICS : global.GENE_SEMANTICS;
   const transporterActors = typeof TRANSPORTER_ACTORS !== "undefined" ? TRANSPORTER_ACTORS : global.TRANSPORTER_ACTORS;
   const lookupKey = (value) => typeof normalizeLookup === "function"
     ? normalizeLookup(value)
@@ -28,6 +29,7 @@
   const pgx = pgxSource && typeof pgxSource === "object" ? pgxSource : {};
   const genotypeEffects = genotypeEffectsSource && typeof genotypeEffectsSource === "object" ? genotypeEffectsSource : {};
   const genotypeRiskEffects = genotypeRiskEffectsSource && typeof genotypeRiskEffectsSource === "object" ? genotypeRiskEffectsSource : {};
+  const geneSemantics = geneSemanticsSource && typeof geneSemanticsSource === "object" ? geneSemanticsSource : {};
   const knownDdi = asArray(typeof KNOWN_DDI !== "undefined" ? KNOWN_DDI : global.KNOWN_DDI);
   const transporterDdi = asArray(typeof TRANSPORTER_DDI !== "undefined" ? TRANSPORTER_DDI : global.TRANSPORTER_DDI);
   const genotypeMetaboliteEffects = asArray(typeof GENOTYPE_METABOLITE_EFFECTS !== "undefined" ? GENOTYPE_METABOLITE_EFFECTS : global.GENOTYPE_METABOLITE_EFFECTS);
@@ -115,6 +117,20 @@
 
   for (const concept of concepts) addEntity({ name:concept, kind:"concept", class:"Concept", linkable:false });
 
+  function riskGeneFromKey(riskKey) {
+    const key = String(riskKey || "");
+    if (/^HLA-[AB]/.test(key)) return key.match(/^HLA-[AB]/)[0];
+    if (/^G6PD\b/i.test(key)) return "G6PD";
+    if (/^MT-RNR1\b/i.test(key)) return "MT-RNR1";
+    if (/^MTHFR\b/i.test(key)) return "MTHFR";
+    if (/^GABRG2\b/i.test(key)) return "GABRG2";
+    if (/^SCN1A\b/i.test(key)) return "SCN1A";
+    if (/^SCN2A\b/i.test(key)) return "SCN2A";
+    if (/^KCNH2\b/i.test(key)) return "KCNH2";
+    if (/^RYR1\/CACNA1S\b/i.test(key)) return "RYR1";
+    return key.split(/[:/_\s]/)[0];
+  }
+
   function addGeneEntity(gene) {
     const value = upper(gene);
     if (!value) return;
@@ -130,7 +146,7 @@
     for (const item of entries || []) addGeneEntity(item.e);
   }
   for (const gene of Object.keys(genotypeEffects)) addGeneEntity(gene);
-  for (const riskKey of Object.keys(genotypeRiskEffects)) addGeneEntity(riskKey.match(/^HLA-[AB]/)?.[0] || riskKey.split(/[:/_]/)[0]);
+  for (const riskKey of Object.keys(genotypeRiskEffects)) addGeneEntity(riskGeneFromKey(riskKey));
   for (const item of genotypeMetaboliteEffects) addGeneEntity(item.enzyme);
   for (const item of highImpactMetaboliteRelations) addGeneEntity(item.gene || item.enzyme);
   for (const item of Object.values(pathwayDiversion)) {
@@ -317,14 +333,14 @@
   }
 
   for (const [riskKey, effect] of Object.entries(genotypeRiskEffects)) {
-    const gene = riskKey.match(/^HLA-[AB]/)?.[0] || riskKey.split(/[:/_]/)[0];
+    const gene = riskGeneFromKey(riskKey);
     addRelation({
       source:"GENOTYPE_RISK_EFFECTS",
       role:"risk",
       gene,
       subject:gene,
       severity:"red",
-      signal:effect.note || effect.label || riskKey,
+      signal:`${riskKey}: ${effect.note || effect.label || "risk context"}`,
       actionText:effect.note || effect.label || "risk context",
       evidenceLevel:effect.evidenceLevel || "",
     });
@@ -529,6 +545,47 @@
   }
   relations.sort(rankRelation);
 
+  const modeledGeneKeys = new Set([
+    ...Object.keys(genotypeEffects),
+    ...Object.keys(geneSemantics),
+    ...Object.keys(pgx),
+  ].map(upper).filter((gene) => byGene[gene]?.length));
+  const modeledGenotypes = [...modeledGeneKeys].map((gene) => {
+    const semantics = geneSemantics[gene] || {};
+    return {
+      key:`gene:${gene}`,
+      gene,
+      label:gene,
+      kind:"modeled_gene",
+      axis:semantics.axis || "evidence",
+      stateLabel:semantics.phenotypeStateLabel || `${gene} genotype context`,
+      useLabel:semantics.modelUseLabel || "genotype/evidence context",
+      relationCount:byGene[gene]?.length || 0,
+      phenotypeValues:Object.keys(genotypeEffects[gene] || {}),
+      phenotypeLabels:semantics.optionLabels || semantics.phenotypeLabels || {},
+    };
+  });
+  for (const riskKey of Object.keys(genotypeRiskEffects)) {
+    const gene = upper(riskGeneFromKey(riskKey));
+    modeledGenotypes.push({
+      key:`risk:${riskKey}`,
+      gene,
+      label:riskKey,
+      kind:"risk_variant",
+      axis:"risk_allele",
+      stateLabel:`${riskKey} risk allele`,
+      useLabel:"risk-allele safety context",
+      relationCount:(byGene[gene] || []).filter((row) => row.searchText.includes(String(riskKey).toLowerCase())).length,
+      phenotypeValues:["risk_allele_present", "risk_allele_absent"],
+      phenotypeLabels:{ risk_allele_present:"Present", risk_allele_absent:"Absent" },
+      riskKey,
+    });
+  }
+  modeledGenotypes.sort((a, b) => {
+    const axisOrder = { activity_score:0, transport:1, deficiency:2, sensitivity:3, response:4, expression:5, risk_allele:6, evidence:7 };
+    return (axisOrder[a.axis] ?? 9) - (axisOrder[b.axis] ?? 9) || a.label.localeCompare(b.label);
+  });
+
   function appLink(names, opts = {}) {
     const substances = linkSubstanceIds(names).join(",");
     if (!substances) return "./index.html";
@@ -547,6 +604,7 @@
     byActionGroup,
     byEntity,
     genes:Object.keys(byGene).sort(),
+    modeledGenotypes,
     getDrugRecord,
     getEntity,
     appLink,
