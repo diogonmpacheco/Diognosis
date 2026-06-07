@@ -165,6 +165,7 @@ for (const drug of data.DRUG_DB || []) {
 const linkSources = [
   ['README.md', readFileSync('README.md', 'utf8')],
   ['medication-classes.html', readFileSync('medication-classes.html', 'utf8')],
+  ['data-views.html', readFileSync('data-views.html', 'utf8')],
 ];
 const savedLinkPattern = /https:\/\/diogonmpacheco\.github\.io\/medcheck\/index\.html\?[^)\s"']+|\.\/index\.html\?[^"\s']+/g;
 for (const [source, text] of linkSources) {

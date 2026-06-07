@@ -32,7 +32,7 @@ You can also build custom share links with:
 
 `https://diogonmpacheco.github.io/medcheck/index.html?substances=warfarin,ibuprofen&tab=safety`
 
-For class-based entry points, see the [Medication Class Guides](https://diogonmpacheco.github.io/medcheck/medication-classes.html).
+For alternate entry points, see the [MedCheck Data Views](https://diogonmpacheco.github.io/medcheck/data-views.html) and the [Medication Class Guides](https://diogonmpacheco.github.io/medcheck/medication-classes.html).
 
 ---
 

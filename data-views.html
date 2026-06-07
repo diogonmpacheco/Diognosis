@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MedCheck Data Views | Genotype, Clinical Action, Pathways & Patient Profile Explorer</title>
+  <meta name="description" content="Explore MedCheck data from alternate entry points: genotype lookup, clinical action groups, medication classes, gene-pathway networks, and patient genotype profile simulations.">
+  <link rel="canonical" href="https://diogonmpacheco.github.io/medcheck/data-views.html">
+  <style>
+    :root{
+      --bg:#f7f4ef;--surface:#fff;--surface2:#fbfaf8;--text:#17202a;--text2:#64717f;
+      --border:#ded8ce;--accent:#d84f22;--accentBg:#fff1e9;--blue:#1664a9;--blueBg:#eaf4ff;
+      --green:#147a52;--greenBg:#e9f7ef;--amber:#a76200;--amberBg:#fff6df;--red:#bd2b2b;--redBg:#fff0f0;
+      --violet:#6d42a8;--violetBg:#f2ecff;--shadow:0 1px 3px rgba(23,32,42,.1);--radius:8px;
+      --font:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.45}
+    a{color:var(--accent);font-weight:700;text-decoration:none}
+    a.row,a.callout{color:inherit;display:block}
+    a.row:hover,a.callout:hover{border-color:var(--accent);background:var(--accentBg)}
+    button,input,select{font:inherit}
+    .shell{min-height:100vh;display:grid;grid-template-columns:260px minmax(0,1fr)}
+    .rail{background:#251f1a;color:#fff;padding:20px 16px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:18px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .mark{width:34px;height:34px;border-radius:8px;background:var(--accent);display:grid;place-items:center;font-weight:900}
+    .brand h1{font-size:18px;line-height:1;margin:0}
+    .brand span{display:block;font-size:11px;color:#d8cfc4;font-weight:600;margin-top:3px}
+    .rail nav{display:grid;gap:7px}
+    .nav-btn{width:100%;border:0;border-radius:8px;background:transparent;color:#f4eee6;padding:10px 11px;text-align:left;cursor:pointer;display:grid;grid-template-columns:24px 1fr;gap:8px;align-items:center;font-weight:750}
+    .nav-btn small{display:block;color:#c6b9ab;font-size:11px;font-weight:600;margin-top:2px}
+    .nav-btn.active,.nav-btn:hover{background:#3a3028}
+    .nav-btn.active{box-shadow:inset 3px 0 0 var(--accent)}
+    .rail-note{margin-top:auto;border-top:1px solid rgba(255,255,255,.13);padding-top:14px;color:#cfc4b7;font-size:12px}
+    .content{min-width:0}
+    header{background:var(--surface);border-bottom:1px solid var(--border);padding:18px 24px}
+    .topline{display:flex;align-items:center;justify-content:space-between;gap:18px;max-width:1180px;margin:0 auto}
+    .title h2{font-size:24px;margin:0 0 4px;letter-spacing:0}
+    .title p{margin:0;color:var(--text2);font-size:14px;max-width:760px}
+    .actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);background:var(--surface2);border-radius:999px;padding:6px 10px;font-size:12px;color:var(--text2);font-weight:800;white-space:nowrap}
+    main{max-width:1180px;margin:0 auto;padding:20px 24px 34px}
+    .view{display:none}
+    .view.active{display:block}
+    .toolbar{display:grid;grid-template-columns:1.4fr .8fr .8fr auto;gap:10px;margin-bottom:14px;align-items:center}
+    .field,.select,.primary{height:38px;border-radius:8px;border:1px solid var(--border);background:var(--surface);padding:0 11px;color:var(--text)}
+    .field{width:100%}
+    .primary{border-color:var(--accent);background:var(--accent);color:#fff;font-weight:800;cursor:pointer}
+    .grid{display:grid;gap:14px}
+    .two{grid-template-columns:minmax(0,.95fr) minmax(0,1.35fr)}
+    .three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .card-head{padding:13px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .card-head h3{font-size:15px;margin:0}
+    .card-body{padding:14px}
+    .metric-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+    .metric{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:11px 12px}
+    .metric strong{display:block;font-size:22px;line-height:1}
+    .metric span{display:block;font-size:11px;color:var(--text2);font-weight:800;margin-top:5px;text-transform:uppercase}
+    .tag{display:inline-flex;align-items:center;border-radius:999px;padding:3px 8px;font-size:11px;font-weight:850;white-space:nowrap;background:var(--blueBg);color:var(--blue)}
+    .tag.green{background:var(--greenBg);color:var(--green)}
+    .tag.amber{background:var(--amberBg);color:var(--amber)}
+    .tag.red{background:var(--redBg);color:var(--red)}
+    .tag.violet{background:var(--violetBg);color:var(--violet)}
+    .list{display:grid;gap:8px}
+    .row{border:1px solid var(--border);border-radius:8px;background:var(--surface2);padding:10px 11px}
+    .row-main{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .row h4{margin:0;font-size:14px}
+    .row p{margin:4px 0 0;color:var(--text2);font-size:12px}
+    .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .subgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .table{width:100%;border-collapse:collapse;font-size:12px}
+    .table th,.table td{padding:9px 8px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+    .table th{font-size:11px;text-transform:uppercase;color:var(--text2);background:var(--surface2)}
+    .table tr:last-child td{border-bottom:0}
+    .bars{display:grid;gap:9px}
+    .bar-row{display:grid;grid-template-columns:126px 1fr 46px;gap:8px;align-items:center;font-size:12px}
+    .track{height:12px;border-radius:999px;background:#ece7df;overflow:hidden}
+    .fill{height:100%;border-radius:999px;background:var(--accent)}
+    .fill.blue{background:var(--blue)}
+    .fill.green{background:var(--green)}
+    .fill.violet{background:var(--violet)}
+    .profile{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+    .gene-tile{border:1px solid var(--border);border-radius:8px;padding:9px 10px;background:var(--surface2)}
+    .gene-tile strong{display:block;font-size:13px}
+    .gene-tile span{font-size:12px;color:var(--text2)}
+    .network{height:430px;position:relative;background:linear-gradient(180deg,#fffcf8,#f3f7fb);border-radius:8px;border:1px solid var(--border);overflow:hidden}
+    .node{position:absolute;border:2px solid #fff;border-radius:999px;box-shadow:0 4px 14px rgba(23,32,42,.16);display:grid;place-items:center;text-align:center;font-weight:850;font-size:12px;padding:8px;color:#fff}
+    .n1{left:9%;top:16%;width:92px;height:92px;background:var(--blue)}
+    .n2{left:39%;top:8%;width:82px;height:82px;background:var(--green)}
+    .n3{left:68%;top:22%;width:106px;height:106px;background:var(--accent)}
+    .n4{left:23%;top:58%;width:118px;height:118px;background:var(--violet)}
+    .n5{left:62%;top:62%;width:92px;height:92px;background:var(--amber)}
+    .edge{position:absolute;height:2px;background:#9aa7b4;transform-origin:left center}
+    .e1{left:19%;top:27%;width:230px;transform:rotate(-9deg)}
+    .e2{left:48%;top:18%;width:206px;transform:rotate(18deg)}
+    .e3{left:23%;top:34%;width:190px;transform:rotate(57deg)}
+    .e4{left:39%;top:70%;width:230px;transform:rotate(-3deg)}
+    .e5{left:73%;top:47%;width:120px;transform:rotate(93deg)}
+    .legend{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+    .mini-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+    .mini-tab{border:1px solid var(--border);background:var(--surface);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:850;color:var(--text2)}
+    .mini-tab.on{border-color:var(--accent);background:var(--accentBg);color:var(--accent)}
+    .timeline{display:grid;gap:8px}
+    .step{display:grid;grid-template-columns:30px 1fr;gap:9px;align-items:start}
+    .dot{width:24px;height:24px;border-radius:999px;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:900}
+    .callout{border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:8px;background:var(--surface2);padding:11px 12px}
+    .callout strong{display:block;font-size:13px;margin-bottom:3px}
+    .callout span{color:var(--text2);font-size:12px}
+    @media (max-width:900px){
+      .shell{display:block}
+      .rail{position:static;height:auto}
+      .rail nav{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .topline{align-items:flex-start;flex-direction:column}
+      .toolbar,.two,.three,.metric-row{grid-template-columns:1fr}
+      main{padding:16px}
+      header{padding:16px}
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="rail">
+      <div class="brand">
+        <div class="mark">M</div>
+        <div>
+          <h1>MedCheck</h1>
+          <span>data view explorer</span>
+        </div>
+      </div>
+      <nav aria-label="Draft views">
+        <button class="nav-btn active" data-view="genotype"><span>GT</span><span>Genotype lookup<small>Gene-first substance index</small></span></button>
+        <button class="nav-btn" data-view="action"><span>CA</span><span>Clinical action<small>Decision-first grouping</small></span></button>
+        <button class="nav-btn" data-view="classes"><span>CL</span><span>Substance classes<small>Therapy area review</small></span></button>
+        <button class="nav-btn" data-view="network"><span>NW</span><span>Pathway network<small>Gene-drug-metabolite graph</small></span></button>
+        <button class="nav-btn" data-view="patient"><span>PT</span><span>Patient simulator<small>Profile-first impact list</small></span></button>
+      </nav>
+      <div class="rail-note">Alternate entry points for exploring MedCheck data. Example links open the main app with focused medication stacks.</div>
+    </aside>
+
+    <div class="content">
+      <header>
+        <div class="topline">
+          <div class="title">
+            <h2 id="pageTitle">Genotype Lookup</h2>
+            <p id="pageCopy">Select a gene or phenotype and review every substance that uses it as a parent, child, transporter, inhibitor, or genotype-sensitive rule.</p>
+          </div>
+          <div class="actions">
+            <a class="pill" href="./index.html">Main app</a>
+            <a class="pill" href="./medication-classes.html">Class guides</a>
+            <span class="pill">Live explorer</span>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="view active" id="view-genotype">
+          <div class="toolbar">
+            <input class="field" value="CYP2D6" aria-label="Gene search">
+            <select class="select" aria-label="Phenotype"><option>Poor metabolizer</option><option>Intermediate metabolizer</option><option>Ultrarapid metabolizer</option></select>
+            <select class="select" aria-label="Relationship"><option>All relationships</option><option>Parent substance</option><option>Child metabolite</option><option>Inhibitor/inducer</option></select>
+            <button class="primary">Review</button>
+          </div>
+          <div class="metric-row">
+            <div class="metric"><strong>42</strong><span>substances</span></div>
+            <div class="metric"><strong>18</strong><span>direct routes</span></div>
+            <div class="metric"><strong>9</strong><span>child metabolites</span></div>
+            <div class="metric"><strong>15</strong><span>modulators</span></div>
+          </div>
+          <div class="grid two">
+            <article class="card">
+              <div class="card-head"><h3>Relationship Map</h3><span class="tag violet">CYP2D6 PM</span></div>
+              <div class="card-body">
+                <div class="list">
+                <a class="row" href="./index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx">
+                  <div class="row-main"><h4>Activation risk</h4><span class="tag red">high</span></div>
+                  <p>Prodrugs that may have reduced active-metabolite formation.</p>
+                  <div class="meta"><span class="tag">codeine</span><span class="tag">tramadol</span><span class="tag">tamoxifen</span></div>
+                </a>
+                <a class="row" href="./index.html?substances=metoprolol,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx">
+                  <div class="row-main"><h4>Exposure increase</h4><span class="tag amber">monitor</span></div>
+                  <p>Parent compounds expected to rise when CYP2D6 activity is low.</p>
+                  <div class="meta"><span class="tag">metoprolol</span><span class="tag">nortriptyline</span><span class="tag">flecainide</span></div>
+                </a>
+                <a class="row" href="./index.html?substances=paroxetine,fluoxetine&tab=safety">
+                  <div class="row-main"><h4>Phenoconversion</h4><span class="tag red">stacking</span></div>
+                  <p>Strong inhibitors can make normal metabolizers behave like poor metabolizers.</p>
+                  <div class="meta"><span class="tag">fluoxetine</span><span class="tag">paroxetine</span><span class="tag">bupropion</span></div>
+                </a>
+                </div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-head"><h3>Substances Using This Genotype</h3><span class="tag green">sortable table</span></div>
+              <div class="card-body">
+                <table class="table">
+                  <thead><tr><th>Substance</th><th>Role</th><th>Expected signal</th><th>Action</th></tr></thead>
+                  <tbody>
+                    <tr><td><a href="./index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx">Codeine</a><br><span class="tag">opioid</span></td><td>Parent prodrug</td><td>Lower morphine formation</td><td><span class="tag red">avoid</span></td></tr>
+                    <tr><td><a href="./index.html?substances=metoprolol,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx">Metoprolol</a><br><span class="tag">beta blocker</span></td><td>Parent substrate</td><td>Higher exposure</td><td><span class="tag amber">dose/monitor</span></td></tr>
+                    <tr><td><a href="./index.html?substances=tamoxifen,paroxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx">Tamoxifen</a><br><span class="tag">oncology</span></td><td>Parent prodrug</td><td>Lower endoxifen formation</td><td><span class="tag red">alternative</span></td></tr>
+                    <tr><td><a href="./index.html?substances=fluoxetine,metoprolol&tab=pk">Fluoxetine</a><br><span class="tag">SSRI</span></td><td>Inhibitor</td><td>Phenoconversion pressure</td><td><span class="tag amber">flag stack</span></td></tr>
+                    <tr><td><a href="./index.html?substances=nortriptyline,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx">Nortriptyline</a><br><span class="tag">TCA</span></td><td>Parent substrate</td><td>Higher exposure</td><td><span class="tag amber">reduce dose</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="view-action">
+          <div class="toolbar">
+            <input class="field" value="avoid, reduce dose, monitor" aria-label="Action search">
+            <select class="select" aria-label="Evidence"><option>Evidence: high to low</option><option>High only</option><option>Actionable only</option></select>
+            <select class="select" aria-label="Area"><option>All therapy areas</option><option>Psychiatry</option><option>Cardiology</option></select>
+            <button class="primary">Filter</button>
+          </div>
+          <div class="grid three">
+            <article class="card">
+              <div class="card-head"><h3>Avoid</h3><span class="tag red">16 matches</span></div>
+              <div class="card-body list">
+                <a class="row" href="./index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx"><div class="row-main"><h4>Codeine + CYP2D6 PM</h4><span class="tag red">PGx</span></div><p>Reduced activation to morphine; use non-CYP2D6-dependent analgesic.</p></a>
+                <a class="row" href="./index.html?substances=simvastatin,clarithromycin&tab=pk"><div class="row-main"><h4>Simvastatin + clarithromycin</h4><span class="tag red">PK</span></div><p>Strong CYP3A4 inhibition with myopathy risk.</p></a>
+                <a class="row" href="./index.html?substances=azathioprine,allopurinol&genotype=TPMT:poor_metabolizer&tab=pgx"><div class="row-main"><h4>Azathioprine + allopurinol</h4><span class="tag red">safety</span></div><p>Marked myelosuppression risk without major dose strategy.</p></a>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-head"><h3>Adjust Dose</h3><span class="tag amber">28 matches</span></div>
+              <div class="card-body list">
+                <a class="row" href="./index.html?substances=nortriptyline,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx"><div class="row-main"><h4>Nortriptyline + CYP2D6 PM</h4><span class="tag amber">reduce</span></div><p>Higher parent exposure; consider lower starting dose and TDM.</p></a>
+                <a class="row" href="./index.html?substances=warfarin,ibuprofen&genotype=CYP2C9:poor_metabolizer&tab=pgx"><div class="row-main"><h4>Warfarin + CYP2C9/VKORC1</h4><span class="tag amber">dose</span></div><p>Genotype-informed maintenance-dose sensitivity.</p></a>
+                <a class="row" href="./index.html?substances=tacrolimus,fluconazole&tab=pk"><div class="row-main"><h4>Tacrolimus + CYP3A5 expresser</h4><span class="tag amber">increase</span></div><p>Higher clearance profile; dose guided by troughs.</p></a>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-head"><h3>Monitor</h3><span class="tag green">51 matches</span></div>
+              <div class="card-body list">
+                <a class="row" href="./index.html?substances=sertraline,ibuprofen&tab=safety"><div class="row-main"><h4>SSRI + NSAID</h4><span class="tag green">bleeding</span></div><p>Review GI bleed risk factors and gastroprotection context.</p></a>
+                <a class="row" href="./index.html?substances=citalopram,azithromycin&tab=safety"><div class="row-main"><h4>Citalopram + QT stack</h4><span class="tag green">ECG</span></div><p>Consider ECG and electrolyte risk when multiple QT factors align.</p></a>
+                <a class="row" href="./index.html?substances=metoprolol,fluoxetine&tab=pk"><div class="row-main"><h4>Metoprolol + CYP2D6 inhibitor</h4><span class="tag green">vitals</span></div><p>Watch heart rate and hypotension after inhibitor changes.</p></a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="view-classes">
+          <div class="toolbar">
+            <input class="field" value="Psychiatry and neurology" aria-label="Class search">
+            <select class="select" aria-label="Risk"><option>Risk density</option><option>PGx density</option><option>Interaction density</option></select>
+            <select class="select" aria-label="Sort"><option>Sort by clinical value</option><option>A to Z</option></select>
+            <button class="primary">Open Class</button>
+          </div>
+          <div class="grid two">
+            <article class="card">
+              <div class="card-head"><h3>Class Library</h3><span class="tag green">7 groups</span></div>
+              <div class="card-body list">
+                <a class="row" href="./medication-classes.html#anticoagulants-antiplatelets"><div class="row-main"><h4>Anticoagulants and antiplatelets</h4><span class="tag red">bleeding</span></div><p>Warfarin, clopidogrel, DOACs, NSAID and SSRI overlays.</p></a>
+                <a class="row" href="./medication-classes.html#psychiatry-neurology"><div class="row-main"><h4>Psychiatry and neurology</h4><span class="tag amber">PGx dense</span></div><p>CYP2D6, CYP2C19, QT, serotonin, anticholinergic burden.</p></a>
+                <a class="row" href="./medication-classes.html#cardiology-qt"><div class="row-main"><h4>Cardiology and QT</h4><span class="tag red">NTI</span></div><p>Antiarrhythmics, beta blockers, statins, QT stackers.</p></a>
+                <a class="row" href="./medication-classes.html#infectious-disease"><div class="row-main"><h4>Infectious disease</h4><span class="tag amber">modulators</span></div><p>Azoles, macrolides, rifamycins, boosters, antiviral interactions.</p></a>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-head"><h3>Psychiatry Snapshot</h3><span class="tag">preview</span></div>
+              <div class="card-body">
+                <div class="bars">
+                  <div class="bar-row"><span>CYP2D6 relevance</span><div class="track"><div class="fill" style="width:82%"></div></div><strong>82%</strong></div>
+                  <div class="bar-row"><span>CYP2C19 relevance</span><div class="track"><div class="fill blue" style="width:66%"></div></div><strong>66%</strong></div>
+                  <div class="bar-row"><span>QT stacking</span><div class="track"><div class="fill violet" style="width:54%"></div></div><strong>54%</strong></div>
+                  <div class="bar-row"><span>Serotonergic burden</span><div class="track"><div class="fill green" style="width:71%"></div></div><strong>71%</strong></div>
+                </div>
+                <div class="subgrid" style="margin-top:14px">
+                  <a class="callout" href="./index.html?substances=paroxetine,fluoxetine&tab=safety"><strong>Fast examples</strong><span>Paroxetine + fluoxetine, amitriptyline + CYP2D6 PM, lamotrigine + valproate.</span></a>
+                  <div class="callout"><strong>Useful filters</strong><span>Prodrug, active metabolite, QT, inhibitor strength, actionability.</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="view-network">
+          <div class="grid two">
+            <article class="card">
+              <div class="card-head"><h3>Pathway Network</h3><span class="tag violet">interactive concept</span></div>
+              <div class="card-body">
+                <div class="mini-tabs"><span class="mini-tab on">CYP2D6</span><span class="mini-tab">CYP2C19</span><span class="mini-tab">SLCO1B1</span><span class="mini-tab">TPMT</span></div>
+                <div class="network" aria-label="Network diagram mockup">
+                  <div class="edge e1"></div><div class="edge e2"></div><div class="edge e3"></div><div class="edge e4"></div><div class="edge e5"></div>
+                  <div class="node n1">CYP2D6</div>
+                  <div class="node n2">fluoxetine</div>
+                  <div class="node n3">metoprolol</div>
+                  <div class="node n4">codeine to morphine</div>
+                  <div class="node n5">poor metabolizer</div>
+                </div>
+                <div class="legend"><span class="tag">gene</span><span class="tag green">modulator</span><span class="tag amber">phenotype</span><span class="tag violet">metabolite path</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-head"><h3>Selected Edge</h3><span class="tag red">explainability</span></div>
+              <div class="card-body">
+                <div class="timeline">
+                  <div class="step"><div class="dot">1</div><div class="callout"><strong>CYP2D6 poor metabolizer</strong><span>Baseline enzyme activity is low before medication effects.</span></div></div>
+                  <div class="step"><div class="dot">2</div><div class="callout"><strong>Codeine activation decreases</strong><span>Less conversion to morphine, so analgesic effect may be reduced.</span></div></div>
+                  <div class="step"><div class="dot">3</div><div class="callout"><strong>Fluoxetine adds inhibition pressure</strong><span>Strong CYP2D6 inhibition can also affect other CYP2D6 substrates in the same profile.</span></div></div>
+                  <div class="step"><div class="dot">4</div><div class="callout"><strong>Action layer</strong><span>Surface affected substances, alternatives, and supporting evidence links.</span></div></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="view-patient">
+          <div class="toolbar">
+            <input class="field" value="CYP2D6 PM, CYP2C19 IM, SLCO1B1 decreased function" aria-label="Profile">
+            <select class="select" aria-label="Medication set"><option>Medication set: example</option><option>Empty profile</option><option>High-risk demo</option></select>
+            <select class="select" aria-label="Output"><option>Rank by actionability</option><option>Rank by exposure</option></select>
+            <button class="primary">Simulate</button>
+          </div>
+          <div class="grid two">
+            <article class="card">
+              <div class="card-head"><h3>Patient Genotype Profile</h3><span class="tag">editable</span></div>
+              <div class="card-body">
+                <div class="profile">
+                  <div class="gene-tile"><strong>CYP2D6</strong><span>Poor metabolizer</span></div>
+                  <div class="gene-tile"><strong>CYP2C19</strong><span>Intermediate metabolizer</span></div>
+                  <div class="gene-tile"><strong>SLCO1B1</strong><span>Decreased function</span></div>
+                  <div class="gene-tile"><strong>TPMT</strong><span>Normal metabolizer</span></div>
+                </div>
+                <div class="card-head" style="padding-left:0;padding-right:0;margin-top:14px"><h3>Medication Set</h3><span class="tag green">6 items</span></div>
+                <div class="meta"><span class="tag">codeine</span><span class="tag">metoprolol</span><span class="tag">simvastatin</span><span class="tag">sertraline</span><span class="tag">omeprazole</span><span class="tag">ibuprofen</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-head"><h3>Ranked Impact List</h3><span class="tag red">3 high</span></div>
+              <div class="card-body list">
+                <a class="row" href="./index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx"><div class="row-main"><h4>Codeine</h4><span class="tag red">avoid</span></div><p>CYP2D6 poor metabolism predicts reduced conversion to morphine.</p><div class="meta"><span class="tag violet">PGx</span><span class="tag">parent to child</span></div></a>
+                <a class="row" href="./index.html?substances=simvastatin,clarithromycin&tab=pk"><div class="row-main"><h4>Simvastatin</h4><span class="tag red">alternative</span></div><p>SLCO1B1 decreased function increases statin myopathy concern; class alternatives can be listed.</p><div class="meta"><span class="tag green">transporter</span><span class="tag">class view</span></div></a>
+                <a class="row" href="./index.html?substances=metoprolol,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx"><div class="row-main"><h4>Metoprolol</h4><span class="tag amber">monitor dose</span></div><p>CYP2D6 poor metabolism may increase beta blocker exposure.</p><div class="meta"><span class="tag violet">PGx</span><span class="tag amber">exposure</span></div></a>
+                <a class="row" href="./index.html?substances=sertraline,ibuprofen&tab=safety"><div class="row-main"><h4>Sertraline + ibuprofen</h4><span class="tag amber">monitor</span></div><p>Bleeding risk overlay, independent of the genotype profile.</p><div class="meta"><span class="tag red">safety</span><span class="tag">burden</span></div></a>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const copy = {
+      genotype:["Genotype Lookup","Select a gene or phenotype and review every substance that uses it as a parent, child, transporter, inhibitor, or genotype-sensitive rule."],
+      action:["Clinical Action View","Group the database by what a clinician does next: avoid, adjust dose, monitor, switch, or document no expected action."],
+      classes:["Substance Class View","Browse therapy areas and see their pharmacogenomic density, interaction hotspots, example combinations, and high-value filters."],
+      network:["Gene / Pathway Network","Explore genes, parent substances, metabolites, inhibitors, transporters, and phenotype effects as a relationship graph."],
+      patient:["Patient Result Simulator","Enter a genotype profile and medication set, then rank affected substances by actionability and predicted impact."]
+    };
+    const activateView = (view) => {
+      const button = document.querySelector(`.nav-btn[data-view="${view}"]`);
+      if (!button || !copy[view]) return;
+      document.querySelectorAll(".nav-btn").forEach((item) => item.classList.toggle("active", item === button));
+      document.querySelectorAll(".view").forEach((panel) => panel.classList.toggle("active", panel.id === `view-${view}`));
+      document.getElementById("pageTitle").textContent = copy[view][0];
+      document.getElementById("pageCopy").textContent = copy[view][1];
+    };
+    document.querySelectorAll(".nav-btn").forEach((button) => {
+      button.addEventListener("click", () => {
+        const view = button.dataset.view;
+        activateView(view);
+        history.replaceState(null, "", `?view=${view}`);
+      });
+    });
+    activateView(new URLSearchParams(location.search).get("view") || "genotype");
+  </script>
+</body>
+</html>
