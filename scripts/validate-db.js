@@ -40,7 +40,8 @@ function loadBundleContext() {
 globalThis.__VALIDATE__ = {
   DRUG_DB, STUDY_DB, KNOWN_DDI, METAB, METABOLITE_ACTORS, GENOTYPE_EFFECTS,
   GENOTYPE_METABOLITE_EFFECTS, HIGH_IMPACT_METABOLITE_RELATIONS,
-  ENZYME_ACTORS, TRANSPORTER_ACTORS, EVIDENCE_TIER,
+  ENZYME_ACTORS, TRANSPORTER_ACTORS, TRANSPORTER_DDI, PHARMGKB_EVIDENCE,
+  FOOD_ACTORS, ENDOGENOUS_ACTORS, RECEPTOR_ACTORS, PHENOTYPE_ACTORS, EVIDENCE_TIER,
   resolveUrlDrugName, normalizeDrugLookupKey, getDrugAliases,
 };`, context);
   return context.__VALIDATE__;
@@ -189,6 +190,81 @@ for (const [source, text] of linkSources) {
         }
       }
     }
+  }
+}
+
+const knownDataViewConcepts = new Set([
+  'NSAIDs',
+  'Estradiol / endogenous estrogens',
+  'CYP3A oncology substrates',
+]);
+const actorNames = new Set();
+const metaboliteNames = new Set();
+const externalActorNames = new Set();
+function addEntityAlias(set, value) {
+  if (!value) return;
+  set.add(normalizedKey(value));
+  set.add(normalizedKey(String(value).replace(/\s*\([^)]*\)/g, '').trim()));
+}
+for (const map of [
+  data.FOOD_ACTORS,
+  data.ENDOGENOUS_ACTORS,
+  data.RECEPTOR_ACTORS,
+  data.PHENOTYPE_ACTORS,
+  data.TRANSPORTER_ACTORS,
+  data.METABOLITE_ACTORS,
+].filter(Boolean)) {
+  for (const actor of Object.values(map)) {
+    for (const term of [actor.name, actor.id].filter(Boolean)) addEntityAlias(actorNames, term);
+    for (const name of actor.substrates || []) addEntityAlias(externalActorNames, name);
+    for (const item of actor.inhibitors || []) addEntityAlias(externalActorNames, item.name);
+    for (const item of actor.inducers || []) addEntityAlias(externalActorNames, item.name);
+  }
+}
+for (const entries of Object.values(data.METAB || {})) {
+  for (const item of entries || []) addEntityAlias(metaboliteNames, item.n);
+}
+function dataViewEntityResolves(name) {
+  if (!name || knownDataViewConcepts.has(name)) return true;
+  if (data.resolveUrlDrugName(name)) return true;
+  const strippedName = String(name).replace(/\s*\([^)]*\)/g, '').trim();
+  if (strippedName && strippedName !== name && data.resolveUrlDrugName(strippedName)) return true;
+  const key = normalizedKey(name);
+  return actorNames.has(key) || metaboliteNames.has(key) || externalActorNames.has(key);
+}
+const dataViewNames = new Set();
+for (const entry of Object.values(data.PHARMGKB_EVIDENCE || {})) {
+  for (const pair of entry.pairs || []) dataViewNames.add(pair.drug);
+}
+for (const ddi of data.KNOWN_DDI || []) {
+  dataViewNames.add(ddi.drug1);
+  dataViewNames.add(ddi.drug2);
+}
+for (const ddi of data.TRANSPORTER_DDI || []) {
+  dataViewNames.add(ddi.substrate);
+  dataViewNames.add(ddi.inhibitor);
+}
+for (const map of [
+  data.FOOD_ACTORS,
+  data.ENDOGENOUS_ACTORS,
+  data.RECEPTOR_ACTORS,
+  data.PHENOTYPE_ACTORS,
+  data.TRANSPORTER_ACTORS,
+].filter(Boolean)) {
+  for (const actor of Object.values(map)) {
+    for (const route of actor.routes || []) dataViewNames.add(actor.name || actor.id);
+    for (const item of actor.inh || []) dataViewNames.add(actor.name || actor.id);
+    for (const item of actor.ind || []) dataViewNames.add(actor.name || actor.id);
+    for (const name of actor.substrates || []) dataViewNames.add(name);
+    for (const item of actor.inhibitors || []) dataViewNames.add(item.name);
+    for (const item of actor.inducers || []) dataViewNames.add(item.name);
+  }
+}
+for (const parent of Object.keys(data.METAB || {})) dataViewNames.add(parent);
+for (const item of data.GENOTYPE_METABOLITE_EFFECTS || []) dataViewNames.add(item.parent);
+for (const name of [...dataViewNames].sort()) {
+  if (!dataViewEntityResolves(name)) {
+    add('errors', 'data_view_unresolved_entity', `data-views generated entity "${name}" is not a resolvable substance, actor, or approved concept`, name);
   }
 }
 

@@ -19,7 +19,7 @@
     a{color:var(--accent);font-weight:700;text-decoration:none}
     a.row,a.callout{color:inherit;display:block}
     a.row:hover,a.callout:hover{border-color:var(--accent);background:var(--accentBg)}
-    button,input,select{font:inherit}
+    button,input,select{font:inherit;min-width:0}
     .shell{min-height:100vh;display:grid;grid-template-columns:260px minmax(0,1fr)}
     .rail{background:#251f1a;color:#fff;padding:20px 16px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:18px}
     .brand{display:flex;align-items:center;gap:10px}
@@ -58,16 +58,16 @@
     .metric{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:11px 12px}
     .metric strong{display:block;font-size:22px;line-height:1}
     .metric span{display:block;font-size:11px;color:var(--text2);font-weight:800;margin-top:5px;text-transform:uppercase}
-    .tag{display:inline-flex;align-items:center;border-radius:999px;padding:3px 8px;font-size:11px;font-weight:850;white-space:nowrap;background:var(--blueBg);color:var(--blue)}
+    .tag{display:inline-flex;align-items:center;border-radius:999px;padding:3px 8px;font-size:11px;font-weight:850;white-space:normal;overflow-wrap:anywhere;background:var(--blueBg);color:var(--blue)}
     .tag.green{background:var(--greenBg);color:var(--green)}
     .tag.amber{background:var(--amberBg);color:var(--amber)}
     .tag.red{background:var(--redBg);color:var(--red)}
     .tag.violet{background:var(--violetBg);color:var(--violet)}
     .list{display:grid;gap:8px}
     .row{border:1px solid var(--border);border-radius:8px;background:var(--surface2);padding:10px 11px}
-    .row-main{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
-    .row h4{margin:0;font-size:14px}
-    .row p{margin:4px 0 0;color:var(--text2);font-size:12px}
+    .row-main{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;min-width:0}
+    .row h4{margin:0;font-size:14px;min-width:0;overflow-wrap:anywhere}
+    .row p{margin:4px 0 0;color:var(--text2);font-size:12px;overflow-wrap:anywhere}
     .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
     .subgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
     .table{width:100%;border-collapse:collapse;font-size:12px}
@@ -159,7 +159,7 @@
           <div class="toolbar">
             <input class="field" id="geneSearch" value="CYP2D6" aria-label="Gene search">
             <select class="select" id="phenotypeSelect" aria-label="Phenotype"></select>
-            <select class="select" id="relationshipSelect" aria-label="Relationship"><option value="all">All relationships</option><option value="route">Parent substance</option><option value="metabolite">Child metabolite</option><option value="modulator">Inhibitor/inducer</option><option value="evidence">PGx evidence</option></select>
+            <select class="select" id="relationshipSelect" aria-label="Relationship"><option value="all">All relationships</option><option value="route">Parent substance</option><option value="metabolite">Child metabolite</option><option value="modulator">Inhibitor/inducer</option><option value="transporter">Transporter</option><option value="evidence">PGx evidence</option></select>
             <button class="primary" id="geneReview">Review</button>
           </div>
           <div class="status" id="geneStatus">Loading MedCheck data...</div>
@@ -353,6 +353,7 @@
   <script src="./src/data/enzymes.js"></script>
   <script src="./src/data/metabolites.js"></script>
   <script src="./src/data/transporters.js"></script>
+  <script src="./src/data/actors.js"></script>
   <script src="./src/data/interactions.js"></script>
   <script src="./src/data/generatedStats.js"></script>
   <script>
@@ -383,16 +384,60 @@
     const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[char]));
     const sentence = (value) => String(value || "").replace(/_/g, " ").replace(/\b\w/g, (m) => m.toUpperCase());
     const norm = (value) => String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+    const strippedEntityName = (value) => String(value || "").replace(/\s*\([^)]*\)/g, "").trim();
     const drugs = Array.isArray(DRUG_DB) ? DRUG_DB : [];
     const ddi = Array.isArray(KNOWN_DDI) ? KNOWN_DDI : [];
+    const transporterDdi = Array.isArray(TRANSPORTER_DDI) ? TRANSPORTER_DDI : [];
     const metab = typeof METAB === "object" ? METAB : {};
     const pgx = typeof PHARMGKB_EVIDENCE === "object" ? PHARMGKB_EVIDENCE : {};
     const geneList = [...new Set([...(GENE_ENZYMES || []), ...Object.keys(pgx), ...Object.keys(GENOTYPE_EFFECTS || {})])].sort();
-    const drugByNorm = new Map(drugs.flatMap((drug) => [[norm(drug.name), drug], [norm(drug.id), drug], ...(drug.brandNames || []).map((name) => [norm(name), drug])]));
-    const getDrugRecord = (name) => drugByNorm.get(norm(name));
-    const drugId = (name) => getDrugRecord(name)?.id || String(name || "").toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+    const actorMaps = [typeof FOOD_ACTORS === "object" ? FOOD_ACTORS : null, typeof ENDOGENOUS_ACTORS === "object" ? ENDOGENOUS_ACTORS : null, typeof TRANSPORTER_ACTORS === "object" ? TRANSPORTER_ACTORS : null, typeof METABOLITE_ACTORS === "object" ? METABOLITE_ACTORS : null].filter(Boolean);
+    const drugByNorm = new Map(drugs.flatMap((drug) => [[norm(drug.name), drug], [norm(drug.id), drug], ...(drug.brandNames || []).map((name) => [norm(name), drug]), ...(typeof getDrugAliases === "function" ? getDrugAliases(drug).map((name) => [norm(name), drug]) : [])]));
+    const metaboliteByNorm = new Map();
+    const metaboliteAliases = (name) => [...new Set([name, String(name || "").replace(/\s*\([^)]*\)/g, "").trim()].filter(Boolean))];
+    for (const [parent, entries] of Object.entries(metab)) {
+      for (const item of entries || []) {
+        for (const alias of metaboliteAliases(item.n)) {
+          metaboliteByNorm.set(norm(alias), { ...item, parent });
+        }
+      }
+    }
+    const actorByNorm = new Map();
+    for (const map of actorMaps) {
+      for (const actor of Object.values(map)) {
+        actorByNorm.set(norm(actor.name), actor);
+        actorByNorm.set(norm(actor.id), actor);
+      }
+    }
+    const conceptualEntities = new Set(["NSAIDs", "Estradiol / endogenous estrogens", "CYP3A oncology substrates"]);
+    const externalEntityByNorm = new Map();
+    for (const map of actorMaps) {
+      for (const actor of Object.values(map)) {
+        for (const name of actor.substrates || []) externalEntityByNorm.set(norm(name), { name, type:"External substance" });
+        for (const item of actor.inhibitors || []) externalEntityByNorm.set(norm(item.name), { name:item.name, type:"External substance" });
+        for (const item of actor.inducers || []) externalEntityByNorm.set(norm(item.name), { name:item.name, type:"External substance" });
+      }
+    }
+    const getDrugRecord = (name) => {
+      const stripped = strippedEntityName(name);
+      const direct = typeof getDrug === "function" ? getDrug(name) || drugByNorm.get(norm(name)) : drugByNorm.get(norm(name));
+      return direct || (stripped && stripped !== name ? (typeof getDrug === "function" ? getDrug(stripped) || drugByNorm.get(norm(stripped)) : drugByNorm.get(norm(stripped))) : null);
+    };
+    const getEntity = (name) => {
+      const drug = getDrugRecord(name);
+      if (drug) return { kind:"drug", name:drug.name, id:drug.id, cls:drug.cls, record:drug, linkable:true };
+      const actor = actorByNorm.get(norm(name));
+      if (actor) return { kind:actor.type || "actor", name:actor.name || name, id:actor.id, cls:sentence(actor.type || "actor"), record:actor, linkable:false };
+      const metabolite = metaboliteByNorm.get(norm(name));
+      if (metabolite) return { kind:"metabolite", name, id:null, cls:`Metabolite${metabolite.a ? ` · ${sentence(metabolite.a)}` : ""}`, record:metabolite, linkable:false };
+      const external = externalEntityByNorm.get(norm(name));
+      if (external) return { kind:"external", name:external.name || name, id:null, cls:external.type, record:external, linkable:false };
+      return { kind:conceptualEntities.has(name) ? "concept" : "unresolved", name, id:null, cls:conceptualEntities.has(name) ? "Concept" : "Unresolved", record:null, linkable:false };
+    };
+    const drugId = (name) => getDrugRecord(name)?.id || null;
     const appLink = (names, opts = {}) => {
-      const substances = [...new Set(names.filter(Boolean).map(drugId))].join(",");
+      const substances = [...new Set(names.filter(Boolean).map(drugId).filter(Boolean))].join(",");
+      if (!substances) return "./index.html";
       const params = new URLSearchParams();
       if (substances) params.set("substances", substances);
       if (opts.genotype) params.set("genotype", opts.genotype);
@@ -410,32 +455,80 @@
     function geneRelations(gene) {
       const selected = String(gene || "").trim().toUpperCase();
       const relations = [];
+      const addRelation = (relation) => {
+        const entity = getEntity(relation.substance);
+        const key = [entity.name, relation.child || "", relation.role, relation.signal].join("|");
+        if (relations.some((item) => item.key === key)) return;
+        relations.push({ ...relation, key, entity, substance:entity.name, cls:relation.cls || entity.cls });
+      };
       for (const drug of drugs) {
         for (const route of drug.routes || []) {
           if (String(route.enzyme).toUpperCase() === selected) {
-            relations.push({ substance:drug.name, cls:drug.cls, role:"route", roleLabel:"Parent substrate", signal:`${selected} route${route.fraction ? `, fraction ${Math.round(route.fraction * 100)}%` : ""}`, action:drug.prodrug ? "activation review" : "exposure review", severity:drug.prodrug ? "red" : "amber" });
+            addRelation({ substance:drug.name, cls:drug.cls, role:"route", roleLabel:"Parent substrate", signal:`${selected} route${route.fraction ? `, fraction ${Math.round(route.fraction * 100)}%` : ""}`, action:drug.prodrug ? "activation review" : "exposure review", severity:drug.prodrug ? "red" : "amber" });
           }
         }
         for (const item of drug.inh || []) {
           if (String(item.target).toUpperCase() === selected) {
-            relations.push({ substance:drug.name, cls:drug.cls, role:"modulator", roleLabel:"Inhibitor", signal:`${sentence(item.strength)} ${selected} inhibition`, action:"phenoconversion flag", severity:item.strength === "strong" ? "red" : "amber" });
+            addRelation({ substance:drug.name, cls:drug.cls, role:"modulator", roleLabel:"Inhibitor", signal:`${sentence(item.strength)} ${selected} inhibition`, action:"phenoconversion flag", severity:item.strength === "strong" ? "red" : "amber" });
           }
         }
         for (const item of drug.ind || []) {
           if (String(item.target).toUpperCase() === selected) {
-            relations.push({ substance:drug.name, cls:drug.cls, role:"modulator", roleLabel:"Inducer", signal:`${sentence(item.strength)} ${selected} induction`, action:"loss-of-effect flag", severity:"amber" });
+            addRelation({ substance:drug.name, cls:drug.cls, role:"modulator", roleLabel:"Inducer", signal:`${sentence(item.strength)} ${selected} induction`, action:"loss-of-effect flag", severity:"amber" });
+          }
+        }
+      }
+      for (const map of actorMaps) {
+        for (const actor of Object.values(map)) {
+          for (const route of actor.routes || []) {
+            if (String(route.enzyme).toUpperCase() === selected) {
+              addRelation({ substance:actor.name || actor.id, role:"route", roleLabel:`${sentence(actor.type || "actor")} substrate`, signal:`${selected} route${route.fraction ? `, fraction ${Math.round(route.fraction * 100)}%` : ""}`, action:actor.note || "actor route review", severity:"violet" });
+            }
+          }
+          for (const item of actor.inh || []) {
+            if (String(item.target).toUpperCase() === selected) {
+              addRelation({ substance:actor.name || actor.id, role:"modulator", roleLabel:`${sentence(actor.type || "actor")} inhibitor`, signal:`${sentence(item.strength)} ${selected} inhibition`, action:actor.note || "actor modulation review", severity:item.strength === "strong" ? "red" : "amber" });
+            }
+          }
+          for (const item of actor.ind || []) {
+            if (String(item.target).toUpperCase() === selected) {
+              addRelation({ substance:actor.name || actor.id, role:"modulator", roleLabel:`${sentence(actor.type || "actor")} inducer`, signal:`${sentence(item.strength)} ${selected} induction`, action:actor.note || "actor modulation review", severity:"amber" });
+            }
+          }
+          if (String(actor.gene || "").toUpperCase() === selected) {
+            for (const name of actor.substrates || []) addRelation({ substance:name, role:"transporter", roleLabel:`${actor.id || actor.name} substrate`, signal:`${actor.name || actor.id} substrate`, action:actor.clinicalSignificance || "transporter genetics context", severity:"amber" });
+            for (const item of actor.inhibitors || []) addRelation({ substance:item.name, role:"modulator", roleLabel:`${actor.id || actor.name} inhibitor`, signal:`${sentence(item.strength)} transporter inhibition`, action:actor.clinicalSignificance || "transporter inhibition context", severity:item.strength === "strong" ? "red" : "amber" });
+            for (const item of actor.inducers || []) addRelation({ substance:item.name, role:"modulator", roleLabel:`${actor.id || actor.name} inducer`, signal:`${sentence(item.strength)} transporter induction`, action:actor.clinicalSignificance || "transporter induction context", severity:"amber" });
           }
         }
       }
       for (const [parent, entries] of Object.entries(metab)) {
         for (const item of entries || []) {
           if (String(item.e).toUpperCase() === selected) {
-            relations.push({ substance:parent, child:item.n, cls:getDrugRecord(parent)?.cls || "metabolite", role:"metabolite", roleLabel:"Child metabolite", signal:`${item.n} (${sentence(item.a)})`, action:item.a?.includes("active") ? "activation review" : "metabolite review", severity:item.a?.includes("toxic") ? "red" : "violet" });
+            addRelation({ substance:parent, child:item.n, cls:getEntity(parent).cls || "metabolite", role:"metabolite", roleLabel:"Child metabolite", signal:`${item.n} (${sentence(item.a)})`, action:item.a?.includes("active") ? "activation review" : "metabolite review", severity:item.a?.includes("toxic") ? "red" : "violet" });
           }
         }
       }
+      for (const item of GENOTYPE_METABOLITE_EFFECTS || []) {
+        if (String(item.enzyme).toUpperCase() === selected) {
+          addRelation({ substance:item.parent, child:item.metaboliteName || item.metaboliteId, cls:getEntity(item.parent).cls || "metabolite", role:"metabolite", roleLabel:"Genotype metabolite effect", signal:item.metaboliteName || item.metaboliteId, action:item.note || "genotype-specific metabolite effect", severity:item.effects?.[GENOTYPE_PHENOTYPE.PM]?.direction === "increase" ? "red" : "violet" });
+        }
+      }
+      for (const [parent, item] of Object.entries(typeof PATHWAY_DIVERSION === "object" ? PATHWAY_DIVERSION : {})) {
+        const paths = [item.primary, ...(item.diverted || [])].filter(Boolean);
+        if (paths.some((path) => String(path.enzyme).toUpperCase() === selected)) {
+          addRelation({ substance:parent, child:paths.find((path) => String(path.enzyme).toUpperCase() === selected)?.metabolite, cls:getEntity(parent).cls || "pathway", role:"metabolite", roleLabel:"Pathway diversion", signal:item.clinicalImpact || "pathway diversion", action:item.pmEffect || item.clinicalImpact || "pathway review", severity:item.severity === "critical" ? "red" : item.severity === "high" ? "amber" : "violet" });
+        }
+      }
+      for (const item of transporterDdi) {
+        const actor = Object.values(typeof TRANSPORTER_ACTORS === "object" ? TRANSPORTER_ACTORS : {}).find((candidate) => item.transporter.includes(candidate.id) || item.transporter.includes(candidate.gene));
+        if (String(actor?.gene || "").toUpperCase() === selected) {
+          addRelation({ substance:item.substrate, role:"transporter", roleLabel:`${item.transporter} DDI substrate`, signal:item.effect, action:item.mechanism, severity:item.severity === "critical" ? "red" : item.severity === "high" ? "amber" : "green" });
+          addRelation({ substance:item.inhibitor, role:"modulator", roleLabel:`${item.transporter} DDI modulator`, signal:item.effect, action:item.mechanism, severity:item.severity === "critical" ? "red" : item.severity === "high" ? "amber" : "green" });
+        }
+      }
       for (const pair of pgx[selected]?.pairs || []) {
-        relations.push({ substance:pair.drug, cls:getDrugRecord(pair.drug)?.cls || "PGx", role:"evidence", roleLabel:`PGx evidence ${pair.level}`, signal:pair.action, action:pair.action, severity:pair.level === "A" ? "red" : pair.level === "B" ? "amber" : "green" });
+        addRelation({ substance:pair.drug, cls:getEntity(pair.drug).cls || "PGx", role:"evidence", roleLabel:`PGx evidence ${pair.level}`, signal:pair.action, action:pair.action, severity:pair.level === "A" ? "red" : pair.level === "B" ? "amber" : "green" });
       }
       const rank = { red:0, amber:1, violet:2, green:3 };
       return relations.sort((a, b) => (rank[a.severity] ?? 9) - (rank[b.severity] ?? 9) || a.substance.localeCompare(b.substance));
@@ -446,19 +539,19 @@
       const phenotype = $("#phenotypeSelect").value || GENOTYPE_PHENOTYPE.PM;
       const relationship = $("#relationshipSelect").value || "all";
       const allRelations = geneRelations(gene);
-      const relations = relationship === "all" ? allRelations : allRelations.filter((item) => item.role === relationship);
+      const relations = relationship === "all" ? allRelations : allRelations.filter((item) => relationship === "modulator" ? item.role === "modulator" || item.role === "transporter" : item.role === relationship);
       const uniqueSubstances = new Set(relations.map((item) => item.substance));
       $("#geneStatus").textContent = `${gene} rendered from ${drugs.length} substances, ${Object.keys(metab).length} metabolite parent entries, and ${Object.keys(pgx).length} PGx gene evidence groups.`;
       $("#geneMetrics").innerHTML = [
         [uniqueSubstances.size, "substances"],
         [relations.filter((r) => r.role === "route").length, "direct routes"],
         [relations.filter((r) => r.role === "metabolite").length, "child metabolites"],
-        [relations.filter((r) => r.role === "modulator").length, "modulators"],
+        [relations.filter((r) => r.role === "modulator" || r.role === "transporter").length, "modulators"],
       ].map(([num, label]) => `<div class="metric"><strong>${num}</strong><span>${label}</span></div>`).join("");
       $(".card-head .tag.violet").textContent = `${gene} ${sentence(phenotype).replace(" Metabolizer", "")}`;
       const prodrugs = relations.filter((r) => r.action.includes("activation") || /avoid|ineffective|active/i.test(r.action)).slice(0, 6);
       const exposure = relations.filter((r) => /exposure|auc|levels|clearance|dose/i.test(r.action + r.signal)).slice(0, 6);
-      const modulators = relations.filter((r) => r.role === "modulator").slice(0, 6);
+      const modulators = relations.filter((r) => r.role === "modulator" || r.role === "transporter").slice(0, 6);
       $("#geneRelationshipList").innerHTML = [
         ["Activation risk", "high", "red", "Substances where genotype may change active-metabolite formation.", prodrugs],
         ["Exposure shift", "monitor", "amber", "Parent substances or evidence rows suggesting exposure or dose review.", exposure],
@@ -466,7 +559,7 @@
       ].map(([title, badge, color, body, items]) => rowLink(appLink(items.slice(0, 2).map((i) => i.substance), { genotype:`${gene}:${phenotype}` }), title, badge, color, body, items.map((i) => i.substance).slice(0, 4))).join("");
       $("#geneSubstanceRows").innerHTML = relations.slice(0, 18).map((item) => `
         <tr>
-          <td><a href="${esc(appLink([item.substance], { genotype:`${gene}:${phenotype}` }))}">${esc(item.substance)}</a><br>${tag(item.cls || item.role)}</td>
+          <td><a href="${esc(appLink([item.substance], { genotype:`${gene}:${phenotype}` }))}">${esc(item.substance)}</a><br>${tag(item.entity?.linkable ? item.cls || item.role : `${item.cls || item.role} · no direct app substance`)}</td>
           <td>${esc(item.roleLabel)}</td>
           <td>${esc(item.signal)}</td>
           <td>${tag(item.action.length > 42 ? item.action.slice(0, 39) + "..." : item.action, item.severity)}</td>
@@ -488,22 +581,27 @@
       for (const item of ddi) {
         rows.push({ type:"DDI", title:`${item.drug1} + ${item.drug2}`, level:item.severity === "severe" ? "A" : item.severity === "moderate" ? "B" : "C", action:item.effect || item.mechanism, cls:item.category || "DDI", meds:[item.drug1, item.drug2] });
       }
+      for (const item of transporterDdi) {
+        rows.push({ type:"Transporter", title:`${item.substrate} + ${item.inhibitor}`, level:item.severity === "critical" || item.severity === "high" ? "A" : item.severity === "moderate" ? "B" : "C", action:`${item.effect}; ${item.mechanism}`, cls:item.transporter || "Transporter", meds:[item.substrate, item.inhibitor] });
+      }
       const filtered = rows.filter((row) => {
         const text = `${row.title} ${row.action} ${row.cls} ${row.type}`.toLowerCase();
         const queryOk = !query || query.split(",").map((s) => s.trim()).filter(Boolean).some((term) => text.includes(term));
         const evidenceOk = evidence === "all" || (evidence === "high" && row.level === "A") || (evidence === "actionable" && /avoid|reduce|dose|monitor|alternative|contraindicat|toxicity|bleed/i.test(row.action));
-        const areaOk = area === "all" || row.cls === area;
+        const areaOk = area === "all" || row.cls === area || row.type === area;
         return queryOk && evidenceOk && areaOk;
       });
-      const groups = [
-        ["Avoid", "red", (r) => /avoid|contraindicat|fatal|severe|ineffective/i.test(r.action) || r.level === "A"],
-        ["Adjust Dose", "amber", (r) => /dose|reduce|increase|titrate|auc|levels/i.test(r.action)],
-        ["Monitor", "green", (r) => /monitor|risk|watch|check|review/i.test(r.action)],
-      ];
-      $("#actionCards").innerHTML = groups.map(([title, color, test]) => {
-        const matches = filtered.filter(test).slice(0, 8);
+      const grouped = { Avoid:[], "Adjust Dose":[], Monitor:[] };
+      for (const row of filtered) {
+        if (/avoid|contraindicat|fatal|ineffective|failure|black box/i.test(row.action)) grouped.Avoid.push(row);
+        else if (/dose|reduce|increase|titrate|auc|levels|clearance|fold/i.test(row.action)) grouped["Adjust Dose"].push(row);
+        else grouped.Monitor.push(row);
+      }
+      const groups = [["Avoid", "red"], ["Adjust Dose", "amber"], ["Monitor", "green"]];
+      $("#actionCards").innerHTML = groups.map(([title, color]) => {
+        const matches = grouped[title].slice(0, 8);
         return `<article class="card">
-          <div class="card-head"><h3>${title}</h3>${tag(`${filtered.filter(test).length} matches`, color)}</div>
+          <div class="card-head"><h3>${title}</h3>${tag(`${grouped[title].length} matches`, color)}</div>
           <div class="card-body list">${matches.map((row) => rowLink(appLink(row.meds, row.gene ? { genotype:`${row.gene}:${GENOTYPE_PHENOTYPE.PM}` } : { tab:"safety" }), row.title, row.type, color, row.action, [row.cls, `Level ${row.level}`])).join("") || `<div class="row"><p>No matching rows.</p></div>`}</div>
         </article>`;
       }).join("");
@@ -607,11 +705,20 @@
     }
 
     function initDataViews() {
+      const params = new URLSearchParams(location.search);
       $("#phenotypeSelect").innerHTML = Object.values(GENOTYPE_PHENOTYPE).map((value) => `<option value="${value}" ${value === GENOTYPE_PHENOTYPE.PM ? "selected" : ""}>${sentence(value)}</option>`).join("");
-      const classes = [...new Set(drugs.map((drug) => drug.cls).filter(Boolean))].sort();
+      const classes = [...new Set([...drugs.map((drug) => drug.cls).filter(Boolean), ...ddi.map((item) => item.category).filter(Boolean), ...transporterDdi.map((item) => item.transporter).filter(Boolean), "PGx"])].sort();
       $("#actionArea").innerHTML += classes.map((cls) => `<option value="${esc(cls)}">${esc(cls)}</option>`).join("");
       $("#geneSearch").setAttribute("list", "geneOptions");
       document.body.insertAdjacentHTML("beforeend", `<datalist id="geneOptions">${geneList.map((gene) => `<option value="${esc(gene)}"></option>`).join("")}</datalist>`);
+      if (params.get("gene")) $("#geneSearch").value = params.get("gene").toUpperCase();
+      if (params.get("phenotype") && GENOTYPE_EFFECTS[$("#geneSearch").value]?.[params.get("phenotype")]) $("#phenotypeSelect").value = params.get("phenotype");
+      if (params.get("relationship") && [...$("#relationshipSelect").options].some((option) => option.value === params.get("relationship"))) $("#relationshipSelect").value = params.get("relationship");
+      if (params.get("action")) $("#actionSearch").value = params.get("action");
+      if (params.get("area") && [...$("#actionArea").options].some((option) => option.value === params.get("area"))) $("#actionArea").value = params.get("area");
+      if (params.get("class")) $("#classSearch").value = params.get("class");
+      if (params.get("patientProfile")) $("#patientProfile").value = params.get("patientProfile");
+      if (params.get("patientSet") && [...$("#patientMedSet").options].some((option) => option.value === params.get("patientSet"))) $("#patientMedSet").value = params.get("patientSet");
       $("#geneReview").addEventListener("click", renderGeneView);
       $("#geneSearch").addEventListener("change", renderGeneView);
       $("#phenotypeSelect").addEventListener("change", renderGeneView);
