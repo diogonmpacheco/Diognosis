@@ -46,6 +46,7 @@
     .field,.select,.primary{height:38px;border-radius:8px;border:1px solid var(--border);background:var(--surface);padding:0 11px;color:var(--text)}
     .field{width:100%}
     .primary{border-color:var(--accent);background:var(--accent);color:#fff;font-weight:800;cursor:pointer}
+    .status{font-size:12px;color:var(--text2);font-weight:800;margin:-4px 0 14px}
     .grid{display:grid;gap:14px}
     .two{grid-template-columns:minmax(0,.95fr) minmax(0,1.35fr)}
     .three{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -156,12 +157,13 @@
       <main>
         <section class="view active" id="view-genotype">
           <div class="toolbar">
-            <input class="field" value="CYP2D6" aria-label="Gene search">
-            <select class="select" aria-label="Phenotype"><option>Poor metabolizer</option><option>Intermediate metabolizer</option><option>Ultrarapid metabolizer</option></select>
-            <select class="select" aria-label="Relationship"><option>All relationships</option><option>Parent substance</option><option>Child metabolite</option><option>Inhibitor/inducer</option></select>
-            <button class="primary">Review</button>
+            <input class="field" id="geneSearch" value="CYP2D6" aria-label="Gene search">
+            <select class="select" id="phenotypeSelect" aria-label="Phenotype"></select>
+            <select class="select" id="relationshipSelect" aria-label="Relationship"><option value="all">All relationships</option><option value="route">Parent substance</option><option value="metabolite">Child metabolite</option><option value="modulator">Inhibitor/inducer</option><option value="evidence">PGx evidence</option></select>
+            <button class="primary" id="geneReview">Review</button>
           </div>
-          <div class="metric-row">
+          <div class="status" id="geneStatus">Loading MedCheck data...</div>
+          <div class="metric-row" id="geneMetrics">
             <div class="metric"><strong>42</strong><span>substances</span></div>
             <div class="metric"><strong>18</strong><span>direct routes</span></div>
             <div class="metric"><strong>9</strong><span>child metabolites</span></div>
@@ -171,7 +173,7 @@
             <article class="card">
               <div class="card-head"><h3>Relationship Map</h3><span class="tag violet">CYP2D6 PM</span></div>
               <div class="card-body">
-                <div class="list">
+                <div class="list" id="geneRelationshipList">
                 <a class="row" href="./index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx">
                   <div class="row-main"><h4>Activation risk</h4><span class="tag red">high</span></div>
                   <p>Prodrugs that may have reduced active-metabolite formation.</p>
@@ -195,7 +197,7 @@
               <div class="card-body">
                 <table class="table">
                   <thead><tr><th>Substance</th><th>Role</th><th>Expected signal</th><th>Action</th></tr></thead>
-                  <tbody>
+                  <tbody id="geneSubstanceRows">
                     <tr><td><a href="./index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx">Codeine</a><br><span class="tag">opioid</span></td><td>Parent prodrug</td><td>Lower morphine formation</td><td><span class="tag red">avoid</span></td></tr>
                     <tr><td><a href="./index.html?substances=metoprolol,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx">Metoprolol</a><br><span class="tag">beta blocker</span></td><td>Parent substrate</td><td>Higher exposure</td><td><span class="tag amber">dose/monitor</span></td></tr>
                     <tr><td><a href="./index.html?substances=tamoxifen,paroxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx">Tamoxifen</a><br><span class="tag">oncology</span></td><td>Parent prodrug</td><td>Lower endoxifen formation</td><td><span class="tag red">alternative</span></td></tr>
@@ -210,12 +212,12 @@
 
         <section class="view" id="view-action">
           <div class="toolbar">
-            <input class="field" value="avoid, reduce dose, monitor" aria-label="Action search">
-            <select class="select" aria-label="Evidence"><option>Evidence: high to low</option><option>High only</option><option>Actionable only</option></select>
-            <select class="select" aria-label="Area"><option>All therapy areas</option><option>Psychiatry</option><option>Cardiology</option></select>
-            <button class="primary">Filter</button>
+            <input class="field" id="actionSearch" value="avoid, reduce dose, monitor" aria-label="Action search">
+            <select class="select" id="actionEvidence" aria-label="Evidence"><option value="all">Evidence: all</option><option value="high">High / level A only</option><option value="actionable">Actionable only</option></select>
+            <select class="select" id="actionArea" aria-label="Area"><option value="all">All therapy areas</option></select>
+            <button class="primary" id="actionFilter">Filter</button>
           </div>
-          <div class="grid three">
+          <div class="grid three" id="actionCards">
             <article class="card">
               <div class="card-head"><h3>Avoid</h3><span class="tag red">16 matches</span></div>
               <div class="card-body list">
@@ -245,15 +247,15 @@
 
         <section class="view" id="view-classes">
           <div class="toolbar">
-            <input class="field" value="Psychiatry and neurology" aria-label="Class search">
-            <select class="select" aria-label="Risk"><option>Risk density</option><option>PGx density</option><option>Interaction density</option></select>
-            <select class="select" aria-label="Sort"><option>Sort by clinical value</option><option>A to Z</option></select>
-            <button class="primary">Open Class</button>
+            <input class="field" id="classSearch" placeholder="Search class or substance" aria-label="Class search">
+            <select class="select" id="classMetric" aria-label="Risk"><option value="risk">Risk density</option><option value="pgx">PGx density</option><option value="ddi">Interaction density</option></select>
+            <select class="select" id="classSort" aria-label="Sort"><option value="value">Sort by clinical value</option><option value="az">A to Z</option></select>
+            <button class="primary" id="classOpen">Open Class</button>
           </div>
           <div class="grid two">
             <article class="card">
-              <div class="card-head"><h3>Class Library</h3><span class="tag green">7 groups</span></div>
-              <div class="card-body list">
+              <div class="card-head"><h3>Class Library</h3><span class="tag green" id="classCountTag">0 groups</span></div>
+              <div class="card-body list" id="classList">
                 <a class="row" href="./medication-classes.html#anticoagulants-antiplatelets"><div class="row-main"><h4>Anticoagulants and antiplatelets</h4><span class="tag red">bleeding</span></div><p>Warfarin, clopidogrel, DOACs, NSAID and SSRI overlays.</p></a>
                 <a class="row" href="./medication-classes.html#psychiatry-neurology"><div class="row-main"><h4>Psychiatry and neurology</h4><span class="tag amber">PGx dense</span></div><p>CYP2D6, CYP2C19, QT, serotonin, anticholinergic burden.</p></a>
                 <a class="row" href="./medication-classes.html#cardiology-qt"><div class="row-main"><h4>Cardiology and QT</h4><span class="tag red">NTI</span></div><p>Antiarrhythmics, beta blockers, statins, QT stackers.</p></a>
@@ -261,17 +263,17 @@
               </div>
             </article>
             <article class="card">
-              <div class="card-head"><h3>Psychiatry Snapshot</h3><span class="tag">preview</span></div>
+              <div class="card-head"><h3 id="classSnapshotTitle">Class Snapshot</h3><span class="tag">live</span></div>
               <div class="card-body">
-                <div class="bars">
+                <div class="bars" id="classBars">
                   <div class="bar-row"><span>CYP2D6 relevance</span><div class="track"><div class="fill" style="width:82%"></div></div><strong>82%</strong></div>
                   <div class="bar-row"><span>CYP2C19 relevance</span><div class="track"><div class="fill blue" style="width:66%"></div></div><strong>66%</strong></div>
                   <div class="bar-row"><span>QT stacking</span><div class="track"><div class="fill violet" style="width:54%"></div></div><strong>54%</strong></div>
                   <div class="bar-row"><span>Serotonergic burden</span><div class="track"><div class="fill green" style="width:71%"></div></div><strong>71%</strong></div>
                 </div>
                 <div class="subgrid" style="margin-top:14px">
-                  <a class="callout" href="./index.html?substances=paroxetine,fluoxetine&tab=safety"><strong>Fast examples</strong><span>Paroxetine + fluoxetine, amitriptyline + CYP2D6 PM, lamotrigine + valproate.</span></a>
-                  <div class="callout"><strong>Useful filters</strong><span>Prodrug, active metabolite, QT, inhibitor strength, actionability.</span></div>
+                  <a class="callout" id="classExampleLink" href="./index.html"><strong>Fast example</strong><span>Loading...</span></a>
+                  <div class="callout" id="classFilterNote"><strong>Useful filters</strong><span>Loading...</span></div>
                 </div>
               </div>
             </article>
@@ -283,8 +285,8 @@
             <article class="card">
               <div class="card-head"><h3>Pathway Network</h3><span class="tag violet">interactive concept</span></div>
               <div class="card-body">
-                <div class="mini-tabs"><span class="mini-tab on">CYP2D6</span><span class="mini-tab">CYP2C19</span><span class="mini-tab">SLCO1B1</span><span class="mini-tab">TPMT</span></div>
-                <div class="network" aria-label="Network diagram mockup">
+                <div class="mini-tabs" id="networkTabs"></div>
+                <div class="network" id="networkCanvas" aria-label="Network diagram">
                   <div class="edge e1"></div><div class="edge e2"></div><div class="edge e3"></div><div class="edge e4"></div><div class="edge e5"></div>
                   <div class="node n1">CYP2D6</div>
                   <div class="node n2">fluoxetine</div>
@@ -296,9 +298,9 @@
               </div>
             </article>
             <article class="card">
-              <div class="card-head"><h3>Selected Edge</h3><span class="tag red">explainability</span></div>
+              <div class="card-head"><h3 id="networkEdgeTitle">Selected Edge</h3><span class="tag red">explainability</span></div>
               <div class="card-body">
-                <div class="timeline">
+                <div class="timeline" id="networkTimeline">
                   <div class="step"><div class="dot">1</div><div class="callout"><strong>CYP2D6 poor metabolizer</strong><span>Baseline enzyme activity is low before medication effects.</span></div></div>
                   <div class="step"><div class="dot">2</div><div class="callout"><strong>Codeine activation decreases</strong><span>Less conversion to morphine, so analgesic effect may be reduced.</span></div></div>
                   <div class="step"><div class="dot">3</div><div class="callout"><strong>Fluoxetine adds inhibition pressure</strong><span>Strong CYP2D6 inhibition can also affect other CYP2D6 substrates in the same profile.</span></div></div>
@@ -311,28 +313,28 @@
 
         <section class="view" id="view-patient">
           <div class="toolbar">
-            <input class="field" value="CYP2D6 PM, CYP2C19 IM, SLCO1B1 decreased function" aria-label="Profile">
-            <select class="select" aria-label="Medication set"><option>Medication set: example</option><option>Empty profile</option><option>High-risk demo</option></select>
+            <input class="field" id="patientProfile" value="CYP2D6 PM, CYP2C19 IM, SLCO1B1 decreased function" aria-label="Profile">
+            <select class="select" id="patientMedSet" aria-label="Medication set"><option value="example">Medication set: example</option><option value="psych">Psychiatry</option><option value="cardio">Cardio/statin</option><option value="high">High-risk demo</option></select>
             <select class="select" aria-label="Output"><option>Rank by actionability</option><option>Rank by exposure</option></select>
-            <button class="primary">Simulate</button>
+            <button class="primary" id="patientSimulate">Simulate</button>
           </div>
           <div class="grid two">
             <article class="card">
               <div class="card-head"><h3>Patient Genotype Profile</h3><span class="tag">editable</span></div>
               <div class="card-body">
-                <div class="profile">
+                <div class="profile" id="patientProfileTiles">
                   <div class="gene-tile"><strong>CYP2D6</strong><span>Poor metabolizer</span></div>
                   <div class="gene-tile"><strong>CYP2C19</strong><span>Intermediate metabolizer</span></div>
                   <div class="gene-tile"><strong>SLCO1B1</strong><span>Decreased function</span></div>
                   <div class="gene-tile"><strong>TPMT</strong><span>Normal metabolizer</span></div>
                 </div>
-                <div class="card-head" style="padding-left:0;padding-right:0;margin-top:14px"><h3>Medication Set</h3><span class="tag green">6 items</span></div>
-                <div class="meta"><span class="tag">codeine</span><span class="tag">metoprolol</span><span class="tag">simvastatin</span><span class="tag">sertraline</span><span class="tag">omeprazole</span><span class="tag">ibuprofen</span></div>
+                <div class="card-head" style="padding-left:0;padding-right:0;margin-top:14px"><h3>Medication Set</h3><span class="tag green" id="patientMedCount">0 items</span></div>
+                <div class="meta" id="patientMedTags"></div>
               </div>
             </article>
             <article class="card">
-              <div class="card-head"><h3>Ranked Impact List</h3><span class="tag red">3 high</span></div>
-              <div class="card-body list">
+              <div class="card-head"><h3>Ranked Impact List</h3><span class="tag red" id="patientImpactCount">0 high</span></div>
+              <div class="card-body list" id="patientImpactList">
                 <a class="row" href="./index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx"><div class="row-main"><h4>Codeine</h4><span class="tag red">avoid</span></div><p>CYP2D6 poor metabolism predicts reduced conversion to morphine.</p><div class="meta"><span class="tag violet">PGx</span><span class="tag">parent to child</span></div></a>
                 <a class="row" href="./index.html?substances=simvastatin,clarithromycin&tab=pk"><div class="row-main"><h4>Simvastatin</h4><span class="tag red">alternative</span></div><p>SLCO1B1 decreased function increases statin myopathy concern; class alternatives can be listed.</p><div class="meta"><span class="tag green">transporter</span><span class="tag">class view</span></div></a>
                 <a class="row" href="./index.html?substances=metoprolol,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx"><div class="row-main"><h4>Metoprolol</h4><span class="tag amber">monitor dose</span></div><p>CYP2D6 poor metabolism may increase beta blocker exposure.</p><div class="meta"><span class="tag violet">PGx</span><span class="tag amber">exposure</span></div></a>
@@ -345,6 +347,14 @@
     </div>
   </div>
 
+  <script src="./src/data/constants.js"></script>
+  <script src="./src/data/rules.js"></script>
+  <script src="./src/data/drugs.js"></script>
+  <script src="./src/data/enzymes.js"></script>
+  <script src="./src/data/metabolites.js"></script>
+  <script src="./src/data/transporters.js"></script>
+  <script src="./src/data/interactions.js"></script>
+  <script src="./src/data/generatedStats.js"></script>
   <script>
     const copy = {
       genotype:["Genotype Lookup","Select a gene or phenotype and review every substance that uses it as a parent, child, transporter, inhibitor, or genotype-sensitive rule."],
@@ -368,7 +378,263 @@
         history.replaceState(null, "", `?view=${view}`);
       });
     });
-    activateView(new URLSearchParams(location.search).get("view") || "genotype");
+
+    const $ = (selector) => document.querySelector(selector);
+    const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[char]));
+    const sentence = (value) => String(value || "").replace(/_/g, " ").replace(/\b\w/g, (m) => m.toUpperCase());
+    const norm = (value) => String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+    const drugs = Array.isArray(DRUG_DB) ? DRUG_DB : [];
+    const ddi = Array.isArray(KNOWN_DDI) ? KNOWN_DDI : [];
+    const metab = typeof METAB === "object" ? METAB : {};
+    const pgx = typeof PHARMGKB_EVIDENCE === "object" ? PHARMGKB_EVIDENCE : {};
+    const geneList = [...new Set([...(GENE_ENZYMES || []), ...Object.keys(pgx), ...Object.keys(GENOTYPE_EFFECTS || {})])].sort();
+    const drugByNorm = new Map(drugs.flatMap((drug) => [[norm(drug.name), drug], [norm(drug.id), drug], ...(drug.brandNames || []).map((name) => [norm(name), drug])]));
+    const getDrugRecord = (name) => drugByNorm.get(norm(name));
+    const drugId = (name) => getDrugRecord(name)?.id || String(name || "").toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
+    const appLink = (names, opts = {}) => {
+      const substances = [...new Set(names.filter(Boolean).map(drugId))].join(",");
+      const params = new URLSearchParams();
+      if (substances) params.set("substances", substances);
+      if (opts.genotype) params.set("genotype", opts.genotype);
+      params.set("tab", opts.tab || "pgx");
+      return `./index.html?${params.toString().replaceAll("%2C", ",").replaceAll("%3A", ":")}`;
+    };
+    const tag = (text, color = "") => `<span class="tag ${color}">${esc(text)}</span>`;
+    const rowLink = (href, title, badge, badgeColor, body, tags = []) => `
+      <a class="row" href="${esc(href)}">
+        <div class="row-main"><h4>${esc(title)}</h4>${tag(badge, badgeColor)}</div>
+        <p>${esc(body)}</p>
+        ${tags.length ? `<div class="meta">${tags.map((t) => tag(t)).join("")}</div>` : ""}
+      </a>`;
+
+    function geneRelations(gene) {
+      const selected = String(gene || "").trim().toUpperCase();
+      const relations = [];
+      for (const drug of drugs) {
+        for (const route of drug.routes || []) {
+          if (String(route.enzyme).toUpperCase() === selected) {
+            relations.push({ substance:drug.name, cls:drug.cls, role:"route", roleLabel:"Parent substrate", signal:`${selected} route${route.fraction ? `, fraction ${Math.round(route.fraction * 100)}%` : ""}`, action:drug.prodrug ? "activation review" : "exposure review", severity:drug.prodrug ? "red" : "amber" });
+          }
+        }
+        for (const item of drug.inh || []) {
+          if (String(item.target).toUpperCase() === selected) {
+            relations.push({ substance:drug.name, cls:drug.cls, role:"modulator", roleLabel:"Inhibitor", signal:`${sentence(item.strength)} ${selected} inhibition`, action:"phenoconversion flag", severity:item.strength === "strong" ? "red" : "amber" });
+          }
+        }
+        for (const item of drug.ind || []) {
+          if (String(item.target).toUpperCase() === selected) {
+            relations.push({ substance:drug.name, cls:drug.cls, role:"modulator", roleLabel:"Inducer", signal:`${sentence(item.strength)} ${selected} induction`, action:"loss-of-effect flag", severity:"amber" });
+          }
+        }
+      }
+      for (const [parent, entries] of Object.entries(metab)) {
+        for (const item of entries || []) {
+          if (String(item.e).toUpperCase() === selected) {
+            relations.push({ substance:parent, child:item.n, cls:getDrugRecord(parent)?.cls || "metabolite", role:"metabolite", roleLabel:"Child metabolite", signal:`${item.n} (${sentence(item.a)})`, action:item.a?.includes("active") ? "activation review" : "metabolite review", severity:item.a?.includes("toxic") ? "red" : "violet" });
+          }
+        }
+      }
+      for (const pair of pgx[selected]?.pairs || []) {
+        relations.push({ substance:pair.drug, cls:getDrugRecord(pair.drug)?.cls || "PGx", role:"evidence", roleLabel:`PGx evidence ${pair.level}`, signal:pair.action, action:pair.action, severity:pair.level === "A" ? "red" : pair.level === "B" ? "amber" : "green" });
+      }
+      const rank = { red:0, amber:1, violet:2, green:3 };
+      return relations.sort((a, b) => (rank[a.severity] ?? 9) - (rank[b.severity] ?? 9) || a.substance.localeCompare(b.substance));
+    }
+
+    function renderGeneView() {
+      const gene = ($("#geneSearch").value || "CYP2D6").trim().toUpperCase();
+      const phenotype = $("#phenotypeSelect").value || GENOTYPE_PHENOTYPE.PM;
+      const relationship = $("#relationshipSelect").value || "all";
+      const allRelations = geneRelations(gene);
+      const relations = relationship === "all" ? allRelations : allRelations.filter((item) => item.role === relationship);
+      const uniqueSubstances = new Set(relations.map((item) => item.substance));
+      $("#geneStatus").textContent = `${gene} rendered from ${drugs.length} substances, ${Object.keys(metab).length} metabolite parent entries, and ${Object.keys(pgx).length} PGx gene evidence groups.`;
+      $("#geneMetrics").innerHTML = [
+        [uniqueSubstances.size, "substances"],
+        [relations.filter((r) => r.role === "route").length, "direct routes"],
+        [relations.filter((r) => r.role === "metabolite").length, "child metabolites"],
+        [relations.filter((r) => r.role === "modulator").length, "modulators"],
+      ].map(([num, label]) => `<div class="metric"><strong>${num}</strong><span>${label}</span></div>`).join("");
+      $(".card-head .tag.violet").textContent = `${gene} ${sentence(phenotype).replace(" Metabolizer", "")}`;
+      const prodrugs = relations.filter((r) => r.action.includes("activation") || /avoid|ineffective|active/i.test(r.action)).slice(0, 6);
+      const exposure = relations.filter((r) => /exposure|auc|levels|clearance|dose/i.test(r.action + r.signal)).slice(0, 6);
+      const modulators = relations.filter((r) => r.role === "modulator").slice(0, 6);
+      $("#geneRelationshipList").innerHTML = [
+        ["Activation risk", "high", "red", "Substances where genotype may change active-metabolite formation.", prodrugs],
+        ["Exposure shift", "monitor", "amber", "Parent substances or evidence rows suggesting exposure or dose review.", exposure],
+        ["Phenoconversion", "stacking", "red", "Inhibitors or inducers that can shift apparent enzyme activity.", modulators],
+      ].map(([title, badge, color, body, items]) => rowLink(appLink(items.slice(0, 2).map((i) => i.substance), { genotype:`${gene}:${phenotype}` }), title, badge, color, body, items.map((i) => i.substance).slice(0, 4))).join("");
+      $("#geneSubstanceRows").innerHTML = relations.slice(0, 18).map((item) => `
+        <tr>
+          <td><a href="${esc(appLink([item.substance], { genotype:`${gene}:${phenotype}` }))}">${esc(item.substance)}</a><br>${tag(item.cls || item.role)}</td>
+          <td>${esc(item.roleLabel)}</td>
+          <td>${esc(item.signal)}</td>
+          <td>${tag(item.action.length > 42 ? item.action.slice(0, 39) + "..." : item.action, item.severity)}</td>
+        </tr>`).join("") || `<tr><td colspan="4">No database relationships found for ${esc(gene)}.</td></tr>`;
+      renderNetwork(gene);
+    }
+
+    function renderActionView() {
+      const query = ($("#actionSearch").value || "").toLowerCase();
+      const evidence = $("#actionEvidence").value;
+      const area = $("#actionArea").value;
+      const rows = [];
+      for (const [gene, entry] of Object.entries(pgx)) {
+        for (const pair of entry.pairs || []) {
+          const drug = getDrugRecord(pair.drug);
+          rows.push({ type:"PGx", title:`${pair.drug} + ${gene}`, level:pair.level, action:pair.action, cls:drug?.cls || "PGx", meds:[pair.drug], gene });
+        }
+      }
+      for (const item of ddi) {
+        rows.push({ type:"DDI", title:`${item.drug1} + ${item.drug2}`, level:item.severity === "severe" ? "A" : item.severity === "moderate" ? "B" : "C", action:item.effect || item.mechanism, cls:item.category || "DDI", meds:[item.drug1, item.drug2] });
+      }
+      const filtered = rows.filter((row) => {
+        const text = `${row.title} ${row.action} ${row.cls} ${row.type}`.toLowerCase();
+        const queryOk = !query || query.split(",").map((s) => s.trim()).filter(Boolean).some((term) => text.includes(term));
+        const evidenceOk = evidence === "all" || (evidence === "high" && row.level === "A") || (evidence === "actionable" && /avoid|reduce|dose|monitor|alternative|contraindicat|toxicity|bleed/i.test(row.action));
+        const areaOk = area === "all" || row.cls === area;
+        return queryOk && evidenceOk && areaOk;
+      });
+      const groups = [
+        ["Avoid", "red", (r) => /avoid|contraindicat|fatal|severe|ineffective/i.test(r.action) || r.level === "A"],
+        ["Adjust Dose", "amber", (r) => /dose|reduce|increase|titrate|auc|levels/i.test(r.action)],
+        ["Monitor", "green", (r) => /monitor|risk|watch|check|review/i.test(r.action)],
+      ];
+      $("#actionCards").innerHTML = groups.map(([title, color, test]) => {
+        const matches = filtered.filter(test).slice(0, 8);
+        return `<article class="card">
+          <div class="card-head"><h3>${title}</h3>${tag(`${filtered.filter(test).length} matches`, color)}</div>
+          <div class="card-body list">${matches.map((row) => rowLink(appLink(row.meds, row.gene ? { genotype:`${row.gene}:${GENOTYPE_PHENOTYPE.PM}` } : { tab:"safety" }), row.title, row.type, color, row.action, [row.cls, `Level ${row.level}`])).join("") || `<div class="row"><p>No matching rows.</p></div>`}</div>
+        </article>`;
+      }).join("");
+    }
+
+    function classStats() {
+      const classes = new Map();
+      for (const drug of drugs) {
+        const cls = drug.cls || "Unclassified";
+        if (!classes.has(cls)) classes.set(cls, { name:cls, drugs:[], routes:0, pgx:0, ddi:0, safety:0 });
+        const item = classes.get(cls);
+        item.drugs.push(drug);
+        item.routes += (drug.routes || []).length;
+        if ((drug.routes || []).some((r) => geneList.includes(r.enzyme))) item.pgx += 1;
+        if (drug.props?.qtcRisk || drug.props?.bleedingRisk || drug.props?.serotonergic || drug.prodrug) item.safety += 1;
+      }
+      for (const item of ddi) {
+        const d1 = getDrugRecord(item.drug1);
+        const d2 = getDrugRecord(item.drug2);
+        if (d1?.cls && classes.has(d1.cls)) classes.get(d1.cls).ddi += 1;
+        if (d2?.cls && classes.has(d2.cls)) classes.get(d2.cls).ddi += 1;
+      }
+      return [...classes.values()];
+    }
+
+    function renderClassesView() {
+      const query = ($("#classSearch").value || "").toLowerCase();
+      const metric = $("#classMetric").value;
+      const sort = $("#classSort").value;
+      let classes = classStats().filter((item) => !query || item.name.toLowerCase().includes(query) || item.drugs.some((d) => d.name.toLowerCase().includes(query)));
+      classes = classes.sort((a, b) => sort === "az" ? a.name.localeCompare(b.name) : (b[metric === "risk" ? "safety" : metric] - a[metric === "risk" ? "safety" : metric]));
+      $("#classCountTag").textContent = `${classes.length} groups`;
+      $("#classList").innerHTML = classes.slice(0, 12).map((item) => rowLink(appLink(item.drugs.slice(0, 3).map((d) => d.name), { tab:"safety" }), item.name, `${item.drugs.length} substances`, item.safety > 5 ? "red" : item.pgx > 3 ? "amber" : "green", `${item.pgx} PGx-relevant substances, ${item.ddi} DDI edges, ${item.routes} curated routes.`, item.drugs.slice(0, 4).map((d) => d.name))).join("");
+      const selected = classes[0] || classStats().sort((a, b) => b.drugs.length - a.drugs.length)[0];
+      if (!selected) return;
+      $("#classSnapshotTitle").textContent = `${selected.name} Snapshot`;
+      const max = Math.max(selected.drugs.length, selected.routes, selected.ddi, selected.safety, 1);
+      $("#classBars").innerHTML = [
+        ["Substances", selected.drugs.length, ""],
+        ["PGx relevance", selected.pgx, "blue"],
+        ["DDI edges", selected.ddi, "violet"],
+        ["Safety flags", selected.safety, "green"],
+      ].map(([label, value, color]) => `<div class="bar-row"><span>${esc(label)}</span><div class="track"><div class="fill ${color}" style="width:${Math.max(8, Math.round(value / max * 100))}%"></div></div><strong>${value}</strong></div>`).join("");
+      const example = selected.drugs.slice(0, 3).map((d) => d.name);
+      $("#classExampleLink").href = appLink(example, { tab:"safety" });
+      $("#classExampleLink span").textContent = example.join(" + ") || "No example available.";
+      $("#classFilterNote span").textContent = `High-yield filters: ${selected.drugs.some((d) => d.prodrug) ? "prodrug, " : ""}PGx routes, DDI edges, QT/bleeding/serotonergic flags.`;
+    }
+
+    function renderNetwork(gene = ($("#geneSearch")?.value || "CYP2D6")) {
+      const selected = String(gene || "CYP2D6").toUpperCase();
+      const genes = [selected, ...geneList.filter((item) => item !== selected && geneRelations(item).length)].slice(0, 8);
+      $("#networkTabs").innerHTML = genes.slice(0, 6).map((item) => `<button class="mini-tab ${item === selected ? "on" : ""}" data-gene="${esc(item)}">${esc(item)}</button>`).join("");
+      const rels = geneRelations(selected);
+      const top = rels.slice(0, 4);
+      const labels = [selected, ...top.map((r) => r.substance || r.child), sentence($("#phenotypeSelect")?.value || GENOTYPE_PHENOTYPE.PM)];
+      $("#networkCanvas").innerHTML = `<div class="edge e1"></div><div class="edge e2"></div><div class="edge e3"></div><div class="edge e4"></div><div class="edge e5"></div>${labels.slice(0, 5).map((label, idx) => `<div class="node n${idx + 1}">${esc(label)}</div>`).join("")}`;
+      $("#networkEdgeTitle").textContent = `${selected} Relationship Trace`;
+      $("#networkTimeline").innerHTML = top.slice(0, 4).map((item, idx) => `<div class="step"><div class="dot">${idx + 1}</div><a class="callout" href="${esc(appLink([item.substance], { genotype:`${selected}:${GENOTYPE_PHENOTYPE.PM}` }))}"><strong>${esc(item.substance)}: ${esc(item.roleLabel)}</strong><span>${esc(item.signal)}. ${esc(item.action)}</span></a></div>`).join("") || `<div class="callout"><strong>No edges found</strong><span>Try a different gene.</span></div>`;
+      $("#networkTabs").querySelectorAll("button").forEach((button) => button.addEventListener("click", () => { $("#geneSearch").value = button.dataset.gene; renderGeneView(); }));
+    }
+
+    function parseProfile() {
+      const text = $("#patientProfile").value.toUpperCase();
+      return geneList.map((gene) => {
+        const hit = text.includes(gene);
+        if (!hit) return null;
+        const after = text.slice(text.indexOf(gene), text.indexOf(gene) + 80);
+        const phenotype = /PM|POOR|DECREASED|NULL/.test(after) ? GENOTYPE_PHENOTYPE.PM : /IM|INTERMEDIATE/.test(after) ? GENOTYPE_PHENOTYPE.IM : /UM|ULTRA/.test(after) ? GENOTYPE_PHENOTYPE.UM : GENOTYPE_PHENOTYPE.NM;
+        return { gene, phenotype };
+      }).filter(Boolean);
+    }
+
+    function renderPatientView() {
+      const sets = {
+        example:["Codeine", "Metoprolol", "Simvastatin", "Sertraline", "Omeprazole", "Ibuprofen"],
+        psych:["Amitriptyline", "Diazepam", "Paroxetine", "Fluoxetine", "Tramadol"],
+        cardio:["Warfarin", "Clopidogrel", "Simvastatin", "Amiodarone", "Ibuprofen"],
+        high:["Codeine", "Fluoxetine", "Tamoxifen", "Metoprolol", "Warfarin", "Fluconazole"],
+      };
+      const profile = parseProfile();
+      const meds = sets[$("#patientMedSet").value] || sets.example;
+      $("#patientProfileTiles").innerHTML = profile.map((item) => `<div class="gene-tile"><strong>${esc(item.gene)}</strong><span>${esc(sentence(item.phenotype))}</span></div>`).join("") || `<div class="gene-tile"><strong>No profile parsed</strong><span>Use forms like CYP2D6 PM, CYP2C19 IM.</span></div>`;
+      $("#patientMedCount").textContent = `${meds.length} items`;
+      $("#patientMedTags").innerHTML = meds.map((name) => tag(name)).join("");
+      const impacts = [];
+      for (const item of profile) {
+        for (const rel of geneRelations(item.gene)) {
+          if (meds.some((name) => norm(name) === norm(rel.substance))) impacts.push({ ...rel, gene:item.gene, phenotype:item.phenotype, source:"PGx" });
+        }
+      }
+      for (const pair of ddi) {
+        if (meds.some((m) => norm(m) === norm(pair.drug1)) && meds.some((m) => norm(m) === norm(pair.drug2))) {
+          impacts.push({ substance:`${pair.drug1} + ${pair.drug2}`, roleLabel:"Interaction", signal:pair.mechanism, action:pair.effect || pair.management || "Review interaction", severity:pair.severity === "severe" ? "red" : pair.severity === "moderate" ? "amber" : "green", meds:[pair.drug1, pair.drug2], source:"DDI" });
+        }
+      }
+      const rank = { red:0, amber:1, violet:2, green:3 };
+      const sorted = impacts.sort((a, b) => (rank[a.severity] ?? 9) - (rank[b.severity] ?? 9));
+      $("#patientImpactCount").textContent = `${sorted.filter((i) => i.severity === "red").length} high`;
+      $("#patientImpactList").innerHTML = sorted.slice(0, 10).map((item) => rowLink(appLink(item.meds || [item.substance], item.gene ? { genotype:`${item.gene}:${item.phenotype}` } : { tab:"safety" }), item.substance, item.source || item.roleLabel, item.severity, `${item.signal}. ${item.action}`, [item.gene, item.roleLabel].filter(Boolean))).join("") || `<div class="row"><p>No impacts found for this profile and medication set.</p></div>`;
+    }
+
+    function initDataViews() {
+      $("#phenotypeSelect").innerHTML = Object.values(GENOTYPE_PHENOTYPE).map((value) => `<option value="${value}" ${value === GENOTYPE_PHENOTYPE.PM ? "selected" : ""}>${sentence(value)}</option>`).join("");
+      const classes = [...new Set(drugs.map((drug) => drug.cls).filter(Boolean))].sort();
+      $("#actionArea").innerHTML += classes.map((cls) => `<option value="${esc(cls)}">${esc(cls)}</option>`).join("");
+      $("#geneSearch").setAttribute("list", "geneOptions");
+      document.body.insertAdjacentHTML("beforeend", `<datalist id="geneOptions">${geneList.map((gene) => `<option value="${esc(gene)}"></option>`).join("")}</datalist>`);
+      $("#geneReview").addEventListener("click", renderGeneView);
+      $("#geneSearch").addEventListener("change", renderGeneView);
+      $("#phenotypeSelect").addEventListener("change", renderGeneView);
+      $("#relationshipSelect").addEventListener("change", renderGeneView);
+      $("#actionFilter").addEventListener("click", renderActionView);
+      $("#actionSearch").addEventListener("input", renderActionView);
+      $("#actionEvidence").addEventListener("change", renderActionView);
+      $("#actionArea").addEventListener("change", renderActionView);
+      $("#classOpen").addEventListener("click", renderClassesView);
+      $("#classSearch").addEventListener("input", renderClassesView);
+      $("#classMetric").addEventListener("change", renderClassesView);
+      $("#classSort").addEventListener("change", renderClassesView);
+      $("#patientSimulate").addEventListener("click", renderPatientView);
+      $("#patientProfile").addEventListener("input", renderPatientView);
+      $("#patientMedSet").addEventListener("change", renderPatientView);
+      renderGeneView();
+      renderActionView();
+      renderClassesView();
+      renderPatientView();
+      activateView(new URLSearchParams(location.search).get("view") || "genotype");
+    }
+
+    initDataViews();
   </script>
 </body>
 </html>
