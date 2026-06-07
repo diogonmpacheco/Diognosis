@@ -18,6 +18,7 @@ const requiredUrls = [
   "?view=genotype&gene=SLCO1B1&relationship=transporter",
   "?view=genotype&gene=ABCB1",
   "?view=genotype&gene=ABCG2",
+  "?view=genotype&gene=CYP3A4",
   "?view=genotype&gene=DPYD",
   "?view=action&action=digoxin",
   "?view=classes&class=SSRI",
@@ -117,6 +118,22 @@ if (!baseIndex) {
     fail(`Found ${brokenLinks.length} relations with broken app link substances. Sample: ${brokenLinks.slice(0, 5).map((row) => `${row.source}:${row.subject}`).join(", ")}`);
   }
 
+  const genotypePhraseLeaks = baseIndex.relations.filter((row) => {
+    if (!row.gene) return false;
+    const text = `${row.signal || ""} ${row.actionText || ""}`;
+    const matches = [...text.matchAll(/\b(CYP\d[A-Z0-9]*|SLCO1B1|ABCB1|ABCG2|DPYD|TPMT|NUDT15|G6PD|VKORC1)\s+(PM|IM|UM|NM|poor metabolizer|intermediate metabolizer|ultrarapid metabolizer)\b/gi)];
+    return matches.some((match) => match[1].toUpperCase() !== row.gene);
+  });
+  if (genotypePhraseLeaks.length) {
+    fail(`Found ${genotypePhraseLeaks.length} relations with genotype-status text assigned to a different gene. Sample: ${genotypePhraseLeaks.slice(0, 5).map((row) => `${row.source}:${row.gene}:${row.subject}`).join(", ")}`);
+  }
+
+  const codeineCyp3aLeaks = (baseIndex.byGene.CYP3A4 || []).filter((row) =>
+    row.subject === "Codeine" && /CYP2D6\s+PM|Complete loss of analgesia|no analgesic effect|activation review/i.test(`${row.signal || ""} ${row.actionText || ""}`));
+  if (codeineCyp3aLeaks.length) {
+    fail(`Codeine CYP3A4 rows include CYP2D6-specific activation/loss text. Sample: ${codeineCyp3aLeaks.map((row) => `${row.source}:${row.signal}`).slice(0, 5).join(", ")}`);
+  }
+
   const optionValues = new Set([...base.dom.window.document.querySelectorAll("#geneOptions option")].map((option) => option.value));
   const missingGenes = baseIndex.genes.filter((gene) => !optionValues.has(gene));
   if (missingGenes.length) {
@@ -143,6 +160,11 @@ for (const search of requiredUrls) {
     const gene = (params.get("gene") || "CYP2D6").toUpperCase();
     const relationship = params.get("relationship") || "all";
     const rows = (index.byGene[gene] || []).filter((row) => relationship === "all" || row.role === relationship);
+    const relationshipTag = document.querySelector("#geneRelationshipTag")?.textContent || "";
+    if (!relationshipTag.toUpperCase().includes(gene)) fail(`${search}: relationship map tag is not scoped to ${gene}. Found: ${relationshipTag || "(missing)"}`);
+    if (gene === "CYP3A4" && /CYP2D6\s+PM|Complete loss of analgesia/i.test(document.querySelector("#view-genotype")?.textContent || "")) {
+      fail(`${search}: CYP3A4 genotype view includes CYP2D6-specific Codeine clinical text.`);
+    }
     if (rows.length && visibleRows(document, "#geneSubstanceRows tr") === 0) fail(`${search}: genotype view rendered zero rows for ${rows.length} index matches.`);
     expectPager(document, "#genePager", rows.length, "genotype", search);
   }

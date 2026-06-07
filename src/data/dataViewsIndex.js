@@ -187,6 +187,20 @@
     return uniq(asArray(names).map((name) => getDrugRecord(name)?.id));
   }
 
+  function isActiveDescriptor(value) {
+    const text = String(value || "").toLowerCase();
+    if (/inactive|not active/.test(text)) return false;
+    return /\bactive\b|\bactive_/.test(text);
+  }
+
+  function routeFormsActiveMetabolite(drug, route) {
+    const routeGene = upper(route.enzyme);
+    const metaboliteRows = asArray(metab[drug.name]);
+    if (metaboliteRows.some((item) => upper(item.e) === routeGene && isActiveDescriptor(`${item.role || ""} ${item.a || ""}`))) return true;
+    if (/activ/i.test(`${route.role || ""} ${route.enzyme || ""}`)) return true;
+    return Boolean(drug.prodrug && (drug.routes || []).length === 1);
+  }
+
   function severityRank(severity) {
     return ({ red:0, high:0, critical:0, severe:0, amber:1, moderate:1, violet:2, green:3, low:3 })[String(severity || "").toLowerCase()] ?? 2;
   }
@@ -259,15 +273,16 @@
 
   for (const drug of drugs) {
     for (const route of drug.routes || []) {
+      const activationRoute = Boolean(drug.prodrug && routeFormsActiveMetabolite(drug, route));
       addRelation({
         source:"DRUG_DB",
         role:"parent",
         gene:route.enzyme,
         subject:drug.name,
         class:drug.cls,
-        severity:drug.prodrug ? "red" : "amber",
+        severity:activationRoute ? "red" : "amber",
         signal:`${route.enzyme} route${route.fraction ? `, fraction ${Math.round(route.fraction * 100)}%` : ""}`,
-        actionText:drug.prodrug ? "activation review" : "exposure review",
+        actionText:activationRoute ? "activation review" : drug.prodrug ? "non-activating route review" : "exposure review",
         evidenceLevel:route.evidence?.confidence || "",
       });
     }
@@ -309,7 +324,7 @@
         object:item.n,
         severity:item.a?.includes("toxic") ? "red" : "violet",
         signal:`${item.n} (${sentence(item.a)})`,
-        actionText:item.a?.includes("active") ? "activation review" : "metabolite review",
+        actionText:isActiveDescriptor(`${item.role || ""} ${item.a || ""}`) ? "activation review" : "metabolite review",
         evidenceLevel:(item.evidenceRefs || []).length ? "linked" : "",
       });
     }
@@ -361,17 +376,23 @@
   }
 
   for (const [parent, item] of Object.entries(pathwayDiversion)) {
-    const paths = [item.primary, ...(item.diverted || [])].filter(Boolean);
-    for (const path of paths) {
+    const paths = [
+      ...(item.primary ? [{ path:item.primary, primary:true }] : []),
+      ...(item.diverted || []).filter(Boolean).map((path) => ({ path, primary:false })),
+    ];
+    for (const { path, primary } of paths) {
+      const pathSignal = primary
+        ? item.clinicalImpact || path.note || path.metabolite || "pathway diversion"
+        : `${path.metabolite || "diverted metabolite"}${path.activity ? ` (${sentence(path.activity)})` : ""}`;
       addRelation({
         source:"PATHWAY_DIVERSION",
         role:"metabolite",
         gene:path.enzyme,
         subject:parent,
         object:path.metabolite,
-        severity:item.severity === "critical" ? "red" : item.severity === "high" ? "amber" : "violet",
-        signal:item.clinicalImpact || path.metabolite || "pathway diversion",
-        actionText:item.pmEffect || item.clinicalImpact || "pathway review",
+        severity:primary ? item.severity === "critical" ? "red" : item.severity === "high" ? "amber" : "violet" : "violet",
+        signal:pathSignal,
+        actionText:primary ? item.clinicalImpact || item.pmEffect || "pathway review" : "diverted pathway review",
         evidenceLevel:item.evidenceLevel || "",
       });
     }
@@ -442,6 +463,9 @@
     for (const actor of Object.values(map)) {
       const actorName = actor.name || actor.id;
       for (const route of actor.routes || []) {
+        const routeGene = upper(route.enzyme);
+        const formingGene = upper(actor.formingEnzyme);
+        const routeAction = route.note || (formingGene && routeGene === formingGene ? actor.note : `${route.enzyme} route review`);
         addRelation({
           source:"ACTOR_MAP",
           role:"parent",
@@ -450,7 +474,7 @@
           class:sentence(actor.type || "actor"),
           severity:"violet",
           signal:`${route.enzyme} route${route.fraction ? `, fraction ${Math.round(route.fraction * 100)}%` : ""}`,
-          actionText:actor.note || "actor route review",
+          actionText:routeAction,
           evidenceLevel:route.evidence?.confidence || "",
         });
       }

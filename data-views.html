@@ -175,7 +175,7 @@
           </div>
           <div class="grid two">
             <article class="card">
-              <div class="card-head"><h3>Relationship Map</h3><span class="tag violet">CYP2D6 PM</span></div>
+              <div class="card-head"><h3>Relationship Map</h3><span class="tag violet" id="geneRelationshipTag">CYP2D6</span></div>
               <div class="card-body">
                 <div class="list" id="geneRelationshipList">
                 <a class="row" href="./index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx">
@@ -415,6 +415,11 @@
       return `${relation.signal || ""}${relation.actionText && relation.actionText !== relation.signal ? `. ${relation.actionText}` : ""}`.replace(/^\.\s*/, "");
     }
 
+    function relationMentionsActivation(relation) {
+      const text = `${relation.actionText || ""} ${relation.signal || ""}`.toLowerCase().replace(/\binactive\b|\bnot active\b/g, "");
+      return /activat|\bactive\b|prodrug|ineffective|failure|loss of analgesia|loss of efficacy|reduced conversion|reduced formation|avoid/.test(text);
+    }
+
     function selectedModel() {
       const gene = selectedGene();
       return (index.modeledGenotypes || []).find((item) => item.kind === "modeled_gene" && item.gene === gene) || null;
@@ -494,8 +499,10 @@
         [rows.filter((r) => r.role === "metabolite").length, "metabolite rows"],
         [rows.filter((r) => r.role === "modulator" || r.role === "transporter").length, "modulators"],
       ].map(([num, label]) => `<div class="metric"><strong>${num}</strong><span>${label}</span></div>`).join("");
-      $("#genotypePickTag").textContent = `${model?.label || gene} ${phenotype ? phenotypeLabel(gene, phenotype, model) : "Context"}`;
-      const activationRows = rows.filter((r) => /activation|active|ineffective|failure|avoid/i.test(r.actionText + r.signal));
+      const focusLabel = `${model?.label || gene} ${phenotype ? phenotypeLabel(gene, phenotype, model) : "Context"}`;
+      $("#genotypePickTag").textContent = focusLabel;
+      $("#geneRelationshipTag").textContent = focusLabel;
+      const activationRows = rows.filter(relationMentionsActivation);
       const exposureRows = rows.filter((r) => /exposure|auc|level|clearance|dose|fold/i.test(r.actionText + r.signal));
       const modulatorRows = rows.filter((r) => r.role === "modulator" || r.role === "transporter");
       $("#geneRelationshipList").innerHTML = [
