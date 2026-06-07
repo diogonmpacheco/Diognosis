@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MedCheck Data Views | Genotype, Clinical Action, Pathways & Patient Profile Explorer</title>
-  <meta name="description" content="Explore MedCheck data from alternate entry points: genotype lookup, clinical action groups, medication classes, gene-pathway networks, and patient genotype profile simulations.">
+  <title>MedCheck Data Views | Genotype, Clinical Action, Gene Ranking & Patient Profile Explorer</title>
+  <meta name="description" content="Explore MedCheck data from alternate entry points: genotype lookup, clinical action groups, medication classes, gene severity ranking, and patient genotype profile simulations.">
   <link rel="canonical" href="https://diogonmpacheco.github.io/medcheck/data-views.html">
   <style>
     :root{
@@ -89,32 +89,22 @@
     .genetics-card{margin-bottom:14px}
     .genetics-copy{font-size:12px;color:var(--text2);margin:0 0 10px;line-height:1.4}
     .genotype-detail{font-size:11px;color:var(--text2);font-weight:750;margin-top:-4px}
-    .network{height:430px;position:relative;background:linear-gradient(180deg,#fffcf8,#f3f7fb);border-radius:8px;border:1px solid var(--border);overflow:hidden}
-    .node{position:absolute;border:2px solid #fff;border-radius:999px;box-shadow:0 4px 14px rgba(23,32,42,.16);display:grid;place-items:center;text-align:center;font-weight:850;font-size:12px;padding:8px;color:#fff}
-    .n1{left:9%;top:16%;width:92px;height:92px;background:var(--blue)}
-    .n2{left:39%;top:8%;width:82px;height:82px;background:var(--green)}
-    .n3{left:68%;top:22%;width:106px;height:106px;background:var(--accent)}
-    .n4{left:23%;top:58%;width:118px;height:118px;background:var(--violet)}
-    .n5{left:62%;top:62%;width:92px;height:92px;background:var(--amber)}
-    .edge{position:absolute;height:2px;background:#9aa7b4;transform-origin:left center}
-    .e1{left:19%;top:27%;width:230px;transform:rotate(-9deg)}
-    .e2{left:48%;top:18%;width:206px;transform:rotate(18deg)}
-    .e3{left:23%;top:34%;width:190px;transform:rotate(57deg)}
-    .e4{left:39%;top:70%;width:230px;transform:rotate(-3deg)}
-    .e5{left:73%;top:47%;width:120px;transform:rotate(93deg)}
+    .table-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .rank-table{min-width:980px}
+    .rank-cell{font-weight:900;color:var(--text2)}
+    .rank-gene a{font-size:13px}
+    .score{display:grid;gap:4px;min-width:90px}
+    .score strong{font-size:13px}
+    .scorebar{height:7px;border-radius:999px;background:#ece7df;overflow:hidden}
+    .scorebar span{display:block;height:100%;border-radius:999px;background:var(--accent)}
+    .rank-summary{display:grid;gap:8px}
+    .rank-note{font-size:12px;color:var(--text2);margin:0 0 12px}
     .legend{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
-    .mini-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-    .mini-tab{border:1px solid var(--border);background:var(--surface);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:850;color:var(--text2)}
-    .mini-tab.on{border-color:var(--accent);background:var(--accentBg);color:var(--accent)}
-    .timeline{display:grid;gap:8px}
-    .step{display:grid;grid-template-columns:30px 1fr;gap:9px;align-items:start}
-    .dot{width:24px;height:24px;border-radius:999px;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:900}
     .callout{border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:8px;background:var(--surface2);padding:11px 12px}
     .callout strong{display:block;font-size:13px;margin-bottom:3px}
     .callout span{color:var(--text2);font-size:12px}
     .pager{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:10px 0 0;color:var(--text2);font-size:12px;font-weight:800}
     .pager button{border:1px solid var(--border);background:var(--surface2);border-radius:8px;padding:6px 10px;color:var(--text);font-weight:850;cursor:pointer}
-    .edge-list{max-height:360px;overflow:auto;padding-right:4px}
     .muted{color:var(--text2)}
     @media (max-width:900px){
       .shell{display:block}
@@ -141,7 +131,7 @@
         <button class="nav-btn active" data-view="genotype"><span>GT</span><span>Genotype lookup<small>Gene-first substance index</small></span></button>
         <button class="nav-btn" data-view="action"><span>CA</span><span>Clinical action<small>Decision-first grouping</small></span></button>
         <button class="nav-btn" data-view="classes"><span>CL</span><span>Substance classes<small>Therapy area review</small></span></button>
-        <button class="nav-btn" data-view="network"><span>NW</span><span>Pathway network<small>Gene-drug-metabolite graph</small></span></button>
+        <button class="nav-btn" data-view="ranking"><span>GR</span><span>Gene ranking<small>Severity and reach</small></span></button>
         <button class="nav-btn" data-view="patient"><span>PT</span><span>Patient simulator<small>Profile-first impact list</small></span></button>
       </nav>
       <div class="rail-note">Alternate entry points for exploring MedCheck data. Example links open the main app with focused medication stacks.</div>
@@ -295,32 +285,31 @@
           </div>
         </section>
 
-        <section class="view" id="view-network">
+        <section class="view" id="view-ranking">
+          <div class="toolbar">
+            <input class="field" id="rankingSearch" placeholder="Search gene, CYP, transporter, or class" aria-label="Ranking search">
+            <select class="select" id="rankingSort" aria-label="Ranking sort"><option value="score">Sort by impact score</option><option value="total">Total parent + metabolite substances</option><option value="high">High-severity rows</option><option value="inhibitors">Inhibitors</option><option value="inducers">Inducers / promoters</option><option value="az">A to Z</option></select>
+          </div>
+          <div class="metric-row" id="rankingMetrics"></div>
           <div class="grid two">
             <article class="card">
-              <div class="card-head"><h3>Pathway Network</h3><span class="tag violet">interactive concept</span></div>
+              <div class="card-head"><h3>Top Gene Ranking</h3><span class="tag red" id="rankingCountTag">0 genes</span></div>
               <div class="card-body">
-                <div class="mini-tabs" id="networkTabs"></div>
-                <div class="network" id="networkCanvas" aria-label="Network diagram">
-                  <div class="edge e1"></div><div class="edge e2"></div><div class="edge e3"></div><div class="edge e4"></div><div class="edge e5"></div>
-                  <div class="node n1">CYP2D6</div>
-                  <div class="node n2">fluoxetine</div>
-                  <div class="node n3">metoprolol</div>
-                  <div class="node n4">codeine to morphine</div>
-                  <div class="node n5">poor metabolizer</div>
+                <p class="rank-note">Impact score weights high-severity rows, actionable rows, parent substances, metabolites, modulators, transporters, and evidence density.</p>
+                <div class="table-wrap">
+                  <table class="table rank-table">
+                    <thead><tr><th>Rank</th><th>Gene</th><th>Impact</th><th>Total substances</th><th>Parents</th><th>Metabolites</th><th>Inhibitors</th><th>Inducers / promoters</th><th>Transporters</th><th>Minor routes</th><th>High severity</th><th>Actionable</th><th>Evidence</th></tr></thead>
+                    <tbody id="rankingRows"></tbody>
+                  </table>
                 </div>
-                <div class="legend"><span class="tag">gene</span><span class="tag green">modulator</span><span class="tag amber">phenotype</span><span class="tag violet">metabolite path</span></div>
+                <div class="pager" id="rankingPager"></div>
               </div>
             </article>
             <article class="card">
-              <div class="card-head"><h3 id="networkEdgeTitle">Selected Edge</h3><span class="tag red">explainability</span></div>
+              <div class="card-head"><h3>Ranking Leaders</h3><span class="tag violet">live</span></div>
               <div class="card-body">
-                <div class="timeline" id="networkTimeline">
-                  <div class="step"><div class="dot">1</div><div class="callout"><strong>CYP2D6 poor metabolizer</strong><span>Baseline enzyme activity is low before medication effects.</span></div></div>
-                  <div class="step"><div class="dot">2</div><div class="callout"><strong>Codeine activation decreases</strong><span>Less conversion to morphine, so analgesic effect may be reduced.</span></div></div>
-                  <div class="step"><div class="dot">3</div><div class="callout"><strong>Fluoxetine adds inhibition pressure</strong><span>Strong CYP2D6 inhibition can also affect other CYP2D6 substrates in the same profile.</span></div></div>
-                  <div class="step"><div class="dot">4</div><div class="callout"><strong>Action layer</strong><span>Surface affected substances, alternatives, and supporting evidence links.</span></div></div>
-                </div>
+                <div class="rank-summary" id="rankingHighlights"></div>
+                <div class="legend"><span class="tag red">high severity</span><span class="tag amber">dose/action</span><span class="tag green">transport</span><span class="tag violet">evidence</span></div>
               </div>
             </article>
           </div>
@@ -382,24 +371,25 @@
     const sentence = (value) => String(value || "").replace(/_/g, " ").replace(/\b\w/g, (m) => m.toUpperCase());
     const tag = (text, color = "") => `<span class="tag ${color}">${esc(text)}</span>`;
     const pageSize = 50;
-    const state = { geneShowAll:false, actionShowAll:{}, classShowAll:false, networkShowAll:false, patientShowAll:false };
+    const state = { geneShowAll:false, actionShowAll:{}, classShowAll:false, rankingShowAll:false, patientShowAll:false };
     const copy = {
       genotype:["Genotype Lookup","Select a gene or phenotype and review every substance that uses it as a parent, child, transporter, inhibitor, or genotype-sensitive rule."],
       action:["Clinical Action View","Group the database by what a clinician does next: avoid, adjust dose, monitor, switch, or document no expected action."],
       classes:["Substance Class View","Browse therapy areas and see their pharmacogenomic density, interaction hotspots, example combinations, and high-value filters."],
-      network:["Gene / Pathway Network","Explore genes, parent substances, metabolites, inhibitors, transporters, and phenotype effects as a relationship graph."],
+      ranking:["Gene Ranking","Rank genotype-linked genes by substance reach, metabolite coverage, modulators, transporter rows, evidence, and high-severity burden."],
       patient:["Patient Result Simulator","Enter a genotype profile and medication set, then rank affected substances by actionability and predicted impact."]
     };
     const actionGroups = [["Avoid","red"], ["Adjust Dose","amber"], ["Switch/Alternative","violet"], ["Monitor","green"], ["Informational",""]];
 
     function activateView(view) {
+      if (view === "network") view = "ranking";
       const button = document.querySelector(`.nav-btn[data-view="${view}"]`);
       if (!button || !copy[view]) return;
       document.querySelectorAll(".nav-btn").forEach((item) => item.classList.toggle("active", item === button));
       document.querySelectorAll(".view").forEach((panel) => panel.classList.toggle("active", panel.id === `view-${view}`));
       $("#pageTitle").textContent = copy[view][0];
       $("#pageCopy").textContent = copy[view][1];
-      if (view === "network") renderNetworkView();
+      if (view === "ranking") renderRankingView();
     }
 
     function appLinkForRelation(relation, opts = {}) {
@@ -523,7 +513,6 @@
         return `<tr><td><a href="${esc(href)}">${esc(row.subject)}</a><br>${tag(`${row.class} · ${entity?.linkable ? "app substance" : `${row.entityKind} · no direct app substance`}`)}</td><td>${esc(sentence(row.role))}</td><td>${esc(row.signal)}</td><td>${tag(row.actionGroup, row.severity)}</td></tr>`;
       }).join("") || `<tr><td colspan="4">No indexed relationships found for ${esc(gene)}.</td></tr>`;
       renderPager($("#genePager"), rows.length, shown.length, "geneShowAll", renderGeneView);
-      renderNetworkView(gene);
     }
 
     function renderActionView() {
@@ -599,19 +588,81 @@
       $("#classFilterNote span").textContent = `Includes ${selected.rows.length} indexed relation rows from ${new Set(selected.rows.map((row) => row.source)).size} sources.`;
     }
 
-    function renderNetworkView(gene = selectedGene()) {
-      const selected = String(gene || "CYP2D6").toUpperCase();
-      const genes = [selected, ...index.genes.filter((item) => item !== selected)].slice(0, 8);
-      $("#networkTabs").innerHTML = genes.slice(0, 6).map((item) => `<button class="mini-tab ${item === selected ? "on" : ""}" data-gene="${esc(item)}">${esc(item)}</button>`).join("");
-      const rows = index.byGene[selected] || [];
-      const top = rows.slice(0, 25);
-      const nodeLabels = [selected, ...top.slice(0, 4).map((row) => row.subject)];
-      $("#networkCanvas").innerHTML = `<div class="edge e1"></div><div class="edge e2"></div><div class="edge e3"></div><div class="edge e4"></div><div class="edge e5"></div>${nodeLabels.slice(0, 5).map((label, idx) => `<div class="node n${idx + 1}">${esc(label)}</div>`).join("")}`;
-      $("#networkEdgeTitle").textContent = `${selected} Relationship Trace`;
-      const shown = state.networkShowAll ? rows : rows.slice(0, pageSize);
-      $("#networkTimeline").innerHTML = `<div class="edge-list">${shown.map((row, idx) => `<div class="step"><div class="dot">${idx + 1}</div><a class="callout" href="${esc(appLinkForRelation(row, { genotype:`${selected}:${phenotypeModel.PM}` }))}"><strong>${esc(row.subject)}: ${esc(sentence(row.role))}</strong><span>${esc(row.signal)}. ${esc(row.actionText)}</span></a></div>`).join("") || `<div class="callout"><strong>No edges found</strong><span>Try a different gene.</span></div>`}</div><div class="pager" id="networkPager"><span>Showing ${Math.min(shown.length, rows.length)} of ${rows.length} edges</span>${rows.length > pageSize ? `<button type="button" id="networkShowAll">${state.networkShowAll ? "Show 50" : "Show all"}</button>` : ""}</div>`;
-      $("#networkShowAll")?.addEventListener("click", () => { state.networkShowAll = !state.networkShowAll; renderNetworkView(selected); });
-      $("#networkTabs").querySelectorAll("button").forEach((button) => button.addEventListener("click", () => { $("#geneSearch").value = button.dataset.gene; updatePhenotypeOptions(); renderGeneView(); activateView("network"); }));
+    function setCount(rows, predicate) {
+      return new Set(rows.filter(predicate).map((row) => row.subject).filter(Boolean)).size;
+    }
+
+    function isInhibitor(row) {
+      return row.role === "modulator" && /inhibit|inhibitor|inhibition|blocks?|decrease.*activity/i.test(`${row.signal} ${row.actionText}`);
+    }
+
+    function isInducer(row) {
+      return row.role === "modulator" && /induc|inducer|induction|promot|increase.*activity|upregulat/i.test(`${row.signal} ${row.actionText}`);
+    }
+
+    function isRankableGene(gene) {
+      const value = String(gene || "").toUpperCase();
+      if (/^(NONE|RENAL|RENAL EXCRETION|RENAL EXCRETION UNCHANGED|HEPATIC|BILIARY|UNKNOWN|OTHER|UGT)$/.test(value)) return false;
+      if ((index.modeledGenotypes || []).some((item) => item.kind === "modeled_gene" && item.gene === value)) return true;
+      if (typeof PHARMGKB_EVIDENCE !== "undefined" && PHARMGKB_EVIDENCE[value]) return true;
+      return /^(CYP\d|UGT[12][AB]\d|NAT\d|SLCO\d|SLC\d|ABC[A-Z0-9]+|VKORC1|DPYD|TPMT|NUDT15|G6PD|HLA|RYR1|CACNA1S|BCHE|COMT|OPRM1|IFNL\d|MTHFR|F5|F2|CFTR)/.test(value);
+    }
+
+    function rankingStats() {
+      return index.genes.filter(isRankableGene).map((gene) => {
+        const rows = index.byGene[gene] || [];
+        const parents = setCount(rows, (row) => row.role === "parent");
+        const metabolites = setCount(rows, (row) => row.role === "metabolite");
+        const totalSubstances = setCount(rows, (row) => row.role === "parent" || row.role === "metabolite");
+        const inhibitors = setCount(rows, isInhibitor);
+        const inducers = setCount(rows, isInducer);
+        const transporters = setCount(rows, (row) => row.role === "transporter");
+        const minors = setCount(rows, (row) => /minor|secondary|weak/i.test(`${row.signal} ${row.actionText}`));
+        const high = rows.filter((row) => row.severity === "red").length;
+        const actionable = rows.filter((row) => row.actionGroup !== "Informational").length;
+        const evidence = rows.filter((row) => row.role === "evidence" || row.source === "PHARMGKB_EVIDENCE").length;
+        const score = high * 5 + actionable * 2 + totalSubstances * 3 + parents * 2 + metabolites + inhibitors + inducers + transporters + Math.ceil(evidence / 2);
+        const classes = [...new Set(rows.map((row) => row.class).filter(Boolean))];
+        return { gene, rows, totalSubstances, parents, metabolites, inhibitors, inducers, transporters, minors, high, actionable, evidence, score, classes };
+      }).filter((item) => item.rows.length);
+    }
+
+    function sortRanking(rows, sort) {
+      const valueFor = (item) => sort === "total" ? item.totalSubstances : sort === "high" ? item.high : sort === "inhibitors" ? item.inhibitors : sort === "inducers" ? item.inducers : item.score;
+      return rows.sort((a, b) => sort === "az" ? a.gene.localeCompare(b.gene) : (valueFor(b) - valueFor(a)) || b.totalSubstances - a.totalSubstances || b.high - a.high || a.gene.localeCompare(b.gene));
+    }
+
+    function renderRankingView() {
+      const query = ($("#rankingSearch")?.value || "").toLowerCase();
+      const sort = $("#rankingSort")?.value || "score";
+      let rows = rankingStats().filter((item) => !query || item.gene.toLowerCase().includes(query) || item.classes.some((name) => name.toLowerCase().includes(query)));
+      rows = sortRanking(rows, sort);
+      const shown = state.rankingShowAll ? rows : rows.slice(0, pageSize);
+      const maxScore = Math.max(...rows.map((item) => item.score), 1);
+      const topImpact = rows[0];
+      const topTotal = sortRanking([...rows], "total")[0];
+      const topHigh = sortRanking([...rows], "high")[0];
+      const topInhibitors = sortRanking([...rows], "inhibitors")[0];
+      $("#rankingCountTag").textContent = `${rows.length} genes`;
+      $("#rankingMetrics").innerHTML = [
+        [topImpact?.gene || "-", "top impact"],
+        [topTotal ? `${topTotal.gene} · ${topTotal.totalSubstances}` : "-", "most substances"],
+        [topHigh ? `${topHigh.gene} · ${topHigh.high}` : "-", "high-severity rows"],
+        [topInhibitors ? `${topInhibitors.gene} · ${topInhibitors.inhibitors}` : "-", "inhibitors"],
+      ].map(([num, label]) => `<div class="metric"><strong>${esc(num)}</strong><span>${esc(label)}</span></div>`).join("");
+      $("#rankingRows").innerHTML = shown.map((item) => {
+        const rank = rows.indexOf(item) + 1;
+        const width = Math.max(6, Math.round(item.score / maxScore * 100));
+        const href = `./data-views.html?view=genotype&gene=${encodeURIComponent(item.gene)}`;
+        return `<tr><td class="rank-cell">#${rank}</td><td class="rank-gene"><a href="${esc(href)}">${esc(item.gene)}</a><br>${tag(item.classes.slice(0, 2).join(" / ") || "gene")}</td><td><div class="score"><strong>${item.score}</strong><div class="scorebar"><span style="width:${width}%"></span></div></div></td><td>${item.totalSubstances}</td><td>${item.parents}</td><td>${item.metabolites}</td><td>${item.inhibitors}</td><td>${item.inducers}</td><td>${item.transporters}</td><td>${item.minors}</td><td>${tag(item.high, item.high ? "red" : "")}</td><td>${item.actionable}</td><td>${item.evidence}</td></tr>`;
+      }).join("") || `<tr><td colspan="13">No genes match this ranking filter.</td></tr>`;
+      $("#rankingHighlights").innerHTML = [
+        ["Highest overall impact", topImpact, "red", (item) => `${item.score} score from ${item.totalSubstances} parent/metabolite substances and ${item.high} high-severity rows.`],
+        ["Broadest parent/metabolite reach", topTotal, "amber", (item) => `${item.totalSubstances} total substances: ${item.parents} parents and ${item.metabolites} metabolites.`],
+        ["Most inhibitor pressure", topInhibitors, "violet", (item) => `${item.inhibitors} inhibitor substances and ${item.inducers} inducer/promoter substances.`],
+        ["Most high-severity burden", topHigh, "red", (item) => `${item.high} red-severity rows across ${item.actionable} actionable rows.`],
+      ].filter(([, item]) => item).map(([title, item, color, body]) => rowLink(`./data-views.html?view=genotype&gene=${encodeURIComponent(item.gene)}`, `${title}: ${item.gene}`, `${item.rows.length} rows`, color, body(item), item.classes.slice(0, 4))).join("");
+      renderPager($("#rankingPager"), rows.length, shown.length, "rankingShowAll", renderRankingView);
     }
 
     function parseProfile() {
@@ -681,6 +732,8 @@
       if (params.get("action")) $("#actionSearch").value = params.get("action");
       if (params.get("area") && [...$("#actionArea").options].some((option) => option.value === params.get("area"))) $("#actionArea").value = params.get("area");
       if (params.get("class")) $("#classSearch").value = params.get("class");
+      if (params.get("rankingSearch")) $("#rankingSearch").value = params.get("rankingSearch");
+      if (params.get("sort") && [...$("#rankingSort").options].some((option) => option.value === params.get("sort"))) $("#rankingSort").value = params.get("sort");
       if (params.get("patientProfile")) $("#patientProfile").value = params.get("patientProfile");
       if (params.get("patientMeds")) $("#patientMeds").value = params.get("patientMeds");
       if (params.get("patientSet") && [...$("#patientMedSet").options].some((option) => option.value === params.get("patientSet"))) $("#patientMedSet").value = params.get("patientSet");
@@ -692,7 +745,7 @@
       };
       if (!params.get("patientMeds")) $("#patientMeds").value = presets[$("#patientMedSet").value] || presets.example;
       document.querySelectorAll(".nav-btn").forEach((button) => button.addEventListener("click", () => { activateView(button.dataset.view); history.replaceState(null, "", `?view=${button.dataset.view}`); }));
-      $("#geneSearch").addEventListener("change", () => { updatePhenotypeOptions(); state.geneShowAll = false; state.networkShowAll = false; renderGeneView(); });
+      $("#geneSearch").addEventListener("change", () => { updatePhenotypeOptions(); state.geneShowAll = false; renderGeneView(); });
       $("#phenotypeSelect").addEventListener("change", () => { updatePhenotypeOptions(); renderGeneView(); });
       $("#relationshipSelect").addEventListener("change", () => { state.geneShowAll = false; renderGeneView(); });
       $("#actionFilter").addEventListener("click", renderActionView);
@@ -703,6 +756,8 @@
       $("#classSearch").addEventListener("input", () => { state.classShowAll = false; renderClassesView(); });
       $("#classMetric").addEventListener("change", renderClassesView);
       $("#classSort").addEventListener("change", renderClassesView);
+      $("#rankingSearch").addEventListener("input", () => { state.rankingShowAll = false; renderRankingView(); });
+      $("#rankingSort").addEventListener("change", () => { state.rankingShowAll = false; renderRankingView(); });
       $("#patientSimulate").addEventListener("click", renderPatientView);
       $("#patientProfile").addEventListener("input", renderPatientView);
       $("#patientMeds").addEventListener("input", renderPatientView);

@@ -21,7 +21,7 @@ const requiredUrls = [
   "?view=genotype&gene=DPYD",
   "?view=action&action=digoxin",
   "?view=classes&class=SSRI",
-  "?view=network&gene=CYP2C19",
+  "?view=ranking&sort=total",
   "?view=patient&patientProfile=CYP2D6 PM, CYP2C19 PM, SLCO1B1 PM&patientMeds=Codeine,Fluoxetine,Tamoxifen,Metoprolol,Warfarin,Fluconazole",
 ];
 
@@ -129,7 +129,8 @@ for (const search of requiredUrls) {
   const { document } = dom.window;
   const index = dom.window.DATA_VIEW_INDEX;
   const params = new URLSearchParams(search);
-  const view = params.get("view");
+  let view = params.get("view");
+  if (view === "network") view = "ranking";
 
   if (consoleErrors.length) fail(`${search}: console/runtime errors: ${consoleErrors.join(" | ")}`);
   if (/Unresolved/i.test(document.body.textContent || "")) fail(`${search}: visible unresolved text rendered.`);
@@ -160,11 +161,12 @@ for (const search of requiredUrls) {
     if (!document.querySelector("#classCountTag")?.textContent.match(/\d+ groups/)) fail(`${search}: class view missing visible group count.`);
   }
 
-  if (view === "network") {
-    const gene = (params.get("gene") || "CYP2D6").toUpperCase();
-    const rows = index.byGene[gene] || [];
-    if (rows.length && visibleRows(document, "#networkTimeline .step") === 0) fail(`${search}: network view rendered zero rows for ${rows.length} index matches.`);
-    expectPager(document, "#networkPager", rows.length, "network", search);
+  if (view === "ranking") {
+    const rows = Number((document.querySelector("#rankingCountTag")?.textContent.match(/\d+/) || [0])[0]);
+    if (rows && visibleRows(document, "#rankingRows tr") === 0) fail(`${search}: ranking view rendered zero rows for ${rows} displayed matches.`);
+    expectPager(document, "#rankingPager", rows, "ranking", search);
+    if (!document.querySelector("#rankingCountTag")?.textContent.match(/\d+ genes/)) fail(`${search}: ranking view missing visible gene count.`);
+    if (!document.querySelector("#rankingRows")?.textContent.includes("CYP2D6")) fail(`${search}: ranking view should expose CYP2D6 in the top ranking page.`);
   }
 
   if (view === "patient") {
