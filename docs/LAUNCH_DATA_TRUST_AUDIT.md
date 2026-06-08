@@ -13,14 +13,15 @@ This audit checked the generated launch bundle (`index.html`) after rebuilding f
 | Drugs in `DRUG_DB` | 625 |
 | Evidence entries in `STUDY_DB` | 455 |
 | Public evidence entries | 453 |
-| Baseline source-linked entries, all `STUDY_DB` | 161 |
+| Public source-linked evidence entries | 453 |
+| Pending professional review entries | 453 |
 | Professional-reviewed evidence entries | 0 |
-| Pending-review enrichment entries | 294 |
+| Internal `reviewRequired:true` enrichment entries | 294 |
 | Interaction pairs after fixes | 627 |
 | Severe/critical interaction pairs after fixes | 323 |
 | Severe/critical pairs linked only to pending-review evidence | 188 |
 
-Note: generated stats and README intentionally count all `STUDY_DB` entries. No entry has been marked professionally reviewed yet. The 188 severe/critical rows linked only to pending-review evidence are intentionally integrated for public-preview feedback, but must remain visibly badged as pending professional review.
+Note: generated stats and README intentionally count all `STUDY_DB` entries. No entry has been marked professionally reviewed yet. The `reviewRequired:true` flag is an internal enrichment/scoring control, not the boundary between reviewed and unreviewed evidence. The 188 severe/critical rows linked only to internally review-required evidence are intentionally integrated for public-preview feedback, but the whole evidence set must remain visibly pending professional review.
 
 ## Check Results
 
@@ -33,7 +34,7 @@ Note: generated stats and README intentionally count all `STUDY_DB` entries. No 
 | Duplicate DDI pairs with conflicting severity | 0 |
 | Severe/critical DDI pairs missing `evidenceRefs` | 0 |
 | Evidence refs pointing to missing `STUDY_DB` entries | 0 |
-| Baseline public entries lacking PMID, DOI, or URL unless regulatory label | 0 |
+| Public entries lacking PMID, DOI, or URL unless regulatory label | 0 |
 | `reviewRequired:true` entries presented as professionally reviewed | 0 |
 | Generated stats mismatching source data | 0 |
 | README stats mismatching generated stats | 0 |
@@ -53,18 +54,19 @@ Removed 4 duplicate DDI rows from `src/data/interactions.js`:
 
 After rebuild, `KNOWN_DDI` dropped from 631 to 627 rows, severe DDI rows dropped from 326 to 323, and duplicate-pair count dropped from 4 to 0.
 
-## Remaining Review Queue
+## Remaining Professional Review Work
 
-The remaining queue is expected launch review work, not a structural data failure:
+The remaining queue is expected launch review work, not a structural data failure. All public evidence is pending professional review:
 
 | Queue | Count |
 | --- | ---: |
+| Public evidence entries pending professional review | 453 |
 | `reviewRequired:true` evidence entries | 294 |
-| Review-queue entries with PMID, DOI, or URL | 294 |
+| Internal review-required entries with PMID, DOI, or URL | 294 |
 | Pending-review entries accidentally marked professionally reviewed | 0 |
 | Pending-review entries hidden from evidence UI badges | 0 |
 
-Most pending entries are enrichment batches that already carry external identifiers but still need clinician/pharmacist review before being treated as professionally reviewed. The highest-priority items are those linked to the greatest number or severity of DDI rows.
+The internal `reviewRequired:true` subset identifies enrichment entries that still need source-faithfulness review before they can affect scoring. It does not imply the other entries are professionally reviewed. The highest-priority items are those linked to the greatest number or severity of DDI rows.
 
 ## Top 25 Human-Review Priorities
 

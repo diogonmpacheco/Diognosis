@@ -103,15 +103,23 @@ for (const pmid of allPmids) {
   }
 }
 
+const pendingProfessionalReviewIds = [];
 for (const [id, study] of Object.entries(data.STUDY_DB || {})) {
-  if (!study.verified && study.reviewRequired) {
-    add('info', 'study_pending_human_review', `${id} is live and pending human review`, id);
-  } else if (!study.verified) {
-    add('warnings', 'study_not_marked_verified', `${id} is not marked verified`, id);
+  const professionallyReviewed =
+    study.professionalReviewed === true ||
+    study.clinicalReviewed === true ||
+    study.reviewStatus === 'professional_reviewed' ||
+    study.reviewStatus === 'clinician_reviewed';
+  if (study.verified === true) {
+    add('errors', 'legacy_verified_flag', `${id} uses deprecated verified:true; use professional review fields only after sign-off`, id);
   }
+  if (!professionallyReviewed) pendingProfessionalReviewIds.push(id);
   if (!study.pmid && !study.doi && !study.url) {
     add('warnings', 'study_without_external_identifier', `${id} lacks PMID, DOI, and URL`, id);
   }
+}
+if (pendingProfessionalReviewIds.length) {
+  add('info', 'studies_pending_professional_review', `${pendingProfessionalReviewIds.length} studies are pending professional review`, pendingProfessionalReviewIds.length);
 }
 
 for (const ddi of data.KNOWN_DDI || []) {

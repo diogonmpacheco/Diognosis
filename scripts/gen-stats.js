@@ -25,7 +25,7 @@ const start = '<!-- MEDCHECK_STATS_START -->';
 const end = '<!-- MEDCHECK_STATS_END -->';
 const statsBlock = `${start}
 - **${stats.drugs} drugs** in DRUG_DB
-- **${stats.studies} evidence entries** in STUDY_DB (${stats.studiesWithPmid} with PMIDs; ${stats.sourceLinkedStudies} with source identifiers) — **${stats.reviewQueue} launch-enrichment entries pending professional review**, **${stats.professionalReviewedStudies} professionally reviewed**
+- **${stats.studies} evidence entries** in STUDY_DB (${stats.studiesWithPmid} with PMIDs; ${stats.sourceLinkedStudies} with source identifiers) — **${stats.pendingProfessionalReviewStudies} pending professional review**, **${stats.professionalReviewedStudies} professionally reviewed**
 - **${stats.ddiPairs} interaction pairs** (${stats.severeDdi} severe, ${stats.moderateDdi} moderate, ${stats.mildDdi} mild)
 - **${stats.metaboliteEntries} metabolite entries** across **${stats.metaboliteParents} parent substances** (${stats.metaboliteActors} first-class metabolite actors)
 - **${stats.pkParams} absolute PK simulation profiles** with relative fallback for half-life-only drugs

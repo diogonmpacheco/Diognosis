@@ -80,7 +80,7 @@ function isRegulatoryLabel(study, tiers) {
 
 function diffStats(actual, generated) {
   const keys = [
-    'drugs', 'studies', 'sourceLinkedStudies', 'professionalReviewedStudies', 'verifiedStudies', 'reviewQueue', 'studiesWithPmid',
+    'drugs', 'studies', 'sourceLinkedStudies', 'professionalReviewedStudies', 'pendingProfessionalReviewStudies', 'internalReviewRequiredEntries', 'studiesWithPmid',
     'nonRegulatoryUncited', 'ddiPairs', 'severeDdi', 'moderateDdi', 'mildDdi',
     'genotypeGenes', 'metaboliteParents', 'metaboliteEntries', 'metaboliteActors',
     'pkParams', 'receptorScores', 'beersFlags', 'washoutRules',
@@ -96,6 +96,10 @@ const readme = readFileSync('README.md', 'utf8');
 const index = readFileSync('index.html', 'utf8');
 const studyIds = new Set(Object.keys(data.STUDY_DB || {}));
 const publicStudies = Object.values(data.STUDY_DB || {}).filter(study => study.public !== false);
+const professionalReviewed = publicStudies
+  .filter(study => study.professionalReviewed === true || study.clinicalReviewed === true || ['professional_reviewed', 'clinician_reviewed'].includes(study.reviewStatus))
+  .map(study => ({ id: study.id, title: study.title, reviewStatus: study.reviewStatus || null }));
+const pendingProfessionalReviewStudies = publicStudies.length - professionalReviewed.length;
 
 const report = {
   generatedAt: new Date().toISOString(),
@@ -103,8 +107,10 @@ const report = {
     drugs: data.DRUG_DB.length,
     studies: studyIds.size,
     publicStudies: publicStudies.length,
-    baselineSourceLinkedStudies: publicStudies.filter(study => study.reviewRequired !== true).length,
-    pendingReviewStudies: publicStudies.filter(study => study.reviewRequired === true).length,
+    sourceLinkedEvidenceEntries: publicStudies.filter(study => hasExternalIdentifier(study) || isRegulatoryLabel(study, data.EVIDENCE_TIER)).length,
+    pendingProfessionalReviewStudies,
+    professionalReviewedStudies: professionalReviewed.length,
+    internalReviewRequiredEntries: publicStudies.filter(study => study.reviewRequired === true).length,
     ddiPairs: data.KNOWN_DDI.length,
     severeDdi: data.KNOWN_DDI.filter(ddi => ddi.severity === 'severe' || ddi.severity === 'critical').length,
   },
@@ -193,12 +199,12 @@ const unreviewedButVerified = publicStudies
   .filter(study => study.reviewRequired === true && (study.verified === true || study.reviewStatus === 'verified'))
   .map(study => ({ id: study.id, title: study.title, verified: study.verified, reviewStatus: study.reviewStatus }));
 
-const professionalReviewed = publicStudies
-  .filter(study => study.professionalReviewed === true || study.clinicalReviewed === true || ['professional_reviewed', 'clinician_reviewed'].includes(study.reviewStatus))
-  .map(study => ({ id: study.id, title: study.title, reviewStatus: study.reviewStatus || null }));
+const legacyVerifiedFlags = publicStudies
+  .filter(study => study.verified === true || study.reviewStatus === 'verified')
+  .map(study => ({ id: study.id, title: study.title, verified: study.verified, reviewStatus: study.reviewStatus || null }));
 
-const baselineSourceLinkedNoExternalId = publicStudies
-  .filter(study => study.reviewRequired !== true && !hasExternalIdentifier(study) && !isRegulatoryLabel(study, data.EVIDENCE_TIER))
+const sourceLinkedNoExternalId = publicStudies
+  .filter(study => !hasExternalIdentifier(study) && !isRegulatoryLabel(study, data.EVIDENCE_TIER))
   .map(study => ({ id: study.id, type: study.type, title: study.title }));
 
 const statsMismatches = diffStats(actualStats, data.MEDCHECK_STATS || {});
@@ -208,7 +214,7 @@ const readmeMismatches = [
   ['studiesWithPmid', actualStats.studiesWithPmid],
   ['sourceLinkedStudies', actualStats.sourceLinkedStudies],
   ['professionalReviewedStudies', actualStats.professionalReviewedStudies],
-  ['reviewQueue', actualStats.reviewQueue],
+  ['pendingProfessionalReviewStudies', actualStats.pendingProfessionalReviewStudies],
   ['ddiPairs', actualStats.ddiPairs],
   ['severeDdi', actualStats.severeDdi],
   ['moderateDdi', actualStats.moderateDdi],
@@ -255,7 +261,8 @@ report.checks = {
   severeDdiMissingEvidenceRefs: severeMissingRefs.length,
   severeDdiOnlyPendingReviewRefs: severeOnlyPendingReviewRefs.length,
   missingEvidenceRefs: missingEvidenceRefs.length,
-  baselineSourceLinkedNoExternalId: baselineSourceLinkedNoExternalId.length,
+  sourceLinkedNoExternalId: sourceLinkedNoExternalId.length,
+  legacyVerifiedFlags: legacyVerifiedFlags.length,
   reviewRequiredPresentedProfessionallyReviewed: unreviewedButVerified.length,
   professionalReviewedEvidenceEntries: professionalReviewed.length,
   generatedStatsMismatches: statsMismatches.length,
@@ -273,7 +280,8 @@ report.samples = {
   severeMissingRefs: severeMissingRefs.slice(0, 100),
   severeOnlyPendingReviewRefs: severeOnlyPendingReviewRefs.slice(0, 100),
   missingEvidenceRefs: missingEvidenceRefs.slice(0, 100),
-  baselineSourceLinkedNoExternalId,
+  sourceLinkedNoExternalId,
+  legacyVerifiedFlags,
   reviewRequiredPresentedProfessionallyReviewed: unreviewedButVerified,
   professionalReviewed,
   statsMismatches,
@@ -282,14 +290,15 @@ report.samples = {
   highRiskMetadataGaps: highRiskMetadataGaps.slice(0, 100),
 };
 
-report.reviewQueue = publicStudies
-  .filter(study => study.reviewRequired === true)
+report.pendingProfessionalReview = publicStudies
+  .filter(study => !professionalReviewed.some(reviewed => reviewed.id === study.id))
   .map(study => ({
     id: study.id,
     type: study.type,
     year: study.year,
     title: study.title,
     source: study.source,
+    internalReviewRequired: study.reviewRequired === true,
     hasExternalIdentifier: hasExternalIdentifier(study),
     verifyNote: study.verifyNote || null,
   }));
@@ -299,7 +308,7 @@ const refUseCounts = new Map();
 for (const ddi of data.KNOWN_DDI) {
   for (const ref of ddi.evidenceRefs || []) refUseCounts.set(ref, (refUseCounts.get(ref) || 0) + (severityRank[ddi.severity] || 1));
 }
-report.topReviewPriorities = report.reviewQueue
+report.topReviewPriorities = report.pendingProfessionalReview
   .map(study => ({
     id: study.id,
     title: study.title,

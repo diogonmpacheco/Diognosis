@@ -56,6 +56,7 @@ JSON.stringify((() => {
     study.reviewStatus === 'professional_reviewed' ||
     study.reviewStatus === 'clinician_reviewed'
   );
+  const pendingProfessionalReviewStudies = studyValues.length - professionalReviewedStudies.length;
   return {
     generatedAt: new Date().toISOString(),
     bundleBytes: 0,
@@ -65,8 +66,8 @@ JSON.stringify((() => {
     studies: studyValues.length,
     sourceLinkedStudies: sourceLinkedStudies.length,
     professionalReviewedStudies: professionalReviewedStudies.length,
-    verifiedStudies: studyValues.filter((study) => study.reviewRequired !== true).length,
-    reviewQueue: studyValues.filter((study) => study.reviewRequired === true).length,
+    pendingProfessionalReviewStudies,
+    internalReviewRequiredEntries: studyValues.filter((study) => study.reviewRequired === true).length,
     studiesWithPmid: studyValues.filter((study) => !!study.pmid).length,
     nonRegulatoryUncited: nonRegulatoryUncited.length,
     ddiPairs: KNOWN_DDI.length,

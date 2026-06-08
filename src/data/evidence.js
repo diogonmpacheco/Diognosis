@@ -23,7 +23,7 @@ const STUDY_DB = {
     supports:["lithium_thiazide_reduced_clearance"],
     contradicts:[],
     limitations:["Magnitude varies with sodium balance and renal function"],
-    verified:true
+    verified:false
   },
 
   "ev_mtx_interactions_bannwarth1996": {
@@ -39,7 +39,7 @@ const STUDY_DB = {
     supports:["methotrexate_reduced_renal_clearance","methotrexate_oat_competition"],
     contradicts:[],
     limitations:["Narrative PK review; effect magnitude not quantified for every NSAID"],
-    verified:true
+    verified:false
   },
 
   "ev_sjw_digoxin_durr2000": {
@@ -55,7 +55,7 @@ const STUDY_DB = {
     supports:["sjw_induces_pgp","digoxin_pgp_substrate"],
     contradicts:[],
     limitations:["Single dose digoxin; n=8"],
-    verified:true
+    verified:false
   },
 
   "ev_digoxin_verapamil_klein1982": {
@@ -71,7 +71,7 @@ const STUDY_DB = {
     supports:["digoxin_pgp_substrate","verapamil_inhibits_pgp"],
     contradicts:[],
     limitations:["Open-label; older assay methodology"],
-    verified:true
+    verified:false
   },
 
   "ev_digoxin_pgp_koren1998": {
@@ -87,7 +87,7 @@ const STUDY_DB = {
     supports:["digoxin_pgp_substrate","cyclosporine_inhibits_pgp","quinine_inhibits_pgp"],
     contradicts:[],
     limitations:["Narrative review; quinine inferred from quinidine data"],
-    verified:true
+    verified:false
   },
 
   "ev_warfarin_abx_lane2014": {
@@ -103,7 +103,7 @@ const STUDY_DB = {
     supports:["warfarin_cyp2c9_inhibition","warfarin_antibiotic_bleeding"],
     contradicts:[],
     limitations:["Observational; confounding by indication possible"],
-    verified:true
+    verified:false
   },
 
   "ev_doac_rifampin_hartter2012": {
@@ -119,7 +119,7 @@ const STUDY_DB = {
     supports:["rifampin_induces_pgp","doac_pgp_substrate"],
     contradicts:[],
     limitations:["Dabigatran-specific; rivaroxaban/apixaban/edoxaban share mechanism per their labels"],
-    verified:true
+    verified:false
   },
 
   "ev_doac_rifampin_label": {
@@ -135,7 +135,7 @@ const STUDY_DB = {
     supports:["rifampin_induces_pgp","doac_pgp_substrate"],
     contradicts:[],
     limitations:["Class labeling; magnitude differs by agent"],
-    verified:true
+    verified:false
   },
 
   "ev_spironolactone_tmpsmx_antoniou2011": {
@@ -151,7 +151,7 @@ const STUDY_DB = {
     supports:["trimethoprim_blocks_potassium_excretion","spironolactone_hyperkalemia"],
     contradicts:[],
     limitations:["Administrative database; residual confounding possible"],
-    verified:true
+    verified:false
   },
 
   "ev_tramadol_serotonin_beakley2015": {
@@ -167,7 +167,7 @@ const STUDY_DB = {
     supports:["tramadol_serotonergic","serotonin_syndrome_risk"],
     contradicts:[],
     limitations:["Review; incidence not quantified"],
-    verified:true
+    verified:false
   },
 
   "ev_colchicine_clarithromycin_hung2005": {
@@ -183,7 +183,7 @@ const STUDY_DB = {
     supports:["colchicine_cyp3a4_pgp_substrate","clarithromycin_inhibits_cyp3a4_pgp"],
     contradicts:[],
     limitations:["Retrospective; enriched for renal insufficiency"],
-    verified:true
+    verified:false
   },
 
   "ev_colchicine_label": {
@@ -199,7 +199,7 @@ const STUDY_DB = {
     supports:["colchicine_cyp3a4_pgp_substrate"],
     contradicts:[],
     limitations:["Class statement; magnitude varies by inhibitor"],
-    verified:true
+    verified:false
   },
 
   "ev_colchicine_cyp3a4_hansten2022": {
@@ -215,7 +215,7 @@ const STUDY_DB = {
     supports:["colchicine_cyp3a4_pgp_substrate"],
     contradicts:[],
     limitations:["Case-based synthesis"],
-    verified:true
+    verified:false
   },
 
   "ev_simvastatin_label_cyp3a4": {
@@ -231,7 +231,7 @@ const STUDY_DB = {
     supports:["simvastatin_cyp3a4_substrate","statin_myopathy_risk"],
     contradicts:[],
     limitations:["Regulatory class statement"],
-    verified:true
+    verified:false
   },
 
   "ev_statin_cyp3a4_williams2002": {
@@ -247,7 +247,7 @@ const STUDY_DB = {
     supports:["simvastatin_cyp3a4_substrate","statin_myopathy_risk"],
     contradicts:[],
     limitations:["Review synthesizing multiple PK studies"],
-    verified:true
+    verified:false
   },
 
   "ev_statin_gemfibrozil_schneck2004": {
@@ -263,7 +263,7 @@ const STUDY_DB = {
     supports:["gemfibrozil_inhibits_oatp1b1","statin_myopathy_risk"],
     contradicts:[],
     limitations:["Healthy volunteers; single statin dose"],
-    verified:true
+    verified:false
   },
 
   "ev_rosuvastatin_label": {
@@ -279,7 +279,7 @@ const STUDY_DB = {
     supports:["rosuvastatin_oatp1b1_bcrp_substrate","statin_myopathy_risk"],
     contradicts:[],
     limitations:["Regulatory statement"],
-    verified:true
+    verified:false
   },
 
   "ev_tacrolimus_fluconazole_ferchichi2024": {
@@ -295,7 +295,7 @@ const STUDY_DB = {
     supports:["tacrolimus_cyp3a4_substrate","fluconazole_inhibits_cyp3a4"],
     contradicts:[],
     limitations:["Single case"],
-    verified:true
+    verified:false
   },
 
   "ev_tacrolimus_voriconazole_vanhove2017": {
@@ -311,7 +311,7 @@ const STUDY_DB = {
     supports:["tacrolimus_cyp3a4_substrate","voriconazole_inhibits_cyp3a4"],
     contradicts:[],
     limitations:["Retrospective; high interindividual variability"],
-    verified:true
+    verified:false
   },
 
   "ev_tizanidine_fluvoxamine_granfors2004": {
@@ -327,7 +327,7 @@ const STUDY_DB = {
     supports:["tizanidine_cyp1a2_substrate","fluvoxamine_inhibits_cyp1a2"],
     contradicts:[],
     limitations:["Healthy volunteers; n=10"],
-    verified:true
+    verified:false
   },
 
   "ev_theophylline_quinolone_wijnands1988": {
@@ -343,7 +343,7 @@ const STUDY_DB = {
     supports:["theophylline_cyp1a2_substrate","ciprofloxacin_inhibits_cyp1a2"],
     contradicts:[],
     limitations:["Older review; magnitude varies by quinolone"],
-    verified:true
+    verified:false
   },
 
   "ev_theophylline_cyp1a2_label": {
@@ -359,7 +359,7 @@ const STUDY_DB = {
     supports:["theophylline_cyp1a2_substrate","fluvoxamine_inhibits_cyp1a2"],
     contradicts:[],
     limitations:["Regulatory statement"],
-    verified:true
+    verified:false
   },
 
   "ev_clozapine_ciprofloxacin_waters2025": {
@@ -375,7 +375,7 @@ const STUDY_DB = {
     supports:["clozapine_cyp1a2_substrate","ciprofloxacin_inhibits_cyp1a2"],
     contradicts:[],
     limitations:["Single case; concurrent infection/smoking change"],
-    verified:true
+    verified:false
   },
 
   "ev_clozapine_cyp1a2_chetty2007": {
@@ -391,7 +391,7 @@ const STUDY_DB = {
     supports:["clozapine_cyp1a2_substrate","fluvoxamine_inhibits_cyp1a2"],
     contradicts:[],
     limitations:["Narrative review"],
-    verified:true
+    verified:false
   },
 
   "ev_midazolam_cyp3a4_olkkola1994": {
@@ -407,7 +407,7 @@ const STUDY_DB = {
     supports:["midazolam_cyp3a4_substrate","strong_cyp3a4_inhibition"],
     contradicts:[],
     limitations:["Azole-specific study; clarithromycin/ritonavir inferred from shared CYP3A4 mechanism"],
-    verified:true
+    verified:false
   },
 
   "ev_grapefruit_simvastatin_lilja1998": {
@@ -423,7 +423,7 @@ const STUDY_DB = {
     supports:["simvastatin_cyp3a4_substrate","grapefruit_inhibits_intestinal_cyp3a4"],
     contradicts:[],
     limitations:["Large grapefruit dose; effect smaller with normal intake"],
-    verified:true
+    verified:false
   },
 
   "ev_amiodarone_simvastatin_ricaurte2006": {
@@ -439,7 +439,7 @@ const STUDY_DB = {
     supports:["simvastatin_cyp3a4_substrate","amiodarone_inhibits_cyp3a4"],
     contradicts:[],
     limitations:["Single case"],
-    verified:true
+    verified:false
   },
 
   "ev_lamotrigine_valproate_rambeck1993": {
@@ -455,7 +455,7 @@ const STUDY_DB = {
     supports:["lamotrigine_ugt_substrate","valproate_inhibits_glucuronidation"],
     contradicts:[],
     limitations:["Review; rash risk inferred from labeling/titration data"],
-    verified:true
+    verified:false
   },
 
   "ev_mdma_ritonavir_papaseit2012": {
@@ -471,7 +471,7 @@ const STUDY_DB = {
     supports:["mdma_cyp2d6_substrate","ritonavir_inhibits_cyp2d6"],
     contradicts:[],
     limitations:["Single case; classic fatal case reported by Henry 1998"],
-    verified:true
+    verified:false
   },
 
   "ev_cocaethylene_henning1996": {
@@ -487,7 +487,7 @@ const STUDY_DB = {
     supports:["cocaethylene_formation","cocaine_ethanol_cardiotoxicity"],
     contradicts:[],
     limitations:["Animal model; human data are observational"],
-    verified:true
+    verified:false
   },
 
   "ev_ssri_cyp2d6_liston2002": {
@@ -503,7 +503,7 @@ const STUDY_DB = {
     supports:["fluoxetine_inhibits_cyp2d6","dextromethorphan_cyp2d6_substrate"],
     contradicts:[],
     limitations:["Probe-drug design; serotonergic risk inferred"],
-    verified:true
+    verified:false
   },
 
   "ev_apap_alcohol_riordan2002": {
@@ -519,7 +519,7 @@ const STUDY_DB = {
     supports:["alcohol_induces_cyp2e1","acetaminophen_napqi_hepatotoxicity"],
     contradicts:[],
     limitations:["Review; clinical risk depends on timing and nutrition"],
-    verified:true
+    verified:false
   },
 
   "ev_cbd_clobazam_geffrey2015": {
@@ -535,7 +535,7 @@ const STUDY_DB = {
     supports:["cbd_inhibits_cyp2c19","clobazam_cyp_substrate"],
     contradicts:[],
     limitations:["Pediatric cohort; n=13"],
-    verified:true
+    verified:false
   },
 
   "ev_qt_torsades_tisdale2016": {
@@ -551,7 +551,7 @@ const STUDY_DB = {
     supports:["amiodarone_qt_prolongation","additive_qt_risk"],
     contradicts:[],
     limitations:["Review; combination risk is additive/qualitative"],
-    verified:true
+    verified:false
   },
 
   // ═══ PAROXETINE / CYP2D6 ═══
@@ -571,7 +571,7 @@ const STUDY_DB = {
     supports:["paroxetine_inhibits_CYP2D6"],
     contradicts:[],
     limitations:["Label does not distinguish NM vs IM phenotype magnitude","Dose used in study may not reflect all clinical doses"],
-    verified:true
+    verified:false
   },
 
   "ev_paroxetine_cyp2d6_bloomer1992": {
@@ -587,7 +587,7 @@ const STUDY_DB = {
     supports:["paroxetine_inhibits_CYP2D6"],
     contradicts:[],
     limitations:["Small n","Single dose design"],
-    verified:true
+    verified:false
   },
 
   // ═══ FLUOXETINE / NORFLUOXETINE / CYP2D6 ═══
@@ -607,7 +607,7 @@ const STUDY_DB = {
     supports:["fluoxetine_inhibits_CYP2D6","norfluoxetine_inhibits_CYP2D6"],
     contradicts:[],
     limitations:["Washout duration variable by dose and duration of treatment"],
-    verified:true
+    verified:false
   },
 
   "ev_fluoxetine_desipramine_preskorn1994": {
@@ -624,7 +624,7 @@ const STUDY_DB = {
     supports:["fluoxetine_inhibits_CYP2D6","norfluoxetine_inhibits_CYP2D6"],
     contradicts:[],
     limitations:["Short-interval AUC0-24 interaction study","Extensive metabolizers only"],
-    verified:true
+    verified:false
   },
 
   "ev_fluoxetine_cyp2d6_sunkara2010": {
@@ -645,7 +645,7 @@ const STUDY_DB = {
     supports:["fluoxetine_METABOLIZED_TO_norfluoxetine","fluoxetine_cyp2d6_genotype_exposure"],
     contradicts:[],
     limitations:["Single-dose data","Small phenotype-stratified cohort","Steady-state autoinhibition may compress genotype differences"],
-    verified:true
+    verified:false
   },
 
   // ═══ BUPROPION / HYDROXYBUPROPION / CYP2D6 ═══
@@ -666,7 +666,7 @@ const STUDY_DB = {
     supports:["hydroxybupropion_inhibits_CYP2D6","bupropion_cyp2d6_ddi"],
     contradicts:[],
     limitations:["Hydroxybupropion t½ 20h drives washout, not bupropion t½ 12h"],
-    verified:true
+    verified:false
   },
 
   "ev_bupropion_cyp2d6_kotlyar2005": {
@@ -682,7 +682,7 @@ const STUDY_DB = {
     supports:["hydroxybupropion_inhibits_CYP2D6"],
     contradicts:[],
     limitations:["Dextromethorphan probe study; clinical magnitude may differ for specific CYP2D6 substrates"],
-    verified:true
+    verified:false
   },
 
   "ev_bupropion_cyp2d6_hesse1996": {
@@ -701,7 +701,7 @@ const STUDY_DB = {
     supports:["hydroxybupropion_cyp2d6_genotype_exposure","hydroxybupropion_inhibits_CYP2D6"],
     contradicts:[],
     limitations:["Older TDM study","Exact fold-change not encoded","Bupropion formation remains primarily CYP2B6-dependent"],
-    verified:true
+    verified:false
   },
 
   // ═══ CODEINE / MORPHINE / CYP2D6 ═══
@@ -721,7 +721,7 @@ const STUDY_DB = {
     supports:["codeine_METABOLIZED_TO_morphine","codeine_cyp2d6_dependence"],
     contradicts:[],
     limitations:["Recommendation strength varies by phenotype; intermediate metabolizers show intermediate response"],
-    verified:true
+    verified:false
   },
 
   "ev_codeine_ultrarapid_deaths": {
@@ -737,7 +737,7 @@ const STUDY_DB = {
     supports:["codeine_cyp2d6_dependence"],
     contradicts:[],
     limitations:["Single case; neonatal exposure via breast milk is unique route","Subsequent WHO guidance updated (2015)"],
-    verified:true
+    verified:false
   },
 
   // ═══ DXM / DEXTRORPHAN / CYP2D6 ═══
@@ -755,7 +755,7 @@ const STUDY_DB = {
     supports:["dextromethorphan_METABOLIZED_TO_dextrorphan","dextromethorphan_cyp2d6_dependence"],
     contradicts:[],
     limitations:["Small poor-metabolizer subgroup","Probe-drug context; high-dose DXM behavior is nonlinear and not modeled for dosing"],
-    verified:true
+    verified:false
   },
 
   // ═══ TAMOXIFEN / ENDOXIFEN / CYP2D6 ═══
@@ -775,7 +775,7 @@ const STUDY_DB = {
     supports:["tamoxifen_METABOLIZED_TO_endoxifen","CYP2D6_inhibition_tamoxifen_failure"],
     contradicts:["ev_tamoxifen_cyp2d6_controversy"],
     limitations:["Observational data inconsistency across studies","Guideline notes ongoing debate about clinical outcomes"],
-    verified:true
+    verified:false
   },
 
   "ev_tamoxifen_endoxifen_borges2006": {
@@ -798,7 +798,7 @@ const STUDY_DB = {
     supports:["tamoxifen_METABOLIZED_TO_endoxifen","CYP2D6_inhibition_tamoxifen_failure"],
     contradicts:[],
     limitations:["Metabolite ratio proxy rather than full endoxifen AUC","Clinical outcome linkage remains debated"],
-    verified:true
+    verified:false
   },
 
   "ev_tamoxifen_cyp2d6_controversy": {
@@ -814,7 +814,7 @@ const STUDY_DB = {
     supports:[],
     contradicts:["ev_tamoxifen_cyp2d6_cpic"],
     limitations:["Heterogeneous endpoint definitions","Concomitant CYP2D6 inhibitor use not always controlled","Post-hoc analyses dominant"],
-    verified:true,
+    verified:false,
     note:"This contradictory evidence is scientifically valid — the clinical debate is unresolved. Both studies are represented."
   },
 
@@ -832,7 +832,7 @@ const STUDY_DB = {
     supports:["bergamottin_inhibits_CYP3A4","grapefruit_cyp3a4_interaction"],
     contradicts:[],
     limitations:["Clinical significance varies widely by drug; not all CYP3A4 substrates equally affected"],
-    verified:true
+    verified:false
   },
 
   "ev_grapefruit_bailey1991": {
@@ -848,7 +848,7 @@ const STUDY_DB = {
     supports:["bergamottin_inhibits_CYP3A4"],
     contradicts:[],
     limitations:["Single dose","Small n","Accidental discovery — study initially designed for alcohol interaction"],
-    verified:true
+    verified:false
   },
 
   "ev_statin_slco1b1_abcg2_cpic2022": {
@@ -865,7 +865,7 @@ const STUDY_DB = {
     supports:["simvastatin_SUBSTRATE_OF_SLCO1B1","atorvastatin_SUBSTRATE_OF_SLCO1B1","rosuvastatin_SUBSTRATE_OF_SLCO1B1","rosuvastatin_SUBSTRATE_OF_ABCG2"],
     contradicts:[],
     limitations:["Guideline recommendations are statin-specific; genotype is one risk factor among dose, age, comorbidity, and interacting drugs"],
-    verified:true
+    verified:false
   },
 
   "ev_simvastatin_multigene_choi2016": {
@@ -903,7 +903,7 @@ const STUDY_DB = {
     supports:["clopidogrel_CYP2C19_prodrug","omeprazole_clopidogrel_interaction"],
     contradicts:[],
     limitations:["Evidence strongest for PCI/stenting populations; less clear for other indications"],
-    verified:true
+    verified:false
   },
 
   "ev_clopidogrel_active_thiol_kim2014": {
@@ -926,7 +926,7 @@ const STUDY_DB = {
     supports:["clopidogrel_CYP2C19_prodrug","clopidogrel_active_thiol_reduced_in_PM"],
     contradicts:[],
     limitations:["Genotype-stratified PK/PD endpoints; clinical outcome risk depends on indication and thrombotic risk"],
-    verified:true
+    verified:false
   },
 
   "ev_clopidogrel_cyp2c19_mega2009": {
@@ -947,7 +947,7 @@ const STUDY_DB = {
     supports:["clopidogrel_CYP2C19_prodrug","clopidogrel_LOF_outcome_risk"],
     contradicts:[],
     limitations:["Post-hoc pharmacogenetic substudy","Most applicable to ACS/PCI, not all clopidogrel indications"],
-    verified:true
+    verified:false
   },
 
   "ev_clopidogrel_dose_escalation_horenstein2014": {
@@ -990,7 +990,7 @@ const STUDY_DB = {
     supports:["alprazolam_METABOLIZED_BY_CYP3A5","alprazolam_cyp3a5_genotype_exposure"],
     contradicts:[],
     limitations:["Small healthy male volunteer study","Single 1 mg dose","Pharmacodynamic score trend did not reach statistical significance"],
-    verified:true
+    verified:false
   },
 
   // ═══ ATOMOXETINE / CYP2D6 ═══
@@ -1008,7 +1008,7 @@ const STUDY_DB = {
     supports:["atomoxetine_METABOLIZED_TO_4-hydroxyatomoxetine","atomoxetine_cyp2d6_guideline"],
     contradicts:[],
     limitations:["Dose recommendations depend on age group, response, tolerability, and measured concentration where available"],
-    verified:true
+    verified:false
   },
 
   "ev_atomoxetine_cyp2d6_pbpk2018": {
@@ -1025,7 +1025,7 @@ const STUDY_DB = {
     supports:["atomoxetine_cyp2d6_pk","atomoxetine_METABOLIZED_TO_4-hydroxyatomoxetine"],
     contradicts:[],
     limitations:["Model-based synthesis; specific metabolite concentrations depend on model assumptions and population"],
-    verified:true
+    verified:false
   },
 
   "ev_atomoxetine_pop_pk_shen2023": {
@@ -1078,7 +1078,7 @@ const STUDY_DB = {
     supports:["solanidine_SUBSTRATE_OF_CYP2D6"],
     contradicts:[],
     limitations:["In vitro only — clinical relevance at dietary exposure levels unestablished","No clinical PK data in humans"],
-    verified:true,
+    verified:false,
     note:"Important caveat: in vitro CYP2D6 substrate finding does NOT establish clinical DDI — burden hypothesis is theoretical"
   },
 
@@ -1102,7 +1102,7 @@ const STUDY_DB = {
     supports:["solanidine_SUBSTRATE_OF_CYP2D6","solanidine_cyp2d6_genotype_biomarker"],
     contradicts:[],
     limitations:["Dietary potato intake was not directly standardized","Solanidine is a biomarker of CYP2D6 activity, not by itself a clinical toxicity threshold"],
-    verified:true
+    verified:false
   },
 
   "ev_solanidine_metabolites_tamoxifen_2024": {
@@ -1285,7 +1285,7 @@ const STUDY_DB = {
     supports:["solanidine_inhibits_BChE","solanidine_inhibits_AChE"],
     contradicts:[],
     limitations:["IC50 values likely unachievable at normal dietary intake","No CNS penetration data"],
-    verified:true
+    verified:false
   },
 
   // ═══ AMPHETAMINE / METHAMPHETAMINE / MDMA / CYP2D6 ═══
@@ -1304,7 +1304,7 @@ const STUDY_DB = {
     supports:["mdma_METABOLIZED_TO_HHMA","methamphetamine_METABOLIZED_TO_amphetamine","methamphetamine_METABOLIZED_TO_4-hydroxymethamphetamine","amphetamine_METABOLIZED_TO_4-hydroxyamphetamine"],
     contradicts:[],
     limitations:["Review article","In vitro-to-in vivo translation is imperfect","MDMA also causes mechanism-based CYP2D6 inhibition, so genotype effects can compress after exposure"],
-    verified:true
+    verified:false
   },
 
   "ev_amphetamine_cyp2d6_fda": {
@@ -1322,7 +1322,7 @@ const STUDY_DB = {
     supports:["amphetamine_METABOLIZED_TO_4-hydroxyamphetamine"],
     contradicts:[],
     limitations:["Regulatory summary; does not quantify genotype-specific exposure"],
-    verified:true
+    verified:false
   },
 
   // ═══ CITALOPRAM / ESCITALOPRAM / CYP2D6 ═══
@@ -1340,7 +1340,7 @@ const STUDY_DB = {
     supports:["citalopram_METABOLIZED_TO_didesmethylcitalopram","escitalopram_METABOLIZED_TO_s-didesmethylcitalopram"],
     contradicts:[],
     limitations:["CYP2C19 is the primary clinical PGx axis for citalopram/escitalopram; CYP2D6 relation is secondary and not treated as a primary dosing signal"],
-    verified:true
+    verified:false
   },
 
   // ═══ CYP2D6 METABOLITE CURATION BATCH ═══
@@ -1358,7 +1358,7 @@ const STUDY_DB = {
     supports:["lsd_METABOLIZED_TO_nor-lsd"],
     contradicts:[],
     limitations:["Nor-LSD is a minor pathway; genotype-specific clinical effect is not established"],
-    verified:true
+    verified:false
   },
 
   "ev_harmala_cyp2d6_yu2003": {
@@ -1375,7 +1375,7 @@ const STUDY_DB = {
     supports:["harmine_METABOLIZED_TO_harmol","harmaline_METABOLIZED_TO_harmalol"],
     contradicts:[],
     limitations:["In vitro enzyme assignment; ayahuasca matrix and co-inhibition can change in vivo exposure"],
-    verified:true
+    verified:false
   },
 
   "ev_harmaline_cyp2d6_wu2009": {
@@ -1392,7 +1392,7 @@ const STUDY_DB = {
     supports:["harmaline_METABOLIZED_TO_harmalol"],
     contradicts:[],
     limitations:["Specific to harmaline; not a full ayahuasca clinical genotype guideline"],
-    verified:true
+    verified:false
   },
 
   "ev_lisdexamfetamine_rbc_activation": {
@@ -1409,7 +1409,7 @@ const STUDY_DB = {
     supports:["lisdexamfetamine_METABOLIZED_TO_d-amphetamine-dextroamphetamine"],
     contradicts:[],
     limitations:["Does not quantify CYP2D6 clearance effects after d-amphetamine release"],
-    verified:true
+    verified:false
   },
 
   "ev_lisdexamfetamine_cyp2d6_fda": {
@@ -1426,7 +1426,7 @@ const STUDY_DB = {
     supports:["lisdexamfetamine_METABOLIZED_TO_d-amphetamine-dextroamphetamine","d-amphetamine_CYP2D6_clearance"],
     contradicts:[],
     limitations:["CYP2D6 does not activate lisdexamfetamine; effect applies only after d-amphetamine release"],
-    verified:true
+    verified:false
   },
 
   "ev_clobazam_cyp2c19_fda_onfi": {
@@ -1444,7 +1444,7 @@ const STUDY_DB = {
     supports:["clobazam_METABOLIZED_TO_n-desmethylclobazam-norclobazam"],
     contradicts:[],
     limitations:["Regulatory-label summary; pediatric Lennox-Gastaut patients may differ from healthy-volunteer PK."],
-    verified:true
+    verified:false
   },
 
   "ev_clobazam_cyp2c19_contin2003": {
@@ -1497,7 +1497,7 @@ const STUDY_DB = {
     supports:["losartan_METABOLIZED_TO_exp-3174-e-3174"],
     contradicts:[],
     limitations:["Effect size varies by allele/phenotype definition; blood pressure outcome evidence is less direct than PK."],
-    verified:true
+    verified:false
   },
 
   "ev_azathioprine_tpmt_cpic2019": {
@@ -1514,7 +1514,7 @@ const STUDY_DB = {
     supports:["azathioprine_METABOLIZED_TO_6-thioguanine-nucleotides-6-tgn","azathioprine_NUDT15_thiopurine_toxicity"],
     contradicts:[],
     limitations:["NUDT15 must also be considered, especially in Asian and Hispanic populations; dosing depends on disease indication and therapeutic drug monitoring."],
-    verified:true
+    verified:false
   },
 
   "ev_allopurinol_azathioprine_xo_label": {
@@ -1532,7 +1532,7 @@ const STUDY_DB = {
     supports:["allopurinol_inhibits_XO","azathioprine_allopurinol_toxicity_risk"],
     contradicts:[],
     limitations:["Regulatory-label interaction; exact dose adjustment depends on indication and monitoring"],
-    verified:true
+    verified:false
   },
 
   "ev_omeprazole_cyp2c19_lima2021": {
@@ -1549,7 +1549,7 @@ const STUDY_DB = {
     supports:["omeprazole_METABOLIZED_TO_5-hydroxyomeprazole"],
     contradicts:[],
     limitations:["Fold varies by PPI, dose, and study; metabolite-specific 5-hydroxyomeprazole fold is not treated as calibrated here."],
-    verified:true
+    verified:false
   },
 
   "ev_voriconazole_cyp2c19_hyland2008": {
@@ -1566,7 +1566,7 @@ const STUDY_DB = {
     supports:["voriconazole_METABOLIZED_TO_voriconazole-n-oxide"],
     contradicts:[],
     limitations:["Voriconazole has nonlinear PK and requires TDM; this entry does not provide a calibrated N-oxide metabolite fold."],
-    verified:true
+    verified:false
   },
 
   "ev_voriconazole_pop_pk_wang2013": {
@@ -1601,7 +1601,7 @@ const STUDY_DB = {
     supports:["efavirenz_METABOLIZED_TO_8-hydroxyefavirenz"],
     contradicts:[],
     limitations:["Many CYP2B6 alleles contribute; population frequencies vary substantially."],
-    verified:true
+    verified:false
   },
 
   "ev_fluorouracil_dpyd_amstutz2018": {
@@ -1618,7 +1618,7 @@ const STUDY_DB = {
     supports:["fluorouracil_METABOLIZED_TO_dihydrofluorouracil-dhfu","capecitabine_METABOLIZED_TO_5-fluorouracil"],
     contradicts:[],
     limitations:["Variant panels do not capture all DPYD risk; dosing should follow specialist oncology protocols and clinical monitoring."],
-    verified:true
+    verified:false
   },
 
   "ev_irinotecan_ugt1a1_ramsey2014": {
@@ -1635,7 +1635,7 @@ const STUDY_DB = {
     supports:["irinotecan_METABOLIZED_TO_sn-38-7-ethyl-10-hydroxycamptothecin"],
     contradicts:[],
     limitations:["Dose-reduction recommendations depend on irinotecan regimen/dose and population; SN-38 fold varies across studies."],
-    verified:true
+    verified:false
   },
 
   "ev_irinotecan_ugt1a1_stewart2007": {
@@ -1707,7 +1707,7 @@ const STUDY_DB = {
     supports:["venlafaxine_METABOLIZED_TO_o-desmethylvenlafaxine","venlafaxine_METABOLIZED_TO_n-o-didesmethylvenlafaxine"],
     contradicts:[],
     limitations:["Clinical actionability is less direct than codeine/tramadol; recommendations vary"],
-    verified:true
+    verified:false
   },
 
   "ev_tca_cyp2d6_cpic": {
@@ -1724,7 +1724,7 @@ const STUDY_DB = {
     supports:["amitriptyline_METABOLIZED_TO_10-hydroxyamitriptyline","nortriptyline_METABOLIZED_TO_10-hydroxynortriptyline","imipramine_METABOLIZED_TO_2-hydroxyimipramine","clomipramine_METABOLIZED_TO_8-hydroxyclomipramine","doxepin_METABOLIZED_TO_hydroxydoxepin"],
     contradicts:[],
     limitations:["Guideline focuses on parent-drug dosing; individual metabolite percentages are simplified in the app"],
-    verified:true
+    verified:false
   },
 
   "ev_metoprolol_cyp2d6_cpic": {
@@ -1742,7 +1742,7 @@ const STUDY_DB = {
     supports:["metoprolol_METABOLIZED_TO_alpha-hydroxymetoprolol","metoprolol_METABOLIZED_TO_o-desmethylmetoprolol"],
     contradicts:[],
     limitations:["Guideline action is parent-exposure focused; acid metabolite formation is simplified"],
-    verified:true
+    verified:false
   },
 
   "ev_beta_blocker_cyp2d6_propranolol": {
@@ -1760,7 +1760,7 @@ const STUDY_DB = {
     supports:["propranolol_METABOLIZED_TO_4-hydroxypropranolol"],
     contradicts:[],
     limitations:["In vitro/mechanistic support; not treated as a high-confidence genotype dosing edge in this app"],
-    verified:true
+    verified:false
   },
 
   "ev_carvedilol_cyp2d6_label": {
@@ -1778,7 +1778,7 @@ const STUDY_DB = {
     supports:["carvedilol_METABOLIZED_TO_4-hydroxyphenyl-carvedilol"],
     contradicts:[],
     limitations:["Metabolite-specific enzyme shares are simplified"],
-    verified:true
+    verified:false
   },
 
   "ev_nebivolol_cyp2d6_label": {
@@ -1796,7 +1796,7 @@ const STUDY_DB = {
     supports:["nebivolol_METABOLIZED_TO_4-hydroxy-nebivolol","nebivolol_METABOLIZED_TO_hydroxylated-ring-opened-metabolites"],
     contradicts:[],
     limitations:["Metabolite pool is simplified"],
-    verified:true
+    verified:false
   },
 
   "ev_opioid_cyp2d6_cpic_2020": {
@@ -1813,7 +1813,7 @@ const STUDY_DB = {
     supports:["codeine_METABOLIZED_TO_morphine","tramadol_METABOLIZED_TO_o-desmethyltramadol","oxycodone_METABOLIZED_TO_oxymorphone","hydrocodone_METABOLIZED_TO_hydromorphone","methadone_METABOLIZED_TO_methadol","OPRM1_OPIOID_RESPONSE_CONTEXT"],
     contradicts:[],
     limitations:["Strongest clinical recommendations are for codeine and tramadol; oxycodone and methadone CYP2D6 actionability is weaker","No therapeutic recommendation is made for opioid dosing based on OPRM1 or COMT genotype alone"],
-    verified:true
+    verified:false
   },
 
   "ev_ifnl3_hcv_interferon_cpic2014": {
@@ -1831,7 +1831,7 @@ const STUDY_DB = {
     supports:["peginterferon_alfa_IFNL3_RESPONSE_CONTEXT","ribavirin_IFNL3_RESPONSE_CONTEXT","peginterferon_alfa_IFNL4_RESPONSE_CONTEXT"],
     contradicts:[],
     limitations:["Modern direct-acting antiviral HCV regimens usually supersede interferon-response genotype decision making","Marker does not predict ribavirin hemolytic anemia or peginterferon toxicity"],
-    verified:true
+    verified:false
   },
 
   "ev_ssri_snri_cpic_2023_slc6a4_htr2a": {
@@ -1849,7 +1849,7 @@ const STUDY_DB = {
     supports:["SLC6A4_SSRI_RESPONSE_CONTEXT","HTR2A_SSRI_RESPONSE_CONTEXT"],
     contradicts:[],
     limitations:["Pharmacodynamic gene effects are less deterministic than CYP exposure rules and should not be used as standalone dose changes"],
-    verified:true
+    verified:false
   },
 
   "ev_antipsychotic_receptor_pgx_context": {
@@ -1867,7 +1867,7 @@ const STUDY_DB = {
     supports:["DRD2_ANTIPSYCHOTIC_RESPONSE_CONTEXT","HTR2C_ANTIPSYCHOTIC_WEIGHT_CONTEXT"],
     contradicts:[],
     limitations:["Associations vary by antipsychotic, ancestry, phenotype definition, and study design; use as review context only"],
-    verified:true
+    verified:false
   },
 
   "ev_scn_channel_epilepsy_pharmacogenetics_review": {
@@ -1885,7 +1885,7 @@ const STUDY_DB = {
     supports:["SCN1A_SODIUM_CHANNEL_BLOCKER_CONTEXT","SCN2A_SODIUM_CHANNEL_BLOCKER_CONTEXT"],
     contradicts:[],
     limitations:["Requires molecular diagnosis and variant-function interpretation; not a direct dose rule"],
-    verified:true
+    verified:false
   },
 
   "ev_kcnh2_drug_induced_qt_pharmacogenetics": {
@@ -1902,7 +1902,7 @@ const STUDY_DB = {
     supports:["KCNH2_QT_RISK_CONTEXT"],
     contradicts:[],
     limitations:["Not a single-gene rule for all drug-induced torsades risk; clinical risk factors and QT-stacking remain essential"],
-    verified:true
+    verified:false
   },
 
   "ev_aldh2_nitroglycerin_human_2005": {
@@ -1919,7 +1919,7 @@ const STUDY_DB = {
     supports:["nitroglycerin_ALDH2_RESPONSE_CONTEXT"],
     contradicts:[],
     limitations:["Response is pharmacodynamic and acute-care context dependent; not a genotype-only angina management rule"],
-    verified:true
+    verified:false
   },
 
   "ev_aldh2_nitroglycerin_variant_2020": {
@@ -1936,7 +1936,7 @@ const STUDY_DB = {
     supports:["nitroglycerin_ALDH2_RESPONSE_CONTEXT"],
     contradicts:[],
     limitations:["Use as response context; acute chest-pain evaluation and contraindications remain primary"],
-    verified:true
+    verified:false
   },
 
   "ev_aldh2_alcohol_intolerance_context": {
@@ -1954,7 +1954,7 @@ const STUDY_DB = {
     supports:["metronidazole_ALDH2_ALCOHOL_REACTION_CONTEXT"],
     contradicts:[],
     limitations:["Not a medication dose rule and not a reason to relax alcohol avoidance advice in normal ALDH2 contexts"],
-    verified:true
+    verified:false
   },
 
   "ev_metformin_transporter_pgx_review": {
@@ -1971,7 +1971,7 @@ const STUDY_DB = {
     supports:["metformin_SLC22A1_CONTEXT","metformin_SLC22A2_CONTEXT","metformin_SLC47A1_CONTEXT"],
     contradicts:[],
     limitations:["Transporter genotype is a modifier, not a standalone metformin dose algorithm"],
-    verified:true
+    verified:false
   },
 
   "ev_dolutegravir_metformin_oct2_2016": {
@@ -1988,7 +1988,7 @@ const STUDY_DB = {
     supports:["dolutegravir_METFORMIN_OCT2_CONTEXT"],
     contradicts:[],
     limitations:["Study is DDI-focused rather than genotype-stratified; SLC22A2 genotype is a contextual modifier"],
-    verified:true
+    verified:false
   },
 
   "ev_opioid_ugt2b7_glucuronidation_review": {
@@ -2006,7 +2006,7 @@ const STUDY_DB = {
     supports:["morphine_UGT2B7_clearance","morphine_CYP3A4_minor_clearance","hydromorphone_UGT2B7_clearance","oxymorphone_UGT2B7_clearance"],
     contradicts:[],
     limitations:["Review-level source; UGT shares are simplified in the app model"],
-    verified:true
+    verified:false
   },
 
   "ev_kratom_mitragynine_cyp2d6_basiliere2020": {
@@ -2023,7 +2023,7 @@ const STUDY_DB = {
     supports:["mitragynine_METABOLIZED_TO_9-o-demethylmitragynine","mitragynine_METABOLIZED_TO_16-carboxy-mitragynine"],
     contradicts:[],
     limitations:["In vitro and forensic urine evidence; human genotype effect is not established"],
-    verified:true
+    verified:false
   },
 
   "ev_antipsychotic_cyp2d6_labels": {
@@ -2041,7 +2041,7 @@ const STUDY_DB = {
     supports:["risperidone_METABOLIZED_TO_9-hydroxyrisperidone","aripiprazole_METABOLIZED_TO_dehydro-aripiprazole","dehydro-aripiprazole_CYP3A4_clearance","paliperidone_CYP3A4_minor_clearance","haloperidol_METABOLIZED_TO_4-fluorobenzoylpropionic-acid","brexpiprazole_METABOLIZED_TO_hydroxy-brexpiprazole"],
     contradicts:[],
     limitations:["Grouped regulatory evidence; replace with drug-specific labels if more granular display is needed"],
-    verified:true
+    verified:false
   },
 
   "ev_diphenhydramine_cyp2d6_niwa2007": {
@@ -2058,7 +2058,7 @@ const STUDY_DB = {
     supports:["diphenhydramine_METABOLIZED_TO_n-desmethyldiphenhydramine","diphenhydramine_METABOLIZED_TO_didesmethyldiphenhydramine"],
     contradicts:[],
     limitations:["In vitro enzyme assignment; clinical genotype effect is not established"],
-    verified:true
+    verified:false
   },
 
   "ev_vortioxetine_cyp2d6_pk": {
@@ -2076,7 +2076,7 @@ const STUDY_DB = {
     supports:["vortioxetine_METABOLIZED_TO_vortioxetine-carboxylic-acid"],
     contradicts:[],
     limitations:["Multiple CYPs and non-CYP enzymes contribute; parent drug drives efficacy"],
-    verified:true
+    verified:false
   },
 
   "ev_metoclopramide_cyp2d6_livezey2014": {
@@ -2094,7 +2094,7 @@ const STUDY_DB = {
     supports:["metoclopramide_METABOLIZED_TO_n-deethyl-metoclopramide"],
     contradicts:[],
     limitations:["Metabolite formation evidence is in vitro; clinical concern is parent-drug accumulation and adverse reactions"],
-    verified:true
+    verified:false
   },
 
   "ev_trazodone_mcpp_cyp2d6_mihara1997": {
@@ -2111,7 +2111,7 @@ const STUDY_DB = {
     supports:["trazodone_METABOLIZED_TO_mcpp","mcpp_CYP2D6_clearance"],
     contradicts:[],
     limitations:["Single-population TDM study; later literature reports mixed CYP2D6 effect sizes"],
-    verified:true
+    verified:false
   },
 
   "ev_caffeine_paraxanthine_cyp1a2_review": {
@@ -2129,7 +2129,7 @@ const STUDY_DB = {
     supports:["caffeine_METABOLIZED_TO_paraxanthine","paraxanthine_CYP1A2_clearance","paraxanthine_XO_clearance"],
     contradicts:[],
     limitations:["Review-level pathway source; not genotype-dose calibrated"],
-    verified:true
+    verified:false
   },
 
   "ev_hydroxychloroquine_cyp2d6_invitro": {
@@ -2146,7 +2146,7 @@ const STUDY_DB = {
     supports:["hydroxychloroquine_METABOLIZED_TO_desethyl-chloroquine"],
     contradicts:[],
     limitations:["In vitro; clinical genotype effect not established"],
-    verified:true
+    verified:false
   },
 
   // ═══ WARFARIN / NSAIDs / BLEEDING ═══
@@ -2165,7 +2165,7 @@ const STUDY_DB = {
     supports:["warfarin_SUBSTRATE_OF_CYP2C9","warfarin_VKORC1_sensitivity","warfarin_CYP4F2_vitamin_K_oxidation"],
     contradicts:[],
     limitations:["Dose algorithms require clinical factors and INR monitoring; allele coverage and ancestry context matter"],
-    verified:true
+    verified:false
   },
 
   "ev_warfarin_nsaid_bleed": {
@@ -2181,7 +2181,7 @@ const STUDY_DB = {
     supports:["warfarin_nsaid_bleeding_risk"],
     contradicts:[],
     limitations:["Observational; cannot exclude confounding","OTC NSAID use likely underreported"],
-    verified:true
+    verified:false
   },
 
   "ev_fluconazole_warfarin_black1996": {
@@ -2197,7 +2197,7 @@ const STUDY_DB = {
     supports:["fluconazole_inhibits_CYP2C9","fluconazole_warfarin_inr_risk"],
     contradicts:[],
     limitations:["Small healthy-volunteer study","Clinical INR effect depends on baseline warfarin dose, genotype, diet, and monitoring"],
-    verified:true
+    verified:false
   },
 
   "ev_ketoconazole_cyclosporine_gomez1995": {
@@ -2213,7 +2213,7 @@ const STUDY_DB = {
     supports:["ketoconazole_inhibits_CYP3A4","ketoconazole_cyclosporine_exposure_increase"],
     contradicts:[],
     limitations:["Small volunteer study; transplant dosing requires therapeutic drug monitoring"],
-    verified:true
+    verified:false
   },
 
   "ev_tizanidine_ciprofloxacin_fda": {
@@ -2229,7 +2229,7 @@ const STUDY_DB = {
     supports:["ciprofloxacin_inhibits_CYP1A2","ciprofloxacin_tizanidine_contraindicated"],
     contradicts:[],
     limitations:["Label summary; original study details are not fully enumerated in the label text"],
-    verified:true
+    verified:false
   },
 
   "ev_amiodarone_warfarin_kerin1988": {
@@ -2245,7 +2245,7 @@ const STUDY_DB = {
     supports:["amiodarone_inhibits_CYP2C9","amiodarone_warfarin_dose_reduction"],
     contradicts:[],
     limitations:["Small clinical series; magnitude varies by dose, renal function, baseline INR stability, and duration of amiodarone therapy"],
-    verified:true
+    verified:false
   },
 
   // ═══ MAOI / SEROTONIN SYNDROME ═══
@@ -2262,7 +2262,7 @@ const STUDY_DB = {
     supports:["maoi_ssri_serotonin_syndrome"],
     contradicts:[],
     limitations:["Incidence underreported","Severity spectrum from mild to fatal"],
-    verified:true
+    verified:false
   },
 
   "ev_maoi_sympathomimetic_label": {
@@ -2280,7 +2280,7 @@ const STUDY_DB = {
     supports:["maoi_amphetamine_hypertensive_crisis","maoi_sympathomimetic_hypertensive_crisis"],
     contradicts:[],
     limitations:["Regulatory class warning; illicit stimulant dose/purity can make real-world risk more variable"],
-    verified:true
+    verified:false
   },
 
   "ev_sympathomimetic_toxicity_review": {
@@ -2298,7 +2298,7 @@ const STUDY_DB = {
     supports:["sympathomimetic_polydrug_toxicity","mdma_amphetamine_toxicity","mdma_cocaine_toxicity"],
     contradicts:[],
     limitations:["Class-level toxicology review; does not quantify pair-specific fold risk"],
-    verified:true
+    verified:false
   },
 
   "ev_cocaine_toxicity_review": {
@@ -2316,7 +2316,7 @@ const STUDY_DB = {
     supports:["cocaine_sympathomimetic_cardiotoxicity","cocaine_polydrug_stimulant_toxicity"],
     contradicts:[],
     limitations:["Class-level toxicity review; patient-level risk varies with dose, route, comorbidities, and adulterants"],
-    verified:true
+    verified:false
   },
 
   "ev_cocaine_beta_blocker_unopposed_alpha_review": {
@@ -2334,7 +2334,7 @@ const STUDY_DB = {
     supports:["cocaine_beta_blocker_caution","cocaine_propranolol_historical_unopposed_alpha_concern"],
     contradicts:["cocaine_beta_blocker_absolute_contraindication"],
     limitations:["Review of heterogeneous case reports, small human studies, and observational evidence; acute management should follow emergency/toxicology guidance"],
-    verified:true
+    verified:false
   },
 
   "ev_ketamine_alcohol_toxicology_review": {
@@ -2352,7 +2352,7 @@ const STUDY_DB = {
     supports:["ketamine_alcohol_toxicity","ketamine_alcohol_cns_impairment"],
     contradicts:[],
     limitations:["Review-level evidence; acute risk depends on dose, route, tolerance, and co-ingestants"],
-    verified:true
+    verified:false
   },
 
   "ev_kratom_polysubstance_review": {
@@ -2370,7 +2370,7 @@ const STUDY_DB = {
     supports:["kratom_polysubstance_toxicity","kratom_opioid_like_pd_overlap","kratom_cyp_interaction_potential"],
     contradicts:[],
     limitations:["Human controlled DDI data are limited; many severe reports involve multiple co-ingestants"],
-    verified:true
+    verified:false
   },
 
   // ═══ RIFAMPIN / CYP3A4 INDUCTION ═══
@@ -2387,7 +2387,7 @@ const STUDY_DB = {
     supports:["rifampin_induces_CYP3A4","rifampin_induces_P-gp"],
     contradicts:[],
     limitations:["Studies use different substrate drugs — fold changes vary by extraction ratio"],
-    verified:true
+    verified:false
   },
 
   // ═══ DIGOXIN / P-gp / AMIODARONE ═══
@@ -2405,7 +2405,7 @@ const STUDY_DB = {
     supports:["amiodarone_inhibits_P-gp","digoxin_amiodarone_interaction"],
     contradicts:[],
     limitations:["Amiodarone t½ 40-55 days; inhibition persists months after discontinuation"],
-    verified:true
+    verified:false
   },
 
   // ═══ LITHIUM / NSAID NEPHRO ═══
@@ -2422,7 +2422,7 @@ const STUDY_DB = {
     supports:["lithium_nsaid_toxicity_risk"],
     contradicts:[],
     limitations:["Review rather than controlled study","Magnitude varies by NSAID and renal function"],
-    verified:true
+    verified:false
   },
 
   "ev_st_johns_wort_cyp3a4_pgp_review": {
@@ -2440,7 +2440,7 @@ const STUDY_DB = {
     supports:["st_johns_wort_induces_CYP3A4","st_johns_wort_induces_P-gp","st_johns_wort_warfarin_interaction","st_johns_wort_tacrolimus_interaction","st_johns_wort_cyclosporine_interaction"],
     contradicts:[],
     limitations:["Hyperforin content strongly affects induction magnitude; product variability is clinically important"],
-    verified:true
+    verified:false
   },
 
   "ev_pde5_nitrate_label": {
@@ -2458,7 +2458,7 @@ const STUDY_DB = {
     supports:["pde5_nitrate_hypotension_contraindication"],
     contradicts:[],
     limitations:["Poppers contain volatile alkyl nitrites rather than prescription nitrate tablets; mechanism is treated as nitrate/nitrite vasodilator class risk"],
-    verified:true
+    verified:false
   },
 
   "ev_sodium_oxybate_cns_depressants_label": {
@@ -2476,7 +2476,7 @@ const STUDY_DB = {
     supports:["ghb_alcohol_cns_depression","ghb_benzodiazepine_cns_depression","ghb_opioid_cns_depression"],
     contradicts:[],
     limitations:["Illicit GHB dosing and co-ingestion circumstances are more variable than prescription sodium oxybate use"],
-    verified:true
+    verified:false
   },
 
   // ═══ PIPERINE / BLACK PEPPER / CYP ═══
@@ -2493,7 +2493,7 @@ const STUDY_DB = {
     supports:["piperine_inhibits_P-gp"],
     contradicts:[],
     limitations:["In vitro; dietary piperine concentrations likely insufficient for clinical effect alone","Often used in supplement formulations to boost bioavailability"],
-    verified:true
+    verified:false
   },
 
   // ═══ CURCUMIN / CYP2C9 ═══
@@ -2510,7 +2510,7 @@ const STUDY_DB = {
     supports:["curcumin_inhibits_CYP2C9"],
     contradicts:[],
     limitations:["Low oral bioavailability of curcumin limits clinical significance","Supplement doses vary enormously"],
-    verified:true
+    verified:false
   },
 
   // ═══ PAROXETINE / CYP2D6 — RCT (PubMed 14730412) ═══
@@ -2529,7 +2529,7 @@ const STUDY_DB = {
     },
     temporal:{onset:"days", washout:"2-3_weeks", mechanism:"MBI_irreversible"},
     supports:["paroxetine_inhibits_CYP2D6"],
-    contradicts:[], limitations:["Paroxetine was positive control, not primary subject","Single-dose desipramine probe"], verified:true
+    contradicts:[], limitations:["Paroxetine was positive control, not primary subject","Single-dose desipramine probe"], verified:false
   },
 
   // ═══ PAROXETINE / CYP2D6 — IN VITRO Ki (PubMed 7782485) ═══
@@ -2547,7 +2547,7 @@ const STUDY_DB = {
     },
     temporal:{mechanism:"competitive_and_MBI"},
     supports:["paroxetine_inhibits_CYP2D6"],
-    contradicts:[], limitations:["In vitro system","Does not capture MBI time-dependency"], verified:true
+    contradicts:[], limitations:["In vitro system","Does not capture MBI time-dependency"], verified:false
   },
 
   // ═══ SSRI CYP2D6 INHIBITION — PK REVIEW (PubMed 8968657) ═══
@@ -2565,7 +2565,7 @@ const STUDY_DB = {
     },
     temporal:{},
     supports:["paroxetine_inhibits_CYP2D6","fluoxetine_inhibits_CYP2D6"],
-    contradicts:[], limitations:["Review article — secondary source","1996 literature; predates modern CYP phenotyping for all SSRIs"], verified:true
+    contradicts:[], limitations:["Review article — secondary source","1996 literature; predates modern CYP phenotyping for all SSRIs"], verified:false
   },
 
   // ═══ QTc POLYPHARMACY — CKD OBSERVATIONAL (PubMed 32056163) ═══
@@ -2583,7 +2583,7 @@ const STUDY_DB = {
     },
     temporal:{},
     supports:["qtc_polypharmacy_risk","amiodarone_qtc","citalopram_qtc"],
-    contradicts:[], limitations:["Single-center retrospective","CKD population; may not generalize","Confounding by comorbidities"], verified:true
+    contradicts:[], limitations:["Single-center retrospective","CKD population; may not generalize","Confounding by comorbidities"], verified:false
   },
 
   // ═══ METHADONE QTc — OBSERVATIONAL (PubMed 25825202) ═══
@@ -2601,7 +2601,7 @@ const STUDY_DB = {
     },
     temporal:{},
     supports:["methadone_qtc","qtc_polypharmacy_risk"],
-    contradicts:[], limitations:["Retrospective","Hodges correction formula — may differ from Fridericia","No genotype data"], verified:true
+    contradicts:[], limitations:["Retrospective","Hodges correction formula — may differ from Fridericia","No genotype data"], verified:false
   },
 
   // ═══ QTc — OLDER ADULTS REVIEW (PubMed 30747995) ═══
@@ -2619,7 +2619,7 @@ const STUDY_DB = {
     },
     temporal:{},
     supports:["qtc_polypharmacy_risk","alert_fatigue_qtc"],
-    contradicts:[], limitations:["Narrative review","Nursing facility-specific population"], verified:true
+    contradicts:[], limitations:["Narrative review","Nursing facility-specific population"], verified:false
   },
 
   // ═══ CYP2D6 GENOTYPE — CODEINE/TRAMADOL (PubMed 23759977) ═══
@@ -2637,7 +2637,7 @@ const STUDY_DB = {
     },
     temporal:{},
     supports:["codeine_cyp2d6_activation","cyp2d6_genotype_opioid"],
-    contradicts:[], limitations:["Review article","CYP2D6 genotype-phenotype correlation imperfect","Conflicting results for some endpoints"], verified:true
+    contradicts:[], limitations:["Review article","CYP2D6 genotype-phenotype correlation imperfect","Conflicting results for some endpoints"], verified:false
   },
 
   // ═══ SEROTONIN SYNDROME — SSRI+MAOI (PubMed 16529136) ═══
@@ -2655,7 +2655,7 @@ const STUDY_DB = {
     },
     temporal:{onset:"hours_to_days", mechanism:"MAO_A_inhibition_plus_SERT_inhibition"},
     supports:["ssri_maoi_serotonin_syndrome"],
-    contradicts:[], limitations:["Case series (n=3)","Severity unpredictable","Linezolid is only antibiotic in this class"], verified:true
+    contradicts:[], limitations:["Case series (n=3)","Severity unpredictable","Linezolid is only antibiotic in this class"], verified:false
   },
 
   "ev_tyramine_maoi_labels": {
@@ -2671,7 +2671,7 @@ const STUDY_DB = {
     supports:["tyramine_rich_foods_MAO_substrate","maoi_tyramine_hypertensive_crisis"],
     contradicts:[],
     limitations:["Food tyramine content varies widely by preparation, storage, and spoilage","Risk differs across irreversible MAOIs, reversible MAO-A inhibitors, and selective MAO-B regimens"],
-    verified:true
+    verified:false
   },
 
   "ev_tacrolimus_cyp3a5_cpic": {
@@ -2688,7 +2688,7 @@ const STUDY_DB = {
     supports:["tacrolimus_SUBSTRATE_OF_CYP3A5","cyp3a5_genotype_tacrolimus_dosing"],
     contradicts:[],
     limitations:["Guideline addresses starting dose; trough-guided titration remains standard","Transplant type, interacting drugs, hematocrit, time post-transplant, and ancestry can modify dose requirement"],
-    verified:true
+    verified:false
   },
 
   // ═══ PAROXETINE — ASIAN CYP2D6*10 POPULATION PHARMACOGENOMICS ═══
@@ -2730,7 +2730,7 @@ const STUDY_DB = {
       "Small n=55; wide SD at each dose group",
       "No therapeutic outcome data — concentrations only"
     ],
-    verified:true,
+    verified:false,
     clinicalImplication:"In East Asian patients, the standard Caucasian PM/NM framework underestimates metabolic variability. CYP2D6*10 (reduced-function, not null) at 41.8% allele frequency makes most Japanese patients functional intermediate metabolizers. Paroxetine TDM is especially important in this population at doses ≥30mg."
   },
 
@@ -2781,7 +2781,7 @@ const STUDY_DB = {
       "Discontinued patients underrepresented",
       "Reference ranges are simulation-derived, not from clinical outcomes"
     ],
-    verified:true,
+    verified:false,
     clinicalImplication:"Sex must be considered when interpreting paroxetine serum levels. Females at any given dose will have ~2× higher concentrations than males. Current AGNP guidelines (65–125 ng/mL) are male-centric. High-dose patients (≥40mg/day) should be tapered at 5mg/2-4 weeks, not the standard 10mg/week schedule."
   },
 
@@ -5441,7 +5441,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:["Risk varies by ancestry and allele prevalence","Absence of the allele does not eliminate non-HLA hypersensitivity risk"],
     confidence:"high",
-    verified:true
+    verified:false
   },
 
   "ev_abacavir_hlab5701_cpic2012": {
@@ -5464,7 +5464,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:["Applies only when HLA-B*57:01 genotype result is known","Clinical diagnosis remains important if symptoms occur"],
     confidence:"high",
-    verified:true
+    verified:false
   },
 
   "ev_allopurinol_hlab5801_cpic2015": {
@@ -5487,7 +5487,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:["Risk also depends on clinical factors such as renal function and starting dose","Allele absence does not eliminate rash or hypersensitivity risk"],
     confidence:"high",
-    verified:true
+    verified:false
   },
 
   "ev_phenytoin_cyp2c9_hlab_cpic2020": {
@@ -5510,7 +5510,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:["HLA-B*15:02 allele prevalence differs substantially by ancestry","Therapeutic drug monitoring remains important for phenytoin"],
     confidence:"high",
-    verified:true
+    verified:false
   },
 
   "ev_rasburicase_g6pd_cpic2014": {
@@ -5533,7 +5533,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:["Clinical risk varies by G6PD activity, dose, and oxidative stress burden","G6PD status may require enzyme testing rather than genotype alone in some settings"],
     confidence:"high",
-    verified:true
+    verified:false
   },
 
   "ev_aminoglycoside_mtrnr1_cpic2021": {
@@ -5556,7 +5556,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:["Negative genotype does not remove ordinary dose-, duration-, or renal-function-related ototoxicity risk","Urgent infection contexts may require risk-benefit decisions when alternatives are unsuitable"],
     confidence:"high",
-    verified:true
+    verified:false
   },
 
   "ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019": {
@@ -5579,7 +5579,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:["A negative genotype does not fully exclude malignant hyperthermia susceptibility","Personal and family anesthesia history remain clinically important"],
     confidence:"high",
-    verified:true
+    verified:false
   },
 
   "ev_bche_succinylcholine_mivacurium_label": {
@@ -5602,7 +5602,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:["Acquired pseudocholinesterase reduction can mimic genetic deficiency","Dibucaine number, enzyme activity testing, medication context, pregnancy, liver disease, and prior anesthesia history matter"],
     confidence:"high",
-    verified:true
+    verified:false
   },
 
   "ev_cyp2c9_nsaid_cpic2020": {
@@ -5625,7 +5625,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:["Recommendations vary by NSAID and phenotype; renal function, age, dose, duration, GI bleed risk, anticoagulants/antiplatelets, and cardiovascular risk can dominate genotype alone"],
     confidence:"high",
-    verified:true
+    verified:false
   },
 
   "ev_cyp2c8_pharmacogenetics_review_tornio2009": {
@@ -5647,7 +5647,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:["Review-level evidence; clinical actionability differs strongly by drug and is often dominated by inhibitors such as gemfibrozil or clopidogrel acyl glucuronide"],
     confidence:"moderate",
-    verified:true
+    verified:false
   },
 
   "ev_sulfonylurea_cyp2c9_label_context": {
@@ -5670,7 +5670,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:["Clinical action depends heavily on age, kidney/liver function, meal pattern, dose, and concurrent insulin or other glucose-lowering drugs"],
     confidence:"moderate",
-    verified:true
+    verified:false
   },
 
   "ev_lorazepam_oxazepam_temazepam_ugt_label": {
@@ -5693,7 +5693,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:["UGT genotype effects are not treated as standalone dose rules; clinical sedation/fall risk and organ function dominate"],
     confidence:"moderate",
-    verified:true
+    verified:false
   },
 
   // ═══ ENRICHMENT BATCH 1 ═══
@@ -5729,7 +5729,7 @@ const STUDY_DB = {
       "Discovery cohort in leprosy patients",
       "Applicability varies sharply by ancestry"
     ],
-    verified:true
+    verified:false
   },
 
   "ev_dapsone_hlab1301_krismawati2020":{
@@ -5763,7 +5763,7 @@ const STUDY_DB = {
       "Single-region cohort",
       "Wide CI on OR (small n)"
     ],
-    verified:true
+    verified:false
   },
 
   "ev_thiopurine_tpmt_nudt15_cpic2025":{
@@ -5800,7 +5800,7 @@ const STUDY_DB = {
       "NUDT15 loss-of-function concentrated in East Asian/Amerindian ancestry",
       "Genotype guides starting dose; ongoing CBC monitoring still required"
     ],
-    verified:true
+    verified:false
   },
 
   "ev_tafenoquine_g6pd_fda":{
@@ -5836,7 +5836,7 @@ const STUDY_DB = {
       "Quantitative G6PD activity threshold matters (studies safe >70%)",
       "Point-of-care qualitative tests may misclassify intermediate-activity females"
     ],
-    verified:true
+    verified:false
   },
 
   "ev_vancomycin_hla_a3201_konvinse2019":{
@@ -5871,7 +5871,7 @@ const STUDY_DB = {
       "Small case n",
       "Subsequent DILIN series confirmed association at lower absolute incidence"
     ],
-    verified:true
+    verified:false
   },
 
   "ev_flucloxacillin_hlab5701_daly2009":{
@@ -5903,7 +5903,7 @@ const STUDY_DB = {
     ],
     contradicts:[],
     limitations:[
-      "PMID/OR not re-verified this pass — CONFIRM before verified:true",
+      "PMID/OR not re-verified this pass — CONFIRM before professional review",
       "Low positive predictive value → not a routine pre-test"
     ],
     verified:false,
@@ -5942,7 +5942,7 @@ const STUDY_DB = {
     limitations:[
       "Label-level; exact activity threshold not specified"
     ],
-    verified:true
+    verified:false
   },
 
   "ev_methylene_blue_maoi_fda":{
@@ -5975,7 +5975,7 @@ const STUDY_DB = {
     limitations:[
       "Risk highest with IV doses >1 mg/kg; lower-dose/topical surgical use less characterized"
     ],
-    verified:true
+    verified:false
   },
 
   "ev_g6pd_oxidative_antimalarials":{
@@ -7302,7 +7302,7 @@ const STUDY_DB = {
     supports:["sofosbuvir_amiodarone_bradycardia_contraindication"],
     contradicts:[],
     limitations:["Mechanism remains unclear; interaction appears to be pharmacodynamic rather than metabolic."],
-    verified:true, reviewRequired:false, verifyNote:"FDA safety communication — high confidence"
+    verified:false, reviewRequired:false, verifyNote:"Pending professional review; FDA safety communication source-linked"
   },
   "ev_sofosbuvir_pgp_induction": {
     id:"ev_sofosbuvir_pgp_induction", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7328,7 +7328,7 @@ const STUDY_DB = {
     supports:["maoi_ssri_serotonin_syndrome","maoi_snri_contraindication","maoi_tramadol_contraindication","maoi_tyramine_crisis"],
     contradicts:[],
     limitations:["Fluoxetine requires 5-week washout due to norfluoxetine's long half-life. MAOI after fluoxetine: 5 weeks. Fluoxetine after MAOI: 2 weeks."],
-    verified:true, reviewRequired:false, verifyNote:"Well-established FDA-labelled contraindication"
+    verified:false, reviewRequired:false, verifyNote:"Pending professional review; FDA-labelled contraindication source-linked"
   },
   "ev_maoi_tyramine_fda": {
     id:"ev_maoi_tyramine_fda", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7341,7 +7341,7 @@ const STUDY_DB = {
     supports:["maoi_tyramine_dietary_restriction"],
     contradicts:[],
     limitations:["Reversible selective MAO-B inhibitors (selegiline low dose) have lower dietary risk but restriction still recommended."],
-    verified:true, reviewRequired:false, verifyNote:"Well-established clinical teaching — dietary restriction mandatory"
+    verified:false, reviewRequired:false, verifyNote:"Pending professional review; label/clinical teaching source-linked"
   },
   "ev_selegiline_ssri_fda": {
     id:"ev_selegiline_ssri_fda", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7367,7 +7367,7 @@ const STUDY_DB = {
     supports:["linezolid_ssri_contraindication","linezolid_snri_contraindication","linezolid_tramadol_contraindication"],
     contradicts:[],
     limitations:["If life-threatening infection, linezolid can be used with intensive monitoring if no alternative. SSRIs should be stopped if possible."],
-    verified:true, reviewRequired:false, verifyNote:"FDA safety communication — high confidence"
+    verified:false, reviewRequired:false, verifyNote:"Pending professional review; FDA safety communication source-linked"
   },
   "ev_stimulant_maoi_fda": {
     id:"ev_stimulant_maoi_fda", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7458,7 +7458,7 @@ const STUDY_DB = {
     supports:["thioridazine_paroxetine_contraindication","thioridazine_fluoxetine_contraindication","thioridazine_qt_additive"],
     contradicts:[],
     limitations:["Thioridazine is a last-resort antipsychotic; alternative agents are preferred in most patients."],
-    verified:true, reviewRequired:false, verifyNote:"FDA black box — well-established"
+    verified:false, reviewRequired:false, verifyNote:"Pending professional review; FDA black box source-linked"
   },
   "ev_cobicistat_cyp3a_label": {
     id:"ev_cobicistat_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7588,7 +7588,7 @@ const STUDY_DB = {
     supports:["clonidine_METABOLIZED_TO_p-hydroxyclonidine","clonidine_cyp2d6_minor_clearance_context"],
     contradicts:[],
     limitations:["In vitro concentrations exceeded typical therapeutic plasma concentrations; renal unchanged clearance remains clinically important."],
-    verified:true
+    verified:false
   },
   "ev_buspirone_cyp3a_label": {
     id:"ev_buspirone_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9138,7 +9138,7 @@ function createStudyDraft({pmid, doi, title, year, source, journal, type, studyD
 
 // reviewStudyDraft — approve a draft and merge into runtime STUDY_DB
 // In production this would be a server-side operation with audit logging.
-// For now it merges into the session-level STUDY_DB and marks as verified.
+// For now it merges into the session-level STUDY_DB without professional verification.
 function reviewStudyDraft(draftId, reviewerNotes, approve) {
   const idx = INGESTION_QUEUE.findIndex(d => d.id === draftId);
   if (idx === -1) return { error: 'Draft not found' };
@@ -9148,8 +9148,8 @@ function reviewStudyDraft(draftId, reviewerNotes, approve) {
     draft._reviewerNotes = reviewerNotes;
     return { status: 'rejected' };
   }
-  const published = { ...draft, _status:'approved', verified:true,
-    verifyNote: reviewerNotes || 'Human reviewed', _approvedAt: new Date().toISOString() };
+  const published = { ...draft, _status:'approved', verified:false,
+    verifyNote: reviewerNotes || 'Merged draft pending professional review', _approvedAt: new Date().toISOString() };
   delete published._createdAt;
   STUDY_DB[published.id] = published;
   INGESTION_QUEUE.splice(idx, 1);

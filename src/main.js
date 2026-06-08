@@ -188,9 +188,9 @@ renderAll();
   }
   const statsLine = el("statsLine");
   if (statsLine && typeof MEDCHECK_STATS !== "undefined") {
-    const evidenceLabel = MEDCHECK_STATS.reviewQueue
-      ? `${MEDCHECK_STATS.studies} source-linked evidence entries (${MEDCHECK_STATS.reviewQueue} pending review; ${MEDCHECK_STATS.professionalReviewedStudies || 0} professionally reviewed)`
-      : `${MEDCHECK_STATS.studies} evidence entries`;
+    const pendingProfessionalReview = MEDCHECK_STATS.pendingProfessionalReviewStudies ??
+      Math.max(0, (MEDCHECK_STATS.studies || 0) - (MEDCHECK_STATS.professionalReviewedStudies || 0));
+    const evidenceLabel = `${MEDCHECK_STATS.studies} source-linked evidence entries (${pendingProfessionalReview} pending professional review; ${MEDCHECK_STATS.professionalReviewedStudies || 0} professionally reviewed)`;
     const metaboliteLabel = MEDCHECK_STATS.metaboliteEntries
       ? `${MEDCHECK_STATS.metaboliteEntries} metabolites across ${MEDCHECK_STATS.metaboliteParents} parent substances`
       : null;

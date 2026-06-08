@@ -384,11 +384,9 @@ function studyCardHTML(study) {
     ? `<div style="font-size:11px;color:var(--amber);margin-top:4px">⚠ Contradicted by: ${study.contradicts.join(', ')}</div>` : '';
   const limits = (study.limitations || []).length
     ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Limitations: ${study.limitations.join(' · ')}</div>` : '';
-  const unverified = study.verified === false
-    ? `<div style="font-size:10px;color:var(--amber);margin-top:3px">⚠ Source review pending — ${study.verifyNote||'requires independent confirmation'}</div>` : '';
-  const reviewBadge = study.reviewRequired === true
-    ? '<span class="ev-review-badge needs-review">needs human review</span>'
-    : '<span class="ev-review-badge source-linked">source-linked</span>';
+  const unverified = study.verifyNote
+    ? `<div style="font-size:10px;color:var(--amber);margin-top:3px">⚠ Review note — ${study.verifyNote}</div>` : '';
+  const reviewBadge = '<span class="ev-review-badge needs-review">pending professional review</span>';
 
   return `<div class="ev-card">
     <div class="ev-card-head">
