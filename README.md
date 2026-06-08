@@ -38,21 +38,22 @@ These links open the live app with example medication stacks already loaded:
 
 | Demo | What it shows |
 |---|---|
-| [SSRI switch / washout](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=paroxetine,fluoxetine&tab=safety) | Long half-life, persistent CYP2D6 inhibition, serotonin/QT context |
-| [Clopidogrel + CYP2C19 PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:poor_metabolizer&tab=pgx) | Prodrug activation, genotype effect, PPI interaction |
-| [Codeine + CYP2D6 PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx) | Active-metabolite failure risk with CYP2D6 poor metabolism |
-| [Simvastatin + clarithromycin](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=simvastatin,clarithromycin&tab=pk) | CYP3A4 inhibition, exposure shift, PK simulation |
-| [Older-adult burden](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=safety) | Anticholinergic, sedative, fall-risk, and Beers-style burden |
+| [SSRI switch / washout](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=paroxetine,fluoxetine&tab=safety) | Fluoxetine stays in the body for weeks. Adding paroxetine before it clears can keep the same cleanup pathway blocked and can stack serotonin/QT warning signals. |
+| [Clopidogrel + CYP2C19 PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:poor_metabolizer&tab=pgx) | Clopidogrel is a prodrug: the body must turn it on. A slow CYP2C19 genotype plus omeprazole can reduce activation, so the pill may give less antiplatelet effect than expected. |
+| [Codeine + CYP2D6 PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx) | Codeine must be converted into morphine to work well. A slow CYP2D6 genotype, or a CYP2D6 blocker like fluoxetine, can leave more inactive parent drug and less pain-relieving metabolite. |
+| [Simvastatin + clarithromycin](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=simvastatin,clarithromycin&tab=pk) | Clarithromycin blocks one of simvastatin's main cleanup routes. Simvastatin can rise higher than intended, increasing muscle-toxicity concern. |
+| [Older-adult burden](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=safety) | Each medicine can add sedation, confusion, or fall risk. The important signal is the combined burden, not only one pair of drugs. |
 
-For deeper v1 QA, these examples stress less-common problems that many parent-drug-only checkers miss:
+For deeper v1 QA, these examples stress problems that are often missed because the danger is not only the parent drug name. It may come from what the body turns the drug into, what the body fails to clear, or a genetic weakness that only appears when the pathway is modeled.
 
-| Deep demo | What it shows |
+| Deep demo | Why it is often missed |
 |---|---|
-| [Azathioprine + allopurinol + TPMT/NUDT15 PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=pgx) | Cytotoxic 6-TGN accumulation, xanthine oxidase diversion, and marrow-toxicity review |
-| [Capecitabine + DPYD PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=capecitabine&genotype=DPYD:PM&tab=pgx) | Active 5-FU accumulation and life-threatening fluoropyrimidine toxicity context |
-| [Irinotecan + UGT1A1 PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=irinotecan&genotype=UGT1A1:PM&tab=pgx) | SN-38 active-metabolite toxicity and CBC monitoring context |
-| [G6PD oxidant stack](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency&tab=pgx) | Oxidant hemolysis/methemoglobinemia across unrelated parent drugs |
-| [Succinylcholine + BCHE/RYR1 risk](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=succinylcholine&genotype=BCHE:null&genotype=RYR1:present&tab=pgx) | Prolonged paralysis/apnea plus malignant-hyperthermia susceptibility |
+| [Azathioprine + allopurinol + TPMT/NUDT15 PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=pgx) | Allopurinol can push azathioprine down a more toxic route. If TPMT or NUDT15 cleanup is weak, the toxic 6-TGN metabolite can build up and threaten bone marrow. |
+| [Capecitabine + DPYD PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=capecitabine&genotype=DPYD:PM&tab=pgx) | Capecitabine is designed to become 5-FU. If DPYD cleanup is weak, that active cancer-drug metabolite can accumulate, so toxicity can come from the metabolite rather than the parent drug. |
+| [Irinotecan + UGT1A1 PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=irinotecan&genotype=UGT1A1:PM&tab=pgx) | Irinotecan becomes SN-38, the stronger active metabolite. UGT1A1 helps clear SN-38; if that pathway is weak, diarrhea and low-blood-count risk can rise. |
+| [Bupropion + codeine + CYP2D6 PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=bupropion,codeine&genotype=CYP2D6:PM&tab=pgx) | Bupropion is not just the parent pill: its hydroxybupropion metabolite helps block CYP2D6. Codeine needs CYP2D6 to become morphine, so pain relief can drop when the pathway is blocked or genetically slow. |
+| [G6PD oxidant stack](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency&tab=pgx) | These drugs look unrelated by name, but all can stress red blood cells. With G6PD deficiency, that shared stress can trigger red-cell breakdown or methemoglobinemia. |
+| [Succinylcholine + BCHE/RYR1 risk](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=succinylcholine&genotype=BCHE:null&genotype=RYR1:present&tab=pgx) | The issue is not a common drug-drug pair. BCHE weakness can make paralysis last too long, while RYR1 risk can point to malignant hyperthermia susceptibility during anesthesia. |
 
 You can also build custom share links with:
 
