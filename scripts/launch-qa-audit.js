@@ -229,7 +229,7 @@ function collect({ name, why, drugs, genotypes = [], tab = 'pgx', expect }) {
     assert(feedbackText.includes(term), `${name}: missing feedback link text ${term}\n${debug()}`);
   }
   assert(feedbackLinks.length >= 1, `${name}: expected contextual feedback links\n${debug()}`);
-  assert(feedbackLinks.every(href => href.includes('github.com/diogonmpacheco/medcheck/issues/new')), `${name}: feedback link does not target GitHub issues\n${debug()}`);
+  assert(feedbackLinks.every(href => href.includes('github.com/diogonmpacheco/PharmTrace/issues/new')), `${name}: feedback link does not target GitHub issues\n${debug()}`);
 
   for (const panel of panels) {
     if (panel.visible) {

@@ -620,7 +620,7 @@ function currentStackShareUrl(tab = activeTab) {
   const query = params
     .map(([key, value]) => `${encodeURIComponent(key)}=${encodeUrlStateValueLocal(value)}`)
     .join("&");
-  return `https://diogonmpacheco.github.io/medcheck/index.html${query ? `?${query}` : ""}`;
+  return `https://diogonmpacheco.github.io/PharmTrace/index.html${query ? `?${query}` : ""}`;
 }
 
 function activeGenotypeUrlTokens() {
@@ -680,7 +680,7 @@ function buildMedCheckIssueUrl({ type = "data", title = "PharmTrace feedback", f
     body,
     labels,
   });
-  return `https://github.com/diogonmpacheco/medcheck/issues/new?${params.toString()}`;
+  return `https://github.com/diogonmpacheco/PharmTrace/issues/new?${params.toString()}`;
 }
 
 function renderFeedbackLink(label, options = {}) {

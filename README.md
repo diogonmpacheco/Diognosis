@@ -8,13 +8,13 @@ Its first module, the MedCheck Engine, explores drug-drug interactions, pharmaco
 
 Status: pre-v1, source-linked, actively validated, and pending future professional clinical review.
 
-**Live app:** [diogonmpacheco.github.io/medcheck](https://diogonmpacheco.github.io/medcheck/)
+**Live app:** [diogonmpacheco.github.io/PharmTrace](https://diogonmpacheco.github.io/PharmTrace/)
 
-[![CI](https://github.com/diogonmpacheco/medcheck/actions/workflows/ci.yml/badge.svg)](https://github.com/diogonmpacheco/medcheck/actions/workflows/ci.yml)
+[![CI](https://github.com/diogonmpacheco/PharmTrace/actions/workflows/ci.yml/badge.svg)](https://github.com/diogonmpacheco/PharmTrace/actions/workflows/ci.yml)
 [![Node.js 20](https://img.shields.io/badge/Node.js-20-339933?logo=nodedotjs&logoColor=white)](package.json)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Open Issues](https://img.shields.io/github/issues/diogonmpacheco/medcheck)](https://github.com/diogonmpacheco/medcheck/issues)
-[![Live Site](https://img.shields.io/badge/live-GitHub%20Pages-222?logo=github)](https://diogonmpacheco.github.io/medcheck/)
+[![Open Issues](https://img.shields.io/github/issues/diogonmpacheco/PharmTrace)](https://github.com/diogonmpacheco/PharmTrace/issues)
+[![Live Site](https://img.shields.io/badge/live-GitHub%20Pages-222?logo=github)](https://diogonmpacheco.github.io/PharmTrace/)
 
 ## MedCheck Engine
 
@@ -26,7 +26,7 @@ The MedCheck Engine runs entirely in the browser. There are no accounts, no serv
 
 This project was initially developed under the working name “MedCheck”. The broader platform is now named “PharmTrace”, with “MedCheck Engine” preserved as the name of the first medication-safety module.
 
-The deployed GitHub Pages URL and repository links still use `/medcheck/` until the GitHub repository/pages path is renamed.
+The GitHub repository and Pages URL now use `PharmTrace`. Some internal engine identifiers still use `MEDCHECK_*` because they name the first module and preserve build compatibility.
 
 Current data release: **Drug DB v1.2.3**, last reviewed **2026-06-04**.
 
@@ -38,27 +38,27 @@ These links open the live app with example medication stacks already loaded:
 
 | Demo | What it shows |
 |---|---|
-| [SSRI switch / washout](https://diogonmpacheco.github.io/medcheck/index.html?substances=paroxetine,fluoxetine&tab=safety) | Long half-life, persistent CYP2D6 inhibition, serotonin/QT context |
-| [Clopidogrel + CYP2C19 PM](https://diogonmpacheco.github.io/medcheck/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:poor_metabolizer&tab=pgx) | Prodrug activation, genotype effect, PPI interaction |
-| [Codeine + CYP2D6 PM](https://diogonmpacheco.github.io/medcheck/index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx) | Active-metabolite failure risk with CYP2D6 poor metabolism |
-| [Simvastatin + clarithromycin](https://diogonmpacheco.github.io/medcheck/index.html?substances=simvastatin,clarithromycin&tab=pk) | CYP3A4 inhibition, exposure shift, PK simulation |
-| [Older-adult burden](https://diogonmpacheco.github.io/medcheck/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=safety) | Anticholinergic, sedative, fall-risk, and Beers-style burden |
+| [SSRI switch / washout](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=paroxetine,fluoxetine&tab=safety) | Long half-life, persistent CYP2D6 inhibition, serotonin/QT context |
+| [Clopidogrel + CYP2C19 PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:poor_metabolizer&tab=pgx) | Prodrug activation, genotype effect, PPI interaction |
+| [Codeine + CYP2D6 PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx) | Active-metabolite failure risk with CYP2D6 poor metabolism |
+| [Simvastatin + clarithromycin](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=simvastatin,clarithromycin&tab=pk) | CYP3A4 inhibition, exposure shift, PK simulation |
+| [Older-adult burden](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=safety) | Anticholinergic, sedative, fall-risk, and Beers-style burden |
 
 For deeper v1 QA, these examples stress less-common problems that many parent-drug-only checkers miss:
 
 | Deep demo | What it shows |
 |---|---|
-| [Azathioprine + allopurinol + TPMT/NUDT15 PM](https://diogonmpacheco.github.io/medcheck/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=pgx) | Cytotoxic 6-TGN accumulation, xanthine oxidase diversion, and marrow-toxicity review |
-| [Capecitabine + DPYD PM](https://diogonmpacheco.github.io/medcheck/index.html?substances=capecitabine&genotype=DPYD:PM&tab=pgx) | Active 5-FU accumulation and life-threatening fluoropyrimidine toxicity context |
-| [Irinotecan + UGT1A1 PM](https://diogonmpacheco.github.io/medcheck/index.html?substances=irinotecan&genotype=UGT1A1:PM&tab=pgx) | SN-38 active-metabolite toxicity and CBC monitoring context |
-| [G6PD oxidant stack](https://diogonmpacheco.github.io/medcheck/index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency&tab=pgx) | Oxidant hemolysis/methemoglobinemia across unrelated parent drugs |
-| [Succinylcholine + BCHE/RYR1 risk](https://diogonmpacheco.github.io/medcheck/index.html?substances=succinylcholine&genotype=BCHE:null&genotype=RYR1:present&tab=pgx) | Prolonged paralysis/apnea plus malignant-hyperthermia susceptibility |
+| [Azathioprine + allopurinol + TPMT/NUDT15 PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=pgx) | Cytotoxic 6-TGN accumulation, xanthine oxidase diversion, and marrow-toxicity review |
+| [Capecitabine + DPYD PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=capecitabine&genotype=DPYD:PM&tab=pgx) | Active 5-FU accumulation and life-threatening fluoropyrimidine toxicity context |
+| [Irinotecan + UGT1A1 PM](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=irinotecan&genotype=UGT1A1:PM&tab=pgx) | SN-38 active-metabolite toxicity and CBC monitoring context |
+| [G6PD oxidant stack](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency&tab=pgx) | Oxidant hemolysis/methemoglobinemia across unrelated parent drugs |
+| [Succinylcholine + BCHE/RYR1 risk](https://diogonmpacheco.github.io/PharmTrace/index.html?substances=succinylcholine&genotype=BCHE:null&genotype=RYR1:present&tab=pgx) | Prolonged paralysis/apnea plus malignant-hyperthermia susceptibility |
 
 You can also build custom share links with:
 
-`https://diogonmpacheco.github.io/medcheck/index.html?substances=warfarin,ibuprofen&tab=safety`
+`https://diogonmpacheco.github.io/PharmTrace/index.html?substances=warfarin,ibuprofen&tab=safety`
 
-For alternate entry points, see the [PharmTrace Data Views](https://diogonmpacheco.github.io/medcheck/data-views.html) and the [Medication Class Guides](https://diogonmpacheco.github.io/medcheck/medication-classes.html).
+For alternate entry points, see the [PharmTrace Data Views](https://diogonmpacheco.github.io/PharmTrace/data-views.html) and the [Medication Class Guides](https://diogonmpacheco.github.io/PharmTrace/medication-classes.html).
 
 ---
 
@@ -99,7 +99,7 @@ PharmTrace is intentionally conservative about what it claims. MedCheck Engine P
 
 ## How To Use
 
-1. Open the [live PharmTrace app](https://diogonmpacheco.github.io/medcheck/).
+1. Open the [live PharmTrace app](https://diogonmpacheco.github.io/PharmTrace/).
 2. Search for medications, supplements, foods, or substances.
 3. Review MedCheck Engine safety, pharmacogenomics, PK, evidence, graph, burden, and washout panels.
 4. Set genotype phenotypes where relevant, or paste supported PharmGx report rows in the pharmacogenomics panel.
@@ -125,7 +125,7 @@ PharmTrace is open source under the [MIT License](LICENSE).
 
 You can use, modify, and build on it freely. If you use PharmTrace or the MedCheck Engine in another project, please share where it is being used and include a link back to the project when practical:
 
-`https://github.com/diogonmpacheco/medcheck`
+`https://github.com/diogonmpacheco/PharmTrace`
 
 This attribution request is appreciated, but the license remains permissive.
 
