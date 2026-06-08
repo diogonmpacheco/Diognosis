@@ -6,11 +6,11 @@ function renderInteractions(interactions) {
   const countEl = document.getElementById("interCount");
   const curatedInteractions = interactions.filter(isCuratedInteractionWarning);
   if (!curatedInteractions.length) {
-    el.innerHTML = '<div class="finding-empty">No curated interaction warning is documented for this stack. Check Mechanistic Interpretation for modeled pathway read-through.</div>';
+    el.innerHTML = '<div class="finding-empty">No source-linked interaction warning is documented for this stack. Check Mechanistic Interpretation for modeled pathway read-through.</div>';
     countEl.textContent = "";
     return;
   }
-  countEl.textContent = `${curatedInteractions.length} curated`;
+  countEl.textContent = `${curatedInteractions.length} source-linked`;
   el.innerHTML = curatedInteractions.map((i, idx) => {
     const mechText = simplifyMechanism(i);
     const traceText = buildInteractionTrace(i);
@@ -29,8 +29,10 @@ function renderInteractions(interactions) {
       : '';
 
     const hasEv = studies.length > 0;
-    const reviewLabel = studies.some(s => s.reviewStatus === "verified") ? "human-reviewed evidence" : "needs evidence review";
-    const reviewClass = studies.some(s => s.reviewStatus === "verified") ? "review" : "warn";
+    const reviewLabel = studies.some(s => s.professionalReviewed === true || s.clinicalReviewed === true || ["professional_reviewed", "clinician_reviewed"].includes(s.reviewStatus))
+      ? "professionally reviewed evidence"
+      : "needs evidence review";
+    const reviewClass = reviewLabel === "professionally reviewed evidence" ? "review" : "warn";
     const findingTitle = buildFindingTitle(i);
     const pathwayLabel = i.enzyme || i.category || i.type || "pathway";
 

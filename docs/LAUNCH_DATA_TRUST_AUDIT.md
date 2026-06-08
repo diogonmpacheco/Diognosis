@@ -13,13 +13,14 @@ This audit checked the generated launch bundle (`index.html`) after rebuilding f
 | Drugs in `DRUG_DB` | 625 |
 | Evidence entries in `STUDY_DB` | 455 |
 | Public evidence entries | 453 |
-| Verified evidence entries, all `STUDY_DB` | 161 |
-| Verified public evidence entries shown by live quality dashboard | 159 |
-| Review queue entries | 294 |
-| Curated DDI pairs after fixes | 627 |
-| Severe/critical curated DDI pairs after fixes | 323 |
+| Baseline source-linked entries, all `STUDY_DB` | 161 |
+| Professional-reviewed evidence entries | 0 |
+| Pending-review enrichment entries | 294 |
+| Interaction pairs after fixes | 627 |
+| Severe/critical interaction pairs after fixes | 323 |
+| Severe/critical pairs linked only to pending-review evidence | 188 |
 
-Note: generated stats and README intentionally count all `STUDY_DB` entries. The live quality dashboard filters out `public:false`, which accounts for the 161 vs 159 verified-evidence difference. The two non-public verified studies are `ev_paroxetine_cyp2d6_japanese` and `ev_paroxetine_ppk_sex_chinese`.
+Note: generated stats and README intentionally count all `STUDY_DB` entries. No entry has been marked professionally reviewed yet. The 188 severe/critical rows linked only to pending-review evidence are intentionally integrated for public-preview feedback, but must remain visibly badged as pending professional review.
 
 ## Check Results
 
@@ -32,8 +33,8 @@ Note: generated stats and README intentionally count all `STUDY_DB` entries. The
 | Duplicate DDI pairs with conflicting severity | 0 |
 | Severe/critical DDI pairs missing `evidenceRefs` | 0 |
 | Evidence refs pointing to missing `STUDY_DB` entries | 0 |
-| Verified/public entries lacking PMID, DOI, or URL unless regulatory label | 0 |
-| `reviewRequired:true` entries presented as verified | 0 |
+| Baseline public entries lacking PMID, DOI, or URL unless regulatory label | 0 |
+| `reviewRequired:true` entries presented as professionally reviewed | 0 |
 | Generated stats mismatching source data | 0 |
 | README stats mismatching generated stats | 0 |
 | Live bundle stats mismatching generated stats | 0 |
@@ -41,7 +42,7 @@ Note: generated stats and README intentionally count all `STUDY_DB` entries. The
 
 ## Errors Fixed
 
-Removed 4 duplicate curated DDI rows from `src/data/interactions.js`:
+Removed 4 duplicate DDI rows from `src/data/interactions.js`:
 
 | Pair | Fix |
 | --- | --- |
@@ -60,10 +61,10 @@ The remaining queue is expected launch review work, not a structural data failur
 | --- | ---: |
 | `reviewRequired:true` evidence entries | 294 |
 | Review-queue entries with PMID, DOI, or URL | 294 |
-| Review-queue entries accidentally marked verified | 0 |
-| Review-queue entries used as verified evidence | 0 |
+| Pending-review entries accidentally marked professionally reviewed | 0 |
+| Pending-review entries hidden from evidence UI badges | 0 |
 
-Most queued entries are enrichment batches that already carry external identifiers but still need clinician/pharmacist review before being treated as verified. The highest-priority items are those linked to the greatest number or severity of DDI rows.
+Most pending entries are enrichment batches that already carry external identifiers but still need clinician/pharmacist review before being treated as professionally reviewed. The highest-priority items are those linked to the greatest number or severity of DDI rows.
 
 ## Top 25 Human-Review Priorities
 

@@ -54,9 +54,9 @@ function renderMechanisticPredictionCard(prediction) {
     <div class="inter-trace">Path: ${prediction.drugs.join(" + ")}${prediction.metabolite ? ` -> ${prediction.metabolite}` : ""} -> ${prediction.direction}</div>
     <div class="finding-meta">
       <span class="finding-tag">${prediction.kind}</span>
-      <span class="finding-tag ${isDocumented ? "" : "warn"}">${isDocumented ? "already curated" : "no direct study linked"}</span>
+      <span class="finding-tag ${isDocumented ? "" : "warn"}">${isDocumented ? "already source-linked" : "no direct study linked"}</span>
       <span class="finding-tag">confidence: ${prediction.confidence}</span>
-      ${prediction.curatedSeverity ? `<span class="finding-tag">curated: ${prediction.curatedSeverity}</span>` : ""}
+      ${prediction.curatedSeverity ? `<span class="finding-tag">source-linked severity: ${prediction.curatedSeverity}</span>` : ""}
       ${estimateText}
     </div>
   </div>`;

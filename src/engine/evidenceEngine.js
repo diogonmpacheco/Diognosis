@@ -385,10 +385,10 @@ function studyCardHTML(study) {
   const limits = (study.limitations || []).length
     ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Limitations: ${study.limitations.join(' · ')}</div>` : '';
   const unverified = study.verified === false
-    ? `<div style="font-size:10px;color:var(--amber);margin-top:3px">⚠ PMID unverified — ${study.verifyNote||'requires independent confirmation'}</div>` : '';
+    ? `<div style="font-size:10px;color:var(--amber);margin-top:3px">⚠ Source review pending — ${study.verifyNote||'requires independent confirmation'}</div>` : '';
   const reviewBadge = study.reviewRequired === true
     ? '<span class="ev-review-badge needs-review">needs human review</span>'
-    : '<span class="ev-review-badge verified">curated</span>';
+    : '<span class="ev-review-badge source-linked">source-linked</span>';
 
   return `<div class="ev-card">
     <div class="ev-card-head">

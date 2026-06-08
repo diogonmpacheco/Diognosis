@@ -80,7 +80,7 @@ function isRegulatoryLabel(study, tiers) {
 
 function diffStats(actual, generated) {
   const keys = [
-    'drugs', 'studies', 'verifiedStudies', 'reviewQueue', 'studiesWithPmid',
+    'drugs', 'studies', 'sourceLinkedStudies', 'professionalReviewedStudies', 'verifiedStudies', 'reviewQueue', 'studiesWithPmid',
     'nonRegulatoryUncited', 'ddiPairs', 'severeDdi', 'moderateDdi', 'mildDdi',
     'genotypeGenes', 'metaboliteParents', 'metaboliteEntries', 'metaboliteActors',
     'pkParams', 'receptorScores', 'beersFlags', 'washoutRules',
@@ -103,8 +103,8 @@ const report = {
     drugs: data.DRUG_DB.length,
     studies: studyIds.size,
     publicStudies: publicStudies.length,
-    verifiedStudies: publicStudies.filter(study => study.reviewRequired !== true).length,
-    reviewQueue: publicStudies.filter(study => study.reviewRequired === true).length,
+    baselineSourceLinkedStudies: publicStudies.filter(study => study.reviewRequired !== true).length,
+    pendingReviewStudies: publicStudies.filter(study => study.reviewRequired === true).length,
     ddiPairs: data.KNOWN_DDI.length,
     severeDdi: data.KNOWN_DDI.filter(ddi => ddi.severity === 'severe' || ddi.severity === 'critical').length,
   },
@@ -166,6 +166,12 @@ const severeMissingRefs = data.KNOWN_DDI
   .filter(ddi => (ddi.severity === 'severe' || ddi.severity === 'critical') && !(ddi.evidenceRefs || []).length)
   .map(ddi => ({ pair: `${ddi.drug1} + ${ddi.drug2}`, severity: ddi.severity, confidence: ddi.evidence?.confidence || null }));
 
+const severeOnlyPendingReviewRefs = data.KNOWN_DDI
+  .filter(ddi => ddi.severity === 'severe' || ddi.severity === 'critical')
+  .filter(ddi => (ddi.evidenceRefs || []).length)
+  .filter(ddi => (ddi.evidenceRefs || []).every(ref => data.STUDY_DB?.[ref]?.reviewRequired === true))
+  .map(ddi => ({ pair: `${ddi.drug1} + ${ddi.drug2}`, severity: ddi.severity, evidenceRefs: ddi.evidenceRefs }));
+
 const evidenceRefSources = {
   DRUG_DB: data.DRUG_DB,
   KNOWN_DDI: data.KNOWN_DDI,
@@ -187,7 +193,11 @@ const unreviewedButVerified = publicStudies
   .filter(study => study.reviewRequired === true && (study.verified === true || study.reviewStatus === 'verified'))
   .map(study => ({ id: study.id, title: study.title, verified: study.verified, reviewStatus: study.reviewStatus }));
 
-const verifiedNoExternalId = publicStudies
+const professionalReviewed = publicStudies
+  .filter(study => study.professionalReviewed === true || study.clinicalReviewed === true || ['professional_reviewed', 'clinician_reviewed'].includes(study.reviewStatus))
+  .map(study => ({ id: study.id, title: study.title, reviewStatus: study.reviewStatus || null }));
+
+const baselineSourceLinkedNoExternalId = publicStudies
   .filter(study => study.reviewRequired !== true && !hasExternalIdentifier(study) && !isRegulatoryLabel(study, data.EVIDENCE_TIER))
   .map(study => ({ id: study.id, type: study.type, title: study.title }));
 
@@ -196,7 +206,8 @@ const readmeMismatches = [
   ['drugs', actualStats.drugs],
   ['studies', actualStats.studies],
   ['studiesWithPmid', actualStats.studiesWithPmid],
-  ['verifiedStudies', actualStats.verifiedStudies],
+  ['sourceLinkedStudies', actualStats.sourceLinkedStudies],
+  ['professionalReviewedStudies', actualStats.professionalReviewedStudies],
   ['reviewQueue', actualStats.reviewQueue],
   ['ddiPairs', actualStats.ddiPairs],
   ['severeDdi', actualStats.severeDdi],
@@ -242,9 +253,11 @@ report.checks = {
   duplicateDdiPairs: duplicatePairs.length,
   conflictingDuplicateDdiPairs: conflictingDuplicatePairs.length,
   severeDdiMissingEvidenceRefs: severeMissingRefs.length,
+  severeDdiOnlyPendingReviewRefs: severeOnlyPendingReviewRefs.length,
   missingEvidenceRefs: missingEvidenceRefs.length,
-  verifiedNoExternalId: verifiedNoExternalId.length,
-  reviewRequiredPresentedVerified: unreviewedButVerified.length,
+  baselineSourceLinkedNoExternalId: baselineSourceLinkedNoExternalId.length,
+  reviewRequiredPresentedProfessionallyReviewed: unreviewedButVerified.length,
+  professionalReviewedEvidenceEntries: professionalReviewed.length,
   generatedStatsMismatches: statsMismatches.length,
   readmeStatsMismatches: readmeMismatches.length,
   liveStatsMismatches: liveStatsMismatches.length,
@@ -258,9 +271,11 @@ report.samples = {
   duplicatePairs,
   conflictingDuplicatePairs,
   severeMissingRefs: severeMissingRefs.slice(0, 100),
+  severeOnlyPendingReviewRefs: severeOnlyPendingReviewRefs.slice(0, 100),
   missingEvidenceRefs: missingEvidenceRefs.slice(0, 100),
-  verifiedNoExternalId,
-  reviewRequiredPresentedVerified: unreviewedButVerified,
+  baselineSourceLinkedNoExternalId,
+  reviewRequiredPresentedProfessionallyReviewed: unreviewedButVerified,
+  professionalReviewed,
   statsMismatches,
   readmeMismatches,
   liveStatsMismatches,

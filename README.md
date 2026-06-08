@@ -52,7 +52,7 @@ The project is intended for education, research, and review workflows. It is not
 
 ## Current Limitations
 
-MedCheck is intentionally conservative about what it claims. PK curves use a one-compartment model or a relative exposure fallback, so they do not replace therapeutic drug monitoring, multi-compartment/nonlinear PK models, or active-metabolite clinical interpretation. Extreme exposure shifts may be capped for display clarity. Evidence marked `reviewRequired:true` is visible for review and discovery, but remains pending pharmacist or physician sign-off and should not be treated as clinically verified.
+MedCheck is intentionally conservative about what it claims. PK curves use a one-compartment model or a relative exposure fallback, so they do not replace therapeutic drug monitoring, multi-compartment/nonlinear PK models, or active-metabolite clinical interpretation. Extreme exposure shifts may be capped for display clarity. Evidence marked `reviewRequired:true` is visible for review and discovery, but remains pending pharmacist or physician sign-off and should not be treated as professionally reviewed.
 
 ---
 
@@ -60,13 +60,13 @@ MedCheck is intentionally conservative about what it claims. PK curves use a one
 
 <!-- MEDCHECK_STATS_START -->
 - **625 drugs** in DRUG_DB
-- **455 evidence entries** in STUDY_DB (274 with PMIDs) — **161 verified**, **294 quarantined enrichment drafts** awaiting human review
-- **627 curated DDI pairs** (323 severe, 280 moderate, 24 mild)
-- **1171 curated metabolite entries** across **467 parent substances** (33 first-class metabolite actors)
+- **455 evidence entries** in STUDY_DB (274 with PMIDs; 455 with source identifiers) — **294 launch-enrichment entries pending professional review**, **0 professionally reviewed**
+- **627 interaction pairs** (323 severe, 280 moderate, 24 mild)
+- **1171 metabolite entries** across **467 parent substances** (33 first-class metabolite actors)
 - **506 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **57 genotype genes** and **52 receptor score profiles**
 - **13 Beers flags** and **8 washout rules**
-- **2155 KB** generated bundle (33970 lines)
+- **2154 KB** generated bundle (33941 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---
@@ -85,11 +85,11 @@ For internals, data structures, build instructions, and validation workflow, see
 
 ## Contribute / Review Data
 
-MedCheck contains curated data and live enrichment entries. Live enrichment entries are marked `reviewRequired:true` and are intended for pharmacist or physician review before any clinical use.
+MedCheck contains source-linked data and live enrichment entries. Live enrichment entries are marked `reviewRequired:true` and are intended for pharmacist or physician review before any clinical use.
 
 The safety contract is simple: a warning should explain the pathway, affected actor, predicted direction, and supporting evidence. Severity should not be treated as clinically final without human review.
 
-Helpful contributions include data review, missing evidence refs, duplicate or stale interaction reports, reproducible app bugs, and focused pull requests. For data review, start with the review queue in [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md), cite public sources such as labels, guidelines, PubMed records, PMIDs, DOIs, or URLs, and keep unverified enrichment marked `reviewRequired:true` until reviewed.
+Helpful contributions include data review, missing evidence refs, duplicate or stale interaction reports, reproducible app bugs, and focused pull requests. For data review, start with the pending-review list in [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md), cite public sources such as labels, guidelines, PubMed records, PMIDs, DOIs, or URLs, and keep enrichment marked `reviewRequired:true` until professional review is complete.
 
 ---
 

@@ -42,6 +42,20 @@ JSON.stringify((() => {
     !study.pmid &&
     !study.doi
   );
+  const sourceLinkedStudies = studyValues.filter((study) =>
+    study.pmid ||
+    study.doi ||
+    study.url ||
+    study.type === EVIDENCE_TIER.FDA_LABEL ||
+    study.type === EVIDENCE_TIER.GUIDELINE ||
+    /label|guideline|dailymed|fda/i.test(String(study.source || ''))
+  );
+  const professionalReviewedStudies = studyValues.filter((study) =>
+    study.professionalReviewed === true ||
+    study.clinicalReviewed === true ||
+    study.reviewStatus === 'professional_reviewed' ||
+    study.reviewStatus === 'clinician_reviewed'
+  );
   return {
     generatedAt: new Date().toISOString(),
     bundleBytes: 0,
@@ -49,6 +63,8 @@ JSON.stringify((() => {
     bundleLines: 0,
     drugs: DRUG_DB.length,
     studies: studyValues.length,
+    sourceLinkedStudies: sourceLinkedStudies.length,
+    professionalReviewedStudies: professionalReviewedStudies.length,
     verifiedStudies: studyValues.filter((study) => study.reviewRequired !== true).length,
     reviewQueue: studyValues.filter((study) => study.reviewRequired === true).length,
     studiesWithPmid: studyValues.filter((study) => !!study.pmid).length,

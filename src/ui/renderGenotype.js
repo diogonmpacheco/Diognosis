@@ -353,38 +353,6 @@ function getStackEvidenceContext() {
   return { tokens:[...tokens], evidenceRefs };
 }
 
-function studyMatchesStackContext(study, context) {
-  if (context.evidenceRefs.has(study.id)) return true;
-  const searchText = normalizeEvidenceToken([
-    study.id,
-    study.title,
-    study.source,
-    study.journal,
-    study.studyDesign,
-    (study.supports || []).join(' '),
-    (study.quantifiedEffects && JSON.stringify(study.quantifiedEffects)) || ''
-  ].join(' '));
-  return context.tokens.some(token => searchText.includes(token));
-}
-
-function getStackRelevantGenotypeStudies() {
-  const selectedPhenotypes = Object.values(activeGenotype);
-  const context = getStackEvidenceContext();
-  return Object.values(STUDY_DB)
-    .filter(s =>
-      s.public !== false &&
-      s.reviewRequired !== true &&   // quarantine: keep unreviewed drafts out of genotype evidence
-      (s.phenotypes || []).some(p => selectedPhenotypes.includes(p)) &&
-      studyMatchesStackContext(s, context)
-    )
-    .sort((a,b) => {
-      const aDirect = context.evidenceRefs.has(a.id) ? 1 : 0;
-      const bDirect = context.evidenceRefs.has(b.id) ? 1 : 0;
-      if (aDirect !== bDirect) return bDirect - aDirect;
-      return (EVIDENCE_WEIGHT[b.type]||0) - (EVIDENCE_WEIGHT[a.type]||0);
-    });
-}
-
 function getGenotypeMetaboliteEffectCards(drugName) {
   if (typeof GENOTYPE_METABOLITE_EFFECTS === 'undefined') return [];
   return GENOTYPE_METABOLITE_EFFECTS

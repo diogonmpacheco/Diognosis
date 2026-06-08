@@ -1,0 +1,31 @@
+name: App bug or UX feedback
+description: Report broken pages, confusing UI, or runtime behavior.
+title: "[App bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the bug or confusing behavior.
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Share link or page
+      placeholder: "https://diogonmpacheco.github.io/medcheck/index.html?substances=..."
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. Open...\n2. Add...\n3. Click..."
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+  - type: input
+    id: browser
+    attributes:
+      label: Browser/device
+      placeholder: "Chrome on macOS, Safari iPhone, etc."

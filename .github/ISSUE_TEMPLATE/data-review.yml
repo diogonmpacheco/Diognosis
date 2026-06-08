@@ -1,0 +1,51 @@
+name: Data review feedback
+description: Report evidence, interaction, PGx, PK, or medication-data feedback.
+title: "[Data review]: "
+labels: ["data-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for source-backed corrections or additions. MedCheck is educational and all entries remain pending professional review until explicitly signed off.
+  - type: input
+    id: substances
+    attributes:
+      label: Substance(s), gene(s), or interaction
+      placeholder: "Example: Codeine + CYP2D6 poor metabolizer"
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What should change?
+      description: Describe the suspected error, missing evidence, stale source, or useful enrichment.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Public sources
+      description: Include PMIDs, DOIs, guideline/label URLs, or other public source identifiers.
+      placeholder: "PMID:..., DOI:..., DailyMed/FDA/CPIC/DPWG URL..."
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Impact
+      options:
+        - Safety-critical or severe recommendation
+        - Moderate clinical/context issue
+        - Minor wording/source cleanup
+        - New enrichment suggestion
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Review checklist
+      options:
+        - label: I included public source identifiers rather than copied full-text content.
+          required: true
+        - label: I understand this is not medical advice or a clinical decision system.
+          required: true

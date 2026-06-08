@@ -76,6 +76,7 @@ console.log(`✓ ${DRUG_DB.length} drugs`);
 console.log(`✓ ${Object.keys(STUDY_DB).length} evidence entries`);
 
 run('Database audit', node, ['scripts/database-audit.js']);
+run('Data views audit', node, ['scripts/audit/data-views-audit.js']);
 run('Evidence review UI audit', node, ['scripts/audit/evidence-review-ui-audit.js']);
 run('Regression check', node, ['scripts/regression-check.js']);
 run('Smoke check', node, ['scripts/smoke-check.js']);

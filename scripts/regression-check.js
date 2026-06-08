@@ -835,7 +835,7 @@ assert(
 );
 assert(
   window.document.getElementById('mechanisticSection').style.display === 'none' ||
-  !/documented|already curated/i.test(window.document.getElementById('mechanisticBody').textContent),
+  !/documented|already source-linked/i.test(window.document.getElementById('mechanisticBody').textContent),
   'Mechanistic UI should keep documented interactions out of the model-only read-through section'
 );
 

@@ -92,8 +92,8 @@ function estimateDrugEnzymePrediction(perpetratorName, victimName, mode, mod, ro
     kind:"medication-enzyme",
     title:`${perpetratorName} may ${mode === "inhibition" ? "raise" : "lower"} ${victimName} exposure through ${route.enzyme}`,
     subtitle:curatedDdi
-      ? `Mechanistic read-through of a curated ${curatedDdi.severity || "known"} interaction.`
-      : `Model prediction from ${perpetratorName} ${mode} of ${route.enzyme}; no direct curated pair study linked.`,
+      ? `Mechanistic read-through of a source-linked ${curatedDdi.severity || "known"} interaction.`
+      : `Model prediction from ${perpetratorName} ${mode} of ${route.enzyme}; no direct source-linked pair study linked.`,
     pathway:route.enzyme,
     drugs:[perpetratorName, victimName],
     direction,
@@ -254,7 +254,7 @@ function getMetaboliteGenotypeMechanisticPredictions(stack = activeStack) {
         kind:"genotype-metabolite",
         title:`${gene} ${mechanisticPhenotypeLabel(gene, phenotype)} may change ${met.n}`,
         subtitle:documented
-          ? `Mechanistic read-through of a curated genotype-metabolite rule for ${parentName}.`
+          ? `Mechanistic read-through of a source-linked genotype-metabolite rule for ${parentName}.`
           : `Model prediction from ${parentName} -> ${met.n}; no direct genotype-metabolite rule linked.`,
         pathway:gene,
         drugs:[parentName],
@@ -297,7 +297,7 @@ function getMetaboliteGenotypeMechanisticPredictions(stack = activeStack) {
             kind:"genotype-metabolite",
             title:`${gene} ${mechanisticPhenotypeLabel(gene, phenotype)} may change ${actor.name}`,
             subtitle:documented
-              ? `Mechanistic read-through of a curated metabolite-clearance rule for ${parentName}.`
+              ? `Mechanistic read-through of a source-linked metabolite-clearance rule for ${parentName}.`
               : `Model prediction from metabolite clearance route; no direct genotype-metabolite rule linked.`,
             pathway:gene,
             drugs:[parentName],

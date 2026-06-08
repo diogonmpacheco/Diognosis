@@ -50,7 +50,7 @@ function renderAdverseBurden() {
                      burden.sedation_contributors.length > 0 || burden.fall_risk_total > 0;
   if (sec) sec.style.display = "";
   if (!hasContent) {
-    el.innerHTML = '<div class="empty-state">No curated adverse burden flags for this stack. Absence of a flag is not evidence of safety.</div>';
+    el.innerHTML = '<div class="empty-state">No modeled adverse burden flags for this stack. Absence of a flag is not evidence of safety.</div>';
     return;
   }
 
