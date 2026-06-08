@@ -255,6 +255,7 @@ const batchAuditFixes = window.eval(`(() => {
       vyvanse: resolve('Vyvanse'),
     },
     simvastatinProdrug: !!drug('Simvastatin')?.prodrug,
+    lovastatinProdrug: !!drug('Lovastatin')?.prodrug,
     dabigatranProdrug: !!drug('Dabigatran')?.prodrug,
     hasGemfibrozilStatin: hasPair('Simvastatin','Gemfibrozil') && hasPair('Rosuvastatin','Gemfibrozil'),
     hasRifampinDoacs: hasPair('Dabigatran','Rifampin') && hasPair('Apixaban','Rifampin') && hasPair('Rivaroxaban','Rifampin'),
@@ -269,7 +270,7 @@ assert(batchAuditFixes.aliasResolution.diacetylmorphine === 'Heroin (Diacetylmor
 assert(batchAuditFixes.aliasResolution.babyAspirin === 'Aspirin (Low-Dose)', 'Baby aspirin should resolve to Aspirin (Low-Dose)');
 assert(batchAuditFixes.aliasResolution.fiveFu === 'Fluorouracil', '5-FU should resolve to Fluorouracil');
 assert(batchAuditFixes.aliasResolution.vyvanse === 'Lisdexamfetamine', 'Vyvanse should resolve to Lisdexamfetamine, not Amphetamine');
-assert(batchAuditFixes.simvastatinProdrug && batchAuditFixes.dabigatranProdrug, 'Batch prodrug flags should be present');
+assert(batchAuditFixes.simvastatinProdrug && batchAuditFixes.lovastatinProdrug && batchAuditFixes.dabigatranProdrug, 'Batch prodrug flags should be present');
 assert(batchAuditFixes.hasGemfibrozilStatin, 'Gemfibrozil statin DDIs should be present');
 assert(batchAuditFixes.hasRifampinDoacs, 'Rifampin DOAC DDIs should be present');
 assert(batchAuditFixes.hasTransporterPairs, 'Batch transporter DDI pairs should be present');

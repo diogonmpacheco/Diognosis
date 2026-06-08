@@ -850,9 +850,285 @@
       "keptIds": [
         "pmid:38590305"
       ]
+    },
+    "eff00ca0821b6ccf6b966daf4f8a9f455304941559c5e07314aa0061ef948eb1": {
+      "relation": "eliglustat:CYP2D6_CYP3A4",
+      "query": "eliglustat CYP2D6 poor metabolizer CYP3A4 inhibitor pharmacokinetics AUC QT",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed"
+      ],
+      "lastRun": "2026-06-08T09:17:43.224Z",
+      "resultFingerprint": [
+        "pmid:26345314",
+        "pmid:31993325",
+        "pmid:33977870",
+        "pmid:36056771",
+        "pmid:36353710",
+        "title:21st congress of the european hematology association copenhagen denmark june 9 12 2016",
+        "title:abstract book 25th congress of the european hematology association virtual edition 2020",
+        "title:eha2024 hybrid congress",
+        "title:oral presentations"
+      ],
+      "resultCount": 9,
+      "keptCount": 0,
+      "skippedCount": 12,
+      "keptIds": []
+    },
+    "f49ab0453e5c5b18fccd6d59d739636547867a0a45140ffa7ce9b802f1ce5d87": {
+      "relation": "pimozide:CYP2D6_CYP3A4_QT",
+      "query": "pimozide CYP2D6 CYP3A4 inhibitor QT pharmacokinetics poor metabolizer",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed"
+      ],
+      "lastRun": "2026-06-08T09:17:45.179Z",
+      "resultFingerprint": [
+        "pmid:12207642",
+        "pmid:15213787",
+        "pmid:19878641",
+        "pmid:20368905",
+        "pmid:21453273",
+        "pmid:25061302",
+        "pmid:29315692",
+        "pmid:33363564",
+        "pmid:34063850",
+        "pmid:34834376",
+        "pmid:36353710",
+        "pmid:36526889",
+        "pmid:36927888",
+        "pmid:37495836",
+        "pmid:38004520",
+        "pmid:9951426"
+      ],
+      "resultCount": 16,
+      "keptCount": 0,
+      "skippedCount": 17,
+      "keptIds": []
+    },
+    "3efe7253607bb3b236495124d8376adc64caaaa5d9e305fabf2f018a9342cab8": {
+      "relation": "siponimod:CYP2C9",
+      "query": "siponimod CYP2C9 genotype pharmacokinetics exposure AUC dose",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed"
+      ],
+      "lastRun": "2026-06-08T09:17:46.917Z",
+      "resultFingerprint": [
+        "pmid:29273968",
+        "pmid:29735753",
+        "pmid:30088221",
+        "pmid:31199498",
+        "pmid:31392364",
+        "pmid:35620290",
+        "pmid:36076616",
+        "pmid:36752991",
+        "pmid:37631077",
+        "pmid:38686708",
+        "pmid:38716900",
+        "pmid:39065732",
+        "pmid:40687883",
+        "pmid:41556627"
+      ],
+      "resultCount": 14,
+      "keptCount": 0,
+      "skippedCount": 18,
+      "keptIds": []
+    },
+    "bd4bd12e3bc94ef08f0a6fca0f81989ae659afce0d2f68d8435e99c7ce9b8a8c": {
+      "relation": "repaglinide:CYP2C8_SLCO1B1",
+      "query": "repaglinide CYP2C8 SLCO1B1 gemfibrozil clopidogrel AUC hypoglycemia",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed"
+      ],
+      "lastRun": "2026-06-08T09:17:48.063Z",
+      "resultFingerprint": [
+        "pmid:39982209",
+        "pmid:40980418",
+        "pmid:41011221",
+        "title:15th congress of the european association for clinical pharmacology and therapeutics eacpt",
+        "title:clinical studies on pharmacokinetic drug drug interactions caused by clopidogrel focus on cyp2c8 mediated drug metabolism",
+        "title:pharmacokinetic interactions affecting the antidiabetic repaglinide",
+        "title:pharmacokinetics of montelukast and zafirlukast as affected by cyp inhibitors"
+      ],
+      "resultCount": 7,
+      "keptCount": 0,
+      "skippedCount": 10,
+      "keptIds": []
+    },
+    "ee6f071bcf9043ae05ccc69669b209e2cb9dcf3fc9e73f31358c18fa8ad7ac53": {
+      "relation": "vincristine:CYP3A_ABCB1",
+      "query": "vincristine CYP3A5 CYP3A4 ABCB1 azole neurotoxicity pharmacokinetics",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed"
+      ],
+      "lastRun": "2026-06-08T09:17:49.305Z",
+      "resultFingerprint": [
+        "pmid:21225912",
+        "pmid:28286483",
+        "pmid:31214762",
+        "pmid:32635465",
+        "pmid:33923421",
+        "pmid:34080039",
+        "pmid:34300182",
+        "pmid:34955843",
+        "pmid:36310587",
+        "pmid:36900216",
+        "pmid:38071551",
+        "pmid:38645702"
+      ],
+      "resultCount": 12,
+      "keptCount": 0,
+      "skippedCount": 16,
+      "keptIds": []
+    },
+    "5c5be8385557f5c712e5ff35b2c2b8259147665e8c854d4a5265585ef1e682d7": {
+      "relation": "topotecan:ABCG2",
+      "query": "topotecan ABCG2 BCRP transporter pharmacokinetics myelosuppression",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed"
+      ],
+      "lastRun": "2026-06-08T09:17:51.214Z",
+      "resultFingerprint": [
+        "pmid:11773157",
+        "pmid:14990638",
+        "pmid:23226051",
+        "pmid:25110414",
+        "pmid:29023674",
+        "pmid:29061939",
+        "pmid:30815023",
+        "pmid:34065361",
+        "pmid:34226684",
+        "pmid:36769175",
+        "pmid:37108395",
+        "pmid:38002496",
+        "pmid:41304752",
+        "pmid:41827654",
+        "pmid:41931218",
+        "pmid:41971093"
+      ],
+      "resultCount": 16,
+      "keptCount": 0,
+      "skippedCount": 16,
+      "keptIds": []
+    },
+    "3115750dc50ed230f777fde6fbc358738df0e8bb2b78e4d7a73e3ebd35e62556": {
+      "relation": "mycophenolic_acid:UGT_ABCG2",
+      "query": "mycophenolic acid UGT1A9 UGT2B7 ABCG2 pharmacokinetics exposure enterohepatic recirculation",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed"
+      ],
+      "lastRun": "2026-06-08T09:17:54.384Z",
+      "resultFingerprint": [
+        "doi:10.20517/jtgg.2020.37",
+        "doi:10.21203/rs.3.rs-2247771/v1",
+        "doi:10.22541/au.166846334.46204559/v1",
+        "doi:10.22541/au.169224396.69995901/v1",
+        "pmid:25540593",
+        "pmid:27385177",
+        "pmid:34959272",
+        "pmid:35567285",
+        "pmid:38884938",
+        "pmid:39253382",
+        "pmid:40873215",
+        "pmid:42137999"
+      ],
+      "resultCount": 12,
+      "keptCount": 0,
+      "skippedCount": 13,
+      "keptIds": []
+    },
+    "fa8b78965e4bb71c118768df786d42c1da274215fe18cf151d98ed414f9acfd4": {
+      "relation": "tegafur:CYP2A6_DPYD",
+      "query": "tegafur CYP2A6 DPYD pharmacokinetics 5-FU toxicity genotype",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed"
+      ],
+      "lastRun": "2026-06-08T09:17:55.784Z",
+      "resultFingerprint": [
+        "pmid:18380793",
+        "pmid:22486600",
+        "pmid:24317012",
+        "pmid:25110414",
+        "pmid:27641154",
+        "pmid:28347333",
+        "pmid:29181807",
+        "pmid:31254422",
+        "pmid:32832886",
+        "pmid:34773566",
+        "pmid:34804277",
+        "pmid:35267440",
+        "pmid:37256234"
+      ],
+      "resultCount": 13,
+      "keptCount": 0,
+      "skippedCount": 16,
+      "keptIds": []
+    },
+    "7c2047d14e3d201525565712005a9863dc543f779bc58231de3f5e2c8a545074": {
+      "relation": "timolol:CYP2D6",
+      "query": "ophthalmic timolol CYP2D6 poor metabolizer bradycardia pharmacokinetics",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed"
+      ],
+      "lastRun": "2026-06-08T09:17:57.662Z",
+      "resultFingerprint": [
+        "pmid:17366003",
+        "pmid:27534869",
+        "pmid:29299077",
+        "pmid:32941594",
+        "pmid:36768422",
+        "pmid:37765258",
+        "pmid:37833756",
+        "pmid:40951215",
+        "title:expression of cytochrome p450 enzymes and metabolism of timolol in human ocular tissue"
+      ],
+      "resultCount": 9,
+      "keptCount": 0,
+      "skippedCount": 10,
+      "keptIds": []
+    },
+    "17005db57d7768292341fe610bcc7f9f82373dee00be1f7423ce71319a62a62a": {
+      "relation": "CYP2C9:NSAID_oxicams",
+      "query": "piroxicam tenoxicam flurbiprofen CYP2C9 genotype pharmacokinetics AUC bleeding",
+      "providers": [
+        "europepmc",
+        "openalex",
+        "pubmed"
+      ],
+      "lastRun": "2026-06-08T09:17:59.310Z",
+      "resultFingerprint": [
+        "pmid:23588782",
+        "pmid:29498032",
+        "pmid:31547335",
+        "pmid:32189324",
+        "pmid:34376788",
+        "pmid:35250581",
+        "pmid:36366858",
+        "pmid:36422246"
+      ],
+      "resultCount": 8,
+      "keptCount": 0,
+      "skippedCount": 10,
+      "keptIds": []
     }
   },
   "description": "Memory-guided novelty rules for enrichment discovery. Keep this compact: it steers searches away from saturated basics and toward missing public facts.",
   "created": "2026-06-05",
-  "updated": "2026-06-05"
+  "updated": "2026-06-08"
 }

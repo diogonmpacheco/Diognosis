@@ -11108,5 +11108,344 @@
       "saturatedTopic": false,
       "saturatedAdditions": []
     }
+  },
+  {
+    "id": "draft_siponimod_cyp2c9_gardin2018_30088221",
+    "_status": "pending_review",
+    "type": "clinical_pk",
+    "title": "Effect of Fluconazole Coadministration and CYP2C9 Genetic Polymorphism on Siponimod Pharmacokinetics in Healthy Subjects",
+    "year": 2018,
+    "source": "Clinical Pharmacokinetics",
+    "journal": "Clinical Pharmacokinetics",
+    "pmid": "30088221",
+    "doi": "10.1007/s40262-018-0700-3",
+    "url": "https://doi.org/10.1007/s40262-018-0700-3",
+    "studyDesign": "clinical_pk",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "groupMetricValues": [
+        {
+          "metric": "Cmax",
+          "values": [
+            2,
+            9,
+            2,
+            3,
+            2,
+            9,
+            3,
+            3
+          ],
+          "context": "In Study B, the AUCs of siponimod were approximately two to fourfold greater in subjects with the CYP2C9*2/*3 and CYP2C9*3/*3 genotypes, with a minor increase in Cmax versus the CYP2C9*1/*1 genotype."
+        }
+      ],
+      "publicMetricSentences": [
+        "In Study A, coadministration with fluconazole produced an approximately twofold increase in mean area under the curve (AUC) versus siponimod alone (from 1110 to 2160 h*ng/mL), and an increase in maximum plasma concentration (Cmax;",
+        "from 31.2 to 34.0 ng/mL) and elimination half-life (T½;",
+        "In Study B, the AUCs of siponimod were approximately two to fourfold greater in subjects with the CYP2C9*2/*3 and CYP2C9*3/*3 genotypes, with a minor increase in Cmax versus the CYP2C9*1/*1 genotype."
+      ],
+      "note": "Public abstract/metadata extraction for siponimod:CYP2C9 found 1 public metric sentence with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "siponimod_CYP2C9_genotype_dosing_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "hybrid",
+      "source": "openalex",
+      "license": "cc-by-nc",
+      "landingUrl": "https://link.springer.com/content/pdf/10.1007/s40262-018-0700-3.pdf",
+      "pdfUrl": "https://link.springer.com/content/pdf/10.1007/s40262-018-0700-3.pdf",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-08T08:03:23.664Z",
+    "novelty": {
+      "score": 95,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_siponimod_cyp2c9_dazvillamarn2022_36076616",
+    "_status": "pending_review",
+    "type": "meta_analysis",
+    "title": "Pharmacogenetics of siponimod: A systematic review",
+    "year": 2022,
+    "source": "Biomedicine & Pharmacotherapy",
+    "journal": "Biomedicine & Pharmacotherapy",
+    "pmid": "36076616",
+    "doi": "10.1016/j.biopha.2022.113536",
+    "url": "https://doi.org/10.1016/j.biopha.2022.113536",
+    "studyDesign": "meta_analysis_or_systematic_review",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to siponimod:CYP2C9, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "siponimod_CYP2C9_genotype_dosing_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": "cc-by-nc-nd",
+      "landingUrl": "https://ars.els-cdn.com/content/image/1-s2.0-S0753332222009258-ga1_lrg.jpg",
+      "pdfUrl": "https://ars.els-cdn.com/content/image/1-s2.0-S0753332222009258-ga1_lrg.jpg",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-08T08:03:23.664Z",
+    "novelty": {
+      "score": 55,
+      "reasons": [
+        "new PMID",
+        "new DOI",
+        "new title"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_repaglinide_cyp2c8_slco1b1_kajosaari2006_null",
+    "_status": "pending_review",
+    "type": "in_vitro",
+    "title": "Pharmacokinetic interactions affecting the antidiabetic repaglinide",
+    "year": 2006,
+    "source": "Työväentutkimus Vuosikirja",
+    "journal": "Työväentutkimus Vuosikirja",
+    "pmid": null,
+    "doi": null,
+    "url": "https://openalex.org/W1137897295",
+    "studyDesign": "in_vitro_mechanistic_study",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "foldChange": 1.8,
+      "aucFold": 1.8,
+      "percentChange": 61,
+      "groupMetricValues": [
+        {
+          "metric": "area under the concentration-time curve (AUC) of repaglinide",
+          "values": [
+            450,
+            3,
+            4
+          ],
+          "context": "In previous studies, the cytochrome P450 (CYP) 3A4 inhibitors itraconazole and clarithromycin have moderately increased the area under the concentration-time curve (AUC) of repaglinide."
+        },
+        {
+          "metric": "AUC",
+          "values": [
+            2,
+            8
+          ],
+          "context": "Gemfibrozil, a CYP2C8 inhibitor, has greatly increased repaglinide AUC, enhancing and prolonging its blood glucose-lowering effect."
+        },
+        {
+          "metric": "AUC",
+          "values": [
+            2,
+            8,
+            61
+          ],
+          "context": "The CYP2C8 inhibitor trimethoprim inhibited repaglinide metabolism by HLM in vitro and increased repaglinide AUC by 61% in vivo (P &lt;"
+        }
+      ],
+      "publicMetricSentences": [
+        "Repaglinide is extensively metabolised, and its oral bioavailability is about 60%;",
+        "In previous studies, the cytochrome P450 (CYP) 3A4 inhibitors itraconazole and clarithromycin have moderately increased the area under the concentration-time curve (AUC) of repaglinide.",
+        "Gemfibrozil, a CYP2C8 inhibitor, has greatly increased repaglinide AUC, enhancing and prolonging its blood glucose-lowering effect."
+      ],
+      "note": "Public abstract/metadata extraction for repaglinide:CYP2C8_SLCO1B1 found approximately 1.8-fold change and about 61% change and 3 public metric sentences with grouped values. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "repaglinide_CYP2C8_SLCO1B1_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "green",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "http://hdl.handle.net/10138/22813",
+      "pdfUrl": "http://hdl.handle.net/10138/22813",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-08T08:03:25.169Z",
+    "novelty": {
+      "score": 50,
+      "reasons": [
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_mycophenolic_acid_ugt_abcg2_trkulja2022_null",
+    "_status": "pending_review",
+    "type": "observational",
+    "title": "Loss of function ABCG2 c.421C&gt;A (rs2231142) polymorphism increases steady-state exposure to mycophenolic acid in stable renal transplant recipients: exploratory matched cohort study",
+    "year": 2022,
+    "source": "",
+    "journal": "",
+    "pmid": null,
+    "doi": "10.22541/au.166846334.46204559/v1",
+    "url": "https://doi.org/10.22541/au.166846334.46204559/v1",
+    "studyDesign": "observational_or_screened_pubmed_record",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "note": "Citation appears relevant to mycophenolic_acid:UGT_ABCG2, but no quantitative value was extractable from public abstract/metadata."
+    },
+    "temporal": {},
+    "supports": [
+      "mycophenolic_acid_UGT_ABCG2_exposure_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation"
+    ],
+    "confidence": "low",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": true,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "gold",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "https://www.authorea.com/doi/pdf/10.22541/au.166846334.46204559",
+      "pdfUrl": "https://www.authorea.com/doi/pdf/10.22541/au.166846334.46204559",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-08T08:03:30.232Z",
+    "novelty": {
+      "score": 30,
+      "reasons": [
+        "new DOI",
+        "new title"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
+  },
+  {
+    "id": "draft_timolol_cyp2d6_volotinen2009_null",
+    "_status": "pending_review",
+    "type": "in_vitro",
+    "title": "Expression of cytochrome P450 enzymes and metabolism of timolol in human ocular tissue",
+    "year": 2009,
+    "source": "Työväentutkimus Vuosikirja",
+    "journal": "Työväentutkimus Vuosikirja",
+    "pmid": null,
+    "doi": null,
+    "url": "https://openalex.org/W1499481649",
+    "studyDesign": "in_vitro_mechanistic_study",
+    "n": null,
+    "phenotypes": [],
+    "quantifiedEffects": {
+      "percentChange": 0.5,
+      "publicMetricSentences": [
+        "Glaucoma is a group of progressive optic neuropathies causing irreversible blindness if not diagnosed and treated in the early state of progression.",
+        "Disease is often, but not always, associated with increased intraocular pressure (IOP), which is also the most important risk factor for glaucoma.",
+        "Ophthlamic timolol preparations have been used for decades to lower increased intraocular pressure (IOP)."
+      ],
+      "note": "Public abstract/metadata extraction for timolol:CYP2D6 found about 0.5% change. Requires human review before promotion."
+    },
+    "temporal": {},
+    "supports": [
+      "timolol_CYP2D6_systemic_beta_blockade_context"
+    ],
+    "contradicts": [],
+    "limitations": [
+      "Public abstract/metadata extraction only; requires human review before promotion"
+    ],
+    "confidence": "moderate",
+    "publicFactsUsable": true,
+    "sourceBasis": "public_abstract_or_metadata",
+    "needsFullText": false,
+    "needsFullTextForPrecision": false,
+    "openAccess": {
+      "isOpenAccess": true,
+      "status": "green",
+      "source": "openalex",
+      "license": null,
+      "landingUrl": "http://hdl.handle.net/10138/20153",
+      "pdfUrl": "http://hdl.handle.net/10138/20153",
+      "evidence": null
+    },
+    "provenance": "search:openalex",
+    "verified": false,
+    "verifyNote": "Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion",
+    "_createdAt": "2026-06-08T08:03:34.332Z",
+    "novelty": {
+      "score": 50,
+      "reasons": [
+        "new title",
+        "new public metric sentences",
+        "extractable quantitative signal"
+      ],
+      "matchedMissingFields": [],
+      "saturatedTopic": false,
+      "saturatedAdditions": []
+    }
   }
 ]

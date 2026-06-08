@@ -353,6 +353,15 @@ function calcFold(drugName) {
 function computeGutExtraction(drugName) {
   const drug = DRUG_DB.find(d => d.name.toLowerCase() === drugName.toLowerCase());
   if (!drug) return null;
+  const hasInhibition = (name, target) => {
+    const d = DRUG_DB.find(dd => dd.name === name);
+    if (d?.inh?.some(i => i.target === target || (target === 'P-gp' && i.target === 'ABCB1'))) return true;
+    // Some transporter-only inhibitors are curated in actor maps rather than duplicated in drug inh[].
+    if (target === 'P-gp' && typeof TRANSPORTER_ACTORS !== 'undefined') {
+      return TRANSPORTER_ACTORS['P-gp']?.inhibitors?.some(i => i.name === name) || false;
+    }
+    return false;
+  };
   // Estimate CYP3A4 gut-wall extraction from route data
   const cyp3a4Route = (drug.routes||[]).find(r => r.enzyme === 'CYP3A4');
   const pgpTransporter = (drug.routes||[]).find(r => r.enzyme === 'P-gp' || r.enzyme === 'ABCB1');
@@ -362,12 +371,10 @@ function computeGutExtraction(drugName) {
   // Check if inhibitors are active
   const activeInhibitors = activeStack.filter(n => n !== drugName);
   const cyp3a4Inhib = activeInhibitors.filter(n => {
-    const d = DRUG_DB.find(dd => dd.name === n);
-    return d?.inh?.some(i => i.target === 'CYP3A4');
+    return hasInhibition(n, 'CYP3A4');
   });
   const pgpInhib = activeInhibitors.filter(n => {
-    const d = DRUG_DB.find(dd => dd.name === n);
-    return d?.inh?.some(i => i.target === 'P-gp' || i.target === 'ABCB1');
+    return hasInhibition(n, 'P-gp');
   });
   return {
     Emetab: Math.round(Emetab * 100),

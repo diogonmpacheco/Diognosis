@@ -1701,3 +1701,479 @@ Skipped/rejected:
 - relation_mismatch: Donor and recipient genetic variants in drug metabolizing enzymes and transporters affect early tacrolimus pharmacokinetics after liver transplantation.
 - relation_mismatch: Artificial Intelligence and Predictive Modelling for Precision Dosing of Immunosuppressants in Kidney Transplantation.
 - relation_mismatch: Effect of CYP3A and ABCB1 Single Nucleotide Polymorphisms on the Pharmacokinetics and Pharmacodynamics of Calcineurin Inhibitors: Part I
+## eliglustat:CYP2D6_CYP3A4
+Run: 2026-06-08T08:03:18.818Z
+Query: `eliglustat CYP2D6 poor metabolizer CYP3A4 inhibitor pharmacokinetics AUC QT`
+Added drafts: 0
+Skipped/rejected: 12
+Query memory overlap: 0%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- already_in_drafts: Physiologically‐Based Pharmacokinetic Model Development, Validation, and Application for Prediction of Eliglustat <scp>Drug–Drug</scp> Interactions
+- relation_mismatch: Physiologically-Based Pharmacokinetic Model Development, Validation, and Application for Prediction of Eliglustat Drug-Drug Interactions.
+- relation_mismatch: Drug-Drug-Gene Interactions in Cardiovascular Medicine.
+- relation_mismatch: Effects of paroxetine, ketoconazole, and rifampin on the metabolism of eliglustat, an oral substrate reduction therapy for Gaucher disease type 1.
+- relation_mismatch: Eliglustat tartrate for the treatment of adults with type 1 Gaucher disease.
+- relation_mismatch: EHA2024 Hybrid Congress
+- relation_mismatch: Abstract Book: 25th Congress of the European Hematology Association Virtual Edition, 2020
+- relation_mismatch: Oral Presentations
+- relation_mismatch: 21st Congress of the European Hematology Association Copenhagen, Denmark, June 9–12, 2016
+- relation_mismatch: Eliglustat tartrate for the treatment of adults with type 1 Gaucher disease
+- relation_mismatch: Tools for optimising pharmacotherapy in psychiatry (therapeutic drug monitoring, molecular brain imaging and pharmacogenetic tests): focus on antidepressants
+- relation_mismatch: Drug–Drug–Gene Interactions in Cardiovascular Medicine
+## pimozide:CYP2D6_CYP3A4_QT
+Run: 2026-06-08T08:03:21.059Z
+Query: `pimozide CYP2D6 CYP3A4 inhibitor QT pharmacokinetics poor metabolizer`
+Added drafts: 0
+Skipped/rejected: 17
+Query memory overlap: 0%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- already_in_drafts: Effect of clarithromycin on the pharmacokinetics and pharmacodynamics of pimozide in healthy poor and extensive metabolizers of cytochrome P450 2D6 (CYP2D6).
+- relation_mismatch: Pharmacogenetic Guidelines for Psychotropic Drugs: Optimizing Prescriptions in Clinical Practice.
+- relation_mismatch: Therapeutic dilemma's: antipsychotics use for neuropsychiatric symptoms of dementia, delirium and insomnia and risk of falling in older adults, a clinical review.
+- relation_mismatch: Antipsychotic drug-aripiprazole against schizophrenia, its therapeutic and metabolic effects associated with gene polymorphisms.
+- relation_mismatch: Drug-Drug-Gene Interactions in Cardiovascular Medicine.
+- relation_mismatch: The Overview on the Pharmacokinetic and Pharmacodynamic Interactions of Triazoles.
+- relation_mismatch: Pharmacogenomics: Driving Personalized Medicine.
+- relation_mismatch: How Can Drug Metabolism and Transporter Genetics Inform Psychotropic Prescribing?
+- relation_mismatch: Implementation of Pharmacogenomics and Artificial Intelligence Tools for Chronic Disease Management in Primary Care Setting.
+- relation_mismatch: The significance of QT interval in drug development
+- relation_mismatch: Clinically Relevant Genetic Variations in Drug Metabolizing Enzymes
+- relation_mismatch: Chronic Myelogenous Leukemia
+- relation_mismatch: Comprehensive review of cardiovascular toxicity of drugs and related agents
+- relation_mismatch: New Generation Antipsychotic Drugs and QTc Interval Prolongation
+- relation_mismatch: How Can Drug Metabolism and Transporter Genetics Inform Psychotropic Prescribing?
+- relation_mismatch: New atypical antipsychotics for schizophrenia: iloperidone
+- relation_mismatch: Evaluating the safety and efficacy of dextromethorphan/quinidine in the treatment of pseudobulbar affect
+## siponimod:CYP2C9
+Run: 2026-06-08T08:03:23.674Z
+Query: `siponimod CYP2C9 genotype pharmacokinetics exposure AUC dose`
+Added drafts: 2
+Skipped/rejected: 16
+Query memory overlap: 0%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+| draft_siponimod_cyp2c9_gardin2018_30088221 | clinical_pk | PMID:30088221 | 95 | new PMID; new DOI; new title; new public metric sentences | search:openalex | [OA](https://link.springer.com/content/pdf/10.1007/s40262-018-0700-3.pdf) hybrid | Public abstract/metadata extraction for siponimod:CYP2C9 found 1 public metric sentence with grouped values. Requires human review before promotion. | moderate | yes | no |
+| draft_siponimod_cyp2c9_dazvillamarn2022_36076616 | meta_analysis | PMID:36076616 | 55 | new PMID; new DOI; new title | search:openalex | [OA](https://ars.els-cdn.com/content/image/1-s2.0-S0753332222009258-ga1_lrg.jpg) gold | Citation appears relevant to siponimod:CYP2C9, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped/rejected:
+- already_in_drafts: Pharmacokinetic Characteristics of Siponimod in Healthy Volunteers and Patients With Multiple Sclerosis: Analyses of Published Clinical Trials.
+- already_in_drafts: Siponimod pharmacokinetics, safety, and tolerability in combination with the potent CYP3A4 inhibitor itraconazole in healthy subjects with different CYP2C9 genotypes.
+- already_in_drafts: Siponimod pharmacokinetics, safety, and tolerability in combination with the potent CYP3A4 inhibitor itraconazole in healthy subjects with different CYP2C9 genotypes.
+- already_in_drafts: In vitro studies and in silico predictions of fluconazole and CYP2C9 genetic polymorphism impact on siponimod metabolism and pharmacokinetics
+- already_in_drafts: Pharmacokinetic Characteristics of Siponimod in Healthy Volunteers and Patients With Multiple Sclerosis: Analyses of Published Clinical Trials
+- already_in_drafts: Metabolism and Disposition of Siponimod, a Novel Selective S1P1/S1P5 Agonist, in Healthy Volunteers and In Vitro Identification of Human Cytochrome P450 Enzymes Involved in Its Oxidative Metabolism
+- already_in_drafts: Prediction of the Impact of Cytochrome P450 2C9 Genotypes on the Drug–Drug Interaction Potential of Siponimod With Physiologically‐Based Pharmacokinetic Modeling: A Comprehensive Approach for Drug Label Recommendations
+- relation_mismatch: Efavirenz and CYP2C9 Genetic Polymorphisms Reduce CYP2C9 Activity in Healthy Participants.
+- relation_mismatch: Preventing adverse drug reactions and more: current clinical use of pharmacogenetic testing.
+- relation_mismatch: Re-discover the value of protein binding assessments in hepatic and renal impairment studies and its contributions in drug labels and dose decisions.
+- relation_mismatch: Can Mechanistic Static Models for Drug-Drug Interactions Support Regulatory Filing for Study Waivers and Label Recommendations?
+- relation_mismatch: Pharmacokinetic Characteristics of Siponimod in Healthy Volunteers and Patients With Multiple Sclerosis: Analyses of Published Clinical Trials.
+- relation_mismatch: From Drug Discovery to Drug Approval: A Comprehensive Review of the Pharmacogenomics Status Quo with a Special Focus on Egypt.
+- relation_mismatch: Chemistry and Pharmacology of Fluorinated Drugs Approved by the FDA (2016-2022).
+- relation_mismatch: Chemistry and Pharmacology of Fluorinated Drugs Approved by the FDA (2016–2022)
+- relation_mismatch: Dose Optimization Informed by PBPK Modeling: State‐of‐the Art and Future
+## repaglinide:CYP2C8_SLCO1B1
+Run: 2026-06-08T08:03:25.174Z
+Query: `repaglinide CYP2C8 SLCO1B1 gemfibrozil clopidogrel AUC hypoglycemia`
+Added drafts: 1
+Skipped/rejected: 9
+Query memory overlap: 0%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+| draft_repaglinide_cyp2c8_slco1b1_kajosaari2006_null | in_vitro | identifier missing | 50 | new title; new public metric sentences; extractable quantitative signal | search:openalex | [OA](http://hdl.handle.net/10138/22813) green | Public abstract/metadata extraction for repaglinide:CYP2C8_SLCO1B1 found approximately 1.8-fold change and about 61% change and 3 public metric sentences with grouped values. Requires human review before promotion. | moderate | yes | no |
+
+Skipped/rejected:
+- already_in_drafts: A Phenotyping Tool for Seven Cytochrome P450 Enzymes and Two Transporters: Application to Examine the Effects of Clopidogrel and Gemfibrozil
+- already_in_drafts: Clinical studies on pharmacokinetic drug-drug interactions caused by clopidogrel : focus on CYP2C8-mediated drug metabolism
+- relation_mismatch: CYP2C8-Mediated Drug-Drug Interactions and the Factors Influencing the Interaction Magnitude.
+- relation_mismatch: A Phenotyping Tool for Seven Cytochrome P450 Enzymes and Two Transporters: Application to Examine the Effects of Clopidogrel and Gemfibrozil.
+- relation_mismatch: Dietary Modulation of CYP3A4 and Its Impact on Statins and Antidiabetic Drugs: A Narrative Review.
+- relation_mismatch: 15th Congress of the European Association for Clinical Pharmacology and Therapeutics (EACPT)
+- relation_mismatch: Dietary Modulation of CYP3A4 and Its Impact on Statins and Antidiabetic Drugs: A Narrative Review
+- relation_mismatch: CYP2C8-Mediated Drug–Drug Interactions and the Factors Influencing the Interaction Magnitude
+- relation_mismatch: Pharmacokinetics of montelukast and zafirlukast as affected by CYP inhibitors
+## vincristine:CYP3A_ABCB1
+Run: 2026-06-08T08:03:26.921Z
+Query: `vincristine CYP3A5 CYP3A4 ABCB1 azole neurotoxicity pharmacokinetics`
+Added drafts: 0
+Skipped/rejected: 16
+Query memory overlap: 0%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- already_in_drafts: Vincristine Disposition and Neurotoxicity Are Unchanged in Humanized CYP3A5 Mice.
+- already_in_drafts: Severe Vincristine-Induced Peripheral Neuropathic Weakness in Both Lower Limbs in an Asian Adolescent with <i>CYP3A4</i> rs2740574 TT Genotype.
+- already_in_drafts: Increased risk of vincristine neurotoxicity associated with low CYP3A5 expression genotype in children with acute lymphoblastic leukemia
+- already_in_drafts: Vincristine-Induced Peripheral Neuropathy in Childhood Acute Lymphoblastic Leukemia: Genetic Variation as a Potential Risk Factor
+- already_in_drafts: Vincristine Disposition and Neurotoxicity Are Unchanged in Humanized CYP3A5 Mice
+- relation_mismatch: Vincristine-Induced Peripheral Neuropathy in Childhood Acute Lymphoblastic Leukemia: Genetic Variation as a Potential Risk Factor.
+- relation_mismatch: Vincristine-Induced Peripheral Neuropathy (VIPN) in Pediatric Tumors: Mechanisms, Risk Factors, Strategies of Prevention and Treatment.
+- relation_mismatch: Mechanistic physiology-based pharmacokinetic modeling to elucidate vincristine-induced peripheral neuropathy following treatment with novel kinase inhibitors.
+- relation_mismatch: Personalized Medicine in Infant Population with Cancer: Pharmacogenetic Pilot Study of Polymorphisms Related to Toxicity and Response to Chemotherapy.
+- relation_mismatch: Peripheral Nervous System Involvement in Non-Primary Pediatric Cancer: From Neurotoxicity to Possible Etiologies.
+- relation_mismatch: Chemotherapy-induced peripheral neuropathy in children and adolescent cancer patients.
+- relation_mismatch: Long-Term Effects, Pathophysiological Mechanisms, and Risk Factors of Chemotherapy-Induced Peripheral Neuropathies: A Comprehensive Literature Review
+- relation_mismatch: Vincristine-Induced Peripheral Neuropathy (VIPN) in Pediatric Tumors: Mechanisms, Risk Factors, Strategies of Prevention and Treatment
+- relation_mismatch: Aspects of vincristine-induced neuropathy in hematologic malignancies: a systematic review
+- relation_mismatch: Population Pharmacokinetics of Vincristine Related to Infusion Duration and Peripheral Neuropathy in Pediatric Oncology Patients
+- relation_mismatch: Chemotherapy-induced peripheral neuropathy in children and adolescent cancer patients
+## topotecan:ABCG2
+Run: 2026-06-08T08:03:28.668Z
+Query: `topotecan ABCG2 BCRP transporter pharmacokinetics myelosuppression`
+Added drafts: 0
+Skipped/rejected: 16
+Query memory overlap: 0%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- relation_mismatch: Sequential Use of Trastuzumab Deruxtecan and Sacituzumab Govitecan in Patients with Breast Cancer: A Pharmacological Approach to Support the Clinical Rationale.
+- relation_mismatch: Beyond cytotoxicity: molecular mechanisms of natural products as multi-targeting modulators and chemo-sensitizers in oncology.
+- relation_mismatch: Camptothecin in Cancer Therapy: Current Challenges and Emerging Strategies with Nanoemulsions.
+- relation_mismatch: Artificial Intelligence-Driven Natural Product Discovery for Cancer Metastasis and Chemoresistance: From Computational Prediction to Preclinical Validation.
+- relation_mismatch: Kidney Drug Transporters in Pharmacotherapy.
+- relation_mismatch: Reverse Translational Research of ABCG2 (BCRP) in Human Disease and Drug Response.
+- relation_mismatch: Oral oncolytic and antiretroviral therapy administration: dose adjustments, drug interactions, and other considerations for clinical use.
+- relation_mismatch: The Influence of Pharmacogenetics on the Clinical Relevance of Pharmacokinetic Drug-Drug Interactions: Drug-Gene, Drug-Gene-Gene and Drug-Drug-Gene Interactions.
+- relation_mismatch: Pharmacogenetics research on chemotherapy resistance in colorectal cancer over the last 20 years
+- relation_mismatch: Pharmacogenomics of drug metabolizing enzymes and transporters: implications for cancer therapy
+- relation_mismatch: Advances in Glioblastoma Therapy: An Update on Current Approaches
+- relation_mismatch: Impact of Body-Size Measures on Irinotecan Clearance: Alternative Dosing Recommendations
+- relation_mismatch: Mechanisms of Drug Resistance in Veterinary Oncology— A Review with an Emphasis on Canine Lymphoma
+- relation_mismatch: Resistance to TOP-1 Inhibitors: Good Old Drugs Still Can Surprise Us
+- relation_mismatch: Breast cancer brain metastasis: insight into molecular mechanisms and therapeutic strategies
+- relation_mismatch: Phase I and Pharmacokinetic Study of Topotecan Administered Orally Once Daily for 5 Days for 2 Consecutive Weeks to Pediatric Patients With Refractory Solid Tumors
+## mycophenolic_acid:UGT_ABCG2
+Run: 2026-06-08T08:03:30.244Z
+Query: `mycophenolic acid UGT1A9 UGT2B7 ABCG2 pharmacokinetics exposure enterohepatic recirculation`
+Added drafts: 1
+Skipped/rejected: 12
+Query memory overlap: 0%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+| draft_mycophenolic_acid_ugt_abcg2_trkulja2022_null | observational | DOI:10.22541/au.166846334.46204559/v1 | 30 | new DOI; new title | search:openalex | [OA](https://www.authorea.com/doi/pdf/10.22541/au.166846334.46204559) gold | Citation appears relevant to mycophenolic_acid:UGT_ABCG2, but no quantitative value was extractable from public abstract/metadata. | low | yes | yes |
+
+Skipped/rejected:
+- already_in_drafts: Mycophenolic acid AUC in Thai kidney transplant recipients receiving low dose mycophenolate and its association with UGT2B7 polymorphisms
+- already_in_drafts: Pharmacokinetics of free and total mycophenolic acid in paediatric and adult renal transplant recipients: Exploratory analysis of the effects of clinical factors and gene variants
+- already_in_drafts: In vitro mechanistic study on mycophenolate mofetil drug interactions: effect of prednisone, cyclosporine, and others
+- low_novelty score=10: Loss of function ABCG2 c.421C&amp;gt;A (rs2231142) polymorphism increases steady-state exposure to mycophenolic acid in stable renal transplant recipients: exploratory matched cohort study (new title; metric sentence already seen; extractable quantitative signal)
+- relation_mismatch: Pharmacogenetics of Mycophenolic Acid in Patients of African Descent: Underrepresentation of African Data.
+- relation_mismatch: Influence of genetic polymorphisms on pharmacokinetics and treatment response of mycophenolic acid: a scoping review.
+- relation_mismatch: Biopharmaceutical Factors Involved in the Disposition of Mycophenolic Acid: A Comprehensive Review of ADME Properties and Their Potential Impact on Mycophenolic Acid Plasma Exposure.
+- relation_mismatch: <i>In vitro</i> mechanistic study on mycophenolate mofetil drug interactions: effect of prednisone, cyclosporine, and others.
+- relation_mismatch: Recent Advances in Therapeutic Drug Monitoring of Voriconazole, Mycophenolic Acid, and Vancomycin: A Literature Review of Pediatric Studies.
+- relation_mismatch: Importance of Hepatic Transporters in Clinical Disposition of Drugs and Their Metabolites
+- relation_mismatch: Mycophenolic acid pharmacogenomics in kidney transplantation
+- relation_mismatch: The reduced function allele SLCO1B1 c.521T&gt;C is of no practical relevance for the renal graft function over the first post-transplant year in patients treated with mycophenolic acid
+## tegafur:CYP2A6_DPYD
+Run: 2026-06-08T08:03:32.053Z
+Query: `tegafur CYP2A6 DPYD pharmacokinetics 5-FU toxicity genotype`
+Added drafts: 0
+Skipped/rejected: 16
+Query memory overlap: 0%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- already_in_drafts: <i>CYP2A6</i>and the plasma level of 5‐chloro‐2, 4‐dihydroxypyridine are determinants of the pharmacokinetic variability of tegafur and 5‐fluorouracil, respectively, in Japanese patients with cancer given S‐1
+- already_in_drafts: Pharmacogenomic-guided dosing of fluoropyrimidines beyond DPYD: time for a polygenic algorithm?
+- relation_mismatch: Pharmacogenomic-guided dosing of fluoropyrimidines beyond <i>DPYD</i>: time for a polygenic algorithm?
+- relation_mismatch: Consensus of experts from the Spanish Pharmacogenetics and Pharmacogenomics Society and the Spanish Society of Medical Oncology for the genotyping of DPYD in cancer patients who are candidates for treatment with fluoropyrimidines.
+- relation_mismatch: Pharmacogenomics Testing in Phase I Oncology Clinical Trials: Constructive Criticism Is Warranted.
+- relation_mismatch: Genetic Polymorphisms in Pharmaceuticals and Chemotherapy.
+- relation_mismatch: A review on the importance of genotyping and phenotyping in fluoropyrimidine treatment.
+- relation_mismatch: Genotypes Affecting the Pharmacokinetics of Anticancer Drugs.
+- relation_mismatch: Sex differences in the safety of S-1 plus oxaliplatin and S-1 plus cisplatin for patients with metastatic gastric cancer.
+- relation_mismatch: A phase II study of preoperative chemoradiation with tegafur-uracil plus leucovorin for locally advanced rectal cancer with pharmacogenetic analysis.
+- relation_mismatch: Pharmacogenetics research on chemotherapy resistance in colorectal cancer over the last 20 years
+- relation_mismatch: Pharmacogenomic Biomarkers for Improved Drug Therapy—Recent Progress and Future Developments
+- relation_mismatch: Genotypes Affecting the Pharmacokinetics of Anticancer Drugs
+- relation_mismatch: Consensus of experts from the Spanish Pharmacogenetics and Pharmacogenomics Society and the Spanish Society of Medical Oncology for the genotyping of DPYD in cancer patients who are candidates for treatment with fluoropyrimidines
+- relation_mismatch: The role of reduced intracellular concentrations of active drugs in the lack of response to anticancer chemotherapy
+- relation_mismatch: Multifactorial pharmacogenetic analysis in colorectal cancer patients receiving 5‐fluorouracil‐based therapy together with cetuximab–irinotecan
+## timolol:CYP2D6
+Run: 2026-06-08T08:03:34.342Z
+Query: `ophthalmic timolol CYP2D6 poor metabolizer bradycardia pharmacokinetics`
+Added drafts: 1
+Skipped/rejected: 9
+Query memory overlap: 0%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+| draft_timolol_cyp2d6_volotinen2009_null | in_vitro | identifier missing | 50 | new title; new public metric sentences; extractable quantitative signal | search:openalex | [OA](http://hdl.handle.net/10138/20153) green | Public abstract/metadata extraction for timolol:CYP2D6 found about 0.5% change. Requires human review before promotion. | moderate | yes | no |
+
+Skipped/rejected:
+- already_in_drafts: Cardiac safety of ophthalmic timolol.
+- already_in_drafts: Ophthalmic timolol: plasma concentration and systemic cardiopulmonary effects.
+- already_in_drafts: Ophthalmic timolol: Plasma concentration and systemic cardiopulmonary effects
+- relation_mismatch: A Single Drop in the Eye – Effects on the Whole Body?
+- relation_mismatch: Application of Advanced Technologies—Nanotechnology, Genomics Technology, and 3D Printing Technology—In Precision Anesthesia: A Comprehensive Narrative Review
+- relation_mismatch: Genotype and Phenotype Influence the Personal Response to Prostaglandin Analogues and Beta-Blockers in Spanish Glaucoma and Ocular Hypertension Patients
+- relation_mismatch: Effect of genotype on individual response to the pharmacological treatment of glaucoma: a systematic review and meta-analysis
+- relation_mismatch: Potentially inappropriate prescriptions in heart failure with reduced ejection fraction: ESC position statement on heart failure with reduced ejection fraction-specific inappropriate prescribing
+- relation_mismatch: Atrioventricular Block Caused by Carteolol Eye Drops Administered to Unilateral Eye or Bilateral Eyes: A Case Report
+## CYP2C9:NSAID_oxicams
+Run: 2026-06-08T08:03:35.767Z
+Query: `piroxicam tenoxicam flurbiprofen CYP2C9 genotype pharmacokinetics AUC bleeding`
+Added drafts: 0
+Skipped/rejected: 10
+Query memory overlap: 0%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- already_in_drafts: Applications of CYP450 Testing in the Clinical Setting
+- already_in_drafts: CYP2C9 Polymorphism Influence in PK/PD Model of Naproxen and 6-O-Desmethylnaproxen in Oral Fluid
+- relation_mismatch: Clinical Pharmacogenetics Implementation Consortium Guideline (CPIC) for CYP2C9 and Nonsteroidal Anti-Inflammatory Drugs.
+- relation_mismatch: Appraisal and development of evidence-based clinical decision support to enable perioperative pharmacogenomic application.
+- relation_mismatch: Molecular Basis of Cancer Pain Management: An Updated Review.
+- relation_mismatch: Pharmacogenetics and Precision Medicine Approaches for the Improvement of COVID-19 Therapies.
+- relation_mismatch: Genomic Variation and Pharmacokinetics in Old Age: A Quantitative Review of Age- vs. Genotype-Related Differences.
+- relation_mismatch: Applications of CYP450 testing in the clinical setting.
+- relation_mismatch: Molecular Basis of Cancer Pain Management: An Updated Review
+- relation_mismatch: Implementation of pharmacogenomics: Where are we now?
+## eliglustat:CYP2D6_CYP3A4
+Run: 2026-06-08T09:17:43.225Z
+Query: `eliglustat CYP2D6 poor metabolizer CYP3A4 inhibitor pharmacokinetics AUC QT`
+Added drafts: 0
+Skipped/rejected: 12
+Query memory overlap: 100%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- repeat_query_exhausted score=0: Physiologically‐Based Pharmacokinetic Model Development, Validation, and Application for Prediction of Eliglustat <scp>Drug–Drug</scp> Interactions (same top results as previous run (100% overlap))
+- relation_mismatch: Physiologically-Based Pharmacokinetic Model Development, Validation, and Application for Prediction of Eliglustat Drug-Drug Interactions.
+- relation_mismatch: Drug-Drug-Gene Interactions in Cardiovascular Medicine.
+- relation_mismatch: Effects of paroxetine, ketoconazole, and rifampin on the metabolism of eliglustat, an oral substrate reduction therapy for Gaucher disease type 1.
+- relation_mismatch: Eliglustat tartrate for the treatment of adults with type 1 Gaucher disease.
+- relation_mismatch: EHA2024 Hybrid Congress
+- relation_mismatch: Abstract Book: 25th Congress of the European Hematology Association Virtual Edition, 2020
+- relation_mismatch: Oral Presentations
+- relation_mismatch: 21st Congress of the European Hematology Association Copenhagen, Denmark, June 9–12, 2016
+- relation_mismatch: Eliglustat tartrate for the treatment of adults with type 1 Gaucher disease
+- relation_mismatch: Tools for optimising pharmacotherapy in psychiatry (therapeutic drug monitoring, molecular brain imaging and pharmacogenetic tests): focus on antidepressants
+- relation_mismatch: Drug–Drug–Gene Interactions in Cardiovascular Medicine
+## pimozide:CYP2D6_CYP3A4_QT
+Run: 2026-06-08T09:17:45.179Z
+Query: `pimozide CYP2D6 CYP3A4 inhibitor QT pharmacokinetics poor metabolizer`
+Added drafts: 0
+Skipped/rejected: 17
+Query memory overlap: 100%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- repeat_query_exhausted score=0: Effect of clarithromycin on the pharmacokinetics and pharmacodynamics of pimozide in healthy poor and extensive metabolizers of cytochrome P450 2D6 (CYP2D6). (same top results as previous run (100% overlap))
+- relation_mismatch: Pharmacogenetic Guidelines for Psychotropic Drugs: Optimizing Prescriptions in Clinical Practice.
+- relation_mismatch: Therapeutic dilemma's: antipsychotics use for neuropsychiatric symptoms of dementia, delirium and insomnia and risk of falling in older adults, a clinical review.
+- relation_mismatch: Antipsychotic drug-aripiprazole against schizophrenia, its therapeutic and metabolic effects associated with gene polymorphisms.
+- relation_mismatch: Drug-Drug-Gene Interactions in Cardiovascular Medicine.
+- relation_mismatch: The Overview on the Pharmacokinetic and Pharmacodynamic Interactions of Triazoles.
+- relation_mismatch: Pharmacogenomics: Driving Personalized Medicine.
+- relation_mismatch: How Can Drug Metabolism and Transporter Genetics Inform Psychotropic Prescribing?
+- relation_mismatch: Implementation of Pharmacogenomics and Artificial Intelligence Tools for Chronic Disease Management in Primary Care Setting.
+- relation_mismatch: The significance of QT interval in drug development
+- relation_mismatch: Clinically Relevant Genetic Variations in Drug Metabolizing Enzymes
+- relation_mismatch: Chronic Myelogenous Leukemia
+- relation_mismatch: Comprehensive review of cardiovascular toxicity of drugs and related agents
+- relation_mismatch: New Generation Antipsychotic Drugs and QTc Interval Prolongation
+- relation_mismatch: How Can Drug Metabolism and Transporter Genetics Inform Psychotropic Prescribing?
+- relation_mismatch: New atypical antipsychotics for schizophrenia: iloperidone
+- relation_mismatch: Evaluating the safety and efficacy of dextromethorphan/quinidine in the treatment of pseudobulbar affect
+## siponimod:CYP2C9
+Run: 2026-06-08T09:17:46.918Z
+Query: `siponimod CYP2C9 genotype pharmacokinetics exposure AUC dose`
+Added drafts: 0
+Skipped/rejected: 18
+Query memory overlap: 100%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- repeat_query_exhausted score=0: Pharmacokinetic Characteristics of Siponimod in Healthy Volunteers and Patients With Multiple Sclerosis: Analyses of Published Clinical Trials. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Siponimod pharmacokinetics, safety, and tolerability in combination with the potent CYP3A4 inhibitor itraconazole in healthy subjects with different CYP2C9 genotypes. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Siponimod pharmacokinetics, safety, and tolerability in combination with the potent CYP3A4 inhibitor itraconazole in healthy subjects with different CYP2C9 genotypes. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: In vitro studies and in silico predictions of fluconazole and CYP2C9 genetic polymorphism impact on siponimod metabolism and pharmacokinetics (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Pharmacokinetic Characteristics of Siponimod in Healthy Volunteers and Patients With Multiple Sclerosis: Analyses of Published Clinical Trials (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Metabolism and Disposition of Siponimod, a Novel Selective S1P1/S1P5 Agonist, in Healthy Volunteers and In Vitro Identification of Human Cytochrome P450 Enzymes Involved in Its Oxidative Metabolism (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Prediction of the Impact of Cytochrome P450 2C9 Genotypes on the Drug–Drug Interaction Potential of Siponimod With Physiologically‐Based Pharmacokinetic Modeling: A Comprehensive Approach for Drug Label Recommendations (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Effect of Fluconazole Coadministration and CYP2C9 Genetic Polymorphism on Siponimod Pharmacokinetics in Healthy Subjects (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Pharmacogenetics of siponimod: A systematic review (same top results as previous run (100% overlap))
+- relation_mismatch: Efavirenz and CYP2C9 Genetic Polymorphisms Reduce CYP2C9 Activity in Healthy Participants.
+- relation_mismatch: Preventing adverse drug reactions and more: current clinical use of pharmacogenetic testing.
+- relation_mismatch: Re-discover the value of protein binding assessments in hepatic and renal impairment studies and its contributions in drug labels and dose decisions.
+- relation_mismatch: Can Mechanistic Static Models for Drug-Drug Interactions Support Regulatory Filing for Study Waivers and Label Recommendations?
+- relation_mismatch: Pharmacokinetic Characteristics of Siponimod in Healthy Volunteers and Patients With Multiple Sclerosis: Analyses of Published Clinical Trials.
+- relation_mismatch: From Drug Discovery to Drug Approval: A Comprehensive Review of the Pharmacogenomics Status Quo with a Special Focus on Egypt.
+- relation_mismatch: Chemistry and Pharmacology of Fluorinated Drugs Approved by the FDA (2016-2022).
+- relation_mismatch: Chemistry and Pharmacology of Fluorinated Drugs Approved by the FDA (2016–2022)
+- relation_mismatch: Dose Optimization Informed by PBPK Modeling: State‐of‐the Art and Future
+## repaglinide:CYP2C8_SLCO1B1
+Run: 2026-06-08T09:17:48.064Z
+Query: `repaglinide CYP2C8 SLCO1B1 gemfibrozil clopidogrel AUC hypoglycemia`
+Added drafts: 0
+Skipped/rejected: 10
+Query memory overlap: 100%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- repeat_query_exhausted score=0: A Phenotyping Tool for Seven Cytochrome P450 Enzymes and Two Transporters: Application to Examine the Effects of Clopidogrel and Gemfibrozil (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Clinical studies on pharmacokinetic drug-drug interactions caused by clopidogrel : focus on CYP2C8-mediated drug metabolism (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Pharmacokinetic interactions affecting the antidiabetic repaglinide (same top results as previous run (100% overlap))
+- relation_mismatch: CYP2C8-Mediated Drug-Drug Interactions and the Factors Influencing the Interaction Magnitude.
+- relation_mismatch: A Phenotyping Tool for Seven Cytochrome P450 Enzymes and Two Transporters: Application to Examine the Effects of Clopidogrel and Gemfibrozil.
+- relation_mismatch: Dietary Modulation of CYP3A4 and Its Impact on Statins and Antidiabetic Drugs: A Narrative Review.
+- relation_mismatch: 15th Congress of the European Association for Clinical Pharmacology and Therapeutics (EACPT)
+- relation_mismatch: Dietary Modulation of CYP3A4 and Its Impact on Statins and Antidiabetic Drugs: A Narrative Review
+- relation_mismatch: CYP2C8-Mediated Drug–Drug Interactions and the Factors Influencing the Interaction Magnitude
+- relation_mismatch: Pharmacokinetics of montelukast and zafirlukast as affected by CYP inhibitors
+## vincristine:CYP3A_ABCB1
+Run: 2026-06-08T09:17:49.305Z
+Query: `vincristine CYP3A5 CYP3A4 ABCB1 azole neurotoxicity pharmacokinetics`
+Added drafts: 0
+Skipped/rejected: 16
+Query memory overlap: 100%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- repeat_query_exhausted score=0: Vincristine Disposition and Neurotoxicity Are Unchanged in Humanized CYP3A5 Mice. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Severe Vincristine-Induced Peripheral Neuropathic Weakness in Both Lower Limbs in an Asian Adolescent with <i>CYP3A4</i> rs2740574 TT Genotype. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Increased risk of vincristine neurotoxicity associated with low CYP3A5 expression genotype in children with acute lymphoblastic leukemia (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Vincristine-Induced Peripheral Neuropathy in Childhood Acute Lymphoblastic Leukemia: Genetic Variation as a Potential Risk Factor (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Vincristine Disposition and Neurotoxicity Are Unchanged in Humanized CYP3A5 Mice (same top results as previous run (100% overlap))
+- relation_mismatch: Vincristine-Induced Peripheral Neuropathy in Childhood Acute Lymphoblastic Leukemia: Genetic Variation as a Potential Risk Factor.
+- relation_mismatch: Vincristine-Induced Peripheral Neuropathy (VIPN) in Pediatric Tumors: Mechanisms, Risk Factors, Strategies of Prevention and Treatment.
+- relation_mismatch: Mechanistic physiology-based pharmacokinetic modeling to elucidate vincristine-induced peripheral neuropathy following treatment with novel kinase inhibitors.
+- relation_mismatch: Personalized Medicine in Infant Population with Cancer: Pharmacogenetic Pilot Study of Polymorphisms Related to Toxicity and Response to Chemotherapy.
+- relation_mismatch: Peripheral Nervous System Involvement in Non-Primary Pediatric Cancer: From Neurotoxicity to Possible Etiologies.
+- relation_mismatch: Chemotherapy-induced peripheral neuropathy in children and adolescent cancer patients.
+- relation_mismatch: Long-Term Effects, Pathophysiological Mechanisms, and Risk Factors of Chemotherapy-Induced Peripheral Neuropathies: A Comprehensive Literature Review
+- relation_mismatch: Vincristine-Induced Peripheral Neuropathy (VIPN) in Pediatric Tumors: Mechanisms, Risk Factors, Strategies of Prevention and Treatment
+- relation_mismatch: Aspects of vincristine-induced neuropathy in hematologic malignancies: a systematic review
+- relation_mismatch: Population Pharmacokinetics of Vincristine Related to Infusion Duration and Peripheral Neuropathy in Pediatric Oncology Patients
+- relation_mismatch: Chemotherapy-induced peripheral neuropathy in children and adolescent cancer patients
+## topotecan:ABCG2
+Run: 2026-06-08T09:17:51.215Z
+Query: `topotecan ABCG2 BCRP transporter pharmacokinetics myelosuppression`
+Added drafts: 0
+Skipped/rejected: 16
+Query memory overlap: 100%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- relation_mismatch: Sequential Use of Trastuzumab Deruxtecan and Sacituzumab Govitecan in Patients with Breast Cancer: A Pharmacological Approach to Support the Clinical Rationale.
+- relation_mismatch: Beyond cytotoxicity: molecular mechanisms of natural products as multi-targeting modulators and chemo-sensitizers in oncology.
+- relation_mismatch: Camptothecin in Cancer Therapy: Current Challenges and Emerging Strategies with Nanoemulsions.
+- relation_mismatch: Artificial Intelligence-Driven Natural Product Discovery for Cancer Metastasis and Chemoresistance: From Computational Prediction to Preclinical Validation.
+- relation_mismatch: Kidney Drug Transporters in Pharmacotherapy.
+- relation_mismatch: Reverse Translational Research of ABCG2 (BCRP) in Human Disease and Drug Response.
+- relation_mismatch: Oral oncolytic and antiretroviral therapy administration: dose adjustments, drug interactions, and other considerations for clinical use.
+- relation_mismatch: The Influence of Pharmacogenetics on the Clinical Relevance of Pharmacokinetic Drug-Drug Interactions: Drug-Gene, Drug-Gene-Gene and Drug-Drug-Gene Interactions.
+- relation_mismatch: Pharmacogenetics research on chemotherapy resistance in colorectal cancer over the last 20 years
+- relation_mismatch: Pharmacogenomics of drug metabolizing enzymes and transporters: implications for cancer therapy
+- relation_mismatch: Advances in Glioblastoma Therapy: An Update on Current Approaches
+- relation_mismatch: Impact of Body-Size Measures on Irinotecan Clearance: Alternative Dosing Recommendations
+- relation_mismatch: Mechanisms of Drug Resistance in Veterinary Oncology— A Review with an Emphasis on Canine Lymphoma
+- relation_mismatch: Resistance to TOP-1 Inhibitors: Good Old Drugs Still Can Surprise Us
+- relation_mismatch: Breast cancer brain metastasis: insight into molecular mechanisms and therapeutic strategies
+- relation_mismatch: Phase I and Pharmacokinetic Study of Topotecan Administered Orally Once Daily for 5 Days for 2 Consecutive Weeks to Pediatric Patients With Refractory Solid Tumors
+## mycophenolic_acid:UGT_ABCG2
+Run: 2026-06-08T09:17:54.385Z
+Query: `mycophenolic acid UGT1A9 UGT2B7 ABCG2 pharmacokinetics exposure enterohepatic recirculation`
+Added drafts: 0
+Skipped/rejected: 13
+Query memory overlap: 100%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- repeat_query_exhausted score=0: Mycophenolic acid AUC in Thai kidney transplant recipients receiving low dose mycophenolate and its association with UGT2B7 polymorphisms (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Pharmacokinetics of free and total mycophenolic acid in paediatric and adult renal transplant recipients: Exploratory analysis of the effects of clinical factors and gene variants (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: In vitro mechanistic study on mycophenolate mofetil drug interactions: effect of prednisone, cyclosporine, and others (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Loss of function ABCG2 c.421C&amp;gt;A (rs2231142) polymorphism increases steady-state exposure to mycophenolic acid in stable renal transplant recipients: exploratory matched cohort study (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Loss of function ABCG2 c.421C&gt;A (rs2231142) polymorphism increases steady-state exposure to mycophenolic acid in stable renal transplant recipients: exploratory matched cohort study (same top results as previous run (100% overlap))
+- relation_mismatch: Pharmacogenetics of Mycophenolic Acid in Patients of African Descent: Underrepresentation of African Data.
+- relation_mismatch: Influence of genetic polymorphisms on pharmacokinetics and treatment response of mycophenolic acid: a scoping review.
+- relation_mismatch: Biopharmaceutical Factors Involved in the Disposition of Mycophenolic Acid: A Comprehensive Review of ADME Properties and Their Potential Impact on Mycophenolic Acid Plasma Exposure.
+- relation_mismatch: <i>In vitro</i> mechanistic study on mycophenolate mofetil drug interactions: effect of prednisone, cyclosporine, and others.
+- relation_mismatch: Recent Advances in Therapeutic Drug Monitoring of Voriconazole, Mycophenolic Acid, and Vancomycin: A Literature Review of Pediatric Studies.
+- relation_mismatch: Importance of Hepatic Transporters in Clinical Disposition of Drugs and Their Metabolites
+- relation_mismatch: Mycophenolic acid pharmacogenomics in kidney transplantation
+- relation_mismatch: The reduced function allele SLCO1B1 c.521T&gt;C is of no practical relevance for the renal graft function over the first post-transplant year in patients treated with mycophenolic acid
+## tegafur:CYP2A6_DPYD
+Run: 2026-06-08T09:17:55.785Z
+Query: `tegafur CYP2A6 DPYD pharmacokinetics 5-FU toxicity genotype`
+Added drafts: 0
+Skipped/rejected: 16
+Query memory overlap: 100%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- repeat_query_exhausted score=0: <i>CYP2A6</i>and the plasma level of 5‐chloro‐2, 4‐dihydroxypyridine are determinants of the pharmacokinetic variability of tegafur and 5‐fluorouracil, respectively, in Japanese patients with cancer given S‐1 (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Pharmacogenomic-guided dosing of fluoropyrimidines beyond DPYD: time for a polygenic algorithm? (same top results as previous run (100% overlap))
+- relation_mismatch: Pharmacogenomic-guided dosing of fluoropyrimidines beyond <i>DPYD</i>: time for a polygenic algorithm?
+- relation_mismatch: Consensus of experts from the Spanish Pharmacogenetics and Pharmacogenomics Society and the Spanish Society of Medical Oncology for the genotyping of DPYD in cancer patients who are candidates for treatment with fluoropyrimidines.
+- relation_mismatch: Pharmacogenomics Testing in Phase I Oncology Clinical Trials: Constructive Criticism Is Warranted.
+- relation_mismatch: Genetic Polymorphisms in Pharmaceuticals and Chemotherapy.
+- relation_mismatch: A review on the importance of genotyping and phenotyping in fluoropyrimidine treatment.
+- relation_mismatch: Genotypes Affecting the Pharmacokinetics of Anticancer Drugs.
+- relation_mismatch: Sex differences in the safety of S-1 plus oxaliplatin and S-1 plus cisplatin for patients with metastatic gastric cancer.
+- relation_mismatch: A phase II study of preoperative chemoradiation with tegafur-uracil plus leucovorin for locally advanced rectal cancer with pharmacogenetic analysis.
+- relation_mismatch: Pharmacogenetics research on chemotherapy resistance in colorectal cancer over the last 20 years
+- relation_mismatch: Pharmacogenomic Biomarkers for Improved Drug Therapy—Recent Progress and Future Developments
+- relation_mismatch: Genotypes Affecting the Pharmacokinetics of Anticancer Drugs
+- relation_mismatch: Consensus of experts from the Spanish Pharmacogenetics and Pharmacogenomics Society and the Spanish Society of Medical Oncology for the genotyping of DPYD in cancer patients who are candidates for treatment with fluoropyrimidines
+- relation_mismatch: The role of reduced intracellular concentrations of active drugs in the lack of response to anticancer chemotherapy
+- relation_mismatch: Multifactorial pharmacogenetic analysis in colorectal cancer patients receiving 5‐fluorouracil‐based therapy together with cetuximab–irinotecan
+## timolol:CYP2D6
+Run: 2026-06-08T09:17:57.664Z
+Query: `ophthalmic timolol CYP2D6 poor metabolizer bradycardia pharmacokinetics`
+Added drafts: 0
+Skipped/rejected: 10
+Query memory overlap: 100%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- repeat_query_exhausted score=0: Cardiac safety of ophthalmic timolol. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Ophthalmic timolol: plasma concentration and systemic cardiopulmonary effects. (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Ophthalmic timolol: Plasma concentration and systemic cardiopulmonary effects (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: Expression of cytochrome P450 enzymes and metabolism of timolol in human ocular tissue (same top results as previous run (100% overlap))
+- relation_mismatch: A Single Drop in the Eye – Effects on the Whole Body?
+- relation_mismatch: Application of Advanced Technologies—Nanotechnology, Genomics Technology, and 3D Printing Technology—In Precision Anesthesia: A Comprehensive Narrative Review
+- relation_mismatch: Genotype and Phenotype Influence the Personal Response to Prostaglandin Analogues and Beta-Blockers in Spanish Glaucoma and Ocular Hypertension Patients
+- relation_mismatch: Effect of genotype on individual response to the pharmacological treatment of glaucoma: a systematic review and meta-analysis
+- relation_mismatch: Potentially inappropriate prescriptions in heart failure with reduced ejection fraction: ESC position statement on heart failure with reduced ejection fraction-specific inappropriate prescribing
+- relation_mismatch: Atrioventricular Block Caused by Carteolol Eye Drops Administered to Unilateral Eye or Bilateral Eyes: A Case Report
+## CYP2C9:NSAID_oxicams
+Run: 2026-06-08T09:17:59.311Z
+Query: `piroxicam tenoxicam flurbiprofen CYP2C9 genotype pharmacokinetics AUC bleeding`
+Added drafts: 0
+Skipped/rejected: 10
+Query memory overlap: 100%
+| Draft | Tier | PMID/DOI | Novelty | Why novel | Provenance | OA | Finding | Confidence | Public facts usable | Precision full text? |
+|---|---|---|---:|---|---|---|---|---|---|---|
+
+Skipped/rejected:
+- repeat_query_exhausted score=0: Applications of CYP450 Testing in the Clinical Setting (same top results as previous run (100% overlap))
+- repeat_query_exhausted score=0: CYP2C9 Polymorphism Influence in PK/PD Model of Naproxen and 6-O-Desmethylnaproxen in Oral Fluid (same top results as previous run (100% overlap))
+- relation_mismatch: Clinical Pharmacogenetics Implementation Consortium Guideline (CPIC) for CYP2C9 and Nonsteroidal Anti-Inflammatory Drugs.
+- relation_mismatch: Appraisal and development of evidence-based clinical decision support to enable perioperative pharmacogenomic application.
+- relation_mismatch: Molecular Basis of Cancer Pain Management: An Updated Review.
+- relation_mismatch: Pharmacogenetics and Precision Medicine Approaches for the Improvement of COVID-19 Therapies.
+- relation_mismatch: Genomic Variation and Pharmacokinetics in Old Age: A Quantitative Review of Age- vs. Genotype-Related Differences.
+- relation_mismatch: Applications of CYP450 testing in the clinical setting.
+- relation_mismatch: Molecular Basis of Cancer Pain Management: An Updated Review
+- relation_mismatch: Implementation of pharmacogenomics: Where are we now?
