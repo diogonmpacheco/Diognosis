@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="logo.png" alt="Diognosis logo" width="140">
-</p>
+<img src="logo.png" alt="Diognosis logo" width="96" align="right">
 
 # Diognosis
 
@@ -11,6 +9,8 @@ Diognosis is a pre-v1 project for exploring medication-safety mechanisms, pharma
 Its first module, the MedCheck Engine, explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
 
 Status: pre-v1, source-linked, under active validation, and not yet professionally reviewed.
+
+Data version: **Drug DB v1.2.3**. All evidence remains pending professional clinical review.
 
 **Live app:** [diogonmpacheco.github.io/Diognosis](https://diogonmpacheco.github.io/Diognosis/)
 
@@ -25,16 +25,6 @@ Status: pre-v1, source-linked, under active validation, and not yet professional
 MedCheck Engine is the first module of Diognosis. It focuses on medication safety exploration, pharmacogenomics, drug-drug interactions, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, and source-linked evidence.
 
 The MedCheck Engine runs entirely in the browser. There are no accounts, no server, no medication data collection, and no user medication or genotype data is sent to Diognosis. The graph view loads D3 from a public CDN unless you self-host that asset.
-
-## Naming Note
-
-This project was initially developed under the working name “MedCheck”. The broader platform is now named “Diognosis”, with “MedCheck Engine” preserved as the name of the first medication-safety module.
-
-The GitHub repository and Pages URL now use `Diognosis`. Some internal engine identifiers still use `MEDCHECK_*` because they name the first module and preserve build compatibility.
-
-Data version: **Drug DB v1.2.3**. All evidence remains pending professional clinical review.
-
----
 
 ## Try A Demo
 
