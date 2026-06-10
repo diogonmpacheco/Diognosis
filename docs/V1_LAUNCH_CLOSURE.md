@@ -1,10 +1,10 @@
-# PharmTrace V1 Launch Closure
+# Diognosis V1 Launch Closure
 
 Generated: 2026-06-09
 
 ## Launch Position
 
-PharmTrace can launch with the MedCheck Engine as a public educational preview once the release gate passes and the site is pushed to GitHub Pages. The product should not claim professional data verification yet. The correct public framing is source-linked, pending professional review, and ready for external feedback.
+Diognosis can launch with the MedCheck Engine as a public educational preview once the release gate passes and the site is pushed to GitHub Pages. The product should not claim professional data verification yet. The correct public framing is source-linked, pending professional review, and ready for external feedback.
 
 ## Data Integration Decision
 

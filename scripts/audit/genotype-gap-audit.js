@@ -324,7 +324,7 @@ ${table(openOnly)}
 
 ${report.gapAnalysis.covered.join(', ')}
 
-No third-party catalog data is bundled in PharmTrace by this audit script. If a local external catalog is supplied, its metadata is used only for local prioritization unless manually reviewed and imported.
+No third-party catalog data is bundled in Diognosis by this audit script. If a local external catalog is supplied, its metadata is used only for local prioritization unless manually reviewed and imported.
 `;
 }
 

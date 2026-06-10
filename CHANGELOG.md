@@ -1,10 +1,10 @@
-# PharmTrace Changelog
+# Diognosis Changelog
 
 ## Unreleased — 2026-06-04
 
 ### Launch Hardening
 
-- Renamed the broader platform from the working name MedCheck to PharmTrace, preserving MedCheck Engine as the first medication-safety module.
+- Renamed the broader platform from the working name MedCheck to Diognosis, preserving MedCheck Engine as the first medication-safety module.
 - Added a deep pre-v1 launch QA audit covering five uncommon/hard scenarios: thiopurine/allopurinol marrow toxicity, capecitabine/DPYD fluoropyrimidine toxicity, irinotecan/UGT1A1 SN-38 toxicity, G6PD oxidant hemolysis, and succinylcholine BCHE/RYR1 anesthesia risk.
 - Made the launch QA audit assert panel hygiene: visible panels must render content and hidden panels must not retain stale text from previous stacks.
 - Added contextual GitHub feedback links to warning and evidence cards so external reviewers can report data/evidence issues with stack and evidence context.

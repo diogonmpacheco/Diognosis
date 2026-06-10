@@ -1,5 +1,5 @@
 {
-  "description": "Legal literature discovery seeds for PharmTrace MedCheck Engine enrichment. Metadata-only; no full-text downloads.",
+  "description": "Legal literature discovery seeds for Diognosis MedCheck Engine enrichment. Metadata-only; no full-text downloads.",
   "queries": [
     {
       "relation": "eliglustat:CYP2D6_CYP3A4",

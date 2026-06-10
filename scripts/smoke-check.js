@@ -45,7 +45,7 @@ await new Promise((resolveReady) => setTimeout(resolveReady, 400));
 const { window } = dom;
 const doc = window.document;
 
-assert(doc.title.includes('PharmTrace'), 'Page title did not load');
+assert(doc.title.includes('Diognosis'), 'Page title did not load');
 assert(doc.getElementById('ver-engine')?.textContent === '3.5.5', 'Version strip did not render engine 3.5.5');
 assert(evalInPage(window, 'DRUG_DB.length') >= 200, 'Drug database did not load');
 assert(evalInPage(window, 'MEDCHECK_VERSION.engine') === '3.5.5', 'MEDCHECK_VERSION is not 3.5.5');

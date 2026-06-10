@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://diogonmpacheco.github.io/PharmTrace/sitemap.xml
+Sitemap: https://diogonmpacheco.github.io/Diognosis/sitemap.xml

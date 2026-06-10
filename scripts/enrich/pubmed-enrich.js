@@ -128,7 +128,7 @@ async function fetchJson(url) {
   mkdirSync(CACHE_DIR, { recursive: true });
   const path = cachePath(url);
   if (existsSync(path)) return JSON.parse(readFileSync(path, 'utf8'));
-  const res = await fetch(url, { headers: { 'user-agent': 'PharmTrace MedCheck Engine enrichment tool; citation metadata only' } });
+  const res = await fetch(url, { headers: { 'user-agent': 'Diognosis MedCheck Engine enrichment tool; citation metadata only' } });
   if (!res.ok) throw new Error(`Fetch failed ${res.status} ${res.statusText}: ${url}`);
   const text = await res.text();
   writeFileSync(path, text, 'utf8');
@@ -142,7 +142,7 @@ async function fetchProviderJson(url, headers = {}) {
   if (existsSync(path)) return JSON.parse(readFileSync(path, 'utf8'));
   const res = await fetch(url, {
     headers: {
-      'user-agent': 'PharmTrace MedCheck Engine enrichment tool; citation metadata only',
+      'user-agent': 'Diognosis MedCheck Engine enrichment tool; citation metadata only',
       ...headers,
     },
   });
@@ -157,7 +157,7 @@ async function fetchText(url) {
   mkdirSync(CACHE_DIR, { recursive: true });
   const path = resolve(CACHE_DIR, `${createHash('sha256').update(url).digest('hex')}.xml`);
   if (existsSync(path)) return readFileSync(path, 'utf8');
-  const res = await fetch(url, { headers: { 'user-agent': 'PharmTrace MedCheck Engine enrichment tool; citation metadata only' } });
+  const res = await fetch(url, { headers: { 'user-agent': 'Diognosis MedCheck Engine enrichment tool; citation metadata only' } });
   if (!res.ok) throw new Error(`Fetch failed ${res.status} ${res.statusText}: ${url}`);
   const text = await res.text();
   writeFileSync(path, text, 'utf8');
@@ -885,7 +885,7 @@ function updateQueryMemory(noveltyIndex, { relation, query, providers, articles,
 }
 
 function writeReport({ relation, query, added, skipped, providerErrors = [], queryMemory = null }) {
-  const previous = existsSync(REPORT_PATH) ? readFileSync(REPORT_PATH, 'utf8') : '# PharmTrace MedCheck Engine Enrichment Review Report\n';
+  const previous = existsSync(REPORT_PATH) ? readFileSync(REPORT_PATH, 'utf8') : '# Diognosis MedCheck Engine Enrichment Review Report\n';
   const lines = [
     '',
     `## ${relation || query}`,

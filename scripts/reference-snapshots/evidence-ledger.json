@@ -2,7 +2,7 @@
   "schema": "medcheck-evidence-ledger-v1",
   "snapshot": "bootstrap-current-curated-pmids",
   "created": "2026-05-29",
-  "source": "Current curated PharmTrace / MedCheck Engine codebase plus live multi-source enrichment and severe-pair provenance passes; entries marked reviewRequired remain pending human review.",
+  "source": "Current curated Diognosis / MedCheck Engine codebase plus live multi-source enrichment and severe-pair provenance passes; entries marked reviewRequired remain pending human review.",
   "mode": "bootstrap",
   "pmids": [
     "1531823",

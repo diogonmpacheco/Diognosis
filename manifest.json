@@ -1,6 +1,6 @@
 {
-  "name": "PharmTrace — MedCheck Engine",
-  "short_name": "PharmTrace",
+  "name": "Diognosis — MedCheck Engine",
+  "short_name": "Diognosis",
   "description": "AI-assisted medication safety and pharmacogenomics platform with the MedCheck Engine module.",
   "start_url": "./",
   "display": "standalone",

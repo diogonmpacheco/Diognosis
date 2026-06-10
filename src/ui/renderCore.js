@@ -620,7 +620,7 @@ function currentStackShareUrl(tab = activeTab) {
   const query = params
     .map(([key, value]) => `${encodeURIComponent(key)}=${encodeUrlStateValueLocal(value)}`)
     .join("&");
-  return `https://diogonmpacheco.github.io/PharmTrace/index.html${query ? `?${query}` : ""}`;
+  return `https://diogonmpacheco.github.io/Diognosis/index.html${query ? `?${query}` : ""}`;
 }
 
 function activeGenotypeUrlTokens() {
@@ -653,13 +653,13 @@ function encodeUrlStateValueLocal(value) {
   return encodeURIComponent(value).replace(/%2C/g, ",").replace(/%3A/g, ":");
 }
 
-function buildMedCheckIssueUrl({ type = "data", title = "PharmTrace feedback", focus = "", details = "", evidenceRefs = [] } = {}) {
+function buildMedCheckIssueUrl({ type = "data", title = "Diognosis feedback", focus = "", details = "", evidenceRefs = [] } = {}) {
   const stack = activeStack.length ? activeStack.join(" + ") : "No active stack";
   const shareLink = currentStackShareUrl(activeTab || "safety");
   const currentUrl = typeof window !== "undefined" && window.location ? window.location.href : "";
   const labels = type === "bug" ? "bug" : "data-review";
   const body = [
-    "## PharmTrace / MedCheck Engine context",
+    "## Diognosis / MedCheck Engine context",
     `- Stack: ${stack}`,
     `- Share link: ${shareLink}`,
     currentUrl ? `- Current URL: ${currentUrl}` : "",
@@ -673,14 +673,14 @@ function buildMedCheckIssueUrl({ type = "data", title = "PharmTrace feedback", f
     "Add PMID, DOI, DailyMed/FDA, CPIC/DPWG, guideline, label, or other public source identifiers.",
     "",
     "## Review note",
-    "PharmTrace is educational, source-linked, pre-v1, and pending professional clinical review. MedCheck Engine outputs are not medical advice or clinical decision support. Do not include private patient data."
+    "Diognosis is educational, source-linked, pre-v1, and pending professional clinical review. MedCheck Engine outputs are not medical advice or clinical decision support. Do not include private patient data."
   ].filter(Boolean).join("\n");
   const params = new URLSearchParams({
     title,
     body,
     labels,
   });
-  return `https://github.com/diogonmpacheco/PharmTrace/issues/new?${params.toString()}`;
+  return `https://github.com/diogonmpacheco/Diognosis/issues/new?${params.toString()}`;
 }
 
 function renderFeedbackLink(label, options = {}) {

@@ -1,5 +1,5 @@
 {
-  "name": "pharmtrace",
+  "name": "diognosis",
   "version": "3.5.5",
   "description": "AI-assisted medication safety and pharmacogenomics platform.",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "enrich:self-test": "node scripts/enrich/pubmed-enrich.js --self-test",
     "build": "node build.js",
     "build:min": "node build.js --minify",
-    "build:dev": "node build.js --out /tmp/pharmtrace_dev.html",
+    "build:dev": "node build.js --out /tmp/diognosis_dev.html",
     "smoke": "node scripts/smoke-check.js",
     "launch:qa": "node scripts/launch-qa-audit.js",
     "launch:v1": "node scripts/launch-v1-check.js",

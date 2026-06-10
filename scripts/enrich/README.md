@@ -1,4 +1,4 @@
-# PharmTrace MedCheck Engine Enrichment Tooling
+# Diognosis MedCheck Engine Enrichment Tooling
 
 Dev-time literature discovery lives here. It writes review drafts only; it never edits `STUDY_DB` or the shipped bundle.
 
@@ -51,7 +51,7 @@ Public-facts policy:
 - Paywalled or unknown-open-access papers are still useful when the abstract, PubMed record, DOI landing page, label, or guideline exposes factual findings.
 - Safe-to-use public facts include identifiers, study design, sample size if public, genotype/drug directionality, public abstract-level effect sizes, broad metabolite relationships, and paraphrased conclusions.
 - Full text is only required for precision upgrades: exact tables, detailed subgroup values, figures, supplementary datasets, or any claim that cannot be supported from public metadata/abstract/label/guideline text.
-- Never copy protected wording, tables, figures, or full abstracts into PharmTrace or MedCheck Engine data. Store paraphrased findings and citations instead.
+- Never copy protected wording, tables, figures, or full abstracts into Diognosis or MedCheck Engine data. Store paraphrased findings and citations instead.
 - Drafts from public-only evidence must remain `verified:false` and `reviewRequired:true` until human review.
 
 Novelty-first discovery:

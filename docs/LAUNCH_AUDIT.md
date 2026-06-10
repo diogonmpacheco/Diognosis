@@ -1,8 +1,8 @@
-# PharmTrace Launch Audit
+# Diognosis Launch Audit
 
 Date: 2026-06-09
 
-This audit covers engineering consistency, release metadata, automated validation, and data-integrity checks for the public PharmTrace static app and its MedCheck Engine module. It does not replace pharmacist, physician, or domain-expert review of individual clinical claims.
+This audit covers engineering consistency, release metadata, automated validation, and data-integrity checks for the public Diognosis static app and its MedCheck Engine module. It does not replace pharmacist, physician, or domain-expert review of individual clinical claims.
 
 ## Scope
 
@@ -71,7 +71,7 @@ No blocking issues were found in those checks.
 
 - All evidence entries remain pending professional review; no current evidence row should be presented as professionally verified.
 - The 295 `reviewRequired:true` launch-enrichment entries are visible for review workflows and can feed calculations through explicit refs or support-key matching, but that internal flag does not mean the remaining entries are professionally reviewed.
-- PharmTrace and the MedCheck Engine are explanatory and educational tools, not clinical decision support systems.
+- Diognosis and the MedCheck Engine are explanatory and educational tools, not clinical decision support systems.
 - The PharmGx importer accepts normalized phenotype and risk-marker rows; it is not a raw DNA or star-allele caller.
 - D3.js is loaded from a CDN for graph visualization, so the graph panel depends on that external asset being reachable.
 - A public 1.0 release still needs a product decision on tagging. Recommendation: publish the current engine as a public preview, then tag `v1.0.0` after review UX and DNA-import hardening land.

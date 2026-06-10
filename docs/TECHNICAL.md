@@ -1,14 +1,14 @@
-# PharmTrace Technical Notes
+# Diognosis Technical Notes
 
 This page keeps implementation details out of the README front page while preserving the architecture, build, and validation workflow for contributors.
 
 ## Architecture
 
-PharmTrace is an AI-assisted medication safety and pharmacogenomics platform in active development. Its first module, the MedCheck Engine, explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
+Diognosis is an AI-assisted medication safety and pharmacogenomics platform in active development. Its first module, the MedCheck Engine, explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
 
 Status: pre-v1, source-linked, under active validation, and not yet professionally reviewed.
 
-PharmTrace currently distributes the MedCheck Engine as a single self-contained HTML file. All computation runs in the browser with no backend, no API, no accounts, and no persistent storage. D3.js is loaded from CDN for graph visualization.
+Diognosis currently distributes the MedCheck Engine as a single self-contained HTML file. All computation runs in the browser with no backend, no API, no accounts, and no persistent storage. D3.js is loaded from CDN for graph visualization.
 
 The central design principle is synergy: drugs, genes, metabolites, receptors, transporters, foods, and time are modeled as connected actors because the clinically interesting signal often emerges from the whole system rather than from isolated parts.
 
@@ -106,7 +106,7 @@ Important evidence helpers:
 
 Live enrichment entries should remain marked `reviewRequired:true` until checked by a qualified human reviewer.
 
-Enrichment can use public factual signals from PubMed abstracts, DOI metadata, FDA/EMA labels, CPIC/DPWG guidance, Europe PMC/OpenAlex/Semantic Scholar metadata, and Unpaywall open-access status. A paper being paywalled does not make its public facts unusable. It only means PharmTrace should not copy protected wording, tables, figures, full abstracts, or full-text-only values. Drafts based on public-only signals can support qualitative context, while `needsFullTextForPrecision:true` marks records where exact quantitative rules need a licensed/open full text or another public source.
+Enrichment can use public factual signals from PubMed abstracts, DOI metadata, FDA/EMA labels, CPIC/DPWG guidance, Europe PMC/OpenAlex/Semantic Scholar metadata, and Unpaywall open-access status. A paper being paywalled does not make its public facts unusable. It only means Diognosis should not copy protected wording, tables, figures, full abstracts, or full-text-only values. Drafts based on public-only signals can support qualitative context, while `needsFullTextForPrecision:true` marks records where exact quantitative rules need a licensed/open full text or another public source.
 
 ## Enzyme Capacity Model
 

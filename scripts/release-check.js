@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// PharmTrace / MedCheck Engine release checklist
+// Diognosis / MedCheck Engine release checklist
 // Rebuilds the bundle, verifies release metadata, and runs the full local gate.
 
 import { execFileSync } from 'child_process';

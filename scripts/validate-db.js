@@ -179,11 +179,11 @@ const linkSources = [
   ['medication-class-examples.html', readFileSync('medication-class-examples.html', 'utf8')],
   ['data-views.html', readFileSync('data-views.html', 'utf8')],
 ];
-const savedLinkPattern = /https:\/\/diogonmpacheco\.github\.io\/PharmTrace\/index\.html\?[^)\s"']+|\.\/index\.html\?[^"\s']+/g;
+const savedLinkPattern = /https:\/\/diogonmpacheco\.github\.io\/Diognosis\/index\.html\?[^)\s"']+|\.\/index\.html\?[^"\s']+/g;
 for (const [source, text] of linkSources) {
   for (const match of text.matchAll(savedLinkPattern)) {
     const raw = match[0].replace(/\)$/g, '');
-    const url = new URL(raw, 'https://diogonmpacheco.github.io/PharmTrace/');
+    const url = new URL(raw, 'https://diogonmpacheco.github.io/Diognosis/');
     const substances = url.searchParams.get('substances') || url.searchParams.get('drugs') || url.searchParams.get('medications');
     if (!substances) continue;
     for (const token of substances.split(',').map(s => s.trim()).filter(Boolean)) {

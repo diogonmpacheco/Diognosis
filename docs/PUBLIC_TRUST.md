@@ -1,16 +1,16 @@
-# PharmTrace Public Trust Model
+# Diognosis Public Trust Model
 
 Generated: 2026-06-09
 
 ## Launch Status
 
-PharmTrace is an AI-assisted medication safety and pharmacogenomics platform in active development.
+Diognosis is an AI-assisted medication safety and pharmacogenomics platform in active development.
 
 Its first module, the MedCheck Engine, explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
 
 Status: pre-v1, source-linked, under active validation, and not yet professionally reviewed.
 
-PharmTrace is a source-linked educational preview. It is designed to make pharmacology, pharmacogenomics, metabolites, and interaction pathways easier to inspect. It is not medical advice, not a clinical decision support system, and it does not replace a licensed clinician or pharmacist.
+Diognosis is a source-linked educational preview. It is designed to make pharmacology, pharmacogenomics, metabolites, and interaction pathways easier to inspect. It is not medical advice, not a clinical decision support system, and it does not replace a licensed clinician or pharmacist.
 
 Current evidence status:
 
