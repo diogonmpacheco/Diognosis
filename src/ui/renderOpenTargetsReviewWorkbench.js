@@ -2,7 +2,7 @@
 // Pulls local generated governance queues into one reviewer-facing surface.
 
 let reviewWorkbenchHandlersBound = false;
-const REVIEW_WORKBENCH_KINDS = ["internal", "first_target", "pgx", "promotion"];
+const REVIEW_WORKBENCH_KINDS = ["internal", "first_target", "mechanistic", "pgx", "promotion"];
 const REVIEW_WORKBENCH_FILTERS = ["all", ...REVIEW_WORKBENCH_KINDS];
 
 function getEvidenceReviewQueue() {
@@ -23,6 +23,11 @@ function getOpenTargetsPgxGapRoadmap() {
 function getOpenTargetsPgxGapSummary() {
   if (typeof OPEN_TARGETS_PGX_GAP_ROADMAP_SUMMARY !== "undefined") return OPEN_TARGETS_PGX_GAP_ROADMAP_SUMMARY;
   return null;
+}
+
+function getOpenTargetsMechanisticQueue() {
+  if (typeof GENERATED_OPEN_TARGETS_MECHANISTIC_QUEUE !== "undefined") return GENERATED_OPEN_TARGETS_MECHANISTIC_QUEUE;
+  return [];
 }
 
 function renderReviewWorkbench(overrides = {}) {
@@ -55,6 +60,7 @@ function renderReviewWorkbench(overrides = {}) {
     <div class="review-workbench-summary">
       ${renderReviewWorkbenchTile("Internal evidence", model.summary.internalRows, `${model.summary.calculationBearingRows} calculation-bearing`)}
       ${renderReviewWorkbenchTile("First targets", model.summary.firstTargets, `${model.summary.linkedRows} linked rows`)}
+      ${renderReviewWorkbenchTile("Mechanistic queue", model.summary.mechanisticRows, `${model.summary.mechanisticExperimentalRows} experimental`)}
       ${renderReviewWorkbenchTile("PGx roadmap", model.summary.pgxPairs, `${model.summary.unsupportedPgxPairs} unsupported`)}
       ${renderReviewWorkbenchTile("Promotion queue", model.summary.promotionRows, `${model.summary.promotionLinked} linked · ${model.summary.promotionCandidates} candidates`)}
     </div>
@@ -62,6 +68,7 @@ function renderReviewWorkbench(overrides = {}) {
       ${renderReviewWorkbenchFilter("all", "All", model.rows.length, true)}
       ${renderReviewWorkbenchFilter("internal", "Evidence", model.summary.internalRows)}
       ${renderReviewWorkbenchFilter("first_target", "Targets", model.summary.firstTargets)}
+      ${renderReviewWorkbenchFilter("mechanistic", "Mechanistic", model.summary.mechanisticRows)}
       ${renderReviewWorkbenchFilter("pgx", "PGx", model.summary.pgxPairs)}
       ${renderReviewWorkbenchFilter("promotion", "Open Targets", model.summary.promotionRows)}
     </div>
@@ -77,6 +84,7 @@ function buildReviewWorkbenchModel(stack = activeStack, overrides = {}) {
   const promotionQueue = overrides.promotionQueue || getOpenTargetsPromotionQueue();
   const reviewTargets = overrides.reviewTargets || getOpenTargetsReviewTargets();
   const pgxRoadmap = overrides.pgxRoadmap || getOpenTargetsPgxGapRoadmap();
+  const mechanisticQueue = overrides.mechanisticQueue || getOpenTargetsMechanisticQueue();
   const keys = buildReviewWorkbenchStackKeys(stack, snapshot);
 
   const internalRows = evidenceQueue
@@ -96,6 +104,12 @@ function buildReviewWorkbenchModel(stack = activeStack, overrides = {}) {
     .slice(0, 14)
     .map(row => normalizeReviewWorkbenchPgxRow(row, true));
 
+  const mechanisticRows = mechanisticQueue
+    .filter(row => isReviewWorkbenchOpenTargetsRelevant(row, keys))
+    .sort(sortReviewWorkbenchPriority)
+    .slice(0, 14)
+    .map(row => normalizeReviewWorkbenchMechanisticRow(row, true));
+
   const promotionRows = promotionQueue
     .filter(row => isReviewWorkbenchOpenTargetsRelevant(row, keys))
     .sort(sortReviewWorkbenchPriority)
@@ -105,6 +119,7 @@ function buildReviewWorkbenchModel(stack = activeStack, overrides = {}) {
   const stackMatchedRows = [
     ...internalRows,
     ...firstTargetRows,
+    ...mechanisticRows,
     ...pgxRows,
     ...promotionRows,
   ];
@@ -112,6 +127,7 @@ function buildReviewWorkbenchModel(stack = activeStack, overrides = {}) {
   const fallbackRows = stackMatchedRows.length ? [] : [
     ...evidenceQueue.slice().sort(sortReviewWorkbenchPriority).slice(0, 4).map(row => normalizeReviewWorkbenchEvidenceRow(row, false)),
     ...reviewTargets.slice(0, 5).map(row => normalizeReviewWorkbenchFirstTargetRow(row, false)),
+    ...mechanisticQueue.slice().sort(sortReviewWorkbenchPriority).slice(0, 5).map(row => normalizeReviewWorkbenchMechanisticRow(row, false)),
   ];
 
   const rows = [...stackMatchedRows, ...fallbackRows];
@@ -123,6 +139,8 @@ function buildReviewWorkbenchModel(stack = activeStack, overrides = {}) {
       calculationBearingRows: rows.filter(row => row.kind === "internal" && row.calculationBearing).length,
       firstTargets: firstTargetRows.length || fallbackRows.filter(row => row.kind === "first_target").length,
       linkedRows: firstTargetRows.reduce((sum, row) => sum + (row.raw.linkedContextRowCount || 0), 0),
+      mechanisticRows: mechanisticRows.length || fallbackRows.filter(row => row.kind === "mechanistic").length,
+      mechanisticExperimentalRows: rows.filter(row => row.kind === "mechanistic" && row.raw.experimental !== false).length,
       pgxPairs: pgxRows.length,
       unsupportedPgxPairs: pgxRows.filter(row => !row.raw.hasGenotypeSelector).length,
       promotionRows: promotionRows.length,
@@ -251,6 +269,29 @@ function normalizeReviewWorkbenchPgxRow(row, stackMatched) {
       row.hasWarningCard ? "Warning card: yes" : "Warning card: no",
     ].filter(Boolean),
     detail: row.reviewerRationale || (row.labels || []).join(", ") || "Open Targets PGx context remains non-scoring.",
+    raw: row,
+  };
+}
+
+function normalizeReviewWorkbenchMechanisticRow(row, stackMatched) {
+  return {
+    kind: "mechanistic",
+    stackMatched,
+    title: `${(row.medcheckNames || [])[0] || row.chemblId || "Open Targets"} / ${row.targetGene || "target safety"}`,
+    badges: ["external target-safety context", row.targetRelationship || "review"],
+    decision: row.reviewDecision || "keep_context",
+    priority: row.priorityScore || 0,
+    meta: [
+      (row.medcheckNames || []).length ? `Drug: ${row.medcheckNames.join(", ")}` : "",
+      row.chemblId ? `ChEMBL: ${row.chemblId}` : "",
+      row.openTargetsRelease ? `Release: ${row.openTargetsRelease}` : "",
+      row.targetGene ? `Target/gene: ${row.targetGene}` : "",
+      row.sourceEvidenceLevel ? `Evidence: ${row.sourceEvidenceLevel}` : "",
+      row.source ? `Source: ${row.source}` : "",
+      row.experimental !== false ? "Experimental" : "Linked evidence context",
+      row.notSeverityBearing !== false ? "Not severity-bearing" : "",
+    ].filter(Boolean),
+    detail: row.suggestedAction || row.label || "Use as mechanistic review context only.",
     raw: row,
   };
 }

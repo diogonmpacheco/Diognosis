@@ -34,6 +34,7 @@ const report = dom.window.eval(`(() => {
   const body = document.getElementById("reviewWorkbenchBody");
   const section = document.getElementById("reviewWorkbenchSection");
   const firstRows = body.querySelectorAll('[data-review-kind="first_target"]').length;
+  const mechanisticRows = body.querySelectorAll('[data-review-kind="mechanistic"]').length;
   const pgxRows = body.querySelectorAll('[data-review-kind="pgx"]').length;
   const promotionRows = body.querySelectorAll('[data-review-kind="promotion"]').length;
   const internalRows = body.querySelectorAll('[data-review-kind="internal"]').length;
@@ -92,6 +93,25 @@ const report = dom.window.eval(`(() => {
         }
       ]
     },
+    mechanisticQueue: [
+      {
+        id:"ot_target_safety_xss",
+        medcheckNames:["Paroxetine"],
+        chemblId:"CHEMBL_XSS",
+        openTargetsRelease:"fixture <img src=x onerror='window.__reviewWorkbenchXss=1'>",
+        openTargetsSourceDataset:"targetSafety",
+        targetGene:"SLC6A4 <script>window.__reviewWorkbenchXss=1</script>",
+        targetRelationship:"external_off_target_context",
+        label:"target liability <img src=x onerror='window.__reviewWorkbenchXss=1'>",
+        sourceEvidenceLevel:"clinical <svg onload='window.__reviewWorkbenchXss=1'></svg>",
+        source:"Open Targets target safety <object data='javascript:alert(1)'></object>",
+        reviewDecision:"keep_context",
+        priorityScore:80,
+        experimental:true,
+        notSeverityBearing:true,
+        suggestedAction:"<script>window.__reviewWorkbenchXss=1</script>"
+      }
+    ],
     promotionQueue: [
       {
         id:"ot_xss",
@@ -123,6 +143,7 @@ const report = dom.window.eval(`(() => {
     countText: document.getElementById("reviewWorkbenchCount").textContent,
     rowCount: realRowCount,
     firstRows,
+    mechanisticRows,
     pgxRows,
     promotionRows,
     internalRows,
@@ -143,6 +164,7 @@ assert(report.sectionVisible === true, 'Review workbench should be visible for a
 assert(/review row/i.test(report.countText), `Review workbench count should report rows, got "${report.countText}"`);
 assert(report.rowCount > 0, 'Expected review workbench rows');
 assert(report.firstRows > 0, 'Expected first-review target rows for Codeine/Paroxetine stack');
+assert(report.mechanisticRows > 0, 'Expected mechanistic target-safety review rows for Codeine/Paroxetine stack');
 assert(report.pgxRows > 0, 'Expected PGx roadmap rows for Codeine/Paroxetine stack');
 assert(report.promotionRows > 0, 'Expected Open Targets promotion rows for Codeine/Paroxetine stack');
 assert(report.internalRows > 0, 'Expected internal evidence review rows for Codeine/Paroxetine stack');
