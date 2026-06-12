@@ -54,6 +54,9 @@ const catalogDir = args['catalog-dir'] ? resolve(process.cwd(), args['catalog-di
 const outPath = resolve(root, args.out || 'scripts/audit/genotype-gap-report.json');
 const mdPath = resolve(root, args.md || 'scripts/audit/genotype-gap-report.md');
 const profilePath = args.profile ? resolve(process.cwd(), args.profile) : null;
+const openTargetsSnapshotPath = args['open-targets-snapshot']
+  ? resolve(process.cwd(), args['open-targets-snapshot'])
+  : resolve(root, 'src/data/generatedOpenTargetsSnapshot.js');
 const dryRun = Boolean(args['dry-run']);
 
 main();
@@ -64,8 +67,10 @@ function main() {
     const medcheck = readMedcheck(medcheckSrc);
     log('Reading optional external PGx catalog...');
     const catalog = readCatalog(catalogDir);
+    log('Reading optional Open Targets/ClinPGx snapshot...');
+    const openTargets = readOpenTargetsSnapshot(openTargetsSnapshotPath);
     log('Scoring gaps...');
-    const report = buildReport(medcheck, catalog, profilePath);
+    const report = buildReport(medcheck, catalog, profilePath, openTargets);
     log('Writing report...');
     if (!dryRun) {
       mkdirSync(dirname(outPath), { recursive: true });
@@ -79,6 +84,8 @@ function main() {
       critical: report.gapAnalysis.missingFromPanel.filter((g) => g.nullImpactClass === 'CRITICAL').length,
       high: report.gapAnalysis.missingFromPanel.filter((g) => g.nullImpactClass === 'HIGH').length,
       catalogGenes: report.catalogSummary.totalGenes,
+      openTargetsClinPgxPairs: report.openTargetsClinPgx.coveredPairs.length + report.openTargetsClinPgx.missingHighEvidencePairs.length,
+      openTargetsUnsupportedGenes: report.openTargetsClinPgx.unsupportedGenes.length,
       wrote: dryRun ? null : { json: outPath, markdown: mdPath },
     }, null, 2)}\n`);
   } catch (err) {
@@ -105,6 +112,7 @@ function parseArgs(argv) {
 function readMedcheck(srcDir) {
   const files = {
     constants: readOptional(join(srcDir, 'data/constants.js')),
+    rules: readOptional(join(srcDir, 'data/rules.js')),
     enzymes: readOptional(join(srcDir, 'data/enzymes.js')),
     drugs: readOptional(join(srcDir, 'data/drugs.js')),
     interactions: readOptional(join(srcDir, 'data/interactions.js')),
@@ -121,10 +129,16 @@ function readMedcheck(srcDir) {
   const genotypePanel = new Set([
     ...objectKeys(files.constants, 'GENOTYPE_EFFECTS'),
   ]);
+  const metaboliteRuleGenes = new Set(genotypeMetaboliteGenes(files.rules));
+  const warningCardGenes = new Set([
+    ...riskEffectGenes(files.constants),
+    ...objectKeys(files.enzymes, 'PHARMGKB_EVIDENCE'),
+  ]);
   const riskEffects = objectKeys(files.constants, 'GENOTYPE_RISK_EFFECTS');
   for (const riskKey of riskEffects) {
     const gene = riskKey.match(/^HLA-[AB]/)?.[0] || riskKey;
     genotypePanel.add(gene);
+    warningCardGenes.add(gene);
     addFound(found, gene, 'GENOTYPE_RISK_EFFECTS');
   }
   for (const gene of riskEffectGenes(files.constants)) {
@@ -172,6 +186,8 @@ function readMedcheck(srcDir) {
     found,
     drugRefs,
     severity,
+    metaboliteRuleGenes,
+    warningCardGenes,
   };
 }
 
@@ -207,7 +223,140 @@ function readCatalog(baseDir) {
   return { genes: new Set(byGene.keys()), byGene, note: null };
 }
 
-function buildReport(medcheck, catalog, profilePathArg) {
+function readOpenTargetsSnapshot(snapshotPath) {
+  const empty = {
+    enabled: false,
+    path: snapshotPath,
+    release: null,
+    summary: null,
+    pairs: [],
+    note: snapshotPath ? `Open Targets snapshot not found: ${snapshotPath}` : 'No Open Targets snapshot supplied.',
+  };
+  if (!snapshotPath || !existsSync(snapshotPath)) return empty;
+  try {
+    const text = readFileSync(snapshotPath, 'utf8');
+    const match = text.match(/const\s+GENERATED_OPEN_TARGETS_SNAPSHOT\s*=\s*Object\.freeze\(([\s\S]*?)\);\s*$/);
+    if (!match) return { ...empty, note: 'Could not find GENERATED_OPEN_TARGETS_SNAPSHOT in snapshot file.' };
+    const snapshot = JSON.parse(match[1]);
+    const crosswalkByChembl = new Map();
+    for (const row of snapshot.crosswalk || []) {
+      if (!row.chemblId) continue;
+      const list = crosswalkByChembl.get(row.chemblId) || [];
+      list.push(row);
+      crosswalkByChembl.set(row.chemblId, list);
+    }
+    const pairs = [];
+    for (const facts of Object.values(snapshot.contextByChemblId || {})) {
+      for (const fact of facts || []) {
+        if (!isOpenTargetsClinPgxFact(fact)) continue;
+        const gene = normalizeGene(fact.targetGene || extractFirstGene(fact.label) || extractFirstGene(fact.riskMarker));
+        if (!gene) continue;
+        const mappedRows = crosswalkByChembl.get(fact.chemblId) || [];
+        for (const row of mappedRows.length ? mappedRows : [{ medcheckName: null, medcheckId: null }]) {
+          pairs.push({
+            gene,
+            drug: row.medcheckName || fact.chemblId,
+            medcheckId: row.medcheckId || null,
+            chemblId: fact.chemblId,
+            openTargetsDrugId: fact.openTargetsDrugId || fact.chemblId,
+            sourceEvidenceLevel: fact.sourceEvidenceLevel || null,
+            drugResponseCategory: fact.drugResponseCategory || null,
+            riskMarker: fact.riskMarker || null,
+            label: fact.label || null,
+            source: fact.source || 'Open Targets',
+            openTargetsRelease: fact.openTargetsRelease || snapshot.release || null,
+            openTargetsSourceDataset: fact.openTargetsSourceDataset || fact.factType || null,
+          });
+        }
+      }
+    }
+    return {
+      enabled: true,
+      path: snapshotPath,
+      release: snapshot.release || snapshot.summary?.release || null,
+      summary: snapshot.summary || null,
+      pairs,
+      note: null,
+    };
+  } catch (err) {
+    return { ...empty, note: `Could not parse Open Targets snapshot: ${err.message}` };
+  }
+}
+
+function isOpenTargetsClinPgxFact(fact) {
+  const text = `${fact?.factType || ''} ${fact?.openTargetsSourceDataset || ''} ${fact?.source || ''} ${fact?.label || ''}`.toLowerCase();
+  return /pharmacogen|clinpgx|pharmgkb|drug response|star allele/.test(text);
+}
+
+function extractFirstGene(value) {
+  const match = String(value || '').match(GENE_RE);
+  return match ? normalizeGene(match[0]) : '';
+}
+
+function buildOpenTargetsClinPgx(medcheck, openTargets) {
+  const rows = (openTargets.pairs || []).map((pair) => {
+    const hasGenotypeSelector = medcheck.genotypePanel.has(pair.gene);
+    const hasMetaboliteRule = medcheck.metaboliteRuleGenes.has(pair.gene);
+    const hasWarningCard = medcheck.warningCardGenes.has(pair.gene);
+    const highEvidence = isHighOpenTargetsEvidence(pair.sourceEvidenceLevel, pair.label);
+    return {
+      ...pair,
+      hasGenotypeSelector,
+      hasMetaboliteRule,
+      hasWarningCard,
+      sourceEvidenceLevel: pair.sourceEvidenceLevel || 'not_specified',
+      highEvidence,
+    };
+  }).sort((a, b) => a.gene.localeCompare(b.gene) || String(a.drug).localeCompare(String(b.drug)));
+
+  const coveredPairs = rows.filter(row => row.hasGenotypeSelector || row.hasMetaboliteRule || row.hasWarningCard);
+  const missingHighEvidencePairs = rows.filter(row =>
+    row.highEvidence &&
+    !row.hasGenotypeSelector &&
+    !row.hasMetaboliteRule &&
+    !row.hasWarningCard
+  );
+  const unsupportedGenes = [...new Set(rows
+    .filter(row => !row.hasGenotypeSelector)
+    .map(row => row.gene))]
+    .sort()
+    .map(gene => ({
+      gene,
+      pairCount: rows.filter(row => row.gene === gene).length,
+      highEvidencePairCount: rows.filter(row => row.gene === gene && row.highEvidence).length,
+      hasMetaboliteRule: medcheck.metaboliteRuleGenes.has(gene),
+      hasWarningCard: medcheck.warningCardGenes.has(gene),
+    }));
+  const unsupportedRiskMarkers = rows
+    .filter(row => row.riskMarker && !row.hasWarningCard && !row.hasMetaboliteRule)
+    .map(row => ({
+      gene: row.gene,
+      drug: row.drug,
+      riskMarker: row.riskMarker,
+      sourceEvidenceLevel: row.sourceEvidenceLevel,
+      hasGenotypeSelector: row.hasGenotypeSelector,
+      hasMetaboliteRule: row.hasMetaboliteRule,
+      hasWarningCard: row.hasWarningCard,
+    }));
+
+  return {
+    enabled: openTargets.enabled,
+    note: openTargets.note,
+    snapshotPath: openTargets.path,
+    release: openTargets.release,
+    sourceSummary: openTargets.summary,
+    coveredPairs,
+    missingHighEvidencePairs,
+    unsupportedGenes,
+    unsupportedRiskMarkers,
+  };
+}
+
+function isHighOpenTargetsEvidence(level, label) {
+  return /(^|[^a-z0-9])(1a|1b|level\s*1|high|strong|guideline|cpic|fda|clinical annotation)([^a-z0-9]|$)/i.test(`${level || ''} ${label || ''}`);
+}
+
+function buildReport(medcheck, catalog, profilePathArg, openTargets) {
   const covered = [...medcheck.genotypePanel].sort();
   const missing = medcheck.missingFromPanel
     .map((gene) => decorateGap(gene, medcheck, catalog, classFor(gene, medcheck, catalog)))
@@ -219,6 +368,7 @@ function buildReport(medcheck, catalog, profilePathArg) {
     .sort(sortGap);
 
   const profile = buildProfile(profilePathArg, [...missing, ...absent]);
+  const openTargetsClinPgx = buildOpenTargetsClinPgx(medcheck, openTargets);
 
   return {
     generated: new Date().toISOString(),
@@ -238,6 +388,7 @@ function buildReport(medcheck, catalog, profilePathArg) {
       classC: [...catalog.genes].filter((gene) => !medcheck.allReferencedGenes.has(gene)).length,
       topPriorityClassC: absent.filter((g) => g.nullImpactClass === 'CRITICAL' || g.nullImpactClass === 'HIGH').slice(0, 10).map((g) => g.gene),
     },
+    openTargetsClinPgx,
     personalProfile: profile,
   };
 }
@@ -289,6 +440,7 @@ function markdown(report) {
   const high = report.gapAnalysis.missingFromPanel.filter((g) => g.nullImpactClass === 'HIGH');
   const rest = report.gapAnalysis.missingFromPanel.filter((g) => g.nullImpactClass !== 'CRITICAL' && g.nullImpactClass !== 'HIGH');
   const openOnly = report.gapAnalysis.absentFromMedCheck.filter((g) => g.nullImpactScore >= 20).slice(0, 50);
+  const ot = report.openTargetsClinPgx;
   return `# Genotype Gap Audit
 
 Generated: ${report.generated}
@@ -301,6 +453,9 @@ Generated: ${report.generated}
 - Critical gaps: ${critical.length}
 - High gaps: ${high.length}
 - External catalog genes read: ${report.catalogSummary.totalGenes}${report.catalogSummary.note ? `\n- External catalog note: ${report.catalogSummary.note}` : ''}
+- Open Targets/ClinPGx covered pairs: ${ot.coveredPairs.length}
+- Open Targets/ClinPGx missing high-evidence pairs: ${ot.missingHighEvidencePairs.length}
+- Open Targets/ClinPGx unsupported genes: ${ot.unsupportedGenes.length}${ot.note ? `\n- Open Targets/ClinPGx note: ${ot.note}` : ''}
 
 ## Critical Gaps
 
@@ -320,12 +475,41 @@ Genes in the optional external PGx catalog but absent from MedCheck Engine, sort
 
 ${table(openOnly)}
 
+## Open Targets / ClinPGx Gap Audit
+
+This section reads the local generated Open Targets snapshot when available. It is audit-only; Open Targets-derived PGx facts remain context until reviewed.
+
+Snapshot release: ${ot.release || 'not specified'}
+
+### Covered PGx Pairs
+
+${openTargetsPairTable(ot.coveredPairs)}
+
+### Missing High-Evidence PGx Pairs
+
+${openTargetsPairTable(ot.missingHighEvidencePairs)}
+
+### Unsupported Genes
+
+${ot.unsupportedGenes.length ? ot.unsupportedGenes.map((row) => `- ${row.gene}: ${row.pairCount} pair(s), ${row.highEvidencePairCount} high-evidence; metabolite rule: ${row.hasMetaboliteRule ? 'yes' : 'no'}; warning card: ${row.hasWarningCard ? 'yes' : 'no'}`).join('\n') : 'None.'}
+
+### Unsupported Risk Markers
+
+${ot.unsupportedRiskMarkers.length ? ot.unsupportedRiskMarkers.map((row) => `- ${row.gene} / ${row.drug}: ${row.riskMarker} (${row.sourceEvidenceLevel})`).join('\n') : 'None.'}
+
 ## Covered Genes
 
 ${report.gapAnalysis.covered.join(', ')}
 
 No third-party catalog data is bundled in Diognosis by this audit script. If a local external catalog is supplied, its metadata is used only for local prioritization unless manually reviewed and imported.
 `;
+}
+
+function openTargetsPairTable(rows) {
+  if (!rows.length) return 'None.';
+  const head = '| Gene | Drug | Evidence | Selector | Metabolite Rule | Warning Card | Marker |\n|---|---|---|---|---|---|---|';
+  const body = rows.slice(0, 60).map((row) => `| ${row.gene} | ${row.drug || '-'} | ${row.sourceEvidenceLevel || '-'} | ${row.hasGenotypeSelector ? 'yes' : 'no'} | ${row.hasMetaboliteRule ? 'yes' : 'no'} | ${row.hasWarningCard ? 'yes' : 'no'} | ${row.riskMarker || '-'} |`);
+  return [head, ...body].join('\n');
 }
 
 function table(rows) {
@@ -425,6 +609,12 @@ function riskEffectGenes(text) {
     .filter(isGeneLike);
 }
 
+function genotypeMetaboliteGenes(text) {
+  const body = balancedArrayBody(text, 'GENOTYPE_METABOLITE_EFFECTS');
+  if (!body) return [];
+  return [...new Set((body.match(GENE_RE) || []).map(normalizeGene).filter(isGeneLike))];
+}
+
 function arrayValues(text, name) {
   const match = text.match(new RegExp(`const\\s+${name}\\s*=\\s*\\[([\\s\\S]*?)\\];`));
   if (!match) return [];
@@ -441,6 +631,21 @@ function balancedObjectBody(text, name) {
     const char = text[i];
     if (char === '{') depth += 1;
     if (char === '}') depth -= 1;
+    if (depth === 0) return text.slice(start + 1, i);
+  }
+  return null;
+}
+
+function balancedArrayBody(text, name) {
+  const idx = text.indexOf(name);
+  if (idx < 0) return null;
+  const start = text.indexOf('[', idx);
+  if (start < 0) return null;
+  let depth = 0;
+  for (let i = start; i < text.length; i += 1) {
+    const char = text[i];
+    if (char === '[') depth += 1;
+    if (char === ']') depth -= 1;
     if (depth === 0) return text.slice(start + 1, i);
   }
   return null;

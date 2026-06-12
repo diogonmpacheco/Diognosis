@@ -269,6 +269,9 @@ function contextFactFromRecord(record, dataset, release, index) {
   if (!chemblId) return null;
   const warningType = record.warningType || record.warning_type || record.toxicityClass || record.toxicity_class || record.event || record.eventName || null;
   const targetGene = record.targetGeneSymbol || record.targetSymbol || record.geneSymbol || record.gene || record.target?.approvedSymbol || record.target?.name || null;
+  const sourceEvidenceLevel = record.evidenceLevel || record.evidence_level || record.clinicalAnnotationLevel || record.clinical_annotation_level || record.levelOfEvidence || null;
+  const drugResponseCategory = record.drugResponseCategory || record.drug_response_category || record.responseCategory || record.category || null;
+  const riskMarker = record.variant || record.variantId || record.variant_id || record.haplotype || record.starAllele || record.star_allele || record.marker || null;
   const label = (
     warningType ||
     record.description ||
@@ -296,6 +299,9 @@ function contextFactFromRecord(record, dataset, release, index) {
     label: String(label || dataset).slice(0, 240),
     warningType: warningType ? String(warningType).slice(0, 160) : null,
     targetGene: targetGene ? String(targetGene).slice(0, 80) : null,
+    sourceEvidenceLevel: sourceEvidenceLevel ? String(sourceEvidenceLevel).slice(0, 80) : null,
+    drugResponseCategory: drugResponseCategory ? String(drugResponseCategory).slice(0, 120) : null,
+    riskMarker: riskMarker ? String(riskMarker).slice(0, 120) : null,
     source: record.datasource || record.dataSource || record.source || 'Open Targets',
   };
 }
