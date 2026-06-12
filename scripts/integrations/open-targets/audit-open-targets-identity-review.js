@@ -10,6 +10,7 @@ const OUT_MD = resolve(ROOT, 'docs/OPEN_TARGETS_IDENTITY_REVIEW.md');
 const CHECK = process.argv.includes('--check');
 
 const ACCEPTED_DECISIONS = new Set(['accepted_for_context_import']);
+const MIN_ACCEPTED_MATCH_CONFIDENCE = 0.95;
 
 function readSnapshot(filePath) {
   const text = readFileSync(filePath, 'utf8');
@@ -40,6 +41,9 @@ function validate(snapshot) {
     if (row.identityReviewRequired === true) {
       errors.push(`${row.medcheckName}: accepted mapping should not still require identity review`);
     }
+    if (!Number.isFinite(row.matchConfidence) || row.matchConfidence < MIN_ACCEPTED_MATCH_CONFIDENCE) {
+      errors.push(`${row.medcheckName}: accepted mapping confidence ${row.matchConfidence} is below ${MIN_ACCEPTED_MATCH_CONFIDENCE}`);
+    }
   }
 
   for (const row of nonAccepted) {
@@ -68,6 +72,7 @@ function validate(snapshot) {
       nonAcceptedMappedRows: nonAccepted.length,
       combinationDiognosisAuthorityRows: combinationRows.length,
       contextFactsOnAcceptedMappings: accepted.reduce((sum, row) => sum + contextCount(snapshot, row.chemblId), 0),
+      minAcceptedMatchConfidence: accepted.reduce((min, row) => Math.min(min, row.matchConfidence), 1),
       generatedBy: 'scripts/integrations/open-targets/audit-open-targets-identity-review.js',
     },
   };
@@ -109,6 +114,7 @@ This is a Diognosis data identity review for context-only Open Targets import. I
 | Non-accepted mapped rows | ${report.summary.nonAcceptedMappedRows} |
 | Combination/context rows kept under Diognosis authority | ${report.summary.combinationDiognosisAuthorityRows} |
 | Context facts on accepted mappings | ${report.summary.contextFactsOnAcceptedMappings} |
+| Minimum accepted mapping confidence | ${report.summary.minAcceptedMatchConfidence} |
 
 Open Targets release: ${report.summary.release || 'not specified'}
 

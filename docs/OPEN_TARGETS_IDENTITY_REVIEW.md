@@ -13,6 +13,7 @@ This is a Diognosis data identity review for context-only Open Targets import. I
 | Non-accepted mapped rows | 0 |
 | Combination/context rows kept under Diognosis authority | 22 |
 | Context facts on accepted mappings | 270 |
+| Minimum accepted mapping confidence | 1 |
 
 Open Targets release: 26.03
 

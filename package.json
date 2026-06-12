@@ -14,6 +14,7 @@
     "audit:review-workbench-ui": "node scripts/audit/review-workbench-ui-audit.js",
     "audit:evidence-calculation": "node scripts/audit/evidence-calculation-audit.js",
     "audit:evidence-review-queue": "node scripts/audit/evidence-review-queue.js",
+    "audit:generated-boundary": "node scripts/audit/generated-artifact-boundary-audit.js",
     "audit:external-context-firewall": "node scripts/audit/external-context-firewall-audit.js",
     "audit:external-context-ui": "node scripts/audit/external-safety-context-ui-audit.js",
     "audit:open-targets": "node scripts/integrations/open-targets/import-open-targets.js --check",
@@ -44,7 +45,7 @@
     "validate": "node scripts/validate-db.js",
     "validate:strict": "node scripts/validate-db.js --strict",
     "release:check": "node scripts/release-check.js",
-    "test": "node scripts/smoke-check.js && node scripts/regression-check.js && node scripts/validate-db.js && node scripts/check-evidence.js && node scripts/audit/external-context-firewall-audit.js && node scripts/audit/external-safety-context-ui-audit.js && node scripts/audit/review-workbench-ui-audit.js && node scripts/audit/scenario-snapshot-audit.js && node scripts/audit/evidence-review-queue.js --check && node scripts/integrations/open-targets/import-open-targets.js --check && node scripts/integrations/open-targets/audit-open-targets-identity-review.js --check && node scripts/integrations/open-targets/audit-open-targets-promotions.js --check && node scripts/integrations/open-targets/audit-open-targets-review-targets.js --check && node scripts/integrations/open-targets/audit-open-targets-pgx-roadmap.js --check && node scripts/integrations/open-targets/audit-open-targets-mechanistic-queue.js --check && node scripts/audit/privacy-static-audit.js"
+    "test": "node scripts/smoke-check.js && node scripts/regression-check.js && node scripts/validate-db.js && node scripts/check-evidence.js && node scripts/audit/external-context-firewall-audit.js && node scripts/audit/external-safety-context-ui-audit.js && node scripts/audit/review-workbench-ui-audit.js && node scripts/audit/scenario-snapshot-audit.js && node scripts/audit/evidence-review-queue.js --check && node scripts/audit/generated-artifact-boundary-audit.js && node scripts/integrations/open-targets/import-open-targets.js --check && node scripts/integrations/open-targets/audit-open-targets-identity-review.js --check && node scripts/integrations/open-targets/audit-open-targets-promotions.js --check && node scripts/integrations/open-targets/audit-open-targets-review-targets.js --check && node scripts/integrations/open-targets/audit-open-targets-pgx-roadmap.js --check && node scripts/integrations/open-targets/audit-open-targets-mechanistic-queue.js --check && node scripts/audit/privacy-static-audit.js"
   },
   "devDependencies": {
     "esbuild": "^0.28.0",

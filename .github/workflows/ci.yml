@@ -23,32 +23,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Release check
+      - name: Release, generated-data, and Open Targets gates
         run: node scripts/release-check.js
-
-      - name: Evidence ledger check
-        run: node scripts/check-evidence.js
-
-      - name: Evidence review queue freshness
-        run: node scripts/audit/evidence-review-queue.js --check
-
-      - name: External context firewall audit
-        run: node scripts/audit/external-context-firewall-audit.js
-
-      - name: External context UI audit
-        run: node scripts/audit/external-safety-context-ui-audit.js
-
-      - name: Scenario snapshot audit
-        run: node scripts/audit/scenario-snapshot-audit.js
-
-      - name: Open Targets snapshot freshness
-        run: node scripts/integrations/open-targets/import-open-targets.js --check
-
-      - name: Privacy/static audit
-        run: node scripts/audit/privacy-static-audit.js
 
       - name: Severity report generation
         run: node scripts/severity-report.js
-
-      - name: Genotype gap audit
-        run: node scripts/audit/genotype-gap-audit.js --dry-run
