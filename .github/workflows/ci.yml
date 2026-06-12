@@ -35,6 +35,9 @@ jobs:
       - name: External context firewall audit
         run: node scripts/audit/external-context-firewall-audit.js
 
+      - name: Open Targets snapshot freshness
+        run: node scripts/integrations/open-targets/import-open-targets.js --check
+
       - name: Severity report generation
         run: node scripts/severity-report.js
 

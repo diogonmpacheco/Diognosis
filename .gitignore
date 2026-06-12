@@ -19,3 +19,5 @@ scripts/audit/mechanistic-curation-gaps.md
 scripts/enrich/review-report.md
 scripts/severity-report.json
 scripts/severity-report.md
+scripts/integrations/open-targets/input/*
+!scripts/integrations/open-targets/input/.gitkeep

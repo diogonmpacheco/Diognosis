@@ -14,6 +14,7 @@
     "audit:evidence-calculation": "node scripts/audit/evidence-calculation-audit.js",
     "audit:evidence-review-queue": "node scripts/audit/evidence-review-queue.js",
     "audit:external-context-firewall": "node scripts/audit/external-context-firewall-audit.js",
+    "audit:open-targets": "node scripts/integrations/open-targets/import-open-targets.js --check",
     "audit:metabolite-coverage": "node scripts/audit/metabolite-coverage-audit.js",
     "audit:mechanistic-gaps": "node scripts/audit/mechanistic-curation-gaps.js",
     "enrich": "node scripts/enrich/pubmed-enrich.js",
@@ -21,6 +22,7 @@
     "enrich:batch": "node scripts/enrich/run-batch.js",
     "enrich:validate-batches": "node scripts/enrich/validate-batches.js",
     "enrich:self-test": "node scripts/enrich/pubmed-enrich.js --self-test",
+    "integrate:open-targets": "node scripts/integrations/open-targets/import-open-targets.js",
     "build": "node build.js",
     "build:min": "node build.js --minify",
     "build:dev": "node build.js --out /tmp/diognosis_dev.html",
@@ -31,7 +33,7 @@
     "validate": "node scripts/validate-db.js",
     "validate:strict": "node scripts/validate-db.js --strict",
     "release:check": "node scripts/release-check.js",
-    "test": "node scripts/smoke-check.js && node scripts/regression-check.js && node scripts/validate-db.js && node scripts/check-evidence.js && node scripts/audit/external-context-firewall-audit.js && node scripts/audit/evidence-review-queue.js --check"
+    "test": "node scripts/smoke-check.js && node scripts/regression-check.js && node scripts/validate-db.js && node scripts/check-evidence.js && node scripts/audit/external-context-firewall-audit.js && node scripts/audit/evidence-review-queue.js --check && node scripts/integrations/open-targets/import-open-targets.js --check"
   },
   "devDependencies": {
     "esbuild": "^0.28.0",

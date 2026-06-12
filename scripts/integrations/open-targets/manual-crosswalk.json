@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "description": "Manual Diognosis to Open Targets/ChEMBL mapping overrides. Keep combination products unresolved unless each ingredient is intentionally modeled elsewhere.",
+  "release": null,
+  "mappings": []
+}
