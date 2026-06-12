@@ -808,6 +808,7 @@ function renderAll() {
     renderCascade();                // Phase 3: graph traversal
     renderEvidenceExplorer();       // Phase 4: study browser
     renderExternalSafetyContext();  // External context, not severity-bearing
+    renderReviewWorkbench();        // Generated review governance workbench
     renderQualityDashboard();       // Database quality / curation status
     renderGenotypePanel();          // Phase 5 #2: genotype-stratified evidence
     renderMechanisticPredictions(); // Experimental model predictions
@@ -826,6 +827,7 @@ function renderAll() {
     hideSectionAndClear("cascadeSection", "cascadeBody");
     hideSectionAndClear("evidenceSection", "evidenceBody", "evidenceCount");
     hideSectionAndClear("externalContextSection", "externalContextBody", "externalContextCount");
+    hideSectionAndClear("reviewWorkbenchSection", "reviewWorkbenchBody", "reviewWorkbenchCount");
     hideSectionAndClear("qualitySection", "qualityBody", "qualityCount");
     hideSectionAndClear("genotypeSection", "genotypeBody");
     hideSectionAndClear("mechanisticSection", "mechanisticBody", "mechanisticCount");

@@ -39,6 +39,7 @@ const MODULE_ORDER = [
   'data/evidence.js',       // STUDY_DB, INGESTION_QUEUE, createStudyDraft, reviewStudyDraft
   'data/interactions.js',   // PATHWAY_DIVERSION, COMBINATION_PRODUCTS, KNOWN_DDI
   'data/generatedStats.js', // MEDCHECK_STATS generated from source data
+  'data/generatedEvidenceReviewQueue.js', // static professional review queue
   'data/generatedOpenTargetsSnapshot.js', // static external context snapshot
   'data/generatedOpenTargetsPromotionQueue.js', // static Open Targets review/promotion queue
   'data/generatedOpenTargetsReviewTargets.js', // static first review target decisions
@@ -62,6 +63,7 @@ const MODULE_ORDER = [
   'ui/renderMechanisticPredictions.js', // experimental predictions below warnings
   'ui/renderEvidence.js',     // renderEvidenceExplorer
   'ui/renderExternalSafetyContext.js', // imported external context cards
+  'ui/renderOpenTargetsReviewWorkbench.js', // generated review workbench
   'ui/renderCascade.js',      // renderCascade
   'ui/renderAlternatives.js', // renderAlternatives, renderGenetics, renderMetabolites, etc.
   'ui/renderGenotype.js',     // renderGenotypePanel, setGenotype

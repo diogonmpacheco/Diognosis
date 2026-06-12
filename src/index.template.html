@@ -299,6 +299,24 @@ a{color:var(--accent)}
 .external-context-meta{font-size:11px;line-height:1.45;color:var(--text2)}
 .external-context-note{font-size:10px;line-height:1.4;color:var(--text2);margin-top:7px;padding-top:7px;border-top:1px solid var(--border)}
 .external-context-action{font-size:10px;line-height:1.35;color:var(--text2);margin-top:5px}
+.review-workbench-notice{margin-bottom:10px;border:1px solid var(--amber);background:var(--amberBg);border-radius:8px;padding:8px 10px;font-size:11px;color:var(--amber);line-height:1.5}
+.review-workbench-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:10px}
+.review-workbench-tile{border:1px solid var(--border);background:var(--card2);border-radius:8px;padding:10px 11px;min-height:74px}
+.review-workbench-num{font-size:20px;font-weight:800;color:var(--text);line-height:1}
+.review-workbench-label{font-size:11px;font-weight:800;color:var(--text);margin-top:5px}
+.review-workbench-note{font-size:10px;color:var(--text2);line-height:1.3;margin-top:3px}
+.review-workbench-filter{display:flex;gap:6px;flex-wrap:wrap;padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid var(--border)}
+.review-workbench-filter-btn{appearance:none;border:1.5px solid var(--border);border-radius:20px;background:var(--card);color:var(--text2);padding:5px 11px;font-size:11px;font-weight:800;cursor:pointer}
+.review-workbench-filter-btn span{font-weight:700;color:inherit;opacity:.78}
+.review-workbench-filter-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accentBg)}
+.review-workbench-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px}
+.review-workbench-row{padding:11px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card2)}
+.review-workbench-row-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px;margin-bottom:6px}
+.review-workbench-badges{display:flex;flex-wrap:wrap;gap:5px}
+.review-workbench-badge{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;padding:2px 6px;border-radius:6px;background:var(--card);color:var(--text2);border:1px solid var(--border)}
+.review-workbench-row-title{font-size:13px;font-weight:800;color:var(--text);line-height:1.35;margin-bottom:5px}
+.review-workbench-row-meta{font-size:11px;line-height:1.45;color:var(--text2)}
+.review-workbench-row-detail{font-size:10px;line-height:1.4;color:var(--text2);margin-top:7px;padding-top:7px;border-top:1px solid var(--border)}
 
 /* CASCADE / EXPLAINABLE GRAPH OUTPUT */
 .cascade-section{}
@@ -790,6 +808,17 @@ a{color:var(--accent)}
   <div class="tab-panel" id="tab-advanced"></div>
 
   <div class="tab-panel" id="tab-evidence">
+  <div class="section" id="reviewWorkbenchSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('reviewWorkbench')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        <span>Review Workbench</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="reviewWorkbenchCount"></span>
+      </div>
+      <div class="section-body coll-body open" id="reviewWorkbenchBody"></div>
+    </div>
+
   <div class="section" id="externalContextSection" style="display:none">
       <div class="section-title collapsible" onclick="toggleSection('externalContext')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
