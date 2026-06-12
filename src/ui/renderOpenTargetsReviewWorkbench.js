@@ -2,6 +2,8 @@
 // Pulls local generated governance queues into one reviewer-facing surface.
 
 let reviewWorkbenchHandlersBound = false;
+const REVIEW_WORKBENCH_KINDS = ["internal", "first_target", "pgx", "promotion"];
+const REVIEW_WORKBENCH_FILTERS = ["all", ...REVIEW_WORKBENCH_KINDS];
 
 function getEvidenceReviewQueue() {
   if (typeof GENERATED_EVIDENCE_REVIEW_QUEUE !== "undefined") return GENERATED_EVIDENCE_REVIEW_QUEUE;
@@ -85,7 +87,7 @@ function buildReviewWorkbenchModel(stack = activeStack, overrides = {}) {
 
   const firstTargetRows = reviewTargets
     .filter(row => isReviewWorkbenchOpenTargetsRelevant(row, keys))
-    .sort((a, b) => (b.candidateRowCount || 0) - (a.candidateRowCount || 0) || safeText(a.medcheckName).localeCompare(safeText(b.medcheckName)))
+    .sort((a, b) => (b.linkedContextRowCount || 0) - (a.linkedContextRowCount || 0) || safeText(a.medcheckName).localeCompare(safeText(b.medcheckName)))
     .map(row => normalizeReviewWorkbenchFirstTargetRow(row, true));
 
   const pgxRows = (pgxRoadmap.pairs || [])
@@ -283,7 +285,8 @@ function renderReviewWorkbenchTile(label, value, note) {
 }
 
 function renderReviewWorkbenchFilter(value, label, count, active = false) {
-  return `<button type="button" class="review-workbench-filter-btn${active ? " active" : ""}" data-review-workbench-filter="${safeAttr(value)}">
+  const filter = safeChoice(value, REVIEW_WORKBENCH_FILTERS, "all");
+  return `<button type="button" class="review-workbench-filter-btn${active ? " active" : ""}" data-review-workbench-filter="${safeAttr(filter)}">
     ${safeHtml(label)} <span>${safeHtml(count || 0)}</span>
   </button>`;
 }
@@ -291,7 +294,8 @@ function renderReviewWorkbenchFilter(value, label, count, active = false) {
 function renderReviewWorkbenchRow(row) {
   const badges = (row.badges || []).map(badge => `<span class="review-workbench-badge">${safeHtml(formatReviewWorkbenchToken(badge))}</span>`).join("");
   const decision = formatOpenTargetsReviewDecision(row.decision || "unreviewed");
-  return `<div class="review-workbench-row" data-review-kind="${safeAttr(row.kind)}" data-stack-matched="${row.stackMatched ? "true" : "false"}">
+  const kind = safeChoice(row.kind, REVIEW_WORKBENCH_KINDS, "promotion");
+  return `<div class="review-workbench-row" data-review-kind="${safeAttr(kind)}" data-stack-matched="${row.stackMatched ? "true" : "false"}">
     <div class="review-workbench-row-head">
       <div class="review-workbench-badges">${badges}</div>
       <span class="external-context-decision">${safeHtml(decision)}</span>
@@ -312,7 +316,7 @@ function bindReviewWorkbenchHandlers() {
   document.addEventListener("click", (event) => {
     const button = event.target?.closest?.("[data-review-workbench-filter]");
     if (!button) return;
-    const filter = button.getAttribute("data-review-workbench-filter") || "all";
+    const filter = safeChoice(button.getAttribute("data-review-workbench-filter"), REVIEW_WORKBENCH_FILTERS, "all");
     const wrap = button.closest("[data-review-workbench-filter-wrap]");
     if (wrap) {
       wrap.querySelectorAll("[data-review-workbench-filter]").forEach(btn => btn.classList.remove("active"));

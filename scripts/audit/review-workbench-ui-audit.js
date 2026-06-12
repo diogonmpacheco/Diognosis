@@ -69,7 +69,7 @@ const report = dom.window.eval(`(() => {
       {
         medcheckName:"Paroxetine",
         chemblId:"CHEMBL_XSS",
-        genes:["CYP2D6<script>"],
+        genes:["CYP2D6<script>", "UGT1A1<img src=x onerror='window.__reviewWorkbenchXss=1'>"],
         status:"completed_review_target",
         disposition:"linked_to_diognosis_evidence",
         linkedContextRowCount:1,
@@ -95,12 +95,15 @@ const report = dom.window.eval(`(() => {
     promotionQueue: [
       {
         id:"ot_xss",
-        medcheckNames:["Paroxetine"],
+        medcheckNames:["Paroxetine", "Codeine <img src=x onerror='window.__reviewWorkbenchXss=1'>"],
         chemblId:"CHEMBL_XSS",
         dataset:"faersSignificant",
         label:"FAERS <img src=x onerror='window.__reviewWorkbenchXss=1'>",
         reviewDecision:"keep_context",
         priorityScore:50,
+        release:"fixture <script>window.__reviewWorkbenchXss=1</script>",
+        targetGene:"CYP2D6 <svg onload='window.__reviewWorkbenchXss=1'></svg>",
+        sourceEvidenceLevel:"signal <math><mtext>x</mtext></math>",
         suggestedAction:"<script>window.__reviewWorkbenchXss=1</script>",
         notSeverityBearing:true
       }
@@ -113,6 +116,7 @@ const report = dom.window.eval(`(() => {
   const javascriptHrefs = Array.from(maliciousBody.querySelectorAll("[href]"))
     .map(el => el.getAttribute("href") || "")
     .filter(href => /^javascript:/i.test(href));
+  const dangerousTagCount = maliciousBody.querySelectorAll("img,script,svg,math,iframe,object,embed,style,link").length;
 
   return {
     sectionVisible: section.style.display !== "none",
@@ -126,6 +130,7 @@ const report = dom.window.eval(`(() => {
     riskSame: beforeRisk === afterRisk,
     maliciousImages: maliciousBody.querySelectorAll("img").length,
     maliciousScripts: maliciousBody.querySelectorAll("script").length,
+    dangerousTagCount,
     actualEventAttrs,
     javascriptHrefs,
     xssFlag: window.__reviewWorkbenchXss === 1,
@@ -145,6 +150,7 @@ assert(report.visibleKinds.length > 0 && report.visibleKinds.every(kind => kind 
 assert(report.riskSame === true, 'Rendering the review workbench must not alter calcRisk()');
 assert(report.maliciousImages === 0, 'Malicious review fixture created an image element');
 assert(report.maliciousScripts === 0, 'Malicious review fixture created a script element');
+assert(report.dangerousTagCount === 0, `Malicious review fixture created dangerous DOM tags: ${report.dangerousTagCount}`);
 assert(report.actualEventAttrs.length === 0, `Review workbench rendered inline event attributes: ${report.actualEventAttrs.join(', ')}`);
 assert(report.javascriptHrefs.length === 0, 'Review workbench rendered javascript: hrefs');
 assert(report.xssFlag === false, 'Malicious review fixture executed script/event handler');

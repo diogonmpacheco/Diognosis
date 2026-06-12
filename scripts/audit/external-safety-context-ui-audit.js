@@ -33,7 +33,7 @@ const report = dom.window.eval(`(() => {
     crosswalk: [
       {
         medcheckId: "paroxetine",
-        medcheckName: "Paroxetine",
+        medcheckName: "Paroxetine <img src=x onerror='window.__otXss=1'>",
         medcheckClass: "SSRI",
         openTargetsDrugId: "CHEMBL.PAROXETINE",
         chemblId: "CHEMBL.PAROXETINE",
@@ -50,7 +50,7 @@ const report = dom.window.eval(`(() => {
           id: "ot_fixture_faers",
           chemblId: "CHEMBL.PAROXETINE",
           openTargetsDrugId: "CHEMBL.PAROXETINE",
-          openTargetsRelease: "fixture-2026-06",
+          openTargetsRelease: "fixture-2026-06 <img src=x onerror='window.__otXss=1'>",
           openTargetsSourceDataset: "faersSignificant",
           sourceCategory: "open_targets_context",
           importedContextOnly: true,
@@ -59,31 +59,31 @@ const report = dom.window.eval(`(() => {
           reviewDecision: "unreviewed",
           factType: "faersSignificant",
           label: "FAERS ADR <script>window.__otXss=1</script>",
-          warningType: "serotonin syndrome",
+          warningType: "serotonin syndrome <img src=x onerror='window.__otXss=1'>",
           sourceEvidenceLevel: "signal only; confounding possible",
-          source: "Open Targets pharmacovigilance",
+          source: "Open Targets pharmacovigilance <img src=x onerror='window.__otXss=1'>",
         },
         {
           id: "ot_fixture_pgx",
           chemblId: "CHEMBL.PAROXETINE",
           openTargetsSourceDataset: "pharmacogenetics",
           factType: "pharmacogenetics",
-          label: "CYP2D6 response annotation",
+          label: "CYP2D6 response annotation <svg onload='window.__otXss=1'></svg>",
           targetGene: "CYP2D6<script>",
           sourceEvidenceLevel: "ClinPGx level 2A",
           drugResponseCategory: "toxicity",
-          riskMarker: "*4/*4",
-          source: "ClinPGx / PharmGKB",
+          riskMarker: "*4/*4 <img src=x onerror='window.__otXss=1'>",
+          source: "ClinPGx / PharmGKB <script>window.__otXss=1</script>",
         },
         {
           id: "ot_fixture_target_safety",
           chemblId: "CHEMBL.PAROXETINE",
           openTargetsSourceDataset: "targetSafety",
           factType: "targetSafety",
-          label: "hERG / KCNH2 liability",
-          targetGene: "KCNH2",
-          sourceEvidenceLevel: "curated target safety",
-          source: "Open Targets target safety",
+          label: "hERG / KCNH2 liability <math><mtext>x</mtext></math>",
+          targetGene: "KCNH2 <img src=x onerror='window.__otXss=1'>",
+          sourceEvidenceLevel: "curated target safety <iframe srcdoc='<script>window.__otXss=1</script>'></iframe>",
+          source: "Open Targets target safety <object data='javascript:alert(1)'></object>",
         }
       ]
     },
@@ -105,6 +105,7 @@ const report = dom.window.eval(`(() => {
   const javascriptHrefs = Array.from(body.querySelectorAll("[href]"))
     .map(el => el.getAttribute("href") || "")
     .filter(href => /^javascript:/i.test(href));
+  const dangerousTagCount = body.querySelectorAll("img,script,svg,math,iframe,object,embed,style,link").length;
 
   return {
     contextCount: contexts.length,
@@ -119,6 +120,7 @@ const report = dom.window.eval(`(() => {
     xssFlag: window.__otXss === 1,
     actualImages: body.querySelectorAll("img").length,
     actualScripts: body.querySelectorAll("script").length,
+    dangerousTagCount,
     actualEventAttrs,
     javascriptHrefs,
     reviewBadges: body.querySelectorAll(".ev-review-badge.needs-review").length,
@@ -137,6 +139,7 @@ assert(report.warningCountBefore === report.warningCountAfter, 'External context
 assert(report.xssFlag === false, 'Malicious imported fixture executed script/event handler');
 assert(report.actualImages === 0, 'Malicious imported fixture created an image element');
 assert(report.actualScripts === 0, 'Malicious imported fixture created a script element');
+assert(report.dangerousTagCount === 0, `Malicious imported fixture created dangerous DOM tags: ${report.dangerousTagCount}`);
 assert(report.actualEventAttrs.length === 0, `Rendered context contains inline event attributes: ${report.actualEventAttrs.join(', ')}`);
 assert(report.javascriptHrefs.length === 0, 'Rendered context contains javascript: hrefs');
 assert(report.reviewBadges === 4, `Expected every card to carry a review badge, got ${report.reviewBadges}`);

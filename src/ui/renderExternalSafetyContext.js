@@ -168,7 +168,7 @@ function renderExternalSafetyContextCard(context) {
     context.drugResponseCategory ? `Response: ${context.drugResponseCategory}` : "",
     context.riskMarker ? `Risk marker: ${context.riskMarker}` : "",
   ].filter(Boolean);
-  const reviewHref = buildExternalSafetyContextReviewUrl(context);
+  const reviewHref = safeUrl(buildExternalSafetyContextReviewUrl(context));
   const contextNote = `Context only · reviewRequired:${Boolean(context.reviewRequired)} · importedContextOnly:${Boolean(context.importedContextOnly)} · notSeverityBearing:${Boolean(context.notSeverityBearing)}`;
   const reviewDecision = formatOpenTargetsReviewDecision(context.reviewDecision);
   const actionHint = actionHintForOpenTargetsDataset(context.openTargetsSourceDataset || context.factType);
