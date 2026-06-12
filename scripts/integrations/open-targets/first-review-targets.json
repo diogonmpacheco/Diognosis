@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "description": "First completed Open Targets/ClinPGx review batch. These are reviewed follow-up targets, not promoted severity evidence.",
+  "reviewedBy": "Codex data review",
+  "reviewedAt": "2026-06-12",
+  "targets": [
+    {
+      "id": "abacavir_hla_b",
+      "medcheckName": "Abacavir",
+      "chemblId": "CHEMBL1380",
+      "genes": ["HLA-B"],
+      "scenarioId": "ot-abacavir-hlab-context",
+      "disposition": "candidate_for_diognosis_evidence",
+      "currentAssessment": "Partially covered: Diognosis has HLA-B risk-allele selectors including HLA-B*57:01 and warning-card behavior, but Open Targets context should remain non-scoring until the Diognosis evidence row is reviewed against label/CPIC-style sources.",
+      "neededProductBehavior": "Keep External Safety Context visible; verify existing HLA-B*57:01 warning card and create/confirm Diognosis-reviewed evidence for abacavir hypersensitivity before any promotion.",
+      "evidenceTask": "Verify Abacavir/HLA-B*57:01 label and PGx evidence, then decide whether current Diognosis warning card needs source or wording updates."
+    },
+    {
+      "id": "clopidogrel_cyp2c19",
+      "medcheckName": "Clopidogrel",
+      "chemblId": "CHEMBL1771",
+      "genes": ["CYP2C19"],
+      "scenarioId": "ot-clopidogrel-cyp2c19-context",
+      "disposition": "candidate_for_diognosis_evidence",
+      "currentAssessment": "Largely covered: Diognosis has a CYP2C19 selector, clopidogrel active-thiol metabolite rule, and CPIC-style evidence references; Open Targets rows should be used to verify coverage, not to raise severity directly.",
+      "neededProductBehavior": "Keep External Safety Context visible; confirm the clopidogrel activation warning card and metabolite rule stay aligned with reviewed Diognosis sources.",
+      "evidenceTask": "Review Clopidogrel/CYP2C19 evidence references and decide whether any Open Targets ClinPGx wording adds missing context."
+    },
+    {
+      "id": "capecitabine_dpyd",
+      "medcheckName": "Capecitabine",
+      "chemblId": "CHEMBL1773",
+      "genes": ["DPYD"],
+      "scenarioId": "ot-capecitabine-dpyd-clinpgx-context",
+      "disposition": "candidate_for_diognosis_evidence",
+      "currentAssessment": "Largely covered: Diognosis has a DPYD selector, capecitabine-to-5-FU metabolite/toxicity rule, and fluoropyrimidine evidence references; Open Targets rows are a verification prompt.",
+      "neededProductBehavior": "Keep External Safety Context visible; confirm DPYD warning card and metabolite rule wording against reviewed Diognosis evidence.",
+      "evidenceTask": "Review Capecitabine/DPYD evidence and decide whether scenario copy or warning-card wording needs tightening."
+    },
+    {
+      "id": "warfarin_cyp2c9_vkorc1",
+      "medcheckName": "Warfarin",
+      "chemblId": "CHEMBL1464",
+      "genes": ["CYP2C9", "VKORC1"],
+      "scenarioId": "ot-warfarin-pgx-warning-context",
+      "disposition": "candidate_for_diognosis_evidence",
+      "currentAssessment": "Partially covered: Diognosis has CYP2C9 and VKORC1 selectors and a VKORC1 warfarin dose-sensitivity rule. CYP2C9 warfarin-specific coverage should be verified before any Open Targets context is promoted.",
+      "neededProductBehavior": "Keep External Safety Context visible; confirm warfarin dose-sensitivity behavior and whether CYP2C9-specific warning copy needs a reviewed Diognosis evidence task.",
+      "evidenceTask": "Review Warfarin/CYP2C9/VKORC1 evidence and decide whether to add or adjust a warfarin CYP2C9-specific warning card."
+    },
+    {
+      "id": "codeine_cyp2d6",
+      "medcheckName": "Codeine",
+      "chemblId": "CHEMBL485",
+      "genes": ["CYP2D6"],
+      "scenarioId": "ot-paroxetine-codeine-context",
+      "disposition": "candidate_for_diognosis_evidence",
+      "currentAssessment": "Largely covered: Diognosis has a CYP2D6 selector, codeine-to-morphine prodrug activation rule, and CPIC-style evidence references. Open Targets rows should be treated as verification context.",
+      "neededProductBehavior": "Keep External Safety Context visible; confirm codeine prodrug warning behavior for CYP2D6 poor and ultrarapid metabolizer states.",
+      "evidenceTask": "Review Codeine/CYP2D6 evidence and decide whether current prodrug activation wording needs source alignment."
+    }
+  ]
+}

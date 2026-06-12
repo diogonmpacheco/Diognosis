@@ -41,6 +41,7 @@ const MODULE_ORDER = [
   'data/generatedStats.js', // MEDCHECK_STATS generated from source data
   'data/generatedOpenTargetsSnapshot.js', // static external context snapshot
   'data/generatedOpenTargetsPromotionQueue.js', // static Open Targets review/promotion queue
+  'data/generatedOpenTargetsReviewTargets.js', // static first review target decisions
 
   // ── Engine layer (depends on data layer) ──
   'engine/evidenceEngine.js',     // evidenceConfidence, getStudy, computeEdgeConfidence, studyCardHTML
