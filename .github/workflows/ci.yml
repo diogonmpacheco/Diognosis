@@ -29,6 +29,12 @@ jobs:
       - name: Evidence ledger check
         run: node scripts/check-evidence.js
 
+      - name: Evidence review queue freshness
+        run: node scripts/audit/evidence-review-queue.js --check
+
+      - name: External context firewall audit
+        run: node scripts/audit/external-context-firewall-audit.js
+
       - name: Severity report generation
         run: node scripts/severity-report.js
 

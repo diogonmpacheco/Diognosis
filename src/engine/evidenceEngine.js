@@ -52,6 +52,38 @@ function getStudy(id) {
   return STUDY_DB[id] || null;
 }
 
+function isExternalContextEvidence(study) {
+  if (!study) return false;
+  return Boolean(
+    study.importedContextOnly === true ||
+    study.notSeverityBearing === true ||
+    study.sourceCategory === SOURCE_CATEGORY.OPEN_TARGETS_CONTEXT ||
+    study.sourceCategory === SOURCE_CATEGORY.EXTERNAL_CONTEXT ||
+    study.openTargetsDrugId ||
+    study.chemblId ||
+    study.openTargetsSourceDataset
+  );
+}
+
+function isPromotedSeverityEvidence(study) {
+  return Boolean(
+    study &&
+    study.reviewDecision === REVIEW_DECISION.PROMOTED_FOR_SEVERITY &&
+    study.importedContextOnly !== true &&
+    study.notSeverityBearing !== true
+  );
+}
+
+function isSeverityBearingEvidence(study) {
+  if (!study) return false;
+  if (!isExternalContextEvidence(study)) return true;
+  return isPromotedSeverityEvidence(study);
+}
+
+function getSeverityBearingStudies(studies) {
+  return (studies || []).filter(isSeverityBearingEvidence);
+}
+
 let _studySupportIndex = null;
 let _studySupportIndexSize = 0;
 
@@ -144,10 +176,11 @@ function computeEdgeConfidence(edge) {
   // Path 1: evidenceRefs and STUDY_DB.supports keys pointing to STUDY_DB entries
   const refs = edge.props && edge.props.evidenceRefs;
   const studies = resolveEvidenceRefs(refs, getEdgeEvidenceSupportKeys(edge));
-  if (studies.length) {
-    const weights = studies.map(s => EVIDENCE_WEIGHT[s.type] || 0.50);
+  const severityBearingStudies = getSeverityBearingStudies(studies);
+  if (severityBearingStudies.length) {
+    const weights = severityBearingStudies.map(s => EVIDENCE_WEIGHT[s.type] || 0.50);
     const maxWeight = Math.max(...weights);
-    const corroboration = Math.min(0.04, (studies.length - 1) * 0.02);  // +2% per extra study
+    const corroboration = Math.min(0.04, (severityBearingStudies.length - 1) * 0.02);  // +2% per extra study
     return Math.min(0.99, maxWeight + corroboration);
   }
 
@@ -283,12 +316,14 @@ function studyBadgeHTML(study) {
  */
 function normalizeEvidence(interaction, studies) {
   const resolvedStudies = studies || resolveInteractionEvidence(interaction);
+  const severityBearingStudies = getSeverityBearingStudies(resolvedStudies);
 
-  if (!resolvedStudies || resolvedStudies.length === 0) {
+  if (!severityBearingStudies || severityBearingStudies.length === 0) {
     // No STUDY_DB entries — fall back to inline evidence on the interaction
     const ev = interaction.evidence || {};
     const confStr = ev.confidence || 'unknown';
     const confMap = { high: 0.78, moderate: 0.60, low: 0.40, unknown: 0.45 };
+    const contextOnlyCount = (resolvedStudies || []).length;
     return {
       sourceType: ev.sources ? ev.sources[0] : 'unknown',
       studyCount: 0,
@@ -300,16 +335,20 @@ function normalizeEvidence(interaction, studies) {
       genotypeSpecific: false,
       lastReviewed: null,
       contradictions: [],
-      studies: [],
-      provenance_note: ev.sources ? `Inline evidence: ${ev.sources.join(', ')}` : 'No formal evidence linked',
+      studies: resolvedStudies || [],
+      severityBearingStudies: [],
+      contextOnlyStudyCount: contextOnlyCount,
+      provenance_note: contextOnlyCount
+        ? `${contextOnlyCount} context-only source${contextOnlyCount === 1 ? '' : 's'} excluded from severity calibration`
+        : (ev.sources ? `Inline evidence: ${ev.sources.join(', ')}` : 'No formal evidence linked'),
       pmids: (ev.pmid || []).map(String),
     };
   }
 
   // ── Aggregate across all linked studies ──
-  const weights = resolvedStudies.map(s => EVIDENCE_WEIGHT[s.type] || 0.50);
+  const weights = severityBearingStudies.map(s => EVIDENCE_WEIGHT[s.type] || 0.50);
   const maxWeight = Math.max(...weights);
-  const corroboration = Math.min(0.06, (resolvedStudies.length - 1) * 0.02);
+  const corroboration = Math.min(0.06, (severityBearingStudies.length - 1) * 0.02);
   const confidence = Math.min(0.99, maxWeight + corroboration);
 
   // Reproducibility: based on study count and types
@@ -318,14 +357,14 @@ function normalizeEvidence(interaction, studies) {
     EVIDENCE_TIER.CLINICAL_PK, EVIDENCE_TIER.OBSERVATIONAL,
     EVIDENCE_TIER.CASE_REPORT, EVIDENCE_TIER.FDA_LABEL, EVIDENCE_TIER.GUIDELINE
   ]);
-  const humanStudies = resolvedStudies.filter(s => humanTypes.has(s.type));
-  const rcts = resolvedStudies.filter(s => s.type === EVIDENCE_TIER.RCT || s.type === EVIDENCE_TIER.META_ANALYSIS);
-  const contradictions = resolvedStudies.flatMap(s => s.contradicts || []);
+  const humanStudies = severityBearingStudies.filter(s => humanTypes.has(s.type));
+  const rcts = severityBearingStudies.filter(s => s.type === EVIDENCE_TIER.RCT || s.type === EVIDENCE_TIER.META_ANALYSIS);
+  const contradictions = severityBearingStudies.flatMap(s => s.contradicts || []);
 
   let reproducibility;
   if (contradictions.length > 0) {
     reproducibility = 'conflicting';
-  } else if (rcts.length >= 2 || resolvedStudies.length >= 3) {
+  } else if (rcts.length >= 2 || severityBearingStudies.length >= 3) {
     reproducibility = 'established';
   } else if (humanStudies.length >= 2) {
     reproducibility = 'replicated';
@@ -334,12 +373,12 @@ function normalizeEvidence(interaction, studies) {
   }
 
   // Best source type (highest tier)
-  const bestStudy = resolvedStudies.reduce((best, s) =>
+  const bestStudy = severityBearingStudies.reduce((best, s) =>
     (EVIDENCE_WEIGHT[s.type] || 0) > (EVIDENCE_WEIGHT[best.type] || 0) ? s : best
   );
 
   // Genotype-specific: any study stratified by genotype
-  const genotypeSpecific = resolvedStudies.some(s =>
+  const genotypeSpecific = severityBearingStudies.some(s =>
     s.genotypeStratified ||
     (s.quantifiedEffects && s.quantifiedEffects.genotypeEffect) ||
     (s.title || '').toLowerCase().includes('genotype') ||
@@ -348,16 +387,16 @@ function normalizeEvidence(interaction, studies) {
   );
 
   // Last reviewed: most recent study year
-  const years = resolvedStudies.map(s => s.year).filter(Boolean);
+  const years = severityBearingStudies.map(s => s.year).filter(Boolean);
   const lastReviewed = years.length > 0 ? Math.max(...years) : null;
 
   // All PMIDs
-  const pmids = resolvedStudies.map(s => s.pmid).filter(Boolean).map(String);
+  const pmids = severityBearingStudies.map(s => s.pmid).filter(Boolean).map(String);
 
   // Human-readable provenance note
   const typeLabel = bestStudy.type.replace(/_/g,' ').toLowerCase();
   const provenance_note =
-    `${resolvedStudies.length} stud${resolvedStudies.length === 1 ? 'y' : 'ies'} — best: ${typeLabel}` +
+    `${severityBearingStudies.length} stud${severityBearingStudies.length === 1 ? 'y' : 'ies'} — best: ${typeLabel}` +
     (rcts.length > 0 ? ` (${rcts.length} RCT/meta)` : '') +
     (genotypeSpecific ? ' · genotype-stratified' : '') +
     (contradictions.length > 0 ? ` · ⚠ ${contradictions.length} contradicting source(s)` : '') +
@@ -365,7 +404,7 @@ function normalizeEvidence(interaction, studies) {
 
   return {
     sourceType: bestStudy.type,
-    studyCount: resolvedStudies.length,
+    studyCount: severityBearingStudies.length,
     confidence,
     reproducibility,
     humanData: humanStudies.length > 0,
@@ -373,6 +412,8 @@ function normalizeEvidence(interaction, studies) {
     lastReviewed,
     contradictions,
     studies: resolvedStudies,
+    severityBearingStudies,
+    contextOnlyStudyCount: resolvedStudies.length - severityBearingStudies.length,
     provenance_note,
     pmids,
   };
@@ -398,8 +439,9 @@ function getEvidenceSummary(drug1, drug2, enzyme) {
       : `Limited evidence · ${prov.provenance_note} · Confidence ${Math.round(prov.confidence * 100)}%`;
   }
 
-  const typeLabels = [...new Set(prov.studies.map(s => s.type.replace(/_/g,' ')))].join(', ');
-  const aucEffects = prov.studies
+  const evidenceStudies = prov.severityBearingStudies || prov.studies || [];
+  const typeLabels = [...new Set(evidenceStudies.map(s => s.type.replace(/_/g,' ')))].join(', ');
+  const aucEffects = evidenceStudies
     .map(s => s.quantifiedEffects?.aucFold ? `AUC ×${s.quantifiedEffects.aucFold}` : null)
     .filter(Boolean)[0] || '';
 
@@ -435,6 +477,7 @@ function assertEvidencedSeverity(severity, drug1, drug2, enzyme) {
 function getDdiEvidenceProfile(ddi) {
   const refs = ddi.evidenceRefs || [];
   const studies = resolveEvidenceRefs(refs, getInteractionEvidenceSupportKeys(ddi));
+  const severityBearingStudies = getSeverityBearingStudies(studies);
   const sourceText = `${(ddi.evidence?.sources || []).join(" ")} ${ddi.evidence?.confidence || ""}`.toLowerCase();
   const highTiers = new Set([
     EVIDENCE_TIER.FDA_LABEL,
@@ -445,9 +488,11 @@ function getDdiEvidenceProfile(ddi) {
   ]);
   return {
     studies,
+    severityBearingStudies,
+    contextOnlyStudies: studies.filter(study => !isSeverityBearingEvidence(study)),
     missingRefs: refs.filter(id => !STUDY_DB[id]),
-    hasHighTierStudy: studies.some(study => highTiers.has(study.type)),
-    hasQuantifiedClinicalPk: studies.some(study =>
+    hasHighTierStudy: severityBearingStudies.some(study => highTiers.has(study.type)),
+    hasQuantifiedClinicalPk: severityBearingStudies.some(study =>
       study.type === EVIDENCE_TIER.CLINICAL_PK &&
       study.quantifiedEffects &&
       (study.quantifiedEffects.aucFold || study.quantifiedEffects.clearanceReductionPct || study.quantifiedEffects.oddsRatio)

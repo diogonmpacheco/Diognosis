@@ -55,6 +55,19 @@ const TISSUE_COMPARTMENT = Object.freeze({
 // evidenceConfidence() helper to extract a normalized confidence value.
 const EVIDENCE_SCHEMA_VERSION = 2;
 
+const SOURCE_CATEGORY = Object.freeze({
+  DIOGNOSIS_CURATED: 'diognosis_curated',
+  OPEN_TARGETS_CONTEXT: 'open_targets_context',
+  EXTERNAL_CONTEXT: 'external_context',
+});
+
+const REVIEW_DECISION = Object.freeze({
+  UNREVIEWED: 'unreviewed',
+  NEEDS_MORE_REVIEW: 'needs_more_review',
+  REJECTED: 'rejected',
+  PROMOTED_FOR_SEVERITY: 'promoted_for_severity',
+});
+
 const EVIDENCE_TIER = Object.freeze({
   IN_VITRO:     'in_vitro',       // cell/microsome assay only
   ANIMAL:       'animal',         // rodent/primate PK

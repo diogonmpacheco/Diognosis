@@ -12,6 +12,8 @@
     "audit:data-views": "node scripts/audit/data-views-audit.js",
     "audit:evidence-review-ui": "node scripts/audit/evidence-review-ui-audit.js",
     "audit:evidence-calculation": "node scripts/audit/evidence-calculation-audit.js",
+    "audit:evidence-review-queue": "node scripts/audit/evidence-review-queue.js",
+    "audit:external-context-firewall": "node scripts/audit/external-context-firewall-audit.js",
     "audit:metabolite-coverage": "node scripts/audit/metabolite-coverage-audit.js",
     "audit:mechanistic-gaps": "node scripts/audit/mechanistic-curation-gaps.js",
     "enrich": "node scripts/enrich/pubmed-enrich.js",
@@ -29,7 +31,7 @@
     "validate": "node scripts/validate-db.js",
     "validate:strict": "node scripts/validate-db.js --strict",
     "release:check": "node scripts/release-check.js",
-    "test": "node scripts/smoke-check.js && node scripts/regression-check.js && node scripts/validate-db.js && node scripts/check-evidence.js"
+    "test": "node scripts/smoke-check.js && node scripts/regression-check.js && node scripts/validate-db.js && node scripts/check-evidence.js && node scripts/audit/external-context-firewall-audit.js && node scripts/audit/evidence-review-queue.js --check"
   },
   "devDependencies": {
     "esbuild": "^0.28.0",

@@ -43,6 +43,7 @@ globalThis.__VALIDATE__ = {
   GENOTYPE_METABOLITE_EFFECTS, HIGH_IMPACT_METABOLITE_RELATIONS,
   ENZYME_ACTORS, TRANSPORTER_ACTORS, TRANSPORTER_DDI, PHARMGKB_EVIDENCE,
   FOOD_ACTORS, ENDOGENOUS_ACTORS, RECEPTOR_ACTORS, PHENOTYPE_ACTORS, EVIDENCE_TIER,
+  SOURCE_CATEGORY, REVIEW_DECISION,
   resolveUrlDrugName, normalizeDrugLookupKey, getDrugAliases,
   normalizePharmGxGene, normalizeUrlPhenotype,
 };`, context);
@@ -68,6 +69,34 @@ function collectPmids(value, out = new Set()) {
 
 function evidenceRefsExist(refs, studyIds) {
   return (refs || []).filter(ref => !studyIds.has(ref));
+}
+
+function isExternalContextStudy(study) {
+  if (!study) return false;
+  return Boolean(
+    study.importedContextOnly === true ||
+    study.notSeverityBearing === true ||
+    study.sourceCategory === data.SOURCE_CATEGORY.OPEN_TARGETS_CONTEXT ||
+    study.sourceCategory === data.SOURCE_CATEGORY.EXTERNAL_CONTEXT ||
+    study.openTargetsDrugId ||
+    study.chemblId ||
+    study.openTargetsSourceDataset
+  );
+}
+
+function isPromotedSeverityStudy(study) {
+  return Boolean(
+    study &&
+    study.reviewDecision === data.REVIEW_DECISION.PROMOTED_FOR_SEVERITY &&
+    study.importedContextOnly !== true &&
+    study.notSeverityBearing !== true
+  );
+}
+
+function isSeverityBearingStudy(study) {
+  if (!study) return false;
+  if (!isExternalContextStudy(study)) return true;
+  return isPromotedSeverityStudy(study);
 }
 
 const data = loadBundleContext();
@@ -119,6 +148,27 @@ for (const [id, study] of Object.entries(data.STUDY_DB || {})) {
   if (!study.pmid && !study.doi && !study.url) {
     add('warnings', 'study_without_external_identifier', `${id} lacks PMID, DOI, and URL`, id);
   }
+  if (isExternalContextStudy(study)) {
+    const promoted = isPromotedSeverityStudy(study);
+    if (!study.sourceCategory) {
+      add('errors', 'external_context_missing_source_category', `${id} has external identifiers/context flags but no sourceCategory`, id);
+    }
+    if (!study.reviewDecision) {
+      add('errors', 'external_context_missing_review_decision', `${id} has external context but no reviewDecision`, id);
+    }
+    if (study.reviewRequired !== true) {
+      add('errors', 'external_context_missing_review_required', `${id} external context must remain reviewRequired:true`, id);
+    }
+    if (!promoted && study.importedContextOnly !== true) {
+      add('errors', 'external_context_not_context_only', `${id} unpromoted external context must set importedContextOnly:true`, id);
+    }
+    if (!promoted && study.notSeverityBearing !== true) {
+      add('errors', 'external_context_not_severity_bearing_flag_missing', `${id} unpromoted external context must set notSeverityBearing:true`, id);
+    }
+    if (promoted && !professionallyReviewed) {
+      add('errors', 'external_context_promoted_without_professional_review', `${id} cannot be promoted for severity without professional review sign-off`, id);
+    }
+  }
 }
 if (pendingProfessionalReviewIds.length) {
   add('info', 'studies_pending_professional_review', `${pendingProfessionalReviewIds.length} studies are pending professional review`, pendingProfessionalReviewIds.length);
@@ -129,6 +179,19 @@ for (const ddi of data.KNOWN_DDI || []) {
   for (const ref of missingRefs) add('errors', 'missing_ddi_evidence_ref', `${ddi.drug1}+${ddi.drug2} references missing study ${ref}`, `${ddi.drug1}/${ddi.drug2}`);
   if (ddi.severity === 'severe' && !(ddi.evidenceRefs || []).length && ddi.evidence?.confidence !== 'high') {
     add('warnings', 'severe_ddi_weak_provenance', `${ddi.drug1}+${ddi.drug2} is severe without linked evidence refs`, `${ddi.drug1}/${ddi.drug2}`);
+  }
+  if (['severe', 'critical'].includes(ddi.severity) && (ddi.evidenceRefs || []).length) {
+    const linkedStudies = (ddi.evidenceRefs || []).map(ref => data.STUDY_DB?.[ref]).filter(Boolean);
+    const externalContextStudies = linkedStudies.filter(isExternalContextStudy);
+    const severityBearingStudies = linkedStudies.filter(isSeverityBearingStudy);
+    if (externalContextStudies.length && severityBearingStudies.length === 0) {
+      add(
+        'errors',
+        'severe_ddi_supported_only_by_external_context',
+        `${ddi.drug1}+${ddi.drug2} is ${ddi.severity} but its linked evidence is external context only`,
+        `${ddi.drug1}/${ddi.drug2}`
+      );
+    }
   }
 }
 
