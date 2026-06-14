@@ -38,7 +38,10 @@ function buildInteractionFindings(stack, genotypeState = {}, options = {}) {
     ...combinationFindings,
     ...activeMoietyFindings,
     ...phenoconversionFindings,
-  ].filter(Boolean)));
+  ].filter(Boolean))).map(finding => {
+    if (finding.whyPath || typeof buildWarningPath !== "function") return finding;
+    return { ...finding, whyPath:buildWarningPath(finding, activeNames, genotypeState, options.pathContext || {}) };
+  });
 }
 
 function normalizeKnownInteractionFinding(ddi, context = {}) {

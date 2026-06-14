@@ -247,7 +247,9 @@ function renderInteractionFindingCard(finding) {
   const evidenceRefs = (finding.evidenceRefs || []).length
     ? `<span class="finding-tag">${finding.evidenceRefs.length} evidence ref${finding.evidenceRefs.length === 1 ? "" : "s"}</span>`
     : '<span class="finding-tag warn">inferred/review required</span>';
-  const whyText = safeHtml(buildFindingWhyText(finding));
+  const whyHtml = finding.whyPath && typeof renderWhyPath === "function"
+    ? renderWhyPath(finding.whyPath)
+    : `<div class="finding-why-body">${safeHtml(buildFindingWhyText(finding))}</div>`;
   const sourceLabel = safeHtml(String(finding.source || "finding").replace(/_/g, " "));
   return `<div class="finding-card ${severity}" data-finding-id="${safeAttr(finding.id)}">
     <div class="finding-top">
@@ -274,7 +276,7 @@ function renderInteractionFindingCard(finding) {
     </div>
     <details class="finding-why">
       <summary>Why this appears</summary>
-      <div class="finding-why-body">${whyText}</div>
+      ${whyHtml}
     </details>
   </div>`;
 }
@@ -410,7 +412,7 @@ function arrangeAdvancedSections() {
     "genes-metabolites":["genotypeSection","phenoconversionSection","activeMoietySection","metabSection"],
     "timing-levels":["foldSection","pkSimSection","washoutSection","burdenSection"],
     evidence:["externalContextSection","evidenceSection"],
-    review:["reviewWorkbenchSection","interSection","comboSection","qualitySection"],
+    review:["reviewWorkbenchSection","warningPathSection","interSection","comboSection","qualitySection"],
   };
   Object.entries(placements).forEach(([tabId, sectionIds]) => {
     const panel = document.getElementById("tab-" + tabId);
@@ -957,6 +959,7 @@ function renderAll() {
     hideSectionAndClear("evidenceSection", "evidenceBody", "evidenceCount");
     hideSectionAndClear("externalContextSection", "externalContextBody", "externalContextCount");
     hideSectionAndClear("reviewWorkbenchSection", "reviewWorkbenchBody", "reviewWorkbenchCount");
+    hideSectionAndClear("warningPathSection", "warningPathBody", "warningPathCount");
     hideSectionAndClear("qualitySection", "qualityBody", "qualityCount");
     hideSectionAndClear("genotypeSection", "genotypeBody");
     hideSectionAndClear("mechanisticSection", "mechanisticBody", "mechanisticCount");
@@ -970,6 +973,7 @@ function renderAll() {
     const risk = calcRisk();
     renderRiskGauge(risk);
     renderInteractionFindingsOverview(risk);
+    if (typeof renderWarningPathReview === "function") renderWarningPathReview();
     renderInteractions(risk.interactions);
     renderCombinationProducts();
     renderTransporterDDI();
@@ -983,10 +987,14 @@ function renderAll() {
     document.getElementById("matrixSection").style.display = "";
     document.getElementById("altSection").style.display = "";
   } else {
-    if (activeDrugNames.length) renderInteractionFindingsOverview({ interactions:[] });
+    if (activeDrugNames.length) {
+      renderInteractionFindingsOverview({ interactions:[] });
+      if (typeof renderWarningPathReview === "function") renderWarningPathReview();
+    }
     else {
       currentInteractionFindings = [];
       hideSectionAndClear("findingSection", "findingBody", "findingCount");
+      hideSectionAndClear("warningPathSection", "warningPathBody", "warningPathCount");
     }
     hideSectionAndClear("riskSection", "riskBody");
     hideSectionAndClear("interSection", "interBody", "interCount");

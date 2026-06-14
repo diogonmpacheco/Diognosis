@@ -533,6 +533,20 @@ a{color:var(--accent)}
 .phenoconversion-capacity{font-size:18px;font-weight:900;color:var(--text);white-space:nowrap}
 .phenoconversion-state{font-size:12px;font-weight:900;color:var(--text);text-transform:capitalize;margin-bottom:8px}
 .phenoconversion-drivers{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.why-path{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;margin-top:7px}
+.why-node{font-size:12px;font-weight:900;color:var(--text);background:rgba(255,255,255,.78);border:1px solid rgba(61,44,30,.1);border-radius:8px;padding:6px 8px;overflow-wrap:anywhere}
+.why-node.enzyme{color:var(--blue);background:#dbeafe}
+.why-node.metabolite{color:var(--purple);background:#ede9fe}
+.why-node.outcome,.why-node.phenotype{color:var(--amber);background:var(--amberBg)}
+.why-edge{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;color:var(--text2);padding-left:8px}
+.why-summary{font-size:11px;color:var(--text2);line-height:1.4;margin-top:7px}
+.warning-path-row{border:1px solid var(--border);border-radius:8px;background:var(--card2);padding:11px 12px;margin-bottom:8px}
+.warning-path-row-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:7px}
+.warning-path-title{font-size:13px;font-weight:900;color:var(--text);line-height:1.25}
+.warning-path-meta{font-size:10px;color:var(--text2);margin-top:2px}
+.warning-path-json{max-height:180px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;background:rgba(255,255,255,.72);border:1px solid var(--border);border-radius:8px;padding:8px;margin:8px 0 0;font-size:10px;line-height:1.35;color:var(--text2)}
+.mini-btn{appearance:none;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--text2);font-size:10px;font-weight:900;padding:5px 9px;cursor:pointer;white-space:nowrap}
+.mini-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accentBg)}
 .mechanistic-note{padding:10px 12px;margin-bottom:10px;border:1px solid var(--border);border-radius:10px;background:var(--accentBg);color:var(--text2);font-size:12px;line-height:1.4}
 .mechanistic-card{border-style:dashed}
 .mechanistic-card .finding-sev{background:var(--blueBg);color:var(--blue);border:1px solid var(--blue)}
@@ -895,6 +909,22 @@ a{color:var(--accent)}
         <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="reviewWorkbenchCount"></span>
       </div>
       <div class="section-body coll-body open" id="reviewWorkbenchBody"></div>
+    </div>
+
+  <div class="section" id="warningPathSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('warningPath')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="5" cy="5" r="2"/>
+          <circle cx="19" cy="5" r="2"/>
+          <circle cx="12" cy="19" r="2"/>
+          <path d="M7 6h10"/>
+          <path d="M18 7l-5 10"/>
+          <path d="M6 7l5 10"/>
+        </svg>
+        <span>Raw Warning Paths</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="warningPathCount"></span>
+      </div>
+      <div class="section-body coll-body open" id="warningPathBody"></div>
     </div>
 
   <div class="section" id="externalContextSection" style="display:none">

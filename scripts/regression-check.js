@@ -962,6 +962,57 @@ assert(phenoconversionRegression.cyp3a4Rifampin?.direction === 'increased', 'CYP
 assert(phenoconversionRegression.cyp2d6Null?.functionalPhenotype === 'minimal_or_no_function', 'CYP2D6 null genotype should remain minimal/no function');
 assert(phenoconversionRegression.overviewFindingCount > 0, 'Phenoconversion rows should feed Overview interaction findings');
 
+const warningPathRegression = window.eval(`(() => {
+  function reset(drugs) {
+    activeStack = [];
+    userGenetics = {};
+    activeGenotype = {
+      CYP2D6: GENOTYPE_PHENOTYPE.NM,
+      CYP2C19: GENOTYPE_PHENOTYPE.NM,
+      CYP2C9: GENOTYPE_PHENOTYPE.NM,
+      CYP3A4: GENOTYPE_PHENOTYPE.NM,
+      TPMT: GENOTYPE_PHENOTYPE.NM,
+      NUDT15: GENOTYPE_PHENOTYPE.NM,
+    };
+    for (const drug of drugs) addDrug(drug);
+  }
+  function pathTextFor(drugs, match, setup) {
+    reset(drugs);
+    setup?.();
+    const findings = buildInteractionFindings(activeStack, activeGenotype, { interactions:activeStack.length >= 2 ? calcRisk().interactions : [] });
+    const finding = findings.find(match);
+    return {
+      title:finding?.title,
+      text: finding?.whyPath ? formatWarningPath(finding.whyPath) : "",
+      nodeCount:finding?.whyPath?.nodes?.length || 0,
+      edgeCount:finding?.whyPath?.edges?.length || 0,
+      evidenceRefs:finding?.whyPath?.evidenceRefs || [],
+    };
+  }
+  return {
+    codeine: pathTextFor(['Codeine', 'Fluoxetine'], f => /Codeine activation/.test(f.title || ''), () => setGenotypeState('CYP2D6', GENOTYPE_PHENOTYPE.PM)),
+    azathioprine: pathTextFor(['Azathioprine', 'Allopurinol'], f => /6-Thioguanine/.test(f.title || ''), () => {
+      setGenotypeState('TPMT', GENOTYPE_PHENOTYPE.PM);
+      setGenotypeState('NUDT15', GENOTYPE_PHENOTYPE.PM);
+    }),
+    simvastatin: pathTextFor(['Simvastatin', 'Clarithromycin'], f => /Simvastatin/.test(f.title || '') && f.whyPath),
+    phenoconversion: pathTextFor(['Codeine', 'Fluoxetine'], f => {
+      const rows = f.sourceRows || [];
+      return rows.some(row => row?.functionalPhenotype);
+    }),
+  };
+})()`);
+assert(/Fluoxetine.*inhibits.*CYP2D6.*Morphine/s.test(warningPathRegression.codeine.text), `Codeine why path should explain Fluoxetine -> CYP2D6 -> Morphine, got ${warningPathRegression.codeine.text}`);
+assert(warningPathRegression.codeine.nodeCount >= 4 && warningPathRegression.codeine.edgeCount >= 2, 'Codeine why path should have structured nodes and edges');
+assert(/6-Thioguanine|6-TGN/.test(warningPathRegression.azathioprine.text), 'Azathioprine why path should include 6-TGN context');
+assert(/Clarithromycin|CYP3A4|Simvastatin/.test(warningPathRegression.simvastatin.text), 'Simvastatin + clarithromycin why path should include drug/pathway context');
+assert(
+  warningPathRegression.phenoconversion.text.includes('CYP2D6') ||
+    warningPathRegression.phenoconversion.text.includes('poor function') ||
+    warningPathRegression.phenoconversion.text.includes('minimal/no function'),
+  'Phenoconversion why path should show functional gene status'
+);
+
 loadCase(window, ['Fluoxetine']);
 const fluoxetineWashout = window.eval('computeWashoutCalendar(["Fluoxetine"]).find(e => e.actorId === "norfluoxetine")');
 assert(fluoxetineWashout && fluoxetineWashout.days === 35, 'Norfluoxetine washout should remain 35 days');

@@ -70,9 +70,12 @@ assert(doc.getElementById('phenoconversionSection')?.closest('.tab-panel')?.id =
 assert(doc.getElementById('activeMoietySection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Parent-Metabolite Balance should live under Genes + Metabolites');
 assert(doc.getElementById('pkSimSection')?.closest('.tab-panel')?.id === 'tab-timing-levels', 'PK simulation should live under Timing + Levels');
 assert(doc.getElementById('reviewWorkbenchSection')?.closest('.tab-panel')?.id === 'tab-review', 'Review workbench should live under Review');
+assert(doc.getElementById('warningPathSection')?.closest('.tab-panel')?.id === 'tab-review', 'Raw Warning Paths should live under Review');
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
+assert(doc.querySelectorAll('#findingBody .why-path').length > 0, 'Overview finding cards should render compact why paths');
 assert(doc.querySelectorAll('#phenoconversionBody .phenoconversion-card').length > 0, 'Genes + Metabolites should render Functional Gene Status cards');
 assert(doc.querySelectorAll('#activeMoietyBody .active-moiety-card').length > 0, 'Genes + Metabolites should render Parent-Metabolite Balance cards');
+assert(doc.querySelectorAll('#warningPathBody .warning-path-row').length > 0, 'Review should expose raw warning path rows');
 
 const findingAudit = evalInPage(window, `(() => {
   const findings = buildInteractionFindings(activeStack, activeGenotype, { interactions: calcRisk().interactions });
@@ -84,7 +87,8 @@ const findingAudit = evalInPage(window, `(() => {
 })()`);
 assert(findingAudit.count > 0, 'Shared finding engine should return findings for Paroxetine + Codeine');
 assert(findingAudit.types.includes('active_moiety') || findingAudit.types.includes('pairwise_interaction'), 'Finding engine should classify pairwise/active-moiety signals');
-assert(findingAudit.first && findingAudit.first.whyPath === null && findingAudit.first.evidenceLadder === null, 'Findings should expose whyPath and evidenceLadder placeholders');
+assert(findingAudit.first && findingAudit.first.evidenceLadder === null, 'Findings should keep the evidenceLadder placeholder for Action 7');
+assert(findingAudit.first && findingAudit.first.whyPath && Array.isArray(findingAudit.first.whyPath.nodes), 'Findings should attach a structured whyPath');
 assert(Array.isArray(findingAudit.first.affectedActors) && findingAudit.first.affectedActors.length >= 2, 'Findings should include affected actors');
 
 const activeMoietyAudit = evalInPage(window, `(() => {
