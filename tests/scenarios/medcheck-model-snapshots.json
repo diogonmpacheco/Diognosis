@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "generatedBy": "scripts/audit/scenario-snapshot-audit.js",
   "fixtureImport": {
     "release": "fixture-2026-06",
@@ -263,6 +263,984 @@
       "riskUnchangedAfterExternalContext": true,
       "afterRiskScore": 35,
       "afterInteractionCount": 0
+    }
+  ],
+  "modelScenarios": [
+    {
+      "id": "model-codeine-fluoxetine-cyp2d6-pm",
+      "stack": [
+        "Codeine",
+        "Fluoxetine"
+      ],
+      "genotype": {
+        "CYP2D6": "PM"
+      },
+      "riskScore": 100,
+      "riskLevel": "HIGH RISK",
+      "interactionCount": 4,
+      "severityCounts": {
+        "severe": 2,
+        "moderate": 1,
+        "mild": 1
+      },
+      "topInteractions": [
+        {
+          "pair": "Fluoxetine + Codeine",
+          "severity": "severe",
+          "type": "prodrug-inhibition",
+          "source": null,
+          "enzyme": "CYP2D6"
+        },
+        {
+          "pair": "Codeine + Fluoxetine",
+          "severity": "severe",
+          "type": "combination",
+          "source": "combination",
+          "enzyme": "pathway competition"
+        },
+        {
+          "pair": "Codeine + Fluoxetine",
+          "severity": "moderate",
+          "type": "pharmacodynamic",
+          "source": null,
+          "enzyme": "Seizure"
+        },
+        {
+          "pair": "Fluoxetine + Codeine",
+          "severity": "mild",
+          "type": "prodrug-inhibition",
+          "source": null,
+          "enzyme": "CYP3A4"
+        }
+      ],
+      "findingCount": 11,
+      "findingTypes": [
+        "active_moiety",
+        "combination_burden",
+        "phenoconversion",
+        "receptor_burden",
+        "timing_washout"
+      ],
+      "findingCardCount": 8,
+      "evidenceLadderCount": 8,
+      "allFindingsHaveEvidenceLadders": true,
+      "whyPathCount": 11,
+      "mechanismWhyPathCount": 10,
+      "rawWarningPathCount": 11,
+      "evidenceLedgerPresent": true,
+      "falseReviewedClaims": 0,
+      "danglingEvidenceRefs": [],
+      "activeMoietyPatterns": [
+        "activation_failure",
+        "mixed_direction",
+        "no_major_signal",
+        "parent_accumulation"
+      ],
+      "activeMoietyActors": [
+        "Codeine-6-glucuronide",
+        "Fluoxetine glucuronide",
+        "Morphine",
+        "Morphine-6-glucuronide",
+        "Norfluoxetine",
+        "p-Trifluoromethylphenol",
+        "slc6a4-fluoxetine-response"
+      ],
+      "phenoconversionGenes": [
+        "CYP2C19",
+        "CYP2C9",
+        "CYP2D6",
+        "CYP2D6/CYP2C9",
+        "CYP3A4",
+        "SLC6A4",
+        "UGT",
+        "UGT2B7"
+      ],
+      "phenoconversionDirections": [
+        "normal",
+        "reduced"
+      ],
+      "persistenceTypes": [
+        "enzyme_recovery",
+        "metabolite",
+        "parent",
+        "washout_rule"
+      ],
+      "persistenceActors": [
+        "Codeine",
+        "Codeine-6-glucuronide",
+        "Fluoxetine",
+        "Fluoxetine glucuronide",
+        "Morphine",
+        "Morphine-3-glucuronide",
+        "Morphine-6-glucuronide",
+        "Norcodeine",
+        "Norfluoxetine",
+        "p-Trifluoromethylphenol"
+      ],
+      "sections": {
+        "findings": true,
+        "mechanismsWhy": true,
+        "functionalGenes": true,
+        "parentMetabolite": true,
+        "persistence": true,
+        "evidence": true,
+        "reviewSummary": true,
+        "rawWarningPaths": true
+      },
+      "sectionPanels": {
+        "findings": "tab-overview",
+        "mechanismsWhy": "tab-mechanisms",
+        "functionalGenes": "tab-genes-metabolites",
+        "parentMetabolite": "tab-genes-metabolites",
+        "persistence": "tab-timing-levels",
+        "evidence": "tab-evidence",
+        "reviewSummary": "tab-review",
+        "rawWarningPaths": "tab-review"
+      }
+    },
+    {
+      "id": "model-clopidogrel-omeprazole-cyp2c19-pm",
+      "stack": [
+        "Clopidogrel",
+        "Omeprazole"
+      ],
+      "genotype": {
+        "CYP2C19": "PM"
+      },
+      "riskScore": 100,
+      "riskLevel": "HIGH RISK",
+      "interactionCount": 2,
+      "severityCounts": {
+        "severe": 2
+      },
+      "topInteractions": [
+        {
+          "pair": "Clopidogrel + Omeprazole",
+          "severity": "severe",
+          "type": "known-ddi",
+          "source": "known",
+          "enzyme": "prodrug"
+        },
+        {
+          "pair": "Clopidogrel + Omeprazole",
+          "severity": "severe",
+          "type": "combination",
+          "source": "combination",
+          "enzyme": "pathway competition"
+        }
+      ],
+      "findingCount": 8,
+      "findingTypes": [
+        "active_moiety",
+        "combination_burden",
+        "phenoconversion"
+      ],
+      "findingCardCount": 8,
+      "evidenceLadderCount": 8,
+      "allFindingsHaveEvidenceLadders": true,
+      "whyPathCount": 8,
+      "mechanismWhyPathCount": 8,
+      "rawWarningPathCount": 8,
+      "evidenceLedgerPresent": true,
+      "falseReviewedClaims": 0,
+      "danglingEvidenceRefs": [],
+      "activeMoietyPatterns": [
+        "activation_failure",
+        "mixed_direction",
+        "parent_accumulation"
+      ],
+      "activeMoietyActors": [
+        "2-Oxo-clopidogrel",
+        "5-Hydroxyomeprazole",
+        "5-O-Desmethylomeprazole",
+        "Active thiol metabolite",
+        "Omeprazole sulfone"
+      ],
+      "phenoconversionGenes": [
+        "CYP1A2",
+        "CYP2B6",
+        "CYP2C19",
+        "CYP2C8",
+        "CYP3A4",
+        "UGT"
+      ],
+      "phenoconversionDirections": [
+        "normal",
+        "reduced"
+      ],
+      "persistenceTypes": [
+        "metabolite",
+        "parent"
+      ],
+      "persistenceActors": [
+        "2-Oxo-clopidogrel",
+        "5-Hydroxyomeprazole",
+        "5-O-Desmethylomeprazole",
+        "Active thiol metabolite",
+        "Acyl glucuronide",
+        "Clopidogrel",
+        "Clopidogrel carboxylic acid (SR26334)",
+        "Omeprazole",
+        "Omeprazole sulfone"
+      ],
+      "sections": {
+        "findings": true,
+        "mechanismsWhy": true,
+        "functionalGenes": true,
+        "parentMetabolite": true,
+        "persistence": true,
+        "evidence": true,
+        "reviewSummary": true,
+        "rawWarningPaths": true
+      },
+      "sectionPanels": {
+        "findings": "tab-overview",
+        "mechanismsWhy": "tab-mechanisms",
+        "functionalGenes": "tab-genes-metabolites",
+        "parentMetabolite": "tab-genes-metabolites",
+        "persistence": "tab-timing-levels",
+        "evidence": "tab-evidence",
+        "reviewSummary": "tab-review",
+        "rawWarningPaths": "tab-review"
+      }
+    },
+    {
+      "id": "model-irinotecan-ugt1a1-pm",
+      "stack": [
+        "Irinotecan"
+      ],
+      "genotype": {
+        "UGT1A1": "PM"
+      },
+      "riskScore": 20,
+      "riskLevel": "LOW RISK",
+      "interactionCount": 0,
+      "severityCounts": {},
+      "topInteractions": [],
+      "findingCount": 2,
+      "findingTypes": [
+        "active_moiety",
+        "phenoconversion"
+      ],
+      "findingCardCount": 2,
+      "evidenceLadderCount": 2,
+      "allFindingsHaveEvidenceLadders": true,
+      "whyPathCount": 2,
+      "mechanismWhyPathCount": 2,
+      "rawWarningPathCount": 2,
+      "evidenceLedgerPresent": true,
+      "falseReviewedClaims": 0,
+      "danglingEvidenceRefs": [],
+      "activeMoietyPatterns": [
+        "toxic_metabolite_accumulation"
+      ],
+      "activeMoietyActors": [
+        "SN-38"
+      ],
+      "phenoconversionGenes": [
+        "CYP3A4",
+        "UGT1A1"
+      ],
+      "phenoconversionDirections": [
+        "normal",
+        "reduced"
+      ],
+      "persistenceTypes": [
+        "metabolite",
+        "parent"
+      ],
+      "persistenceActors": [
+        "APC (7-ethyl-10-[4-N-(5-aminopentanoic acid)-1-piperidino]carbonyloxycamptothecin)",
+        "Irinotecan",
+        "SN-38 (7-ethyl-10-hydroxycamptothecin)",
+        "SN-38G (SN-38 glucuronide)"
+      ],
+      "sections": {
+        "findings": true,
+        "mechanismsWhy": true,
+        "functionalGenes": true,
+        "parentMetabolite": true,
+        "persistence": true,
+        "evidence": true,
+        "reviewSummary": true,
+        "rawWarningPaths": true
+      },
+      "sectionPanels": {
+        "findings": "tab-overview",
+        "mechanismsWhy": "tab-mechanisms",
+        "functionalGenes": "tab-genes-metabolites",
+        "parentMetabolite": "tab-genes-metabolites",
+        "persistence": "tab-timing-levels",
+        "evidence": "tab-evidence",
+        "reviewSummary": "tab-review",
+        "rawWarningPaths": "tab-review"
+      }
+    },
+    {
+      "id": "model-capecitabine-dpyd-pm",
+      "stack": [
+        "Capecitabine"
+      ],
+      "genotype": {
+        "DPYD": "PM"
+      },
+      "riskScore": 45,
+      "riskLevel": "MODERATE RISK",
+      "interactionCount": 0,
+      "severityCounts": {},
+      "topInteractions": [],
+      "findingCount": 2,
+      "findingTypes": [
+        "active_moiety",
+        "phenoconversion"
+      ],
+      "findingCardCount": 2,
+      "evidenceLadderCount": 2,
+      "allFindingsHaveEvidenceLadders": true,
+      "whyPathCount": 2,
+      "mechanismWhyPathCount": 2,
+      "rawWarningPathCount": 2,
+      "evidenceLedgerPresent": true,
+      "falseReviewedClaims": 0,
+      "danglingEvidenceRefs": [],
+      "activeMoietyPatterns": [
+        "toxic_metabolite_accumulation"
+      ],
+      "activeMoietyActors": [
+        "5-Fluorouracil"
+      ],
+      "phenoconversionGenes": [
+        "DPYD"
+      ],
+      "phenoconversionDirections": [
+        "reduced"
+      ],
+      "persistenceTypes": [
+        "metabolite",
+        "parent"
+      ],
+      "persistenceActors": [
+        "5-Fluorouracil",
+        "Capecitabine"
+      ],
+      "sections": {
+        "findings": true,
+        "mechanismsWhy": true,
+        "functionalGenes": true,
+        "parentMetabolite": true,
+        "persistence": true,
+        "evidence": true,
+        "reviewSummary": true,
+        "rawWarningPaths": true
+      },
+      "sectionPanels": {
+        "findings": "tab-overview",
+        "mechanismsWhy": "tab-mechanisms",
+        "functionalGenes": "tab-genes-metabolites",
+        "parentMetabolite": "tab-genes-metabolites",
+        "persistence": "tab-timing-levels",
+        "evidence": "tab-evidence",
+        "reviewSummary": "tab-review",
+        "rawWarningPaths": "tab-review"
+      }
+    },
+    {
+      "id": "model-azathioprine-allopurinol-tpmt-nudt15-pm",
+      "stack": [
+        "Azathioprine",
+        "Allopurinol"
+      ],
+      "genotype": {
+        "TPMT": "PM",
+        "NUDT15": "PM"
+      },
+      "riskScore": 55,
+      "riskLevel": "MODERATE RISK",
+      "interactionCount": 1,
+      "severityCounts": {
+        "severe": 1
+      },
+      "topInteractions": [
+        {
+          "pair": "Allopurinol + Azathioprine",
+          "severity": "severe",
+          "type": "known-ddi",
+          "source": "known",
+          "enzyme": "metabolic"
+        }
+      ],
+      "findingCount": 4,
+      "findingTypes": [
+        "active_moiety",
+        "pairwise_interaction",
+        "phenoconversion"
+      ],
+      "findingCardCount": 4,
+      "evidenceLadderCount": 4,
+      "allFindingsHaveEvidenceLadders": true,
+      "whyPathCount": 4,
+      "mechanismWhyPathCount": 4,
+      "rawWarningPathCount": 4,
+      "evidenceLedgerPresent": true,
+      "falseReviewedClaims": 0,
+      "danglingEvidenceRefs": [],
+      "activeMoietyPatterns": [
+        "no_major_signal",
+        "toxic_metabolite_accumulation"
+      ],
+      "activeMoietyActors": [
+        "6-Mercaptopurine (6-MP)",
+        "6-Methylmercaptopurine (6-MMP)",
+        "6-Thioguanine nucleotides (6-TGN)",
+        "Oxypurinol (alloxanthine)"
+      ],
+      "phenoconversionGenes": [
+        "NUDT15",
+        "TPMT"
+      ],
+      "phenoconversionDirections": [
+        "reduced"
+      ],
+      "persistenceTypes": [
+        "metabolite",
+        "parent"
+      ],
+      "persistenceActors": [
+        "6-Mercaptopurine (6-MP)",
+        "6-Methylmercaptopurine (6-MMP)",
+        "6-Thioguanine nucleotides (6-TGN)",
+        "Allopurinol",
+        "Allopurinol riboside",
+        "Azathioprine",
+        "Oxypurinol (alloxanthine)",
+        "Thiouric acid"
+      ],
+      "sections": {
+        "findings": true,
+        "mechanismsWhy": true,
+        "functionalGenes": true,
+        "parentMetabolite": true,
+        "persistence": true,
+        "evidence": true,
+        "reviewSummary": true,
+        "rawWarningPaths": true
+      },
+      "sectionPanels": {
+        "findings": "tab-overview",
+        "mechanismsWhy": "tab-mechanisms",
+        "functionalGenes": "tab-genes-metabolites",
+        "parentMetabolite": "tab-genes-metabolites",
+        "persistence": "tab-timing-levels",
+        "evidence": "tab-evidence",
+        "reviewSummary": "tab-review",
+        "rawWarningPaths": "tab-review"
+      }
+    },
+    {
+      "id": "model-bupropion-clopidogrel-nebivolol-cyp2d6-null",
+      "stack": [
+        "Bupropion",
+        "Clopidogrel",
+        "Nebivolol"
+      ],
+      "genotype": {
+        "CYP2D6": "null"
+      },
+      "riskScore": 54,
+      "riskLevel": "MODERATE RISK",
+      "interactionCount": 1,
+      "severityCounts": {
+        "mild": 1
+      },
+      "topInteractions": [
+        {
+          "pair": "Bupropion + Clopidogrel",
+          "severity": "mild",
+          "type": "known-ddi",
+          "source": "known",
+          "enzyme": "bidirectional_pk"
+        }
+      ],
+      "findingCount": 16,
+      "findingTypes": [
+        "active_moiety",
+        "phenoconversion",
+        "timing_washout"
+      ],
+      "findingCardCount": 8,
+      "evidenceLadderCount": 8,
+      "allFindingsHaveEvidenceLadders": true,
+      "whyPathCount": 16,
+      "mechanismWhyPathCount": 10,
+      "rawWarningPathCount": 12,
+      "evidenceLedgerPresent": true,
+      "falseReviewedClaims": 0,
+      "danglingEvidenceRefs": [],
+      "activeMoietyPatterns": [
+        "activation_failure",
+        "active_metabolite_accumulation",
+        "mixed_direction",
+        "parent_accumulation"
+      ],
+      "activeMoietyActors": [
+        "2-Oxo-clopidogrel",
+        "4-Hydroxy-nebivolol",
+        "Active thiol metabolite",
+        "Acyl glucuronide",
+        "Bupropion glucuronide",
+        "Clopidogrel carboxylic acid (SR26334)",
+        "Erythrohydrobupropion",
+        "Hydroxybupropion",
+        "Hydroxylated ring-opened metabolites",
+        "Nebivolol glucuronide",
+        "Threohydrobupropion"
+      ],
+      "phenoconversionGenes": [
+        "CYP1A2",
+        "CYP2B6",
+        "CYP2C19",
+        "CYP2C8",
+        "CYP2D6",
+        "CYP3A4",
+        "UGT",
+        "UGT2B7"
+      ],
+      "phenoconversionDirections": [
+        "normal",
+        "reduced"
+      ],
+      "persistenceTypes": [
+        "enzyme_recovery",
+        "metabolite",
+        "parent",
+        "washout_rule"
+      ],
+      "persistenceActors": [
+        "2-Oxo-clopidogrel",
+        "4-Hydroxy-nebivolol",
+        "Active thiol metabolite",
+        "Acyl glucuronide",
+        "Bupropion",
+        "Bupropion glucuronide",
+        "Clopidogrel",
+        "Clopidogrel carboxylic acid (SR26334)",
+        "Erythrohydrobupropion",
+        "Hydroxybupropion",
+        "Hydroxylated ring-opened metabolites",
+        "Nebivolol",
+        "Nebivolol glucuronide",
+        "Threohydrobupropion"
+      ],
+      "sections": {
+        "findings": true,
+        "mechanismsWhy": true,
+        "functionalGenes": true,
+        "parentMetabolite": true,
+        "persistence": true,
+        "evidence": true,
+        "reviewSummary": true,
+        "rawWarningPaths": true
+      },
+      "sectionPanels": {
+        "findings": "tab-overview",
+        "mechanismsWhy": "tab-mechanisms",
+        "functionalGenes": "tab-genes-metabolites",
+        "parentMetabolite": "tab-genes-metabolites",
+        "persistence": "tab-timing-levels",
+        "evidence": "tab-evidence",
+        "reviewSummary": "tab-review",
+        "rawWarningPaths": "tab-review"
+      }
+    },
+    {
+      "id": "model-simvastatin-clarithromycin",
+      "stack": [
+        "Simvastatin",
+        "Clarithromycin"
+      ],
+      "genotype": {},
+      "riskScore": 100,
+      "riskLevel": "HIGH RISK",
+      "interactionCount": 2,
+      "severityCounts": {
+        "severe": 2
+      },
+      "topInteractions": [
+        {
+          "pair": "Simvastatin + Clarithromycin",
+          "severity": "severe",
+          "type": "known-ddi",
+          "source": "known",
+          "enzyme": "pk"
+        },
+        {
+          "pair": "Clarithromycin + Simvastatin",
+          "severity": "severe",
+          "type": "combination",
+          "source": "combination",
+          "enzyme": "toxic overlap"
+        }
+      ],
+      "findingCount": 7,
+      "findingTypes": [
+        "active_moiety",
+        "combination_burden",
+        "pairwise_interaction",
+        "phenoconversion",
+        "timing_washout"
+      ],
+      "findingCardCount": 7,
+      "evidenceLadderCount": 7,
+      "allFindingsHaveEvidenceLadders": true,
+      "whyPathCount": 7,
+      "mechanismWhyPathCount": 7,
+      "rawWarningPathCount": 7,
+      "evidenceLedgerPresent": true,
+      "falseReviewedClaims": 0,
+      "danglingEvidenceRefs": [],
+      "activeMoietyPatterns": [
+        "activation_failure",
+        "no_major_signal",
+        "parent_accumulation"
+      ],
+      "activeMoietyActors": [
+        "14-Hydroxyclarithromycin",
+        "3',5'-Dihydrodiol-SVA",
+        "6'-Hydroxy-SVA",
+        "Simvastatin acid (SVA)",
+        "simvastatin-acid-slco1b1-exposure"
+      ],
+      "phenoconversionGenes": [
+        "CYP3A4",
+        "SLCO1B1",
+        "UGT"
+      ],
+      "phenoconversionDirections": [
+        "normal",
+        "reduced"
+      ],
+      "persistenceTypes": [
+        "enzyme_recovery",
+        "metabolite",
+        "parent",
+        "washout_rule"
+      ],
+      "persistenceActors": [
+        "14-Hydroxyclarithromycin",
+        "3',5'-Dihydrodiol-SVA",
+        "6'-Hydroxy-SVA",
+        "Clarithromycin",
+        "Clarithromycin glucuronide",
+        "N-Desmethylclarithromycin",
+        "Simvastatin",
+        "Simvastatin acid (SVA)"
+      ],
+      "sections": {
+        "findings": true,
+        "mechanismsWhy": true,
+        "functionalGenes": true,
+        "parentMetabolite": true,
+        "persistence": true,
+        "evidence": true,
+        "reviewSummary": true,
+        "rawWarningPaths": true
+      },
+      "sectionPanels": {
+        "findings": "tab-overview",
+        "mechanismsWhy": "tab-mechanisms",
+        "functionalGenes": "tab-genes-metabolites",
+        "parentMetabolite": "tab-genes-metabolites",
+        "persistence": "tab-timing-levels",
+        "evidence": "tab-evidence",
+        "reviewSummary": "tab-review",
+        "rawWarningPaths": "tab-review"
+      }
+    },
+    {
+      "id": "model-fluoxetine-paroxetine-washout",
+      "stack": [
+        "Fluoxetine",
+        "Paroxetine"
+      ],
+      "genotype": {},
+      "riskScore": 100,
+      "riskLevel": "HIGH RISK",
+      "interactionCount": 5,
+      "severityCounts": {
+        "severe": 3,
+        "moderate": 2
+      },
+      "topInteractions": [
+        {
+          "pair": "Fluoxetine + Paroxetine",
+          "severity": "severe",
+          "type": "inhibition",
+          "source": null,
+          "enzyme": "CYP2D6"
+        },
+        {
+          "pair": "Paroxetine + Fluoxetine",
+          "severity": "severe",
+          "type": "inhibition",
+          "source": null,
+          "enzyme": "CYP2D6"
+        },
+        {
+          "pair": "Fluoxetine + Paroxetine",
+          "severity": "severe",
+          "type": "pharmacodynamic",
+          "source": null,
+          "enzyme": "5-HT"
+        },
+        {
+          "pair": "Fluoxetine + Paroxetine",
+          "severity": "moderate",
+          "type": "pharmacodynamic",
+          "source": null,
+          "enzyme": "Hemostasis"
+        },
+        {
+          "pair": "Fluoxetine + Paroxetine",
+          "severity": "moderate",
+          "type": "pharmacodynamic",
+          "source": null,
+          "enzyme": "Seizure"
+        }
+      ],
+      "findingCount": 16,
+      "findingTypes": [
+        "active_moiety",
+        "pairwise_interaction",
+        "phenoconversion",
+        "receptor_burden",
+        "timing_washout"
+      ],
+      "findingCardCount": 8,
+      "evidenceLadderCount": 8,
+      "allFindingsHaveEvidenceLadders": true,
+      "whyPathCount": 16,
+      "mechanismWhyPathCount": 10,
+      "rawWarningPathCount": 12,
+      "evidenceLedgerPresent": true,
+      "falseReviewedClaims": 0,
+      "danglingEvidenceRefs": [],
+      "activeMoietyPatterns": [
+        "mixed_direction",
+        "parent_accumulation"
+      ],
+      "activeMoietyActors": [
+        "Fluoxetine glucuronide",
+        "M1 catechol metabolite",
+        "M2 methylenedioxy ring-opened",
+        "Norfluoxetine",
+        "Paroxetine glucuronide",
+        "Paroxetine sulfate",
+        "p-Trifluoromethylphenol",
+        "slc6a4-fluoxetine-response"
+      ],
+      "phenoconversionGenes": [
+        "CYP2C19",
+        "CYP2C9",
+        "CYP2D6",
+        "CYP2D6/CYP2C9",
+        "CYP3A4",
+        "SLC6A4",
+        "UGT"
+      ],
+      "phenoconversionDirections": [
+        "normal",
+        "reduced"
+      ],
+      "persistenceTypes": [
+        "enzyme_recovery",
+        "metabolite",
+        "parent",
+        "washout_rule"
+      ],
+      "persistenceActors": [
+        "Fluoxetine",
+        "Fluoxetine glucuronide",
+        "M1 catechol metabolite",
+        "M2 methylenedioxy ring-opened",
+        "Norfluoxetine",
+        "Paroxetine",
+        "Paroxetine glucuronide",
+        "Paroxetine sulfate",
+        "p-Trifluoromethylphenol"
+      ],
+      "sections": {
+        "findings": true,
+        "mechanismsWhy": true,
+        "functionalGenes": true,
+        "parentMetabolite": true,
+        "persistence": true,
+        "evidence": true,
+        "reviewSummary": true,
+        "rawWarningPaths": true
+      },
+      "sectionPanels": {
+        "findings": "tab-overview",
+        "mechanismsWhy": "tab-mechanisms",
+        "functionalGenes": "tab-genes-metabolites",
+        "parentMetabolite": "tab-genes-metabolites",
+        "persistence": "tab-timing-levels",
+        "evidence": "tab-evidence",
+        "reviewSummary": "tab-review",
+        "rawWarningPaths": "tab-review"
+      }
+    },
+    {
+      "id": "model-g6pd-oxidant-stack",
+      "stack": [
+        "Rasburicase",
+        "Primaquine",
+        "Dapsone"
+      ],
+      "genotype": {
+        "G6PD deficiency": "present"
+      },
+      "riskScore": 70,
+      "riskLevel": "HIGH RISK",
+      "interactionCount": 0,
+      "severityCounts": {},
+      "topInteractions": [],
+      "findingCount": 2,
+      "findingTypes": [
+        "active_moiety"
+      ],
+      "findingCardCount": 2,
+      "evidenceLadderCount": 2,
+      "allFindingsHaveEvidenceLadders": true,
+      "whyPathCount": 2,
+      "mechanismWhyPathCount": 2,
+      "rawWarningPathCount": 2,
+      "evidenceLedgerPresent": true,
+      "falseReviewedClaims": 0,
+      "danglingEvidenceRefs": [],
+      "activeMoietyPatterns": [
+        "no_major_signal",
+        "toxic_metabolite_accumulation"
+      ],
+      "activeMoietyActors": [
+        "Dapsone (unchanged)",
+        "Dapsone hydroxylamine (DDS-NHOH)",
+        "Primaquine hydroxylamine / quinone-imine metabolites",
+        "Rasburicase oxidant hemolysis risk"
+      ],
+      "phenoconversionGenes": [
+        "CYP/oxidation",
+        "CYP2C9",
+        "NAT2"
+      ],
+      "phenoconversionDirections": [
+        "normal"
+      ],
+      "persistenceTypes": [
+        "metabolite",
+        "parent"
+      ],
+      "persistenceActors": [
+        "Carboxyprimaquine",
+        "Dapsone",
+        "Dapsone (unchanged)",
+        "Dapsone hydroxylamine (DDS-NHOH)",
+        "N-Acetyldapsone (MADDS)",
+        "Primaquine",
+        "Primaquine hydroxylamine / quinone-imine metabolites",
+        "Rasburicase"
+      ],
+      "sections": {
+        "findings": true,
+        "mechanismsWhy": true,
+        "functionalGenes": true,
+        "parentMetabolite": true,
+        "persistence": true,
+        "evidence": true,
+        "reviewSummary": true,
+        "rawWarningPaths": true
+      },
+      "sectionPanels": {
+        "findings": "tab-overview",
+        "mechanismsWhy": "tab-mechanisms",
+        "functionalGenes": "tab-genes-metabolites",
+        "parentMetabolite": "tab-genes-metabolites",
+        "persistence": "tab-timing-levels",
+        "evidence": "tab-evidence",
+        "reviewSummary": "tab-review",
+        "rawWarningPaths": "tab-review"
+      }
+    },
+    {
+      "id": "model-succinylcholine-bche-ryr1",
+      "stack": [
+        "Succinylcholine"
+      ],
+      "genotype": {
+        "BCHE": "null",
+        "RYR1/CACNA1S MH variant": "present"
+      },
+      "riskScore": 80,
+      "riskLevel": "HIGH RISK",
+      "interactionCount": 0,
+      "severityCounts": {},
+      "topInteractions": [],
+      "findingCount": 3,
+      "findingTypes": [
+        "active_moiety",
+        "phenoconversion"
+      ],
+      "findingCardCount": 3,
+      "evidenceLadderCount": 3,
+      "allFindingsHaveEvidenceLadders": true,
+      "whyPathCount": 3,
+      "mechanismWhyPathCount": 3,
+      "rawWarningPathCount": 3,
+      "evidenceLedgerPresent": true,
+      "falseReviewedClaims": 0,
+      "danglingEvidenceRefs": [],
+      "activeMoietyPatterns": [
+        "no_major_signal",
+        "parent_accumulation"
+      ],
+      "activeMoietyActors": [
+        "Neuromuscular blockade duration",
+        "Succinic acid + choline",
+        "Succinylmonocholine"
+      ],
+      "phenoconversionGenes": [
+        "BCHE"
+      ],
+      "phenoconversionDirections": [
+        "reduced"
+      ],
+      "persistenceTypes": [
+        "metabolite",
+        "parent"
+      ],
+      "persistenceActors": [
+        "Succinic acid + choline",
+        "Succinylcholine"
+      ],
+      "sections": {
+        "findings": true,
+        "mechanismsWhy": true,
+        "functionalGenes": true,
+        "parentMetabolite": true,
+        "persistence": true,
+        "evidence": true,
+        "reviewSummary": true,
+        "rawWarningPaths": true
+      },
+      "sectionPanels": {
+        "findings": "tab-overview",
+        "mechanismsWhy": "tab-mechanisms",
+        "functionalGenes": "tab-genes-metabolites",
+        "parentMetabolite": "tab-genes-metabolites",
+        "persistence": "tab-timing-levels",
+        "evidence": "tab-evidence",
+        "reviewSummary": "tab-review",
+        "rawWarningPaths": "tab-review"
+      }
     }
   ]
 }

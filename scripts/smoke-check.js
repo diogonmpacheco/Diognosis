@@ -86,7 +86,7 @@ assert(doc.querySelectorAll('#phenoconversionBody .phenoconversion-card').length
 assert(doc.querySelectorAll('#activeMoietyBody .active-moiety-card').length > 0, 'Genes + Metabolites should render Parent-Metabolite Balance cards');
 assert(doc.querySelectorAll('#persistenceTimelineBody .persistence-card').length > 0, 'Timing + Levels should render Persistence & Washout cards');
 assert(doc.querySelectorAll('#reviewSummaryBody .review-summary-tile').length > 0, 'Review should render current-stack summary tiles');
-assert(doc.querySelectorAll('#scenarioSnapshotBody .review-diagnostic-card').length > 0, 'Review should expose scenario snapshot diagnostics');
+assert(doc.querySelectorAll('#scenarioSnapshotBody .review-diagnostic-card').length >= 18, 'Review should expose all external and model scenario snapshot diagnostics');
 assert(doc.querySelectorAll('#metaboliteGapBody .review-diagnostic-card').length > 0, 'Review should expose metabolite coverage gaps');
 assert(doc.querySelectorAll('#contributeBody .review-action-btn').length >= 2, 'Review should expose report/contribute actions');
 assert(doc.querySelectorAll('#warningPathBody .warning-path-row').length > 0, 'Review should expose raw warning path rows');

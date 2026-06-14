@@ -28,6 +28,7 @@ await new Promise((resolveReady) => setTimeout(resolveReady, 400));
 const { window } = dom;
 window.addDrug('Codeine');
 window.addDrug('Fluoxetine');
+window.renderAll();
 window.renderEvidenceExplorer();
 
 const document = window.document;
@@ -37,6 +38,8 @@ const ledger = document.getElementById('evidenceLadderLedger');
 const cards = [...document.querySelectorAll('#evCardsContainer .ev-explorer-card')];
 const pendingCards = cards
   .filter((card) => card.querySelector('.ev-review-badge.needs-review'));
+const findingCards = [...document.querySelectorAll('#findingBody .finding-card')];
+const findingLadders = [...document.querySelectorAll('#findingBody .evidence-ladder-compact')];
 
 assert(browserErrors.length === 0, `Evidence UI emitted browser errors: ${browserErrors.join('; ')}`);
 assert(/all pending professional review/i.test(countText), `Evidence count must present one pending-review trust status, got "${countText}"`);
@@ -47,6 +50,9 @@ assert(/pending review/i.test(ledger.textContent || ''), 'Evidence ladder ledger
 assert(/Evidence Browser \/ Evidence Ledger/i.test(ledger.textContent || ''), 'Evidence ladder ledger title is missing');
 assert(cards.length > 0, 'Expected representative stack to expose evidence cards');
 assert(pendingCards.length === cards.length, `Expected every evidence card to show pending professional review, found ${pendingCards.length}/${cards.length}`);
+assert(findingCards.length > 0, 'Expected representative stack to expose normalized finding cards');
+assert(findingLadders.length === findingCards.length, `Expected every finding card to show compact evidence ladder status, found ${findingLadders.length}/${findingCards.length}`);
+assert(findingLadders.every((node) => /clinical action status/i.test(node.textContent || '')), 'Finding evidence ladders must expose clinical action status');
 assert(!document.querySelector('.ev-review-toggle'), 'Collapsed review-queue toggle should not return');
 assert(!document.querySelector('#evReviewCards'), 'Hidden review-queue container should not return');
 assert(!/show review queue/i.test(document.getElementById('evidenceBody')?.textContent || ''), 'Evidence explorer should not hide pending evidence behind a review queue');

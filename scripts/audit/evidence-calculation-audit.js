@@ -59,6 +59,17 @@ const report = dom.window.eval(`(() => {
   const fluoxetineStudies = fluoxetineEdge
     ? resolveEvidenceRefs(fluoxetineEdge.props?.evidenceRefs || [], getEdgeEvidenceSupportKeys(fluoxetineEdge))
     : [];
+  activeStack = ['Codeine', 'Fluoxetine'];
+  userGenetics = {};
+  activeGenotype = {
+    CYP2D6: GENOTYPE_PHENOTYPE.PM,
+    CYP2C19: GENOTYPE_PHENOTYPE.NM,
+    CYP2C9: GENOTYPE_PHENOTYPE.NM,
+    CYP3A4: GENOTYPE_PHENOTYPE.NM,
+  };
+  const findings = buildInteractionFindings(activeStack, activeGenotype, { interactions:calcRisk().interactions });
+  const findingEvidenceRefs = [...new Set(findings.flatMap(finding => finding.evidenceRefs || []))];
+  const danglingFindingEvidenceRefs = findingEvidenceRefs.filter(ref => !STUDY_DB[ref]);
 
   return {
     graphPendingEvidenceCount: graphPendingEvidence.size,
@@ -68,6 +79,11 @@ const report = dom.window.eval(`(() => {
     fluoxetineEdgeConfidence: fluoxetineEdge ? computeEdgeConfidence(fluoxetineEdge) : null,
     fluoxetinePendingEvidenceCount: fluoxetineStudies.filter(study => study.reviewRequired === true).length,
     fluoxetineEvidenceCount: fluoxetineStudies.length,
+    findingCount: findings.length,
+    findingEvidenceLadderCount: findings.filter(finding => finding.evidenceLadder?.clinicalActionConfidence).length,
+    findingReviewedClaimCount: findings.filter(finding => finding.evidenceLadder?.professionalReviewStatus === 'reviewed' || finding.reviewRequired === false).length,
+    severeFindingWithoutRefsOrReviewRequired: findings.filter(finding => ['severe','critical'].includes(finding.severity) && !(finding.evidenceRefs || []).length && finding.reviewRequired !== true).length,
+    danglingFindingEvidenceRefs,
   };
 })()`);
 
@@ -78,5 +94,10 @@ assert(report.pendingOnlySevereCalibratedCount > 0, 'Expected at least one sever
 assert(report.fluoxetineEdgeFound, 'Expected Fluoxetine -> CYP2D6 inhibition edge to exist');
 assert(report.fluoxetinePendingEvidenceCount > 0, 'Expected Fluoxetine/CYP2D6 support-key evidence to include pending-review studies');
 assert(report.fluoxetineEdgeConfidence > 0.5, `Expected Fluoxetine/CYP2D6 edge confidence to reflect linked support evidence, got ${report.fluoxetineEdgeConfidence}`);
+assert(report.findingCount > 0, 'Expected normalized findings for Codeine + Fluoxetine + CYP2D6 PM');
+assert(report.findingEvidenceLadderCount === report.findingCount, `Expected every normalized finding to carry an evidence ladder, got ${report.findingEvidenceLadderCount}/${report.findingCount}`);
+assert(report.findingReviewedClaimCount === 0, 'Normalized findings must not claim professional review without review metadata');
+assert(report.severeFindingWithoutRefsOrReviewRequired === 0, 'Severe/critical findings without refs must remain reviewRequired');
+assert(report.danglingFindingEvidenceRefs.length === 0, `Normalized findings contain dangling evidence refs: ${report.danglingFindingEvidenceRefs.join(', ')}`);
 
 console.log(`Evidence calculation audit passed: ${report.graphPendingEvidenceCount} pending studies feed graph confidence; ${report.ddiPendingEvidenceCount} feed DDI profiles.`);

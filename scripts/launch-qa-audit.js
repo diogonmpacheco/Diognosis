@@ -43,6 +43,8 @@ function firstEvidenceLink(study) {
 
 const PANEL_DEFS = [
   { name:'risk', sectionId:'riskSection', bodyId:'riskBody' },
+  { name:'interaction findings', sectionId:'findingSection', bodyId:'findingBody' },
+  { name:'finding why paths', sectionId:'mechanismWhySection', bodyId:'mechanismWhyBody' },
   { name:'known interactions', sectionId:'interSection', bodyId:'interBody' },
   { name:'combination alerts', sectionId:'comboSection', bodyId:'comboBody' },
   { name:'mechanistic interpretation', sectionId:'mechanisticSection', bodyId:'mechanisticBody' },
@@ -51,14 +53,21 @@ const PANEL_DEFS = [
   { name:'alternatives', sectionId:'altSection', bodyId:'altBody' },
   { name:'fold exposure', sectionId:'foldSection', bodyId:'foldBody' },
   { name:'genotype effects', sectionId:'genotypeSection', bodyId:'genotypeBody' },
+  { name:'functional gene status', sectionId:'phenoconversionSection', bodyId:'phenoconversionBody' },
   { name:'metabolites', sectionId:'metabSection', bodyId:'metabBody' },
+  { name:'parent-metabolite balance', sectionId:'activeMoietySection', bodyId:'activeMoietyBody' },
   { name:'downstream effects', sectionId:'cascadeSection', bodyId:'cascadeBody' },
   { name:'side-effect burden', sectionId:'phenoAccumSection', bodyId:'phenoAccumBody' },
   { name:'PK simulation', sectionId:'pkSimSection', bodyId:'pkSimBody' },
+  { name:'persistence timeline', sectionId:'persistenceTimelineSection', bodyId:'persistenceTimelineBody' },
   { name:'washout calendar', sectionId:'washoutSection', bodyId:'washoutBody' },
   { name:'burden flags', sectionId:'burdenSection', bodyId:'burdenBody' },
   { name:'network', sectionId:'graphSection', bodyId:'graphBody' },
   { name:'evidence', sectionId:'evidenceSection', bodyId:'evidenceBody' },
+  { name:'review summary', sectionId:'reviewSummarySection', bodyId:'reviewSummaryBody' },
+  { name:'scenario snapshots', sectionId:'scenarioSnapshotSection', bodyId:'scenarioSnapshotBody' },
+  { name:'metabolite coverage gaps', sectionId:'metaboliteGapSection', bodyId:'metaboliteGapBody' },
+  { name:'raw warning paths', sectionId:'warningPathSection', bodyId:'warningPathBody' },
   { name:'review queue', sectionId:'qualitySection', bodyId:'qualityBody' },
 ];
 
@@ -193,6 +202,13 @@ function collect({ name, why, drugs, genotypes = [], tab = 'genes-metabolites', 
   const risk = norm(window.document.getElementById('riskBody')?.textContent || '');
   const fold = norm(window.document.getElementById('foldBody')?.textContent || '');
   const genotype = norm(window.document.getElementById('genotypeBody')?.textContent || '');
+  const findingText = norm(window.document.getElementById('findingBody')?.textContent || '');
+  const whyText = norm(window.document.getElementById('mechanismWhyBody')?.textContent || '');
+  const functionalGeneText = norm(window.document.getElementById('phenoconversionBody')?.textContent || '');
+  const activeMoietyText = norm(window.document.getElementById('activeMoietyBody')?.textContent || '');
+  const persistenceText = norm(window.document.getElementById('persistenceTimelineBody')?.textContent || '');
+  const reviewSummaryText = norm(window.document.getElementById('reviewSummaryBody')?.textContent || '');
+  const rawPathText = norm(window.document.getElementById('warningPathBody')?.textContent || '');
   const metabolites = norm(window.document.getElementById('metabBody')?.textContent || '');
   const evidence = norm(window.document.getElementById('evidenceBody')?.textContent || '');
   const feedbackText = norm(window.document.body.textContent || '');
@@ -206,15 +222,30 @@ function collect({ name, why, drugs, genotypes = [], tab = 'genes-metabolites', 
   const debug = () => JSON.stringify({
     summary: summary.slice(0, 500),
     risk: risk.slice(0, 500),
+    findings: findingText.slice(0, 500),
+    why: whyText.slice(0, 500),
+    functionalGene: functionalGeneText.slice(0, 500),
+    activeMoiety: activeMoietyText.slice(0, 500),
+    persistence: persistenceText.slice(0, 500),
     fold: fold.slice(0, 500),
     genotype: genotype.slice(0, 500),
     metabolites: metabolites.slice(0, 500),
     evidence: evidence.slice(0, 500),
+    reviewSummary: reviewSummaryText.slice(0, 500),
+    rawPaths: rawPathText.slice(0, 500),
     visiblePanels,
     staleHiddenPanels: panels.filter(p => !p.visible && p.text).map(p => ({ name:p.name, text:p.text.slice(0, 120) })),
   }, null, 2);
 
   assert(includesAny(summary, expect.summary), `${name}: missing expected summary signal ${expect.summary.join(' / ')}\n${debug()}`);
+  const findingSignals = expect.findings || [...expect.summary, ...expect.metabolites];
+  assert(includesAny(findingText, findingSignals), `${name}: missing normalized finding signal ${findingSignals.join(' / ')}\n${debug()}`);
+  assert(includesAny(whyText, [...expect.summary, ...expect.metabolites]), `${name}: missing per-warning why-path signal\n${debug()}`);
+  assert(includesAny(activeMoietyText, expect.metabolites), `${name}: missing parent-metabolite balance signal ${expect.metabolites.join(' / ')}\n${debug()}`);
+  assert(includesAny(persistenceText, [...expect.metabolites, ...expect.summary]), `${name}: missing persistence timeline signal\n${debug()}`);
+  assert(/findings/i.test(reviewSummaryText) && /pending review/i.test(reviewSummaryText), `${name}: missing Review Summary diagnostics\n${debug()}`);
+  assert(rawPathText.length > 0 && /copy path/i.test(rawPathText), `${name}: missing raw warning path diagnostics\n${debug()}`);
+  assert(window.document.querySelectorAll('#findingBody .evidence-ladder-compact').length > 0, `${name}: finding cards must show compact evidence ladders\n${debug()}`);
   if (expect.risk) {
     assert(includesAny(risk, expect.risk), `${name}: missing risk-panel signal ${expect.risk.join(' / ')}\n${debug()}`);
   }

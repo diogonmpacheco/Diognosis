@@ -50,6 +50,7 @@ globalThis.__VALIDATE__ = {
   ENZYME_ACTORS, TRANSPORTER_ACTORS, TRANSPORTER_DDI, PHARMGKB_EVIDENCE,
   FOOD_ACTORS, ENDOGENOUS_ACTORS, RECEPTOR_ACTORS, PHENOTYPE_ACTORS, EVIDENCE_TIER,
   SOURCE_CATEGORY, REVIEW_DECISION,
+  REVIEW_DIAGNOSTICS,
   resolveUrlDrugName, normalizeDrugLookupKey, getDrugAliases,
   normalizePharmGxGene, normalizeUrlPhenotype,
 };`, context);
@@ -132,6 +133,37 @@ const report = {
 
 function add(kind, type, message, ref) {
   report[kind].push({ type, message, ref });
+}
+
+const scenarioManifest = (() => {
+  try {
+    return JSON.parse(readFileSync('tests/scenarios/medcheck-scenarios.json', 'utf8'));
+  } catch {
+    return { scenarios: [], modelScenarios: [] };
+  }
+})();
+
+const reviewDiagnostics = data.REVIEW_DIAGNOSTICS || {};
+const reviewScenarioIds = new Set((reviewDiagnostics.scenarioSnapshots || []).map(row => row.id).filter(Boolean));
+const requiredScenarioIds = [
+  ...(scenarioManifest.scenarios || []),
+  ...(scenarioManifest.modelScenarios || []),
+].map(row => row.id).filter(Boolean);
+for (const id of requiredScenarioIds) {
+  if (!reviewScenarioIds.has(id)) {
+    add('errors', 'review_diagnostic_missing_scenario', `Review diagnostics do not expose scenario snapshot ${id}`, id);
+  }
+}
+if ((reviewDiagnostics.scenarioSnapshots || []).length < 18) {
+  add('errors', 'review_diagnostic_scenario_count_low', `Review diagnostics expose ${(reviewDiagnostics.scenarioSnapshots || []).length} scenarios; expected at least 18`, 'REVIEW_DIAGNOSTICS.scenarioSnapshots');
+}
+if ((reviewDiagnostics.metaboliteCoverageGaps || []).length < 9) {
+  add('errors', 'review_diagnostic_gap_count_low', `Review diagnostics expose ${(reviewDiagnostics.metaboliteCoverageGaps || []).length} metabolite coverage gaps; expected at least 9`, 'REVIEW_DIAGNOSTICS.metaboliteCoverageGaps');
+}
+for (const row of reviewDiagnostics.scenarioSnapshots || []) {
+  if (!row.id || !row.name || !(row.stack || []).length || !row.focus || !row.status) {
+    add('errors', 'review_diagnostic_scenario_incomplete', `Review scenario diagnostic is missing id/name/stack/focus/status: ${JSON.stringify(row)}`, row.id || row.name || 'unknown');
+  }
 }
 
 for (const pmid of allPmids) {

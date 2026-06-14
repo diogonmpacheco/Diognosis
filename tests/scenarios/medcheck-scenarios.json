@@ -86,5 +86,150 @@
       "minExternalContextCards": 2,
       "mustNotAlterRisk": true
     }
+  ],
+  "modelScenarios": [
+    {
+      "id": "model-codeine-fluoxetine-cyp2d6-pm",
+      "name": "Codeine + fluoxetine with CYP2D6 poor metabolizer",
+      "stack": ["Codeine", "Fluoxetine"],
+      "genotype": { "CYP2D6": "PM" },
+      "tab": "overview",
+      "expect": {
+        "findingTypes": ["active_moiety", "phenoconversion"],
+        "activeMoietyPatterns": ["activation_failure"],
+        "phenoconversionGenes": ["CYP2D6"],
+        "terms": ["Codeine", "Fluoxetine", "CYP2D6", "Morphine"],
+        "minFindingCards": 1,
+        "minWhyPaths": 1
+      }
+    },
+    {
+      "id": "model-clopidogrel-omeprazole-cyp2c19-pm",
+      "name": "Clopidogrel + omeprazole with CYP2C19 poor metabolizer",
+      "stack": ["Clopidogrel", "Omeprazole"],
+      "genotype": { "CYP2C19": "PM" },
+      "tab": "genes-metabolites",
+      "expect": {
+        "findingTypes": ["active_moiety", "phenoconversion"],
+        "activeMoietyPatterns": ["activation_failure"],
+        "phenoconversionGenes": ["CYP2C19"],
+        "terms": ["Clopidogrel", "Omeprazole", "CYP2C19", "Active thiol"],
+        "minFindingCards": 1,
+        "minWhyPaths": 1
+      }
+    },
+    {
+      "id": "model-irinotecan-ugt1a1-pm",
+      "name": "Irinotecan with UGT1A1 poor metabolizer",
+      "stack": ["Irinotecan"],
+      "genotype": { "UGT1A1": "PM" },
+      "tab": "genes-metabolites",
+      "expect": {
+        "findingTypes": ["active_moiety"],
+        "activeMoietyPatterns": ["toxic_metabolite_accumulation"],
+        "terms": ["Irinotecan", "UGT1A1", "SN-38"],
+        "minFindingCards": 1,
+        "minWhyPaths": 1
+      }
+    },
+    {
+      "id": "model-capecitabine-dpyd-pm",
+      "name": "Capecitabine with DPYD poor metabolizer",
+      "stack": ["Capecitabine"],
+      "genotype": { "DPYD": "PM" },
+      "tab": "genes-metabolites",
+      "expect": {
+        "findingTypes": ["active_moiety"],
+        "activeMoietyPatterns": ["toxic_metabolite_accumulation"],
+        "terms": ["Capecitabine", "DPYD", "5-Fluorouracil"],
+        "minFindingCards": 1,
+        "minWhyPaths": 1
+      }
+    },
+    {
+      "id": "model-azathioprine-allopurinol-tpmt-nudt15-pm",
+      "name": "Azathioprine + allopurinol with TPMT/NUDT15 poor metabolizer",
+      "stack": ["Azathioprine", "Allopurinol"],
+      "genotype": { "TPMT": "PM", "NUDT15": "PM" },
+      "tab": "genes-metabolites",
+      "expect": {
+        "findingTypes": ["active_moiety"],
+        "activeMoietyPatterns": ["toxic_metabolite_accumulation"],
+        "phenoconversionGenes": ["TPMT"],
+        "terms": ["Azathioprine", "Allopurinol", "TPMT", "NUDT15", "6-Thioguanine"],
+        "minFindingCards": 1,
+        "minWhyPaths": 1
+      }
+    },
+    {
+      "id": "model-bupropion-clopidogrel-nebivolol-cyp2d6-null",
+      "name": "Bupropion + clopidogrel + nebivolol with CYP2D6 null",
+      "stack": ["Bupropion", "Clopidogrel", "Nebivolol"],
+      "genotype": { "CYP2D6": "null" },
+      "tab": "overview",
+      "expect": {
+        "findingTypes": ["active_moiety", "phenoconversion"],
+        "activeMoietyPatterns": ["active_metabolite_accumulation", "activation_failure"],
+        "phenoconversionGenes": ["CYP2D6"],
+        "terms": ["Bupropion", "Clopidogrel", "Nebivolol", "CYP2D6", "Hydroxybupropion", "4-Hydroxy-nebivolol"],
+        "minFindingCards": 1,
+        "minWhyPaths": 1
+      }
+    },
+    {
+      "id": "model-simvastatin-clarithromycin",
+      "name": "Simvastatin + clarithromycin CYP3A4 pathway",
+      "stack": ["Simvastatin", "Clarithromycin"],
+      "tab": "mechanisms",
+      "expect": {
+        "findingTypes": ["pairwise_interaction", "phenoconversion"],
+        "phenoconversionGenes": ["CYP3A4"],
+        "terms": ["Simvastatin", "Clarithromycin", "CYP3A4"],
+        "minFindingCards": 1,
+        "minWhyPaths": 1
+      }
+    },
+    {
+      "id": "model-fluoxetine-paroxetine-washout",
+      "name": "Fluoxetine + paroxetine persistence and washout",
+      "stack": ["Fluoxetine", "Paroxetine"],
+      "tab": "timing-levels",
+      "expect": {
+        "findingTypes": ["timing_washout", "phenoconversion"],
+        "persistenceTypes": ["parent", "metabolite", "washout_rule"],
+        "phenoconversionGenes": ["CYP2D6"],
+        "terms": ["Fluoxetine", "Paroxetine", "Norfluoxetine", "washout"],
+        "minFindingCards": 1,
+        "minWhyPaths": 1
+      }
+    },
+    {
+      "id": "model-g6pd-oxidant-stack",
+      "name": "G6PD oxidant stack",
+      "stack": ["Rasburicase", "Primaquine", "Dapsone"],
+      "genotype": { "G6PD deficiency": "present" },
+      "tab": "overview",
+      "expect": {
+        "findingTypes": ["active_moiety"],
+        "activeMoietyPatterns": ["toxic_metabolite_accumulation"],
+        "terms": ["G6PD deficiency", "Rasburicase", "Primaquine", "Dapsone", "hemolysis"],
+        "minFindingCards": 1,
+        "minWhyPaths": 1
+      }
+    },
+    {
+      "id": "model-succinylcholine-bche-ryr1",
+      "name": "Succinylcholine BCHE and malignant-hyperthermia risk",
+      "stack": ["Succinylcholine"],
+      "genotype": { "BCHE": "null", "RYR1/CACNA1S MH variant": "present" },
+      "tab": "overview",
+      "expect": {
+        "findingTypes": ["active_moiety"],
+        "activeMoietyPatterns": ["parent_accumulation"],
+        "terms": ["Succinylcholine", "BCHE", "RYR1", "prolonged paralysis", "malignant hyperthermia"],
+        "minFindingCards": 1,
+        "minWhyPaths": 1
+      }
+    }
   ]
 }

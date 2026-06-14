@@ -1113,7 +1113,7 @@ const reviewHomeRegression = window.eval(`(() => {
 assert(reviewHomeRegression.activeTab === 'review', 'Review tab should activate');
 assert(reviewHomeRegression.matrixPanel === 'tab-review', 'Interaction Grid should live in Review');
 assert(reviewHomeRegression.summaryTiles >= 6, 'Review Summary should expose current-stack summary tiles');
-assert(reviewHomeRegression.scenarioCards >= 8, 'Review should expose scenario snapshots');
+assert(reviewHomeRegression.scenarioCards >= 18, 'Review should expose external and model scenario snapshots');
 assert(reviewHomeRegression.gapCards > 0, 'Review should expose metabolite coverage gaps');
 assert(reviewHomeRegression.warningPaths > 0, 'Review should expose raw warning path diagnostics');
 assert(reviewHomeRegression.actionButtons >= 3, 'Review should expose report/contribute actions');
