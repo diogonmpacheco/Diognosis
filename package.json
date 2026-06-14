@@ -1,7 +1,7 @@
 {
   "name": "diognosis",
   "version": "0.1.0-alpha.1",
-  "description": "Source-linked medication safety and pharmacogenomics platform exploring drug interactions, metabolites, PK shifts, and genetic risk signals.",
+  "description": "Parent–metabolite-aware medication safety and pharmacogenomics platform exploring active and toxic metabolites, PK shifts, gene effects, pathway mechanisms, and source-linked interaction evidence.",
   "license": "MIT",
   "type": "module",
   "scripts": {

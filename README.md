@@ -1,10 +1,10 @@
 # Diognosis
 
-**Source-linked medication safety and pharmacogenomics platform exploring drug interactions, metabolites, PK shifts, and genetic risk signals.**
+**Parent–metabolite-aware medication safety and pharmacogenomics platform for source-linked interaction review.**
 
-Diognosis is a pre-v1, source-linked research prototype for exploring medication-safety mechanisms, pharmacogenomics, and evidence-backed interaction signals.
+Diognosis is a pre-v1, source-linked research prototype for exploring medication safety, pharmacogenomics, and mechanistic interaction signals.
 
-Its first module, **MedCheck Engine**, explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
+Its first module, **MedCheck Engine**, checks medication stacks as connected biochemical systems. Instead of treating a medication only as a parent drug name, it models parent substances, active metabolites, toxic metabolites, enzymes, transporters, receptors, pharmacogenomic phenotypes, PK shifts, washout timing, pathway explanations, and source-linked evidence as connected actors.
 
 **Status:** pre-v1, under active validation, pending professional clinical review, and not medical advice.
 
@@ -20,9 +20,35 @@ Its first module, **MedCheck Engine**, explores drug-drug interactions, pharmaco
 
 ## MedCheck Engine
 
-MedCheck Engine is the first module of Diognosis. It focuses on medication safety exploration, pharmacogenomics, drug-drug interactions, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, and source-linked evidence.
+MedCheck Engine is the first module of Diognosis. It focuses on medication safety exploration, pharmacogenomics, drug-drug interactions, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, pathway explanations, and source-linked evidence.
 
 The MedCheck Engine runs entirely in the browser. There are no accounts, no server, no medication data collection, and no user medication or genotype data is sent to Diognosis. The graph view uses a vendored D3 build that is bundled locally at build time.
+
+## What Makes Diognosis Different
+
+Most medication checkers begin with parent drug names and return pairwise warnings. Diognosis is built around parent–metabolite–gene reasoning.
+That means the MedCheck Engine can separate questions that are often collapsed together:
+- Is the parent drug rising?
+- Is the active metabolite falling?
+- Is a toxic metabolite accumulating?
+- Is a prodrug failing activation?
+- Has a genotype been phenoconverted by an inhibitor or inducer?
+- Is the warning driven by an enzyme, transporter, receptor, metabolite, phenotype, PK shift, or washout window?
+- Is the evidence label-backed, guideline-backed, clinical-PK-backed, mechanistic, or still pending professional review?
+
+This makes Diognosis especially useful for review scenarios where the clinically important signal is not the original pill itself, but what the body turns it into — or fails to turn it into.
+
+## Mechanistic Reasoning Layers
+
+MedCheck Engine includes several reasoning layers designed to make parent–metabolite and gene-mediated risks easier to inspect:
+
+| Layer | What it explains |
+|---|---|
+| **Active-moiety balance** | Separates parent-drug, active-metabolite, and toxic-metabolite directionality. |
+| **Phenoconversion dashboard** | Shows how genotype plus inhibitors, inducers, and substrate burden can change functional enzyme status. |
+| **Per-warning why graph** | Displays the pathway chain behind each major warning. |
+| **Persistence & washout timeline** | Separates parent persistence, metabolite persistence, and enzyme recovery/induction offset. |
+| **Evidence confidence ladder** | Distinguishes mechanistic confidence, clinical-action confidence, source type, and professional-review status. |
 
 ## Try A Demo
 
@@ -30,22 +56,22 @@ These links open the live app with example medication stacks already loaded:
 
 | Demo | What it shows |
 |---|---|
-| [SSRI switch / washout](https://diogonmpacheco.github.io/Diognosis/index.html?substances=paroxetine,fluoxetine&tab=safety) | Fluoxetine stays in the body for weeks. Adding paroxetine before it clears can keep the same cleanup pathway blocked and can stack serotonin/QT warning signals. |
-| [Clopidogrel + CYP2C19 PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:poor_metabolizer&tab=pgx) | Clopidogrel is a prodrug: the body must turn it on. A slow CYP2C19 genotype plus omeprazole can reduce activation, so the pill may give less antiplatelet effect than expected. |
-| [Codeine + CYP2D6 PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx) | Codeine must be converted into morphine to work well. A slow CYP2D6 genotype, or a CYP2D6 blocker like fluoxetine, can leave more inactive parent drug and less pain-relieving metabolite. |
-| [Simvastatin + clarithromycin](https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&tab=pk) | Clarithromycin blocks one of simvastatin's main cleanup routes. Simvastatin can rise higher than intended, increasing muscle-toxicity concern. |
-| [Older-adult burden](https://diogonmpacheco.github.io/Diognosis/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=safety) | Each medicine can add sedation, confusion, or fall risk. The important signal is the combined burden, not only one pair of drugs. |
+| [SSRI switch / washout](https://diogonmpacheco.github.io/Diognosis/index.html?substances=paroxetine,fluoxetine&tab=timing-levels) | Fluoxetine and norfluoxetine can persist for weeks. The Timing + Levels view separates parent persistence, metabolite persistence, washout rules, and enzyme recovery. |
+| [Clopidogrel + CYP2C19 PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:poor_metabolizer&tab=genes-metabolites) | Clopidogrel is a prodrug. The Genes + Metabolites view shows CYP2C19 functional status and reduced active-thiol formation as an activation-failure review prompt. |
+| [Codeine + CYP2D6 PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=genes-metabolites) | Codeine must be converted into morphine. The app separates parent codeine, active morphine, CYP2D6 phenoconversion, and the why path behind reduced activation. |
+| [Simvastatin + clarithromycin](https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&tab=mechanisms) | Clarithromycin blocks a major simvastatin cleanup route. The Mechanisms view shows the CYP3A4 pathway chain and source-linked evidence status. |
+| [Older-adult burden](https://diogonmpacheco.github.io/Diognosis/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview) | Each medicine can add sedation, confusion, or fall risk. Overview groups the main interaction findings while Review keeps evidence and diagnostics inspectable. |
 
 The deeper examples below stress cases that are often missed when a checker only looks at parent drug names. The important signal may come from an active metabolite, a toxic metabolite, a blocked clearance pathway, or a genetic no-function state.
 
 | Deep demo | Why it is often missed |
 |---|---|
-| [Azathioprine + allopurinol + TPMT/NUDT15 PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=pgx) | Allopurinol can push azathioprine down a more toxic route. If TPMT or NUDT15 cleanup is weak, the toxic 6-TGN metabolite can build up and threaten bone marrow. |
-| [Capecitabine + DPYD PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=capecitabine&genotype=DPYD:PM&tab=pgx) | Capecitabine is designed to become 5-FU. If DPYD cleanup is weak, that active cancer-drug metabolite can accumulate, so toxicity can come from the metabolite rather than the parent drug. |
-| [Irinotecan + UGT1A1 PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=irinotecan&genotype=UGT1A1:PM&tab=pgx) | Irinotecan becomes SN-38, the stronger active metabolite. UGT1A1 helps clear SN-38; if that pathway is weak, diarrhea and low-blood-count risk can rise. |
-| [Bupropion + clopidogrel + nebivolol + CYP2D6 no-function](https://diogonmpacheco.github.io/Diognosis/index.html?substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null&tab=safety) | This stack hides several problems at once. Clopidogrel can slow the pathway that turns bupropion into hydroxybupropion, so parent bupropion may rise. Hydroxybupropion is harder to predict: less may be made, but without functional CYP2D6, what is made may clear more slowly. Nebivolol is the clearest risk because it relies heavily on CYP2D6 for clearance; without that pathway, nebivolol exposure can climb sharply. Clopidogrel activation may also be slightly weaker if CYP2C19 is slowed, but that signal is less certain. |
-| [G6PD oxidant stack](https://diogonmpacheco.github.io/Diognosis/index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency&tab=pgx) | These drugs look unrelated by name, but all can stress red blood cells. With G6PD deficiency, that shared stress can trigger red-cell breakdown or methemoglobinemia. |
-| [Succinylcholine + BCHE/RYR1 risk](https://diogonmpacheco.github.io/Diognosis/index.html?substances=succinylcholine&genotype=BCHE:null&genotype=RYR1:present&tab=pgx) | The issue is not a common drug-drug pair. BCHE weakness can make paralysis last too long, while RYR1 risk can point to malignant hyperthermia susceptibility during anesthesia. |
+| [Azathioprine + allopurinol + TPMT/NUDT15 PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=genes-metabolites) | Allopurinol can push azathioprine down a more toxic route. The parent–metabolite view highlights 6-TGN accumulation, genotype context, and pending evidence-review status. |
+| [Capecitabine + DPYD PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=capecitabine&genotype=DPYD:PM&tab=genes-metabolites) | Capecitabine is designed to become 5-FU. If DPYD cleanup is weak, the active/toxic metabolite can accumulate, so toxicity can come from the metabolite rather than the parent drug. |
+| [Irinotecan + UGT1A1 PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=irinotecan&genotype=UGT1A1:PM&tab=genes-metabolites) | Irinotecan becomes SN-38, the stronger active metabolite. UGT1A1 helps clear SN-38; the app shows this as toxic-metabolite accumulation with a why path. |
+| [Bupropion + clopidogrel + nebivolol + CYP2D6 no-function](https://diogonmpacheco.github.io/Diognosis/index.html?substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null&tab=overview) | This stack hides several parent/metabolite directions at once: bupropion parent exposure, hydroxybupropion uncertainty, nebivolol clearance, and clopidogrel activation context. |
+| [G6PD oxidant stack](https://diogonmpacheco.github.io/Diognosis/index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency&tab=genes-metabolites) | These drugs look unrelated by name, but all can stress red blood cells. The app groups G6PD risk with toxic-metabolite and oxidant-stress review prompts. |
+| [Succinylcholine + BCHE/RYR1 risk](https://diogonmpacheco.github.io/Diognosis/index.html?substances=succinylcholine&genotype=BCHE:null&genotype=RYR1:present&tab=genes-metabolites) | The issue is not a common drug-drug pair. BCHE weakness can make paralysis last too long, while RYR1/CACNA1S context flags malignant-hyperthermia susceptibility. |
 
 You can also build custom share links with:
 
@@ -65,9 +91,11 @@ There are no routine third-party runtime requests. Evidence links, demo links, a
 
 ## What It Shows
 
-Most interaction checkers return isolated warnings. MedCheck Engine instead shows how a medication stack behaves as a connected system: interaction warnings, pharmacogenomics, metabolites, PK curves, evidence, receptor burden, Beers-style flags, and washout timing.
+Most interaction checkers return isolated warnings. MedCheck Engine instead shows how a medication stack behaves as a connected system: parent drugs, active metabolites, toxic metabolites, pharmacogenomic phenotypes, enzyme and transporter capacity, PK curves, receptor burden, Beers-style flags, washout timing, evidence, and pathway explanations.
 
-The project is intended for education, research, and review workflows. It is not a clinical decision system.
+The goal is not to replace clinical judgment. The goal is to make the mechanism visible enough for education, research, review workflows, and pharmacist or clinician verification.
+
+Diognosis is not a clinical decision system. Source-linked evidence does not equal clinical validation. Warnings are review prompts, and severity should not be treated as clinically final until reviewed by an appropriate professional.
 
 ## Current Limitations
 
@@ -85,7 +113,7 @@ Diognosis is intentionally conservative about what it claims. MedCheck Engine PK
 - **506 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **57 genotype genes** and **52 receptor score profiles**
 - **43 Beers flags** and **24 washout rules**
-- **4400 KB** generated bundle (92789 lines)
+- **4459 KB** generated bundle (93828 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---
@@ -94,7 +122,7 @@ Diognosis is intentionally conservative about what it claims. MedCheck Engine PK
 
 1. Open the [live Diognosis app](https://diogonmpacheco.github.io/Diognosis/).
 2. Search for medications, supplements, foods, or substances.
-3. Review MedCheck Engine safety, pharmacogenomics, PK, evidence, graph, burden, and washout panels.
+3. Review the Overview, Mechanisms, Genes + Metabolites, Timing + Levels, Evidence, and Review tabs.
 4. Set genotype phenotypes where relevant, or paste supported PharmGx report rows in the pharmacogenomics panel.
 5. Treat every result as an explanation to review, not as medical advice.
 
