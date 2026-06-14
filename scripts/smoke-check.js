@@ -61,11 +61,44 @@ await new Promise((resolveReady) => setTimeout(resolveReady, 100));
 assert(evalInPage(window, 'activeStack.length') === 2, 'Medication stack did not update');
 assert(doc.getElementById('medCount')?.textContent.includes('2'), 'Medication count did not update');
 assert(doc.getElementById('tab-overview')?.classList.contains('active'), 'Overview tab should be active by default');
-assert(doc.getElementById('interSection')?.closest('.tab-panel')?.id === 'tab-overview', 'Interaction findings should live under Overview');
+assert(doc.getElementById('findingSection')?.closest('.tab-panel')?.id === 'tab-overview', 'Normalized interaction findings should live under Overview');
+assert(doc.getElementById('interSection')?.closest('.tab-panel')?.id === 'tab-review', 'Detailed known interactions should live under Review');
+assert(doc.getElementById('comboSection')?.closest('.tab-panel')?.id === 'tab-review', 'Detailed combination alerts should live under Review');
 assert(doc.getElementById('graphSection')?.closest('.tab-panel')?.id === 'tab-mechanisms', 'Full network should live under Mechanisms');
 assert(doc.getElementById('genotypeSection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Genotype panel should live under Genes + Metabolites');
 assert(doc.getElementById('pkSimSection')?.closest('.tab-panel')?.id === 'tab-timing-levels', 'PK simulation should live under Timing + Levels');
 assert(doc.getElementById('reviewWorkbenchSection')?.closest('.tab-panel')?.id === 'tab-review', 'Review workbench should live under Review');
+assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
+
+const findingAudit = evalInPage(window, `(() => {
+  const findings = buildInteractionFindings(activeStack, activeGenotype, { interactions: calcRisk().interactions });
+  return {
+    count:findings.length,
+    first:findings[0],
+    types:[...new Set(findings.map(f => f.type))],
+  };
+})()`);
+assert(findingAudit.count > 0, 'Shared finding engine should return findings for Paroxetine + Codeine');
+assert(findingAudit.types.includes('active_moiety') || findingAudit.types.includes('pairwise_interaction'), 'Finding engine should classify pairwise/active-moiety signals');
+assert(findingAudit.first && findingAudit.first.whyPath === null && findingAudit.first.evidenceLadder === null, 'Findings should expose whyPath and evidenceLadder placeholders');
+assert(Array.isArray(findingAudit.first.affectedActors) && findingAudit.first.affectedActors.length >= 2, 'Findings should include affected actors');
+
+const mergedFindingAudit = evalInPage(window, `(() => {
+  activeStack = ['Simvastatin', 'Clarithromycin'];
+  renderAll();
+  const findings = buildInteractionFindings(activeStack, activeGenotype, { interactions: calcRisk().interactions });
+  return {
+    count:findings.length,
+    hasCombination:findings.some(f => f.type === 'combination_burden' || (f.tags || []).some(tag => /combination/i.test(tag))),
+    hasGrouped:findings.some(f => (f.groupedFindings || []).length > 0),
+    cardCount:document.querySelectorAll('#findingBody .finding-card').length,
+  };
+})()`);
+assert(mergedFindingAudit.count > 0, 'Shared finding engine should return findings for Simvastatin + Clarithromycin');
+assert(mergedFindingAudit.hasCombination, 'Combination alerts should feed the shared finding model');
+assert(mergedFindingAudit.hasGrouped, 'Overlapping known/combination signals should be grouped');
+assert(mergedFindingAudit.cardCount > 0, 'Overview should render grouped finding cards');
+evalInPage(window, `(() => { activeStack = ['Paroxetine', 'Codeine']; renderAll(); })()`);
 
 window.setTab('pgx');
 assert(evalInPage(window, 'activeTab') === 'genes-metabolites', 'Legacy pgx tab alias should resolve to Genes + Metabolites');

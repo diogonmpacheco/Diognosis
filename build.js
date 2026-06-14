@@ -55,6 +55,7 @@ const MODULE_ORDER = [
   'engine/phenotypeEngine.js',    // computePhenotypeAccumulation, computeWashoutCalendar
   'engine/scoringEngine.js',      // computeAdverseBurden
   'engine/interactionEngine.js',  // findInteractions, calcRisk, analyzeMetabolites
+  'engine/findingEngine.js',      // normalized Interaction Finding model
   'engine/mechanisticPredictionEngine.js', // experimental route/metabolite predictions
 
   // ── UI layer (depends on engine + data) ──

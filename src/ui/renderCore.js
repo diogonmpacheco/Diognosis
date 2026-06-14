@@ -46,6 +46,7 @@ function swapDrug(oldName, newName) {
 
 let viewMode = "search";
 let activeTab = "overview";
+let currentInteractionFindings = [];
 const MEDCHECK_TABS = ["overview","mechanisms","genes-metabolites","timing-levels","evidence","review"];
 const TAB_ALIASES = {
   safety:"overview",
@@ -201,6 +202,89 @@ function renderSummaryBar() {
   if (overviewBtn) overviewBtn.innerHTML = "Overview" + badge;
 }
 
+function renderInteractionFindingsOverview(risk) {
+  const section = document.getElementById("findingSection");
+  const body = document.getElementById("findingBody");
+  const count = document.getElementById("findingCount");
+  if (!section || !body) return [];
+  const findings = typeof buildInteractionFindings === "function"
+    ? buildInteractionFindings(activeStack, activeGenotype || {}, { interactions:risk?.interactions || [] })
+    : [];
+  currentInteractionFindings = findings;
+  if (!findings.length) {
+    section.style.display = "";
+    body.innerHTML = '<div class="finding-empty">No interaction findings for this stack yet. Evidence, genetics, metabolite, and timing context may still matter.</div>';
+    if (count) count.textContent = "";
+    return findings;
+  }
+  section.style.display = "";
+  if (count) count.textContent = `${findings.length} finding${findings.length === 1 ? "" : "s"}`;
+  body.innerHTML = findings.slice(0, 8).map(renderInteractionFindingCard).join("") +
+    (findings.length > 8 ? `<div class="finding-empty">Showing 8 of ${findings.length} ranked findings. Open Review for detailed interaction tables.</div>` : "");
+  return findings;
+}
+
+function renderInteractionFindingCard(finding) {
+  const severity = safeChoice(finding.severity, ["critical","severe","moderate","monitor","info"], "info");
+  const title = safeHtml(finding.title || "Interaction finding");
+  const subtitle = safeHtml((finding.affectedActors || [])
+    .filter(actor => actor.type === "parent_drug")
+    .map(actor => actor.id)
+    .join(" + ") || finding.source || "current stack");
+  const summary = safeHtml(finding.summary || "Review this finding in clinical context.");
+  const actorHtml = (finding.affectedActors || []).slice(0, 8).map(actor => `
+    <span class="finding-actor">${safeHtml(actor.id)}<small>${safeHtml(actor.direction || actor.type || "actor")}</small></span>
+  `).join("");
+  const tags = (finding.tags || []).slice(0, 6).map(tag => `<span class="finding-tag">${safeHtml(tag)}</span>`).join("");
+  const evidenceClass = finding.reviewRequired ? "warn" : "review";
+  const grouped = finding.groupedFindings?.length
+    ? `<span class="finding-tag">${finding.groupedFindings.length + 1} grouped signals</span>`
+    : "";
+  const evidenceRefs = (finding.evidenceRefs || []).length
+    ? `<span class="finding-tag">${finding.evidenceRefs.length} evidence ref${finding.evidenceRefs.length === 1 ? "" : "s"}</span>`
+    : '<span class="finding-tag warn">inferred/review required</span>';
+  const whyText = safeHtml(buildFindingWhyText(finding));
+  const sourceLabel = safeHtml(String(finding.source || "finding").replace(/_/g, " "));
+  return `<div class="finding-card ${severity}" data-finding-id="${safeAttr(finding.id)}">
+    <div class="finding-top">
+      <div>
+        <div class="finding-title">${title}</div>
+        <div class="finding-subtitle">${subtitle}</div>
+      </div>
+      <span class="finding-sev ${severity}">${safeHtml(severity)}</span>
+    </div>
+    <div class="finding-effect">${summary}</div>
+    ${actorHtml ? `<div class="finding-actors">${actorHtml}</div>` : ""}
+    <div class="finding-grid">
+      <div class="finding-detail"><strong>Type</strong>${safeHtml(String(finding.type || "finding").replace(/_/g, " "))}</div>
+      <div class="finding-detail"><strong>Evidence</strong>${safeHtml(finding.evidenceStatus || "pending professional review")}</div>
+      <div class="finding-detail"><strong>Review status</strong>${finding.reviewRequired ? "Pending professional review" : "Professionally reviewed"}</div>
+    </div>
+    <div class="finding-meta">
+      <span class="finding-tag type">${sourceLabel}</span>
+      <span class="finding-tag">confidence: ${safeHtml(finding.confidence || "unknown")}</span>
+      ${evidenceRefs}
+      <span class="finding-tag ${evidenceClass}">${finding.reviewRequired ? "needs review" : "reviewed"}</span>
+      ${grouped}
+      ${tags}
+    </div>
+    <details class="finding-why">
+      <summary>Why this appears</summary>
+      <div class="finding-why-body">${whyText}</div>
+    </details>
+  </div>`;
+}
+
+function buildFindingWhyText(finding) {
+  const actors = (finding.affectedActors || []).map(actor =>
+    `${actor.id}${actor.direction ? ` (${actor.direction})` : ""}`
+  ).join(" -> ");
+  const grouped = finding.groupedFindings?.length
+    ? ` Grouped with ${finding.groupedFindings.length} related signal${finding.groupedFindings.length === 1 ? "" : "s"} from the same actor pair.`
+    : "";
+  return `${finding.summary || finding.title || "This stack produced a normalized review finding."}${actors ? ` Actors: ${actors}.` : ""}${grouped}`;
+}
+
 function uniqueInteractionPairLabels(interactions = []) {
   const seen = new Set();
   const labels = [];
@@ -317,12 +401,12 @@ function updateEmptyTabs() {
 
 function arrangeAdvancedSections() {
   const placements = {
-    overview:["riskSection","interSection","comboSection","altSection"],
+    overview:["riskSection","findingSection","altSection"],
     mechanisms:["mechanisticSection","transporterSection","pdSection","cascadeSection","phenoAccumSection","graphSection","matrixSection"],
     "genes-metabolites":["genotypeSection","metabSection"],
     "timing-levels":["foldSection","pkSimSection","washoutSection","burdenSection"],
     evidence:["externalContextSection","evidenceSection"],
-    review:["reviewWorkbenchSection","qualitySection"],
+    review:["reviewWorkbenchSection","interSection","comboSection","qualitySection"],
   };
   Object.entries(placements).forEach(([tabId, sectionIds]) => {
     const panel = document.getElementById("tab-" + tabId);
@@ -856,6 +940,8 @@ function renderAll() {
     document.getElementById("metabSection").style.display = activeDrugNames.length ? "" : "none";
     document.getElementById("pdSection").style.display = activeDrugNames.length ? "" : "none";
   } else {
+    currentInteractionFindings = [];
+    hideSectionAndClear("findingSection", "findingBody", "findingCount");
     hideSectionAndClear("foldSection", "foldBody");
     hideSectionAndClear("metabSection", "metabBody");
     hideSectionAndClear("pdSection", "pdBody");
@@ -875,18 +961,22 @@ function renderAll() {
   if (activeStack.length >= 2) {
     const risk = calcRisk();
     renderRiskGauge(risk);
+    renderInteractionFindingsOverview(risk);
     renderInteractions(risk.interactions);
     renderCombinationProducts();
     renderTransporterDDI();
     renderMatrix(risk.interactions);
     renderAlternatives();
     document.getElementById("riskSection").style.display = "";
+    document.getElementById("findingSection").style.display = "";
     document.getElementById("interSection").style.display = "";
     document.getElementById("comboSection").style.display = "";
     document.getElementById("transporterSection").style.display = "";
     document.getElementById("matrixSection").style.display = "";
     document.getElementById("altSection").style.display = "";
   } else {
+    currentInteractionFindings = [];
+    hideSectionAndClear("findingSection", "findingBody", "findingCount");
     hideSectionAndClear("riskSection", "riskBody");
     hideSectionAndClear("interSection", "interBody", "interCount");
     hideSectionAndClear("comboSection", "comboBody", "comboCount");
