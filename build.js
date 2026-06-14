@@ -45,6 +45,7 @@ const MODULE_ORDER = [
   'data/generatedOpenTargetsReviewTargets.js', // static first review target decisions
   'data/generatedOpenTargetsPgxGapRoadmap.js', // static Open Targets/ClinPGx PGx gap roadmap
   'data/generatedOpenTargetsMechanisticQueue.js', // static Open Targets target-safety review queue
+  'data/reviewDiagnostics.js', // static scenario and metabolite review diagnostics
 
   // ── Engine layer (depends on data layer) ──
   'engine/evidenceEngine.js',     // evidenceConfidence, getStudy, computeEdgeConfidence, studyCardHTML
@@ -75,6 +76,7 @@ const MODULE_ORDER = [
   'ui/renderPhenoconversion.js', // Functional Gene Status dashboard
   'ui/renderPersistenceTimeline.js', // Persistence & Washout timeline
   'ui/renderWhyPath.js', // compact warning path cards and raw review paths
+  'ui/renderReview.js', // Review tab summary, diagnostics, and contribution actions
   'ui/renderCascade.js',      // renderCascade
   'ui/renderAlternatives.js', // renderAlternatives, renderGenetics, renderMetabolites, etc.
   'ui/renderGenotype.js',     // renderGenotypePanel, setGenotype

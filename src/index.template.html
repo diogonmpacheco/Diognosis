@@ -584,6 +584,19 @@ a{color:var(--accent)}
 .warning-path-json{max-height:180px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;background:rgba(255,255,255,.72);border:1px solid var(--border);border-radius:8px;padding:8px;margin:8px 0 0;font-size:10px;line-height:1.35;color:var(--text2)}
 .mini-btn{appearance:none;border:1px solid var(--border);border-radius:999px;background:var(--card);color:var(--text2);font-size:10px;font-weight:900;padding:5px 9px;cursor:pointer;white-space:nowrap}
 .mini-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accentBg)}
+.review-summary-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:8px;margin-bottom:10px}
+.review-summary-tile{border:1px solid var(--border);border-radius:8px;background:var(--card2);padding:10px 11px;min-width:0}
+.review-summary-num{font-size:20px;font-weight:900;color:var(--text);line-height:1}
+.review-summary-label{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;color:var(--text2);margin-top:4px}
+.review-summary-note{font-size:10px;color:var(--text2);line-height:1.35;margin-top:4px;overflow-wrap:anywhere}
+.review-diagnostic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px}
+.review-diagnostic-card{border:1px solid var(--border);border-radius:8px;background:var(--card2);padding:10px 11px;min-width:0}
+.review-diagnostic-title{font-size:12px;font-weight:900;color:var(--text);line-height:1.3;overflow-wrap:anywhere}
+.review-diagnostic-meta{font-size:10px;color:var(--text2);line-height:1.4;margin-top:4px;overflow-wrap:anywhere}
+.review-diagnostic-current{border-color:var(--accent);background:var(--accentBg)}
+.review-actions{display:flex;flex-wrap:wrap;gap:8px}
+.review-action-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid var(--border);border-radius:8px;background:var(--card2);color:var(--text);font-size:11px;font-weight:900;padding:8px 10px}
+.review-action-btn:hover{border-color:var(--accent);background:var(--accentBg);color:var(--accent)}
 .mechanistic-note{padding:10px 12px;margin-bottom:10px;border:1px solid var(--border);border-radius:10px;background:var(--accentBg);color:var(--text2);font-size:12px;line-height:1.4}
 .mechanistic-card{border-style:dashed}
 .mechanistic-card .finding-sev{background:var(--blueBg);color:var(--blue);border:1px solid var(--blue)}
@@ -946,7 +959,55 @@ a{color:var(--accent)}
     </div>
   </div>
 
-  <div class="tab-panel" id="tab-review"></div>
+  <div class="tab-panel" id="tab-review">
+  <div class="section" id="reviewSummarySection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('reviewSummary')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 11l3 3L22 4"/>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        <span>Review Summary</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="reviewSummaryCount"></span>
+      </div>
+      <div class="section-body coll-body open" id="reviewSummaryBody"></div>
+    </div>
+
+  <div class="section" id="scenarioSnapshotSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('scenarioSnapshot')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="16" rx="2"/>
+          <path d="M7 8h10M7 12h6M7 16h8"/>
+        </svg>
+        <span>Scenario Snapshots</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="scenarioSnapshotCount"></span>
+      </div>
+      <div class="section-body coll-body open" id="scenarioSnapshotBody"></div>
+    </div>
+
+  <div class="section" id="metaboliteGapSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('metaboliteGap')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2v20"/>
+          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+        <span>Metabolite Coverage Gaps</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="metaboliteGapCount"></span>
+      </div>
+      <div class="section-body coll-body open" id="metaboliteGapBody"></div>
+    </div>
+
+  <div class="section" id="contributeSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('contribute')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+        <span>Report / Contribute</span>
+      </div>
+      <div class="section-body coll-body open" id="contributeBody"></div>
+    </div>
+  </div>
 
   <div class="tab-panel" id="tab-evidence">
   <div class="section" id="reviewWorkbenchSection" style="display:none">

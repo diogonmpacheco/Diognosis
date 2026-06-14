@@ -65,12 +65,17 @@ assert(doc.getElementById('findingSection')?.closest('.tab-panel')?.id === 'tab-
 assert(doc.getElementById('interSection')?.closest('.tab-panel')?.id === 'tab-review', 'Detailed known interactions should live under Review');
 assert(doc.getElementById('comboSection')?.closest('.tab-panel')?.id === 'tab-review', 'Detailed combination alerts should live under Review');
 assert(doc.getElementById('graphSection')?.closest('.tab-panel')?.id === 'tab-mechanisms', 'Full network should live under Mechanisms');
+assert(doc.getElementById('matrixSection')?.closest('.tab-panel')?.id === 'tab-review', 'Interaction grid should live under Review');
 assert(doc.getElementById('genotypeSection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Genotype panel should live under Genes + Metabolites');
 assert(doc.getElementById('phenoconversionSection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Functional Gene Status should live under Genes + Metabolites');
 assert(doc.getElementById('activeMoietySection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Parent-Metabolite Balance should live under Genes + Metabolites');
 assert(doc.getElementById('pkSimSection')?.closest('.tab-panel')?.id === 'tab-timing-levels', 'PK simulation should live under Timing + Levels');
 assert(doc.getElementById('persistenceTimelineSection')?.closest('.tab-panel')?.id === 'tab-timing-levels', 'Persistence & Washout should live under Timing + Levels');
 assert(doc.getElementById('reviewWorkbenchSection')?.closest('.tab-panel')?.id === 'tab-review', 'Review workbench should live under Review');
+assert(doc.getElementById('reviewSummarySection')?.closest('.tab-panel')?.id === 'tab-review', 'Review Summary should live under Review');
+assert(doc.getElementById('scenarioSnapshotSection')?.closest('.tab-panel')?.id === 'tab-review', 'Scenario Snapshots should live under Review');
+assert(doc.getElementById('metaboliteGapSection')?.closest('.tab-panel')?.id === 'tab-review', 'Metabolite Coverage Gaps should live under Review');
+assert(doc.getElementById('contributeSection')?.closest('.tab-panel')?.id === 'tab-review', 'Report / Contribute should live under Review');
 assert(doc.getElementById('warningPathSection')?.closest('.tab-panel')?.id === 'tab-review', 'Raw Warning Paths should live under Review');
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
 assert(doc.querySelectorAll('#findingBody .evidence-ladder-compact').length > 0, 'Overview finding cards should render compact evidence ladders');
@@ -78,6 +83,10 @@ assert(doc.querySelectorAll('#findingBody .why-path').length > 0, 'Overview find
 assert(doc.querySelectorAll('#phenoconversionBody .phenoconversion-card').length > 0, 'Genes + Metabolites should render Functional Gene Status cards');
 assert(doc.querySelectorAll('#activeMoietyBody .active-moiety-card').length > 0, 'Genes + Metabolites should render Parent-Metabolite Balance cards');
 assert(doc.querySelectorAll('#persistenceTimelineBody .persistence-card').length > 0, 'Timing + Levels should render Persistence & Washout cards');
+assert(doc.querySelectorAll('#reviewSummaryBody .review-summary-tile').length > 0, 'Review should render current-stack summary tiles');
+assert(doc.querySelectorAll('#scenarioSnapshotBody .review-diagnostic-card').length > 0, 'Review should expose scenario snapshot diagnostics');
+assert(doc.querySelectorAll('#metaboliteGapBody .review-diagnostic-card').length > 0, 'Review should expose metabolite coverage gaps');
+assert(doc.querySelectorAll('#contributeBody .review-action-btn').length >= 2, 'Review should expose report/contribute actions');
 assert(doc.querySelectorAll('#warningPathBody .warning-path-row').length > 0, 'Review should expose raw warning path rows');
 
 const findingAudit = evalInPage(window, `(() => {

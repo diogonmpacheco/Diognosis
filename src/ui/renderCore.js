@@ -428,11 +428,11 @@ function updateEmptyTabs() {
 function arrangeAdvancedSections() {
   const placements = {
     overview:["riskSection","findingSection","altSection"],
-    mechanisms:["mechanisticSection","transporterSection","pdSection","cascadeSection","phenoAccumSection","graphSection","matrixSection"],
+    mechanisms:["mechanisticSection","transporterSection","pdSection","cascadeSection","phenoAccumSection","graphSection"],
     "genes-metabolites":["genotypeSection","phenoconversionSection","activeMoietySection","metabSection"],
     "timing-levels":["foldSection","pkSimSection","persistenceTimelineSection","washoutSection","burdenSection"],
     evidence:["externalContextSection","evidenceSection"],
-    review:["reviewWorkbenchSection","warningPathSection","interSection","comboSection","qualitySection"],
+    review:["reviewSummarySection","reviewWorkbenchSection","scenarioSnapshotSection","metaboliteGapSection","warningPathSection","matrixSection","interSection","comboSection","qualitySection","contributeSection"],
   };
   Object.entries(placements).forEach(([tabId, sectionIds]) => {
     const panel = document.getElementById("tab-" + tabId);
@@ -965,6 +965,9 @@ function renderAll() {
     renderInteractionGraph();       // Phase 5 #4: D3 force-directed graph
     renderWashoutCalendar();        // Phase 5 #9: safe-to-switch dates
     renderAdverseBurden();          // Phase 5 #10: ACB + Beers + fall risk
+    if (typeof renderScenarioSnapshotsReview === "function") renderScenarioSnapshotsReview();
+    if (typeof renderMetaboliteCoverageGapsReview === "function") renderMetaboliteCoverageGapsReview();
+    if (typeof renderContributeReview === "function") renderContributeReview();
     document.getElementById("foldSection").style.display = activeDrugNames.length ? "" : "none";
     document.getElementById("metabSection").style.display = activeDrugNames.length ? "" : "none";
     document.getElementById("pdSection").style.display = activeDrugNames.length ? "" : "none";
@@ -981,6 +984,10 @@ function renderAll() {
     hideSectionAndClear("evidenceSection", "evidenceBody", "evidenceCount");
     hideSectionAndClear("externalContextSection", "externalContextBody", "externalContextCount");
     hideSectionAndClear("reviewWorkbenchSection", "reviewWorkbenchBody", "reviewWorkbenchCount");
+    hideSectionAndClear("reviewSummarySection", "reviewSummaryBody", "reviewSummaryCount");
+    hideSectionAndClear("scenarioSnapshotSection", "scenarioSnapshotBody", "scenarioSnapshotCount");
+    hideSectionAndClear("metaboliteGapSection", "metaboliteGapBody", "metaboliteGapCount");
+    hideSectionAndClear("contributeSection", "contributeBody");
     hideSectionAndClear("warningPathSection", "warningPathBody", "warningPathCount");
     hideSectionAndClear("qualitySection", "qualityBody", "qualityCount");
     hideSectionAndClear("genotypeSection", "genotypeBody");
@@ -996,6 +1003,7 @@ function renderAll() {
     const risk = calcRisk();
     renderRiskGauge(risk);
     renderInteractionFindingsOverview(risk);
+    if (typeof renderReviewSummary === "function") renderReviewSummary();
     if (typeof renderWarningPathReview === "function") renderWarningPathReview();
     renderInteractions(risk.interactions);
     renderCombinationProducts();
@@ -1012,6 +1020,7 @@ function renderAll() {
   } else {
     if (activeDrugNames.length) {
       renderInteractionFindingsOverview({ interactions:[] });
+      if (typeof renderReviewSummary === "function") renderReviewSummary();
       if (typeof renderWarningPathReview === "function") renderWarningPathReview();
     }
     else {

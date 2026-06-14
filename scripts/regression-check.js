@@ -1091,6 +1091,34 @@ assert(evidenceLadderRegression.clinicalActionConfidence === 'pending_review' ||
 assert(evidenceLadderRegression.cardLadderCount > 0, 'Finding cards should render compact evidence ladder UI');
 assert(evidenceLadderRegression.ledgerExists, 'Evidence tab should render the evidence ladder ledger');
 
+const reviewHomeRegression = window.eval(`(() => {
+  activeStack = [];
+  userGenetics = {};
+  activeGenotype = { CYP2D6:GENOTYPE_PHENOTYPE.PM, CYP2C19:GENOTYPE_PHENOTYPE.NM, CYP2C9:GENOTYPE_PHENOTYPE.NM, CYP3A4:GENOTYPE_PHENOTYPE.NM };
+  addDrug('Codeine');
+  addDrug('Fluoxetine');
+  renderAll();
+  setTab('review');
+  return {
+    activeTab,
+    matrixPanel:document.getElementById('matrixSection')?.closest('.tab-panel')?.id,
+    summaryTiles:document.querySelectorAll('#reviewSummaryBody .review-summary-tile').length,
+    scenarioCards:document.querySelectorAll('#scenarioSnapshotBody .review-diagnostic-card').length,
+    gapCards:document.querySelectorAll('#metaboliteGapBody .review-diagnostic-card').length,
+    warningPaths:document.querySelectorAll('#warningPathBody .warning-path-row').length,
+    actionButtons:document.querySelectorAll('#contributeBody .review-action-btn').length,
+    summaryText:document.getElementById('reviewSummaryBody')?.textContent || '',
+  };
+})()`);
+assert(reviewHomeRegression.activeTab === 'review', 'Review tab should activate');
+assert(reviewHomeRegression.matrixPanel === 'tab-review', 'Interaction Grid should live in Review');
+assert(reviewHomeRegression.summaryTiles >= 6, 'Review Summary should expose current-stack summary tiles');
+assert(reviewHomeRegression.scenarioCards >= 8, 'Review should expose scenario snapshots');
+assert(reviewHomeRegression.gapCards > 0, 'Review should expose metabolite coverage gaps');
+assert(reviewHomeRegression.warningPaths > 0, 'Review should expose raw warning path diagnostics');
+assert(reviewHomeRegression.actionButtons >= 3, 'Review should expose report/contribute actions');
+assert(/Pending Review/i.test(reviewHomeRegression.summaryText), 'Review Summary should expose pending review status');
+
 loadCase(window, ['Fluoxetine']);
 const fluoxetineWashout = window.eval('computeWashoutCalendar(["Fluoxetine"]).find(e => e.actorId === "norfluoxetine")');
 assert(fluoxetineWashout && fluoxetineWashout.days === 35, 'Norfluoxetine washout should remain 35 days');
