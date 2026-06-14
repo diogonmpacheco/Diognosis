@@ -840,6 +840,75 @@ assert(hasInteraction(window, {
   text: 'active metabolite',
 }), 'Omeprazole + Clopidogrel should flag severe active-metabolite loss');
 
+const activeMoietyRegression = window.eval(`(() => {
+  function reset(drugs) {
+    activeStack = [];
+    userGenetics = {};
+    activeGenotype = {
+      CYP2D6: GENOTYPE_PHENOTYPE.NM,
+      CYP2C19: GENOTYPE_PHENOTYPE.NM,
+      CYP2C9: GENOTYPE_PHENOTYPE.NM,
+      DPYD: GENOTYPE_PHENOTYPE.NM,
+      UGT1A1: GENOTYPE_PHENOTYPE.NM,
+      TPMT: GENOTYPE_PHENOTYPE.NM,
+      NUDT15: GENOTYPE_PHENOTYPE.NM,
+    };
+    for (const drug of drugs) addDrug(drug);
+  }
+  function setPm(gene) {
+    setGenotypeState(gene, GENOTYPE_PHENOTYPE.PM);
+  }
+  function setNull(gene) {
+    activeGenotype[gene] = GENOTYPE_PHENOTYPE.PM;
+    userGenetics[gene] = 'null';
+  }
+  function rowsFor(drugs, setup) {
+    reset(drugs);
+    setup?.();
+    return computeActiveMoietyBalance(activeStack, activeGenotype);
+  }
+  function find(rows, parent, actorText) {
+    return rows.find(row => row.parent === parent && String(row.actor).includes(actorText));
+  }
+  const codeineRows = rowsFor(['Codeine', 'Fluoxetine'], () => setPm('CYP2D6'));
+  const clopidogrelRows = rowsFor(['Clopidogrel', 'Omeprazole'], () => setPm('CYP2C19'));
+  const irinotecanRows = rowsFor(['Irinotecan'], () => setPm('UGT1A1'));
+  const capecitabineRows = rowsFor(['Capecitabine'], () => setPm('DPYD'));
+  const azathioprineRows = rowsFor(['Azathioprine', 'Allopurinol'], () => {
+    setPm('TPMT');
+    setPm('NUDT15');
+  });
+  const bupropionRows = rowsFor(['Bupropion', 'Clopidogrel', 'Nebivolol'], () => setNull('CYP2D6'));
+  const overviewFindings = (() => {
+    reset(['Capecitabine']);
+    setPm('DPYD');
+    return buildInteractionFindings(activeStack, activeGenotype, { interactions:[] }).filter(f => f.type === 'active_moiety');
+  })();
+  return {
+    codeine: find(codeineRows, 'Codeine', 'Morphine'),
+    clopidogrel: find(clopidogrelRows, 'Clopidogrel', 'Active thiol'),
+    irinotecan: find(irinotecanRows, 'Irinotecan', 'SN-38'),
+    capecitabine: find(capecitabineRows, 'Capecitabine', '5-Fluorouracil'),
+    azathioprine: find(azathioprineRows, 'Azathioprine', '6-Thioguanine'),
+    hydroxybupropion: find(bupropionRows, 'Bupropion', 'Hydroxybupropion'),
+    nebivolol: find(bupropionRows, 'Nebivolol', '4-Hydroxy-nebivolol'),
+    overviewFindingCount: overviewFindings.length,
+  };
+})()`);
+assert(activeMoietyRegression.codeine?.netPattern === 'activation_failure', 'Codeine + fluoxetine + CYP2D6 PM should detect activation failure');
+assert(activeMoietyRegression.codeine?.actorType === 'active_metabolite', 'Codeine -> morphine should be active-metabolite, not toxic-metabolite');
+assert(activeMoietyRegression.clopidogrel?.netPattern === 'activation_failure', 'Clopidogrel + omeprazole + CYP2C19 PM should detect active-thiol activation failure');
+assert(activeMoietyRegression.clopidogrel?.severityHint === 'severe', 'Clopidogrel activation failure should be severe review priority');
+assert(activeMoietyRegression.irinotecan?.netPattern === 'toxic_metabolite_accumulation', 'Irinotecan + UGT1A1 PM should detect SN-38 accumulation');
+assert(activeMoietyRegression.capecitabine?.netPattern === 'toxic_metabolite_accumulation', 'Capecitabine + DPYD PM should detect 5-FU accumulation');
+assert(activeMoietyRegression.azathioprine?.netPattern === 'toxic_metabolite_accumulation', 'Azathioprine + TPMT/NUDT15 PM should detect 6-TGN toxic accumulation');
+assert(activeMoietyRegression.hydroxybupropion?.netPattern === 'active_metabolite_accumulation', 'Bupropion + CYP2D6 null should detect hydroxybupropion active-metabolite accumulation');
+assert(
+  ['activation_failure', 'mixed_direction'].includes(activeMoietyRegression.nebivolol?.netPattern),
+  `Nebivolol + CYP2D6 null should expose active-metabolite directionality, got ${activeMoietyRegression.nebivolol?.netPattern}`
+);
+assert(activeMoietyRegression.overviewFindingCount > 0, 'Active-moiety rows should feed Overview interaction findings');
+
 loadCase(window, ['Fluoxetine']);
 const fluoxetineWashout = window.eval('computeWashoutCalendar(["Fluoxetine"]).find(e => e.actorId === "norfluoxetine")');
 assert(fluoxetineWashout && fluoxetineWashout.days === 35, 'Norfluoxetine washout should remain 35 days');

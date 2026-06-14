@@ -21,9 +21,16 @@ function buildInteractionFindings(stack, genotypeState = {}, options = {}) {
     ? options.combinations
     : getActiveCombinationFindingRows(activeNames);
   const combinationFindings = combinationRows.map(row => normalizeCombinationFinding(row, { stack:activeNames, genotypeState }));
+  const activeMoietyRows = Array.isArray(options.activeMoietyRows)
+    ? options.activeMoietyRows
+    : (typeof computeActiveMoietyBalance === "function" ? computeActiveMoietyBalance(activeNames, genotypeState) : []);
+  const activeMoietyFindings = typeof activeMoietyRowsToFindings === "function"
+    ? activeMoietyRowsToFindings(activeMoietyRows)
+    : [];
   return rankFindings(mergeDuplicateFindings([
     ...interactionFindings,
     ...combinationFindings,
+    ...activeMoietyFindings,
   ].filter(Boolean)));
 }
 

@@ -55,6 +55,7 @@ const MODULE_ORDER = [
   'engine/phenotypeEngine.js',    // computePhenotypeAccumulation, computeWashoutCalendar
   'engine/scoringEngine.js',      // computeAdverseBurden
   'engine/interactionEngine.js',  // findInteractions, calcRisk, analyzeMetabolites
+  'engine/activeMoietyEngine.js', // parent/metabolite direction and active-moiety balance
   'engine/findingEngine.js',      // normalized Interaction Finding model
   'engine/mechanisticPredictionEngine.js', // experimental route/metabolite predictions
 
@@ -66,6 +67,7 @@ const MODULE_ORDER = [
   'ui/renderEvidence.js',     // renderEvidenceExplorer
   'ui/renderExternalSafetyContext.js', // imported external context cards
   'ui/renderOpenTargetsReviewWorkbench.js', // generated review workbench
+  'ui/renderActiveMoiety.js', // Parent-Metabolite Balance panel
   'ui/renderCascade.js',      // renderCascade
   'ui/renderAlternatives.js', // renderAlternatives, renderGenetics, renderMetabolites, etc.
   'ui/renderGenotype.js',     // renderGenotypePanel, setGenotype

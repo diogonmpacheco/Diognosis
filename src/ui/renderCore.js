@@ -212,6 +212,10 @@ function renderInteractionFindingsOverview(risk) {
     : [];
   currentInteractionFindings = findings;
   if (!findings.length) {
+    if (activeStack.length < 2) {
+      hideSectionAndClear("findingSection", "findingBody", "findingCount");
+      return findings;
+    }
     section.style.display = "";
     body.innerHTML = '<div class="finding-empty">No interaction findings for this stack yet. Evidence, genetics, metabolite, and timing context may still matter.</div>';
     if (count) count.textContent = "";
@@ -403,7 +407,7 @@ function arrangeAdvancedSections() {
   const placements = {
     overview:["riskSection","findingSection","altSection"],
     mechanisms:["mechanisticSection","transporterSection","pdSection","cascadeSection","phenoAccumSection","graphSection","matrixSection"],
-    "genes-metabolites":["genotypeSection","metabSection"],
+    "genes-metabolites":["genotypeSection","activeMoietySection","metabSection"],
     "timing-levels":["foldSection","pkSimSection","washoutSection","burdenSection"],
     evidence:["externalContextSection","evidenceSection"],
     review:["reviewWorkbenchSection","interSection","comboSection","qualitySection"],
@@ -930,6 +934,7 @@ function renderAll() {
     renderReviewWorkbench();        // Generated review governance workbench
     renderQualityDashboard();       // Database quality / curation status
     renderGenotypePanel();          // Phase 5 #2: genotype-stratified evidence
+    if (typeof renderActiveMoietyBalance === "function") renderActiveMoietyBalance();
     renderMechanisticPredictions(); // Experimental model predictions
     renderPhenotypeAccumulation();  // Phase 5 #6: serotonin/QTc/anticholinergic
     renderPKSimulation();           // Phase 5 #1: 1-compartment PK curves
@@ -942,6 +947,7 @@ function renderAll() {
   } else {
     currentInteractionFindings = [];
     hideSectionAndClear("findingSection", "findingBody", "findingCount");
+    hideSectionAndClear("activeMoietySection", "activeMoietyBody", "activeMoietyCount");
     hideSectionAndClear("foldSection", "foldBody");
     hideSectionAndClear("metabSection", "metabBody");
     hideSectionAndClear("pdSection", "pdBody");
@@ -975,8 +981,11 @@ function renderAll() {
     document.getElementById("matrixSection").style.display = "";
     document.getElementById("altSection").style.display = "";
   } else {
-    currentInteractionFindings = [];
-    hideSectionAndClear("findingSection", "findingBody", "findingCount");
+    if (activeDrugNames.length) renderInteractionFindingsOverview({ interactions:[] });
+    else {
+      currentInteractionFindings = [];
+      hideSectionAndClear("findingSection", "findingBody", "findingCount");
+    }
     hideSectionAndClear("riskSection", "riskBody");
     hideSectionAndClear("interSection", "interBody", "interCount");
     hideSectionAndClear("comboSection", "comboBody", "comboCount");

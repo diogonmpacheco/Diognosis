@@ -66,9 +66,11 @@ assert(doc.getElementById('interSection')?.closest('.tab-panel')?.id === 'tab-re
 assert(doc.getElementById('comboSection')?.closest('.tab-panel')?.id === 'tab-review', 'Detailed combination alerts should live under Review');
 assert(doc.getElementById('graphSection')?.closest('.tab-panel')?.id === 'tab-mechanisms', 'Full network should live under Mechanisms');
 assert(doc.getElementById('genotypeSection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Genotype panel should live under Genes + Metabolites');
+assert(doc.getElementById('activeMoietySection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Parent-Metabolite Balance should live under Genes + Metabolites');
 assert(doc.getElementById('pkSimSection')?.closest('.tab-panel')?.id === 'tab-timing-levels', 'PK simulation should live under Timing + Levels');
 assert(doc.getElementById('reviewWorkbenchSection')?.closest('.tab-panel')?.id === 'tab-review', 'Review workbench should live under Review');
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
+assert(doc.querySelectorAll('#activeMoietyBody .active-moiety-card').length > 0, 'Genes + Metabolites should render Parent-Metabolite Balance cards');
 
 const findingAudit = evalInPage(window, `(() => {
   const findings = buildInteractionFindings(activeStack, activeGenotype, { interactions: calcRisk().interactions });
@@ -82,6 +84,21 @@ assert(findingAudit.count > 0, 'Shared finding engine should return findings for
 assert(findingAudit.types.includes('active_moiety') || findingAudit.types.includes('pairwise_interaction'), 'Finding engine should classify pairwise/active-moiety signals');
 assert(findingAudit.first && findingAudit.first.whyPath === null && findingAudit.first.evidenceLadder === null, 'Findings should expose whyPath and evidenceLadder placeholders');
 assert(Array.isArray(findingAudit.first.affectedActors) && findingAudit.first.affectedActors.length >= 2, 'Findings should include affected actors');
+
+const activeMoietyAudit = evalInPage(window, `(() => {
+  const rows = computeActiveMoietyBalance(activeStack, activeGenotype);
+  const morphine = rows.find(row => row.parent === 'Codeine' && row.actor === 'Morphine');
+  const findings = buildInteractionFindings(activeStack, activeGenotype, { interactions: calcRisk().interactions });
+  return {
+    count:rows.length,
+    morphine,
+    activeFindingCount:findings.filter(f => f.type === 'active_moiety').length,
+  };
+})()`);
+assert(activeMoietyAudit.count > 0, 'Active-moiety engine should return rows for Paroxetine + Codeine');
+assert(activeMoietyAudit.morphine?.netPattern === 'activation_failure', 'Codeine + Paroxetine should flag morphine activation failure');
+assert(activeMoietyAudit.morphine?.actorType === 'active_metabolite', 'Morphine should remain an active-metabolite signal, not a toxic-metabolite signal');
+assert(activeMoietyAudit.activeFindingCount > 0, 'Active-moiety rows should feed the shared Interaction Finding model');
 
 const mergedFindingAudit = evalInPage(window, `(() => {
   activeStack = ['Simvastatin', 'Clarithromycin'];
