@@ -1119,6 +1119,37 @@ assert(reviewHomeRegression.warningPaths > 0, 'Review should expose raw warning 
 assert(reviewHomeRegression.actionButtons >= 3, 'Review should expose report/contribute actions');
 assert(/Pending Review/i.test(reviewHomeRegression.summaryText), 'Review Summary should expose pending review status');
 
+const crossTabFindingRegression = window.eval(`(() => {
+  activeStack = [];
+  userGenetics = {};
+  activeGenotype = { CYP2D6:GENOTYPE_PHENOTYPE.PM, CYP2C19:GENOTYPE_PHENOTYPE.NM, CYP2C9:GENOTYPE_PHENOTYPE.NM, CYP3A4:GENOTYPE_PHENOTYPE.NM };
+  addDrug('Codeine');
+  addDrug('Fluoxetine');
+  renderAll();
+  const firstId = document.querySelector('#findingBody .finding-card')?.getAttribute('data-finding-id') || '';
+  const overviewHas = Boolean(firstId);
+  setTab('mechanisms');
+  const mechanismsHas = document.querySelectorAll('#mechanismWhyBody .mechanism-why-row .why-path').length > 0;
+  setTab('evidence');
+  const evidenceHas = Boolean(document.getElementById('evidenceLadderLedger')) && /Evidence Browser \\/ Evidence Ledger/i.test(document.getElementById('evidenceLadderLedger')?.textContent || '');
+  setTab('review');
+  const reviewHas = document.querySelectorAll('#warningPathBody .warning-path-row').length > 0;
+  return {
+    overviewHas,
+    mechanismsHas,
+    evidenceHas,
+    reviewHas,
+    mechanismPanel:document.getElementById('mechanismWhySection')?.closest('.tab-panel')?.id,
+    reviewPanel:document.getElementById('warningPathSection')?.closest('.tab-panel')?.id,
+  };
+})()`);
+assert(crossTabFindingRegression.overviewHas, 'Overview should summarize a finding card');
+assert(crossTabFindingRegression.mechanismsHas, 'Mechanisms should explain findings with why paths');
+assert(crossTabFindingRegression.evidenceHas, 'Evidence should detail finding support through the evidence ledger');
+assert(crossTabFindingRegression.reviewHas, 'Review should debug findings through raw warning paths');
+assert(crossTabFindingRegression.mechanismPanel === 'tab-mechanisms', 'Mechanism why paths should stay in Mechanisms');
+assert(crossTabFindingRegression.reviewPanel === 'tab-review', 'Raw warning paths should stay in Review');
+
 loadCase(window, ['Fluoxetine']);
 const fluoxetineWashout = window.eval('computeWashoutCalendar(["Fluoxetine"]).find(e => e.actorId === "norfluoxetine")');
 assert(fluoxetineWashout && fluoxetineWashout.days === 35, 'Norfluoxetine washout should remain 35 days');

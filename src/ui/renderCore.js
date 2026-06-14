@@ -428,7 +428,7 @@ function updateEmptyTabs() {
 function arrangeAdvancedSections() {
   const placements = {
     overview:["riskSection","findingSection","altSection"],
-    mechanisms:["mechanisticSection","transporterSection","pdSection","cascadeSection","phenoAccumSection","graphSection"],
+    mechanisms:["mechanismWhySection","mechanisticSection","transporterSection","pdSection","cascadeSection","phenoAccumSection","graphSection"],
     "genes-metabolites":["genotypeSection","phenoconversionSection","activeMoietySection","metabSection"],
     "timing-levels":["foldSection","pkSimSection","persistenceTimelineSection","washoutSection","burdenSection"],
     evidence:["externalContextSection","evidenceSection"],
@@ -985,6 +985,7 @@ function renderAll() {
     hideSectionAndClear("externalContextSection", "externalContextBody", "externalContextCount");
     hideSectionAndClear("reviewWorkbenchSection", "reviewWorkbenchBody", "reviewWorkbenchCount");
     hideSectionAndClear("reviewSummarySection", "reviewSummaryBody", "reviewSummaryCount");
+    hideSectionAndClear("mechanismWhySection", "mechanismWhyBody", "mechanismWhyCount");
     hideSectionAndClear("scenarioSnapshotSection", "scenarioSnapshotBody", "scenarioSnapshotCount");
     hideSectionAndClear("metaboliteGapSection", "metaboliteGapBody", "metaboliteGapCount");
     hideSectionAndClear("contributeSection", "contributeBody");
@@ -1003,6 +1004,7 @@ function renderAll() {
     const risk = calcRisk();
     renderRiskGauge(risk);
     renderInteractionFindingsOverview(risk);
+    if (typeof renderMechanismWhyPaths === "function") renderMechanismWhyPaths();
     if (typeof renderReviewSummary === "function") renderReviewSummary();
     if (typeof renderWarningPathReview === "function") renderWarningPathReview();
     renderInteractions(risk.interactions);
@@ -1020,12 +1022,14 @@ function renderAll() {
   } else {
     if (activeDrugNames.length) {
       renderInteractionFindingsOverview({ interactions:[] });
+      if (typeof renderMechanismWhyPaths === "function") renderMechanismWhyPaths();
       if (typeof renderReviewSummary === "function") renderReviewSummary();
       if (typeof renderWarningPathReview === "function") renderWarningPathReview();
     }
     else {
       currentInteractionFindings = [];
       hideSectionAndClear("findingSection", "findingBody", "findingCount");
+      hideSectionAndClear("mechanismWhySection", "mechanismWhyBody", "mechanismWhyCount");
       hideSectionAndClear("warningPathSection", "warningPathBody", "warningPathCount");
     }
     hideSectionAndClear("riskSection", "riskBody");

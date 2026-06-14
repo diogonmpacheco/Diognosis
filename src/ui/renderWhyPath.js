@@ -51,6 +51,35 @@ function renderWarningPathReview() {
   }).join("");
 }
 
+function renderMechanismWhyPaths() {
+  const section = document.getElementById("mechanismWhySection");
+  const body = document.getElementById("mechanismWhyBody");
+  const count = document.getElementById("mechanismWhyCount");
+  if (!section || !body) return;
+  const rows = (currentInteractionFindings || []).filter(finding => finding.whyPath);
+  if (!rows.length) {
+    hideSectionAndClear("mechanismWhySection", "mechanismWhyBody", "mechanismWhyCount");
+    return;
+  }
+  section.style.display = "";
+  if (count) count.textContent = `${rows.length} path${rows.length === 1 ? "" : "s"}`;
+  body.innerHTML = rows.slice(0, 10).map(finding => `<div class="mechanism-why-row">
+    <div class="warning-path-row-head">
+      <div>
+        <div class="warning-path-title">${safeHtml(finding.title || finding.id)}</div>
+        <div class="warning-path-meta">${safeHtml(String(finding.type || "finding").replace(/_/g, " "))} · ${safeHtml(finding.severity || "info")}</div>
+      </div>
+      <button class="mini-btn" onclick="setTab('review')">Review raw</button>
+    </div>
+    ${renderWhyPath(finding.whyPath)}
+    <div class="finding-meta">
+      <span class="finding-tag type">${safeHtml(String(finding.source || "finding").replace(/_/g, " "))}</span>
+      <span class="finding-tag">${safeHtml(finding.evidenceLadder?.mechanisticConfidence || finding.confidence || "unknown")} confidence</span>
+      <span class="finding-tag ${finding.reviewRequired ? "warn" : "review"}">${finding.reviewRequired ? "needs review" : "reviewed"}</span>
+    </div>
+  </div>`).join("");
+}
+
 function copyWarningPath(findingId) {
   const el = document.getElementById(`warning-path-json-${findingId}`);
   if (!el) return;

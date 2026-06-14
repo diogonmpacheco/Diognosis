@@ -65,6 +65,7 @@ assert(doc.getElementById('findingSection')?.closest('.tab-panel')?.id === 'tab-
 assert(doc.getElementById('interSection')?.closest('.tab-panel')?.id === 'tab-review', 'Detailed known interactions should live under Review');
 assert(doc.getElementById('comboSection')?.closest('.tab-panel')?.id === 'tab-review', 'Detailed combination alerts should live under Review');
 assert(doc.getElementById('graphSection')?.closest('.tab-panel')?.id === 'tab-mechanisms', 'Full network should live under Mechanisms');
+assert(doc.getElementById('mechanismWhySection')?.closest('.tab-panel')?.id === 'tab-mechanisms', 'Finding Why Paths should live under Mechanisms');
 assert(doc.getElementById('matrixSection')?.closest('.tab-panel')?.id === 'tab-review', 'Interaction grid should live under Review');
 assert(doc.getElementById('genotypeSection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Genotype panel should live under Genes + Metabolites');
 assert(doc.getElementById('phenoconversionSection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Functional Gene Status should live under Genes + Metabolites');
@@ -80,6 +81,7 @@ assert(doc.getElementById('warningPathSection')?.closest('.tab-panel')?.id === '
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
 assert(doc.querySelectorAll('#findingBody .evidence-ladder-compact').length > 0, 'Overview finding cards should render compact evidence ladders');
 assert(doc.querySelectorAll('#findingBody .why-path').length > 0, 'Overview finding cards should render compact why paths');
+assert(doc.querySelectorAll('#mechanismWhyBody .mechanism-why-row').length > 0, 'Mechanisms should render finding why paths');
 assert(doc.querySelectorAll('#phenoconversionBody .phenoconversion-card').length > 0, 'Genes + Metabolites should render Functional Gene Status cards');
 assert(doc.querySelectorAll('#activeMoietyBody .active-moiety-card').length > 0, 'Genes + Metabolites should render Parent-Metabolite Balance cards');
 assert(doc.querySelectorAll('#persistenceTimelineBody .persistence-card').length > 0, 'Timing + Levels should render Persistence & Washout cards');
