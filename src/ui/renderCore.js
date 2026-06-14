@@ -410,7 +410,7 @@ function arrangeAdvancedSections() {
     overview:["riskSection","findingSection","altSection"],
     mechanisms:["mechanisticSection","transporterSection","pdSection","cascadeSection","phenoAccumSection","graphSection","matrixSection"],
     "genes-metabolites":["genotypeSection","phenoconversionSection","activeMoietySection","metabSection"],
-    "timing-levels":["foldSection","pkSimSection","washoutSection","burdenSection"],
+    "timing-levels":["foldSection","pkSimSection","persistenceTimelineSection","washoutSection","burdenSection"],
     evidence:["externalContextSection","evidenceSection"],
     review:["reviewWorkbenchSection","warningPathSection","interSection","comboSection","qualitySection"],
   };
@@ -941,6 +941,7 @@ function renderAll() {
     renderMechanisticPredictions(); // Experimental model predictions
     renderPhenotypeAccumulation();  // Phase 5 #6: serotonin/QTc/anticholinergic
     renderPKSimulation();           // Phase 5 #1: 1-compartment PK curves
+    if (typeof renderPersistenceTimeline === "function") renderPersistenceTimeline();
     renderInteractionGraph();       // Phase 5 #4: D3 force-directed graph
     renderWashoutCalendar();        // Phase 5 #9: safe-to-switch dates
     renderAdverseBurden();          // Phase 5 #10: ACB + Beers + fall risk
@@ -952,6 +953,7 @@ function renderAll() {
     hideSectionAndClear("findingSection", "findingBody", "findingCount");
     hideSectionAndClear("phenoconversionSection", "phenoconversionBody", "phenoconversionCount");
     hideSectionAndClear("activeMoietySection", "activeMoietyBody", "activeMoietyCount");
+    hideSectionAndClear("persistenceTimelineSection", "persistenceTimelineBody", "persistenceTimelineCount");
     hideSectionAndClear("foldSection", "foldBody");
     hideSectionAndClear("metabSection", "metabBody");
     hideSectionAndClear("pdSection", "pdBody");
@@ -965,6 +967,7 @@ function renderAll() {
     hideSectionAndClear("mechanisticSection", "mechanisticBody", "mechanisticCount");
     hideSectionAndClear("phenoAccumSection", "phenoAccumBody");
     hideSectionAndClear("pkSimSection", "pkSimBody");
+    hideSectionAndClear("persistenceTimelineSection", "persistenceTimelineBody", "persistenceTimelineCount");
     hideSectionAndClear("graphSection", "graphBody");
     hideSectionAndClear("washoutSection", "washoutBody");
     hideSectionAndClear("burdenSection", "burdenBody");

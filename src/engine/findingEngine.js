@@ -33,11 +33,18 @@ function buildInteractionFindings(stack, genotypeState = {}, options = {}) {
   const phenoconversionFindings = typeof phenoconversionRowsToFindings === "function"
     ? phenoconversionRowsToFindings(phenoconversionRows)
     : [];
+  const timelineRows = Array.isArray(options.timelineRows)
+    ? options.timelineRows
+    : (typeof computePersistenceTimeline === "function" ? computePersistenceTimeline(activeNames, genotypeState) : []);
+  const timelineFindings = typeof timelineRowsToFindings === "function"
+    ? timelineRowsToFindings(timelineRows)
+    : [];
   return rankFindings(mergeDuplicateFindings([
     ...interactionFindings,
     ...combinationFindings,
     ...activeMoietyFindings,
     ...phenoconversionFindings,
+    ...timelineFindings,
   ].filter(Boolean))).map(finding => {
     if (finding.whyPath || typeof buildWarningPath !== "function") return finding;
     return { ...finding, whyPath:buildWarningPath(finding, activeNames, genotypeState, options.pathContext || {}) };

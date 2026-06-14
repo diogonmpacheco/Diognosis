@@ -57,6 +57,7 @@ const MODULE_ORDER = [
   'engine/interactionEngine.js',  // findInteractions, calcRisk, analyzeMetabolites
   'engine/activeMoietyEngine.js', // parent/metabolite direction and active-moiety balance
   'engine/phenoconversionEngine.js', // genotype plus inhibitors/inducers/substrate burden
+  'engine/persistenceTimelineEngine.js', // parent/metabolite persistence, washout, enzyme recovery
   'engine/findingEngine.js',      // normalized Interaction Finding model
   'engine/warningPathEngine.js',  // per-warning causal path objects
   'engine/mechanisticPredictionEngine.js', // experimental route/metabolite predictions
@@ -71,6 +72,7 @@ const MODULE_ORDER = [
   'ui/renderOpenTargetsReviewWorkbench.js', // generated review workbench
   'ui/renderActiveMoiety.js', // Parent-Metabolite Balance panel
   'ui/renderPhenoconversion.js', // Functional Gene Status dashboard
+  'ui/renderPersistenceTimeline.js', // Persistence & Washout timeline
   'ui/renderWhyPath.js', // compact warning path cards and raw review paths
   'ui/renderCascade.js',      // renderCascade
   'ui/renderAlternatives.js', // renderAlternatives, renderGenetics, renderMetabolites, etc.

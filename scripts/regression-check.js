@@ -1013,6 +1013,53 @@ assert(
   'Phenoconversion why path should show functional gene status'
 );
 
+const persistenceTimelineRegression = window.eval(`(() => {
+  function reset(drugs) {
+    activeStack = [];
+    userGenetics = {};
+    activeGenotype = {
+      CYP2D6: GENOTYPE_PHENOTYPE.NM,
+      CYP2C19: GENOTYPE_PHENOTYPE.NM,
+      CYP2C9: GENOTYPE_PHENOTYPE.NM,
+      CYP3A4: GENOTYPE_PHENOTYPE.NM,
+      TPMT: GENOTYPE_PHENOTYPE.NM,
+      NUDT15: GENOTYPE_PHENOTYPE.NM,
+    };
+    for (const drug of drugs) addDrug(drug);
+  }
+  function rowsFor(drugs) {
+    reset(drugs);
+    return computePersistenceTimeline(activeStack, activeGenotype);
+  }
+  const ssriRows = rowsFor(['Fluoxetine', 'Paroxetine']);
+  const maoiRows = rowsFor(['Phenelzine']);
+  const rifampinRows = rowsFor(['Rifampin', 'Simvastatin']);
+  const diazepamRows = rowsFor(['Diazepam']);
+  const unknownRow = computeActorPersistence('Unmodeled Review Actor', 'Unmodeled Review Actor', {});
+  reset(['Fluoxetine', 'Paroxetine']);
+  const overviewFindings = buildInteractionFindings(activeStack, activeGenotype, { interactions:calcRisk().interactions });
+  return {
+    norfluoxetineMetabolite:ssriRows.find(row => /Norfluoxetine/i.test(row.actor) && row.persistenceType === 'metabolite'),
+    fluoxetineParent:ssriRows.find(row => row.actor === 'Fluoxetine' && row.persistenceType === 'parent'),
+    paroxetineWashout:ssriRows.find(row => row.actor === 'Paroxetine' && row.persistenceType === 'washout_rule'),
+    maoiWashout:maoiRows.find(row => row.actor === 'Phenelzine' && row.persistenceType === 'washout_rule'),
+    rifampinInduction:rifampinRows.find(row => row.actor === 'Rifampin' && row.persistenceType === 'induction_offset'),
+    diazepamParent:diazepamRows.find(row => row.actor === 'Diazepam' && row.persistenceType === 'parent'),
+    diazepamMetabolite:diazepamRows.find(row => /Nordiazepam/i.test(row.actor) && row.persistenceType === 'metabolite'),
+    unknownRow,
+    overviewTimingCount:overviewFindings.filter(f => f.type === 'timing_washout' || (f.sourceRows || []).some(row => row?.persistenceType)).length,
+  };
+})()`);
+assert(persistenceTimelineRegression.norfluoxetineMetabolite?.riskWindow === 'weeks', 'Norfluoxetine should display as a long-lived active metabolite');
+assert(persistenceTimelineRegression.fluoxetineParent?.estimatedPersistenceDays >= 10, 'Fluoxetine parent persistence should display separately from norfluoxetine');
+assert(persistenceTimelineRegression.paroxetineWashout?.estimatedPersistenceDays === 18, 'Paroxetine washout rule should display in the persistence timeline');
+assert(persistenceTimelineRegression.maoiWashout?.estimatedPersistenceDays === 14, 'MAOI washout rule should display as 14 days');
+assert(persistenceTimelineRegression.rifampinInduction?.riskWindow === 'weeks', 'Rifampin induction offset should display as a weeks-long row');
+assert(persistenceTimelineRegression.diazepamParent?.riskWindow === 'days', 'Diazepam parent persistence should display separately from active-metabolite persistence');
+assert(persistenceTimelineRegression.diazepamMetabolite?.riskWindow === 'weeks', 'Diazepam active metabolite persistence should display separately');
+assert(persistenceTimelineRegression.unknownRow.riskWindow === 'unknown' && persistenceTimelineRegression.unknownRow.estimatedPersistenceDays === null, 'Unknown persistence should be shown as unknown, not zero');
+assert(persistenceTimelineRegression.overviewTimingCount > 0, 'Timing/washout rows should feed Overview interaction findings');
+
 loadCase(window, ['Fluoxetine']);
 const fluoxetineWashout = window.eval('computeWashoutCalendar(["Fluoxetine"]).find(e => e.actorId === "norfluoxetine")');
 assert(fluoxetineWashout && fluoxetineWashout.days === 35, 'Norfluoxetine washout should remain 35 days');

@@ -69,12 +69,14 @@ assert(doc.getElementById('genotypeSection')?.closest('.tab-panel')?.id === 'tab
 assert(doc.getElementById('phenoconversionSection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Functional Gene Status should live under Genes + Metabolites');
 assert(doc.getElementById('activeMoietySection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Parent-Metabolite Balance should live under Genes + Metabolites');
 assert(doc.getElementById('pkSimSection')?.closest('.tab-panel')?.id === 'tab-timing-levels', 'PK simulation should live under Timing + Levels');
+assert(doc.getElementById('persistenceTimelineSection')?.closest('.tab-panel')?.id === 'tab-timing-levels', 'Persistence & Washout should live under Timing + Levels');
 assert(doc.getElementById('reviewWorkbenchSection')?.closest('.tab-panel')?.id === 'tab-review', 'Review workbench should live under Review');
 assert(doc.getElementById('warningPathSection')?.closest('.tab-panel')?.id === 'tab-review', 'Raw Warning Paths should live under Review');
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
 assert(doc.querySelectorAll('#findingBody .why-path').length > 0, 'Overview finding cards should render compact why paths');
 assert(doc.querySelectorAll('#phenoconversionBody .phenoconversion-card').length > 0, 'Genes + Metabolites should render Functional Gene Status cards');
 assert(doc.querySelectorAll('#activeMoietyBody .active-moiety-card').length > 0, 'Genes + Metabolites should render Parent-Metabolite Balance cards');
+assert(doc.querySelectorAll('#persistenceTimelineBody .persistence-card').length > 0, 'Timing + Levels should render Persistence & Washout cards');
 assert(doc.querySelectorAll('#warningPathBody .warning-path-row').length > 0, 'Review should expose raw warning path rows');
 
 const findingAudit = evalInPage(window, `(() => {
@@ -122,6 +124,23 @@ const phenoconversionAudit = evalInPage(window, `(() => {
 assert(phenoconversionAudit.cyp2d6?.direction === 'reduced', 'Functional Gene Status should show CYP2D6 reduced by Paroxetine');
 assert(phenoconversionAudit.cyp2d6?.drivers?.some(driver => driver.actor === 'Paroxetine'), 'CYP2D6 phenoconversion should list Paroxetine as a driver');
 assert(phenoconversionAudit.phenoconversionFindingCount > 0, 'Phenoconversion rows should feed the shared Interaction Finding model');
+
+const persistenceAudit = evalInPage(window, `(() => {
+  const rows = computePersistenceTimeline(activeStack, activeGenotype);
+  const paroxetineRule = rows.find(row => row.actor === 'Paroxetine' && row.persistenceType === 'washout_rule');
+  const findings = buildInteractionFindings(activeStack, activeGenotype, { interactions: calcRisk().interactions });
+  return {
+    count:rows.length,
+    paroxetineRule,
+    timingFindingCount:findings.filter(f =>
+      f.type === 'timing_washout' ||
+      (f.sourceRows || []).some(row => row?.persistenceType)
+    ).length,
+  };
+})()`);
+assert(persistenceAudit.count > 0, 'Persistence timeline should return rows for Paroxetine + Codeine');
+assert(persistenceAudit.paroxetineRule?.estimatedPersistenceDays === 18, 'Paroxetine washout rule should stay visible in the persistence timeline');
+assert(persistenceAudit.timingFindingCount > 0, 'Persistence timeline rows should feed Overview interaction findings');
 
 const mergedFindingAudit = evalInPage(window, `(() => {
   activeStack = ['Simvastatin', 'Clarithromycin'];

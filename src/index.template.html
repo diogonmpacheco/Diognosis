@@ -533,6 +533,28 @@ a{color:var(--accent)}
 .phenoconversion-capacity{font-size:18px;font-weight:900;color:var(--text);white-space:nowrap}
 .phenoconversion-state{font-size:12px;font-weight:900;color:var(--text);text-transform:capitalize;margin-bottom:8px}
 .phenoconversion-drivers{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.persistence-intro{font-size:11px;line-height:1.45;color:var(--text2);margin-bottom:10px}
+.persistence-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:10px}
+.persistence-summary div{border:1px solid var(--border);border-radius:8px;background:var(--card2);padding:9px 10px;min-width:0}
+.persistence-summary strong{display:block;font-size:18px;font-weight:900;color:var(--text);line-height:1;overflow-wrap:anywhere}
+.persistence-summary span{display:block;font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.03em;margin-top:4px}
+.persistence-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+.persistence-card{border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:8px;background:var(--card2);padding:12px 13px;min-width:0}
+.persistence-card.weeks{border-left-color:var(--amber);background:var(--amberBg)}
+.persistence-card.days{border-left-color:var(--blue);background:var(--blueBg)}
+.persistence-card.hours{border-left-color:var(--green);background:var(--greenBg)}
+.persistence-card.unknown{border-left-color:var(--border);background:var(--card2)}
+.persistence-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:7px;min-width:0}
+.persistence-title{font-size:13px;font-weight:900;color:var(--text);line-height:1.25;overflow-wrap:anywhere}
+.persistence-subtitle{font-size:10px;color:var(--text2);margin-top:2px;overflow-wrap:anywhere}
+.persistence-window{font-size:9px;font-weight:900;text-transform:uppercase;border-radius:999px;padding:3px 7px;white-space:nowrap;color:#fff}
+.persistence-window.weeks{background:var(--amber)}
+.persistence-window.days{background:var(--blue)}
+.persistence-window.hours{background:var(--green)}
+.persistence-window.unknown{background:var(--text2)}
+.persistence-duration{font-size:20px;font-weight:900;color:var(--text);line-height:1;margin-bottom:4px;overflow-wrap:anywhere}
+.persistence-meta-line{font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.03em;margin-bottom:8px;overflow-wrap:anywhere}
+.persistence-more{font-size:11px;color:var(--text2);text-align:center;margin-top:8px;padding:8px;border-top:1px solid var(--border)}
 .why-path{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;margin-top:7px}
 .why-node{font-size:12px;font-weight:900;color:var(--text);background:rgba(255,255,255,.78);border:1px solid rgba(61,44,30,.1);border-radius:8px;padding:6px 8px;overflow-wrap:anywhere}
 .why-node.enzyme{color:var(--blue);background:#dbeafe}
@@ -855,6 +877,18 @@ a{color:var(--accent)}
         <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">1-compartment concentration curves</span>
       </div>
       <div class="section-body coll-body open" id="pkSimBody"></div>
+    </div>
+
+  <div class="section" id="persistenceTimelineSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('persistenceTimeline')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span>Persistence &amp; Washout</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="persistenceTimelineCount"></span>
+      </div>
+      <div class="section-body coll-body open" id="persistenceTimelineBody"></div>
     </div>
 
   <div class="section" id="washoutSection" style="display:none">
