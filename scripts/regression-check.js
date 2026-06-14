@@ -909,6 +909,59 @@ assert(
 );
 assert(activeMoietyRegression.overviewFindingCount > 0, 'Active-moiety rows should feed Overview interaction findings');
 
+const phenoconversionRegression = window.eval(`(() => {
+  function reset(drugs) {
+    activeStack = [];
+    userGenetics = {};
+    activeGenotype = {
+      CYP2D6: GENOTYPE_PHENOTYPE.NM,
+      CYP2C19: GENOTYPE_PHENOTYPE.NM,
+      CYP2C9: GENOTYPE_PHENOTYPE.NM,
+      CYP3A4: GENOTYPE_PHENOTYPE.NM,
+    };
+    for (const drug of drugs) addDrug(drug);
+  }
+  function rowFor(drugs, enzyme, setup) {
+    reset(drugs);
+    setup?.();
+    return computePhenoconversionState(activeStack, activeGenotype).find(row => row.enzyme === enzyme);
+  }
+  const cyp2d6Fluoxetine = rowFor(['Codeine', 'Fluoxetine'], 'CYP2D6');
+  const cyp2c19Omeprazole = rowFor(['Clopidogrel', 'Omeprazole'], 'CYP2C19');
+  const cyp3a4Clarithro = rowFor(['Simvastatin', 'Clarithromycin'], 'CYP3A4');
+  const cyp3a4Rifampin = rowFor(['Simvastatin', 'Rifampin'], 'CYP3A4');
+  const cyp2d6Null = rowFor(['Codeine'], 'CYP2D6', () => {
+    activeGenotype.CYP2D6 = GENOTYPE_PHENOTYPE.PM;
+    userGenetics.CYP2D6 = 'null';
+  });
+  const overviewFindings = (() => {
+    reset(['Codeine', 'Fluoxetine']);
+    return buildInteractionFindings(activeStack, activeGenotype, { interactions:calcRisk().interactions }).filter(f =>
+      f.type === 'phenoconversion' ||
+      (f.groupedFindings || []).some(grouped => grouped.type === 'phenoconversion') ||
+      (f.sourceRows || []).some(row => row?.functionalPhenotype)
+    );
+  })();
+  return {
+    cyp2d6Fluoxetine,
+    cyp2c19Omeprazole,
+    cyp3a4Clarithro,
+    cyp3a4Rifampin,
+    cyp2d6Null,
+    overviewFindingCount: overviewFindings.length,
+  };
+})()`);
+assert(phenoconversionRegression.cyp2d6Fluoxetine?.direction === 'reduced', 'CYP2D6 normal + fluoxetine should phenoconvert reduced/poor-like');
+assert(
+  ['poor_function', 'minimal_or_no_function'].includes(phenoconversionRegression.cyp2d6Fluoxetine?.functionalPhenotype),
+  `CYP2D6 + fluoxetine should be poor-like, got ${phenoconversionRegression.cyp2d6Fluoxetine?.functionalPhenotype}`
+);
+assert(phenoconversionRegression.cyp2c19Omeprazole?.direction === 'reduced', 'CYP2C19 normal + omeprazole should phenoconvert reduced');
+assert(phenoconversionRegression.cyp3a4Clarithro?.direction === 'reduced', 'CYP3A4 substrate + clarithromycin should phenoconvert reduced');
+assert(phenoconversionRegression.cyp3a4Rifampin?.direction === 'increased', 'CYP3A4 substrate + rifampin should phenoconvert increased');
+assert(phenoconversionRegression.cyp2d6Null?.functionalPhenotype === 'minimal_or_no_function', 'CYP2D6 null genotype should remain minimal/no function');
+assert(phenoconversionRegression.overviewFindingCount > 0, 'Phenoconversion rows should feed Overview interaction findings');
+
 loadCase(window, ['Fluoxetine']);
 const fluoxetineWashout = window.eval('computeWashoutCalendar(["Fluoxetine"]).find(e => e.actorId === "norfluoxetine")');
 assert(fluoxetineWashout && fluoxetineWashout.days === 35, 'Norfluoxetine washout should remain 35 days');

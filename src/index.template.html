@@ -521,6 +521,18 @@ a{color:var(--accent)}
 .active-moiety-directions small{display:block;font-size:10px;color:var(--text2);margin-top:2px;overflow-wrap:anywhere}
 .active-moiety-reasons{margin:0 0 8px 16px;padding:0;color:var(--text2);font-size:11px;line-height:1.4}
 .active-moiety-reasons li{margin:2px 0}
+.phenoconversion-intro{font-size:11px;line-height:1.45;color:var(--text2);margin-bottom:10px}
+.phenoconversion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.phenoconversion-card{border:1px solid var(--border);border-left:4px solid var(--green);border-radius:8px;background:var(--card2);padding:12px 13px}
+.phenoconversion-card.reduced{border-left-color:var(--amber);background:var(--amberBg)}
+.phenoconversion-card.increased{border-left-color:var(--blue);background:var(--blueBg)}
+.phenoconversion-card.unknown{border-left-color:var(--border)}
+.phenoconversion-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:7px}
+.phenoconversion-gene{font-size:16px;font-weight:900;color:var(--text);line-height:1}
+.phenoconversion-subtitle{font-size:10px;color:var(--text2);margin-top:3px}
+.phenoconversion-capacity{font-size:18px;font-weight:900;color:var(--text);white-space:nowrap}
+.phenoconversion-state{font-size:12px;font-weight:900;color:var(--text);text-transform:capitalize;margin-bottom:8px}
+.phenoconversion-drivers{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
 .mechanistic-note{padding:10px 12px;margin-bottom:10px;border:1px solid var(--border);border-radius:10px;background:var(--accentBg);color:var(--text2);font-size:12px;line-height:1.4}
 .mechanistic-card{border-style:dashed}
 .mechanistic-card .finding-sev{background:var(--blueBg);color:var(--blue);border:1px solid var(--blue)}
@@ -753,6 +765,22 @@ a{color:var(--accent)}
         <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Controls and selected-genotype explanations</span>
       </div>
       <div class="section-body coll-body open" id="genotypeBody"></div>
+    </div>
+
+  <div class="section" id="phenoconversionSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('phenoconversion')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7h8"/>
+          <path d="M4 17h8"/>
+          <path d="M16 5l4 4-4 4"/>
+          <path d="M20 9H9"/>
+          <path d="M16 11l4 4-4 4"/>
+          <path d="M20 15H9"/>
+        </svg>
+        <span>Functional Gene Status</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="phenoconversionCount"></span>
+      </div>
+      <div class="section-body coll-body open" id="phenoconversionBody"></div>
     </div>
 
   <div class="section" id="activeMoietySection" style="display:none">

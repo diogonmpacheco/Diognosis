@@ -407,7 +407,7 @@ function arrangeAdvancedSections() {
   const placements = {
     overview:["riskSection","findingSection","altSection"],
     mechanisms:["mechanisticSection","transporterSection","pdSection","cascadeSection","phenoAccumSection","graphSection","matrixSection"],
-    "genes-metabolites":["genotypeSection","activeMoietySection","metabSection"],
+    "genes-metabolites":["genotypeSection","phenoconversionSection","activeMoietySection","metabSection"],
     "timing-levels":["foldSection","pkSimSection","washoutSection","burdenSection"],
     evidence:["externalContextSection","evidenceSection"],
     review:["reviewWorkbenchSection","interSection","comboSection","qualitySection"],
@@ -934,6 +934,7 @@ function renderAll() {
     renderReviewWorkbench();        // Generated review governance workbench
     renderQualityDashboard();       // Database quality / curation status
     renderGenotypePanel();          // Phase 5 #2: genotype-stratified evidence
+    if (typeof renderPhenoconversionDashboard === "function") renderPhenoconversionDashboard();
     if (typeof renderActiveMoietyBalance === "function") renderActiveMoietyBalance();
     renderMechanisticPredictions(); // Experimental model predictions
     renderPhenotypeAccumulation();  // Phase 5 #6: serotonin/QTc/anticholinergic
@@ -947,6 +948,7 @@ function renderAll() {
   } else {
     currentInteractionFindings = [];
     hideSectionAndClear("findingSection", "findingBody", "findingCount");
+    hideSectionAndClear("phenoconversionSection", "phenoconversionBody", "phenoconversionCount");
     hideSectionAndClear("activeMoietySection", "activeMoietyBody", "activeMoietyCount");
     hideSectionAndClear("foldSection", "foldBody");
     hideSectionAndClear("metabSection", "metabBody");

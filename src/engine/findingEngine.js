@@ -27,10 +27,17 @@ function buildInteractionFindings(stack, genotypeState = {}, options = {}) {
   const activeMoietyFindings = typeof activeMoietyRowsToFindings === "function"
     ? activeMoietyRowsToFindings(activeMoietyRows)
     : [];
+  const phenoconversionRows = Array.isArray(options.phenoconversionRows)
+    ? options.phenoconversionRows
+    : (typeof computePhenoconversionState === "function" ? computePhenoconversionState(activeNames, genotypeState, { activeMoietyRows }) : []);
+  const phenoconversionFindings = typeof phenoconversionRowsToFindings === "function"
+    ? phenoconversionRowsToFindings(phenoconversionRows)
+    : [];
   return rankFindings(mergeDuplicateFindings([
     ...interactionFindings,
     ...combinationFindings,
     ...activeMoietyFindings,
+    ...phenoconversionFindings,
   ].filter(Boolean)));
 }
 

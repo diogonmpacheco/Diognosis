@@ -144,8 +144,8 @@ function activeMoietyRowForCandidate(parent, candidate, parentShift, stack, cont
   const actorType = activeMoietyActorType(met, actor, primaryEffect);
   const formationPathway = activeMoietyFormationPathway(met, actor, primaryEffect);
   const clearanceRoute = activeMoietyClearanceRoute(actor, primaryEffect);
-  const formationShift = activeMoietyPathwayShift(formationPathway, stack);
-  const clearanceShift = clearanceRoute ? activeMoietyPathwayShift(clearanceRoute.enzyme, stack) : null;
+  const formationShift = activeMoietyPathwayShift(formationPathway, stack, context);
+  const clearanceShift = clearanceRoute ? activeMoietyPathwayShift(clearanceRoute.enzyme, stack, context) : null;
   const inferred = activeMoietyInferMetaboliteDirection(primaryEffect, formationShift, clearanceShift, formationPathway, clearanceRoute);
   const reasons = uniqueActiveMoietyValues([
     parentShift.reason,
@@ -258,10 +258,21 @@ function activeMoietyParentShift(parent) {
   }
 }
 
-function activeMoietyPathwayShift(enzyme, stack) {
+function activeMoietyPathwayShift(enzyme, stack, context = {}) {
   if (!enzyme || enzyme === "unknown") return null;
   if (!activeMoietyIsEnzymeLike(enzyme)) {
     return { enzyme, capacityPct:null, direction:"unknown", reason:`${enzyme} is modeled as a formation pathway, not a calibrated enzyme capacity` };
+  }
+  const phenoconverted = (context.phenoconversionRows || []).find(row => row.enzyme === enzyme);
+  if (phenoconverted) {
+    const direction = phenoconverted.capacityPct < 75 ? "down" : phenoconverted.capacityPct > 130 ? "up" : "neutral";
+    return {
+      enzyme,
+      capacityPct: phenoconverted.capacityPct,
+      direction,
+      reason: `${enzyme} functional capacity is ${phenoconverted.capacityPct}% (${(PHENOCONVERSION_LABELS[phenoconverted.functionalPhenotype] || phenoconverted.functionalPhenotype || "functional status")})`,
+      capacity: phenoconverted,
+    };
   }
   try {
     const cap = typeof computeEnzymeCapacity === "function" ? computeEnzymeCapacity(enzyme, stack) : null;
@@ -395,7 +406,9 @@ function withActiveMoietyGenotypeState(genotypeState, callback) {
     if (typeof userGenetics !== "undefined" && typeof genotypeToLegacyPhenotype === "function") {
       userGenetics = { ...userGenetics };
       for (const [gene, phenotype] of Object.entries(genotypeState)) {
-        const legacy = genotypeToLegacyPhenotype(phenotype);
+        const legacy = previousUser?.[gene] === "null" && phenotype === GENOTYPE_PHENOTYPE.PM
+          ? "null"
+          : genotypeToLegacyPhenotype(phenotype);
         if (legacy === "normal") delete userGenetics[gene];
         else userGenetics[gene] = legacy;
       }

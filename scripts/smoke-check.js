@@ -66,10 +66,12 @@ assert(doc.getElementById('interSection')?.closest('.tab-panel')?.id === 'tab-re
 assert(doc.getElementById('comboSection')?.closest('.tab-panel')?.id === 'tab-review', 'Detailed combination alerts should live under Review');
 assert(doc.getElementById('graphSection')?.closest('.tab-panel')?.id === 'tab-mechanisms', 'Full network should live under Mechanisms');
 assert(doc.getElementById('genotypeSection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Genotype panel should live under Genes + Metabolites');
+assert(doc.getElementById('phenoconversionSection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Functional Gene Status should live under Genes + Metabolites');
 assert(doc.getElementById('activeMoietySection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Parent-Metabolite Balance should live under Genes + Metabolites');
 assert(doc.getElementById('pkSimSection')?.closest('.tab-panel')?.id === 'tab-timing-levels', 'PK simulation should live under Timing + Levels');
 assert(doc.getElementById('reviewWorkbenchSection')?.closest('.tab-panel')?.id === 'tab-review', 'Review workbench should live under Review');
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
+assert(doc.querySelectorAll('#phenoconversionBody .phenoconversion-card').length > 0, 'Genes + Metabolites should render Functional Gene Status cards');
 assert(doc.querySelectorAll('#activeMoietyBody .active-moiety-card').length > 0, 'Genes + Metabolites should render Parent-Metabolite Balance cards');
 
 const findingAudit = evalInPage(window, `(() => {
@@ -99,6 +101,23 @@ assert(activeMoietyAudit.count > 0, 'Active-moiety engine should return rows for
 assert(activeMoietyAudit.morphine?.netPattern === 'activation_failure', 'Codeine + Paroxetine should flag morphine activation failure');
 assert(activeMoietyAudit.morphine?.actorType === 'active_metabolite', 'Morphine should remain an active-metabolite signal, not a toxic-metabolite signal');
 assert(activeMoietyAudit.activeFindingCount > 0, 'Active-moiety rows should feed the shared Interaction Finding model');
+
+const phenoconversionAudit = evalInPage(window, `(() => {
+  const rows = computePhenoconversionState(activeStack, activeGenotype);
+  const cyp2d6 = rows.find(row => row.enzyme === 'CYP2D6');
+  const findings = buildInteractionFindings(activeStack, activeGenotype, { interactions: calcRisk().interactions });
+  return {
+    cyp2d6,
+    phenoconversionFindingCount:findings.filter(f =>
+      f.type === 'phenoconversion' ||
+      (f.groupedFindings || []).some(grouped => grouped.type === 'phenoconversion') ||
+      (f.sourceRows || []).some(row => row?.functionalPhenotype)
+    ).length,
+  };
+})()`);
+assert(phenoconversionAudit.cyp2d6?.direction === 'reduced', 'Functional Gene Status should show CYP2D6 reduced by Paroxetine');
+assert(phenoconversionAudit.cyp2d6?.drivers?.some(driver => driver.actor === 'Paroxetine'), 'CYP2D6 phenoconversion should list Paroxetine as a driver');
+assert(phenoconversionAudit.phenoconversionFindingCount > 0, 'Phenoconversion rows should feed the shared Interaction Finding model');
 
 const mergedFindingAudit = evalInPage(window, `(() => {
   activeStack = ['Simvastatin', 'Clarithromycin'];
