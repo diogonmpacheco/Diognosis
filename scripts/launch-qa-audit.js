@@ -26,7 +26,7 @@ function slug(value) {
   return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
-function stackUrl(drugs, genotypes, tab = 'pgx') {
+function stackUrl(drugs, genotypes, tab = 'genes-metabolites') {
   const parts = [`substances=${drugs.map(slug).join(',')}`];
   for (const genotype of genotypes) parts.push(`genotype=${encodeURIComponent(genotype).replace(/%3A/g, ':')}`);
   parts.push(`tab=${tab}`);
@@ -159,7 +159,7 @@ const dom = new JSDOM(readFileSync(OUT, 'utf8'), {
 await new Promise((resolveReady) => setTimeout(resolveReady, 400));
 const { window } = dom;
 
-function loadCase({ drugs, genotypes = [], tab = 'pgx' }) {
+function loadCase({ drugs, genotypes = [], tab = 'genes-metabolites' }) {
   window.eval(`
     activeStack = [];
     if (typeof drugDoses !== "undefined") Object.keys(drugDoses).forEach(k => delete drugDoses[k]);
@@ -186,7 +186,7 @@ function panelState(def) {
   };
 }
 
-function collect({ name, why, drugs, genotypes = [], tab = 'pgx', expect }) {
+function collect({ name, why, drugs, genotypes = [], tab = 'genes-metabolites', expect }) {
   loadCase({ drugs, genotypes, tab });
 
   const summary = norm(window.document.getElementById('summaryBar')?.textContent || '');

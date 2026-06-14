@@ -32,7 +32,7 @@
       "name": "Capecitabine + DPYD poor metabolizer with unreviewed ClinPGx context",
       "stack": ["Capecitabine"],
       "genotype": { "DPYD": "PM" },
-      "tab": "pgx",
+      "tab": "genes-metabolites",
       "expectedExternalDatasets": ["pharmacogenetics"],
       "minExternalContextCards": 1,
       "mustNotAlterRisk": true
@@ -51,7 +51,7 @@
       "name": "Warfarin with boxed-warning and VKORC1/CYP2C9 ClinPGx context",
       "stack": ["Warfarin"],
       "genotype": { "VKORC1": "PM", "CYP2C9": "PM" },
-      "tab": "pgx",
+      "tab": "genes-metabolites",
       "expectedExternalDatasets": ["drugWarnings", "pharmacogenetics"],
       "minExternalContextCards": 4,
       "mustNotAlterRisk": true
@@ -61,7 +61,7 @@
       "name": "Abacavir with HLA-B*57:01 ClinPGx and boxed-warning context",
       "stack": ["Abacavir"],
       "genotype": { "HLA-B*57:01": "present" },
-      "tab": "pgx",
+      "tab": "genes-metabolites",
       "expectedExternalDatasets": ["drugWarnings", "pharmacogenetics"],
       "minExternalContextCards": 3,
       "mustNotAlterRisk": true
@@ -71,7 +71,7 @@
       "name": "Clopidogrel with CYP2C19 poor-metabolizer ClinPGx and boxed-warning context",
       "stack": ["Clopidogrel"],
       "genotype": { "CYP2C19": "PM" },
-      "tab": "pgx",
+      "tab": "genes-metabolites",
       "expectedExternalDatasets": ["drugWarnings", "pharmacogenetics"],
       "minExternalContextCards": 3,
       "mustNotAlterRisk": true
@@ -81,7 +81,7 @@
       "name": "Tamoxifen with CYP2D6 ClinPGx and target-safety context",
       "stack": ["Tamoxifen"],
       "genotype": { "CYP2D6": "PM" },
-      "tab": "pgx",
+      "tab": "genes-metabolites",
       "expectedExternalDatasets": ["pharmacogenetics", "targetSafety"],
       "minExternalContextCards": 2,
       "mustNotAlterRisk": true

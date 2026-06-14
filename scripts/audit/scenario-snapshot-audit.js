@@ -108,7 +108,7 @@ function runScenario(window, scenario, fixtureSnapshot) {
         activeGenotypeDetails[gene] = buildRiskInterpretation(gene, phenotype, { reportedLabel:String(token), source:"scenario_manifest" });
       }
     }
-    activeTab = scenario.tab || "safety";
+    activeTab = scenario.tab || "overview";
     renderAll();
 
     const before = calcRisk();

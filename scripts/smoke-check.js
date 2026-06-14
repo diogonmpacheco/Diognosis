@@ -48,12 +48,34 @@ assert(doc.getElementById('ver-engine')?.textContent === '0.1.0-alpha.1', 'Versi
 assert(evalInPage(window, 'DRUG_DB.length') >= 200, 'Drug database did not load');
 assert(evalInPage(window, 'MEDCHECK_VERSION.engine') === '0.1.0-alpha.1', 'MEDCHECK_VERSION is not 0.1.0-alpha.1');
 
+const tabLabels = Array.from(doc.querySelectorAll('#tabBar .tab-btn')).map((btn) => btn.textContent.trim());
+assert(
+  tabLabels.join('|') === 'Overview|Mechanisms|Genes + Metabolites|Timing + Levels|Evidence|Review',
+  `Unexpected top-level tabs: ${tabLabels.join('|')}`
+);
+
 window.addDrug('Paroxetine');
 window.addDrug('Codeine');
 await new Promise((resolveReady) => setTimeout(resolveReady, 100));
 
 assert(evalInPage(window, 'activeStack.length') === 2, 'Medication stack did not update');
 assert(doc.getElementById('medCount')?.textContent.includes('2'), 'Medication count did not update');
+assert(doc.getElementById('tab-overview')?.classList.contains('active'), 'Overview tab should be active by default');
+assert(doc.getElementById('interSection')?.closest('.tab-panel')?.id === 'tab-overview', 'Interaction findings should live under Overview');
+assert(doc.getElementById('graphSection')?.closest('.tab-panel')?.id === 'tab-mechanisms', 'Full network should live under Mechanisms');
+assert(doc.getElementById('genotypeSection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Genotype panel should live under Genes + Metabolites');
+assert(doc.getElementById('pkSimSection')?.closest('.tab-panel')?.id === 'tab-timing-levels', 'PK simulation should live under Timing + Levels');
+assert(doc.getElementById('reviewWorkbenchSection')?.closest('.tab-panel')?.id === 'tab-review', 'Review workbench should live under Review');
+
+window.setTab('pgx');
+assert(evalInPage(window, 'activeTab') === 'genes-metabolites', 'Legacy pgx tab alias should resolve to Genes + Metabolites');
+assert(doc.getElementById('tab-genes-metabolites')?.classList.contains('active'), 'Legacy pgx alias should activate Genes + Metabolites');
+window.setTab('network');
+assert(evalInPage(window, 'activeTab') === 'mechanisms', 'Legacy network tab alias should resolve to Mechanisms');
+window.setTab('advanced');
+assert(evalInPage(window, 'activeTab') === 'review', 'Legacy advanced tab alias should resolve to Review');
+window.setTab('safety');
+assert(evalInPage(window, 'activeTab') === 'overview', 'Legacy safety tab alias should resolve to Overview');
 
 const risk = evalInPage(window, 'calcRisk()');
 assert(risk && Array.isArray(risk.interactions), 'Risk engine did not return interactions');

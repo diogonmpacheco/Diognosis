@@ -10,50 +10,50 @@ document.addEventListener("click", function(e) {
 const DEMO_CASES = {
   'ssri-switch': {
     drugs: ['Paroxetine', 'Fluoxetine'],
-    tab: 'safety',
+    tab: 'overview',
   },
   'clopidogrel-cyp2c19': {
     drugs: ['Clopidogrel', 'Omeprazole'],
     genotype: { CYP2C19: GENOTYPE_PHENOTYPE.PM },
-    tab: 'pgx',
+    tab: 'genes-metabolites',
   },
   'codeine-cyp2d6': {
     drugs: ['Codeine', 'Fluoxetine'],
     genotype: { CYP2D6: GENOTYPE_PHENOTYPE.PM },
-    tab: 'pgx',
+    tab: 'genes-metabolites',
   },
   'statin-inhibitor': {
     drugs: ['Simvastatin', 'Clarithromycin'],
-    tab: 'pk',
+    tab: 'timing-levels',
   },
   'older-adult-burden': {
     drugs: ['Amitriptyline', 'Diazepam', 'Diphenhydramine', 'Oxycodone'],
-    tab: 'safety',
+    tab: 'overview',
   },
   'thiopurine-marrow-toxicity': {
     drugs: ['Azathioprine', 'Allopurinol'],
     genotype: { TPMT: GENOTYPE_PHENOTYPE.PM, NUDT15: GENOTYPE_PHENOTYPE.PM },
-    tab: 'pgx',
+    tab: 'genes-metabolites',
   },
   'fluoropyrimidine-dpyd-toxicity': {
     drugs: ['Capecitabine'],
     genotype: { DPYD: GENOTYPE_PHENOTYPE.PM },
-    tab: 'pgx',
+    tab: 'genes-metabolites',
   },
   'irinotecan-sn38-toxicity': {
     drugs: ['Irinotecan'],
     genotype: { UGT1A1: GENOTYPE_PHENOTYPE.PM },
-    tab: 'pgx',
+    tab: 'genes-metabolites',
   },
   'g6pd-oxidant-stack': {
     drugs: ['Rasburicase', 'Primaquine', 'Dapsone'],
     genotype: { 'G6PD deficiency': GENOTYPE_RISK_STATUS.PRESENT },
-    tab: 'pgx',
+    tab: 'genes-metabolites',
   },
   'anesthesia-pgx-risk': {
     drugs: ['Succinylcholine'],
     genotype: { BCHE: GENOTYPE_PHENOTYPE.PM, 'RYR1/CACNA1S MH variant': GENOTYPE_RISK_STATUS.PRESENT },
-    tab: 'pgx',
+    tab: 'genes-metabolites',
   },
 };
 
@@ -107,7 +107,7 @@ function loadUrlDemoState() {
   }
 
   const tab = params.tab || demo?.tab;
-  if (MEDCHECK_TABS.includes(tab)) activeTab = tab;
+  if (tab) setActiveTab(tab);
   if (demo && params.demo && !params.substances) replaceDemoUrlWithSubstances(demo);
 }
 
@@ -193,7 +193,7 @@ function replaceDemoUrlWithSubstances(demo) {
   const query = [
     ['substances', demo.drugs.map(slugForUrlDrugName).join(',')],
     ...Object.entries(demo.genotype || {}).map(([gene, phenotype]) => ['genotype', demoGenotypeUrlToken(gene, phenotype)]),
-    ['tab', demo.tab || 'safety'],
+    ['tab', resolveTabAlias(demo.tab || 'overview')],
   ].map(([key, value]) => `${encodeURIComponent(key)}=${encodeUrlStateValue(value)}`).join('&');
   const path = (window.location.pathname || '').endsWith('/')
     ? `${window.location.pathname}index.html`

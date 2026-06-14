@@ -559,7 +559,7 @@ const urlNullAudit = window.eval(`(() => {
 assert(urlNullAudit.phenotype === 'poor_metabolizer', 'URL CYP2D6:null should use the PM calculation bucket');
 assert(urlNullAudit.legacy === 'null', 'URL CYP2D6:null should preserve inherited null legacy state');
 assert(urlNullAudit.detail.mechanism === 'inherited_no_function', 'URL CYP2D6:null should preserve no-function semantics');
-assert(urlNullAudit.tab === 'pgx', 'URL state should still restore the requested tab');
+assert(urlNullAudit.tab === 'genes-metabolites', 'Legacy pgx URL tab should route to Genes + Metabolites');
 
 const publicNebivololNullDemoAudit = window.eval(`(() => {
   activeStack = [];
@@ -601,7 +601,7 @@ assert(
   publicNebivololNullDemoAudit.activeStack.join('|') === 'Bupropion|Clopidogrel|Nebivolol',
   'Public bupropion+clopidogrel+nebivolol demo should load all three drugs'
 );
-assert(publicNebivololNullDemoAudit.activeTab === 'safety', 'Public nebivolol null demo should open Summary tab');
+assert(publicNebivololNullDemoAudit.activeTab === 'overview', 'Public nebivolol null demo should open Overview tab from legacy safety alias');
 assert(publicNebivololNullDemoAudit.legacy === 'null', 'Public nebivolol null demo should preserve CYP2D6 null legacy state');
 assert(publicNebivololNullDemoAudit.phenotype === 'poor_metabolizer', 'Public nebivolol null demo should calculate with PM phenotype bucket');
 assert(publicNebivololNullDemoAudit.mechanism === 'inherited_no_function', 'Public nebivolol null demo should preserve inherited no-function semantics');

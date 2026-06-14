@@ -66,8 +66,8 @@ async function verifyScenarioPage(filePath, scenario) {
   const document = dom.window.document;
   const cards = document.querySelectorAll('.external-context-card').length;
   const activeEvidence = document.querySelector('#tab-evidence')?.classList.contains('active') || false;
-  const activePgx = document.querySelector('#tab-pgx')?.classList.contains('active') || false;
-  const expectedTabActive = scenario.tab === 'pgx' ? activePgx : scenario.tab === 'evidence' ? activeEvidence : true;
+  const activeGenesMetabolites = document.querySelector('#tab-genes-metabolites')?.classList.contains('active') || false;
+  const expectedTabActive = scenario.tab === 'genes-metabolites' ? activeGenesMetabolites : scenario.tab === 'evidence' ? activeEvidence : true;
   dom.window.close();
   assert(errors.length === 0, `${scenario.id}: demo page emitted errors: ${errors.join('; ')}`);
   assert(cards >= scenario.minExternalContextCards,

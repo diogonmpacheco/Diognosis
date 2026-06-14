@@ -616,7 +616,7 @@
     const params = new URLSearchParams();
     params.set("substances", substances);
     if (opts.genotype) params.set("genotype", opts.genotype);
-    params.set("tab", opts.tab || "pgx");
+    params.set("tab", opts.tab || "genes-metabolites");
     return `./index.html?${params.toString().replaceAll("%2C", ",").replaceAll("%3A", ":")}`;
   }
 

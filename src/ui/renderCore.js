@@ -45,8 +45,42 @@ function swapDrug(oldName, newName) {
 }
 
 let viewMode = "search";
-let activeTab = "safety";
-const MEDCHECK_TABS = ["safety","pgx","pk","network","evidence","advanced","contributor"];
+let activeTab = "overview";
+const MEDCHECK_TABS = ["overview","mechanisms","genes-metabolites","timing-levels","evidence","review"];
+const TAB_ALIASES = {
+  safety:"overview",
+  summary:"overview",
+  overview:"overview",
+  pgx:"genes-metabolites",
+  genetics:"genes-metabolites",
+  "genes-metabolites":"genes-metabolites",
+  genes:"genes-metabolites",
+  metabolites:"genes-metabolites",
+  pk:"timing-levels",
+  levels:"timing-levels",
+  "timing-levels":"timing-levels",
+  network:"mechanisms",
+  mechanism:"mechanisms",
+  mechanisms:"mechanisms",
+  evidence:"evidence",
+  advanced:"review",
+  contributor:"review",
+  contributors:"review",
+  review:"review",
+};
+
+function resolveTabAlias(name) {
+  const raw = String(name || "").trim();
+  if (MEDCHECK_TABS.includes(raw)) return raw;
+  const key = raw.toLowerCase();
+  return TAB_ALIASES[key] || "overview";
+}
+
+function setActiveTab(name) {
+  activeTab = resolveTabAlias(name);
+  return activeTab;
+}
+
 function setViewMode(m) {
   viewMode = m;
   document.getElementById("searchModeBtn").className = "mode-btn" + (m==="search"?" active":"");
@@ -56,12 +90,12 @@ function setViewMode(m) {
 }
 
 function setTab(name) {
-  activeTab = name;
+  const resolvedTab = setActiveTab(name);
   MEDCHECK_TABS.forEach(t => {
     const panel = document.getElementById("tab-" + t);
     const btn = document.getElementById("tabbtn-" + t);
-    if (panel) panel.classList.toggle("active", t === name);
-    if (btn) btn.classList.toggle("active", t === name);
+    if (panel) panel.classList.toggle("active", t === resolvedTab);
+    if (btn) btn.classList.toggle("active", t === resolvedTab);
   });
 }
 
@@ -70,7 +104,7 @@ function renderSummaryBar() {
   const tabBar = document.getElementById("tabBar");
   if (!bar || !tabBar) return;
 
-  const safetyBtn = document.getElementById("tabbtn-safety");
+  const overviewBtn = document.getElementById("tabbtn-overview");
   const tabPanels = MEDCHECK_TABS
     .map(t => document.getElementById("tab-" + t))
     .filter(Boolean);
@@ -78,7 +112,7 @@ function renderSummaryBar() {
     bar.style.display = "none";
     tabBar.style.display = "none";
     tabPanels.forEach(panel => { panel.style.display = "none"; });
-    if (safetyBtn) safetyBtn.innerHTML = "Summary";
+    if (overviewBtn) overviewBtn.innerHTML = "Overview";
     return;
   }
 
@@ -146,7 +180,7 @@ function renderSummaryBar() {
     priorityStory = buildDefaultPriorityStory(activeStack.length);
   }
 
-  const jumpTab = genotypePriority && genotypePriority.score > interactionScore ? "pgx" : "safety";
+  const jumpTab = genotypePriority && genotypePriority.score > interactionScore ? "genes-metabolites" : "overview";
 
   bar.innerHTML = `<div class="summary-card">
     <div class="summary-main">
@@ -164,7 +198,7 @@ function renderSummaryBar() {
     <div class="summary-next"><span class="summary-next-pill">Next review</span><span>${nextStep}</span></div>
   </div>`;
   const badge = severeCount > 0 ? `<span class="tab-badge">${severeCount}</span>` : "";
-  if (safetyBtn) safetyBtn.innerHTML = "Summary" + badge;
+  if (overviewBtn) overviewBtn.innerHTML = "Overview" + badge;
 }
 
 function uniqueInteractionPairLabels(interactions = []) {
@@ -282,21 +316,22 @@ function updateEmptyTabs() {
 }
 
 function arrangeAdvancedSections() {
-  const advanced = document.getElementById("tab-advanced");
-  const levels = document.getElementById("tab-pk");
-  const network = document.getElementById("tab-network");
-  const contributor = document.getElementById("tab-contributor");
-  if (!advanced || typeof advanced.appendChild !== "function") return;
-  const foldSection = document.getElementById("foldSection");
-  if (levels && foldSection && levels.firstElementChild !== foldSection) levels.insertBefore(foldSection, levels.firstElementChild);
-  ["matrixSection","pdSection","cascadeSection","metabSection","phenoAccumSection","washoutSection","burdenSection"].forEach(id => {
-    const section = document.getElementById(id);
-    if (section && section.parentElement !== advanced) advanced.appendChild(section);
+  const placements = {
+    overview:["riskSection","interSection","comboSection","altSection"],
+    mechanisms:["mechanisticSection","transporterSection","pdSection","cascadeSection","phenoAccumSection","graphSection","matrixSection"],
+    "genes-metabolites":["genotypeSection","metabSection"],
+    "timing-levels":["foldSection","pkSimSection","washoutSection","burdenSection"],
+    evidence:["externalContextSection","evidenceSection"],
+    review:["reviewWorkbenchSection","qualitySection"],
+  };
+  Object.entries(placements).forEach(([tabId, sectionIds]) => {
+    const panel = document.getElementById("tab-" + tabId);
+    if (!panel || typeof panel.appendChild !== "function") return;
+    sectionIds.forEach(sectionId => {
+      const section = document.getElementById(sectionId);
+      if (section) panel.appendChild(section);
+    });
   });
-  const graphSection = document.getElementById("graphSection");
-  if (network && graphSection && graphSection.parentElement !== network) network.appendChild(graphSection);
-  const qualitySection = document.getElementById("qualitySection");
-  if (contributor && qualitySection && qualitySection.parentElement !== contributor) contributor.appendChild(qualitySection);
 }
 
 function onSearch(q) {
@@ -591,14 +626,14 @@ const MEDICATION_CLASS_GUIDES = [
     note:"Bleeding, CYP2C9/VKORC1, antiplatelet activation, NSAIDs, SSRIs, azoles, and transporter overlap.",
     tags:["bleeding","CYP2C19","CYP2C9","transporters"],
     drugs:["Warfarin","Fluconazole","Ibuprofen"],
-    tab:"safety"
+    tab:"overview"
   },
   {
     title:"Psychiatry and neurology",
     note:"CYP2D6/CYP2C19 shifts, active-metabolite failures, QT, serotonin toxicity, sedation, and anticholinergic burden.",
     tags:["CYP2D6","CYP2C19","serotonin/QT","burden"],
     drugs:["Paroxetine","Fluoxetine"],
-    tab:"safety"
+    tab:"overview"
   },
   {
     title:"Cardiology and QT risk",
@@ -606,21 +641,21 @@ const MEDICATION_CLASS_GUIDES = [
     tags:["QT","NTI","CYP2D6"],
     drugs:["Flecainide","Fluoxetine"],
     genotype:{ CYP2D6:GENOTYPE_PHENOTYPE.PM },
-    tab:"pgx"
+    tab:"genes-metabolites"
   },
   {
     title:"Antibiotics, antifungals, antivirals",
     note:"Macrolides, azoles, rifamycins, boosters, CYP3A4, CYP2C9, P-gp, and OATP pathway risk.",
     tags:["CYP3A4","CYP2C9","P-gp"],
     drugs:["Simvastatin","Clarithromycin"],
-    tab:"pk"
+    tab:"timing-levels"
   },
   {
     title:"Oncology, immunology, transplant",
     note:"Narrow windows, prodrug activation, genotype actionability, transporters, and strong inhibitor or inducer sensitivity.",
     tags:["NTI","prodrugs","PGx"],
     drugs:["Tacrolimus","Fluconazole"],
-    tab:"pk"
+    tab:"timing-levels"
   }
 ];
 
@@ -685,7 +720,7 @@ function loadMedicationClassGuide(index) {
   for (const [gene, phenotype] of Object.entries(guide.genotype || {})) {
     if (GENOTYPE_EFFECTS[gene] && GENOTYPE_EFFECTS[gene][phenotype]) setGenotypeState(gene, phenotype);
   }
-  activeTab = guide.tab || "safety";
+  setActiveTab(guide.tab || "overview");
   renderAll();
 }
 
@@ -762,7 +797,7 @@ function encodeUrlStateValueLocal(value) {
 
 function buildMedCheckIssueUrl({ type = "data", title = "Diognosis feedback", focus = "", details = "", evidenceRefs = [] } = {}) {
   const stack = activeStack.length ? activeStack.join(" + ") : "No active stack";
-  const shareLink = currentStackShareUrl(activeTab || "safety");
+  const shareLink = currentStackShareUrl(activeTab || "overview");
   const currentUrl = typeof window !== "undefined" && window.location ? window.location.href : "";
   const labels = type === "bug" ? "bug" : "data-review";
   const body = [
