@@ -1060,6 +1060,37 @@ assert(persistenceTimelineRegression.diazepamMetabolite?.riskWindow === 'weeks',
 assert(persistenceTimelineRegression.unknownRow.riskWindow === 'unknown' && persistenceTimelineRegression.unknownRow.estimatedPersistenceDays === null, 'Unknown persistence should be shown as unknown, not zero');
 assert(persistenceTimelineRegression.overviewTimingCount > 0, 'Timing/washout rows should feed Overview interaction findings');
 
+const evidenceLadderRegression = window.eval(`(() => {
+  activeStack = [];
+  userGenetics = {};
+  activeGenotype = { CYP2D6:GENOTYPE_PHENOTYPE.PM, CYP2C19:GENOTYPE_PHENOTYPE.NM, CYP2C9:GENOTYPE_PHENOTYPE.NM, CYP3A4:GENOTYPE_PHENOTYPE.NM };
+  addDrug('Codeine');
+  addDrug('Fluoxetine');
+  const findings = buildInteractionFindings(activeStack, activeGenotype, { interactions:calcRisk().interactions });
+  const ladder = findings.find(f => (f.evidenceRefs || []).length)?.evidenceLadder || findings[0]?.evidenceLadder;
+  renderAll();
+  setTab('evidence');
+  renderEvidenceExplorer();
+  return {
+    findingCount:findings.length,
+    allHaveLadders:findings.every(f => f.evidenceLadder && f.evidenceLadder.clinicalActionConfidence),
+    reviewedClaims:findings.filter(f => f.evidenceLadder?.professionalReviewStatus === 'reviewed').length,
+    severeWithoutRefsOrReviewRequired:findings.filter(f => ['severe','critical'].includes(f.severity) && !(f.evidenceRefs || []).length && f.reviewRequired !== true).length,
+    strongestTier:ladder?.strongestTier,
+    clinicalActionConfidence:ladder?.clinicalActionConfidence,
+    cardLadderCount:document.querySelectorAll('#findingBody .evidence-ladder-compact').length,
+    ledgerExists:Boolean(document.getElementById('evidenceLadderLedger')),
+  };
+})()`);
+assert(evidenceLadderRegression.findingCount > 0, 'Evidence ladder regression should have representative findings');
+assert(evidenceLadderRegression.allHaveLadders, 'Every major finding should have an evidence confidence ladder');
+assert(evidenceLadderRegression.reviewedClaims === 0, 'No finding should claim professional review when no review metadata exists');
+assert(evidenceLadderRegression.severeWithoutRefsOrReviewRequired === 0, 'Severe/critical findings without refs must stay marked reviewRequired');
+assert(evidenceLadderRegression.strongestTier, 'Evidence ladder should report strongest tier or unknown');
+assert(evidenceLadderRegression.clinicalActionConfidence === 'pending_review' || evidenceLadderRegression.clinicalActionConfidence === 'insufficient', 'Clinical action confidence should remain conservative');
+assert(evidenceLadderRegression.cardLadderCount > 0, 'Finding cards should render compact evidence ladder UI');
+assert(evidenceLadderRegression.ledgerExists, 'Evidence tab should render the evidence ladder ledger');
+
 loadCase(window, ['Fluoxetine']);
 const fluoxetineWashout = window.eval('computeWashoutCalendar(["Fluoxetine"]).find(e => e.actorId === "norfluoxetine")');
 assert(fluoxetineWashout && fluoxetineWashout.days === 35, 'Norfluoxetine washout should remain 35 days');

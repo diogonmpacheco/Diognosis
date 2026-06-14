@@ -39,7 +39,7 @@ function buildInteractionFindings(stack, genotypeState = {}, options = {}) {
   const timelineFindings = typeof timelineRowsToFindings === "function"
     ? timelineRowsToFindings(timelineRows)
     : [];
-  return rankFindings(mergeDuplicateFindings([
+  const rankedFindings = rankFindings(mergeDuplicateFindings([
     ...interactionFindings,
     ...combinationFindings,
     ...activeMoietyFindings,
@@ -49,6 +49,9 @@ function buildInteractionFindings(stack, genotypeState = {}, options = {}) {
     if (finding.whyPath || typeof buildWarningPath !== "function") return finding;
     return { ...finding, whyPath:buildWarningPath(finding, activeNames, genotypeState, options.pathContext || {}) };
   });
+  return typeof attachEvidenceLaddersToFindings === "function"
+    ? attachEvidenceLaddersToFindings(rankedFindings)
+    : rankedFindings;
 }
 
 function normalizeKnownInteractionFinding(ddi, context = {}) {

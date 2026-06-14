@@ -247,6 +247,7 @@ function renderInteractionFindingCard(finding) {
   const evidenceRefs = (finding.evidenceRefs || []).length
     ? `<span class="finding-tag">${finding.evidenceRefs.length} evidence ref${finding.evidenceRefs.length === 1 ? "" : "s"}</span>`
     : '<span class="finding-tag warn">inferred/review required</span>';
+  const evidenceLadder = renderEvidenceLadderCompact(finding.evidenceLadder);
   const whyHtml = finding.whyPath && typeof renderWhyPath === "function"
     ? renderWhyPath(finding.whyPath)
     : `<div class="finding-why-body">${safeHtml(buildFindingWhyText(finding))}</div>`;
@@ -263,7 +264,7 @@ function renderInteractionFindingCard(finding) {
     ${actorHtml ? `<div class="finding-actors">${actorHtml}</div>` : ""}
     <div class="finding-grid">
       <div class="finding-detail"><strong>Type</strong>${safeHtml(String(finding.type || "finding").replace(/_/g, " "))}</div>
-      <div class="finding-detail"><strong>Evidence</strong>${safeHtml(finding.evidenceStatus || "pending professional review")}</div>
+      <div class="finding-detail"><strong>Evidence</strong>${evidenceLadder || safeHtml(finding.evidenceStatus || "pending professional review")}</div>
       <div class="finding-detail"><strong>Review status</strong>${finding.reviewRequired ? "Pending professional review" : "Professionally reviewed"}</div>
     </div>
     <div class="finding-meta">
@@ -278,6 +279,25 @@ function renderInteractionFindingCard(finding) {
       <summary>Why this appears</summary>
       ${whyHtml}
     </details>
+  </div>`;
+}
+
+function renderEvidenceLadderCompact(ladder) {
+  if (!ladder) return "";
+  const tier = ladder.strongestTier && ladder.strongestTier !== "unknown"
+    ? ladder.strongestTier.replace(/_/g, " ").toLowerCase()
+    : "no linked tier";
+  const clinical = String(ladder.clinicalActionConfidence || "insufficient").replace(/_/g, " ");
+  const review = ladder.professionalReviewStatus === "reviewed"
+    ? "professionally reviewed"
+    : ladder.professionalReviewStatus === "pending"
+    ? "pending professional review"
+    : "review status unknown";
+  return `<div class="evidence-ladder-compact">
+    <span>Evidence: ${safeHtml(tier)}${ladder.studyCount ? ` · ${safeHtml(String(ladder.studyCount))} source${ladder.studyCount === 1 ? "" : "s"}` : ""}</span>
+    <span>Mechanistic confidence: ${safeHtml(ladder.mechanisticConfidence || "unknown")}</span>
+    <span>Clinical action status: ${safeHtml(clinical)}</span>
+    <span>${safeHtml(review)}</span>
   </div>`;
 }
 

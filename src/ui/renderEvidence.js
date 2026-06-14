@@ -71,6 +71,10 @@ function renderEvidenceExplorer() {
   const cardsHTML = combinedStudies
     .map(s => `<div class="ev-explorer-card" data-tier="${s.type || 'uncategorized'}">${studyCardHTML(s)}</div>`)
     .join('') || `<div class="ev-explorer-empty" style="color:var(--text2);font-size:13px;padding:8px 4px">No evidence entries match this stack yet.</div>`;
+  const findings = typeof buildInteractionFindings === "function"
+    ? buildInteractionFindings(activeStack, activeGenotype || {}, { interactions:activeStack.length >= 2 ? calcRisk().interactions : [] })
+    : [];
+  const ladderLedger = renderEvidenceLadderLedger(findings);
 
   // Panel-level review notice — applies to every entry until a licensed
   // pharmacist/physician signs off.
@@ -78,7 +82,7 @@ function renderEvidenceExplorer() {
     ⚠ Educational only — no entry below has been reviewed by a licensed pharmacist or physician yet. Treat every evidence entry as source-linked and pending professional review; severity output is explanatory and not clinically final.
   </div>`;
 
-  el.innerHTML = reviewNotice + tierFilterHTML + `<div id="evCardsContainer">${cardsHTML}</div>`;
+  el.innerHTML = reviewNotice + ladderLedger + tierFilterHTML + `<div id="evCardsContainer">${cardsHTML}</div>`;
 }
 
 function filterEvidenceTier(tier, btn) {
@@ -92,6 +96,61 @@ function filterEvidenceTier(tier, btn) {
   container.querySelectorAll('.ev-explorer-card').forEach(card => {
     card.style.display = (!tier || card.dataset.tier === tier) ? '' : 'none';
   });
+}
+
+function renderEvidenceLadderLedger(findings = []) {
+  const rowsByRef = new Map();
+  for (const finding of findings || []) {
+    for (const ref of finding.evidenceRefs || []) {
+      const study = STUDY_DB[ref];
+      if (!study) continue;
+      const row = rowsByRef.get(ref) || {
+        ref,
+        study,
+        findings: [],
+        ladder: computeEvidenceLadder([ref], { reviewRequired:true, calculationBearing:true }),
+      };
+      row.findings.push(finding.title || finding.id || "Finding");
+      rowsByRef.set(ref, row);
+    }
+  }
+  const sourceLinkedFindings = findings.filter(finding => finding.evidenceLadder?.sourceLinked);
+  const noRefFindings = findings.length - sourceLinkedFindings.length;
+  const pendingFindings = findings.filter(finding => finding.evidenceLadder?.professionalReviewStatus !== "reviewed");
+  const rows = [...rowsByRef.values()].sort((a, b) =>
+    (EVIDENCE_WEIGHT[b.study.type] || 0) - (EVIDENCE_WEIGHT[a.study.type] || 0) ||
+    String(a.study.title || "").localeCompare(String(b.study.title || ""))
+  );
+  const rowHtml = rows.length ? rows.slice(0, 18).map(row => {
+    const ladder = row.ladder;
+    const tier = ladder.strongestTier && ladder.strongestTier !== "unknown" ? ladder.strongestTier.replace(/_/g, " ") : "unknown";
+    const identifiers = ladder.publicIdentifiers?.length ? ladder.publicIdentifiers.join(" · ") : "source-linked entry";
+    return `<div class="evidence-ledger-row">
+      <div class="evidence-ledger-head">
+        <div>
+          <div class="evidence-ledger-title">${safeHtml(row.study.title || row.ref)}</div>
+          <div class="evidence-ledger-meta">${safeHtml(row.ref)} · ${safeHtml(tier.toLowerCase())} · ${safeHtml(identifiers)}</div>
+        </div>
+        <span class="ev-review-badge needs-review">${ladder.professionalReviewStatus === "reviewed" ? "reviewed" : "pending professional review"}</span>
+      </div>
+      <div class="evidence-ledger-support">${safeHtml([...new Set(row.findings)].slice(0, 4).join(" · "))}</div>
+      <div class="finding-meta">
+        <span class="finding-tag">mechanistic: ${safeHtml(ladder.mechanisticConfidence)}</span>
+        <span class="finding-tag">clinical action: ${safeHtml(String(ladder.clinicalActionConfidence).replace(/_/g, " "))}</span>
+        <span class="finding-tag">${row.study.quantifiedEffects ? "calculation-bearing context" : "qualitative context"}</span>
+      </div>
+    </div>`;
+  }).join("") : `<div class="evidence-ledger-empty">No current finding has linked source refs yet. Cards still show inferred/review-required status.</div>`;
+  return `<div class="evidence-ledger" id="evidenceLadderLedger">
+    <div class="evidence-ledger-summary">
+      <div><strong>${safeHtml(String(findings.length))}</strong><span>current findings</span></div>
+      <div><strong>${safeHtml(String(sourceLinkedFindings.length))}</strong><span>source-linked findings</span></div>
+      <div><strong>${safeHtml(String(pendingFindings.length))}</strong><span>pending review</span></div>
+      <div><strong>${safeHtml(String(noRefFindings))}</strong><span>inferred / no refs</span></div>
+    </div>
+    <div class="evidence-ledger-label">Evidence Browser / Evidence Ledger</div>
+    <div class="evidence-ledger-list">${rowHtml}</div>
+  </div>`;
 }
 
 function renderQualityDashboard() {

@@ -33,6 +33,7 @@ window.renderEvidenceExplorer();
 const document = window.document;
 const countText = document.getElementById('evidenceCount')?.textContent || '';
 const notice = document.querySelector('.ev-review-notice');
+const ledger = document.getElementById('evidenceLadderLedger');
 const cards = [...document.querySelectorAll('#evCardsContainer .ev-explorer-card')];
 const pendingCards = cards
   .filter((card) => card.querySelector('.ev-review-badge.needs-review'));
@@ -41,6 +42,9 @@ assert(browserErrors.length === 0, `Evidence UI emitted browser errors: ${browse
 assert(/all pending professional review/i.test(countText), `Evidence count must present one pending-review trust status, got "${countText}"`);
 assert(notice, 'Evidence explorer must render the panel-level professional-review notice');
 assert(/no entry below has been reviewed by a licensed pharmacist or physician/i.test(notice.textContent || ''), 'Evidence review notice lost professional-review wording');
+assert(ledger, 'Evidence explorer must render the evidence ladder ledger');
+assert(/pending review/i.test(ledger.textContent || ''), 'Evidence ladder ledger must expose pending-review status');
+assert(/Evidence Browser \/ Evidence Ledger/i.test(ledger.textContent || ''), 'Evidence ladder ledger title is missing');
 assert(cards.length > 0, 'Expected representative stack to expose evidence cards');
 assert(pendingCards.length === cards.length, `Expected every evidence card to show pending professional review, found ${pendingCards.length}/${cards.length}`);
 assert(!document.querySelector('.ev-review-toggle'), 'Collapsed review-queue toggle should not return');

@@ -48,6 +48,7 @@ const MODULE_ORDER = [
 
   // ── Engine layer (depends on data layer) ──
   'engine/evidenceEngine.js',     // evidenceConfidence, getStudy, computeEdgeConfidence, studyCardHTML
+  'engine/evidenceConfidenceEngine.js', // per-finding evidence confidence ladders
   'engine/pathwayEngine.js',      // buildInteractionGraph, traverseEffects, getTemporalProfile
   'engine/enzymeEngine.js',       // getAllInhibitions, calcFold, computeGutExtraction, foldChangeBands
   'engine/pkEngine.js',           // pkConcentration, pkCurve, genotypeAdjustedPK

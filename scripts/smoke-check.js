@@ -73,6 +73,7 @@ assert(doc.getElementById('persistenceTimelineSection')?.closest('.tab-panel')?.
 assert(doc.getElementById('reviewWorkbenchSection')?.closest('.tab-panel')?.id === 'tab-review', 'Review workbench should live under Review');
 assert(doc.getElementById('warningPathSection')?.closest('.tab-panel')?.id === 'tab-review', 'Raw Warning Paths should live under Review');
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
+assert(doc.querySelectorAll('#findingBody .evidence-ladder-compact').length > 0, 'Overview finding cards should render compact evidence ladders');
 assert(doc.querySelectorAll('#findingBody .why-path').length > 0, 'Overview finding cards should render compact why paths');
 assert(doc.querySelectorAll('#phenoconversionBody .phenoconversion-card').length > 0, 'Genes + Metabolites should render Functional Gene Status cards');
 assert(doc.querySelectorAll('#activeMoietyBody .active-moiety-card').length > 0, 'Genes + Metabolites should render Parent-Metabolite Balance cards');
@@ -89,7 +90,8 @@ const findingAudit = evalInPage(window, `(() => {
 })()`);
 assert(findingAudit.count > 0, 'Shared finding engine should return findings for Paroxetine + Codeine');
 assert(findingAudit.types.includes('active_moiety') || findingAudit.types.includes('pairwise_interaction'), 'Finding engine should classify pairwise/active-moiety signals');
-assert(findingAudit.first && findingAudit.first.evidenceLadder === null, 'Findings should keep the evidenceLadder placeholder for Action 7');
+assert(findingAudit.first && findingAudit.first.evidenceLadder && findingAudit.first.evidenceLadder.clinicalActionConfidence, 'Findings should attach an evidence confidence ladder');
+assert(findingAudit.first.evidenceLadder.professionalReviewStatus !== 'reviewed', 'Evidence ladder should not claim professional review without review metadata');
 assert(findingAudit.first && findingAudit.first.whyPath && Array.isArray(findingAudit.first.whyPath.nodes), 'Findings should attach a structured whyPath');
 assert(Array.isArray(findingAudit.first.affectedActors) && findingAudit.first.affectedActors.length >= 2, 'Findings should include affected actors');
 
