@@ -5,9 +5,11 @@ import { ROOT } from '../enrich/lib/medcheck-source-loader.js';
 
 const SCAN_ROOTS = [
   'data/enrichment/snapshots',
-  'data/enrichment/source-faithfulness-decisions',
+  'data/enrichment/staged',
+  'data/enrichment/review-queue',
   'docs/audits',
   'src/data/generatedLivePendingReview.js',
+  'src/data/generatedPendingReviewEnrichment.js',
 ].map(path => resolve(ROOT, path));
 
 const ABSOLUTE_PATH_PATTERNS = [

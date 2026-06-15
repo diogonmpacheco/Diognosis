@@ -15,7 +15,7 @@ const SOURCE_MODULES = [
   'src/data/pharmacology.js',
   'src/data/evidence.js',
   'src/data/interactions.js',
-  'src/data/generatedLivePendingReview.js',
+  'src/data/generatedPendingReviewEnrichment.js',
 ];
 
 export function loadMedcheckData(extraModules = []) {

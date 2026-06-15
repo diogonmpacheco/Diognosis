@@ -84,6 +84,8 @@ for (const item of rows) {
   const rowFailures = [];
   rowFailures.push(...hasRequiredMetadata(item.row));
   if (item.row.professionalReviewed === true || item.row.clinicalReviewed === true) rowFailures.push('must not set professionalReviewed/clinicalReviewed true');
+  if (item.row.canAffectScoring !== false) rowFailures.push('canAffectScoring must be false');
+  if (item.row.canAffectPublicSeverity !== false) rowFailures.push('canAffectPublicSeverity must be false');
   if (/reviewed|validated/i.test(String(item.row.reviewStatus || '')) && item.row.reviewStatus !== 'pending_professional_review') rowFailures.push('reviewStatus overclaims review');
   if (!sourceIdentifiers(item.row).length) rowFailures.push('missing source identifier, source record id, URL, DOI, PMID, or evidence ref');
   const text = publicText(item.row);

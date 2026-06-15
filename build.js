@@ -38,7 +38,7 @@ const MODULE_ORDER = [
   'data/pharmacology.js',   // TEMPORAL_PROFILES, PK_PARAMS, PHENOTYPE_SCORES, WASHOUT_DAYS, ACB_SCORES, BEERS_FLAGS
   'data/evidence.js',       // STUDY_DB, INGESTION_QUEUE, createStudyDraft, reviewStudyDraft
   'data/interactions.js',   // PATHWAY_DIVERSION, COMBINATION_PRODUCTS, KNOWN_DDI
-  'data/generatedLivePendingReview.js', // static live pending-review preview enrichments
+  'data/generatedPendingReviewEnrichment.js', // static pending-human-review external context
   'data/generatedStats.js', // MEDCHECK_STATS generated from source data
   'data/generatedEvidenceReviewQueue.js', // static professional review queue
   'data/generatedOpenTargetsSnapshot.js', // static external context snapshot

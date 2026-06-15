@@ -167,7 +167,7 @@ const report = {
     publicSeverityEnabled: queue.publicSeverityEnabled || 0,
     scoringEnabled: queue.scoringEnabled || 0,
     professionalReviewPerformed: false,
-    recommendation: 'push live after cleanup commit; source-specific promoters remain the next larger work item.',
+    recommendation: 'show staged enrichment as pending human review context; keep external records non-scoring and non-severity-bearing.',
   },
 };
 

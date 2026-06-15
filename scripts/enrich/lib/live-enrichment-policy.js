@@ -26,11 +26,11 @@ export const LIVE_GOVERNANCE = Object.freeze({
   sourceFaithfulnessStatus: 'automated_source_check',
   curationStatus: 'automated_curated_preview',
   clinicalValidationStatus: 'not_validated',
-  canAffectScoring: true,
-  canAffectPublicSeverity: true,
+  canAffectScoring: false,
+  canAffectPublicSeverity: false,
   displayStatus: 'source_linked_pending_professional_review',
   publicDisplayStatus: 'source_linked_pending_professional_review',
-  scoringStatus: 'live_pending_review_preview_enabled',
+  scoringStatus: 'external_context_only',
   promotionLane: LIVE_LANES.LIVE_PENDING_REVIEW,
 });
 

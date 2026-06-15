@@ -165,26 +165,6 @@
       "refreshCadence": "release gated"
     },
     {
-      "name": "Manual human review",
-      "type": "manual_review",
-      "purpose": "Reviewer decisions that can promote staged records into curated Diognosis source files.",
-      "accessMethod": "Human review queue",
-      "script": "scripts/enrich/build-enrichment-review-queue.js",
-      "outputs": [
-        "data/enrichment/review-queue/enrichment-review-queue.json",
-        "data/enrichment/review-queue/source-specific-promotion-queue.json",
-        "data/enrichment/source-faithfulness-decisions/source-specific/source-specific-review-templates.json",
-        "docs/audits/source-specific-promotion-audit.json",
-        "docs/audits/source-specific-promotion-audit.md"
-      ],
-      "licenseNote": "Reviewer must verify source faithfulness, copyright, mapping, and clinical wording.",
-      "rateLimit": "Human controlled.",
-      "bundledInPublicApp": false,
-      "canAffectScoring": false,
-      "reviewRequired": true,
-      "refreshCadence": "as reviewed"
-    },
-    {
       "name": "Internal Diognosis curated data",
       "type": "internal_diognosis",
       "purpose": "Current DRUG_DB, KNOWN_DDI, METAB, PGx, PK, timing, and STUDY_DB coverage.",

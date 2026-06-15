@@ -1101,6 +1101,7 @@ function renderAll() {
     renderMetabolites();
     renderPathwayDiversions();
     renderCascade();                // Phase 3: graph traversal
+    if (typeof renderPendingReviewEnrichment === "function") renderPendingReviewEnrichment();
     renderExternalSafetyContext();  // External context, not severity-bearing
     renderGenotypePanel();          // Phase 5 #2: genotype-stratified evidence
     if (typeof renderPhenoconversionDashboard === "function") renderPhenoconversionDashboard();
@@ -1127,6 +1128,7 @@ function renderAll() {
     hideSectionAndClear("pdSection", "pdBody");
     hideSectionAndClear("cascadeSection", "cascadeBody");
     hideSectionAndClear("evidenceSection", "evidenceBody", "evidenceCount");
+    hideSectionAndClear("pendingReviewEnrichmentSection", "pendingReviewEnrichmentBody", "pendingReviewEnrichmentCount");
     hideSectionAndClear("externalContextSection", "externalContextBody", "externalContextCount");
     hideSectionAndClear("reviewWorkbenchSection", "reviewWorkbenchBody", "reviewWorkbenchCount");
     hideSectionAndClear("reviewSummarySection", "reviewSummaryBody", "reviewSummaryCount");
