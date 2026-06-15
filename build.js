@@ -60,6 +60,7 @@ const MODULE_ORDER = [
   'engine/activeMoietyEngine.js', // parent/metabolite direction and active-moiety balance
   'engine/phenoconversionEngine.js', // genotype plus inhibitors/inducers/substrate burden
   'engine/persistenceTimelineEngine.js', // parent/metabolite persistence, washout, enzyme recovery
+  'engine/riskMarkerFindingEngine.js', // risk-marker findings and conservative causal paths
   'engine/findingEngine.js',      // normalized Interaction Finding model
   'engine/warningPathEngine.js',  // per-warning causal path objects
   'engine/mechanisticPredictionEngine.js', // experimental route/metabolite predictions

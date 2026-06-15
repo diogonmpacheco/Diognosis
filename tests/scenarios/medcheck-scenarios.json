@@ -210,8 +210,8 @@
       "genotype": { "G6PD deficiency": "present" },
       "tab": "overview",
       "expect": {
-        "findingTypes": ["active_moiety"],
-        "activeMoietyPatterns": ["toxic_metabolite_accumulation"],
+        "findingTypes": ["active_moiety", "risk_marker"],
+        "activeMoietyPatterns": ["risk_marker_toxic_context"],
         "terms": ["G6PD deficiency", "Rasburicase", "Primaquine", "Dapsone", "hemolysis"],
         "minFindingCards": 1,
         "minWhyPaths": 1

@@ -336,11 +336,47 @@ function dedupePersistenceRows(rows) {
   const byKey = new Map();
   for (const row of rows || []) {
     if (!row?.actor) continue;
-    const key = `${normalizePersistenceToken(row.parent)}|${normalizePersistenceToken(row.actor)}|${row.persistenceType}`;
+    const key = [
+      normalizePersistenceToken(row.actorId || row.actor),
+      normalizePersistenceToken(row.parent),
+      row.persistenceType || "persistence",
+      row.riskWindow || "unknown",
+    ].join("|");
     const existing = byKey.get(key);
-    if (!existing || persistenceSortScore(row) > persistenceSortScore(existing)) byKey.set(key, row);
+    byKey.set(key, existing ? mergePersistenceRows(existing, row) : row);
   }
   return [...byKey.values()];
+}
+
+function mergePersistenceRows(a, b) {
+  const daysA = Number.isFinite(a.estimatedPersistenceDays) ? a.estimatedPersistenceDays : null;
+  const daysB = Number.isFinite(b.estimatedPersistenceDays) ? b.estimatedPersistenceDays : null;
+  const maxDays = daysA == null ? daysB : daysB == null ? daysA : Math.max(daysA, daysB);
+  const confidence = highestPersistenceConfidence([a.confidence, b.confidence]);
+  return {
+    ...a,
+    actor: a.actor || b.actor,
+    actorId: a.actorId || b.actorId,
+    parent: a.parent || b.parent,
+    actorType: a.actorType || b.actorType,
+    role: a.role || b.role,
+    halfLifeHours: Number.isFinite(a.halfLifeHours) ? a.halfLifeHours : b.halfLifeHours,
+    estimatedPersistenceDays: maxDays,
+    pathway: uniquePersistenceValues([a.pathway, b.pathway]).join(" / "),
+    riskWindow: a.riskWindow || b.riskWindow || classifyPersistenceWindow(maxDays),
+    reasons: uniquePersistenceValues([...(a.reasons || []), ...(b.reasons || [])]),
+    evidenceRefs: uniquePersistenceValues([...(a.evidenceRefs || []), ...(b.evidenceRefs || [])]),
+    confidence,
+    reviewRequired: a.reviewRequired !== false || b.reviewRequired !== false,
+  };
+}
+
+function highestPersistenceConfidence(values = []) {
+  const order = { high:3, moderate:2, low:1, unknown:0 };
+  return (values || []).reduce((best, value) =>
+    (order[value] || 0) > (order[best] || 0) ? value : best,
+    "unknown"
+  );
 }
 
 function uniquePersistenceValues(values = []) {

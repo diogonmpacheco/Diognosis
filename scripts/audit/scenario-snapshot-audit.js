@@ -244,6 +244,11 @@ function runModelScenario(window, scenario) {
     currentInteractionFindings = findings;
     renderAll();
     if (typeof setTab === "function") setTab(scenario.tab || "overview");
+    if (typeof setTab === "function") {
+      setTab("evidence");
+      setTab("review");
+      setTab(scenario.tab || "overview");
+    }
 
     const evidenceRefs = unique(findings.flatMap(finding => [
       ...(finding.evidenceRefs || []),

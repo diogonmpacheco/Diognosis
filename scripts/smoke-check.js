@@ -90,16 +90,19 @@ assert(doc.getElementById('contributeSection')?.closest('.tab-panel')?.id === 't
 assert(doc.getElementById('warningPathSection')?.closest('.tab-panel')?.id === 'tab-review', 'Raw Warning Paths should live under Review');
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
 assert(doc.querySelectorAll('#findingBody .evidence-ladder-compact').length > 0, 'Overview finding cards should render compact evidence ladders');
-assert(doc.querySelectorAll('#findingBody .why-path').length > 0, 'Overview finding cards should render compact why paths');
+assert(doc.querySelectorAll('#findingBody .why-path').length === 0, 'Overview should not duplicate the full why-path chain');
+assert(doc.querySelectorAll('#findingBody .finding-why-body').length > 0, 'Overview finding cards should render compact why summaries');
 assert(doc.querySelectorAll('#mechanismWhyBody .mechanism-why-row').length > 0, 'Mechanisms should render finding why paths');
 assert(doc.querySelectorAll('#phenoconversionBody .phenoconversion-card').length > 0, 'Genes + Metabolites should render Functional Gene Status cards');
 assert(doc.querySelectorAll('#activeMoietyBody .active-moiety-card').length > 0, 'Genes + Metabolites should render Parent-Metabolite Balance cards');
 assert(doc.querySelectorAll('#persistenceTimelineBody .persistence-card').length > 0, 'Timing + Levels should render Persistence & Washout cards');
+window.setTab('review');
 assert(doc.querySelectorAll('#reviewSummaryBody .review-summary-tile').length > 0, 'Review should render current-stack summary tiles');
 assert(doc.querySelectorAll('#scenarioSnapshotBody .review-diagnostic-card').length >= 18, 'Review should expose all external and model scenario snapshot diagnostics');
 assert(doc.querySelectorAll('#metaboliteGapBody .review-diagnostic-card').length > 0, 'Review should expose metabolite coverage gaps');
 assert(doc.querySelectorAll('#contributeBody .review-action-btn').length >= 2, 'Review should expose report/contribute actions');
 assert(doc.querySelectorAll('#warningPathBody .warning-path-row').length > 0, 'Review should expose raw warning path rows');
+window.setTab('overview');
 
 const findingAudit = evalInPage(window, `(() => {
   const findings = buildInteractionFindings(activeStack, activeGenotype, { interactions: calcRisk().interactions });

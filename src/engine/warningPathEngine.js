@@ -3,6 +3,10 @@
 function buildWarningPath(finding, stack, genotypeState = {}, context = {}) {
   if (!finding) return null;
   const sourceRows = finding.sourceRows || [];
+  const riskMarkerRow = sourceRows.find(row => row?.source === "risk_marker_engine" || row?.markerType === "risk_marker" || row?.markerType === "functional_risk_marker");
+  if (riskMarkerRow && typeof buildRiskMarkerWarningPath === "function") {
+    return buildRiskMarkerWarningPath(riskMarkerRow, { finding, stack, genotypeState, ...context });
+  }
   const activeMoietyRow = sourceRows.find(row => row?.netPattern);
   if (activeMoietyRow) return buildActiveMoietyWarningPath(activeMoietyRow, { finding, stack, genotypeState, ...context });
   const phenoconversionRow = sourceRows.find(row => row?.functionalPhenotype);

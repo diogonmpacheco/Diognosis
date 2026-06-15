@@ -197,6 +197,11 @@ function panelState(def) {
 
 function collect({ name, why, drugs, genotypes = [], tab = 'genes-metabolites', expect }) {
   loadCase({ drugs, genotypes, tab });
+  if (typeof window.setTab === 'function') {
+    window.setTab('evidence');
+    window.setTab('review');
+    window.setTab(tab);
+  }
 
   const summary = norm(window.document.getElementById('summaryBar')?.textContent || '');
   const risk = norm(window.document.getElementById('riskBody')?.textContent || '');

@@ -5,6 +5,7 @@ const ACTIVE_MOIETY_DIRECTION_LABELS = {
   down: "down",
   neutral: "neutral",
   mixed: "mixed",
+  risk_context: "risk context",
   unknown: "unknown",
 };
 
@@ -14,6 +15,7 @@ const ACTIVE_MOIETY_PATTERN_LABELS = {
   toxic_metabolite_accumulation: "toxic metabolite accumulation",
   parent_accumulation: "parent accumulation",
   mixed_direction: "mixed direction",
+  risk_marker_toxic_context: "risk-marker toxic context",
   active_moiety_uncertain: "active moiety uncertain",
   no_major_signal: "no major signal",
 };
@@ -50,6 +52,7 @@ function classifyActiveMoietyPattern(row) {
   const metUp = row.metaboliteDirection === "up";
   const metDown = row.metaboliteDirection === "down";
   const metMixed = row.metaboliteDirection === "mixed";
+  if (row.metaboliteDirection === "risk_context" || row.riskMarkerContext) return "risk_marker_toxic_context";
   if (actorType === "toxic_metabolite" && metUp) return "toxic_metabolite_accumulation";
   if ((row.role === "active_form" || row.parentIsProdrug) && metDown) return "activation_failure";
   if (actorType === "active_metabolite" && metUp) return "active_metabolite_accumulation";
@@ -147,6 +150,13 @@ function activeMoietyRowForCandidate(parent, candidate, parentShift, stack, cont
   const formationShift = activeMoietyPathwayShift(formationPathway, stack, context);
   const clearanceShift = clearanceRoute ? activeMoietyPathwayShift(clearanceRoute.enzyme, stack, context) : null;
   const inferred = activeMoietyInferMetaboliteDirection(primaryEffect, formationShift, clearanceShift, formationPathway, clearanceRoute);
+  const riskMarkerContext = activeMoietyRiskMarkerContext(parent, {
+    met,
+    actor,
+    primaryEffect,
+    actorType,
+    context,
+  });
   const reasons = uniqueActiveMoietyValues([
     parentShift.reason,
     primaryEffect?.label,
@@ -154,6 +164,7 @@ function activeMoietyRowForCandidate(parent, candidate, parentShift, stack, cont
     formationShift?.reason,
     clearanceShift?.reason,
     primaryEffect?.inhibitorReason,
+    riskMarkerContext?.reason,
   ]);
   const row = {
     parent,
@@ -164,7 +175,7 @@ function activeMoietyRowForCandidate(parent, candidate, parentShift, stack, cont
     formationPathway: formationPathway || "unknown",
     clearancePathway: clearanceRoute?.enzyme || primaryEffect?.effect?.clearanceEnzyme || "",
     parentDirection: parentShift.direction,
-    metaboliteDirection: inferred.direction,
+    metaboliteDirection: riskMarkerContext ? "risk_context" : inferred.direction,
     formationDirection: inferred.formationDirection,
     clearanceDirection: inferred.clearanceDirection,
     netPattern: null,
@@ -182,6 +193,7 @@ function activeMoietyRowForCandidate(parent, candidate, parentShift, stack, cont
     metaboliteFold: primaryEffect?.fold || inferred.fold || null,
     parentIsProdrug: !!(getDrug(parent)?.prodrug || role === "active_form"),
     clinicalAction: primaryEffect?.effect?.clinicalAction || "",
+    riskMarkerContext,
   };
   row.netPattern = classifyActiveMoietyPattern(row);
   row.severityHint = activeMoietySeverityHint(row);
@@ -308,6 +320,7 @@ function activeMoietyClearanceDirection(capacityPct) {
 function activeMoietySeverityHint(row) {
   const text = `${row.netPattern || ""} ${row.actorType || ""} ${(row.reasons || []).join(" ")} ${row.clinicalAction || ""}`.toLowerCase();
   if (/life-threatening|fatal|contraindicat|severe myelosuppression|neutropenia|cytotoxic|hemolysis/.test(text)) return "severe";
+  if (row.netPattern === "risk_marker_toxic_context") return "severe";
   if (row.netPattern === "toxic_metabolite_accumulation") return "severe";
   if (row.netPattern === "activation_failure" && /clopidogrel|thiol|antiplatelet|stent/.test(text)) return "severe";
   if (row.netPattern === "activation_failure" || row.netPattern === "active_metabolite_accumulation") return "moderate";
@@ -319,6 +332,7 @@ function activeMoietyScore(row) {
   const sev = { severe:4, moderate:3, monitor:2, info:1 }[row.severityHint] || 0;
   const pattern = {
     toxic_metabolite_accumulation:5,
+    risk_marker_toxic_context:5,
     activation_failure:4,
     active_metabolite_accumulation:3,
     mixed_direction:2,
@@ -362,12 +376,13 @@ function activeMoietyDirection(direction) {
   if (direction === "increase" || direction === "up") return "up";
   if (direction === "decrease" || direction === "down") return "down";
   if (direction === "mixed") return "mixed";
+  if (direction === "risk_context" || direction === "contextual_risk") return "risk_context";
   if (direction === "baseline" || direction === "neutral") return "neutral";
   return "unknown";
 }
 
 function activeMoietyDirectionalWeight(direction) {
-  return { up:3, down:3, mixed:2, unknown:1, neutral:0 }[direction] || 0;
+  return { up:3, down:3, risk_context:3, mixed:2, unknown:1, neutral:0 }[direction] || 0;
 }
 
 function activeMoietySelectedPhenotype(enzyme) {
@@ -447,6 +462,7 @@ function activeMoietyIsEnzymeLike(enzyme) {
 function activeMoietyFindingTitle(row) {
   if (row.netPattern === "activation_failure") return `${row.parent} activation to ${row.actor} may be reduced`;
   if (row.netPattern === "toxic_metabolite_accumulation") return `${row.actor} from ${row.parent} may accumulate`;
+  if (row.netPattern === "risk_marker_toxic_context") return `${row.actor} from ${row.parent} has risk-marker toxic context`;
   if (row.netPattern === "active_metabolite_accumulation") return `${row.parent} active metabolite ${row.actor} may rise`;
   if (row.netPattern === "mixed_direction") return `${row.parent} and ${row.actor} move in different directions`;
   if (row.netPattern === "parent_accumulation") return `${row.parent} parent exposure may rise`;
@@ -458,7 +474,28 @@ function activeMoietyFindingSummary(row) {
   const parent = ACTIVE_MOIETY_DIRECTION_LABELS[row.parentDirection] || row.parentDirection;
   const metabolite = ACTIVE_MOIETY_DIRECTION_LABELS[row.metaboliteDirection] || row.metaboliteDirection;
   const driver = row.reasons?.find(reason => !/near baseline/i.test(reason)) || "";
+  if (row.netPattern === "risk_marker_toxic_context") {
+    return `${pattern}: parent ${parent}, ${row.actorType?.replace(/_/g, " ") || "metabolite"} risk context.${driver ? ` ${driver}` : ""}`;
+  }
   return `${pattern}: parent ${parent}, ${row.actorType?.replace(/_/g, " ") || "metabolite"} ${metabolite}.${driver ? ` ${driver}` : ""}`;
+}
+
+function activeMoietyRiskMarkerContext(parent, details = {}) {
+  const genotype = details.context?.genotypeState || (typeof activeGenotype !== "undefined" ? activeGenotype : {});
+  if (genotype?.["G6PD deficiency"] !== GENOTYPE_RISK_STATUS.PRESENT) return null;
+  const parentKey = typeof normalizeDrugLookupKey === "function"
+    ? normalizeDrugLookupKey(parent)
+    : String(parent || "").toLowerCase();
+  const supportedParents = new Set(["rasburicase", "primaquine", "dapsone"]);
+  if (!supportedParents.has(parentKey)) return null;
+  const effect = details.primaryEffect?.effect || {};
+  const text = `${details.actorType || ""} ${details.met?.a || ""} ${details.met?.role || ""} ${details.met?.note || ""} ${details.actor?.note || ""} ${effect.note || ""} ${effect.metaboliteName || ""}`.toLowerCase();
+  if (details.actorType !== "toxic_metabolite" && !/oxid|hemolys|methemoglobin|g6pd/.test(text)) return null;
+  return {
+    marker: "G6PD deficiency",
+    direction: "risk_context",
+    reason: "G6PD deficiency is present, so oxidant metabolites matter more as risk context without implying a modeled exposure increase.",
+  };
 }
 
 function uniqueActiveMoietyValues(values = []) {

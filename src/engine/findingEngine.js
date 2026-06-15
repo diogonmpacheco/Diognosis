@@ -39,12 +39,21 @@ function buildInteractionFindings(stack, genotypeState = {}, options = {}) {
   const timelineFindings = typeof timelineRowsToFindings === "function"
     ? timelineRowsToFindings(timelineRows)
     : [];
+  const riskMarkerRows = Array.isArray(options.riskMarkerRows)
+    ? options.riskMarkerRows
+    : (typeof computeRiskMarkerFindings === "function"
+      ? computeRiskMarkerFindings(activeNames, genotypeState, { activeMoietyRows, phenoconversionRows, timelineRows })
+      : []);
+  const riskMarkerFindings = typeof riskMarkerRowsToFindings === "function"
+    ? riskMarkerRowsToFindings(riskMarkerRows)
+    : [];
   const rankedFindings = rankFindings(mergeDuplicateFindings([
     ...interactionFindings,
     ...combinationFindings,
     ...activeMoietyFindings,
     ...phenoconversionFindings,
     ...timelineFindings,
+    ...riskMarkerFindings,
   ].filter(Boolean))).map(finding => {
     if (finding.whyPath || typeof buildWarningPath !== "function") return finding;
     return { ...finding, whyPath:buildWarningPath(finding, activeNames, genotypeState, options.pathContext || {}) };
@@ -237,7 +246,7 @@ function findingRankScore(finding) {
   const actors = finding?.affectedActors || [];
   return (severity * 1000) +
     (mentionsActiveMetabolite(finding) || /active metabolite|prodrug|toxic/.test(tags) ? 150 : 0) +
-    (/genotype|phenoconversion|cyp|ugt|dpyd|tpmt|nudt/.test(tags) ? 100 : 0) +
+    (/risk marker|genotype|phenoconversion|cyp|ugt|dpyd|tpmt|nudt|hla|g6pd|bche|mt-rnr1|ryr1|cacna1s/.test(tags) ? 100 : 0) +
     ((finding?.evidenceRefs || []).length ? 75 : 0) +
     (actors.length * 10) +
     (confidence * 5);

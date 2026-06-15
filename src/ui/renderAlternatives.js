@@ -358,7 +358,7 @@ function renderMetabolites() {
   if (!activeStack.length) { el.innerHTML = ""; return; }
 
   const analysis = analyzeMetabolites();
-  let html = "";
+  let html = `<div class="active-moiety-intro">This raw map lists modeled metabolites. Use Parent-Metabolite Balance above for interpreted directionality and risk context.</div>`;
 
   activeStack.forEach(drugName => {
     const drug = getDrug(drugName);

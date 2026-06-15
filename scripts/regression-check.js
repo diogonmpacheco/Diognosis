@@ -909,6 +909,103 @@ assert(
 );
 assert(activeMoietyRegression.overviewFindingCount > 0, 'Active-moiety rows should feed Overview interaction findings');
 
+const riskMarkerFindingRegression = window.eval(`(() => {
+  function reset(drugs, genotype = {}) {
+    activeStack = [];
+    userGenetics = {};
+    activeGenotype = {
+      CYP2D6: GENOTYPE_PHENOTYPE.NM,
+      CYP2C19: GENOTYPE_PHENOTYPE.NM,
+      CYP2C9: GENOTYPE_PHENOTYPE.NM,
+      CYP3A4: GENOTYPE_PHENOTYPE.NM,
+      BCHE: GENOTYPE_PHENOTYPE.NM,
+      "G6PD deficiency": GENOTYPE_RISK_STATUS.ABSENT,
+      "RYR1/CACNA1S MH variant": GENOTYPE_RISK_STATUS.ABSENT,
+      "HLA-B*57:01": GENOTYPE_RISK_STATUS.ABSENT,
+      "HLA-B*58:01": GENOTYPE_RISK_STATUS.ABSENT,
+      "HLA-B*15:02": GENOTYPE_RISK_STATUS.ABSENT,
+      "HLA-A*31:01": GENOTYPE_RISK_STATUS.ABSENT,
+      "MT-RNR1 m.1555A>G": GENOTYPE_RISK_STATUS.ABSENT,
+    };
+    Object.assign(activeGenotype, genotype);
+    for (const drug of drugs) addDrug(drug);
+    renderAll();
+  }
+  function currentRiskFindings() {
+    return getRenderComputationCache().findings.filter(f => f.type === "risk_marker");
+  }
+  reset(["Rasburicase", "Primaquine", "Dapsone"], { "G6PD deficiency": GENOTYPE_RISK_STATUS.PRESENT });
+  const g6pdFindings = currentRiskFindings();
+  const g6pdRows = getRenderComputationCache().activeMoietyRows.filter(row => row.actorType === "toxic_metabolite");
+  const g6pdPhenoconversions = getRenderComputationCache().findings.filter(f =>
+    f.type === "phenoconversion" &&
+    /G6PD|HLA|RYR1|CACNA1S/.test((f.title || "") + " " + (f.tags || []).join(" "))
+  );
+  setTab("mechanisms");
+  const g6pdMechanismText = document.getElementById("mechanismWhyBody")?.textContent || "";
+  setTab("review");
+  const g6pdReviewText = document.getElementById("warningPathBody")?.textContent || "";
+  const g6pdOverviewCard = document.querySelector('#findingBody .finding-card[data-finding-id*="risk-marker"]');
+
+  reset(["Succinylcholine"], {
+    BCHE: GENOTYPE_PHENOTYPE.PM,
+    "RYR1/CACNA1S MH variant": GENOTYPE_RISK_STATUS.PRESENT,
+  });
+  userGenetics.BCHE = "null";
+  renderAll();
+  const anesthesiaFindings = currentRiskFindings();
+
+  reset(["Abacavir"], { "HLA-B*57:01": GENOTYPE_RISK_STATUS.PRESENT });
+  const abacavirFindings = currentRiskFindings();
+  reset(["Allopurinol"], { "HLA-B*58:01": GENOTYPE_RISK_STATUS.PRESENT });
+  const allopurinolFindings = currentRiskFindings();
+  reset(["Carbamazepine"], { "HLA-B*15:02": GENOTYPE_RISK_STATUS.PRESENT });
+  const carbamazepineFindings = currentRiskFindings();
+
+  return {
+    g6pdCount:g6pdFindings.length,
+    g6pdFinding:g6pdFindings[0],
+    g6pdOverviewCard:Boolean(g6pdOverviewCard),
+    g6pdMechanismHasPath:/G6PD deficiency|oxidative reserve|oxidant/i.test(g6pdMechanismText),
+    g6pdReviewHasRaw:/G6PD deficiency/.test(g6pdReviewText) && /nodes/.test(g6pdReviewText),
+    g6pdAllHaveLadders:g6pdFindings.every(f => f.evidenceLadder && f.evidenceLadder.clinicalActionConfidence),
+    g6pdReviewedClaims:g6pdFindings.filter(f => f.evidenceLadder?.professionalReviewStatus === "reviewed").length,
+    g6pdFakePhenoconversions:g6pdPhenoconversions.length,
+    g6pdToxicPatterns:g6pdRows.map(row => row.netPattern),
+    g6pdToxicDirections:g6pdRows.map(row => row.metaboliteDirection),
+    g6pdToxicSummaries:g6pdRows.map(row => activeMoietyFindingSummary(row)).join(" | "),
+    anesthesiaTitles:anesthesiaFindings.map(f => f.title),
+    anesthesiaWhyCount:anesthesiaFindings.filter(f => f.whyPath).length,
+    hlaAbacavir:abacavirFindings.length,
+    hlaAllopurinol:allopurinolFindings.length,
+    hlaCarbamazepine:carbamazepineFindings.length,
+  };
+})()`);
+assert(riskMarkerFindingRegression.g6pdCount > 0, 'G6PD oxidant stack should produce normalized risk-marker findings');
+assert(riskMarkerFindingRegression.g6pdFinding?.type === 'risk_marker', 'G6PD finding should use type risk_marker');
+assert(riskMarkerFindingRegression.g6pdFinding?.whyPath?.nodes?.length > 0, 'G6PD risk-marker finding should have a why path');
+assert(riskMarkerFindingRegression.g6pdOverviewCard, 'G6PD risk-marker finding should appear in Overview');
+assert(riskMarkerFindingRegression.g6pdMechanismHasPath, 'G6PD risk-marker why path should appear in Mechanisms');
+assert(riskMarkerFindingRegression.g6pdReviewHasRaw, 'G6PD raw risk-marker path should appear in Review');
+assert(riskMarkerFindingRegression.g6pdAllHaveLadders, 'Risk-marker findings should have evidence ladders');
+assert(riskMarkerFindingRegression.g6pdReviewedClaims === 0, 'Risk-marker findings should not claim professional review without metadata');
+assert(riskMarkerFindingRegression.g6pdFakePhenoconversions === 0, 'G6PD/HLA/RYR1 risk markers should not create fake CYP-style phenoconversion findings');
+assert(
+  riskMarkerFindingRegression.g6pdToxicPatterns.includes('risk_marker_toxic_context'),
+  `G6PD toxic-metabolite rows should show risk-marker toxic context, got ${riskMarkerFindingRegression.g6pdToxicPatterns.join(', ')}`
+);
+assert(
+  riskMarkerFindingRegression.g6pdToxicDirections.includes('risk_context'),
+  `G6PD toxic-metabolite rows should use risk_context direction, got ${riskMarkerFindingRegression.g6pdToxicDirections.join(', ')}`
+);
+assert(!/may accumulate/i.test(riskMarkerFindingRegression.g6pdToxicSummaries), 'G6PD toxic context should not imply unsupported exposure increase');
+assert(riskMarkerFindingRegression.anesthesiaTitles.some(t => /BCHE/i.test(t)), 'Succinylcholine + BCHE null should produce BCHE risk-marker context');
+assert(riskMarkerFindingRegression.anesthesiaTitles.some(t => /Malignant-hyperthermia/i.test(t)), 'Succinylcholine + RYR1/CACNA1S should produce MH risk-marker context');
+assert(riskMarkerFindingRegression.anesthesiaWhyCount >= 2, 'Anesthesia risk-marker findings should have why paths');
+assert(riskMarkerFindingRegression.hlaAbacavir > 0, 'Abacavir + HLA-B*57:01 should produce a risk-marker finding');
+assert(riskMarkerFindingRegression.hlaAllopurinol > 0, 'Allopurinol + HLA-B*58:01 should produce a risk-marker finding');
+assert(riskMarkerFindingRegression.hlaCarbamazepine > 0, 'Carbamazepine + HLA-B*15:02 should produce a risk-marker finding');
+
 const phenoconversionRegression = window.eval(`(() => {
   function reset(drugs) {
     activeStack = [];
@@ -1072,6 +1169,8 @@ const persistenceTimelineRegression = window.eval(`(() => {
   const overviewFindings = buildInteractionFindings(activeStack, activeGenotype, { interactions:calcRisk().interactions });
   return {
     norfluoxetineMetabolite:ssriRows.find(row => /Norfluoxetine/i.test(row.actor) && row.persistenceType === 'metabolite'),
+    norfluoxetineMetaboliteCount:ssriRows.filter(row => /Norfluoxetine/i.test(row.actor) && row.persistenceType === 'metabolite').length,
+    norfluoxetineWashoutCount:ssriRows.filter(row => /Norfluoxetine/i.test(row.actor) && row.persistenceType === 'washout_rule').length,
     fluoxetineParent:ssriRows.find(row => row.actor === 'Fluoxetine' && row.persistenceType === 'parent'),
     paroxetineWashout:ssriRows.find(row => row.actor === 'Paroxetine' && row.persistenceType === 'washout_rule'),
     maoiWashout:maoiRows.find(row => row.actor === 'Phenelzine' && row.persistenceType === 'washout_rule'),
@@ -1083,6 +1182,8 @@ const persistenceTimelineRegression = window.eval(`(() => {
   };
 })()`);
 assert(persistenceTimelineRegression.norfluoxetineMetabolite?.riskWindow === 'weeks', 'Norfluoxetine should display as a long-lived active metabolite');
+assert(persistenceTimelineRegression.norfluoxetineMetaboliteCount === 1, `Norfluoxetine should appear once per metabolite persistence type, got ${persistenceTimelineRegression.norfluoxetineMetaboliteCount}`);
+assert(persistenceTimelineRegression.norfluoxetineWashoutCount >= 1, 'Norfluoxetine washout rows should remain distinct from metabolite persistence rows');
 assert(persistenceTimelineRegression.fluoxetineParent?.estimatedPersistenceDays >= 10, 'Fluoxetine parent persistence should display separately from norfluoxetine');
 assert(persistenceTimelineRegression.paroxetineWashout?.estimatedPersistenceDays === 18, 'Paroxetine washout rule should display in the persistence timeline');
 assert(persistenceTimelineRegression.maoiWashout?.estimatedPersistenceDays === 14, 'MAOI washout rule should display as 14 days');
@@ -1215,6 +1316,97 @@ assert(renderCacheRegression.stackKeyChanged, 'Render computation cache key shou
 assert(renderCacheRegression.stackFindingsChanged, 'Changing stack should update normalized findings');
 assert(renderCacheRegression.doseKeyChanged, 'Render computation cache key should change when dose tier changes');
 
+const lazyRenderingRegression = window.eval(`(() => {
+  activeStack = [];
+  userGenetics = {};
+  activeGenotype = {
+    CYP2D6:GENOTYPE_PHENOTYPE.NM,
+    CYP2C19:GENOTYPE_PHENOTYPE.NM,
+    CYP2C9:GENOTYPE_PHENOTYPE.NM,
+    CYP3A4:GENOTYPE_PHENOTYPE.NM,
+  };
+  lazyRenderState = { evidenceKey:"", reviewKey:"" };
+  const evidenceBody = document.getElementById("evidenceBody");
+  const reviewBody = document.getElementById("reviewSummaryBody");
+  if (evidenceBody) evidenceBody.innerHTML = "";
+  if (reviewBody) reviewBody.innerHTML = "";
+  setActiveTab("overview");
+  addDrug("Codeine");
+  addDrug("Fluoxetine");
+  renderAll();
+  const overviewFindingIds = getRenderComputationCache().findings.map(f => f.id).join("|");
+  const evidenceBeforeOpen = Boolean(document.getElementById("evidenceLadderLedger"));
+  const reviewBeforeOpen = document.querySelectorAll("#reviewSummaryBody .review-summary-tile").length;
+  setTab("evidence");
+  const evidenceRendered = Boolean(document.getElementById("evidenceLadderLedger"));
+  const evidenceKeyA = lazyRenderState.evidenceKey;
+  setTab("review");
+  const reviewRendered = document.querySelectorAll("#reviewSummaryBody .review-summary-tile").length > 0 &&
+    document.querySelectorAll("#warningPathBody .warning-path-row").length > 0;
+  const reviewKeyA = lazyRenderState.reviewKey;
+  setTab("overview");
+  setGenotypeState("CYP2D6", GENOTYPE_PHENOTYPE.PM);
+  const overviewFindingIdsAfterGenotype = getRenderComputationCache().findings.map(f => f.id).join("|");
+  setTab("evidence");
+  const evidenceKeyB = lazyRenderState.evidenceKey;
+  setTab("review");
+  const reviewKeyB = lazyRenderState.reviewKey;
+  return {
+    evidenceBeforeOpen,
+    reviewBeforeOpen,
+    evidenceRendered,
+    reviewRendered,
+    findingsRetained:Boolean(overviewFindingIds) && Boolean(overviewFindingIdsAfterGenotype),
+    genotypeChangedFindings:overviewFindingIds !== overviewFindingIdsAfterGenotype,
+    evidenceInvalidated:evidenceKeyA !== evidenceKeyB,
+    reviewInvalidated:reviewKeyA !== reviewKeyB,
+  };
+})()`);
+assert(!lazyRenderingRegression.evidenceBeforeOpen, 'Evidence ledger should not render before Evidence tab is opened in a fresh lazy state');
+assert(lazyRenderingRegression.reviewBeforeOpen === 0, 'Review summary should not render before Review tab is opened in a fresh lazy state');
+assert(lazyRenderingRegression.evidenceRendered, 'Evidence should render when active tab is evidence');
+assert(lazyRenderingRegression.reviewRendered, 'Review should render when active tab is review');
+assert(lazyRenderingRegression.findingsRetained, 'Switching lazy tabs should not lose current findings');
+assert(lazyRenderingRegression.genotypeChangedFindings, 'Changing genotype should update normalized findings');
+assert(lazyRenderingRegression.evidenceInvalidated, 'Changing genotype should invalidate lazy Evidence content');
+assert(lazyRenderingRegression.reviewInvalidated, 'Changing genotype should invalidate lazy Review content');
+
+const rawMetaboliteMapRegression = window.eval(`(() => {
+  activeStack = [];
+  userGenetics = {};
+  activeGenotype = { CYP2D6:GENOTYPE_PHENOTYPE.PM, CYP2C19:GENOTYPE_PHENOTYPE.NM, CYP2C9:GENOTYPE_PHENOTYPE.NM, CYP3A4:GENOTYPE_PHENOTYPE.NM };
+  manualSectionToggleKeys = {};
+  addDrug("Codeine");
+  addDrug("Fluoxetine");
+  renderAll();
+  setTab("genes-metabolites");
+  const titleText = document.querySelector("#metabSection .section-title")?.textContent || "";
+  const body = document.getElementById("metabBody");
+  const collapsedByDefault = body ? !body.classList.contains("open") : false;
+  const parentBalanceVisible = document.getElementById("activeMoietySection")?.style.display !== "none" &&
+    document.querySelectorAll("#activeMoietyBody .active-moiety-card").length > 0;
+  const helperText = body?.textContent || "";
+  toggleSection("metab");
+  const manualOpen = body?.classList.contains("open") || false;
+  renderAll();
+  const manualOpenPreserved = body?.classList.contains("open") || false;
+  return {
+    titleText,
+    accessible:Boolean(body),
+    collapsedByDefault,
+    parentBalanceVisible,
+    helperText,
+    manualOpen,
+    manualOpenPreserved,
+  };
+})()`);
+assert(/Raw \/ Supporting Metabolite Map/.test(rawMetaboliteMapRegression.titleText), 'Raw metabolite map should use the new supporting-data label');
+assert(rawMetaboliteMapRegression.accessible, 'Raw metabolite map should remain accessible');
+assert(rawMetaboliteMapRegression.collapsedByDefault, 'Raw metabolite map should collapse by default when active-moiety rows exist');
+assert(rawMetaboliteMapRegression.parentBalanceVisible, 'Parent-Metabolite Balance should remain visible above raw metabolite details');
+assert(/raw map lists modeled metabolites/i.test(rawMetaboliteMapRegression.helperText), 'Raw metabolite map should explain that it is supporting data');
+assert(rawMetaboliteMapRegression.manualOpen && rawMetaboliteMapRegression.manualOpenPreserved, 'Manual raw-map expansion should be preserved for the same stack');
+
 const reviewHomeRegression = window.eval(`(() => {
   activeStack = [];
   userGenetics = {};
@@ -1252,6 +1444,8 @@ const crossTabFindingRegression = window.eval(`(() => {
   renderAll();
   const firstId = document.querySelector('#findingBody .finding-card')?.getAttribute('data-finding-id') || '';
   const overviewHas = Boolean(firstId);
+  const overviewFullPathCount = document.querySelectorAll('#findingBody .why-path').length;
+  const overviewWhyText = document.querySelector('#findingBody .finding-why-body')?.textContent || '';
   setTab('mechanisms');
   const mechanismsHas = document.querySelectorAll('#mechanismWhyBody .mechanism-why-row .why-path').length > 0;
   setTab('evidence');
@@ -1260,6 +1454,8 @@ const crossTabFindingRegression = window.eval(`(() => {
   const reviewHas = document.querySelectorAll('#warningPathBody .warning-path-row').length > 0;
   return {
     overviewHas,
+    overviewFullPathCount,
+    overviewWhyText,
     mechanismsHas,
     evidenceHas,
     reviewHas,
@@ -1268,6 +1464,12 @@ const crossTabFindingRegression = window.eval(`(() => {
   };
 })()`);
 assert(crossTabFindingRegression.overviewHas, 'Overview should summarize a finding card');
+assert(crossTabFindingRegression.overviewFullPathCount === 0, 'Overview should show compact why text, not the detailed vertical why path');
+assert(
+  /^Why:/.test(crossTabFindingRegression.overviewWhyText.trim()) &&
+    crossTabFindingRegression.overviewWhyText.replace(/^Why:\s*/,'').length <= 220,
+  `Overview why summary should be one compact line <=220 chars, got ${crossTabFindingRegression.overviewWhyText}`
+);
 assert(crossTabFindingRegression.mechanismsHas, 'Mechanisms should explain findings with why paths');
 assert(crossTabFindingRegression.evidenceHas, 'Evidence should detail finding support through the evidence ledger');
 assert(crossTabFindingRegression.reviewHas, 'Review should debug findings through raw warning paths');
@@ -1373,6 +1575,21 @@ assert(browseCategoryAudit.lsd === 'Recreational & Social', 'LSD should browse u
 assert(browseCategoryAudit.albuterol === 'Respiratory, Allergy & Cough', 'Albuterol should browse under Respiratory, Allergy & Cough, not Beta-Blockers');
 assert(browseCategoryAudit.aspirinLowDose === 'Cardiovascular & Blood', 'Low-dose aspirin should browse under Cardiovascular & Blood');
 assert(browseCategoryAudit.alcohol === 'Recreational & Social', 'Alcohol should browse under Recreational & Social');
+
+assert(
+  /@media\(max-width:420px\)\{\s*\.active-moiety-directions\{grid-template-columns:1fr\}/.test(html),
+  'Mobile CSS should force active-moiety direction cards to one column below 420px'
+);
+assert(
+  /\.warning-path-json\{[^}]*overflow-x:auto/.test(html),
+  'Warning path raw JSON should explicitly allow horizontal scrolling'
+);
+assert(
+  /risk_context/.test(html) &&
+    html.includes('Primaquine hydroxylamine / quinone-imine metabolites') &&
+    html.includes('RYR1/CACNA1S MH variant'),
+  'Generated UI/data surface should preserve long risk-marker and metabolite labels'
+);
 
 assert(browserErrors.length === 0, `Browser errors:\n${browserErrors.join('\n')}`);
 

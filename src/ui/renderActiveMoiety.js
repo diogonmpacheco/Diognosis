@@ -34,7 +34,10 @@ function renderActiveMoietyRow(row) {
     ? `${row.evidenceRefs.length} source ref${row.evidenceRefs.length === 1 ? "" : "s"}`
     : "inferred/review required";
   const parentFold = row.parentFold ? `${Math.round(row.parentFold * 100) / 100}x` : "unknown";
-  const metaboliteFold = row.metaboliteFold ? `${Math.round(row.metaboliteFold * 100) / 100}x` : "directional";
+  const metaboliteDirectionLabel = ACTIVE_MOIETY_DIRECTION_LABELS[row.metaboliteDirection] || row.metaboliteDirection || "unknown";
+  const metaboliteFold = row.metaboliteDirection === "risk_context"
+    ? "not an exposure increase"
+    : (row.metaboliteFold ? `${Math.round(row.metaboliteFold * 100) / 100}x` : "directional");
   return `<div class="active-moiety-card ${severity}">
     <div class="active-moiety-head">
       <div>
@@ -46,7 +49,7 @@ function renderActiveMoietyRow(row) {
     <div class="active-moiety-pattern">${pattern}</div>
     <div class="active-moiety-directions">
       <div><strong>Parent</strong><span class="${safeAttr(row.parentDirection || "unknown")}">${safeHtml(row.parentDirection || "unknown")}</span><small>${safeHtml(parentFold)}</small></div>
-      <div><strong>Metabolite</strong><span class="${safeAttr(row.metaboliteDirection || "unknown")}">${safeHtml(row.metaboliteDirection || "unknown")}</span><small>${safeHtml(metaboliteFold)}</small></div>
+      <div><strong>Metabolite</strong><span class="${safeAttr(row.metaboliteDirection || "unknown")}">${safeHtml(metaboliteDirectionLabel)}</span><small>${safeHtml(metaboliteFold)}</small></div>
       <div><strong>Clearance</strong><span>${safeHtml(row.clearancePathway || "not modeled")}</span><small>${safeHtml(row.clearanceDirection || "unknown")}</small></div>
     </div>
     ${reasons ? `<ul class="active-moiety-reasons">${reasons}</ul>` : ""}

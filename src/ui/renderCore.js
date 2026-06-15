@@ -48,6 +48,8 @@ let viewMode = "search";
 let activeTab = "overview";
 let currentInteractionFindings = [];
 let renderComputationCache = null;
+let lazyRenderState = { evidenceKey:"", reviewKey:"" };
+let manualSectionToggleKeys = {};
 const MEDCHECK_TABS = ["overview","mechanisms","genes-metabolites","timing-levels","evidence","review"];
 const TAB_ALIASES = {
   safety:"overview",
@@ -99,6 +101,8 @@ function setTab(name) {
     if (panel) panel.classList.toggle("active", t === resolvedTab);
     if (btn) btn.classList.toggle("active", t === resolvedTab);
   });
+  renderLazyTab(resolvedTab);
+  updateEmptyTabs();
 }
 
 function getRenderCacheKey() {
@@ -120,6 +124,9 @@ function getRenderComputationCache() {
   const activeMoietyRows = typeof computeActiveMoietyBalance === "function"
     ? computeActiveMoietyBalance(activeStack, safeGenotype)
     : [];
+  const riskMarkerRows = typeof computeRiskMarkerFindings === "function"
+    ? computeRiskMarkerFindings(activeStack, safeGenotype, { activeMoietyRows })
+    : [];
   const phenoconversionRows = typeof computePhenoconversionState === "function"
     ? computePhenoconversionState(activeStack, safeGenotype, { activeMoietyRows })
     : [];
@@ -130,6 +137,7 @@ function getRenderComputationCache() {
     ? buildInteractionFindings(activeStack, safeGenotype, {
         interactions: risk.interactions || [],
         activeMoietyRows,
+        riskMarkerRows,
         phenoconversionRows,
         timelineRows,
       })
@@ -138,11 +146,37 @@ function getRenderComputationCache() {
     key,
     risk,
     activeMoietyRows,
+    riskMarkerRows,
     phenoconversionRows,
     timelineRows,
     findings,
   };
   return renderComputationCache;
+}
+
+function currentRenderFingerprint() {
+  return getRenderCacheKey();
+}
+
+function renderLazyTab(tabId = activeTab) {
+  const key = currentRenderFingerprint();
+  if (tabId === "evidence") {
+    if (lazyRenderState.evidenceKey === key) return;
+    if (typeof renderEvidenceExplorer === "function") renderEvidenceExplorer();
+    lazyRenderState.evidenceKey = key;
+    return;
+  }
+  if (tabId === "review") {
+    if (lazyRenderState.reviewKey === key) return;
+    if (typeof renderReviewSummary === "function") renderReviewSummary();
+    if (typeof renderReviewWorkbench === "function") renderReviewWorkbench();
+    if (typeof renderQualityDashboard === "function") renderQualityDashboard();
+    if (typeof renderWarningPathReview === "function") renderWarningPathReview();
+    if (typeof renderScenarioSnapshotsReview === "function") renderScenarioSnapshotsReview();
+    if (typeof renderMetaboliteCoverageGapsReview === "function") renderMetaboliteCoverageGapsReview();
+    if (typeof renderContributeReview === "function") renderContributeReview();
+    lazyRenderState.reviewKey = key;
+  }
 }
 
 function renderSummaryBar() {
@@ -299,9 +333,7 @@ function renderInteractionFindingCard(finding) {
     ? `<span class="finding-tag">${finding.evidenceRefs.length} evidence ref${finding.evidenceRefs.length === 1 ? "" : "s"}</span>`
     : '<span class="finding-tag warn">inferred/review required</span>';
   const evidenceLadder = renderEvidenceLadderCompact(finding.evidenceLadder);
-  const whyHtml = finding.whyPath && typeof renderWhyPath === "function"
-    ? renderWhyPath(finding.whyPath)
-    : `<div class="finding-why-body">${safeHtml(buildFindingWhyText(finding))}</div>`;
+  const whyHtml = renderOverviewWhySummary(finding);
   const sourceLabel = safeHtml(String(finding.source || "finding").replace(/_/g, " "));
   return `<div class="finding-card ${severity}" data-finding-id="${safeAttr(finding.id)}">
     <div class="finding-top">
@@ -364,6 +396,20 @@ function buildFindingWhyText(finding) {
     ? ` Grouped with ${finding.groupedFindings.length} related signal${finding.groupedFindings.length === 1 ? "" : "s"} from the same actor pair.`
     : "";
   return `${finding.summary || finding.title || "This stack produced a normalized review finding."}${actors ? ` Actors: ${actors}.` : ""}${grouped}`;
+}
+
+function renderOverviewWhySummary(finding) {
+  const path = finding?.whyPath;
+  const text = path
+    ? (path.summary || (typeof formatWarningPath === "function" ? formatWarningPath(path) : ""))
+    : buildFindingWhyText(finding);
+  return `<div class="finding-why-body"><strong>Why:</strong> ${safeHtml(shortenOverviewWhyText(text || buildFindingWhyText(finding)))}</div>`;
+}
+
+function shortenOverviewWhyText(text) {
+  const raw = String(text || "").replace(/\s+/g, " ").trim();
+  if (raw.length <= 220) return raw;
+  return raw.slice(0, 217).trim() + "...";
 }
 
 function uniqueInteractionPairLabels(interactions = []) {
@@ -901,7 +947,21 @@ function toggleDrug(name) {
 
 function toggleSection(id) {
   const body = document.getElementById(id + "Body");
+  if (!body) return;
   body.classList.toggle("open");
+  manualSectionToggleKeys[id] = getRenderCacheKey();
+}
+
+function applyRawMetaboliteMapDefault() {
+  const body = document.getElementById("metabBody");
+  if (!body) return;
+  const key = getRenderCacheKey();
+  if (manualSectionToggleKeys.metab === key) return;
+  const rows = typeof getRenderComputationCache === "function"
+    ? getRenderComputationCache().activeMoietyRows
+    : [];
+  if (rows.length) body.classList.remove("open");
+  else body.classList.add("open");
 }
 
 function hideSectionAndClear(sectionId, bodyId, countId = null) {
@@ -1006,13 +1066,11 @@ function renderAll() {
     renderMetabolites();
     renderPathwayDiversions();
     renderCascade();                // Phase 3: graph traversal
-    renderEvidenceExplorer();       // Phase 4: study browser
     renderExternalSafetyContext();  // External context, not severity-bearing
-    renderReviewWorkbench();        // Generated review governance workbench
-    renderQualityDashboard();       // Database quality / curation status
     renderGenotypePanel();          // Phase 5 #2: genotype-stratified evidence
     if (typeof renderPhenoconversionDashboard === "function") renderPhenoconversionDashboard();
     if (typeof renderActiveMoietyBalance === "function") renderActiveMoietyBalance();
+    applyRawMetaboliteMapDefault();
     renderMechanisticPredictions(); // Experimental model predictions
     renderPhenotypeAccumulation();  // Phase 5 #6: serotonin/QTc/anticholinergic
     renderPKSimulation();           // Phase 5 #1: 1-compartment PK curves
@@ -1020,9 +1078,6 @@ function renderAll() {
     renderInteractionGraph();       // Phase 5 #4: D3 force-directed graph
     renderWashoutCalendar();        // Phase 5 #9: safe-to-switch dates
     renderAdverseBurden();          // Phase 5 #10: ACB + Beers + fall risk
-    if (typeof renderScenarioSnapshotsReview === "function") renderScenarioSnapshotsReview();
-    if (typeof renderMetaboliteCoverageGapsReview === "function") renderMetaboliteCoverageGapsReview();
-    if (typeof renderContributeReview === "function") renderContributeReview();
     document.getElementById("foldSection").style.display = activeDrugNames.length ? "" : "none";
     document.getElementById("metabSection").style.display = activeDrugNames.length ? "" : "none";
     document.getElementById("pdSection").style.display = activeDrugNames.length ? "" : "none";
@@ -1062,8 +1117,6 @@ function renderAll() {
     renderRiskGauge(risk);
     renderInteractionFindingsOverview(risk);
     if (typeof renderMechanismWhyPaths === "function") renderMechanismWhyPaths();
-    if (typeof renderReviewSummary === "function") renderReviewSummary();
-    if (typeof renderWarningPathReview === "function") renderWarningPathReview();
     renderInteractions(risk.interactions);
     renderCombinationProducts();
     renderTransporterDDI();
@@ -1080,8 +1133,6 @@ function renderAll() {
     if (activeDrugNames.length) {
       renderInteractionFindingsOverview({ interactions:[] });
       if (typeof renderMechanismWhyPaths === "function") renderMechanismWhyPaths();
-      if (typeof renderReviewSummary === "function") renderReviewSummary();
-      if (typeof renderWarningPathReview === "function") renderWarningPathReview();
     }
     else {
       currentInteractionFindings = [];

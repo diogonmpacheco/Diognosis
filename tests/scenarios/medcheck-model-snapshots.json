@@ -1104,24 +1104,26 @@
       "interactionCount": 0,
       "severityCounts": {},
       "topInteractions": [],
-      "findingCount": 2,
+      "findingCount": 5,
       "findingTypes": [
-        "active_moiety"
+        "active_moiety",
+        "risk_marker"
       ],
-      "findingCardCount": 2,
-      "evidenceLadderCount": 2,
+      "findingCardCount": 5,
+      "evidenceLadderCount": 5,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 2,
-      "mechanismWhyPathCount": 2,
-      "rawWarningPathCount": 2,
+      "whyPathCount": 5,
+      "mechanismWhyPathCount": 5,
+      "rawWarningPathCount": 5,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
       "activeMoietyPatterns": [
         "no_major_signal",
-        "toxic_metabolite_accumulation"
+        "risk_marker_toxic_context"
       ],
       "activeMoietyActors": [
+        "Carboxyprimaquine",
         "Dapsone (unchanged)",
         "Dapsone hydroxylamine (DDS-NHOH)",
         "Primaquine hydroxylamine / quinone-imine metabolites",
@@ -1184,17 +1186,18 @@
       "interactionCount": 0,
       "severityCounts": {},
       "topInteractions": [],
-      "findingCount": 3,
+      "findingCount": 5,
       "findingTypes": [
         "active_moiety",
-        "phenoconversion"
+        "phenoconversion",
+        "risk_marker"
       ],
-      "findingCardCount": 3,
-      "evidenceLadderCount": 3,
+      "findingCardCount": 5,
+      "evidenceLadderCount": 5,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 3,
-      "mechanismWhyPathCount": 3,
-      "rawWarningPathCount": 3,
+      "whyPathCount": 5,
+      "mechanismWhyPathCount": 5,
+      "rawWarningPathCount": 5,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
