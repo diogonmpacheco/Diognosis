@@ -254,7 +254,7 @@ function runModelScenario(window, scenario) {
       ...(finding.evidenceRefs || []),
       ...((finding.whyPath?.evidenceRefs) || []),
     ]));
-    const danglingEvidenceRefs = evidenceRefs.filter(ref => !STUDY_DB[ref]);
+    const danglingEvidenceRefs = evidenceRefs.filter(ref => !(typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref]));
     const overviewText = document.getElementById("findingBody")?.textContent || "";
     const mechanismText = document.getElementById("mechanismWhyBody")?.textContent || "";
     const genesText = document.getElementById("activeMoietyBody")?.textContent + " " + document.getElementById("phenoconversionBody")?.textContent + " " + document.getElementById("genotypeBody")?.textContent;

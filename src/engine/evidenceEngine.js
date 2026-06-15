@@ -49,7 +49,25 @@ function getEffectiveFraction(route, context) {
 // inhibitory properties, half-lives, and pharmacological activity.
 // These are the metabolites that ACTIVELY participate in DDIs.
 function getStudy(id) {
-  return STUDY_DB[id] || null;
+  return STUDY_DB[id] ||
+    (typeof getPendingCalculationEvidenceStudy === "function" ? getPendingCalculationEvidenceStudy(id) : null) ||
+    null;
+}
+
+function getEvidenceStudyEntries(context = null) {
+  const baseEntries = Object.entries(STUDY_DB || {});
+  const pendingEntries = typeof getPendingCalculationEvidenceEntries === "function"
+    ? getPendingCalculationEvidenceEntries(context)
+    : [];
+  const seen = new Set(baseEntries.map(([id]) => id));
+  return [
+    ...baseEntries,
+    ...pendingEntries.filter(([id]) => {
+      if (!id || seen.has(id)) return false;
+      seen.add(id);
+      return true;
+    }),
+  ];
 }
 
 function isExternalContextEvidence(study) {
@@ -95,10 +113,11 @@ function normalizeEvidenceSupportKey(value) {
 }
 
 function getStudySupportIndex() {
-  const studyIds = Object.keys(STUDY_DB || {});
-  if (_studySupportIndex && _studySupportIndexSize === studyIds.length) return _studySupportIndex;
+  const studyEntries = getEvidenceStudyEntries();
+  const studyIndexKey = studyEntries.map(([id]) => id).join("|");
+  if (_studySupportIndex && _studySupportIndexSize === studyIndexKey) return _studySupportIndex;
   const index = new Map();
-  for (const study of Object.values(STUDY_DB || {})) {
+  for (const [, study] of studyEntries) {
     for (const support of study.supports || []) {
       const key = normalizeEvidenceSupportKey(support);
       if (!key) continue;
@@ -108,7 +127,7 @@ function getStudySupportIndex() {
     }
   }
   _studySupportIndex = index;
-  _studySupportIndexSize = studyIds.length;
+  _studySupportIndexSize = studyIndexKey;
   return index;
 }
 
@@ -229,7 +248,7 @@ function resolveInteractionEvidence(interaction) {
   const drug1 = (interaction.drug1 || '').toLowerCase();
   const drug2 = (interaction.drug2 || '').toLowerCase();
   const enzyme = (interaction.enzyme || '').toLowerCase();
-  for (const [sid, study] of Object.entries(STUDY_DB)) {
+  for (const [sid, study] of getEvidenceStudyEntries()) {
     if (seen.has(sid)) continue;
     const supportsText = (study.supports || []).join(' ').toLowerCase();
     const titleText = (study.title || '').toLowerCase();
@@ -490,7 +509,7 @@ function getDdiEvidenceProfile(ddi) {
     studies,
     severityBearingStudies,
     contextOnlyStudies: studies.filter(study => !isSeverityBearingEvidence(study)),
-    missingRefs: refs.filter(id => !STUDY_DB[id]),
+    missingRefs: refs.filter(id => !getStudy(id)),
     hasHighTierStudy: severityBearingStudies.some(study => highTiers.has(study.type)),
     hasQuantifiedClinicalPk: severityBearingStudies.some(study =>
       study.type === EVIDENCE_TIER.CLINICAL_PK &&
@@ -542,6 +561,8 @@ function studyCardHTML(study) {
   const reviewBadge = '<span class="ev-review-badge needs-review">pending professional review</span>';
   const liveBadge = study.livePendingReview === true
     ? '<span class="ev-review-badge needs-review">automated curated preview</span><span class="ev-review-badge needs-review">not clinically validated</span>'
+    : study.pendingSourceSignal === true
+    ? '<span class="ev-review-badge needs-review">pending source signal</span><span class="ev-review-badge needs-review">not public severity</span>'
     : '';
   const feedbackLink = renderFeedbackLink("Suggest evidence fix", {
     type:"data",
@@ -564,6 +585,7 @@ function studyCardHTML(study) {
     ${study.source ? `<div class="ev-source">${esc(study.source)}${study.journal ? ` · ${esc(study.journal)}` : ''}</div>` : ''}
     ${qeItems.length ? `<div class="ev-effects">${qeItems.join(' · ')}</div>` : ''}
     ${study.temporal && study.temporal.onset ? `<div class="ev-temporal">Onset: ${esc(study.temporal.onset)}${study.temporal.washout ? ` · Washout: ${esc(study.temporal.washout)}` : ''}</div>` : ''}
+    ${study.pendingSourceSignal === true ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Calculation-visible pending source signal · context-only and not public-severity-bearing</div>` : ''}
     ${study.livePendingReview === true ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Source-linked pending review · automated source traceability check · not medical advice</div>` : ''}
     ${unverified}${contradicts}${limits}
     <div class="feedback-row">${feedbackLink}</div>

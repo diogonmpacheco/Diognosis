@@ -445,10 +445,10 @@ function renderGenotypeRiskEffectCard(card) {
   const isPresent = status === GENOTYPE_RISK_STATUS.PRESENT;
   const label = isPresent ? 'risk allele present' : 'risk allele absent';
   const foldColor = isPresent ? 'var(--red)' : 'var(--green)';
-  const refs = (drugEffect.evidenceRefs || []).filter(ref => STUDY_DB[ref]);
+  const refs = (drugEffect.evidenceRefs || []).filter(ref => typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref]);
   const evidenceText = refs.length
     ? refs.map(ref => {
-      const study = STUDY_DB[ref];
+      const study = typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref];
       return study.pmid ? `PMID:${study.pmid}` : (study.doi ? `DOI:${study.doi}` : ref);
     }).join(' · ')
     : 'Evidence pending';
@@ -598,10 +598,10 @@ function renderGenotypeMetaboliteEffectCard(card) {
     isIncrease ? 'var(--amber)' :
     isDecrease ? 'var(--green)' :
     'var(--text2)';
-  const refs = (effect.evidenceRefs || []).filter(ref => STUDY_DB[ref]);
+  const refs = (effect.evidenceRefs || []).filter(ref => typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref]);
   const evidenceText = refs.length
     ? refs.map(ref => {
-      const study = STUDY_DB[ref];
+      const study = typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref];
       return study.pmid ? `PMID:${study.pmid}` : (study.doi ? `DOI:${study.doi}` : ref);
     }).join(' · ')
     : 'Evidence pending';

@@ -19,22 +19,30 @@ function renderEvidenceExplorer() {
   const relevantStudies = new Map();
   const reviewStudies = new Map();
   const drugNames = activeStack.map(n => n.toLowerCase());
+  const geneNames = Object.keys(activeGenotype || {}).map(n => n.toLowerCase());
   const stackContext = typeof getStackEvidenceContext === "function"
     ? getStackEvidenceContext()
     : { evidenceRefs:new Set() };
+  const pendingCalculationContext = typeof getRenderComputationCache === "function"
+    ? getRenderComputationCache().pendingCalculationContext
+    : (typeof getActivePendingCalculationContext === "function" ? getActivePendingCalculationContext() : null);
   const findings = typeof getRenderComputationCache === "function"
     ? getRenderComputationCache().findings
     : (typeof buildInteractionFindings === "function"
       ? buildInteractionFindings(activeStack, activeGenotype || {}, { interactions:activeStack.length >= 2 ? calcRisk().interactions : [] })
       : []);
 
-  for (const [sid, study] of Object.entries(STUDY_DB)) {
+  const studyEntries = typeof getEvidenceStudyEntries === "function"
+    ? getEvidenceStudyEntries(pendingCalculationContext)
+    : Object.entries(STUDY_DB);
+  for (const [sid, study] of studyEntries) {
     if (study.public === false) continue;
     const title = (study.title || '').toLowerCase();
     const source = (study.source || '').toLowerCase();
     const supports = (study.supports || []).join(' ').toLowerCase();
     const relevantToStack = drugNames.some(name =>
       title.includes(name) || source.includes(name) || supports.includes(name)) ||
+      geneNames.some(name => title.includes(name) || source.includes(name) || supports.includes(name)) ||
       stackContext.evidenceRefs?.has?.(sid);
     if (!relevantToStack) continue;
     if (study.reviewRequired === true) reviewStudies.set(sid, study);
@@ -60,7 +68,8 @@ function renderEvidenceExplorer() {
     });
 
   if (countEl) {
-    countEl.textContent = `${combinedStudies.length} source-linked evidence · all pending professional review`;
+    const pendingRows = combinedStudies.filter(study => study.pendingSourceSignal).length;
+    countEl.textContent = `${combinedStudies.length} source-linked evidence${pendingRows ? ` · ${pendingRows} pending source signal${pendingRows === 1 ? "" : "s"}` : ""} · all pending professional review`;
   }
 
   // Tier filter buttons span every displayed card.
@@ -104,7 +113,7 @@ function renderEvidenceLadderLedger(findings = []) {
   const rowsByRef = new Map();
   for (const finding of findings || []) {
     for (const ref of finding.evidenceRefs || []) {
-      const study = STUDY_DB[ref];
+      const study = typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref];
       if (!study) continue;
       const row = rowsByRef.get(ref) || {
         ref,

@@ -40,6 +40,8 @@ const MODULE_ORDER = [
   'data/interactions.js',   // PATHWAY_DIVERSION, COMBINATION_PRODUCTS, KNOWN_DDI
   'data/generatedPendingReviewEnrichment.js', // static pending-human-review external context
   'data/generatedPendingCoreEnrichment.js', // typed non-scoring candidates derived from pending context
+  'data/generatedSourceDrugNameCandidates.js', // source-linked pending substance names from cached structured sources
+  'data/pendingLiveCoreAugmentation.js', // live pending drug/DDI/metabolite augmentation rows
   'data/generatedStats.js', // MEDCHECK_STATS generated from source data
   'data/generatedEvidenceReviewQueue.js', // static professional review queue
   'data/generatedOpenTargetsSnapshot.js', // static external context snapshot
@@ -62,6 +64,7 @@ const MODULE_ORDER = [
   'engine/interactionEngine.js',  // findInteractions, calcRisk, analyzeMetabolites
   'engine/pendingReviewContextEngine.js', // staged external records matched as non-scoring context
   'engine/pendingCoreEnrichmentEngine.js', // typed pending candidates matched as non-scoring context
+  'engine/pendingCalculationAdapterEngine.js', // live pending evidence/PGx/PK/DDI adapters with capped scoring
   'engine/activeMoietyEngine.js', // parent/metabolite direction and active-moiety balance
   'engine/phenoconversionEngine.js', // genotype plus inhibitors/inducers/substrate burden
   'engine/persistenceTimelineEngine.js', // parent/metabolite persistence, washout, enzyme recovery
@@ -152,6 +155,12 @@ function generatePendingCoreEnrichment() {
   execSync(`"${process.execPath}" "${script}"`, { cwd: __dirname, stdio: 'inherit' });
 }
 
+function generateSourceDrugNameCandidates() {
+  const script = resolve(__dirname, 'scripts/enrich/generate-source-drug-name-candidates.js');
+  if (!existsSync(script)) return;
+  execSync(`"${process.execPath}" "${script}"`, { cwd: __dirname, stdio: 'inherit' });
+}
+
 function generateMechanisticCurationGaps() {
   const script = resolve(__dirname, 'scripts/audit/mechanistic-curation-gaps.js');
   if (!existsSync(script)) return;
@@ -186,6 +195,7 @@ function injectIntoTemplate(bundle) {
 try {
   mkdirSync(dirname(OUT_PATH), { recursive: true });
   generatePendingCoreEnrichment();
+  generateSourceDrugNameCandidates();
   generateStats();
   generateMechanisticCurationGaps();
   const bundle = buildBundle();

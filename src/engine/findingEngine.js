@@ -15,7 +15,7 @@ function buildInteractionFindings(stack, genotypeState = {}, options = {}) {
     ? options.interactions
     : (typeof calcRisk === "function" ? calcRisk().interactions : []);
   const interactionFindings = interactions
-    .filter(row => row && row.source !== "combination" && row.type !== "combination")
+    .filter(row => row && row.source !== "combination" && row.type !== "combination" && !row.pendingSourceSignal)
     .map(row => normalizeKnownInteractionFinding(row, { stack:activeNames, genotypeState }));
   const combinationRows = Array.isArray(options.combinations)
     ? options.combinations
@@ -47,6 +47,14 @@ function buildInteractionFindings(stack, genotypeState = {}, options = {}) {
   const riskMarkerFindings = typeof riskMarkerRowsToFindings === "function"
     ? riskMarkerRowsToFindings(riskMarkerRows)
     : [];
+  const pendingCalculationContext = options.pendingCalculationContext || (
+    typeof getPendingCalculationContext === "function"
+      ? getPendingCalculationContext(activeNames, genotypeState, { pendingCoreContext:options.pendingCoreContext, limit:60 })
+      : null
+  );
+  const pendingSignalFindings = typeof pendingCalculationSignalsToFindings === "function"
+    ? pendingCalculationSignalsToFindings(pendingCalculationContext)
+    : [];
   const rankedFindings = rankFindings(mergeDuplicateFindings([
     ...interactionFindings,
     ...combinationFindings,
@@ -54,6 +62,7 @@ function buildInteractionFindings(stack, genotypeState = {}, options = {}) {
     ...phenoconversionFindings,
     ...timelineFindings,
     ...riskMarkerFindings,
+    ...pendingSignalFindings,
   ].filter(Boolean))).map(finding => {
     if (finding.whyPath || typeof buildWarningPath !== "function") return finding;
     return { ...finding, whyPath:buildWarningPath(finding, activeNames, genotypeState, options.pathContext || {}) };
@@ -425,7 +434,7 @@ function hasProfessionalFindingReview(studies = []) {
 }
 
 function resolveFindingStudies(evidenceRefs = []) {
-  return uniqueFindingValues(evidenceRefs).map(ref => STUDY_DB[ref]).filter(Boolean);
+  return uniqueFindingValues(evidenceRefs).map(ref => typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref]).filter(Boolean);
 }
 
 function findingTypeLabel(type) {

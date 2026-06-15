@@ -140,6 +140,9 @@ function getRenderComputationCache() {
   const pendingCoreContext = risk.pendingCoreContext || (typeof buildPendingCoreEnrichmentContext === "function"
     ? buildPendingCoreEnrichmentContext(activeStack, safeGenotype)
     : { totalCandidates:0, matchedCount:0, visibleCandidates:[], matchedCandidates:[], counts:{}, matchedCountsByBucket:{} });
+  const pendingCalculationContext = risk.pendingCalculationContext || (typeof getPendingCalculationContext === "function"
+    ? getPendingCalculationContext(activeStack, safeGenotype, { pendingCoreContext, limit:60 })
+    : { evidenceRows:[], pgxSignals:[], pkSignals:[], ddiSignals:[], counts:{}, pendingSignalScore:0 });
   const findings = typeof buildInteractionFindings === "function"
     ? buildInteractionFindings(activeStack, safeGenotype, {
         interactions: risk.interactions || [],
@@ -149,6 +152,7 @@ function getRenderComputationCache() {
         timelineRows,
         pendingReviewContext,
         pendingCoreContext,
+        pendingCalculationContext,
       })
     : [];
   const clinicalConcerns = typeof buildClinicalConcerns === "function"
@@ -162,6 +166,7 @@ function getRenderComputationCache() {
         timelineRows,
         pendingReviewContext,
         pendingCoreContext,
+        pendingCalculationContext,
       })
     : findings;
   renderComputationCache = {
@@ -173,6 +178,7 @@ function getRenderComputationCache() {
     timelineRows,
     pendingReviewContext,
     pendingCoreContext,
+    pendingCalculationContext,
     findings,
     clinicalConcerns,
   };
@@ -516,7 +522,7 @@ function buildDefaultPriorityStory(count) {
 }
 
 function getPriorityEvidenceLayer(refs = [], inlineEvidence = null, source = "") {
-  const studies = [...new Set(refs || [])].map(ref => STUDY_DB[ref]).filter(Boolean);
+  const studies = [...new Set(refs || [])].map(ref => typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref]).filter(Boolean);
   const types = new Set(studies.map(s => s.type));
   const sourceText = `${source || ""} ${(inlineEvidence?.sources || []).join(" ")} ${inlineEvidence?.confidence || ""}`.toLowerCase();
   const hasGuidance = types.has(EVIDENCE_TIER.GUIDELINE) || types.has(EVIDENCE_TIER.FDA_LABEL) || /cpic|guideline|fda|label/.test(sourceText);

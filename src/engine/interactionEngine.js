@@ -50,7 +50,8 @@ function auditInteractionEvidence(interactions) {
   const severeWithoutEvidenceRefs = [];
   for (const ix of interactions) {
     for (const ref of (ix.evidenceRefs || [])) {
-      if (!STUDY_DB[ref]) unknownEvidenceRefs.push({ interactionId: ix.id, ref });
+      const study = typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref];
+      if (!study) unknownEvidenceRefs.push({ interactionId: ix.id, ref });
     }
     if (ix.severity === "severe" && ix.evidenceStatus !== "explicit") {
       severeWithoutEvidenceRefs.push({
@@ -648,10 +649,18 @@ function isProdrugActivationRoute(drug, enzyme) {
 }
 
 function calcRisk() {
-  const interactions = findInteractions();
+  const calcGenotypeState = typeof activeGenotype !== "undefined" ? activeGenotype || {} : {};
   const pendingCoreContext = typeof buildPendingCoreEnrichmentContext === "function"
-    ? buildPendingCoreEnrichmentContext(activeStack, typeof activeGenotype !== "undefined" ? activeGenotype || {} : {}, { limit:24 })
+    ? buildPendingCoreEnrichmentContext(activeStack, calcGenotypeState, { limit:24 })
     : null;
+  const pendingCalculationContext = typeof getPendingCalculationContext === "function"
+    ? getPendingCalculationContext(activeStack, calcGenotypeState, { pendingCoreContext, limit:60 })
+    : null;
+  const baseInteractions = findInteractions();
+  const pendingInteractions = typeof pendingCalculationContextToInteractions === "function"
+    ? pendingCalculationContextToInteractions(pendingCalculationContext)
+    : [];
+  const interactions = [...baseInteractions, ...pendingInteractions];
   let score = 0;
   const factors = [];
 
@@ -665,6 +674,7 @@ function calcRisk() {
   // moderate gets 85%, low gets 60%. Known DDIs always get full weight.
   const confWeight = { high: 1.0, moderate: 0.85, low: 0.6 };
   for (const ix of interactions) {
+    if (ix.pendingSourceSignal) continue;
     const w = ix.evidence ? (confWeight[ix.evidence.confidence] || 0.85) : (ix.source === "known" ? 1.0 : 0.85);
     if (ix.effect && ix.effect.includes("CONTRAINDICATED")) score += 60 * w;
     else if (ix.severity === "severe") score += 30 * w;
@@ -786,6 +796,18 @@ function calcRisk() {
   if (moderate) factors.push({ label: `${moderate} moderate`, color: "amber" });
   if (mild) factors.push({ label: `${mild} mild`, color: "green" });
 
+  const baseScore = Math.min(100, Math.round(score));
+  const pendingSignalScore = Math.max(0, Math.round(pendingCalculationContext?.pendingSignalScore || 0));
+  if (pendingSignalScore > 0) {
+    score += pendingSignalScore;
+    const pendingCounts = pendingCalculationContext?.counts || {};
+    factors.push({
+      label:`+${pendingSignalScore} pending source signal score (${pendingCounts.pgxSignals || 0} PGx, ${pendingCounts.pkSignals || 0} PK, ${pendingCounts.ddiSignals || 0} DDI)`,
+      color:"amber",
+      pendingSourceSignal:true,
+    });
+  }
+
   score = Math.min(100, Math.round(score));
   let level, color;
   if (score >= 60) { level = "HIGH RISK"; color = "var(--red)"; }
@@ -793,7 +815,7 @@ function calcRisk() {
   else if (score > 0) { level = "LOW RISK"; color = "var(--green)"; }
   else { level = "MINIMAL"; color = "var(--green)"; }
 
-  return { score, level, color, factors, interactions, pendingCoreContext };
+  return { score, baseScore, pendingSignalScore, level, color, factors, interactions, pendingCoreContext, pendingCalculationContext };
 }
 
 function collectActiveGenotypeSafetySignals() {

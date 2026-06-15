@@ -23,7 +23,11 @@ function renderReviewSummary() {
   const pendingCore = typeof getRenderComputationCache === "function"
     ? getRenderComputationCache().pendingCoreContext
     : null;
+  const pendingCalculation = typeof getRenderComputationCache === "function"
+    ? getRenderComputationCache().pendingCalculationContext
+    : null;
   const pendingCoreCounts = pendingCore?.counts || {};
+  const pendingCalculationCounts = pendingCalculation?.counts || {};
   section.style.display = "";
   if (count) count.textContent = `${findings.length} finding${findings.length === 1 ? "" : "s"}`;
   body.innerHTML = `<div class="review-summary-grid">
@@ -36,14 +40,29 @@ function renderReviewSummary() {
     ${renderReviewSummaryTile(timing.length, "Timing", "Persistence, washout, recovery, or induction context present.")}
     ${renderReviewSummaryTile(pendingEnrichment?.matchedCount || 0, "Pending Enrichment", `${pendingEnrichment?.totalRecords || 0} staged external records available as non-scoring context.`)}
     ${renderReviewSummaryTile(pendingCore?.matchedCount || 0, "Typed Pending Core", `${pendingCore?.totalCandidates || 0} candidates: ${pendingCoreCounts.studyCandidates || 0} evidence, ${pendingCoreCounts.pgxCandidates || 0} PGx, ${pendingCoreCounts.interactionCandidates || 0} interaction.`)}
+    ${renderReviewSummaryTile(pendingCalculation?.pendingSignalScore || 0, "Pending Live Score", `${pendingCalculationCounts.evidenceRows || 0} evidence, ${pendingCalculationCounts.pgxSignals || 0} PGx, ${pendingCalculationCounts.pkSignals || 0} PK, ${pendingCalculationCounts.ddiSignals || 0} DDI signals are calculation-visible.`)}
     ${renderReviewSummaryTile(concerns.length, "Clinical Concerns", "Grouped Overview presentation objects.")}
   </div>
   <div class="quality-list">
     <div class="quality-item"><strong>Review scope:</strong> raw warning paths, evidence review queue, interaction grid, data diagnostics, scenario snapshots, and contribution links are grouped here for auditing.</div>
+    ${renderPendingCalculationReviewList(pendingCalculation)}
     ${renderPendingCoreReviewList(pendingCore)}
     ${renderClinicalConcernReviewList(concerns)}
   </div>`;
   return findings;
+}
+
+function renderPendingCalculationReviewList(context) {
+  if (!context || !(context.pendingSignalScore || context.evidenceRows?.length || context.pgxSignals?.length || context.pkSignals?.length || context.ddiSignals?.length)) return "";
+  const factors = context.score?.factors || [];
+  const rows = [
+    `Pending score contribution: +${context.pendingSignalScore || 0} of max ${context.score?.cap || 15}.`,
+    `${context.evidenceRows?.length || 0} adapted source-linked evidence rows are resolvable by evidence refs.`,
+    `${context.pgxSignals?.length || 0} PGx, ${context.pkSignals?.length || 0} PK, and ${context.ddiSignals?.length || 0} strict DDI pending signals are live in findings.`,
+    "Public severity remains locked: pending rows are source-linked, pending review, and not public-severity-bearing.",
+    ...factors.slice(0, 4),
+  ];
+  return `<div class="quality-item"><strong>Pending live calculation:</strong><ul>${rows.map(row => `<li>${safeHtml(row)}</li>`).join("")}</ul></div>`;
 }
 
 function renderScenarioSnapshotsReview() {

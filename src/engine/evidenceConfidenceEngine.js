@@ -16,7 +16,7 @@ const EVIDENCE_LADDER_TIER_KEYS = [
 function computeEvidenceLadder(evidenceRefs = [], context = {}) {
   const studies = uniqueEvidenceLadderRefs([
     ...(context.studies || []),
-    ...uniqueEvidenceLadderRefs(evidenceRefs).map(ref => STUDY_DB?.[ref]).filter(Boolean),
+    ...uniqueEvidenceLadderRefs(evidenceRefs).map(ref => typeof getStudy === "function" ? getStudy(ref) : STUDY_DB?.[ref]).filter(Boolean),
   ], study => study?.id || JSON.stringify(study));
   const severityBearingStudies = typeof getSeverityBearingStudies === "function"
     ? getSeverityBearingStudies(studies)
@@ -80,7 +80,7 @@ function sourceSupportStatusLabel(status) {
 
 function classifyMechanisticConfidence(evidenceRefsOrStudies = [], supportingSignals = {}) {
   const studies = evidenceRefsOrStudies.map(item =>
-    typeof item === "string" ? STUDY_DB?.[item] : item
+    typeof item === "string" ? (typeof getStudy === "function" ? getStudy(item) : STUDY_DB?.[item]) : item
   ).filter(Boolean);
   const types = new Set(studies.map(study => study.type));
   if (
@@ -97,7 +97,7 @@ function classifyMechanisticConfidence(evidenceRefsOrStudies = [], supportingSig
 
 function classifyClinicalActionConfidence(evidenceRefsOrStudies = [], reviewStatus = "unknown", context = {}) {
   const studies = evidenceRefsOrStudies.map(item =>
-    typeof item === "string" ? STUDY_DB?.[item] : item
+    typeof item === "string" ? (typeof getStudy === "function" ? getStudy(item) : STUDY_DB?.[item]) : item
   ).filter(Boolean);
   if (reviewStatus === "reviewed") return "reviewed";
   if (studies.length || context.sourceLinked || context.reviewRequired === true) return "pending_review";
@@ -121,7 +121,7 @@ function summarizeEvidenceLadder(ladder) {
 function attachEvidenceLaddersToFindings(findings = []) {
   return (findings || []).map(finding => {
     if (finding.evidenceLadder) return finding;
-    const studies = uniqueEvidenceLadderRefs((finding.evidenceRefs || []).map(ref => STUDY_DB?.[ref]).filter(Boolean), study => study.id);
+    const studies = uniqueEvidenceLadderRefs((finding.evidenceRefs || []).map(ref => typeof getStudy === "function" ? getStudy(ref) : STUDY_DB?.[ref]).filter(Boolean), study => study.id);
     const supportingSignals = {
       pathwayLinked: (finding.affectedActors || []).some(actor => ["enzyme", "pathway", "transporter"].includes(actor.type)),
       modelOnly: !(finding.evidenceRefs || []).length,

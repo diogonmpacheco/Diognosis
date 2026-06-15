@@ -18,6 +18,8 @@ const dataFiles = [
   'src/data/interactions.js',
   'src/data/generatedPendingReviewEnrichment.js',
   'src/data/generatedPendingCoreEnrichment.js',
+  'src/data/generatedSourceDrugNameCandidates.js',
+  'src/data/pendingLiveCoreAugmentation.js',
   'src/engine/phenotypeEngine.js',
 ];
 
@@ -62,6 +64,15 @@ JSON.stringify((() => {
   const pendingCore = typeof PENDING_CORE_ENRICHMENT === 'undefined' ? null : PENDING_CORE_ENRICHMENT;
   const pendingCoreCounts = pendingCore?.counts || {};
   const candidateExpandedCounts = pendingCore?.candidateExpandedCounts || {};
+  const sourceDrugNameCandidates = typeof SOURCE_DRUG_NAME_CANDIDATES === 'undefined' ? null : SOURCE_DRUG_NAME_CANDIDATES;
+  const pendingLiveCore = typeof PENDING_LIVE_CORE_AUGMENTATION === 'undefined' ? null : PENDING_LIVE_CORE_AUGMENTATION;
+  const pendingLiveReceptor = typeof PENDING_LIVE_RECEPTOR_AUGMENTATION === 'undefined' ? null : PENDING_LIVE_RECEPTOR_AUGMENTATION;
+  const liveGenotypeGeneKeys = new Set([
+    ...Object.keys(GENOTYPE_EFFECTS).filter((key) => !key.startsWith('_')),
+    ...(typeof GENOTYPE_RISK_EFFECTS === 'undefined' ? [] : Object.keys(GENOTYPE_RISK_EFFECTS)),
+    ...(typeof GENE_ENZYMES === 'undefined' ? [] : GENE_ENZYMES),
+    ...(typeof PHARMGKB_EVIDENCE === 'undefined' ? [] : Object.keys(PHARMGKB_EVIDENCE)),
+  ].map((key) => String(key || '').trim()).filter(Boolean));
   return {
     generatedAt: new Date().toISOString(),
     bundleBytes: 0,
@@ -86,15 +97,31 @@ JSON.stringify((() => {
     pendingCoreBeersCandidates: pendingCoreCounts.beersCandidates || 0,
     pendingCoreWashoutCandidates: pendingCoreCounts.washoutCandidates || 0,
     pendingCoreUniquePgxGenes: pendingCore?.uniquePendingPgxGenes || 0,
+    sourceDrugNameCandidates: sourceDrugNameCandidates?.totalCandidates || 0,
+    pendingLiveCoreDrugsAdded: pendingLiveCore?.drugsAdded || 0,
+    pendingLiveCoreSourceDrugNameCandidatesAdded: pendingLiveCore?.sourceDrugNameCandidatesAdded || 0,
+    pendingLiveCoreStudyEntriesAdded: pendingLiveCore?.studyEntriesAdded || 0,
+    pendingLiveCoreInteractionPairsAdded: pendingLiveCore?.interactionPairsAdded || 0,
+    pendingLiveCoreMetaboliteEntriesAdded: pendingLiveCore?.metaboliteEntriesAdded || 0,
+    pendingLiveCoreMetaboliteParentsAdded: pendingLiveCore?.metaboliteParentsAdded || 0,
+    pendingLiveCorePkProfilesAdded: pendingLiveCore?.pkProfilesAdded || 0,
+    pendingLiveCorePkProfileSignalsAttached: pendingLiveCore?.pkProfileSignalsAttached || 0,
+    pendingLiveCorePgxGenesAdded: pendingLiveCore?.pgxGenesAdded || 0,
+    pendingLiveCorePgxEvidencePairsAdded: pendingLiveCore?.pgxEvidencePairsAdded || 0,
+    pendingLiveCorePhenotypeProfilesAdded: pendingLiveCore?.phenotypeProfilesAdded || 0,
+    pendingLiveCorePhenotypeSignalsAttached: pendingLiveCore?.phenotypeSignalsAttached || 0,
+    pendingLiveCoreBeersFlagsAdded: pendingLiveCore?.beersFlagsAdded || 0,
+    pendingLiveCoreBeersSignalsAttached: pendingLiveCore?.beersSignalsAttached || 0,
+    pendingLiveCoreWashoutRulesAdded: pendingLiveCore?.washoutRulesAdded || 0,
+    pendingLiveCoreWashoutSignalsAttached: pendingLiveCore?.washoutSignalsAttached || 0,
+    pendingLiveReceptorProfilesAdded: pendingLiveReceptor?.receptorProfilesAdded || 0,
+    pendingLiveReceptorSignalsAttached: pendingLiveReceptor?.receptorSignalsAttached || 0,
     candidateExpandedDrugs: candidateExpandedCounts.drugs || DRUG_DB.length,
     candidateExpandedStudies: candidateExpandedCounts.evidenceEntries || studyValues.length,
     candidateExpandedDdiPairs: candidateExpandedCounts.interactionPairs || KNOWN_DDI.length,
     candidateExpandedMetaboliteEntries: candidateExpandedCounts.metaboliteEntries || metaboliteEntries,
     candidateExpandedPkProfiles: candidateExpandedCounts.pkProfiles || pkParams.length,
-    candidateExpandedGenotypeGenes: candidateExpandedCounts.genotypeGenes || (
-      Object.keys(GENOTYPE_EFFECTS).filter((key) => !key.startsWith('_')).length +
-      (typeof GENOTYPE_RISK_EFFECTS === 'undefined' ? 0 : Object.keys(GENOTYPE_RISK_EFFECTS).length)
-    ),
+    candidateExpandedGenotypeGenes: candidateExpandedCounts.genotypeGenes || liveGenotypeGeneKeys.size,
     candidateExpandedReceptorProfiles: candidateExpandedCounts.receptorScoreProfiles || Object.keys(RECEPTOR_SCORES).length,
     candidateExpandedBeersFlags: candidateExpandedCounts.beersFlags || Object.keys(BEERS_FLAGS).length,
     candidateExpandedWashoutRules: candidateExpandedCounts.washoutRules || Object.keys(WASHOUT_DAYS).length,
@@ -106,8 +133,7 @@ JSON.stringify((() => {
     moderateDdi: severitySplit.moderate || 0,
     mildDdi: severitySplit.mild || 0,
     severitySplit,
-    genotypeGenes: Object.keys(GENOTYPE_EFFECTS).filter((key) => !key.startsWith('_')).length +
-      (typeof GENOTYPE_RISK_EFFECTS === 'undefined' ? 0 : Object.keys(GENOTYPE_RISK_EFFECTS).length),
+    genotypeGenes: liveGenotypeGeneKeys.size,
     metaboliteParents: metaboliteParents.length,
     metaboliteEntries,
     metaboliteActors: Object.keys(METABOLITE_ACTORS).length,
