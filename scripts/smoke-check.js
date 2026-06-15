@@ -22,6 +22,8 @@ console.log('Building smoke-test HTML...');
 execFileSync(process.execPath, ['build.js', '--out', OUT], { cwd: ROOT, stdio: 'pipe' });
 
 const html = readFileSync(OUT, 'utf8');
+const readme = readFileSync(resolve(ROOT, 'README.md'), 'utf8');
+const technical = readFileSync(resolve(ROOT, 'docs', 'TECHNICAL.md'), 'utf8');
 const browserErrors = [];
 const virtualConsole = new VirtualConsole();
 virtualConsole.on('jsdomError', (err) => {
@@ -47,6 +49,14 @@ assert(doc.title.includes('Diognosis'), 'Page title did not load');
 assert(doc.getElementById('ver-engine')?.textContent === '0.1.0-alpha.1', 'Version strip did not render engine 0.1.0-alpha.1');
 assert(evalInPage(window, 'DRUG_DB.length') >= 200, 'Drug database did not load');
 assert(evalInPage(window, 'MEDCHECK_VERSION.engine') === '0.1.0-alpha.1', 'MEDCHECK_VERSION is not 0.1.0-alpha.1');
+assert(!readme.includes('tab=safety'), 'README public examples should use tab=overview instead of tab=safety');
+for (const label of ['Overview', 'Mechanisms', 'Genes + Metabolites', 'Timing + Levels', 'Evidence', 'Review']) {
+  assert(readme.includes(label), `README should mention the ${label} tab`);
+  assert(technical.includes(label), `TECHNICAL.md should document the ${label} tab`);
+}
+for (const moduleName of ['activeMoietyEngine', 'phenoconversionEngine', 'persistenceTimelineEngine', 'findingEngine', 'warningPathEngine', 'evidenceConfidenceEngine']) {
+  assert(technical.includes(moduleName), `TECHNICAL.md should document ${moduleName}`);
+}
 
 const tabLabels = Array.from(doc.querySelectorAll('#tabBar .tab-btn')).map((btn) => btn.textContent.trim());
 assert(
@@ -102,6 +112,7 @@ const findingAudit = evalInPage(window, `(() => {
 assert(findingAudit.count > 0, 'Shared finding engine should return findings for Paroxetine + Codeine');
 assert(findingAudit.types.includes('active_moiety') || findingAudit.types.includes('pairwise_interaction'), 'Finding engine should classify pairwise/active-moiety signals');
 assert(findingAudit.first && findingAudit.first.evidenceLadder && findingAudit.first.evidenceLadder.clinicalActionConfidence, 'Findings should attach an evidence confidence ladder');
+assert(findingAudit.first.evidenceLadder.sourceSupportStatus, 'Findings should expose source support status separately from clinical action status');
 assert(findingAudit.first.evidenceLadder.professionalReviewStatus !== 'reviewed', 'Evidence ladder should not claim professional review without review metadata');
 assert(findingAudit.first && findingAudit.first.whyPath && Array.isArray(findingAudit.first.whyPath.nodes), 'Findings should attach a structured whyPath');
 assert(Array.isArray(findingAudit.first.affectedActors) && findingAudit.first.affectedActors.length >= 2, 'Findings should include affected actors');
@@ -137,6 +148,21 @@ const phenoconversionAudit = evalInPage(window, `(() => {
 assert(phenoconversionAudit.cyp2d6?.direction === 'reduced', 'Functional Gene Status should show CYP2D6 reduced by Paroxetine');
 assert(phenoconversionAudit.cyp2d6?.drivers?.some(driver => driver.actor === 'Paroxetine'), 'CYP2D6 phenoconversion should list Paroxetine as a driver');
 assert(phenoconversionAudit.phenoconversionFindingCount > 0, 'Phenoconversion rows should feed the shared Interaction Finding model');
+
+const phenoconversionUiAudit = evalInPage(window, `(() => {
+  const rows = computePhenoconversionState(activeStack, activeGenotype);
+  const normalRows = rows.filter(row => classifyPhenoconversionDisplayGroup(row) === 'normal_relevant');
+  const normalGroup = document.querySelector('details.phenoconversion-normal-group');
+  return {
+    normalRows:normalRows.length,
+    normalGroupExists:Boolean(normalGroup),
+    normalGroupOpen:normalGroup?.hasAttribute('open') || false,
+  };
+})()`);
+if (phenoconversionUiAudit.normalRows > 0) {
+  assert(phenoconversionUiAudit.normalGroupExists, 'Genes + Metabolites should collapse relevant normal functional gene rows');
+  assert(!phenoconversionUiAudit.normalGroupOpen, 'Relevant normal functional gene rows should be collapsed by default');
+}
 
 const persistenceAudit = evalInPage(window, `(() => {
   const rows = computePersistenceTimeline(activeStack, activeGenotype);

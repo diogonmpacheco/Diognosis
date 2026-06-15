@@ -4,84 +4,238 @@ This page keeps implementation details out of the README front page while preser
 
 ## Architecture
 
-Diognosis is a source-linked medication safety and pharmacogenomics platform in active development. Its first module, the MedCheck Engine, explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
+Diognosis / MedCheck Engine models medication stacks as connected parent-metabolite-gene systems. The engine combines curated DDI pairs, parent/metabolite directionality, functional enzyme status, PK and washout timing, pathway graph traversal, receptor/phenotype burden, and source-linked evidence confidence into normalized interaction findings.
 
-Status: pre-v1, source-linked, under active validation, and not yet professionally reviewed.
+Status: pre-v1, source-linked, under active validation, pending professional clinical review, and not medical advice.
 
-Diognosis currently distributes the MedCheck Engine as a single self-contained HTML file. All computation runs in the browser with no backend, no API, no accounts, and no persistent storage. D3.js is vendored locally and bundled at build time for graph visualization.
+Diognosis currently distributes the MedCheck Engine as a single self-contained HTML file. All computation runs in the browser with no backend, no API, no accounts, no analytics, and no medication-data collection. D3.js is vendored locally and bundled at build time for graph visualization.
 
-The central design principle is synergy: drugs, genes, metabolites, receptors, transporters, foods, and time are modeled as connected actors because the clinically interesting signal often emerges from the whole system rather than from isolated parts.
+The central design principle is reviewable mechanism visibility: drugs, genes, metabolites, receptors, transporters, foods, evidence, and time are modeled as connected actors because the important signal often emerges from the whole system rather than from isolated parent-drug names.
 
 ## Capability Surface
 
 MedCheck Engine currently models:
 
-- Drug-drug interactions and known curated DDI pairs
+- Drug-drug interactions and curated pairwise DDI rows
 - CYP and transporter substrate, inhibitor, and inducer pathways
-- Pharmacogenomics across CYP2D6, CYP2C19, CYP2C9, CYP3A5, SLCO1B1, HLA risk alleles, G6PD, DPYD, TPMT, UGT1A1, NUDT15, and related genes
-- Local DNA / PharmGx report paste-in for supported gene phenotype and risk-allele rows, as a report-row bridge rather than a raw DNA caller
-- Parent/metabolite divergence for prodrugs and active or toxic metabolites
+- Pharmacogenomics across CYP2D6, CYP2C19, CYP2C9, CYP3A5, SLCO1B1, HLA risk alleles, G6PD, DPYD, TPMT, UGT1A1, NUDT15, BCHE, and related genes
+- Local DNA / PharmGx report paste-in for supported gene phenotype and risk-marker rows, as a report-row bridge rather than a raw DNA caller
+- Parent/metabolite divergence for prodrugs, active metabolites, toxic metabolites, inactive clearance metabolites, and active-moiety uncertainty
+- Functional enzyme status after inherited genotype, inhibitors, inducers, and substrate burden are considered
 - PK curves with absolute parameters where available, plus relative-exposure fallback curves when only half-life data exists
+- Parent persistence, active/toxic metabolite persistence, washout rules, enzyme recovery, and induction offset
 - Receptor occupancy and syndrome-style burden detection
 - Anticholinergic, sedative, fall-risk, Beers, and washout summaries
-- Evidence browsing with all entries shown inline and badged as pending professional review
+- Evidence browsing, evidence confidence ladders, and review diagnostics with all public evidence pending professional review
 
 ## Source Layout
 
-The source is structured as editable JavaScript modules in `src/`, assembled in dependency order by `build.js`, alongside the generated stats file and HTML template:
+The source is structured as editable JavaScript modules in `src/`, assembled in dependency order by `build.js`, alongside generated data modules and the HTML template:
 
 ```text
 src/
-  data/         constants, drugs, enzymes, metabolites, transporters,
-                actors, pharmacology, evidence, interactions, rules
-  engine/       evidenceEngine, pathwayEngine, enzymeEngine, pkEngine,
-                pkRelativeEngine, phenotypeEngine, scoringEngine,
-                interactionEngine
-  ui/           renderCore, renderInteractions, renderEvidence,
-                renderCascade, renderAlternatives, renderGenotype,
-                renderPhenotype, renderPK, renderGraph, renderBurden
-  main.js       bootstrap and URL demo loader
+  data/
+    constants, rules, drugs, enzymes, metabolites, transporters,
+    actors, pharmacology, evidence, interactions, generated stats,
+    generated evidence review queues, Open Targets snapshots,
+    generated review diagnostics
+  engine/
+    evidenceEngine
+    evidenceConfidenceEngine
+    pathwayEngine
+    enzymeEngine
+    pkEngine
+    pkRelativeEngine
+    phenotypeEngine
+    scoringEngine
+    interactionEngine
+    activeMoietyEngine
+    phenoconversionEngine
+    persistenceTimelineEngine
+    findingEngine
+    warningPathEngine
+    mechanisticPredictionEngine
+  ui/
+    renderSafe
+    renderCore
+    renderInteractions
+    renderMechanisticPredictions
+    renderEvidence
+    renderExternalSafetyContext
+    renderOpenTargetsReviewWorkbench
+    renderActiveMoiety
+    renderPhenoconversion
+    renderPersistenceTimeline
+    renderWhyPath
+    renderReview
+    renderCascade
+    renderAlternatives
+    renderGenotype
+    renderPhenotype
+    renderPK
+    renderGraph
+    renderBurden
+  main.js
   index.template.html
 ```
 
-`npm run build` produces `index.html` at the repo root for GitHub Pages.
+`npm run build` produces `index.html` at the repo root for GitHub Pages. Work should happen in `src/`; the root `index.html` is generated.
 
 ## Core Data Structures
 
 | Constant | Purpose |
 |---|---|
-| `DRUG_DB` | Drug definitions with routes, inhibitions, inductions, dose tiers, and alternatives |
-| `METABOLITE_ACTORS` | First-class metabolite entities |
+| `DRUG_DB` | Drug definitions with routes, inhibitions, inductions, dose tiers, alternatives, and safety context |
+| `METAB` | Parent-to-metabolite rows used for metabolite display and active-moiety reasoning |
+| `METABOLITE_ACTORS` | First-class metabolite entities with active/toxic role metadata |
 | `METABOLITE_ACTOR_ALIASES` | Canonicalizes alternate metabolite names to detailed actor IDs |
+| `GENOTYPE_METABOLITE_EFFECTS` | Gene-to-metabolite effect rows for prodrug activation, toxic accumulation, and active-metabolite direction |
 | `HIGH_IMPACT_METABOLITE_RELATIONS` | Regression-checked active/toxic metabolite relations requiring provenance |
-| `RECEPTOR_ACTORS` | Receptor nodes such as mu-opioid, 5-HT2A, D2, hERG |
-| `RECEPTOR_SCORES` | Per-drug affinity scores across receptor/transporter targets |
+| `ENZYME_ACTORS` / `TRANSPORTER_ACTORS` | Pathway actors used by graph, capacity, and transporter views |
+| `RECEPTOR_ACTORS` / `RECEPTOR_SCORES` | Receptor and phenotype-burden model inputs |
 | `PHENOTYPE_ACTORS` | Clinical outcome nodes |
 | `KNOWN_DDI` | Curated pairwise interaction entries with evidence refs |
+| `COMBINATION_PRODUCTS` | Additive and combination-product warnings |
 | `STUDY_DB` | Evidence entities with provenance and review status |
-| `GENOTYPE_EFFECTS` / `GENOTYPE_RISK_EFFECTS` | Metabolizer fold-change and risk-allele rules |
+| `GENOTYPE_EFFECTS` / `GENOTYPE_RISK_EFFECTS` | Metabolizer fold-change and risk-marker rules |
 | `PK_PARAMS` | One-compartment absolute PK parameters |
-| `TEMPORAL_PROFILES` | Onset/washout profiles for persistent inhibitors and inducers |
+| `TEMPORAL_PROFILES` | Onset/offset profiles for persistent inhibitors and inducers |
 | `WASHOUT_DAYS` | Evidence-based enzyme recovery timelines |
 | `ACB_SCORES` / `BEERS_FLAGS` | Adverse burden lookup tables |
+| `REVIEW_DIAGNOSTICS` | Static scenario snapshot and coverage-gap summaries shown in Review |
+
+## Reasoning Layers
+
+### Normalized Interaction Findings
+
+Purpose: unify pairwise DDI rows, combination burden, active-moiety rows, phenoconversion rows, timing rows, and other major warning signals into ranked finding cards.
+
+Input data: `calcRisk()` interactions, `COMBINATION_PRODUCTS`, active-moiety rows, phenoconversion rows, persistence rows, and evidence refs.
+
+Output shape: finding objects with `id`, `type`, `severity`, `confidence`, `summary`, `affectedActors`, `evidenceRefs`, `reviewRequired`, `whyPath`, `evidenceLadder`, `sourceRows`, and optional grouped findings.
+
+UI placement: Overview shows ranked finding cards; Mechanisms explains them; Evidence details support; Review exposes raw path objects and technical tables.
+
+Review/safety limitations: findings are review prompts. They are not clinical decisions and should not be treated as final severity judgments without professional review.
+
+### Active-Moiety Balance
+
+Purpose: separate the direction of parent drug, active metabolite, toxic metabolite, inactive metabolite, and net active-moiety effect.
+
+Input data: `METAB`, `METABOLITE_ACTORS`, `GENOTYPE_METABOLITE_EFFECTS`, enzyme capacity, selected genotype state, current stack, and curated routes.
+
+Output shape: rows with parent, metabolite actor, role, formation/clearance pathways, parent/metabolite direction, net pattern, confidence, severity hint, evidence refs, and review status.
+
+UI placement: top active-moiety findings may appear in Overview; the full Parent-Metabolite Balance section appears in Genes + Metabolites; why paths can appear in Mechanisms and Review.
+
+Review/safety limitations: directionality is conservative and mechanistic. Unknown rows should stay unknown, not zero-risk.
+
+### Phenoconversion / Functional Gene Status
+
+Purpose: show how inherited genotype plus current inhibitors, inducers, and substrate burden can change what an enzyme behaves like today.
+
+Input data: enzyme capacity, `GENOTYPE_EFFECTS`, selected genotype state, active stack routes, inhibitors, inducers, active-moiety rows, and route evidence refs.
+
+Output shape: rows with enzyme, genetic phenotype, functional phenotype, capacity percentage, direction, drivers, affected parents, affected metabolites, active-moiety consequences, evidence refs, and review status.
+
+UI placement: changed functional status can feed Overview findings; the full Functional Gene Status dashboard appears in Genes + Metabolites, with relevant normal rows collapsed.
+
+Review/safety limitations: normal/relevant rows are context. Changed functional status is still a mechanistic signal and remains pending review unless explicit review metadata exists.
+
+### Per-Warning Why Paths
+
+Purpose: provide a compact causal chain for each major finding.
+
+Input data: normalized findings, source rows, active-moiety rows, phenoconversion rows, persistence rows, current stack, genotype state, and evidence refs.
+
+Output shape: path objects with nodes, edges, summary, evidence refs, and review status.
+
+UI placement: compact why paths appear inside finding cards and in Mechanisms; raw JSON-like path payloads are inspectable in Review.
+
+Review/safety limitations: why paths explain why a signal appears. They do not by themselves validate clinical action.
+
+### Persistence & Washout Timeline
+
+Purpose: distinguish parent persistence, metabolite persistence, washout rules, enzyme recovery, and induction offset.
+
+Input data: `PK_PARAMS`, `METAB`, `METABOLITE_ACTORS`, `WASHOUT_DAYS`, `TEMPORAL_PROFILES`, and current stack/genotype state.
+
+Output shape: rows with actor, parent, actor type, half-life, estimated persistence days, pathway, persistence type, risk window, reasons, confidence, evidence refs, and review status.
+
+UI placement: important timing rows can feed Overview; the full Persistence & Washout section appears in Timing + Levels; timing why paths can appear in Mechanisms and Review.
+
+Review/safety limitations: five-half-life estimates are display approximations. Missing half-life data is shown as unknown, not omitted or treated as zero.
+
+### Evidence Confidence Ladder
+
+Purpose: separate source support from mechanistic confidence, clinical-action confidence, source tier, and professional-review status.
+
+Input data: evidence refs, `STUDY_DB`, inline evidence flags, source category, review status, severity-bearing/context-only flags, and model-only support signals.
+
+Output shape: ladders with evidence refs, tiers present, strongest tier, source-linked status, source-support status, public identifiers, professional-review status, mechanistic confidence, clinical-action confidence, and notes.
+
+UI placement: compact evidence status appears on finding cards; the Evidence tab shows the Evidence Browser / Evidence Ledger; Review keeps governance diagnostics visible.
+
+Review/safety limitations: source-linked does not mean professionally reviewed. Model-only review prompts should remain distinct from FDA-label/guideline-backed findings.
+
+### Review Diagnostics
+
+Purpose: keep technical audit surfaces available without making them compete with the primary user flow.
+
+Input data: current findings, generated review workbench rows, scenario snapshots, metabolite coverage gaps, evidence queues, Open Targets review queues, raw warning paths, and interaction matrices.
+
+Output shape: Review summary tiles, scenario snapshot cards, gap cards, raw warning path payloads, technical tables, and contribution links.
+
+UI placement: Review tab.
+
+Review/safety limitations: diagnostics are for audit, debugging, and contribution workflows. They are not user-facing clinical advice.
+
+## UI Information Architecture
+
+The top-level app uses six tabs:
+
+- Overview: ranked findings and highest-priority summary
+- Mechanisms: why paths, pathway chains, transporter/pathway bottlenecks, and full network
+- Genes + Metabolites: genotype input, phenoconversion, parent-metabolite balance, and metabolite catalog rows
+- Timing + Levels: PK curves, relative exposure shifts, persistence, washout, and burden timing
+- Evidence: external context cards, evidence browser, and evidence ladder ledger
+- Review: raw paths, diagnostics, scenario snapshots, coverage gaps, technical interaction tables, review workbench, and contribution links
+
+Legacy tab aliases remain supported for old demo links:
+
+```text
+safety -> overview
+summary -> overview
+pgx -> genes-metabolites
+genetics -> genes-metabolites
+pk -> timing-levels
+levels -> timing-levels
+network -> mechanisms
+advanced -> review
+contributor -> review
+contributors -> review
+evidence -> evidence
+```
+
+Old detailed panels remain available but are not the primary Overview surface. `Known Interactions`, `Combination Alerts`, and `Interaction Grid` live in Review. Full network and pathway views live in Mechanisms.
+
+## Evidence and Review Status
+
+These concepts are deliberately separate:
+
+- Source-linked evidence: a finding has linked public refs, labels, guidelines, papers, or curated source rows.
+- Mechanistic confidence: the strength of the pathway/source support for the mechanism.
+- Clinical-action confidence: whether the app can treat the finding as reviewed, pending review, or insufficient for action.
+- Professional-review status: explicit pharmacist/physician review metadata. This must never be inferred from source links alone.
+- Model-only review prompt: a mechanistic or computed finding without linked source refs on that specific finding.
+
+Source-linked does not mean professionally reviewed. The current public evidence ledger is intentionally presented as pending professional review. Severe and critical findings can be visible as review priorities, but severity should not be treated as clinically final until reviewed by an appropriate professional.
 
 ## Biochemical Graph Engine
 
 The graph uses a unified actor model across drugs, metabolites, enzymes, transporters, foods, endogenous actors, receptors, and phenotypes.
 
-Supported edge types include:
-
-- `SUBSTRATE_OF`
-- `INHIBITS`
-- `INDUCES`
-- `METABOLIZED_TO`
-- `TRANSPORTED_BY`
-- `COMPETES_WITH`
-- `ACTIVATES`
-- `BLOCKS`
-- `ACCUMULATES_IN`
-- `PRODUCES`
-- `SUPPRESSES`
+Supported edge types include `SUBSTRATE_OF`, `INHIBITS`, `INDUCES`, `METABOLIZED_TO`, `TRANSPORTED_BY`, `COMPETES_WITH`, `ACTIVATES`, `BLOCKS`, `ACCUMULATES_IN`, `PRODUCES`, and `SUPPRESSES`.
 
 `traverseEffects()` performs depth-limited traversal across the graph with cycle protection, confidence decay, and temporal modifier accumulation. `traverseFromGenotype()` starts from an enzyme phenotype and lists affected parent and metabolite actors.
 
@@ -94,19 +248,11 @@ IN_VITRO -> ANIMAL -> CASE_REPORT -> OBSERVATIONAL -> CLINICAL_PK
 -> RCT -> META_ANALYSIS -> GUIDELINE -> FDA_LABEL
 ```
 
-Each tier carries a calibrated confidence weight used by `computeEdgeConfidence()`. Contradictory evidence can be modeled directly rather than suppressed.
+Each tier carries a calibrated confidence weight used by graph and finding-level evidence helpers. Contradictory evidence can be modeled directly rather than suppressed.
 
-Important evidence helpers:
+Important evidence helpers include `normalizeEvidence()`, `getEvidenceSummary()`, `assertEvidencedSeverity()`, `createStudyDraft()`, `reviewStudyDraft()`, `computeEvidenceLadder()`, and `attachEvidenceLaddersToFindings()`.
 
-- `normalizeEvidence()`
-- `getEvidenceSummary()`
-- `assertEvidencedSeverity()`
-- `createStudyDraft()`
-- `reviewStudyDraft()`
-
-Live enrichment entries should remain marked `reviewRequired:true` until checked by a qualified human reviewer.
-
-Enrichment can use public factual signals from PubMed abstracts, DOI metadata, FDA/EMA labels, CPIC/DPWG guidance, Europe PMC/OpenAlex/Semantic Scholar metadata, and Unpaywall open-access status. A paper being paywalled does not make its public facts unusable. It only means Diognosis should not copy protected wording, tables, figures, full abstracts, or full-text-only values. Drafts based on public-only signals can support qualitative context, while `needsFullTextForPrecision:true` marks records where exact quantitative rules need a licensed/open full text or another public source.
+Live enrichment entries should remain marked `reviewRequired:true` until checked by a qualified human reviewer. Open Targets-derived context remains local/static at runtime and defaults to context-only, review-required, and not severity-bearing unless explicitly promoted by Diognosis review.
 
 ## Enzyme Capacity Model
 
@@ -132,32 +278,27 @@ The relative fallback normalizes curves against a no-interaction, normal-metabol
 
 ## URL Demo Loader
 
-The live app supports preloaded examples:
+The live app supports preloaded examples such as:
 
 ```text
-?substances=paroxetine,fluoxetine&tab=safety
-?substances=clopidogrel,omeprazole&genotype=CYP2C19:poor_metabolizer&tab=pgx
-?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx
-?substances=simvastatin,clarithromycin&tab=pk
-?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=safety
+?substances=paroxetine,fluoxetine&tab=timing-levels
+?substances=clopidogrel,omeprazole&genotype=CYP2C19:poor_metabolizer&tab=genes-metabolites
+?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=genes-metabolites
+?substances=simvastatin,clarithromycin&tab=mechanisms
+?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview
 ```
 
-Legacy named demos and hash links are also supported for static-hosting compatibility:
+Legacy named demos, hash links, and old tab params are also supported for static-hosting compatibility:
 
 ```text
 ?demo=ssri-switch
 #demo=ssri-switch
 #clopidogrel-cyp2c19
-```
-
-Custom links should use `substances=`. The older `drugs=` and `medications=` names remain accepted as aliases.
-
-```text
 ?substances=warfarin,ibuprofen&tab=safety
 ?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx
 ```
 
-Supported tabs are `safety`, `pgx`, `pk`, and `evidence`.
+Custom links should use `substances=`. The older `drugs=` and `medications=` names remain accepted as aliases.
 
 ## DNA / PharmGx Report Import
 
@@ -169,13 +310,11 @@ Accepted inputs:
 - Simple CSV or tab-separated rows containing a supported gene/risk marker and a phenotype/status
 - JSON arrays, or JSON objects with `gene_profiles`, `geneProfiles`, `genes`, or `results`
 
-The importer maps supported metabolizer phenotypes into `GENOTYPE_EFFECTS` (`poor_metabolizer`, `intermediate_metabolizer`, `normal_metabolizer`, `ultrarapid_metabolizer`) and supported risk markers into `GENOTYPE_RISK_EFFECTS` (`risk_allele_present` / `risk_allele_absent`). Current examples include CYP2D6, CYP2C19, CYP2C9, CYP3A5, SLCO1B1, HLA-B*15:02, HLA-B*57:01, HLA-B*58:01, G6PD deficiency, and related modeled markers.
+The importer maps supported metabolizer phenotypes into `GENOTYPE_EFFECTS` (`poor_metabolizer`, `intermediate_metabolizer`, `normal_metabolizer`, `ultrarapid_metabolizer`) and supported risk markers into `GENOTYPE_RISK_EFFECTS` (`risk_allele_present` / `risk_allele_absent`).
 
 All parsing runs in the browser. Nothing is uploaded, stored, or sent to an API.
 
 Future raw-DNA integration should stay separate from the MedCheck Engine clinical display layer: a report generator should call star alleles and risk markers from 23andMe/Ancestry-style files, then pass only normalized gene phenotype/status rows into this importer or a future equivalent structured API.
-
-Backlog: accept direct gene-to-status JSON objects such as `{ "CYP2D6": "PM", "CYP3A5": "non_expresser" }`, normalize short labels and underscore-style function labels, and report unsupported rows instead of silently skipping them.
 
 ## Build And Validation
 
@@ -186,15 +325,16 @@ npm run build:min
 npm run smoke
 npm run regression
 npm run validate
+npm run validate:strict
+npm test
 npm run release:check
 npm run launch:qa
 npm run launch:v1
-npm run test
 ```
 
-The release gate rebuilds the bundle, verifies README/version metadata, runs database audit, Data Views audit, evidence review UI audit, evidence calculation audit, deep launch QA, regression, smoke, strict validation, and whitespace checks.
+`npm run release:check` rebuilds the bundle, verifies metadata, runs database and data-view audits, evidence review UI, evidence calculation, Open Targets gates, scenario snapshots, launch QA, regression, smoke, strict validation, privacy/static audit, and whitespace checks.
 
-`npm run launch:qa` runs the deep pre-v1 scenario matrix across five less-common stacks: thiopurine/allopurinol marrow toxicity, capecitabine/DPYD fluoropyrimidine toxicity, irinotecan/UGT1A1 SN-38 toxicity, G6PD oxidant hemolysis, and succinylcholine BCHE/RYR1 anesthesia risk. It also asserts that visible panels contain content and hidden panels do not retain stale content from prior stacks.
+`npm run launch:qa` runs the deep scenario matrix across thiopurine/allopurinol marrow toxicity, capecitabine/DPYD fluoropyrimidine toxicity, irinotecan/UGT1A1 SN-38 toxicity, G6PD oxidant hemolysis, and succinylcholine BCHE/RYR1 anesthesia risk. It also asserts that visible panels contain content and hidden panels do not retain stale content from prior stacks.
 
 `npm run launch:v1` is the final pre-push gate. It runs stats, build, release checks, launch data trust audit, and the evidence ledger check.
 
@@ -203,11 +343,10 @@ The release gate rebuilds the bundle, verifies README/version metadata, runs dat
 ```bash
 npm run audit:genotype-gaps
 node scripts/audit/genotype-gap-audit.js --catalog-dir /path/to/local-pgx-catalog
+node scripts/audit/genotype-gap-audit.js --open-targets-snapshot src/data/generatedOpenTargetsSnapshot.js
 ```
 
-The genotype gap audit reads MedCheck Engine source text, lists every referenced gene/enzyme/transporter, compares that list with `GENOTYPE_EFFECTS` and `GENOTYPE_RISK_EFFECTS`, then scores missing panels by estimated clinical consequence of the null. If a local external PGx catalog is supplied, it also classifies catalog genes as covered, modeled without a panel, or absent from MedCheck Engine.
-
-Generated reports are written to ignored local files at `scripts/audit/genotype-gap-report.json` and `scripts/audit/genotype-gap-report.md`.
+The genotype gap audit reads MedCheck Engine source text, lists every referenced gene/enzyme/transporter, compares that list with `GENOTYPE_EFFECTS` and `GENOTYPE_RISK_EFFECTS`, and can optionally compare against Open Targets/ClinPGx context. Generated reports are written to ignored local files at `scripts/audit/genotype-gap-report.json` and `scripts/audit/genotype-gap-report.md`.
 
 ## Release Checklist
 
@@ -222,7 +361,9 @@ Generated reports are written to ignored local files at `scripts/audit/genotype-
 No interaction should be presented as clinically final without enough provenance to explain:
 
 - the affected pathway
-- the enzyme, transporter, receptor, metabolite, or phenotype involved
+- the enzyme, transporter, receptor, metabolite, phenotype, or time window involved
 - the expected direction of effect
-- the evidence basis
-- whether human review is still required
+- the evidence basis and source-support status
+- whether professional review is still required
+
+The safe default is to show a source-linked or model-only review prompt, not a final medical instruction.

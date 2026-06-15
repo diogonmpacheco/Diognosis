@@ -278,7 +278,8 @@ function renderCombinationProducts() {
     nephrotoxic_synergy: "background:#b91c1c;color:#fff", hyperkalemia_cascade: "background:#ea580c;color:#fff"
   };
 
-  el.innerHTML = combos.map(cp => {
+  const helper = '<div class="active-moiety-intro">Modeled combination-product and additive-burden rows used for review. Overview keeps the ranked interpretation.</div>';
+  el.innerHTML = helper + combos.map(cp => {
     const sevClass = cp.severity === "critical" ? "critical" : cp.severity === "high" ? "high" : "moderate";
     return `<div class="cp-card ${sevClass}">
       <span class="cp-type" style="${typeColors[cp.type] || 'background:var(--amber);color:#fff'}">${typeLabels[cp.type] || cp.type}</span>

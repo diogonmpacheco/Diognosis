@@ -9,7 +9,9 @@ function renderActiveMoietyBalance() {
     hideSectionAndClear("activeMoietySection", "activeMoietyBody", "activeMoietyCount");
     return [];
   }
-  const rows = computeActiveMoietyBalance(activeStack, activeGenotype || {});
+  const rows = typeof getRenderComputationCache === "function"
+    ? getRenderComputationCache().activeMoietyRows
+    : computeActiveMoietyBalance(activeStack, activeGenotype || {});
   if (!rows.length) {
     section.style.display = "";
     if (count) count.textContent = "";

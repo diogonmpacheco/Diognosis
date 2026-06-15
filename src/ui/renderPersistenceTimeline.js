@@ -9,7 +9,9 @@ function renderPersistenceTimeline() {
     hideSectionAndClear("persistenceTimelineSection", "persistenceTimelineBody", "persistenceTimelineCount");
     return [];
   }
-  const rows = computePersistenceTimeline(activeStack, activeGenotype || {});
+  const rows = typeof getRenderComputationCache === "function"
+    ? getRenderComputationCache().timelineRows
+    : computePersistenceTimeline(activeStack, activeGenotype || {});
   section.style.display = "";
   if (count) count.textContent = rows.length ? `${rows.length} row${rows.length === 1 ? "" : "s"}` : "";
   if (!rows.length) {

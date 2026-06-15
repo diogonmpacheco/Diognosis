@@ -75,7 +75,7 @@ The deeper examples below stress cases that are often missed when a checker only
 
 You can also build custom share links with:
 
-`https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,ibuprofen&tab=safety`
+`https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,ibuprofen&tab=overview`
 
 For alternate entry points, see the [Diognosis Data Views](https://diogonmpacheco.github.io/Diognosis/data-views.html) and the [Medication Class Guides](https://diogonmpacheco.github.io/Diognosis/medication-classes.html).
 
@@ -113,7 +113,7 @@ Diognosis is intentionally conservative about what it claims. MedCheck Engine PK
 - **506 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **57 genotype genes** and **52 receptor score profiles**
 - **43 Beers flags** and **24 washout rules**
-- **4459 KB** generated bundle (93828 lines)
+- **4465 KB** generated bundle (93954 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---

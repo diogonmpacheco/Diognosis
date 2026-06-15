@@ -14,7 +14,8 @@ function renderInteractions(interactions) {
   countEl.textContent = hasModeledActorSignal
     ? `${curatedInteractions.length} review finding${curatedInteractions.length === 1 ? "" : "s"}`
     : `${curatedInteractions.length} source-linked`;
-  el.innerHTML = curatedInteractions.map((i, idx) => {
+  const helper = '<div class="active-moiety-intro">Curated pairwise interaction table used by the normalized findings. Use Overview for ranked interpretation.</div>';
+  el.innerHTML = helper + curatedInteractions.map((i, idx) => {
     const mechText = simplifyMechanism(i);
     const traceText = buildInteractionTrace(i);
     const actionText = clinicalActionForInteraction(i);
@@ -325,7 +326,7 @@ function renderMatrix(interactions) {
 
   const shortName = n => n.length > 12 ? n.slice(0,11) + "…" : n;
 
-  let html = '<div class="matrix-wrap"><table class="matrix"><tr><th></th>';
+  let html = '<div class="active-moiety-intro">Technical pairwise matrix for auditing; Overview should be used for ranked interpretation.</div><div class="matrix-wrap"><table class="matrix"><tr><th></th>';
   drugs.forEach(d => html += `<th>${shortName(d)}</th>`);
   html += "</tr>";
   drugs.forEach((row,ri) => {

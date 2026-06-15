@@ -47,6 +47,7 @@ function swapDrug(oldName, newName) {
 let viewMode = "search";
 let activeTab = "overview";
 let currentInteractionFindings = [];
+let renderComputationCache = null;
 const MEDCHECK_TABS = ["overview","mechanisms","genes-metabolites","timing-levels","evidence","review"];
 const TAB_ALIASES = {
   safety:"overview",
@@ -100,6 +101,50 @@ function setTab(name) {
   });
 }
 
+function getRenderCacheKey() {
+  return JSON.stringify({
+    stack: activeStack,
+    genotype: activeGenotype || {},
+    genetics: userGenetics || {},
+    doses: typeof drugDoses !== "undefined" ? drugDoses : {},
+  });
+}
+
+function getRenderComputationCache() {
+  const key = getRenderCacheKey();
+  if (renderComputationCache && renderComputationCache.key === key) return renderComputationCache;
+  const safeGenotype = activeGenotype || {};
+  const risk = activeStack.length >= 2 && typeof calcRisk === "function"
+    ? calcRisk()
+    : { interactions:[], factors:[], score:0, level:"MINIMAL RISK" };
+  const activeMoietyRows = typeof computeActiveMoietyBalance === "function"
+    ? computeActiveMoietyBalance(activeStack, safeGenotype)
+    : [];
+  const phenoconversionRows = typeof computePhenoconversionState === "function"
+    ? computePhenoconversionState(activeStack, safeGenotype, { activeMoietyRows })
+    : [];
+  const timelineRows = typeof computePersistenceTimeline === "function"
+    ? computePersistenceTimeline(activeStack, safeGenotype)
+    : [];
+  const findings = typeof buildInteractionFindings === "function"
+    ? buildInteractionFindings(activeStack, safeGenotype, {
+        interactions: risk.interactions || [],
+        activeMoietyRows,
+        phenoconversionRows,
+        timelineRows,
+      })
+    : [];
+  renderComputationCache = {
+    key,
+    risk,
+    activeMoietyRows,
+    phenoconversionRows,
+    timelineRows,
+    findings,
+  };
+  return renderComputationCache;
+}
+
 function renderSummaryBar() {
   const bar = document.getElementById("summaryBar");
   const tabBar = document.getElementById("tabBar");
@@ -134,7 +179,9 @@ function renderSummaryBar() {
   let priorityInteraction = null;
   let priorityStory = null;
   if (activeStack.length >= 2) {
-    const risk = calcRisk();
+    const risk = typeof getRenderComputationCache === "function"
+      ? getRenderComputationCache().risk
+      : calcRisk();
     interactionScore = risk.score;
     const severeInteractions = risk.interactions.filter(i => i.severity === "severe" || i.severity === "critical");
     const moderateInteractions = risk.interactions.filter(i => i.severity === "moderate");
@@ -207,9 +254,11 @@ function renderInteractionFindingsOverview(risk) {
   const body = document.getElementById("findingBody");
   const count = document.getElementById("findingCount");
   if (!section || !body) return [];
-  const findings = typeof buildInteractionFindings === "function"
-    ? buildInteractionFindings(activeStack, activeGenotype || {}, { interactions:risk?.interactions || [] })
-    : [];
+  const findings = typeof getRenderComputationCache === "function"
+    ? getRenderComputationCache().findings
+    : (typeof buildInteractionFindings === "function"
+      ? buildInteractionFindings(activeStack, activeGenotype || {}, { interactions:risk?.interactions || [] })
+      : []);
   currentInteractionFindings = findings;
   if (!findings.length) {
     if (activeStack.length < 2) {
@@ -224,7 +273,9 @@ function renderInteractionFindingsOverview(risk) {
   section.style.display = "";
   if (count) count.textContent = `${findings.length} finding${findings.length === 1 ? "" : "s"}`;
   body.innerHTML = findings.slice(0, 8).map(renderInteractionFindingCard).join("") +
-    (findings.length > 8 ? `<div class="finding-empty">Showing 8 of ${findings.length} ranked findings. Open Review for detailed interaction tables.</div>` : "");
+    (findings.length > 8
+      ? `<div class="finding-empty">Showing 8 of ${findings.length} ranked findings. Detailed interaction tables and raw warning paths are available in Review.</div>`
+      : `<div class="finding-empty">Detailed interaction tables and raw warning paths are available in Review.</div>`);
   return findings;
 }
 
@@ -284,9 +335,12 @@ function renderInteractionFindingCard(finding) {
 
 function renderEvidenceLadderCompact(ladder) {
   if (!ladder) return "";
+  const sourceStatus = typeof sourceSupportStatusLabel === "function"
+    ? sourceSupportStatusLabel(ladder.sourceSupportStatus)
+    : String(ladder.sourceSupportStatus || "source status unknown").replace(/_/g, " ");
   const tier = ladder.strongestTier && ladder.strongestTier !== "unknown"
-    ? ladder.strongestTier.replace(/_/g, " ").toLowerCase()
-    : "no linked tier";
+    ? `${ladder.strongestTier.replace(/_/g, " ").toLowerCase()}${ladder.studyCount ? ` · ${safeHtml(String(ladder.studyCount))} source${ladder.studyCount === 1 ? "" : "s"}` : ""}`
+    : sourceStatus;
   const clinical = String(ladder.clinicalActionConfidence || "insufficient").replace(/_/g, " ");
   const review = ladder.professionalReviewStatus === "reviewed"
     ? "professionally reviewed"
@@ -294,7 +348,8 @@ function renderEvidenceLadderCompact(ladder) {
     ? "pending professional review"
     : "review status unknown";
   return `<div class="evidence-ladder-compact">
-    <span>Evidence: ${safeHtml(tier)}${ladder.studyCount ? ` · ${safeHtml(String(ladder.studyCount))} source${ladder.studyCount === 1 ? "" : "s"}` : ""}</span>
+    <span>Evidence: ${safeHtml(tier)}</span>
+    <span>Source status: ${safeHtml(sourceStatus)}</span>
     <span>Mechanistic confidence: ${safeHtml(ladder.mechanisticConfidence || "unknown")}</span>
     <span>Clinical action status: ${safeHtml(clinical)}</span>
     <span>${safeHtml(review)}</span>
@@ -1001,7 +1056,9 @@ function renderAll() {
     hideSectionAndClear("burdenSection", "burdenBody");
   }
   if (activeStack.length >= 2) {
-    const risk = calcRisk();
+    const risk = typeof getRenderComputationCache === "function"
+      ? getRenderComputationCache().risk
+      : calcRisk();
     renderRiskGauge(risk);
     renderInteractionFindingsOverview(risk);
     if (typeof renderMechanismWhyPaths === "function") renderMechanismWhyPaths();

@@ -9,17 +9,34 @@ function renderPhenoconversionDashboard() {
     hideSectionAndClear("phenoconversionSection", "phenoconversionBody", "phenoconversionCount");
     return [];
   }
-  const rows = computePhenoconversionState(activeStack, activeGenotype || {});
+  const rows = typeof getRenderComputationCache === "function"
+    ? getRenderComputationCache().phenoconversionRows
+    : computePhenoconversionState(activeStack, activeGenotype || {});
   if (!rows.length) {
     section.style.display = "";
     if (count) count.textContent = "";
     body.innerHTML = '<div class="finding-empty">No functional gene status rows are modeled for this stack yet.</div>';
     return rows;
   }
+  const changedRows = rows.filter(row => classifyPhenoconversionDisplayGroup(row) === "changed");
+  const normalRows = rows.filter(row => classifyPhenoconversionDisplayGroup(row) === "normal_relevant");
   section.style.display = "";
-  if (count) count.textContent = `${rows.length} gene${rows.length === 1 ? "" : "s"}`;
+  if (count) {
+    const label = `${changedRows.length} changed${normalRows.length ? ` · ${normalRows.length} baseline` : ""}`;
+    count.textContent = label;
+  }
+  const changedHtml = changedRows.length
+    ? `<div class="phenoconversion-grid">${changedRows.map(renderPhenoconversionRow).join("")}</div>`
+    : '<div class="finding-empty">No major functional pathway change is modeled for this stack.</div>';
+  const normalHtml = normalRows.length ? `<details class="phenoconversion-normal-group">
+      <summary>Relevant pathways currently near baseline (${normalRows.length})</summary>
+      <div class="phenoconversion-intro">These genes/pathways are relevant to the selected stack, but no major functional change is currently modeled.</div>
+      <div class="phenoconversion-grid normal-relevant">${normalRows.map(renderPhenoconversionRow).join("")}</div>
+    </details>` : "";
   body.innerHTML = `<div class="phenoconversion-intro">Genetic phenotype is inherited. Functional phenotype is what the pathway may behave like after current inhibitors, inducers, and competing substrates are considered.</div>` +
-    `<div class="phenoconversion-grid">${rows.map(renderPhenoconversionRow).join("")}</div>`;
+    `<div class="phenoconversion-group-label">Changed functional status</div>` +
+    changedHtml +
+    normalHtml;
   return rows;
 }
 

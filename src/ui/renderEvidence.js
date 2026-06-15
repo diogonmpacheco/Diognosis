@@ -22,6 +22,11 @@ function renderEvidenceExplorer() {
   const stackContext = typeof getStackEvidenceContext === "function"
     ? getStackEvidenceContext()
     : { evidenceRefs:new Set() };
+  const findings = typeof getRenderComputationCache === "function"
+    ? getRenderComputationCache().findings
+    : (typeof buildInteractionFindings === "function"
+      ? buildInteractionFindings(activeStack, activeGenotype || {}, { interactions:activeStack.length >= 2 ? calcRisk().interactions : [] })
+      : []);
 
   for (const [sid, study] of Object.entries(STUDY_DB)) {
     if (study.public === false) continue;
@@ -36,7 +41,7 @@ function renderEvidenceExplorer() {
     else relevantStudies.set(sid, study);
   }
 
-  if (relevantStudies.size === 0 && reviewStudies.size === 0) {
+  if (relevantStudies.size === 0 && reviewStudies.size === 0 && !findings.length) {
     hideSectionAndClear("evidenceSection", "evidenceBody", "evidenceCount");
     return;
   }
@@ -71,9 +76,6 @@ function renderEvidenceExplorer() {
   const cardsHTML = combinedStudies
     .map(s => `<div class="ev-explorer-card" data-tier="${s.type || 'uncategorized'}">${studyCardHTML(s)}</div>`)
     .join('') || `<div class="ev-explorer-empty" style="color:var(--text2);font-size:13px;padding:8px 4px">No evidence entries match this stack yet.</div>`;
-  const findings = typeof buildInteractionFindings === "function"
-    ? buildInteractionFindings(activeStack, activeGenotype || {}, { interactions:activeStack.length >= 2 ? calcRisk().interactions : [] })
-    : [];
   const ladderLedger = renderEvidenceLadderLedger(findings);
 
   // Panel-level review notice — applies to every entry until a licensed
@@ -135,12 +137,14 @@ function renderEvidenceLadderLedger(findings = []) {
       </div>
       <div class="evidence-ledger-support">${safeHtml([...new Set(row.findings)].slice(0, 4).join(" · "))}</div>
       <div class="finding-meta">
+        <span class="finding-tag">source: ${safeHtml(sourceSupportStatusLabel(ladder.sourceSupportStatus))}</span>
         <span class="finding-tag">mechanistic: ${safeHtml(ladder.mechanisticConfidence)}</span>
         <span class="finding-tag">clinical action: ${safeHtml(String(ladder.clinicalActionConfidence).replace(/_/g, " "))}</span>
+        <span class="finding-tag">review: ${safeHtml(ladder.professionalReviewStatus === "reviewed" ? "professionally reviewed" : "pending professional review")}</span>
         <span class="finding-tag">${row.study.quantifiedEffects ? "calculation-bearing context" : "qualitative context"}</span>
       </div>
     </div>`;
-  }).join("") : `<div class="evidence-ledger-empty">No current finding has linked source refs yet. Cards still show inferred/review-required status.</div>`;
+  }).join("") : `<div class="evidence-ledger-empty">Some findings are model-only review prompts and do not yet have linked source refs. Source absence is shown on each finding card.</div>`;
   return `<div class="evidence-ledger" id="evidenceLadderLedger">
     <div class="evidence-ledger-summary">
       <div><strong>${safeHtml(String(findings.length))}</strong><span>current findings</span></div>

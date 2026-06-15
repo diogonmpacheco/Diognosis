@@ -68,9 +68,23 @@ function summarizePhenoconversion(rows) {
   return (rows || []).slice().sort((a, b) => phenoconversionScore(b) - phenoconversionScore(a) || a.enzyme.localeCompare(b.enzyme));
 }
 
-function phenoconversionRowsToFindings(rows) {
+function classifyPhenoconversionDisplayGroup(row) {
+  if (!row) return "hidden";
+  if (
+    row.direction === "reduced" ||
+    row.direction === "increased" ||
+    row.functionalPhenotype !== "normal_function"
+  ) return "changed";
+  return "normal_relevant";
+}
+
+function phenoconversionRowsToFindings(rows, options = {}) {
+  const includeNormalRelevant = options.includeNormalRelevant === true;
   return (rows || [])
-    .filter(row => row && row.direction !== "normal")
+    .filter(row => {
+      const group = classifyPhenoconversionDisplayGroup(row);
+      return group === "changed" || (includeNormalRelevant && group === "normal_relevant");
+    })
     .map(row => ({
       id: phenoconversionFindingId(["finding", "phenoconversion", row.enzyme, row.functionalPhenotype]),
       type: "phenoconversion",

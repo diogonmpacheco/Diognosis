@@ -20,7 +20,10 @@ function renderWarningPathReview() {
   const body = document.getElementById("warningPathBody");
   const count = document.getElementById("warningPathCount");
   if (!section || !body) return;
-  const rows = (currentInteractionFindings || []).filter(finding => finding.whyPath);
+  const findings = (currentInteractionFindings || []).length
+    ? currentInteractionFindings
+    : (typeof getRenderComputationCache === "function" ? getRenderComputationCache().findings : []);
+  const rows = (findings || []).filter(finding => finding.whyPath);
   if (!rows.length) {
     hideSectionAndClear("warningPathSection", "warningPathBody", "warningPathCount");
     return;
@@ -56,7 +59,10 @@ function renderMechanismWhyPaths() {
   const body = document.getElementById("mechanismWhyBody");
   const count = document.getElementById("mechanismWhyCount");
   if (!section || !body) return;
-  const rows = (currentInteractionFindings || []).filter(finding => finding.whyPath);
+  const findings = (currentInteractionFindings || []).length
+    ? currentInteractionFindings
+    : (typeof getRenderComputationCache === "function" ? getRenderComputationCache().findings : []);
+  const rows = (findings || []).filter(finding => finding.whyPath);
   if (!rows.length) {
     hideSectionAndClear("mechanismWhySection", "mechanismWhyBody", "mechanismWhyCount");
     return;

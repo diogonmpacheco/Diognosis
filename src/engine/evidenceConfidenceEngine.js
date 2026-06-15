@@ -29,6 +29,7 @@ function computeEvidenceLadder(evidenceRefs = [], context = {}) {
   const supportingSignals = context.supportingSignals || {};
   const mechanisticConfidence = classifyMechanisticConfidence(studies, supportingSignals);
   const clinicalActionConfidence = classifyClinicalActionConfidence(studies, professionalReviewStatus, context);
+  const sourceSupportStatus = classifySourceSupportStatus(sourceLinked, professionalReviewStatus, context);
   const hasPublicIdentifier = studies.some(study => Boolean(study.pmid || study.doi || study.url || study.source));
   const notes = uniqueEvidenceLadderRefs([
     !studies.length && context.reviewRequired !== false ? "No source-linked evidence refs on this finding." : "",
@@ -41,6 +42,7 @@ function computeEvidenceLadder(evidenceRefs = [], context = {}) {
     tiersPresent: tierKeysPresent,
     strongestTier: strongestTierKey,
     sourceLinked,
+    sourceSupportStatus,
     hasPublicIdentifier,
     professionalReviewStatus,
     mechanisticConfidence,
@@ -55,6 +57,25 @@ function computeEvidenceLadder(evidenceRefs = [], context = {}) {
       study.url ? "URL" : "",
     ])),
   };
+}
+
+function classifySourceSupportStatus(sourceLinked, professionalReviewStatus = "unknown", context = {}) {
+  if (professionalReviewStatus === "reviewed" && sourceLinked) return "professionally_reviewed_source_linked";
+  if (sourceLinked && professionalReviewStatus === "pending") return "source_linked_pending_review";
+  if (sourceLinked) return "source_linked";
+  if (context.supportingSignals?.modelOnly || context.reviewRequired === true) return "model_only_review_prompt";
+  return "insufficient_source_support";
+}
+
+function sourceSupportStatusLabel(status) {
+  const labels = {
+    professionally_reviewed_source_linked: "professionally reviewed source-linked",
+    source_linked_pending_review: "source-linked, pending professional review",
+    source_linked: "source-linked",
+    model_only_review_prompt: "model-only review prompt",
+    insufficient_source_support: "insufficient source support",
+  };
+  return labels[status] || "source status unknown";
 }
 
 function classifyMechanisticConfidence(evidenceRefsOrStudies = [], supportingSignals = {}) {
@@ -87,7 +108,7 @@ function summarizeEvidenceLadder(ladder) {
   if (!ladder) return "Evidence: unknown";
   const tier = ladder.strongestTier && ladder.strongestTier !== "unknown"
     ? evidenceTierLabel(ladder.strongestTier)
-    : "no linked source tier";
+    : sourceSupportStatusLabel(ladder.sourceSupportStatus || "insufficient_source_support");
   const count = ladder.studyCount ? `${ladder.studyCount} source${ladder.studyCount === 1 ? "" : "s"}` : "no linked sources";
   const review = ladder.professionalReviewStatus === "reviewed"
     ? "professionally reviewed"

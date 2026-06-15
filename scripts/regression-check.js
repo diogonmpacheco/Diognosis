@@ -942,6 +942,30 @@ const phenoconversionRegression = window.eval(`(() => {
       (f.sourceRows || []).some(row => row?.functionalPhenotype)
     );
   })();
+  const normalContext = (() => {
+    reset(['Codeine']);
+    renderAll();
+    const rows = computePhenoconversionState(activeStack, activeGenotype);
+    const normalRows = rows.filter(row => classifyPhenoconversionDisplayGroup(row) === 'normal_relevant');
+    const changedRows = rows.filter(row => classifyPhenoconversionDisplayGroup(row) === 'changed');
+    const defaultFindings = phenoconversionRowsToFindings(rows);
+    const explicitFindings = phenoconversionRowsToFindings(rows, { includeNormalRelevant:true });
+    const overviewFindings = buildInteractionFindings(activeStack, activeGenotype, { interactions:[] }).filter(f =>
+      f.type === 'phenoconversion' ||
+      (f.groupedFindings || []).some(grouped => grouped.type === 'phenoconversion') ||
+      (f.sourceRows || []).some(row => row?.functionalPhenotype)
+    );
+    const normalGroup = document.querySelector('details.phenoconversion-normal-group');
+    return {
+      normalRows:normalRows.length,
+      changedRows:changedRows.length,
+      defaultFindingCount:defaultFindings.length,
+      explicitFindingCount:explicitFindings.length,
+      overviewFindingCount:overviewFindings.length,
+      normalGroupExists:Boolean(normalGroup),
+      normalGroupOpen:normalGroup?.hasAttribute('open') || false,
+    };
+  })();
   return {
     cyp2d6Fluoxetine,
     cyp2c19Omeprazole,
@@ -949,6 +973,7 @@ const phenoconversionRegression = window.eval(`(() => {
     cyp3a4Rifampin,
     cyp2d6Null,
     overviewFindingCount: overviewFindings.length,
+    normalContext,
   };
 })()`);
 assert(phenoconversionRegression.cyp2d6Fluoxetine?.direction === 'reduced', 'CYP2D6 normal + fluoxetine should phenoconvert reduced/poor-like');
@@ -961,6 +986,13 @@ assert(phenoconversionRegression.cyp3a4Clarithro?.direction === 'reduced', 'CYP3
 assert(phenoconversionRegression.cyp3a4Rifampin?.direction === 'increased', 'CYP3A4 substrate + rifampin should phenoconvert increased');
 assert(phenoconversionRegression.cyp2d6Null?.functionalPhenotype === 'minimal_or_no_function', 'CYP2D6 null genotype should remain minimal/no function');
 assert(phenoconversionRegression.overviewFindingCount > 0, 'Phenoconversion rows should feed Overview interaction findings');
+assert(phenoconversionRegression.normalContext.normalRows > 0, 'Single-drug Codeine should expose relevant normal CYP2D6 context');
+assert(phenoconversionRegression.normalContext.changedRows === 0, 'Single-drug Codeine with normal genotype should not have changed functional gene rows');
+assert(phenoconversionRegression.normalContext.defaultFindingCount === 0, 'Normal-function phenoconversion rows should not become findings by default');
+assert(phenoconversionRegression.normalContext.explicitFindingCount >= phenoconversionRegression.normalContext.normalRows, 'Review diagnostics can explicitly include relevant normal phenoconversion rows');
+assert(phenoconversionRegression.normalContext.overviewFindingCount === 0, 'Overview phenoconversion findings should not balloon from normal pathway context');
+assert(phenoconversionRegression.normalContext.normalGroupExists, 'Genes + Metabolites should render the collapsed normal/relevant pathway group');
+assert(!phenoconversionRegression.normalContext.normalGroupOpen, 'Relevant normal pathway group should be collapsed by default');
 
 const warningPathRegression = window.eval(`(() => {
   function reset(drugs) {
@@ -1067,7 +1099,14 @@ const evidenceLadderRegression = window.eval(`(() => {
   addDrug('Codeine');
   addDrug('Fluoxetine');
   const findings = buildInteractionFindings(activeStack, activeGenotype, { interactions:calcRisk().interactions });
-  const ladder = findings.find(f => (f.evidenceRefs || []).length)?.evidenceLadder || findings[0]?.evidenceLadder;
+  const sourceLinkedFinding = findings.find(f => (f.evidenceRefs || []).length);
+  const evidenceFreeFinding = findings.find(f => !(f.evidenceRefs || []).length);
+  const ladder = sourceLinkedFinding?.evidenceLadder || findings[0]?.evidenceLadder;
+  const modelOnlyLadder = computeEvidenceLadder([], {
+    reviewRequired:true,
+    supportingSignals:{ modelOnly:true },
+  });
+  const modelOnlyCompact = renderEvidenceLadderCompact(modelOnlyLadder);
   renderAll();
   setTab('evidence');
   renderEvidenceExplorer();
@@ -1077,6 +1116,11 @@ const evidenceLadderRegression = window.eval(`(() => {
     reviewedClaims:findings.filter(f => f.evidenceLadder?.professionalReviewStatus === 'reviewed').length,
     severeWithoutRefsOrReviewRequired:findings.filter(f => ['severe','critical'].includes(f.severity) && !(f.evidenceRefs || []).length && f.reviewRequired !== true).length,
     strongestTier:ladder?.strongestTier,
+    sourceSupportStatus:ladder?.sourceSupportStatus,
+    evidenceFreeSourceSupportStatus:evidenceFreeFinding?.evidenceLadder?.sourceSupportStatus || modelOnlyLadder.sourceSupportStatus,
+    modelOnlyStrongestTier:modelOnlyLadder.strongestTier,
+    modelOnlyClinicalActionConfidence:modelOnlyLadder.clinicalActionConfidence,
+    modelOnlyCompact,
     clinicalActionConfidence:ladder?.clinicalActionConfidence,
     cardLadderCount:document.querySelectorAll('#findingBody .evidence-ladder-compact').length,
     ledgerExists:Boolean(document.getElementById('evidenceLadderLedger')),
@@ -1087,9 +1131,89 @@ assert(evidenceLadderRegression.allHaveLadders, 'Every major finding should have
 assert(evidenceLadderRegression.reviewedClaims === 0, 'No finding should claim professional review when no review metadata exists');
 assert(evidenceLadderRegression.severeWithoutRefsOrReviewRequired === 0, 'Severe/critical findings without refs must stay marked reviewRequired');
 assert(evidenceLadderRegression.strongestTier, 'Evidence ladder should report strongest tier or unknown');
+assert(
+  ['source_linked_pending_review', 'source_linked', 'professionally_reviewed_source_linked'].includes(evidenceLadderRegression.sourceSupportStatus),
+  `Source-linked findings should expose source support status, got ${evidenceLadderRegression.sourceSupportStatus}`
+);
+assert(
+  ['model_only_review_prompt', 'insufficient_source_support'].includes(evidenceLadderRegression.evidenceFreeSourceSupportStatus),
+  `Evidence-free findings should show model-only/insufficient source support, got ${evidenceLadderRegression.evidenceFreeSourceSupportStatus}`
+);
+assert(evidenceLadderRegression.modelOnlyStrongestTier === 'unknown', 'Model-only evidence ladder should not display FDA/guideline backing');
+assert(/model-only review prompt/i.test(evidenceLadderRegression.modelOnlyCompact), 'Compact ladder should visibly identify model-only review prompts');
 assert(evidenceLadderRegression.clinicalActionConfidence === 'pending_review' || evidenceLadderRegression.clinicalActionConfidence === 'insufficient', 'Clinical action confidence should remain conservative');
 assert(evidenceLadderRegression.cardLadderCount > 0, 'Finding cards should render compact evidence ladder UI');
 assert(evidenceLadderRegression.ledgerExists, 'Evidence tab should render the evidence ladder ledger');
+
+const renderCacheRegression = window.eval(`(() => {
+  function reset(drugs) {
+    activeStack = [];
+    userGenetics = {};
+    if (typeof drugDoses !== "undefined") Object.keys(drugDoses).forEach(k => delete drugDoses[k]);
+    activeGenotype = {
+      CYP2D6:GENOTYPE_PHENOTYPE.NM,
+      CYP2C19:GENOTYPE_PHENOTYPE.NM,
+      CYP2C9:GENOTYPE_PHENOTYPE.NM,
+      CYP3A4:GENOTYPE_PHENOTYPE.NM,
+      DPYD:GENOTYPE_PHENOTYPE.NM,
+      UGT1A1:GENOTYPE_PHENOTYPE.NM,
+      TPMT:GENOTYPE_PHENOTYPE.NM,
+      NUDT15:GENOTYPE_PHENOTYPE.NM,
+    };
+    for (const drug of drugs) addDrug(drug);
+    renderAll();
+  }
+  function morphineSnapshot() {
+    const row = getRenderComputationCache().activeMoietyRows.find(r => r.parent === 'Codeine' && r.actor === 'Morphine');
+    return row ? {
+      netPattern:row.netPattern,
+      metaboliteDirection:row.metaboliteDirection,
+      severityHint:row.severityHint,
+      confidence:row.confidence,
+    } : null;
+  }
+  function cyp2d6Direction() {
+    const row = getRenderComputationCache().phenoconversionRows.find(r => r.enzyme === 'CYP2D6');
+    return row ? [row.direction, row.functionalPhenotype, row.capacityPct].join(':') : '';
+  }
+  reset(['Codeine']);
+  const normalKey = getRenderCacheKey();
+  const normalMorphine = morphineSnapshot();
+  setGenotypeState('CYP2D6', GENOTYPE_PHENOTYPE.PM);
+  const pmKey = getRenderCacheKey();
+  const pmMorphine = morphineSnapshot();
+
+  reset(['Codeine', 'Fluoxetine']);
+  const inhibitedDirection = cyp2d6Direction();
+  removeDrug('Fluoxetine');
+  const removedDirection = cyp2d6Direction();
+
+  reset(['Codeine', 'Fluoxetine']);
+  const stackAKey = getRenderCacheKey();
+  const stackAFindingIds = getRenderComputationCache().findings.map(f => f.id).join('|');
+  reset(['Codeine', 'Paroxetine']);
+  const stackBKey = getRenderCacheKey();
+  const stackBFindingIds = getRenderComputationCache().findings.map(f => f.id).join('|');
+
+  reset(['Paroxetine', 'Codeine']);
+  const doseBaseKey = getRenderCacheKey();
+  setDoseTier('Paroxetine', 'high');
+  const doseHighKey = getRenderCacheKey();
+  return {
+    genotypeKeyChanged:normalKey !== pmKey,
+    activeMoietyChanged:JSON.stringify(normalMorphine) !== JSON.stringify(pmMorphine),
+    fluoxetineRemovalChanged:inhibitedDirection !== removedDirection,
+    stackKeyChanged:stackAKey !== stackBKey,
+    stackFindingsChanged:stackAFindingIds !== stackBFindingIds,
+    doseKeyChanged:doseBaseKey !== doseHighKey,
+  };
+})()`);
+assert(renderCacheRegression.genotypeKeyChanged, 'Render computation cache key should change when genotype changes');
+assert(renderCacheRegression.activeMoietyChanged, 'Changing CYP2D6 genotype should update active-moiety rows');
+assert(renderCacheRegression.fluoxetineRemovalChanged, 'Removing Fluoxetine should update CYP2D6 functional status');
+assert(renderCacheRegression.stackKeyChanged, 'Render computation cache key should change when stack changes');
+assert(renderCacheRegression.stackFindingsChanged, 'Changing stack should update normalized findings');
+assert(renderCacheRegression.doseKeyChanged, 'Render computation cache key should change when dose tier changes');
 
 const reviewHomeRegression = window.eval(`(() => {
   activeStack = [];

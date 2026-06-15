@@ -49,7 +49,7 @@ function renderGenotypePanel() {
 
   // Selector rows
   let html = importHtml + '<div style="margin-bottom:12px">';
-  html += '<p style="font-size:12px;color:var(--text2);margin:0 0 8px">Set your genotype result to see how it changes predicted exposure or safety risk:</p>';
+  html += '<p style="font-size:12px;color:var(--text2);margin:0 0 8px">Set inherited gene or risk-marker results here; Functional Gene Status shows stack-driven pathway changes below.</p>';
   for (const enz of showEnzymes) {
     const cur = activeGenotype[enz] || GENOTYPE_PHENOTYPE.NM;
     html += `<div class="geno-selector" style="margin-bottom:6px">

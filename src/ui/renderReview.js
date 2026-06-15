@@ -119,6 +119,7 @@ function renderContributeReview() {
 
 function getReviewTabFindings() {
   if (Array.isArray(currentInteractionFindings) && currentInteractionFindings.length) return currentInteractionFindings;
+  if (typeof getRenderComputationCache === "function") return getRenderComputationCache().findings || [];
   return typeof buildInteractionFindings === "function"
     ? buildInteractionFindings(activeStack, activeGenotype || {}, { interactions:activeStack.length >= 2 ? calcRisk().interactions : [] })
     : [];
