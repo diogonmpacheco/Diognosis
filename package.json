@@ -83,7 +83,7 @@
     "demo:open-targets": "node scripts/demo/open-targets-fixture-demo.js",
     "build": "node build.js",
     "build:min": "node build.js --minify",
-    "build:dev": "node build.js --out /tmp/diognosis_dev.html",
+    "build:dev": "node build.js --dev --out /tmp/diognosis_dev.html",
     "smoke": "node scripts/smoke-check.js",
     "launch:qa": "node scripts/launch-qa-audit.js",
     "launch:v1": "node scripts/launch-v1-check.js",

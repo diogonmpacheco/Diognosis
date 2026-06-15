@@ -23,25 +23,14 @@ const readmePath = resolve(root, 'README.md');
 const readme = readFileSync(readmePath, 'utf8');
 const start = '<!-- MEDCHECK_STATS_START -->';
 const end = '<!-- MEDCHECK_STATS_END -->';
-const candidateSuffix = (pending, expanded) =>
-  pending ? ` (+${pending} pending candidates; ${expanded} candidate-expanded)` : '';
-const typedCandidateLine = stats.pendingCoreTotalCandidates
-  ? `- **${stats.pendingCoreTotalCandidates} typed pending core candidates** derived from source-linked enrichment (pending verification; selected missing core rows are live as pending augmentation)
-`
-  : '';
-const liveCoreAugmentationLine = (stats.pendingLiveCoreDrugsAdded || stats.pendingLiveCoreStudyEntriesAdded || stats.pendingLiveCoreInteractionPairsAdded || stats.pendingLiveCoreMetaboliteEntriesAdded)
-  ? `- **Live pending core augmentation:** +${stats.pendingLiveCoreDrugsAdded || 0} drugs (${stats.pendingLiveCoreSourceDrugNameCandidatesAdded || 0} from source-name candidates), +${stats.pendingLiveCoreStudyEntriesAdded || 0} evidence entries, +${stats.pendingLiveCoreInteractionPairsAdded || 0} interaction pairs, +${stats.pendingLiveCoreMetaboliteEntriesAdded || 0} metabolite entries, +${stats.pendingLiveCorePkProfilesAdded || 0} PK profiles / +${stats.pendingLiveCorePkProfileSignalsAttached || 0} PK source signals, +${stats.pendingLiveCorePgxGenesAdded || 0} PGx genes / +${stats.pendingLiveCorePgxEvidencePairsAdded || 0} PGx pairs, +${stats.pendingLiveCorePhenotypeProfilesAdded || 0} phenotype profiles / +${stats.pendingLiveCorePhenotypeSignalsAttached || 0} phenotype source signals, +${stats.pendingLiveReceptorProfilesAdded || 0} receptor profiles / +${stats.pendingLiveReceptorSignalsAttached || 0} receptor source signals, +${stats.pendingLiveCoreBeersFlagsAdded || 0} Beers flags / +${stats.pendingLiveCoreBeersSignalsAttached || 0} Beers source signals, +${stats.pendingLiveCoreWashoutRulesAdded || 0} washout rules / +${stats.pendingLiveCoreWashoutSignalsAttached || 0} washout source signals promoted into live app tables as pending/unreviewed rows
-`
-  : '';
 const statsBlock = `${start}
-- **${stats.drugs} drugs** in DRUG_DB${candidateSuffix(stats.pendingCoreDrugCandidates || 0, stats.candidateExpandedDrugs || stats.drugs)}
-- **${stats.studies} evidence entries** in STUDY_DB (${stats.studiesWithPmid} with PMIDs; ${stats.sourceLinkedStudies} with source identifiers) — **${stats.pendingProfessionalReviewStudies} not professionally reviewed**, **${stats.professionalReviewedStudies} professionally reviewed**${candidateSuffix(stats.pendingCoreStudyCandidates || 0, stats.candidateExpandedStudies || stats.studies)}
-- **${stats.pendingReviewEnrichmentRecords || 0} pending-review enrichment records** from **${stats.pendingReviewEnrichmentSources || 0} external source groups** (context only; non-scoring)
-${typedCandidateLine}${liveCoreAugmentationLine}- **${stats.ddiPairs} interaction pairs** (${stats.severeDdi} severe, ${stats.moderateDdi} moderate, ${stats.mildDdi} mild)${candidateSuffix(stats.pendingCoreInteractionCandidates || 0, stats.candidateExpandedDdiPairs || stats.ddiPairs)}
-- **${stats.metaboliteEntries} metabolite entries** across **${stats.metaboliteParents} parent substances** (${stats.metaboliteActors} first-class metabolite actors)${candidateSuffix(stats.pendingCoreMetaboliteCandidates || 0, stats.candidateExpandedMetaboliteEntries || stats.metaboliteEntries)}
-- **${stats.pkParams} absolute PK simulation profiles** with relative fallback for half-life-only drugs${candidateSuffix(stats.pendingCorePkCandidates || 0, stats.candidateExpandedPkProfiles || stats.pkParams)}
-- **${stats.genotypeGenes} genotype genes** and **${stats.receptorScores} receptor score profiles** (+${stats.pendingCorePgxCandidates || 0} pending PGx rule candidates across ${stats.pendingCoreUniquePgxGenes || 0} genes; ${stats.candidateExpandedGenotypeGenes || stats.genotypeGenes} candidate-expanded genes, ${stats.candidateExpandedReceptorProfiles || stats.receptorScores} candidate-expanded receptor/phenotype profiles)
-- **${stats.beersFlags} Beers flags** and **${stats.washoutRules} washout rules** (+${stats.pendingCoreBeersCandidates || 0} Beers candidates; +${stats.pendingCoreWashoutCandidates || 0} washout candidates; ${stats.candidateExpandedBeersFlags || stats.beersFlags}/${stats.candidateExpandedWashoutRules || stats.washoutRules} candidate-expanded)
+- **${stats.drugs} drugs** in DRUG_DB
+- **${stats.studies} evidence entries** in STUDY_DB (${stats.studiesWithPmid} with PMIDs; ${stats.sourceLinkedStudies} with source identifiers) — **${stats.pendingProfessionalReviewStudies} pending professional review**, **${stats.professionalReviewedStudies} professionally reviewed**
+- **${stats.ddiPairs} interaction pairs** (${stats.severeDdi} severe, ${stats.moderateDdi} moderate, ${stats.mildDdi} mild)
+- **${stats.metaboliteEntries} metabolite entries** across **${stats.metaboliteParents} parent substances** (${stats.metaboliteActors} first-class metabolite actors)
+- **${stats.pkParams} absolute PK simulation profiles** with relative fallback for half-life-only drugs
+- **${stats.genotypeGenes} genotype genes** and **${stats.receptorScores} receptor score profiles**
+- **${stats.beersFlags} Beers flags** and **${stats.washoutRules} washout rules**
 - **${stats.bundleKB || 'Not yet built'} KB** generated bundle${stats.bundleLines ? ` (${stats.bundleLines} lines)` : ''}
 ${end}`;
 

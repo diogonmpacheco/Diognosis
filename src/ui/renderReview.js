@@ -65,12 +65,17 @@ function renderPendingCalculationReviewList(context) {
   return `<div class="quality-item"><strong>Pending live calculation:</strong><ul>${rows.map(row => `<li>${safeHtml(row)}</li>`).join("")}</ul></div>`;
 }
 
+function getReviewDiagnostics() {
+  if (typeof REVIEW_DIAGNOSTICS !== "undefined") return REVIEW_DIAGNOSTICS;
+  return { scenarioSnapshots:[], metaboliteCoverageGaps:[] };
+}
+
 function renderScenarioSnapshotsReview() {
   const section = document.getElementById("scenarioSnapshotSection");
   const body = document.getElementById("scenarioSnapshotBody");
   const count = document.getElementById("scenarioSnapshotCount");
   if (!section || !body) return;
-  const rows = REVIEW_DIAGNOSTICS?.scenarioSnapshots || [];
+  const rows = getReviewDiagnostics().scenarioSnapshots || [];
   if (!rows.length) {
     hideSectionAndClear("scenarioSnapshotSection", "scenarioSnapshotBody", "scenarioSnapshotCount");
     return;
@@ -94,7 +99,7 @@ function renderMetaboliteCoverageGapsReview() {
   const body = document.getElementById("metaboliteGapBody");
   const count = document.getElementById("metaboliteGapCount");
   if (!section || !body) return;
-  const rows = REVIEW_DIAGNOSTICS?.metaboliteCoverageGaps || [];
+  const rows = getReviewDiagnostics().metaboliteCoverageGaps || [];
   if (!rows.length) {
     hideSectionAndClear("metaboliteGapSection", "metaboliteGapBody", "metaboliteGapCount");
     return;

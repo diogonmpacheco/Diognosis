@@ -3,9 +3,9 @@
 // Concatenates all src/ modules in dependency order and injects into HTML template.
 // Default output: index.html (root — GitHub Pages compatible)
 //
-// Usage:  node build.js [--minify] [--out <path>]
-//         npm run build         → index.html
-//         npm run build:min     → index.html (minified)
+// Usage:  node build.js [--dev] [--out <path>]
+//         npm run build         → index.html (minified)
+//         npm run build:dev     → readable development bundle
 
 import { existsSync, readFileSync, writeFileSync, mkdirSync, rmSync } from 'fs';
 import { resolve, dirname } from 'path';
@@ -19,7 +19,8 @@ const VENDOR_D3_PATH = resolve(__dirname, 'vendor/d3/d3.v7.8.5.min.js');
 const require = createRequire(import.meta.url);
 
 const args = process.argv.slice(2);
-const MINIFY = args.includes('--minify');
+const DEV_BUILD = args.includes('--dev');
+const MINIFY = !DEV_BUILD || args.includes('--minify');
 const outIdx = args.indexOf('--out');
 // Default: index.html at repo root (GitHub Pages serves from root or /docs)
 const OUT_PATH = outIdx >= 0 ? resolve(args[outIdx + 1]) : resolve(__dirname, 'index.html');
@@ -38,19 +39,7 @@ const MODULE_ORDER = [
   'data/pharmacology.js',   // TEMPORAL_PROFILES, PK_PARAMS, PHENOTYPE_SCORES, WASHOUT_DAYS, ACB_SCORES, BEERS_FLAGS
   'data/evidence.js',       // STUDY_DB, INGESTION_QUEUE, createStudyDraft, reviewStudyDraft
   'data/interactions.js',   // PATHWAY_DIVERSION, COMBINATION_PRODUCTS, KNOWN_DDI
-  'data/generatedPendingReviewEnrichment.js', // static pending-human-review external context
-  'data/generatedPendingCoreEnrichment.js', // typed non-scoring candidates derived from pending context
-  'data/generatedSourceDrugNameCandidates.js', // source-linked pending substance names from cached structured sources
-  'data/pendingLiveCoreAugmentation.js', // live pending drug/DDI/metabolite augmentation rows
   'data/generatedStats.js', // MEDCHECK_STATS generated from source data
-  'data/generatedEvidenceReviewQueue.js', // static professional review queue
-  'data/generatedOpenTargetsSnapshot.js', // static external context snapshot
-  'data/generatedOpenTargetsPromotionQueue.js', // static Open Targets review/promotion queue
-  'data/generatedOpenTargetsReviewTargets.js', // static first review target decisions
-  'data/generatedOpenTargetsPgxGapRoadmap.js', // static Open Targets/ClinPGx PGx gap roadmap
-  'data/generatedOpenTargetsMechanisticQueue.js', // static Open Targets target-safety review queue
-  'data/reviewDiagnostics.js', // static scenario and metabolite review diagnostics
-  'data/generatedEnrichmentReviewData.js', // static enrichment candidate/review queue summary
 
   // ── Engine layer (depends on data layer) ──
   'engine/evidenceEngine.js',     // evidenceConfidence, getStudy, computeEdgeConfidence, studyCardHTML
@@ -149,24 +138,6 @@ function generateStats() {
   execSync(`"${process.execPath}" "${script}"`, { cwd: __dirname, stdio: 'inherit' });
 }
 
-function generatePendingCoreEnrichment() {
-  const script = resolve(__dirname, 'scripts/enrich/generate-pending-core-enrichment.js');
-  if (!existsSync(script)) return;
-  execSync(`"${process.execPath}" "${script}"`, { cwd: __dirname, stdio: 'inherit' });
-}
-
-function generateSourceDrugNameCandidates() {
-  const script = resolve(__dirname, 'scripts/enrich/generate-source-drug-name-candidates.js');
-  if (!existsSync(script)) return;
-  execSync(`"${process.execPath}" "${script}"`, { cwd: __dirname, stdio: 'inherit' });
-}
-
-function generateMechanisticCurationGaps() {
-  const script = resolve(__dirname, 'scripts/audit/mechanistic-curation-gaps.js');
-  if (!existsSync(script)) return;
-  execSync(`"${process.execPath}" "${script}"`, { cwd: __dirname, stdio: 'inherit' });
-}
-
 function injectIntoTemplate(bundle) {
   const templatePath = resolve(SRC, 'index.template.html');
   const template = readFileSync(templatePath, 'utf8');
@@ -194,10 +165,7 @@ function injectIntoTemplate(bundle) {
 // ── Main ──
 try {
   mkdirSync(dirname(OUT_PATH), { recursive: true });
-  generatePendingCoreEnrichment();
-  generateSourceDrugNameCandidates();
   generateStats();
-  generateMechanisticCurationGaps();
   const bundle = buildBundle();
   const html = injectIntoTemplate(bundle);
   writeFileSync(OUT_PATH, html, 'utf8');
