@@ -1,5 +1,5 @@
 {
-  "schema": "diognosis.weekly-enrichment-report.v1",
+  "schema": "diognosis.live-pending-review-enrichment-report.v1",
   "generatedAt": "2026-06-15T15:02:47.783Z",
   "mode": "fetch_live_pending_review_summary",
   "newStagedRecords": 2355,

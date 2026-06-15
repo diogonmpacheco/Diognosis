@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { createHash } from 'crypto';
-import { resolve } from 'path';
+import { isAbsolute, relative, resolve } from 'path';
 import { drugAliasMap, loadMedcheckData, normalizeName, readGeneratedConstObject, ROOT } from './lib/medcheck-source-loader.js';
 import { dedupeStagedSourceRecords, normalizeStagedSourceRecord } from './lib/staged-source-schema.js';
 import { readJson, writeJson } from './lib/enrichment-common.js';
@@ -50,6 +50,49 @@ function sourceBase(fetchedAt, release) {
     rateLimit: '2 requests/second; use >=550 ms spacing',
     refreshCadence: 'weekly',
     release,
+  };
+}
+
+function repoRelativePath(path) {
+  if (!path) return '';
+  return (isAbsolute(path) ? relative(ROOT, path) : path).replace(/\\/g, '/');
+}
+
+function resolveRepoPath(path) {
+  if (!path) return '';
+  return isAbsolute(path) ? path : resolve(ROOT, path);
+}
+
+function cacheKeyFor(entry) {
+  if (entry.cacheKey) return entry.cacheKey;
+  return createHash('sha256')
+    .update(JSON.stringify({
+      endpoint: entry.endpoint || '',
+      params: entry.params || {},
+      status: entry.status || '',
+      sha256: entry.sha256 || entry.responseSha256 || '',
+    }))
+    .digest('hex');
+}
+
+function cacheIdFor(entry, cacheKey) {
+  if (entry.cacheId) return entry.cacheId;
+  return `${String(entry.endpoint || 'clinpgx').replace(/\//g, '_')}-${cacheKey.slice(0, 12)}`;
+}
+
+function sanitizeProviderFailure(entry) {
+  const cacheKey = cacheKeyFor(entry);
+  const cacheId = cacheIdFor(entry, cacheKey);
+  return {
+    endpoint: entry.endpoint || '',
+    params: entry.params || {},
+    status: entry.status || '',
+    records: entry.records || 0,
+    cacheId,
+    cacheKey,
+    cacheFile: repoRelativePath(entry.cacheFile || `data/enrichment/cache/clinpgx/${cacheId}.json`),
+    responseSha256: entry.responseSha256 || entry.sha256 || '',
+    error: entry.error || undefined,
   };
 }
 
@@ -147,7 +190,7 @@ function normalizeDirectClinPgxRecords(rawIndexPath, limit = 1500) {
   const records = [];
   for (const entry of index.fetched || []) {
     if (records.length >= limit) break;
-    const payload = readJson(entry.file, null);
+    const payload = readJson(resolveRepoPath(entry.file || entry.cacheFile), null);
     const rows = Array.isArray(payload?.response?.data) ? payload.response.data : [];
     for (const row of rows) {
       if (records.length >= limit) break;
@@ -157,7 +200,7 @@ function normalizeDirectClinPgxRecords(rawIndexPath, limit = 1500) {
   }
   return {
     records: dedupeStagedSourceRecords(records),
-    providerFailures: index.providerFailures || [],
+    providerFailures: (index.providerFailures || []).map(sanitizeProviderFailure),
     rateLimitEvents: index.rateLimitEvents || 0,
   };
 }
@@ -237,7 +280,7 @@ function directRowToRecord(row, payload, aliasMap, data, normalizedAt) {
       normalizedAt,
       normalizerVersion: 'clinpgx-normalize.v2',
       sourceRelease: 'api-v1',
-      sourceSnapshotId: payload.sha256 || '',
+      sourceSnapshotId: payload.cacheKey || payload.sha256 || '',
       sourceObjectId,
       sourceObjectHash: createHash('sha256').update(JSON.stringify(row)).digest('hex'),
       sourceTruthStatus: 'fetched_from_clinpgx_api',

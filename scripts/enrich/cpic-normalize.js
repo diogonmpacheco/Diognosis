@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { createHash } from 'crypto';
-import { resolve } from 'path';
+import { isAbsolute, resolve } from 'path';
 import { loadMedcheckData, ROOT, severityValue, uniq } from './lib/medcheck-source-loader.js';
 import { dedupeStagedSourceRecords, normalizeStagedSourceRecord } from './lib/staged-source-schema.js';
 import { readJson, writeJson } from './lib/enrichment-common.js';
@@ -54,6 +54,11 @@ function sourceBase(fetchedAt) {
     attribution: 'CPIC Data review candidate; confirm current CPIC source before promotion.',
       refreshCadence: 'weekly',
   };
+}
+
+function resolveRepoPath(path) {
+  if (!path) return '';
+  return isAbsolute(path) ? path : resolve(ROOT, path);
 }
 
 function makeRecord({ fetchedAt, gene, drug, claimType, evidenceRefs = [], sourceIdentifiers = [], mechanismSummary, clinicalSummary, warnings = [] }) {
@@ -185,7 +190,7 @@ function buildFetchedCpicRecords(rawIndexPath) {
   const fetchedAt = new Date().toISOString();
   const records = [];
   for (const entry of index.fetched || []) {
-    const payload = readJson(entry.file, null);
+    const payload = readJson(resolveRepoPath(entry.file || entry.cacheFile), null);
     const rows = Array.isArray(payload?.response) ? payload.response : [];
     for (const row of rows) {
       const record = fetchedRowToRecord(row, payload, fetchedAt);
@@ -273,7 +278,7 @@ function fetchedRowToRecord(row, payload, normalizedAt) {
       normalizedAt,
       normalizerVersion: 'cpic-normalize.v2',
       sourceRelease: 'api-v1',
-      sourceSnapshotId: payload.sha256 || '',
+      sourceSnapshotId: payload.cacheKey || payload.sha256 || '',
       sourceObjectId,
       sourceObjectHash: createHash('sha256').update(JSON.stringify(row)).digest('hex'),
       sourceTruthStatus: 'fetched_from_cpic_source',

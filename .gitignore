@@ -3,6 +3,11 @@ node_modules
 dist/
 .tmp/
 scripts/enrich/cache/
+data/enrichment/cache/**
+!data/enrichment/cache/**/
+!data/enrichment/cache/**/README.md
+!data/enrichment/cache/**/manifest.json
+!data/enrichment/cache/**/metadata.json
 .DS_Store
 *.log
 npm-debug.log*

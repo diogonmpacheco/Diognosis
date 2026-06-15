@@ -111,6 +111,7 @@ run('Label source boundary audit', node, ['scripts/audit/label-source-boundary-a
 run('3x target audit', node, ['scripts/audit/three-x-target-audit.js']);
 run('Enrichment preview mode audit', node, ['scripts/audit/enrichment-preview-mode-audit.js']);
 run('Enrichment coverage audit', node, ['scripts/audit/enrichment-coverage-audit.js', '--check']);
+run('Enrichment metadata path audit', node, ['scripts/audit/enrichment-metadata-path-audit.js']);
 run('Scenario snapshot audit', node, ['scripts/audit/scenario-snapshot-audit.js']);
 run('Deep launch QA audit', node, ['scripts/launch-qa-audit.js']);
 run('Regression check', node, ['scripts/regression-check.js']);
