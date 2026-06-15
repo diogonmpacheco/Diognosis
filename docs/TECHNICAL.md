@@ -274,16 +274,24 @@ Source governance files:
 - `docs/enrichment/SOURCE_REGISTRY.md`
 - `docs/enrichment/ENRICHMENT_ARCHITECTURE.md`
 - `docs/enrichment/PROMOTION_POLICY.md`
+- `docs/enrichment/REVIEW_STATUS_MODEL.md`
+- `docs/enrichment/REVIEW_OVERLAYS.md`
+- `docs/enrichment/FORK_REVIEW_TEAMS.md`
+- `docs/enrichment/CURATED_DRAFTS.md`
+- `docs/enrichment/SOURCE_FAITHFULNESS_REVIEW.md`
 - `docs/enrichment/AUTOMATION_RUNBOOK.md`
 
 Structured source workflows:
 
-- `scripts/enrich/cpic-sync.js` and `scripts/audit/cpic-coverage-audit.js` stage CPIC Data review candidates and compare them with Diognosis PGx coverage.
-- `scripts/enrich/clinpgx-sync.js` and `scripts/audit/clinpgx-coverage-audit.js` stage ClinPGx guideline, clinical annotation, label, gene, chemical, and variant context. ClinPGx fetch mode is cached and rate-limited at 550 ms/request; normal checks use offline staged/context data.
+- `scripts/enrich/cpic-sync.js` and `scripts/audit/cpic-coverage-audit.js` stage CPIC Data review candidates and compare them with Diognosis PGx coverage. Check mode is CPIC local coverage candidate mode; fetch mode caches real CPIC API source objects.
+- `scripts/enrich/clinpgx-sync.js` and `scripts/audit/clinpgx-coverage-audit.js` stage ClinPGx guideline, clinical annotation, label, gene, chemical, and variant context. Check mode uses ClinPGx/Open Targets derived context; fetch mode caches direct ClinPGx REST JSON and is rate-limited at 550 ms/request.
 - `scripts/enrich/stage-legal-literature.js` normalizes PubMed, Europe PMC, OpenAlex, and Unpaywall literature drafts into the same staged schema.
+- `scripts/enrich/group-staged-records.js` groups CPIC/ClinPGx raw staged rows into human-readable review candidates.
 - `scripts/audit/enrichment-coverage-audit.js` ranks missing drugs, likely missing combinations, PGx gaps, metabolite gaps, and evidence gaps.
 - `scripts/enrich/build-enrichment-review-queue.js` builds the human review queue. Queue items cannot auto-promote.
 - `scripts/enrich/run-weekly-enrichment.js` orchestrates the Monday staged enrichment run.
+
+PharmCAT remains a future session-input source. It is not a global database enrichment source and should not mutate shipped data files.
 
 Runtime rule: the browser app remains local-first/static and does not call CPIC, ClinPGx, PharmCAT, PubMed, Europe PMC, OpenAlex, Unpaywall, or Open Targets.
 

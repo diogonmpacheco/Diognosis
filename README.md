@@ -101,7 +101,7 @@ Diognosis is not a clinical decision system. Source-linked evidence does not equ
 
 Diognosis uses staged, source-linked enrichment workflows for literature discovery and structured guideline context. External records from PubMed, Europe PMC, OpenAlex, Unpaywall, CPIC Data, and ClinPGx are staged for review and do not automatically change clinical severity, scoring, or shipped database behavior.
 
-Source-linked does not mean professionally reviewed. All public evidence remains pending professional review unless explicitly marked otherwise.
+Source-linked does not mean professionally reviewed. All public evidence remains pending professional review unless explicitly marked otherwise. Maintainer source-faithfulness checks, local fork review overlays, and professional clinical reviews are tracked separately.
 
 ## Current Limitations
 

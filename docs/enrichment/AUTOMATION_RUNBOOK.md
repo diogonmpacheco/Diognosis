@@ -40,11 +40,13 @@ Forbidden sources:
 4. CPIC staged sync/check
 5. ClinPGx staged sync/check
 6. gap query batch generation
-7. enrichment review queue generation
-8. enrichment self-test
-9. validation gates
-10. changed-file summary
-11. markdown and JSON report
+7. grouped review candidate generation
+8. enrichment review queue generation
+9. promotion, overlay, curated draft, and grouped-candidate audits
+10. enrichment self-test
+11. validation gates
+12. changed-file summary
+13. markdown and JSON report
 
 ## What to commit
 
@@ -57,3 +59,5 @@ Do not commit protected full text, non-allowlisted PDFs, provider credentials, r
 ## Failure handling
 
 Provider failures should be listed in the report. A single provider failure should not erase successful staged results from other providers. License-boundary or forbidden-source failures should block commit.
+
+The report should distinguish CPIC local coverage candidates from fetched CPIC source records, and direct ClinPGx API records from ClinPGx/Open Targets derived context.

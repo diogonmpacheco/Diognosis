@@ -61,9 +61,11 @@
       "name": "CPIC Data",
       "type": "structured_guideline",
       "purpose": "Gene-drug guideline, recommendation, test-alert, allele, and publication coverage auditing.",
-      "accessMethod": "Cached build-time sync/check workflow",
+      "accessMethod": "Build-time script. Check mode generates local coverage candidates; fetch mode caches CPIC API source objects.",
       "script": "scripts/enrich/cpic-sync.js",
       "outputs": [
+        "data/enrichment/cache/cpic/",
+        "data/enrichment/snapshots/cpic-raw/",
         "data/enrichment/staged/cpic-staged-records.json",
         "data/enrichment/snapshots/cpic-snapshot-metadata.json",
         "docs/audits/cpic-coverage-audit.json",
@@ -80,7 +82,7 @@
       "name": "ClinPGx",
       "type": "structured_guideline",
       "purpose": "Guideline annotations, clinical annotations, labels, pathways, genes, chemicals, and variant context.",
-      "accessMethod": "Cached REST JSON API at build time only",
+      "accessMethod": "Build-time script. Check mode uses ClinPGx/Open Targets derived context; fetch mode caches direct ClinPGx REST JSON.",
       "script": "scripts/enrich/clinpgx-sync.js",
       "outputs": [
         "data/enrichment/cache/clinpgx/",

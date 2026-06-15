@@ -23,6 +23,15 @@ Staged enrichment records can suggest work, but they cannot promote themselves.
 - source identifiers such as PMID, DOI, source ID, label URL, or guideline URL
 - mapping status for drugs, genes, metabolites, and existing evidence refs
 - reviewer decision and rationale
+- explicit separation of source-faithfulness review, local/fork review, and professional clinical review
+
+## Curated draft lane
+
+A curated draft can be created after maintainer source-faithfulness review. It remains pending professional review, cannot affect scoring, and cannot alter public severity. Curated draft to source-file promotion is a separate future action.
+
+## Local overlays
+
+Local overlays can document fork/team review decisions. They must display as local review and must not change upstream professional-review status.
 
 ## Never automatic
 

@@ -1,6 +1,6 @@
 # Enrichment Coverage Audit
 
-Generated: 2026-06-15T11:12:21.057Z
+Generated: 2026-06-15T12:54:55.743Z
 
 | Metric | Count |
 | --- | --- |
@@ -37,23 +37,23 @@ Generated: 2026-06-15T11:12:21.057Z
 
 ## Top Missing Combinations
 
-| Drug 1 | Drug 2 | Theme | Score |
-| --- | --- | --- | --- |
-| Tacrolimus | Albendazole | transplant immunosuppressant + inhibitor/inducer | 90 |
-| Tacrolimus | Aripiprazole | transplant immunosuppressant + inhibitor/inducer | 90 |
-| Tacrolimus | Azithromycin | transplant immunosuppressant + inhibitor/inducer | 90 |
-| Tacrolimus | Brexpiprazole | transplant immunosuppressant + inhibitor/inducer | 90 |
-| Tacrolimus | Carbamazepine | transplant immunosuppressant + inhibitor/inducer | 90 |
-| Tacrolimus | Delamanid | transplant immunosuppressant + inhibitor/inducer | 90 |
-| Tacrolimus | Dexlansoprazole | transplant immunosuppressant + inhibitor/inducer | 90 |
-| Tacrolimus | Erythromycin | transplant immunosuppressant + inhibitor/inducer | 90 |
-| Tacrolimus | Esomeprazole | transplant immunosuppressant + inhibitor/inducer | 90 |
-| Tacrolimus | Fosphenytoin | transplant immunosuppressant + inhibitor/inducer | 90 |
-| Tacrolimus | Isavuconazonium Sulfate | transplant immunosuppressant + inhibitor/inducer | 90 |
-| Tacrolimus | Itraconazole | transplant immunosuppressant + inhibitor/inducer | 90 |
-| Tacrolimus | Lansoprazole | transplant immunosuppressant + inhibitor/inducer | 90 |
-| Tacrolimus | Methimazole | transplant immunosuppressant + inhibitor/inducer | 90 |
-| Tacrolimus | Metronidazole | transplant immunosuppressant + inhibitor/inducer | 90 |
+| Drug 1 | Drug 2 | Theme | Confidence | Basis | Score |
+| --- | --- | --- | --- | --- | --- |
+| Clarithromycin | Abiraterone | CYP3A inhibitor + CYP3A substrate | strong_mechanistic_candidate | explicit route match: CYP3A4; high-risk or narrow-therapeutic-index victim | 80 |
+| Clarithromycin | Albendazole | CYP3A inhibitor + CYP3A substrate | strong_mechanistic_candidate | explicit route match: CYP3A4; high-risk or narrow-therapeutic-index victim; active/toxic/prodrug context | 80 |
+| Clarithromycin | Alfentanil | CYP3A inhibitor + CYP3A substrate | strong_mechanistic_candidate | explicit route match: CYP3A4; high-risk or narrow-therapeutic-index victim | 80 |
+| Clarithromycin | Alprazolam | CYP3A inhibitor + CYP3A substrate | strong_mechanistic_candidate | explicit route match: CYP3A4; structured/source candidate touches pair drug | 80 |
+| Clarithromycin | Amiodarone | CYP3A inhibitor + CYP3A substrate | strong_mechanistic_candidate | explicit route match: CYP3A4; high-risk or narrow-therapeutic-index victim | 80 |
+| Clarithromycin | Amitriptyline | CYP3A inhibitor + CYP3A substrate | strong_mechanistic_candidate | explicit route match: CYP3A4; high-risk or narrow-therapeutic-index victim; structured/source candidate touches pair drug | 80 |
+| Clarithromycin | Apalutamide | CYP3A inhibitor + CYP3A substrate | strong_mechanistic_candidate | explicit route match: CYP3A4; high-risk or narrow-therapeutic-index victim | 80 |
+| Clarithromycin | Aripiprazole | CYP3A inhibitor + CYP3A substrate | strong_mechanistic_candidate | explicit route match: CYP3A4; high-risk or narrow-therapeutic-index victim; structured/source candidate touches pair drug | 80 |
+| Clarithromycin | Atazanavir | CYP3A inhibitor + CYP3A substrate | strong_mechanistic_candidate | explicit route match: CYP3A4; high-risk or narrow-therapeutic-index victim | 80 |
+| Clarithromycin | Azithromycin | CYP3A inhibitor + CYP3A substrate | strong_mechanistic_candidate | explicit route match: CYP3A4; high-risk or narrow-therapeutic-index victim | 80 |
+| Clarithromycin | Bictegravir | CYP3A inhibitor + CYP3A substrate | strong_mechanistic_candidate | explicit route match: CYP3A4; high-risk or narrow-therapeutic-index victim | 80 |
+| Clarithromycin | Brexpiprazole | CYP3A inhibitor + CYP3A substrate | strong_mechanistic_candidate | explicit route match: CYP3A4; high-risk or narrow-therapeutic-index victim | 80 |
+| Clarithromycin | Buprenorphine | CYP3A inhibitor + CYP3A substrate | strong_mechanistic_candidate | explicit route match: CYP3A4; high-risk or narrow-therapeutic-index victim | 80 |
+| Clarithromycin | Cilostazol | CYP3A inhibitor + CYP3A substrate | strong_mechanistic_candidate | explicit route match: CYP3A4; high-risk or narrow-therapeutic-index victim; structured/source candidate touches pair drug | 80 |
+| Clarithromycin | Citalopram | CYP3A inhibitor + CYP3A substrate | strong_mechanistic_candidate | explicit route match: CYP3A4; high-risk or narrow-therapeutic-index victim; structured/source candidate touches pair drug | 80 |
 
 ## Top PGx Gaps
 

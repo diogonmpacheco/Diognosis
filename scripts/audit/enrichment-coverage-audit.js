@@ -71,7 +71,64 @@ function buildDrugCoverage(data) {
   return rows;
 }
 
-function buildCombinationGaps(data) {
+function inferPerpetratorTargets(drug) {
+  const text = `${drug?.name || ''} ${drug?.cls || ''}`;
+  const targets = [];
+  if (isStrongCyp3aInhibitor(drug)) targets.push('CYP3A4', 'P-gp');
+  if (/rifampin|rifamycin|carbamazepine|phenytoin|fosphenytoin|St\.? John's Wort/i.test(text)) targets.push('CYP3A4', 'P-gp');
+  if (/omeprazole|esomeprazole|fluconazole|fluoxetine|fluvoxamine/i.test(text)) targets.push('CYP2C19');
+  if (/fluoxetine|paroxetine|bupropion|quinidine/i.test(text)) targets.push('CYP2D6');
+  if (/amiodarone|cyclosporine|quinidine|verapamil|diltiazem/i.test(text)) targets.push('P-gp');
+  return [...new Set(targets)];
+}
+
+function isStrongCyp3aInhibitor(drug) {
+  const name = String(drug?.name || '');
+  const cls = String(drug?.cls || '');
+  if (/albendazole/i.test(name)) return false;
+  if (/azole antifungal/i.test(cls)) return true;
+  return /ketoconazole|itraconazole|posaconazole|voriconazole|fluconazole|clarithromycin|erythromycin|telithromycin|ritonavir|cobicistat/i.test(name);
+}
+
+function isCyp3aInducer(drug) {
+  const text = `${drug?.name || ''} ${drug?.cls || ''}`;
+  return /rifampin|rifamycin|carbamazepine|phenytoin|fosphenytoin|St\.? John's Wort/i.test(text);
+}
+
+function routeSet(drug) {
+  return new Set((drug?.routes || []).map(route => route.enzyme).filter(Boolean));
+}
+
+function hasHighRiskVictim(drug) {
+  return Boolean(drug?.props?.narrowTherapeuticIndex || drug?.props?.nti || drug?.props?.ntI || HIGH_RISK_CLASS.test(`${drug?.name || ''} ${drug?.cls || ''}`));
+}
+
+function stagedSupportsPair(staged, drugA, drugB) {
+  const names = new Set([drugA?.name, drugB?.name].filter(Boolean));
+  return staged.some(record => (record.claim?.drugs || []).some(drug => names.has(drug)));
+}
+
+function classifyMissingPair(perpetrator, victim, theme, baseScore, staged) {
+  const targets = inferPerpetratorTargets(perpetrator);
+  const victimRoutes = routeSet(victim);
+  const routeMatches = targets.filter(target => victimRoutes.has(target));
+  const basis = [];
+  if (routeMatches.length) basis.push(`explicit route match: ${routeMatches.join('/')}`);
+  if (hasHighRiskVictim(victim)) basis.push('high-risk or narrow-therapeutic-index victim');
+  if (stagedSupportsPair(staged, perpetrator, victim)) basis.push('structured/source candidate touches pair drug');
+  if (/(active|toxic|prodrug)/i.test(`${victim?.prodrug ? 'prodrug' : ''} ${theme}`)) basis.push('active/toxic/prodrug context');
+  let confidence = 'weak_class_heuristic';
+  if (basis.length >= 2 && routeMatches.length) confidence = 'strong_mechanistic_candidate';
+  else if (routeMatches.length) confidence = 'moderate_mechanistic_candidate';
+  else if (basis.length) confidence = 'needs_source_verification';
+  const score = confidence === 'strong_mechanistic_candidate' ? baseScore
+    : confidence === 'moderate_mechanistic_candidate' ? Math.max(55, baseScore - 18)
+      : confidence === 'needs_source_verification' ? Math.max(40, baseScore - 28)
+        : Math.min(35, baseScore - 45);
+  return { confidence, basis, score };
+}
+
+function buildCombinationGaps(data, staged) {
   const existing = new Set((data.KNOWN_DDI || []).map(row => ddiKey(row.drug1, row.drug2)));
   const drugs = data.DRUG_DB || [];
   const byName = new Map(drugs.map(drug => [drug.name, drug]));
@@ -82,12 +139,15 @@ function buildCombinationGaps(data) {
   const pairs = [];
   const add = (a, b, theme, score) => {
     if (!a || !b || a === b || existing.has(ddiKey(a, b))) return;
-    pairs.push({ drug1: a, drug2: b, theme, score });
+    const drugA = byName.get(a);
+    const drugB = byName.get(b);
+    const classified = classifyMissingPair(drugA, drugB, theme, score, staged);
+    pairs.push({ drug1: a, drug2: b, theme, ...classified });
   };
-  for (const inhibitor of classMatch(/azole|macrolide|ritonavir|cobicistat/i).slice(0, 12)) {
+  for (const inhibitor of drugs.filter(isStrongCyp3aInhibitor).slice(0, 12)) {
     for (const sub of cyp3aSubs.slice(0, 80)) add(inhibitor.name, sub.name, 'CYP3A inhibitor + CYP3A substrate', 80);
   }
-  for (const inducer of classMatch(/rifampin|carbamazepine|phenytoin|St\.? John's Wort/i).slice(0, 12)) {
+  for (const inducer of drugs.filter(isCyp3aInducer).slice(0, 12)) {
     for (const sub of cyp3aSubs.slice(0, 80)) add(inducer.name, sub.name, 'CYP3A/P-gp inducer + substrate', 75);
   }
   for (const inhibitor of classMatch(/omeprazole|fluconazole|fluoxetine|fluvoxamine/i).slice(0, 20)) {
@@ -100,10 +160,11 @@ function buildCombinationGaps(data) {
     for (const b of classMatch(/nsaid|ibuprofen|naproxen|aspirin|ssri|snri|azole|amiodarone|antiplatelet/i)) add(a.name, b.name, 'anticoagulant/antiplatelet bleeding stack', 78);
   }
   for (const a of ['Tacrolimus', 'Cyclosporine', 'Sirolimus', 'Everolimus'].filter(name => byName.has(name))) {
-    for (const b of classMatch(/azole|macrolide|ritonavir|cobicistat|rifampin|carbamazepine|phenytoin/i)) add(a, b.name, 'transplant immunosuppressant + inhibitor/inducer', 90);
+    for (const b of drugs.filter(drug => isStrongCyp3aInhibitor(drug) || isCyp3aInducer(drug))) add(a, b.name, 'transplant immunosuppressant + inhibitor/inducer', 90);
   }
   return [...new Map(pairs.map(row => [`${row.theme}|${ddiKey(row.drug1, row.drug2)}`, row])).values()]
-    .sort((a, b) => b.score - a.score || a.theme.localeCompare(b.theme))
+    .filter(row => row.confidence !== 'likely_false_positive')
+    .sort((a, b) => b.score - a.score || a.confidence.localeCompare(b.confidence) || a.theme.localeCompare(b.theme))
     .slice(0, 100);
 }
 
@@ -179,7 +240,7 @@ function main() {
   const data = loadMedcheckData();
   const { records: staged } = loadAllStagedRecords();
   const topMissingDrugs = buildDrugCoverage(data);
-  const topMissingPairs = buildCombinationGaps(data);
+  const topMissingPairs = buildCombinationGaps(data, staged);
   const topPgxGaps = buildPgxGaps(data, staged);
   const topMetaboliteGaps = buildMetaboliteGaps(data);
   const topEvidenceGaps = buildEvidenceGaps(data);
@@ -193,7 +254,7 @@ function main() {
       staged_records: staged.length,
       literature_drafts: drafts.length,
       high_priority_missing_drugs: topMissingDrugs.filter(row => row.score >= 40).length,
-      high_priority_missing_pairs: topMissingPairs.filter(row => row.score >= 80).length,
+      high_priority_missing_pairs: topMissingPairs.filter(row => row.confidence === 'strong_mechanistic_candidate').length,
       pgx_gaps: topPgxGaps.length,
       metabolite_gaps: topMetaboliteGaps.length,
       evidence_gaps: topEvidenceGaps.length,
@@ -231,7 +292,7 @@ ${markdownTable(['Drug', 'Class', 'Score', 'Gaps'], report.top_missing_drugs.sli
 
 ## Top Missing Combinations
 
-${markdownTable(['Drug 1', 'Drug 2', 'Theme', 'Score'], report.top_missing_pairs.slice(0, 15).map(row => [row.drug1, row.drug2, row.theme, row.score]))}
+${markdownTable(['Drug 1', 'Drug 2', 'Theme', 'Confidence', 'Basis', 'Score'], report.top_missing_pairs.slice(0, 15).map(row => [row.drug1, row.drug2, row.theme, row.confidence, (row.basis || []).join('; '), row.score]))}
 
 ## Top PGx Gaps
 

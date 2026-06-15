@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { execFileSync, spawnSync } from 'child_process';
-import { resolve } from 'path';
+import { existsSync, readdirSync, statSync } from 'fs';
+import { extname, join, resolve } from 'path';
 import { ROOT } from './lib/medcheck-source-loader.js';
 import { readJson, writeJson, writeText, commandSummary } from './lib/enrichment-common.js';
 
@@ -62,9 +63,14 @@ function main() {
   }
 
   commands.push(run('gap query batch generation', node, ['scripts/enrich/build-gap-query-batch.js', `--max=${args.maxGapQueries}`]));
+  commands.push(run('grouped review candidate generation', node, ['scripts/enrich/group-staged-records.js']));
   commands.push(run('enrichment review queue', node, ['scripts/enrich/build-enrichment-review-queue.js']));
   commands.push(run('source registry audit after staging', node, ['scripts/audit/source-registry-audit.js']));
   commands.push(run('license boundary audit', node, ['scripts/audit/enrichment-license-boundary-audit.js']));
+  commands.push(run('promotion boundary audit', node, ['scripts/audit/promotion-boundary-audit.js']));
+  commands.push(run('review overlay audit', node, ['scripts/audit/review-overlay-audit.js']));
+  commands.push(run('curated draft audit', node, ['scripts/audit/curated-draft-audit.js']));
+  commands.push(run('grouped review candidate audit', node, ['scripts/audit/grouped-review-candidate-audit.js']));
   commands.push(run('enrichment self-test', node, ['scripts/enrich/pubmed-enrich.js', '--self-test']));
 
   const validationCommands = [
@@ -86,6 +92,15 @@ function main() {
   const legalReport = readJson(resolve(ROOT, 'data/enrichment/reports/legal-literature-report.json'), {});
   const cpic = readJson(resolve(ROOT, 'data/enrichment/snapshots/cpic-snapshot-metadata.json'), {});
   const clinpgx = readJson(resolve(ROOT, 'data/enrichment/snapshots/clinpgx-snapshot-metadata.json'), {});
+  const grouped = readJson(resolve(ROOT, 'data/enrichment/review-queue/grouped-review-candidates.json'), {});
+  const overlayReviewCount = listJson(resolve(ROOT, 'data/review-overlays'))
+    .map(file => readJson(file, null))
+    .filter(overlay => overlay?.schema === 'diognosis.review-overlay.v1')
+    .reduce((sum, overlay) => sum + (overlay.reviews?.length || 0), 0);
+  const curatedDraftCount = listJson(resolve(ROOT, 'data/enrichment/curated-drafts'))
+    .map(file => readJson(file, null))
+    .filter(draft => draft?.schema === 'diognosis.curated-draft.v1')
+    .length;
   const files = changedFiles();
   const report = {
     schema: 'diognosis.weekly-enrichment-report.v1',
@@ -98,6 +113,24 @@ function main() {
     draftsWithLegalOpenAccess: legalReport.draftsWithLegalOpenAccess || 0,
     cpicRecordsStaged: cpic.stagedRecords || 0,
     clinpgxRecordsStaged: clinpgx.stagedRecords || 0,
+    cpic: {
+      localCandidateRecords: cpic.localCandidateRecords || 0,
+      fetchedRecords: cpic.fetchedRecords || 0,
+      sourceRelease: cpic.sourceRelease || cpic.sourceTruthStatus || '',
+      providerFailures: cpic.providerFailures || [],
+    },
+    clinpgx: {
+      directFetchedRecords: clinpgx.directFetchedRecords || 0,
+      openTargetsDerivedRecords: clinpgx.openTargetsDerivedRecords || 0,
+      providerFailures: clinpgx.providerFailures || [],
+      rateLimitEvents: clinpgx.rateLimitEvents || 0,
+    },
+    review: {
+      rawStagedRecords: (cpic.stagedRecords || 0) + (clinpgx.stagedRecords || 0) + (legalReport.stagedRecords || 0),
+      groupedReviewCandidates: grouped.totalCandidates || 0,
+      curatedDrafts: curatedDraftCount,
+      localOverlayReviews: overlayReviewCount,
+    },
     providerFailures: legalReport.providerFailures || [],
     topMissingDrugs: coverage.top_missing_drugs?.slice(0, 10) || [],
     topMissingCombinations: coverage.top_missing_pairs?.slice(0, 10) || [],
@@ -124,7 +157,12 @@ Generated: ${report.generatedAt}
 - Literature drafts: ${report.newLiteratureDrafts}
 - Drafts with legal OA metadata: ${report.draftsWithLegalOpenAccess}
 - CPIC staged records: ${report.cpicRecordsStaged}
+- CPIC local candidate records: ${report.cpic.localCandidateRecords}
+- CPIC fetched records: ${report.cpic.fetchedRecords}
 - ClinPGx staged records: ${report.clinpgxRecordsStaged}
+- ClinPGx direct fetched records: ${report.clinpgx.directFetchedRecords}
+- ClinPGx/Open Targets derived records: ${report.clinpgx.openTargetsDerivedRecords}
+- Grouped review candidates: ${report.review.groupedReviewCandidates}
 - Provider failures: ${report.providerFailures.length}
 - Recommendation: ${report.recommendation}
 - Human review required: ${report.humanReviewRequired ? 'yes' : 'no'}
@@ -148,3 +186,15 @@ ${report.changedFiles.map(file => `- ${file}`).join('\n') || '- none'}
 }
 
 main();
+
+function listJson(dir) {
+  const out = [];
+  if (!existsSync(dir)) return out;
+  for (const entry of readdirSync(dir)) {
+    const file = join(dir, entry);
+    const stats = statSync(file);
+    if (stats.isDirectory()) out.push(...listJson(file));
+    else if (extname(file) === '.json') out.push(file);
+  }
+  return out;
+}

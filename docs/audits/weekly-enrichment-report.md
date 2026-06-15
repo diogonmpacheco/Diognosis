@@ -1,13 +1,18 @@
 # Weekly Enrichment Report
 
-Generated: 2026-06-15T11:13:13.039Z
+Generated: 2026-06-15T12:55:48.164Z
 
 - Mode: check
 - New staged records: 532
 - Literature drafts: 248
 - Drafts with legal OA metadata: 144
 - CPIC staged records: 156
+- CPIC local candidate records: 156
+- CPIC fetched records: 0
 - ClinPGx staged records: 128
+- ClinPGx direct fetched records: 0
+- ClinPGx/Open Targets derived records: 128
+- Grouped review candidates: 186
 - Provider failures: 0
 - Recommendation: human_review_then_commit
 - Human review required: yes
@@ -27,16 +32,16 @@ Generated: 2026-06-15T11:13:13.039Z
 
 ## Top Missing Combinations
 
-- Tacrolimus + Albendazole: transplant immunosuppressant + inhibitor/inducer
-- Tacrolimus + Aripiprazole: transplant immunosuppressant + inhibitor/inducer
-- Tacrolimus + Azithromycin: transplant immunosuppressant + inhibitor/inducer
-- Tacrolimus + Brexpiprazole: transplant immunosuppressant + inhibitor/inducer
-- Tacrolimus + Carbamazepine: transplant immunosuppressant + inhibitor/inducer
-- Tacrolimus + Delamanid: transplant immunosuppressant + inhibitor/inducer
-- Tacrolimus + Dexlansoprazole: transplant immunosuppressant + inhibitor/inducer
-- Tacrolimus + Erythromycin: transplant immunosuppressant + inhibitor/inducer
-- Tacrolimus + Esomeprazole: transplant immunosuppressant + inhibitor/inducer
-- Tacrolimus + Fosphenytoin: transplant immunosuppressant + inhibitor/inducer
+- Clarithromycin + Abiraterone: CYP3A inhibitor + CYP3A substrate
+- Clarithromycin + Albendazole: CYP3A inhibitor + CYP3A substrate
+- Clarithromycin + Alfentanil: CYP3A inhibitor + CYP3A substrate
+- Clarithromycin + Alprazolam: CYP3A inhibitor + CYP3A substrate
+- Clarithromycin + Amiodarone: CYP3A inhibitor + CYP3A substrate
+- Clarithromycin + Amitriptyline: CYP3A inhibitor + CYP3A substrate
+- Clarithromycin + Apalutamide: CYP3A inhibitor + CYP3A substrate
+- Clarithromycin + Aripiprazole: CYP3A inhibitor + CYP3A substrate
+- Clarithromycin + Atazanavir: CYP3A inhibitor + CYP3A substrate
+- Clarithromycin + Azithromycin: CYP3A inhibitor + CYP3A substrate
 
 ## Top PGx Gaps
 
@@ -53,37 +58,73 @@ Generated: 2026-06-15T11:13:13.039Z
 
 ## Changed Files
 
-- M README.md
-- M docs/PUBLIC_TRUST.md
-- M docs/TECHNICAL.md
-- M index.html
-- M package.json
-- M scripts/enrich/run-batch.js
-- M scripts/release-check.js
-- M src/data/generatedStats.js
-- ?? data/
-- ?? docs/audits/clinpgx-coverage-audit.json
-- ?? docs/audits/clinpgx-coverage-audit.md
-- ?? docs/audits/cpic-coverage-audit.json
-- ?? docs/audits/cpic-coverage-audit.md
-- ?? docs/audits/enrichment-coverage-audit.json
-- ?? docs/audits/enrichment-coverage-audit.md
-- ?? docs/audits/enrichment-review-queue.md
-- ?? docs/audits/weekly-enrichment-report.json
-- ?? docs/audits/weekly-enrichment-report.md
-- ?? docs/automations/
-- ?? docs/enrichment/
-- ?? scripts/audit/clinpgx-coverage-audit.js
-- ?? scripts/audit/cpic-coverage-audit.js
-- ?? scripts/audit/enrichment-coverage-audit.js
-- ?? scripts/audit/enrichment-license-boundary-audit.js
-- ?? scripts/audit/source-registry-audit.js
-- ?? scripts/enrich/build-enrichment-review-queue.js
-- ?? scripts/enrich/build-gap-query-batch.js
-- ?? scripts/enrich/clinpgx-normalize.js
-- ?? scripts/enrich/clinpgx-sync.js
-- ?? scripts/enrich/cpic-normalize.js
-- ?? scripts/enrich/cpic-sync.js
-- ?? scripts/enrich/lib/
-- ?? scripts/enrich/run-weekly-enrichment.js
-- ?? scripts/enrich/stage-legal-literature.js
+- M  README.md
+- A  data/enrichment/cache/clinpgx/README.md
+- A  data/enrichment/cache/cpic/README.md
+- A  data/enrichment/curated-drafts/README.md
+- M  data/enrichment/generated/gap-literature-batch.json
+- M  data/enrichment/reports/legal-literature-report.json
+- M  data/enrichment/reports/legal-literature-report.md
+- M  data/enrichment/review-queue/enrichment-review-queue.json
+- A  data/enrichment/review-queue/grouped-review-candidates.json
+- A  data/enrichment/snapshots/clinpgx-raw/README.md
+- M  data/enrichment/snapshots/clinpgx-snapshot-metadata.json
+- A  data/enrichment/snapshots/cpic-raw/README.md
+- M  data/enrichment/snapshots/cpic-snapshot-metadata.json
+- A  data/enrichment/source-faithfulness-decisions/README.md
+- M  data/enrichment/source-registry.json
+- M  data/enrichment/staged/clinpgx-staged-records.json
+- M  data/enrichment/staged/cpic-staged-records.json
+- M  data/enrichment/staged/legal-literature-staged-records.json
+- A  data/review-overlays/README.md
+- A  data/review-overlays/example-local-review-overlay.json
+- M  docs/PUBLIC_TRUST.md
+- M  docs/TECHNICAL.md
+- M  docs/audits/clinpgx-coverage-audit.json
+- M  docs/audits/clinpgx-coverage-audit.md
+- M  docs/audits/cpic-coverage-audit.json
+- M  docs/audits/cpic-coverage-audit.md
+- M  docs/audits/enrichment-coverage-audit.json
+- M  docs/audits/enrichment-coverage-audit.md
+- M  docs/audits/enrichment-review-queue.md
+- A  docs/audits/grouped-review-candidates.md
+- M  docs/audits/weekly-enrichment-report.json
+- M  docs/audits/weekly-enrichment-report.md
+- M  docs/automations/weekly-medcheck-enrichment-automation.json
+- M  docs/automations/weekly-medcheck-enrichment-automation.md
+- M  docs/enrichment/AUTOMATION_RUNBOOK.md
+- A  docs/enrichment/CURATED_DRAFTS.md
+- M  docs/enrichment/ENRICHMENT_ARCHITECTURE.md
+- A  docs/enrichment/FORK_REVIEW_TEAMS.md
+- A  docs/enrichment/LOCAL_REVIEW_POLICY_TEMPLATE.md
+- M  docs/enrichment/PROMOTION_POLICY.md
+- A  docs/enrichment/REVIEW_OVERLAYS.md
+- A  docs/enrichment/REVIEW_STATUS_MODEL.md
+- A  docs/enrichment/SOURCE_FAITHFULNESS_REVIEW.md
+- M  docs/enrichment/SOURCE_REGISTRY.md
+- M  docs/enrichment/STAGED_SOURCE_SCHEMA.md
+- M  index.html
+- M  package.json
+- M  scripts/audit/clinpgx-coverage-audit.js
+- M  scripts/audit/cpic-coverage-audit.js
+- A  scripts/audit/curated-draft-audit.js
+- M  scripts/audit/enrichment-coverage-audit.js
+- A  scripts/audit/grouped-review-candidate-audit.js
+- A  scripts/audit/promotion-boundary-audit.js
+- A  scripts/audit/review-overlay-audit.js
+- M  scripts/enrich/build-enrichment-review-queue.js
+- A  scripts/enrich/clinpgx-fetch.js
+- M  scripts/enrich/clinpgx-normalize.js
+- M  scripts/enrich/clinpgx-sync.js
+- A  scripts/enrich/cpic-fetch.js
+- M  scripts/enrich/cpic-normalize.js
+- M  scripts/enrich/cpic-sync.js
+- A  scripts/enrich/group-staged-records.js
+- A  scripts/enrich/lib/review-status-model.js
+- M  scripts/enrich/lib/staged-source-schema.js
+- A  scripts/enrich/promote-to-curated-draft.js
+- M  scripts/enrich/run-weekly-enrichment.js
+- M  scripts/release-check.js
+- A  scripts/review/apply-review-overlay.js
+- A  scripts/review/source-faithfulness-review.js
+- M  src/data/generatedStats.js

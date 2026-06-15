@@ -15,8 +15,10 @@ function parseArgs(argv) {
     else if (arg.startsWith('--out=')) args.out = arg.slice(6);
     else if (arg.startsWith('--max-genes=')) args.maxGenes = Number(arg.slice(12));
     else if (arg.startsWith('--max-drugs=')) args.maxDrugs = Number(arg.slice(12));
+    else if (arg.startsWith('--max-pairs=')) args.maxPairs = Number(arg.slice(12));
     else if (arg === '--include-labels') args.includeLabels = true;
     else if (arg === '--include-variants') args.includeVariants = true;
+    else if (arg === '--force-refresh') args.forceRefresh = true;
   }
   if (!args.check && !args.fetch) args.check = true;
   return args;
@@ -36,14 +38,24 @@ export async function rateLimitedFetch(url, options = {}, attempt = 0) {
   return res;
 }
 
-function runNormalize(out) {
+function runNormalize(out, fromCache = false) {
   const script = resolve(ROOT, 'scripts/enrich/clinpgx-normalize.js');
-  return spawnSync(process.execPath, [script, '--out', out], { cwd: ROOT, stdio: 'inherit' });
+  return spawnSync(process.execPath, [script, '--out', out, ...(fromCache ? ['--from-cache'] : [])], { cwd: ROOT, stdio: 'inherit' });
 }
 
 const args = parseArgs(process.argv.slice(2));
 if (args.fetch) {
-  console.log(`ClinPGx fetch mode is opt-in and rate-limited at ${CLINPGX_RATE_LIMIT_MS} ms/request. This run normalizes cached/offline context only.`);
+  console.log(`ClinPGx fetch mode is opt-in and rate-limited at ${CLINPGX_RATE_LIMIT_MS} ms/request.`);
+  const fetchScript = resolve(ROOT, 'scripts/enrich/clinpgx-fetch.js');
+  const fetchArgs = [fetchScript];
+  if (Number.isFinite(args.maxGenes)) fetchArgs.push(`--max-genes=${args.maxGenes}`);
+  if (Number.isFinite(args.maxDrugs)) fetchArgs.push(`--max-drugs=${args.maxDrugs}`);
+  if (Number.isFinite(args.maxPairs)) fetchArgs.push(`--max-pairs=${args.maxPairs}`);
+  if (args.includeLabels) fetchArgs.push('--include-labels');
+  if (args.includeVariants) fetchArgs.push('--include-variants');
+  if (args.forceRefresh) fetchArgs.push('--force-refresh');
+  const fetched = spawnSync(process.execPath, fetchArgs, { cwd: ROOT, stdio: 'inherit' });
+  if (fetched.status && fetched.status !== 2) process.exit(fetched.status);
 }
-const result = runNormalize(args.out);
+const result = runNormalize(args.out, args.fetch);
 process.exit(result.status || 0);

@@ -9,6 +9,9 @@ Required governance defaults:
   reviewRequired: true,
   professionalReviewStatus: "pending",
   sourceFaithfulnessStatus: "unreviewed",
+  curationStatus: "candidate",
+  scoringStatus: "cannot_affect_scoring",
+  publicDisplayStatus: "review_queue_only",
   canAffectScoring: false,
   canAffectPublicSeverity: false
 }
@@ -74,11 +77,33 @@ Staged records are review candidates. They are not clinical validation, do not c
     reviewRequired: true,
     professionalReviewStatus: "pending",
     sourceFaithfulnessStatus: "unreviewed",
+    discoveryStatus: "staged",
+    curationStatus: "candidate",
+    localReviewStatus: "none",
+    scoringStatus: "cannot_affect_scoring",
+    publicDisplayStatus: "review_queue_only",
     canAffectScoring: false,
     canAffectPublicSeverity: false,
     canBeBundledPublicly: false,
-    promotionTarget: null
+    promotionTarget: null,
+    promotionReadiness: "not_ready",
+    reviewScopes: [],
+    localReviewOverlays: []
   },
+  provenance: {
+    rawSourceCachePath: "",
+    normalizedAt: "",
+    normalizerVersion: "",
+    sourceRelease: "",
+    sourceSnapshotId: "",
+    sourceObjectId: "",
+    sourceObjectHash: "",
+    sourceTruthStatus: "local_review_candidate_not_fetched",
+    previousRecordId: "",
+    supersedes: [],
+    supersededBy: []
+  },
+  reviews: [],
   notes: [],
   warnings: []
 }
@@ -96,4 +121,12 @@ It exports:
 - `dedupeStagedSourceRecords(records)`
 - `mergeStagedSourceRecords(existing, incoming)`
 
-Validation fails when source/license/review fields are missing, when a staged record claims to be professionally reviewed, or when an unreviewed record can affect scoring or public severity.
+Validation fails when source/license/review fields are missing, when a staged record claims professional review without a review object, or when an unreviewed record can affect scoring or public severity.
+
+`sourceTruthStatus` distinguishes local candidates from direct source cache records:
+
+- `local_review_candidate_not_fetched`
+- `fetched_from_source`
+- `derived_from_open_targets_snapshot`
+
+Source-faithfulness review, local overlay review, and professional review are separate. Source-linked does not mean clinically reviewed.

@@ -10,6 +10,7 @@ const check = process.argv.includes('--check');
 
 const data = loadMedcheckData();
 const staged = readJson(STAGED, []);
+const metadata = readJson(resolve(ROOT, 'data/enrichment/snapshots/cpic-snapshot-metadata.json'), {});
 const modeledGenes = new Set(Object.keys(data.GENOTYPE_EFFECTS || {}));
 const modeledPairs = new Set();
 for (const drug of data.DRUG_DB || []) {
@@ -32,6 +33,10 @@ const missingPairs = stagedPairs.filter(row => row.gene && row.drug && !row.matc
 const report = {
   generatedAt: new Date().toISOString(),
   source: 'CPIC Data',
+  mode: metadata.mode || 'unknown',
+  sourceTruthStatus: metadata.sourceTruthStatus || 'unknown',
+  localCandidateRecords: metadata.localCandidateRecords || 0,
+  fetchedRecords: metadata.fetchedRecords || 0,
   stagedRecords: staged.length,
   modeledGenes: modeledGenes.size,
   stagedPairs: stagedPairs.length,
@@ -55,6 +60,10 @@ function renderMarkdown(report) {
 Generated: ${report.generatedAt}
 
 - Staged records: ${report.stagedRecords}
+- Mode: ${report.mode}
+- Source truth status: ${report.sourceTruthStatus}
+- Local candidate records: ${report.localCandidateRecords}
+- Fetched source records: ${report.fetchedRecords}
 - Staged pairs: ${report.stagedPairs}
 - Missing genes: ${report.missingGenes.length}
 - Missing modeled-pair matches: ${report.missingPairs.length}

@@ -1,275 +1,275 @@
 {
   "schema": "diognosis.gap-literature-batch.v1",
-  "generatedAt": "2026-06-15T11:12:21.503Z",
+  "generatedAt": "2026-06-15T12:54:56.189Z",
   "sourceAudit": "docs/audits/enrichment-coverage-audit.json",
   "description": "Gap-driven legal literature discovery candidates. Metadata-only; no auto-promotion.",
   "queries": [
     {
-      "relation": "Tacrolimus:Albendazole",
-      "query": "Tacrolimus Albendazole pharmacokinetic interaction",
+      "relation": "Clarithromycin:Abiraterone",
+      "query": "Clarithromycin Abiraterone pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Aripiprazole",
-      "query": "Tacrolimus Aripiprazole pharmacokinetic interaction",
+      "relation": "Clarithromycin:Albendazole",
+      "query": "Clarithromycin Albendazole pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Azithromycin",
-      "query": "Tacrolimus Azithromycin pharmacokinetic interaction",
+      "relation": "Clarithromycin:Alfentanil",
+      "query": "Clarithromycin Alfentanil pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Brexpiprazole",
-      "query": "Tacrolimus Brexpiprazole pharmacokinetic interaction",
+      "relation": "Clarithromycin:Alprazolam",
+      "query": "Clarithromycin Alprazolam pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Carbamazepine",
-      "query": "Tacrolimus Carbamazepine pharmacokinetic interaction",
+      "relation": "Clarithromycin:Amiodarone",
+      "query": "Clarithromycin Amiodarone pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Delamanid",
-      "query": "Tacrolimus Delamanid pharmacokinetic interaction",
+      "relation": "Clarithromycin:Amitriptyline",
+      "query": "Clarithromycin Amitriptyline pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Dexlansoprazole",
-      "query": "Tacrolimus Dexlansoprazole pharmacokinetic interaction",
+      "relation": "Clarithromycin:Apalutamide",
+      "query": "Clarithromycin Apalutamide pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Erythromycin",
-      "query": "Tacrolimus Erythromycin pharmacokinetic interaction",
+      "relation": "Clarithromycin:Aripiprazole",
+      "query": "Clarithromycin Aripiprazole pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Esomeprazole",
-      "query": "Tacrolimus Esomeprazole pharmacokinetic interaction",
+      "relation": "Clarithromycin:Atazanavir",
+      "query": "Clarithromycin Atazanavir pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Fosphenytoin",
-      "query": "Tacrolimus Fosphenytoin pharmacokinetic interaction",
+      "relation": "Clarithromycin:Azithromycin",
+      "query": "Clarithromycin Azithromycin pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Isavuconazonium Sulfate",
-      "query": "Tacrolimus Isavuconazonium Sulfate pharmacokinetic interaction",
+      "relation": "Clarithromycin:Bictegravir",
+      "query": "Clarithromycin Bictegravir pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Itraconazole",
-      "query": "Tacrolimus Itraconazole pharmacokinetic interaction",
+      "relation": "Clarithromycin:Brexpiprazole",
+      "query": "Clarithromycin Brexpiprazole pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Lansoprazole",
-      "query": "Tacrolimus Lansoprazole pharmacokinetic interaction",
+      "relation": "Clarithromycin:Buprenorphine",
+      "query": "Clarithromycin Buprenorphine pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Methimazole",
-      "query": "Tacrolimus Methimazole pharmacokinetic interaction",
+      "relation": "Clarithromycin:Cilostazol",
+      "query": "Clarithromycin Cilostazol pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Metronidazole",
-      "query": "Tacrolimus Metronidazole pharmacokinetic interaction",
+      "relation": "Clarithromycin:Citalopram",
+      "query": "Clarithromycin Citalopram pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Nirmatrelvir/Ritonavir",
-      "query": "Tacrolimus Nirmatrelvir/Ritonavir pharmacokinetic interaction",
+      "relation": "Clarithromycin:Clobazam",
+      "query": "Clarithromycin Clobazam pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Omeprazole",
-      "query": "Tacrolimus Omeprazole pharmacokinetic interaction",
+      "relation": "Clarithromycin:Clomipramine",
+      "query": "Clarithromycin Clomipramine pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Pantoprazole",
-      "query": "Tacrolimus Pantoprazole pharmacokinetic interaction",
+      "relation": "Clarithromycin:Clopidogrel",
+      "query": "Clarithromycin Clopidogrel pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Phenytoin",
-      "query": "Tacrolimus Phenytoin pharmacokinetic interaction",
+      "relation": "Clarithromycin:Clozapine",
+      "query": "Clarithromycin Clozapine pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Rabeprazole",
-      "query": "Tacrolimus Rabeprazole pharmacokinetic interaction",
+      "relation": "Cobicistat:Clarithromycin",
+      "query": "Cobicistat Clarithromycin pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Tacrolimus:Ritonavir",
-      "query": "Tacrolimus Ritonavir pharmacokinetic interaction",
+      "relation": "Clarithromycin:Codeine",
+      "query": "Clarithromycin Codeine pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Cyclosporine:Albendazole",
-      "query": "Cyclosporine Albendazole pharmacokinetic interaction",
+      "relation": "Clarithromycin:Combined Oral Contraceptive",
+      "query": "Clarithromycin Combined Oral Contraceptive pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Cyclosporine:Aripiprazole",
-      "query": "Cyclosporine Aripiprazole pharmacokinetic interaction",
+      "relation": "Clarithromycin:Cyclophosphamide",
+      "query": "Clarithromycin Cyclophosphamide pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Cyclosporine:Azithromycin",
-      "query": "Cyclosporine Azithromycin pharmacokinetic interaction",
+      "relation": "Clarithromycin:Cyclosporine",
+      "query": "Clarithromycin Cyclosporine pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Cyclosporine:Brexpiprazole",
-      "query": "Cyclosporine Brexpiprazole pharmacokinetic interaction",
+      "relation": "Clarithromycin:Dabrafenib",
+      "query": "Clarithromycin Dabrafenib pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Cyclosporine:Carbamazepine",
-      "query": "Cyclosporine Carbamazepine pharmacokinetic interaction",
+      "relation": "Clarithromycin:Darolutamide",
+      "query": "Clarithromycin Darolutamide pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Cyclosporine:Clarithromycin",
-      "query": "Cyclosporine Clarithromycin pharmacokinetic interaction",
+      "relation": "Clarithromycin:Darunavir",
+      "query": "Clarithromycin Darunavir pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Cyclosporine:Cobicistat",
-      "query": "Cyclosporine Cobicistat pharmacokinetic interaction",
+      "relation": "Clarithromycin:Delamanid",
+      "query": "Clarithromycin Delamanid pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Cyclosporine:Delamanid",
-      "query": "Cyclosporine Delamanid pharmacokinetic interaction",
+      "relation": "Clarithromycin:Desvenlafaxine",
+      "query": "Clarithromycin Desvenlafaxine pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6
     },
     {
-      "relation": "Cyclosporine:Dexlansoprazole",
-      "query": "Cyclosporine Dexlansoprazole pharmacokinetic interaction",
+      "relation": "Clarithromycin:Dexlansoprazole",
+      "query": "Clarithromycin Dexlansoprazole pharmacokinetic interaction",
       "supports": [
-        "transplant immunosuppressant + inhibitor/inducer"
+        "CYP3A inhibitor + CYP3A substrate"
       ],
       "providers": "pubmed,europepmc,openalex,unpaywall",
       "limit": 6

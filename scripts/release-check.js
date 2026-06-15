@@ -100,6 +100,10 @@ run('Open Targets mechanistic queue freshness', node, ['scripts/integrations/ope
 run('Open Targets ClinPGx genotype gap audit', node, ['scripts/audit/genotype-gap-audit.js', '--dry-run']);
 run('Source registry audit', node, ['scripts/audit/source-registry-audit.js']);
 run('Enrichment license boundary audit', node, ['scripts/audit/enrichment-license-boundary-audit.js']);
+run('Promotion boundary audit', node, ['scripts/audit/promotion-boundary-audit.js']);
+run('Review overlay audit', node, ['scripts/audit/review-overlay-audit.js']);
+run('Curated draft audit', node, ['scripts/audit/curated-draft-audit.js']);
+run('Grouped review candidate audit', node, ['scripts/audit/grouped-review-candidate-audit.js']);
 run('Enrichment coverage audit', node, ['scripts/audit/enrichment-coverage-audit.js', '--check']);
 run('Scenario snapshot audit', node, ['scripts/audit/scenario-snapshot-audit.js']);
 run('Deep launch QA audit', node, ['scripts/launch-qa-audit.js']);

@@ -29,10 +29,11 @@ The workflow should:
 4. check or fetch CPIC staged structured data
 5. check or fetch ClinPGx staged structured data
 6. generate gap-driven literature query candidates
-7. build the enrichment review queue
-8. run enrichment self-tests
-9. run validation gates
-10. summarize changed files
+7. group CPIC/ClinPGx staged records into human-readable review candidates
+8. build the enrichment review queue
+9. run enrichment self-tests
+10. run validation gates
+11. summarize changed files
 
 Report:
 
@@ -40,8 +41,13 @@ Report:
 - updated staged records
 - new literature drafts
 - drafts with legal open-access metadata
-- CPIC changes
-- ClinPGx changes
+- CPIC local coverage candidate records
+- CPIC fetched source records
+- ClinPGx direct fetched records
+- ClinPGx/Open Targets derived records
+- grouped review candidates
+- curated drafts
+- local overlay reviews
 - provider failures
 - top missing drugs
 - top missing combinations
@@ -52,3 +58,5 @@ Report:
 - whether a human should review and commit
 
 Human review is required before any promotion.
+
+The report must not blur local candidates with fetched source records, and must not blur direct ClinPGx API records with ClinPGx/Open Targets derived context.

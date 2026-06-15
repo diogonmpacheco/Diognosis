@@ -33,6 +33,10 @@
     "audit:clinpgx-coverage": "node scripts/audit/clinpgx-coverage-audit.js",
     "audit:source-registry": "node scripts/audit/source-registry-audit.js",
     "audit:enrichment-license-boundary": "node scripts/audit/enrichment-license-boundary-audit.js",
+    "audit:promotion-boundary": "node scripts/audit/promotion-boundary-audit.js",
+    "audit:review-overlays": "node scripts/audit/review-overlay-audit.js",
+    "audit:curated-drafts": "node scripts/audit/curated-draft-audit.js",
+    "audit:grouped-review-candidates": "node scripts/audit/grouped-review-candidate-audit.js",
     "enrich": "node scripts/enrich/pubmed-enrich.js",
     "enrich:pubmed": "node scripts/enrich/pubmed-enrich.js --providers pubmed",
     "enrich:batch": "node scripts/enrich/run-batch.js",
@@ -43,6 +47,9 @@
     "enrich:gap-literature-batch": "node scripts/enrich/build-gap-query-batch.js --max=50",
     "enrich:cpic": "node scripts/enrich/cpic-sync.js --check",
     "enrich:clinpgx": "node scripts/enrich/clinpgx-sync.js --check",
+    "enrich:cpic:fetch": "node scripts/enrich/cpic-sync.js --fetch",
+    "enrich:clinpgx:fetch": "node scripts/enrich/clinpgx-sync.js --fetch --max-genes=50 --max-drugs=100",
+    "enrich:group-review-candidates": "node scripts/enrich/group-staged-records.js",
     "enrich:review-queue": "node scripts/enrich/build-enrichment-review-queue.js",
     "enrich:weekly": "node scripts/enrich/run-weekly-enrichment.js",
     "enrich:weekly:check": "node scripts/enrich/run-weekly-enrichment.js --check",
@@ -59,7 +66,7 @@
     "validate": "node scripts/validate-db.js",
     "validate:strict": "node scripts/validate-db.js --strict",
     "release:check": "node scripts/release-check.js",
-    "test": "node scripts/smoke-check.js && node scripts/regression-check.js && node scripts/validate-db.js && node scripts/check-evidence.js && node scripts/audit/external-context-firewall-audit.js && node scripts/audit/external-safety-context-ui-audit.js && node scripts/audit/review-workbench-ui-audit.js && node scripts/audit/scenario-snapshot-audit.js && node scripts/audit/evidence-review-queue.js --check && node scripts/audit/generated-artifact-boundary-audit.js && node scripts/integrations/open-targets/import-open-targets.js --check && node scripts/integrations/open-targets/audit-open-targets-identity-review.js --check && node scripts/integrations/open-targets/audit-open-targets-promotions.js --check && node scripts/integrations/open-targets/audit-open-targets-review-targets.js --check && node scripts/integrations/open-targets/audit-open-targets-pgx-roadmap.js --check && node scripts/integrations/open-targets/audit-open-targets-mechanistic-queue.js --check && node scripts/audit/source-registry-audit.js && node scripts/audit/enrichment-license-boundary-audit.js && node scripts/audit/enrichment-coverage-audit.js --check && node scripts/audit/cpic-coverage-audit.js --check && node scripts/audit/clinpgx-coverage-audit.js --check && node scripts/audit/privacy-static-audit.js"
+    "test": "node scripts/smoke-check.js && node scripts/regression-check.js && node scripts/validate-db.js && node scripts/check-evidence.js && node scripts/audit/external-context-firewall-audit.js && node scripts/audit/external-safety-context-ui-audit.js && node scripts/audit/review-workbench-ui-audit.js && node scripts/audit/scenario-snapshot-audit.js && node scripts/audit/evidence-review-queue.js --check && node scripts/audit/generated-artifact-boundary-audit.js && node scripts/integrations/open-targets/import-open-targets.js --check && node scripts/integrations/open-targets/audit-open-targets-identity-review.js --check && node scripts/integrations/open-targets/audit-open-targets-promotions.js --check && node scripts/integrations/open-targets/audit-open-targets-review-targets.js --check && node scripts/integrations/open-targets/audit-open-targets-pgx-roadmap.js --check && node scripts/integrations/open-targets/audit-open-targets-mechanistic-queue.js --check && node scripts/audit/source-registry-audit.js && node scripts/audit/enrichment-license-boundary-audit.js && node scripts/audit/promotion-boundary-audit.js && node scripts/audit/review-overlay-audit.js && node scripts/audit/curated-draft-audit.js && node scripts/audit/grouped-review-candidate-audit.js && node scripts/audit/enrichment-coverage-audit.js --check && node scripts/audit/cpic-coverage-audit.js --check && node scripts/audit/clinpgx-coverage-audit.js --check && node scripts/audit/privacy-static-audit.js"
   },
   "devDependencies": {
     "esbuild": "^0.28.0",

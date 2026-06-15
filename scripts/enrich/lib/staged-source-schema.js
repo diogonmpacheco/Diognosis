@@ -1,4 +1,5 @@
 import { createHash } from 'crypto';
+import { DEFAULT_REVIEW_STATE, isProfessionalReviewStatus, normalizeReviewState, validateReviewState } from './review-status-model.js';
 
 export const STAGED_SOURCE_SCHEMA = 'diognosis.staged-source.v1';
 
@@ -35,10 +36,32 @@ export const DEFAULT_GOVERNANCE = Object.freeze({
   reviewRequired: true,
   professionalReviewStatus: 'pending',
   sourceFaithfulnessStatus: 'unreviewed',
+  discoveryStatus: 'staged',
+  curationStatus: 'candidate',
+  localReviewStatus: 'none',
+  scoringStatus: 'cannot_affect_scoring',
+  publicDisplayStatus: 'review_queue_only',
   canAffectScoring: false,
   canAffectPublicSeverity: false,
   canBeBundledPublicly: false,
   promotionTarget: null,
+  promotionReadiness: 'not_ready',
+  reviewScopes: [],
+  localReviewOverlays: [],
+});
+
+export const DEFAULT_PROVENANCE = Object.freeze({
+  rawSourceCachePath: '',
+  normalizedAt: '',
+  normalizerVersion: '',
+  sourceRelease: '',
+  sourceSnapshotId: '',
+  sourceObjectId: '',
+  sourceObjectHash: '',
+  sourceTruthStatus: 'local_review_candidate_not_fetched',
+  previousRecordId: '',
+  supersedes: [],
+  supersededBy: [],
 });
 
 const REQUIRED_SOURCE_FIELDS = ['name', 'sourceType', 'url', 'fetchedAt', 'license'];
@@ -139,18 +162,61 @@ export function normalizeStagedSourceRecord(record = {}) {
       ...DEFAULT_GOVERNANCE,
       ...(record.governance || {}),
     },
+    provenance: {
+      ...DEFAULT_PROVENANCE,
+      ...(record.provenance || {}),
+      supersedes: asArray(record.provenance?.supersedes),
+      supersededBy: asArray(record.provenance?.supersededBy),
+    },
+    reviews: asArray(record.reviews).map(normalizeReview),
     notes: asArray(record.notes),
     warnings: asArray(record.warnings),
   };
+  const reviewState = normalizeReviewState({
+    ...DEFAULT_REVIEW_STATE,
+    ...normalized.governance,
+  });
+  normalized.governance.discoveryStatus = reviewState.discoveryStatus;
+  normalized.governance.sourceFaithfulnessStatus = reviewState.sourceFaithfulnessStatus;
+  normalized.governance.curationStatus = reviewState.curationStatus;
+  normalized.governance.professionalReviewStatus = reviewState.professionalReviewStatus;
+  normalized.governance.localReviewStatus = reviewState.localReviewStatus;
+  normalized.governance.scoringStatus = reviewState.scoringStatus;
+  normalized.governance.publicDisplayStatus = reviewState.publicDisplayStatus;
+  normalized.governance.promotionReadiness = reviewState.promotionReadiness;
+  normalized.governance.reviewScopes = asArray(normalized.governance.reviewScopes);
+  normalized.governance.localReviewOverlays = asArray(normalized.governance.localReviewOverlays);
   normalized.governance.reviewRequired = normalized.governance.reviewRequired !== false;
   if (normalized.governance.reviewRequired) {
-    normalized.governance.professionalReviewStatus = 'pending';
+    if (!isProfessionalReviewStatus(normalized.governance.professionalReviewStatus)) {
+      normalized.governance.professionalReviewStatus = normalized.governance.professionalReviewStatus || 'pending';
+    }
     normalized.governance.sourceFaithfulnessStatus = normalized.governance.sourceFaithfulnessStatus || 'unreviewed';
     normalized.governance.canAffectScoring = false;
     normalized.governance.canAffectPublicSeverity = false;
+    if (normalized.governance.scoringStatus === 'locally_enabled' || normalized.governance.scoringStatus === 'professionally_reviewed_enabled') {
+      normalized.governance.scoringStatus = 'cannot_affect_scoring';
+    }
   }
   normalized.id = record.id || makeStagedSourceId(normalized);
   return normalized;
+}
+
+function normalizeReview(review = {}) {
+  return {
+    reviewId: review.reviewId || '',
+    reviewType: review.reviewType || '',
+    reviewerName: review.reviewerName || '',
+    reviewerRole: review.reviewerRole || '',
+    reviewerOrganization: review.reviewerOrganization || '',
+    reviewerCredentials: review.reviewerCredentials || '',
+    reviewDate: review.reviewDate || '',
+    scope: asArray(review.scope),
+    decision: review.decision || '',
+    notes: review.notes || '',
+    appliesToClaims: asArray(review.appliesToClaims),
+    signature: review.signature || '',
+  };
 }
 
 export function validateStagedSourceRecord(record) {
@@ -162,9 +228,12 @@ export function validateStagedSourceRecord(record) {
   }
   if (!SOURCE_TYPES.has(row.source.sourceType)) errors.push(`unknown source.sourceType: ${row.source.sourceType}`);
   if (!CLAIM_TYPES.has(row.claim.claimType)) errors.push(`unknown claim.claimType: ${row.claim.claimType}`);
+  const reviewState = validateReviewState(row.governance, { stagedRecord: true });
+  if (!reviewState.ok) errors.push(...reviewState.errors);
   if (row.governance.reviewRequired !== true) errors.push('governance.reviewRequired must default to true for staged records');
-  if (row.governance.professionalReviewStatus !== 'pending') errors.push('professionalReviewStatus must be pending before promotion');
-  if (row.governance.sourceFaithfulnessStatus !== 'unreviewed') errors.push('sourceFaithfulnessStatus must be unreviewed before human review');
+  if (isProfessionalReviewStatus(row.governance.professionalReviewStatus) && !row.reviews.some(review => review.decision === 'approve_professionally')) {
+    errors.push('professional review status requires an approve_professionally review object');
+  }
   if (row.governance.canAffectScoring) errors.push('unreviewed staged records cannot affect scoring');
   if (row.governance.canAffectPublicSeverity) errors.push('unreviewed staged records cannot affect public severity');
   return { ok: errors.length === 0, errors, record: row };

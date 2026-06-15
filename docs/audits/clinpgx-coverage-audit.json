@@ -1,6 +1,10 @@
 {
-  "generatedAt": "2026-06-15T11:05:58.448Z",
+  "generatedAt": "2026-06-15T12:53:19.610Z",
   "source": "ClinPGx",
+  "mode": "open_targets_derived_context",
+  "directFetchedRecords": 0,
+  "openTargetsDerivedRecords": 128,
+  "rateLimitEvents": 0,
   "stagedRecords": 128,
   "uniqueGenes": 23,
   "uniqueDrugs": 9,
@@ -22,7 +26,7 @@
   "unmatchedDrugNames": [],
   "missingEvidenceRefs": [
     {
-      "id": "candidate_clinpgx_clinical_annotation_atp2a1_clozapine_ot_pharmacogenetics_chembl42_57_rs3888190_clinpgx_evidence_3_c5cdff5207",
+      "id": "candidate_clinpgx_clinical_annotation_atp2a1_clozapine_ot_pharmacogenetics_chembl42_57_rs3888190_clinpgx_evidence_3_0007d34c6c",
       "genes": [
         "ATP2A1"
       ],
@@ -32,7 +36,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp1a2_clozapine_ot_pharmacogenetics_chembl42_56_rs72547516_clinpgx_evidence_3_4e87a4c65f",
+      "id": "candidate_clinpgx_clinical_annotation_cyp1a2_clozapine_ot_pharmacogenetics_chembl42_56_rs72547516_clinpgx_evidence_3_fa57f63d9c",
       "genes": [
         "CYP1A2"
       ],
@@ -42,7 +46,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_79_pa165816533_clinpgx_evidence_1a_3f3ca68fee",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_79_pa165816533_clinpgx_evidence_1a_3e439e308b",
       "genes": [
         "CYP2C19"
       ],
@@ -52,7 +56,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_80_pa165816533_clinpgx_evidence_1a_e45f74fb9b",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_80_pa165816533_clinpgx_evidence_1a_7ed99b29a2",
       "genes": [
         "CYP2C19"
       ],
@@ -62,7 +66,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_81_pa165980636_clinpgx_evidence_1a_d0bcd23e33",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_81_pa165980636_clinpgx_evidence_1a_469ef3a841",
       "genes": [
         "CYP2C19"
       ],
@@ -72,7 +76,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_82_pa165980635_clinpgx_evidence_1a_0cecf10b21",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_82_pa165980635_clinpgx_evidence_1a_2ebd48cb94",
       "genes": [
         "CYP2C19"
       ],
@@ -82,7 +86,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_83_pa165980635_clinpgx_evidence_1a_75248e42b5",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_83_pa165980635_clinpgx_evidence_1a_c11e2b4547",
       "genes": [
         "CYP2C19"
       ],
@@ -92,7 +96,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_84_pa165980635_clinpgx_evidence_1a_8796ca6e53",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_84_pa165980635_clinpgx_evidence_1a_6bed160741",
       "genes": [
         "CYP2C19"
       ],
@@ -102,7 +106,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_85_pa165980636_clinpgx_evidence_1a_590c5a261e",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_85_pa165980636_clinpgx_evidence_1a_f52c6470a4",
       "genes": [
         "CYP2C19"
       ],
@@ -112,7 +116,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_86_pa165816524_clinpgx_evidence_1a_f755d73a16",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_86_pa165816524_clinpgx_evidence_1a_c4facdb88f",
       "genes": [
         "CYP2C19"
       ],
@@ -122,7 +126,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_87_pa165816540_clinpgx_evidence_1a_805d5f8a4a",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_87_pa165816540_clinpgx_evidence_1a_e51dd66150",
       "genes": [
         "CYP2C19"
       ],
@@ -132,7 +136,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_88_pa165816522_clinpgx_evidence_1a_584b206785",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_88_pa165816522_clinpgx_evidence_1a_91fb406359",
       "genes": [
         "CYP2C19"
       ],
@@ -142,7 +146,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_89_pa165816522_clinpgx_evidence_1a_ff555aee8e",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_89_pa165816522_clinpgx_evidence_1a_c36c70d876",
       "genes": [
         "CYP2C19"
       ],
@@ -152,7 +156,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_90_pa165816524_clinpgx_evidence_1a_8800e9242e",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_90_pa165816524_clinpgx_evidence_1a_01a8ca28c9",
       "genes": [
         "CYP2C19"
       ],
@@ -162,7 +166,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_60_pa165816543_clinpgx_evidence_1a_ccd88207b4",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_60_pa165816543_clinpgx_evidence_1a_c0e39c4b0b",
       "genes": [
         "CYP2C9"
       ],
@@ -172,7 +176,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_61_pa165816544_clinpgx_evidence_1a_945a4c93ea",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_61_pa165816544_clinpgx_evidence_1a_80f11ca82e",
       "genes": [
         "CYP2C9"
       ],
@@ -182,7 +186,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_62_pa165816547_clinpgx_evidence_1a_ae9ca9b542",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_62_pa165816547_clinpgx_evidence_1a_3b13a0661f",
       "genes": [
         "CYP2C9"
       ],
@@ -192,7 +196,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_64_pa165816552_clinpgx_evidence_1a_4c0ee0add5",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_64_pa165816552_clinpgx_evidence_1a_7bfcfc621f",
       "genes": [
         "CYP2C9"
       ],
@@ -202,7 +206,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_65_pa165816546_clinpgx_evidence_1a_ab438d68df",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_65_pa165816546_clinpgx_evidence_1a_de08a58ec2",
       "genes": [
         "CYP2C9"
       ],
@@ -212,7 +216,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_68_pa165816552_clinpgx_evidence_1a_55f1cb2baf",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_68_pa165816552_clinpgx_evidence_1a_dc1d124815",
       "genes": [
         "CYP2C9"
       ],
@@ -222,7 +226,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_69_pa165816543_clinpgx_evidence_1a_31c8829028",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_69_pa165816543_clinpgx_evidence_1a_8508b52cfe",
       "genes": [
         "CYP2C9"
       ],
@@ -232,7 +236,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_70_pa165816545_clinpgx_evidence_1a_4cdd4023ef",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_70_pa165816545_clinpgx_evidence_1a_ee8e4373fe",
       "genes": [
         "CYP2C9"
       ],
@@ -242,7 +246,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_71_pa165816546_clinpgx_evidence_1a_961710acc5",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_71_pa165816546_clinpgx_evidence_1a_502bd46a83",
       "genes": [
         "CYP2C9"
       ],
@@ -252,7 +256,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_12_pa165816576_clinpgx_evidence_1a_3322cc7d42",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_12_pa165816576_clinpgx_evidence_1a_05f97090a1",
       "genes": [
         "CYP2D6"
       ],
@@ -262,7 +266,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_13_pa165988479_clinpgx_evidence_1a_f8c92c7034",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_13_pa165988479_clinpgx_evidence_1a_fefba25351",
       "genes": [
         "CYP2D6"
       ],
@@ -272,7 +276,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_14_pa165988479_clinpgx_evidence_1a_c9a17ae24b",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_14_pa165988479_clinpgx_evidence_1a_268f1f307b",
       "genes": [
         "CYP2D6"
       ],
@@ -282,7 +286,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_15_pa165816577_clinpgx_evidence_1a_06690d1ca5",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_15_pa165816577_clinpgx_evidence_1a_462f109d31",
       "genes": [
         "CYP2D6"
       ],
@@ -292,7 +296,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_16_pa165816581_clinpgx_evidence_1a_2a85f288bd",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_16_pa165816581_clinpgx_evidence_1a_d0fe672e67",
       "genes": [
         "CYP2D6"
       ],
@@ -302,7 +306,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_17_pa165816581_clinpgx_evidence_1a_ebf2564450",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_17_pa165816581_clinpgx_evidence_1a_a68aa396fc",
       "genes": [
         "CYP2D6"
       ],
@@ -312,7 +316,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_18_pa165816576_clinpgx_evidence_1a_3db7e920cb",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_18_pa165816576_clinpgx_evidence_1a_673ba99239",
       "genes": [
         "CYP2D6"
       ],
@@ -322,7 +326,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_19_pa165816576_clinpgx_evidence_1a_9f2c38b0ee",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_19_pa165816576_clinpgx_evidence_1a_e47616619b",
       "genes": [
         "CYP2D6"
       ],
@@ -332,7 +336,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_20_pa165816583_clinpgx_evidence_1a_a257235504",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_20_pa165816583_clinpgx_evidence_1a_120f3df874",
       "genes": [
         "CYP2D6"
       ],
@@ -342,7 +346,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_21_pa165816578_clinpgx_evidence_1a_ae62f17e6e",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_21_pa165816578_clinpgx_evidence_1a_8f7caac2a6",
       "genes": [
         "CYP2D6"
       ],
@@ -352,7 +356,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_22_pa165988488_clinpgx_evidence_1a_02e33d53d0",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_22_pa165988488_clinpgx_evidence_1a_a682654727",
       "genes": [
         "CYP2D6"
       ],
@@ -362,7 +366,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_23_pa165988488_clinpgx_evidence_1a_424a3aafb9",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_23_pa165988488_clinpgx_evidence_1a_29f466c2dd",
       "genes": [
         "CYP2D6"
       ],
@@ -372,7 +376,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_0_pa165988480_clinpgx_evidence_1a_6f9f437404",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_0_pa165988480_clinpgx_evidence_1a_a966950ad9",
       "genes": [
         "CYP2D6"
       ],
@@ -382,7 +386,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_1_pa165816579_clinpgx_evidence_1a_f1718d10b1",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_1_pa165816579_clinpgx_evidence_1a_7b5c6612d9",
       "genes": [
         "CYP2D6"
       ],
@@ -392,7 +396,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_10_pa165816582_clinpgx_evidence_1a_515450d552",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_10_pa165816582_clinpgx_evidence_1a_c1a57bb05d",
       "genes": [
         "CYP2D6"
       ],
@@ -402,7 +406,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_11_pa166181185_clinpgx_evidence_1a_f22e03b035",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_11_pa166181185_clinpgx_evidence_1a_345e09969a",
       "genes": [
         "CYP2D6"
       ],
@@ -412,7 +416,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_2_pa165816579_clinpgx_evidence_1a_249b807fbf",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_2_pa165816579_clinpgx_evidence_1a_57ae06fe94",
       "genes": [
         "CYP2D6"
       ],
@@ -422,7 +426,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_3_pa165816579_clinpgx_evidence_1a_3ee1c88572",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_3_pa165816579_clinpgx_evidence_1a_fa7cd9836a",
       "genes": [
         "CYP2D6"
       ],
@@ -432,7 +436,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_4_pa165948092_clinpgx_evidence_1a_c416f34c05",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_4_pa165948092_clinpgx_evidence_1a_ba0d491c9c",
       "genes": [
         "CYP2D6"
       ],
@@ -442,7 +446,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_5_pa165948092_clinpgx_evidence_1a_3710f40003",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_5_pa165948092_clinpgx_evidence_1a_5e12f2ff93",
       "genes": [
         "CYP2D6"
       ],
@@ -452,7 +456,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_6_pa165948092_clinpgx_evidence_1a_f2c1a0f369",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_6_pa165948092_clinpgx_evidence_1a_f9ce0366f6",
       "genes": [
         "CYP2D6"
       ],
@@ -462,7 +466,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_7_pa165948092_clinpgx_evidence_1a_b148e1faf9",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_7_pa165948092_clinpgx_evidence_1a_31b1ec2c7f",
       "genes": [
         "CYP2D6"
       ],
@@ -472,7 +476,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_8_pa165948092_clinpgx_evidence_1a_f9125f7712",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_8_pa165948092_clinpgx_evidence_1a_ccbea105d0",
       "genes": [
         "CYP2D6"
       ],
@@ -482,7 +486,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_9_pa165948092_clinpgx_evidence_1a_4d07c80b72",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_9_pa165948092_clinpgx_evidence_1a_e8d3134f7e",
       "genes": [
         "CYP2D6"
       ],
@@ -492,7 +496,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_simvastatin_ot_pharmacogenetics_chembl1064_35_pa165816578_clinpgx_evidence_3_0eb681aaea",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_simvastatin_ot_pharmacogenetics_chembl1064_35_pa165816578_clinpgx_evidence_3_574c1b6884",
       "genes": [
         "CYP2D6"
       ],
@@ -502,7 +506,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_100_pa165816579_clinpgx_evidence_1a_0877ba634b",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_100_pa165816579_clinpgx_evidence_1a_850a4ae18a",
       "genes": [
         "CYP2D6"
       ],
@@ -512,7 +516,7 @@
       "claimType": "clinical_annotation"
     },
     {
-      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_101_pa165816584_clinpgx_evidence_1a_9d0d27d79c",
+      "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_101_pa165816584_clinpgx_evidence_1a_37e3ec9180",
       "genes": [
         "CYP2D6"
       ],

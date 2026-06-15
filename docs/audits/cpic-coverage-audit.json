@@ -1,6 +1,10 @@
 {
-  "generatedAt": "2026-06-15T11:05:58.419Z",
+  "generatedAt": "2026-06-15T12:53:19.610Z",
   "source": "CPIC Data",
+  "mode": "local_coverage_candidate",
+  "sourceTruthStatus": "local_review_candidate_not_fetched",
+  "localCandidateRecords": 156,
+  "fetchedRecords": 0,
   "stagedRecords": 156,
   "modeledGenes": 43,
   "stagedPairs": 156,

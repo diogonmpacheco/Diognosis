@@ -17,6 +17,26 @@
     "non-allowlisted full text"
   ],
   "promotion_policy": "no_auto_promotion",
+  "mode_reporting": {
+    "cpic": [
+      "localCandidateRecords",
+      "fetchedRecords",
+      "sourceRelease",
+      "providerFailures"
+    ],
+    "clinpgx": [
+      "directFetchedRecords",
+      "openTargetsDerivedRecords",
+      "providerFailures",
+      "rateLimitEvents"
+    ],
+    "review": [
+      "rawStagedRecords",
+      "groupedReviewCandidates",
+      "curatedDrafts",
+      "localOverlayReviews"
+    ]
+  },
   "expected_reports": [
     "docs/audits/weekly-enrichment-report.md",
     "docs/audits/weekly-enrichment-report.json"

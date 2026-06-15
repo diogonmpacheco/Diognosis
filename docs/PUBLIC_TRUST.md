@@ -28,6 +28,8 @@ Unreviewed external enrichment records cannot affect scoring, public severity, c
 
 ClinPGx and CPIC Data are build-time/script-time sources only. They are not queried from the browser.
 
+Diognosis may continue adding source-linked pending-review data. Pending review is shown explicitly. A source-faithfulness review does not equal professional clinical review, and local review overlays belong to the local/fork maintainer unless upstream explicitly adopts them.
+
 ## What A Reviewer Should Check
 
 For every data or evidence report, the reviewer should inspect:

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T11:12:21.057Z",
+  "generated_at": "2026-06-15T12:54:55.743Z",
   "counts": {
     "drugs": 625,
     "ddi_pairs": 627,
@@ -353,184 +353,344 @@
   ],
   "top_missing_pairs": [
     {
-      "drug1": "Tacrolimus",
+      "drug1": "Clarithromycin",
+      "drug2": "Abiraterone",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
+    },
+    {
+      "drug1": "Clarithromycin",
       "drug2": "Albendazole",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim",
+        "active/toxic/prodrug context"
+      ],
+      "score": 80
     },
     {
-      "drug1": "Tacrolimus",
+      "drug1": "Clarithromycin",
+      "drug2": "Alfentanil",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
+    },
+    {
+      "drug1": "Clarithromycin",
+      "drug2": "Alprazolam",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "structured/source candidate touches pair drug"
+      ],
+      "score": 80
+    },
+    {
+      "drug1": "Clarithromycin",
+      "drug2": "Amiodarone",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
+    },
+    {
+      "drug1": "Clarithromycin",
+      "drug2": "Amitriptyline",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim",
+        "structured/source candidate touches pair drug"
+      ],
+      "score": 80
+    },
+    {
+      "drug1": "Clarithromycin",
+      "drug2": "Apalutamide",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
+    },
+    {
+      "drug1": "Clarithromycin",
       "drug2": "Aripiprazole",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim",
+        "structured/source candidate touches pair drug"
+      ],
+      "score": 80
     },
     {
-      "drug1": "Tacrolimus",
+      "drug1": "Clarithromycin",
+      "drug2": "Atazanavir",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
+    },
+    {
+      "drug1": "Clarithromycin",
       "drug2": "Azithromycin",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
     },
     {
-      "drug1": "Tacrolimus",
+      "drug1": "Clarithromycin",
+      "drug2": "Bictegravir",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
+    },
+    {
+      "drug1": "Clarithromycin",
       "drug2": "Brexpiprazole",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
     },
     {
-      "drug1": "Tacrolimus",
-      "drug2": "Carbamazepine",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
+      "drug1": "Clarithromycin",
+      "drug2": "Buprenorphine",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
     },
     {
-      "drug1": "Tacrolimus",
-      "drug2": "Delamanid",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
+      "drug1": "Clarithromycin",
+      "drug2": "Cilostazol",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim",
+        "structured/source candidate touches pair drug"
+      ],
+      "score": 80
     },
     {
-      "drug1": "Tacrolimus",
-      "drug2": "Dexlansoprazole",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
+      "drug1": "Clarithromycin",
+      "drug2": "Citalopram",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim",
+        "structured/source candidate touches pair drug"
+      ],
+      "score": 80
     },
     {
-      "drug1": "Tacrolimus",
-      "drug2": "Erythromycin",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
+      "drug1": "Clarithromycin",
+      "drug2": "Clobazam",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "structured/source candidate touches pair drug"
+      ],
+      "score": 80
     },
     {
-      "drug1": "Tacrolimus",
-      "drug2": "Esomeprazole",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
+      "drug1": "Clarithromycin",
+      "drug2": "Clomipramine",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim",
+        "structured/source candidate touches pair drug"
+      ],
+      "score": 80
     },
     {
-      "drug1": "Tacrolimus",
-      "drug2": "Fosphenytoin",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
+      "drug1": "Clarithromycin",
+      "drug2": "Clopidogrel",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim",
+        "structured/source candidate touches pair drug",
+        "active/toxic/prodrug context"
+      ],
+      "score": 80
     },
     {
-      "drug1": "Tacrolimus",
-      "drug2": "Isavuconazonium Sulfate",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
+      "drug1": "Clarithromycin",
+      "drug2": "Clozapine",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "structured/source candidate touches pair drug"
+      ],
+      "score": 80
     },
     {
-      "drug1": "Tacrolimus",
-      "drug2": "Itraconazole",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
-    },
-    {
-      "drug1": "Tacrolimus",
-      "drug2": "Lansoprazole",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
-    },
-    {
-      "drug1": "Tacrolimus",
-      "drug2": "Methimazole",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
-    },
-    {
-      "drug1": "Tacrolimus",
-      "drug2": "Metronidazole",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
-    },
-    {
-      "drug1": "Tacrolimus",
-      "drug2": "Nirmatrelvir/Ritonavir",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
-    },
-    {
-      "drug1": "Tacrolimus",
-      "drug2": "Omeprazole",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
-    },
-    {
-      "drug1": "Tacrolimus",
-      "drug2": "Pantoprazole",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
-    },
-    {
-      "drug1": "Tacrolimus",
-      "drug2": "Phenytoin",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
-    },
-    {
-      "drug1": "Tacrolimus",
-      "drug2": "Rabeprazole",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
-    },
-    {
-      "drug1": "Tacrolimus",
-      "drug2": "Ritonavir",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
-    },
-    {
-      "drug1": "Cyclosporine",
-      "drug2": "Albendazole",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
-    },
-    {
-      "drug1": "Cyclosporine",
-      "drug2": "Aripiprazole",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
-    },
-    {
-      "drug1": "Cyclosporine",
-      "drug2": "Azithromycin",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
-    },
-    {
-      "drug1": "Cyclosporine",
-      "drug2": "Brexpiprazole",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
-    },
-    {
-      "drug1": "Cyclosporine",
-      "drug2": "Carbamazepine",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
-    },
-    {
-      "drug1": "Cyclosporine",
+      "drug1": "Cobicistat",
       "drug2": "Clarithromycin",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
     },
     {
-      "drug1": "Cyclosporine",
-      "drug2": "Cobicistat",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
+      "drug1": "Clarithromycin",
+      "drug2": "Codeine",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim",
+        "structured/source candidate touches pair drug",
+        "active/toxic/prodrug context"
+      ],
+      "score": 80
     },
     {
-      "drug1": "Cyclosporine",
+      "drug1": "Clarithromycin",
+      "drug2": "Combined Oral Contraceptive",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "structured/source candidate touches pair drug"
+      ],
+      "score": 80
+    },
+    {
+      "drug1": "Clarithromycin",
+      "drug2": "Cyclophosphamide",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "active/toxic/prodrug context"
+      ],
+      "score": 80
+    },
+    {
+      "drug1": "Clarithromycin",
+      "drug2": "Cyclosporine",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
+    },
+    {
+      "drug1": "Clarithromycin",
+      "drug2": "Dabrafenib",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
+    },
+    {
+      "drug1": "Clarithromycin",
+      "drug2": "Darolutamide",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
+    },
+    {
+      "drug1": "Clarithromycin",
+      "drug2": "Darunavir",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
+    },
+    {
+      "drug1": "Clarithromycin",
       "drug2": "Delamanid",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
     },
     {
-      "drug1": "Cyclosporine",
+      "drug1": "Clarithromycin",
+      "drug2": "Desvenlafaxine",
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
+    },
+    {
+      "drug1": "Clarithromycin",
       "drug2": "Dexlansoprazole",
-      "theme": "transplant immunosuppressant + inhibitor/inducer",
-      "score": 90
+      "theme": "CYP3A inhibitor + CYP3A substrate",
+      "confidence": "strong_mechanistic_candidate",
+      "basis": [
+        "explicit route match: CYP3A4",
+        "high-risk or narrow-therapeutic-index victim"
+      ],
+      "score": 80
     }
   ],
   "top_pgx_gaps": [
@@ -538,7 +698,7 @@
       "source": "ClinPGx",
       "gene": "ATP2A1",
       "drug": "Clozapine",
-      "id": "candidate_clinpgx_clinical_annotation_atp2a1_clozapine_ot_pharmacogenetics_chembl42_57_rs3888190_clinpgx_evidence_3_71f3f36962",
+      "id": "candidate_clinpgx_clinical_annotation_atp2a1_clozapine_ot_pharmacogenetics_chembl42_57_rs3888190_clinpgx_evidence_3_0007d34c6c",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -546,7 +706,7 @@
       "source": "ClinPGx",
       "gene": "ESR1",
       "drug": "Tamoxifen",
-      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_57_clinpgx_evidence_clinpgx_clinical_15fec369c1",
+      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_57_clinpgx_evidence_clinpgx_clinical_069569e65b",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -554,7 +714,7 @@
       "source": "ClinPGx",
       "gene": "ESR1",
       "drug": "Tamoxifen",
-      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_58_clinpgx_evidence_clinpgx_clinical_62b7f9dcba",
+      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_58_clinpgx_evidence_clinpgx_clinical_cb561a7285",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -562,7 +722,7 @@
       "source": "ClinPGx",
       "gene": "ESR1",
       "drug": "Tamoxifen",
-      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_59_clinpgx_evidence_clinpgx_clinical_a6f48e76de",
+      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_59_clinpgx_evidence_clinpgx_clinical_ac6aab6614",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -570,7 +730,7 @@
       "source": "ClinPGx",
       "gene": "FAAH",
       "drug": "Clozapine",
-      "id": "candidate_clinpgx_clinical_annotation_faah_clozapine_ot_pharmacogenetics_chembl42_58_rs324420_clinpgx_evidence_3_a98c260477",
+      "id": "candidate_clinpgx_clinical_annotation_faah_clozapine_ot_pharmacogenetics_chembl42_58_rs324420_clinpgx_evidence_3_97a136658c",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -578,7 +738,7 @@
       "source": "ClinPGx",
       "gene": "GCG",
       "drug": "Clozapine",
-      "id": "candidate_clinpgx_clinical_annotation_gcg_clozapine_ot_pharmacogenetics_chembl42_59_rs13429709_clinpgx_evidence_3_f91c0ca70b",
+      "id": "candidate_clinpgx_clinical_annotation_gcg_clozapine_ot_pharmacogenetics_chembl42_59_rs13429709_clinpgx_evidence_3_4b26bbb8ba",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -586,7 +746,7 @@
       "source": "ClinPGx",
       "gene": "GRIN2B",
       "drug": "Clozapine",
-      "id": "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_54_rs1072388_clinpgx_evidence_3_9e2fadfef3",
+      "id": "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_54_rs1072388_clinpgx_evidence_3_dc1485ef4f",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -594,7 +754,7 @@
       "source": "ClinPGx",
       "gene": "GRIN2B",
       "drug": "Clozapine",
-      "id": "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_55_rs1072388_clinpgx_evidence_3_0dc3cf020f",
+      "id": "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_55_rs1072388_clinpgx_evidence_3_d2a4ef648b",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -602,7 +762,7 @@
       "source": "ClinPGx",
       "gene": "HLA-B",
       "drug": "Abacavir",
-      "id": "candidate_clinpgx_clinical_annotation_hla_b_abacavir_ot_pharmacogenetics_chembl1380_72_pa165987830_clinpgx_evidence_1a_58e9a5077c",
+      "id": "candidate_clinpgx_clinical_annotation_hla_b_abacavir_ot_pharmacogenetics_chembl1380_72_pa165987830_clinpgx_evidence_1a_3f9e733f9f",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -610,7 +770,7 @@
       "source": "ClinPGx",
       "gene": "HTR3A",
       "drug": "Clozapine",
-      "id": "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_52_rs1062613_clinpgx_evidence_3_12f1fbcfda",
+      "id": "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_52_rs1062613_clinpgx_evidence_3_bf623e7a26",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -618,7 +778,7 @@
       "source": "ClinPGx",
       "gene": "HTR3A",
       "drug": "Clozapine",
-      "id": "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_53_rs1062613_clinpgx_evidence_3_0b9564be80",
+      "id": "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_53_rs1062613_clinpgx_evidence_3_08e140d4dc",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -626,7 +786,7 @@
       "source": "ClinPGx",
       "gene": "LTA",
       "drug": "Abacavir",
-      "id": "candidate_clinpgx_clinical_annotation_lta_abacavir_ot_pharmacogenetics_chembl1380_73_rs3093726_clinpgx_evidence_3_11bca93cf3",
+      "id": "candidate_clinpgx_clinical_annotation_lta_abacavir_ot_pharmacogenetics_chembl1380_73_rs3093726_clinpgx_evidence_3_d28189f2a1",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -634,7 +794,7 @@
       "source": "ClinPGx",
       "gene": "LTA",
       "drug": "Abacavir",
-      "id": "candidate_clinpgx_clinical_annotation_lta_abacavir_ot_pharmacogenetics_chembl1380_76_rs3093726_clinpgx_evidence_3_d5e09d81d1",
+      "id": "candidate_clinpgx_clinical_annotation_lta_abacavir_ot_pharmacogenetics_chembl1380_76_rs3093726_clinpgx_evidence_3_1e383be314",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -642,7 +802,7 @@
       "source": "ClinPGx",
       "gene": "LTB",
       "drug": "Abacavir",
-      "id": "candidate_clinpgx_clinical_annotation_ltb_abacavir_ot_pharmacogenetics_chembl1380_74_rs3093726_clinpgx_evidence_3_7167c6a382",
+      "id": "candidate_clinpgx_clinical_annotation_ltb_abacavir_ot_pharmacogenetics_chembl1380_74_rs3093726_clinpgx_evidence_3_4246cbfb1d",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -650,7 +810,7 @@
       "source": "ClinPGx",
       "gene": "LTB",
       "drug": "Abacavir",
-      "id": "candidate_clinpgx_clinical_annotation_ltb_abacavir_ot_pharmacogenetics_chembl1380_77_rs3093726_clinpgx_evidence_3_67abd35c80",
+      "id": "candidate_clinpgx_clinical_annotation_ltb_abacavir_ot_pharmacogenetics_chembl1380_77_rs3093726_clinpgx_evidence_3_d19e80acca",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -658,7 +818,7 @@
       "source": "ClinPGx",
       "gene": "OPRD1",
       "drug": "Codeine",
-      "id": "candidate_clinpgx_clinical_annotation_oprd1_codeine_ot_targetsafety_chembl485_23_clinpgx_evidence_clinpgx_clinical_d3d30b9f22",
+      "id": "candidate_clinpgx_clinical_annotation_oprd1_codeine_ot_targetsafety_chembl485_23_clinpgx_evidence_clinpgx_clinical_ad3d69d6b2",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -666,7 +826,7 @@
       "source": "ClinPGx",
       "gene": "P2RY12",
       "drug": "Clopidogrel",
-      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_53_clinpgx_evidence_clinpgx_clinical_9d1e2069c2",
+      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_53_clinpgx_evidence_clinpgx_clinical_2cf005f7f2",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -674,7 +834,7 @@
       "source": "ClinPGx",
       "gene": "P2RY12",
       "drug": "Clopidogrel",
-      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_54_clinpgx_evidence_clinpgx_clinical_67fb281c84",
+      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_54_clinpgx_evidence_clinpgx_clinical_1c8d89e77b",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -682,7 +842,7 @@
       "source": "ClinPGx",
       "gene": "P2RY12",
       "drug": "Clopidogrel",
-      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_55_clinpgx_evidence_clinpgx_clinical_83def30acc",
+      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_55_clinpgx_evidence_clinpgx_clinical_6a8e2ac015",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -690,7 +850,7 @@
       "source": "ClinPGx",
       "gene": "P2RY12",
       "drug": "Clopidogrel",
-      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_56_clinpgx_evidence_clinpgx_clinical_453c42f714",
+      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_56_clinpgx_evidence_clinpgx_clinical_a9cb3ee569",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -698,7 +858,7 @@
       "source": "ClinPGx",
       "gene": "TNF",
       "drug": "Abacavir",
-      "id": "candidate_clinpgx_clinical_annotation_tnf_abacavir_ot_pharmacogenetics_chembl1380_75_rs3093726_clinpgx_evidence_3_8461794954",
+      "id": "candidate_clinpgx_clinical_annotation_tnf_abacavir_ot_pharmacogenetics_chembl1380_75_rs3093726_clinpgx_evidence_3_bcecbaba41",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -706,7 +866,7 @@
       "source": "ClinPGx",
       "gene": "TNF",
       "drug": "Abacavir",
-      "id": "candidate_clinpgx_clinical_annotation_tnf_abacavir_ot_pharmacogenetics_chembl1380_78_rs3093726_clinpgx_evidence_3_5e448089fc",
+      "id": "candidate_clinpgx_clinical_annotation_tnf_abacavir_ot_pharmacogenetics_chembl1380_78_rs3093726_clinpgx_evidence_3_b7c57a897d",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -714,7 +874,7 @@
       "source": "ClinPGx",
       "gene": "TYMS",
       "drug": "Capecitabine",
-      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_25_clinpgx_evidence_clinpgx_clinical_e6bd4d9754",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_25_clinpgx_evidence_clinpgx_clinical_11ff98ad08",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -722,7 +882,7 @@
       "source": "ClinPGx",
       "gene": "TYMS",
       "drug": "Capecitabine",
-      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_26_clinpgx_evidence_clinpgx_clinical_23ee67a023",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_26_clinpgx_evidence_clinpgx_clinical_52ccdc6a5a",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -730,7 +890,7 @@
       "source": "ClinPGx",
       "gene": "TYMS",
       "drug": "Capecitabine",
-      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_27_clinpgx_evidence_clinpgx_clinical_8a3b17565c",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_27_clinpgx_evidence_clinpgx_clinical_82efc0d57d",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -738,7 +898,7 @@
       "source": "ClinPGx",
       "gene": "TYMS",
       "drug": "Capecitabine",
-      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_28_clinpgx_evidence_clinpgx_clinical_39b3d1d92e",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_28_clinpgx_evidence_clinpgx_clinical_bd4f1a3819",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -746,7 +906,7 @@
       "source": "ClinPGx",
       "gene": "TYMS",
       "drug": "Capecitabine",
-      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_29_clinpgx_evidence_clinpgx_clinical_2d9c9b17d6",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_29_clinpgx_evidence_clinpgx_clinical_5f9e5872c2",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -754,7 +914,7 @@
       "source": "ClinPGx",
       "gene": "TYMS",
       "drug": "Capecitabine",
-      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_30_clinpgx_evidence_clinpgx_clinical_0745003fea",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_30_clinpgx_evidence_clinpgx_clinical_5e0835433f",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -762,7 +922,7 @@
       "source": "CPIC Data",
       "gene": "G6PD",
       "drug": "Dapsone",
-      "id": "candidate_cpic_data_coverage_gap_g6pd_dapsone_cpic_review_candidate_g6pd_dapsone_cbf1f01b15",
+      "id": "candidate_cpic_data_coverage_gap_g6pd_dapsone_cpic_review_candidate_g6pd_dapsone_8515059fbd",
       "claimType": "coverage_gap",
       "geneModeled": false
     },
@@ -770,7 +930,7 @@
       "source": "CPIC Data",
       "gene": "G6PD",
       "drug": "Methylene Blue",
-      "id": "candidate_cpic_data_coverage_gap_g6pd_methylene_blue_cpic_review_candidate_g6pd_methylene_blue_760e6f8232",
+      "id": "candidate_cpic_data_coverage_gap_g6pd_methylene_blue_cpic_review_candidate_g6pd_methylene_blue_02fe04c8e0",
       "claimType": "coverage_gap",
       "geneModeled": false
     }

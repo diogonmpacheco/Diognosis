@@ -11,12 +11,17 @@ External Source
           -> Coverage Audit
             -> Review Queue
               -> Human Review
-                -> Optional Promotion
-                  -> Validation
-                    -> Build
+                -> Source-Faithfulness Review
+                  -> Curated Draft / Preview
+                    -> Optional Professional Review
+                      -> Optional Promotion
+                        -> Validation
+                          -> Build
 ```
 
 Staged data is not trusted clinical content. Source-linked does not mean professionally reviewed. No external source can automatically change risk scoring, public severity, contraindication wording, genotype rules, metabolite maps, or shipped database behavior.
+
+Forks and clinics can add local review overlays. Those overlays are explicitly local and do not change upstream professional-review status.
 
 ## Source roles
 
@@ -32,3 +37,5 @@ The public app serves static local data. It does not make live calls to CPIC, Cl
 ## Promotion boundary
 
 Promotion is a human act. A staged record can become curated Diognosis data only after source faithfulness, mapping, clinical directionality, severity language, copyright/license, and professional review requirements are checked.
+
+CPIC records distinguish local coverage candidates from fetched source objects. ClinPGx records distinguish direct API cache records from ClinPGx/Open Targets derived context.

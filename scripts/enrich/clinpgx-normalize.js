@@ -1,15 +1,17 @@
 #!/usr/bin/env node
+import { createHash } from 'crypto';
 import { resolve } from 'path';
 import { drugAliasMap, loadMedcheckData, normalizeName, readGeneratedConstObject, ROOT } from './lib/medcheck-source-loader.js';
 import { dedupeStagedSourceRecords, normalizeStagedSourceRecord } from './lib/staged-source-schema.js';
-import { writeJson } from './lib/enrichment-common.js';
+import { readJson, writeJson } from './lib/enrichment-common.js';
 
 const DEFAULT_OUT = resolve(ROOT, 'data/enrichment/staged/clinpgx-staged-records.json');
 const DEFAULT_META = resolve(ROOT, 'data/enrichment/snapshots/clinpgx-snapshot-metadata.json');
 const DEFAULT_SNAPSHOT = resolve(ROOT, 'src/data/generatedOpenTargetsSnapshot.js');
+const DEFAULT_RAW_INDEX = resolve(ROOT, 'data/enrichment/snapshots/clinpgx-raw/index.json');
 
 function parseArgs(argv) {
-  const args = { out: DEFAULT_OUT, metadata: DEFAULT_META, snapshot: DEFAULT_SNAPSHOT, limit: 200 };
+  const args = { out: DEFAULT_OUT, metadata: DEFAULT_META, snapshot: DEFAULT_SNAPSHOT, rawIndex: DEFAULT_RAW_INDEX, limit: 200, fromCache: false, includeDerived: true };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === '--out') args.out = resolve(ROOT, argv[++i]);
@@ -20,6 +22,10 @@ function parseArgs(argv) {
     else if (arg.startsWith('--snapshot=')) args.snapshot = resolve(ROOT, arg.slice(11));
     else if (arg === '--limit') args.limit = Number(argv[++i]);
     else if (arg.startsWith('--limit=')) args.limit = Number(arg.slice(8));
+    else if (arg === '--from-cache') args.fromCache = true;
+    else if (arg === '--raw-index') args.rawIndex = resolve(ROOT, argv[++i]);
+    else if (arg.startsWith('--raw-index=')) args.rawIndex = resolve(ROOT, arg.slice(12));
+    else if (arg === '--direct-only') args.includeDerived = false;
   }
   return args;
 }
@@ -105,10 +111,23 @@ function normalizeClinPgxRecords() {
         reviewRequired: true,
         professionalReviewStatus: 'pending',
         sourceFaithfulnessStatus: 'unreviewed',
+        discoveryStatus: 'staged',
+        curationStatus: 'candidate',
+        scoringStatus: 'cannot_affect_scoring',
+        publicDisplayStatus: 'review_queue_only',
         canAffectScoring: false,
         canAffectPublicSeverity: false,
         canBeBundledPublicly: false,
         promotionTarget: null,
+      },
+      provenance: {
+        normalizedAt: fetchedAt,
+        normalizerVersion: 'clinpgx-normalize.v2',
+        sourceRelease: release,
+        sourceSnapshotId: release,
+        sourceObjectId: fact.id || fact.riskMarker || '',
+        sourceObjectHash: createHash('sha256').update(JSON.stringify(fact)).digest('hex'),
+        sourceTruthStatus: 'derived_from_open_targets_snapshot',
       },
       notes: [`Open Targets release ${release}; source dataset ${fact.openTargetsSourceDataset || fact.factType || 'pharmacogenetics'}.`],
       warnings: ['ClinPGx source text/meaning must be checked against the current ClinPGx object before promotion.'],
@@ -117,18 +136,157 @@ function normalizeClinPgxRecords() {
   return { records: dedupeStagedSourceRecords(records), metadata: { snapshot, release, facts } };
 }
 
+function normalizeDirectClinPgxRecords(rawIndexPath) {
+  const index = readJson(rawIndexPath, null);
+  if (!index?.fetched?.length) return { records: [], providerFailures: index?.providerFailures || [], rateLimitEvents: index?.rateLimitEvents || 0 };
+  const data = loadMedcheckData();
+  const aliasMap = drugAliasMap(data.DRUG_DB || []);
+  const normalizedAt = new Date().toISOString();
+  const records = [];
+  for (const entry of index.fetched || []) {
+    const payload = readJson(entry.file, null);
+    const rows = Array.isArray(payload?.response?.data) ? payload.response.data : [];
+    for (const row of rows) {
+      const record = directRowToRecord(row, payload, aliasMap, data, normalizedAt);
+      if (record) records.push(record);
+    }
+  }
+  return {
+    records: dedupeStagedSourceRecords(records),
+    providerFailures: index.providerFailures || [],
+    rateLimitEvents: index.rateLimitEvents || 0,
+  };
+}
+
+function directRowToRecord(row, payload, aliasMap, data, normalizedAt) {
+  const endpoint = payload.endpoint || '';
+  const claimType = endpoint.includes('summaryAnnotation') ? 'clinical_annotation'
+    : endpoint.includes('guidelineAnnotation') ? 'guideline_annotation'
+      : endpoint.includes('label') ? 'drug_label'
+        : endpoint.includes('variantAnnotation') ? 'variant_annotation'
+          : endpoint.includes('gene') ? 'reference_gene'
+            : endpoint.includes('chemical') ? 'reference_chemical'
+              : 'other';
+  const genes = extractGenes(row);
+  const chemicalNames = extractChemicals(row);
+  const matchedDrugs = chemicalNames.map(name => aliasMap.get(normalizeName(name))).filter(Boolean);
+  const unmatchedDrugs = chemicalNames.filter(name => !aliasMap.get(normalizeName(name)));
+  const sourceObjectId = String(row.accessionId || row.id || row.name || row.symbol || '');
+  const sourceIdentifiers = [sourceObjectId && `ClinPGx:${claimType}:${sourceObjectId}`, row._sameAs].filter(Boolean);
+  return normalizeStagedSourceRecord({
+    source: {
+      name: 'ClinPGx',
+      sourceType: 'structured_guideline',
+      url: payload.url || 'https://api.clinpgx.org/v1',
+      endpoint,
+      fetchedAt: payload.fetchedAt || normalizedAt,
+      license: 'CC BY-SA 4.0',
+      licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+      attribution: 'ClinPGx REST API source object; staged pending source-faithfulness and professional review.',
+      rateLimit: '2 requests/second; use >=550 ms spacing',
+      refreshCadence: 'weekly',
+    },
+    claim: {
+      claimType,
+      genes,
+      drugs: matchedDrugs,
+      riskMarkers: extractRiskMarkers(row),
+      pathways: genes,
+      direction: row.levelOfEvidence?.term || row.testingLevel || row.source || '',
+      affectedActors: [...matchedDrugs, ...genes],
+      mechanismSummary: truncate(row.name || row.description || `${claimType} source object ${sourceObjectId}`),
+      clinicalSummary: 'Direct ClinPGx API source object is staged for review and cannot affect scoring or public severity until explicitly promoted.',
+    },
+    evidence: {
+      sourceIdentifiers,
+      urls: [payload.url].filter(Boolean),
+      strongestExternalTier: row.levelOfEvidence?.term || row.source || 'ClinPGx',
+      openAccess: {
+        hasLegalOpenAccess: false,
+        provider: 'ClinPGx',
+        license: 'CC BY-SA 4.0',
+        url: 'https://creativecommons.org/licenses/by-sa/4.0/',
+      },
+    },
+    mapping: {
+      matchedDiognosisDrugs: matchedDrugs,
+      unmatchedDrugs,
+      matchedGenes: genes.filter(gene => data.GENOTYPE_EFFECTS?.[gene]),
+      unmatchedGenes: genes.filter(gene => !data.GENOTYPE_EFFECTS?.[gene]),
+    },
+    governance: {
+      reviewRequired: true,
+      professionalReviewStatus: 'pending',
+      sourceFaithfulnessStatus: 'unreviewed',
+      discoveryStatus: 'staged',
+      curationStatus: 'candidate',
+      scoringStatus: 'cannot_affect_scoring',
+      publicDisplayStatus: 'review_queue_only',
+      canAffectScoring: false,
+      canAffectPublicSeverity: false,
+      canBeBundledPublicly: false,
+      promotionTarget: null,
+      promotionReadiness: 'ready_for_source_faithfulness_review',
+    },
+    provenance: {
+      rawSourceCachePath: payload.url || '',
+      normalizedAt,
+      normalizerVersion: 'clinpgx-normalize.v2',
+      sourceRelease: 'api-v1',
+      sourceSnapshotId: payload.sha256 || '',
+      sourceObjectId,
+      sourceObjectHash: createHash('sha256').update(JSON.stringify(row)).digest('hex'),
+      sourceTruthStatus: 'fetched_from_source',
+    },
+    notes: ['Fetched from ClinPGx API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion.'],
+    warnings: ['Direct ClinPGx data is not auto-promoted and is not scoring-enabled.'],
+  });
+}
+
+function extractGenes(row) {
+  return [...new Set([
+    row.symbol,
+    ...(row.location?.genes || []).map(gene => gene.symbol),
+    ...(row.relatedGenes || []).map(gene => gene.symbol || gene.name),
+  ].filter(Boolean))];
+}
+
+function extractChemicals(row) {
+  return [...new Set([
+    row.name && row.objCls === 'Chemical' ? row.name : '',
+    ...(row.relatedChemicals || []).map(chemical => chemical.name),
+  ].filter(Boolean))];
+}
+
+function extractRiskMarkers(row) {
+  return [...new Set([
+    row.location?.fingerprint,
+    row.alleleGenotype,
+    ...(row.variantHaplotypes || []).map(item => item.name || item.symbol),
+  ].filter(Boolean))];
+}
+
 function main() {
   const args = parseArgs(process.argv.slice(2));
-  const { records, metadata } = normalizeClinPgxRecords();
+  const derived = args.includeDerived ? normalizeClinPgxRecords() : { records: [], metadata: { release: 'not-included', facts: [] } };
+  const direct = args.fromCache ? normalizeDirectClinPgxRecords(args.rawIndex) : { records: [], providerFailures: [], rateLimitEvents: 0 };
+  const records = dedupeStagedSourceRecords([...direct.records, ...derived.records]);
   writeJson(args.out, records);
   writeJson(args.metadata, {
     schema: 'diognosis.clinpgx-snapshot-metadata.v1',
     generatedAt: new Date().toISOString(),
     source: 'ClinPGx',
-    fetched: false,
-    sourceRelease: metadata.release,
+    fetched: direct.records.length > 0,
+    mode: direct.records.length ? 'direct_api_cache_plus_derived_context' : 'open_targets_derived_context',
+    sourceRelease: derived.metadata.release,
+    directFetchedRecords: direct.records.length,
+    openTargetsDerivedRecords: derived.records.length,
+    providerFailures: direct.providerFailures,
+    rateLimitEvents: direct.rateLimitEvents,
     stagedRecords: records.length,
-    note: 'Check mode normalizes existing offline Open Targets/ClinPGx context. Fetch mode should use cached REST JSON with the documented rate limit.',
+    note: direct.records.length
+      ? 'Direct ClinPGx API cache and existing ClinPGx/Open Targets derived context are staged separately. No record is promoted or scoring-enabled.'
+      : 'Check mode normalizes existing ClinPGx/Open Targets derived context. Fetch mode uses cached REST JSON with the documented rate limit.',
   });
   console.log(JSON.stringify({ ok: true, stagedRecords: records.length, out: args.out, metadata: args.metadata }, null, 2));
 }

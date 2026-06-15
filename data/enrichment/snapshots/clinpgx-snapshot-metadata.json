@@ -1,9 +1,14 @@
 {
   "schema": "diognosis.clinpgx-snapshot-metadata.v1",
-  "generatedAt": "2026-06-15T11:12:21.448Z",
+  "generatedAt": "2026-06-15T12:54:56.138Z",
   "source": "ClinPGx",
   "fetched": false,
+  "mode": "open_targets_derived_context",
   "sourceRelease": "26.03",
+  "directFetchedRecords": 0,
+  "openTargetsDerivedRecords": 128,
+  "providerFailures": [],
+  "rateLimitEvents": 0,
   "stagedRecords": 128,
-  "note": "Check mode normalizes existing offline Open Targets/ClinPGx context. Fetch mode should use cached REST JSON with the documented rate limit."
+  "note": "Check mode normalizes existing ClinPGx/Open Targets derived context. Fetch mode uses cached REST JSON with the documented rate limit."
 }
