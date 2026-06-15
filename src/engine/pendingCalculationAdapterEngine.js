@@ -67,7 +67,7 @@ function getActivePendingCalculationContext(options = {}) {
 }
 
 function getPendingCalculationEvidenceStudy(id) {
-  if (!id || !String(id).startsWith("pending_calc_evidence_")) return null;
+  if (!id || !isPendingCalculationEvidenceId(id)) return null;
   const context = getActivePendingCalculationContext();
   return context?.evidenceById?.[id] || null;
 }
@@ -457,7 +457,15 @@ function pendingEvidenceRefsForCandidate(candidate = {}, evidenceIndex = {}) {
 }
 
 function pendingCalculationEvidenceId(candidate = {}) {
-  return `pending_calc_evidence_${pendingCalculationSlug(candidate.id || candidate.sourceRecordId || candidate.title || "source")}`;
+  const raw = String(candidate.id || candidate.sourceRecordId || candidate.title || "source").trim();
+  if (/^pending_study_candidate_/i.test(raw)) return pendingCalculationSlug(raw);
+  if (/^pending_calc_evidence_/i.test(raw)) return `pending_calc_evidence_${pendingCalculationSlug(raw.replace(/^pending_calc_evidence_/i, ""))}`;
+  return `pending_calc_evidence_${pendingCalculationSlug(raw)}`;
+}
+
+function isPendingCalculationEvidenceId(id) {
+  const value = String(id || "");
+  return value.startsWith("pending_calc_evidence_") || value.startsWith("pending_study_candidate_");
 }
 
 function pendingEvidenceTier(candidate = {}) {

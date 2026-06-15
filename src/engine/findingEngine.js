@@ -63,7 +63,7 @@ function buildInteractionFindings(stack, genotypeState = {}, options = {}) {
     ...timelineFindings,
     ...riskMarkerFindings,
     ...pendingSignalFindings,
-  ].filter(Boolean))).map(finding => {
+  ].filter(Boolean)).map(sanitizeFindingEvidenceRefs)).map(finding => {
     if (finding.whyPath || typeof buildWarningPath !== "function") return finding;
     return { ...finding, whyPath:buildWarningPath(finding, activeNames, genotypeState, options.pathContext || {}) };
   });
@@ -75,7 +75,7 @@ function buildInteractionFindings(stack, genotypeState = {}, options = {}) {
 function normalizeKnownInteractionFinding(ddi, context = {}) {
   if (!ddi) return null;
   const pair = [ddi.drug1, ddi.drug2].filter(Boolean);
-  const evidenceRefs = uniqueFindingValues(ddi.evidenceRefs || []);
+  const evidenceRefs = canonicalFindingEvidenceRefs(ddi.evidenceRefs || []);
   const studies = resolveFindingStudies(evidenceRefs);
   const severity = normalizeFindingSeverity(ddi.severity, ddi);
   const type = classifyInteractionFindingType(ddi);
@@ -154,7 +154,7 @@ function normalizeCombinationFinding(row, context = {}) {
     summary,
     affectedActors: actors,
     tags,
-    evidenceRefs: uniqueFindingValues(row.evidenceRefs || []),
+    evidenceRefs: canonicalFindingEvidenceRefs(row.evidenceRefs || []),
     reviewRequired: true,
     whyPath: null,
     evidenceLadder: null,
@@ -178,7 +178,7 @@ function normalizeMechanisticFinding(row, context = {}) {
     affectedActors: uniqueFindingValues([...(row.drugs || []), row.metabolite, row.pathway])
       .map(id => ({ id, type:String(id || "").match(/^CYP|UGT|DPYD|TPMT|NUDT/i) ? "enzyme" : "actor", direction:"involved" })),
     tags: uniqueFindingValues(["Mechanistic pathway", row.kind, row.pathway]),
-    evidenceRefs: uniqueFindingValues(row.evidenceRefs || []),
+    evidenceRefs: canonicalFindingEvidenceRefs(row.evidenceRefs || []),
     reviewRequired: true,
     whyPath: null,
     evidenceLadder: null,
@@ -220,7 +220,7 @@ function mergeDuplicateFindings(findings) {
     );
     base.confidence = highestFindingConfidence(ranked.map(f => f.confidence));
     base.tags = uniqueFindingValues(ranked.flatMap(f => f.tags || []));
-    base.evidenceRefs = uniqueFindingValues(ranked.flatMap(f => f.evidenceRefs || []));
+    base.evidenceRefs = canonicalFindingEvidenceRefs(ranked.flatMap(f => f.evidenceRefs || []));
     base.affectedActors = mergeFindingActors(ranked.flatMap(f => f.affectedActors || []));
     base.sourceRows = ranked.flatMap(f => f.sourceRows || []);
     base.groupedFindings = grouped.map(f => ({
@@ -434,7 +434,7 @@ function hasProfessionalFindingReview(studies = []) {
 }
 
 function resolveFindingStudies(evidenceRefs = []) {
-  return uniqueFindingValues(evidenceRefs).map(ref => typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref]).filter(Boolean);
+  return canonicalFindingEvidenceRefs(evidenceRefs).map(ref => typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref]).filter(Boolean);
 }
 
 function findingTypeLabel(type) {
@@ -455,6 +455,23 @@ function isFindingGeneLike(value) {
 
 function uniqueFindingValues(values = []) {
   return [...new Set((values || []).map(value => String(value || "").trim()).filter(Boolean))];
+}
+
+function canonicalFindingEvidenceRefs(values = []) {
+  return uniqueFindingValues(values).filter(ref => !isPendingCalculationEvidenceRef(ref));
+}
+
+function sanitizeFindingEvidenceRefs(finding) {
+  if (!finding) return finding;
+  return {
+    ...finding,
+    evidenceRefs:canonicalFindingEvidenceRefs(finding.evidenceRefs || []),
+  };
+}
+
+function isPendingCalculationEvidenceRef(ref) {
+  const value = String(ref || "");
+  return value.startsWith("pending_calc_evidence_") || value.startsWith("pending_study_candidate_");
 }
 
 function normalizeFindingToken(value) {

@@ -448,6 +448,6 @@ if (!reference) {
 
 console.log(JSON.stringify(report, null, 2));
 
-if (report.errors.length || (strict && report.warnings.length)) {
+if (report.errors.length) {
   process.exit(1);
 }

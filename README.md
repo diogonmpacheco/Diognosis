@@ -122,7 +122,7 @@ Diognosis is intentionally conservative about what it claims. MedCheck Engine PK
 - **513 absolute PK simulation profiles** with relative fallback for half-life-only drugs (+191 pending candidates; 697 candidate-expanded)
 - **148 genotype genes** and **69 receptor score profiles** (+2386 pending PGx rule candidates across 129 genes; 186 candidate-expanded genes, 149 candidate-expanded receptor/phenotype profiles)
 - **45 Beers flags** and **46 washout rules** (+4 Beers candidates; +61 washout candidates; 47/85 candidate-expanded)
-- **19157 KB** generated bundle (443830 lines)
+- **19158 KB** generated bundle (443855 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---

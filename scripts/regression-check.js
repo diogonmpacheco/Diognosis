@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { execFileSync } from 'child_process';
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { JSDOM, VirtualConsole } from 'jsdom';
@@ -8,6 +8,10 @@ import { JSDOM, VirtualConsole } from 'jsdom';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const OUT = resolve(ROOT, '.tmp', 'regression-index.html');
+const ROOT_INDEX = resolve(ROOT, 'index.html');
+const SETUP_BUDGET_MS = 60_000;
+const FORCE_REBUILD = process.argv.includes('--rebuild');
+const setupStartedAt = Date.now();
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -45,10 +49,38 @@ function hasInteraction(win, expected) {
   });
 }
 
-console.log('Building regression-test HTML...');
-execFileSync(process.execPath, ['build.js', '--out', OUT], { cwd: ROOT, stdio: 'pipe' });
+function latestMtimeMs(pathname) {
+  if (!existsSync(pathname)) return 0;
+  if (/[/\\]src[/\\]data[/\\]generated[^/\\]*\.js$/.test(pathname)) return 0;
+  const stat = statSync(pathname);
+  if (!stat.isDirectory()) return stat.mtimeMs;
+  return readdirSync(pathname)
+    .filter(name => !name.startsWith('.'))
+    .reduce((latest, name) => Math.max(latest, latestMtimeMs(resolve(pathname, name))), 0);
+}
 
-const html = readFileSync(OUT, 'utf8');
+function isFreshRootIndex() {
+  if (!existsSync(ROOT_INDEX)) return false;
+  const bundleMtime = statSync(ROOT_INDEX).mtimeMs;
+  const inputMtime = Math.max(
+    latestMtimeMs(resolve(ROOT, 'src')),
+    latestMtimeMs(resolve(ROOT, 'vendor')),
+    latestMtimeMs(resolve(ROOT, 'build.js'))
+  );
+  return bundleMtime >= inputMtime;
+}
+
+function regressionHtmlPath() {
+  if (!FORCE_REBUILD && isFreshRootIndex()) {
+    console.log('Using existing regression-test HTML from index.html...');
+    return ROOT_INDEX;
+  }
+  console.log('Building regression-test HTML...');
+  execFileSync(process.execPath, ['build.js', '--out', OUT], { cwd: ROOT, stdio: 'pipe' });
+  return OUT;
+}
+
+const html = readFileSync(regressionHtmlPath(), 'utf8');
 const browserErrors = [];
 const virtualConsole = new VirtualConsole();
 virtualConsole.on('jsdomError', (err) => {
@@ -67,6 +99,8 @@ const dom = new JSDOM(html, {
 
 await new Promise((resolveReady) => setTimeout(resolveReady, 400));
 const { window } = dom;
+const setupElapsedMs = Date.now() - setupStartedAt;
+assert(setupElapsedMs <= SETUP_BUDGET_MS, `Regression setup exceeded ${SETUP_BUDGET_MS}ms budget (${setupElapsedMs}ms)`);
 
 assert(window.eval('MEDCHECK_VERSION.engine') === '0.1.0-alpha.1', 'Regression build loaded wrong engine version');
 assert(window.eval('PK_DOSE_INTERVALS.codeine') === 6, 'PK dose interval rules did not load');
