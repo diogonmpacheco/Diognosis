@@ -47,14 +47,6 @@ function buildInteractionFindings(stack, genotypeState = {}, options = {}) {
   const riskMarkerFindings = typeof riskMarkerRowsToFindings === "function"
     ? riskMarkerRowsToFindings(riskMarkerRows)
     : [];
-  const pendingCalculationContext = options.pendingCalculationContext || (
-    typeof getPendingCalculationContext === "function"
-      ? getPendingCalculationContext(activeNames, genotypeState, { pendingCoreContext:options.pendingCoreContext, limit:60 })
-      : null
-  );
-  const pendingSignalFindings = typeof pendingCalculationSignalsToFindings === "function"
-    ? pendingCalculationSignalsToFindings(pendingCalculationContext)
-    : [];
   const rankedFindings = rankFindings(mergeDuplicateFindings([
     ...interactionFindings,
     ...combinationFindings,
@@ -62,7 +54,6 @@ function buildInteractionFindings(stack, genotypeState = {}, options = {}) {
     ...phenoconversionFindings,
     ...timelineFindings,
     ...riskMarkerFindings,
-    ...pendingSignalFindings,
   ].filter(Boolean)).map(sanitizeFindingEvidenceRefs)).map(finding => {
     if (finding.whyPath || typeof buildWarningPath !== "function") return finding;
     return { ...finding, whyPath:buildWarningPath(finding, activeNames, genotypeState, options.pathContext || {}) };

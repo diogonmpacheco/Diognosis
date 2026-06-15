@@ -51,9 +51,6 @@ const MODULE_ORDER = [
   'engine/phenotypeEngine.js',    // computePhenotypeAccumulation, computeWashoutCalendar
   'engine/scoringEngine.js',      // computeAdverseBurden
   'engine/interactionEngine.js',  // findInteractions, calcRisk, analyzeMetabolites
-  'engine/pendingReviewContextEngine.js', // staged external records matched as non-scoring context
-  'engine/pendingCoreEnrichmentEngine.js', // typed pending candidates matched as non-scoring context
-  'engine/pendingCalculationAdapterEngine.js', // live pending evidence/PGx/PK/DDI adapters with capped scoring
   'engine/activeMoietyEngine.js', // parent/metabolite direction and active-moiety balance
   'engine/phenoconversionEngine.js', // genotype plus inhibitors/inducers/substrate burden
   'engine/persistenceTimelineEngine.js', // parent/metabolite persistence, washout, enzyme recovery

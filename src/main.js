@@ -236,24 +236,20 @@ renderAll();
   if (statsLine && typeof MEDCHECK_STATS !== "undefined") {
     const pendingProfessionalReview = MEDCHECK_STATS.pendingProfessionalReviewStudies ??
       Math.max(0, (MEDCHECK_STATS.studies || 0) - (MEDCHECK_STATS.professionalReviewedStudies || 0));
-    const pendingCoreSuffix = MEDCHECK_STATS.pendingCoreTotalCandidates
-      ? `${MEDCHECK_STATS.pendingCoreTotalCandidates} typed pending candidates`
-      : "";
-    const evidenceLabel = `${MEDCHECK_STATS.studies} source-linked evidence entries${MEDCHECK_STATS.pendingCoreStudyCandidates ? ` + ${MEDCHECK_STATS.pendingCoreStudyCandidates} pending candidates` : ""} (${pendingProfessionalReview} not professionally reviewed; ${MEDCHECK_STATS.professionalReviewedStudies || 0} professionally reviewed)`;
+    const evidenceLabel = `${MEDCHECK_STATS.studies} source-linked evidence entries (${pendingProfessionalReview} not professionally reviewed; ${MEDCHECK_STATS.professionalReviewedStudies || 0} professionally reviewed)`;
     const metaboliteLabel = MEDCHECK_STATS.metaboliteEntries
-      ? `${MEDCHECK_STATS.metaboliteEntries} metabolites${MEDCHECK_STATS.pendingCoreMetaboliteCandidates ? ` + ${MEDCHECK_STATS.pendingCoreMetaboliteCandidates} pending` : ""} across ${MEDCHECK_STATS.metaboliteParents} parent substances`
+      ? `${MEDCHECK_STATS.metaboliteEntries} metabolites across ${MEDCHECK_STATS.metaboliteParents} parent substances`
       : null;
     const pkLabel = MEDCHECK_STATS.pkParams
-      ? `${MEDCHECK_STATS.pkParams} absolute PK profiles${MEDCHECK_STATS.pendingCorePkCandidates ? ` + ${MEDCHECK_STATS.pendingCorePkCandidates} pending` : ""}`
+      ? `${MEDCHECK_STATS.pkParams} absolute PK profiles`
       : null;
     statsLine.textContent = [
-      `${MEDCHECK_STATS.drugs} drugs${MEDCHECK_STATS.pendingCoreDrugCandidates ? ` + ${MEDCHECK_STATS.pendingCoreDrugCandidates} pending` : ""}`,
+      `${MEDCHECK_STATS.drugs} drugs`,
       evidenceLabel,
-      `${MEDCHECK_STATS.ddiPairs} interaction pairs${MEDCHECK_STATS.pendingCoreInteractionCandidates ? ` + ${MEDCHECK_STATS.pendingCoreInteractionCandidates} pending` : ""}`,
+      `${MEDCHECK_STATS.ddiPairs} interaction pairs`,
       metaboliteLabel,
       pkLabel,
-      `${MEDCHECK_STATS.genotypeGenes} genotype genes${MEDCHECK_STATS.pendingCorePgxCandidates ? ` + ${MEDCHECK_STATS.pendingCorePgxCandidates} PGx candidates` : ""}`,
-      pendingCoreSuffix,
+      `${MEDCHECK_STATS.genotypeGenes} genotype genes`,
     ].filter(Boolean).join(" · ");
   }
 })();

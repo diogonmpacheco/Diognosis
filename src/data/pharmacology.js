@@ -843,6 +843,15 @@ const BEERS_FLAGS = {
   'benztropine':    { concern:'Highly anticholinergic; delirium risk; urinary retention', avoid:'anticholinergics_65plus' },
 };
 
+function assertReviewedScoringRow(row, scorerName) {
+  if (!row || typeof row !== "object") return;
+  const status = String(row.professionalReviewStatus || row.reviewStatus || "").toLowerCase();
+  if (row.pendingSourceSignal === true || row.experimentalOnly === true || status.includes("pending")) {
+    const label = row.name || row.id || row.label || "unknown row";
+    throw new Error(`${scorerName} received pending or experimental input: ${label}`);
+  }
+}
+
 // computeAdverseBurden(drugList) — full adverse effect burden analysis
 function computeAdverseBurden(drugList) {
   const result = {
@@ -853,6 +862,7 @@ function computeAdverseBurden(drugList) {
     summary: []
   };
   for (const drug of drugList) {
+    assertReviewedScoringRow(drug, "computeAdverseBurden");
     const key = toGraphId(drug.name);
     const acb = ACB_SCORES[key];
     if (acb > 0) {

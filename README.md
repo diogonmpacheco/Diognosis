@@ -119,7 +119,7 @@ Diognosis is intentionally conservative about what it claims. MedCheck Engine PK
 - **506 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **62 genotype genes** and **52 receptor score profiles**
 - **43 Beers flags** and **24 washout rules**
-- **2383 KB** generated bundle (1913 lines)
+- **2343 KB** generated bundle (1867 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---

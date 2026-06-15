@@ -649,18 +649,7 @@ function isProdrugActivationRoute(drug, enzyme) {
 }
 
 function calcRisk() {
-  const calcGenotypeState = typeof activeGenotype !== "undefined" ? activeGenotype || {} : {};
-  const pendingCoreContext = typeof buildPendingCoreEnrichmentContext === "function"
-    ? buildPendingCoreEnrichmentContext(activeStack, calcGenotypeState, { limit:24 })
-    : null;
-  const pendingCalculationContext = typeof getPendingCalculationContext === "function"
-    ? getPendingCalculationContext(activeStack, calcGenotypeState, { pendingCoreContext, limit:60 })
-    : null;
-  const baseInteractions = findInteractions();
-  const pendingInteractions = typeof pendingCalculationContextToInteractions === "function"
-    ? pendingCalculationContextToInteractions(pendingCalculationContext)
-    : [];
-  const interactions = [...baseInteractions, ...pendingInteractions];
+  const interactions = findInteractions();
   let score = 0;
   const factors = [];
 
@@ -797,17 +786,6 @@ function calcRisk() {
   if (mild) factors.push({ label: `${mild} mild`, color: "green" });
 
   const baseScore = Math.min(100, Math.round(score));
-  const pendingSignalScore = Math.max(0, Math.round(pendingCalculationContext?.pendingSignalScore || 0));
-  if (pendingSignalScore > 0) {
-    score += pendingSignalScore;
-    const pendingCounts = pendingCalculationContext?.counts || {};
-    factors.push({
-      label:`+${pendingSignalScore} pending source signal score (${pendingCounts.pgxSignals || 0} PGx, ${pendingCounts.pkSignals || 0} PK, ${pendingCounts.ddiSignals || 0} DDI)`,
-      color:"amber",
-      pendingSourceSignal:true,
-    });
-  }
-
   score = Math.min(100, Math.round(score));
   let level, color;
   if (score >= 60) { level = "HIGH RISK"; color = "var(--red)"; }
@@ -815,7 +793,7 @@ function calcRisk() {
   else if (score > 0) { level = "LOW RISK"; color = "var(--green)"; }
   else { level = "MINIMAL"; color = "var(--green)"; }
 
-  return { score, baseScore, pendingSignalScore, level, color, factors, interactions, pendingCoreContext, pendingCalculationContext };
+  return { score, baseScore, pendingSignalScore:0, level, color, factors, interactions };
 }
 
 function collectActiveGenotypeSafetySignals() {

@@ -1,7 +1,6 @@
 // MedCheck Engine — external safety context cards
 
 let externalSafetyContextHandlersBound = false;
-let pendingReviewEnrichmentHandlersBound = false;
 
 function getOpenTargetsSnapshot(snapshot = null) {
   if (snapshot) return snapshot;
@@ -12,12 +11,6 @@ function getOpenTargetsSnapshot(snapshot = null) {
 function getOpenTargetsPromotionQueue() {
   if (typeof GENERATED_OPEN_TARGETS_PROMOTION_QUEUE !== "undefined") return GENERATED_OPEN_TARGETS_PROMOTION_QUEUE;
   return [];
-}
-
-function getPendingReviewEnrichment(data = null) {
-  if (data) return data;
-  if (typeof PENDING_REVIEW_ENRICHMENT !== "undefined") return PENDING_REVIEW_ENRICHMENT;
-  return { records:[], exportedRecords:0, exportedSourceCounts:{}, safetyBoundary:{} };
 }
 
 function openTargetsFactKey(fact) {
@@ -162,136 +155,6 @@ function renderExternalSafetyContext(snapshot = null) {
   `;
 }
 
-function collectPendingReviewEnrichmentContext(stack = activeStack, data = null) {
-  const context = data
-    ? (typeof buildPendingReviewContext === "function" ? buildPendingReviewContext(stack, activeGenotype || {}, { data }) : null)
-    : (typeof getRenderComputationCache === "function"
-      ? getRenderComputationCache().pendingReviewContext
-      : (typeof buildPendingReviewContext === "function" ? buildPendingReviewContext(stack, activeGenotype || {}) : null));
-  const payload = context?.payload || getPendingReviewEnrichment(data);
-  const records = context?.visibleRecords || [];
-  const allRecords = Array.isArray(payload.records) ? payload.records : [];
-  const pendingCoreContext = typeof getRenderComputationCache === "function"
-    ? getRenderComputationCache().pendingCoreContext
-    : (typeof buildPendingCoreEnrichmentContext === "function" ? buildPendingCoreEnrichmentContext(stack, activeGenotype || {}) : null);
-  return {
-    payload,
-    records,
-    stackMatchedCount: context?.matchedCount || 0,
-    allRecords,
-    sourceCounts: payload.exportedSourceCounts || {},
-    matchedBySource: context?.matchedBySource || {},
-    matchedByClaim: context?.matchedByClaim || {},
-    pendingCoreContext,
-  };
-}
-
-function renderPendingReviewEnrichment(data = null) {
-  const section = document.getElementById("pendingReviewEnrichmentSection");
-  const body = document.getElementById("pendingReviewEnrichmentBody");
-  const count = document.getElementById("pendingReviewEnrichmentCount");
-  if (!body) return;
-
-  if (activeStack.length < 1) {
-    hideSectionAndClear("pendingReviewEnrichmentSection", "pendingReviewEnrichmentBody", "pendingReviewEnrichmentCount");
-    return;
-  }
-
-  const model = collectPendingReviewEnrichmentContext(activeStack, data);
-  if (!model.allRecords.length) {
-    hideSectionAndClear("pendingReviewEnrichmentSection", "pendingReviewEnrichmentBody", "pendingReviewEnrichmentCount");
-    return;
-  }
-
-  bindPendingReviewEnrichmentHandlers();
-  if (section) section.style.display = "";
-  const visibleSourceCounts = pendingReviewVisibleSourceCounts(model.records);
-  if (count) {
-    const sourceTotal = Object.keys(model.sourceCounts || {}).length;
-    const typedTotal = model.pendingCoreContext?.totalCandidates || 0;
-    count.textContent = `${model.payload.exportedRecords || model.allRecords.length} exported · ${model.stackMatchedCount} current-stack matches · ${typedTotal} typed candidates · ${sourceTotal} sources`;
-  }
-  const pendingCoreCounts = model.pendingCoreContext?.counts || {};
-
-  body.innerHTML = `
-    <div class="external-context-notice">
-      These engine-matched records are source-linked external context. They are not professionally reviewed and do not affect scoring or public severity.
-    </div>
-    <div class="pending-review-summary">
-      ${renderPendingReviewTile(model.payload.exportedRecords || model.allRecords.length, "Exported Records", `${model.payload.totalStagedRecords || model.allRecords.length} staged total`)}
-      ${renderPendingReviewTile(model.stackMatchedCount, "Current Matches", "Engine context only")}
-      ${renderPendingReviewTile(model.pendingCoreContext?.totalCandidates || 0, "Typed Candidates", `${pendingCoreCounts.studyCandidates || 0} evidence · ${pendingCoreCounts.pgxCandidates || 0} PGx · ${pendingCoreCounts.interactionCandidates || 0} DDI`)}
-      ${Object.entries(model.sourceCounts || {}).map(([source, value]) =>
-        renderPendingReviewTile(value, formatPendingReviewToken(source), "Pending verification")
-      ).join("")}
-    </div>
-    <div class="pending-review-filter" data-pending-review-filter-wrap="true">
-      ${renderPendingReviewFilter("all", "All", model.records.length, true)}
-      ${Object.entries(visibleSourceCounts).map(([source, value]) =>
-        renderPendingReviewFilter(source, formatPendingReviewToken(source), value)
-      ).join("")}
-    </div>
-    <div class="pending-review-grid">
-      ${model.records.map(renderPendingReviewCard).join("")}
-    </div>
-  `;
-}
-
-function pendingReviewVisibleSourceCounts(records = []) {
-  return records.reduce((acc, record) => {
-    const source = record.sourceKey || "other";
-    acc[source] = (acc[source] || 0) + 1;
-    return acc;
-  }, {});
-}
-
-function renderPendingReviewTile(value, label, note) {
-  return `<div class="pending-review-tile">
-    <div class="pending-review-num">${safeHtml(String(value || 0))}</div>
-    <div class="pending-review-label">${safeHtml(label)}</div>
-    <div class="pending-review-note">${safeHtml(note || "")}</div>
-  </div>`;
-}
-
-function renderPendingReviewFilter(value, label, count, active = false) {
-  const filter = safeText(value || "all");
-  return `<button type="button" class="pending-review-filter-btn${active ? " active" : ""}" data-pending-review-filter="${safeAttr(filter)}">
-    ${safeHtml(label)} <span>${safeHtml(String(count || 0))}</span>
-  </button>`;
-}
-
-function renderPendingReviewCard(record) {
-  const actors = [
-    (record.drugs || []).length ? `Drug: ${record.drugs.join(", ")}` : "",
-    (record.genes || []).length ? `Gene: ${record.genes.join(", ")}` : "",
-    (record.metabolites || []).length ? `Metabolite: ${record.metabolites.join(", ")}` : "",
-    (record.pathways || []).length ? `Pathway: ${record.pathways.join(", ")}` : "",
-  ].filter(Boolean);
-  const meta = [
-    record.sourceName ? `Source: ${record.sourceName}` : "",
-    record.claimType ? `Claim: ${formatPendingReviewToken(record.claimType)}` : "",
-    record.mappingStatus ? `Mapping: ${formatPendingReviewToken(record.mappingStatus)}` : "",
-    record.strongestExternalTier ? `External tier: ${record.strongestExternalTier}` : "",
-    actors.join(" · "),
-    (record.evidenceIdentifiers || []).length ? `Evidence: ${record.evidenceIdentifiers.slice(0, 4).join(", ")}` : "",
-  ].filter(Boolean);
-  const badge = record.displayBadge === "Pending human review" ? "Pending verification" : (record.displayBadge || "Pending verification");
-  return `<div class="pending-review-card" data-pending-source="${safeAttr(record.sourceKey || "other")}">
-    <div class="pending-review-head">
-      <span class="ev-review-badge needs-review">${safeHtml(badge)}</span>
-      <span class="ev-review-badge needs-review">Not used for scoring</span>
-      <span class="ev-review-badge needs-review">Not used for public severity</span>
-    </div>
-    <div class="pending-review-title">${safeHtml(record.title || record.id || "Pending review context")}</div>
-    <div class="pending-review-meta">${safeTextList(meta, "<br>")}</div>
-    <div class="pending-review-summary-text">${safeHtml(record.summary || "External source context only. Not used for scoring or public severity.")}</div>
-  </div>`;
-}
-
-function formatPendingReviewToken(value) {
-  return safeText(value || "").replace(/_/g, " ");
-}
-
 function renderExternalSafetyContextCard(context) {
   const typeLabel = formatOpenTargetsDataset(context.openTargetsSourceDataset || context.factType);
   const meta = [
@@ -391,26 +254,5 @@ function bindExternalSafetyContextHandlers() {
     const link = event.target?.closest?.("[data-external-context-report]");
     if (!link) return;
     event.stopPropagation();
-  });
-}
-
-function bindPendingReviewEnrichmentHandlers() {
-  if (pendingReviewEnrichmentHandlersBound || typeof document === "undefined") return;
-  pendingReviewEnrichmentHandlersBound = true;
-  document.addEventListener("click", (event) => {
-    const button = event.target?.closest?.("[data-pending-review-filter]");
-    if (!button) return;
-    const filter = button.getAttribute("data-pending-review-filter") || "all";
-    const wrap = button.closest("[data-pending-review-filter-wrap]");
-    if (wrap) {
-      wrap.querySelectorAll("[data-pending-review-filter]").forEach(btn => btn.classList.remove("active"));
-      button.classList.add("active");
-    }
-    const body = document.getElementById("pendingReviewEnrichmentBody");
-    if (!body) return;
-    body.querySelectorAll(".pending-review-card").forEach(card => {
-      const source = card.getAttribute("data-pending-source") || "";
-      card.style.display = filter === "all" || source === filter ? "" : "none";
-    });
   });
 }

@@ -134,15 +134,6 @@ function getRenderComputationCache() {
   const timelineRows = typeof computePersistenceTimeline === "function"
     ? computePersistenceTimeline(activeStack, safeGenotype)
     : [];
-  const pendingReviewContext = typeof buildPendingReviewContext === "function"
-    ? buildPendingReviewContext(activeStack, safeGenotype)
-    : { totalRecords:0, matchedCount:0, visibleRecords:[], matchedRecords:[], bySource:{}, matchedBySource:{} };
-  const pendingCoreContext = risk.pendingCoreContext || (typeof buildPendingCoreEnrichmentContext === "function"
-    ? buildPendingCoreEnrichmentContext(activeStack, safeGenotype)
-    : { totalCandidates:0, matchedCount:0, visibleCandidates:[], matchedCandidates:[], counts:{}, matchedCountsByBucket:{} });
-  const pendingCalculationContext = risk.pendingCalculationContext || (typeof getPendingCalculationContext === "function"
-    ? getPendingCalculationContext(activeStack, safeGenotype, { pendingCoreContext, limit:60 })
-    : { evidenceRows:[], pgxSignals:[], pkSignals:[], ddiSignals:[], counts:{}, pendingSignalScore:0 });
   const findings = typeof buildInteractionFindings === "function"
     ? buildInteractionFindings(activeStack, safeGenotype, {
         interactions: risk.interactions || [],
@@ -150,9 +141,6 @@ function getRenderComputationCache() {
         riskMarkerRows,
         phenoconversionRows,
         timelineRows,
-        pendingReviewContext,
-        pendingCoreContext,
-        pendingCalculationContext,
       })
     : [];
   const clinicalConcerns = typeof buildClinicalConcerns === "function"
@@ -164,9 +152,6 @@ function getRenderComputationCache() {
         riskMarkerRows,
         phenoconversionRows,
         timelineRows,
-        pendingReviewContext,
-        pendingCoreContext,
-        pendingCalculationContext,
       })
     : findings;
   renderComputationCache = {
@@ -176,9 +161,9 @@ function getRenderComputationCache() {
     riskMarkerRows,
     phenoconversionRows,
     timelineRows,
-    pendingReviewContext,
-    pendingCoreContext,
-    pendingCalculationContext,
+    pendingReviewContext:null,
+    pendingCoreContext:null,
+    pendingCalculationContext:null,
     findings,
     clinicalConcerns,
   };
@@ -1119,7 +1104,6 @@ function renderAll() {
     renderMetabolites();
     renderPathwayDiversions();
     renderCascade();                // Phase 3: graph traversal
-    if (typeof renderPendingReviewEnrichment === "function") renderPendingReviewEnrichment();
     renderExternalSafetyContext();  // External context, not severity-bearing
     renderGenotypePanel();          // Phase 5 #2: genotype-stratified evidence
     if (typeof renderPhenoconversionDashboard === "function") renderPhenoconversionDashboard();

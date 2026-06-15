@@ -22,14 +22,14 @@
         "Codeine"
       ],
       "genotype": {},
-      "riskScore": 100,
+      "riskScore": 88,
       "riskLevel": "HIGH RISK",
       "interactionCount": 2,
       "severityCounts": {
         "severe": 1,
         "moderate": 1
       },
-      "factorCount": 8,
+      "factorCount": 7,
       "topInteractions": [
         {
           "pair": "Paroxetine + Codeine",
@@ -58,7 +58,7 @@
       "externalContextCountText": "5 context cards · not risk-scoring · fixture-2026-06",
       "externalContextReviewBadges": 5,
       "riskUnchangedAfterExternalContext": true,
-      "afterRiskScore": 100,
+      "afterRiskScore": 88,
       "afterInteractionCount": 2
     },
     {
@@ -74,7 +74,7 @@
       "severityCounts": {
         "severe": 2
       },
-      "factorCount": 4,
+      "factorCount": 3,
       "topInteractions": [
         {
           "pair": "Simvastatin + Clarithromycin",
@@ -112,11 +112,11 @@
       "genotype": {
         "DPYD": "PM"
       },
-      "riskScore": 60,
-      "riskLevel": "HIGH RISK",
+      "riskScore": 45,
+      "riskLevel": "MODERATE RISK",
       "interactionCount": 0,
       "severityCounts": {},
-      "factorCount": 2,
+      "factorCount": 1,
       "topInteractions": [],
       "externalContextCount": 1,
       "externalContextDatasets": [
@@ -127,7 +127,7 @@
       "externalContextCountText": "1 context card · not risk-scoring · fixture-2026-06",
       "externalContextReviewBadges": 1,
       "riskUnchangedAfterExternalContext": true,
-      "afterRiskScore": 60,
+      "afterRiskScore": 45,
       "afterInteractionCount": 0
     },
     {
@@ -136,11 +136,11 @@
         "Clozapine"
       ],
       "genotype": {},
-      "riskScore": 15,
-      "riskLevel": "LOW RISK",
+      "riskScore": 0,
+      "riskLevel": "MINIMAL",
       "interactionCount": 0,
       "severityCounts": {},
-      "factorCount": 1,
+      "factorCount": 0,
       "topInteractions": [],
       "externalContextCount": 5,
       "externalContextDatasets": [
@@ -152,7 +152,7 @@
       "externalContextCountText": "5 context cards · not risk-scoring · fixture-2026-06",
       "externalContextReviewBadges": 5,
       "riskUnchangedAfterExternalContext": true,
-      "afterRiskScore": 15,
+      "afterRiskScore": 0,
       "afterInteractionCount": 0
     },
     {
@@ -164,11 +164,11 @@
         "VKORC1": "PM",
         "CYP2C9": "PM"
       },
-      "riskScore": 30,
-      "riskLevel": "MODERATE RISK",
+      "riskScore": 15,
+      "riskLevel": "LOW RISK",
       "interactionCount": 0,
       "severityCounts": {},
-      "factorCount": 3,
+      "factorCount": 2,
       "topInteractions": [],
       "externalContextCount": 4,
       "externalContextDatasets": [
@@ -180,7 +180,7 @@
       "externalContextCountText": "4 context cards · not risk-scoring · fixture-2026-06",
       "externalContextReviewBadges": 4,
       "riskUnchangedAfterExternalContext": true,
-      "afterRiskScore": 30,
+      "afterRiskScore": 15,
       "afterInteractionCount": 0
     },
     {
@@ -191,8 +191,35 @@
       "genotype": {
         "HLA-B*57:01": "present"
       },
-      "riskScore": 60,
-      "riskLevel": "HIGH RISK",
+      "riskScore": 45,
+      "riskLevel": "MODERATE RISK",
+      "interactionCount": 0,
+      "severityCounts": {},
+      "factorCount": 1,
+      "topInteractions": [],
+      "externalContextCount": 3,
+      "externalContextDatasets": [
+        "drugWarnings",
+        "pharmacogenetics"
+      ],
+      "externalContextCardCount": 3,
+      "externalContextSectionVisible": true,
+      "externalContextCountText": "3 context cards · not risk-scoring · fixture-2026-06",
+      "externalContextReviewBadges": 3,
+      "riskUnchangedAfterExternalContext": true,
+      "afterRiskScore": 45,
+      "afterInteractionCount": 0
+    },
+    {
+      "id": "ot-clopidogrel-cyp2c19-context",
+      "stack": [
+        "Clopidogrel"
+      ],
+      "genotype": {
+        "CYP2C19": "PM"
+      },
+      "riskScore": 35,
+      "riskLevel": "MODERATE RISK",
       "interactionCount": 0,
       "severityCounts": {},
       "factorCount": 2,
@@ -207,34 +234,7 @@
       "externalContextCountText": "3 context cards · not risk-scoring · fixture-2026-06",
       "externalContextReviewBadges": 3,
       "riskUnchangedAfterExternalContext": true,
-      "afterRiskScore": 60,
-      "afterInteractionCount": 0
-    },
-    {
-      "id": "ot-clopidogrel-cyp2c19-context",
-      "stack": [
-        "Clopidogrel"
-      ],
-      "genotype": {
-        "CYP2C19": "PM"
-      },
-      "riskScore": 50,
-      "riskLevel": "MODERATE RISK",
-      "interactionCount": 0,
-      "severityCounts": {},
-      "factorCount": 3,
-      "topInteractions": [],
-      "externalContextCount": 3,
-      "externalContextDatasets": [
-        "drugWarnings",
-        "pharmacogenetics"
-      ],
-      "externalContextCardCount": 3,
-      "externalContextSectionVisible": true,
-      "externalContextCountText": "3 context cards · not risk-scoring · fixture-2026-06",
-      "externalContextReviewBadges": 3,
-      "riskUnchangedAfterExternalContext": true,
-      "afterRiskScore": 50,
+      "afterRiskScore": 35,
       "afterInteractionCount": 0
     },
     {
@@ -245,11 +245,11 @@
       "genotype": {
         "CYP2D6": "PM"
       },
-      "riskScore": 50,
+      "riskScore": 35,
       "riskLevel": "MODERATE RISK",
       "interactionCount": 0,
       "severityCounts": {},
-      "factorCount": 3,
+      "factorCount": 2,
       "topInteractions": [],
       "externalContextCount": 2,
       "externalContextDatasets": [
@@ -261,7 +261,7 @@
       "externalContextCountText": "2 context cards · not risk-scoring · fixture-2026-06",
       "externalContextReviewBadges": 2,
       "riskUnchangedAfterExternalContext": true,
-      "afterRiskScore": 50,
+      "afterRiskScore": 35,
       "afterInteractionCount": 0
     }
   ],
@@ -313,21 +313,20 @@
           "enzyme": "CYP3A4"
         }
       ],
-      "findingCount": 51,
+      "findingCount": 11,
       "findingTypes": [
         "active_moiety",
         "combination_burden",
-        "pending_source_pgx",
         "phenoconversion",
         "receptor_burden",
         "timing_washout"
       ],
-      "findingCardCount": 5,
-      "evidenceLadderCount": 5,
+      "findingCardCount": 2,
+      "evidenceLadderCount": 2,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 15,
-      "mechanismWhyPathCount": 5,
-      "rawWarningPathCount": 12,
+      "whyPathCount": 11,
+      "mechanismWhyPathCount": 2,
+      "rawWarningPathCount": 11,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
@@ -339,7 +338,6 @@
       ],
       "activeMoietyActors": [
         "Codeine-6-glucuronide",
-        "Dose normalized",
         "Fluoxetine glucuronide",
         "Morphine",
         "Morphine-6-glucuronide",
@@ -431,11 +429,10 @@
           "enzyme": "pathway competition"
         }
       ],
-      "findingCount": 44,
+      "findingCount": 8,
       "findingTypes": [
         "active_moiety",
         "combination_burden",
-        "pending_source_pgx",
         "phenoconversion"
       ],
       "findingCardCount": 1,
@@ -515,15 +512,14 @@
       "genotype": {
         "UGT1A1": "PM"
       },
-      "riskScore": 35,
-      "riskLevel": "MODERATE RISK",
+      "riskScore": 20,
+      "riskLevel": "LOW RISK",
       "interactionCount": 0,
       "severityCounts": {},
       "topInteractions": [],
-      "findingCount": 38,
+      "findingCount": 2,
       "findingTypes": [
         "active_moiety",
-        "pending_source_pgx",
         "phenoconversion"
       ],
       "findingCardCount": 1,
@@ -588,15 +584,14 @@
       "genotype": {
         "DPYD": "PM"
       },
-      "riskScore": 60,
-      "riskLevel": "HIGH RISK",
+      "riskScore": 45,
+      "riskLevel": "MODERATE RISK",
       "interactionCount": 0,
       "severityCounts": {},
       "topInteractions": [],
-      "findingCount": 38,
+      "findingCount": 2,
       "findingTypes": [
         "active_moiety",
-        "pending_source_pgx",
         "phenoconversion"
       ],
       "findingCardCount": 1,
@@ -659,8 +654,8 @@
         "TPMT": "PM",
         "NUDT15": "PM"
       },
-      "riskScore": 70,
-      "riskLevel": "HIGH RISK",
+      "riskScore": 55,
+      "riskLevel": "MODERATE RISK",
       "interactionCount": 1,
       "severityCounts": {
         "severe": 1
@@ -674,11 +669,10 @@
           "enzyme": "metabolic"
         }
       ],
-      "findingCount": 40,
+      "findingCount": 4,
       "findingTypes": [
         "active_moiety",
         "pairwise_interaction",
-        "pending_source_pgx",
         "phenoconversion"
       ],
       "findingCardCount": 2,
@@ -752,8 +746,8 @@
       "genotype": {
         "CYP2D6": "null"
       },
-      "riskScore": 69,
-      "riskLevel": "HIGH RISK",
+      "riskScore": 54,
+      "riskLevel": "MODERATE RISK",
       "interactionCount": 1,
       "severityCounts": {
         "mild": 1
@@ -767,10 +761,9 @@
           "enzyme": "bidirectional_pk"
         }
       ],
-      "findingCount": 52,
+      "findingCount": 16,
       "findingTypes": [
         "active_moiety",
-        "pending_source_pgx",
         "phenoconversion",
         "timing_washout"
       ],
@@ -888,12 +881,11 @@
           "enzyme": "toxic overlap"
         }
       ],
-      "findingCount": 43,
+      "findingCount": 7,
       "findingTypes": [
         "active_moiety",
         "combination_burden",
         "pairwise_interaction",
-        "pending_source_pgx",
         "phenoconversion",
         "timing_washout"
       ],
@@ -1015,20 +1007,19 @@
           "enzyme": "Seizure"
         }
       ],
-      "findingCount": 54,
+      "findingCount": 16,
       "findingTypes": [
         "active_moiety",
         "pairwise_interaction",
-        "pending_source_pgx",
         "phenoconversion",
         "receptor_burden",
         "timing_washout"
       ],
-      "findingCardCount": 4,
-      "evidenceLadderCount": 4,
+      "findingCardCount": 3,
+      "evidenceLadderCount": 3,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 18,
-      "mechanismWhyPathCount": 4,
+      "whyPathCount": 16,
+      "mechanismWhyPathCount": 3,
       "rawWarningPathCount": 12,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
@@ -1038,7 +1029,6 @@
         "parent_accumulation"
       ],
       "activeMoietyActors": [
-        "Dose normalized",
         "Fluoxetine glucuronide",
         "M1 catechol metabolite",
         "M2 methylenedioxy ring-opened",
@@ -1109,24 +1099,22 @@
       "genotype": {
         "G6PD deficiency": "present"
       },
-      "riskScore": 85,
+      "riskScore": 70,
       "riskLevel": "HIGH RISK",
       "interactionCount": 0,
       "severityCounts": {},
       "topInteractions": [],
-      "findingCount": 42,
+      "findingCount": 5,
       "findingTypes": [
         "active_moiety",
-        "pending_source_pgx",
-        "risk_marker",
-        "timing_washout"
+        "risk_marker"
       ],
-      "findingCardCount": 2,
-      "evidenceLadderCount": 2,
+      "findingCardCount": 1,
+      "evidenceLadderCount": 1,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 6,
-      "mechanismWhyPathCount": 2,
-      "rawWarningPathCount": 6,
+      "whyPathCount": 5,
+      "mechanismWhyPathCount": 1,
+      "rawWarningPathCount": 5,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
@@ -1144,7 +1132,6 @@
       "phenoconversionGenes": [
         "CYP/oxidation",
         "CYP2C9",
-        "CYP2D6",
         "NAT2"
       ],
       "phenoconversionDirections": [
@@ -1152,8 +1139,7 @@
       ],
       "persistenceTypes": [
         "metabolite",
-        "parent",
-        "washout_rule"
+        "parent"
       ],
       "persistenceActors": [
         "Carboxyprimaquine",
@@ -1195,15 +1181,14 @@
         "BCHE": "null",
         "RYR1/CACNA1S MH variant": "present"
       },
-      "riskScore": 95,
+      "riskScore": 80,
       "riskLevel": "HIGH RISK",
       "interactionCount": 0,
       "severityCounts": {},
       "topInteractions": [],
-      "findingCount": 41,
+      "findingCount": 5,
       "findingTypes": [
         "active_moiety",
-        "pending_source_pgx",
         "phenoconversion",
         "risk_marker"
       ],
