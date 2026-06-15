@@ -4,17 +4,17 @@ This page keeps implementation details out of the README front page while preser
 
 ## Architecture
 
-Diognosis / MedCheck Engine models medication stacks as connected parent-metabolite-gene systems. The engine combines curated DDI pairs, parent/metabolite directionality, functional enzyme status, PK and washout timing, pathway graph traversal, receptor/phenotype burden, and source-linked evidence confidence into normalized interaction findings.
+Diognosis models medication stacks as connected parent-metabolite-gene systems. The engine combines curated DDI pairs, parent/metabolite directionality, functional enzyme status, PK and washout timing, pathway graph traversal, receptor/phenotype burden, and source-linked evidence confidence into normalized interaction findings.
 
 Status: pre-v1, source-linked, under active validation, pending professional clinical review, and not medical advice.
 
-Diognosis currently distributes the MedCheck Engine as a single self-contained HTML file. All computation runs in the browser with no backend, no API, no accounts, no analytics, and no medication-data collection. D3.js is vendored locally and bundled at build time for graph visualization.
+Diognosis currently ships as a single self-contained HTML file. All computation runs in the browser with no backend, no API, no accounts, no analytics, and no medication-data collection. D3.js is vendored locally and bundled at build time for graph visualization.
 
 The central design principle is reviewable mechanism visibility: drugs, genes, metabolites, receptors, transporters, foods, evidence, and time are modeled as connected actors because the important signal often emerges from the whole system rather than from isolated parent-drug names.
 
 ## Capability Surface
 
-MedCheck Engine currently models:
+Diognosis currently models:
 
 - Drug-drug interactions and curated pairwise DDI rows
 - CYP and transporter substrate, inhibitor, and inducer pathways
@@ -311,7 +311,7 @@ Mechanism-based inhibitors carry a 1.3x amplification factor. `computeAllEnzymeC
 
 ## PK Models
 
-MedCheck Engine has two PK paths:
+Diognosis has two PK paths:
 
 - Absolute one-compartment PK for drugs with `PK_PARAMS`
 - Relative exposure fallback for drugs with half-life data but incomplete absolute F/ka/Vd/dose parameters

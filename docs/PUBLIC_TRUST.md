@@ -6,7 +6,7 @@ Generated: 2026-06-09
 
 Diognosis is a source-linked medication safety and pharmacogenomics platform in active development.
 
-Its first module, the MedCheck Engine, explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
+Diognosis explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
 
 Status: pre-v1, source-linked, under active validation, and not yet professionally reviewed.
 
