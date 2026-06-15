@@ -4,28 +4,10 @@ import { resolve } from 'path';
 
 const GENERATED_DATA_MODULES = [
   'data/generatedStats.js',
-  'data/generatedEvidenceReviewQueue.js',
-  'data/generatedOpenTargetsSnapshot.js',
-  'data/generatedOpenTargetsPromotionQueue.js',
-  'data/generatedOpenTargetsReviewTargets.js',
-  'data/generatedOpenTargetsPgxGapRoadmap.js',
-  'data/generatedOpenTargetsMechanisticQueue.js',
 ];
 
 const GENERATED_ARTIFACTS = [
   'src/data/generatedStats.js',
-  'src/data/generatedEvidenceReviewQueue.js',
-  'src/data/generatedOpenTargetsSnapshot.js',
-  'src/data/generatedOpenTargetsPromotionQueue.js',
-  'src/data/generatedOpenTargetsReviewTargets.js',
-  'src/data/generatedOpenTargetsPgxGapRoadmap.js',
-  'src/data/generatedOpenTargetsMechanisticQueue.js',
-  'docs/OPEN_TARGETS_INTEGRATION_AUDIT.md',
-  'docs/OPEN_TARGETS_IDENTITY_REVIEW.md',
-  'docs/OPEN_TARGETS_PROMOTION_QUEUE.md',
-  'docs/OPEN_TARGETS_FIRST_REVIEW_TARGETS.md',
-  'docs/OPEN_TARGETS_PGX_GAP_ROADMAP.md',
-  'docs/OPEN_TARGETS_MECHANISTIC_REVIEW_QUEUE.md',
 ];
 
 function assert(condition, message) {
