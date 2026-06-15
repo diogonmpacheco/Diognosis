@@ -170,7 +170,13 @@
       "purpose": "Reviewer decisions that can promote staged records into curated Diognosis source files.",
       "accessMethod": "Human review queue",
       "script": "scripts/enrich/build-enrichment-review-queue.js",
-      "outputs": ["data/enrichment/review-queue/enrichment-review-queue.json"],
+      "outputs": [
+        "data/enrichment/review-queue/enrichment-review-queue.json",
+        "data/enrichment/review-queue/source-specific-promotion-queue.json",
+        "data/enrichment/source-faithfulness-decisions/source-specific/source-specific-review-templates.json",
+        "docs/audits/source-specific-promotion-audit.json",
+        "docs/audits/source-specific-promotion-audit.md"
+      ],
       "licenseNote": "Reviewer must verify source faithfulness, copyright, mapping, and clinical wording.",
       "rateLimit": "Human controlled.",
       "bundledInPublicApp": false,

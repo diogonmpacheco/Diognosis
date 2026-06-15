@@ -46,9 +46,27 @@ for (const file of listJson(resolve(ROOT, 'data/review-overlays'))) {
 
 for (const file of listJson(resolve(ROOT, 'data/enrichment/source-faithfulness-decisions'))) {
   const decision = readJson(file, null);
-  if (!decision || decision.schema !== 'diognosis.source-faithfulness-review.v1') continue;
-  if (!decision.stillPendingProfessionalReview) errors.push(`${file}: source-faithfulness review must remain pending professional review`);
-  if (decision.canAffectScoring) errors.push(`${file}: source-faithfulness review can affect scoring`);
+  if (!decision) continue;
+  const rows = decision.schema === 'diognosis.source-specific-review-templates.v1'
+    ? []
+    : decision.schema === 'diognosis.source-specific-review-decision.v1'
+      ? [decision]
+      : decision.decisionRows || [];
+  if (decision.schema === 'diognosis.source-faithfulness-review.v1') {
+    if (!decision.stillPendingProfessionalReview) errors.push(`${file}: source-faithfulness review must remain pending professional review`);
+    if (decision.canAffectScoring) errors.push(`${file}: source-faithfulness review can affect scoring`);
+  }
+  for (const row of rows) {
+    if (row.schema !== 'diognosis.source-specific-review-decision.v1') continue;
+    if (row.stillPendingProfessionalReview !== true) errors.push(`${file}: source-specific review must remain pending professional review`);
+    if (row.professionalReviewStatus && row.professionalReviewStatus !== 'pending') {
+      errors.push(`${file}: source-specific review cannot claim professional review`);
+    }
+    if (row.canAffectScoring || row.promotion?.allowScoring) errors.push(`${file}: source-specific review can affect scoring`);
+    if (row.canAffectPublicSeverity || row.promotion?.allowPublicSeverity) {
+      errors.push(`${file}: source-specific review can affect public severity`);
+    }
+  }
 }
 
 if (errors.length) {

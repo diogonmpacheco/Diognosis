@@ -1,0 +1,37 @@
+{
+  "schema": "diognosis.source-specific-promotion-audit.v1",
+  "generatedAt": "2026-06-15T15:30:49.652Z",
+  "queueItems": 2355,
+  "sourceCounts": {
+    "clinpgx": 1628,
+    "cpic": 379,
+    "literature": 248,
+    "dailymed": 100
+  },
+  "readinessCounts": {
+    "ready_for_source_specific_review": 1190,
+    "requires_manual_review": 272,
+    "needs_full_text_or_source_object_review": 248,
+    "ambiguous_direction": 595,
+    "needs_mapping": 50
+  },
+  "decisionFiles": [],
+  "decisions": 0,
+  "decisionErrors": [],
+  "templateCount": 60,
+  "templateSourceCounts": {
+    "cpic": 10,
+    "clinpgx": 30,
+    "dailymed": 10,
+    "literature": 10
+  },
+  "livePendingReviewTemplates": 30,
+  "approvedDrafts": [],
+  "appliedDrafts": [],
+  "safetyBoundary": {
+    "sourceSpecificReviewIsProfessionalReview": false,
+    "canAffectScoring": false,
+    "canAffectPublicSeverity": false,
+    "curatedDraftsRemainPendingProfessionalReview": true
+  }
+}

@@ -1,0 +1,2038 @@
+{
+  "schema": "diognosis.source-specific-review-templates.v1",
+  "generatedAt": "2026-06-15T15:30:49.652Z",
+  "templateCount": 60,
+  "note": "Copy a template into data/enrichment/source-faithfulness-decisions/source-specific/decisions/ and complete it. Templates are not approvals.",
+  "templates": [
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_cpic_data_pgx_pair_cyp4f2_warfarin_cpic_pair_view_110149_www_clinpgx_o",
+      "recordId": "candidate_cpic_data_pgx_pair_cyp4f2_warfarin_cpic_pair_view_110149_www_clinpgx_org_guideline_pa166251465_21900891_f051d347e8",
+      "sourceKey": "cpic",
+      "sourceName": "CPIC Data",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentGuidelineOrObjectVerified": false,
+        "geneDrugOrAlleleMappingVerified": false,
+        "phenotypeOrRecommendationWordingChecked": false,
+        "evidenceLevelOrObjectTypeRecorded": false,
+        "licenseAndAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_RULE_OR_STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_cpic_data_pgx_pair_dpyd_capecitabine_cpic_pair_view_110086_www_clinpgx",
+      "recordId": "candidate_cpic_data_pgx_pair_dpyd_capecitabine_cpic_pair_view_110086_www_clinpgx_org_guideline_pa166251462_23988873_17f02d3117",
+      "sourceKey": "cpic",
+      "sourceName": "CPIC Data",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentGuidelineOrObjectVerified": false,
+        "geneDrugOrAlleleMappingVerified": false,
+        "phenotypeOrRecommendationWordingChecked": false,
+        "evidenceLevelOrObjectTypeRecorded": false,
+        "licenseAndAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_RULE_OR_STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_cpic_data_pgx_pair_vkorc1_warfarin_cpic_pair_view_110150_www_clinpgx_o",
+      "recordId": "candidate_cpic_data_pgx_pair_vkorc1_warfarin_cpic_pair_view_110150_www_clinpgx_org_guideline_pa166251465_21900891_10c118d57f",
+      "sourceKey": "cpic",
+      "sourceName": "CPIC Data",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentGuidelineOrObjectVerified": false,
+        "geneDrugOrAlleleMappingVerified": false,
+        "phenotypeOrRecommendationWordingChecked": false,
+        "evidenceLevelOrObjectTypeRecorded": false,
+        "licenseAndAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_RULE_OR_STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_cpic_data_gene_drug_recommendation_g6pd_aminosalicylic_acid_cpic_recom",
+      "recordId": "candidate_cpic_data_gene_drug_recommendation_g6pd_aminosalicylic_acid_cpic_recommendation_view_8093195_www_clinpgx_org_guideline_pa166251450_b561fc863a",
+      "sourceKey": "cpic",
+      "sourceName": "CPIC Data",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentGuidelineOrObjectVerified": false,
+        "geneDrugOrAlleleMappingVerified": false,
+        "phenotypeOrRecommendationWordingChecked": false,
+        "evidenceLevelOrObjectTypeRecorded": false,
+        "licenseAndAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_RULE_OR_STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_cpic_data_gene_drug_recommendation_g6pd_aminosalicylic_acid_cpic_recom",
+      "recordId": "candidate_cpic_data_gene_drug_recommendation_g6pd_aminosalicylic_acid_cpic_recommendation_view_8093196_www_clinpgx_org_guideline_pa166251450_10cd5ae84f",
+      "sourceKey": "cpic",
+      "sourceName": "CPIC Data",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentGuidelineOrObjectVerified": false,
+        "geneDrugOrAlleleMappingVerified": false,
+        "phenotypeOrRecommendationWordingChecked": false,
+        "evidenceLevelOrObjectTypeRecorded": false,
+        "licenseAndAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_RULE_OR_STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_cpic_data_gene_drug_recommendation_g6pd_aminosalicylic_acid_cpic_recom",
+      "recordId": "candidate_cpic_data_gene_drug_recommendation_g6pd_aminosalicylic_acid_cpic_recommendation_view_8093197_www_clinpgx_org_guideline_pa166251450_886c818294",
+      "sourceKey": "cpic",
+      "sourceName": "CPIC Data",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentGuidelineOrObjectVerified": false,
+        "geneDrugOrAlleleMappingVerified": false,
+        "phenotypeOrRecommendationWordingChecked": false,
+        "evidenceLevelOrObjectTypeRecorded": false,
+        "licenseAndAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_RULE_OR_STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_cpic_data_gene_drug_recommendation_g6pd_aminosalicylic_acid_cpic_recom",
+      "recordId": "candidate_cpic_data_gene_drug_recommendation_g6pd_aminosalicylic_acid_cpic_recommendation_view_8093198_www_clinpgx_org_guideline_pa166251450_c993eb4a43",
+      "sourceKey": "cpic",
+      "sourceName": "CPIC Data",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentGuidelineOrObjectVerified": false,
+        "geneDrugOrAlleleMappingVerified": false,
+        "phenotypeOrRecommendationWordingChecked": false,
+        "evidenceLevelOrObjectTypeRecorded": false,
+        "licenseAndAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_RULE_OR_STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_cpic_data_gene_drug_recommendation_g6pd_aminosalicylic_acid_cpic_recom",
+      "recordId": "candidate_cpic_data_gene_drug_recommendation_g6pd_aminosalicylic_acid_cpic_recommendation_view_8093199_www_clinpgx_org_guideline_pa166251450_ddf2532f17",
+      "sourceKey": "cpic",
+      "sourceName": "CPIC Data",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentGuidelineOrObjectVerified": false,
+        "geneDrugOrAlleleMappingVerified": false,
+        "phenotypeOrRecommendationWordingChecked": false,
+        "evidenceLevelOrObjectTypeRecorded": false,
+        "licenseAndAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_RULE_OR_STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_cpic_data_gene_drug_recommendation_g6pd_ciprofloxacin_cpic_recommendat",
+      "recordId": "candidate_cpic_data_gene_drug_recommendation_g6pd_ciprofloxacin_cpic_recommendation_view_8093200_www_clinpgx_org_guideline_pa166251450_c21781421e",
+      "sourceKey": "cpic",
+      "sourceName": "CPIC Data",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentGuidelineOrObjectVerified": false,
+        "geneDrugOrAlleleMappingVerified": false,
+        "phenotypeOrRecommendationWordingChecked": false,
+        "evidenceLevelOrObjectTypeRecorded": false,
+        "licenseAndAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_RULE_OR_STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_cpic_data_gene_drug_recommendation_g6pd_ciprofloxacin_cpic_recommendat",
+      "recordId": "candidate_cpic_data_gene_drug_recommendation_g6pd_ciprofloxacin_cpic_recommendation_view_8093201_www_clinpgx_org_guideline_pa166251450_0580a9f4f2",
+      "sourceKey": "cpic",
+      "sourceName": "CPIC Data",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentGuidelineOrObjectVerified": false,
+        "geneDrugOrAlleleMappingVerified": false,
+        "phenotypeOrRecommendationWordingChecked": false,
+        "evidenceLevelOrObjectTypeRecorded": false,
+        "licenseAndAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_RULE_OR_STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_guideline_annotation_cyp2c9_cyp4f2_vkorc1_warfarin_clinpgx_gui",
+      "recordId": "candidate_clinpgx_guideline_annotation_cyp2c9_cyp4f2_vkorc1_warfarin_clinpgx_guideline_annotation_pa166104949_a6ed286b07",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_RULE_OR_STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_guideline_annotation_cyp2c9_cyp4f2_vkorc1_warfarin_clinpgx_gui",
+      "recordId": "candidate_clinpgx_guideline_annotation_cyp2c9_cyp4f2_vkorc1_warfarin_clinpgx_guideline_annotation_pa166104949_c689da6291",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_RULE_OR_STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_guideline_annotation_cyp2c9_cyp4f2_vkorc1_warfarin_clinpgx_gui",
+      "recordId": "candidate_clinpgx_guideline_annotation_cyp2c9_cyp4f2_vkorc1_warfarin_clinpgx_guideline_annotation_pa166104949_f828238487",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_RULE_OR_STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_10f06ebf74",
+      "recordId": "candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_10f06ebf74",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_2868e795b0",
+      "recordId": "candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_2868e795b0",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_346f18e0a5",
+      "recordId": "candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_346f18e0a5",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_5a77b5db01",
+      "recordId": "candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_5a77b5db01",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_69faf7b47a",
+      "recordId": "candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_69faf7b47a",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_72c64de838",
+      "recordId": "candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_72c64de838",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_84d0b914bc",
+      "recordId": "candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_84d0b914bc",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_dailymed_drug_label_azathioprine_dailymed_5116b22b_1460_5535_e063_6394",
+      "recordId": "candidate_dailymed_drug_label_azathioprine_dailymed_5116b22b_1460_5535_e063_6394a90acbe5_spl_version_1_ec6a153c39",
+      "sourceKey": "dailymed",
+      "sourceName": "DailyMed",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "labelSetIdOpened": false,
+        "splVersionChecked": false,
+        "drugIdentityVerified": false,
+        "labelSectionVerifiedIfClaimGoesBeyondMetadata": false,
+        "noProtectedLabelTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "LABEL_CONTEXT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_dailymed_drug_label_azathioprine_dailymed_d288e484_32fc_4b46_b504_d75a",
+      "recordId": "candidate_dailymed_drug_label_azathioprine_dailymed_d288e484_32fc_4b46_b504_d75a0fac8663_spl_version_13_5761a8bf26",
+      "sourceKey": "dailymed",
+      "sourceName": "DailyMed",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "labelSetIdOpened": false,
+        "splVersionChecked": false,
+        "drugIdentityVerified": false,
+        "labelSectionVerifiedIfClaimGoesBeyondMetadata": false,
+        "noProtectedLabelTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "LABEL_CONTEXT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_dailymed_drug_label_azathioprine_dailymed_f251f372_c881_483e_8035_c6a8",
+      "recordId": "candidate_dailymed_drug_label_azathioprine_dailymed_f251f372_c881_483e_8035_c6a8a6bfb4e8_spl_version_4_a075d7e094",
+      "sourceKey": "dailymed",
+      "sourceName": "DailyMed",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "labelSetIdOpened": false,
+        "splVersionChecked": false,
+        "drugIdentityVerified": false,
+        "labelSectionVerifiedIfClaimGoesBeyondMetadata": false,
+        "noProtectedLabelTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "LABEL_CONTEXT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_dailymed_drug_label_capecitabine_dailymed_3e7d6317_1439_4976_ae00_6f62",
+      "recordId": "candidate_dailymed_drug_label_capecitabine_dailymed_3e7d6317_1439_4976_ae00_6f62619ec3dd_spl_version_3_70a6ceb1eb",
+      "sourceKey": "dailymed",
+      "sourceName": "DailyMed",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "labelSetIdOpened": false,
+        "splVersionChecked": false,
+        "drugIdentityVerified": false,
+        "labelSectionVerifiedIfClaimGoesBeyondMetadata": false,
+        "noProtectedLabelTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "LABEL_CONTEXT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_dailymed_drug_label_capecitabine_dailymed_5753679a_506c_4ac4_b8b2_b27c",
+      "recordId": "candidate_dailymed_drug_label_capecitabine_dailymed_5753679a_506c_4ac4_b8b2_b27c664d1d40_spl_version_14_287d26edfd",
+      "sourceKey": "dailymed",
+      "sourceName": "DailyMed",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "labelSetIdOpened": false,
+        "splVersionChecked": false,
+        "drugIdentityVerified": false,
+        "labelSectionVerifiedIfClaimGoesBeyondMetadata": false,
+        "noProtectedLabelTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "LABEL_CONTEXT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_dailymed_drug_label_capecitabine_dailymed_e28a5ef7_4731_f8ac_e053_2995",
+      "recordId": "candidate_dailymed_drug_label_capecitabine_dailymed_e28a5ef7_4731_f8ac_e053_2995a90a21bf_spl_version_5_28ecd240f4",
+      "sourceKey": "dailymed",
+      "sourceName": "DailyMed",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "labelSetIdOpened": false,
+        "splVersionChecked": false,
+        "drugIdentityVerified": false,
+        "labelSectionVerifiedIfClaimGoesBeyondMetadata": false,
+        "noProtectedLabelTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "LABEL_CONTEXT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_dailymed_drug_label_clopidogrel_dailymed_c03a895c_2d74_4d7f_891f_b752c",
+      "recordId": "candidate_dailymed_drug_label_clopidogrel_dailymed_c03a895c_2d74_4d7f_891f_b752ce409b68_spl_version_3_fd00764a12",
+      "sourceKey": "dailymed",
+      "sourceName": "DailyMed",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "labelSetIdOpened": false,
+        "splVersionChecked": false,
+        "drugIdentityVerified": false,
+        "labelSectionVerifiedIfClaimGoesBeyondMetadata": false,
+        "noProtectedLabelTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "LABEL_CONTEXT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_dailymed_drug_label_clopidogrel_dailymed_db1161c9_6efd_4361_a766_6a37c",
+      "recordId": "candidate_dailymed_drug_label_clopidogrel_dailymed_db1161c9_6efd_4361_a766_6a37c241ccee_spl_version_9_93dc9609cc",
+      "sourceKey": "dailymed",
+      "sourceName": "DailyMed",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "labelSetIdOpened": false,
+        "splVersionChecked": false,
+        "drugIdentityVerified": false,
+        "labelSectionVerifiedIfClaimGoesBeyondMetadata": false,
+        "noProtectedLabelTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "LABEL_CONTEXT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_dailymed_drug_label_clopidogrel_dailymed_e51d4bcc_01df_409d_9179_45e65",
+      "recordId": "candidate_dailymed_drug_label_clopidogrel_dailymed_e51d4bcc_01df_409d_9179_45e6536ac25b_spl_version_7_b82e9a7cd6",
+      "sourceKey": "dailymed",
+      "sourceName": "DailyMed",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "labelSetIdOpened": false,
+        "splVersionChecked": false,
+        "drugIdentityVerified": false,
+        "labelSectionVerifiedIfClaimGoesBeyondMetadata": false,
+        "noProtectedLabelTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "LABEL_CONTEXT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_dailymed_drug_label_codeine_dailymed_52617668_acc3_65cd_e063_6294a90ab",
+      "recordId": "candidate_dailymed_drug_label_codeine_dailymed_52617668_acc3_65cd_e063_6294a90ab919_spl_version_1_b5767658c1",
+      "sourceKey": "dailymed",
+      "sourceName": "DailyMed",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "labelSetIdOpened": false,
+        "splVersionChecked": false,
+        "drugIdentityVerified": false,
+        "labelSectionVerifiedIfClaimGoesBeyondMetadata": false,
+        "noProtectedLabelTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "LABEL_CONTEXT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_openalex_publication_draft_azathioprine_tpmt_nudt15_6tgn_6mmp_sharma20",
+      "recordId": "candidate_openalex_publication_draft_azathioprine_tpmt_nudt15_6tgn_6mmp_sharma2022_36262539_search_openalex_36262539_10_1002_jgh3_12829_d5bfa57fce",
+      "sourceKey": "literature",
+      "sourceName": "OpenAlex",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "pmidOrDoiOpened": false,
+        "legalAccessChecked": false,
+        "abstractOrFullTextBoundaryRecorded": false,
+        "mappingAndDirectionVerified": false,
+        "quantitativeClaimsVerifiedFromAllowedSource": false,
+        "noProtectedFullTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_europe_pmc_publication_draft_irinotecan_ugt1a1_sn38_pk_dazvillamarnx20",
+      "recordId": "candidate_europe_pmc_publication_draft_irinotecan_ugt1a1_sn38_pk_dazvillamarnx2025_40430836_search_europepmc_40430836_10_3390_pharmaceutics17050542_4a0a34b2a8",
+      "sourceKey": "literature",
+      "sourceName": "Europe PMC",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "pmidOrDoiOpened": false,
+        "legalAccessChecked": false,
+        "abstractOrFullTextBoundaryRecorded": false,
+        "mappingAndDirectionVerified": false,
+        "quantitativeClaimsVerifiedFromAllowedSource": false,
+        "noProtectedFullTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_europe_pmc_publication_draft_irinotecan_ugt1a1_sn38_pk_ohirag2026_4212",
+      "recordId": "candidate_europe_pmc_publication_draft_irinotecan_ugt1a1_sn38_pk_ohirag2026_42122174_search_europepmc_42122174_10_3390_cancers18091377_8b2c7e9d2c",
+      "sourceKey": "literature",
+      "sourceName": "Europe PMC",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "pmidOrDoiOpened": false,
+        "legalAccessChecked": false,
+        "abstractOrFullTextBoundaryRecorded": false,
+        "mappingAndDirectionVerified": false,
+        "quantitativeClaimsVerifiedFromAllowedSource": false,
+        "noProtectedFullTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_openalex_publication_draft_irinotecan_ugt1a1_sn38_pk_innocenti2004_150",
+      "recordId": "candidate_openalex_publication_draft_irinotecan_ugt1a1_sn38_pk_innocenti2004_15007088_search_openalex_15007088_10_1200_jco_2004_07_173_a14e28c2be",
+      "sourceKey": "literature",
+      "sourceName": "OpenAlex",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "pmidOrDoiOpened": false,
+        "legalAccessChecked": false,
+        "abstractOrFullTextBoundaryRecorded": false,
+        "mappingAndDirectionVerified": false,
+        "quantitativeClaimsVerifiedFromAllowedSource": false,
+        "noProtectedFullTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_openalex_publication_draft_irinotecan_ugt1a1_sn38_pk_kroetz2006_168959",
+      "recordId": "candidate_openalex_publication_draft_irinotecan_ugt1a1_sn38_pk_kroetz2006_16895999_search_openalex_16895999_10_1200_jco_2006_07_2355_45cdae3287",
+      "sourceKey": "literature",
+      "sourceName": "OpenAlex",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "pmidOrDoiOpened": false,
+        "legalAccessChecked": false,
+        "abstractOrFullTextBoundaryRecorded": false,
+        "mappingAndDirectionVerified": false,
+        "quantitativeClaimsVerifiedFromAllowedSource": false,
+        "noProtectedFullTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_openalex_publication_draft_irinotecan_ugt1a1_sn38_pk_mathijssen2001_11",
+      "recordId": "candidate_openalex_publication_draft_irinotecan_ugt1a1_sn38_pk_mathijssen2001_11489791_search_openalex_11489791_1270059bf5",
+      "sourceKey": "literature",
+      "sourceName": "OpenAlex",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "pmidOrDoiOpened": false,
+        "legalAccessChecked": false,
+        "abstractOrFullTextBoundaryRecorded": false,
+        "mappingAndDirectionVerified": false,
+        "quantitativeClaimsVerifiedFromAllowedSource": false,
+        "noProtectedFullTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_openalex_publication_draft_tacrolimus_cyp3a5_abcb1_dose_trough_haufroi",
+      "recordId": "candidate_openalex_publication_draft_tacrolimus_cyp3a5_abcb1_dose_trough_haufroid2006_17049058_search_openalex_17049058_10_1111_j_1600_6143_2006_01518_x_391bf65f06",
+      "sourceKey": "literature",
+      "sourceName": "OpenAlex",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "pmidOrDoiOpened": false,
+        "legalAccessChecked": false,
+        "abstractOrFullTextBoundaryRecorded": false,
+        "mappingAndDirectionVerified": false,
+        "quantitativeClaimsVerifiedFromAllowedSource": false,
+        "noProtectedFullTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_pubmed_publication_draft_irinotecan_ugt1a1_sn38_pk_ando2002_11805731_s",
+      "recordId": "candidate_pubmed_publication_draft_irinotecan_ugt1a1_sn38_pk_ando2002_11805731_search_pubmed_11805731_10_1097_00007691_200202000_00018_d4b9e5ac1a",
+      "sourceKey": "literature",
+      "sourceName": "PubMed",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "pmidOrDoiOpened": false,
+        "legalAccessChecked": false,
+        "abstractOrFullTextBoundaryRecorded": false,
+        "mappingAndDirectionVerified": false,
+        "quantitativeClaimsVerifiedFromAllowedSource": false,
+        "noProtectedFullTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_pubmed_publication_draft_irinotecan_ugt1a1_sn38_pk_bvalenzuela2013_nul",
+      "recordId": "candidate_pubmed_publication_draft_irinotecan_ugt1a1_sn38_pk_bvalenzuela2013_null_search_semanticscholar_10_1158_1538_7445_am2013_2213_f009c80ab3",
+      "sourceKey": "literature",
+      "sourceName": "PubMed",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "pmidOrDoiOpened": false,
+        "legalAccessChecked": false,
+        "abstractOrFullTextBoundaryRecorded": false,
+        "mappingAndDirectionVerified": false,
+        "quantitativeClaimsVerifiedFromAllowedSource": false,
+        "noProtectedFullTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_pubmed_publication_draft_irinotecan_ugt1a1_sn38_pk_bvalenzuelajimnez20",
+      "recordId": "candidate_pubmed_publication_draft_irinotecan_ugt1a1_sn38_pk_bvalenzuelajimnez2013_23789755_search_semanticscholar_23789755_10_7399_fh_2013_37_2_386_c52c2ec851",
+      "sourceKey": "literature",
+      "sourceName": "PubMed",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "pmidOrDoiOpened": false,
+        "legalAccessChecked": false,
+        "abstractOrFullTextBoundaryRecorded": false,
+        "mappingAndDirectionVerified": false,
+        "quantitativeClaimsVerifiedFromAllowedSource": false,
+        "noProtectedFullTextCopied": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "STUDY_DB",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_96e91b71eb",
+      "recordId": "candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_96e91b71eb",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_9bda33c6ab",
+      "recordId": "candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_9bda33c6ab",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_a08d72b6c6",
+      "recordId": "candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_a08d72b6c6",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_af04deb49a",
+      "recordId": "candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_af04deb49a",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_b6a397d84a",
+      "recordId": "candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_b6a397d84a",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_be9e1fe512",
+      "recordId": "candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_be9e1fe512",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_d9e595d14f",
+      "recordId": "candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_d9e595d14f",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_dfae906871",
+      "recordId": "candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_dfae906871",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_fef93d9a90",
+      "recordId": "candidate_clinpgx_drug_label_cyp2b6_cyp2c19_cyp2c9_cyp3a5_prasugrel_fef93d9a90",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2c19_cyp3a4_cyp3a5_clinpgx_drug_label_pa16610480",
+      "recordId": "candidate_clinpgx_drug_label_cyp2c19_cyp3a4_cyp3a5_clinpgx_drug_label_pa166104808_2726d1698a",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2c19_cyp3a4_cyp3a5_clinpgx_drug_label_pa16610480",
+      "recordId": "candidate_clinpgx_drug_label_cyp2c19_cyp3a4_cyp3a5_clinpgx_drug_label_pa166104808_834122a869",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2c19_cyp3a4_cyp3a5_clinpgx_drug_label_pa16610480",
+      "recordId": "candidate_clinpgx_drug_label_cyp2c19_cyp3a4_cyp3a5_clinpgx_drug_label_pa166104808_e9adf673ce",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2c9_vkorc1_warfarin_clinpgx_drug_label_pa1661277",
+      "recordId": "candidate_clinpgx_drug_label_cyp2c9_vkorc1_warfarin_clinpgx_drug_label_pa166127732_3c7a12fcfb",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp2c9_vkorc1_warfarin_clinpgx_drug_label_pa1661277",
+      "recordId": "candidate_clinpgx_drug_label_cyp2c9_vkorc1_warfarin_clinpgx_drug_label_pa166127732_91c9b3b24c",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp3a4_cyp3a5_nr1i2_ugt1a1_dolutegravir_26e51221f7",
+      "recordId": "candidate_clinpgx_drug_label_cyp3a4_cyp3a5_nr1i2_ugt1a1_dolutegravir_26e51221f7",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp3a4_cyp3a5_nr1i2_ugt1a1_dolutegravir_53aac0cee9",
+      "recordId": "candidate_clinpgx_drug_label_cyp3a4_cyp3a5_nr1i2_ugt1a1_dolutegravir_53aac0cee9",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp3a4_cyp3a5_tacrolimus_clinpgx_drug_label_pa16623",
+      "recordId": "candidate_clinpgx_drug_label_cyp3a4_cyp3a5_tacrolimus_clinpgx_drug_label_pa166234801_ca3b808fe0",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_cyp3a4_cyp3a5_tacrolimus_clinpgx_drug_label_pa16623",
+      "recordId": "candidate_clinpgx_drug_label_cyp3a4_cyp3a5_tacrolimus_clinpgx_drug_label_pa166234801_cd8c7c1c64",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_nudt15_tpmt_azathioprine_clinpgx_drug_label_pa16610",
+      "recordId": "candidate_clinpgx_drug_label_nudt15_tpmt_azathioprine_clinpgx_drug_label_pa166104782_c80168ee23",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    },
+    {
+      "schema": "diognosis.source-specific-review-decision.v1",
+      "decisionId": "source_specific_template_candidate_clinpgx_drug_label_nudt15_tpmt_azathioprine_clinpgx_drug_label_pa16618",
+      "recordId": "candidate_clinpgx_drug_label_nudt15_tpmt_azathioprine_clinpgx_drug_label_pa166184112_871c6cef91",
+      "sourceKey": "clinpgx",
+      "sourceName": "ClinPGx",
+      "decision": "needs_review",
+      "reviewer": {
+        "name": "",
+        "role": "",
+        "organization": ""
+      },
+      "reviewDate": "",
+      "sourceChecks": {
+        "sourceObjectOpened": false,
+        "currentClinPgxObjectVerified": false,
+        "drugGeneMarkerMappingVerified": false,
+        "evidenceLevelRecorded": false,
+        "openTargetsDerivedRowsCrossCheckedWhenApplicable": false,
+        "ccBySaAttributionChecked": false,
+        "noScoringOrSeverityPromotion": false
+      },
+      "rationale": "",
+      "promotion": {
+        "target": "PGX_OR_LABEL_CONTEXT_DRAFT",
+        "allowCuratedDraft": false,
+        "allowScoring": false,
+        "allowPublicSeverity": false
+      },
+      "stillPendingProfessionalReview": true,
+      "professionalReviewStatus": "pending",
+      "canAffectScoring": false,
+      "canAffectPublicSeverity": false
+    }
+  ]
+}
