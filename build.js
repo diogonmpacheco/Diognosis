@@ -63,6 +63,7 @@ const MODULE_ORDER = [
   'engine/riskMarkerFindingEngine.js', // risk-marker findings and conservative causal paths
   'engine/findingEngine.js',      // normalized Interaction Finding model
   'engine/warningPathEngine.js',  // per-warning causal path objects
+  'engine/clinicalConcernEngine.js', // Overview clinical concern grouping/presentation layer
   'engine/mechanisticPredictionEngine.js', // experimental route/metabolite predictions
 
   // ── UI layer (depends on engine + data) ──

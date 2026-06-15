@@ -10,6 +10,7 @@ function renderReviewSummary() {
     return [];
   }
   const findings = getReviewTabFindings();
+  const concerns = getReviewClinicalConcerns(findings);
   const severeCritical = findings.filter(finding => ["severe", "critical"].includes(finding.severity));
   const pendingReview = findings.filter(finding => finding.reviewRequired !== false || finding.evidenceLadder?.professionalReviewStatus !== "reviewed");
   const sourceLinked = findings.filter(finding => finding.evidenceLadder?.sourceLinked || (finding.evidenceRefs || []).length);
@@ -26,9 +27,11 @@ function renderReviewSummary() {
     ${renderReviewSummaryTile(activeMetabolite.length, "Metabolite Involved", "Parent, active, or toxic metabolite reasoning present.")}
     ${renderReviewSummaryTile(genotype.length, "Gene / PGx", "Genotype or phenoconversion context present.")}
     ${renderReviewSummaryTile(timing.length, "Timing", "Persistence, washout, recovery, or induction context present.")}
+    ${renderReviewSummaryTile(concerns.length, "Clinical Concerns", "Grouped Overview presentation objects.")}
   </div>
   <div class="quality-list">
     <div class="quality-item"><strong>Review scope:</strong> raw warning paths, evidence review queue, interaction grid, data diagnostics, scenario snapshots, and contribution links are grouped here for auditing.</div>
+    ${renderClinicalConcernReviewList(concerns)}
   </div>`;
   return findings;
 }
@@ -123,6 +126,30 @@ function getReviewTabFindings() {
   return typeof buildInteractionFindings === "function"
     ? buildInteractionFindings(activeStack, activeGenotype || {}, { interactions:activeStack.length >= 2 ? calcRisk().interactions : [] })
     : [];
+}
+
+function getReviewClinicalConcerns(findings = null) {
+  if (Array.isArray(currentClinicalConcerns) && currentClinicalConcerns.length) return currentClinicalConcerns;
+  if (typeof getRenderComputationCache === "function") return getRenderComputationCache().clinicalConcerns || [];
+  if (typeof buildClinicalConcerns === "function") {
+    return buildClinicalConcerns(findings || getReviewTabFindings(), { stack:activeStack, genotypeState:activeGenotype || {} });
+  }
+  return [];
+}
+
+function renderClinicalConcernReviewList(concerns = []) {
+  if (!concerns.length) return "";
+  return `<div class="quality-item">
+    <strong>Clinical Concern Groups:</strong>
+    <div class="review-diagnostic-grid" style="margin-top:8px">
+      ${concerns.slice(0, 8).map(concern => `<div class="review-diagnostic-card">
+        <div class="review-diagnostic-title">${safeHtml(concern.title || concern.id)}</div>
+        <div class="review-diagnostic-meta">${safeHtml(concern.clinicalConcernDomain || "domain unknown")} · key: ${safeHtml(concern.clinicalConcernKey || concern.id)}</div>
+        <div class="review-diagnostic-meta">primary: ${safeHtml(concern.primaryFindingId || "unknown")} · supporting: ${safeHtml(String((concern.supportingSignals || []).length))} · detail-only: ${safeHtml(String(concern.detailOnlyCount || 0))} · hidden: ${safeHtml(String(concern.hiddenCount || 0))}</div>
+        <div class="review-diagnostic-meta">source ids: ${safeHtml((concern.sourceFindings || []).map(row => row.id).slice(0, 5).join(", ") || "none")}</div>
+      </div>`).join("")}
+    </div>
+  </div>`;
 }
 
 function renderReviewSummaryTile(value, label, note) {

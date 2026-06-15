@@ -27,6 +27,7 @@
     "audit:scenario-snapshots": "node scripts/audit/scenario-snapshot-audit.js",
     "audit:metabolite-coverage": "node scripts/audit/metabolite-coverage-audit.js",
     "audit:mechanistic-gaps": "node scripts/audit/mechanistic-curation-gaps.js",
+    "audit:overview-fragmentation": "node scripts/audit/overview-fragmentation-audit.js",
     "enrich": "node scripts/enrich/pubmed-enrich.js",
     "enrich:pubmed": "node scripts/enrich/pubmed-enrich.js --providers pubmed",
     "enrich:batch": "node scripts/enrich/run-batch.js",

@@ -1591,6 +1591,76 @@ assert(
   'Generated UI/data surface should preserve long risk-marker and metabolite labels'
 );
 
+const overviewConsolidationRegression = window.eval(`(() => {
+  function resetScenario(stack, setup) {
+    activeStack = stack.slice();
+    userGenetics = {};
+    activeGenotype = {};
+    Object.keys(GENOTYPE_EFFECTS || {}).forEach(g => activeGenotype[g] = GENOTYPE_PHENOTYPE.NM);
+    Object.keys(GENOTYPE_RISK_EFFECTS || {}).forEach(g => activeGenotype[g] = GENOTYPE_RISK_STATUS.ABSENT);
+    renderComputationCache = null;
+    currentInteractionFindings = [];
+    currentClinicalConcerns = [];
+    if (typeof setup === "function") setup();
+    renderAll();
+    setTab("overview");
+    const cache = getRenderComputationCache();
+    setTab("review");
+    return {
+      concerns: (cache.clinicalConcerns || []).map(c => ({
+        title:c.title,
+        domain:c.clinicalConcernDomain,
+        key:c.clinicalConcernKey,
+        support:(c.supportingSignals || []).map(s => s.label),
+        sourceTypes:(c.sourceFindings || []).map(s => s.type),
+        rawFindingCount:c.rawFindingCount || 0,
+      })),
+      raw: (cache.findings || []).map(f => ({ id:f.id, type:f.type, title:f.title })),
+      overviewText: document.getElementById("findingBody")?.textContent || "",
+      reviewText: document.getElementById("reviewSummaryBody")?.textContent || "",
+      genesText: document.getElementById("activeMoietyBody")?.textContent || "",
+    };
+  }
+  return {
+    tacrolimus: resetScenario(["Tacrolimus", "Fluconazole"]),
+    simvastatin: resetScenario(["Simvastatin", "Clarithromycin"]),
+    codeine: resetScenario(["Codeine", "Fluoxetine"], () => { activeGenotype.CYP2D6 = GENOTYPE_PHENOTYPE.PM; }),
+    clopidogrel: resetScenario(["Clopidogrel", "Omeprazole"], () => { activeGenotype.CYP2C19 = GENOTYPE_PHENOTYPE.PM; }),
+    g6pd: resetScenario(["Rasburicase", "Primaquine", "Dapsone"], () => { activeGenotype["G6PD deficiency"] = GENOTYPE_RISK_STATUS.PRESENT; }),
+    washout: resetScenario(["Fluoxetine", "Paroxetine"]),
+  };
+})()`);
+const tacConcern = overviewConsolidationRegression.tacrolimus.concerns.find(c => /Tacrolimus exposure may rise with Fluconazole/i.test(c.title));
+assert(overviewConsolidationRegression.tacrolimus.concerns.length <= 4, 'Tacrolimus + fluconazole should consolidate to 1-4 Overview concerns');
+assert(tacConcern, `Tacrolimus + fluconazole should identify tacrolimus as the affected exposure concern: ${JSON.stringify(overviewConsolidationRegression.tacrolimus.concerns)}`);
+assert(!/Tacrolimus may raise Fluconazole exposure/i.test(overviewConsolidationRegression.tacrolimus.overviewText), 'Overview must not reverse tacrolimus/fluconazole direction');
+assert(!overviewConsolidationRegression.tacrolimus.concerns.some(c => /^CYP2C19|^CYP2C9/i.test(c.title)), 'Tacrolimus scenario should not expose CYP2C19/CYP2C9 as standalone Overview cards');
+assert(tacConcern.support.some(label => /CYP3A4|CYP2C9|parent-metabolite/i.test(label)), 'Tacrolimus concern should show CYP/metabolite supporting signals');
+assert(/Clinical Concern Groups/i.test(overviewConsolidationRegression.tacrolimus.reviewText), 'Review should expose clinical concern grouping diagnostics');
+
+const simConcern = overviewConsolidationRegression.simvastatin.concerns.find(c => /Simvastatin exposure may rise with Clarithromycin/i.test(c.title));
+assert(simConcern, 'Simvastatin + clarithromycin should identify simvastatin as affected');
+assert(simConcern.support.some(label => /active-moiety|parent exposure|metabolite/i.test(label)), 'Simvastatin concern should group active-moiety support');
+
+const codeineConcern = overviewConsolidationRegression.codeine.concerns.find(c => /Codeine activation/i.test(c.title));
+assert(codeineConcern, 'Codeine + fluoxetine + CYP2D6 PM should keep activation failure primary');
+assert(/Morphine|activation/i.test(codeineConcern.title), 'Codeine activation concern should identify morphine formation or activation');
+assert(!overviewConsolidationRegression.codeine.concerns.some(c => /^CYP2D6 behaves/i.test(c.title)), 'CYP2D6 phenoconversion should not be a duplicate Overview primary');
+
+const clopidogrelConcern = overviewConsolidationRegression.clopidogrel.concerns.find(c => /Clopidogrel activation/i.test(c.title));
+assert(clopidogrelConcern, 'Clopidogrel + omeprazole + CYP2C19 PM should keep activation failure primary');
+assert(!overviewConsolidationRegression.clopidogrel.concerns.some(c => /^CYP2C19 behaves/i.test(c.title)), 'CYP2C19 phenoconversion should be grouped or demoted');
+
+const g6pdConcern = overviewConsolidationRegression.g6pd.concerns.find(c => /G6PD/i.test(c.title));
+assert(g6pdConcern, 'G6PD oxidant stack should show a primary risk-marker concern');
+assert(g6pdConcern.support.some(label => /Dapsone|Primaquine|Rasburicase/i.test(label)), 'G6PD concern should group toxic-metabolite context');
+assert(overviewConsolidationRegression.g6pd.concerns.length <= 4, 'G6PD toxic-metabolite rows should not duplicate into many primary concerns');
+
+assert(
+  overviewConsolidationRegression.washout.concerns.some(c => /persist|washout|Norfluoxetine/i.test(c.title)),
+  'Persistence/washout scenario should retain a timing concern when relevant'
+);
+
 assert(browserErrors.length === 0, `Browser errors:\n${browserErrors.join('\n')}`);
 
 dom.window.close();

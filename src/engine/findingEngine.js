@@ -290,23 +290,27 @@ function highestFindingConfidence(values = []) {
 }
 
 function makeFindingTitle(row, type) {
+  const roles = inferKnownInteractionVictimPerpetrator(row);
+  const victim = roles.victims[0] || row.drug2;
+  const perpetrator = roles.perpetrators[0] || row.drug1;
   if (type === "active_moiety") {
     if (/activation|efficacy|active metabolite|prodrug/i.test(row.effect || row.mechanism || "")) {
-      return `${row.drug1} may change ${row.drug2} activation`;
+      return `${victim} activation may change with ${perpetrator}`;
     }
-    return `${row.drug1} may shift ${row.drug2} active moiety`;
+    return `${victim} active moiety may shift with ${perpetrator}`;
   }
-  if (type === "transporter") return `${row.drug1} may alter ${row.drug2} transport`;
+  if (type === "transporter") return `${victim} transport may change with ${perpetrator}`;
   if (type === "receptor_burden") return `${row.drug1} and ${row.drug2} may add burden`;
   if (type === "mechanistic_pathway") return `${row.drug1} and ${row.drug2} have a pathway signal`;
-  if (/decrease|reduced|lower|induces/i.test(row.effect || row.mechanism || "")) return `${row.drug1} may lower ${row.drug2} exposure`;
-  if (/increase|higher|raises|toxicity|inhibits/i.test(row.effect || row.mechanism || "")) return `${row.drug1} may raise ${row.drug2} exposure`;
+  if (/decrease|reduced|lower|induces|↓|loss|failure/i.test(row.effect || row.mechanism || "")) return `${victim} exposure may fall with ${perpetrator}`;
+  if (/increase|higher|raises|toxicity|inhibits|↑|accumul/i.test(row.effect || row.mechanism || "")) return `${victim} exposure may rise with ${perpetrator}`;
   return `${row.drug1} + ${row.drug2} interaction finding`;
 }
 
 function buildFindingActors(row, pair, pathway) {
   const actors = [];
-  for (const name of pair) actors.push({ id:name, type:"parent_drug", direction:findingDirectionForActor(name, row) });
+  const roles = inferKnownInteractionVictimPerpetrator(row);
+  for (const name of pair) actors.push({ id:name, type:"parent_drug", direction:findingDirectionForActor(name, row, roles) });
   if (pathway) actors.push({ id:pathway, type:isFindingGeneLike(pathway) ? "enzyme" : "pathway", direction:findingPathwayDirection(row) });
   for (const name of row.contributorDrugs || []) {
     if (!actors.some(actor => actor.id === name)) actors.push({ id:name, type:"parent_drug", direction:"involved" });
@@ -314,13 +318,72 @@ function buildFindingActors(row, pair, pathway) {
   return actors;
 }
 
-function findingDirectionForActor(name, row) {
-  if (name === row.drug1 && /inhibit|block|strong|induce/i.test(`${row.mechanism || ""} ${row.effect || ""}`)) return row.type === "induction" ? "induces" : "inhibits";
-  if (name === row.drug2) {
+function findingDirectionForActor(name, row, roles = null) {
+  const inferred = roles || inferKnownInteractionVictimPerpetrator(row);
+  if (inferred.perpetrators.includes(name)) return /induc/i.test(`${row.type || ""} ${row.category || ""} ${row.mechanism || ""}`) ? "induces" : "inhibits";
+  if (inferred.victims.includes(name)) {
     if (/↓|decrease|reduced|lower|loss|blocked/i.test(row.effect || "")) return "down";
     if (/↑|increase|higher|raises|toxicity|accumul/i.test(row.effect || "")) return "up";
+    return "affected";
   }
   return "involved";
+}
+
+function inferKnownInteractionVictimPerpetrator(row = {}) {
+  const pair = [row.drug1, row.drug2].filter(Boolean);
+  const text = `${row.effect || ""} ${row.mechanism || ""} ${row.clinicalAction || ""} ${row.management || ""}`;
+  const effectVictim = pair.find(name => clinicalTextNamesDrugWithEffect(row.effect || "", name));
+  if (effectVictim) return {
+    victims: [effectVictim],
+    perpetrators: pair.filter(name => name !== effectVictim),
+  };
+  const namedVictim = pair.find(name => clinicalTextNamesDrugWithEffect(text, name));
+  if (namedVictim) return {
+    victims: [namedVictim],
+    perpetrators: pair.filter(name => name !== namedVictim),
+  };
+  const routeDirection = inferKnownInteractionByRoutes(row, pair);
+  if (routeDirection) return routeDirection;
+  if (/inhibit|block|induc|strong|competitive|mechanism-based/i.test(text) && row.drug1 && row.drug2) {
+    return { victims:[row.drug2], perpetrators:[row.drug1] };
+  }
+  return {
+    victims: row.drug2 ? [row.drug2] : pair,
+    perpetrators: row.drug1 ? [row.drug1] : [],
+  };
+}
+
+function clinicalTextNamesDrugWithEffect(text, drugName) {
+  const escaped = String(drugName || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  if (!escaped) return false;
+  const nearDrug = new RegExp(`(↑|↓|increase|increased|raises|raise|higher|lower|reduced|decrease|toxicity|levels|exposure|efficacy|failure|risk|trough|auc|concentration)[^.;]{0,80}\\b${escaped}\\b|\\b${escaped}\\b[^.;]{0,90}(↑|↓|increase|increased|raises|raise|higher|lower|reduced|decrease|toxicity|levels|exposure|efficacy|failure|risk|trough|auc|concentration)`, "i");
+  return nearDrug.test(text);
+}
+
+function inferKnownInteractionByRoutes(row = {}, pair = []) {
+  if (pair.length < 2 || typeof getDrug !== "function") return null;
+  const [a, b] = pair;
+  const aDrug = getDrug(a);
+  const bDrug = getDrug(b);
+  if (!aDrug || !bDrug) return null;
+  const aActsOnB = drugAffectsDrugRoutes(aDrug, bDrug, row);
+  const bActsOnA = drugAffectsDrugRoutes(bDrug, aDrug, row);
+  if (aActsOnB && !bActsOnA) return { victims:[b], perpetrators:[a] };
+  if (bActsOnA && !aActsOnB) return { victims:[a], perpetrators:[b] };
+  return null;
+}
+
+function drugAffectsDrugRoutes(perpetratorDrug, victimDrug, row = {}) {
+  const routeTargets = new Set((victimDrug.routes || []).map(route => normalizeFindingToken(route.enzyme)).filter(Boolean));
+  if (!routeTargets.size) return false;
+  const effectTargets = [
+    ...(perpetratorDrug.inh || []).map(entry => entry.target),
+    ...(perpetratorDrug.ind || []).map(entry => entry.target),
+    ...(perpetratorDrug.metInh || []).map(entry => entry.target),
+    row.enzyme,
+    row.affectedPathway,
+  ].map(normalizeFindingToken).filter(Boolean);
+  return effectTargets.some(target => routeTargets.has(target));
 }
 
 function findingPathwayDirection(row) {

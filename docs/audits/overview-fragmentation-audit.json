@@ -1,0 +1,619 @@
+{
+  "generatedAt": "2026-06-15T10:12:56.251Z",
+  "scenarioCount": 15,
+  "skipped": 0,
+  "failed": 0,
+  "rows": [
+    {
+      "id": "tacrolimus-fluconazole",
+      "name": "Tacrolimus + fluconazole",
+      "stack": [
+        "Tacrolimus",
+        "Fluconazole"
+      ],
+      "genotype": {},
+      "riskMarkers": {},
+      "rawFindingCount": 10,
+      "concernCount": 2,
+      "titles": [
+        "Tacrolimus exposure may rise with Fluconazole",
+        "Fluconazole may persist after stopping"
+      ],
+      "domains": [
+        "exposure_increase_toxicity",
+        "washout_or_persistence"
+      ],
+      "groupedSignals": [
+        {
+          "key": "domain:exposure_increase_toxicity|victim:tacrolimus|perp:|path:",
+          "title": "Tacrolimus exposure may rise with Fluconazole",
+          "sourceFindings": 7,
+          "supportingSignals": 4,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        },
+        {
+          "key": "domain:washout_or_persistence|actor:fluconazole|parent:fluconazole",
+          "title": "Fluconazole may persist after stopping",
+          "sourceFindings": 2,
+          "supportingSignals": 1,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "simvastatin-clarithromycin",
+      "name": "Simvastatin + clarithromycin",
+      "stack": [
+        "Simvastatin",
+        "Clarithromycin"
+      ],
+      "genotype": {},
+      "riskMarkers": {},
+      "rawFindingCount": 7,
+      "concernCount": 2,
+      "titles": [
+        "Simvastatin exposure may rise with Clarithromycin",
+        "Clarithromycin may persist after stopping"
+      ],
+      "domains": [
+        "exposure_increase_toxicity",
+        "washout_or_persistence"
+      ],
+      "groupedSignals": [
+        {
+          "key": "domain:exposure_increase_toxicity|victim:simvastatin|perp:|path:",
+          "title": "Simvastatin exposure may rise with Clarithromycin",
+          "sourceFindings": 5,
+          "supportingSignals": 2,
+          "detailOnlyCount": 1,
+          "hiddenCount": 0
+        },
+        {
+          "key": "domain:washout_or_persistence|actor:clarithromycin|parent:clarithromycin",
+          "title": "Clarithromycin may persist after stopping",
+          "sourceFindings": 2,
+          "supportingSignals": 1,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "rifampin-simvastatin",
+      "name": "Rifampin + simvastatin",
+      "stack": [
+        "Rifampin",
+        "Simvastatin"
+      ],
+      "genotype": {},
+      "riskMarkers": {},
+      "rawFindingCount": 10,
+      "concernCount": 3,
+      "titles": [
+        "Simvastatin, Rifampin: interaction review prompt",
+        "Simvastatin active metabolite 6'-Hydroxy-SVA may rise",
+        "Rifampin may persist after stopping"
+      ],
+      "domains": [
+        "model_only_mechanistic_context",
+        "active_metabolite_accumulation",
+        "washout_or_persistence"
+      ],
+      "groupedSignals": [
+        {
+          "key": "domain:model_only_mechanistic_context|victim:simvastatin|perp:rifampin|path:",
+          "title": "Simvastatin, Rifampin: interaction review prompt",
+          "sourceFindings": 1,
+          "supportingSignals": 0,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        },
+        {
+          "key": "domain:active_metabolite_accumulation|victim:simvastatin|perp:rifampin|path:",
+          "title": "Simvastatin active metabolite 6'-Hydroxy-SVA may rise",
+          "sourceFindings": 1,
+          "supportingSignals": 0,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        },
+        {
+          "key": "domain:washout_or_persistence|actor:rifampin|parent:rifampin",
+          "title": "Rifampin may persist after stopping",
+          "sourceFindings": 2,
+          "supportingSignals": 1,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "codeine-fluoxetine-cyp2d6-pm",
+      "name": "Codeine + fluoxetine + CYP2D6 PM",
+      "stack": [
+        "Codeine",
+        "Fluoxetine"
+      ],
+      "genotype": {
+        "CYP2D6": "PM"
+      },
+      "riskMarkers": {},
+      "rawFindingCount": 11,
+      "concernCount": 2,
+      "titles": [
+        "Codeine activation to Morphine may be reduced with Fluoxetine",
+        "Norfluoxetine may persist after stopping"
+      ],
+      "domains": [
+        "activation_failure",
+        "washout_or_persistence"
+      ],
+      "groupedSignals": [
+        {
+          "key": "domain:activation_failure|victim:codeine|perp:|path:",
+          "title": "Codeine activation to Morphine may be reduced with Fluoxetine",
+          "sourceFindings": 2,
+          "supportingSignals": 1,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        },
+        {
+          "key": "domain:washout_or_persistence|actor:norfluoxetine|parent:fluoxetine",
+          "title": "Norfluoxetine may persist after stopping",
+          "sourceFindings": 3,
+          "supportingSignals": 1,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "clopidogrel-omeprazole-cyp2c19-pm",
+      "name": "Clopidogrel + omeprazole + CYP2C19 PM",
+      "stack": [
+        "Clopidogrel",
+        "Omeprazole"
+      ],
+      "genotype": {
+        "CYP2C19": "PM"
+      },
+      "riskMarkers": {},
+      "rawFindingCount": 8,
+      "concernCount": 1,
+      "titles": [
+        "Clopidogrel activation to Active thiol metabolite may be reduced with Omeprazole"
+      ],
+      "domains": [
+        "activation_failure"
+      ],
+      "groupedSignals": [
+        {
+          "key": "domain:activation_failure|victim:clopidogrel|perp:|path:",
+          "title": "Clopidogrel activation to Active thiol metabolite may be reduced with Omeprazole",
+          "sourceFindings": 3,
+          "supportingSignals": 1,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "irinotecan-ugt1a1-pm",
+      "name": "Irinotecan + UGT1A1 PM",
+      "stack": [
+        "Irinotecan"
+      ],
+      "genotype": {
+        "UGT1A1": "PM"
+      },
+      "riskMarkers": {},
+      "rawFindingCount": 2,
+      "concernCount": 1,
+      "titles": [
+        "SN-38 may accumulate from Irinotecan"
+      ],
+      "domains": [
+        "toxic_metabolite_accumulation"
+      ],
+      "groupedSignals": [
+        {
+          "key": "domain:toxic_metabolite_accumulation|victim:irinotecan|perp:|path:ces1_ces2",
+          "title": "SN-38 may accumulate from Irinotecan",
+          "sourceFindings": 1,
+          "supportingSignals": 0,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "capecitabine-dpyd-pm",
+      "name": "Capecitabine + DPYD PM",
+      "stack": [
+        "Capecitabine"
+      ],
+      "genotype": {
+        "DPYD": "PM"
+      },
+      "riskMarkers": {},
+      "rawFindingCount": 2,
+      "concernCount": 1,
+      "titles": [
+        "5-Fluorouracil may accumulate from Capecitabine"
+      ],
+      "domains": [
+        "toxic_metabolite_accumulation"
+      ],
+      "groupedSignals": [
+        {
+          "key": "domain:toxic_metabolite_accumulation|victim:capecitabine|perp:|path:ces_tp",
+          "title": "5-Fluorouracil may accumulate from Capecitabine",
+          "sourceFindings": 1,
+          "supportingSignals": 0,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "azathioprine-allopurinol-tpmt-nudt15-pm",
+      "name": "Azathioprine + allopurinol + TPMT/NUDT15 PM",
+      "stack": [
+        "Azathioprine",
+        "Allopurinol"
+      ],
+      "genotype": {
+        "TPMT": "PM",
+        "NUDT15": "PM"
+      },
+      "riskMarkers": {},
+      "rawFindingCount": 4,
+      "concernCount": 2,
+      "titles": [
+        "Azathioprine exposure may rise with Allopurinol",
+        "6-Thioguanine nucleotides (6-TGN) may accumulate from Azathioprine"
+      ],
+      "domains": [
+        "exposure_increase_toxicity",
+        "toxic_metabolite_accumulation"
+      ],
+      "groupedSignals": [
+        {
+          "key": "domain:exposure_increase_toxicity|victim:azathioprine|perp:|path:",
+          "title": "Azathioprine exposure may rise with Allopurinol",
+          "sourceFindings": 3,
+          "supportingSignals": 2,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        },
+        {
+          "key": "domain:toxic_metabolite_accumulation|victim:azathioprine|perp:|path:hprt_fpgs",
+          "title": "6-Thioguanine nucleotides (6-TGN) may accumulate from Azathioprine",
+          "sourceFindings": 1,
+          "supportingSignals": 0,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "g6pd-oxidant-stack",
+      "name": "G6PD oxidant stack",
+      "stack": [
+        "Rasburicase",
+        "Primaquine",
+        "Dapsone"
+      ],
+      "genotype": {},
+      "riskMarkers": {
+        "G6PD deficiency": "present"
+      },
+      "rawFindingCount": 5,
+      "concernCount": 1,
+      "titles": [
+        "G6PD deficiency increases oxidant hemolysis review priority"
+      ],
+      "domains": [
+        "risk_marker_context"
+      ],
+      "groupedSignals": [
+        {
+          "key": "domain:risk_marker_context|marker:g6pd_deficiency",
+          "title": "G6PD deficiency increases oxidant hemolysis review priority",
+          "sourceFindings": 5,
+          "supportingSignals": 4,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "succinylcholine-bche-ryr1",
+      "name": "Succinylcholine + BCHE/RYR1 context",
+      "stack": [
+        "Succinylcholine"
+      ],
+      "genotype": {
+        "BCHE": "PM"
+      },
+      "riskMarkers": {
+        "RYR1/CACNA1S MH variant": "present"
+      },
+      "rawFindingCount": 5,
+      "concernCount": 3,
+      "titles": [
+        "BCHE low/no function increases prolonged paralysis review priority",
+        "RYR1/CACNA1S MH variant increases malignant hyperthermia review priority",
+        "Succinylcholine may rise"
+      ],
+      "domains": [
+        "risk_marker_context",
+        "risk_marker_context",
+        "exposure_increase_toxicity"
+      ],
+      "groupedSignals": [
+        {
+          "key": "domain:risk_marker_context|marker:bche_low_no_function",
+          "title": "BCHE low/no function increases prolonged paralysis review priority",
+          "sourceFindings": 1,
+          "supportingSignals": 0,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        },
+        {
+          "key": "domain:risk_marker_context|marker:ryr1_cacna1s_mh_variant",
+          "title": "RYR1/CACNA1S MH variant increases malignant hyperthermia review priority",
+          "sourceFindings": 1,
+          "supportingSignals": 0,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        },
+        {
+          "key": "domain:exposure_increase_toxicity|victim:succinylcholine|perp:|path:",
+          "title": "Succinylcholine may rise",
+          "sourceFindings": 3,
+          "supportingSignals": 1,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "warfarin-ibuprofen",
+      "name": "Warfarin + ibuprofen",
+      "stack": [
+        "Warfarin",
+        "Ibuprofen"
+      ],
+      "genotype": {},
+      "riskMarkers": {},
+      "rawFindingCount": 1,
+      "concernCount": 1,
+      "titles": [
+        "Warfarin exposure may rise with Ibuprofen"
+      ],
+      "domains": [
+        "exposure_increase_toxicity"
+      ],
+      "groupedSignals": [
+        {
+          "key": "domain:exposure_increase_toxicity|victim:warfarin|perp:|path:",
+          "title": "Warfarin exposure may rise with Ibuprofen",
+          "sourceFindings": 1,
+          "supportingSignals": 0,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "qtc-burden",
+      "name": "Haloperidol + azithromycin + methadone",
+      "stack": [
+        "Haloperidol",
+        "Azithromycin",
+        "Methadone"
+      ],
+      "genotype": {},
+      "riskMarkers": {},
+      "rawFindingCount": 11,
+      "concernCount": 4,
+      "titles": [
+        "Haloperidol exposure may rise with Azithromycin, Methadone",
+        "Pyridinium metabolite (HPP+) may persist after stopping",
+        "Azithromycin (unchanged, biliary) may persist after stopping",
+        "Desosaminyl-azithromycin may persist after stopping"
+      ],
+      "domains": [
+        "exposure_increase_toxicity",
+        "washout_or_persistence",
+        "washout_or_persistence",
+        "washout_or_persistence"
+      ],
+      "groupedSignals": [
+        {
+          "key": "domain:exposure_increase_toxicity|victim:haloperidol|perp:|path:",
+          "title": "Haloperidol exposure may rise with Azithromycin, Methadone",
+          "sourceFindings": 6,
+          "supportingSignals": 3,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        },
+        {
+          "key": "domain:washout_or_persistence|actor:pyridinium_metabolite_hpp|parent:haloperidol",
+          "title": "Pyridinium metabolite (HPP+) may persist after stopping",
+          "sourceFindings": 1,
+          "supportingSignals": 0,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        },
+        {
+          "key": "domain:washout_or_persistence|actor:azithromycin_unchanged_biliary|parent:azithromycin",
+          "title": "Azithromycin (unchanged, biliary) may persist after stopping",
+          "sourceFindings": 1,
+          "supportingSignals": 0,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        },
+        {
+          "key": "domain:washout_or_persistence|actor:desosaminyl_azithromycin|parent:azithromycin",
+          "title": "Desosaminyl-azithromycin may persist after stopping",
+          "sourceFindings": 1,
+          "supportingSignals": 0,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "sertraline-linezolid",
+      "name": "Sertraline + linezolid",
+      "stack": [
+        "Sertraline",
+        "Linezolid"
+      ],
+      "genotype": {},
+      "riskMarkers": {},
+      "rawFindingCount": 5,
+      "concernCount": 3,
+      "titles": [
+        "Sertraline exposure may rise with Linezolid",
+        "Linezolid may persist after stopping",
+        "N-Desmethylsertraline may persist after stopping"
+      ],
+      "domains": [
+        "exposure_increase_toxicity",
+        "washout_or_persistence",
+        "washout_or_persistence"
+      ],
+      "groupedSignals": [
+        {
+          "key": "domain:exposure_increase_toxicity|victim:sertraline|perp:|path:",
+          "title": "Sertraline exposure may rise with Linezolid",
+          "sourceFindings": 2,
+          "supportingSignals": 1,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        },
+        {
+          "key": "domain:washout_or_persistence|actor:linezolid|parent:linezolid",
+          "title": "Linezolid may persist after stopping",
+          "sourceFindings": 2,
+          "supportingSignals": 1,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        },
+        {
+          "key": "domain:washout_or_persistence|actor:n_desmethylsertraline|parent:sertraline",
+          "title": "N-Desmethylsertraline may persist after stopping",
+          "sourceFindings": 1,
+          "supportingSignals": 0,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "diazepam-morphine",
+      "name": "Diazepam + morphine",
+      "stack": [
+        "Diazepam",
+        "Morphine"
+      ],
+      "genotype": {},
+      "riskMarkers": {},
+      "rawFindingCount": 2,
+      "concernCount": 2,
+      "titles": [
+        "Diazepam exposure may rise with Morphine",
+        "Nordiazepam (desmethyldiazepam) may persist after stopping"
+      ],
+      "domains": [
+        "exposure_increase_toxicity",
+        "washout_or_persistence"
+      ],
+      "groupedSignals": [
+        {
+          "key": "domain:exposure_increase_toxicity|victim:diazepam|perp:|path:",
+          "title": "Diazepam exposure may rise with Morphine",
+          "sourceFindings": 1,
+          "supportingSignals": 0,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        },
+        {
+          "key": "domain:washout_or_persistence|actor:nordiazepam_desmethyldiazepam|parent:diazepam",
+          "title": "Nordiazepam (desmethyldiazepam) may persist after stopping",
+          "sourceFindings": 1,
+          "supportingSignals": 0,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "fluoxetine-paroxetine-washout",
+      "name": "Fluoxetine + paroxetine washout",
+      "stack": [
+        "Fluoxetine",
+        "Paroxetine"
+      ],
+      "genotype": {},
+      "riskMarkers": {},
+      "rawFindingCount": 16,
+      "concernCount": 3,
+      "titles": [
+        "Fluoxetine exposure may rise with Paroxetine",
+        "Norfluoxetine may persist after stopping",
+        "Paroxetine may persist after stopping"
+      ],
+      "domains": [
+        "exposure_increase_toxicity",
+        "washout_or_persistence",
+        "washout_or_persistence"
+      ],
+      "groupedSignals": [
+        {
+          "key": "domain:exposure_increase_toxicity|victim:fluoxetine|perp:|path:",
+          "title": "Fluoxetine exposure may rise with Paroxetine",
+          "sourceFindings": 5,
+          "supportingSignals": 2,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        },
+        {
+          "key": "domain:washout_or_persistence|actor:norfluoxetine|parent:fluoxetine",
+          "title": "Norfluoxetine may persist after stopping",
+          "sourceFindings": 3,
+          "supportingSignals": 1,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        },
+        {
+          "key": "domain:washout_or_persistence|actor:paroxetine|parent:paroxetine",
+          "title": "Paroxetine may persist after stopping",
+          "sourceFindings": 2,
+          "supportingSignals": 1,
+          "detailOnlyCount": 0,
+          "hiddenCount": 0
+        }
+      ],
+      "flags": []
+    }
+  ]
+}

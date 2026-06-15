@@ -47,6 +47,7 @@ function swapDrug(oldName, newName) {
 let viewMode = "search";
 let activeTab = "overview";
 let currentInteractionFindings = [];
+let currentClinicalConcerns = [];
 let renderComputationCache = null;
 let lazyRenderState = { evidenceKey:"", reviewKey:"" };
 let manualSectionToggleKeys = {};
@@ -142,6 +143,17 @@ function getRenderComputationCache() {
         timelineRows,
       })
     : [];
+  const clinicalConcerns = typeof buildClinicalConcerns === "function"
+    ? buildClinicalConcerns(findings, {
+        stack:activeStack,
+        genotypeState:safeGenotype,
+        interactions:risk.interactions || [],
+        activeMoietyRows,
+        riskMarkerRows,
+        phenoconversionRows,
+        timelineRows,
+      })
+    : findings;
   renderComputationCache = {
     key,
     risk,
@@ -150,6 +162,7 @@ function getRenderComputationCache() {
     phenoconversionRows,
     timelineRows,
     findings,
+    clinicalConcerns,
   };
   return renderComputationCache;
 }
@@ -293,24 +306,28 @@ function renderInteractionFindingsOverview(risk) {
     : (typeof buildInteractionFindings === "function"
       ? buildInteractionFindings(activeStack, activeGenotype || {}, { interactions:risk?.interactions || [] })
       : []);
+  const overviewFindings = typeof getRenderComputationCache === "function"
+    ? getRenderComputationCache().clinicalConcerns || findings
+    : (typeof buildClinicalConcerns === "function" ? buildClinicalConcerns(findings, { stack:activeStack, genotypeState:activeGenotype || {} }) : findings);
   currentInteractionFindings = findings;
-  if (!findings.length) {
+  currentClinicalConcerns = overviewFindings;
+  if (!overviewFindings.length) {
     if (activeStack.length < 2) {
       hideSectionAndClear("findingSection", "findingBody", "findingCount");
-      return findings;
+      return overviewFindings;
     }
     section.style.display = "";
     body.innerHTML = '<div class="finding-empty">No interaction findings for this stack yet. Evidence, genetics, metabolite, and timing context may still matter.</div>';
     if (count) count.textContent = "";
-    return findings;
+    return overviewFindings;
   }
   section.style.display = "";
-  if (count) count.textContent = `${findings.length} finding${findings.length === 1 ? "" : "s"}`;
-  body.innerHTML = findings.slice(0, 8).map(renderInteractionFindingCard).join("") +
-    (findings.length > 8
-      ? `<div class="finding-empty">Showing 8 of ${findings.length} ranked findings. Detailed interaction tables and raw warning paths are available in Review.</div>`
-      : `<div class="finding-empty">Detailed interaction tables and raw warning paths are available in Review.</div>`);
-  return findings;
+  if (count) count.textContent = `${overviewFindings.length} concern${overviewFindings.length === 1 ? "" : "s"}`;
+  body.innerHTML = overviewFindings.slice(0, 8).map(renderInteractionFindingCard).join("") +
+    (overviewFindings.length > 8
+      ? `<div class="finding-empty">Showing 8 of ${overviewFindings.length} grouped clinical concerns. Detailed engine rows and raw warning paths are available in Review.</div>`
+      : `<div class="finding-empty">Overview groups related pathway, metabolite, timing, and evidence signals into clinical concerns. Raw engine rows remain available in Review.</div>`);
+  return overviewFindings;
 }
 
 function renderInteractionFindingCard(finding) {
@@ -329,6 +346,7 @@ function renderInteractionFindingCard(finding) {
   const grouped = finding.groupedFindings?.length
     ? `<span class="finding-tag">${finding.groupedFindings.length + 1} grouped signals</span>`
     : "";
+  const supportingSignals = renderConcernSupportingSignals(finding);
   const evidenceRefs = (finding.evidenceRefs || []).length
     ? `<span class="finding-tag">${finding.evidenceRefs.length} evidence ref${finding.evidenceRefs.length === 1 ? "" : "s"}</span>`
     : '<span class="finding-tag warn">inferred/review required</span>';
@@ -350,6 +368,7 @@ function renderInteractionFindingCard(finding) {
       <div class="finding-detail"><strong>Evidence</strong>${evidenceLadder || safeHtml(finding.evidenceStatus || "pending professional review")}</div>
       <div class="finding-detail"><strong>Review status</strong>${finding.reviewRequired ? "Pending professional review" : "Professionally reviewed"}</div>
     </div>
+    ${supportingSignals}
     <div class="finding-meta">
       <span class="finding-tag type">${sourceLabel}</span>
       <span class="finding-tag">confidence: ${safeHtml(finding.confidence || "unknown")}</span>
@@ -362,6 +381,22 @@ function renderInteractionFindingCard(finding) {
       <summary>Why this appears</summary>
       ${whyHtml}
     </details>
+  </div>`;
+}
+
+function renderConcernSupportingSignals(finding) {
+  const signals = finding.supportingSignals || [];
+  if (!signals.length) return "";
+  const shown = signals.slice(0, 4);
+  return `<div class="concern-supporting">
+    <div class="concern-supporting-title">Supporting signals</div>
+    <ul>
+      ${shown.map(signal => `<li>
+        <span>${safeHtml(signal.label || "Related signal")}</span>
+        <small>${safeHtml(signal.sourceStatus || "review prompt")}</small>
+      </li>`).join("")}
+    </ul>
+    ${signals.length > shown.length ? `<div class="concern-supporting-more">+${signals.length - shown.length} more in Mechanisms / Review</div>` : ""}
   </div>`;
 }
 
