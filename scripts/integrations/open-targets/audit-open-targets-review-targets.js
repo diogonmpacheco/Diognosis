@@ -11,7 +11,29 @@ const PROMOTION_QUEUE_PATH = resolve(ROOT, 'src/data/generatedOpenTargetsPromoti
 const SCENARIOS_PATH = resolve(ROOT, 'tests/scenarios/diognosis-scenarios.json');
 const OUT_JS = resolve(ROOT, 'src/data/generatedOpenTargetsReviewTargets.js');
 const OUT_MD = resolve(ROOT, 'docs/OPEN_TARGETS_FIRST_REVIEW_TARGETS.md');
-const CHECK = process.argv.includes('--check');
+
+function parseArgs(argv) {
+  const args = {
+    promotionQueuePath: PROMOTION_QUEUE_PATH,
+    scenariosPath: SCENARIOS_PATH,
+    outJs: OUT_JS,
+    outMd: OUT_MD,
+    check: false,
+  };
+  for (let idx = 0; idx < argv.length; idx += 1) {
+    const arg = argv[idx];
+    if (arg === '--check') args.check = true;
+    else if (arg === '--promotion-queue') args.promotionQueuePath = resolve(argv[++idx]);
+    else if (arg === '--scenarios') args.scenariosPath = resolve(argv[++idx]);
+    else if (arg === '--out-js') args.outJs = resolve(argv[++idx]);
+    else if (arg === '--out-md') args.outMd = resolve(argv[++idx]);
+    else throw new Error(`Unknown argument: ${arg}`);
+  }
+  return args;
+}
+
+const ARGS = parseArgs(process.argv.slice(2));
+const CHECK = ARGS.check;
 
 function readJson(filePath) {
   return JSON.parse(readFileSync(filePath, 'utf8'));
@@ -72,10 +94,10 @@ function matchingMetaboliteRules(coverage, target) {
   );
 }
 
-function buildReport() {
+function buildReport(args = ARGS) {
   const source = readJson(TARGETS_PATH);
-  const queue = readPromotionQueue(PROMOTION_QUEUE_PATH);
-  const scenarios = readJson(SCENARIOS_PATH);
+  const queue = readPromotionQueue(args.promotionQueuePath);
+  const scenarios = readJson(args.scenariosPath);
   const scenarioIds = new Set((scenarios.scenarios || []).map(scenario => scenario.id));
   const coverage = loadDiognosisCoverage();
   const errors = [];
@@ -226,7 +248,7 @@ ${details}
 
 function writeIfChanged(filePath, content) {
   if (existsSync(filePath) && readFileSync(filePath, 'utf8') === content) return false;
-  if (CHECK) throw new Error(`${filePath.replace(`${ROOT}/`, '')} is stale. Run npm run audit:open-targets-review-targets.`);
+  if (CHECK) throw new Error(`${filePath.replace(`${ROOT}/`, '')} is stale. Run node scripts/audit/run.js open-targets-review-targets.`);
   mkdirSync(dirname(filePath), { recursive: true });
   writeFileSync(filePath, content, 'utf8');
   return true;
@@ -235,8 +257,8 @@ function writeIfChanged(filePath, content) {
 try {
   const report = buildReport();
   if (report.errors.length) throw new Error(report.errors.join('\n'));
-  const wroteJs = writeIfChanged(OUT_JS, renderJs(report));
-  const wroteMd = writeIfChanged(OUT_MD, renderMarkdown(report));
+  const wroteJs = writeIfChanged(ARGS.outJs, renderJs(report));
+  const wroteMd = writeIfChanged(ARGS.outMd, renderMarkdown(report));
   console.log(JSON.stringify({
     ok: true,
     check: CHECK,

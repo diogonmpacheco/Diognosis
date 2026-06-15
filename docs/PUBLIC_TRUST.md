@@ -67,10 +67,10 @@ Do not include private patient data.
 Run:
 
 ```sh
-npm run launch:v1
+npm run release:check
 ```
 
-This runs the generated stats pass, build, release gate, deep launch QA, launch data trust audit, and evidence ledger check.
+This runs the generated stats pass, build, release metadata checks, curated data audits, scenario checks, smoke/regression tests, strict validation, privacy/static audit, and whitespace checks.
 
 ## Current Review Priorities
 

@@ -644,7 +644,7 @@ ${reviewRows}
 function writeIfChanged(filePath, content, check) {
   if (existsSync(filePath) && readFileSync(filePath, 'utf8') === content) return false;
   if (check) {
-    throw new Error(`${relative(ROOT, filePath)} is stale. Run npm run integrate:open-targets.`);
+    throw new Error(`${relative(ROOT, filePath)} is stale. Run npm run enrich -- integrate-open-targets.`);
   }
   mkdirSync(dirname(filePath), { recursive: true });
   writeFileSync(filePath, content, 'utf8');

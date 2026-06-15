@@ -9,7 +9,29 @@ const SNAPSHOT_PATH = resolve(ROOT, 'src/data/generatedOpenTargetsSnapshot.js');
 const DECISIONS_PATH = resolve(__dirname, 'review-decisions.json');
 const OUT_JS = resolve(ROOT, 'src/data/generatedOpenTargetsPromotionQueue.js');
 const OUT_MD = resolve(ROOT, 'docs/OPEN_TARGETS_PROMOTION_QUEUE.md');
-const CHECK = process.argv.includes('--check');
+
+function parseArgs(argv) {
+  const args = {
+    snapshotPath: SNAPSHOT_PATH,
+    decisionsPath: DECISIONS_PATH,
+    outJs: OUT_JS,
+    outMd: OUT_MD,
+    check: false,
+  };
+  for (let idx = 0; idx < argv.length; idx += 1) {
+    const arg = argv[idx];
+    if (arg === '--check') args.check = true;
+    else if (arg === '--snapshot') args.snapshotPath = resolve(argv[++idx]);
+    else if (arg === '--decisions') args.decisionsPath = resolve(argv[++idx]);
+    else if (arg === '--out-js') args.outJs = resolve(argv[++idx]);
+    else if (arg === '--out-md') args.outMd = resolve(argv[++idx]);
+    else throw new Error(`Unknown argument: ${arg}`);
+  }
+  return args;
+}
+
+const ARGS = parseArgs(process.argv.slice(2));
+const CHECK = ARGS.check;
 
 const VALID_DECISIONS = new Set([
   'unreviewed',
@@ -259,18 +281,18 @@ ${table}
 
 function writeIfChanged(filePath, content) {
   if (existsSync(filePath) && readFileSync(filePath, 'utf8') === content) return false;
-  if (CHECK) throw new Error(`${filePath.replace(`${ROOT}/`, '')} is stale. Run npm run audit:open-targets-promotions.`);
+  if (CHECK) throw new Error(`${filePath.replace(`${ROOT}/`, '')} is stale. Run node scripts/audit/run.js open-targets-promotions.`);
   mkdirSync(dirname(filePath), { recursive: true });
   writeFileSync(filePath, content, 'utf8');
   return true;
 }
 
 try {
-  const snapshot = readSnapshot(SNAPSHOT_PATH);
-  const decisions = readDecisions(DECISIONS_PATH);
+  const snapshot = readSnapshot(ARGS.snapshotPath);
+  const decisions = readDecisions(ARGS.decisionsPath);
   const queue = buildQueue(snapshot, decisions);
-  const wroteJs = writeIfChanged(OUT_JS, renderJs(queue));
-  const wroteMd = writeIfChanged(OUT_MD, renderMarkdown(queue));
+  const wroteJs = writeIfChanged(ARGS.outJs, renderJs(queue));
+  const wroteMd = writeIfChanged(ARGS.outMd, renderMarkdown(queue));
   if (queue.summary.blockedPromotions > 0) {
     throw new Error(`${queue.summary.blockedPromotions} Open Targets promotion decision(s) are missing required metadata.`);
   }

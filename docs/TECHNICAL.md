@@ -356,47 +356,45 @@ The importer maps supported metabolizer phenotypes into `GENOTYPE_EFFECTS` (`poo
 
 All parsing runs in the browser. Nothing is uploaded, stored, or sent to an API.
 
-Future raw-DNA integration should stay separate from the MedCheck Engine clinical display layer: a report generator should call star alleles and risk markers from 23andMe/Ancestry-style files, then pass only normalized gene phenotype/status rows into this importer or a future equivalent structured API.
+Future raw-DNA integration should stay separate from the Diognosis clinical display layer: a report generator should call star alleles and risk markers from 23andMe/Ancestry-style files, then pass only normalized gene phenotype/status rows into this importer or a future equivalent structured API.
 
 ## Build And Validation
 
 ```bash
 npm install
 npm run build
-npm run build:min
 npm run smoke
 npm run regression
 npm run validate
 npm run validate:strict
+npm run test:unit
+npm run test:data
+npm run test:integrations
 npm test
 npm run release:check
-npm run launch:qa
-npm run launch:v1
 ```
 
 `npm run release:check` rebuilds the bundle, verifies metadata, runs database and data-view audits, evidence review UI, evidence calculation, Open Targets gates, scenario snapshots, launch QA, regression, smoke, strict validation, privacy/static audit, and whitespace checks.
 
-`npm run launch:qa` runs the deep scenario matrix across thiopurine/allopurinol marrow toxicity, capecitabine/DPYD fluoropyrimidine toxicity, irinotecan/UGT1A1 SN-38 toxicity, G6PD oxidant hemolysis, and succinylcholine BCHE/RYR1 anesthesia risk. It also asserts that visible panels contain content and hidden panels do not retain stale content from prior stacks.
-
-`npm run launch:v1` is the final pre-push gate. It runs stats, build, release checks, launch data trust audit, and the evidence ledger check.
+`npm run test:unit`, `npm run test:data`, and `npm run test:integrations` are the CI gate split. They keep failures grouped by app behavior, data/boundary integrity, and external integration checks.
 
 ## Genotype Gap Audit
 
 ```bash
-npm run audit:genotype-gaps
+npm run audit -- genotype-gaps
 node scripts/audit/genotype-gap-audit.js --catalog-dir /path/to/local-pgx-catalog
 node scripts/audit/genotype-gap-audit.js --open-targets-snapshot src/data/generatedOpenTargetsSnapshot.js
 ```
 
-The genotype gap audit reads MedCheck Engine source text, lists every referenced gene/enzyme/transporter, compares that list with `GENOTYPE_EFFECTS` and `GENOTYPE_RISK_EFFECTS`, and can optionally compare against Open Targets/ClinPGx context. Generated reports are written to ignored local files at `scripts/audit/genotype-gap-report.json` and `scripts/audit/genotype-gap-report.md`.
+The genotype gap audit reads Diognosis source text, lists every referenced gene/enzyme/transporter, compares that list with `GENOTYPE_EFFECTS` and `GENOTYPE_RISK_EFFECTS`, and can optionally compare against Open Targets/ClinPGx context. Generated reports are written to ignored local files at `scripts/audit/genotype-gap-report.json` and `scripts/audit/genotype-gap-report.md`.
 
 ## Release Checklist
 
-1. Update `MEDCHECK_VERSION` in `src/data/drugs.js` when MedCheck Engine behavior changes.
+1. Update `DIOGNOSIS_VERSION` in `src/data/drugs.js` when Diognosis behavior changes.
 2. Update Drug DB version/date when curated data changes.
-3. Run `npm run launch:v1`.
-4. Commit source changes plus rebuilt `index.html`.
-5. Push `main` to GitHub Pages.
+3. Run `npm run release:check`.
+4. Commit source changes.
+5. Push `main`; GitHub Pages builds `index.html` from source.
 
 ## Safety Contract
 

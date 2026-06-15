@@ -334,7 +334,7 @@ ${table}
 function writeIfChanged(filePath, content) {
   if (existsSync(filePath) && readFileSync(filePath, 'utf8') === content) return false;
   if (CHECK) {
-    throw new Error(`${filePath.replace(`${ROOT}/`, '')} is stale. Run npm run audit:evidence-review-queue.`);
+    throw new Error(`${filePath.replace(`${ROOT}/`, '')} is stale. Run node scripts/audit/run.js evidence-review-queue.`);
   }
   mkdirSync(dirname(filePath), { recursive: true });
   writeFileSync(filePath, content, 'utf8');

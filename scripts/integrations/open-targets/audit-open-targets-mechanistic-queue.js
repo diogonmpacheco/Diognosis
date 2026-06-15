@@ -10,7 +10,29 @@ const SNAPSHOT_PATH = resolve(ROOT, 'src/data/generatedOpenTargetsSnapshot.js');
 const PROMOTION_QUEUE_PATH = resolve(ROOT, 'src/data/generatedOpenTargetsPromotionQueue.js');
 const OUT_JS = resolve(ROOT, 'src/data/generatedOpenTargetsMechanisticQueue.js');
 const OUT_MD = resolve(ROOT, 'docs/OPEN_TARGETS_MECHANISTIC_REVIEW_QUEUE.md');
-const CHECK = process.argv.includes('--check');
+
+function parseArgs(argv) {
+  const args = {
+    snapshotPath: SNAPSHOT_PATH,
+    promotionQueuePath: PROMOTION_QUEUE_PATH,
+    outJs: OUT_JS,
+    outMd: OUT_MD,
+    check: false,
+  };
+  for (let idx = 0; idx < argv.length; idx += 1) {
+    const arg = argv[idx];
+    if (arg === '--check') args.check = true;
+    else if (arg === '--snapshot') args.snapshotPath = resolve(argv[++idx]);
+    else if (arg === '--promotion-queue') args.promotionQueuePath = resolve(argv[++idx]);
+    else if (arg === '--out-js') args.outJs = resolve(argv[++idx]);
+    else if (arg === '--out-md') args.outMd = resolve(argv[++idx]);
+    else throw new Error(`Unknown argument: ${arg}`);
+  }
+  return args;
+}
+
+const ARGS = parseArgs(process.argv.slice(2));
+const CHECK = ARGS.check;
 
 const TARGET_ALIASES = {
   SLC6A4: ['SLC6A4', 'SERT', 'serotonin transporter', 'SSRI', 'serotonergic'],
@@ -303,20 +325,20 @@ ${table}
 
 function writeIfChanged(filePath, content) {
   if (existsSync(filePath) && readFileSync(filePath, 'utf8') === content) return false;
-  if (CHECK) throw new Error(`${filePath.replace(`${ROOT}/`, '')} is stale. Run npm run audit:open-targets-mechanistic-queue.`);
+  if (CHECK) throw new Error(`${filePath.replace(`${ROOT}/`, '')} is stale. Run node scripts/audit/run.js open-targets-mechanistic-queue.`);
   mkdirSync(dirname(filePath), { recursive: true });
   writeFileSync(filePath, content, 'utf8');
   return true;
 }
 
 try {
-  const snapshot = readGeneratedObject(SNAPSHOT_PATH, 'GENERATED_OPEN_TARGETS_SNAPSHOT');
-  const promotionQueue = readGeneratedObject(PROMOTION_QUEUE_PATH, 'GENERATED_OPEN_TARGETS_PROMOTION_QUEUE');
+  const snapshot = readGeneratedObject(ARGS.snapshotPath, 'GENERATED_OPEN_TARGETS_SNAPSHOT');
+  const promotionQueue = readGeneratedObject(ARGS.promotionQueuePath, 'GENERATED_OPEN_TARGETS_PROMOTION_QUEUE');
   const diognosis = loadDiognosisContext();
   const queue = buildQueue(snapshot, promotionQueue, diognosis);
   if (queue.errors.length) throw new Error(queue.errors.join('\n'));
-  const wroteJs = writeIfChanged(OUT_JS, renderJs(queue));
-  const wroteMd = writeIfChanged(OUT_MD, renderMarkdown(queue));
+  const wroteJs = writeIfChanged(ARGS.outJs, renderJs(queue));
+  const wroteMd = writeIfChanged(ARGS.outMd, renderMarkdown(queue));
   console.log(JSON.stringify({
     ok: true,
     check: CHECK,

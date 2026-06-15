@@ -23,8 +23,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Release, generated-data, and Open Targets gates
-        run: node scripts/release-check.js
+      - name: Unit gate
+        run: npm run test:unit
+
+      - name: Data and boundary gate
+        run: npm run test:data
+
+      - name: Integration gate
+        run: npm run test:integrations
 
       - name: Severity report generation
-        run: node scripts/severity-report.js
+        run: npm run report:severity

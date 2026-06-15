@@ -7,7 +7,21 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..', '..', '..');
 const SNAPSHOT_PATH = resolve(ROOT, 'src/data/generatedOpenTargetsSnapshot.js');
 const OUT_MD = resolve(ROOT, 'docs/OPEN_TARGETS_IDENTITY_REVIEW.md');
-const CHECK = process.argv.includes('--check');
+
+function parseArgs(argv) {
+  const args = { snapshotPath: SNAPSHOT_PATH, outMd: OUT_MD, check: false };
+  for (let idx = 0; idx < argv.length; idx += 1) {
+    const arg = argv[idx];
+    if (arg === '--check') args.check = true;
+    else if (arg === '--snapshot') args.snapshotPath = resolve(argv[++idx]);
+    else if (arg === '--out-md') args.outMd = resolve(argv[++idx]);
+    else throw new Error(`Unknown argument: ${arg}`);
+  }
+  return args;
+}
+
+const ARGS = parseArgs(process.argv.slice(2));
+const CHECK = ARGS.check;
 
 const ACCEPTED_DECISIONS = new Set(['accepted_for_context_import']);
 const MIN_ACCEPTED_MATCH_CONFIDENCE = 0.95;
@@ -143,21 +157,21 @@ ${combinationRows}
 
 function writeIfChanged(filePath, content) {
   if (existsSync(filePath) && readFileSync(filePath, 'utf8') === content) return false;
-  if (CHECK) throw new Error(`${filePath.replace(`${ROOT}/`, '')} is stale. Run npm run audit:open-targets-identity.`);
+  if (CHECK) throw new Error(`${filePath.replace(`${ROOT}/`, '')} is stale. Run node scripts/audit/run.js open-targets-identity.`);
   mkdirSync(dirname(filePath), { recursive: true });
   writeFileSync(filePath, content, 'utf8');
   return true;
 }
 
 try {
-  const snapshot = readSnapshot(SNAPSHOT_PATH);
+  const snapshot = readSnapshot(ARGS.snapshotPath);
   const report = validate(snapshot);
   const docReport = {
     ...report,
     snapshotContextByChemblId: snapshot.contextByChemblId || {},
   };
   if (report.errors.length) throw new Error(report.errors.join('\n'));
-  const wrote = writeIfChanged(OUT_MD, renderMarkdown(docReport));
+  const wrote = writeIfChanged(ARGS.outMd, renderMarkdown(docReport));
   console.log(JSON.stringify({
     ok: true,
     check: CHECK,

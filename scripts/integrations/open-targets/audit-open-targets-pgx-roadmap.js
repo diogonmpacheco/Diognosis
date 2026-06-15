@@ -12,7 +12,31 @@ const PROMOTION_QUEUE_PATH = resolve(ROOT, 'src/data/generatedOpenTargetsPromoti
 const REVIEW_TARGETS_PATH = resolve(ROOT, 'src/data/generatedOpenTargetsReviewTargets.js');
 const OUT_JS = resolve(ROOT, 'src/data/generatedOpenTargetsPgxGapRoadmap.js');
 const OUT_MD = resolve(ROOT, 'docs/OPEN_TARGETS_PGX_GAP_ROADMAP.md');
-const CHECK = process.argv.includes('--check');
+
+function parseArgs(argv) {
+  const args = {
+    snapshotPath: SNAPSHOT_PATH,
+    promotionQueuePath: PROMOTION_QUEUE_PATH,
+    reviewTargetsPath: REVIEW_TARGETS_PATH,
+    outJs: OUT_JS,
+    outMd: OUT_MD,
+    check: false,
+  };
+  for (let idx = 0; idx < argv.length; idx += 1) {
+    const arg = argv[idx];
+    if (arg === '--check') args.check = true;
+    else if (arg === '--snapshot') args.snapshotPath = resolve(argv[++idx]);
+    else if (arg === '--promotion-queue') args.promotionQueuePath = resolve(argv[++idx]);
+    else if (arg === '--review-targets') args.reviewTargetsPath = resolve(argv[++idx]);
+    else if (arg === '--out-js') args.outJs = resolve(argv[++idx]);
+    else if (arg === '--out-md') args.outMd = resolve(argv[++idx]);
+    else throw new Error(`Unknown argument: ${arg}`);
+  }
+  return args;
+}
+
+const ARGS = parseArgs(process.argv.slice(2));
+const CHECK = ARGS.check;
 
 function readJson(filePath) {
   return JSON.parse(readFileSync(filePath, 'utf8'));
@@ -82,11 +106,11 @@ function classifyPair(pair, coverage, roadmap, firstTargetGenes) {
   return roadmap.unsupportedGeneDispositions[gene]?.disposition || 'context_only_no_selector';
 }
 
-function buildReport() {
+function buildReport(args = ARGS) {
   const roadmap = readJson(ROADMAP_PATH);
-  const snapshot = readGeneratedConst(SNAPSHOT_PATH, 'GENERATED_OPEN_TARGETS_SNAPSHOT');
-  const queue = readGeneratedConst(PROMOTION_QUEUE_PATH, 'GENERATED_OPEN_TARGETS_PROMOTION_QUEUE');
-  const reviewTargets = readGeneratedConst(REVIEW_TARGETS_PATH, 'GENERATED_OPEN_TARGETS_REVIEW_TARGETS');
+  const snapshot = readGeneratedConst(args.snapshotPath, 'GENERATED_OPEN_TARGETS_SNAPSHOT');
+  const queue = readGeneratedConst(args.promotionQueuePath, 'GENERATED_OPEN_TARGETS_PROMOTION_QUEUE');
+  const reviewTargets = readGeneratedConst(args.reviewTargetsPath, 'GENERATED_OPEN_TARGETS_REVIEW_TARGETS');
   const coverage = loadCoverage();
   const errors = [];
 
@@ -285,7 +309,7 @@ ${pairTable(report.pairs.filter(pair => pair.classification !== 'first_review_li
 
 function writeIfChanged(filePath, content) {
   if (existsSync(filePath) && readFileSync(filePath, 'utf8') === content) return false;
-  if (CHECK) throw new Error(`${filePath.replace(`${ROOT}/`, '')} is stale. Run npm run audit:open-targets-pgx-roadmap.`);
+  if (CHECK) throw new Error(`${filePath.replace(`${ROOT}/`, '')} is stale. Run node scripts/audit/run.js open-targets-pgx-roadmap.`);
   mkdirSync(dirname(filePath), { recursive: true });
   writeFileSync(filePath, content, 'utf8');
   return true;
@@ -294,8 +318,8 @@ function writeIfChanged(filePath, content) {
 try {
   const report = buildReport();
   if (report.errors.length) throw new Error(report.errors.join('\n'));
-  const wroteJs = writeIfChanged(OUT_JS, renderJs(report));
-  const wroteMd = writeIfChanged(OUT_MD, renderMarkdown(report));
+  const wroteJs = writeIfChanged(ARGS.outJs, renderJs(report));
+  const wroteMd = writeIfChanged(ARGS.outMd, renderMarkdown(report));
   console.log(JSON.stringify({
     ok: true,
     check: CHECK,
