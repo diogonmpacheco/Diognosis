@@ -1,14 +1,1765 @@
 {
   "schema": "diognosis.clinpgx-snapshot-metadata.v1",
-  "generatedAt": "2026-06-15T13:45:49.325Z",
+  "generatedAt": "2026-06-15T14:33:31.476Z",
   "source": "ClinPGx",
-  "fetched": false,
-  "mode": "open_targets_derived_context",
+  "fetched": true,
+  "mode": "direct_api_cache_plus_derived_context",
   "sourceRelease": "26.03",
-  "directFetchedRecords": 0,
+  "directFetchedRecords": 1500,
   "openTargetsDerivedRecords": 128,
-  "providerFailures": [],
+  "providerFailures": [
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Abciximab"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Abiraterone"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Acetaminophen"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Acitretin"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Albendazole"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Alcohol (Ethanol)"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Allopurinol"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Alteplase"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Amiodarone"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Amitriptyline"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Amonafide"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Amphetamine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Amphotericin B"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Apalutamide"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Apixaban"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Aripiprazole"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Artemether/Lumefantrine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Aspirin"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Aspirin (Low-Dose)"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Atazanavir"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Atovaquone"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Axitinib"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Ayahuasca (DMT+MAOI)"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Azathioprine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Azithromycin"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Basiliximab"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Bedaquiline"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Belatacept"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Belinostat"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Benazepril"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Bictegravir"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Brexpiprazole"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Brigatinib"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Bupropion"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Buspirone"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Calcium"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Calcium Chloride"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Candesartan"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Cannabis (CBD)"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Capecitabine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Capmatinib"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Carbamazepine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Ceftriaxone"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Chloroquine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Chlorthalidone"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Cilostazol"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Cimetidine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Cinacalcet"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Ciprofloxacin"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Citalopram"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Clarithromycin"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Clobazam"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Clomipramine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Clonazepam"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Clopidogrel"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Clorazepate"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Clozapine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Cobicistat"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Cocaine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Codeine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Colchicine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Combined Oral Contraceptive"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Crizotinib"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Cyclophosphamide"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Cyclosporine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Dabigatran"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Dabrafenib"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Dantrolene"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Darolutamide"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Darunavir"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Dasatinib"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Delamanid"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Desipramine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Desmopressin"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Desvenlafaxine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Dexlansoprazole"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Dexmethylphenidate"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Diazepam"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Diclofenac"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Digoxin"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Diltiazem"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Dipyridamole"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Disopyramide"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Docetaxel"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Dofetilide"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Dopamine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Doxepin"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Dronedarone"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Droxidopa"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Duloxetine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "DXM (Dextromethorphan)"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Edoxaban"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Efavirenz"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Eltrombopag"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Enalapril"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Enzalutamide"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Epinephrine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Eplerenone"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Eptifibatide"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/chemical",
+      "params": {
+        "name": "Erlotinib"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_chemical-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/guidelineAnnotation",
+      "params": {
+        "relatedGenes.symbol": "CYP3A7"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_guidelineAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/guidelineAnnotation",
+      "params": {
+        "relatedGenes.symbol": "CYP2A6"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_guidelineAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/guidelineAnnotation",
+      "params": {
+        "relatedGenes.symbol": "CYP2E1"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_guidelineAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/guidelineAnnotation",
+      "params": {
+        "relatedGenes.symbol": "NAT1"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_guidelineAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/label",
+      "params": {
+        "relatedGenes.symbol": "CYP3A7"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_label-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/label",
+      "params": {
+        "relatedGenes.symbol": "CYP2C8"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_label-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/label",
+      "params": {
+        "relatedGenes.symbol": "CYP2E1"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_label-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/label",
+      "params": {
+        "relatedGenes.symbol": "NAT1"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_label-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/label",
+      "params": {
+        "relatedGenes.symbol": "CYP4F2"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_label-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Abciximab"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Abiraterone"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Acetaminophen"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Acitretin"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Albendazole"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Alcohol (Ethanol)"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Allopurinol"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Alteplase"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Amiodarone"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Amitriptyline"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Amonafide"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Amphetamine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Amphotericin B"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Apalutamide"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Apixaban"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Aripiprazole"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Artemether/Lumefantrine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Aspirin"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Aspirin (Low-Dose)"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Atazanavir"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Atovaquone"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Axitinib"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Ayahuasca (DMT+MAOI)"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Azathioprine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Azithromycin"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Basiliximab"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Bedaquiline"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Belatacept"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Belinostat"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Benazepril"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Bictegravir"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Brexpiprazole"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Brigatinib"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Bupropion"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Buspirone"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Calcium"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Calcium Chloride"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Candesartan"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Cannabis (CBD)"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Capecitabine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Capmatinib"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Carbamazepine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Ceftriaxone"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Chloroquine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Chlorthalidone"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Cilostazol"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Cimetidine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Cinacalcet"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Ciprofloxacin"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Citalopram"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Clarithromycin"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Clobazam"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Clomipramine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Clonazepam"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Clopidogrel"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Clorazepate"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Clozapine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Cobicistat"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Cocaine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    },
+    {
+      "endpoint": "data/summaryAnnotation",
+      "params": {
+        "location.genes.symbol": "CYP2D6",
+        "relatedChemicals.name": "Codeine"
+      },
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/clinpgx/data_summaryAnnotation-878e24d7dd84.json",
+      "status": 404,
+      "sha256": "878e24d7dd84cc34dd57dda71d253e689f0b2f1b30cc46152d4fb64106641068",
+      "records": 0
+    }
+  ],
   "rateLimitEvents": 0,
-  "stagedRecords": 128,
-  "note": "Check mode normalizes existing ClinPGx/Open Targets derived context. Fetch mode uses cached REST JSON with the documented rate limit."
+  "stagedRecords": 1628,
+  "note": "Direct ClinPGx API cache and existing ClinPGx/Open Targets derived context are staged separately. No record is promoted or scoring-enabled."
 }

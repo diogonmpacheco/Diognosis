@@ -1,18 +1,24 @@
 {
   "schema": "diognosis.grouped-review-candidates-v2-audit.v1",
-  "generatedAt": "2026-06-15T13:45:49.853Z",
-  "totalCandidates": 378,
+  "generatedAt": "2026-06-15T14:34:04.732Z",
+  "totalCandidates": 1938,
   "legacyGroupedCandidates": 186,
-  "candidateRelationGroups": 192,
+  "candidateRelationGroups": 1752,
   "priorityCounts": {
-    "P1": 276,
-    "P2": 102
+    "P1": 1183,
+    "P2": 755
   },
   "layerCounts": {
     "engine_hypothesis": 105,
     "evidence": 19,
+    "identity": 150,
+    "interaction": 80,
     "legacy_structured_source": 186,
-    "pgx": 68
+    "parent_metabolite": 293,
+    "pgx": 524,
+    "safety_phenotype": 433,
+    "enzyme_transporter": 44,
+    "pk_timing": 104
   },
   "canAutoPromote": 0,
   "scoringEnabled": 0

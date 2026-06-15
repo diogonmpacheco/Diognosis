@@ -101,16 +101,35 @@
     {
       "name": "FDA/DailyMed Labels",
       "type": "structured_guideline",
-      "purpose": "Public medication-label metadata and label-context review prompts for contraindications, warnings, dosing, renal/hepatic adjustment, pregnancy/lactation, and safety statements.",
-      "accessMethod": "Build-time script. Check mode initializes the lane without fetching source objects.",
+      "purpose": "Public medication-label metadata and label-context review prompts for source-linked pending-review label context.",
+      "accessMethod": "Build-time script. Check mode initializes the lane; fetch mode uses DailyMed v2 public metadata endpoints and stores identifiers/metadata only.",
       "script": "scripts/enrich/label-source-sync.js",
       "outputs": [
         "data/enrichment/staged/label-staged-records.json",
+        "data/enrichment/snapshots/label-source-raw/index.json",
         "data/enrichment/snapshots/label-source-snapshot-metadata.json",
         "docs/audits/label-source-coverage-audit.json",
         "docs/audits/label-source-coverage-audit.md"
       ],
       "licenseNote": "Use public label metadata and source identifiers only until reviewed; do not copy protected label content beyond allowed excerpts.",
+      "rateLimit": "Build-time only; no browser runtime calls.",
+      "bundledInPublicApp": false,
+      "canAffectScoring": false,
+      "reviewRequired": true,
+      "refreshCadence": "weekly"
+    },
+    {
+      "name": "DailyMed",
+      "type": "external_context",
+      "purpose": "DailyMed v2 public label metadata records used as source-linked pending-review label context.",
+      "accessMethod": "Build-time script using DailyMed v2 public metadata endpoints only.",
+      "script": "scripts/enrich/label-source-sync.js --fetch",
+      "outputs": [
+        "data/enrichment/snapshots/label-source-raw/index.json",
+        "data/enrichment/staged/label-staged-records.json",
+        "data/enrichment/snapshots/label-source-snapshot-metadata.json"
+      ],
+      "licenseNote": "Public metadata and identifiers only; do not store label body text, tables, figures, or copied warning passages.",
       "rateLimit": "Build-time only; no browser runtime calls.",
       "bundledInPublicApp": false,
       "canAffectScoring": false,

@@ -8,13 +8,17 @@ const meta = readJson(resolve(ROOT, 'data/enrichment/snapshots/label-source-snap
 const errors = [];
 
 if (!Array.isArray(staged)) errors.push('label staged records must be an array');
-if (meta.sourceTruthStatus && !['label_source_candidate_not_fetched', 'fetched_from_label_source'].includes(meta.sourceTruthStatus)) {
+if (meta.sourceTruthStatus && !['label_source_candidate_not_fetched', 'fetched_from_label_source', 'fetched_public_label_metadata_only'].includes(meta.sourceTruthStatus)) {
   errors.push(`unexpected label source truth status: ${meta.sourceTruthStatus}`);
 }
 for (const record of staged) {
   if (record.governance?.canAffectScoring) errors.push(`${record.id}: label staged record can affect scoring`);
   if (record.governance?.canAffectPublicSeverity) errors.push(`${record.id}: label staged record can affect severity`);
   if (record.governance?.reviewRequired !== true) errors.push(`${record.id}: label staged record must require review`);
+  const raw = JSON.stringify(record);
+  if (/"(fullText|labelText|sourceText|tableText|figureText|boxedWarningText|warningsText)"\s*:/i.test(raw)) {
+    errors.push(`${record.id}: label staged record stores protected label body/source text`);
+  }
 }
 
 if (errors.length) {

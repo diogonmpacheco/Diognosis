@@ -8,8 +8,9 @@ It reports:
 - 3x target counts for each core area
 - staged source records
 - candidate relation rows
+- live pending-review preview records, separated from candidates and reviewed data
 - grouped v2 candidates
 - review queue v2 items
 - curated drafts and local overlay reviews
 
-The dashboard is intentionally conservative: candidate rows do not count as reviewed core data. They show where reviewers can grow Diognosis without letting imported or inferred facts silently change clinical-facing warnings.
+The dashboard is intentionally conservative: candidate rows do not count as reviewed core data, and live pending-review preview rows are counted separately from professionally reviewed entries. They show where reviewers can grow Diognosis without letting imported or inferred facts silently become validated claims.

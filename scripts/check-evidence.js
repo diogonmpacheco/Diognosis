@@ -7,6 +7,7 @@ const root = resolve(new URL('..', import.meta.url).pathname);
 const files = [
   'src/data/constants.js',
   'src/data/evidence.js',
+  'src/data/generatedLivePendingReview.js',
 ];
 const code = `${files.map((file) => readFileSync(resolve(root, file), 'utf8')).join('\n')}
 JSON.stringify(Object.values(STUDY_DB).filter((study) =>

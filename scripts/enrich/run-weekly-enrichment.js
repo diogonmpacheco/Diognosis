@@ -9,13 +9,15 @@ const OUT_JSON = resolve(ROOT, 'docs/audits/weekly-enrichment-report.json');
 const OUT_MD = resolve(ROOT, 'docs/audits/weekly-enrichment-report.md');
 
 function parseArgs(argv) {
-  const args = { check: false, fetch: false, legalOnly: false, structuredOnly: false, maxGapQueries: 50 };
+  const args = { check: false, fetch: false, legalOnly: false, structuredOnly: false, livePendingReview: false, maxGapQueries: 50, maxLivePromotions: 75 };
   for (const arg of argv) {
     if (arg === '--check') args.check = true;
     else if (arg === '--fetch') args.fetch = true;
     else if (arg === '--legal-literature-only') args.legalOnly = true;
     else if (arg === '--structured-only') args.structuredOnly = true;
+    else if (arg === '--live-pending-review') args.livePendingReview = true;
     else if (arg.startsWith('--max-gap-queries=')) args.maxGapQueries = Number(arg.slice(18));
+    else if (arg.startsWith('--max-live-promotions=')) args.maxLivePromotions = Number(arg.slice(22));
   }
   if (!args.fetch) args.check = true;
   return args;
@@ -60,7 +62,7 @@ function main() {
   if (!args.legalOnly) {
     commands.push(run('CPIC sync/check', node, ['scripts/enrich/cpic-sync.js', args.fetch ? '--fetch' : '--check']));
     commands.push(run('ClinPGx sync/check', node, ['scripts/enrich/clinpgx-sync.js', args.fetch ? '--fetch' : '--check']));
-    commands.push(run('label source sync/check', node, ['scripts/enrich/label-source-sync.js', '--check']));
+    commands.push(run('label source sync/check', node, ['scripts/enrich/label-source-sync.js', args.fetch ? '--fetch' : '--check']));
   }
 
   commands.push(run('grouped review candidate generation', node, ['scripts/enrich/group-staged-records.js']));
@@ -68,6 +70,10 @@ function main() {
   commands.push(run('enrichment continuation baseline/archive', node, ['scripts/enrich/capture-enrichment-baseline.js']));
   commands.push(run('engine hypothesis export', node, ['scripts/enrich/export-engine-hypotheses.js']));
   commands.push(run('candidate relation extraction', node, ['scripts/enrich/extract-candidate-relations.js']));
+  commands.push(run('automated source-faithfulness check', node, ['scripts/enrich/automated-source-check.js']));
+  if (args.livePendingReview) {
+    commands.push(run('live pending-review promotion', node, ['scripts/enrich/promote-live-pending-review.js', `--max-live-promotions=${args.maxLivePromotions}`]));
+  }
   commands.push(run('gap query batch generation', node, ['scripts/enrich/build-gap-query-batch.js', `--max=${args.maxGapQueries}`]));
   commands.push(run('grouped review candidate v2 generation', node, ['scripts/enrich/group-candidate-relations.js']));
   commands.push(run('enrichment review queue v2', node, ['scripts/enrich/build-review-queue-v2.js']));
@@ -86,6 +92,7 @@ function main() {
   commands.push(run('label source boundary audit', node, ['scripts/audit/label-source-boundary-audit.js']));
   commands.push(run('3x target audit', node, ['scripts/audit/three-x-target-audit.js']));
   commands.push(run('enrichment preview mode audit', node, ['scripts/audit/enrichment-preview-mode-audit.js']));
+  commands.push(run('live enrichment boundary audit', node, ['scripts/audit/live-enrichment-boundary-audit.js']));
   commands.push(run('enrichment self-test', node, ['scripts/enrich/pubmed-enrich.js', '--self-test']));
 
   const validationCommands = [
@@ -125,6 +132,8 @@ function main() {
     schema: 'diognosis.weekly-enrichment-report.v1',
     generatedAt: new Date().toISOString(),
     mode: args.fetch ? 'fetch' : 'check',
+    livePendingReview: args.livePendingReview,
+    maxLivePromotions: args.maxLivePromotions,
     newStagedRecords: (cpic.stagedRecords || 0) + (clinpgx.stagedRecords || 0) + (labelSource.stagedRecords || 0) + (legalReport.stagedRecords || 0),
     updatedStagedRecords: 0,
     dedupedRecords: reviewQueue.totalItems || 0,
@@ -154,6 +163,7 @@ function main() {
       curatedDrafts: curatedDraftCount,
       localOverlayReviews: overlayReviewCount,
     },
+    livePendingReviewSummary: growth.livePendingReview || {},
     providerFailures: legalReport.providerFailures || [],
     topMissingDrugs: coverage.top_missing_drugs?.slice(0, 10) || [],
     topMissingCombinations: coverage.top_missing_pairs?.slice(0, 10) || [],
@@ -176,6 +186,8 @@ function renderMarkdown(report) {
 Generated: ${report.generatedAt}
 
 - Mode: ${report.mode}
+- Live pending-review promotion: ${report.livePendingReview ? 'enabled' : 'disabled'}
+- Max live promotions: ${report.maxLivePromotions}
 - New staged records: ${report.newStagedRecords}
 - Literature drafts: ${report.newLiteratureDrafts}
 - Drafts with legal OA metadata: ${report.draftsWithLegalOpenAccess}
@@ -190,6 +202,7 @@ Generated: ${report.generatedAt}
 - Grouped review candidates v2: ${report.review.groupedReviewCandidatesV2}
 - Review queue v2 items: ${report.review.reviewQueueV2Items}
 - Candidate relation rows: ${report.review.candidateRelationRows}
+- Live pending-review records: ${report.livePendingReviewSummary.totalRecords || 0}
 - Provider failures: ${report.providerFailures.length}
 - Recommendation: ${report.recommendation}
 - Human review required: ${report.humanReviewRequired ? 'yes' : 'no'}

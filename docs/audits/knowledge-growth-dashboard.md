@@ -1,6 +1,6 @@
 # Knowledge Growth Dashboard
 
-Generated: 2026-06-15T13:50:17.224Z
+Generated: 2026-06-15T14:36:09.499Z
 
 ## Current Core Data
 
@@ -8,7 +8,7 @@ Generated: 2026-06-15T13:50:17.224Z
 | --- | --- | --- |
 | drugs | 625 | 1875 |
 | interactions | 627 | 1881 |
-| evidenceEntries | 456 | 1368 |
+| evidenceEntries | 476 | 1428 |
 | parentMetaboliteMaps | 467 | 1401 |
 | metaboliteEdges | 1171 | 3513 |
 | firstClassMetaboliteActors | 33 | 99 |
@@ -23,11 +23,15 @@ Generated: 2026-06-15T13:50:17.224Z
 
 ## Candidate/Review Layer
 
-- Staged records: 532
+- Staged records: 2355
 - Candidate relation stores: 15
-- Candidate relation rows: 259
-- Grouped v2 candidates: 378
-- Review queue v2 items: 626
+- Candidate relation rows: 2284
+- Live pending-review preview records: 30
+- Live preview studies: 20
+- Live preview DDI rows: 0
+- Live preview label context rows: 10
+- Grouped v2 candidates: 1938
+- Review queue v2 items: 2186
 - Curated drafts: 0
 - Local overlay reviews: 3
 - Professionally reviewed shipped entries: 0

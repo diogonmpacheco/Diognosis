@@ -3,25 +3,1734 @@
   "store": "receptor_effects",
   "layer": "safety_phenotype",
   "title": "Receptor and phenotype effects",
-  "generatedAt": "2026-06-15T13:45:49.727Z",
+  "generatedAt": "2026-06-15T14:34:04.479Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",
-      "records": 128
+      "records": 1628
     },
     {
       "file": "data/enrichment/staged/cpic-staged-records.json",
-      "records": 156
+      "records": 379
     },
     {
       "file": "data/enrichment/staged/label-staged-records.json",
-      "records": 0
+      "records": 100
     },
     {
       "file": "data/enrichment/staged/legal-literature-staged-records.json",
       "records": 248
     }
   ],
-  "totalCandidates": 0,
-  "candidates": []
+  "totalCandidates": 28,
+  "candidates": [
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_alprazolam_phenotype_burden_21f479e10b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "alprazolam"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "alprazolam has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "alprazolam"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_amiodarone_phenotype_burden_5b9945dca1",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "amiodarone"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "amiodarone has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "amiodarone"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_amitriptyline_phenotype_burden_58d2039b60",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "amitriptyline"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "amitriptyline has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "amitriptyline"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_citalopram_phenotype_burden_352dad317b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "citalopram"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "citalopram has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "citalopram"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_clomipramine_phenotype_burden_7108f6d525",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "clomipramine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "clomipramine has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "clomipramine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_codeine_phenotype_burden_b9a8abfd6f",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "codeine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "codeine has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "codeine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_diazepam_phenotype_burden_08f5bd6ba9",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "diazepam"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "diazepam has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "diazepam"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_diphenhydramine_phenotype_burden_6a5db330ac",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "diphenhydramine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "diphenhydramine has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "diphenhydramine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_duloxetine_phenotype_burden_4f46adf394",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "duloxetine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "duloxetine has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "duloxetine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_escitalopram_phenotype_burden_9983adc10d",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "escitalopram"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "escitalopram has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "escitalopram"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_fluoxetine_phenotype_burden_58201a44e9",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "fluoxetine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "fluoxetine has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "fluoxetine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_haloperidol_phenotype_burden_117b2e2a71",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "haloperidol"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "haloperidol has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "haloperidol"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_imipramine_phenotype_burden_5b638fdf29",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "imipramine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "imipramine has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "imipramine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_linezolid_phenotype_burden_719087c926",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "linezolid"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "linezolid has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "linezolid"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_lorazepam_phenotype_burden_955df970fb",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "lorazepam"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "lorazepam has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "lorazepam"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_methadone_phenotype_burden_dfb4622bf2",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "methadone"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "methadone has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "methadone"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_morphine_phenotype_burden_f2b5ed1d7b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "morphine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "morphine has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "morphine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_nortriptyline_phenotype_burden_5f752a783f",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "nortriptyline"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "nortriptyline has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "nortriptyline"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_olanzapine_phenotype_burden_1b0d0685b9",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "olanzapine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "olanzapine has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "olanzapine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_ondansetron_phenotype_burden_10b284d945",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "ondansetron"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "ondansetron has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "ondansetron"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_oxycodone_phenotype_burden_c13b742443",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "oxycodone"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "oxycodone has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "oxycodone"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_paroxetine_phenotype_burden_d514fe76b3",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "paroxetine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "paroxetine has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "paroxetine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_quetiapine_phenotype_burden_900f12deaf",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "quetiapine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "quetiapine has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "quetiapine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_risperidone_phenotype_burden_a88805c44e",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "risperidone"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "risperidone has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "risperidone"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_sertraline_phenotype_burden_48d0d6a19c",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "sertraline"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "sertraline has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "sertraline"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_tramadol_phenotype_burden_3d3f4eef82",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "tramadol"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "tramadol has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "tramadol"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_venlafaxine_phenotype_burden_8e74b84052",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "venlafaxine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "venlafaxine has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "venlafaxine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_receptor_effects_local_zolpidem_phenotype_burden_012bd4917b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "receptor_effects",
+      "layer": "safety_phenotype",
+      "candidateKind": "receptor_effects",
+      "claimType": "phenotype_burden",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "zolpidem"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "serotonin",
+        "qtc",
+        "anticholinergic",
+        "sedation",
+        "fall_risk"
+      ],
+      "affectedActors": [],
+      "direction": "phenotype_score",
+      "mechanismSummary": "zolpidem has existing phenotype/receptor burden scores.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "zolpidem"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "PHENOTYPE_SCORES",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    }
+  ]
 }

@@ -11,7 +11,7 @@ const DEFAULT_SNAPSHOT = resolve(ROOT, 'src/data/generatedOpenTargetsSnapshot.js
 const DEFAULT_RAW_INDEX = resolve(ROOT, 'data/enrichment/snapshots/clinpgx-raw/index.json');
 
 function parseArgs(argv) {
-  const args = { out: DEFAULT_OUT, metadata: DEFAULT_META, snapshot: DEFAULT_SNAPSHOT, rawIndex: DEFAULT_RAW_INDEX, limit: 200, fromCache: false, includeDerived: true };
+  const args = { out: DEFAULT_OUT, metadata: DEFAULT_META, snapshot: DEFAULT_SNAPSHOT, rawIndex: DEFAULT_RAW_INDEX, limit: 200, directLimit: 1500, fromCache: false, includeDerived: true };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
     if (arg === '--out') args.out = resolve(ROOT, argv[++i]);
@@ -22,6 +22,8 @@ function parseArgs(argv) {
     else if (arg.startsWith('--snapshot=')) args.snapshot = resolve(ROOT, arg.slice(11));
     else if (arg === '--limit') args.limit = Number(argv[++i]);
     else if (arg.startsWith('--limit=')) args.limit = Number(arg.slice(8));
+    else if (arg === '--direct-limit') args.directLimit = Number(argv[++i]);
+    else if (arg.startsWith('--direct-limit=')) args.directLimit = Number(arg.slice(15));
     else if (arg === '--from-cache') args.fromCache = true;
     else if (arg === '--raw-index') args.rawIndex = resolve(ROOT, argv[++i]);
     else if (arg.startsWith('--raw-index=')) args.rawIndex = resolve(ROOT, arg.slice(12));
@@ -136,7 +138,7 @@ function normalizeClinPgxRecords() {
   return { records: dedupeStagedSourceRecords(records), metadata: { snapshot, release, facts } };
 }
 
-function normalizeDirectClinPgxRecords(rawIndexPath) {
+function normalizeDirectClinPgxRecords(rawIndexPath, limit = 1500) {
   const index = readJson(rawIndexPath, null);
   if (!index?.fetched?.length) return { records: [], providerFailures: index?.providerFailures || [], rateLimitEvents: index?.rateLimitEvents || 0 };
   const data = loadMedcheckData();
@@ -144,9 +146,11 @@ function normalizeDirectClinPgxRecords(rawIndexPath) {
   const normalizedAt = new Date().toISOString();
   const records = [];
   for (const entry of index.fetched || []) {
+    if (records.length >= limit) break;
     const payload = readJson(entry.file, null);
     const rows = Array.isArray(payload?.response?.data) ? payload.response.data : [];
     for (const row of rows) {
+      if (records.length >= limit) break;
       const record = directRowToRecord(row, payload, aliasMap, data, normalizedAt);
       if (record) records.push(record);
     }
@@ -269,7 +273,7 @@ function extractRiskMarkers(row) {
 function main() {
   const args = parseArgs(process.argv.slice(2));
   const derived = args.includeDerived ? normalizeClinPgxRecords() : { records: [], metadata: { release: 'not-included', facts: [] } };
-  const direct = args.fromCache ? normalizeDirectClinPgxRecords(args.rawIndex) : { records: [], providerFailures: [], rateLimitEvents: 0 };
+  const direct = args.fromCache ? normalizeDirectClinPgxRecords(args.rawIndex, args.directLimit) : { records: [], providerFailures: [], rateLimitEvents: 0 };
   const records = dedupeStagedSourceRecords([...direct.records, ...derived.records]);
   writeJson(args.out, records);
   writeJson(args.metadata, {

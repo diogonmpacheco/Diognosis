@@ -1,6 +1,7 @@
 # Automation Runbook
 
 The weekly enrichment workflow is a staging and audit workflow, not a promotion workflow.
+Live pending-review preview generation is opt-in and remains separate from professional review.
 
 ## Command
 
@@ -12,6 +13,12 @@ For deterministic local checks:
 
 ```bash
 npm run enrich:weekly:check
+```
+
+To intentionally refresh the live pending-review preview lane:
+
+```bash
+npm run enrich:weekly -- --live-pending-review --max-live-promotions=75
 ```
 
 ## Allowlisted sources
@@ -46,22 +53,24 @@ Forbidden sources:
 9. pre-v2 queue baseline/archive
 10. engine hypothesis export
 11. candidate relation extraction
-12. gap query batch generation
-13. grouped review candidate v2 generation
-14. enrichment review queue v2 generation
-15. knowledge growth dashboard and 3x campaign report
-16. generated Review Workbench preview data
-17. promotion, overlay, curated draft, grouped-candidate, candidate relation, and v2 queue audits
-18. enrichment self-test
-19. validation gates
-20. changed-file summary
-21. markdown and JSON report
+12. automated source-faithfulness check
+13. optional live pending-review preview generation
+14. gap query batch generation
+15. grouped review candidate v2 generation
+16. enrichment review queue v2 generation
+17. knowledge growth dashboard and 3x campaign report
+18. generated Review Workbench preview data
+19. promotion, overlay, curated draft, grouped-candidate, candidate relation, v2 queue, and live-boundary audits
+20. enrichment self-test
+21. validation gates
+22. changed-file summary
+23. markdown and JSON report
 
 ## What to commit
 
 Commit deterministic staged records, review queues, coverage reports, and automation reports when the source/license audits pass and the report recommends review/commit.
 
-The v2 queue and candidate relation stores are review-only artifacts. They expand the human worklist but do not promote anything into `STUDY_DB`, `KNOWN_DDI`, `METAB`, genotype rules, PK rules, timing rules, or public severity.
+The v2 queue and candidate relation stores are review-only artifacts. They expand the human worklist. The optional live pending-review lane can create source-linked preview entries in generated data, but it must remain tagged as automated curated preview and pending professional review.
 
 ## What not to commit
 

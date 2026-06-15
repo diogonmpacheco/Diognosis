@@ -3,25 +3,2039 @@
   "store": "metabolite_roles",
   "layer": "parent_metabolite",
   "title": "Metabolite roles",
-  "generatedAt": "2026-06-15T13:45:49.725Z",
+  "generatedAt": "2026-06-15T14:34:04.467Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",
-      "records": 128
+      "records": 1628
     },
     {
       "file": "data/enrichment/staged/cpic-staged-records.json",
-      "records": 156
+      "records": 379
     },
     {
       "file": "data/enrichment/staged/label-staged-records.json",
-      "records": 0
+      "records": 100
     },
     {
       "file": "data/enrichment/staged/legal-literature-staged-records.json",
       "records": 248
     }
   ],
-  "totalCandidates": 0,
-  "candidates": []
+  "totalCandidates": 33,
+  "candidates": [
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_acetaminophen_napqi_metabolite_role_d7b8234dcd",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Acetaminophen"
+      ],
+      "genes": [],
+      "metabolites": [
+        "NAPQI"
+      ],
+      "pathways": [
+        "CYP2E1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "NAPQI is modeled as metabolite for Acetaminophen.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Acetaminophen"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "NAPQI"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_alteplase_plasmin_metabolite_role_2f42bfddbc",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Alteplase"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Plasmin"
+      ],
+      "pathways": [
+        "Plasminogen Activation"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Plasmin is modeled as metabolite for Alteplase.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Alteplase"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Plasmin"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_andexanet_alfa_andexanet_factor_xa_inhibitor_complex_metabolite_role_daed3c5a05",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Andexanet Alfa"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Andexanet-factor Xa inhibitor complex"
+      ],
+      "pathways": [
+        "Drug Binding"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Andexanet-factor Xa inhibitor complex is modeled as metabolite for Andexanet Alfa.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Andexanet Alfa"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Andexanet-factor Xa inhibitor complex"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_aripiprazole_dehydro_aripiprazole_metabolite_role_2267f3e5a3",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Aripiprazole"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Dehydro-aripiprazole"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Dehydro-aripiprazole is modeled as metabolite for Aripiprazole.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Aripiprazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Dehydro-aripiprazole"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_atomoxetine_4_hydroxyatomoxetine_metabolite_role_cc08d74db3",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Atomoxetine"
+      ],
+      "genes": [],
+      "metabolites": [
+        "4-Hydroxyatomoxetine"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "4-Hydroxyatomoxetine is modeled as metabolite for Atomoxetine.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Atomoxetine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "4-Hydroxyatomoxetine"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_azathioprine_6_thioguanine_nucleotides_6_tgn_metabolite_role_22edca7238",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Azathioprine"
+      ],
+      "genes": [],
+      "metabolites": [
+        "6-Thioguanine nucleotides (6-TGN)"
+      ],
+      "pathways": [
+        "HPRT/FPGS"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "6-Thioguanine nucleotides (6-TGN) is modeled as metabolite for Azathioprine.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Azathioprine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "6-Thioguanine nucleotides (6-TGN)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_bupropion_hydroxybupropion_metabolite_role_8374d40a53",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Bupropion"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Hydroxybupropion"
+      ],
+      "pathways": [
+        "CYP2B6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Hydroxybupropion is modeled as metabolite for Bupropion.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Bupropion"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Hydroxybupropion"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_caffeine_paraxanthine_metabolite_role_ad75ea834c",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Caffeine"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Paraxanthine"
+      ],
+      "pathways": [
+        "CYP1A2"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Paraxanthine is modeled as metabolite for Caffeine.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Caffeine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Paraxanthine"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_capecitabine_5_fluorouracil_metabolite_role_99c2b57e99",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Capecitabine"
+      ],
+      "genes": [],
+      "metabolites": [
+        "5-Fluorouracil"
+      ],
+      "pathways": [
+        "CES/TP"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "5-Fluorouracil is modeled as metabolite for Capecitabine.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Capecitabine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "5-Fluorouracil"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_clobazam_n_desmethylclobazam_norclobazam_metabolite_role_c7ea0eb7c8",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clobazam"
+      ],
+      "genes": [],
+      "metabolites": [
+        "N-Desmethylclobazam (Norclobazam)"
+      ],
+      "pathways": [
+        "CYP3A4"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "N-Desmethylclobazam (Norclobazam) is modeled as metabolite for Clobazam.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Clobazam"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "N-Desmethylclobazam (Norclobazam)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_clopidogrel_active_thiol_metabolite_metabolite_role_a77fbeeac2",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clopidogrel"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Active thiol metabolite"
+      ],
+      "pathways": [
+        "CYP2C19"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Active thiol metabolite is modeled as metabolite for Clopidogrel.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Clopidogrel"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Active thiol metabolite"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_codeine_morphine_metabolite_role_34605d4606",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Codeine"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Morphine"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Morphine is modeled as metabolite for Codeine.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Codeine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Morphine"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_efavirenz_8_hydroxyefavirenz_metabolite_role_006a4485be",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Efavirenz"
+      ],
+      "genes": [],
+      "metabolites": [
+        "8-Hydroxyefavirenz"
+      ],
+      "pathways": [
+        "CYP2B6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "8-Hydroxyefavirenz is modeled as metabolite for Efavirenz.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Efavirenz"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "8-Hydroxyefavirenz"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_fluorouracil_dihydrofluorouracil_dhfu_metabolite_role_8325922b2b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Fluorouracil"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Dihydrofluorouracil (DHFU)"
+      ],
+      "pathways": [
+        "DPYD"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Dihydrofluorouracil (DHFU) is modeled as metabolite for Fluorouracil.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Fluorouracil"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Dihydrofluorouracil (DHFU)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_fluoxetine_norfluoxetine_metabolite_role_843138e422",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Fluoxetine"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Norfluoxetine"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Norfluoxetine is modeled as metabolite for Fluoxetine.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Fluoxetine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Norfluoxetine"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_fosphenytoin_phenytoin_metabolite_role_c83cf1b45a",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Fosphenytoin"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Phenytoin"
+      ],
+      "pathways": [
+        "Phosphatase"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Phenytoin is modeled as metabolite for Fosphenytoin.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Fosphenytoin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Phenytoin"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_haloperidol_pyridinium_metabolite_hpp_metabolite_role_94d496e116",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Haloperidol"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Pyridinium metabolite (HPP+)"
+      ],
+      "pathways": [
+        "CYP3A4"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Pyridinium metabolite (HPP+) is modeled as metabolite for Haloperidol.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Haloperidol"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Pyridinium metabolite (HPP+)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_hydrocodone_hydromorphone_metabolite_role_bb1b20e30e",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Hydrocodone"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Hydromorphone"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Hydromorphone is modeled as metabolite for Hydrocodone.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Hydrocodone"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Hydromorphone"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_hypertonic_saline_3_hypertonic_sodium_chloride_load_metabolite_role_bc3a8312d6",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Hypertonic Saline 3%"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Hypertonic sodium/chloride load"
+      ],
+      "pathways": [
+        "Electrolyte Distribution"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Hypertonic sodium/chloride load is modeled as metabolite for Hypertonic Saline 3%.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Hypertonic Saline 3%"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Hypertonic sodium/chloride load"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_idarucizumab_idarucizumab_dabigatran_complex_metabolite_role_59ecd030e4",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Idarucizumab"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Idarucizumab-dabigatran complex"
+      ],
+      "pathways": [
+        "Drug Binding"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Idarucizumab-dabigatran complex is modeled as metabolite for Idarucizumab.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Idarucizumab"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Idarucizumab-dabigatran complex"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_imipramine_desipramine_metabolite_role_03cec20b76",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Imipramine"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Desipramine"
+      ],
+      "pathways": [
+        "CYP1A2"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Desipramine is modeled as metabolite for Imipramine.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Imipramine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Desipramine"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_irinotecan_sn_38_7_ethyl_10_hydroxycamptothecin_metabolite_role_4c41361880",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Irinotecan"
+      ],
+      "genes": [],
+      "metabolites": [
+        "SN-38 (7-ethyl-10-hydroxycamptothecin)"
+      ],
+      "pathways": [
+        "CES1/CES2"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "SN-38 (7-ethyl-10-hydroxycamptothecin) is modeled as metabolite for Irinotecan.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Irinotecan"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "SN-38 (7-ethyl-10-hydroxycamptothecin)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_losartan_exp3174_e_3174_metabolite_role_e11d273319",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Losartan"
+      ],
+      "genes": [],
+      "metabolites": [
+        "EXP3174 (E-3174)"
+      ],
+      "pathways": [
+        "CYP2C9"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "EXP3174 (E-3174) is modeled as metabolite for Losartan.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Losartan"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "EXP3174 (E-3174)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_metoprolol_alpha_hydroxymetoprolol_metabolite_role_cf03b53b66",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Metoprolol"
+      ],
+      "genes": [],
+      "metabolites": [
+        "alpha-Hydroxymetoprolol"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "alpha-Hydroxymetoprolol is modeled as metabolite for Metoprolol.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Metoprolol"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "alpha-Hydroxymetoprolol"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_nebivolol_4_hydroxy_nebivolol_metabolite_role_d07645a348",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Nebivolol"
+      ],
+      "genes": [],
+      "metabolites": [
+        "4-Hydroxy-nebivolol"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "4-Hydroxy-nebivolol is modeled as metabolite for Nebivolol.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Nebivolol"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "4-Hydroxy-nebivolol"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_omeprazole_5_hydroxyomeprazole_metabolite_role_968d8fe174",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Omeprazole"
+      ],
+      "genes": [],
+      "metabolites": [
+        "5-Hydroxyomeprazole"
+      ],
+      "pathways": [
+        "CYP2C19"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "5-Hydroxyomeprazole is modeled as metabolite for Omeprazole.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Omeprazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "5-Hydroxyomeprazole"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_oxycodone_oxymorphone_metabolite_role_a588a1b9e2",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Oxycodone"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Oxymorphone"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Oxymorphone is modeled as metabolite for Oxycodone.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Oxycodone"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Oxymorphone"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_risperidone_9_hydroxyrisperidone_paliperidone_metabolite_role_5062f55cf6",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Risperidone"
+      ],
+      "genes": [],
+      "metabolites": [
+        "9-Hydroxyrisperidone (Paliperidone)"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "9-Hydroxyrisperidone (Paliperidone) is modeled as metabolite for Risperidone.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Risperidone"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "9-Hydroxyrisperidone (Paliperidone)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_tamoxifen_endoxifen_metabolite_role_fc0efb1946",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tamoxifen"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Endoxifen"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Endoxifen is modeled as metabolite for Tamoxifen.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Tamoxifen"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Endoxifen"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_tenecteplase_tenecteplase_driven_plasmin_activity_metabolite_role_a3c5b34936",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tenecteplase"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Tenecteplase-driven plasmin activity"
+      ],
+      "pathways": [
+        "Plasminogen Activation"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Tenecteplase-driven plasmin activity is modeled as metabolite for Tenecteplase.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Tenecteplase"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Tenecteplase-driven plasmin activity"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_tramadol_o_desmethyltramadol_m1_metabolite_role_9d9a7c2f61",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tramadol"
+      ],
+      "genes": [],
+      "metabolites": [
+        "O-desmethyltramadol (M1)"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "O-desmethyltramadol (M1) is modeled as metabolite for Tramadol.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Tramadol"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "O-desmethyltramadol (M1)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_trazodone_m_chlorophenylpiperazine_mcpp_metabolite_role_71d997a240",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Trazodone"
+      ],
+      "genes": [],
+      "metabolites": [
+        "m-Chlorophenylpiperazine (mCPP)"
+      ],
+      "pathways": [
+        "CYP3A4"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "m-Chlorophenylpiperazine (mCPP) is modeled as metabolite for Trazodone.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Trazodone"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "m-Chlorophenylpiperazine (mCPP)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_metabolite_roles_local_voriconazole_voriconazole_n_oxide_metabolite_role_963486ee84",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "metabolite_roles",
+      "layer": "parent_metabolite",
+      "candidateKind": "metabolite_roles",
+      "claimType": "metabolite_role",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Voriconazole"
+      ],
+      "genes": [],
+      "metabolites": [
+        "Voriconazole N-oxide"
+      ],
+      "pathways": [
+        "CYP2C19"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "metabolite",
+      "mechanismSummary": "Voriconazole N-oxide is modeled as metabolite for Voriconazole.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Voriconazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Voriconazole N-oxide"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METABOLITE_ACTORS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    }
+  ]
 }

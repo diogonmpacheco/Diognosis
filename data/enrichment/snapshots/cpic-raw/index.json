@@ -1,0 +1,65 @@
+{
+  "schema": "diognosis.cpic-raw-cache-index.v1",
+  "generatedAt": "2026-06-15T14:32:11.189Z",
+  "source": "CPIC Data",
+  "baseUrl": "https://api.cpicpgx.org/v1",
+  "fetched": [
+    {
+      "endpoint": "gene",
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/cpic/gene-6b02c827bae2.json",
+      "status": 200,
+      "sha256": "6b02c827bae2ad3314bb2044cd4d5ecf9ac85d5aac66d81b567c3038a7029801",
+      "records": 50
+    },
+    {
+      "endpoint": "drug",
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/cpic/drug-1227b5485f68.json",
+      "status": 200,
+      "sha256": "1227b5485f6836c3a3b43cb26f1e19bf671df729a7f397cb67ccbb6b1766aeb0",
+      "records": 50
+    },
+    {
+      "endpoint": "pair_view",
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/cpic/pair_view-c0943fd83d64.json",
+      "status": 200,
+      "sha256": "c0943fd83d64ea446c3ed9444d2d5ea57693532bdee6b139a32b77582eabc37c",
+      "records": 50
+    },
+    {
+      "endpoint": "guideline",
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/cpic/guideline-1b5c5c742c6d.json",
+      "status": 200,
+      "sha256": "1b5c5c742c6d692dc45deb9ea4112a7899c70d30e4e59d782ffd8efffd486842",
+      "records": 29
+    },
+    {
+      "endpoint": "recommendation_view",
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/cpic/recommendation_view-7232674d0b0c.json",
+      "status": 200,
+      "sha256": "7232674d0b0c29bdb0a1b32f355fd3522346732495908391ccd94eeb8b5286dc",
+      "records": 50
+    },
+    {
+      "endpoint": "publication",
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/cpic/publication-6d382f2d6cc8.json",
+      "status": 200,
+      "sha256": "6d382f2d6cc82c7faa045fc1df07016cd897b90fe3521fdea502aed3f94e3469",
+      "records": 50
+    },
+    {
+      "endpoint": "test_alert_view",
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/cpic/test_alert_view-3087ac059e8b.json",
+      "status": 200,
+      "sha256": "3087ac059e8b20b67c9088cb35f45c35eb0ff9090260d8ec0f22798d24c9904c",
+      "records": 50
+    },
+    {
+      "endpoint": "allele_definition",
+      "file": "/Users/diogopacheco/Documents/GitHub/medcheck/data/enrichment/cache/cpic/allele_definition-af86f4b62e28.json",
+      "status": 200,
+      "sha256": "af86f4b62e28e10ba1fd488eb1465c04e94cacd4191ea5602ff42748bca1c81e",
+      "records": 50
+    }
+  ],
+  "providerFailures": []
+}

@@ -1,0 +1,12 @@
+{
+  "schema": "diognosis.live-enrichment-boundary-audit.v1",
+  "generatedAt": "2026-06-15T14:37:32.724Z",
+  "source": "src/data/generatedLivePendingReview.js",
+  "liveRecords": 30,
+  "counts": {
+    "study": 20,
+    "labelContext": 10
+  },
+  "failures": [],
+  "ok": true
+}

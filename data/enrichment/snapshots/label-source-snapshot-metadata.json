@@ -1,10 +1,11 @@
 {
   "schema": "diognosis.label-source-snapshot-metadata.v1",
-  "generatedAt": "2026-06-15T13:45:49.419Z",
-  "mode": "check",
-  "source": "FDA/DailyMed Labels",
-  "stagedRecords": 0,
-  "fetchedRecords": 0,
-  "sourceTruthStatus": "label_source_candidate_not_fetched",
-  "note": "Label-source intake lane is initialized for allowlisted public label metadata. No source objects were fetched in check mode."
+  "generatedAt": "2026-06-15T14:32:01.828Z",
+  "mode": "fetch_public_metadata",
+  "source": "DailyMed public label metadata",
+  "stagedRecords": 100,
+  "fetchedRecords": 40,
+  "providerFailures": [],
+  "sourceTruthStatus": "fetched_public_label_metadata_only",
+  "note": "DailyMed public label metadata was fetched. No full label text, tables, figures, or abstracts are stored."
 }

@@ -3,124 +3,27 @@
   "store": "evidence_links",
   "layer": "evidence",
   "title": "Evidence links",
-  "generatedAt": "2026-06-15T13:45:49.728Z",
+  "generatedAt": "2026-06-15T14:34:04.480Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",
-      "records": 128
+      "records": 1628
     },
     {
       "file": "data/enrichment/staged/cpic-staged-records.json",
-      "records": 156
+      "records": 379
     },
     {
       "file": "data/enrichment/staged/label-staged-records.json",
-      "records": 0
+      "records": 100
     },
     {
       "file": "data/enrichment/staged/legal-literature-staged-records.json",
       "records": 248
     }
   ],
-  "totalCandidates": 34,
+  "totalCandidates": 19,
   "candidates": [
-    {
-      "candidateId": "candidate_relation_evidence_links_candidate_cpic_data_publication_ev_aminoglycoside_mtrnr1_cpic2021_pmid_34032273__38cd4d4291",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "evidence_links",
-      "layer": "evidence",
-      "candidateKind": "evidence_links",
-      "claimType": "publication",
-      "sourceRecords": [
-        "candidate_cpic_data_publication_ev_aminoglycoside_mtrnr1_cpic2021_pmid_34032273_doi_10_1002_cpt_2309_88396b11fb",
-        "candidate_cpic_data_publication_ev_atomoxetine_cyp2d6_cpic_pmid_30801677_doi_10_1002_cpt_1409_cfefa7e09c",
-        "candidate_cpic_data_publication_ev_codeine_cyp2d6_cpic_pmid_24458010_doi_10_1038_clpt_2013_254_124f2691e9",
-        "candidate_cpic_data_publication_ev_efavirenz_cyp2b6_desta2019_pmid_31006110_doi_10_1002_cpt_1477_f4ba5ebb3e",
-        "candidate_cpic_data_publication_ev_fluorouracil_dpyd_amstutz2018_pmid_29152729_doi_10_1002_cpt_911_7c50d98f4d",
-        "candidate_cpic_data_publication_ev_irinotecan_ugt1a1_ramsey2014_pmid_24786769_doi_10_1038_clpt_2014_21_e4cb6619c3",
-        "candidate_cpic_data_publication_ev_metoprolol_cyp2d6_cpic_49996609ce",
-        "candidate_cpic_data_publication_ev_omeprazole_cyp2c19_lima2021_pmid_32770672_doi_10_1002_cpt_1168_7076468de7",
-        "candidate_cpic_data_publication_ev_opioid_cyp2d6_cpic_2020_pmid_33387367_df019614a1",
-        "candidate_cpic_data_publication_ev_tacrolimus_cyp3a5_consensus_pmid_25813372_doi_10_1002_cpt_113_3b91fa3963",
-        "candidate_cpic_data_publication_ev_tca_cyp2d6_cpic_pmid_27997040_71724c215b",
-        "candidate_cpic_data_publication_ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019_pmid_30499100_doi_10_1002_cpt_1319_5d409498a3"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "local_review_candidate_not_fetched",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [],
-      "genes": [],
-      "metabolites": [],
-      "pathways": [],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "Existing Diognosis evidence references CPIC: CPIC Guideline for the Use of Aminoglycosides Based on MT-RNR1 Genotype.",
-      "clinicalSummary": "Review whether this CPIC-linked evidence should support a curated PGx rule or STUDY_DB update.",
-      "evidenceIdentifiers": [
-        "ev_aminoglycoside_mtrnr1_cpic2021",
-        "PMID:34032273",
-        "DOI:10.1002/cpt.2309",
-        "https://cpicpgx.org",
-        "ev_atomoxetine_cyp2d6_cpic",
-        "PMID:30801677",
-        "DOI:10.1002/cpt.1409",
-        "ev_codeine_cyp2d6_cpic",
-        "PMID:24458010",
-        "DOI:10.1038/clpt.2013.254",
-        "ev_efavirenz_cyp2b6_desta2019",
-        "PMID:31006110",
-        "DOI:10.1002/cpt.1477",
-        "ev_fluorouracil_dpyd_amstutz2018",
-        "PMID:29152729",
-        "DOI:10.1002/cpt.911",
-        "ev_irinotecan_ugt1a1_ramsey2014",
-        "PMID:24786769",
-        "DOI:10.1038/clpt.2014.21",
-        "ev_metoprolol_cyp2d6_cpic",
-        "ev_omeprazole_cyp2c19_lima2021",
-        "PMID:32770672",
-        "DOI:10.1002/cpt.1168",
-        "ev_opioid_cyp2d6_cpic_2020",
-        "PMID:33387367",
-        "ev_tacrolimus_cyp3a5_consensus",
-        "PMID:25813372",
-        "DOI:10.1002/cpt.113",
-        "ev_tca_cyp2d6_cpic",
-        "PMID:27997040",
-        "ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019",
-        "PMID:30499100",
-        "DOI:10.1002/cpt.1319"
-      ],
-      "strongestExternalTier": "GUIDELINE",
-      "matchedDiognosisDrugs": [],
-      "matchedGenes": [],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "STUDY_DB",
-      "priority": "P1",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Generated in CPIC check mode from local Diognosis coverage. Fetch/verify CPIC Data before promotion."
-      ]
-    },
     {
       "candidateId": "candidate_relation_evidence_links_candidate_europe_pmc_publication_draft_clobazam_cyp2c19_deleonj2013_23318278_sea_cbe50cd560",
       "schema": "diognosis.candidate-relation.v1",
@@ -1950,49 +1853,188 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_evidence_links_cyp2b6_a4f7027968",
+      "candidateId": "candidate_relation_evidence_links_candidate_cpic_data_publication_cpic_publication_1045981_32581780_5f015242ba_d578c23402",
       "schema": "diognosis.candidate-relation.v1",
       "store": "evidence_links",
       "layer": "evidence",
       "candidateKind": "evidence_links",
       "claimType": "publication",
       "sourceRecords": [
-        "candidate_cpic_data_publication_cyp2b6_ev_ssri_snri_cpic_2023_slc6a4_htr2a_pmid_37032427_doi_10_1002_cpt_2903_7c08e1cca8"
+        "candidate_cpic_data_publication_cpic_publication_1045981_32581780_5f015242ba",
+        "candidate_cpic_data_publication_cpic_publication_110012_21270786_6fd2dd9ce3",
+        "candidate_cpic_data_publication_cpic_publication_110020_24479687_1243042eff",
+        "candidate_cpic_data_publication_cpic_publication_110025_27441996_4463e772ae",
+        "candidate_cpic_data_publication_cpic_publication_110073_27026620_c563c10631",
+        "candidate_cpic_data_publication_cpic_publication_110074_27864205_b5efc70a1b",
+        "candidate_cpic_data_publication_cpic_publication_110075_31562822_09a249a901",
+        "candidate_cpic_data_publication_cpic_publication_113556_29454071_8c8533ab99",
+        "candidate_cpic_data_publication_cpic_publication_113561_27060780_cf7532f801",
+        "candidate_cpic_data_publication_cpic_publication_113658_26131415_3d55ccf3d3",
+        "candidate_cpic_data_publication_cpic_publication_113862_24019055_2005fe0cc1",
+        "candidate_cpic_data_publication_cpic_publication_113876_25594941_ce2fe27714",
+        "candidate_cpic_data_publication_cpic_publication_113925_14515058_4b25b72b53",
+        "candidate_cpic_data_publication_cpic_publication_113933_14685227_94b6223dbb",
+        "candidate_cpic_data_publication_cpic_publication_113935_17339868_4836eb6ab9",
+        "candidate_cpic_data_publication_cpic_publication_114119_17635176_eae8a88fd3",
+        "candidate_cpic_data_publication_cpic_publication_114885_b75052b843",
+        "candidate_cpic_data_publication_cpic_publication_116044_16413245_d73cc7ec2b",
+        "candidate_cpic_data_publication_cpic_publication_116046_17178267_00a220deb6",
+        "candidate_cpic_data_publication_cpic_publication_116290_10471063_b8f1c0dbea",
+        "candidate_cpic_data_publication_cpic_publication_1552823_31784582_3c8f63c33f",
+        "candidate_cpic_data_publication_cpic_publication_1552830_20858603_72c8678718",
+        "candidate_cpic_data_publication_cpic_publication_3070386_36946361_aa8ad195cc",
+        "candidate_cpic_data_publication_cpic_publication_871408_33536625_97e73703bb",
+        "candidate_cpic_data_publication_cpic_publication_871411_19465004_ae6e11d20d",
+        "candidate_cpic_data_publication_cpic_publication_871418_18274916_c6615d6f33",
+        "candidate_cpic_data_publication_cpic_publication_871421_21162657_0c58e31d93",
+        "candidate_cpic_data_publication_cpic_publication_871423_21329993_c914c99acc",
+        "candidate_cpic_data_publication_cpic_publication_871425_26252218_e13c801cd0",
+        "candidate_cpic_data_publication_cpic_publication_871427_20123042_7d438119b5",
+        "candidate_cpic_data_publication_cpic_publication_871429_18636170_f0dd168aa1",
+        "candidate_cpic_data_publication_cpic_publication_871433_12955586_e1cff72b46",
+        "candidate_cpic_data_publication_cpic_publication_871437_24804242_4205375578",
+        "candidate_cpic_data_publication_cpic_publication_871441_23834103_a059527e7d",
+        "candidate_cpic_data_publication_cpic_publication_871465_164703009_35404116e0",
+        "candidate_cpic_data_publication_cpic_publication_871467_19835846_83c193a991",
+        "candidate_cpic_data_publication_cpic_publication_871469_30523288_155f1defd8",
+        "candidate_cpic_data_publication_cpic_publication_871471_19371214_dd4c7a7f48",
+        "candidate_cpic_data_publication_cpic_publication_871473_22567152_10541b26c9",
+        "candidate_cpic_data_publication_cpic_publication_871476_20171168_7f44428188",
+        "candidate_cpic_data_publication_cpic_publication_871479_17955603_290ed983df",
+        "candidate_cpic_data_publication_cpic_publication_871481_9111378_6a8a75e3a2",
+        "candidate_cpic_data_publication_cpic_publication_871485_18560174_1f0161029a",
+        "candidate_cpic_data_publication_cpic_publication_871488_20637512_7e92b9cdfb",
+        "candidate_cpic_data_publication_cpic_publication_871491_25755848_03a563ee75",
+        "candidate_cpic_data_publication_cpic_publication_871494_12655418_0316007d56",
+        "candidate_cpic_data_publication_cpic_publication_871496_16406239_b756c9f5dd",
+        "candidate_cpic_data_publication_cpic_publication_871499_22077646_803eded68c",
+        "candidate_cpic_data_publication_cpic_publication_871502_19144107_75919a9617",
+        "candidate_cpic_data_publication_cpic_publication_871504_21392827_b3475536fd"
       ],
       "sourceName": "CPIC Data",
       "sourceType": "structured_guideline",
-      "sourceTruthStatus": "local_review_candidate_not_fetched",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
+      "sourceTruthStatus": "fetched_from_cpic_source",
+      "sourceRelease": "api-v1",
+      "rawSourceCachePath": "https://api.cpicpgx.org/v1/publication?limit=50",
       "drugs": [],
-      "genes": [
-        "CYP2B6"
-      ],
+      "genes": [],
       "metabolites": [],
-      "pathways": [
-        "CYP2B6"
-      ],
+      "pathways": [],
       "riskMarkers": [],
       "phenotypes": [],
       "affectedActors": [],
       "direction": "",
-      "mechanismSummary": "Existing Diognosis evidence references CPIC: CPIC guideline for CYP2D6, CYP2C19, CYP2B6, SLC6A4, and HTR2A genotypes and serotonin reuptake inhibitor antidepressants.",
-      "clinicalSummary": "Review whether this CPIC-linked evidence should support a curated PGx rule or STUDY_DB update.",
+      "mechanismSummary": "publication source object 1045981.",
+      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
       "evidenceIdentifiers": [
-        "ev_ssri_snri_cpic_2023_slc6a4_htr2a",
-        "PMID:37032427",
-        "DOI:10.1002/cpt.2903",
-        "https://cpicpgx.org"
+        "PMID:32581780",
+        "CPIC:publication:1045981",
+        "https://api.cpicpgx.org/v1/publication?limit=50",
+        "PMID:21270786",
+        "CPIC:publication:110012",
+        "PMID:24479687",
+        "CPIC:publication:110020",
+        "PMID:27441996",
+        "CPIC:publication:110025",
+        "PMID:27026620",
+        "CPIC:publication:110073",
+        "PMID:27864205",
+        "CPIC:publication:110074",
+        "PMID:31562822",
+        "CPIC:publication:110075",
+        "PMID:29454071",
+        "CPIC:publication:113556",
+        "PMID:27060780",
+        "CPIC:publication:113561",
+        "PMID:26131415",
+        "CPIC:publication:113658",
+        "PMID:24019055",
+        "CPIC:publication:113862",
+        "PMID:25594941",
+        "CPIC:publication:113876",
+        "PMID:14515058",
+        "CPIC:publication:113925",
+        "PMID:14685227",
+        "CPIC:publication:113933",
+        "PMID:17339868",
+        "CPIC:publication:113935",
+        "PMID:17635176",
+        "CPIC:publication:114119",
+        "CPIC:publication:114885",
+        "PMID:16413245",
+        "CPIC:publication:116044",
+        "PMID:17178267",
+        "CPIC:publication:116046",
+        "PMID:10471063",
+        "CPIC:publication:116290",
+        "PMID:31784582",
+        "CPIC:publication:1552823",
+        "PMID:20858603",
+        "CPIC:publication:1552830",
+        "PMID:36946361",
+        "CPIC:publication:3070386",
+        "PMID:33536625",
+        "CPIC:publication:871408",
+        "PMID:19465004",
+        "CPIC:publication:871411",
+        "PMID:18274916",
+        "CPIC:publication:871418",
+        "PMID:21162657",
+        "CPIC:publication:871421",
+        "PMID:21329993",
+        "CPIC:publication:871423",
+        "PMID:26252218",
+        "CPIC:publication:871425",
+        "PMID:20123042",
+        "CPIC:publication:871427",
+        "PMID:18636170",
+        "CPIC:publication:871429",
+        "PMID:12955586",
+        "CPIC:publication:871433",
+        "PMID:24804242",
+        "CPIC:publication:871437",
+        "PMID:23834103",
+        "CPIC:publication:871441",
+        "PMID:164703009",
+        "CPIC:publication:871465",
+        "PMID:19835846",
+        "CPIC:publication:871467",
+        "PMID:30523288",
+        "CPIC:publication:871469",
+        "PMID:19371214",
+        "CPIC:publication:871471",
+        "PMID:22567152",
+        "CPIC:publication:871473",
+        "PMID:20171168",
+        "CPIC:publication:871476",
+        "PMID:17955603",
+        "CPIC:publication:871479",
+        "PMID:9111378",
+        "CPIC:publication:871481",
+        "PMID:18560174",
+        "CPIC:publication:871485",
+        "PMID:20637512",
+        "CPIC:publication:871488",
+        "PMID:25755848",
+        "CPIC:publication:871491",
+        "PMID:12655418",
+        "CPIC:publication:871494",
+        "PMID:16406239",
+        "CPIC:publication:871496",
+        "PMID:22077646",
+        "CPIC:publication:871499",
+        "PMID:19144107",
+        "CPIC:publication:871502",
+        "PMID:21392827",
+        "CPIC:publication:871504"
       ],
-      "strongestExternalTier": "GUIDELINE",
+      "strongestExternalTier": "CPIC Data",
       "matchedDiognosisDrugs": [],
-      "matchedGenes": [
-        "CYP2B6"
-      ],
+      "matchedGenes": [],
       "matchedMetabolites": [],
       "possibleExistingRows": [],
       "suggestedTarget": "STUDY_DB",
-      "priority": "P1",
+      "priority": "P2",
       "governance": {
         "reviewRequired": true,
         "professionalReviewStatus": "pending",
@@ -2005,925 +2047,11 @@
         "canAffectScoring": false,
         "canAffectPublicSeverity": false,
         "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
+        "promotionReadiness": "ready_for_source_faithfulness_review"
       },
       "notes": [
         "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Generated in CPIC check mode from local Diognosis coverage. Fetch/verify CPIC Data before promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_evidence_links_cyp2c19_5a96c50997",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "evidence_links",
-      "layer": "evidence",
-      "candidateKind": "evidence_links",
-      "claimType": "publication",
-      "sourceRecords": [
-        "candidate_cpic_data_publication_cyp2c19_ev_clopidogrel_cyp2c19_cpic_pmid_35034351_doi_10_1002_cpt_2526_6c5dad1550",
-        "candidate_cpic_data_publication_cyp2c19_ev_ssri_snri_cpic_2023_slc6a4_htr2a_pmid_37032427_doi_10_1002_cpt_2903_79e38587df"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "local_review_candidate_not_fetched",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [],
-      "genes": [
-        "CYP2C19"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2C19"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "Existing Diognosis evidence references CPIC: Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update.",
-      "clinicalSummary": "Review whether this CPIC-linked evidence should support a curated PGx rule or STUDY_DB update.",
-      "evidenceIdentifiers": [
-        "ev_clopidogrel_cyp2c19_cpic",
-        "PMID:35034351",
-        "DOI:10.1002/cpt.2526",
-        "https://cpicpgx.org",
-        "ev_ssri_snri_cpic_2023_slc6a4_htr2a",
-        "PMID:37032427",
-        "DOI:10.1002/cpt.2903"
-      ],
-      "strongestExternalTier": "GUIDELINE",
-      "matchedDiognosisDrugs": [],
-      "matchedGenes": [
-        "CYP2C19"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "STUDY_DB",
-      "priority": "P1",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Generated in CPIC check mode from local Diognosis coverage. Fetch/verify CPIC Data before promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_evidence_links_cyp2c9_92882cc308",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "evidence_links",
-      "layer": "evidence",
-      "candidateKind": "evidence_links",
-      "claimType": "publication",
-      "sourceRecords": [
-        "candidate_cpic_data_publication_cyp2c9_ev_cyp2c9_nsaid_cpic2020_pmid_32189324_doi_10_1002_cpt_1830_63ae93c4e9",
-        "candidate_cpic_data_publication_cyp2c9_ev_phenytoin_cyp2c9_hlab_cpic2020_pmid_32779747_31c781143f",
-        "candidate_cpic_data_publication_cyp2c9_ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017_pmid_28198005_doi_10_1002_cpt_668_de3aeca868"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "local_review_candidate_not_fetched",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [],
-      "genes": [
-        "CYP2C9"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2C9"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "Existing Diognosis evidence references CPIC: CPIC Guideline for CYP2C9 and Nonsteroidal Anti-inflammatory Drugs.",
-      "clinicalSummary": "Review whether this CPIC-linked evidence should support a curated PGx rule or STUDY_DB update.",
-      "evidenceIdentifiers": [
-        "ev_cyp2c9_nsaid_cpic2020",
-        "PMID:32189324",
-        "DOI:10.1002/cpt.1830",
-        "https://cpicpgx.org",
-        "ev_phenytoin_cyp2c9_hlab_cpic2020",
-        "PMID:32779747",
-        "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017",
-        "PMID:28198005",
-        "DOI:10.1002/cpt.668"
-      ],
-      "strongestExternalTier": "GUIDELINE",
-      "matchedDiognosisDrugs": [],
-      "matchedGenes": [
-        "CYP2C9"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "STUDY_DB",
-      "priority": "P1",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Generated in CPIC check mode from local Diognosis coverage. Fetch/verify CPIC Data before promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_evidence_links_cyp2d6_ce48f25e19",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "evidence_links",
-      "layer": "evidence",
-      "candidateKind": "evidence_links",
-      "claimType": "publication",
-      "sourceRecords": [
-        "candidate_cpic_data_publication_cyp2d6_ev_ondansetron_cyp2d6_cpic2017_pmid_28002639_doi_10_1002_cpt_598_85ddca5fc9",
-        "candidate_cpic_data_publication_cyp2d6_ev_ssri_snri_cpic_2023_slc6a4_htr2a_pmid_37032427_doi_10_1002_cpt_2903_a3f6d1eb15",
-        "candidate_cpic_data_publication_cyp2d6_ev_tamoxifen_cyp2d6_cpic_pmid_29385237_doi_10_1002_cpt_1007_87cba2b653"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "local_review_candidate_not_fetched",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [],
-      "genes": [
-        "CYP2D6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "Existing Diognosis evidence references CPIC: CPIC guideline for CYP2D6 genotype and use of ondansetron and tropisetron.",
-      "clinicalSummary": "Review whether this CPIC-linked evidence should support a curated PGx rule or STUDY_DB update.",
-      "evidenceIdentifiers": [
-        "ev_ondansetron_cyp2d6_cpic2017",
-        "PMID:28002639",
-        "DOI:10.1002/cpt.598",
-        "https://cpicpgx.org",
-        "ev_ssri_snri_cpic_2023_slc6a4_htr2a",
-        "PMID:37032427",
-        "DOI:10.1002/cpt.2903",
-        "ev_tamoxifen_cyp2d6_cpic",
-        "PMID:29385237",
-        "DOI:10.1002/cpt.1007"
-      ],
-      "strongestExternalTier": "GUIDELINE",
-      "matchedDiognosisDrugs": [],
-      "matchedGenes": [
-        "CYP2D6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "STUDY_DB",
-      "priority": "P1",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Generated in CPIC check mode from local Diognosis coverage. Fetch/verify CPIC Data before promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_evidence_links_cyp3a5_b1379f4d0b",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "evidence_links",
-      "layer": "evidence",
-      "candidateKind": "evidence_links",
-      "claimType": "publication",
-      "sourceRecords": [
-        "candidate_cpic_data_publication_cyp3a5_ev_tacrolimus_cyp3a5_cpic_pmid_25801146_doi_10_1002_cpt_113_36870b4a3d"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "local_review_candidate_not_fetched",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [],
-      "genes": [
-        "CYP3A5"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP3A5"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "Existing Diognosis evidence references CPIC: Clinical Pharmacogenetics Implementation Consortium Guidelines for CYP3A5 Genotype and Tacrolimus Dosing.",
-      "clinicalSummary": "Review whether this CPIC-linked evidence should support a curated PGx rule or STUDY_DB update.",
-      "evidenceIdentifiers": [
-        "ev_tacrolimus_cyp3a5_cpic",
-        "PMID:25801146",
-        "DOI:10.1002/cpt.113",
-        "https://cpicpgx.org"
-      ],
-      "strongestExternalTier": "GUIDELINE",
-      "matchedDiognosisDrugs": [],
-      "matchedGenes": [
-        "CYP3A5"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "STUDY_DB",
-      "priority": "P1",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Generated in CPIC check mode from local Diognosis coverage. Fetch/verify CPIC Data before promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_evidence_links_cyp4f2_a52f85c568",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "evidence_links",
-      "layer": "evidence",
-      "candidateKind": "evidence_links",
-      "claimType": "publication",
-      "sourceRecords": [
-        "candidate_cpic_data_publication_cyp4f2_ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017_pmid_28198005_doi_10_1002_cpt_668_02fdd3aa59"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "local_review_candidate_not_fetched",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [],
-      "genes": [
-        "CYP4F2"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP4F2"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "Existing Diognosis evidence references CPIC: CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update.",
-      "clinicalSummary": "Review whether this CPIC-linked evidence should support a curated PGx rule or STUDY_DB update.",
-      "evidenceIdentifiers": [
-        "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017",
-        "PMID:28198005",
-        "DOI:10.1002/cpt.668",
-        "https://cpicpgx.org"
-      ],
-      "strongestExternalTier": "GUIDELINE",
-      "matchedDiognosisDrugs": [],
-      "matchedGenes": [
-        "CYP4F2"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "STUDY_DB",
-      "priority": "P1",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Generated in CPIC check mode from local Diognosis coverage. Fetch/verify CPIC Data before promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_evidence_links_g6pd_f3a23ab7db",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "evidence_links",
-      "layer": "evidence",
-      "candidateKind": "evidence_links",
-      "claimType": "publication",
-      "sourceRecords": [
-        "candidate_cpic_data_publication_g6pd_ev_rasburicase_g6pd_cpic2014_pmid_24787449_doi_10_1038_clpt_2014_97_3b604d8fd3"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "local_review_candidate_not_fetched",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [],
-      "genes": [
-        "G6PD"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "G6PD"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "Existing Diognosis evidence references CPIC: CPIC Guidelines for Rasburicase Therapy in the Context of G6PD Deficiency Genotype.",
-      "clinicalSummary": "Review whether this CPIC-linked evidence should support a curated PGx rule or STUDY_DB update.",
-      "evidenceIdentifiers": [
-        "ev_rasburicase_g6pd_cpic2014",
-        "PMID:24787449",
-        "DOI:10.1038/clpt.2014.97",
-        "https://cpicpgx.org"
-      ],
-      "strongestExternalTier": "GUIDELINE",
-      "matchedDiognosisDrugs": [],
-      "matchedGenes": [
-        "G6PD"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "STUDY_DB",
-      "priority": "P1",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Generated in CPIC check mode from local Diognosis coverage. Fetch/verify CPIC Data before promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_evidence_links_hla_a_23d11a15d0",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "evidence_links",
-      "layer": "evidence",
-      "candidateKind": "evidence_links",
-      "claimType": "publication",
-      "sourceRecords": [
-        "candidate_cpic_data_publication_hla_a_ev_carbamazepine_oxcarbazepine_hla_cpic2017_pmid_29385237_doi_10_1002_cpt_1004_255319b907"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "local_review_candidate_not_fetched",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [],
-      "genes": [
-        "HLA-A"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "HLA-A"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "Existing Diognosis evidence references CPIC: CPIC Guideline for HLA Genotype and Use of Carbamazepine and Oxcarbazepine: 2017 Update.",
-      "clinicalSummary": "Review whether this CPIC-linked evidence should support a curated PGx rule or STUDY_DB update.",
-      "evidenceIdentifiers": [
-        "ev_carbamazepine_oxcarbazepine_hla_cpic2017",
-        "PMID:29385237",
-        "DOI:10.1002/cpt.1004",
-        "https://cpicpgx.org"
-      ],
-      "strongestExternalTier": "GUIDELINE",
-      "matchedDiognosisDrugs": [],
-      "matchedGenes": [
-        "HLA-A"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "STUDY_DB",
-      "priority": "P1",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Generated in CPIC check mode from local Diognosis coverage. Fetch/verify CPIC Data before promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_evidence_links_hla_b_180fedf8cb",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "evidence_links",
-      "layer": "evidence",
-      "candidateKind": "evidence_links",
-      "claimType": "publication",
-      "sourceRecords": [
-        "candidate_cpic_data_publication_hla_b_ev_abacavir_hlab5701_cpic2012_pmid_22378157_doi_10_1038_clpt_2011_355_d34ee3c181",
-        "candidate_cpic_data_publication_hla_b_ev_allopurinol_hlab5801_cpic2015_pmid_26306456_doi_10_1002_cpt_161_bad3741fc0",
-        "candidate_cpic_data_publication_hla_b_ev_carbamazepine_oxcarbazepine_hla_cpic2017_pmid_29385237_doi_10_1002_cpt_1004_3fba020d63",
-        "candidate_cpic_data_publication_hla_b_ev_phenytoin_cyp2c9_hlab_cpic2020_pmid_32779747_16d9f7042d"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "local_review_candidate_not_fetched",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [],
-      "genes": [
-        "HLA-B"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "HLA-B"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "Existing Diognosis evidence references CPIC: CPIC Guidelines for HLA-B Genotype and Abacavir Dosing.",
-      "clinicalSummary": "Review whether this CPIC-linked evidence should support a curated PGx rule or STUDY_DB update.",
-      "evidenceIdentifiers": [
-        "ev_abacavir_hlab5701_cpic2012",
-        "PMID:22378157",
-        "DOI:10.1038/clpt.2011.355",
-        "https://cpicpgx.org",
-        "ev_allopurinol_hlab5801_cpic2015",
-        "PMID:26306456",
-        "DOI:10.1002/cpt.161",
-        "ev_carbamazepine_oxcarbazepine_hla_cpic2017",
-        "PMID:29385237",
-        "DOI:10.1002/cpt.1004",
-        "ev_phenytoin_cyp2c9_hlab_cpic2020",
-        "PMID:32779747"
-      ],
-      "strongestExternalTier": "GUIDELINE",
-      "matchedDiognosisDrugs": [],
-      "matchedGenes": [
-        "HLA-B"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "STUDY_DB",
-      "priority": "P1",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Generated in CPIC check mode from local Diognosis coverage. Fetch/verify CPIC Data before promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_evidence_links_ifnl3_5d7c7c4b7a",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "evidence_links",
-      "layer": "evidence",
-      "candidateKind": "evidence_links",
-      "claimType": "publication",
-      "sourceRecords": [
-        "candidate_cpic_data_publication_ifnl3_ev_ifnl3_hcv_interferon_cpic2014_pmid_24096968_doi_10_1038_clpt_2013_203_e54ce2eac7"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "local_review_candidate_not_fetched",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [],
-      "genes": [
-        "IFNL3"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "IFNL3"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "Existing Diognosis evidence references CPIC: CPIC guideline for IFNL3 (IL28B) genotype and PEG interferon-alpha-based regimens.",
-      "clinicalSummary": "Review whether this CPIC-linked evidence should support a curated PGx rule or STUDY_DB update.",
-      "evidenceIdentifiers": [
-        "ev_ifnl3_hcv_interferon_cpic2014",
-        "PMID:24096968",
-        "DOI:10.1038/clpt.2013.203",
-        "https://cpicpgx.org"
-      ],
-      "strongestExternalTier": "GUIDELINE",
-      "matchedDiognosisDrugs": [],
-      "matchedGenes": [
-        "IFNL3"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "STUDY_DB",
-      "priority": "P1",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Generated in CPIC check mode from local Diognosis coverage. Fetch/verify CPIC Data before promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_evidence_links_ifnl4_c97217526f",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "evidence_links",
-      "layer": "evidence",
-      "candidateKind": "evidence_links",
-      "claimType": "publication",
-      "sourceRecords": [
-        "candidate_cpic_data_publication_ifnl4_ev_ifnl3_hcv_interferon_cpic2014_pmid_24096968_doi_10_1038_clpt_2013_203_a4e962c952"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "local_review_candidate_not_fetched",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [],
-      "genes": [
-        "IFNL4"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "IFNL4"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "Existing Diognosis evidence references CPIC: CPIC guideline for IFNL3 (IL28B) genotype and PEG interferon-alpha-based regimens.",
-      "clinicalSummary": "Review whether this CPIC-linked evidence should support a curated PGx rule or STUDY_DB update.",
-      "evidenceIdentifiers": [
-        "ev_ifnl3_hcv_interferon_cpic2014",
-        "PMID:24096968",
-        "DOI:10.1038/clpt.2013.203",
-        "https://cpicpgx.org"
-      ],
-      "strongestExternalTier": "GUIDELINE",
-      "matchedDiognosisDrugs": [],
-      "matchedGenes": [
-        "IFNL4"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "STUDY_DB",
-      "priority": "P1",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Generated in CPIC check mode from local Diognosis coverage. Fetch/verify CPIC Data before promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_evidence_links_nudt15_1a78a4ac25",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "evidence_links",
-      "layer": "evidence",
-      "candidateKind": "evidence_links",
-      "claimType": "publication",
-      "sourceRecords": [
-        "candidate_cpic_data_publication_nudt15_ev_azathioprine_tpmt_cpic2019_pmid_30447069_doi_10_1002_cpt_1304_732ae4a409",
-        "candidate_cpic_data_publication_nudt15_ev_thiopurine_tpmt_nudt15_cpic2025_pmid_41618934_f6ea7eafaf"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "local_review_candidate_not_fetched",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [],
-      "genes": [
-        "NUDT15"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "NUDT15"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "Existing Diognosis evidence references CPIC: CPIC Guideline for Thiopurines Based on TPMT and NUDT15 Genotype.",
-      "clinicalSummary": "Review whether this CPIC-linked evidence should support a curated PGx rule or STUDY_DB update.",
-      "evidenceIdentifiers": [
-        "ev_azathioprine_tpmt_cpic2019",
-        "PMID:30447069",
-        "DOI:10.1002/cpt.1304",
-        "https://cpicpgx.org",
-        "ev_thiopurine_tpmt_nudt15_cpic2025",
-        "PMID:41618934"
-      ],
-      "strongestExternalTier": "GUIDELINE",
-      "matchedDiognosisDrugs": [],
-      "matchedGenes": [
-        "NUDT15"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "STUDY_DB",
-      "priority": "P1",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Generated in CPIC check mode from local Diognosis coverage. Fetch/verify CPIC Data before promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_evidence_links_slco1b1_df54d6000c",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "evidence_links",
-      "layer": "evidence",
-      "candidateKind": "evidence_links",
-      "claimType": "publication",
-      "sourceRecords": [
-        "candidate_cpic_data_publication_slco1b1_ev_statin_slco1b1_abcg2_cpic2022_pmid_35152405_doi_10_1002_cpt_2557_2e26e3edee"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "local_review_candidate_not_fetched",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [],
-      "genes": [
-        "SLCO1B1"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "SLCO1B1"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "Existing Diognosis evidence references CPIC: CPIC Guideline for SLCO1B1, ABCG2, and CYP2C9 genotypes and statin-associated musculoskeletal symptoms.",
-      "clinicalSummary": "Review whether this CPIC-linked evidence should support a curated PGx rule or STUDY_DB update.",
-      "evidenceIdentifiers": [
-        "ev_statin_slco1b1_abcg2_cpic2022",
-        "PMID:35152405",
-        "DOI:10.1002/cpt.2557",
-        "https://cpicpgx.org"
-      ],
-      "strongestExternalTier": "GUIDELINE",
-      "matchedDiognosisDrugs": [],
-      "matchedGenes": [
-        "SLCO1B1"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "STUDY_DB",
-      "priority": "P1",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Generated in CPIC check mode from local Diognosis coverage. Fetch/verify CPIC Data before promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_evidence_links_tpmt_5a15b7c828",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "evidence_links",
-      "layer": "evidence",
-      "candidateKind": "evidence_links",
-      "claimType": "publication",
-      "sourceRecords": [
-        "candidate_cpic_data_publication_tpmt_ev_thiopurine_tpmt_nudt15_cpic2025_pmid_41618934_4e886b5039"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "local_review_candidate_not_fetched",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [],
-      "genes": [
-        "TPMT"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "TPMT"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "Existing Diognosis evidence references CPIC: CPIC Guideline for Thiopurine Dosing Based on TPMT and NUDT15 Genotypes: 2025 Update.",
-      "clinicalSummary": "Review whether this CPIC-linked evidence should support a curated PGx rule or STUDY_DB update.",
-      "evidenceIdentifiers": [
-        "ev_thiopurine_tpmt_nudt15_cpic2025",
-        "PMID:41618934",
-        "https://cpicpgx.org"
-      ],
-      "strongestExternalTier": "GUIDELINE",
-      "matchedDiognosisDrugs": [],
-      "matchedGenes": [
-        "TPMT"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "STUDY_DB",
-      "priority": "P1",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Generated in CPIC check mode from local Diognosis coverage. Fetch/verify CPIC Data before promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_evidence_links_vkorc1_df6ce1c459",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "evidence_links",
-      "layer": "evidence",
-      "candidateKind": "evidence_links",
-      "claimType": "publication",
-      "sourceRecords": [
-        "candidate_cpic_data_publication_vkorc1_ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017_pmid_28198005_doi_10_1002_cpt_668_24563b361c"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "local_review_candidate_not_fetched",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [],
-      "genes": [
-        "VKORC1"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "VKORC1"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "Existing Diognosis evidence references CPIC: CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update.",
-      "clinicalSummary": "Review whether this CPIC-linked evidence should support a curated PGx rule or STUDY_DB update.",
-      "evidenceIdentifiers": [
-        "ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017",
-        "PMID:28198005",
-        "DOI:10.1002/cpt.668",
-        "https://cpicpgx.org"
-      ],
-      "strongestExternalTier": "GUIDELINE",
-      "matchedDiognosisDrugs": [],
-      "matchedGenes": [
-        "VKORC1"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "STUDY_DB",
-      "priority": "P1",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Generated in CPIC check mode from local Diognosis coverage. Fetch/verify CPIC Data before promotion."
+        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
       ]
     },
     {

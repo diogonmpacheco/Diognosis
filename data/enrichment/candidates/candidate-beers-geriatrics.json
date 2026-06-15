@@ -3,25 +3,2477 @@
   "store": "beers_geriatrics",
   "layer": "safety_phenotype",
   "title": "Geriatric safety flags",
-  "generatedAt": "2026-06-15T13:45:49.727Z",
+  "generatedAt": "2026-06-15T14:34:04.479Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",
-      "records": 128
+      "records": 1628
     },
     {
       "file": "data/enrichment/staged/cpic-staged-records.json",
-      "records": 156
+      "records": 379
     },
     {
       "file": "data/enrichment/staged/label-staged-records.json",
-      "records": 0
+      "records": 100
     },
     {
       "file": "data/enrichment/staged/legal-literature-staged-records.json",
       "records": 248
     }
   ],
-  "totalCandidates": 0,
-  "candidates": []
+  "totalCandidates": 43,
+  "candidates": [
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_alprazolam_geriatric_safety_flag_54b60e20b1",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "alprazolam"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "alprazolam has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "alprazolam"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_amiodarone_geriatric_safety_flag_5dcbdf7924",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "amiodarone"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "amiodarone has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "amiodarone"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_amitriptyline_geriatric_safety_flag_b1737dd12e",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "amitriptyline"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "amitriptyline has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "amitriptyline"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_benztropine_geriatric_safety_flag_1ee5a67701",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "benztropine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "benztropine has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "benztropine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_chlorpromazine_geriatric_safety_flag_1609eeab14",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "chlorpromazine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "chlorpromazine has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "chlorpromazine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_chlorzoxazone_geriatric_safety_flag_82ff59a9c0",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "chlorzoxazone"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "chlorzoxazone has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "chlorzoxazone"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_clonidine_geriatric_safety_flag_2cd1a01a35",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "clonidine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "clonidine has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "clonidine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_clorazepate_geriatric_safety_flag_0d9e23a6ad",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "clorazepate"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "clorazepate has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "clorazepate"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_desipramine_geriatric_safety_flag_96da4d74fb",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "desipramine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "desipramine has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "desipramine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_desmopressin_geriatric_safety_flag_30d9557951",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "desmopressin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "desmopressin has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "desmopressin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_diazepam_geriatric_safety_flag_12ecfb96b6",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "diazepam"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "diazepam has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "diazepam"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_diphenhydramine_geriatric_safety_flag_7f0d19a88b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "diphenhydramine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "diphenhydramine has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "diphenhydramine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_dipyridamole_geriatric_safety_flag_8ffcb8c2ce",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "dipyridamole"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "dipyridamole has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "dipyridamole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_disopyramide_geriatric_safety_flag_edf835e6cf",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "disopyramide"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "disopyramide has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "disopyramide"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_dofetilide_geriatric_safety_flag_3a652fe155",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "dofetilide"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "dofetilide has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "dofetilide"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_dronedarone_geriatric_safety_flag_f13c281498",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "dronedarone"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "dronedarone has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "dronedarone"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_eszopiclone_geriatric_safety_flag_577e8e8bd3",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "eszopiclone"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "eszopiclone has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "eszopiclone"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_fluphenazine_geriatric_safety_flag_9aff46df70",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "fluphenazine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "fluphenazine has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "fluphenazine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_flurazepam_geriatric_safety_flag_e11b659058",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "flurazepam"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "flurazepam has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "flurazepam"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_hydroxyzine_geriatric_safety_flag_7a27ed2c4e",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "hydroxyzine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "hydroxyzine has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "hydroxyzine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_iloperidone_geriatric_safety_flag_47754e9bbd",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "iloperidone"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "iloperidone has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "iloperidone"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_imipramine_geriatric_safety_flag_e33539add3",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "imipramine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "imipramine has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "imipramine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_indomethacin_geriatric_safety_flag_1e34719754",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "indomethacin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "indomethacin has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "indomethacin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_lorazepam_geriatric_safety_flag_8004b9c48d",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "lorazepam"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "lorazepam has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "lorazepam"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_maprotiline_geriatric_safety_flag_d1d1586fc3",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "maprotiline"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "maprotiline has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "maprotiline"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_meperidine_geriatric_safety_flag_290ee04cc4",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "meperidine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "meperidine has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "meperidine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_methadone_geriatric_safety_flag_d18038c807",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "methadone"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "methadone has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "methadone"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_methyldopa_geriatric_safety_flag_3fbe6dcb17",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "methyldopa"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "methyldopa has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "methyldopa"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_nifedipine_geriatric_safety_flag_d8bcd53343",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "nifedipine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "nifedipine has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "nifedipine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_olanzapine_geriatric_safety_flag_c154fd60b0",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "olanzapine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "olanzapine has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "olanzapine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_oxazepam_geriatric_safety_flag_2f5d4bbd22",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "oxazepam"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "oxazepam has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "oxazepam"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_oxybutynin_geriatric_safety_flag_803ac0de86",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "oxybutynin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "oxybutynin has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "oxybutynin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_perphenazine_geriatric_safety_flag_089668f761",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "perphenazine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "perphenazine has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "perphenazine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_pimozide_geriatric_safety_flag_6ee6cbabeb",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "pimozide"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "pimozide has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "pimozide"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_procainamide_geriatric_safety_flag_272396c697",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "procainamide"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "procainamide has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "procainamide"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_quazepam_geriatric_safety_flag_0905be6704",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "quazepam"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "quazepam has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "quazepam"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_quetiapine_geriatric_safety_flag_5d84c1ee40",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "quetiapine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "quetiapine has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "quetiapine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_sotalol_geriatric_safety_flag_bec36bd1c2",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "sotalol"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "sotalol has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "sotalol"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_temazepam_geriatric_safety_flag_ebe76cbc52",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "temazepam"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "temazepam has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "temazepam"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_thioridazine_geriatric_safety_flag_3b53b14cf6",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "thioridazine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "thioridazine has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "thioridazine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_trihexyphenidyl_geriatric_safety_flag_f18459d06b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "trihexyphenidyl"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "trihexyphenidyl has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "trihexyphenidyl"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_trimipramine_geriatric_safety_flag_2329818086",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "trimipramine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "trimipramine has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "trimipramine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_beers_geriatrics_local_zolpidem_geriatric_safety_flag_23b3366736",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "beers_geriatrics",
+      "layer": "safety_phenotype",
+      "candidateKind": "beers_geriatrics",
+      "claimType": "geriatric_safety_flag",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "zolpidem"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [],
+      "phenotypes": [
+        "geriatric_safety"
+      ],
+      "affectedActors": [],
+      "direction": "geriatric_context",
+      "mechanismSummary": "zolpidem has an existing geriatric safety flag.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "zolpidem"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "BEERS_FLAGS",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    }
+  ]
 }

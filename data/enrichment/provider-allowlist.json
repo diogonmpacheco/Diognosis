@@ -40,6 +40,11 @@
       "name": "FDA/DailyMed Labels",
       "hostPatterns": ["dailymed.nlm.nih.gov", "api.fda.gov", "labels.fda.gov"],
       "allowedUse": "public label metadata and source identifiers"
+    },
+    {
+      "name": "DailyMed",
+      "hostPatterns": ["dailymed.nlm.nih.gov"],
+      "allowedUse": "public label metadata and source identifiers only; no label body text stored"
     }
   ],
   "forbidden": [

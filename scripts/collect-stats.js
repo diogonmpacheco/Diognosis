@@ -16,6 +16,7 @@ const dataFiles = [
   'src/data/pharmacology.js',
   'src/data/evidence.js',
   'src/data/interactions.js',
+  'src/data/generatedLivePendingReview.js',
   'src/engine/phenotypeEngine.js',
 ];
 
@@ -67,6 +68,7 @@ JSON.stringify((() => {
     sourceLinkedStudies: sourceLinkedStudies.length,
     professionalReviewedStudies: professionalReviewedStudies.length,
     pendingProfessionalReviewStudies,
+    livePendingReviewStudies: studyValues.filter((study) => study.livePendingReview === true).length,
     internalReviewRequiredEntries: studyValues.filter((study) => study.reviewRequired === true).length,
     studiesWithPmid: studyValues.filter((study) => !!study.pmid).length,
     nonRegulatoryUncited: nonRegulatoryUncited.length,

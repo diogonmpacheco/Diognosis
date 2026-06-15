@@ -3,25 +3,2477 @@
   "store": "enzyme_effects",
   "layer": "enzyme_transporter",
   "title": "Enzyme effects",
-  "generatedAt": "2026-06-15T13:45:49.725Z",
+  "generatedAt": "2026-06-15T14:34:04.468Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",
-      "records": 128
+      "records": 1628
     },
     {
       "file": "data/enrichment/staged/cpic-staged-records.json",
-      "records": 156
+      "records": 379
     },
     {
       "file": "data/enrichment/staged/label-staged-records.json",
-      "records": 0
+      "records": 100
     },
     {
       "file": "data/enrichment/staged/legal-literature-staged-records.json",
       "records": 248
     }
   ],
-  "totalCandidates": 0,
-  "candidates": []
+  "totalCandidates": 43,
+  "candidates": [
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_abcb1_enzyme_effect_9381c8dff5",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "ABCB1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "ABCB1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "ABCB1 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "ABCB1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_abcg2_enzyme_effect_a7456c7991",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "ABCG2"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "ABCG2"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "ABCG2 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "ABCG2"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_aldh2_enzyme_effect_66fa4a648f",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "ALDH2"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "ALDH2"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "ALDH2 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "ALDH2"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_bche_enzyme_effect_5b72cf9e0e",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "BCHE"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "BCHE"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "BCHE has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "BCHE"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_comt_enzyme_effect_40c98b6e87",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "COMT"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "COMT"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "COMT has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "COMT"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_cyp1a2_enzyme_effect_8d7003cac0",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "CYP1A2"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP1A2"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "CYP1A2 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "CYP1A2"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_cyp2a6_enzyme_effect_bc591d680d",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "CYP2A6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2A6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "CYP2A6 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "CYP2A6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_cyp2b6_enzyme_effect_0d2bafda33",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "CYP2B6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2B6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "CYP2B6 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "CYP2B6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_cyp2c19_enzyme_effect_319ba4fb33",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "CYP2C19"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2C19"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "CYP2C19 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "CYP2C19"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_cyp2c8_enzyme_effect_2763d934a8",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "CYP2C8"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2C8"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "CYP2C8 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "CYP2C8"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_cyp2c9_enzyme_effect_450746c757",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "CYP2C9"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2C9"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "CYP2C9 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "CYP2C9"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_cyp2d6_enzyme_effect_b374fea68b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "CYP2D6 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_cyp2e1_enzyme_effect_36aa83bb91",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "CYP2E1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2E1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "CYP2E1 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "CYP2E1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_cyp3a4_enzyme_effect_6bc5db827b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "CYP3A4"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP3A4"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "CYP3A4 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "CYP3A4"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_cyp3a5_enzyme_effect_091c24bf29",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "CYP3A5"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP3A5"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "CYP3A5 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "CYP3A5"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_cyp3a7_enzyme_effect_9d6f68d043",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "CYP3A7"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP3A7"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "CYP3A7 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "CYP3A7"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_cyp4f2_enzyme_effect_302efbcc82",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "CYP4F2"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP4F2"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "CYP4F2 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "CYP4F2"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_dpyd_enzyme_effect_db6e1ba5db",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "DPYD"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "DPYD"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "DPYD has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "DPYD"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_drd2_enzyme_effect_06c8f7d2fe",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "DRD2"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "DRD2"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "DRD2 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "DRD2"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_gstm1_enzyme_effect_8d936d923a",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "GSTM1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "GSTM1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "GSTM1 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "GSTM1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_gstp1_enzyme_effect_47725f1eac",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "GSTP1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "GSTP1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "GSTP1 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "GSTP1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_gstt1_enzyme_effect_5d2ad51699",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "GSTT1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "GSTT1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "GSTT1 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "GSTT1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_htr2a_enzyme_effect_a17d32302f",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "HTR2A"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "HTR2A"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "HTR2A has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "HTR2A"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_htr2c_enzyme_effect_c25c999834",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "HTR2C"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "HTR2C"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "HTR2C has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "HTR2C"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_ifnl3_enzyme_effect_ef3f75ff8d",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "IFNL3"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "IFNL3"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "IFNL3 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "IFNL3"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_ifnl4_enzyme_effect_1a440cdb23",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "IFNL4"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "IFNL4"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "IFNL4 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "IFNL4"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_nat1_enzyme_effect_b507a614db",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "NAT1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "NAT1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "NAT1 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "NAT1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_nat2_enzyme_effect_5125d77937",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "NAT2"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "NAT2"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "NAT2 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "NAT2"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_nudt15_enzyme_effect_224f397523",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "NUDT15"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "NUDT15"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "NUDT15 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "NUDT15"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_oprm1_enzyme_effect_6cc66fee04",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "OPRM1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "OPRM1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "OPRM1 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "OPRM1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_slc22a1_enzyme_effect_acec41e702",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "SLC22A1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "SLC22A1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "SLC22A1 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "SLC22A1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_slc22a2_enzyme_effect_554fad0fc8",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "SLC22A2"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "SLC22A2"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "SLC22A2 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "SLC22A2"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_slc47a1_enzyme_effect_d5d6c3689c",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "SLC47A1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "SLC47A1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "SLC47A1 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "SLC47A1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_slc6a4_enzyme_effect_388e89236d",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "SLC6A4"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "SLC6A4"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "SLC6A4 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "SLC6A4"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_slco1b1_enzyme_effect_86cd8e5a40",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "SLCO1B1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "SLCO1B1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "SLCO1B1 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "SLCO1B1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_tpmt_enzyme_effect_e06fe3f10e",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "TPMT"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "TPMT"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "TPMT has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "TPMT"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_ugt1a1_enzyme_effect_494e454181",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "UGT1A1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "UGT1A1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "UGT1A1 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "UGT1A1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_ugt1a4_enzyme_effect_a753f30d51",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "UGT1A4"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "UGT1A4"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "UGT1A4 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "UGT1A4"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_ugt1a9_enzyme_effect_60eace168b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "UGT1A9"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "UGT1A9"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "UGT1A9 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "UGT1A9"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_ugt2b15_enzyme_effect_c425bdb895",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "UGT2B15"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "UGT2B15"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "UGT2B15 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "UGT2B15"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_ugt2b17_enzyme_effect_bc712b3c3f",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "UGT2B17"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "UGT2B17"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "UGT2B17 has existing genotype/enzyme effect modeling with 3 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "UGT2B17"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_ugt2b7_enzyme_effect_20abde5f29",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "UGT2B7"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "UGT2B7"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "UGT2B7 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "UGT2B7"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_enzyme_effects_local_vkorc1_enzyme_effect_ed1aa21776",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "enzyme_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "enzyme_effects",
+      "claimType": "enzyme_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [
+        "VKORC1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "VKORC1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "genotype_enzyme_context",
+      "mechanismSummary": "VKORC1 has existing genotype/enzyme effect modeling with 4 phenotype row(s).",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [
+        "VKORC1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    }
+  ]
 }

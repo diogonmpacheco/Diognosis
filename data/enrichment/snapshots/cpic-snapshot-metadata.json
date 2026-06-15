@@ -1,13 +1,13 @@
 {
   "schema": "diognosis.cpic-snapshot-metadata.v1",
-  "generatedAt": "2026-06-15T13:45:49.192Z",
-  "mode": "local_coverage_candidate",
+  "generatedAt": "2026-06-15T14:32:11.283Z",
+  "mode": "fetched_source_cache",
   "source": "CPIC Data",
-  "fetched": false,
-  "localCandidateRecords": 156,
-  "fetchedRecords": 0,
+  "fetched": true,
+  "localCandidateRecords": 0,
+  "fetchedRecords": 379,
   "providerFailures": [],
-  "stagedRecords": 156,
-  "sourceTruthStatus": "local_review_candidate_not_fetched",
-  "note": "CPIC local coverage candidate mode uses local Diognosis PGx coverage and CPIC-linked evidence to create review candidates. Run fetch mode only when provider access is intentionally allowed."
+  "stagedRecords": 379,
+  "sourceTruthStatus": "fetched_from_cpic_source",
+  "note": "Fetched mode normalizes cached CPIC API source objects into staged records. No record is promoted or scoring-enabled."
 }

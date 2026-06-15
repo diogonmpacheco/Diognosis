@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { existsSync, readdirSync, statSync } from 'fs';
 import { extname, join, resolve } from 'path';
-import { loadMedcheckData, ROOT } from '../enrich/lib/medcheck-source-loader.js';
+import { loadMedcheckData, readGeneratedConstObject, ROOT } from '../enrich/lib/medcheck-source-loader.js';
 import { loadAllStagedRecords, markdownTable, readJson, writeJson, writeText } from '../enrich/lib/enrichment-common.js';
 
 const OUT_JSON = resolve(ROOT, 'docs/audits/knowledge-growth-dashboard.json');
@@ -41,6 +41,7 @@ const groupedV2 = readJson(resolve(ROOT, 'data/enrichment/review-queue/grouped-r
 const cpic = readJson(resolve(ROOT, 'data/enrichment/snapshots/cpic-snapshot-metadata.json'), {});
 const clinpgx = readJson(resolve(ROOT, 'data/enrichment/snapshots/clinpgx-snapshot-metadata.json'), {});
 const labelMeta = readJson(resolve(ROOT, 'data/enrichment/snapshots/label-source-snapshot-metadata.json'), {});
+const livePending = readGeneratedConstObject(resolve(ROOT, 'src/data/generatedLivePendingReview.js'), 'LIVE_PENDING_REVIEW_ENRICHMENTS') || {};
 const candidateStores = countCandidateStores();
 const overlayReviews = listJson(resolve(ROOT, 'data/review-overlays'))
   .map(file => readJson(file, null))
@@ -85,6 +86,18 @@ const report = {
     totalCandidates: candidateTotal,
     stores: candidateStores,
   },
+  livePendingReview: {
+    totalRecords: livePending.summary?.totalLiveRecords || 0,
+    studies: livePending.summary?.studies || 0,
+    knownDdi: livePending.summary?.knownDdi || 0,
+    metab: livePending.summary?.metab || 0,
+    metaboliteActors: livePending.summary?.metaboliteActors || 0,
+    genotypeEffects: livePending.summary?.genotypeEffects || 0,
+    genotypeMetaboliteEffects: livePending.summary?.genotypeMetaboliteEffects || 0,
+    pkParams: livePending.summary?.pkParams || 0,
+    washoutDays: livePending.summary?.washoutDays || 0,
+    labelContext: livePending.summary?.labelContext || 0,
+  },
   review: {
     queueV2Items: queueV2.totalItems || 0,
     groupedV2Candidates: groupedV2.totalCandidates || 0,
@@ -113,6 +126,10 @@ ${markdownTable(['Area', 'Current', '3x target'], Object.entries(core).map(([key
 - Staged records: ${report.staged.totalRecords}
 - Candidate relation stores: ${report.candidates.totalStores}
 - Candidate relation rows: ${report.candidates.totalCandidates}
+- Live pending-review preview records: ${report.livePendingReview.totalRecords}
+- Live preview studies: ${report.livePendingReview.studies}
+- Live preview DDI rows: ${report.livePendingReview.knownDdi}
+- Live preview label context rows: ${report.livePendingReview.labelContext}
 - Grouped v2 candidates: ${report.review.groupedV2Candidates}
 - Review queue v2 items: ${report.review.queueV2Items}
 - Curated drafts: ${report.review.curatedDrafts}

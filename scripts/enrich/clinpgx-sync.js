@@ -16,6 +16,7 @@ function parseArgs(argv) {
     else if (arg.startsWith('--max-genes=')) args.maxGenes = Number(arg.slice(12));
     else if (arg.startsWith('--max-drugs=')) args.maxDrugs = Number(arg.slice(12));
     else if (arg.startsWith('--max-pairs=')) args.maxPairs = Number(arg.slice(12));
+    else if (arg.startsWith('--direct-limit=')) args.directLimit = Number(arg.slice(15));
     else if (arg === '--include-labels') args.includeLabels = true;
     else if (arg === '--include-variants') args.includeVariants = true;
     else if (arg === '--force-refresh') args.forceRefresh = true;
@@ -38,9 +39,9 @@ export async function rateLimitedFetch(url, options = {}, attempt = 0) {
   return res;
 }
 
-function runNormalize(out, fromCache = false) {
+function runNormalize(out, fromCache = false, directLimit = null) {
   const script = resolve(ROOT, 'scripts/enrich/clinpgx-normalize.js');
-  return spawnSync(process.execPath, [script, '--out', out, ...(fromCache ? ['--from-cache'] : [])], { cwd: ROOT, stdio: 'inherit' });
+  return spawnSync(process.execPath, [script, '--out', out, ...(fromCache ? ['--from-cache'] : []), ...(Number.isFinite(directLimit) ? [`--direct-limit=${directLimit}`] : [])], { cwd: ROOT, stdio: 'inherit' });
 }
 
 const args = parseArgs(process.argv.slice(2));
@@ -57,5 +58,5 @@ if (args.fetch) {
   const fetched = spawnSync(process.execPath, fetchArgs, { cwd: ROOT, stdio: 'inherit' });
   if (fetched.status && fetched.status !== 2) process.exit(fetched.status);
 }
-const result = runNormalize(args.out, args.fetch);
+const result = runNormalize(args.out, args.fetch, args.directLimit);
 process.exit(result.status || 0);

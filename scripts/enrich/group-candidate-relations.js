@@ -22,17 +22,58 @@ function readCandidateStores() {
 }
 
 function groupKey(row) {
+  const actors = centralActors(row);
   return [
     row.layer,
     row.store,
-    row.candidateKind,
-    row.claimType,
+    claimFamily(row),
     row.sourceName || row.sourceSupportStatus || 'source',
-    (row.drugs || []).join('+') || 'no_drug',
-    (row.genes || []).join('+') || 'no_gene',
-    (row.metabolites || []).join('+') || 'no_metabolite',
-    (row.riskMarkers || []).join('+') || 'no_marker',
+    clinicalDomain(row),
+    actors.drugs.join('+') || 'no_drug',
+    actors.genes.join('+') || 'no_gene',
+    actors.metabolites.join('+') || 'no_metabolite',
+    row.strongestExternalTier || 'no_tier',
   ].map(stableToken).join('|');
+}
+
+function claimFamily(row = {}) {
+  const text = `${row.store || ''} ${row.claimType || ''} ${row.candidateKind || ''}`;
+  if (/pgx|genotype|variant|allele|risk_marker|clinical_annotation|guideline_annotation/i.test(text)) return 'pgx';
+  if (/interaction|ddi|contraindication|warning/i.test(text)) return 'interaction';
+  if (/parent_metabolite|metabolite|active_moiety|toxic/i.test(text)) return 'parent_metabolite';
+  if (/pk|washout|timing|temporal/i.test(text)) return 'pk_timing';
+  if (/transporter|enzyme|pathway/i.test(text)) return 'enzyme_transporter';
+  if (/receptor|phenotype|beers|geriatr/i.test(text)) return 'phenotype_safety';
+  if (/label/i.test(text)) return 'label_context';
+  return row.store || row.candidateKind || 'candidate';
+}
+
+function clinicalDomain(row = {}) {
+  const text = [
+    row.sourceName,
+    row.claimType,
+    row.mechanismSummary,
+    ...(row.drugs || []),
+    ...(row.genes || []),
+    ...(row.metabolites || []),
+    ...(row.pathways || []),
+  ].join(' ');
+  if (/tacrolimus|cyclosporine|sirolimus|everolimus|transplant|immunosuppress/i.test(text)) return 'transplant';
+  if (/warfarin|apixaban|rivaroxaban|dabigatran|edoxaban|anticoag|antiplatelet|clopidogrel/i.test(text)) return 'anticoagulation_antiplatelet';
+  if (/codeine|morphine|opioid|analges/i.test(text)) return 'analgesia';
+  if (/capecitabine|irinotecan|tamoxifen|azathioprine|mercaptopurine|oncology|chemotherapy|thiopurine/i.test(text)) return 'oncology';
+  if (/succinylcholine|bche|ryr1|anesthesia|anaesthesia/i.test(text)) return 'anesthesia';
+  if (/g6pd|oxidant|hemol/i.test(text)) return 'oxidant_risk';
+  if (/beers|geriatric|older adult/i.test(text)) return 'geriatrics';
+  if (/CYP|UGT|DPYD|TPMT|NUDT15|VKORC1|SLCO|ABCB|G6PD|BCHE/i.test(text)) return 'pharmacogenomics';
+  return 'general';
+}
+
+function centralActors(row = {}) {
+  const drugs = (row.drugs || []).slice(0, 2);
+  const genes = (row.genes || []).slice(0, 2);
+  const metabolites = (row.metabolites || []).slice(0, 1);
+  return { drugs, genes, metabolites };
 }
 
 function priorityForRows(rows = []) {
@@ -68,6 +109,8 @@ function makeGroup(key, rows) {
     suggestedTargets: uniq(rows.map(row => row.suggestedTarget).filter(Boolean)),
     priority,
     sourceTruthStatuses: uniq(rows.map(row => row.sourceTruthStatus || row.sourceSupportStatus).filter(Boolean)),
+    clinicalDomain: clinicalDomain(first),
+    claimFamily: claimFamily(first),
     reason: summarizeGroup(first, drugs, genes, metabolites, rows.length),
     governance: baseCandidateGovernance(),
   };

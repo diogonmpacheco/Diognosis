@@ -3,25 +3,5250 @@
   "store": "interactions",
   "layer": "interaction",
   "title": "Interaction events",
-  "generatedAt": "2026-06-15T13:45:49.725Z",
+  "generatedAt": "2026-06-15T14:34:04.465Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",
-      "records": 128
+      "records": 1628
     },
     {
       "file": "data/enrichment/staged/cpic-staged-records.json",
-      "records": 156
+      "records": 379
     },
     {
       "file": "data/enrichment/staged/label-staged-records.json",
-      "records": 0
+      "records": 100
     },
     {
       "file": "data/enrichment/staged/legal-literature-staged-records.json",
       "records": 248
     }
   ],
-  "totalCandidates": 0,
-  "candidates": []
+  "totalCandidates": 80,
+  "candidates": [
+    {
+      "candidateId": "candidate_relation_interactions_local_apixaban_rifampin_interaction_event_e28e5676c9",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_doac_rifampin_hartter2012",
+        "ev_doac_rifampin_label"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Apixaban",
+        "Rifampin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "induction"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Rifampin induces CYP3A4 and P-gp, reducing apixaban AUC by ~54%",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_doac_rifampin_hartter2012",
+        "PMID:22348256",
+        "DOI:10.1111/j.1365-2125.2012.04218.x",
+        "ev_doac_rifampin_label",
+        "https://dailymed.nlm.nih.gov/dailymed/"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Apixaban",
+        "Rifampin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Apixaban_Rifampin"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_ayahuasca_dmt_maoi_tyramine_rich_foods_interaction_event_43befd0f05",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_tyramine_maoi_labels"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Ayahuasca (DMT+MAOI)",
+        "Tyramine-rich Foods"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "diet"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "MAO-A/MAO-B inhibition reduces gut tyramine clearance; absorbed tyramine can trigger norepinephrine release and hypertensive crisis",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_tyramine_maoi_labels",
+        "https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=phenelzine%20tyramine%20hypertensive%20crisis"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Ayahuasca (DMT+MAOI)",
+        "Tyramine-rich Foods"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Ayahuasca (DMT+MAOI)_Tyramine-rich Foods"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_bupropion_codeine_interaction_event_4fdc2d98f0",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_bupropion_cyp2d6_fda",
+        "ev_codeine_cyp2d6_cpic"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Bupropion",
+        "Codeine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "metabolite"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Hydroxybupropion strongly inhibits CYP2D6, blocking codeine conversion to morphine",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_bupropion_cyp2d6_fda",
+        "https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=bupropion",
+        "ev_codeine_cyp2d6_cpic",
+        "PMID:24458010",
+        "DOI:10.1038/clpt.2013.254"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Bupropion",
+        "Codeine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Bupropion_Codeine"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_bupropion_tamoxifen_interaction_event_2f1ce756ab",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_bupropion_cyp2d6_fda",
+        "ev_tamoxifen_cyp2d6_cpic"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Bupropion",
+        "Tamoxifen"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "metabolite"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Hydroxybupropion strongly inhibits CYP2D6, blocking tamoxifen conversion to active endoxifen",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_bupropion_cyp2d6_fda",
+        "https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=bupropion",
+        "ev_tamoxifen_cyp2d6_cpic",
+        "PMID:29385237",
+        "DOI:10.1002/cpt.1007"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Bupropion",
+        "Tamoxifen"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Bupropion_Tamoxifen"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_bupropion_tramadol_interaction_event_b661d38eaa",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_bupropion_cyp2d6_fda",
+        "ev_bupropion_cyp2d6_kotlyar2005"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Bupropion",
+        "Tramadol"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "metabolite"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Hydroxybupropion strongly inhibits CYP2D6, blocking tramadol conversion to active O-desmethyltramadol. Also both lower seizure threshold",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_bupropion_cyp2d6_fda",
+        "https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=bupropion",
+        "ev_bupropion_cyp2d6_kotlyar2005",
+        "PMID:15876900",
+        "DOI:10.1097/01.jcp.0000162805.46453.e3"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Bupropion",
+        "Tramadol"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Bupropion_Tramadol"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_clopidogrel_esomeprazole_interaction_event_11b2495ce0",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_clopidogrel_cyp2c19_cpic"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clopidogrel",
+        "Esomeprazole"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "prodrug"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Esomeprazole inhibits CYP2C19, blocking clopidogrel activation",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_clopidogrel_cyp2c19_cpic",
+        "PMID:35034351",
+        "DOI:10.1002/cpt.2526"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Clopidogrel",
+        "Esomeprazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Clopidogrel_Esomeprazole"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_clopidogrel_fluvoxamine_interaction_event_ea27a45262",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_clopidogrel_cyp2c19_cpic"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clopidogrel",
+        "Fluvoxamine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "prodrug"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Fluvoxamine strongly inhibits CYP2C19, blocking clopidogrel activation",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_clopidogrel_cyp2c19_cpic",
+        "PMID:35034351",
+        "DOI:10.1002/cpt.2526"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Clopidogrel",
+        "Fluvoxamine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Clopidogrel_Fluvoxamine"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_clopidogrel_omeprazole_interaction_event_dabc234f94",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_clopidogrel_cyp2c19_cpic"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clopidogrel",
+        "Omeprazole"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "prodrug"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Omeprazole inhibits CYP2C19, blocking clopidogrel activation to its active thiol metabolite",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_clopidogrel_cyp2c19_cpic",
+        "PMID:35034351",
+        "DOI:10.1002/cpt.2526"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Clopidogrel",
+        "Omeprazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Clopidogrel_Omeprazole"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_colchicine_clarithromycin_interaction_event_6b32ae3987",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_colchicine_clarithromycin_hung2005",
+        "ev_colchicine_label"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Colchicine",
+        "Clarithromycin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Clarithromycin strongly inhibits CYP3A4, causing massive colchicine accumulation. Multiple fatalities reported",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_colchicine_clarithromycin_hung2005",
+        "PMID:16007523",
+        "DOI:10.1086/431592",
+        "ev_colchicine_label",
+        "https://dailymed.nlm.nih.gov/dailymed/"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Colchicine",
+        "Clarithromycin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Colchicine_Clarithromycin"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_colchicine_itraconazole_interaction_event_0757f2202e",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_colchicine_label",
+        "ev_colchicine_cyp3a4_hansten2022"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Colchicine",
+        "Itraconazole"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Strong CYP3A4 inhibition — colchicine accumulation",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_colchicine_label",
+        "https://dailymed.nlm.nih.gov/dailymed/",
+        "ev_colchicine_cyp3a4_hansten2022",
+        "PMID:36522578",
+        "DOI:10.1007/s40264-022-01265-1"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Colchicine",
+        "Itraconazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Colchicine_Itraconazole"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_colchicine_ketoconazole_interaction_event_48cc8fa02a",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_colchicine_label",
+        "ev_colchicine_cyp3a4_hansten2022"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Colchicine",
+        "Ketoconazole"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Strong CYP3A4 inhibition — colchicine accumulation",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_colchicine_label",
+        "https://dailymed.nlm.nih.gov/dailymed/",
+        "ev_colchicine_cyp3a4_hansten2022",
+        "PMID:36522578",
+        "DOI:10.1007/s40264-022-01265-1"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Colchicine",
+        "Ketoconazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Colchicine_Ketoconazole"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_colchicine_ritonavir_interaction_event_e703ad3177",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_colchicine_label",
+        "ev_colchicine_cyp3a4_hansten2022"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Colchicine",
+        "Ritonavir"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Ritonavir strongly inhibits CYP3A4 — colchicine accumulation",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_colchicine_label",
+        "https://dailymed.nlm.nih.gov/dailymed/",
+        "ev_colchicine_cyp3a4_hansten2022",
+        "PMID:36522578",
+        "DOI:10.1007/s40264-022-01265-1"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Colchicine",
+        "Ritonavir"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Colchicine_Ritonavir"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_cyclosporine_ketoconazole_interaction_event_a587734395",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_ketoconazole_cyclosporine_gomez1995"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Cyclosporine",
+        "Ketoconazole"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Ketoconazole inhibits intestinal and hepatic CYP3A, raising cyclosporine bioavailability and reducing clearance",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_ketoconazole_cyclosporine_gomez1995",
+        "PMID:7628178",
+        "DOI:10.1016/0009-9236(95)90067-5"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Cyclosporine",
+        "Ketoconazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Cyclosporine_Ketoconazole"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_dabigatran_rifampin_interaction_event_278a92bffa",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_doac_rifampin_hartter2012",
+        "ev_doac_rifampin_label"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Dabigatran",
+        "Rifampin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "induction"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Rifampin induces P-gp, reducing dabigatran etexilate absorption and dabigatran AUC by ~67%",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_doac_rifampin_hartter2012",
+        "PMID:22348256",
+        "DOI:10.1111/j.1365-2125.2012.04218.x",
+        "ev_doac_rifampin_label",
+        "https://dailymed.nlm.nih.gov/dailymed/"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Dabigatran",
+        "Rifampin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Dabigatran_Rifampin"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_digoxin_amiodarone_interaction_event_306c947721",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_digoxin_pgp_amiodarone_fda"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Digoxin",
+        "Amiodarone"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Amiodarone inhibits P-glycoprotein and reduces digoxin renal clearance by ~50%",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_digoxin_pgp_amiodarone_fda",
+        "PMID:12392581",
+        "DOI:10.1046/j.1365-2125.2002.01683.x",
+        "https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=amiodarone%20digoxin"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Digoxin",
+        "Amiodarone"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Digoxin_Amiodarone"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_digoxin_cyclosporine_interaction_event_a27629ec7a",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_digoxin_pgp_koren1998"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Digoxin",
+        "Cyclosporine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Cyclosporine inhibits P-gp, raises digoxin levels",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_digoxin_pgp_koren1998",
+        "PMID:9467211"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Digoxin",
+        "Cyclosporine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Digoxin_Cyclosporine"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_digoxin_st_john_s_wort_interaction_event_2783ee8492",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_sjw_digoxin_durr2000"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Digoxin",
+        "St. John's Wort"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "induction"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "St. John's Wort induces P-gp, reducing digoxin absorption and increasing clearance",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_sjw_digoxin_durr2000",
+        "PMID:11180019",
+        "DOI:10.1067/mcp.2000.112240"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Digoxin",
+        "St. John's Wort"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Digoxin_St. John's Wort"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_digoxin_verapamil_interaction_event_2959256939",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_digoxin_verapamil_klein1982"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Digoxin",
+        "Verapamil"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Verapamil inhibits P-gp, raises digoxin levels 50-75%",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_digoxin_verapamil_klein1982",
+        "PMID:7074765",
+        "DOI:10.1161/01.cir.65.5.998"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Digoxin",
+        "Verapamil"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Digoxin_Verapamil"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_edoxaban_rifampin_interaction_event_d704993e83",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_doac_rifampin_hartter2012",
+        "ev_doac_rifampin_label"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Edoxaban",
+        "Rifampin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "induction"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Rifampin induces P-gp, reducing edoxaban exposure by ~35%",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_doac_rifampin_hartter2012",
+        "PMID:22348256",
+        "DOI:10.1111/j.1365-2125.2012.04218.x",
+        "ev_doac_rifampin_label",
+        "https://dailymed.nlm.nih.gov/dailymed/"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Edoxaban",
+        "Rifampin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Edoxaban_Rifampin"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_fluoxetine_tramadol_interaction_event_3690afbfe3",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_tramadol_serotonin_beakley2015",
+        "ev_ssri_cyp2d6_liston2002"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Fluoxetine",
+        "Tramadol"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "serotonin"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "SSRI + serotonergic opioid — high serotonin syndrome risk. Also fluoxetine blocks tramadol activation via CYP2D6",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_tramadol_serotonin_beakley2015",
+        "PMID:26218943",
+        "ev_ssri_cyp2d6_liston2002",
+        "PMID:11910262",
+        "DOI:10.1097/00004714-200204000-00010"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Fluoxetine",
+        "Tramadol"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Fluoxetine_Tramadol"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_lithium_diclofenac_interaction_event_be6d19ce60",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_lithium_nsaid_clearance"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Lithium",
+        "Diclofenac"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "NSAIDs reduce lithium renal clearance",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_lithium_nsaid_clearance",
+        "PMID:2258452"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Lithium",
+        "Diclofenac"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Lithium_Diclofenac"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_lithium_hydrochlorothiazide_interaction_event_a8d22d2a44",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_lithium_thiazide_label"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Lithium",
+        "Hydrochlorothiazide"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Thiazides reduce lithium clearance by 25-40%",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_lithium_thiazide_label",
+        "https://dailymed.nlm.nih.gov/dailymed/"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Lithium",
+        "Hydrochlorothiazide"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Lithium_Hydrochlorothiazide"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_lithium_ibuprofen_interaction_event_31eed91efe",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_lithium_nsaid_clearance"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Lithium",
+        "Ibuprofen"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "NSAIDs reduce lithium renal clearance by 15-25%",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_lithium_nsaid_clearance",
+        "PMID:2258452"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Lithium",
+        "Ibuprofen"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Lithium_Ibuprofen"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_lithium_naproxen_interaction_event_450f441578",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_lithium_nsaid_clearance"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Lithium",
+        "Naproxen"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "NSAIDs reduce lithium renal clearance",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_lithium_nsaid_clearance",
+        "PMID:2258452"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Lithium",
+        "Naproxen"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Lithium_Naproxen"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_lovastatin_clarithromycin_interaction_event_913da10ad7",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_simvastatin_label_cyp3a4",
+        "ev_statin_cyp3a4_williams2002"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Lovastatin",
+        "Clarithromycin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Strong CYP3A4 inhibition — rhabdomyolysis risk",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_simvastatin_label_cyp3a4",
+        "https://dailymed.nlm.nih.gov/dailymed/",
+        "ev_statin_cyp3a4_williams2002",
+        "PMID:12036392",
+        "DOI:10.2165/00003088-200241050-00003"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Lovastatin",
+        "Clarithromycin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Lovastatin_Clarithromycin"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_methotrexate_ibuprofen_interaction_event_a8e690c13a",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_mtx_interactions_bannwarth1996"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Methotrexate",
+        "Ibuprofen"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "NSAIDs reduce methotrexate renal clearance",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_mtx_interactions_bannwarth1996",
+        "PMID:8882301",
+        "DOI:10.2165/00003088-199630030-00002"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Methotrexate",
+        "Ibuprofen"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Methotrexate_Ibuprofen"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_methotrexate_naproxen_interaction_event_1c1de72912",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_mtx_interactions_bannwarth1996"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Methotrexate",
+        "Naproxen"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "NSAIDs reduce methotrexate renal clearance",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_mtx_interactions_bannwarth1996",
+        "PMID:8882301",
+        "DOI:10.2165/00003088-199630030-00002"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Methotrexate",
+        "Naproxen"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Methotrexate_Naproxen"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_rivaroxaban_rifampin_interaction_event_76f8f028a7",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_doac_rifampin_hartter2012",
+        "ev_doac_rifampin_label"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Rivaroxaban",
+        "Rifampin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "induction"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Rifampin induces CYP3A4 and P-gp, reducing rivaroxaban AUC by ~50%",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_doac_rifampin_hartter2012",
+        "PMID:22348256",
+        "DOI:10.1111/j.1365-2125.2012.04218.x",
+        "ev_doac_rifampin_label",
+        "https://dailymed.nlm.nih.gov/dailymed/"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Rivaroxaban",
+        "Rifampin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Rivaroxaban_Rifampin"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_rosuvastatin_eltrombopag_interaction_event_0101fe9cde",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_rosuvastatin_label"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Rosuvastatin",
+        "Eltrombopag"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "transporter"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Eltrombopag inhibits OATP1B1 and BCRP, raising rosuvastatin AUC about 3.6-fold",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_rosuvastatin_label",
+        "https://dailymed.nlm.nih.gov/dailymed/"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Rosuvastatin",
+        "Eltrombopag"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Rosuvastatin_Eltrombopag"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_rosuvastatin_gemfibrozil_interaction_event_7f9ac83357",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_statin_gemfibrozil_schneck2004",
+        "ev_rosuvastatin_label"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Rosuvastatin",
+        "Gemfibrozil"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "transporter"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Gemfibrozil inhibits OATP1B1, raising rosuvastatin exposure about 2-fold",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_statin_gemfibrozil_schneck2004",
+        "PMID:15116058",
+        "DOI:10.1016/j.clpt.2003.12.014",
+        "ev_rosuvastatin_label",
+        "https://dailymed.nlm.nih.gov/dailymed/"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Rosuvastatin",
+        "Gemfibrozil"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Rosuvastatin_Gemfibrozil"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_sertraline_tramadol_interaction_event_003d670ad9",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_tramadol_serotonin_beakley2015"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Sertraline",
+        "Tramadol"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "serotonin"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "SSRI + serotonergic opioid",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_tramadol_serotonin_beakley2015",
+        "PMID:26218943"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Sertraline",
+        "Tramadol"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Sertraline_Tramadol"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_simvastatin_clarithromycin_interaction_event_8aa4d58441",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_simvastatin_label_cyp3a4",
+        "ev_statin_cyp3a4_williams2002"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Simvastatin",
+        "Clarithromycin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Strong CYP3A4 inhibition raises simvastatin AUC 10-fold — rhabdomyolysis risk",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_simvastatin_label_cyp3a4",
+        "https://dailymed.nlm.nih.gov/dailymed/",
+        "ev_statin_cyp3a4_williams2002",
+        "PMID:12036392",
+        "DOI:10.2165/00003088-200241050-00003"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Simvastatin",
+        "Clarithromycin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Simvastatin_Clarithromycin"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_simvastatin_cyclosporine_interaction_event_3aa4287a55",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_simvastatin_label_cyp3a4",
+        "ev_statin_cyp3a4_williams2002"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Simvastatin",
+        "Cyclosporine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "CYP3A4 inhibition + OATP inhibition — rhabdomyolysis",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_simvastatin_label_cyp3a4",
+        "https://dailymed.nlm.nih.gov/dailymed/",
+        "ev_statin_cyp3a4_williams2002",
+        "PMID:12036392",
+        "DOI:10.2165/00003088-200241050-00003"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Simvastatin",
+        "Cyclosporine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Simvastatin_Cyclosporine"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_simvastatin_gemfibrozil_interaction_event_9b819301d8",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_statin_gemfibrozil_schneck2004",
+        "ev_simvastatin_label_cyp3a4"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Simvastatin",
+        "Gemfibrozil"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "transporter"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Gemfibrozil inhibits OATP1B1 and CYP2C8, raising simvastatin acid exposure about 10-fold",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_statin_gemfibrozil_schneck2004",
+        "PMID:15116058",
+        "DOI:10.1016/j.clpt.2003.12.014",
+        "ev_simvastatin_label_cyp3a4",
+        "https://dailymed.nlm.nih.gov/dailymed/"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Simvastatin",
+        "Gemfibrozil"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Simvastatin_Gemfibrozil"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_simvastatin_itraconazole_interaction_event_eea8873912",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_simvastatin_label_cyp3a4",
+        "ev_statin_cyp3a4_williams2002"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Simvastatin",
+        "Itraconazole"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Strong CYP3A4 inhibition — rhabdomyolysis",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_simvastatin_label_cyp3a4",
+        "https://dailymed.nlm.nih.gov/dailymed/",
+        "ev_statin_cyp3a4_williams2002",
+        "PMID:12036392",
+        "DOI:10.2165/00003088-200241050-00003"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Simvastatin",
+        "Itraconazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Simvastatin_Itraconazole"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_simvastatin_ritonavir_interaction_event_c59a8caf6b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_simvastatin_label_cyp3a4",
+        "ev_statin_cyp3a4_williams2002"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Simvastatin",
+        "Ritonavir"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Strong CYP3A4 inhibition — rhabdomyolysis",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_simvastatin_label_cyp3a4",
+        "https://dailymed.nlm.nih.gov/dailymed/",
+        "ev_statin_cyp3a4_williams2002",
+        "PMID:12036392",
+        "DOI:10.2165/00003088-200241050-00003"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Simvastatin",
+        "Ritonavir"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Simvastatin_Ritonavir"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_spironolactone_trimethoprim_sulfamethoxazole_interaction_event_80b2537de1",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_spironolactone_tmpsmx_antoniou2011"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Spironolactone",
+        "Trimethoprim/Sulfamethoxazole"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "hyperK"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Both block potassium excretion via different mechanisms",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_spironolactone_tmpsmx_antoniou2011",
+        "PMID:21911446",
+        "DOI:10.1136/bmj.d5228"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Spironolactone",
+        "Trimethoprim/Sulfamethoxazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Spironolactone_Trimethoprim/Sulfamethoxazole"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_tacrolimus_fluconazole_interaction_event_21b54e46f7",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_tacrolimus_fluconazole_ferchichi2024"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tacrolimus",
+        "Fluconazole"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "CYP3A4 + CYP2C9 inhibition doubles tacrolimus levels",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_tacrolimus_fluconazole_ferchichi2024",
+        "PMID:38385427",
+        "DOI:10.6002/ect.MESOT2023.P90"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Tacrolimus",
+        "Fluconazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Tacrolimus_Fluconazole"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_tacrolimus_voriconazole_interaction_event_0ad352e017",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_tacrolimus_voriconazole_vanhove2017"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tacrolimus",
+        "Voriconazole"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Strong CYP3A4 inhibition triples tacrolimus levels",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_tacrolimus_voriconazole_vanhove2017",
+        "PMID:28224698",
+        "DOI:10.1111/ajt.14232"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Tacrolimus",
+        "Voriconazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Tacrolimus_Voriconazole"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_tizanidine_ciprofloxacin_interaction_event_fb28ec4312",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_tizanidine_ciprofloxacin_fda"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tizanidine",
+        "Ciprofloxacin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Ciprofloxacin strongly inhibits CYP1A2, raising tizanidine AUC 10-fold",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_tizanidine_ciprofloxacin_fda",
+        "https://dailymed.nlm.nih.gov/dailymed/"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Tizanidine",
+        "Ciprofloxacin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Tizanidine_Ciprofloxacin"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_tizanidine_fluvoxamine_interaction_event_77d8c4181b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_tizanidine_fluvoxamine_granfors2004"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tizanidine",
+        "Fluvoxamine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Fluvoxamine strongly inhibits CYP1A2, raising tizanidine AUC 33-fold",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_tizanidine_fluvoxamine_granfors2004",
+        "PMID:15060511",
+        "DOI:10.1016/j.clpt.2003.12.005"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Tizanidine",
+        "Fluvoxamine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Tizanidine_Fluvoxamine"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_warfarin_aspirin_interaction_event_ecee5ba5ba",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_warfarin_nsaid_bleed"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Warfarin",
+        "Aspirin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "bleed"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Additive anticoagulant + antiplatelet effect. Aspirin also causes GI mucosal damage",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_warfarin_nsaid_bleed",
+        "PMID:11176762",
+        "DOI:10.1001/archinte.161.2.189"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Warfarin",
+        "Aspirin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Warfarin_Aspirin"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_warfarin_fluconazole_interaction_event_6220e15741",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_fluconazole_warfarin_black1996"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Warfarin",
+        "Fluconazole"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Fluconazole strongly inhibits CYP2C9 (warfarin's primary metabolic pathway)",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_fluconazole_warfarin_black1996",
+        "PMID:8801057"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Warfarin",
+        "Fluconazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Warfarin_Fluconazole"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_warfarin_ibuprofen_interaction_event_20cf9bab34",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_warfarin_nsaid_bleed"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Warfarin",
+        "Ibuprofen"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "bleed"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "NSAIDs + warfarin: additive bleeding + NSAID GI damage + CYP2C9 competition",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_warfarin_nsaid_bleed",
+        "PMID:11176762",
+        "DOI:10.1001/archinte.161.2.189"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Warfarin",
+        "Ibuprofen"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Warfarin_Ibuprofen"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_warfarin_metronidazole_interaction_event_7ff786f4f4",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_warfarin_abx_lane2014"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Warfarin",
+        "Metronidazole"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "Metronidazole inhibits warfarin metabolism",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_warfarin_abx_lane2014",
+        "PMID:24657899",
+        "DOI:10.1016/j.amjmed.2014.01.044"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Warfarin",
+        "Metronidazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Warfarin_Metronidazole"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_warfarin_naproxen_interaction_event_07df461f41",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_warfarin_nsaid_bleed"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Warfarin",
+        "Naproxen"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "bleed"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "NSAID + warfarin: additive bleeding",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_warfarin_nsaid_bleed",
+        "PMID:11176762",
+        "DOI:10.1001/archinte.161.2.189"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Warfarin",
+        "Naproxen"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Warfarin_Naproxen"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_apixaban_aspirin_interaction_event_283767db44",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Apixaban",
+        "Aspirin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "bleed"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Additive anticoagulant + antiplatelet bleeding risk",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Apixaban",
+        "Aspirin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Apixaban_Aspirin"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_apixaban_clopidogrel_interaction_event_3ab2695f9c",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Apixaban",
+        "Clopidogrel"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "bleed"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Additive bleeding risk",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Apixaban",
+        "Clopidogrel"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Apixaban_Clopidogrel"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_atorvastatin_clarithromycin_interaction_event_fc881b359a",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Atorvastatin",
+        "Clarithromycin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Moderate increase in atorvastatin levels via CYP3A4 inhibition",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Atorvastatin",
+        "Clarithromycin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Atorvastatin_Clarithromycin"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_atorvastatin_gemfibrozil_interaction_event_9b38623351",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Atorvastatin",
+        "Gemfibrozil"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "transporter"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Gemfibrozil inhibits OATP1B1 and raises statin exposure",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Atorvastatin",
+        "Gemfibrozil"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Atorvastatin_Gemfibrozil"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_bupropion_clopidogrel_interaction_event_30df3bd379",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_clopidogrel_bupropion_cyp2b6_turpeinen2005",
+        "ev_bupropion_cyp2d6_hesse1996"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Bupropion",
+        "Clopidogrel"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "bidirectional_pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "mild",
+      "mechanismSummary": "Clopidogrel can inhibit CYP2B6 bupropion hydroxylation, so parent bupropion can rise. Hydroxybupropion is harder to predict in CYP2D6 PM/null: less may be formed, but what is formed may clear more slowly. Bupropion/hydroxybupropion may weakly slow CYP2C19-dependent clopidogrel activation, but that signal is less established.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_clopidogrel_bupropion_cyp2b6_turpeinen2005",
+        "PMID:15961986",
+        "DOI:10.1016/j.clpt.2005.02.010",
+        "https://pubmed.ncbi.nlm.nih.gov/15961986/",
+        "ev_bupropion_cyp2d6_hesse1996",
+        "PMID:8885123"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Bupropion",
+        "Clopidogrel"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Bupropion_Clopidogrel"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_bupropion_cyclobenzaprine_interaction_event_4b3d950a54",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Bupropion",
+        "Cyclobenzaprine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "seizure"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Both lower seizure threshold",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Bupropion",
+        "Cyclobenzaprine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Bupropion_Cyclobenzaprine"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_clopidogrel_fluconazole_interaction_event_9bb819dba5",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clopidogrel",
+        "Fluconazole"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "prodrug"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Fluconazole strongly inhibits CYP2C19, may reduce clopidogrel activation",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Clopidogrel",
+        "Fluconazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Clopidogrel_Fluconazole"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_clopidogrel_fluoxetine_interaction_event_aabb7ae28a",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_clopidogrel_cyp2c19_cpic",
+        "ev_fluoxetine_cyp2d6_fda"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clopidogrel",
+        "Fluoxetine"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "prodrug"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Fluoxetine's metabolite norfluoxetine inhibits CYP2C19, partially blocking clopidogrel activation",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_clopidogrel_cyp2c19_cpic",
+        "PMID:35034351",
+        "DOI:10.1002/cpt.2526",
+        "ev_fluoxetine_cyp2d6_fda",
+        "DOI:10.1097/00004714-199404000-00002",
+        "https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=fluoxetine"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Clopidogrel",
+        "Fluoxetine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Clopidogrel_Fluoxetine"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_clopidogrel_voriconazole_interaction_event_563a2fd809",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clopidogrel",
+        "Voriconazole"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "prodrug"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Voriconazole strongly inhibits CYP2C19, may reduce clopidogrel activation",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Clopidogrel",
+        "Voriconazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Clopidogrel_Voriconazole"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_diclofenac_lisinopril_interaction_event_770beb50c0",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Diclofenac",
+        "Lisinopril"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "NSAIDs reduce ACEi renoprotection",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Diclofenac",
+        "Lisinopril"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Diclofenac_Lisinopril"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_digoxin_diltiazem_interaction_event_7d0d0067e1",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Digoxin",
+        "Diltiazem"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Diltiazem raises digoxin levels ~20% + additive AV block",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Digoxin",
+        "Diltiazem"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Digoxin_Diltiazem"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_digoxin_rifampin_interaction_event_f6e16cb123",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Digoxin",
+        "Rifampin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "induction"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Rifampin induces P-gp, reducing digoxin exposure by ~30%",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Digoxin",
+        "Rifampin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Digoxin_Rifampin"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_digoxin_spironolactone_interaction_event_dc445892aa",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Digoxin",
+        "Spironolactone"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Spironolactone reduces digoxin clearance + hyperkalemia potentiates digoxin toxicity",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Digoxin",
+        "Spironolactone"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Digoxin_Spironolactone"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_fluoxetine_sumatriptan_interaction_event_3e44035724",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Fluoxetine",
+        "Sumatriptan"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "serotonin"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "SSRI + triptan — serotonin syndrome risk (FDA warning)",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Fluoxetine",
+        "Sumatriptan"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Fluoxetine_Sumatriptan"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_ibuprofen_enalapril_interaction_event_234d3f8caa",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Ibuprofen",
+        "Enalapril"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "NSAIDs counteract ACE inhibitor renoprotection",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Ibuprofen",
+        "Enalapril"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Ibuprofen_Enalapril"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_ibuprofen_lisinopril_interaction_event_170a51c98e",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Ibuprofen",
+        "Lisinopril"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "NSAIDs reduce renal prostaglandins, counteracting ACE inhibitor renoprotection. Reduces antihypertensive effect and increases AKI risk",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Ibuprofen",
+        "Lisinopril"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Ibuprofen_Lisinopril"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_ibuprofen_losartan_interaction_event_60e2aefcb3",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Ibuprofen",
+        "Losartan"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "NSAIDs reduce ARB renoprotection",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Ibuprofen",
+        "Losartan"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Ibuprofen_Losartan"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_ibuprofen_ramipril_interaction_event_2cb9a5e035",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Ibuprofen",
+        "Ramipril"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "NSAIDs counteract ACE inhibitor renoprotection",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Ibuprofen",
+        "Ramipril"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Ibuprofen_Ramipril"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_ibuprofen_valsartan_interaction_event_c4c8ea16d2",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Ibuprofen",
+        "Valsartan"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "NSAIDs reduce ARB renoprotection",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Ibuprofen",
+        "Valsartan"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Ibuprofen_Valsartan"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_indomethacin_lisinopril_interaction_event_53c50e6606",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Indomethacin",
+        "Lisinopril"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "NSAIDs reduce ACEi renoprotection",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Indomethacin",
+        "Lisinopril"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Indomethacin_Lisinopril"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_lithium_furosemide_interaction_event_a4be140038",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Lithium",
+        "Furosemide"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Loop diuretics can reduce lithium clearance via volume depletion",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Lithium",
+        "Furosemide"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Lithium_Furosemide"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_lithium_lisinopril_interaction_event_becd9b7c40",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Lithium",
+        "Lisinopril"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "ACE inhibitors reduce lithium renal clearance",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Lithium",
+        "Lisinopril"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Lithium_Lisinopril"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_lithium_losartan_interaction_event_0b4d1e9061",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Lithium",
+        "Losartan"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "ARBs reduce lithium renal clearance",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Lithium",
+        "Losartan"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Lithium_Losartan"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_methotrexate_omeprazole_interaction_event_1b5363dd21",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Methotrexate",
+        "Omeprazole"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "renal"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "PPIs may reduce methotrexate renal clearance",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Methotrexate",
+        "Omeprazole"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Methotrexate_Omeprazole"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_naproxen_lisinopril_interaction_event_ab0bc795f4",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Naproxen",
+        "Lisinopril"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "NSAIDs reduce ACEi renoprotection",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Naproxen",
+        "Lisinopril"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Naproxen_Lisinopril"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_naproxen_losartan_interaction_event_1ae59ccfe5",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Naproxen",
+        "Losartan"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "nephro"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "NSAIDs reduce ARB renoprotection",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Naproxen",
+        "Losartan"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Naproxen_Losartan"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_pravastatin_gemfibrozil_interaction_event_fec700d7b6",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Pravastatin",
+        "Gemfibrozil"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "transporter"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Gemfibrozil inhibits hepatic uptake transporters and can raise pravastatin exposure",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Pravastatin",
+        "Gemfibrozil"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Pravastatin_Gemfibrozil"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_rivaroxaban_aspirin_interaction_event_58a9d26a93",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Rivaroxaban",
+        "Aspirin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "bleed"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Additive bleeding risk",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Rivaroxaban",
+        "Aspirin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Rivaroxaban_Aspirin"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_rivaroxaban_clopidogrel_interaction_event_1782c68282",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Rivaroxaban",
+        "Clopidogrel"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "bleed"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Additive bleeding risk",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Rivaroxaban",
+        "Clopidogrel"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Rivaroxaban_Clopidogrel"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_sertraline_sumatriptan_interaction_event_8e5a2a61d2",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Sertraline",
+        "Sumatriptan"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "serotonin"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "SSRI + triptan",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Sertraline",
+        "Sumatriptan"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Sertraline_Sumatriptan"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_spironolactone_lisinopril_interaction_event_12d7866b05",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Spironolactone",
+        "Lisinopril"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "hyperK"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Both cause potassium retention — additive hyperkalemia risk",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Spironolactone",
+        "Lisinopril"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Spironolactone_Lisinopril"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_spironolactone_losartan_interaction_event_3de5698f3b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Spironolactone",
+        "Losartan"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "hyperK"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Both cause potassium retention",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Spironolactone",
+        "Losartan"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Spironolactone_Losartan"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_warfarin_acetaminophen_interaction_event_e1d5dfbb61",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Warfarin",
+        "Acetaminophen"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "pk"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Acetaminophen's metabolite NAPQI inhibits vitamin K-dependent clotting factor synthesis at doses >2g/day",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Warfarin",
+        "Acetaminophen"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Warfarin_Acetaminophen"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_warfarin_high_vitamin_k_foods_interaction_event_cf88a766ef",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Warfarin",
+        "High Vitamin K Foods"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "diet"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "moderate",
+      "mechanismSummary": "Abrupt increases in vitamin K intake can oppose warfarin anticoagulation and lower INR",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [
+        "Warfarin",
+        "High Vitamin K Foods"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Warfarin_High Vitamin K Foods"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    }
+  ]
 }

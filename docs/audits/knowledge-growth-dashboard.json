@@ -1,10 +1,10 @@
 {
   "schema": "diognosis.knowledge-growth-dashboard.v1",
-  "generatedAt": "2026-06-15T13:50:17.224Z",
+  "generatedAt": "2026-06-15T14:36:09.499Z",
   "core": {
     "drugs": 625,
     "interactions": 627,
-    "evidenceEntries": 456,
+    "evidenceEntries": 476,
     "parentMetaboliteMaps": 467,
     "metaboliteEdges": 1171,
     "firstClassMetaboliteActors": 33,
@@ -20,7 +20,7 @@
   "threeXTargets": {
     "drugs": 1875,
     "interactions": 1881,
-    "evidenceEntries": 1368,
+    "evidenceEntries": 1428,
     "parentMetaboliteMaps": 1401,
     "metaboliteEdges": 3513,
     "firstClassMetaboliteActors": 99,
@@ -34,26 +34,26 @@
     "beersFlags": 129
   },
   "staged": {
-    "totalRecords": 532,
-    "cpic": 156,
-    "clinpgx": 128,
-    "label": 0
+    "totalRecords": 2355,
+    "cpic": 379,
+    "clinpgx": 1628,
+    "label": 100
   },
   "candidates": {
     "totalStores": 15,
-    "totalCandidates": 259,
+    "totalCandidates": 2284,
     "stores": [
       {
         "file": "data/enrichment/candidates/candidate-beers-geriatrics.json",
         "store": "beers_geriatrics",
         "layer": "safety_phenotype",
-        "totalCandidates": 0
+        "totalCandidates": 43
       },
       {
         "file": "data/enrichment/candidates/candidate-drug-identities.json",
         "store": "drug_identity",
         "layer": "identity",
-        "totalCandidates": 0
+        "totalCandidates": 150
       },
       {
         "file": "data/enrichment/candidates/candidate-engine-hypotheses.json",
@@ -65,79 +65,91 @@
         "file": "data/enrichment/candidates/candidate-enzyme-effects.json",
         "store": "enzyme_effects",
         "layer": "enzyme_transporter",
-        "totalCandidates": 0
+        "totalCandidates": 43
       },
       {
         "file": "data/enrichment/candidates/candidate-evidence-links.json",
         "store": "evidence_links",
         "layer": "evidence",
-        "totalCandidates": 34
+        "totalCandidates": 19
       },
       {
         "file": "data/enrichment/candidates/candidate-interactions.json",
         "store": "interactions",
         "layer": "interaction",
-        "totalCandidates": 0
+        "totalCandidates": 80
       },
       {
         "file": "data/enrichment/candidates/candidate-label-context.json",
         "store": "label_context",
         "layer": "safety_phenotype",
-        "totalCandidates": 0
+        "totalCandidates": 362
       },
       {
         "file": "data/enrichment/candidates/candidate-metabolite-roles.json",
         "store": "metabolite_roles",
         "layer": "parent_metabolite",
-        "totalCandidates": 0
+        "totalCandidates": 33
       },
       {
         "file": "data/enrichment/candidates/candidate-parent-metabolite-relations.json",
         "store": "parent_metabolite_relations",
         "layer": "parent_metabolite",
-        "totalCandidates": 0
+        "totalCandidates": 260
       },
       {
         "file": "data/enrichment/candidates/candidate-pgx-risk-markers.json",
         "store": "pgx_risk_markers",
         "layer": "pgx",
-        "totalCandidates": 0
+        "totalCandidates": 670
       },
       {
         "file": "data/enrichment/candidates/candidate-pgx-rules.json",
         "store": "pgx_rules",
         "layer": "pgx",
-        "totalCandidates": 68
+        "totalCandidates": 334
       },
       {
         "file": "data/enrichment/candidates/candidate-pk-parameters.json",
         "store": "pk_parameters",
         "layer": "pk_timing",
-        "totalCandidates": 0
+        "totalCandidates": 80
       },
       {
         "file": "data/enrichment/candidates/candidate-receptor-effects.json",
         "store": "receptor_effects",
         "layer": "safety_phenotype",
-        "totalCandidates": 0
+        "totalCandidates": 28
       },
       {
         "file": "data/enrichment/candidates/candidate-timing-rules.json",
         "store": "timing_rules",
         "layer": "pk_timing",
-        "totalCandidates": 0
+        "totalCandidates": 24
       },
       {
         "file": "data/enrichment/candidates/candidate-transporter-effects.json",
         "store": "transporter_effects",
         "layer": "enzyme_transporter",
-        "totalCandidates": 0
+        "totalCandidates": 1
       }
     ]
   },
+  "livePendingReview": {
+    "totalRecords": 30,
+    "studies": 20,
+    "knownDdi": 0,
+    "metab": 0,
+    "metaboliteActors": 0,
+    "genotypeEffects": 0,
+    "genotypeMetaboliteEffects": 0,
+    "pkParams": 0,
+    "washoutDays": 0,
+    "labelContext": 10
+  },
   "review": {
-    "queueV2Items": 626,
-    "groupedV2Candidates": 378,
+    "queueV2Items": 2186,
+    "groupedV2Candidates": 1938,
     "curatedDrafts": 0,
     "localOverlayReviews": 3,
     "professionallyReviewedEntries": 0

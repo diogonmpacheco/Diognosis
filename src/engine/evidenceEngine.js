@@ -511,11 +511,17 @@ function calibrateDdiSeverity(ddi) {
 // studyCardHTML(study) — renders a full study card for the evidence explorer
 function studyCardHTML(study) {
   if (!study) return '';
+  const esc = typeof safeHtml === "function" ? safeHtml : (value) => String(value == null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
   const pmidLink = study.pmid
-    ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${study.pmid}/" target="_blank" style="color:var(--blue);text-decoration:none;font-weight:600">PMID:${study.pmid}</a>`
+    ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${encodeURIComponent(study.pmid)}/" target="_blank" style="color:var(--blue);text-decoration:none;font-weight:600">PMID:${esc(study.pmid)}</a>`
     : '';
   const doiLink = study.doi
-    ? `<a href="https://doi.org/${study.doi}" target="_blank" style="color:var(--blue);text-decoration:none">DOI</a>`
+    ? `<a href="https://doi.org/${encodeURIComponent(study.doi)}" target="_blank" style="color:var(--blue);text-decoration:none">DOI</a>`
     : '';
   const links = [pmidLink, doiLink].filter(Boolean).join(' · ');
 
@@ -525,15 +531,18 @@ function studyCardHTML(study) {
   if (qe.cmaxFold != null) qeItems.push(`Cmax ×${qe.cmaxFold}`);
   if (qe.clearanceReductionPct) qeItems.push(`CL ↓${qe.clearanceReductionPct}%`);
   if (qe.oddsRatio) qeItems.push(`OR ${qe.oddsRatio}`);
-  if (qe.note) qeItems.push(qe.note);
+  if (qe.note) qeItems.push(esc(qe.note));
 
   const contradicts = (study.contradicts || []).length
-    ? `<div style="font-size:11px;color:var(--amber);margin-top:4px">⚠ Contradicted by: ${study.contradicts.join(', ')}</div>` : '';
+    ? `<div style="font-size:11px;color:var(--amber);margin-top:4px">Contradicted by: ${study.contradicts.map(esc).join(', ')}</div>` : '';
   const limits = (study.limitations || []).length
-    ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Limitations: ${study.limitations.join(' · ')}</div>` : '';
+    ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Limitations: ${study.limitations.map(esc).join(' · ')}</div>` : '';
   const unverified = study.verifyNote
-    ? `<div style="font-size:10px;color:var(--amber);margin-top:3px">⚠ Review note — ${study.verifyNote}</div>` : '';
+    ? `<div style="font-size:10px;color:var(--amber);margin-top:3px">Review note: ${esc(study.verifyNote)}</div>` : '';
   const reviewBadge = '<span class="ev-review-badge needs-review">pending professional review</span>';
+  const liveBadge = study.livePendingReview === true
+    ? '<span class="ev-review-badge needs-review">automated curated preview</span><span class="ev-review-badge needs-review">not clinically validated</span>'
+    : '';
   const feedbackLink = renderFeedbackLink("Suggest evidence fix", {
     type:"data",
     title:`[Data review]: ${study.id || "evidence entry"}`,
@@ -546,14 +555,16 @@ function studyCardHTML(study) {
     <div class="ev-card-head">
       ${studyBadgeHTML(study)}
       ${reviewBadge}
-      ${study.n ? `<span class="ev-n">n=${study.n}</span>` : ''}
-      ${study.year ? `<span class="ev-year">${study.year}</span>` : ''}
+      ${liveBadge}
+      ${study.n ? `<span class="ev-n">n=${esc(study.n)}</span>` : ''}
+      ${study.year ? `<span class="ev-year">${esc(study.year)}</span>` : ''}
       ${links ? `<span class="ev-links">${links}</span>` : ''}
     </div>
-    <div class="ev-title">${study.title || 'Untitled study'}</div>
-    ${study.source ? `<div class="ev-source">${study.source}${study.journal ? ` · ${study.journal}` : ''}</div>` : ''}
+    <div class="ev-title">${esc(study.title || 'Untitled study')}</div>
+    ${study.source ? `<div class="ev-source">${esc(study.source)}${study.journal ? ` · ${esc(study.journal)}` : ''}</div>` : ''}
     ${qeItems.length ? `<div class="ev-effects">${qeItems.join(' · ')}</div>` : ''}
-    ${study.temporal && study.temporal.onset ? `<div class="ev-temporal">⏱ Onset: ${study.temporal.onset}${study.temporal.washout ? ` · Washout: ${study.temporal.washout}` : ''}</div>` : ''}
+    ${study.temporal && study.temporal.onset ? `<div class="ev-temporal">Onset: ${esc(study.temporal.onset)}${study.temporal.washout ? ` · Washout: ${esc(study.temporal.washout)}` : ''}</div>` : ''}
+    ${study.livePendingReview === true ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Source-linked pending review · automated source traceability check · not medical advice</div>` : ''}
     ${unverified}${contradicts}${limits}
     <div class="feedback-row">${feedbackLink}</div>
   </div>`;

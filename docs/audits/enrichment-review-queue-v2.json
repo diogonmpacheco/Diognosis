@@ -1,15 +1,15 @@
 {
   "schema": "diognosis.enrichment-review-queue-v2-audit.v1",
-  "generatedAt": "2026-06-15T13:45:49.911Z",
-  "totalItems": 626,
+  "generatedAt": "2026-06-15T14:34:04.853Z",
+  "totalItems": 2186,
   "preservedV1Items": 434,
-  "candidateRelationItems": 192,
+  "candidateRelationItems": 1752,
   "priorityCounts": {
-    "P1": 277,
-    "P2": 349
+    "P1": 1184,
+    "P2": 1002
   },
   "laneCounts": {
-    "candidate_relation_review": 87,
+    "candidate_relation_review": 1647,
     "engine_hypothesis_review": 105,
     "existing_enrichment_queue": 434
   },

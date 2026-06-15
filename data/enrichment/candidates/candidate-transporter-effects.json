@@ -3,25 +3,79 @@
   "store": "transporter_effects",
   "layer": "enzyme_transporter",
   "title": "Transporter effects",
-  "generatedAt": "2026-06-15T13:45:49.726Z",
+  "generatedAt": "2026-06-15T14:34:04.468Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",
-      "records": 128
+      "records": 1628
     },
     {
       "file": "data/enrichment/staged/cpic-staged-records.json",
-      "records": 156
+      "records": 379
     },
     {
       "file": "data/enrichment/staged/label-staged-records.json",
-      "records": 0
+      "records": 100
     },
     {
       "file": "data/enrichment/staged/legal-literature-staged-records.json",
       "records": 248
     }
   ],
-  "totalCandidates": 0,
-  "candidates": []
+  "totalCandidates": 1,
+  "candidates": [
+    {
+      "candidateId": "candidate_relation_transporter_effects_local_transporter_effect_3eed15b19b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "transporter_effects",
+      "layer": "enzyme_transporter",
+      "candidateKind": "transporter_effects",
+      "claimType": "transporter_effect",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "P-gp"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "Digoxin AUC ↑ 70%",
+      "mechanismSummary": "P-gp inhibition at gut + renal tubule",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "review_only",
+      "priority": "P2",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    }
+  ]
 }

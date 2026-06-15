@@ -113,13 +113,13 @@ Diognosis is intentionally conservative about what it claims. MedCheck Engine PK
 
 <!-- MEDCHECK_STATS_START -->
 - **625 drugs** in DRUG_DB
-- **456 evidence entries** in STUDY_DB (275 with PMIDs; 456 with source identifiers) — **456 pending professional review**, **0 professionally reviewed**
+- **476 evidence entries** in STUDY_DB (275 with PMIDs; 476 with source identifiers) — **476 pending professional review**, **0 professionally reviewed**
 - **627 interaction pairs** (323 severe, 280 moderate, 24 mild)
 - **1171 metabolite entries** across **467 parent substances** (33 first-class metabolite actors)
 - **506 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **57 genotype genes** and **52 receptor score profiles**
 - **43 Beers flags** and **24 washout rules**
-- **4639 KB** generated bundle (98387 lines)
+- **4714 KB** generated bundle (99816 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---

@@ -2,6 +2,7 @@
   "name": "Weekly MedCheck Enrichment Automation",
   "cadence": "weekly_monday",
   "command": "npm run enrich:weekly",
+  "optional_live_pending_review_command": "npm run enrich:weekly -- --live-pending-review --max-live-promotions=75",
   "allowlisted_sources": [
     "PubMed",
     "Europe PMC",
@@ -16,7 +17,7 @@
     "pirate mirrors",
     "non-allowlisted full text"
   ],
-  "promotion_policy": "no_auto_promotion",
+  "promotion_policy": "no_professional_review_promotion; optional live pending-review preview only when explicitly requested",
   "mode_reporting": {
     "cpic": [
       "localCandidateRecords",
@@ -35,6 +36,14 @@
       "groupedReviewCandidates",
       "curatedDrafts",
       "localOverlayReviews"
+    ],
+    "livePendingReview": [
+      "enabled",
+      "maxLivePromotions",
+      "totalRecords",
+      "studies",
+      "knownDdi",
+      "labelContext"
     ]
   },
   "expected_reports": [

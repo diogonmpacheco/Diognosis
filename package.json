@@ -38,6 +38,7 @@
     "audit:knowledge-growth": "node scripts/audit/knowledge-growth-dashboard.js",
     "audit:three-x-target": "node scripts/audit/three-x-target-audit.js",
     "audit:enrichment-preview-mode": "node scripts/audit/enrichment-preview-mode-audit.js",
+    "audit:live-enrichment-boundary": "node scripts/audit/live-enrichment-boundary-audit.js",
     "audit:source-registry": "node scripts/audit/source-registry-audit.js",
     "audit:enrichment-license-boundary": "node scripts/audit/enrichment-license-boundary-audit.js",
     "audit:promotion-boundary": "node scripts/audit/promotion-boundary-audit.js",
@@ -59,11 +60,13 @@
     "enrich:cpic": "node scripts/enrich/cpic-sync.js --check",
     "enrich:clinpgx": "node scripts/enrich/clinpgx-sync.js --check",
     "enrich:cpic:fetch": "node scripts/enrich/cpic-sync.js --fetch",
-    "enrich:clinpgx:fetch": "node scripts/enrich/clinpgx-sync.js --fetch --max-genes=50 --max-drugs=100",
+    "enrich:clinpgx:fetch": "node scripts/enrich/clinpgx-sync.js --fetch --max-genes=50 --max-drugs=100 --include-labels --include-variants --direct-limit=1500",
     "enrich:group-review-candidates": "node scripts/enrich/group-staged-records.js",
     "enrich:group-review-candidates:v2": "node scripts/enrich/group-candidate-relations.js",
     "enrich:review-queue": "node scripts/enrich/build-enrichment-review-queue.js",
     "enrich:review-queue:v2": "node scripts/enrich/build-review-queue-v2.js",
+    "enrich:automated-source-check": "node scripts/enrich/automated-source-check.js",
+    "enrich:live-pending-review": "node scripts/enrich/promote-live-pending-review.js --max-live-promotions=75",
     "enrich:three-x": "node scripts/enrich/run-three-x-enrichment-campaign.js",
     "enrich:review-data": "node scripts/enrich/generate-enrichment-review-data.js",
     "enrich:weekly": "node scripts/enrich/run-weekly-enrichment.js",
@@ -81,7 +84,7 @@
     "validate": "node scripts/validate-db.js",
     "validate:strict": "node scripts/validate-db.js --strict",
     "release:check": "node scripts/release-check.js",
-    "test": "node scripts/smoke-check.js && node scripts/regression-check.js && node scripts/validate-db.js && node scripts/check-evidence.js && node scripts/audit/external-context-firewall-audit.js && node scripts/audit/external-safety-context-ui-audit.js && node scripts/audit/review-workbench-ui-audit.js && node scripts/audit/scenario-snapshot-audit.js && node scripts/audit/evidence-review-queue.js --check && node scripts/audit/generated-artifact-boundary-audit.js && node scripts/integrations/open-targets/import-open-targets.js --check && node scripts/integrations/open-targets/audit-open-targets-identity-review.js --check && node scripts/integrations/open-targets/audit-open-targets-promotions.js --check && node scripts/integrations/open-targets/audit-open-targets-review-targets.js --check && node scripts/integrations/open-targets/audit-open-targets-pgx-roadmap.js --check && node scripts/integrations/open-targets/audit-open-targets-mechanistic-queue.js --check && node scripts/audit/source-registry-audit.js && node scripts/audit/enrichment-license-boundary-audit.js && node scripts/audit/promotion-boundary-audit.js && node scripts/audit/review-overlay-audit.js && node scripts/audit/curated-draft-audit.js && node scripts/audit/grouped-review-candidate-audit.js && node scripts/audit/enrichment-coverage-audit.js --check && node scripts/audit/cpic-coverage-audit.js --check && node scripts/audit/clinpgx-coverage-audit.js --check && node scripts/audit/candidate-relation-audit.js && node scripts/audit/engine-hypothesis-audit.js && node scripts/audit/review-queue-v2-audit.js && node scripts/audit/label-source-boundary-audit.js && node scripts/audit/three-x-target-audit.js && node scripts/audit/enrichment-preview-mode-audit.js && node scripts/audit/privacy-static-audit.js"
+    "test": "node scripts/smoke-check.js && node scripts/regression-check.js && node scripts/validate-db.js && node scripts/check-evidence.js && node scripts/audit/external-context-firewall-audit.js && node scripts/audit/external-safety-context-ui-audit.js && node scripts/audit/review-workbench-ui-audit.js && node scripts/audit/scenario-snapshot-audit.js && node scripts/audit/evidence-review-queue.js --check && node scripts/audit/generated-artifact-boundary-audit.js && node scripts/integrations/open-targets/import-open-targets.js --check && node scripts/integrations/open-targets/audit-open-targets-identity-review.js --check && node scripts/integrations/open-targets/audit-open-targets-promotions.js --check && node scripts/integrations/open-targets/audit-open-targets-review-targets.js --check && node scripts/integrations/open-targets/audit-open-targets-pgx-roadmap.js --check && node scripts/integrations/open-targets/audit-open-targets-mechanistic-queue.js --check && node scripts/audit/source-registry-audit.js && node scripts/audit/enrichment-license-boundary-audit.js && node scripts/audit/promotion-boundary-audit.js && node scripts/audit/review-overlay-audit.js && node scripts/audit/curated-draft-audit.js && node scripts/audit/grouped-review-candidate-audit.js && node scripts/audit/enrichment-coverage-audit.js --check && node scripts/audit/cpic-coverage-audit.js --check && node scripts/audit/clinpgx-coverage-audit.js --check && node scripts/audit/candidate-relation-audit.js && node scripts/audit/engine-hypothesis-audit.js && node scripts/audit/review-queue-v2-audit.js && node scripts/audit/label-source-boundary-audit.js && node scripts/audit/three-x-target-audit.js && node scripts/audit/enrichment-preview-mode-audit.js && node scripts/audit/live-enrichment-boundary-audit.js && node scripts/audit/privacy-static-audit.js"
   },
   "devDependencies": {
     "esbuild": "^0.28.0",
