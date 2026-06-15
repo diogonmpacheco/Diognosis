@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-15T10:12:56.251Z",
+  "generatedAt": "2026-06-15T10:25:10.460Z",
   "scenarioCount": 15,
   "skipped": 0,
   "failed": 0,
@@ -15,7 +15,12 @@
       "riskMarkers": {},
       "rawFindingCount": 10,
       "concernCount": 2,
+      "mechanismWhyPathCount": 2,
       "titles": [
+        "Tacrolimus exposure may rise with Fluconazole",
+        "Fluconazole may persist after stopping"
+      ],
+      "mechanismTitles": [
         "Tacrolimus exposure may rise with Fluconazole",
         "Fluconazole may persist after stopping"
       ],
@@ -54,7 +59,12 @@
       "riskMarkers": {},
       "rawFindingCount": 7,
       "concernCount": 2,
+      "mechanismWhyPathCount": 2,
       "titles": [
+        "Simvastatin exposure may rise with Clarithromycin",
+        "Clarithromycin may persist after stopping"
+      ],
+      "mechanismTitles": [
         "Simvastatin exposure may rise with Clarithromycin",
         "Clarithromycin may persist after stopping"
       ],
@@ -93,7 +103,13 @@
       "riskMarkers": {},
       "rawFindingCount": 10,
       "concernCount": 3,
+      "mechanismWhyPathCount": 3,
       "titles": [
+        "Simvastatin, Rifampin: interaction review prompt",
+        "Simvastatin active metabolite 6'-Hydroxy-SVA may rise",
+        "Rifampin may persist after stopping"
+      ],
+      "mechanismTitles": [
         "Simvastatin, Rifampin: interaction review prompt",
         "Simvastatin active metabolite 6'-Hydroxy-SVA may rise",
         "Rifampin may persist after stopping"
@@ -144,7 +160,12 @@
       "riskMarkers": {},
       "rawFindingCount": 11,
       "concernCount": 2,
+      "mechanismWhyPathCount": 2,
       "titles": [
+        "Codeine activation to Morphine may be reduced with Fluoxetine",
+        "Norfluoxetine may persist after stopping"
+      ],
+      "mechanismTitles": [
         "Codeine activation to Morphine may be reduced with Fluoxetine",
         "Norfluoxetine may persist after stopping"
       ],
@@ -185,7 +206,11 @@
       "riskMarkers": {},
       "rawFindingCount": 8,
       "concernCount": 1,
+      "mechanismWhyPathCount": 1,
       "titles": [
+        "Clopidogrel activation to Active thiol metabolite may be reduced with Omeprazole"
+      ],
+      "mechanismTitles": [
         "Clopidogrel activation to Active thiol metabolite may be reduced with Omeprazole"
       ],
       "domains": [
@@ -215,7 +240,11 @@
       "riskMarkers": {},
       "rawFindingCount": 2,
       "concernCount": 1,
+      "mechanismWhyPathCount": 1,
       "titles": [
+        "SN-38 may accumulate from Irinotecan"
+      ],
+      "mechanismTitles": [
         "SN-38 may accumulate from Irinotecan"
       ],
       "domains": [
@@ -245,7 +274,11 @@
       "riskMarkers": {},
       "rawFindingCount": 2,
       "concernCount": 1,
+      "mechanismWhyPathCount": 1,
       "titles": [
+        "5-Fluorouracil may accumulate from Capecitabine"
+      ],
+      "mechanismTitles": [
         "5-Fluorouracil may accumulate from Capecitabine"
       ],
       "domains": [
@@ -277,7 +310,12 @@
       "riskMarkers": {},
       "rawFindingCount": 4,
       "concernCount": 2,
+      "mechanismWhyPathCount": 2,
       "titles": [
+        "Azathioprine exposure may rise with Allopurinol",
+        "6-Thioguanine nucleotides (6-TGN) may accumulate from Azathioprine"
+      ],
+      "mechanismTitles": [
         "Azathioprine exposure may rise with Allopurinol",
         "6-Thioguanine nucleotides (6-TGN) may accumulate from Azathioprine"
       ],
@@ -319,7 +357,11 @@
       },
       "rawFindingCount": 5,
       "concernCount": 1,
+      "mechanismWhyPathCount": 1,
       "titles": [
+        "G6PD deficiency increases oxidant hemolysis review priority"
+      ],
+      "mechanismTitles": [
         "G6PD deficiency increases oxidant hemolysis review priority"
       ],
       "domains": [
@@ -351,7 +393,13 @@
       },
       "rawFindingCount": 5,
       "concernCount": 3,
+      "mechanismWhyPathCount": 3,
       "titles": [
+        "BCHE low/no function increases prolonged paralysis review priority",
+        "RYR1/CACNA1S MH variant increases malignant hyperthermia review priority",
+        "Succinylcholine may rise"
+      ],
+      "mechanismTitles": [
         "BCHE low/no function increases prolonged paralysis review priority",
         "RYR1/CACNA1S MH variant increases malignant hyperthermia review priority",
         "Succinylcholine may rise"
@@ -400,7 +448,11 @@
       "riskMarkers": {},
       "rawFindingCount": 1,
       "concernCount": 1,
+      "mechanismWhyPathCount": 1,
       "titles": [
+        "Warfarin exposure may rise with Ibuprofen"
+      ],
+      "mechanismTitles": [
         "Warfarin exposure may rise with Ibuprofen"
       ],
       "domains": [
@@ -430,7 +482,14 @@
       "riskMarkers": {},
       "rawFindingCount": 11,
       "concernCount": 4,
+      "mechanismWhyPathCount": 4,
       "titles": [
+        "Haloperidol exposure may rise with Azithromycin, Methadone",
+        "Pyridinium metabolite (HPP+) may persist after stopping",
+        "Azithromycin (unchanged, biliary) may persist after stopping",
+        "Desosaminyl-azithromycin may persist after stopping"
+      ],
+      "mechanismTitles": [
         "Haloperidol exposure may rise with Azithromycin, Methadone",
         "Pyridinium metabolite (HPP+) may persist after stopping",
         "Azithromycin (unchanged, biliary) may persist after stopping",
@@ -489,7 +548,13 @@
       "riskMarkers": {},
       "rawFindingCount": 5,
       "concernCount": 3,
+      "mechanismWhyPathCount": 3,
       "titles": [
+        "Sertraline exposure may rise with Linezolid",
+        "Linezolid may persist after stopping",
+        "N-Desmethylsertraline may persist after stopping"
+      ],
+      "mechanismTitles": [
         "Sertraline exposure may rise with Linezolid",
         "Linezolid may persist after stopping",
         "N-Desmethylsertraline may persist after stopping"
@@ -538,7 +603,12 @@
       "riskMarkers": {},
       "rawFindingCount": 2,
       "concernCount": 2,
+      "mechanismWhyPathCount": 2,
       "titles": [
+        "Diazepam exposure may rise with Morphine",
+        "Nordiazepam (desmethyldiazepam) may persist after stopping"
+      ],
+      "mechanismTitles": [
         "Diazepam exposure may rise with Morphine",
         "Nordiazepam (desmethyldiazepam) may persist after stopping"
       ],
@@ -577,7 +647,13 @@
       "riskMarkers": {},
       "rawFindingCount": 16,
       "concernCount": 3,
+      "mechanismWhyPathCount": 3,
       "titles": [
+        "Fluoxetine exposure may rise with Paroxetine",
+        "Norfluoxetine may persist after stopping",
+        "Paroxetine may persist after stopping"
+      ],
+      "mechanismTitles": [
         "Fluoxetine exposure may rise with Paroxetine",
         "Norfluoxetine may persist after stopping",
         "Paroxetine may persist after stopping"

@@ -54,22 +54,46 @@ function renderWarningPathReview() {
   }).join("");
 }
 
+function getMechanismWhyPathFindings() {
+  const cache = typeof getRenderComputationCache === "function" ? getRenderComputationCache() : {};
+  const concerns = (Array.isArray(currentClinicalConcerns) && currentClinicalConcerns.length)
+    ? currentClinicalConcerns
+    : (cache.clinicalConcerns || []);
+  if (concerns.length) return concerns;
+  return (currentInteractionFindings || []).length ? currentInteractionFindings : (cache.findings || []);
+}
+
+function renderMechanismSupportingSignals(finding) {
+  const signals = finding?.supportingSignals || [];
+  if (!signals.length) return "";
+  const shown = signals.slice(0, 5);
+  return `<div class="mechanism-supporting">
+    <div class="mechanism-supporting-title">Grouped supporting signals</div>
+    <ul>
+      ${shown.map(signal => `<li>
+        <span>${safeHtml(signal.label || "Related pathway signal")}</span>
+        <small>${safeHtml(signal.sourceStatus || "review prompt")}</small>
+      </li>`).join("")}
+    </ul>
+    ${signals.length > shown.length ? `<div class="mechanism-supporting-more">+${signals.length - shown.length} more raw signal${signals.length - shown.length === 1 ? "" : "s"} in Review</div>` : ""}
+  </div>`;
+}
+
 function renderMechanismWhyPaths() {
   const section = document.getElementById("mechanismWhySection");
   const body = document.getElementById("mechanismWhyBody");
   const count = document.getElementById("mechanismWhyCount");
   if (!section || !body) return;
-  const findings = (currentInteractionFindings || []).length
-    ? currentInteractionFindings
-    : (typeof getRenderComputationCache === "function" ? getRenderComputationCache().findings : []);
+  const findings = getMechanismWhyPathFindings();
   const rows = (findings || []).filter(finding => finding.whyPath);
   if (!rows.length) {
     hideSectionAndClear("mechanismWhySection", "mechanismWhyBody", "mechanismWhyCount");
     return;
   }
   section.style.display = "";
-  if (count) count.textContent = `${rows.length} path${rows.length === 1 ? "" : "s"}`;
-  body.innerHTML = rows.slice(0, 10).map(finding => `<div class="mechanism-why-row">
+  const usesGroupedConcerns = rows.some(finding => finding.type === "clinical_concern");
+  if (count) count.textContent = `${rows.length} ${usesGroupedConcerns ? "concern " : ""}path${rows.length === 1 ? "" : "s"}`;
+  body.innerHTML = rows.slice(0, 8).map(finding => `<div class="mechanism-why-row">
     <div class="warning-path-row-head">
       <div>
         <div class="warning-path-title">${safeHtml(finding.title || finding.id)}</div>
@@ -78,12 +102,15 @@ function renderMechanismWhyPaths() {
       <button class="mini-btn" onclick="setTab('review')">Review raw</button>
     </div>
     ${renderWhyPath(finding.whyPath)}
+    ${renderMechanismSupportingSignals(finding)}
     <div class="finding-meta">
       <span class="finding-tag type">${safeHtml(String(finding.source || "finding").replace(/_/g, " "))}</span>
       <span class="finding-tag">${safeHtml(finding.evidenceLadder?.mechanisticConfidence || finding.confidence || "unknown")} confidence</span>
       <span class="finding-tag ${finding.reviewRequired ? "warn" : "review"}">${finding.reviewRequired ? "needs review" : "reviewed"}</span>
+      ${finding.rawFindingCount ? `<span class="finding-tag">${safeHtml(String(finding.rawFindingCount))} raw signal${finding.rawFindingCount === 1 ? "" : "s"} grouped</span>` : ""}
     </div>
-  </div>`).join("");
+  </div>`).join("") +
+    (rows.length > 8 ? `<div class="finding-empty">Showing 8 grouped mechanism paths. Raw warning paths remain available in Review.</div>` : "");
 }
 
 function copyWarningPath(findingId) {

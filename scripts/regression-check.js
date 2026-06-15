@@ -1605,6 +1605,10 @@ const overviewConsolidationRegression = window.eval(`(() => {
     renderAll();
     setTab("overview");
     const cache = getRenderComputationCache();
+    setTab("mechanisms");
+    const mechanismRows = Array.from(document.querySelectorAll("#mechanismWhyBody .mechanism-why-row"));
+    const mechanismTitles = mechanismRows.map(row => row.querySelector(".warning-path-title")?.textContent || "");
+    const mechanismText = document.getElementById("mechanismWhyBody")?.textContent || "";
     setTab("review");
     return {
       concerns: (cache.clinicalConcerns || []).map(c => ({
@@ -1617,6 +1621,10 @@ const overviewConsolidationRegression = window.eval(`(() => {
       })),
       raw: (cache.findings || []).map(f => ({ id:f.id, type:f.type, title:f.title })),
       overviewText: document.getElementById("findingBody")?.textContent || "",
+      mechanismText,
+      mechanismPathCount: mechanismRows.length,
+      mechanismTitles,
+      reviewRawPathCount: document.querySelectorAll("#warningPathBody .warning-path-row").length,
       reviewText: document.getElementById("reviewSummaryBody")?.textContent || "",
       genesText: document.getElementById("activeMoietyBody")?.textContent || "",
     };
@@ -1636,6 +1644,10 @@ assert(tacConcern, `Tacrolimus + fluconazole should identify tacrolimus as the a
 assert(!/Tacrolimus may raise Fluconazole exposure/i.test(overviewConsolidationRegression.tacrolimus.overviewText), 'Overview must not reverse tacrolimus/fluconazole direction');
 assert(!overviewConsolidationRegression.tacrolimus.concerns.some(c => /^CYP2C19|^CYP2C9/i.test(c.title)), 'Tacrolimus scenario should not expose CYP2C19/CYP2C9 as standalone Overview cards');
 assert(tacConcern.support.some(label => /CYP3A4|CYP2C9|parent-metabolite/i.test(label)), 'Tacrolimus concern should show CYP/metabolite supporting signals');
+assert(overviewConsolidationRegression.tacrolimus.mechanismPathCount <= overviewConsolidationRegression.tacrolimus.concerns.length, 'Tacrolimus Mechanisms should render grouped concern paths instead of raw duplicates');
+assert(!overviewConsolidationRegression.tacrolimus.mechanismTitles.some(title => /^CYP2C19|^CYP2C9|^CYP3A4 behaves/i.test(title)), 'Tacrolimus Mechanisms should not expose standalone CYP function rows as primary paths');
+assert(/Grouped supporting signals/i.test(overviewConsolidationRegression.tacrolimus.mechanismText), 'Tacrolimus Mechanisms should keep sub-signals inside the grouped concern');
+assert(overviewConsolidationRegression.tacrolimus.reviewRawPathCount > overviewConsolidationRegression.tacrolimus.mechanismPathCount, 'Review should retain more raw paths than the grouped Mechanisms view');
 assert(/Clinical Concern Groups/i.test(overviewConsolidationRegression.tacrolimus.reviewText), 'Review should expose clinical concern grouping diagnostics');
 
 const simConcern = overviewConsolidationRegression.simvastatin.concerns.find(c => /Simvastatin exposure may rise with Clarithromycin/i.test(c.title));

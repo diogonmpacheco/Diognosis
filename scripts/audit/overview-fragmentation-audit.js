@@ -100,9 +100,20 @@ function collectScenario(scenario) {
   const concerns = model.clinicalConcerns || [];
   const rawFindings = model.findings || [];
   const titles = concerns.map(concern => concern.title || '');
+  window.setTab('mechanisms');
+  const mechanismRows = Array.from(window.document.querySelectorAll('#mechanismWhyBody .mechanism-why-row'));
+  const mechanismTitles = mechanismRows.map(row => norm(row.querySelector('.warning-path-title')?.textContent || ''));
+  const mechanismWhyPathCount = mechanismRows.length;
+  window.setTab('overview');
   const flags = [];
   const maxConcerns = scenario.maxConcerns || (scenario.stack.length <= 1 ? 3 : 4);
   if (concerns.length > maxConcerns) flags.push(`too many Overview concerns (${concerns.length} > ${maxConcerns})`);
+  if (concerns.length && mechanismWhyPathCount > concerns.length) {
+    flags.push(`Mechanisms renders more primary paths than grouped concerns (${mechanismWhyPathCount} > ${concerns.length})`);
+  }
+  if (scenario.id === 'tacrolimus-fluconazole' && mechanismTitles.some(title => /^CYP2C19|^CYP2C9|^CYP3A4 behaves/i.test(title))) {
+    flags.push('Tacrolimus Mechanisms exposes standalone enzyme function rows instead of grouped concern paths');
+  }
   if (scenario.expectedVictim && !titles.some(title => title.toLowerCase().includes(scenario.expectedVictim.toLowerCase()))) {
     flags.push(`missing expected victim in concern title: ${scenario.expectedVictim}`);
   }
@@ -141,7 +152,9 @@ function collectScenario(scenario) {
     riskMarkers: scenario.riskMarkers || {},
     rawFindingCount: rawFindings.length,
     concernCount: concerns.length,
+    mechanismWhyPathCount,
     titles,
+    mechanismTitles,
     domains: concerns.map(concern => concern.clinicalConcernDomain),
     groupedSignals: concerns.map(concern => ({
       key: concern.clinicalConcernKey,
@@ -187,16 +200,20 @@ function renderMarkdown(summary) {
     `Skipped: ${summary.skipped}`,
     `Failures: ${summary.failed}`,
     '',
-    '| Scenario | Raw findings | Overview concerns | Domains | Flags |',
-    '|---|---:|---:|---|---|',
+    '| Scenario | Raw findings | Overview concerns | Mechanism paths | Domains | Flags |',
+    '|---|---:|---:|---:|---|---|',
   ];
   for (const row of summary.rows) {
-    lines.push(`| ${row.name}${row.skipped ? ` (skipped: ${row.missing.join(', ')})` : ''} | ${row.rawFindingCount ?? ''} | ${row.concernCount ?? ''} | ${(row.domains || []).join(', ')} | ${(row.flags || []).join('<br>') || 'pass'} |`);
+    lines.push(`| ${row.name}${row.skipped ? ` (skipped: ${row.missing.join(', ')})` : ''} | ${row.rawFindingCount ?? ''} | ${row.concernCount ?? ''} | ${row.mechanismWhyPathCount ?? ''} | ${(row.domains || []).join(', ')} | ${(row.flags || []).join('<br>') || 'pass'} |`);
   }
   lines.push('', '## Concern Titles', '');
   for (const row of summary.rows.filter(row => !row.skipped)) {
     lines.push(`### ${row.name}`, '');
     for (const title of row.titles || []) lines.push(`- ${title}`);
+    if ((row.mechanismTitles || []).length) {
+      lines.push('', 'Mechanism paths:');
+      for (const title of row.mechanismTitles || []) lines.push(`- ${title}`);
+    }
     lines.push('');
   }
   return `${lines.join('\n')}\n`;
