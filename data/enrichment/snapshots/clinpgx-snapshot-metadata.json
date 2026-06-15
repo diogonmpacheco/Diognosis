@@ -1,0 +1,9 @@
+{
+  "schema": "diognosis.clinpgx-snapshot-metadata.v1",
+  "generatedAt": "2026-06-15T11:12:21.448Z",
+  "source": "ClinPGx",
+  "fetched": false,
+  "sourceRelease": "26.03",
+  "stagedRecords": 128,
+  "note": "Check mode normalizes existing offline Open Targets/ClinPGx context. Fetch mode should use cached REST JSON with the documented rate limit."
+}

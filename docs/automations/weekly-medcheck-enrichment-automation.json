@@ -1,0 +1,25 @@
+{
+  "name": "Weekly MedCheck Enrichment Automation",
+  "cadence": "weekly_monday",
+  "command": "npm run enrich:weekly",
+  "allowlisted_sources": [
+    "PubMed",
+    "Europe PMC",
+    "OpenAlex",
+    "Unpaywall",
+    "CPIC Data",
+    "ClinPGx"
+  ],
+  "forbidden_sources": [
+    "Sci-Hub",
+    "LibGen",
+    "pirate mirrors",
+    "non-allowlisted full text"
+  ],
+  "promotion_policy": "no_auto_promotion",
+  "expected_reports": [
+    "docs/audits/weekly-enrichment-report.md",
+    "docs/audits/weekly-enrichment-report.json"
+  ],
+  "human_review_required": true
+}

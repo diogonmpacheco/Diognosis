@@ -1,0 +1,1472 @@
+{
+  "generated_at": "2026-06-15T11:12:21.057Z",
+  "counts": {
+    "drugs": 625,
+    "ddi_pairs": 627,
+    "study_entries": 456,
+    "staged_records": 532,
+    "literature_drafts": 248,
+    "high_priority_missing_drugs": 152,
+    "high_priority_missing_pairs": 100,
+    "pgx_gaps": 57,
+    "metabolite_gaps": 100,
+    "evidence_gaps": 100
+  },
+  "top_missing_drugs": [
+    {
+      "name": "Rifampin",
+      "class": "Rifamycin",
+      "score": 175,
+      "ddiPairs": 51,
+      "route": "",
+      "gaps": [
+        "no active/toxic actor"
+      ]
+    },
+    {
+      "name": "Warfarin",
+      "class": "Anticoagulant",
+      "score": 154,
+      "ddiPairs": 36,
+      "route": "CYP2C9/CYP3A4/CYP1A2",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Ketoconazole",
+      "class": "Azole Antifungal",
+      "score": 125,
+      "ddiPairs": 27,
+      "route": "CYP3A4",
+      "gaps": [
+        "no active/toxic actor"
+      ]
+    },
+    {
+      "name": "Tacrolimus",
+      "class": "Immunosuppressant",
+      "score": 114,
+      "ddiPairs": 22,
+      "route": "CYP3A4/CYP3A5",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Amiodarone",
+      "class": "Antiarrhythmic",
+      "score": 107,
+      "ddiPairs": 21,
+      "route": "CYP3A4",
+      "gaps": [
+        "no active/toxic actor"
+      ]
+    },
+    {
+      "name": "Clopidogrel",
+      "class": "Antiplatelet",
+      "score": 95,
+      "ddiPairs": 13,
+      "route": "CYP2C19/CYP3A4/CYP2B6/CYP1A2",
+      "gaps": [
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Dofetilide",
+      "class": "Class III Antiarrhythmic",
+      "score": 81,
+      "ddiPairs": 5,
+      "route": "Renal Cation Transport/CYP3A4",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "MDMA (Ecstasy)",
+      "class": "Empathogen",
+      "score": 76,
+      "ddiPairs": 14,
+      "route": "CYP2D6/CYP3A4/CYP1A2/CYP2B6",
+      "gaps": [
+        "no active/toxic actor",
+        "no PK profile",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Clarithromycin",
+      "class": "Macrolide AB",
+      "score": 74,
+      "ddiPairs": 10,
+      "route": "CYP3A4",
+      "gaps": [
+        "no active/toxic actor"
+      ]
+    },
+    {
+      "name": "Disopyramide",
+      "class": "Class IA Antiarrhythmic",
+      "score": 74,
+      "ddiPairs": 0,
+      "route": "CYP3A4/Renal Excretion Unchanged",
+      "gaps": [
+        "no direct DDI/evidence refs",
+        "no DDI rows",
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Cyclosporine",
+      "class": "Immunosuppressant",
+      "score": 71,
+      "ddiPairs": 11,
+      "route": "CYP3A4",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Simvastatin",
+      "class": "Statin",
+      "score": 70,
+      "ddiPairs": 12,
+      "route": "CYP3A4/SLCO1B1",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Propafenone",
+      "class": "Class IC Antiarrhythmic",
+      "score": 68,
+      "ddiPairs": 4,
+      "route": "CYP2D6/CYP3A4/CYP1A2",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Ayahuasca (DMT+MAOI)",
+      "class": "Psychedelic",
+      "score": 67,
+      "ddiPairs": 9,
+      "route": "",
+      "gaps": [
+        "no active/toxic actor",
+        "no PK profile",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Fluoxetine",
+      "class": "SSRI",
+      "score": 67,
+      "ddiPairs": 11,
+      "route": "CYP2D6/CYP2C9",
+      "gaps": [
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Dronedarone",
+      "class": "Class III Antiarrhythmic",
+      "score": 66,
+      "ddiPairs": 6,
+      "route": "CYP3A4/P-gp",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Apalutamide",
+      "class": "Androgen Receptor Inhibitor / Oncology",
+      "score": 65,
+      "ddiPairs": 9,
+      "route": "CYP2C8/CYP3A4",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Digoxin",
+      "class": "Cardiac Glycoside",
+      "score": 65,
+      "ddiPairs": 19,
+      "route": "",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Enzalutamide",
+      "class": "Androgen Receptor Inhibitor / Oncology",
+      "score": 65,
+      "ddiPairs": 9,
+      "route": "CYP2C8/CYP3A4",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Flecainide",
+      "class": "Class IC Antiarrhythmic",
+      "score": 65,
+      "ddiPairs": 3,
+      "route": "CYP2D6/Renal Excretion Unchanged",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Sertraline",
+      "class": "SSRI",
+      "score": 65,
+      "ddiPairs": 9,
+      "route": "CYP2C19/CYP2D6/CYP3A4/CYP2B6",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Trimethoprim/Sulfamethoxazole",
+      "class": "Sulfonamide Antibiotic / Folate Antagonist",
+      "score": 65,
+      "ddiPairs": 9,
+      "route": "CYP2C9/Renal Excretion Unchanged",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Heroin (Diacetylmorphine)",
+      "class": "Opioid",
+      "score": 64,
+      "ddiPairs": 0,
+      "route": "CYP2D6",
+      "gaps": [
+        "no direct DDI/evidence refs",
+        "no DDI rows",
+        "no active/toxic actor",
+        "no PK profile",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Mexiletine",
+      "class": "Class IB Antiarrhythmic",
+      "score": 64,
+      "ddiPairs": 0,
+      "route": "CYP2D6/CYP1A2",
+      "gaps": [
+        "no direct DDI/evidence refs",
+        "no DDI rows",
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Omeprazole",
+      "class": "PPI",
+      "score": 64,
+      "ddiPairs": 10,
+      "route": "CYP2C19/CYP3A4",
+      "gaps": [
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Prasugrel",
+      "class": "Antiplatelet",
+      "score": 63,
+      "ddiPairs": 1,
+      "route": "CYP3A4/CYP2B6",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Procainamide",
+      "class": "Class IA Antiarrhythmic",
+      "score": 62,
+      "ddiPairs": 0,
+      "route": "NAT2/Renal Excretion Unchanged",
+      "gaps": [
+        "no direct DDI/evidence refs",
+        "no DDI rows",
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Albendazole",
+      "class": "Anthelmintic",
+      "score": 61,
+      "ddiPairs": 3,
+      "route": "CYP3A4/FMO",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Pimozide",
+      "class": "Antipsychotic / Tourette Syndrome",
+      "score": 60,
+      "ddiPairs": 0,
+      "route": "CYP2D6/CYP3A4",
+      "gaps": [
+        "no direct DDI/evidence refs",
+        "no DDI rows",
+        "no metabolite map",
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Quinidine",
+      "class": "Antiarrhythmic",
+      "score": 60,
+      "ddiPairs": 4,
+      "route": "CYP3A4",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    }
+  ],
+  "top_missing_pairs": [
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Albendazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Aripiprazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Azithromycin",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Brexpiprazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Carbamazepine",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Delamanid",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Dexlansoprazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Erythromycin",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Esomeprazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Fosphenytoin",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Isavuconazonium Sulfate",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Itraconazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Lansoprazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Methimazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Metronidazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Nirmatrelvir/Ritonavir",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Omeprazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Pantoprazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Phenytoin",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Rabeprazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Ritonavir",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Cyclosporine",
+      "drug2": "Albendazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Cyclosporine",
+      "drug2": "Aripiprazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Cyclosporine",
+      "drug2": "Azithromycin",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Cyclosporine",
+      "drug2": "Brexpiprazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Cyclosporine",
+      "drug2": "Carbamazepine",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Cyclosporine",
+      "drug2": "Clarithromycin",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Cyclosporine",
+      "drug2": "Cobicistat",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Cyclosporine",
+      "drug2": "Delamanid",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Cyclosporine",
+      "drug2": "Dexlansoprazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    }
+  ],
+  "top_pgx_gaps": [
+    {
+      "source": "ClinPGx",
+      "gene": "ATP2A1",
+      "drug": "Clozapine",
+      "id": "candidate_clinpgx_clinical_annotation_atp2a1_clozapine_ot_pharmacogenetics_chembl42_57_rs3888190_clinpgx_evidence_3_71f3f36962",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "ESR1",
+      "drug": "Tamoxifen",
+      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_57_clinpgx_evidence_clinpgx_clinical_15fec369c1",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "ESR1",
+      "drug": "Tamoxifen",
+      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_58_clinpgx_evidence_clinpgx_clinical_62b7f9dcba",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "ESR1",
+      "drug": "Tamoxifen",
+      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_59_clinpgx_evidence_clinpgx_clinical_a6f48e76de",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "FAAH",
+      "drug": "Clozapine",
+      "id": "candidate_clinpgx_clinical_annotation_faah_clozapine_ot_pharmacogenetics_chembl42_58_rs324420_clinpgx_evidence_3_a98c260477",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "GCG",
+      "drug": "Clozapine",
+      "id": "candidate_clinpgx_clinical_annotation_gcg_clozapine_ot_pharmacogenetics_chembl42_59_rs13429709_clinpgx_evidence_3_f91c0ca70b",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "GRIN2B",
+      "drug": "Clozapine",
+      "id": "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_54_rs1072388_clinpgx_evidence_3_9e2fadfef3",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "GRIN2B",
+      "drug": "Clozapine",
+      "id": "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_55_rs1072388_clinpgx_evidence_3_0dc3cf020f",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "HLA-B",
+      "drug": "Abacavir",
+      "id": "candidate_clinpgx_clinical_annotation_hla_b_abacavir_ot_pharmacogenetics_chembl1380_72_pa165987830_clinpgx_evidence_1a_58e9a5077c",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "HTR3A",
+      "drug": "Clozapine",
+      "id": "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_52_rs1062613_clinpgx_evidence_3_12f1fbcfda",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "HTR3A",
+      "drug": "Clozapine",
+      "id": "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_53_rs1062613_clinpgx_evidence_3_0b9564be80",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "LTA",
+      "drug": "Abacavir",
+      "id": "candidate_clinpgx_clinical_annotation_lta_abacavir_ot_pharmacogenetics_chembl1380_73_rs3093726_clinpgx_evidence_3_11bca93cf3",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "LTA",
+      "drug": "Abacavir",
+      "id": "candidate_clinpgx_clinical_annotation_lta_abacavir_ot_pharmacogenetics_chembl1380_76_rs3093726_clinpgx_evidence_3_d5e09d81d1",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "LTB",
+      "drug": "Abacavir",
+      "id": "candidate_clinpgx_clinical_annotation_ltb_abacavir_ot_pharmacogenetics_chembl1380_74_rs3093726_clinpgx_evidence_3_7167c6a382",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "LTB",
+      "drug": "Abacavir",
+      "id": "candidate_clinpgx_clinical_annotation_ltb_abacavir_ot_pharmacogenetics_chembl1380_77_rs3093726_clinpgx_evidence_3_67abd35c80",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "OPRD1",
+      "drug": "Codeine",
+      "id": "candidate_clinpgx_clinical_annotation_oprd1_codeine_ot_targetsafety_chembl485_23_clinpgx_evidence_clinpgx_clinical_d3d30b9f22",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "P2RY12",
+      "drug": "Clopidogrel",
+      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_53_clinpgx_evidence_clinpgx_clinical_9d1e2069c2",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "P2RY12",
+      "drug": "Clopidogrel",
+      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_54_clinpgx_evidence_clinpgx_clinical_67fb281c84",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "P2RY12",
+      "drug": "Clopidogrel",
+      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_55_clinpgx_evidence_clinpgx_clinical_83def30acc",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "P2RY12",
+      "drug": "Clopidogrel",
+      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_56_clinpgx_evidence_clinpgx_clinical_453c42f714",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "TNF",
+      "drug": "Abacavir",
+      "id": "candidate_clinpgx_clinical_annotation_tnf_abacavir_ot_pharmacogenetics_chembl1380_75_rs3093726_clinpgx_evidence_3_8461794954",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "TNF",
+      "drug": "Abacavir",
+      "id": "candidate_clinpgx_clinical_annotation_tnf_abacavir_ot_pharmacogenetics_chembl1380_78_rs3093726_clinpgx_evidence_3_5e448089fc",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "TYMS",
+      "drug": "Capecitabine",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_25_clinpgx_evidence_clinpgx_clinical_e6bd4d9754",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "TYMS",
+      "drug": "Capecitabine",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_26_clinpgx_evidence_clinpgx_clinical_23ee67a023",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "TYMS",
+      "drug": "Capecitabine",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_27_clinpgx_evidence_clinpgx_clinical_8a3b17565c",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "TYMS",
+      "drug": "Capecitabine",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_28_clinpgx_evidence_clinpgx_clinical_39b3d1d92e",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "TYMS",
+      "drug": "Capecitabine",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_29_clinpgx_evidence_clinpgx_clinical_2d9c9b17d6",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "TYMS",
+      "drug": "Capecitabine",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_30_clinpgx_evidence_clinpgx_clinical_0745003fea",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "CPIC Data",
+      "gene": "G6PD",
+      "drug": "Dapsone",
+      "id": "candidate_cpic_data_coverage_gap_g6pd_dapsone_cpic_review_candidate_g6pd_dapsone_cbf1f01b15",
+      "claimType": "coverage_gap",
+      "geneModeled": false
+    },
+    {
+      "source": "CPIC Data",
+      "gene": "G6PD",
+      "drug": "Methylene Blue",
+      "id": "candidate_cpic_data_coverage_gap_g6pd_methylene_blue_cpic_review_candidate_g6pd_methylene_blue_760e6f8232",
+      "claimType": "coverage_gap",
+      "geneModeled": false
+    }
+  ],
+  "top_metabolite_gaps": [
+    {
+      "parent": "2C-B",
+      "metabolite": "4-Bromo-2,5-dimethoxyphenethylamine (deaminated)",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "2C-B",
+      "metabolite": "2-(4-Bromo-2,5-dimethoxyphenyl)ethanol",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "2C-B",
+      "metabolite": "Demethylated 2C-B",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "2C-B",
+      "metabolite": "2C-B (unchanged)",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "2C-I",
+      "metabolite": "Deaminated 2C-I",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "2C-I",
+      "metabolite": "Demethylated 2C-I",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "2C-I",
+      "metabolite": "2C-I (unchanged)",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Acetaminophen",
+      "metabolite": "Acetaminophen glucuronide",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Acetaminophen",
+      "metabolite": "Acetaminophen sulfate",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Acetaminophen",
+      "metabolite": "Cysteine/mercapturic acid conjugate",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Acetaminophen",
+      "metabolite": "3-Hydroxy-acetaminophen",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Acetaminophen",
+      "metabolite": "Methoxy-acetaminophen",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Albuterol",
+      "metabolite": "Albuterol 4-O-sulfate",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Albuterol",
+      "metabolite": "Albuterol (unchanged renal elimination)",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Alcohol (Ethanol)",
+      "metabolite": "Acetaldehyde",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Alcohol (Ethanol)",
+      "metabolite": "Acetic acid → Acetyl-CoA",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Alcohol (Ethanol)",
+      "metabolite": "Ethyl glucuronide (EtG)",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Alcohol (Ethanol)",
+      "metabolite": "Ethyl sulfate (EtS)",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Alcohol (Ethanol)",
+      "metabolite": "Fatty acid ethyl esters (FAEE)",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Allopurinol",
+      "metabolite": "Allopurinol riboside",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Alprazolam",
+      "metabolite": "Alprazolam glucuronide",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Amiodarone",
+      "metabolite": "Desethylamiodarone (DEA)",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Amiodarone",
+      "metabolite": "Di-desethylamiodarone",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Amitriptyline",
+      "metabolite": "Nortriptyline",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Amitriptyline",
+      "metabolite": "Amitriptyline N-oxide",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Amlodipine",
+      "metabolite": "Dehydroamlodipine",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Amlodipine",
+      "metabolite": "Amlodipine pyridine metabolite",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Amoxicillin",
+      "metabolite": "Amoxicilloic acid (penicilloic)",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Amoxicillin",
+      "metabolite": "Amoxicillin (unchanged, renal)",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Amoxicillin",
+      "metabolite": "Diketopiperazine",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    }
+  ],
+  "top_evidence_gaps": [
+    {
+      "drug1": "Ayahuasca (DMT+MAOI)",
+      "drug2": "Tyramine-rich Foods",
+      "severity": "severe",
+      "category": "diet",
+      "refs": [
+        "ev_tyramine_maoi_labels",
+        "DailyMed MAOI labels"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Clopidogrel",
+      "drug2": "Omeprazole",
+      "severity": "severe",
+      "category": "prodrug",
+      "refs": [
+        "ev_clopidogrel_cyp2c19_cpic",
+        "FDA label",
+        "CPIC"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Clopidogrel",
+      "drug2": "Esomeprazole",
+      "severity": "severe",
+      "category": "prodrug",
+      "refs": [
+        "ev_clopidogrel_cyp2c19_cpic",
+        "FDA label",
+        "CPIC"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Clopidogrel",
+      "drug2": "Fluvoxamine",
+      "severity": "severe",
+      "category": "prodrug",
+      "refs": [
+        "ev_clopidogrel_cyp2c19_cpic",
+        "FDA label",
+        "CPIC"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Bupropion",
+      "drug2": "Tamoxifen",
+      "severity": "severe",
+      "category": "metabolite",
+      "refs": [
+        "ev_bupropion_cyp2d6_fda",
+        "ev_tamoxifen_cyp2d6_cpic",
+        "FDA label"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Bupropion",
+      "drug2": "Codeine",
+      "severity": "severe",
+      "category": "metabolite",
+      "refs": [
+        "ev_bupropion_cyp2d6_fda",
+        "ev_codeine_cyp2d6_cpic",
+        "FDA label"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Bupropion",
+      "drug2": "Tramadol",
+      "severity": "severe",
+      "category": "metabolite",
+      "refs": [
+        "ev_bupropion_cyp2d6_fda",
+        "ev_bupropion_cyp2d6_kotlyar2005",
+        "FDA label"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Lithium",
+      "drug2": "Ibuprofen",
+      "severity": "severe",
+      "category": "nephro",
+      "refs": [
+        "ev_lithium_nsaid_clearance",
+        "clinical guidelines"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Lithium",
+      "drug2": "Naproxen",
+      "severity": "severe",
+      "category": "nephro",
+      "refs": [
+        "ev_lithium_nsaid_clearance",
+        "clinical guidelines"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Lithium",
+      "drug2": "Diclofenac",
+      "severity": "severe",
+      "category": "nephro",
+      "refs": [
+        "ev_lithium_nsaid_clearance",
+        "clinical guidelines"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Lithium",
+      "drug2": "Hydrochlorothiazide",
+      "severity": "severe",
+      "category": "nephro",
+      "refs": [
+        "ev_lithium_thiazide_label",
+        "clinical guidelines"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Methotrexate",
+      "drug2": "Ibuprofen",
+      "severity": "severe",
+      "category": "nephro",
+      "refs": [
+        "ev_mtx_interactions_bannwarth1996",
+        "clinical guidelines"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Methotrexate",
+      "drug2": "Naproxen",
+      "severity": "severe",
+      "category": "nephro",
+      "refs": [
+        "ev_mtx_interactions_bannwarth1996",
+        "clinical guidelines"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Digoxin",
+      "drug2": "Amiodarone",
+      "severity": "severe",
+      "category": "pk",
+      "refs": [
+        "ev_digoxin_pgp_amiodarone_fda",
+        "clinical PK studies"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Digoxin",
+      "drug2": "St. John's Wort",
+      "severity": "severe",
+      "category": "induction",
+      "refs": [
+        "ev_sjw_digoxin_durr2000",
+        "clinical PK studies"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Digoxin",
+      "drug2": "Verapamil",
+      "severity": "severe",
+      "category": "pk",
+      "refs": [
+        "ev_digoxin_verapamil_klein1982",
+        "clinical PK studies"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Digoxin",
+      "drug2": "Cyclosporine",
+      "severity": "severe",
+      "category": "pk",
+      "refs": [
+        "ev_digoxin_pgp_koren1998",
+        "clinical PK studies"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Warfarin",
+      "drug2": "Aspirin",
+      "severity": "severe",
+      "category": "bleed",
+      "refs": [
+        "ev_warfarin_nsaid_bleed",
+        "clinical guidelines"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Warfarin",
+      "drug2": "Ibuprofen",
+      "severity": "severe",
+      "category": "bleed",
+      "refs": [
+        "ev_warfarin_nsaid_bleed",
+        "clinical guidelines"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Warfarin",
+      "drug2": "Naproxen",
+      "severity": "severe",
+      "category": "bleed",
+      "refs": [
+        "ev_warfarin_nsaid_bleed",
+        "clinical guidelines"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Warfarin",
+      "drug2": "Fluconazole",
+      "severity": "severe",
+      "category": "pk",
+      "refs": [
+        "ev_fluconazole_warfarin_black1996",
+        "clinical PK studies"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Warfarin",
+      "drug2": "Metronidazole",
+      "severity": "severe",
+      "category": "pk",
+      "refs": [
+        "ev_warfarin_abx_lane2014",
+        "clinical PK studies"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Dabigatran",
+      "drug2": "Rifampin",
+      "severity": "severe",
+      "category": "induction",
+      "refs": [
+        "ev_doac_rifampin_hartter2012",
+        "ev_doac_rifampin_label",
+        "FDA label"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Apixaban",
+      "drug2": "Rifampin",
+      "severity": "severe",
+      "category": "induction",
+      "refs": [
+        "ev_doac_rifampin_hartter2012",
+        "ev_doac_rifampin_label",
+        "FDA label"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Rivaroxaban",
+      "drug2": "Rifampin",
+      "severity": "severe",
+      "category": "induction",
+      "refs": [
+        "ev_doac_rifampin_hartter2012",
+        "ev_doac_rifampin_label",
+        "FDA label"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Edoxaban",
+      "drug2": "Rifampin",
+      "severity": "severe",
+      "category": "induction",
+      "refs": [
+        "ev_doac_rifampin_hartter2012",
+        "ev_doac_rifampin_label",
+        "FDA label"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Spironolactone",
+      "drug2": "Trimethoprim/Sulfamethoxazole",
+      "severity": "severe",
+      "category": "hyperK",
+      "refs": [
+        "ev_spironolactone_tmpsmx_antoniou2011",
+        "clinical guidelines"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Fluoxetine",
+      "drug2": "Tramadol",
+      "severity": "severe",
+      "category": "serotonin",
+      "refs": [
+        "ev_tramadol_serotonin_beakley2015",
+        "ev_ssri_cyp2d6_liston2002",
+        "FDA warning"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Sertraline",
+      "drug2": "Tramadol",
+      "severity": "severe",
+      "category": "serotonin",
+      "refs": [
+        "ev_tramadol_serotonin_beakley2015",
+        "FDA warning"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Colchicine",
+      "drug2": "Clarithromycin",
+      "severity": "severe",
+      "category": "pk",
+      "refs": [
+        "ev_colchicine_clarithromycin_hung2005",
+        "ev_colchicine_label",
+        "clinical PK studies"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    }
+  ],
+  "source_coverage": {
+    "pubmed": {
+      "stagedRecords": 45,
+      "pendingReview": 45
+    },
+    "europe_pmc": {
+      "stagedRecords": 92,
+      "pendingReview": 92
+    },
+    "openalex": {
+      "stagedRecords": 111,
+      "pendingReview": 111
+    },
+    "unpaywall": {
+      "stagedRecords": 0,
+      "pendingReview": 0
+    },
+    "cpic_data": {
+      "stagedRecords": 156,
+      "pendingReview": 156
+    },
+    "clinpgx": {
+      "stagedRecords": 128,
+      "pendingReview": 128
+    }
+  },
+  "recommended_review_batches": [
+    {
+      "id": "p1-structured-pgx",
+      "reason": "CPIC/ClinPGx structured records and unsupported genes",
+      "count": 57
+    },
+    {
+      "id": "p1-severe-evidence",
+      "reason": "Severe/critical warnings needing source-tier/review checks",
+      "count": 100
+    },
+    {
+      "id": "p2-metabolite-map",
+      "reason": "Metabolite actors missing evidence, clearance, or persistence",
+      "count": 100
+    },
+    {
+      "id": "p2-missing-pairs",
+      "reason": "Class-rule likely missing DDI combinations",
+      "count": 100
+    }
+  ]
+}

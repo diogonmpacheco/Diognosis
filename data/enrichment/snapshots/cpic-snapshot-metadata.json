@@ -1,0 +1,9 @@
+{
+  "schema": "diognosis.cpic-snapshot-metadata.v1",
+  "generatedAt": "2026-06-15T11:12:21.310Z",
+  "mode": "check",
+  "source": "CPIC Data",
+  "fetched": false,
+  "stagedRecords": 156,
+  "note": "Check mode uses local Diognosis PGx coverage and CPIC-linked evidence to create review candidates. Run fetch mode only when provider access is intentionally allowed."
+}

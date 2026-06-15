@@ -97,6 +97,12 @@ The goal is not to replace clinical judgment. The goal is to make the mechanism 
 
 Diognosis is not a clinical decision system. Source-linked evidence does not equal clinical validation. Warnings are review prompts, and severity should not be treated as clinically final until reviewed by an appropriate professional.
 
+## Data Enrichment Governance
+
+Diognosis uses staged, source-linked enrichment workflows for literature discovery and structured guideline context. External records from PubMed, Europe PMC, OpenAlex, Unpaywall, CPIC Data, and ClinPGx are staged for review and do not automatically change clinical severity, scoring, or shipped database behavior.
+
+Source-linked does not mean professionally reviewed. All public evidence remains pending professional review unless explicitly marked otherwise.
+
 ## Current Limitations
 
 Diognosis is intentionally conservative about what it claims. MedCheck Engine PK curves use a one-compartment model or a relative exposure fallback, so they do not replace therapeutic drug monitoring, multi-compartment/nonlinear PK models, or active-metabolite clinical interpretation. Extreme exposure shifts may be capped for display clarity. Evidence marked `reviewRequired:true` is visible for review and discovery, but remains pending pharmacist or physician sign-off and should not be treated as professionally reviewed.

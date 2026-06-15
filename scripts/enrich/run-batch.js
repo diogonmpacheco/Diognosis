@@ -8,6 +8,7 @@ import { resolve } from 'path';
 const root = resolve(new URL('../..', import.meta.url).pathname);
 const DEFAULT_BATCH = resolve(root, 'scripts/enrich/legal-literature-batch.json');
 const ENRICH_SCRIPT = resolve(root, 'scripts/enrich/pubmed-enrich.js');
+const STAGE_SCRIPT = resolve(root, 'scripts/enrich/stage-legal-literature.js');
 const AREA_BATCHES = {
   '1': 'scripts/enrich/primary-care-common-chronic-batch.json',
   'primary-care/common chronic meds': 'scripts/enrich/primary-care-common-chronic-batch.json',
@@ -18,7 +19,7 @@ const AREA_BATCHES = {
 
 function usage() {
   return `Usage:
-  node scripts/enrich/run-batch.js [--batch scripts/enrich/legal-literature-batch.json] [--limit 8] [--providers pubmed,europepmc,openalex,semanticscholar] [--oa --oa-email you@example.com]
+  node scripts/enrich/run-batch.js [--batch scripts/enrich/legal-literature-batch.json] [--limit 8] [--providers pubmed,europepmc,openalex,unpaywall] [--oa --oa-email you@example.com]
   node scripts/enrich/run-batch.js --area 1
 
 Runs each batch query through pubmed-enrich.js. Provider responses are cached and drafts are deduped.
@@ -27,7 +28,7 @@ Runs each batch query through pubmed-enrich.js. Provider responses are cached an
 
 function parseArgs(argv) {
   const args = {};
-  const booleanArgs = new Set(['help', 'oa', 'expand-citations']);
+  const booleanArgs = new Set(['help', 'oa', 'expand-citations', 'no-stage']);
   for (let i = 0; i < argv.length; i++) {
     const token = argv[i];
     if (!token.startsWith('--')) continue;
@@ -88,6 +89,15 @@ function main() {
     console.error(`\nBatch finished with ${failures.length} failed quer${failures.length === 1 ? 'y' : 'ies'}.`);
     for (const failure of failures) console.error(`- ${failure.relation}: exit ${failure.status}`);
     process.exit(1);
+  }
+  if (!args['no-stage']) {
+    console.error('\n▶ Stage legal literature drafts');
+    const stage = spawnSync(process.execPath, [STAGE_SCRIPT], {
+      cwd: root,
+      stdio: 'inherit',
+      env: process.env,
+    });
+    if (stage.status !== 0) process.exit(stage.status || 1);
   }
   console.error('\nBatch complete.');
 }

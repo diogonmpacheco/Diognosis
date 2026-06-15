@@ -1,0 +1,18 @@
+# Source Registry
+
+Machine-readable registry: `data/enrichment/source-registry.json`.
+
+| Source | Type | Purpose | Access method | Script | Output files | License / usage note | Rate limit | Bundled in public app? | Can affect scoring? | Review required? | Refresh cadence |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| PubMed | literature discovery | Candidate literature metadata and PMIDs | NCBI E-utilities at build/script time | `scripts/enrich/pubmed-enrich.js` | `data/enrichment/staged/legal-literature-staged-records.json` | Public metadata only; no protected full text | NCBI policy | no | no | yes | weekly |
+| Europe PMC | literature discovery | Publication and OA status metadata | REST metadata API | `scripts/enrich/pubmed-enrich.js` | legal literature staged records | Metadata and legal OA status only | provider polite use | no | no | yes | weekly |
+| OpenAlex | literature discovery | DOI, venue, OA, and citation metadata | REST metadata API | `scripts/enrich/pubmed-enrich.js` | legal literature staged records | Metadata and OA license flags only | polite pool email recommended | no | no | yes | weekly |
+| Unpaywall | literature discovery | Legal open-access location metadata | REST metadata API | `scripts/enrich/pubmed-enrich.js` | legal literature staged records | OA metadata only | email required | no | no | yes | weekly |
+| CPIC Data | structured guideline | Gene/drug guideline, recommendation, publication, test-alert, and allele coverage | cached build-time sync/check | `scripts/enrich/cpic-sync.js` | `data/enrichment/staged/cpic-staged-records.json`, `docs/audits/cpic-coverage-audit.*` | source-specific CPIC usage; staged only | build-time only | no | no | yes | weekly |
+| ClinPGx | structured guideline | Guideline annotations, clinical annotations, labels, pathways, genes, chemicals, variants | cached REST JSON API at build time | `scripts/enrich/clinpgx-sync.js` | `data/enrichment/staged/clinpgx-staged-records.json`, `docs/audits/clinpgx-coverage-audit.*` | CC BY-SA 4.0; attribution and review required | max 2 requests/second, scripts wait at least 550 ms | no | no | yes | weekly |
+| PharmCAT output | user/session PGx | Future user-provided diplotype/phenotype/report context | session import only | future importer | Review tab session provenance | user-supplied output; no global DB mutation | n/a | no | no | yes | user initiated |
+| Open Targets | external context | Offline ChEMBL/Open Targets context, ClinPGx, FAERS, target-safety prompts | existing offline importer | `scripts/integrations/open-targets/import-open-targets.js` | `src/data/generatedOpenTargetsSnapshot.js` | dataset-specific context; not severity-bearing unless reviewed | build/import time only | yes, as context | no | yes | release gated |
+| Manual human review | manual review | Promotion decisions and source-faithfulness review | review queue | `scripts/enrich/build-enrichment-review-queue.js` | `data/enrichment/review-queue/enrichment-review-queue.json` | reviewer must verify mapping, license, direction, wording, and clinical context | human controlled | no | no | yes | as reviewed |
+| Internal Diognosis curated data | internal Diognosis | Current shipped prototype data and coverage audits | local source files | `scripts/audit/enrichment-coverage-audit.js` | `docs/audits/enrichment-coverage-audit.*` | source-linked prototype data; public evidence pending review | local only | yes | yes | yes | every release |
+
+ClinPGx and CPIC Data are never queried from the browser. Their records are cached/staged at script time and remain pending review until a human promotes a specific record.

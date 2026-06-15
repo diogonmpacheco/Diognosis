@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-06-15T11:05:58.419Z",
+  "source": "CPIC Data",
+  "stagedRecords": 156,
+  "modeledGenes": 43,
+  "stagedPairs": 156,
+  "missingGenes": [
+    "G6PD",
+    "HLA-A",
+    "HLA-B"
+  ],
+  "missingPairs": [],
+  "reviewRequired": 156,
+  "canAffectScoring": 0
+}

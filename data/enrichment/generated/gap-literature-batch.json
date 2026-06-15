@@ -1,0 +1,458 @@
+{
+  "schema": "diognosis.gap-literature-batch.v1",
+  "generatedAt": "2026-06-15T11:12:21.503Z",
+  "sourceAudit": "docs/audits/enrichment-coverage-audit.json",
+  "description": "Gap-driven legal literature discovery candidates. Metadata-only; no auto-promotion.",
+  "queries": [
+    {
+      "relation": "Tacrolimus:Albendazole",
+      "query": "Tacrolimus Albendazole pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Aripiprazole",
+      "query": "Tacrolimus Aripiprazole pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Azithromycin",
+      "query": "Tacrolimus Azithromycin pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Brexpiprazole",
+      "query": "Tacrolimus Brexpiprazole pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Carbamazepine",
+      "query": "Tacrolimus Carbamazepine pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Delamanid",
+      "query": "Tacrolimus Delamanid pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Dexlansoprazole",
+      "query": "Tacrolimus Dexlansoprazole pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Erythromycin",
+      "query": "Tacrolimus Erythromycin pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Esomeprazole",
+      "query": "Tacrolimus Esomeprazole pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Fosphenytoin",
+      "query": "Tacrolimus Fosphenytoin pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Isavuconazonium Sulfate",
+      "query": "Tacrolimus Isavuconazonium Sulfate pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Itraconazole",
+      "query": "Tacrolimus Itraconazole pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Lansoprazole",
+      "query": "Tacrolimus Lansoprazole pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Methimazole",
+      "query": "Tacrolimus Methimazole pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Metronidazole",
+      "query": "Tacrolimus Metronidazole pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Nirmatrelvir/Ritonavir",
+      "query": "Tacrolimus Nirmatrelvir/Ritonavir pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Omeprazole",
+      "query": "Tacrolimus Omeprazole pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Pantoprazole",
+      "query": "Tacrolimus Pantoprazole pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Phenytoin",
+      "query": "Tacrolimus Phenytoin pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Rabeprazole",
+      "query": "Tacrolimus Rabeprazole pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tacrolimus:Ritonavir",
+      "query": "Tacrolimus Ritonavir pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Cyclosporine:Albendazole",
+      "query": "Cyclosporine Albendazole pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Cyclosporine:Aripiprazole",
+      "query": "Cyclosporine Aripiprazole pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Cyclosporine:Azithromycin",
+      "query": "Cyclosporine Azithromycin pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Cyclosporine:Brexpiprazole",
+      "query": "Cyclosporine Brexpiprazole pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Cyclosporine:Carbamazepine",
+      "query": "Cyclosporine Carbamazepine pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Cyclosporine:Clarithromycin",
+      "query": "Cyclosporine Clarithromycin pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Cyclosporine:Cobicistat",
+      "query": "Cyclosporine Cobicistat pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Cyclosporine:Delamanid",
+      "query": "Cyclosporine Delamanid pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Cyclosporine:Dexlansoprazole",
+      "query": "Cyclosporine Dexlansoprazole pharmacokinetic interaction",
+      "supports": [
+        "transplant immunosuppressant + inhibitor/inducer"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Clozapine:ATP2A1",
+      "query": "Clozapine ATP2A1 pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tamoxifen:ESR1",
+      "query": "Tamoxifen ESR1 pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tamoxifen:ESR1",
+      "query": "Tamoxifen ESR1 pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Tamoxifen:ESR1",
+      "query": "Tamoxifen ESR1 pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Clozapine:FAAH",
+      "query": "Clozapine FAAH pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Clozapine:GCG",
+      "query": "Clozapine GCG pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Clozapine:GRIN2B",
+      "query": "Clozapine GRIN2B pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Clozapine:GRIN2B",
+      "query": "Clozapine GRIN2B pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Abacavir:HLA-B",
+      "query": "Abacavir HLA-B pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Clozapine:HTR3A",
+      "query": "Clozapine HTR3A pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Clozapine:HTR3A",
+      "query": "Clozapine HTR3A pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Abacavir:LTA",
+      "query": "Abacavir LTA pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Abacavir:LTA",
+      "query": "Abacavir LTA pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Abacavir:LTB",
+      "query": "Abacavir LTB pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Abacavir:LTB",
+      "query": "Abacavir LTB pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Codeine:OPRD1",
+      "query": "Codeine OPRD1 pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Clopidogrel:P2RY12",
+      "query": "Clopidogrel P2RY12 pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Clopidogrel:P2RY12",
+      "query": "Clopidogrel P2RY12 pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Clopidogrel:P2RY12",
+      "query": "Clopidogrel P2RY12 pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    },
+    {
+      "relation": "Clopidogrel:P2RY12",
+      "query": "Clopidogrel P2RY12 pharmacogenetics",
+      "supports": [
+        "pgx_gap_candidate"
+      ],
+      "providers": "pubmed,europepmc,openalex,unpaywall",
+      "limit": 6
+    }
+  ]
+}

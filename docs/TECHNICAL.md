@@ -254,6 +254,39 @@ Important evidence helpers include `normalizeEvidence()`, `getEvidenceSummary()`
 
 Live enrichment entries should remain marked `reviewRequired:true` until checked by a qualified human reviewer. Open Targets-derived context remains local/static at runtime and defaults to context-only, review-required, and not severity-bearing unless explicitly promoted by Diognosis review.
 
+## Enrichment Governance
+
+External enrichment now uses one staged-source architecture:
+
+```text
+External Source -> Fetch / Discover -> Normalize -> Stage -> Dedupe
+  -> Coverage Audit -> Review Queue -> Human Review -> Optional Promotion
+  -> Validation -> Build
+```
+
+Canonical schema helpers live in `scripts/enrich/lib/staged-source-schema.js`. Every staged record defaults to `reviewRequired:true`, `professionalReviewStatus:"pending"`, `sourceFaithfulnessStatus:"unreviewed"`, `canAffectScoring:false`, and `canAffectPublicSeverity:false`.
+
+Source governance files:
+
+- `data/enrichment/source-registry.json`
+- `data/enrichment/provider-allowlist.json`
+- `docs/enrichment/STAGED_SOURCE_SCHEMA.md`
+- `docs/enrichment/SOURCE_REGISTRY.md`
+- `docs/enrichment/ENRICHMENT_ARCHITECTURE.md`
+- `docs/enrichment/PROMOTION_POLICY.md`
+- `docs/enrichment/AUTOMATION_RUNBOOK.md`
+
+Structured source workflows:
+
+- `scripts/enrich/cpic-sync.js` and `scripts/audit/cpic-coverage-audit.js` stage CPIC Data review candidates and compare them with Diognosis PGx coverage.
+- `scripts/enrich/clinpgx-sync.js` and `scripts/audit/clinpgx-coverage-audit.js` stage ClinPGx guideline, clinical annotation, label, gene, chemical, and variant context. ClinPGx fetch mode is cached and rate-limited at 550 ms/request; normal checks use offline staged/context data.
+- `scripts/enrich/stage-legal-literature.js` normalizes PubMed, Europe PMC, OpenAlex, and Unpaywall literature drafts into the same staged schema.
+- `scripts/audit/enrichment-coverage-audit.js` ranks missing drugs, likely missing combinations, PGx gaps, metabolite gaps, and evidence gaps.
+- `scripts/enrich/build-enrichment-review-queue.js` builds the human review queue. Queue items cannot auto-promote.
+- `scripts/enrich/run-weekly-enrichment.js` orchestrates the Monday staged enrichment run.
+
+Runtime rule: the browser app remains local-first/static and does not call CPIC, ClinPGx, PharmCAT, PubMed, Europe PMC, OpenAlex, Unpaywall, or Open Targets.
+
 ## Enzyme Capacity Model
 
 `computeEnzymeCapacity(enzyme, stack)` calculates net enzymatic capacity:

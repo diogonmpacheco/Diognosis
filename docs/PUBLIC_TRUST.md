@@ -20,6 +20,14 @@ Current evidence status:
 - 295 entries are currently marked `reviewRequired:true` as an internal enrichment/scoring flag, not a public reviewed/unreviewed boundary.
 - Severe and critical warnings remain visible for discovery, but severity is not clinically final until reviewed.
 
+## External Enrichment Boundary
+
+External enrichment records from PubMed, Europe PMC, OpenAlex, Unpaywall, CPIC Data, ClinPGx, and Open Targets enter Diognosis through staged review files before any promotion decision.
+
+Unreviewed external enrichment records cannot affect scoring, public severity, contraindication wording, genotype rules, metabolite maps, or shipped database behavior. CPIC, ClinPGx, and literature records remain pending human review until source faithfulness, mapping, directionality, copyright/license, and clinical wording are checked.
+
+ClinPGx and CPIC Data are build-time/script-time sources only. They are not queried from the browser.
+
 ## What A Reviewer Should Check
 
 For every data or evidence report, the reviewer should inspect:

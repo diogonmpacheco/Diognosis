@@ -1,0 +1,635 @@
+{
+  "schema": "diognosis.weekly-enrichment-report.v1",
+  "generatedAt": "2026-06-15T11:13:13.039Z",
+  "mode": "check",
+  "newStagedRecords": 532,
+  "updatedStagedRecords": 0,
+  "dedupedRecords": 532,
+  "newLiteratureDrafts": 248,
+  "draftsWithLegalOpenAccess": 144,
+  "cpicRecordsStaged": 156,
+  "clinpgxRecordsStaged": 128,
+  "providerFailures": [],
+  "topMissingDrugs": [
+    {
+      "name": "Rifampin",
+      "class": "Rifamycin",
+      "score": 175,
+      "ddiPairs": 51,
+      "route": "",
+      "gaps": [
+        "no active/toxic actor"
+      ]
+    },
+    {
+      "name": "Warfarin",
+      "class": "Anticoagulant",
+      "score": 154,
+      "ddiPairs": 36,
+      "route": "CYP2C9/CYP3A4/CYP1A2",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Ketoconazole",
+      "class": "Azole Antifungal",
+      "score": 125,
+      "ddiPairs": 27,
+      "route": "CYP3A4",
+      "gaps": [
+        "no active/toxic actor"
+      ]
+    },
+    {
+      "name": "Tacrolimus",
+      "class": "Immunosuppressant",
+      "score": 114,
+      "ddiPairs": 22,
+      "route": "CYP3A4/CYP3A5",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Amiodarone",
+      "class": "Antiarrhythmic",
+      "score": 107,
+      "ddiPairs": 21,
+      "route": "CYP3A4",
+      "gaps": [
+        "no active/toxic actor"
+      ]
+    },
+    {
+      "name": "Clopidogrel",
+      "class": "Antiplatelet",
+      "score": 95,
+      "ddiPairs": 13,
+      "route": "CYP2C19/CYP3A4/CYP2B6/CYP1A2",
+      "gaps": [
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Dofetilide",
+      "class": "Class III Antiarrhythmic",
+      "score": 81,
+      "ddiPairs": 5,
+      "route": "Renal Cation Transport/CYP3A4",
+      "gaps": [
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "MDMA (Ecstasy)",
+      "class": "Empathogen",
+      "score": 76,
+      "ddiPairs": 14,
+      "route": "CYP2D6/CYP3A4/CYP1A2/CYP2B6",
+      "gaps": [
+        "no active/toxic actor",
+        "no PK profile",
+        "no timing/washout context"
+      ]
+    },
+    {
+      "name": "Clarithromycin",
+      "class": "Macrolide AB",
+      "score": 74,
+      "ddiPairs": 10,
+      "route": "CYP3A4",
+      "gaps": [
+        "no active/toxic actor"
+      ]
+    },
+    {
+      "name": "Disopyramide",
+      "class": "Class IA Antiarrhythmic",
+      "score": 74,
+      "ddiPairs": 0,
+      "route": "CYP3A4/Renal Excretion Unchanged",
+      "gaps": [
+        "no direct DDI/evidence refs",
+        "no DDI rows",
+        "no active/toxic actor",
+        "no timing/washout context"
+      ]
+    }
+  ],
+  "topMissingCombinations": [
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Albendazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Aripiprazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Azithromycin",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Brexpiprazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Carbamazepine",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Delamanid",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Dexlansoprazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Erythromycin",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Esomeprazole",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    },
+    {
+      "drug1": "Tacrolimus",
+      "drug2": "Fosphenytoin",
+      "theme": "transplant immunosuppressant + inhibitor/inducer",
+      "score": 90
+    }
+  ],
+  "topPgxGaps": [
+    {
+      "source": "ClinPGx",
+      "gene": "ATP2A1",
+      "drug": "Clozapine",
+      "id": "candidate_clinpgx_clinical_annotation_atp2a1_clozapine_ot_pharmacogenetics_chembl42_57_rs3888190_clinpgx_evidence_3_71f3f36962",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "ESR1",
+      "drug": "Tamoxifen",
+      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_57_clinpgx_evidence_clinpgx_clinical_15fec369c1",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "ESR1",
+      "drug": "Tamoxifen",
+      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_58_clinpgx_evidence_clinpgx_clinical_62b7f9dcba",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "ESR1",
+      "drug": "Tamoxifen",
+      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_59_clinpgx_evidence_clinpgx_clinical_a6f48e76de",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "FAAH",
+      "drug": "Clozapine",
+      "id": "candidate_clinpgx_clinical_annotation_faah_clozapine_ot_pharmacogenetics_chembl42_58_rs324420_clinpgx_evidence_3_a98c260477",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "GCG",
+      "drug": "Clozapine",
+      "id": "candidate_clinpgx_clinical_annotation_gcg_clozapine_ot_pharmacogenetics_chembl42_59_rs13429709_clinpgx_evidence_3_f91c0ca70b",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "GRIN2B",
+      "drug": "Clozapine",
+      "id": "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_54_rs1072388_clinpgx_evidence_3_9e2fadfef3",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "GRIN2B",
+      "drug": "Clozapine",
+      "id": "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_55_rs1072388_clinpgx_evidence_3_0dc3cf020f",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "HLA-B",
+      "drug": "Abacavir",
+      "id": "candidate_clinpgx_clinical_annotation_hla_b_abacavir_ot_pharmacogenetics_chembl1380_72_pa165987830_clinpgx_evidence_1a_58e9a5077c",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    },
+    {
+      "source": "ClinPGx",
+      "gene": "HTR3A",
+      "drug": "Clozapine",
+      "id": "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_52_rs1062613_clinpgx_evidence_3_12f1fbcfda",
+      "claimType": "clinical_annotation",
+      "geneModeled": false
+    }
+  ],
+  "topMetaboliteGaps": [
+    {
+      "parent": "2C-B",
+      "metabolite": "4-Bromo-2,5-dimethoxyphenethylamine (deaminated)",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "2C-B",
+      "metabolite": "2-(4-Bromo-2,5-dimethoxyphenyl)ethanol",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "2C-B",
+      "metabolite": "Demethylated 2C-B",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "2C-B",
+      "metabolite": "2C-B (unchanged)",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "2C-I",
+      "metabolite": "Deaminated 2C-I",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "2C-I",
+      "metabolite": "Demethylated 2C-I",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "2C-I",
+      "metabolite": "2C-I (unchanged)",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Acetaminophen",
+      "metabolite": "Acetaminophen glucuronide",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Acetaminophen",
+      "metabolite": "Acetaminophen sulfate",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    },
+    {
+      "parent": "Acetaminophen",
+      "metabolite": "Cysteine/mercapturic acid conjugate",
+      "gaps": [
+        "metabolite row has no actor",
+        "no evidence refs"
+      ],
+      "score": 40
+    }
+  ],
+  "topEvidenceGaps": [
+    {
+      "drug1": "Ayahuasca (DMT+MAOI)",
+      "drug2": "Tyramine-rich Foods",
+      "severity": "severe",
+      "category": "diet",
+      "refs": [
+        "ev_tyramine_maoi_labels",
+        "DailyMed MAOI labels"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Clopidogrel",
+      "drug2": "Omeprazole",
+      "severity": "severe",
+      "category": "prodrug",
+      "refs": [
+        "ev_clopidogrel_cyp2c19_cpic",
+        "FDA label",
+        "CPIC"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Clopidogrel",
+      "drug2": "Esomeprazole",
+      "severity": "severe",
+      "category": "prodrug",
+      "refs": [
+        "ev_clopidogrel_cyp2c19_cpic",
+        "FDA label",
+        "CPIC"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Clopidogrel",
+      "drug2": "Fluvoxamine",
+      "severity": "severe",
+      "category": "prodrug",
+      "refs": [
+        "ev_clopidogrel_cyp2c19_cpic",
+        "FDA label",
+        "CPIC"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Bupropion",
+      "drug2": "Tamoxifen",
+      "severity": "severe",
+      "category": "metabolite",
+      "refs": [
+        "ev_bupropion_cyp2d6_fda",
+        "ev_tamoxifen_cyp2d6_cpic",
+        "FDA label"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Bupropion",
+      "drug2": "Codeine",
+      "severity": "severe",
+      "category": "metabolite",
+      "refs": [
+        "ev_bupropion_cyp2d6_fda",
+        "ev_codeine_cyp2d6_cpic",
+        "FDA label"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Bupropion",
+      "drug2": "Tramadol",
+      "severity": "severe",
+      "category": "metabolite",
+      "refs": [
+        "ev_bupropion_cyp2d6_fda",
+        "ev_bupropion_cyp2d6_kotlyar2005",
+        "FDA label"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Lithium",
+      "drug2": "Ibuprofen",
+      "severity": "severe",
+      "category": "nephro",
+      "refs": [
+        "ev_lithium_nsaid_clearance",
+        "clinical guidelines"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Lithium",
+      "drug2": "Naproxen",
+      "severity": "severe",
+      "category": "nephro",
+      "refs": [
+        "ev_lithium_nsaid_clearance",
+        "clinical guidelines"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    },
+    {
+      "drug1": "Lithium",
+      "drug2": "Diclofenac",
+      "severity": "severe",
+      "category": "nephro",
+      "refs": [
+        "ev_lithium_nsaid_clearance",
+        "clinical guidelines"
+      ],
+      "gap": "pending professional review/source tier check",
+      "score": 80
+    }
+  ],
+  "changedFiles": [
+    "M README.md",
+    "M docs/PUBLIC_TRUST.md",
+    "M docs/TECHNICAL.md",
+    "M index.html",
+    "M package.json",
+    "M scripts/enrich/run-batch.js",
+    "M scripts/release-check.js",
+    "M src/data/generatedStats.js",
+    "?? data/",
+    "?? docs/audits/clinpgx-coverage-audit.json",
+    "?? docs/audits/clinpgx-coverage-audit.md",
+    "?? docs/audits/cpic-coverage-audit.json",
+    "?? docs/audits/cpic-coverage-audit.md",
+    "?? docs/audits/enrichment-coverage-audit.json",
+    "?? docs/audits/enrichment-coverage-audit.md",
+    "?? docs/audits/enrichment-review-queue.md",
+    "?? docs/audits/weekly-enrichment-report.json",
+    "?? docs/audits/weekly-enrichment-report.md",
+    "?? docs/automations/",
+    "?? docs/enrichment/",
+    "?? scripts/audit/clinpgx-coverage-audit.js",
+    "?? scripts/audit/cpic-coverage-audit.js",
+    "?? scripts/audit/enrichment-coverage-audit.js",
+    "?? scripts/audit/enrichment-license-boundary-audit.js",
+    "?? scripts/audit/source-registry-audit.js",
+    "?? scripts/enrich/build-enrichment-review-queue.js",
+    "?? scripts/enrich/build-gap-query-batch.js",
+    "?? scripts/enrich/clinpgx-normalize.js",
+    "?? scripts/enrich/clinpgx-sync.js",
+    "?? scripts/enrich/cpic-normalize.js",
+    "?? scripts/enrich/cpic-sync.js",
+    "?? scripts/enrich/lib/",
+    "?? scripts/enrich/run-weekly-enrichment.js",
+    "?? scripts/enrich/stage-legal-literature.js"
+  ],
+  "validationResults": [
+    {
+      "label": "source registry audit",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "enrichment coverage audit",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "legal literature staging",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "CPIC sync/check",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "ClinPGx sync/check",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "gap query batch generation",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "enrichment review queue",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "source registry audit after staging",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "license boundary audit",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "enrichment self-test",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "validation: stats",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "validation: build",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "validation: smoke",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "validation: regression",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "validation: validate",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "validation: validate:strict",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "validation: check:evidence",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    },
+    {
+      "label": "validation: release:check",
+      "status": 0,
+      "ok": true,
+      "signal": null
+    }
+  ],
+  "recommendation": "human_review_then_commit",
+  "humanReviewRequired": true
+}
