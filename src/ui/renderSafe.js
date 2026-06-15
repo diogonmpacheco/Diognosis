@@ -1,4 +1,4 @@
-// MedCheck Engine — safe rendering helpers for generated/imported strings
+// Diognosis — safe rendering helpers for generated/imported strings
 
 function safeHtml(value) {
   return String(value ?? "")

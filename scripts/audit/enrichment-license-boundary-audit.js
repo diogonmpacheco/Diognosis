@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { existsSync, readFileSync, readdirSync, statSync } from 'fs';
 import { extname, join, resolve } from 'path';
-import { ROOT } from '../enrich/lib/medcheck-source-loader.js';
+import { ROOT } from '../enrich/lib/diognosis-source-loader.js';
 import { loadAllStagedRecords, readJson } from '../enrich/lib/enrichment-common.js';
 
 const ALLOWLIST = resolve(ROOT, 'data/enrichment/provider-allowlist.json');

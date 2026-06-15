@@ -6,7 +6,7 @@
   "targets": [
     {
       "id": "abacavir_hla_b",
-      "medcheckName": "Abacavir",
+      "diognosisName": "Abacavir",
       "chemblId": "CHEMBL1380",
       "genes": ["HLA-B"],
       "scenarioId": "ot-abacavir-hlab-context",
@@ -18,7 +18,7 @@
     },
     {
       "id": "clopidogrel_cyp2c19",
-      "medcheckName": "Clopidogrel",
+      "diognosisName": "Clopidogrel",
       "chemblId": "CHEMBL1771",
       "genes": ["CYP2C19"],
       "scenarioId": "ot-clopidogrel-cyp2c19-context",
@@ -35,7 +35,7 @@
     },
     {
       "id": "capecitabine_dpyd",
-      "medcheckName": "Capecitabine",
+      "diognosisName": "Capecitabine",
       "chemblId": "CHEMBL1773",
       "genes": ["DPYD"],
       "scenarioId": "ot-capecitabine-dpyd-clinpgx-context",
@@ -47,7 +47,7 @@
     },
     {
       "id": "warfarin_cyp2c9_vkorc1",
-      "medcheckName": "Warfarin",
+      "diognosisName": "Warfarin",
       "chemblId": "CHEMBL1464",
       "genes": ["CYP2C9", "VKORC1"],
       "scenarioId": "ot-warfarin-pgx-warning-context",
@@ -59,7 +59,7 @@
     },
     {
       "id": "codeine_cyp2d6",
-      "medcheckName": "Codeine",
+      "diognosisName": "Codeine",
       "chemblId": "CHEMBL485",
       "genes": ["CYP2D6"],
       "scenarioId": "ot-paroxetine-codeine-context",

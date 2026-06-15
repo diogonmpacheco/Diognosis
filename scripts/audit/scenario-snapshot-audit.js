@@ -8,8 +8,8 @@ import { JSDOM, VirtualConsole } from 'jsdom';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..', '..');
-const MANIFEST_PATH = resolve(ROOT, 'tests/scenarios/medcheck-scenarios.json');
-const SNAPSHOT_PATH = resolve(ROOT, 'tests/scenarios/medcheck-model-snapshots.json');
+const MANIFEST_PATH = resolve(ROOT, 'tests/scenarios/diognosis-scenarios.json');
+const SNAPSHOT_PATH = resolve(ROOT, 'tests/scenarios/diognosis-model-snapshots.json');
 const TMP_DIR = resolve(ROOT, '.tmp/open-targets-fixture');
 const TMP_SNAPSHOT_JS = resolve(TMP_DIR, 'generatedOpenTargetsFixtureSnapshot.js');
 const TMP_AUDIT_MD = resolve(TMP_DIR, 'OPEN_TARGETS_FIXTURE_AUDIT.md');

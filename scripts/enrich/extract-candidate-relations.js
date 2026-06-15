@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { createHash } from 'crypto';
 import { resolve } from 'path';
-import { loadMedcheckData, ROOT } from './lib/medcheck-source-loader.js';
+import { loadDiognosisData, ROOT } from './lib/diognosis-source-loader.js';
 import { loadAllStagedRecords, markdownTable, readJson, writeJson, writeText } from './lib/enrichment-common.js';
 import {
   baseCandidateGovernance,
@@ -281,7 +281,7 @@ function evidenceIdentifiersForRefs(data, refs = []) {
 }
 
 function buildLocalCoverageCandidates() {
-  const data = loadMedcheckData();
+  const data = loadDiognosisData();
   const candidates = [];
   for (const row of (data.KNOWN_DDI || []).slice(0, 80)) {
     const refs = row.evidenceRefs || row.refs || [];

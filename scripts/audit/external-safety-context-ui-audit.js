@@ -32,9 +32,9 @@ const report = dom.window.eval(`(() => {
     summary: { release: "fixture-2026-06" },
     crosswalk: [
       {
-        medcheckId: "paroxetine",
-        medcheckName: "Paroxetine <img src=x onerror='window.__otXss=1'>",
-        medcheckClass: "SSRI",
+        diognosisId: "paroxetine",
+        diognosisName: "Paroxetine <img src=x onerror='window.__otXss=1'>",
+        diognosisClass: "SSRI",
         openTargetsDrugId: "CHEMBL.PAROXETINE",
         chemblId: "CHEMBL.PAROXETINE",
         openTargetsName: "Paroxetine <img src=x onerror='window.__otXss=1'>",

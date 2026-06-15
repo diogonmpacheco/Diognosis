@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { existsSync, readdirSync } from 'fs';
 import { join, resolve } from 'path';
-import { ROOT } from './lib/medcheck-source-loader.js';
+import { ROOT } from './lib/diognosis-source-loader.js';
 import { readJson, writeJson } from './lib/enrichment-common.js';
 
 const DEFAULT_IN = resolve(ROOT, 'docs/audits/enrichment-coverage-audit.json');

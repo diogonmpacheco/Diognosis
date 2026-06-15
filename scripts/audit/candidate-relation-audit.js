@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { existsSync, readdirSync } from 'fs';
 import { join, resolve } from 'path';
-import { ROOT } from '../enrich/lib/medcheck-source-loader.js';
+import { ROOT } from '../enrich/lib/diognosis-source-loader.js';
 import { readJson } from '../enrich/lib/enrichment-common.js';
 
 const DIR = resolve(ROOT, 'data/enrichment/candidates');

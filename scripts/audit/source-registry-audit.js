@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { resolve } from 'path';
-import { ROOT } from '../enrich/lib/medcheck-source-loader.js';
+import { ROOT } from '../enrich/lib/diognosis-source-loader.js';
 import { loadAllStagedRecords, readJson } from '../enrich/lib/enrichment-common.js';
 import { validateStagedSourceRecord } from '../enrich/lib/staged-source-schema.js';
 

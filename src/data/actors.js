@@ -1,4 +1,4 @@
-// MedCheck Engine — Food, endogenous, receptor, and phenotype actor definitions
+// Diognosis — Food, endogenous, receptor, and phenotype actor definitions
 // Phase A: modular source — concatenated by build.js
 
 const FOOD_ACTORS = {

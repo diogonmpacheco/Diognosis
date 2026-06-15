@@ -1,4 +1,4 @@
-// MedCheck Engine — Evidence Confidence Ladder
+// Diognosis — Evidence Confidence Ladder
 
 const EVIDENCE_LADDER_TIER_KEYS = [
   "FDA_LABEL",

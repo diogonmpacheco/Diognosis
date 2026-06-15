@@ -1,4 +1,4 @@
-// MedCheck Engine — App initialization
+// Diognosis — App initialization
 // Phase A: modular source — concatenated by build.js
 
 document.addEventListener("click", function(e) {
@@ -223,7 +223,7 @@ renderAll();
 
 // ── Populate version display ──
 (function() {
-  const v = MEDCHECK_VERSION;
+  const v = DIOGNOSIS_VERSION;
   const el = (id) => document.getElementById(id);
   if (el("ver-engine")) {
     el("ver-engine").textContent = v.engine;
@@ -233,23 +233,23 @@ renderAll();
     el("ver-date").textContent = v.released;
   }
   const statsLine = el("statsLine");
-  if (statsLine && typeof MEDCHECK_STATS !== "undefined") {
-    const pendingProfessionalReview = MEDCHECK_STATS.pendingProfessionalReviewStudies ??
-      Math.max(0, (MEDCHECK_STATS.studies || 0) - (MEDCHECK_STATS.professionalReviewedStudies || 0));
-    const evidenceLabel = `${MEDCHECK_STATS.studies} source-linked evidence entries (${pendingProfessionalReview} not professionally reviewed; ${MEDCHECK_STATS.professionalReviewedStudies || 0} professionally reviewed)`;
-    const metaboliteLabel = MEDCHECK_STATS.metaboliteEntries
-      ? `${MEDCHECK_STATS.metaboliteEntries} metabolites across ${MEDCHECK_STATS.metaboliteParents} parent substances`
+  if (statsLine && typeof DIOGNOSIS_STATS !== "undefined") {
+    const pendingProfessionalReview = DIOGNOSIS_STATS.pendingProfessionalReviewStudies ??
+      Math.max(0, (DIOGNOSIS_STATS.studies || 0) - (DIOGNOSIS_STATS.professionalReviewedStudies || 0));
+    const evidenceLabel = `${DIOGNOSIS_STATS.studies} source-linked evidence entries (${pendingProfessionalReview} not professionally reviewed; ${DIOGNOSIS_STATS.professionalReviewedStudies || 0} professionally reviewed)`;
+    const metaboliteLabel = DIOGNOSIS_STATS.metaboliteEntries
+      ? `${DIOGNOSIS_STATS.metaboliteEntries} metabolites across ${DIOGNOSIS_STATS.metaboliteParents} parent substances`
       : null;
-    const pkLabel = MEDCHECK_STATS.pkParams
-      ? `${MEDCHECK_STATS.pkParams} absolute PK profiles`
+    const pkLabel = DIOGNOSIS_STATS.pkParams
+      ? `${DIOGNOSIS_STATS.pkParams} absolute PK profiles`
       : null;
     statsLine.textContent = [
-      `${MEDCHECK_STATS.drugs} drugs`,
+      `${DIOGNOSIS_STATS.drugs} drugs`,
       evidenceLabel,
-      `${MEDCHECK_STATS.ddiPairs} interaction pairs`,
+      `${DIOGNOSIS_STATS.ddiPairs} interaction pairs`,
       metaboliteLabel,
       pkLabel,
-      `${MEDCHECK_STATS.genotypeGenes} genotype genes`,
+      `${DIOGNOSIS_STATS.genotypeGenes} genotype genes`,
     ].filter(Boolean).join(" · ");
   }
 })();

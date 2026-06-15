@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { createHash } from 'crypto';
 import { isAbsolute, relative, resolve } from 'path';
-import { drugAliasMap, loadMedcheckData, normalizeName, readGeneratedConstObject, ROOT } from './lib/medcheck-source-loader.js';
+import { drugAliasMap, loadDiognosisData, normalizeName, readGeneratedConstObject, ROOT } from './lib/diognosis-source-loader.js';
 import { dedupeStagedSourceRecords, normalizeStagedSourceRecord } from './lib/staged-source-schema.js';
 import { readJson, writeJson } from './lib/enrichment-common.js';
 
@@ -105,14 +105,14 @@ function mapClaimType(fact) {
 
 function normalizeClinPgxRecords() {
   const args = parseArgs(process.argv.slice(2));
-  const data = loadMedcheckData();
+  const data = loadDiognosisData();
   const aliasMap = drugAliasMap(data.DRUG_DB || []);
   const snapshot = readGeneratedConstObject(args.snapshot, 'GENERATED_OPEN_TARGETS_SNAPSHOT') || {};
   const release = snapshot.release || snapshot.summary?.release || 'unknown';
   const fetchedAt = new Date().toISOString();
   const crosswalk = new Map();
   for (const row of snapshot.crosswalk || []) {
-    if (row.chemblId && row.medcheckName) crosswalk.set(row.chemblId, row.medcheckName);
+    if (row.chemblId && row.diognosisName) crosswalk.set(row.chemblId, row.diognosisName);
   }
   const facts = Object.values(snapshot.contextByChemblId || {})
     .flat()
@@ -120,18 +120,18 @@ function normalizeClinPgxRecords() {
     .slice(0, Number.isFinite(args.limit) ? args.limit : 200);
 
   const records = facts.map((fact) => {
-    const medcheckDrug = crosswalk.get(fact.chemblId) || aliasMap.get(normalizeName(fact.drugName || fact.label)) || '';
+    const diognosisDrug = crosswalk.get(fact.chemblId) || aliasMap.get(normalizeName(fact.drugName || fact.label)) || '';
     const gene = fact.targetGene || '';
     return normalizeStagedSourceRecord({
       source: sourceBase(fetchedAt, release),
       claim: {
         claimType: mapClaimType(fact),
         genes: gene ? [gene] : [],
-        drugs: medcheckDrug ? [medcheckDrug] : [],
+        drugs: diognosisDrug ? [diognosisDrug] : [],
         riskMarkers: fact.riskMarker ? [fact.riskMarker] : [],
         pathways: gene ? [gene] : [],
         direction: fact.drugResponseCategory || fact.warningType || '',
-        affectedActors: [medcheckDrug, gene].filter(Boolean),
+        affectedActors: [diognosisDrug, gene].filter(Boolean),
         mechanismSummary: truncate(fact.label || fact.warningType || fact.drugResponseCategory || 'ClinPGx pharmacogenetics context'),
         clinicalSummary: 'ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.',
       },
@@ -147,8 +147,8 @@ function normalizeClinPgxRecords() {
         },
       },
       mapping: {
-        matchedDiognosisDrugs: medcheckDrug ? [medcheckDrug] : [],
-        unmatchedDrugs: medcheckDrug ? [] : [fact.chemblId || fact.openTargetsDrugId || 'unknown'],
+        matchedDiognosisDrugs: diognosisDrug ? [diognosisDrug] : [],
+        unmatchedDrugs: diognosisDrug ? [] : [fact.chemblId || fact.openTargetsDrugId || 'unknown'],
         matchedGenes: gene && data.GENOTYPE_EFFECTS?.[gene] ? [gene] : [],
         unmatchedGenes: gene && !data.GENOTYPE_EFFECTS?.[gene] ? [gene] : [],
       },
@@ -184,7 +184,7 @@ function normalizeClinPgxRecords() {
 function normalizeDirectClinPgxRecords(rawIndexPath, limit = 1500) {
   const index = readJson(rawIndexPath, null);
   if (!index?.fetched?.length) return { records: [], providerFailures: index?.providerFailures || [], rateLimitEvents: index?.rateLimitEvents || 0 };
-  const data = loadMedcheckData();
+  const data = loadDiognosisData();
   const aliasMap = drugAliasMap(data.DRUG_DB || []);
   const normalizedAt = new Date().toISOString();
   const records = [];

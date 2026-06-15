@@ -49,7 +49,7 @@ const GENE_EXACT_RE = new RegExp(`^(?:${GENE_PATTERN})$`);
 
 const args = parseArgs(process.argv.slice(2));
 const root = resolve(new URL('../..', import.meta.url).pathname);
-const medcheckSrc = resolve(root, args['medcheck-src'] || './src');
+const diognosisSrc = resolve(root, args['diognosis-src'] || './src');
 const catalogDir = args['catalog-dir'] ? resolve(process.cwd(), args['catalog-dir']) : null;
 const outPath = resolve(root, args.out || 'scripts/audit/genotype-gap-report.json');
 const mdPath = resolve(root, args.md || 'scripts/audit/genotype-gap-report.md');
@@ -63,14 +63,14 @@ main();
 
 function main() {
   try {
-    log('Reading MedCheck Engine src...');
-    const medcheck = readMedcheck(medcheckSrc);
+    log('Reading Diognosis src...');
+    const diognosis = readDiognosis(diognosisSrc);
     log('Reading optional external PGx catalog...');
     const catalog = readCatalog(catalogDir);
     log('Reading optional Open Targets/ClinPGx snapshot...');
     const openTargets = readOpenTargetsSnapshot(openTargetsSnapshotPath);
     log('Scoring gaps...');
-    const report = buildReport(medcheck, catalog, profilePath, openTargets);
+    const report = buildReport(diognosis, catalog, profilePath, openTargets);
     log('Writing report...');
     if (!dryRun) {
       mkdirSync(dirname(outPath), { recursive: true });
@@ -109,7 +109,7 @@ function parseArgs(argv) {
   return parsed;
 }
 
-function readMedcheck(srcDir) {
+function readDiognosis(srcDir) {
   const files = {
     constants: readOptional(join(srcDir, 'data/constants.js')),
     rules: readOptional(join(srcDir, 'data/rules.js')),
@@ -252,11 +252,11 @@ function readOpenTargetsSnapshot(snapshotPath) {
         const gene = normalizeGene(fact.targetGene || extractFirstGene(fact.label) || extractFirstGene(fact.riskMarker));
         if (!gene) continue;
         const mappedRows = crosswalkByChembl.get(fact.chemblId) || [];
-        for (const row of mappedRows.length ? mappedRows : [{ medcheckName: null, medcheckId: null }]) {
+        for (const row of mappedRows.length ? mappedRows : [{ diognosisName: null, diognosisId: null }]) {
           pairs.push({
             gene,
-            drug: row.medcheckName || fact.chemblId,
-            medcheckId: row.medcheckId || null,
+            drug: row.diognosisName || fact.chemblId,
+            diognosisId: row.diognosisId || null,
             chemblId: fact.chemblId,
             openTargetsDrugId: fact.openTargetsDrugId || fact.chemblId,
             sourceEvidenceLevel: fact.sourceEvidenceLevel || null,
@@ -293,11 +293,11 @@ function extractFirstGene(value) {
   return match ? normalizeGene(match[0]) : '';
 }
 
-function buildOpenTargetsClinPgx(medcheck, openTargets) {
+function buildOpenTargetsClinPgx(diognosis, openTargets) {
   const rows = (openTargets.pairs || []).map((pair) => {
-    const hasGenotypeSelector = medcheck.genotypePanel.has(pair.gene);
-    const hasMetaboliteRule = medcheck.metaboliteRuleGenes.has(pair.gene);
-    const hasWarningCard = medcheck.warningCardGenes.has(pair.gene);
+    const hasGenotypeSelector = diognosis.genotypePanel.has(pair.gene);
+    const hasMetaboliteRule = diognosis.metaboliteRuleGenes.has(pair.gene);
+    const hasWarningCard = diognosis.warningCardGenes.has(pair.gene);
     const highEvidence = isHighOpenTargetsEvidence(pair.sourceEvidenceLevel, pair.label);
     return {
       ...pair,
@@ -324,8 +324,8 @@ function buildOpenTargetsClinPgx(medcheck, openTargets) {
       gene,
       pairCount: rows.filter(row => row.gene === gene).length,
       highEvidencePairCount: rows.filter(row => row.gene === gene && row.highEvidence).length,
-      hasMetaboliteRule: medcheck.metaboliteRuleGenes.has(gene),
-      hasWarningCard: medcheck.warningCardGenes.has(gene),
+      hasMetaboliteRule: diognosis.metaboliteRuleGenes.has(gene),
+      hasWarningCard: diognosis.warningCardGenes.has(gene),
     }));
   const unsupportedRiskMarkers = rows
     .filter(row => row.riskMarker && !row.hasWarningCard && !row.hasMetaboliteRule)
@@ -356,36 +356,36 @@ function isHighOpenTargetsEvidence(level, label) {
   return /(^|[^a-z0-9])(1a|1b|level\s*1|high|strong|guideline|cpic|fda|clinical annotation)([^a-z0-9]|$)/i.test(`${level || ''} ${label || ''}`);
 }
 
-function buildReport(medcheck, catalog, profilePathArg, openTargets) {
-  const covered = [...medcheck.genotypePanel].sort();
-  const missing = medcheck.missingFromPanel
-    .map((gene) => decorateGap(gene, medcheck, catalog, classFor(gene, medcheck, catalog)))
+function buildReport(diognosis, catalog, profilePathArg, openTargets) {
+  const covered = [...diognosis.genotypePanel].sort();
+  const missing = diognosis.missingFromPanel
+    .map((gene) => decorateGap(gene, diognosis, catalog, classFor(gene, diognosis, catalog)))
     .sort(sortGap);
 
   const absent = [...catalog.genes]
-    .filter((gene) => !medcheck.allReferencedGenes.has(gene))
-    .map((gene) => decorateGap(gene, medcheck, catalog, 'CLASS_C'))
+    .filter((gene) => !diognosis.allReferencedGenes.has(gene))
+    .map((gene) => decorateGap(gene, diognosis, catalog, 'CLASS_C'))
     .sort(sortGap);
 
   const profile = buildProfile(profilePathArg, [...missing, ...absent]);
-  const openTargetsClinPgx = buildOpenTargetsClinPgx(medcheck, openTargets);
+  const openTargetsClinPgx = buildOpenTargetsClinPgx(diognosis, openTargets);
 
   return {
     generated: new Date().toISOString(),
-    medcheckVersion: medcheck.version,
+    diognosisVersion: diognosis.version,
     genotypePanel: covered,
-    allReferencedGenes: [...medcheck.allReferencedGenes].sort(),
+    allReferencedGenes: [...diognosis.allReferencedGenes].sort(),
     gapAnalysis: {
       missingFromPanel: missing,
-      absentFromMedCheck: absent,
+      absentFromDiognosis: absent,
       covered,
     },
     catalogSummary: {
       note: catalog.note,
       totalGenes: catalog.genes.size,
-      classA: [...catalog.genes].filter((gene) => medcheck.genotypePanel.has(gene)).length,
-      classB: [...catalog.genes].filter((gene) => medcheck.allReferencedGenes.has(gene) && !medcheck.genotypePanel.has(gene)).length,
-      classC: [...catalog.genes].filter((gene) => !medcheck.allReferencedGenes.has(gene)).length,
+      classA: [...catalog.genes].filter((gene) => diognosis.genotypePanel.has(gene)).length,
+      classB: [...catalog.genes].filter((gene) => diognosis.allReferencedGenes.has(gene) && !diognosis.genotypePanel.has(gene)).length,
+      classC: [...catalog.genes].filter((gene) => !diognosis.allReferencedGenes.has(gene)).length,
       topPriorityClassC: absent.filter((g) => g.nullImpactClass === 'CRITICAL' || g.nullImpactClass === 'HIGH').slice(0, 10).map((g) => g.gene),
     },
     openTargetsClinPgx,
@@ -393,14 +393,14 @@ function buildReport(medcheck, catalog, profilePathArg, openTargets) {
   };
 }
 
-function decorateGap(gene, medcheck, catalog, catalogClass) {
+function decorateGap(gene, diognosis, catalog, catalogClass) {
   const open = catalog.byGene.get(gene);
-  const drugs = new Set([...(medcheck.drugRefs.get(gene) || []), ...(open?.drugs || [])]);
-  const breakdown = scoreBreakdown(gene, drugs.size, medcheck.severity.get(gene));
+  const drugs = new Set([...(diognosis.drugRefs.get(gene) || []), ...(open?.drugs || [])]);
+  const breakdown = scoreBreakdown(gene, drugs.size, diognosis.severity.get(gene));
   const nullImpactScore = Math.min(100, Math.round(Object.values(breakdown).reduce((sum, value) => sum + value, 0)));
   return {
     gene,
-    foundIn: [...(medcheck.found.get(gene) || [])].sort(),
+    foundIn: [...(diognosis.found.get(gene) || [])].sort(),
     catalogClass,
     catalogDrugs: [...(open?.drugs || [])].sort(),
     catalogEvidenceLevel: bestEvidence(open?.evidence),
@@ -427,10 +427,10 @@ function scoreBreakdown(gene, drugCount, worstSeverity) {
 
 function recommendation(gene, catalogClass, score, studyCount) {
   if (catalogClass === 'CLASS_C') {
-    return `${gene} is absent from MedCheck Engine. Consider adding source data before a genotype panel if it remains high priority (${score}); external catalog studies available: ${studyCount}.`;
+    return `${gene} is absent from Diognosis. Consider adding source data before a genotype panel if it remains high priority (${score}); external catalog studies available: ${studyCount}.`;
   }
   if (score >= 70) return `Add a genotype panel for ${gene} in the next genotype expansion pass; the null impact is critical.`;
-  if (score >= 45) return `Plan a ${gene} genotype panel after critical gaps; enough MedCheck Engine logic references it that missing personalization may matter.`;
+  if (score >= 45) return `Plan a ${gene} genotype panel after critical gaps; enough Diognosis logic references it that missing personalization may matter.`;
   if (score >= 20) return `Track ${gene}; add a panel when adding more drug-specific evidence.`;
   return `Document ${gene}; current modeled impact appears low.`;
 }
@@ -439,7 +439,7 @@ function markdown(report) {
   const critical = report.gapAnalysis.missingFromPanel.filter((g) => g.nullImpactClass === 'CRITICAL');
   const high = report.gapAnalysis.missingFromPanel.filter((g) => g.nullImpactClass === 'HIGH');
   const rest = report.gapAnalysis.missingFromPanel.filter((g) => g.nullImpactClass !== 'CRITICAL' && g.nullImpactClass !== 'HIGH');
-  const openOnly = report.gapAnalysis.absentFromMedCheck.filter((g) => g.nullImpactScore >= 20).slice(0, 50);
+  const openOnly = report.gapAnalysis.absentFromDiognosis.filter((g) => g.nullImpactScore >= 20).slice(0, 50);
   const ot = report.openTargetsClinPgx;
   return `# Genotype Gap Audit
 
@@ -448,7 +448,7 @@ Generated: ${report.generated}
 ## Executive Summary
 
 - Genotype panel genes: ${report.genotypePanel.length}
-- Referenced MedCheck Engine genes: ${report.allReferencedGenes.length}
+- Referenced Diognosis genes: ${report.allReferencedGenes.length}
 - Missing panel genes: ${report.gapAnalysis.missingFromPanel.length}
 - Critical gaps: ${critical.length}
 - High gaps: ${high.length}
@@ -471,7 +471,7 @@ ${rest.length ? rest.map((g) => `- ${g.gene}: ${g.nullImpactClass} (${g.nullImpa
 
 ## External-Catalog-Only Genes
 
-Genes in the optional external PGx catalog but absent from MedCheck Engine, sorted by impact score.
+Genes in the optional external PGx catalog but absent from Diognosis, sorted by impact score.
 
 ${table(openOnly)}
 
@@ -514,16 +514,16 @@ function openTargetsPairTable(rows) {
 
 function table(rows) {
   if (!rows.length) return 'None.';
-  const head = '| Gene | In MedCheck Engine? | CPIC Tier | Impact Score | Drugs Affected | External Studies Available |\n|---|---|---:|---:|---|---:|';
+  const head = '| Gene | In Diognosis? | CPIC Tier | Impact Score | Drugs Affected | External Studies Available |\n|---|---|---:|---:|---|---:|';
   const body = rows.map((g) => `| ${g.gene} | ${g.catalogClass === 'CLASS_C' ? 'No' : 'Yes'} | ${g.scoreBreakdown.cpicTier} | ${g.nullImpactScore} | ${g.drugsAffected.slice(0, 8).join(', ') || '-'}${g.drugsAffected.length > 8 ? ', ...' : ''} | ${g.catalogStudyCount} |`);
   return [head, ...body].join('\n');
 }
 
-function classFor(gene, medcheck, catalog) {
-  if (catalog.genes.has(gene) && medcheck.genotypePanel.has(gene)) return 'CLASS_A';
-  if (catalog.genes.has(gene) && medcheck.allReferencedGenes.has(gene)) return 'CLASS_B';
+function classFor(gene, diognosis, catalog) {
+  if (catalog.genes.has(gene) && diognosis.genotypePanel.has(gene)) return 'CLASS_A';
+  if (catalog.genes.has(gene) && diognosis.allReferencedGenes.has(gene)) return 'CLASS_B';
   if (catalog.genes.has(gene)) return 'CLASS_C';
-  return 'MEDCHECK_ONLY';
+  return 'DIOGNOSIS_ONLY';
 }
 
 function impactClass(score) {
@@ -571,7 +571,7 @@ function buildProfile(profilePathArg, gaps) {
         phenotype,
         message: phenotype === 'unknown'
           ? 'genotype unknown — gap prevents personalized prediction'
-          : 'YOU ARE AFFECTED BY THIS GAP — your non-NM phenotype is not modeled in MedCheck Engine for this gene',
+          : 'YOU ARE AFFECTED BY THIS GAP — your non-NM phenotype is not modeled in Diognosis for this gene',
         drugsAffected: gap.drugsAffected,
         estimatedFold: PM_NM_FOLD[gap.gene] ?? 1.0,
       };
@@ -666,7 +666,7 @@ function genesFromTransporterActors(text) {
 
 function routeDrugPairs(text) {
   const rows = [];
-  const drugRe = /\{id\s*:\s*(["']).*?\1\s*,\s*name\s*:\s*(["'])(.*?)\2[\s\S]*?(?=\n\{id\s*:|\nconst MEDCHECK_VERSION|$)/g;
+  const drugRe = /\{id\s*:\s*(["']).*?\1\s*,\s*name\s*:\s*(["'])(.*?)\2[\s\S]*?(?=\n\{id\s*:|\nconst DIOGNOSIS_VERSION|$)/g;
   let drug;
   while ((drug = drugRe.exec(text))) {
     const block = drug[0];

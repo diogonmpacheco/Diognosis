@@ -1,4 +1,4 @@
-// MedCheck Engine — Enzyme occupancy, inhibition fold-change, gut extraction
+// Diognosis — Enzyme occupancy, inhibition fold-change, gut extraction
 // Phase A: modular source — concatenated by build.js
 
 function inhibitionEvidenceRefs(inh) {

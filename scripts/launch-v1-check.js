@@ -9,7 +9,7 @@ function run(label, command, args = []) {
 }
 
 console.log('Diognosis pre-v1 launch gate');
-console.log('Checks source stats, generated bundle, MedCheck Engine deep scenario QA, trust audit, release gate, and evidence ledger.');
+console.log('Checks source stats, generated bundle, Diognosis deep scenario QA, trust audit, release gate, and evidence ledger.');
 
 run('Generate stats', node, ['scripts/gen-stats.js']);
 run('Build GitHub Pages bundle', node, ['build.js']);

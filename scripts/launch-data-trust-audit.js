@@ -3,7 +3,7 @@ import { readFileSync } from 'fs';
 import vm from 'vm';
 import { collectStats } from './collect-stats.js';
 
-function extractMedCheckBundle(html) {
+function extractDiognosisBundle(html) {
   const scripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)]
     .filter((match) => !/\bsrc\s*=/.test(match[0]));
   if (!scripts.length) throw new Error('Could not find generated bundle in index.html. Run node build.js first.');
@@ -12,7 +12,7 @@ function extractMedCheckBundle(html) {
 
 function loadBundleContext() {
   const html = readFileSync('index.html', 'utf8');
-  const bundle = extractMedCheckBundle(html);
+  const bundle = extractDiognosisBundle(html);
 
   const elements = {};
   const context = {
@@ -43,7 +43,7 @@ globalThis.__AUDIT__ = {
   DRUG_DB, STUDY_DB, KNOWN_DDI, METAB, METABOLITE_ACTORS, GENOTYPE_EFFECTS,
   GENOTYPE_METABOLITE_EFFECTS, HIGH_IMPACT_METABOLITE_RELATIONS,
   ENZYME_ACTORS, TRANSPORTER_ACTORS, PHARMGKB_EVIDENCE, PK_PARAMS,
-  BEERS_FLAGS, MEDCHECK_STATS, EVIDENCE_TIER,
+  BEERS_FLAGS, DIOGNOSIS_STATS, EVIDENCE_TIER,
   normalizeDrugLookupKey, getDrugAliases,
   getInteractionGraph, resolveEvidenceRefs, getEdgeEvidenceSupportKeys, getDdiEvidenceProfile,
 };`, context);
@@ -238,7 +238,7 @@ const sourceLinkedNoExternalId = publicStudies
   .filter(study => !hasExternalIdentifier(study) && !isRegulatoryLabel(study, data.EVIDENCE_TIER))
   .map(study => ({ id: study.id, type: study.type, title: study.title }));
 
-const statsMismatches = diffStats(actualStats, data.MEDCHECK_STATS || {});
+const statsMismatches = diffStats(actualStats, data.DIOGNOSIS_STATS || {});
 const readmeMismatches = [
   ['drugs', actualStats.drugs],
   ['studies', actualStats.studies],
@@ -268,7 +268,7 @@ const readmeMismatches = [
   ['pendingCoreBeersCandidates', actualStats.pendingCoreBeersCandidates],
   ['pendingCoreWashoutCandidates', actualStats.pendingCoreWashoutCandidates],
 ].filter(([, value]) => !readme.includes(String(value))).map(([key, value]) => ({ key, value }));
-const liveStatsMismatches = diffStats(actualStats, JSON.parse(index.match(/const MEDCHECK_STATS = (\{[\s\S]*?\n\});/)?.[1] || '{}'));
+const liveStatsMismatches = diffStats(actualStats, JSON.parse(index.match(/const DIOGNOSIS_STATS = (\{[\s\S]*?\n\});/)?.[1] || '{}'));
 
 const severeDrugNames = new Set();
 for (const ddi of data.KNOWN_DDI) {

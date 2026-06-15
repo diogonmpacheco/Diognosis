@@ -1,4 +1,4 @@
-// MedCheck Engine — Evidence explorer panel
+// Diognosis — Evidence explorer panel
 // Phase A: modular source — concatenated by build.js
 
 function renderEvidenceExplorer() {

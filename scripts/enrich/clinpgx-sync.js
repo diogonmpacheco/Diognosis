@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { spawnSync } from 'child_process';
 import { resolve } from 'path';
-import { ROOT } from './lib/medcheck-source-loader.js';
+import { ROOT } from './lib/diognosis-source-loader.js';
 
 export const CLINPGX_RATE_LIMIT_MS = 550;
 

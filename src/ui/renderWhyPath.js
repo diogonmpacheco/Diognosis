@@ -1,4 +1,4 @@
-// MedCheck Engine — compact per-warning why path rendering
+// Diognosis — compact per-warning why path rendering
 
 function renderWhyPath(path) {
   if (!path?.nodes?.length || !path?.edges?.length) return "";

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { resolve } from 'path';
-import { loadMedcheckData, ROOT, severityValue, uniq } from '../enrich/lib/medcheck-source-loader.js';
+import { loadDiognosisData, ROOT, severityValue, uniq } from '../enrich/lib/diognosis-source-loader.js';
 import { loadAllStagedRecords, markdownTable, readJson, writeJson, writeText } from '../enrich/lib/enrichment-common.js';
 
 const OUT_JSON = resolve(ROOT, 'docs/audits/enrichment-coverage-audit.json');
@@ -237,7 +237,7 @@ function sourceCoverage(staged) {
 }
 
 function main() {
-  const data = loadMedcheckData();
+  const data = loadDiognosisData();
   const { records: staged } = loadAllStagedRecords();
   const topMissingDrugs = buildDrugCoverage(data);
   const topMissingPairs = buildCombinationGaps(data, staged);

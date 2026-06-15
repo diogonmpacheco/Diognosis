@@ -48,7 +48,7 @@ const report = dom.window.eval(`(() => {
   renderReviewWorkbench({
     snapshot: {
       crosswalk: [
-        { medcheckName:"Paroxetine", medcheckId:"paroxetine", chemblId:"CHEMBL_XSS", openTargetsDrugId:"CHEMBL_XSS" }
+        { diognosisName:"Paroxetine", diognosisId:"paroxetine", chemblId:"CHEMBL_XSS", openTargetsDrugId:"CHEMBL_XSS" }
       ]
     },
     evidenceQueue: [
@@ -68,7 +68,7 @@ const report = dom.window.eval(`(() => {
     ],
     reviewTargets: [
       {
-        medcheckName:"Paroxetine",
+        diognosisName:"Paroxetine",
         chemblId:"CHEMBL_XSS",
         genes:["CYP2D6<script>", "UGT1A1<img src=x onerror='window.__reviewWorkbenchXss=1'>"],
         status:"completed_review_target",
@@ -83,7 +83,7 @@ const report = dom.window.eval(`(() => {
     pgxRoadmap: {
       pairs: [
         {
-          medcheckName:"Paroxetine",
+          diognosisName:"Paroxetine",
           chemblId:"CHEMBL_XSS",
           gene:"CYP2D6<script>",
           classification:"covered_keep_context",
@@ -96,7 +96,7 @@ const report = dom.window.eval(`(() => {
     mechanisticQueue: [
       {
         id:"ot_target_safety_xss",
-        medcheckNames:["Paroxetine"],
+        diognosisNames:["Paroxetine"],
         chemblId:"CHEMBL_XSS",
         openTargetsRelease:"fixture <img src=x onerror='window.__reviewWorkbenchXss=1'>",
         openTargetsSourceDataset:"targetSafety",
@@ -115,7 +115,7 @@ const report = dom.window.eval(`(() => {
     promotionQueue: [
       {
         id:"ot_xss",
-        medcheckNames:["Paroxetine", "Codeine <img src=x onerror='window.__reviewWorkbenchXss=1'>"],
+        diognosisNames:["Paroxetine", "Codeine <img src=x onerror='window.__reviewWorkbenchXss=1'>"],
         chemblId:"CHEMBL_XSS",
         dataset:"faersSignificant",
         label:"FAERS <img src=x onerror='window.__reviewWorkbenchXss=1'>",

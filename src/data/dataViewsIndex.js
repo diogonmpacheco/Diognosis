@@ -1,4 +1,4 @@
-// MedCheck Engine data views derived index
+// Diognosis data views derived index
 // Builds a single static-browser index for alternate data navigation pages.
 
 (function buildDataViewsIndex(global) {

@@ -1,4 +1,4 @@
-// MedCheck Engine — Review tab summary and diagnostics
+// Diognosis — Review tab summary and diagnostics
 
 function renderReviewSummary() {
   const section = document.getElementById("reviewSummarySection");
@@ -98,19 +98,19 @@ function renderContributeReview() {
     return;
   }
   const stackText = activeStack.join(" + ");
-  const dataUrl = buildMedCheckIssueUrl({
+  const dataUrl = buildDiognosisIssueUrl({
     type:"data",
     title:`[Data review]: ${stackText}`,
     focus:`Current stack: ${stackText}`,
     details:"Describe the suspected wrong interaction, missing metabolite, incorrect evidence, or UI issue:",
   });
-  const evidenceUrl = buildMedCheckIssueUrl({
+  const evidenceUrl = buildDiognosisIssueUrl({
     type:"evidence",
     title:`[Evidence suggestion]: ${stackText}`,
     focus:`Evidence suggestion for current stack: ${stackText}`,
     details:"Add PMID, DOI, label URL, or guideline link and what it supports:",
   });
-  const scenarioUrl = buildMedCheckIssueUrl({
+  const scenarioUrl = buildDiognosisIssueUrl({
     type:"scenario",
     title:`[Scenario request]: ${stackText}`,
     focus:`Scenario request for current stack: ${stackText}`,

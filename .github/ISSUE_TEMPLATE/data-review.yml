@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Use this for source-backed corrections or additions. MedCheck is educational and all entries remain pending professional review until explicitly signed off.
+        Use this for source-backed corrections or additions. Diognosis is educational and all entries remain pending professional review until explicitly signed off.
   - type: input
     id: substances
     attributes:

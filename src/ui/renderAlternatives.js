@@ -1,4 +1,4 @@
-// MedCheck Engine — Alternatives, genetics panel, combinations, transporters, metabolites
+// Diognosis — Alternatives, genetics panel, combinations, transporters, metabolites
 // Phase A: modular source — concatenated by build.js
 
 function renderAlternatives() {

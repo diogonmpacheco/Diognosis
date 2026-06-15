@@ -1,4 +1,4 @@
-// MedCheck Engine — Parent-Metabolite Balance renderer
+// Diognosis — Parent-Metabolite Balance renderer
 
 function renderActiveMoietyBalance() {
   const section = document.getElementById("activeMoietySection");

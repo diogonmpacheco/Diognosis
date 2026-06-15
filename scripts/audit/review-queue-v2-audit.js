@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { resolve } from 'path';
-import { ROOT } from '../enrich/lib/medcheck-source-loader.js';
+import { ROOT } from '../enrich/lib/diognosis-source-loader.js';
 import { readJson } from '../enrich/lib/enrichment-common.js';
 
 const queue = readJson(resolve(ROOT, 'data/enrichment/review-queue/enrichment-review-queue-v2.json'), null);

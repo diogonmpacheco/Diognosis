@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { resolve } from 'path';
-import { loadMedcheckData, ROOT, uniq } from './lib/medcheck-source-loader.js';
+import { loadDiognosisData, ROOT, uniq } from './lib/diognosis-source-loader.js';
 import { dedupeStagedSourceRecords, normalizeStagedSourceRecord } from './lib/staged-source-schema.js';
 import { markdownTable, readJson, writeJson, writeText } from './lib/enrichment-common.js';
 
@@ -84,7 +84,7 @@ function normalizeDraft(draft, data) {
 }
 
 function main() {
-  const data = loadMedcheckData();
+  const data = loadDiognosisData();
   const drafts = readJson(DRAFTS, []);
   const records = dedupeStagedSourceRecords(drafts.map(draft => normalizeDraft(draft, data)));
   const classifications = {};

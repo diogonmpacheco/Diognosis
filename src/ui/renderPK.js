@@ -1,4 +1,4 @@
-// MedCheck Engine — PK simulation panel
+// Diognosis — PK simulation panel
 // Phase E: repeated dosing, steady-state, interaction-adjusted curves
 // Phase A: modular source — concatenated by build.js
 

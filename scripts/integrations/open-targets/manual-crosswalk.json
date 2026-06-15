@@ -4,7 +4,7 @@
   "release": "26.03",
   "mappings": [
     {
-      "medcheckName": "Paroxetine",
+      "diognosisName": "Paroxetine",
       "chemblId": "CHEMBL490",
       "identityReviewDecision": "accepted_for_context_import",
       "reviewRequired": false,
@@ -14,7 +14,7 @@
       "note": "Accepted parent-molecule context mapping; not a professional clinical evidence review."
     },
     {
-      "medcheckName": "Codeine",
+      "diognosisName": "Codeine",
       "chemblId": "CHEMBL485",
       "identityReviewDecision": "accepted_for_context_import",
       "reviewRequired": false,
@@ -24,7 +24,7 @@
       "note": "Accepted parent-molecule context mapping; salts remain out of scope."
     },
     {
-      "medcheckName": "Simvastatin",
+      "diognosisName": "Simvastatin",
       "chemblId": "CHEMBL1064",
       "identityReviewDecision": "accepted_for_context_import",
       "reviewRequired": false,
@@ -34,7 +34,7 @@
       "note": "Accepted parent-molecule context mapping."
     },
     {
-      "medcheckName": "Clarithromycin",
+      "diognosisName": "Clarithromycin",
       "chemblId": "CHEMBL1741",
       "identityReviewDecision": "accepted_for_context_import",
       "reviewRequired": false,
@@ -44,7 +44,7 @@
       "note": "Accepted parent-molecule context mapping."
     },
     {
-      "medcheckName": "Capecitabine",
+      "diognosisName": "Capecitabine",
       "chemblId": "CHEMBL1773",
       "identityReviewDecision": "accepted_for_context_import",
       "reviewRequired": false,
@@ -54,7 +54,7 @@
       "note": "Accepted parent-molecule context mapping."
     },
     {
-      "medcheckName": "Clozapine",
+      "diognosisName": "Clozapine",
       "chemblId": "CHEMBL42",
       "identityReviewDecision": "accepted_for_context_import",
       "reviewRequired": false,
@@ -64,7 +64,7 @@
       "note": "Accepted parent-molecule context mapping."
     },
     {
-      "medcheckName": "Warfarin",
+      "diognosisName": "Warfarin",
       "chemblId": "CHEMBL1464",
       "identityReviewDecision": "accepted_for_context_import",
       "reviewRequired": false,
@@ -74,7 +74,7 @@
       "note": "Accepted parent-molecule context mapping; salt entities remain out of scope."
     },
     {
-      "medcheckName": "Abacavir",
+      "diognosisName": "Abacavir",
       "chemblId": "CHEMBL1380",
       "identityReviewDecision": "accepted_for_context_import",
       "reviewRequired": false,
@@ -84,7 +84,7 @@
       "note": "Accepted parent-molecule context mapping; sulfate salt remains out of scope."
     },
     {
-      "medcheckName": "Clopidogrel",
+      "diognosisName": "Clopidogrel",
       "chemblId": "CHEMBL1771",
       "identityReviewDecision": "accepted_for_context_import",
       "reviewRequired": false,
@@ -94,7 +94,7 @@
       "note": "Accepted parent-molecule context mapping; bisulfate salt remains out of scope."
     },
     {
-      "medcheckName": "Tamoxifen",
+      "diognosisName": "Tamoxifen",
       "chemblId": "CHEMBL83",
       "identityReviewDecision": "accepted_for_context_import",
       "reviewRequired": false,

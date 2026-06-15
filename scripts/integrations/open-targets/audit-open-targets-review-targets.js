@@ -8,7 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..', '..', '..');
 const TARGETS_PATH = resolve(__dirname, 'first-review-targets.json');
 const PROMOTION_QUEUE_PATH = resolve(ROOT, 'src/data/generatedOpenTargetsPromotionQueue.js');
-const SCENARIOS_PATH = resolve(ROOT, 'tests/scenarios/medcheck-scenarios.json');
+const SCENARIOS_PATH = resolve(ROOT, 'tests/scenarios/diognosis-scenarios.json');
 const OUT_JS = resolve(ROOT, 'src/data/generatedOpenTargetsReviewTargets.js');
 const OUT_MD = resolve(ROOT, 'docs/OPEN_TARGETS_FIRST_REVIEW_TARGETS.md');
 const CHECK = process.argv.includes('--check');
@@ -24,7 +24,7 @@ function readPromotionQueue(filePath) {
   return JSON.parse(match[1]);
 }
 
-function loadMedcheckCoverage() {
+function loadDiognosisCoverage() {
   const context = { console };
   vm.createContext(context);
   vm.runInContext([
@@ -67,7 +67,7 @@ function hasWarningCard(coverage, gene) {
 
 function matchingMetaboliteRules(coverage, target) {
   return coverage.metaboliteRules.filter(row =>
-    row.parent === target.medcheckName &&
+    row.parent === target.diognosisName &&
     target.genes.some(gene => row.enzyme === gene)
   );
 }
@@ -77,7 +77,7 @@ function buildReport() {
   const queue = readPromotionQueue(PROMOTION_QUEUE_PATH);
   const scenarios = readJson(SCENARIOS_PATH);
   const scenarioIds = new Set((scenarios.scenarios || []).map(scenario => scenario.id));
-  const coverage = loadMedcheckCoverage();
+  const coverage = loadDiognosisCoverage();
   const errors = [];
 
   const targets = (source.targets || []).map(target => {
@@ -163,7 +163,7 @@ function cell(value) {
 
 function renderMarkdown(report) {
   const rows = report.targets.map(target => `| ${[
-    target.medcheckName,
+    target.diognosisName,
     target.genes.join(', '),
     target.disposition,
     target.linkedContextRowCount,
@@ -174,7 +174,7 @@ function renderMarkdown(report) {
     target.evidenceTask,
   ].map(cell).join(' | ')} |`).join('\n');
 
-  const details = report.targets.map(target => `### ${target.medcheckName} / ${target.genes.join(', ')}
+  const details = report.targets.map(target => `### ${target.diognosisName} / ${target.genes.join(', ')}
 
 - Disposition: \`${target.disposition}\`
 - Current assessment: ${target.currentAssessment}

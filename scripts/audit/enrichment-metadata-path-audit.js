@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { existsSync, readFileSync, readdirSync, statSync } from 'fs';
 import { join, relative, resolve } from 'path';
-import { ROOT } from '../enrich/lib/medcheck-source-loader.js';
+import { ROOT } from '../enrich/lib/diognosis-source-loader.js';
 
 const SCAN_ROOTS = [
   'data/enrichment/snapshots',
@@ -16,7 +16,7 @@ const SCAN_ROOTS = [
 const ABSOLUTE_PATH_PATTERNS = [
   /\/Users\//,
   /file:\/\/\/Users\//,
-  /Documents\/GitHub\/medcheck/,
+  /Documents\/GitHub\/diognosis/,
   new RegExp(ROOT.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')),
 ];
 

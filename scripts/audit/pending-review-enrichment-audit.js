@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { resolve } from 'path';
-import { ROOT, readGeneratedConstObject } from '../enrich/lib/medcheck-source-loader.js';
+import { ROOT, readGeneratedConstObject } from '../enrich/lib/diognosis-source-loader.js';
 
 const SOURCE = resolve(ROOT, 'src/data/generatedPendingReviewEnrichment.js');
 const payload = readGeneratedConstObject(SOURCE, 'PENDING_REVIEW_ENRICHMENT');
@@ -9,7 +9,7 @@ const errors = [];
 const ABSOLUTE_PATH_PATTERNS = [
   /\/Users\//,
   /file:\/\/\/Users\//,
-  /Documents\/GitHub\/medcheck/,
+  /Documents\/GitHub\/diognosis/,
   new RegExp(ROOT.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')),
 ];
 

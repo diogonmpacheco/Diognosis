@@ -1,8 +1,8 @@
-// MedCheck Engine — Drug database and dose management
+// Diognosis — Drug database and dose management
 // Phase A: modular source — concatenated by build.js
 
 /* ================================================================
-   MEDCHECK ENGINE — DRUG INTERACTION ENGINE
+   DIOGNOSIS ENGINE — DRUG INTERACTION ENGINE
    Extracted from VirtualBody PGx Digital Twin, adapted for public use
    ================================================================ */
 
@@ -4255,7 +4255,7 @@ const DRUG_DB = [
 {id:"fosphenytoin",name:"Fosphenytoin",cls:"Anticonvulsant Prodrug / Hydantoin",brandNames:["Cerebyx"],hl:0.25,timing:"IV",props:{qtcRisk:1,hypotension:2,arrhythmiaRisk:2},routes:[{enzyme:"Phosphatase Conversion to Phenytoin",fraction:0.95,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],prodrug:true,note:"IV prodrug rapidly converted to phenytoin. Interaction behavior follows phenytoin after conversion: CYP2C9/CYP2C19 exposure sensitivity, enzyme induction, protein binding, and cardiac infusion reactions.",alts:[{name:"Levetiracetam",reason:"Non-enzyme-inducing antiseizure alternative"},{name:"Phenytoin",reason:"Active hydantoin form"}]},
 {id:"dipyridamole",name:"Dipyridamole",cls:"Antiplatelet / PDE Inhibitor",brandNames:["Persantine","Aggrenox component"],hl:10,timing:"AM-PM",props:{bleedingRisk:1,hypotension:1},routes:[{enzyme:"Glucuronidation",fraction:0.8,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[{target:"PDE",strength:"weak",evidence:{confidence:"moderate",sources:["FDA label"]}}],ind:[],note:"Antiplatelet/vasodilator; interaction relevance is additive bleeding with anticoagulants/antiplatelets and additive hypotension with vasodilators.",alts:[{name:"Aspirin (Low-Dose)",reason:"Antiplatelet alternative"},{name:"Clopidogrel",reason:"CYP2C19 prodrug antiplatelet"}]},
 {id:"cilostazol",name:"Cilostazol",cls:"PDE3 Inhibitor / Antiplatelet",brandNames:["Pletal"],hl:11,timing:"AM-PM",props:{bleedingRisk:1,tachycardiaRisk:1},routes:[{enzyme:"CYP3A4",fraction:0.5,evidence:{confidence:"high",sources:["FDA label"]}},{enzyme:"CYP2C19",fraction:0.35,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"CYP3A4/CYP2C19 substrate with active metabolites; inhibitors require dose reduction and heart-failure contraindication is clinically important.",alts:[{name:"Clopidogrel",reason:"Antiplatelet with CYP2C19 activation issue"},{name:"Aspirin (Low-Dose)",reason:"Antiplatelet alternative"}]},
-{id:"vorapaxar",name:"Vorapaxar",cls:"PAR-1 Antiplatelet",brandNames:["Zontivity"],hl:192,timing:"AM",props:{bleedingRisk:3},routes:[{enzyme:"CYP3A4",fraction:0.75,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"Very long-lived antiplatelet; CYP3A inhibitors/inducers and irreversible bleeding risk context matter. CYP2J2 is a minor label-described pathway but is not modeled as a first-class MedCheck Engine actor.",alts:[{name:"Clopidogrel",reason:"Antiplatelet alternative"},{name:"Ticagrelor",reason:"P2Y12 antiplatelet alternative"}]},
+{id:"vorapaxar",name:"Vorapaxar",cls:"PAR-1 Antiplatelet",brandNames:["Zontivity"],hl:192,timing:"AM",props:{bleedingRisk:3},routes:[{enzyme:"CYP3A4",fraction:0.75,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"Very long-lived antiplatelet; CYP3A inhibitors/inducers and irreversible bleeding risk context matter. CYP2J2 is a minor label-described pathway but is not modeled as a first-class Diognosis actor.",alts:[{name:"Clopidogrel",reason:"Antiplatelet alternative"},{name:"Ticagrelor",reason:"P2Y12 antiplatelet alternative"}]},
 {id:"heparin",name:"Heparin",cls:"Unfractionated Heparin / Parenteral Anticoagulant",brandNames:["UFH"],hl:1.5,timing:"Infusion",props:{bleedingRisk:3,thrombocytopeniaRisk:2},routes:[{enzyme:"Reticuloendothelial Clearance",fraction:0.55,evidence:{confidence:"high",sources:["FDA label"]}},{enzyme:"Renal Clearance",fraction:0.25,evidence:{confidence:"moderate",sources:["FDA label"]}}],inh:[],ind:[],note:"Short-acting parenteral anticoagulant. Interaction risk is mostly additive bleeding with antiplatelets, thrombolytics, and procedural anticoagulation protocols, plus HIT/thrombocytopenia monitoring.",alts:[{name:"Enoxaparin",reason:"Low molecular weight heparin alternative"},{name:"Bivalirudin",reason:"Direct thrombin inhibitor alternative in selected procedural/HIT contexts"}]},
 {id:"enoxaparin",name:"Enoxaparin",cls:"Low Molecular Weight Heparin",brandNames:["Lovenox","Clexane"],hl:4.5,timing:"Injection",props:{bleedingRisk:3,renalDoseSensitive:2},routes:[{enzyme:"Reticuloendothelial/Renal Clearance",fraction:0.8,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"No CYP metabolism; renal function and additive anticoagulant/antiplatelet bleeding burden drive safety.",alts:[{name:"Fondaparinux",reason:"Factor Xa anticoagulant alternative"},{name:"Heparin",reason:"Shorter-acting parenteral anticoagulant"}]},
 {id:"fondaparinux",name:"Fondaparinux",cls:"Factor Xa Anticoagulant",brandNames:["Arixtra"],hl:17,timing:"Injection",props:{bleedingRisk:3,renalDoseSensitive:3},routes:[{enzyme:"Renal Excretion Unchanged",fraction:0.9,evidence:{confidence:"high",sources:["FDA label"]}}],inh:[],ind:[],note:"Renally cleared anticoagulant; contraindicated or limited in renal impairment and additive bleeding combinations.",alts:[{name:"Enoxaparin",reason:"LMWH alternative"},{name:"Apixaban",reason:"Oral Xa inhibitor alternative"}]},
@@ -4342,9 +4342,9 @@ const DRUG_DB = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════
-// MEDCHECK ENGINE VERSION & METADATA
+// DIOGNOSIS ENGINE VERSION & METADATA
 // ═══════════════════════════════════════════════════════════════════
-const MEDCHECK_VERSION = {
+const DIOGNOSIS_VERSION = {
   engine: "0.1.0-alpha.1",
   drugDb: "1.2.3",
   engineRewrite: true,

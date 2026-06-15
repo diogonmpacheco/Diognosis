@@ -14,7 +14,7 @@ body:
     id: link
     attributes:
       label: Share link or page
-      placeholder: "https://diogonmpacheco.github.io/medcheck/index.html?substances=..."
+      placeholder: "https://diogonmpacheco.github.io/diognosis/index.html?substances=..."
   - type: textarea
     id: steps
     attributes:

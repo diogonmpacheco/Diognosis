@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { spawnSync } from 'child_process';
 import { resolve } from 'path';
-import { ROOT } from './lib/medcheck-source-loader.js';
+import { ROOT } from './lib/diognosis-source-loader.js';
 
 function parseArgs(argv) {
   const args = { check: false, fetch: false, normalize: false, out: 'data/enrichment/staged/cpic-staged-records.json', limit: null };

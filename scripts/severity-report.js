@@ -68,7 +68,7 @@ JSON.stringify((() => {
       evidence: profile,
     };
   });
-  return { rows, releaseDate: MEDCHECK_VERSION.released };
+  return { rows, releaseDate: DIOGNOSIS_VERSION.released };
 })())`;
 
 const report = JSON.parse(vm.runInNewContext(code, { console }));
@@ -78,7 +78,7 @@ const changed = rows.filter((row) => row.changed);
 const severeAfter = rows.filter((row) => row.recommendedSeverity === 'severe').length;
 
 const lines = [
-    '# MedCheck Engine Severity Report',
+    '# Diognosis Severity Report',
   '',
   `Generated for release date: ${report.releaseDate}`,
   '',

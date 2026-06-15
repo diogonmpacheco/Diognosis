@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { createHash } from 'crypto';
 import { resolve } from 'path';
-import { ROOT } from './lib/medcheck-source-loader.js';
+import { ROOT } from './lib/diognosis-source-loader.js';
 import { markdownTable, readJson, writeJson, writeText } from './lib/enrichment-common.js';
 import { baseCandidateGovernance, CANDIDATE_STORE_SCHEMA, KNOWLEDGE_LAYERS } from './lib/knowledge-layer-model.js';
 import { stableToken } from './lib/staged-source-schema.js';

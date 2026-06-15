@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { createHash } from 'crypto';
 import { resolve } from 'path';
-import { drugAliasMap, loadMedcheckData, normalizeName, ROOT } from './lib/medcheck-source-loader.js';
+import { drugAliasMap, loadDiognosisData, normalizeName, ROOT } from './lib/diognosis-source-loader.js';
 import { readJson, writeJson, writeText } from './lib/enrichment-common.js';
 import { normalizeStagedSourceRecord } from './lib/staged-source-schema.js';
 
@@ -30,7 +30,7 @@ function parseArgs(argv) {
 }
 
 const args = parseArgs(process.argv.slice(2));
-const data = loadMedcheckData();
+const data = loadDiognosisData();
 const aliasMap = drugAliasMap(data.DRUG_DB || []);
 const rawIndex = args.fetch ? await fetchDailyMedMetadata(args) : readJson(args.rawIndex, null);
 const records = rawIndex?.fetched?.length ? normalizeDailyMedRecords(rawIndex, aliasMap) : [];

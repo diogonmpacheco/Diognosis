@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { resolve } from 'path';
-import { ROOT } from './lib/medcheck-source-loader.js';
+import { ROOT } from './lib/diognosis-source-loader.js';
 import { loadAllStagedRecords, markdownTable, writeJson, writeText } from './lib/enrichment-common.js';
 import { stableToken } from './lib/staged-source-schema.js';
 

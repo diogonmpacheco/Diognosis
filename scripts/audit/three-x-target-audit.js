@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { resolve } from 'path';
-import { ROOT } from '../enrich/lib/medcheck-source-loader.js';
+import { ROOT } from '../enrich/lib/diognosis-source-loader.js';
 import { readJson } from '../enrich/lib/enrichment-common.js';
 
 const dashboard = readJson(resolve(ROOT, 'docs/audits/knowledge-growth-dashboard.json'), null);

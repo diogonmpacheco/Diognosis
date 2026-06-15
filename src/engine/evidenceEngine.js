@@ -1,4 +1,4 @@
-// MedCheck Engine — Evidence resolution and display
+// Diognosis — Evidence resolution and display
 // Phase A: modular source — concatenated by build.js
 
 function evidenceConfidence(ev) {
@@ -487,7 +487,7 @@ function assertEvidencedSeverity(severity, drug1, drug2, enzyme) {
 
   if (prov.confidence < 0.30 && severity === 'severe') {
     // Downgrade severe → moderate when evidence is extremely thin
-    console.warn(`[MedCheck Engine] Downgraded '${severity}' for ${drug1}+${drug2} via ${enzyme} — confidence only ${Math.round(prov.confidence*100)}%. Evidence: ${prov.provenance_note}`);
+    console.warn(`[Diognosis] Downgraded '${severity}' for ${drug1}+${drug2} via ${enzyme} — confidence only ${Math.round(prov.confidence*100)}%. Evidence: ${prov.provenance_note}`);
     return 'moderate';
   }
   return severity;

@@ -1,4 +1,4 @@
-// MedCheck Engine — Mechanistic interpretation layer
+// Diognosis — Mechanistic interpretation layer
 // Evidence-backed warnings remain authoritative; this layer explains pathway math.
 
 const MECHANISTIC_PREDICTION_GENES = [

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Diognosis / MedCheck Engine release checklist
+// Diognosis release checklist
 // Rebuilds the bundle, verifies release metadata, and runs the full local gate.
 
 import { execFileSync } from 'child_process';
@@ -17,7 +17,7 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-function extractMedCheckBundle(html) {
+function extractDiognosisBundle(html) {
   const scripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)]
     .filter((match) => !/\bsrc\s*=/.test(match[0]));
   if (!scripts.length) throw new Error('Could not find generated bundle in index.html.');
@@ -26,7 +26,7 @@ function extractMedCheckBundle(html) {
 
 function loadBundleContext() {
   const html = readFileSync('index.html', 'utf8');
-  const bundle = extractMedCheckBundle(html);
+  const bundle = extractDiognosisBundle(html);
 
   const elements = {};
   const context = {
@@ -53,31 +53,31 @@ function loadBundleContext() {
   };
   vm.createContext(context);
   vm.runInContext(`${bundle}
-globalThis.__RELEASE_CHECK__ = { DRUG_DB, STUDY_DB, MEDCHECK_VERSION };`, context);
+globalThis.__RELEASE_CHECK__ = { DRUG_DB, STUDY_DB, DIOGNOSIS_VERSION };`, context);
   return context.__RELEASE_CHECK__;
 }
 
 run('Build index.html', node, ['build.js']);
 
 console.log('\n▶ Verify release metadata');
-const { DRUG_DB, STUDY_DB, MEDCHECK_VERSION } = loadBundleContext();
+const { DRUG_DB, STUDY_DB, DIOGNOSIS_VERSION } = loadBundleContext();
 const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
 const readme = readFileSync('README.md', 'utf8');
 const index = readFileSync('index.html', 'utf8');
 const smoke = readFileSync('scripts/smoke-check.js', 'utf8');
 const regression = readFileSync('scripts/regression-check.js', 'utf8');
 
-assert(pkg.version === MEDCHECK_VERSION.engine, `package.json version ${pkg.version} does not match MEDCHECK_VERSION.engine ${MEDCHECK_VERSION.engine}`);
-assert(new RegExp(`engine\\s*:\\s*["']${MEDCHECK_VERSION.engine.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["']`).test(index), 'index.html engine metadata is stale; run build.js');
-assert(new RegExp(`drugDb\\s*:\\s*["']${MEDCHECK_VERSION.drugDb.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["']`).test(index), 'index.html Drug DB metadata is stale; run build.js');
-assert(smoke.includes(`'${MEDCHECK_VERSION.engine}'`) || smoke.includes(`"${MEDCHECK_VERSION.engine}"`), 'smoke-check.js expected engine version is stale');
-assert(regression.includes(`'${MEDCHECK_VERSION.engine}'`) || regression.includes(`"${MEDCHECK_VERSION.engine}"`), 'regression-check.js expected engine version is stale');
+assert(pkg.version === DIOGNOSIS_VERSION.engine, `package.json version ${pkg.version} does not match DIOGNOSIS_VERSION.engine ${DIOGNOSIS_VERSION.engine}`);
+assert(new RegExp(`engine\\s*:\\s*["']${DIOGNOSIS_VERSION.engine.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["']`).test(index), 'index.html engine metadata is stale; run build.js');
+assert(new RegExp(`drugDb\\s*:\\s*["']${DIOGNOSIS_VERSION.drugDb.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["']`).test(index), 'index.html Drug DB metadata is stale; run build.js');
+assert(smoke.includes(`'${DIOGNOSIS_VERSION.engine}'`) || smoke.includes(`"${DIOGNOSIS_VERSION.engine}"`), 'smoke-check.js expected engine version is stale');
+assert(regression.includes(`'${DIOGNOSIS_VERSION.engine}'`) || regression.includes(`"${DIOGNOSIS_VERSION.engine}"`), 'regression-check.js expected engine version is stale');
 assert(readme.includes(`**${DRUG_DB.length} drugs**`), `README drug count is stale; expected ${DRUG_DB.length}`);
-assert(readme.includes(`**Drug DB v${MEDCHECK_VERSION.drugDb}**`), `README Drug DB version is stale; expected ${MEDCHECK_VERSION.drugDb}`);
+assert(readme.includes(`**Drug DB v${DIOGNOSIS_VERSION.drugDb}**`), `README Drug DB version is stale; expected ${DIOGNOSIS_VERSION.drugDb}`);
 assert(readme.includes(`**${Object.keys(STUDY_DB).length} evidence entries** in STUDY_DB`), `README study count is stale; expected ${Object.keys(STUDY_DB).length}`);
 
-console.log(`✓ Engine ${MEDCHECK_VERSION.engine}`);
-console.log(`✓ Drug DB ${MEDCHECK_VERSION.drugDb}`);
+console.log(`✓ Engine ${DIOGNOSIS_VERSION.engine}`);
+console.log(`✓ Drug DB ${DIOGNOSIS_VERSION.drugDb}`);
 console.log(`✓ ${DRUG_DB.length} drugs`);
 console.log(`✓ ${Object.keys(STUDY_DB).length} evidence entries`);
 

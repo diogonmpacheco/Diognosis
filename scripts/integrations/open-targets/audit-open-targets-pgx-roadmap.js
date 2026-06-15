@@ -55,9 +55,9 @@ function hasWarningCard(coverage, gene) {
   return coverage.pharmgkbGenes.includes(gene) || coverage.riskEffects.some(key => key === gene || key.startsWith(`${gene}*`));
 }
 
-function pairKey(fact, medcheckName) {
+function pairKey(fact, diognosisName) {
   return [
-    medcheckName,
+    diognosisName,
     fact.chemblId,
     fact.targetGene || 'unknown',
     fact.riskMarker || '',
@@ -106,8 +106,8 @@ function buildReport() {
     for (const fact of facts || []) {
       if (fact.openTargetsSourceDataset !== 'pharmacogenetics') continue;
       const row = crosswalkByChembl.get(fact.chemblId);
-      const medcheckName = row?.medcheckName || fact.chemblId;
-      const key = pairKey(fact, medcheckName);
+      const diognosisName = row?.diognosisName || fact.chemblId;
+      const key = pairKey(fact, diognosisName);
       const existing = pairMap.get(key);
       if (existing) {
         existing.factCount += 1;
@@ -116,7 +116,7 @@ function buildReport() {
       }
       const promotionRows = queue.filter(q => q.chemblId === fact.chemblId && q.targetGene === fact.targetGene);
       pairMap.set(key, {
-        medcheckName,
+        diognosisName,
         chemblId: fact.chemblId,
         gene: fact.targetGene || 'unknown',
         riskMarker: fact.riskMarker || null,
@@ -154,7 +154,7 @@ function buildReport() {
     };
   }).sort((a, b) =>
     a.classification.localeCompare(b.classification) ||
-    a.medcheckName.localeCompare(b.medcheckName) ||
+    a.diognosisName.localeCompare(b.diognosisName) ||
     a.gene.localeCompare(b.gene)
   );
 
@@ -221,7 +221,7 @@ function cell(value) {
 function pairTable(rows) {
   if (!rows.length) return 'None.';
   const body = rows.slice(0, 80).map(pair => `| ${[
-    pair.medcheckName,
+    pair.diognosisName,
     pair.gene,
     pair.evidenceLevel,
     pair.riskMarker || '',

@@ -2,7 +2,7 @@
 import { createHash } from 'crypto';
 import { existsSync } from 'fs';
 import { isAbsolute, relative, resolve } from 'path';
-import { ROOT } from './lib/medcheck-source-loader.js';
+import { ROOT } from './lib/diognosis-source-loader.js';
 import { readJson, writeJson } from './lib/enrichment-common.js';
 
 const TARGETS = [

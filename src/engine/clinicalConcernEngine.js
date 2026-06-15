@@ -1,4 +1,4 @@
-// MedCheck Engine — Overview clinical concern presentation layer
+// Diognosis — Overview clinical concern presentation layer
 
 const CLINICAL_CONCERN_CONFIDENCE_ORDER = { high: 3, moderate: 2, low: 1, unknown: 0 };
 

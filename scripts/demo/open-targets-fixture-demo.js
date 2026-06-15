@@ -7,7 +7,7 @@ import { JSDOM, VirtualConsole } from 'jsdom';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..', '..');
-const MANIFEST_PATH = resolve(ROOT, 'tests/scenarios/medcheck-scenarios.json');
+const MANIFEST_PATH = resolve(ROOT, 'tests/scenarios/diognosis-scenarios.json');
 const OUT_DIR = resolve(ROOT, '.tmp/open-targets-fixture-demo');
 const OUT_SNAPSHOT_JS = resolve(OUT_DIR, 'generatedOpenTargetsFixtureSnapshot.js');
 const OUT_AUDIT_MD = resolve(OUT_DIR, 'OPEN_TARGETS_FIXTURE_AUDIT.md');
@@ -33,10 +33,10 @@ function scenarioQuery(scenario) {
 }
 
 function insertScenarioBootstrap(html, scenario) {
-  const marker = '<script>\n// Diognosis / MedCheck Engine bundle';
+  const marker = '<script>\n// Diognosis bundle';
   const query = scenarioQuery(scenario);
   const bootstrap = `<script>\nhistory.replaceState(null, '', '${query}');\n</script>\n`;
-  assert(html.includes(marker), 'Could not find generated MedCheck bundle marker in fixture demo HTML.');
+  assert(html.includes(marker), 'Could not find generated Diognosis bundle marker in fixture demo HTML.');
   return html.replace(marker, bootstrap + marker);
 }
 

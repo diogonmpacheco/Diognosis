@@ -4,52 +4,52 @@
   "release": "fixture-2026-06",
   "mappings": [
     {
-      "medcheckName": "Paroxetine",
+      "diognosisName": "Paroxetine",
       "chemblId": "CHEMBL490",
       "note": "fixture_manual_mapping"
     },
     {
-      "medcheckName": "Codeine",
+      "diognosisName": "Codeine",
       "chemblId": "CHEMBL485",
       "note": "fixture_manual_mapping"
     },
     {
-      "medcheckName": "Simvastatin",
+      "diognosisName": "Simvastatin",
       "chemblId": "CHEMBL1064",
       "note": "fixture_manual_mapping"
     },
     {
-      "medcheckName": "Clarithromycin",
+      "diognosisName": "Clarithromycin",
       "chemblId": "CHEMBL1741",
       "note": "fixture_manual_mapping"
     },
     {
-      "medcheckName": "Capecitabine",
+      "diognosisName": "Capecitabine",
       "chemblId": "CHEMBL1773",
       "note": "fixture_manual_mapping"
     },
     {
-      "medcheckName": "Clozapine",
+      "diognosisName": "Clozapine",
       "chemblId": "CHEMBL42",
       "note": "fixture_manual_mapping"
     },
     {
-      "medcheckName": "Warfarin",
+      "diognosisName": "Warfarin",
       "chemblId": "CHEMBL1464",
       "note": "fixture_manual_mapping"
     },
     {
-      "medcheckName": "Abacavir",
+      "diognosisName": "Abacavir",
       "chemblId": "CHEMBL1380",
       "note": "fixture_manual_mapping"
     },
     {
-      "medcheckName": "Clopidogrel",
+      "diognosisName": "Clopidogrel",
       "chemblId": "CHEMBL1771",
       "note": "fixture_manual_mapping"
     },
     {
-      "medcheckName": "Tamoxifen",
+      "diognosisName": "Tamoxifen",
       "chemblId": "CHEMBL83",
       "note": "fixture_manual_mapping"
     }

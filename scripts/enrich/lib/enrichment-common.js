@@ -1,6 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'fs';
 import { dirname, join, resolve } from 'path';
-import { ROOT } from './medcheck-source-loader.js';
+import { ROOT } from './diognosis-source-loader.js';
 import { dedupeStagedSourceRecords, validateStagedSourceRecord } from './staged-source-schema.js';
 
 export const ENRICHMENT_ROOT = resolve(ROOT, 'data/enrichment');

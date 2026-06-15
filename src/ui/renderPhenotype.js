@@ -1,4 +1,4 @@
-// MedCheck Engine — Phenotype risk accumulation panel
+// Diognosis — Phenotype risk accumulation panel
 // Phase A: modular source — concatenated by build.js
 
 function renderPhenotypeAccumulation() {

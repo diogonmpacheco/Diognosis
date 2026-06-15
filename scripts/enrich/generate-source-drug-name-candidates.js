@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'fs';
 import { join, resolve } from 'path';
-import { ROOT, loadMedcheckData, normalizeName, uniq } from './lib/medcheck-source-loader.js';
+import { ROOT, loadDiognosisData, normalizeName, uniq } from './lib/diognosis-source-loader.js';
 
 const SCHEMA = 'diognosis.source-drug-name-candidates.v1';
 const OUT_SOURCE = resolve(ROOT, 'src/data/generatedSourceDrugNameCandidates.js');
@@ -134,7 +134,7 @@ function visit(value, meta, map, data, existingDrugKeys, geneKeys) {
 }
 
 function collectCandidates() {
-  const data = loadMedcheckData(['src/data/pendingLiveCoreAugmentation.js']);
+  const data = loadDiognosisData(['src/data/pendingLiveCoreAugmentation.js']);
   const existingDrugKeys = new Set();
   for (const drug of data.DRUG_DB || []) {
     for (const term of [

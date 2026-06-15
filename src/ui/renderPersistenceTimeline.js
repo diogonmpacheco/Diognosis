@@ -1,4 +1,4 @@
-// MedCheck Engine — Persistence & Washout timeline renderer
+// Diognosis — Persistence & Washout timeline renderer
 
 function renderPersistenceTimeline() {
   const section = document.getElementById("persistenceTimelineSection");

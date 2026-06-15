@@ -1,4 +1,4 @@
-// MedCheck Engine — normalized interaction finding model
+// Diognosis — normalized interaction finding model
 
 const FINDING_SEVERITY_ORDER = {
   critical: 5,

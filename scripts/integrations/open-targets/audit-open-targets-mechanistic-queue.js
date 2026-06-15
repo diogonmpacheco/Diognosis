@@ -35,7 +35,7 @@ function readGeneratedObject(filePath, constName) {
   return JSON.parse(match[1]);
 }
 
-function loadMedcheckContext() {
+function loadDiognosisContext() {
   const context = { console };
   vm.createContext(context);
   vm.runInContext([
@@ -114,14 +114,14 @@ function classifyTargetRelationship(fact, mappedRows, drugByName) {
   const aliases = targetAliases(fact.targetGene);
   const matches = [];
   for (const row of mappedRows) {
-    const drug = drugByName.get(row.medcheckName);
+    const drug = drugByName.get(row.diognosisName);
     const text = drugText(drug);
     const matchedAliases = aliases.filter(alias => {
       const normalizedAlias = normalize(alias);
       return normalizedAlias && text.includes(normalizedAlias);
     });
     if (matchedAliases.length) {
-      matches.push(`${row.medcheckName}: ${matchedAliases.slice(0, 3).join(', ')}`);
+      matches.push(`${row.diognosisName}: ${matchedAliases.slice(0, 3).join(', ')}`);
     }
   }
   if (matches.length) {
@@ -150,7 +150,7 @@ function priorityForFact(fact, relationship) {
   return Math.min(100, priority);
 }
 
-function buildQueue(snapshot, promotionQueue, medcheck) {
+function buildQueue(snapshot, promotionQueue, diognosis) {
   const crosswalkByChembl = new Map();
   for (const row of snapshot.crosswalk || []) {
     if (!row.chemblId) continue;
@@ -160,7 +160,7 @@ function buildQueue(snapshot, promotionQueue, medcheck) {
   }
   const promotionById = new Map(promotionQueue.map(row => [row.id, row]));
   const promotionByKey = new Map(promotionQueue.map(row => [promotionKey(row), row]));
-  const drugByName = new Map((medcheck.drugs || []).map(drug => [drug.name, drug]));
+  const drugByName = new Map((diognosis.drugs || []).map(drug => [drug.name, drug]));
 
   const rows = [];
   for (const facts of Object.values(snapshot.contextByChemblId || {})) {
@@ -177,8 +177,8 @@ function buildQueue(snapshot, promotionQueue, medcheck) {
       const linkedToDiognosisEvidence = reviewDecision === 'linked_to_diognosis_evidence' && (promotion.evidenceRefs || []).length > 0;
       rows.push({
         id: fact.id,
-        medcheckNames: mappedRows.map(row => row.medcheckName).filter(Boolean),
-        medcheckIds: mappedRows.map(row => row.medcheckId).filter(Boolean),
+        diognosisNames: mappedRows.map(row => row.diognosisName).filter(Boolean),
+        diognosisIds: mappedRows.map(row => row.diognosisId).filter(Boolean),
         chemblId: fact.chemblId || null,
         openTargetsDrugId: fact.openTargetsDrugId || fact.chemblId || null,
         openTargetsRelease: fact.openTargetsRelease || snapshot.release || null,
@@ -208,7 +208,7 @@ function buildQueue(snapshot, promotionQueue, medcheck) {
 
   rows.sort((a, b) =>
     b.priorityScore - a.priorityScore ||
-    String(a.medcheckNames[0] || a.chemblId).localeCompare(String(b.medcheckNames[0] || b.chemblId)) ||
+    String(a.diognosisNames[0] || a.chemblId).localeCompare(String(b.diognosisNames[0] || b.chemblId)) ||
     String(a.targetGene || '').localeCompare(String(b.targetGene || '')) ||
     String(a.label || '').localeCompare(String(b.label || ''))
   );
@@ -256,7 +256,7 @@ function renderMarkdown(queue) {
   const table = queue.rows.slice(0, 80).map((row, idx) => `| ${[
     idx + 1,
     row.priorityScore,
-    row.medcheckNames.join(', ') || row.chemblId,
+    row.diognosisNames.join(', ') || row.chemblId,
     row.targetGene || '',
     row.targetRelationship,
     row.label || '',
@@ -312,8 +312,8 @@ function writeIfChanged(filePath, content) {
 try {
   const snapshot = readGeneratedObject(SNAPSHOT_PATH, 'GENERATED_OPEN_TARGETS_SNAPSHOT');
   const promotionQueue = readGeneratedObject(PROMOTION_QUEUE_PATH, 'GENERATED_OPEN_TARGETS_PROMOTION_QUEUE');
-  const medcheck = loadMedcheckContext();
-  const queue = buildQueue(snapshot, promotionQueue, medcheck);
+  const diognosis = loadDiognosisContext();
+  const queue = buildQueue(snapshot, promotionQueue, diognosis);
   if (queue.errors.length) throw new Error(queue.errors.join('\n'));
   const wroteJs = writeIfChanged(OUT_JS, renderJs(queue));
   const wroteMd = writeIfChanged(OUT_MD, renderMarkdown(queue));

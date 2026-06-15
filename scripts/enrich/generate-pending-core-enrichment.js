@@ -4,10 +4,10 @@ import { resolve } from 'path';
 import {
   ROOT,
   drugAliasMap,
-  loadMedcheckData,
+  loadDiognosisData,
   normalizeName,
   readGeneratedConstObject,
-} from './lib/medcheck-source-loader.js';
+} from './lib/diognosis-source-loader.js';
 import { writeText } from './lib/enrichment-common.js';
 
 const IN_SOURCE = resolve(ROOT, 'src/data/generatedPendingReviewEnrichment.js');
@@ -566,7 +566,7 @@ const PENDING_CORE_ENRICHMENT = ${JSON.stringify(payload, null, 2)};
 
 function main() {
   const source = readGeneratedConstObject(IN_SOURCE, SOURCE_CONST);
-  const data = loadMedcheckData();
+  const data = loadDiognosisData();
   const payload = payloadFor(source, data);
   writeText(OUT_SOURCE, generatedSource(payload));
   console.log(JSON.stringify({

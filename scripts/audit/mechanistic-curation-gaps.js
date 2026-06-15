@@ -290,7 +290,7 @@ const md = `# Mechanistic Curation Gap Audit
 
 Generated: ${generated}
 
-This internal audit is generated from MedCheck Engine source data. It lists graph-derived curation gaps that are **not already represented by MedCheck Engine curated DDI, metabolite, genotype-metabolite, pathway-diversion, metabolite-actor, or evidence layers**. Treat every row as an enrichment task, not as a discovered interaction or clinical guidance.
+This internal audit is generated from Diognosis source data. It lists graph-derived curation gaps that are **not already represented by Diognosis curated DDI, metabolite, genotype-metabolite, pathway-diversion, metabolite-actor, or evidence layers**. Treat every row as an enrichment task, not as a discovered interaction or clinical guidance.
 
 ## What Counts Here
 

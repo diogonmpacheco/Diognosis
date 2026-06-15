@@ -1,4 +1,4 @@
-// MedCheck Engine — Clinical rule configuration
+// Diognosis — Clinical rule configuration
 // Centralized numeric rule tables used by engines and renderers.
 
 // Structural/mechanistic reliability, independent of study evidence.
@@ -1248,7 +1248,7 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     metaboliteName:"Digoxin P-gp efflux",
     enzyme:"ABCB1",
     systemic:true,
-    note:"Digoxin is a narrow-therapeutic-index P-gp substrate. ABCB1 genotype associations are inconsistent, so MedCheck Engine treats reduced P-gp function as a conservative exposure-monitoring context rather than a fixed dose rule.",
+    note:"Digoxin is a narrow-therapeutic-index P-gp substrate. ABCB1 genotype associations are inconsistent, so Diognosis treats reduced P-gp function as a conservative exposure-monitoring context rather than a fixed dose rule.",
     evidenceRefs:["ev_abcb1_pgp_variant_summary","ev_digoxin_pgp_koren1998"],
     effects:{
       [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"reduced P-gp context: possible higher digoxin exposure/tissue penetration; prioritize levels, renal function, and P-gp inhibitor review" },

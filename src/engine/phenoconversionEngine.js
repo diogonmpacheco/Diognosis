@@ -1,4 +1,4 @@
-// MedCheck Engine — functional phenotype / phenoconversion state
+// Diognosis — functional phenotype / phenoconversion state
 
 const PHENOCONVERSION_LABELS = {
   increased_function: "increased function",

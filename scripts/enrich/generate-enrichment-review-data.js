@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { resolve } from 'path';
-import { ROOT } from './lib/medcheck-source-loader.js';
+import { ROOT } from './lib/diognosis-source-loader.js';
 import { readJson, writeText } from './lib/enrichment-common.js';
 
 const OUT = resolve(ROOT, 'src/data/generatedEnrichmentReviewData.js');

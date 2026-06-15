@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "description": "Regression scenarios for MedCheck model output and Open Targets fixture context. External context must render as review-only data and must not alter calcRisk().",
+  "description": "Regression scenarios for Diognosis model output and Open Targets fixture context. External context must render as review-only data and must not alter calcRisk().",
   "openTargetsFixture": {
     "inputDir": "tests/fixtures/open-targets/input",
     "manualCrosswalk": "tests/fixtures/open-targets/manual-crosswalk.json",

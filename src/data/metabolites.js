@@ -1,4 +1,4 @@
-// MedCheck Engine — Metabolite database and actor definitions
+// Diognosis — Metabolite database and actor definitions
 // Phase A: modular source — concatenated by build.js
 
 const METAB = {

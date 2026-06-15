@@ -1,4 +1,4 @@
-// MedCheck Engine — external safety context cards
+// Diognosis — external safety context cards
 
 let externalSafetyContextHandlersBound = false;
 
@@ -41,8 +41,8 @@ function collectOpenTargetsSafetyContext(stack = activeStack, snapshot = null) {
   if (!activeKeys.size) return [];
 
   const rows = data.crosswalk.filter(row =>
-    activeKeys.has(normalizeDrugLookupKey(row.medcheckName)) ||
-    activeKeys.has(normalizeDrugLookupKey(row.medcheckId))
+    activeKeys.has(normalizeDrugLookupKey(row.diognosisName)) ||
+    activeKeys.has(normalizeDrugLookupKey(row.diognosisId))
   );
   const contexts = [];
   const release = data.release || data.summary?.release || null;
@@ -62,7 +62,7 @@ function collectOpenTargetsSafetyContext(stack = activeStack, snapshot = null) {
 
   const seen = new Set();
   return contexts.filter(context => {
-    const key = context.id || `${context.medcheckId}|${context.chemblId}|${context.openTargetsSourceDataset}|${context.label}`;
+    const key = context.id || `${context.diognosisId}|${context.chemblId}|${context.openTargetsSourceDataset}|${context.label}`;
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
@@ -97,8 +97,8 @@ function normalizeOpenTargetsContextFact(fact, row, release) {
   const promotionDecision = openTargetsPromotionDecisionForFact(fact);
   return {
     id: safeText(fact.id || ""),
-    medcheckId: safeText(row.medcheckId || ""),
-    medcheckName: safeText(row.medcheckName || ""),
+    diognosisId: safeText(row.diognosisId || ""),
+    diognosisName: safeText(row.diognosisName || ""),
     chemblId: safeText(fact.chemblId || row.chemblId || ""),
     openTargetsDrugId: safeText(fact.openTargetsDrugId || row.openTargetsDrugId || row.chemblId || ""),
     openTargetsRelease: safeText(fact.openTargetsRelease || release || "not specified"),
@@ -147,7 +147,7 @@ function renderExternalSafetyContext(snapshot = null) {
 
   body.innerHTML = `
     <div class="external-context-notice">
-      Imported Open Targets / ChEMBL facts are review context. They do not change MedCheck warnings, severity, or calculations unless a Diognosis reviewer promotes the signal through the promotion queue.
+      Imported Open Targets / ChEMBL facts are review context. They do not change Diognosis warnings, severity, or calculations unless a Diognosis reviewer promotes the signal through the promotion queue.
     </div>
     <div class="external-context-grid">
       ${contexts.map(renderExternalSafetyContextCard).join("")}
@@ -158,7 +158,7 @@ function renderExternalSafetyContext(snapshot = null) {
 function renderExternalSafetyContextCard(context) {
   const typeLabel = formatOpenTargetsDataset(context.openTargetsSourceDataset || context.factType);
   const meta = [
-    context.medcheckName ? `Drug: ${context.medcheckName}` : "",
+    context.diognosisName ? `Drug: ${context.diognosisName}` : "",
     context.chemblId ? `ChEMBL: ${context.chemblId}` : "",
     context.openTargetsRelease ? `Release: ${context.openTargetsRelease}` : "",
     context.source ? `Source: ${context.source}` : "",
@@ -227,7 +227,7 @@ function actionHintForOpenTargetsDataset(value) {
 function buildExternalSafetyContextReviewUrl(context) {
   const details = [
     "External safety context card:",
-    `Drug: ${context.medcheckName || "not specified"}`,
+    `Drug: ${context.diognosisName || "not specified"}`,
     `ChEMBL/Open Targets ID: ${context.chemblId || context.openTargetsDrugId || "not specified"}`,
     `Dataset: ${context.openTargetsSourceDataset || "not specified"}`,
     `Release: ${context.openTargetsRelease || "not specified"}`,
@@ -239,9 +239,9 @@ function buildExternalSafetyContextReviewUrl(context) {
     "",
     "Review decision requested: keep as context, reject, or promote only after Diognosis clinical/data review.",
   ].join("\n");
-  return buildMedCheckIssueUrl({
+  return buildDiognosisIssueUrl({
     type: "data",
-    title: `[External context review]: ${context.medcheckName || context.chemblId || "Open Targets"}`,
+    title: `[External context review]: ${context.diognosisName || context.chemblId || "Open Targets"}`,
     focus: `Open Targets context ${context.id || context.chemblId || ""}`,
     details,
   });

@@ -1,4 +1,4 @@
-// MedCheck Engine — per-warning causal path objects
+// Diognosis — per-warning causal path objects
 
 function buildWarningPath(finding, stack, genotypeState = {}, context = {}) {
   if (!finding) return null;

@@ -1,4 +1,4 @@
-// MedCheck Engine — Transporter DDI data and actor definitions
+// Diognosis — Transporter DDI data and actor definitions
 // Phase A: modular source — concatenated by build.js
 
 const TRANSPORTER_DDI = [

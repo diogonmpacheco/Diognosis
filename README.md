@@ -2,9 +2,7 @@
 
 **Parent–metabolite-aware medication safety and pharmacogenomics platform for source-linked interaction review.**
 
-Diognosis is a pre-v1, source-linked research prototype for exploring medication safety, pharmacogenomics, and mechanistic interaction signals.
-
-Its first module, **MedCheck Engine**, checks medication stacks as connected biochemical systems. Instead of treating a medication only as a parent drug name, it models parent substances, active metabolites, toxic metabolites, enzymes, transporters, receptors, pharmacogenomic phenotypes, PK shifts, washout timing, pathway explanations, and source-linked evidence as connected actors.
+Diognosis is a pre-v1, source-linked research prototype for exploring medication safety, pharmacogenomics, and mechanistic interaction signals. Instead of treating a medication only as a parent drug name, it models parent substances, active metabolites, toxic metabolites, enzymes, transporters, receptors, pharmacogenomic phenotypes, PK shifts, washout timing, pathway explanations, and source-linked evidence as connected actors.
 
 **Status:** pre-v1, under active validation, pending professional clinical review, and not medical advice.
 
@@ -18,16 +16,16 @@ Its first module, **MedCheck Engine**, checks medication stacks as connected bio
 [![Open Issues](https://img.shields.io/github/issues/diogonmpacheco/Diognosis)](https://github.com/diogonmpacheco/Diognosis/issues)
 [![Live Site](https://img.shields.io/badge/live-GitHub%20Pages-222?logo=github)](https://diogonmpacheco.github.io/Diognosis/)
 
-## MedCheck Engine
+## Medication Safety Explorer
 
-MedCheck Engine is the first module of Diognosis. It focuses on medication safety exploration, pharmacogenomics, drug-drug interactions, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, pathway explanations, and source-linked evidence.
+Diognosis focuses on medication safety exploration, pharmacogenomics, drug-drug interactions, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, pathway explanations, and source-linked evidence.
 
-The MedCheck Engine runs entirely in the browser. There are no accounts, no server, no medication data collection, and no user medication or genotype data is sent to Diognosis. The graph view uses a vendored D3 build that is bundled locally at build time.
+Diognosis runs entirely in the browser. There are no accounts, no server, no medication data collection, and no user medication or genotype data is sent to Diognosis. The graph view uses a vendored D3 build that is bundled locally at build time.
 
 ## What Makes Diognosis Different
 
 Most medication checkers begin with parent drug names and return pairwise warnings. Diognosis is built around parent–metabolite–gene reasoning.
-That means the MedCheck Engine can separate questions that are often collapsed together:
+That means it can separate questions that are often collapsed together:
 - Is the parent drug rising?
 - Is the active metabolite falling?
 - Is a toxic metabolite accumulating?
@@ -40,7 +38,7 @@ This makes Diognosis especially useful for review scenarios where the clinically
 
 ## Mechanistic Reasoning Layers
 
-MedCheck Engine includes several reasoning layers designed to make parent–metabolite and gene-mediated risks easier to inspect:
+Diognosis includes several reasoning layers designed to make parent–metabolite and gene-mediated risks easier to inspect:
 
 | Layer | What it explains |
 |---|---|
@@ -83,7 +81,7 @@ For alternate entry points, see the [Diognosis Data Views](https://diogonmpachec
 
 ## Privacy
 
-Diognosis currently ships the MedCheck Engine as a static client-side app. It does not use accounts, analytics, cookies, tracking pixels, backend logging, or medication-data collection. Searches, medication stacks, genotype settings, and pasted report rows stay in your browser.
+Diognosis currently ships the Diognosis as a static client-side app. It does not use accounts, analytics, cookies, tracking pixels, backend logging, or medication-data collection. Searches, medication stacks, genotype settings, and pasted report rows stay in your browser.
 
 There are no routine third-party runtime requests. Evidence links, demo links, and GitHub feedback links are only opened when selected.
 
@@ -91,7 +89,7 @@ There are no routine third-party runtime requests. Evidence links, demo links, a
 
 ## What It Shows
 
-Most interaction checkers return isolated warnings. MedCheck Engine instead shows how a medication stack behaves as a connected system: parent drugs, active metabolites, toxic metabolites, pharmacogenomic phenotypes, enzyme and transporter capacity, PK curves, receptor burden, Beers-style flags, washout timing, evidence, and pathway explanations.
+Most interaction checkers return isolated warnings. Diognosis instead shows how a medication stack behaves as a connected system: parent drugs, active metabolites, toxic metabolites, pharmacogenomic phenotypes, enzyme and transporter capacity, PK curves, receptor burden, Beers-style flags, washout timing, evidence, and pathway explanations.
 
 The goal is not to replace clinical judgment. The goal is to make the mechanism visible enough for education, research, review workflows, and pharmacist or clinician verification.
 
@@ -105,13 +103,13 @@ Source-linked does not mean professionally reviewed. All public evidence remains
 
 ## Current Limitations
 
-Diognosis is intentionally conservative about what it claims. MedCheck Engine PK curves use a one-compartment model or a relative exposure fallback, so they do not replace therapeutic drug monitoring, multi-compartment/nonlinear PK models, or active-metabolite clinical interpretation. Extreme exposure shifts may be capped for display clarity. Evidence marked `reviewRequired:true` is visible for review and discovery, but remains pending pharmacist or physician sign-off and should not be treated as professionally reviewed.
+Diognosis is intentionally conservative about what it claims. Diognosis PK curves use a one-compartment model or a relative exposure fallback, so they do not replace therapeutic drug monitoring, multi-compartment/nonlinear PK models, or active-metabolite clinical interpretation. Extreme exposure shifts may be capped for display clarity. Evidence marked `reviewRequired:true` is visible for review and discovery, but remains pending pharmacist or physician sign-off and should not be treated as professionally reviewed.
 
 ---
 
 ## Launch Stats
 
-<!-- MEDCHECK_STATS_START -->
+<!-- DIOGNOSIS_STATS_START -->
 - **625 drugs** in DRUG_DB
 - **456 evidence entries** in STUDY_DB (275 with PMIDs; 456 with source identifiers) — **456 pending professional review**, **0 professionally reviewed**
 - **627 interaction pairs** (323 severe, 280 moderate, 24 mild)
@@ -120,7 +118,7 @@ Diognosis is intentionally conservative about what it claims. MedCheck Engine PK
 - **62 genotype genes** and **52 receptor score profiles**
 - **43 Beers flags** and **24 washout rules**
 - **2343 KB** generated bundle (1867 lines)
-<!-- MEDCHECK_STATS_END -->
+<!-- DIOGNOSIS_STATS_END -->
 
 ---
 
@@ -138,7 +136,7 @@ For internals, data structures, build instructions, and validation workflow, see
 
 ## Contribute / Review Data
 
-Diognosis contains source-linked MedCheck Engine data. No evidence entry has been professionally reviewed yet. Entries marked `reviewRequired:true` are internally flagged enrichment rows, but the rest of the evidence should not be treated as verified.
+Diognosis contains source-linked Diognosis data. No evidence entry has been professionally reviewed yet. Entries marked `reviewRequired:true` are internally flagged enrichment rows, but the rest of the evidence should not be treated as verified.
 
 The safety contract is simple: a warning should explain the pathway, affected actor, predicted direction, and supporting evidence. Severity should not be treated as clinically final without human review.
 
@@ -150,7 +148,7 @@ Helpful contributions include data review, missing evidence refs, duplicate or s
 
 Diognosis is open source under the [MIT License](LICENSE).
 
-You can use, modify, and build on it freely. If you use Diognosis or the MedCheck Engine in another project, please share where it is being used and include a link back to the project when practical:
+You can use, modify, and build on it freely. If you use Diognosis or the Diognosis in another project, please share where it is being used and include a link back to the project when practical:
 
 `https://github.com/diogonmpacheco/Diognosis`
 
@@ -160,4 +158,4 @@ This attribution request is appreciated, but the license remains permissive.
 
 ## Disclaimer
 
-Diognosis and the MedCheck Engine are for **educational exploration only**. They are not medical advice, not a clinical decision support system, not professionally reviewed, and do not replace professional medical advice, clinical pharmacist review, or therapeutic drug monitoring. Source-linked evidence does not equal clinical validation. Always consult a qualified doctor or pharmacist before making changes to medications.
+Diognosis and the Diognosis are for **educational exploration only**. They are not medical advice, not a clinical decision support system, not professionally reviewed, and do not replace professional medical advice, clinical pharmacist review, or therapeutic drug monitoring. Source-linked evidence does not equal clinical validation. Always consult a qualified doctor or pharmacist before making changes to medications.

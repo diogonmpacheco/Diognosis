@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { copyFileSync } from 'fs';
 import { resolve } from 'path';
-import { ROOT } from './lib/medcheck-source-loader.js';
+import { ROOT } from './lib/diognosis-source-loader.js';
 import { markdownTable, readJson, writeJson, writeText, ensureDir } from './lib/enrichment-common.js';
 
 const QUEUE = resolve(ROOT, 'data/enrichment/review-queue/enrichment-review-queue.json');

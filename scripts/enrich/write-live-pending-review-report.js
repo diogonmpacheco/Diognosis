@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { existsSync } from 'fs';
 import { relative, resolve } from 'path';
-import { ROOT } from './lib/medcheck-source-loader.js';
+import { ROOT } from './lib/diognosis-source-loader.js';
 import { loadAllStagedRecords, markdownTable, readJson, writeJson, writeText } from './lib/enrichment-common.js';
 
 const OUT_JSON = resolve(ROOT, 'docs/audits/live-pending-review-enrichment-report.json');

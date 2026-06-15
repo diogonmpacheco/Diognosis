@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { existsSync, readdirSync, statSync } from 'fs';
 import { extname, join, resolve } from 'path';
-import { loadMedcheckData, readGeneratedConstObject, ROOT } from '../enrich/lib/medcheck-source-loader.js';
+import { loadDiognosisData, readGeneratedConstObject, ROOT } from '../enrich/lib/diognosis-source-loader.js';
 import { loadAllStagedRecords, markdownTable, readJson, writeJson, writeText } from '../enrich/lib/enrichment-common.js';
 
 const OUT_JSON = resolve(ROOT, 'docs/audits/knowledge-growth-dashboard.json');
@@ -34,7 +34,7 @@ function countCandidateStores() {
   return stores;
 }
 
-const data = loadMedcheckData();
+const data = loadDiognosisData();
 const { records: staged } = loadAllStagedRecords();
 const queueV2 = readJson(resolve(ROOT, 'data/enrichment/review-queue/enrichment-review-queue-v2.json'), {});
 const groupedV2 = readJson(resolve(ROOT, 'data/enrichment/review-queue/grouped-review-candidates-v2.json'), {});

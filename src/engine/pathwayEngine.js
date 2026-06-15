@@ -1,4 +1,4 @@
-// MedCheck Engine — Graph construction and effect traversal
+// Diognosis — Graph construction and effect traversal
 // Phase A: modular source — concatenated by build.js
 
 function toGraphId(name) {

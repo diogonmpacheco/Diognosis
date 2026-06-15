@@ -1,4 +1,4 @@
-// MedCheck Engine — parent/metabolite active-moiety balance
+// Diognosis — parent/metabolite active-moiety balance
 
 const ACTIVE_MOIETY_DIRECTION_LABELS = {
   up: "up",

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { createHash } from 'crypto';
 import { resolve } from 'path';
-import { ROOT, readGeneratedConstObject } from './lib/medcheck-source-loader.js';
+import { ROOT, readGeneratedConstObject } from './lib/diognosis-source-loader.js';
 import { readJson, writeText } from './lib/enrichment-common.js';
 import { actorsForRecord, sourceIdentifiersForRecord } from './lib/live-enrichment-policy.js';
 import { stableToken } from './lib/staged-source-schema.js';

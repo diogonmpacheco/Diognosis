@@ -55,7 +55,7 @@ function parseArgs(argv) {
   return args;
 }
 
-function loadMedcheckContext() {
+function loadDiognosisContext() {
   const context = { console };
   vm.createContext(context);
   const source = SOURCE_MODULES
@@ -310,7 +310,7 @@ function contextFactFromRecord(record, dataset, release, index) {
   };
 }
 
-function medcheckTerms(drug, data) {
+function diognosisTerms(drug, data) {
   return uniq([
     drug.name,
     drug.id,
@@ -356,8 +356,8 @@ function manualMappingForDrug(drug, manual) {
   const id = normalize(drug.id);
   const name = normalize(drug.name);
   return (manual.mappings || []).find(mapping =>
-    normalize(mapping.medcheckId) === id ||
-    normalize(mapping.medcheckName) === name ||
+    normalize(mapping.diognosisId) === id ||
+    normalize(mapping.diognosisName) === name ||
     normalize(mapping.name) === name
   ) || null;
 }
@@ -453,7 +453,7 @@ function buildSnapshot(data, inputs, manual, args) {
 
   const indexes = buildMoleculeIndexes(molecules);
   const crosswalk = data.DRUG_DB.map((drug) => {
-    const terms = medcheckTerms(drug, data);
+    const terms = diognosisTerms(drug, data);
     const manualMapping = manualMappingForDrug(drug, manual);
     const match = chooseBestMatch(drug, terms, indexes, manualMapping);
     const molecule = match.molecule;
@@ -465,10 +465,10 @@ function buildSnapshot(data, inputs, manual, args) {
       ['ambiguous', 'manual_unresolved', 'requires_manual_combination_review'].includes(match.matchStatus)
     );
     return {
-      medcheckId: drug.id || null,
-      medcheckName: drug.name,
-      medcheckClass: drug.cls || null,
-      medcheckAliases: terms.filter(term => term !== drug.name).slice(0, 20),
+      diognosisId: drug.id || null,
+      diognosisName: drug.name,
+      diognosisClass: drug.cls || null,
+      diognosisAliases: terms.filter(term => term !== drug.name).slice(0, 20),
       openTargetsDrugId: match.openTargetsDrugId,
       chemblId: match.chemblId,
       openTargetsName: molecule?.name || null,
@@ -488,7 +488,7 @@ function buildSnapshot(data, inputs, manual, args) {
       sourceDatasets: molecule?.sourceDatasets || [],
       combinationProductAuthority: isCombinationLike(drug) ? 'diognosis' : null,
     };
-  }).sort((a, b) => a.medcheckName.localeCompare(b.medcheckName));
+  }).sort((a, b) => a.diognosisName.localeCompare(b.diognosisName));
 
   const mappedChemblIds = new Set(crosswalk.map(row => row.chemblId).filter(Boolean));
   const contextByChemblId = {};
@@ -504,7 +504,7 @@ function buildSnapshot(data, inputs, manual, args) {
   const summary = {
     schemaVersion: 1,
     release: args.release || manual.release || null,
-    medcheckSubstances: crosswalk.length,
+    diognosisSubstances: crosswalk.length,
     openTargetsMoleculesLoaded: molecules.size,
     inputFiles: inputFiles.length,
     mappedRows: crosswalk.filter(row => ['manual', 'exact_name', 'exact_alias'].includes(row.matchStatus)).length,
@@ -573,12 +573,12 @@ function renderMarkdown(snapshot, fingerprint) {
   const mappedRows = snapshot.crosswalk
     .filter(row => row.chemblId)
     .slice(0, 40)
-    .map(row => `| ${escapeCell(row.medcheckName)} | ${escapeCell(row.chemblId)} | ${escapeCell(row.openTargetsName)} | ${escapeCell(row.matchStatus)} | ${row.matchConfidence} | ${escapeCell(row.identityReviewDecision)} |`)
+    .map(row => `| ${escapeCell(row.diognosisName)} | ${escapeCell(row.chemblId)} | ${escapeCell(row.openTargetsName)} | ${escapeCell(row.matchStatus)} | ${row.matchConfidence} | ${escapeCell(row.identityReviewDecision)} |`)
     .join('\n') || '| none | none | none | none | 0 | none |';
   const reviewRows = snapshot.crosswalk
     .filter(row => row.matchStatus === 'requires_manual_combination_review' || row.matchStatus === 'ambiguous')
     .slice(0, 40)
-    .map(row => `| ${escapeCell(row.medcheckName)} | ${escapeCell(row.matchStatus)} | ${escapeCell(row.matchReason)} |`)
+    .map(row => `| ${escapeCell(row.diognosisName)} | ${escapeCell(row.matchStatus)} | ${escapeCell(row.matchReason)} |`)
     .join('\n') || '| none | none | none |';
 
   return `# Open Targets Integration Audit
@@ -591,7 +591,7 @@ This audit covers the static, build-time Open Targets crosswalk. No Open Targets
 
 | Metric | Count |
 | --- | ---: |
-| MedCheck substances considered | ${summary.medcheckSubstances} |
+| Diognosis substances considered | ${summary.diognosisSubstances} |
 | Open Targets molecules loaded | ${summary.openTargetsMoleculesLoaded} |
 | Input files | ${summary.inputFiles} |
 | Mapped rows | ${summary.mappedRows} |
@@ -653,7 +653,7 @@ function writeIfChanged(filePath, content, check) {
 
 try {
   const args = parseArgs(process.argv.slice(2));
-  const data = loadMedcheckContext();
+  const data = loadDiognosisContext();
   const manual = loadManualCrosswalk(args.manualCrosswalk);
   const inputFiles = collectInputFiles(args.inputDir);
   const snapshot = buildSnapshot(data, inputFiles, manual, args);

@@ -128,7 +128,7 @@ async function fetchJson(url) {
   mkdirSync(CACHE_DIR, { recursive: true });
   const path = cachePath(url);
   if (existsSync(path)) return JSON.parse(readFileSync(path, 'utf8'));
-  const res = await fetch(url, { headers: { 'user-agent': 'Diognosis MedCheck Engine enrichment tool; citation metadata only' } });
+  const res = await fetch(url, { headers: { 'user-agent': 'Diognosis enrichment tool; citation metadata only' } });
   if (!res.ok) throw new Error(`Fetch failed ${res.status} ${res.statusText}: ${url}`);
   const text = await res.text();
   writeFileSync(path, text, 'utf8');
@@ -142,7 +142,7 @@ async function fetchProviderJson(url, headers = {}) {
   if (existsSync(path)) return JSON.parse(readFileSync(path, 'utf8'));
   const res = await fetch(url, {
     headers: {
-      'user-agent': 'Diognosis MedCheck Engine enrichment tool; citation metadata only',
+      'user-agent': 'Diognosis enrichment tool; citation metadata only',
       ...headers,
     },
   });
@@ -157,7 +157,7 @@ async function fetchText(url) {
   mkdirSync(CACHE_DIR, { recursive: true });
   const path = resolve(CACHE_DIR, `${createHash('sha256').update(url).digest('hex')}.xml`);
   if (existsSync(path)) return readFileSync(path, 'utf8');
-  const res = await fetch(url, { headers: { 'user-agent': 'Diognosis MedCheck Engine enrichment tool; citation metadata only' } });
+  const res = await fetch(url, { headers: { 'user-agent': 'Diognosis enrichment tool; citation metadata only' } });
   if (!res.ok) throw new Error(`Fetch failed ${res.status} ${res.statusText}: ${url}`);
   const text = await res.text();
   writeFileSync(path, text, 'utf8');
@@ -203,7 +203,7 @@ function loadExistingDrafts() {
 
 function defaultNoveltyIndex() {
   return {
-    schema: 'medcheck-enrichment-novelty-v1',
+    schema: 'diognosis-enrichment-novelty-v1',
     settings: { minNoveltyScore: 30, saturatedTopicPenalty: 20, repeatQuerySkipThreshold: 0.95 },
     saturatedTopics: {},
     missingFields: {},
@@ -267,7 +267,7 @@ function ncbiParams(args) {
   const params = new URLSearchParams({
     db: 'pubmed',
     retmode: 'json',
-    tool: 'medcheck-enrichment',
+    tool: 'diognosis-enrichment',
   });
   if (args.email) params.set('email', args.email);
   if (args['api-key']) params.set('api_key', args['api-key']);
@@ -885,7 +885,7 @@ function updateQueryMemory(noveltyIndex, { relation, query, providers, articles,
 }
 
 function writeReport({ relation, query, added, skipped, providerErrors = [], queryMemory = null }) {
-  const previous = existsSync(REPORT_PATH) ? readFileSync(REPORT_PATH, 'utf8') : '# Diognosis MedCheck Engine Enrichment Review Report\n';
+  const previous = existsSync(REPORT_PATH) ? readFileSync(REPORT_PATH, 'utf8') : '# Diognosis Enrichment Review Report\n';
   const lines = [
     '',
     `## ${relation || query}`,

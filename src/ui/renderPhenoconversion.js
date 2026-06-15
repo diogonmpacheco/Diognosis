@@ -1,4 +1,4 @@
-// MedCheck Engine — Functional Gene Status renderer
+// Diognosis — Functional Gene Status renderer
 
 function renderPhenoconversionDashboard() {
   const section = document.getElementById("phenoconversionSection");

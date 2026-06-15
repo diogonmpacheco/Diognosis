@@ -9,7 +9,7 @@
     {
       "id": "CHEMBL490",
       "name": "PAROXETINE",
-      "medcheckName": "Paroxetine",
+      "diognosisName": "Paroxetine",
       "drugType": "Small molecule",
       "maximumClinicalStage": "APPROVAL",
       "isApproved": true,
@@ -44,7 +44,7 @@
     {
       "id": "CHEMBL485",
       "name": "CODEINE",
-      "medcheckName": "Codeine",
+      "diognosisName": "Codeine",
       "drugType": "Small molecule",
       "maximumClinicalStage": "APPROVAL",
       "isApproved": true,
@@ -69,7 +69,7 @@
     {
       "id": "CHEMBL1064",
       "name": "SIMVASTATIN",
-      "medcheckName": "Simvastatin",
+      "diognosisName": "Simvastatin",
       "drugType": "Small molecule",
       "maximumClinicalStage": "APPROVAL",
       "isApproved": true,
@@ -108,7 +108,7 @@
     {
       "id": "CHEMBL1741",
       "name": "CLARITHROMYCIN",
-      "medcheckName": "Clarithromycin",
+      "diognosisName": "Clarithromycin",
       "drugType": "Small molecule",
       "maximumClinicalStage": "APPROVAL",
       "isApproved": true,
@@ -162,7 +162,7 @@
     {
       "id": "CHEMBL1773",
       "name": "CAPECITABINE",
-      "medcheckName": "Capecitabine",
+      "diognosisName": "Capecitabine",
       "drugType": "Small molecule",
       "maximumClinicalStage": "APPROVAL",
       "isApproved": true,
@@ -207,7 +207,7 @@
     {
       "id": "CHEMBL42",
       "name": "CLOZAPINE",
-      "medcheckName": "Clozapine",
+      "diognosisName": "Clozapine",
       "drugType": "Small molecule",
       "maximumClinicalStage": "APPROVAL",
       "isApproved": true,
@@ -248,7 +248,7 @@
     {
       "id": "CHEMBL1464",
       "name": "WARFARIN",
-      "medcheckName": "Warfarin",
+      "diognosisName": "Warfarin",
       "drugType": "Small molecule",
       "maximumClinicalStage": "APPROVAL",
       "isApproved": true,
@@ -273,7 +273,7 @@
     {
       "id": "CHEMBL1380",
       "name": "ABACAVIR",
-      "medcheckName": "Abacavir",
+      "diognosisName": "Abacavir",
       "drugType": "Small molecule",
       "maximumClinicalStage": "APPROVAL",
       "isApproved": true,
@@ -298,7 +298,7 @@
     {
       "id": "CHEMBL1771",
       "name": "CLOPIDOGREL",
-      "medcheckName": "Clopidogrel",
+      "diognosisName": "Clopidogrel",
       "drugType": "Small molecule",
       "maximumClinicalStage": "APPROVAL",
       "isApproved": true,
@@ -323,7 +323,7 @@
     {
       "id": "CHEMBL83",
       "name": "TAMOXIFEN",
-      "medcheckName": "Tamoxifen",
+      "diognosisName": "Tamoxifen",
       "drugType": "Small molecule",
       "maximumClinicalStage": "APPROVAL",
       "isApproved": true,

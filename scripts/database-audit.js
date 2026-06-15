@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-// MedCheck Engine database audit
+// Diognosis database audit
 // Run after `node build.js`; audits the generated bundle data for structural gaps.
 
 import { readFileSync } from 'fs';
 import vm from 'vm';
 
-function extractMedCheckBundle(html) {
+function extractDiognosisBundle(html) {
   const scripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)]
     .filter((match) => !/\bsrc\s*=/.test(match[0]));
   if (!scripts.length) throw new Error('Could not find generated bundle in index.html. Run node build.js first.');
@@ -13,7 +13,7 @@ function extractMedCheckBundle(html) {
 }
 
 const html = readFileSync('index.html', 'utf8');
-const bundle = extractMedCheckBundle(html);
+const bundle = extractDiognosisBundle(html);
 
 const elements = {};
 const context = {

@@ -1,4 +1,4 @@
-// MedCheck Engine — generated review workbench
+// Diognosis — generated review workbench
 // Pulls local generated governance queues into one reviewer-facing surface.
 
 let reviewWorkbenchHandlersBound = false;
@@ -103,7 +103,7 @@ function buildReviewWorkbenchModel(stack = activeStack, overrides = {}) {
 
   const firstTargetRows = reviewTargets
     .filter(row => isReviewWorkbenchOpenTargetsRelevant(row, keys))
-    .sort((a, b) => (b.linkedContextRowCount || 0) - (a.linkedContextRowCount || 0) || safeText(a.medcheckName).localeCompare(safeText(b.medcheckName)))
+    .sort((a, b) => (b.linkedContextRowCount || 0) - (a.linkedContextRowCount || 0) || safeText(a.diognosisName).localeCompare(safeText(b.diognosisName)))
     .map(row => normalizeReviewWorkbenchFirstTargetRow(row, true));
 
   const pgxRows = (pgxRoadmap.pairs || [])
@@ -179,7 +179,7 @@ function buildReviewWorkbenchStackKeys(stack, snapshot) {
     [drug?.id].filter(Boolean).forEach(value => activeIds.add(normalizeDrugLookupKey(value)));
   }
   for (const row of snapshot?.crosswalk || []) {
-    const names = [row.medcheckName, row.medcheckId].filter(Boolean).map(normalizeDrugLookupKey);
+    const names = [row.diognosisName, row.diognosisId].filter(Boolean).map(normalizeDrugLookupKey);
     if (names.some(value => activeNames.has(value) || activeIds.has(value))) {
       if (row.chemblId) chemblIds.add(safeText(row.chemblId));
       if (row.openTargetsDrugId) chemblIds.add(safeText(row.openTargetsDrugId));
@@ -204,8 +204,8 @@ function isReviewWorkbenchOpenTargetsRelevant(row, keys) {
   if (row.chemblId && keys.chemblIds.has(safeText(row.chemblId))) return true;
   if (row.openTargetsDrugId && keys.chemblIds.has(safeText(row.openTargetsDrugId))) return true;
   const names = [
-    row.medcheckName,
-    ...(row.medcheckNames || []),
+    row.diognosisName,
+    ...(row.diognosisNames || []),
   ].filter(Boolean).map(normalizeDrugLookupKey);
   return names.some(name => keys.activeNames.has(name) || keys.activeIds.has(name));
 }
@@ -233,7 +233,7 @@ function sortReviewWorkbenchPgx(a, b) {
   const bUnsupported = b.hasGenotypeSelector ? 0 : 1;
   return bUnsupported - aUnsupported ||
     Number(Boolean(b.highEvidence)) - Number(Boolean(a.highEvidence)) ||
-    safeText(a.medcheckName).localeCompare(safeText(b.medcheckName)) ||
+    safeText(a.diognosisName).localeCompare(safeText(b.diognosisName)) ||
     safeText(a.gene).localeCompare(safeText(b.gene));
 }
 
@@ -265,7 +265,7 @@ function normalizeReviewWorkbenchFirstTargetRow(row, stackMatched) {
   return {
     kind: "first_target",
     stackMatched,
-    title: `${row.medcheckName || row.chemblId || "Open Targets"} / ${(row.genes || []).join(", ") || "review target"}`,
+    title: `${row.diognosisName || row.chemblId || "Open Targets"} / ${(row.genes || []).join(", ") || "review target"}`,
     badges: ["First review target", row.status || "review target"],
     decision: row.disposition || "linked_to_diognosis_evidence",
     priority: row.linkedContextRowCount || 0,
@@ -287,7 +287,7 @@ function normalizeReviewWorkbenchPgxRow(row, stackMatched) {
   return {
     kind: "pgx",
     stackMatched,
-    title: `${row.medcheckName || row.chemblId || "Open Targets"} / ${row.gene || "PGx"}`,
+    title: `${row.diognosisName || row.chemblId || "Open Targets"} / ${row.gene || "PGx"}`,
     badges: ["ClinPGx roadmap", row.classification || "context"],
     decision: row.promotionDecision || row.reviewerDisposition || "keep_context",
     priority: row.highEvidence ? 100 : row.hasGenotypeSelector ? 40 : 20,
@@ -309,12 +309,12 @@ function normalizeReviewWorkbenchMechanisticRow(row, stackMatched) {
   return {
     kind: "mechanistic",
     stackMatched,
-    title: `${(row.medcheckNames || [])[0] || row.chemblId || "Open Targets"} / ${row.targetGene || "target safety"}`,
+    title: `${(row.diognosisNames || [])[0] || row.chemblId || "Open Targets"} / ${row.targetGene || "target safety"}`,
     badges: ["external target-safety context", row.targetRelationship || "review"],
     decision: row.reviewDecision || "keep_context",
     priority: row.priorityScore || 0,
     meta: [
-      (row.medcheckNames || []).length ? `Drug: ${row.medcheckNames.join(", ")}` : "",
+      (row.diognosisNames || []).length ? `Drug: ${row.diognosisNames.join(", ")}` : "",
       row.chemblId ? `ChEMBL: ${row.chemblId}` : "",
       row.openTargetsRelease ? `Release: ${row.openTargetsRelease}` : "",
       row.targetGene ? `Target/gene: ${row.targetGene}` : "",
@@ -337,7 +337,7 @@ function normalizeReviewWorkbenchPromotionRow(row, stackMatched) {
     decision: row.reviewDecision || "unreviewed",
     priority: row.priorityScore || 0,
     meta: [
-      (row.medcheckNames || []).length ? `Drug: ${row.medcheckNames.join(", ")}` : "",
+      (row.diognosisNames || []).length ? `Drug: ${row.diognosisNames.join(", ")}` : "",
       row.chemblId ? `ChEMBL: ${row.chemblId}` : "",
       row.release ? `Release: ${row.release}` : "",
       row.targetGene ? `Gene: ${row.targetGene}` : "",

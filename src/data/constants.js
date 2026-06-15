@@ -1,4 +1,4 @@
-// MedCheck Engine — Shared constants and enums
+// Diognosis — Shared constants and enums
 // Phase A: modular source — concatenated by build.js
 
 const INH_MULT = { strong: 5.0, moderate: 2.0, weak: 1.25 };
@@ -582,7 +582,7 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.8, freq_pct:null, note:"Higher UGT2B15 glucuronidation context; parent exposure may fall for selected substrates." },
   },
   UGT2B17: {
-    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.5, freq_pct:null, note:"UGT2B17 deletion/low-function context. Effects are substrate-specific and often strongest for androgen/steroid glucuronidation; MedCheck Engine uses it as a caution flag for oxazepam/temazepam-like glucuronidation rather than a dose rule." },
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.5, freq_pct:null, note:"UGT2B17 deletion/low-function context. Effects are substrate-specific and often strongest for androgen/steroid glucuronidation; Diognosis uses it as a caution flag for oxazepam/temazepam-like glucuronidation rather than a dose rule." },
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.2, freq_pct:null, note:"Intermediate UGT2B17 activity context; usually a weak modifier unless the substrate is strongly UGT2B17-dependent." },
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference UGT2B17 activity." },
   },
@@ -1029,7 +1029,7 @@ const GENOTYPE_RISK_EFFECTS = {
       {
         parent:"Phenobarbital",
         phenotype:"GABA-A receptor response context",
-        note:"GABA-A receptor genetics may affect seizure biology and anti-seizure response context. MedCheck Engine treats this as a review flag rather than a quantified PK effect.",
+        note:"GABA-A receptor genetics may affect seizure biology and anti-seizure response context. Diognosis treats this as a review flag rather than a quantified PK effect.",
         clinicalAction:"specialist review; avoid changing anti-seizure therapy from this marker alone",
         evidenceRefs:["ev_gabrg2_epilepsy_drug_resistance_context"],
       },
@@ -1268,7 +1268,7 @@ function normalizeGenePhenotypeInput(gene, value) {
     return { ...base, phenotype:GENOTYPE_PHENOTYPE.NM, mechanism:"reference" };
   }
   if (/^\s*(rm|rapid)\s*$/i.test(raw) || /rapid metabolizer/.test(normalized)) {
-    return { ...base, phenotype:GENOTYPE_PHENOTYPE.UM, mechanism:"inherited_high_activity", note:"MedCheck Engine currently maps rapid metabolizer reports into the high-activity bucket." };
+    return { ...base, phenotype:GENOTYPE_PHENOTYPE.UM, mechanism:"inherited_high_activity", note:"Diognosis currently maps rapid metabolizer reports into the high-activity bucket." };
   }
 
   const directAliases = {

@@ -2,7 +2,7 @@
 import { createHash } from 'crypto';
 import { mkdirSync, writeFileSync } from 'fs';
 import { relative, resolve } from 'path';
-import { loadMedcheckData, ROOT } from './lib/medcheck-source-loader.js';
+import { loadDiognosisData, ROOT } from './lib/diognosis-source-loader.js';
 import { writeJson } from './lib/enrichment-common.js';
 
 export const CLINPGX_RATE_LIMIT_MS = 550;
@@ -56,7 +56,7 @@ async function rateLimitedFetch(url, attempt = 0) {
 }
 
 function highPriorityInputs(args) {
-  const data = loadMedcheckData();
+  const data = loadDiognosisData();
   const severeDrugs = new Set();
   for (const row of data.KNOWN_DDI || []) {
     if (/severe|critical/i.test(row.severity || '')) {

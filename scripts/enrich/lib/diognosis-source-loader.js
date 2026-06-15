@@ -19,7 +19,7 @@ const SOURCE_MODULES = [
   'src/data/generatedPendingCoreEnrichment.js',
 ];
 
-export function loadMedcheckData(extraModules = []) {
+export function loadDiognosisData(extraModules = []) {
   const modules = [...SOURCE_MODULES, ...extraModules];
   const context = { console };
   vm.createContext(context);
@@ -28,7 +28,7 @@ export function loadMedcheckData(extraModules = []) {
     .map((file) => readFileSync(resolve(ROOT, file), 'utf8'))
     .join('\n\n');
   vm.runInContext(`${source}
-globalThis.__MEDCHECK_DATA__ = {
+globalThis.__DIOGNOSIS_DATA__ = {
   DRUG_DB: typeof DRUG_DB !== "undefined" ? DRUG_DB : [],
   KNOWN_DDI: typeof KNOWN_DDI !== "undefined" ? KNOWN_DDI : [],
   COMBINATION_PRODUCTS: typeof COMBINATION_PRODUCTS !== "undefined" ? COMBINATION_PRODUCTS : [],
@@ -53,7 +53,7 @@ globalThis.__MEDCHECK_DATA__ = {
   normalizeDrugLookupKey: typeof normalizeDrugLookupKey !== "undefined" ? normalizeDrugLookupKey : null,
   getDrugAliases: typeof getDrugAliases !== "undefined" ? getDrugAliases : null,
 };`, context);
-  return context.__MEDCHECK_DATA__;
+  return context.__DIOGNOSIS_DATA__;
 }
 
 export function normalizeName(value) {

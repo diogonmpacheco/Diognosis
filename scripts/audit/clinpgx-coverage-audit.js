@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { resolve } from 'path';
-import { loadMedcheckData, ROOT } from '../enrich/lib/medcheck-source-loader.js';
+import { loadDiognosisData, ROOT } from '../enrich/lib/diognosis-source-loader.js';
 import { markdownTable, readJson, writeJson, writeText } from '../enrich/lib/enrichment-common.js';
 
 const OUT_JSON = resolve(ROOT, 'docs/audits/clinpgx-coverage-audit.json');
@@ -8,7 +8,7 @@ const OUT_MD = resolve(ROOT, 'docs/audits/clinpgx-coverage-audit.md');
 const STAGED = resolve(ROOT, 'data/enrichment/staged/clinpgx-staged-records.json');
 const check = process.argv.includes('--check');
 
-const data = loadMedcheckData();
+const data = loadDiognosisData();
 const staged = readJson(STAGED, []);
 const metadata = readJson(resolve(ROOT, 'data/enrichment/snapshots/clinpgx-snapshot-metadata.json'), {});
 const modeledGenes = new Set(Object.keys(data.GENOTYPE_EFFECTS || {}));

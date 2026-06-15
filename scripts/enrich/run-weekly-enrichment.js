@@ -2,7 +2,7 @@
 import { execFileSync, spawnSync } from 'child_process';
 import { existsSync, readdirSync, statSync } from 'fs';
 import { extname, join, resolve } from 'path';
-import { ROOT } from './lib/medcheck-source-loader.js';
+import { ROOT } from './lib/diognosis-source-loader.js';
 import { readJson, writeJson, writeText, commandSummary } from './lib/enrichment-common.js';
 
 const OUT_JSON = resolve(ROOT, 'docs/audits/weekly-enrichment-report.json');

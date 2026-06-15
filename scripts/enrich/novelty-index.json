@@ -1,5 +1,5 @@
 {
-  "schema": "medcheck-enrichment-novelty-v1",
+  "schema": "diognosis-enrichment-novelty-v1",
   "settings": {
     "minNoveltyScore": 30,
     "saturatedTopicPenalty": 20,

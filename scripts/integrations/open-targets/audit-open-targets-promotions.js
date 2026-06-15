@@ -69,12 +69,12 @@ function matchesSelectorPattern(actual, pattern) {
 
 function selectorMatches(decision, fact, mappedRows) {
   const selector = decision.selector || {};
-  const medcheckNames = mappedRows.map(row => row.medcheckName).filter(Boolean);
+  const diognosisNames = mappedRows.map(row => row.diognosisName).filter(Boolean);
   if (!matchesSelectorValue(fact.chemblId, selector.chemblId)) return false;
   if (!matchesSelectorValue(fact.openTargetsSourceDataset || fact.factType, selector.dataset)) return false;
   if (!matchesSelectorValue(fact.targetGene, selector.targetGene)) return false;
   if (!matchesSelectorValue(fact.sourceEvidenceLevel, selector.sourceEvidenceLevel)) return false;
-  if (selector.medcheckName && !medcheckNames.some(name => matchesSelectorValue(name, selector.medcheckName))) return false;
+  if (selector.diognosisName && !diognosisNames.some(name => matchesSelectorValue(name, selector.diognosisName))) return false;
   if (!matchesSelectorPattern(fact.label, selector.labelPattern)) return false;
   if (!matchesSelectorPattern(fact.riskMarker, selector.riskMarkerPattern)) return false;
   return true;
@@ -140,7 +140,7 @@ function buildQueue(snapshot, decisions) {
       rows.push({
         id: fact.id,
         factKey: factKey(fact),
-        medcheckNames: mapped.map(row => row.medcheckName).filter(Boolean),
+        diognosisNames: mapped.map(row => row.diognosisName).filter(Boolean),
         chemblId: fact.chemblId || null,
         openTargetsDrugId: fact.openTargetsDrugId || fact.chemblId || null,
         dataset: fact.openTargetsSourceDataset || fact.factType || null,
@@ -169,7 +169,7 @@ function buildQueue(snapshot, decisions) {
 
   rows.sort((a, b) =>
     b.priorityScore - a.priorityScore ||
-    String(a.medcheckNames[0] || a.chemblId).localeCompare(String(b.medcheckNames[0] || b.chemblId)) ||
+    String(a.diognosisNames[0] || a.chemblId).localeCompare(String(b.diognosisNames[0] || b.chemblId)) ||
     String(a.id).localeCompare(String(b.id))
   );
 
@@ -211,7 +211,7 @@ function renderMarkdown(queue) {
     idx + 1,
     row.reviewDecision,
     row.priorityScore,
-    row.medcheckNames.join(', ') || row.chemblId,
+    row.diognosisNames.join(', ') || row.chemblId,
     row.dataset,
     row.targetGene || '',
     row.sourceEvidenceLevel || '',

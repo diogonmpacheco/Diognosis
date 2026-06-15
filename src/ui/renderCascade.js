@@ -1,4 +1,4 @@
-// MedCheck Engine — Effect cascade visualization
+// Diognosis — Effect cascade visualization
 // Phase F: weighted propagating confidence, convergence detection, impact scoring
 // Phase A: modular source — concatenated by build.js
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// MedCheck Engine validation harness
+// Diognosis validation harness
 // Non-mutating: reports provenance/reference gaps without editing source data.
 
 import { readFileSync } from 'fs';
@@ -7,7 +7,7 @@ import vm from 'vm';
 
 const strict = process.argv.includes('--strict');
 
-function extractMedCheckBundle(html) {
+function extractDiognosisBundle(html) {
   const scripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)]
     .filter((match) => !/\bsrc\s*=/.test(match[0]));
   if (!scripts.length) throw new Error('Could not find generated bundle in index.html. Run node build.js first.');
@@ -16,7 +16,7 @@ function extractMedCheckBundle(html) {
 
 function loadBundleContext() {
   const html = readFileSync('index.html', 'utf8');
-  const bundle = extractMedCheckBundle(html);
+  const bundle = extractDiognosisBundle(html);
 
   const elements = {};
   const context = {
@@ -137,7 +137,7 @@ function add(kind, type, message, ref) {
 
 const scenarioManifest = (() => {
   try {
-    return JSON.parse(readFileSync('tests/scenarios/medcheck-scenarios.json', 'utf8'));
+    return JSON.parse(readFileSync('tests/scenarios/diognosis-scenarios.json', 'utf8'));
   } catch {
     return { scenarios: [], modelScenarios: [] };
   }
@@ -433,13 +433,13 @@ if (!reference) {
 } else {
   for (const [enzyme, phenos] of Object.entries(reference.GENOTYPE_EFFECTS || {})) {
     if (!data.GENOTYPE_EFFECTS[enzyme]) {
-      add('warnings', 'reference_enzyme_missing_in_medcheck', `${enzyme} exists in reference but not MedCheck Engine`, enzyme);
+      add('warnings', 'reference_enzyme_missing_in_diognosis', `${enzyme} exists in reference but not Diognosis`, enzyme);
       continue;
     }
     for (const [phenotype, refEffect] of Object.entries(phenos || {})) {
       const local = data.GENOTYPE_EFFECTS[enzyme][phenotype];
       if (!local) {
-        add('warnings', 'reference_phenotype_missing_in_medcheck', `${enzyme}/${phenotype} exists in reference but not MedCheck Engine`, `${enzyme}/${phenotype}`);
+        add('warnings', 'reference_phenotype_missing_in_diognosis', `${enzyme}/${phenotype} exists in reference but not Diognosis`, `${enzyme}/${phenotype}`);
         continue;
       }
       const tolerance = refEffect.tolerance || 0.25;

@@ -1,4 +1,4 @@
-// MedCheck Engine — Adverse burden scoring.
+// Diognosis — Adverse burden scoring.
 // computeAdverseBurden lives in data/pharmacology.js with ACB_SCORES and
 // BEERS_FLAGS so those data tables and the scorer stay versioned together.
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { spawnSync } from 'child_process';
-import { ROOT } from './lib/medcheck-source-loader.js';
+import { ROOT } from './lib/diognosis-source-loader.js';
 
 const args = process.argv.slice(2);
 const forwarded = args.filter(arg => arg !== '--check');

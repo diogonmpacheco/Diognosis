@@ -1,4 +1,4 @@
-// MedCheck Engine — risk-marker-aware normalized findings
+// Diognosis — risk-marker-aware normalized findings
 
 function computeRiskMarkerFindings(stack, genotypeState = {}, context = {}) {
   const activeNames = Array.isArray(stack) && stack.length ? stack : activeStack;

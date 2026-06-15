@@ -1,4 +1,4 @@
-// MedCheck Engine — Study database and evidence ingestion pipeline
+// Diognosis — Study database and evidence ingestion pipeline
 // Phase A: modular source — concatenated by build.js
 
 const STUDY_DB = {
@@ -1246,7 +1246,7 @@ const STUDY_DB = {
     temporal:{mechanism:"isothiocyanate_GSH_GST_mercapturic_acid_clearance"},
     supports:["GST_null_status_modifies_isothiocyanate_excretion","PEITC_mercapturic_acid_pathway"],
     contradicts:[],
-    limitations:["Dietary exposure study; GSTT1 is not yet a first-class MedCheck Engine genotype selector, and bioavailability is not equivalent to harm"],
+    limitations:["Dietary exposure study; GSTT1 is not yet a first-class Diognosis genotype selector, and bioavailability is not equivalent to harm"],
     verified:false, reviewRequired:true, verifyNote:"Watercress isothiocyanate enrichment pending nutrition pharmacology review"
   },
 
@@ -5687,7 +5687,7 @@ const STUDY_DB = {
     studyDesign:"regulatory_label",
     n:null,
     phenotypes:["poor_metabolizer","intermediate_metabolizer","normal_metabolizer"],
-    quantifiedEffects:{note:"Glipizide and glyburide labeling describes hepatic metabolism and hypoglycemia risk; CYP2C9 contributes substantially to oxidative clearance in the MedCheck Engine model, so reduced CYP2C9 function is represented as a hypoglycemia-risk context rather than a genotype-only dose rule."},
+    quantifiedEffects:{note:"Glipizide and glyburide labeling describes hepatic metabolism and hypoglycemia risk; CYP2C9 contributes substantially to oxidative clearance in the Diognosis model, so reduced CYP2C9 function is represented as a hypoglycemia-risk context rather than a genotype-only dose rule."},
     temporal:{mechanism:"reduced_CYP2C9_sulfonylurea_clearance"},
     supports:["glipizide_SUBSTRATE_OF_CYP2C9","glyburide_SUBSTRATE_OF_CYP2C9","sulfonylurea_hypoglycemia_context"],
     contradicts:[],
@@ -7037,7 +7037,7 @@ const STUDY_DB = {
     url:"https://pubmed.ncbi.nlm.nih.gov/20170205/",
     studyDesign:"literature_review_plus_observational_associations", n:null,
     phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM, GENOTYPE_PHENOTYPE.NM],
-    quantifiedEffects:{note:"Common ABCB1 variants and haplotypes such as rs1045642, rs1128503, and rs2032582 have been associated with altered P-gp expression/function and variable substrate exposure. Effects are inconsistent across drugs and studies, so MedCheck Engine models a conservative directional reduced-efflux phenotype rather than a drug-specific dose rule."},
+    quantifiedEffects:{note:"Common ABCB1 variants and haplotypes such as rs1045642, rs1128503, and rs2032582 have been associated with altered P-gp expression/function and variable substrate exposure. Effects are inconsistent across drugs and studies, so Diognosis models a conservative directional reduced-efflux phenotype rather than a drug-specific dose rule."},
     temporal:{mechanism:"P-gp efflux transporter function at gut, blood-brain barrier, kidney, liver, and placenta"},
     supports:["ABCB1_P-gp_reduced_efflux_context", "ABCB1_digoxin_dabigatran_loperamide_calcineurin_context"],
     contradicts:["ABCB1_effects_are_context_dependent_and_not_uniform_across_substrates"],
@@ -7051,7 +7051,7 @@ const STUDY_DB = {
     url:"https://pubmed.ncbi.nlm.nih.gov/10233211/",
     studyDesign:"caffeine_phenotyping_and_clinical_pk_context", n:null,
     phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM, GENOTYPE_PHENOTYPE.NM, GENOTYPE_PHENOTYPE.UM],
-    quantifiedEffects:{note:"CYP1A2 genotype/inducibility studies using caffeine show context-dependent activity differences, especially with smoking induction. Clinical CYP1A2 activity also predicts clozapine concentration variability. MedCheck Engine therefore models conservative directional CYP1A2 activity states and keeps environment/drug inhibition context prominent."},
+    quantifiedEffects:{note:"CYP1A2 genotype/inducibility studies using caffeine show context-dependent activity differences, especially with smoking induction. Clinical CYP1A2 activity also predicts clozapine concentration variability. Diognosis therefore models conservative directional CYP1A2 activity states and keeps environment/drug inhibition context prominent."},
     temporal:{mechanism:"CYP1A2 hepatic oxidative clearance; inducible by smoking and other aryl-hydrocarbon receptor signals"},
     supports:["CYP1A2_caffeine_clozapine_theophylline_tizanidine_exposure_context"],
     contradicts:["CYP1A2_genotype_effect_is_context_dependent_and_environmentally_inducible"],
@@ -7079,7 +7079,7 @@ const STUDY_DB = {
     url:"https://pubmed.ncbi.nlm.nih.gov/12920162/",
     studyDesign:"in_vitro_kinetic_study_plus_clinical_review_context", n:null,
     phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM, GENOTYPE_PHENOTYPE.NM, GENOTYPE_PHENOTYPE.UM],
-    quantifiedEffects:{note:"UGT2B7 contributes to morphine 3- and 6-glucuronidation and other glucuronide pathways. Variant effects are substrate- and study-dependent, so MedCheck Engine models directional glucuronidation context rather than a fixed dose rule."},
+    quantifiedEffects:{note:"UGT2B7 contributes to morphine 3- and 6-glucuronidation and other glucuronide pathways. Variant effects are substrate- and study-dependent, so Diognosis models directional glucuronidation context rather than a fixed dose rule."},
     temporal:{mechanism:"phase II glucuronidation; parent-to-glucuronide balance may alter parent exposure and active/toxic metabolite context"},
     supports:["UGT2B7_morphine_glucuronidation_context", "UGT2B7_opioid_glucuronide_review_flag"],
     contradicts:["UGT2B7_global_variant_effect_is_not_uniform_across_substrates"],
@@ -7125,7 +7125,7 @@ const STUDY_DB = {
     temporal:{mechanism:"busulfan glutathione conjugation and conditioning-regimen exposure/toxicity"},
     supports:["busulfan_GST_clearance_context","GSTM1_null_busulfan_review_flag"],
     contradicts:["GST_genotype_does_not_replace_busulfan_TDM"],
-    limitations:["Gene effects differ by age, conditioning regimen, sampling strategy, and route; GSTA1 is important but not currently a MedCheck Engine panel."],
+    limitations:["Gene effects differ by age, conditioning regimen, sampling strategy, and route; GSTA1 is important but not currently a Diognosis panel."],
     verified:false, reviewRequired:true, verifyNote:"Busulfan/GST enrichment pending transplant oncology pharmacy review"
   },
   "ev_phase2_anticancer_gst_review": {
@@ -7467,7 +7467,7 @@ const STUDY_DB = {
     temporal:{mechanism:"CES1_hydrolysis_plus_MAOI_catecholamine_potentiation"},
     supports:["dexmethylphenidate_METABOLIZED_TO_ritalinic_acid","dexmethylphenidate_maoi_contraindication"],
     contradicts:[],
-    limitations:["CES1 genetic evidence is emerging and not yet represented as a full genotype selector in MedCheck Engine."],
+    limitations:["CES1 genetic evidence is emerging and not yet represented as a full genotype selector in Diognosis."],
     verified:false, reviewRequired:true, verifyNote:"Medication/genotype enrichment batch - stimulant label"
   },
   "ev_thioridazine_qt_cyp2d6_fda": {

@@ -1,4 +1,4 @@
-// MedCheck Engine — Persistence & Washout Timeline
+// Diognosis — Persistence & Washout Timeline
 
 const PERSISTENCE_TYPE_LABELS = {
   parent: "Parent persistence",

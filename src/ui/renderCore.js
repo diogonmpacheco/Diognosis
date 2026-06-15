@@ -1,4 +1,4 @@
-// MedCheck Engine — Core app state management and main render loop
+// Diognosis — Core app state management and main render loop
 // Phase A: modular source — concatenated by build.js
 
 function addDrug(name) {
@@ -51,7 +51,7 @@ let currentClinicalConcerns = [];
 let renderComputationCache = null;
 let lazyRenderState = { evidenceKey:"", reviewKey:"" };
 let manualSectionToggleKeys = {};
-const MEDCHECK_TABS = ["overview","mechanisms","genes-metabolites","timing-levels","evidence","review"];
+const DIOGNOSIS_TABS = ["overview","mechanisms","genes-metabolites","timing-levels","evidence","review"];
 const TAB_ALIASES = {
   safety:"overview",
   summary:"overview",
@@ -76,7 +76,7 @@ const TAB_ALIASES = {
 
 function resolveTabAlias(name) {
   const raw = String(name || "").trim();
-  if (MEDCHECK_TABS.includes(raw)) return raw;
+  if (DIOGNOSIS_TABS.includes(raw)) return raw;
   const key = raw.toLowerCase();
   return TAB_ALIASES[key] || "overview";
 }
@@ -96,7 +96,7 @@ function setViewMode(m) {
 
 function setTab(name) {
   const resolvedTab = setActiveTab(name);
-  MEDCHECK_TABS.forEach(t => {
+  DIOGNOSIS_TABS.forEach(t => {
     const panel = document.getElementById("tab-" + t);
     const btn = document.getElementById("tabbtn-" + t);
     if (panel) panel.classList.toggle("active", t === resolvedTab);
@@ -201,7 +201,7 @@ function renderSummaryBar() {
   if (!bar || !tabBar) return;
 
   const overviewBtn = document.getElementById("tabbtn-overview");
-  const tabPanels = MEDCHECK_TABS
+  const tabPanels = DIOGNOSIS_TABS
     .map(t => document.getElementById("tab-" + t))
     .filter(Boolean);
   if (activeStack.length < 1) {
@@ -248,7 +248,7 @@ function renderSummaryBar() {
       "No major interaction signal found";
     summaryCopy = severeCount > 0
       ? `${severeCount} severe finding${severeCount>1?"s":""}${topSevere ? `: ${topSevere}` : ""}. Review the findings before changing doses or adding more substances.`
-      : `Checked ${activeStack.length} substances. MedCheck Engine did not find a severe pairwise interaction, but genotype, transporter, metabolite, and dose context may still matter.`;
+      : `Checked ${activeStack.length} substances. Diognosis did not find a severe pairwise interaction, but genotype, transporter, metabolite, and dose context may still matter.`;
     nextStep = severeCount > 0
       ? "Start with the severe findings, then review genotype-adjusted levels."
       : "Review level changes and genotype notes for dose-sensitive substances.";
@@ -494,7 +494,7 @@ function buildDefaultPriorityStory(count) {
   if (count < 1) return null;
   if (count < 2) {
     return {
-      why:"MedCheck Engine can already show pharmacogenomic, metabolite, and dose context for one medication when available.",
+      why:"Diognosis can already show pharmacogenomic, metabolite, and dose context for one medication when available.",
       changes:"Pairwise interaction risk needs at least two substances, but genotype or metabolite context can still matter.",
       review:"Add another substance or set known genotype results to personalize the review.",
     };
@@ -541,7 +541,7 @@ function renderPriorityStory(story) {
 }
 
 function updateEmptyTabs() {
-  MEDCHECK_TABS.forEach(t => {
+  DIOGNOSIS_TABS.forEach(t => {
     const panel = document.getElementById("tab-" + t);
     if (!panel || typeof panel.querySelectorAll !== "function") return;
     const sections = Array.from(panel.querySelectorAll(".section"));
@@ -1058,13 +1058,13 @@ function encodeUrlStateValueLocal(value) {
   return encodeURIComponent(value).replace(/%2C/g, ",").replace(/%3A/g, ":");
 }
 
-function buildMedCheckIssueUrl({ type = "data", title = "Diognosis feedback", focus = "", details = "", evidenceRefs = [] } = {}) {
+function buildDiognosisIssueUrl({ type = "data", title = "Diognosis feedback", focus = "", details = "", evidenceRefs = [] } = {}) {
   const stack = activeStack.length ? activeStack.join(" + ") : "No active stack";
   const shareLink = currentStackShareUrl(activeTab || "overview");
   const currentUrl = typeof window !== "undefined" && window.location ? window.location.href : "";
   const labels = type === "bug" ? "bug" : "data-review";
   const body = [
-    "## Diognosis / MedCheck Engine context",
+    "## Diognosis context",
     `- Stack: ${stack}`,
     `- Share link: ${shareLink}`,
     currentUrl ? `- Current URL: ${currentUrl}` : "",
@@ -1078,7 +1078,7 @@ function buildMedCheckIssueUrl({ type = "data", title = "Diognosis feedback", fo
     "Add PMID, DOI, DailyMed/FDA, CPIC/DPWG, guideline, label, or other public source identifiers.",
     "",
     "## Review note",
-    "Diognosis is educational, source-linked, pre-v1, and pending professional clinical review. MedCheck Engine outputs are not medical advice or clinical decision support. Do not include private patient data."
+    "Diognosis is educational, source-linked, pre-v1, and pending professional clinical review. Diognosis outputs are not medical advice or clinical decision support. Do not include private patient data."
   ].filter(Boolean).join("\n");
   const params = new URLSearchParams({
     title,
@@ -1089,7 +1089,7 @@ function buildMedCheckIssueUrl({ type = "data", title = "Diognosis feedback", fo
 }
 
 function renderFeedbackLink(label, options = {}) {
-  const href = buildMedCheckIssueUrl(options);
+  const href = buildDiognosisIssueUrl(options);
   return `<a class="feedback-link" href="${escapeHtml(href)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${escapeHtml(label)}</a>`;
 }
 

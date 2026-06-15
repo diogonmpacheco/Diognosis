@@ -36,26 +36,26 @@ function validate(snapshot) {
 
   for (const row of accepted) {
     for (const field of ['identityReviewedBy', 'identityReviewedAt', 'identityReviewRationale']) {
-      if (!row[field]) errors.push(`${row.medcheckName}: accepted mapping missing ${field}`);
+      if (!row[field]) errors.push(`${row.diognosisName}: accepted mapping missing ${field}`);
     }
     if (row.identityReviewRequired === true) {
-      errors.push(`${row.medcheckName}: accepted mapping should not still require identity review`);
+      errors.push(`${row.diognosisName}: accepted mapping should not still require identity review`);
     }
     if (!Number.isFinite(row.matchConfidence) || row.matchConfidence < MIN_ACCEPTED_MATCH_CONFIDENCE) {
-      errors.push(`${row.medcheckName}: accepted mapping confidence ${row.matchConfidence} is below ${MIN_ACCEPTED_MATCH_CONFIDENCE}`);
+      errors.push(`${row.diognosisName}: accepted mapping confidence ${row.matchConfidence} is below ${MIN_ACCEPTED_MATCH_CONFIDENCE}`);
     }
   }
 
   for (const row of nonAccepted) {
     const facts = contextCount(snapshot, row.chemblId);
     if (facts > 0) {
-      errors.push(`${row.medcheckName}: non-accepted mapping ${row.chemblId} exposes ${facts} context fact(s)`);
+      errors.push(`${row.diognosisName}: non-accepted mapping ${row.chemblId} exposes ${facts} context fact(s)`);
     }
   }
 
   for (const row of combinationRows) {
-    if (row.chemblId) errors.push(`${row.medcheckName}: combination/context row should not map directly to one ChEMBL molecule`);
-    if (row.combinationProductAuthority !== 'diognosis') errors.push(`${row.medcheckName}: combination/context row missing Diognosis authority marker`);
+    if (row.chemblId) errors.push(`${row.diognosisName}: combination/context row should not map directly to one ChEMBL molecule`);
+    if (row.combinationProductAuthority !== 'diognosis') errors.push(`${row.diognosisName}: combination/context row missing Diognosis authority marker`);
   }
 
   return {
@@ -84,7 +84,7 @@ function cell(value) {
 
 function renderMarkdown(report) {
   const acceptedRows = report.accepted.map(row => `| ${[
-    row.medcheckName,
+    row.diognosisName,
     row.chemblId,
     row.openTargetsName,
     row.identityReviewedBy,
@@ -94,8 +94,8 @@ function renderMarkdown(report) {
   ].map(cell).join(' | ')} |`).join('\n') || '| none | none | none | none | none | none | 0 |';
 
   const combinationRows = report.combinationRows.map(row => `| ${[
-    row.medcheckName,
-    row.medcheckClass,
+    row.diognosisName,
+    row.diognosisClass,
     row.matchReason,
   ].map(cell).join(' | ')} |`).join('\n') || '| none | none | none |';
 

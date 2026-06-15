@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { resolve } from 'path';
-import { readGeneratedConstObject, ROOT } from '../enrich/lib/medcheck-source-loader.js';
+import { readGeneratedConstObject, ROOT } from '../enrich/lib/diognosis-source-loader.js';
 import { markdownTable, writeJson, writeText } from '../enrich/lib/enrichment-common.js';
 
 const SOURCE = resolve(ROOT, 'src/data/generatedLivePendingReview.js');

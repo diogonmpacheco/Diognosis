@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { createHash } from 'crypto';
 import { isAbsolute, resolve } from 'path';
-import { loadMedcheckData, ROOT, severityValue, uniq } from './lib/medcheck-source-loader.js';
+import { loadDiognosisData, ROOT, severityValue, uniq } from './lib/diognosis-source-loader.js';
 import { dedupeStagedSourceRecords, normalizeStagedSourceRecord } from './lib/staged-source-schema.js';
 import { readJson, writeJson } from './lib/enrichment-common.js';
 
@@ -114,7 +114,7 @@ function makeRecord({ fetchedAt, gene, drug, claimType, evidenceRefs = [], sourc
 }
 
 function buildCpicRecords() {
-  const data = loadMedcheckData();
+  const data = loadDiognosisData();
   const fetchedAt = new Date().toISOString();
   const ddiCount = new Map();
   for (const row of data.KNOWN_DDI) {

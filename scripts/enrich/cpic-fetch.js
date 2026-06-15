@@ -2,7 +2,7 @@
 import { createHash } from 'crypto';
 import { mkdirSync, writeFileSync } from 'fs';
 import { relative, resolve } from 'path';
-import { ROOT } from './lib/medcheck-source-loader.js';
+import { ROOT } from './lib/diognosis-source-loader.js';
 import { writeJson } from './lib/enrichment-common.js';
 
 const DEFAULT_CACHE_DIR = resolve(ROOT, 'data/enrichment/cache/cpic');

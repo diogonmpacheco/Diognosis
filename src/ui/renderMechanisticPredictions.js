@@ -1,4 +1,4 @@
-// MedCheck Engine — Mechanistic interpretation renderer
+// Diognosis — Mechanistic interpretation renderer
 
 function renderMechanisticPredictions() {
   const sec = document.getElementById("mechanisticSection");
@@ -21,7 +21,7 @@ function renderMechanisticPredictions() {
   if (countEl) countEl.textContent = `${predictions.length} model${predictions.length === 1 ? "" : "s"}`;
   el.innerHTML = `
     <div class="mechanistic-note">
-      This section shows model-only pathway read-through from MedCheck Engine enzyme, transporter, genotype, and metabolite data. Confirmed warnings stay in Known Interactions; citations and review status stay in Evidence.
+      This section shows model-only pathway read-through from Diognosis enzyme, transporter, genotype, and metabolite data. Confirmed warnings stay in Known Interactions; citations and review status stay in Evidence.
     </div>
     ${predictions.slice(0, 12).map(renderMechanisticPredictionCard).join("")}
     ${predictions.length > 12 ? `<div class="finding-empty">Showing 12 of ${predictions.length} model predictions for readability.</div>` : ""}
