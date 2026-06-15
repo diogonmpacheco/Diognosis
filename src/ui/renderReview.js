@@ -20,6 +20,10 @@ function renderReviewSummary() {
   const pendingEnrichment = typeof getRenderComputationCache === "function"
     ? getRenderComputationCache().pendingReviewContext
     : null;
+  const pendingCore = typeof getRenderComputationCache === "function"
+    ? getRenderComputationCache().pendingCoreContext
+    : null;
+  const pendingCoreCounts = pendingCore?.counts || {};
   section.style.display = "";
   if (count) count.textContent = `${findings.length} finding${findings.length === 1 ? "" : "s"}`;
   body.innerHTML = `<div class="review-summary-grid">
@@ -31,10 +35,12 @@ function renderReviewSummary() {
     ${renderReviewSummaryTile(genotype.length, "Gene / PGx", "Genotype or phenoconversion context present.")}
     ${renderReviewSummaryTile(timing.length, "Timing", "Persistence, washout, recovery, or induction context present.")}
     ${renderReviewSummaryTile(pendingEnrichment?.matchedCount || 0, "Pending Enrichment", `${pendingEnrichment?.totalRecords || 0} staged external records available as non-scoring context.`)}
+    ${renderReviewSummaryTile(pendingCore?.matchedCount || 0, "Typed Pending Core", `${pendingCore?.totalCandidates || 0} candidates: ${pendingCoreCounts.studyCandidates || 0} evidence, ${pendingCoreCounts.pgxCandidates || 0} PGx, ${pendingCoreCounts.interactionCandidates || 0} interaction.`)}
     ${renderReviewSummaryTile(concerns.length, "Clinical Concerns", "Grouped Overview presentation objects.")}
   </div>
   <div class="quality-list">
     <div class="quality-item"><strong>Review scope:</strong> raw warning paths, evidence review queue, interaction grid, data diagnostics, scenario snapshots, and contribution links are grouped here for auditing.</div>
+    ${renderPendingCoreReviewList(pendingCore)}
     ${renderClinicalConcernReviewList(concerns)}
   </div>`;
   return findings;
@@ -153,6 +159,32 @@ function renderClinicalConcernReviewList(concerns = []) {
         <div class="review-diagnostic-meta">source ids: ${safeHtml((concern.sourceFindings || []).map(row => row.id).slice(0, 5).join(", ") || "none")}</div>
       </div>`).join("")}
     </div>
+  </div>`;
+}
+
+function renderPendingCoreReviewList(context) {
+  if (!context?.totalCandidates) return "";
+  const counts = context.counts || {};
+  const expanded = context.candidateExpandedCounts || {};
+  const rows = [
+    ["DRUG_DB", counts.drugCandidates || 0, expanded.drugs],
+    ["STUDY_DB", counts.studyCandidates || 0, expanded.evidenceEntries],
+    ["KNOWN_DDI", counts.interactionCandidates || 0, expanded.interactionPairs],
+    ["METAB", counts.metaboliteCandidates || 0, expanded.metaboliteEntries],
+    ["PK", counts.pkCandidates || 0, expanded.pkProfiles],
+    ["PGx", counts.pgxCandidates || 0, expanded.genotypeGenes],
+    ["Beers", counts.beersCandidates || 0, expanded.beersFlags],
+    ["Washout", counts.washoutCandidates || 0, expanded.washoutRules],
+  ];
+  return `<div class="quality-item">
+    <strong>Typed pending core candidates:</strong>
+    <div class="review-diagnostic-grid" style="margin-top:8px">
+      ${rows.map(([label, pending, expandedCount]) => `<div class="review-diagnostic-card">
+        <div class="review-diagnostic-title">${safeHtml(label)}</div>
+        <div class="review-diagnostic-meta">${safeHtml(String(pending || 0))} pending candidate${pending === 1 ? "" : "s"}${expandedCount ? ` · ${safeHtml(String(expandedCount))} candidate-expanded` : ""}</div>
+      </div>`).join("")}
+    </div>
+    <div class="review-diagnostic-meta" style="margin-top:6px">These source-linked candidates are visible to the engine as context. They do not change score, public severity, or clinical actions.</div>
   </div>`;
 }
 

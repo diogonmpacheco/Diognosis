@@ -112,15 +112,16 @@ Diognosis is intentionally conservative about what it claims. MedCheck Engine PK
 ## Launch Stats
 
 <!-- MEDCHECK_STATS_START -->
-- **625 drugs** in DRUG_DB
-- **456 evidence entries** in STUDY_DB (275 with PMIDs; 456 with source identifiers) — **456 pending professional review**, **0 professionally reviewed**
+- **625 drugs** in DRUG_DB (+236 pending candidates; 861 candidate-expanded)
+- **456 evidence entries** in STUDY_DB (275 with PMIDs; 456 with source identifiers) — **456 not professionally reviewed**, **0 professionally reviewed** (+2355 pending candidates; 2811 candidate-expanded)
 - **2355 pending-review enrichment records** from **4 external source groups** (context only; non-scoring)
-- **627 interaction pairs** (323 severe, 280 moderate, 24 mild)
-- **1171 metabolite entries** across **467 parent substances** (33 first-class metabolite actors)
-- **506 absolute PK simulation profiles** with relative fallback for half-life-only drugs
-- **57 genotype genes** and **52 receptor score profiles**
-- **43 Beers flags** and **24 washout rules**
-- **8655 KB** generated bundle (194302 lines)
+- **5400 typed pending core candidates** derived from source-linked enrichment (non-scoring, pending verification)
+- **627 interaction pairs** (323 severe, 280 moderate, 24 mild) (+1 pending candidates; 628 candidate-expanded)
+- **1171 metabolite entries** across **467 parent substances** (33 first-class metabolite actors) (+45 pending candidates; 1216 candidate-expanded)
+- **506 absolute PK simulation profiles** with relative fallback for half-life-only drugs (+191 pending candidates; 697 candidate-expanded)
+- **57 genotype genes** and **52 receptor score profiles** (+2386 pending PGx rule candidates across 129 genes; 186 candidate-expanded genes, 149 candidate-expanded receptor/phenotype profiles)
+- **43 Beers flags** and **24 washout rules** (+4 Beers candidates; +61 washout candidates; 47/85 candidate-expanded)
+- **18782 KB** generated bundle (432191 lines)
 <!-- MEDCHECK_STATS_END -->
 
 ---

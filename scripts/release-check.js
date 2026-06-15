@@ -113,6 +113,7 @@ run('Enrichment preview mode audit', node, ['scripts/audit/enrichment-preview-mo
 run('Enrichment coverage audit', node, ['scripts/audit/enrichment-coverage-audit.js', '--check']);
 run('Enrichment metadata path audit', node, ['scripts/audit/enrichment-metadata-path-audit.js']);
 run('Pending-review enrichment audit', node, ['scripts/audit/pending-review-enrichment-audit.js']);
+run('Pending core enrichment audit', node, ['scripts/audit/pending-core-enrichment-audit.js']);
 run('Scenario snapshot audit', node, ['scripts/audit/scenario-snapshot-audit.js']);
 run('Deep launch QA audit', node, ['scripts/launch-qa-audit.js']);
 run('Regression check', node, ['scripts/regression-check.js']);

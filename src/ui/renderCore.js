@@ -137,6 +137,9 @@ function getRenderComputationCache() {
   const pendingReviewContext = typeof buildPendingReviewContext === "function"
     ? buildPendingReviewContext(activeStack, safeGenotype)
     : { totalRecords:0, matchedCount:0, visibleRecords:[], matchedRecords:[], bySource:{}, matchedBySource:{} };
+  const pendingCoreContext = risk.pendingCoreContext || (typeof buildPendingCoreEnrichmentContext === "function"
+    ? buildPendingCoreEnrichmentContext(activeStack, safeGenotype)
+    : { totalCandidates:0, matchedCount:0, visibleCandidates:[], matchedCandidates:[], counts:{}, matchedCountsByBucket:{} });
   const findings = typeof buildInteractionFindings === "function"
     ? buildInteractionFindings(activeStack, safeGenotype, {
         interactions: risk.interactions || [],
@@ -145,6 +148,7 @@ function getRenderComputationCache() {
         phenoconversionRows,
         timelineRows,
         pendingReviewContext,
+        pendingCoreContext,
       })
     : [];
   const clinicalConcerns = typeof buildClinicalConcerns === "function"
@@ -157,6 +161,7 @@ function getRenderComputationCache() {
         phenoconversionRows,
         timelineRows,
         pendingReviewContext,
+        pendingCoreContext,
       })
     : findings;
   renderComputationCache = {
@@ -167,6 +172,7 @@ function getRenderComputationCache() {
     phenoconversionRows,
     timelineRows,
     pendingReviewContext,
+    pendingCoreContext,
     findings,
     clinicalConcerns,
   };

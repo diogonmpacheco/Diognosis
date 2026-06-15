@@ -171,6 +171,9 @@ function collectPendingReviewEnrichmentContext(stack = activeStack, data = null)
   const payload = context?.payload || getPendingReviewEnrichment(data);
   const records = context?.visibleRecords || [];
   const allRecords = Array.isArray(payload.records) ? payload.records : [];
+  const pendingCoreContext = typeof getRenderComputationCache === "function"
+    ? getRenderComputationCache().pendingCoreContext
+    : (typeof buildPendingCoreEnrichmentContext === "function" ? buildPendingCoreEnrichmentContext(stack, activeGenotype || {}) : null);
   return {
     payload,
     records,
@@ -179,6 +182,7 @@ function collectPendingReviewEnrichmentContext(stack = activeStack, data = null)
     sourceCounts: payload.exportedSourceCounts || {},
     matchedBySource: context?.matchedBySource || {},
     matchedByClaim: context?.matchedByClaim || {},
+    pendingCoreContext,
   };
 }
 
@@ -204,8 +208,10 @@ function renderPendingReviewEnrichment(data = null) {
   const visibleSourceCounts = pendingReviewVisibleSourceCounts(model.records);
   if (count) {
     const sourceTotal = Object.keys(model.sourceCounts || {}).length;
-    count.textContent = `${model.payload.exportedRecords || model.allRecords.length} exported · ${model.stackMatchedCount} current-stack matches · ${sourceTotal} sources`;
+    const typedTotal = model.pendingCoreContext?.totalCandidates || 0;
+    count.textContent = `${model.payload.exportedRecords || model.allRecords.length} exported · ${model.stackMatchedCount} current-stack matches · ${typedTotal} typed candidates · ${sourceTotal} sources`;
   }
+  const pendingCoreCounts = model.pendingCoreContext?.counts || {};
 
   body.innerHTML = `
     <div class="external-context-notice">
@@ -214,8 +220,9 @@ function renderPendingReviewEnrichment(data = null) {
     <div class="pending-review-summary">
       ${renderPendingReviewTile(model.payload.exportedRecords || model.allRecords.length, "Exported Records", `${model.payload.totalStagedRecords || model.allRecords.length} staged total`)}
       ${renderPendingReviewTile(model.stackMatchedCount, "Current Matches", "Engine context only")}
+      ${renderPendingReviewTile(model.pendingCoreContext?.totalCandidates || 0, "Typed Candidates", `${pendingCoreCounts.studyCandidates || 0} evidence · ${pendingCoreCounts.pgxCandidates || 0} PGx · ${pendingCoreCounts.interactionCandidates || 0} DDI`)}
       ${Object.entries(model.sourceCounts || {}).map(([source, value]) =>
-        renderPendingReviewTile(value, formatPendingReviewToken(source), "Pending human review")
+        renderPendingReviewTile(value, formatPendingReviewToken(source), "Pending verification")
       ).join("")}
     </div>
     <div class="pending-review-filter" data-pending-review-filter-wrap="true">
@@ -268,9 +275,10 @@ function renderPendingReviewCard(record) {
     actors.join(" · "),
     (record.evidenceIdentifiers || []).length ? `Evidence: ${record.evidenceIdentifiers.slice(0, 4).join(", ")}` : "",
   ].filter(Boolean);
+  const badge = record.displayBadge === "Pending human review" ? "Pending verification" : (record.displayBadge || "Pending verification");
   return `<div class="pending-review-card" data-pending-source="${safeAttr(record.sourceKey || "other")}">
     <div class="pending-review-head">
-      <span class="ev-review-badge needs-review">Pending human review</span>
+      <span class="ev-review-badge needs-review">${safeHtml(badge)}</span>
       <span class="ev-review-badge needs-review">Not used for scoring</span>
       <span class="ev-review-badge needs-review">Not used for public severity</span>
     </div>

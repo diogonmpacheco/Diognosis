@@ -10,6 +10,7 @@ const SCAN_ROOTS = [
   'docs/audits',
   'src/data/generatedLivePendingReview.js',
   'src/data/generatedPendingReviewEnrichment.js',
+  'src/data/generatedPendingCoreEnrichment.js',
 ].map(path => resolve(ROOT, path));
 
 const ABSOLUTE_PATH_PATTERNS = [

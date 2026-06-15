@@ -649,6 +649,9 @@ function isProdrugActivationRoute(drug, enzyme) {
 
 function calcRisk() {
   const interactions = findInteractions();
+  const pendingCoreContext = typeof buildPendingCoreEnrichmentContext === "function"
+    ? buildPendingCoreEnrichmentContext(activeStack, typeof activeGenotype !== "undefined" ? activeGenotype || {} : {}, { limit:24 })
+    : null;
   let score = 0;
   const factors = [];
 
@@ -790,7 +793,7 @@ function calcRisk() {
   else if (score > 0) { level = "LOW RISK"; color = "var(--green)"; }
   else { level = "MINIMAL"; color = "var(--green)"; }
 
-  return { score, level, color, factors, interactions };
+  return { score, level, color, factors, interactions, pendingCoreContext };
 }
 
 function collectActiveGenotypeSafetySignals() {

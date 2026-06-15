@@ -39,6 +39,7 @@ const MODULE_ORDER = [
   'data/evidence.js',       // STUDY_DB, INGESTION_QUEUE, createStudyDraft, reviewStudyDraft
   'data/interactions.js',   // PATHWAY_DIVERSION, COMBINATION_PRODUCTS, KNOWN_DDI
   'data/generatedPendingReviewEnrichment.js', // static pending-human-review external context
+  'data/generatedPendingCoreEnrichment.js', // typed non-scoring candidates derived from pending context
   'data/generatedStats.js', // MEDCHECK_STATS generated from source data
   'data/generatedEvidenceReviewQueue.js', // static professional review queue
   'data/generatedOpenTargetsSnapshot.js', // static external context snapshot
@@ -60,6 +61,7 @@ const MODULE_ORDER = [
   'engine/scoringEngine.js',      // computeAdverseBurden
   'engine/interactionEngine.js',  // findInteractions, calcRisk, analyzeMetabolites
   'engine/pendingReviewContextEngine.js', // staged external records matched as non-scoring context
+  'engine/pendingCoreEnrichmentEngine.js', // typed pending candidates matched as non-scoring context
   'engine/activeMoietyEngine.js', // parent/metabolite direction and active-moiety balance
   'engine/phenoconversionEngine.js', // genotype plus inhibitors/inducers/substrate burden
   'engine/persistenceTimelineEngine.js', // parent/metabolite persistence, washout, enzyme recovery
@@ -144,6 +146,12 @@ function generateStats() {
   execSync(`"${process.execPath}" "${script}"`, { cwd: __dirname, stdio: 'inherit' });
 }
 
+function generatePendingCoreEnrichment() {
+  const script = resolve(__dirname, 'scripts/enrich/generate-pending-core-enrichment.js');
+  if (!existsSync(script)) return;
+  execSync(`"${process.execPath}" "${script}"`, { cwd: __dirname, stdio: 'inherit' });
+}
+
 function generateMechanisticCurationGaps() {
   const script = resolve(__dirname, 'scripts/audit/mechanistic-curation-gaps.js');
   if (!existsSync(script)) return;
@@ -177,6 +185,7 @@ function injectIntoTemplate(bundle) {
 // ── Main ──
 try {
   mkdirSync(dirname(OUT_PATH), { recursive: true });
+  generatePendingCoreEnrichment();
   generateStats();
   generateMechanisticCurationGaps();
   const bundle = buildBundle();

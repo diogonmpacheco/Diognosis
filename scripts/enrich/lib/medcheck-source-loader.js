@@ -16,6 +16,7 @@ const SOURCE_MODULES = [
   'src/data/evidence.js',
   'src/data/interactions.js',
   'src/data/generatedPendingReviewEnrichment.js',
+  'src/data/generatedPendingCoreEnrichment.js',
 ];
 
 export function loadMedcheckData(extraModules = []) {
@@ -47,6 +48,7 @@ globalThis.__MEDCHECK_DATA__ = {
   TRANSPORTER_ACTORS: typeof TRANSPORTER_ACTORS !== "undefined" ? TRANSPORTER_ACTORS : {},
   RECEPTOR_ACTORS: typeof RECEPTOR_ACTORS !== "undefined" ? RECEPTOR_ACTORS : {},
   PHENOTYPE_ACTORS: typeof PHENOTYPE_ACTORS !== "undefined" ? PHENOTYPE_ACTORS : {},
+  PENDING_CORE_ENRICHMENT: typeof PENDING_CORE_ENRICHMENT !== "undefined" ? PENDING_CORE_ENRICHMENT : null,
   normalizeDrugLookupKey: typeof normalizeDrugLookupKey !== "undefined" ? normalizeDrugLookupKey : null,
   getDrugAliases: typeof getDrugAliases !== "undefined" ? getDrugAliases : null,
 };`, context);

@@ -17,6 +17,7 @@ const dataFiles = [
   'src/data/evidence.js',
   'src/data/interactions.js',
   'src/data/generatedPendingReviewEnrichment.js',
+  'src/data/generatedPendingCoreEnrichment.js',
   'src/engine/phenotypeEngine.js',
 ];
 
@@ -58,6 +59,9 @@ JSON.stringify((() => {
     study.reviewStatus === 'clinician_reviewed'
   );
   const pendingProfessionalReviewStudies = studyValues.length - professionalReviewedStudies.length;
+  const pendingCore = typeof PENDING_CORE_ENRICHMENT === 'undefined' ? null : PENDING_CORE_ENRICHMENT;
+  const pendingCoreCounts = pendingCore?.counts || {};
+  const candidateExpandedCounts = pendingCore?.candidateExpandedCounts || {};
   return {
     generatedAt: new Date().toISOString(),
     bundleBytes: 0,
@@ -71,6 +75,29 @@ JSON.stringify((() => {
     livePendingReviewStudies: studyValues.filter((study) => study.livePendingReview === true).length,
     pendingReviewEnrichmentRecords: typeof PENDING_REVIEW_ENRICHMENT === 'undefined' ? 0 : PENDING_REVIEW_ENRICHMENT.exportedRecords || 0,
     pendingReviewEnrichmentSources: typeof PENDING_REVIEW_ENRICHMENT === 'undefined' ? 0 : Object.keys(PENDING_REVIEW_ENRICHMENT.exportedSourceCounts || {}).length,
+    pendingCoreTotalCandidates: pendingCoreCounts.totalCandidates || 0,
+    pendingCoreDrugCandidates: pendingCoreCounts.drugCandidates || 0,
+    pendingCoreStudyCandidates: pendingCoreCounts.studyCandidates || 0,
+    pendingCoreInteractionCandidates: pendingCoreCounts.interactionCandidates || 0,
+    pendingCoreMetaboliteCandidates: pendingCoreCounts.metaboliteCandidates || 0,
+    pendingCorePgxCandidates: pendingCoreCounts.pgxCandidates || 0,
+    pendingCorePkCandidates: pendingCoreCounts.pkCandidates || 0,
+    pendingCoreReceptorPhenotypeCandidates: pendingCoreCounts.receptorPhenotypeCandidates || 0,
+    pendingCoreBeersCandidates: pendingCoreCounts.beersCandidates || 0,
+    pendingCoreWashoutCandidates: pendingCoreCounts.washoutCandidates || 0,
+    pendingCoreUniquePgxGenes: pendingCore?.uniquePendingPgxGenes || 0,
+    candidateExpandedDrugs: candidateExpandedCounts.drugs || DRUG_DB.length,
+    candidateExpandedStudies: candidateExpandedCounts.evidenceEntries || studyValues.length,
+    candidateExpandedDdiPairs: candidateExpandedCounts.interactionPairs || KNOWN_DDI.length,
+    candidateExpandedMetaboliteEntries: candidateExpandedCounts.metaboliteEntries || metaboliteEntries,
+    candidateExpandedPkProfiles: candidateExpandedCounts.pkProfiles || pkParams.length,
+    candidateExpandedGenotypeGenes: candidateExpandedCounts.genotypeGenes || (
+      Object.keys(GENOTYPE_EFFECTS).filter((key) => !key.startsWith('_')).length +
+      (typeof GENOTYPE_RISK_EFFECTS === 'undefined' ? 0 : Object.keys(GENOTYPE_RISK_EFFECTS).length)
+    ),
+    candidateExpandedReceptorProfiles: candidateExpandedCounts.receptorScoreProfiles || Object.keys(RECEPTOR_SCORES).length,
+    candidateExpandedBeersFlags: candidateExpandedCounts.beersFlags || Object.keys(BEERS_FLAGS).length,
+    candidateExpandedWashoutRules: candidateExpandedCounts.washoutRules || Object.keys(WASHOUT_DAYS).length,
     internalReviewRequiredEntries: studyValues.filter((study) => study.reviewRequired === true).length,
     studiesWithPmid: studyValues.filter((study) => !!study.pmid).length,
     nonRegulatoryUncited: nonRegulatoryUncited.length,

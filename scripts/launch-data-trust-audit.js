@@ -91,6 +91,10 @@ function diffStats(actual, generated) {
     'nonRegulatoryUncited', 'ddiPairs', 'severeDdi', 'moderateDdi', 'mildDdi',
     'genotypeGenes', 'metaboliteParents', 'metaboliteEntries', 'metaboliteActors',
     'pkParams', 'receptorScores', 'beersFlags', 'washoutRules',
+    'pendingCoreTotalCandidates', 'pendingCoreDrugCandidates', 'pendingCoreStudyCandidates',
+    'pendingCoreInteractionCandidates', 'pendingCoreMetaboliteCandidates', 'pendingCorePgxCandidates',
+    'pendingCorePkCandidates', 'pendingCoreReceptorPhenotypeCandidates', 'pendingCoreBeersCandidates',
+    'pendingCoreWashoutCandidates',
   ];
   return keys
     .filter(key => actual[key] !== generated[key])
@@ -254,6 +258,15 @@ const readmeMismatches = [
   ['receptorScores', actualStats.receptorScores],
   ['beersFlags', actualStats.beersFlags],
   ['washoutRules', actualStats.washoutRules],
+  ['pendingCoreTotalCandidates', actualStats.pendingCoreTotalCandidates],
+  ['pendingCoreDrugCandidates', actualStats.pendingCoreDrugCandidates],
+  ['pendingCoreStudyCandidates', actualStats.pendingCoreStudyCandidates],
+  ['pendingCoreInteractionCandidates', actualStats.pendingCoreInteractionCandidates],
+  ['pendingCoreMetaboliteCandidates', actualStats.pendingCoreMetaboliteCandidates],
+  ['pendingCorePgxCandidates', actualStats.pendingCorePgxCandidates],
+  ['pendingCorePkCandidates', actualStats.pendingCorePkCandidates],
+  ['pendingCoreBeersCandidates', actualStats.pendingCoreBeersCandidates],
+  ['pendingCoreWashoutCandidates', actualStats.pendingCoreWashoutCandidates],
 ].filter(([, value]) => !readme.includes(String(value))).map(([key, value]) => ({ key, value }));
 const liveStatsMismatches = diffStats(actualStats, JSON.parse(index.match(/const MEDCHECK_STATS = (\{[\s\S]*?\n\});/)?.[1] || '{}'));
 

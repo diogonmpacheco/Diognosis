@@ -121,22 +121,25 @@ function renderGenotypePanel() {
 }
 
 function renderPendingReviewPgxContext() {
-  const context = typeof getRenderComputationCache === "function"
-    ? getRenderComputationCache().pendingReviewContext
-    : null;
-  if (!context || !context.matchedRecords?.length) return "";
-  const rows = context.matchedRecords.filter(row =>
+  const cache = typeof getRenderComputationCache === "function" ? getRenderComputationCache() : {};
+  const context = cache.pendingReviewContext;
+  const pendingCore = cache.pendingCoreContext;
+  const rows = (context?.matchedRecords || []).filter(row =>
     (row.genes || []).length ||
     /pgx|gene|allele|variant|guideline|clinical_annotation/i.test(row.claimType || "")
   ).slice(0, 6);
-  if (!rows.length) return "";
+  const coreRows = (pendingCore?.matchedCandidates || []).filter(row =>
+    row.candidateBucket === "pgxCandidates" ||
+    /PGx|curated PGx rules|gene/i.test(`${row.suggestedTarget || ""} ${row.candidateCategory || ""}`)
+  ).slice(0, 6);
+  if (!rows.length && !coreRows.length) return "";
   return `<div class="external-context-notice" style="margin-bottom:10px">
-    Pending external PGx/source context is available for this stack. It is not professionally reviewed and does not affect genotype interpretation, scoring, or public severity.
+    Pending external PGx/source context is available for this stack, including ${safeHtml(String(coreRows.length))} typed PGx rule candidate${coreRows.length === 1 ? "" : "s"}. It is not professionally reviewed and does not affect genotype interpretation, scoring, or public severity.
   </div>
   <div class="pending-review-grid" style="margin-bottom:12px">
     ${rows.map(row => `<div class="pending-review-card">
       <div class="pending-review-head">
-        <span class="ev-review-badge needs-review">Pending human review</span>
+        <span class="ev-review-badge needs-review">Pending verification</span>
         <span class="ev-review-badge needs-review">Not used for scoring</span>
       </div>
       <div class="pending-review-title">${safeHtml(row.title || row.id || "Pending PGx context")}</div>
@@ -145,6 +148,19 @@ function renderPendingReviewPgxContext() {
         (row.genes || []).length ? `Genes: ${row.genes.slice(0, 6).join(", ")}` : "",
         (row.drugs || []).length ? `Drugs: ${row.drugs.slice(0, 6).join(", ")}` : "",
         row.claimType ? `Claim: ${formatPendingReviewToken(row.claimType)}` : "",
+        (row.evidenceIdentifiers || []).length ? `Evidence: ${row.evidenceIdentifiers.slice(0, 3).join(", ")}` : "",
+      ].filter(Boolean), "<br>")}</div>
+    </div>`).join("")}
+    ${coreRows.map(row => `<div class="pending-review-card">
+      <div class="pending-review-head">
+        <span class="ev-review-badge needs-review">Typed PGx candidate</span>
+        <span class="ev-review-badge needs-review">Pending verification</span>
+      </div>
+      <div class="pending-review-title">${safeHtml(row.gene || "PGx")} ${row.drug ? `+ ${safeHtml(row.drug)}` : ""}</div>
+      <div class="pending-review-meta">${safeTextList([
+        row.sourceName ? `Source: ${row.sourceName}` : "",
+        row.ruleKind ? `Rule kind: ${formatPendingReviewToken(row.ruleKind)}` : "",
+        row.suggestedTarget ? `Target: ${row.suggestedTarget}` : "",
         (row.evidenceIdentifiers || []).length ? `Evidence: ${row.evidenceIdentifiers.slice(0, 3).join(", ")}` : "",
       ].filter(Boolean), "<br>")}</div>
     </div>`).join("")}
