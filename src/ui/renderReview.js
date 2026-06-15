@@ -17,6 +17,9 @@ function renderReviewSummary() {
   const activeMetabolite = findings.filter(finding => findingInvolves(finding, /active metabolite|toxic metabolite|active moiety|prodrug|metabolite/i));
   const genotype = findings.filter(finding => findingInvolves(finding, /genotype|phenoconversion|cyp|ugt|dpyd|tpmt|nudt|hla|g6pd/i));
   const timing = findings.filter(finding => finding.type === "timing_washout" || findingInvolves(finding, /washout|persistence|enzyme recovery|induction offset/i));
+  const pendingEnrichment = typeof getRenderComputationCache === "function"
+    ? getRenderComputationCache().pendingReviewContext
+    : null;
   section.style.display = "";
   if (count) count.textContent = `${findings.length} finding${findings.length === 1 ? "" : "s"}`;
   body.innerHTML = `<div class="review-summary-grid">
@@ -27,6 +30,7 @@ function renderReviewSummary() {
     ${renderReviewSummaryTile(activeMetabolite.length, "Metabolite Involved", "Parent, active, or toxic metabolite reasoning present.")}
     ${renderReviewSummaryTile(genotype.length, "Gene / PGx", "Genotype or phenoconversion context present.")}
     ${renderReviewSummaryTile(timing.length, "Timing", "Persistence, washout, recovery, or induction context present.")}
+    ${renderReviewSummaryTile(pendingEnrichment?.matchedCount || 0, "Pending Enrichment", `${pendingEnrichment?.totalRecords || 0} staged external records available as non-scoring context.`)}
     ${renderReviewSummaryTile(concerns.length, "Clinical Concerns", "Grouped Overview presentation objects.")}
   </div>
   <div class="quality-list">

@@ -7,8 +7,8 @@ import { actorsForRecord, sourceIdentifiersForRecord } from './lib/live-enrichme
 import { stableToken } from './lib/staged-source-schema.js';
 
 const OUT_SOURCE = resolve(ROOT, 'src/data/generatedPendingReviewEnrichment.js');
-const DEFAULT_MAX_RECORDS = 300;
-const DEFAULT_PER_SOURCE = 100;
+const DEFAULT_MAX_RECORDS = 'all';
+const DEFAULT_PER_SOURCE = 'all';
 
 const STAGED_INPUTS = [
   'data/enrichment/staged/cpic-staged-records.json',
@@ -51,14 +51,31 @@ const CLAIM_LABELS = {
 };
 
 function parseArgs(argv) {
-  const args = { maxRecords: DEFAULT_MAX_RECORDS, perSource: DEFAULT_PER_SOURCE };
+  const args = {
+    maxRecords: Number.POSITIVE_INFINITY,
+    perSource: Number.POSITIVE_INFINITY,
+    maxRecordsLabel: DEFAULT_MAX_RECORDS,
+    perSourceLabel: DEFAULT_PER_SOURCE,
+  };
   for (const arg of argv) {
-    if (arg.startsWith('--max-records=')) args.maxRecords = Number(arg.slice(14));
-    else if (arg.startsWith('--per-source=')) args.perSource = Number(arg.slice(13));
+    if (arg.startsWith('--max-records=')) {
+      const raw = arg.slice(14);
+      args.maxRecords = parseLimit(raw, '--max-records');
+      args.maxRecordsLabel = raw;
+    } else if (arg.startsWith('--per-source=')) {
+      const raw = arg.slice(13);
+      args.perSource = parseLimit(raw, '--per-source');
+      args.perSourceLabel = raw;
+    }
   }
-  if (!Number.isInteger(args.maxRecords) || args.maxRecords < 1) throw new Error('--max-records must be a positive integer');
-  if (!Number.isInteger(args.perSource) || args.perSource < 1) throw new Error('--per-source must be a positive integer');
   return args;
+}
+
+function parseLimit(raw, label) {
+  if (String(raw).toLowerCase() === 'all') return Number.POSITIVE_INFINITY;
+  const value = Number(raw);
+  if (!Number.isInteger(value) || value < 1) throw new Error(`${label} must be a positive integer or all`);
+  return value;
 }
 
 function asArray(value) {
@@ -302,13 +319,18 @@ function exportedRecord(record) {
   };
 }
 
-function payloadFor(records, selected) {
+function payloadFor(records, selected, options) {
   const exported = selected.map(exportedRecord);
   return {
     schema: 'diognosis.pending-review-enrichment.v1',
     generatedAt: new Date().toISOString(),
     totalStagedRecords: records.length,
     exportedRecords: exported.length,
+    exportPolicy: {
+      maxRecords: options.maxRecordsLabel,
+      perSource: options.perSourceLabel,
+      exportsAllStagedRecords: exported.length === records.length,
+    },
     sourceCounts: countBySource(records),
     exportedSourceCounts: countBySource(exported),
     safetyBoundary: {
@@ -333,7 +355,7 @@ function main() {
   const records = loadStagedRecords();
   validateGovernance(records);
   const selected = selectRecords(records, options);
-  const payload = payloadFor(records, selected);
+  const payload = payloadFor(records, selected, options);
   writeText(OUT_SOURCE, generatedSource(payload));
   console.log(JSON.stringify({
     ok: true,

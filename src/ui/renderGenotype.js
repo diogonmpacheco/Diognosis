@@ -42,13 +42,14 @@ function renderGenotypePanel() {
   const showEnzymes = Object.keys(GENOTYPE_EFFECTS).filter(e => relevantEnzymes.has(e));
   const showRiskAlleles = Object.keys(typeof GENOTYPE_RISK_EFFECTS !== 'undefined' ? GENOTYPE_RISK_EFFECTS : {}).filter(e => relevantRiskAlleles.has(e));
   const importHtml = renderPharmGxImportCard();
+  const pendingPgxContextHtml = renderPendingReviewPgxContext();
   if (showEnzymes.length === 0 && showRiskAlleles.length === 0) {
-    el.innerHTML = importHtml + '<div style="color:var(--text2);font-size:12px;padding:8px">No genotype-modeled pathways in current stack.</div>';
+    el.innerHTML = importHtml + pendingPgxContextHtml + '<div style="color:var(--text2);font-size:12px;padding:8px">No genotype-modeled pathways in current stack.</div>';
     return;
   }
 
   // Selector rows
-  let html = importHtml + '<div style="margin-bottom:12px">';
+  let html = importHtml + pendingPgxContextHtml + '<div style="margin-bottom:12px">';
   html += '<p style="font-size:12px;color:var(--text2);margin:0 0 8px">Set inherited gene or risk-marker results here; Functional Gene Status shows stack-driven pathway changes below.</p>';
   for (const enz of showEnzymes) {
     const cur = activeGenotype[enz] || GENOTYPE_PHENOTYPE.NM;
@@ -117,6 +118,37 @@ function renderGenotypePanel() {
     }
   }
   el.innerHTML = html;
+}
+
+function renderPendingReviewPgxContext() {
+  const context = typeof getRenderComputationCache === "function"
+    ? getRenderComputationCache().pendingReviewContext
+    : null;
+  if (!context || !context.matchedRecords?.length) return "";
+  const rows = context.matchedRecords.filter(row =>
+    (row.genes || []).length ||
+    /pgx|gene|allele|variant|guideline|clinical_annotation/i.test(row.claimType || "")
+  ).slice(0, 6);
+  if (!rows.length) return "";
+  return `<div class="external-context-notice" style="margin-bottom:10px">
+    Pending external PGx/source context is available for this stack. It is not professionally reviewed and does not affect genotype interpretation, scoring, or public severity.
+  </div>
+  <div class="pending-review-grid" style="margin-bottom:12px">
+    ${rows.map(row => `<div class="pending-review-card">
+      <div class="pending-review-head">
+        <span class="ev-review-badge needs-review">Pending human review</span>
+        <span class="ev-review-badge needs-review">Not used for scoring</span>
+      </div>
+      <div class="pending-review-title">${safeHtml(row.title || row.id || "Pending PGx context")}</div>
+      <div class="pending-review-meta">${safeTextList([
+        row.sourceName ? `Source: ${row.sourceName}` : "",
+        (row.genes || []).length ? `Genes: ${row.genes.slice(0, 6).join(", ")}` : "",
+        (row.drugs || []).length ? `Drugs: ${row.drugs.slice(0, 6).join(", ")}` : "",
+        row.claimType ? `Claim: ${formatPendingReviewToken(row.claimType)}` : "",
+        (row.evidenceIdentifiers || []).length ? `Evidence: ${row.evidenceIdentifiers.slice(0, 3).join(", ")}` : "",
+      ].filter(Boolean), "<br>")}</div>
+    </div>`).join("")}
+  </div>`;
 }
 
 function getHighestGenotypePrioritySignal() {

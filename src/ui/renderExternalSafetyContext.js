@@ -163,36 +163,23 @@ function renderExternalSafetyContext(snapshot = null) {
 }
 
 function collectPendingReviewEnrichmentContext(stack = activeStack, data = null) {
-  const payload = getPendingReviewEnrichment(data);
-  const records = Array.isArray(payload.records) ? payload.records : [];
-  const activeKeys = new Set();
-  const genotypeKeys = new Set(Object.keys(activeGenotype || {}).map(normalizeDrugLookupKey));
-  for (const name of stack || []) {
-    const drug = typeof getStackDrug === "function" ? getStackDrug(name) : getDrug(name);
-    [name, drug?.name, drug?.id].filter(Boolean).forEach(value => activeKeys.add(normalizeDrugLookupKey(value)));
-  }
-  const stackMatched = records.filter(record => isPendingReviewRecordRelevant(record, activeKeys, genotypeKeys));
-  const shown = (stackMatched.length ? stackMatched : records).slice(0, 12);
+  const context = data
+    ? (typeof buildPendingReviewContext === "function" ? buildPendingReviewContext(stack, activeGenotype || {}, { data }) : null)
+    : (typeof getRenderComputationCache === "function"
+      ? getRenderComputationCache().pendingReviewContext
+      : (typeof buildPendingReviewContext === "function" ? buildPendingReviewContext(stack, activeGenotype || {}) : null));
+  const payload = context?.payload || getPendingReviewEnrichment(data);
+  const records = context?.visibleRecords || [];
+  const allRecords = Array.isArray(payload.records) ? payload.records : [];
   return {
     payload,
-    records: shown,
-    stackMatchedCount: stackMatched.length,
-    allRecords: records,
+    records,
+    stackMatchedCount: context?.matchedCount || 0,
+    allRecords,
     sourceCounts: payload.exportedSourceCounts || {},
+    matchedBySource: context?.matchedBySource || {},
+    matchedByClaim: context?.matchedByClaim || {},
   };
-}
-
-function isPendingReviewRecordRelevant(record, activeKeys, genotypeKeys) {
-  const recordKeys = [
-    ...(record.drugs || []),
-    ...(record.genes || []),
-    ...(record.metabolites || []),
-    ...(record.pathways || []),
-    ...(record.phenotypes || []),
-  ].map(normalizeDrugLookupKey);
-  if (recordKeys.some(key => activeKeys.has(key) || genotypeKeys.has(key))) return true;
-  const text = [record.title, record.summary, ...(record.evidenceIdentifiers || [])].join(" ").toLowerCase();
-  return [...activeKeys].some(key => key && text.includes(key));
 }
 
 function renderPendingReviewEnrichment(data = null) {
@@ -217,15 +204,16 @@ function renderPendingReviewEnrichment(data = null) {
   const visibleSourceCounts = pendingReviewVisibleSourceCounts(model.records);
   if (count) {
     const sourceTotal = Object.keys(model.sourceCounts || {}).length;
-    count.textContent = `${model.payload.exportedRecords || model.allRecords.length} exported · ${sourceTotal} sources · pending human review`;
+    count.textContent = `${model.payload.exportedRecords || model.allRecords.length} exported · ${model.stackMatchedCount} current-stack matches · ${sourceTotal} sources`;
   }
 
   body.innerHTML = `
     <div class="external-context-notice">
-      These records are source-linked external context. They are not professionally reviewed and do not affect scoring or public severity.
+      These engine-matched records are source-linked external context. They are not professionally reviewed and do not affect scoring or public severity.
     </div>
     <div class="pending-review-summary">
       ${renderPendingReviewTile(model.payload.exportedRecords || model.allRecords.length, "Exported Records", `${model.payload.totalStagedRecords || model.allRecords.length} staged total`)}
+      ${renderPendingReviewTile(model.stackMatchedCount, "Current Matches", "Engine context only")}
       ${Object.entries(model.sourceCounts || {}).map(([source, value]) =>
         renderPendingReviewTile(value, formatPendingReviewToken(source), "Pending human review")
       ).join("")}

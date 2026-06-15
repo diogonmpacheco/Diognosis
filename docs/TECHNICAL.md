@@ -289,7 +289,7 @@ Structured source workflows:
 - `scripts/enrich/group-staged-records.js` groups CPIC/ClinPGx raw staged rows into human-readable review candidates.
 - `scripts/audit/enrichment-coverage-audit.js` ranks missing drugs, likely missing combinations, PGx gaps, metabolite gaps, and evidence gaps.
 - `scripts/enrich/build-enrichment-review-queue.js` builds the human review queue. Queue items cannot auto-promote.
-- `scripts/enrich/generate-pending-review-enrichment.js` builds `PENDING_REVIEW_ENRICHMENT`, a compact app-facing subset of staged external source records. It is displayed only as pending-human-review context and cannot affect scoring, public severity, or professional-review status.
+- `scripts/enrich/generate-pending-review-enrichment.js` builds `PENDING_REVIEW_ENRICHMENT`, a compact app-facing export of all staged external source records. `src/engine/pendingReviewContextEngine.js` matches those records to the active stack as pending-human-review context; they cannot affect scoring, public severity, professional-review status, `KNOWN_DDI`, curated PGx rules, or core rule data.
 - `scripts/enrich/run-weekly-enrichment.js` orchestrates the Monday staged enrichment run.
 
 PharmCAT remains a future session-input source. It is not a global database enrichment source and should not mutate shipped data files.

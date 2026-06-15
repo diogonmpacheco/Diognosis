@@ -134,6 +134,9 @@ function getRenderComputationCache() {
   const timelineRows = typeof computePersistenceTimeline === "function"
     ? computePersistenceTimeline(activeStack, safeGenotype)
     : [];
+  const pendingReviewContext = typeof buildPendingReviewContext === "function"
+    ? buildPendingReviewContext(activeStack, safeGenotype)
+    : { totalRecords:0, matchedCount:0, visibleRecords:[], matchedRecords:[], bySource:{}, matchedBySource:{} };
   const findings = typeof buildInteractionFindings === "function"
     ? buildInteractionFindings(activeStack, safeGenotype, {
         interactions: risk.interactions || [],
@@ -141,6 +144,7 @@ function getRenderComputationCache() {
         riskMarkerRows,
         phenoconversionRows,
         timelineRows,
+        pendingReviewContext,
       })
     : [];
   const clinicalConcerns = typeof buildClinicalConcerns === "function"
@@ -152,6 +156,7 @@ function getRenderComputationCache() {
         riskMarkerRows,
         phenoconversionRows,
         timelineRows,
+        pendingReviewContext,
       })
     : findings;
   renderComputationCache = {
@@ -161,6 +166,7 @@ function getRenderComputationCache() {
     riskMarkerRows,
     phenoconversionRows,
     timelineRows,
+    pendingReviewContext,
     findings,
     clinicalConcerns,
   };

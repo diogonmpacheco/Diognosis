@@ -57,7 +57,7 @@ if (!payload) {
 } else {
   if (payload.schema !== 'diognosis.pending-review-enrichment.v1') fail('schema must be diognosis.pending-review-enrichment.v1');
   if (!Array.isArray(payload.records)) fail('records must be an array');
-  if ((payload.exportedRecords || 0) > 300) fail('exportedRecords must be <= 300 by default');
+  if ((payload.exportedRecords || 0) > (payload.totalStagedRecords || 0)) fail('exportedRecords cannot exceed totalStagedRecords');
   if (payload.records && payload.exportedRecords !== payload.records.length) fail('exportedRecords must match records.length');
   if (payload.safetyBoundary?.professionalReviewStatus !== 'pending') fail('safetyBoundary professionalReviewStatus must be pending');
   if (payload.safetyBoundary?.requiresHumanReview !== true) fail('safetyBoundary requiresHumanReview must be true');
