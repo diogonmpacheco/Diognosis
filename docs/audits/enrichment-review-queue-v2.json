@@ -1,0 +1,19 @@
+{
+  "schema": "diognosis.enrichment-review-queue-v2-audit.v1",
+  "generatedAt": "2026-06-15T13:45:49.911Z",
+  "totalItems": 626,
+  "preservedV1Items": 434,
+  "candidateRelationItems": 192,
+  "priorityCounts": {
+    "P1": 277,
+    "P2": 349
+  },
+  "laneCounts": {
+    "candidate_relation_review": 87,
+    "engine_hypothesis_review": 105,
+    "existing_enrichment_queue": 434
+  },
+  "canAutoPromote": 0,
+  "scoringEnabled": 0,
+  "publicSeverityEnabled": 0
+}

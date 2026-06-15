@@ -1,6 +1,6 @@
 {
   "schema": "diognosis.clinpgx-snapshot-metadata.v1",
-  "generatedAt": "2026-06-15T12:54:56.138Z",
+  "generatedAt": "2026-06-15T13:45:49.325Z",
   "source": "ClinPGx",
   "fetched": false,
   "mode": "open_targets_derived_context",

@@ -1,0 +1,34 @@
+{
+  "schema": "diognosis.review-overlay.v1",
+  "overlayId": "example_transplant_review_overlay",
+  "name": "Example Transplant Review Overlay",
+  "owner": {
+    "organization": "Example Transplant Service",
+    "contact": "",
+    "url": ""
+  },
+  "scope": {
+    "specialty": ["transplant"],
+    "drugClasses": ["Calcineurin Inhibitor", "Azole Antifungal", "Macrolide AB"],
+    "genes": ["CYP3A4", "CYP3A5", "ABCB1"],
+    "excludedDomains": []
+  },
+  "policy": {
+    "canAffectLocalScoring": true,
+    "canAffectPublicSeverity": false,
+    "requiresProfessionalReviewer": true,
+    "displayLabel": "Locally reviewed by Example Transplant Review Overlay"
+  },
+  "reviews": [
+    {
+      "recordId": "candidate_example_transplant_cni_azole",
+      "decision": "approve_locally",
+      "reviewerRole": "transplant reviewer",
+      "reviewerCredentials": "",
+      "reviewDate": "2026-06-15",
+      "notes": "Example local overlay row for calcineurin-inhibitor plus azole review. It does not change upstream Diognosis professional-review status.",
+      "localSeverityOverride": null,
+      "localDisplayNotes": ["Example only; local context remains fork-scoped."]
+    }
+  ]
+}

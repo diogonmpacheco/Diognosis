@@ -46,6 +46,7 @@ const MODULE_ORDER = [
   'data/generatedOpenTargetsPgxGapRoadmap.js', // static Open Targets/ClinPGx PGx gap roadmap
   'data/generatedOpenTargetsMechanisticQueue.js', // static Open Targets target-safety review queue
   'data/reviewDiagnostics.js', // static scenario and metabolite review diagnostics
+  'data/generatedEnrichmentReviewData.js', // static enrichment candidate/review queue summary
 
   // ── Engine layer (depends on data layer) ──
   'engine/evidenceEngine.js',     // evidenceConfidence, getStudy, computeEdgeConfidence, studyCardHTML

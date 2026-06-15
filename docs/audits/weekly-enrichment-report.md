@@ -1,6 +1,6 @@
 # Weekly Enrichment Report
 
-Generated: 2026-06-15T12:55:48.164Z
+Generated: 2026-06-15T13:46:42.969Z
 
 - Mode: check
 - New staged records: 532
@@ -12,7 +12,11 @@ Generated: 2026-06-15T12:55:48.164Z
 - ClinPGx staged records: 128
 - ClinPGx direct fetched records: 0
 - ClinPGx/Open Targets derived records: 128
+- Label-source staged records: 0
 - Grouped review candidates: 186
+- Grouped review candidates v2: 378
+- Review queue v2 items: 626
+- Candidate relation rows: 259
 - Provider failures: 0
 - Recommendation: human_review_then_commit
 - Human review required: yes
@@ -58,73 +62,87 @@ Generated: 2026-06-15T12:55:48.164Z
 
 ## Changed Files
 
-- M  README.md
-- A  data/enrichment/cache/clinpgx/README.md
-- A  data/enrichment/cache/cpic/README.md
-- A  data/enrichment/curated-drafts/README.md
-- M  data/enrichment/generated/gap-literature-batch.json
-- M  data/enrichment/reports/legal-literature-report.json
-- M  data/enrichment/reports/legal-literature-report.md
-- M  data/enrichment/review-queue/enrichment-review-queue.json
-- A  data/enrichment/review-queue/grouped-review-candidates.json
-- A  data/enrichment/snapshots/clinpgx-raw/README.md
-- M  data/enrichment/snapshots/clinpgx-snapshot-metadata.json
-- A  data/enrichment/snapshots/cpic-raw/README.md
-- M  data/enrichment/snapshots/cpic-snapshot-metadata.json
-- A  data/enrichment/source-faithfulness-decisions/README.md
-- M  data/enrichment/source-registry.json
-- M  data/enrichment/staged/clinpgx-staged-records.json
-- M  data/enrichment/staged/cpic-staged-records.json
-- M  data/enrichment/staged/legal-literature-staged-records.json
-- A  data/review-overlays/README.md
-- A  data/review-overlays/example-local-review-overlay.json
-- M  docs/PUBLIC_TRUST.md
-- M  docs/TECHNICAL.md
-- M  docs/audits/clinpgx-coverage-audit.json
-- M  docs/audits/clinpgx-coverage-audit.md
-- M  docs/audits/cpic-coverage-audit.json
-- M  docs/audits/cpic-coverage-audit.md
-- M  docs/audits/enrichment-coverage-audit.json
-- M  docs/audits/enrichment-coverage-audit.md
-- M  docs/audits/enrichment-review-queue.md
-- A  docs/audits/grouped-review-candidates.md
-- M  docs/audits/weekly-enrichment-report.json
-- M  docs/audits/weekly-enrichment-report.md
-- M  docs/automations/weekly-medcheck-enrichment-automation.json
-- M  docs/automations/weekly-medcheck-enrichment-automation.md
-- M  docs/enrichment/AUTOMATION_RUNBOOK.md
-- A  docs/enrichment/CURATED_DRAFTS.md
-- M  docs/enrichment/ENRICHMENT_ARCHITECTURE.md
-- A  docs/enrichment/FORK_REVIEW_TEAMS.md
-- A  docs/enrichment/LOCAL_REVIEW_POLICY_TEMPLATE.md
-- M  docs/enrichment/PROMOTION_POLICY.md
-- A  docs/enrichment/REVIEW_OVERLAYS.md
-- A  docs/enrichment/REVIEW_STATUS_MODEL.md
-- A  docs/enrichment/SOURCE_FAITHFULNESS_REVIEW.md
-- M  docs/enrichment/SOURCE_REGISTRY.md
-- M  docs/enrichment/STAGED_SOURCE_SCHEMA.md
-- M  index.html
-- M  package.json
-- M  scripts/audit/clinpgx-coverage-audit.js
-- M  scripts/audit/cpic-coverage-audit.js
-- A  scripts/audit/curated-draft-audit.js
-- M  scripts/audit/enrichment-coverage-audit.js
-- A  scripts/audit/grouped-review-candidate-audit.js
-- A  scripts/audit/promotion-boundary-audit.js
-- A  scripts/audit/review-overlay-audit.js
-- M  scripts/enrich/build-enrichment-review-queue.js
-- A  scripts/enrich/clinpgx-fetch.js
-- M  scripts/enrich/clinpgx-normalize.js
-- M  scripts/enrich/clinpgx-sync.js
-- A  scripts/enrich/cpic-fetch.js
-- M  scripts/enrich/cpic-normalize.js
-- M  scripts/enrich/cpic-sync.js
-- A  scripts/enrich/group-staged-records.js
-- A  scripts/enrich/lib/review-status-model.js
-- M  scripts/enrich/lib/staged-source-schema.js
-- A  scripts/enrich/promote-to-curated-draft.js
-- M  scripts/enrich/run-weekly-enrichment.js
-- M  scripts/release-check.js
-- A  scripts/review/apply-review-overlay.js
-- A  scripts/review/source-faithfulness-review.js
-- M  src/data/generatedStats.js
+- M README.md
+- M build.js
+- M data/enrichment/generated/gap-literature-batch.json
+- M data/enrichment/provider-allowlist.json
+- M data/enrichment/reports/legal-literature-report.json
+- M data/enrichment/reports/legal-literature-report.md
+- M data/enrichment/review-queue/enrichment-review-queue.json
+- M data/enrichment/review-queue/grouped-review-candidates.json
+- M data/enrichment/snapshots/clinpgx-snapshot-metadata.json
+- M data/enrichment/snapshots/cpic-snapshot-metadata.json
+- M data/enrichment/source-registry.json
+- M data/enrichment/staged/clinpgx-staged-records.json
+- M data/enrichment/staged/cpic-staged-records.json
+- M docs/audits/enrichment-coverage-audit.json
+- M docs/audits/enrichment-coverage-audit.md
+- M docs/audits/enrichment-review-queue.md
+- M docs/audits/grouped-review-candidates.md
+- M docs/enrichment/AUTOMATION_RUNBOOK.md
+- M index.html
+- M package.json
+- M scripts/audit/promotion-boundary-audit.js
+- M scripts/enrich/build-gap-query-batch.js
+- M scripts/enrich/clinpgx-normalize.js
+- M scripts/enrich/cpic-normalize.js
+- M scripts/enrich/lib/medcheck-source-loader.js
+- M scripts/enrich/lib/staged-source-schema.js
+- M scripts/enrich/run-weekly-enrichment.js
+- M scripts/release-check.js
+- M src/data/generatedStats.js
+- M src/index.template.html
+- M src/ui/renderOpenTargetsReviewWorkbench.js
+- ?? data/enrichment/candidates/
+- ?? data/enrichment/review-queue/archive/
+- ?? data/enrichment/review-queue/enrichment-review-queue-v2.json
+- ?? data/enrichment/review-queue/grouped-review-candidates-v2.json
+- ?? data/enrichment/snapshots/label-source-snapshot-metadata.json
+- ?? data/enrichment/staged/label-staged-records.json
+- ?? data/review-overlays/example-psychiatry-review-overlay.json
+- ?? data/review-overlays/example-transplant-review-overlay.json
+- ?? docs/DIOGO_STACK_REPORT.md
+- ?? docs/audits/candidate-relation-extraction.json
+- ?? docs/audits/candidate-relation-extraction.md
+- ?? docs/audits/engine-hypotheses.json
+- ?? docs/audits/engine-hypotheses.md
+- ?? docs/audits/enrichment-continuation-baseline.json
+- ?? docs/audits/enrichment-continuation-baseline.md
+- ?? docs/audits/enrichment-review-queue-v2.json
+- ?? docs/audits/enrichment-review-queue-v2.md
+- ?? docs/audits/grouped-review-candidates-v2.json
+- ?? docs/audits/grouped-review-candidates-v2.md
+- ?? docs/audits/knowledge-growth-dashboard.json
+- ?? docs/audits/knowledge-growth-dashboard.md
+- ?? docs/audits/label-source-coverage-audit.json
+- ?? docs/audits/label-source-coverage-audit.md
+- ?? docs/audits/three-x-baseline.json
+- ?? docs/audits/three-x-baseline.md
+- ?? docs/audits/three-x-enrichment-report.json
+- ?? docs/audits/three-x-enrichment-report.md
+- ?? docs/enrichment/CANDIDATE_RELATIONS.md
+- ?? docs/enrichment/DATA_GROWTH_DASHBOARD.md
+- ?? docs/enrichment/ENGINE_HYPOTHESES.md
+- ?? docs/enrichment/ENRICHMENT_PREVIEW_MODE.md
+- ?? docs/enrichment/KNOWLEDGE_LAYERS.md
+- ?? docs/enrichment/LABEL_SOURCE_INTAKE.md
+- ?? scripts/_dbg.mjs
+- ?? scripts/audit/candidate-relation-audit.js
+- ?? scripts/audit/engine-hypothesis-audit.js
+- ?? scripts/audit/enrichment-preview-mode-audit.js
+- ?? scripts/audit/knowledge-growth-dashboard.js
+- ?? scripts/audit/label-source-boundary-audit.js
+- ?? scripts/audit/review-queue-v2-audit.js
+- ?? scripts/audit/three-x-target-audit.js
+- ?? scripts/diogo-stack-run.js
+- ?? scripts/enrich/build-review-queue-v2.js
+- ?? scripts/enrich/capture-enrichment-baseline.js
+- ?? scripts/enrich/export-engine-hypotheses.js
+- ?? scripts/enrich/extract-candidate-relations.js
+- ?? scripts/enrich/generate-enrichment-review-data.js
+- ?? scripts/enrich/group-candidate-relations.js
+- ?? scripts/enrich/label-source-normalize.js
+- ?? scripts/enrich/label-source-sync.js
+- ?? scripts/enrich/lib/knowledge-layer-model.js
+- ?? scripts/enrich/run-three-x-enrichment-campaign.js
+- ?? src/data/generatedEnrichmentReviewData.js

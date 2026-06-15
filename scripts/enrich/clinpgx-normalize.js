@@ -236,7 +236,7 @@ function directRowToRecord(row, payload, aliasMap, data, normalizedAt) {
       sourceSnapshotId: payload.sha256 || '',
       sourceObjectId,
       sourceObjectHash: createHash('sha256').update(JSON.stringify(row)).digest('hex'),
-      sourceTruthStatus: 'fetched_from_source',
+      sourceTruthStatus: 'fetched_from_clinpgx_api',
     },
     notes: ['Fetched from ClinPGx API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion.'],
     warnings: ['Direct ClinPGx data is not auto-promoted and is not scoring-enabled.'],

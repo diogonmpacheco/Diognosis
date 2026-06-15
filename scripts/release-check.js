@@ -104,6 +104,12 @@ run('Promotion boundary audit', node, ['scripts/audit/promotion-boundary-audit.j
 run('Review overlay audit', node, ['scripts/audit/review-overlay-audit.js']);
 run('Curated draft audit', node, ['scripts/audit/curated-draft-audit.js']);
 run('Grouped review candidate audit', node, ['scripts/audit/grouped-review-candidate-audit.js']);
+run('Candidate relation audit', node, ['scripts/audit/candidate-relation-audit.js']);
+run('Engine hypothesis audit', node, ['scripts/audit/engine-hypothesis-audit.js']);
+run('Review queue v2 audit', node, ['scripts/audit/review-queue-v2-audit.js']);
+run('Label source boundary audit', node, ['scripts/audit/label-source-boundary-audit.js']);
+run('3x target audit', node, ['scripts/audit/three-x-target-audit.js']);
+run('Enrichment preview mode audit', node, ['scripts/audit/enrichment-preview-mode-audit.js']);
 run('Enrichment coverage audit', node, ['scripts/audit/enrichment-coverage-audit.js', '--check']);
 run('Scenario snapshot audit', node, ['scripts/audit/scenario-snapshot-audit.js']);
 run('Deep launch QA audit', node, ['scripts/launch-qa-audit.js']);

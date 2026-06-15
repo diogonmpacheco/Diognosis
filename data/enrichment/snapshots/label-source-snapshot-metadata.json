@@ -1,0 +1,10 @@
+{
+  "schema": "diognosis.label-source-snapshot-metadata.v1",
+  "generatedAt": "2026-06-15T13:45:49.419Z",
+  "mode": "check",
+  "source": "FDA/DailyMed Labels",
+  "stagedRecords": 0,
+  "fetchedRecords": 0,
+  "sourceTruthStatus": "label_source_candidate_not_fetched",
+  "note": "Label-source intake lane is initialized for allowlisted public label metadata. No source objects were fetched in check mode."
+}

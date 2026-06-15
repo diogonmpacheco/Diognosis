@@ -14,13 +14,13 @@ for (const record of records) {
   if (isProfessionalReviewStatus(record.governance?.professionalReviewStatus) && !(record.reviews || []).some(review => review.decision === 'approve_professionally')) {
     errors.push(`${record.id}: professional review status without professional review object`);
   }
-  if (record.source?.name === 'ClinPGx' && record.provenance?.sourceTruthStatus === 'fetched_from_source' && !record.provenance?.sourceSnapshotId) {
+  if (record.source?.name === 'ClinPGx' && ['fetched_from_source', 'fetched_from_clinpgx_api'].includes(record.provenance?.sourceTruthStatus) && !record.provenance?.sourceSnapshotId) {
     errors.push(`${record.id}: direct ClinPGx record lacks cache metadata`);
   }
   if (record.source?.name === 'ClinPGx' && /Open Targets/i.test(record.source?.endpoint || '') && record.provenance?.sourceTruthStatus !== 'derived_from_open_targets_snapshot') {
     errors.push(`${record.id}: Open Targets-derived ClinPGx record is mislabeled as direct ClinPGx`);
   }
-  if (record.source?.name === 'CPIC Data' && record.provenance?.sourceTruthStatus === 'fetched_from_source' && !record.provenance?.sourceSnapshotId) {
+  if (record.source?.name === 'CPIC Data' && ['fetched_from_source', 'fetched_from_cpic_source'].includes(record.provenance?.sourceTruthStatus) && !record.provenance?.sourceSnapshotId) {
     errors.push(`${record.id}: fetched CPIC record lacks cache metadata`);
   }
 }

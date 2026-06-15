@@ -276,7 +276,7 @@ function fetchedRowToRecord(row, payload, normalizedAt) {
       sourceSnapshotId: payload.sha256 || '',
       sourceObjectId,
       sourceObjectHash: createHash('sha256').update(JSON.stringify(row)).digest('hex'),
-      sourceTruthStatus: 'fetched_from_source',
+      sourceTruthStatus: 'fetched_from_cpic_source',
     },
     notes: ['Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion.'],
     warnings: ['Fetched CPIC data is not auto-promoted and is not scoring-enabled.'],
@@ -297,7 +297,7 @@ function main() {
     fetchedRecords: fetched.records.length,
     providerFailures: fetched.providerFailures || [],
     stagedRecords: records.length,
-    sourceTruthStatus: fetched.records.length ? 'fetched_from_source' : 'local_review_candidate_not_fetched',
+    sourceTruthStatus: fetched.records.length ? 'fetched_from_cpic_source' : 'local_review_candidate_not_fetched',
     note: fetched.records.length
       ? 'Fetched mode normalizes cached CPIC API source objects into staged records. No record is promoted or scoring-enabled.'
       : 'CPIC local coverage candidate mode uses local Diognosis PGx coverage and CPIC-linked evidence to create review candidates. Run fetch mode only when provider access is intentionally allowed.',

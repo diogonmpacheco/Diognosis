@@ -2,7 +2,7 @@
 // Pulls local generated governance queues into one reviewer-facing surface.
 
 let reviewWorkbenchHandlersBound = false;
-const REVIEW_WORKBENCH_KINDS = ["internal", "first_target", "mechanistic", "pgx", "promotion"];
+const REVIEW_WORKBENCH_KINDS = ["internal", "first_target", "mechanistic", "pgx", "promotion", "knowledge_queue"];
 const REVIEW_WORKBENCH_FILTERS = ["all", ...REVIEW_WORKBENCH_KINDS];
 
 function getEvidenceReviewQueue() {
@@ -30,6 +30,11 @@ function getOpenTargetsMechanisticQueue() {
   return [];
 }
 
+function getGeneratedEnrichmentReviewData() {
+  if (typeof GENERATED_ENRICHMENT_REVIEW_DATA !== "undefined") return GENERATED_ENRICHMENT_REVIEW_DATA;
+  return { summary:{}, rows:[] };
+}
+
 function renderReviewWorkbench(overrides = {}) {
   const section = document.getElementById("reviewWorkbenchSection");
   const body = document.getElementById("reviewWorkbenchBody");
@@ -55,7 +60,7 @@ function renderReviewWorkbench(overrides = {}) {
 
   body.innerHTML = `
     <div class="review-workbench-notice">
-      Professional review queue, Open Targets promotion queue, and ClinPGx gap roadmap. Rows marked external remain context-only and do not change warning severity.
+      Professional review queue, Open Targets promotion queue, ClinPGx gap roadmap, and source-driven candidate relation groups. Rows marked external or candidate remain context-only and do not change warning severity.
     </div>
     <div class="review-workbench-summary">
       ${renderReviewWorkbenchTile("Internal evidence", model.summary.internalRows, `${model.summary.calculationBearingRows} calculation-bearing`)}
@@ -63,6 +68,7 @@ function renderReviewWorkbench(overrides = {}) {
       ${renderReviewWorkbenchTile("Mechanistic queue", model.summary.mechanisticRows, `${model.summary.mechanisticExperimentalRows} experimental`)}
       ${renderReviewWorkbenchTile("PGx roadmap", model.summary.pgxPairs, `${model.summary.unsupportedPgxPairs} unsupported`)}
       ${renderReviewWorkbenchTile("Promotion queue", model.summary.promotionRows, `${model.summary.promotionLinked} linked · ${model.summary.promotionCandidates} candidates`)}
+      ${renderReviewWorkbenchTile("Knowledge queue", model.summary.knowledgeRows, `${model.summary.candidateRelationItems} candidate items · ${model.summary.corePromotions} promotions`)}
     </div>
     <div class="review-workbench-filter" data-review-workbench-filter-wrap="true">
       ${renderReviewWorkbenchFilter("all", "All", model.rows.length, true)}
@@ -71,6 +77,7 @@ function renderReviewWorkbench(overrides = {}) {
       ${renderReviewWorkbenchFilter("mechanistic", "Mechanistic", model.summary.mechanisticRows)}
       ${renderReviewWorkbenchFilter("pgx", "PGx", model.summary.pgxPairs)}
       ${renderReviewWorkbenchFilter("promotion", "Open Targets", model.summary.promotionRows)}
+      ${renderReviewWorkbenchFilter("knowledge_queue", "Knowledge", model.summary.knowledgeRows)}
     </div>
     <div class="review-workbench-list">
       ${model.rows.map(renderReviewWorkbenchRow).join("")}
@@ -85,6 +92,7 @@ function buildReviewWorkbenchModel(stack = activeStack, overrides = {}) {
   const reviewTargets = overrides.reviewTargets || getOpenTargetsReviewTargets();
   const pgxRoadmap = overrides.pgxRoadmap || getOpenTargetsPgxGapRoadmap();
   const mechanisticQueue = overrides.mechanisticQueue || getOpenTargetsMechanisticQueue();
+  const enrichmentReview = overrides.enrichmentReview || getGeneratedEnrichmentReviewData();
   const keys = buildReviewWorkbenchStackKeys(stack, snapshot);
 
   const internalRows = evidenceQueue
@@ -116,18 +124,25 @@ function buildReviewWorkbenchModel(stack = activeStack, overrides = {}) {
     .slice(0, 14)
     .map(row => normalizeReviewWorkbenchPromotionRow(row, true));
 
+  const knowledgeRows = (enrichmentReview.rows || [])
+    .filter(row => isReviewWorkbenchKnowledgeRelevant(row, keys))
+    .slice(0, 18)
+    .map(row => normalizeReviewWorkbenchKnowledgeRow(row, true));
+
   const stackMatchedRows = [
     ...internalRows,
     ...firstTargetRows,
     ...mechanisticRows,
     ...pgxRows,
     ...promotionRows,
+    ...knowledgeRows,
   ];
 
   const fallbackRows = stackMatchedRows.length ? [] : [
     ...evidenceQueue.slice().sort(sortReviewWorkbenchPriority).slice(0, 4).map(row => normalizeReviewWorkbenchEvidenceRow(row, false)),
     ...reviewTargets.slice(0, 5).map(row => normalizeReviewWorkbenchFirstTargetRow(row, false)),
     ...mechanisticQueue.slice().sort(sortReviewWorkbenchPriority).slice(0, 5).map(row => normalizeReviewWorkbenchMechanisticRow(row, false)),
+    ...(enrichmentReview.rows || []).slice(0, 6).map(row => normalizeReviewWorkbenchKnowledgeRow(row, false)),
   ];
 
   const rows = [...stackMatchedRows, ...fallbackRows];
@@ -146,6 +161,9 @@ function buildReviewWorkbenchModel(stack = activeStack, overrides = {}) {
       promotionRows: promotionRows.length,
       promotionLinked: promotionRows.filter(row => row.raw.reviewDecision === "linked_to_diognosis_evidence").length,
       promotionCandidates: promotionRows.filter(row => row.raw.reviewDecision === "candidate_for_diognosis_evidence").length,
+      knowledgeRows: knowledgeRows.length || fallbackRows.filter(row => row.kind === "knowledge_queue").length,
+      candidateRelationItems: enrichmentReview.summary?.candidateRelationItems || 0,
+      corePromotions: enrichmentReview.summary?.corePromotions || 0,
       pgxRoadmap: getOpenTargetsPgxGapSummary(),
     },
   };
@@ -190,6 +208,20 @@ function isReviewWorkbenchOpenTargetsRelevant(row, keys) {
     ...(row.medcheckNames || []),
   ].filter(Boolean).map(normalizeDrugLookupKey);
   return names.some(name => keys.activeNames.has(name) || keys.activeIds.has(name));
+}
+
+function isReviewWorkbenchKnowledgeRelevant(row, keys) {
+  const names = [
+    ...(row.affectedDrugs || []),
+    ...(row.affectedGenes || []),
+    ...(row.affectedMetabolites || []),
+    row.reason,
+    row.suggestedTarget,
+    row.layer,
+    row.store,
+  ].filter(Boolean).map(normalizeDrugLookupKey);
+  return names.some(name => keys.activeNames.has(name) || keys.activeIds.has(name)) ||
+    [...keys.activeNames].some(name => name && names.join(" ").includes(name));
 }
 
 function sortReviewWorkbenchPriority(a, b) {
@@ -313,6 +345,31 @@ function normalizeReviewWorkbenchPromotionRow(row, stackMatched) {
       row.notSeverityBearing !== false ? "Not severity-bearing" : "",
     ].filter(Boolean),
     detail: row.suggestedAction || row.rationale || "Keep as external context unless Diognosis evidence review promotes it.",
+    raw: row,
+  };
+}
+
+function normalizeReviewWorkbenchKnowledgeRow(row, stackMatched) {
+  return {
+    kind: "knowledge_queue",
+    stackMatched,
+    title: `${row.priority || "P2"} · ${formatReviewWorkbenchToken(row.layer || row.store || "candidate")} · ${(row.affectedDrugs || row.affectedGenes || ["candidate"])[0] || "candidate"}`,
+    badges: ["candidate relation", row.priority || "review", row.suggestedTarget || "review only"],
+    decision: row.reviewStatus || "pending_professional_review",
+    priority: row.priority === "P1" ? 100 : row.priority === "P2" ? 50 : 10,
+    meta: [
+      row.id ? `ID: ${row.id}` : "",
+      row.lane ? `Lane: ${formatReviewWorkbenchToken(row.lane)}` : "",
+      row.layer ? `Layer: ${formatReviewWorkbenchToken(row.layer)}` : "",
+      row.suggestedTarget ? `Target: ${row.suggestedTarget}` : "",
+      (row.affectedDrugs || []).length ? `Drugs: ${row.affectedDrugs.join(", ")}` : "",
+      (row.affectedGenes || []).length ? `Genes: ${row.affectedGenes.join(", ")}` : "",
+      (row.affectedMetabolites || []).length ? `Metabolites: ${row.affectedMetabolites.join(", ")}` : "",
+      (row.sourceTruthStatuses || []).length ? `Source status: ${row.sourceTruthStatuses.join(", ")}` : "",
+      (row.evidenceIdentifiers || []).length ? `Evidence: ${row.evidenceIdentifiers.slice(0, 3).join(", ")}` : "",
+      "Not scoring-enabled",
+    ].filter(Boolean),
+    detail: row.reason || "Candidate relation requires source faithfulness and professional review before promotion.",
     raw: row,
   };
 }

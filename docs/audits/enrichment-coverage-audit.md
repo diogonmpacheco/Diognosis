@@ -1,6 +1,6 @@
 # Enrichment Coverage Audit
 
-Generated: 2026-06-15T12:54:55.743Z
+Generated: 2026-06-15T13:45:48.946Z
 
 | Metric | Count |
 | --- | --- |

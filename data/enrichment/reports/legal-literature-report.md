@@ -1,6 +1,6 @@
 # Legal Literature Staging Report
 
-Generated: 2026-06-15T12:54:55.865Z
+Generated: 2026-06-15T13:45:49.067Z
 
 - Drafts: 248
 - Staged records: 248

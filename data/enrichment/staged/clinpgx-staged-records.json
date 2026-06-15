@@ -1,13 +1,13 @@
 [
   {
-    "id": "candidate_clinpgx_clinical_annotation_atp2a1_clozapine_ot_pharmacogenetics_chembl42_57_rs3888190_clinpgx_evidence_3_137b60df8d",
+    "id": "candidate_clinpgx_clinical_annotation_atp2a1_clozapine_ot_pharmacogenetics_chembl42_57_rs3888190_clinpgx_evidence_3_c1d307c744",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -92,7 +92,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -112,14 +112,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp1a2_clozapine_ot_pharmacogenetics_chembl42_56_rs72547516_clinpgx_evidence_3_38d76aab1d",
+    "id": "candidate_clinpgx_clinical_annotation_cyp1a2_clozapine_ot_pharmacogenetics_chembl42_56_rs72547516_clinpgx_evidence_3_bccebea6a2",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -204,7 +204,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -224,14 +224,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_79_pa165816533_clinpgx_evidence_1a_3c35979135",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_79_pa165816533_clinpgx_evidence_1a_9f1d6fd3e2",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -316,7 +316,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -336,14 +336,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_80_pa165816533_clinpgx_evidence_1a_0503cbf012",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_80_pa165816533_clinpgx_evidence_1a_8e5bd45d8d",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -428,7 +428,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -448,14 +448,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_81_pa165980636_clinpgx_evidence_1a_60b6d350f2",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_81_pa165980636_clinpgx_evidence_1a_3438cacfe5",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -540,7 +540,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -560,14 +560,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_82_pa165980635_clinpgx_evidence_1a_9f79cb3039",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_82_pa165980635_clinpgx_evidence_1a_f3d1f26951",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -652,7 +652,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -672,14 +672,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_83_pa165980635_clinpgx_evidence_1a_070f8e7ca7",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_83_pa165980635_clinpgx_evidence_1a_e2455a7ebf",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -764,7 +764,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -784,14 +784,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_84_pa165980635_clinpgx_evidence_1a_6116a2ebc6",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_84_pa165980635_clinpgx_evidence_1a_ed2c972996",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -876,7 +876,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -896,14 +896,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_85_pa165980636_clinpgx_evidence_1a_af72340619",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_85_pa165980636_clinpgx_evidence_1a_ae6b8846b3",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -988,7 +988,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -1008,14 +1008,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_86_pa165816524_clinpgx_evidence_1a_2095bebc3c",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_86_pa165816524_clinpgx_evidence_1a_d79a4ce9c1",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -1100,7 +1100,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -1120,14 +1120,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_87_pa165816540_clinpgx_evidence_1a_c153db062f",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_87_pa165816540_clinpgx_evidence_1a_b258f2db9d",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -1212,7 +1212,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -1232,14 +1232,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_88_pa165816522_clinpgx_evidence_1a_a634c90107",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_88_pa165816522_clinpgx_evidence_1a_87a6b93d23",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -1324,7 +1324,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -1344,14 +1344,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_89_pa165816522_clinpgx_evidence_1a_80bb2a724a",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_89_pa165816522_clinpgx_evidence_1a_c96ff195c0",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -1436,7 +1436,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -1456,14 +1456,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_90_pa165816524_clinpgx_evidence_1a_6b1afd89b0",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_90_pa165816524_clinpgx_evidence_1a_8167ac9846",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -1548,7 +1548,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -1568,14 +1568,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_60_pa165816543_clinpgx_evidence_1a_3cc4eb36a5",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_60_pa165816543_clinpgx_evidence_1a_2212b0c438",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -1660,7 +1660,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -1680,14 +1680,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_61_pa165816544_clinpgx_evidence_1a_1462d9cd06",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_61_pa165816544_clinpgx_evidence_1a_3bb74b5fc1",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -1772,7 +1772,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -1792,14 +1792,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_62_pa165816547_clinpgx_evidence_1a_664b1a8293",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_62_pa165816547_clinpgx_evidence_1a_ac8ffccc1b",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -1884,7 +1884,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -1904,14 +1904,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_64_pa165816552_clinpgx_evidence_1a_5844cc5f08",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_64_pa165816552_clinpgx_evidence_1a_657e3f0dde",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -1996,7 +1996,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -2016,14 +2016,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_65_pa165816546_clinpgx_evidence_1a_d3f36bbc57",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_65_pa165816546_clinpgx_evidence_1a_b69c894ddb",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -2108,7 +2108,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -2128,14 +2128,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_68_pa165816552_clinpgx_evidence_1a_247542bbc9",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_68_pa165816552_clinpgx_evidence_1a_db084d6a7e",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -2220,7 +2220,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -2240,14 +2240,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_69_pa165816543_clinpgx_evidence_1a_b57570d149",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_69_pa165816543_clinpgx_evidence_1a_24cdd3da69",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -2332,7 +2332,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -2352,14 +2352,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_70_pa165816545_clinpgx_evidence_1a_b8724d912c",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_70_pa165816545_clinpgx_evidence_1a_e59e450495",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -2444,7 +2444,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -2464,14 +2464,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_71_pa165816546_clinpgx_evidence_1a_1bc71bc2e4",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_71_pa165816546_clinpgx_evidence_1a_9ac8243aa9",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -2556,7 +2556,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -2576,14 +2576,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_12_pa165816576_clinpgx_evidence_1a_8929356bb5",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_12_pa165816576_clinpgx_evidence_1a_6c9b12bad6",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -2668,7 +2668,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -2688,14 +2688,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_13_pa165988479_clinpgx_evidence_1a_a67d440c07",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_13_pa165988479_clinpgx_evidence_1a_0958b61f48",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -2780,7 +2780,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -2800,14 +2800,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_14_pa165988479_clinpgx_evidence_1a_a59dac663b",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_14_pa165988479_clinpgx_evidence_1a_d0e775585f",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -2892,7 +2892,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -2912,14 +2912,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_15_pa165816577_clinpgx_evidence_1a_42d2ac4672",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_15_pa165816577_clinpgx_evidence_1a_b716ec2872",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -3004,7 +3004,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -3024,14 +3024,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_16_pa165816581_clinpgx_evidence_1a_0dfb9c6c8b",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_16_pa165816581_clinpgx_evidence_1a_aeb1870470",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -3116,7 +3116,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -3136,14 +3136,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_17_pa165816581_clinpgx_evidence_1a_9ad8668dc4",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_17_pa165816581_clinpgx_evidence_1a_ba94884e0e",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -3228,7 +3228,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -3248,14 +3248,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_18_pa165816576_clinpgx_evidence_1a_21a5af606d",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_18_pa165816576_clinpgx_evidence_1a_9a6b3da3f3",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -3340,7 +3340,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -3360,14 +3360,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_19_pa165816576_clinpgx_evidence_1a_ae63e1b0b0",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_19_pa165816576_clinpgx_evidence_1a_0718545b60",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -3452,7 +3452,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -3472,14 +3472,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_20_pa165816583_clinpgx_evidence_1a_7a43ba4133",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_20_pa165816583_clinpgx_evidence_1a_2423b710f9",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -3564,7 +3564,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -3584,14 +3584,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_21_pa165816578_clinpgx_evidence_1a_cc6a49cc07",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_21_pa165816578_clinpgx_evidence_1a_1567f57cbd",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -3676,7 +3676,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -3696,14 +3696,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_22_pa165988488_clinpgx_evidence_1a_765fe1ab91",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_22_pa165988488_clinpgx_evidence_1a_ec4cd6fdb9",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -3788,7 +3788,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -3808,14 +3808,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_23_pa165988488_clinpgx_evidence_1a_0665cdf1e7",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_23_pa165988488_clinpgx_evidence_1a_f0dc711d12",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -3900,7 +3900,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -3920,14 +3920,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_0_pa165988480_clinpgx_evidence_1a_64ad923dd5",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_0_pa165988480_clinpgx_evidence_1a_506972c6f6",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -4012,7 +4012,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -4032,14 +4032,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_1_pa165816579_clinpgx_evidence_1a_7eddc435fa",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_1_pa165816579_clinpgx_evidence_1a_e3f8673f81",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -4124,7 +4124,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -4144,14 +4144,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_10_pa165816582_clinpgx_evidence_1a_aada97b00c",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_10_pa165816582_clinpgx_evidence_1a_eee914de0f",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -4236,7 +4236,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -4256,14 +4256,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_11_pa166181185_clinpgx_evidence_1a_d43529508b",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_11_pa166181185_clinpgx_evidence_1a_5a49c1d16a",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -4348,7 +4348,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -4368,14 +4368,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_2_pa165816579_clinpgx_evidence_1a_407d6f1d18",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_2_pa165816579_clinpgx_evidence_1a_43af369ea6",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -4460,7 +4460,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -4480,14 +4480,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_3_pa165816579_clinpgx_evidence_1a_d5b9677925",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_3_pa165816579_clinpgx_evidence_1a_8cb694457d",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -4572,7 +4572,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -4592,14 +4592,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_4_pa165948092_clinpgx_evidence_1a_db9aac1f09",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_4_pa165948092_clinpgx_evidence_1a_036f7e6e48",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -4684,7 +4684,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -4704,14 +4704,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_5_pa165948092_clinpgx_evidence_1a_c3c8610b01",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_5_pa165948092_clinpgx_evidence_1a_1caa694193",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -4796,7 +4796,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -4816,14 +4816,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_6_pa165948092_clinpgx_evidence_1a_560c18cad9",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_6_pa165948092_clinpgx_evidence_1a_4844e7acf9",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -4908,7 +4908,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -4928,14 +4928,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_7_pa165948092_clinpgx_evidence_1a_bba9460f0c",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_7_pa165948092_clinpgx_evidence_1a_2dda90dcf7",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -5020,7 +5020,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -5040,14 +5040,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_8_pa165948092_clinpgx_evidence_1a_a809573cb2",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_8_pa165948092_clinpgx_evidence_1a_9a9cb5ff82",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -5132,7 +5132,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -5152,14 +5152,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_9_pa165948092_clinpgx_evidence_1a_cb23c0090c",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_9_pa165948092_clinpgx_evidence_1a_72d66b9a5e",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -5244,7 +5244,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -5264,14 +5264,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_simvastatin_ot_pharmacogenetics_chembl1064_35_pa165816578_clinpgx_evidence_3_6a700fe747",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_simvastatin_ot_pharmacogenetics_chembl1064_35_pa165816578_clinpgx_evidence_3_8ec91ec726",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -5356,7 +5356,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -5376,14 +5376,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_100_pa165816579_clinpgx_evidence_1a_a429d65fb0",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_100_pa165816579_clinpgx_evidence_1a_aaf5b29daa",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -5468,7 +5468,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -5488,14 +5488,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_101_pa165816584_clinpgx_evidence_1a_4c4c84937d",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_101_pa165816584_clinpgx_evidence_1a_045e988fcf",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -5580,7 +5580,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -5600,14 +5600,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_102_pa165948092_clinpgx_evidence_1a_1c9f75c3da",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_102_pa165948092_clinpgx_evidence_1a_4ec06baabe",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -5692,7 +5692,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -5712,14 +5712,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_91_pa165816582_clinpgx_evidence_1a_36bcc2b7c1",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_91_pa165816582_clinpgx_evidence_1a_b946811b15",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -5804,7 +5804,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -5824,14 +5824,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_92_pa165816582_clinpgx_evidence_1a_e560bb9194",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_92_pa165816582_clinpgx_evidence_1a_c1bff29fed",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -5916,7 +5916,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -5936,14 +5936,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_93_pa165816578_clinpgx_evidence_1a_d2ad5f16e4",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_93_pa165816578_clinpgx_evidence_1a_5ebb3f9b63",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -6028,7 +6028,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -6048,14 +6048,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_94_pa165988487_clinpgx_evidence_1a_715ae658fb",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_94_pa165988487_clinpgx_evidence_1a_b7e01f4d69",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -6140,7 +6140,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -6160,14 +6160,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_95_pa165988487_clinpgx_evidence_1a_e37f067eb7",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_95_pa165988487_clinpgx_evidence_1a_a083b7a289",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -6252,7 +6252,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -6272,14 +6272,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_96_pa165988488_clinpgx_evidence_1a_d1ada4412f",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_96_pa165988488_clinpgx_evidence_1a_379ae8808e",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -6364,7 +6364,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -6384,14 +6384,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_97_pa165971564_clinpgx_evidence_1a_8ba88737a7",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_97_pa165971564_clinpgx_evidence_1a_c9c1ef4749",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -6476,7 +6476,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -6496,14 +6496,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_98_pa165948318_clinpgx_evidence_1a_f36ebaa15b",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_98_pa165948318_clinpgx_evidence_1a_b5f7be8d04",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -6588,7 +6588,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -6608,14 +6608,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_99_pa165816579_clinpgx_evidence_1a_4db491ffbd",
+    "id": "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_99_pa165816579_clinpgx_evidence_1a_27e73fe44e",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -6700,7 +6700,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -6720,14 +6720,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_36_rs3918290_clinpgx_evidence_1a_83c449c5e9",
+    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_36_rs3918290_clinpgx_evidence_1a_e113c43393",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -6812,7 +6812,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -6832,14 +6832,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_37_rs3918290_clinpgx_evidence_1a_9d19fa548e",
+    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_37_rs3918290_clinpgx_evidence_1a_05b6a50012",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -6924,7 +6924,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -6944,14 +6944,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_38_rs1801265_clinpgx_evidence_1a_8851da9ed5",
+    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_38_rs1801265_clinpgx_evidence_1a_401e5e6d84",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -7036,7 +7036,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -7056,14 +7056,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_39_rs67376798_clinpgx_evidence_1a_9bbdab567e",
+    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_39_rs67376798_clinpgx_evidence_1a_ee8318bf4c",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -7148,7 +7148,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -7168,14 +7168,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_40_rs17376848_clinpgx_evidence_1a_b027101bef",
+    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_40_rs17376848_clinpgx_evidence_1a_d7b33eb863",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -7260,7 +7260,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -7280,14 +7280,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_41_rs1801158_clinpgx_evidence_1a_d01c4a79ad",
+    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_41_rs1801158_clinpgx_evidence_1a_524ed713dc",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -7372,7 +7372,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -7392,14 +7392,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_42_rs56038477_clinpgx_evidence_1a_20506f7db8",
+    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_42_rs56038477_clinpgx_evidence_1a_d437cb38e2",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -7484,7 +7484,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -7504,14 +7504,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_43_rs75017182_clinpgx_evidence_1a_db03fec979",
+    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_43_rs75017182_clinpgx_evidence_1a_a02631a0c4",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -7596,7 +7596,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -7616,14 +7616,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_44_rs2297595_clinpgx_evidence_1a_52049a577c",
+    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_44_rs2297595_clinpgx_evidence_1a_4680904891",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -7708,7 +7708,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -7728,14 +7728,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_45_rs67376798_clinpgx_evidence_1a_a3ba59de90",
+    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_45_rs67376798_clinpgx_evidence_1a_6ad5f3a35d",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -7820,7 +7820,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -7840,14 +7840,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_46_rs67376798_clinpgx_evidence_1a_5663808b6c",
+    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_46_rs67376798_clinpgx_evidence_1a_d47eca2bc8",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -7932,7 +7932,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -7952,14 +7952,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_47_rs3918290_clinpgx_evidence_1a_29eed8c430",
+    "id": "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_47_rs3918290_clinpgx_evidence_1a_b33932e738",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -8044,7 +8044,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -8064,14 +8064,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_drd2_clozapine_ot_pharmacogenetics_chembl42_50_rs6277_clinpgx_evidence_3_d14e8ad88b",
+    "id": "candidate_clinpgx_clinical_annotation_drd2_clozapine_ot_pharmacogenetics_chembl42_50_rs6277_clinpgx_evidence_3_536f69d832",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -8156,7 +8156,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -8176,14 +8176,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_drd2_clozapine_ot_pharmacogenetics_chembl42_51_rs1079598_clinpgx_evidence_3_dfb920781d",
+    "id": "candidate_clinpgx_clinical_annotation_drd2_clozapine_ot_pharmacogenetics_chembl42_51_rs1079598_clinpgx_evidence_3_49fc43056e",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -8268,7 +8268,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -8288,14 +8288,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_57_clinpgx_evidence_clinpgx_clinical_5ccbba0870",
+    "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_57_clinpgx_evidence_clinpgx_clinical_f4a44b62c7",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -8377,7 +8377,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -8397,14 +8397,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_58_clinpgx_evidence_clinpgx_clinical_ab59d6f93e",
+    "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_58_clinpgx_evidence_clinpgx_clinical_00967422cb",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -8486,7 +8486,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -8506,14 +8506,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_59_clinpgx_evidence_clinpgx_clinical_922c9e6014",
+    "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_59_clinpgx_evidence_clinpgx_clinical_7dcf69d0a4",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -8595,7 +8595,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -8615,14 +8615,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_faah_clozapine_ot_pharmacogenetics_chembl42_58_rs324420_clinpgx_evidence_3_28202e6e1a",
+    "id": "candidate_clinpgx_clinical_annotation_faah_clozapine_ot_pharmacogenetics_chembl42_58_rs324420_clinpgx_evidence_3_45f6e2d014",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -8707,7 +8707,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -8727,14 +8727,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_gcg_clozapine_ot_pharmacogenetics_chembl42_59_rs13429709_clinpgx_evidence_3_f8c7769c66",
+    "id": "candidate_clinpgx_clinical_annotation_gcg_clozapine_ot_pharmacogenetics_chembl42_59_rs13429709_clinpgx_evidence_3_a11aa5b668",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -8819,7 +8819,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -8839,14 +8839,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_54_rs1072388_clinpgx_evidence_3_207b29ef9f",
+    "id": "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_54_rs1072388_clinpgx_evidence_3_fdcf7d47cf",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -8931,7 +8931,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -8951,14 +8951,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_55_rs1072388_clinpgx_evidence_3_914ff322cb",
+    "id": "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_55_rs1072388_clinpgx_evidence_3_97875b73b5",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -9043,7 +9043,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -9063,14 +9063,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_gstm1_clozapine_ot_pharmacogenetics_chembl42_48_null_non_null_clinpgx_evidence_3_e26f18edd6",
+    "id": "candidate_clinpgx_clinical_annotation_gstm1_clozapine_ot_pharmacogenetics_chembl42_48_null_non_null_clinpgx_evidence_3_9e06461ad9",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -9155,7 +9155,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -9175,14 +9175,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_gstm1_clozapine_ot_pharmacogenetics_chembl42_49_null_null_clinpgx_evidence_3_b99eec3d46",
+    "id": "candidate_clinpgx_clinical_annotation_gstm1_clozapine_ot_pharmacogenetics_chembl42_49_null_null_clinpgx_evidence_3_0864da653e",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -9267,7 +9267,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -9287,14 +9287,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_hla_b_abacavir_ot_pharmacogenetics_chembl1380_72_pa165987830_clinpgx_evidence_1a_9b2a503ee2",
+    "id": "candidate_clinpgx_clinical_annotation_hla_b_abacavir_ot_pharmacogenetics_chembl1380_72_pa165987830_clinpgx_evidence_1a_e9b14e4a56",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -9379,7 +9379,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -9399,14 +9399,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_htr2a_clozapine_ot_targetsafety_chembl42_40_clinpgx_evidence_clinpgx_clinical_c4a0938508",
+    "id": "candidate_clinpgx_clinical_annotation_htr2a_clozapine_ot_targetsafety_chembl42_40_clinpgx_evidence_clinpgx_clinical_520cf4c39f",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -9488,7 +9488,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -9508,14 +9508,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_52_rs1062613_clinpgx_evidence_3_2c8b543bd4",
+    "id": "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_52_rs1062613_clinpgx_evidence_3_35656e4af9",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -9600,7 +9600,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -9620,14 +9620,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_53_rs1062613_clinpgx_evidence_3_fecb59e4dd",
+    "id": "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_53_rs1062613_clinpgx_evidence_3_6d5e3673a5",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -9712,7 +9712,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -9732,14 +9732,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_lta_abacavir_ot_pharmacogenetics_chembl1380_73_rs3093726_clinpgx_evidence_3_0587e7bb6f",
+    "id": "candidate_clinpgx_clinical_annotation_lta_abacavir_ot_pharmacogenetics_chembl1380_73_rs3093726_clinpgx_evidence_3_9e02d67750",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -9824,7 +9824,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -9844,14 +9844,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_lta_abacavir_ot_pharmacogenetics_chembl1380_76_rs3093726_clinpgx_evidence_3_c243104038",
+    "id": "candidate_clinpgx_clinical_annotation_lta_abacavir_ot_pharmacogenetics_chembl1380_76_rs3093726_clinpgx_evidence_3_d8822273b8",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -9936,7 +9936,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -9956,14 +9956,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_ltb_abacavir_ot_pharmacogenetics_chembl1380_74_rs3093726_clinpgx_evidence_3_c13758fbf2",
+    "id": "candidate_clinpgx_clinical_annotation_ltb_abacavir_ot_pharmacogenetics_chembl1380_74_rs3093726_clinpgx_evidence_3_673aaa5d3a",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -10048,7 +10048,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -10068,14 +10068,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_ltb_abacavir_ot_pharmacogenetics_chembl1380_77_rs3093726_clinpgx_evidence_3_a997f32f1e",
+    "id": "candidate_clinpgx_clinical_annotation_ltb_abacavir_ot_pharmacogenetics_chembl1380_77_rs3093726_clinpgx_evidence_3_07a9be4445",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -10160,7 +10160,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -10180,14 +10180,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_oprd1_codeine_ot_targetsafety_chembl485_23_clinpgx_evidence_clinpgx_clinical_9f70e594d7",
+    "id": "candidate_clinpgx_clinical_annotation_oprd1_codeine_ot_targetsafety_chembl485_23_clinpgx_evidence_clinpgx_clinical_d3afb70dfa",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -10269,7 +10269,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -10289,14 +10289,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_53_clinpgx_evidence_clinpgx_clinical_ecf74bb84b",
+    "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_53_clinpgx_evidence_clinpgx_clinical_683d27e433",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -10378,7 +10378,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -10398,14 +10398,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_54_clinpgx_evidence_clinpgx_clinical_fad179bce2",
+    "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_54_clinpgx_evidence_clinpgx_clinical_793c3e4a3b",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -10487,7 +10487,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -10507,14 +10507,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_55_clinpgx_evidence_clinpgx_clinical_e19a096685",
+    "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_55_clinpgx_evidence_clinpgx_clinical_ca1f3a00aa",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -10596,7 +10596,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -10616,14 +10616,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_56_clinpgx_evidence_clinpgx_clinical_24ce67844c",
+    "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_56_clinpgx_evidence_clinpgx_clinical_c95731be91",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -10705,7 +10705,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -10725,14 +10725,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_24_pa165819265_clinpgx_evidence_1a_7b444c8288",
+    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_24_pa165819265_clinpgx_evidence_1a_985edc71b5",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -10817,7 +10817,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -10837,14 +10837,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_25_pa165819265_clinpgx_evidence_1a_8ca6efd660",
+    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_25_pa165819265_clinpgx_evidence_1a_141a81850d",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -10929,7 +10929,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -10949,14 +10949,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_26_rs4149056_clinpgx_evidence_1a_a12e3a2bde",
+    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_26_rs4149056_clinpgx_evidence_1a_46c28fece3",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -11041,7 +11041,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -11061,14 +11061,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_27_rs4149056_clinpgx_evidence_1a_5277597906",
+    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_27_rs4149056_clinpgx_evidence_1a_6cc4dfb73d",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -11153,7 +11153,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -11173,14 +11173,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_28_rs4149056_clinpgx_evidence_1a_9c7dfd3f81",
+    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_28_rs4149056_clinpgx_evidence_1a_4294e5bed4",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -11265,7 +11265,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -11285,14 +11285,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_29_pa165981641_clinpgx_evidence_1a_46222e6aca",
+    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_29_pa165981641_clinpgx_evidence_1a_fb834131aa",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -11377,7 +11377,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -11397,14 +11397,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_30_pa165819255_clinpgx_evidence_1a_653bdb0dfc",
+    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_30_pa165819255_clinpgx_evidence_1a_c82afbb467",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -11489,7 +11489,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -11509,14 +11509,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_31_pa165981641_clinpgx_evidence_1a_4c6c7114bc",
+    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_31_pa165981641_clinpgx_evidence_1a_4c30bac203",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -11601,7 +11601,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -11621,14 +11621,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_32_pa165819255_clinpgx_evidence_1a_c1446333d9",
+    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_32_pa165819255_clinpgx_evidence_1a_8a7e62c2a2",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -11713,7 +11713,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -11733,14 +11733,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_33_rs4149056_clinpgx_evidence_1a_fa9e144f0c",
+    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_33_rs4149056_clinpgx_evidence_1a_7875879dbf",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -11825,7 +11825,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -11845,14 +11845,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_34_rs4149056_clinpgx_evidence_1a_1a9fb68028",
+    "id": "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_34_rs4149056_clinpgx_evidence_1a_d8cb4d8f9e",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -11937,7 +11937,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -11957,14 +11957,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_tnf_abacavir_ot_pharmacogenetics_chembl1380_75_rs3093726_clinpgx_evidence_3_8fda82bf5c",
+    "id": "candidate_clinpgx_clinical_annotation_tnf_abacavir_ot_pharmacogenetics_chembl1380_75_rs3093726_clinpgx_evidence_3_946276b1b8",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -12049,7 +12049,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -12069,14 +12069,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_tnf_abacavir_ot_pharmacogenetics_chembl1380_78_rs3093726_clinpgx_evidence_3_5cf933139c",
+    "id": "candidate_clinpgx_clinical_annotation_tnf_abacavir_ot_pharmacogenetics_chembl1380_78_rs3093726_clinpgx_evidence_3_a5f1cda31e",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -12161,7 +12161,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -12181,14 +12181,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_25_clinpgx_evidence_clinpgx_clinical_90f7de6d46",
+    "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_25_clinpgx_evidence_clinpgx_clinical_25e31ac7b2",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -12270,7 +12270,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -12290,14 +12290,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_26_clinpgx_evidence_clinpgx_clinical_5e44d9dbeb",
+    "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_26_clinpgx_evidence_clinpgx_clinical_05f8028920",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -12379,7 +12379,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -12399,14 +12399,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_27_clinpgx_evidence_clinpgx_clinical_fa63a7ffaa",
+    "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_27_clinpgx_evidence_clinpgx_clinical_5d43925d40",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -12488,7 +12488,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -12508,14 +12508,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_28_clinpgx_evidence_clinpgx_clinical_951adbc64e",
+    "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_28_clinpgx_evidence_clinpgx_clinical_a0295223b4",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -12597,7 +12597,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -12617,14 +12617,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_29_clinpgx_evidence_clinpgx_clinical_6a81ff3db5",
+    "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_29_clinpgx_evidence_clinpgx_clinical_7466947498",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -12706,7 +12706,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -12726,14 +12726,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_30_clinpgx_evidence_clinpgx_clinical_e461e6ac39",
+    "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_30_clinpgx_evidence_clinpgx_clinical_b4dfdc069f",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -12815,7 +12815,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -12835,14 +12835,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_pharmacogenetics_chembl1464_67_rs9923231_clinpgx_evidence_1a_c08714fdb7",
+    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_pharmacogenetics_chembl1464_67_rs9923231_clinpgx_evidence_1a_7cfc431ad6",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -12927,7 +12927,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -12947,14 +12947,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_43_clinpgx_evidence_clinpgx_clinical_e2f9ba49f1",
+    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_43_clinpgx_evidence_clinpgx_clinical_8ac6bb17ed",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -13036,7 +13036,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -13056,14 +13056,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_44_clinpgx_evidence_clinpgx_clinical_f131bf0271",
+    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_44_clinpgx_evidence_clinpgx_clinical_0de44787e6",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -13145,7 +13145,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -13165,14 +13165,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_45_clinpgx_evidence_clinpgx_clinical_7ed9587fc9",
+    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_45_clinpgx_evidence_clinpgx_clinical_4feee59b3a",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -13254,7 +13254,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -13274,14 +13274,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_46_clinpgx_evidence_clinpgx_clinical_1139fcc801",
+    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_46_clinpgx_evidence_clinpgx_clinical_f430545cd6",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -13363,7 +13363,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -13383,14 +13383,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_47_clinpgx_evidence_clinpgx_clinical_709f6988cd",
+    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_47_clinpgx_evidence_clinpgx_clinical_3402c8ac6d",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -13472,7 +13472,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -13492,14 +13492,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_48_clinpgx_evidence_clinpgx_clinical_a1fd5ec7d0",
+    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_48_clinpgx_evidence_clinpgx_clinical_7e29e488e0",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -13581,7 +13581,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -13601,14 +13601,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_49_clinpgx_evidence_clinpgx_clinical_d404ea7f73",
+    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_49_clinpgx_evidence_clinpgx_clinical_ed89f733d8",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -13690,7 +13690,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -13710,14 +13710,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_50_clinpgx_evidence_clinpgx_clinical_806745ff20",
+    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_50_clinpgx_evidence_clinpgx_clinical_a058e3dda3",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -13799,7 +13799,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -13819,14 +13819,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_51_clinpgx_evidence_clinpgx_clinical_d95c2b03c9",
+    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_51_clinpgx_evidence_clinpgx_clinical_4662946d6d",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -13908,7 +13908,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -13928,14 +13928,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_52_clinpgx_evidence_clinpgx_clinical_4efe52f272",
+    "id": "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_52_clinpgx_evidence_clinpgx_clinical_fd1b316eac",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -14017,7 +14017,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -14037,14 +14037,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_warfarin_ot_pharmacogenetics_chembl1464_63_rs12777823_clinpgx_evidence_1a_93c0d3b4c7",
+    "id": "candidate_clinpgx_clinical_annotation_warfarin_ot_pharmacogenetics_chembl1464_63_rs12777823_clinpgx_evidence_1a_4503ff140b",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -14122,7 +14122,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",
@@ -14142,14 +14142,14 @@
     ]
   },
   {
-    "id": "candidate_clinpgx_clinical_annotation_warfarin_ot_pharmacogenetics_chembl1464_66_rs12777823_clinpgx_evidence_1a_f8dd65e637",
+    "id": "candidate_clinpgx_clinical_annotation_warfarin_ot_pharmacogenetics_chembl1464_66_rs12777823_clinpgx_evidence_1a_5aa75b69ea",
     "schema": "diognosis.staged-source.v1",
     "source": {
       "name": "ClinPGx",
       "sourceType": "structured_guideline",
       "url": "https://api.clinpgx.org",
       "endpoint": "Open Targets pharmacogenetics snapshot",
-      "fetchedAt": "2026-06-15T12:54:56.130Z",
+      "fetchedAt": "2026-06-15T13:45:49.319Z",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
       "attribution": "ClinPGx context imported through the offline Open Targets snapshot; verify source object before promotion.",
@@ -14227,7 +14227,7 @@
     },
     "provenance": {
       "rawSourceCachePath": "",
-      "normalizedAt": "2026-06-15T12:54:56.130Z",
+      "normalizedAt": "2026-06-15T13:45:49.319Z",
       "normalizerVersion": "clinpgx-normalize.v2",
       "sourceRelease": "26.03",
       "sourceSnapshotId": "26.03",

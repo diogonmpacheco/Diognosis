@@ -1,0 +1,8 @@
+{
+  "schema": "diognosis.label-source-coverage-audit.v1",
+  "generatedAt": "2026-06-15T13:45:49.419Z",
+  "stagedRecords": 0,
+  "fetchedRecords": 0,
+  "sourceTruthStatus": "label_source_candidate_not_fetched",
+  "reviewBoundary": "label_source_lane_initialized_no_runtime_fetch_no_core_promotion"
+}

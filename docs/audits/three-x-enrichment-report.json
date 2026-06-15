@@ -1,0 +1,105 @@
+{
+  "schema": "diognosis.three-x-enrichment-campaign.v1",
+  "generatedAt": "2026-06-15T13:50:17.284Z",
+  "baseline": "docs/audits/three-x-baseline.json",
+  "goals": [
+    {
+      "area": "drugs",
+      "current": 625,
+      "target": 1875,
+      "additionalNeeded": 1250
+    },
+    {
+      "area": "interactions",
+      "current": 627,
+      "target": 1881,
+      "additionalNeeded": 1254
+    },
+    {
+      "area": "evidenceEntries",
+      "current": 456,
+      "target": 1368,
+      "additionalNeeded": 912
+    },
+    {
+      "area": "parentMetaboliteMaps",
+      "current": 467,
+      "target": 1401,
+      "additionalNeeded": 934
+    },
+    {
+      "area": "metaboliteEdges",
+      "current": 1171,
+      "target": 3513,
+      "additionalNeeded": 2342
+    },
+    {
+      "area": "firstClassMetaboliteActors",
+      "current": 33,
+      "target": 99,
+      "additionalNeeded": 66
+    },
+    {
+      "area": "pkProfiles",
+      "current": 506,
+      "target": 1518,
+      "additionalNeeded": 1012
+    },
+    {
+      "area": "washoutRules",
+      "current": 24,
+      "target": 72,
+      "additionalNeeded": 48
+    },
+    {
+      "area": "genotypeGenes",
+      "current": 43,
+      "target": 129,
+      "additionalNeeded": 86
+    },
+    {
+      "area": "genotypeMetaboliteRules",
+      "current": 126,
+      "target": 378,
+      "additionalNeeded": 252
+    },
+    {
+      "area": "transporterInteractions",
+      "current": 18,
+      "target": 54,
+      "additionalNeeded": 36
+    },
+    {
+      "area": "receptorActors",
+      "current": 6,
+      "target": 18,
+      "additionalNeeded": 12
+    },
+    {
+      "area": "phenotypeScores",
+      "current": 28,
+      "target": 84,
+      "additionalNeeded": 56
+    },
+    {
+      "area": "beersFlags",
+      "current": 43,
+      "target": 129,
+      "additionalNeeded": 86
+    }
+  ],
+  "reviewLayer": {
+    "stagedRecords": 532,
+    "candidateRows": 259,
+    "groupedV2Candidates": 378,
+    "queueV2Items": 626,
+    "p1QueueItems": 277,
+    "p2QueueItems": 349,
+    "p3QueueItems": 0
+  },
+  "promotions": {
+    "corePromotions": 0,
+    "reason": "No source candidate was promoted to core data in this campaign. Review and source-faithfulness decisions are required first."
+  },
+  "recommendation": "Prioritize P1 candidate relation groups and fetched source verification before increasing curated core counts."
+}

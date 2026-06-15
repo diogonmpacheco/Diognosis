@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T12:54:55.743Z",
+  "generated_at": "2026-06-15T13:45:48.946Z",
   "counts": {
     "drugs": 625,
     "ddi_pairs": 627,
@@ -698,7 +698,7 @@
       "source": "ClinPGx",
       "gene": "ATP2A1",
       "drug": "Clozapine",
-      "id": "candidate_clinpgx_clinical_annotation_atp2a1_clozapine_ot_pharmacogenetics_chembl42_57_rs3888190_clinpgx_evidence_3_0007d34c6c",
+      "id": "candidate_clinpgx_clinical_annotation_atp2a1_clozapine_ot_pharmacogenetics_chembl42_57_rs3888190_clinpgx_evidence_3_e0fa4bd11a",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -706,7 +706,7 @@
       "source": "ClinPGx",
       "gene": "ESR1",
       "drug": "Tamoxifen",
-      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_57_clinpgx_evidence_clinpgx_clinical_069569e65b",
+      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_57_clinpgx_evidence_clinpgx_clinical_770ddcc453",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -714,7 +714,7 @@
       "source": "ClinPGx",
       "gene": "ESR1",
       "drug": "Tamoxifen",
-      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_58_clinpgx_evidence_clinpgx_clinical_cb561a7285",
+      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_58_clinpgx_evidence_clinpgx_clinical_9fb26ed9c6",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -722,7 +722,7 @@
       "source": "ClinPGx",
       "gene": "ESR1",
       "drug": "Tamoxifen",
-      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_59_clinpgx_evidence_clinpgx_clinical_ac6aab6614",
+      "id": "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_59_clinpgx_evidence_clinpgx_clinical_ced2eaec78",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -730,7 +730,7 @@
       "source": "ClinPGx",
       "gene": "FAAH",
       "drug": "Clozapine",
-      "id": "candidate_clinpgx_clinical_annotation_faah_clozapine_ot_pharmacogenetics_chembl42_58_rs324420_clinpgx_evidence_3_97a136658c",
+      "id": "candidate_clinpgx_clinical_annotation_faah_clozapine_ot_pharmacogenetics_chembl42_58_rs324420_clinpgx_evidence_3_c6238612d9",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -738,7 +738,7 @@
       "source": "ClinPGx",
       "gene": "GCG",
       "drug": "Clozapine",
-      "id": "candidate_clinpgx_clinical_annotation_gcg_clozapine_ot_pharmacogenetics_chembl42_59_rs13429709_clinpgx_evidence_3_4b26bbb8ba",
+      "id": "candidate_clinpgx_clinical_annotation_gcg_clozapine_ot_pharmacogenetics_chembl42_59_rs13429709_clinpgx_evidence_3_dd1e28ceb7",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -746,7 +746,7 @@
       "source": "ClinPGx",
       "gene": "GRIN2B",
       "drug": "Clozapine",
-      "id": "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_54_rs1072388_clinpgx_evidence_3_dc1485ef4f",
+      "id": "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_54_rs1072388_clinpgx_evidence_3_7a49189708",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -754,7 +754,7 @@
       "source": "ClinPGx",
       "gene": "GRIN2B",
       "drug": "Clozapine",
-      "id": "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_55_rs1072388_clinpgx_evidence_3_d2a4ef648b",
+      "id": "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_55_rs1072388_clinpgx_evidence_3_2acf9cb438",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -762,7 +762,7 @@
       "source": "ClinPGx",
       "gene": "HLA-B",
       "drug": "Abacavir",
-      "id": "candidate_clinpgx_clinical_annotation_hla_b_abacavir_ot_pharmacogenetics_chembl1380_72_pa165987830_clinpgx_evidence_1a_3f9e733f9f",
+      "id": "candidate_clinpgx_clinical_annotation_hla_b_abacavir_ot_pharmacogenetics_chembl1380_72_pa165987830_clinpgx_evidence_1a_4418875380",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -770,7 +770,7 @@
       "source": "ClinPGx",
       "gene": "HTR3A",
       "drug": "Clozapine",
-      "id": "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_52_rs1062613_clinpgx_evidence_3_bf623e7a26",
+      "id": "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_52_rs1062613_clinpgx_evidence_3_dd56ed039b",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -778,7 +778,7 @@
       "source": "ClinPGx",
       "gene": "HTR3A",
       "drug": "Clozapine",
-      "id": "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_53_rs1062613_clinpgx_evidence_3_08e140d4dc",
+      "id": "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_53_rs1062613_clinpgx_evidence_3_6e470bdf78",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -786,7 +786,7 @@
       "source": "ClinPGx",
       "gene": "LTA",
       "drug": "Abacavir",
-      "id": "candidate_clinpgx_clinical_annotation_lta_abacavir_ot_pharmacogenetics_chembl1380_73_rs3093726_clinpgx_evidence_3_d28189f2a1",
+      "id": "candidate_clinpgx_clinical_annotation_lta_abacavir_ot_pharmacogenetics_chembl1380_73_rs3093726_clinpgx_evidence_3_65edd22ad9",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -794,7 +794,7 @@
       "source": "ClinPGx",
       "gene": "LTA",
       "drug": "Abacavir",
-      "id": "candidate_clinpgx_clinical_annotation_lta_abacavir_ot_pharmacogenetics_chembl1380_76_rs3093726_clinpgx_evidence_3_1e383be314",
+      "id": "candidate_clinpgx_clinical_annotation_lta_abacavir_ot_pharmacogenetics_chembl1380_76_rs3093726_clinpgx_evidence_3_6db384d00c",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -802,7 +802,7 @@
       "source": "ClinPGx",
       "gene": "LTB",
       "drug": "Abacavir",
-      "id": "candidate_clinpgx_clinical_annotation_ltb_abacavir_ot_pharmacogenetics_chembl1380_74_rs3093726_clinpgx_evidence_3_4246cbfb1d",
+      "id": "candidate_clinpgx_clinical_annotation_ltb_abacavir_ot_pharmacogenetics_chembl1380_74_rs3093726_clinpgx_evidence_3_85f36ae147",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -810,7 +810,7 @@
       "source": "ClinPGx",
       "gene": "LTB",
       "drug": "Abacavir",
-      "id": "candidate_clinpgx_clinical_annotation_ltb_abacavir_ot_pharmacogenetics_chembl1380_77_rs3093726_clinpgx_evidence_3_d19e80acca",
+      "id": "candidate_clinpgx_clinical_annotation_ltb_abacavir_ot_pharmacogenetics_chembl1380_77_rs3093726_clinpgx_evidence_3_24187016bf",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -818,7 +818,7 @@
       "source": "ClinPGx",
       "gene": "OPRD1",
       "drug": "Codeine",
-      "id": "candidate_clinpgx_clinical_annotation_oprd1_codeine_ot_targetsafety_chembl485_23_clinpgx_evidence_clinpgx_clinical_ad3d69d6b2",
+      "id": "candidate_clinpgx_clinical_annotation_oprd1_codeine_ot_targetsafety_chembl485_23_clinpgx_evidence_clinpgx_clinical_28342f5150",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -826,7 +826,7 @@
       "source": "ClinPGx",
       "gene": "P2RY12",
       "drug": "Clopidogrel",
-      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_53_clinpgx_evidence_clinpgx_clinical_2cf005f7f2",
+      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_53_clinpgx_evidence_clinpgx_clinical_4f6a5d29cf",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -834,7 +834,7 @@
       "source": "ClinPGx",
       "gene": "P2RY12",
       "drug": "Clopidogrel",
-      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_54_clinpgx_evidence_clinpgx_clinical_1c8d89e77b",
+      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_54_clinpgx_evidence_clinpgx_clinical_f05a68fb07",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -842,7 +842,7 @@
       "source": "ClinPGx",
       "gene": "P2RY12",
       "drug": "Clopidogrel",
-      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_55_clinpgx_evidence_clinpgx_clinical_6a8e2ac015",
+      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_55_clinpgx_evidence_clinpgx_clinical_fa0b17710c",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -850,7 +850,7 @@
       "source": "ClinPGx",
       "gene": "P2RY12",
       "drug": "Clopidogrel",
-      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_56_clinpgx_evidence_clinpgx_clinical_a9cb3ee569",
+      "id": "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_56_clinpgx_evidence_clinpgx_clinical_5b01cd6f9e",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -858,7 +858,7 @@
       "source": "ClinPGx",
       "gene": "TNF",
       "drug": "Abacavir",
-      "id": "candidate_clinpgx_clinical_annotation_tnf_abacavir_ot_pharmacogenetics_chembl1380_75_rs3093726_clinpgx_evidence_3_bcecbaba41",
+      "id": "candidate_clinpgx_clinical_annotation_tnf_abacavir_ot_pharmacogenetics_chembl1380_75_rs3093726_clinpgx_evidence_3_101ea9ea97",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -866,7 +866,7 @@
       "source": "ClinPGx",
       "gene": "TNF",
       "drug": "Abacavir",
-      "id": "candidate_clinpgx_clinical_annotation_tnf_abacavir_ot_pharmacogenetics_chembl1380_78_rs3093726_clinpgx_evidence_3_b7c57a897d",
+      "id": "candidate_clinpgx_clinical_annotation_tnf_abacavir_ot_pharmacogenetics_chembl1380_78_rs3093726_clinpgx_evidence_3_d8253ef7c8",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -874,7 +874,7 @@
       "source": "ClinPGx",
       "gene": "TYMS",
       "drug": "Capecitabine",
-      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_25_clinpgx_evidence_clinpgx_clinical_11ff98ad08",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_25_clinpgx_evidence_clinpgx_clinical_bf3f48d941",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -882,7 +882,7 @@
       "source": "ClinPGx",
       "gene": "TYMS",
       "drug": "Capecitabine",
-      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_26_clinpgx_evidence_clinpgx_clinical_52ccdc6a5a",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_26_clinpgx_evidence_clinpgx_clinical_1549bb3d8f",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -890,7 +890,7 @@
       "source": "ClinPGx",
       "gene": "TYMS",
       "drug": "Capecitabine",
-      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_27_clinpgx_evidence_clinpgx_clinical_82efc0d57d",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_27_clinpgx_evidence_clinpgx_clinical_9a1a0084c2",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -898,7 +898,7 @@
       "source": "ClinPGx",
       "gene": "TYMS",
       "drug": "Capecitabine",
-      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_28_clinpgx_evidence_clinpgx_clinical_bd4f1a3819",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_28_clinpgx_evidence_clinpgx_clinical_499c93b515",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -906,7 +906,7 @@
       "source": "ClinPGx",
       "gene": "TYMS",
       "drug": "Capecitabine",
-      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_29_clinpgx_evidence_clinpgx_clinical_5f9e5872c2",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_29_clinpgx_evidence_clinpgx_clinical_7563934848",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -914,7 +914,7 @@
       "source": "ClinPGx",
       "gene": "TYMS",
       "drug": "Capecitabine",
-      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_30_clinpgx_evidence_clinpgx_clinical_5e0835433f",
+      "id": "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_30_clinpgx_evidence_clinpgx_clinical_97b4db5338",
       "claimType": "clinical_annotation",
       "geneModeled": false
     },
@@ -922,7 +922,7 @@
       "source": "CPIC Data",
       "gene": "G6PD",
       "drug": "Dapsone",
-      "id": "candidate_cpic_data_coverage_gap_g6pd_dapsone_cpic_review_candidate_g6pd_dapsone_8515059fbd",
+      "id": "candidate_cpic_data_coverage_gap_g6pd_dapsone_cpic_review_candidate_g6pd_dapsone_a26d8a5f86",
       "claimType": "coverage_gap",
       "geneModeled": false
     },
@@ -930,7 +930,7 @@
       "source": "CPIC Data",
       "gene": "G6PD",
       "drug": "Methylene Blue",
-      "id": "candidate_cpic_data_coverage_gap_g6pd_methylene_blue_cpic_review_candidate_g6pd_methylene_blue_02fe04c8e0",
+      "id": "candidate_cpic_data_coverage_gap_g6pd_methylene_blue_cpic_review_candidate_g6pd_methylene_blue_411a34a82d",
       "claimType": "coverage_gap",
       "geneModeled": false
     }

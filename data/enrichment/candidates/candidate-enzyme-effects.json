@@ -1,0 +1,27 @@
+{
+  "schema": "diognosis.candidate-relation-store.v1",
+  "store": "enzyme_effects",
+  "layer": "enzyme_transporter",
+  "title": "Enzyme effects",
+  "generatedAt": "2026-06-15T13:45:49.725Z",
+  "sourceStagedFiles": [
+    {
+      "file": "data/enrichment/staged/clinpgx-staged-records.json",
+      "records": 128
+    },
+    {
+      "file": "data/enrichment/staged/cpic-staged-records.json",
+      "records": 156
+    },
+    {
+      "file": "data/enrichment/staged/label-staged-records.json",
+      "records": 0
+    },
+    {
+      "file": "data/enrichment/staged/legal-literature-staged-records.json",
+      "records": 248
+    }
+  ],
+  "totalCandidates": 0,
+  "candidates": []
+}

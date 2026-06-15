@@ -99,6 +99,25 @@
       "refreshCadence": "weekly"
     },
     {
+      "name": "FDA/DailyMed Labels",
+      "type": "structured_guideline",
+      "purpose": "Public medication-label metadata and label-context review prompts for contraindications, warnings, dosing, renal/hepatic adjustment, pregnancy/lactation, and safety statements.",
+      "accessMethod": "Build-time script. Check mode initializes the lane without fetching source objects.",
+      "script": "scripts/enrich/label-source-sync.js",
+      "outputs": [
+        "data/enrichment/staged/label-staged-records.json",
+        "data/enrichment/snapshots/label-source-snapshot-metadata.json",
+        "docs/audits/label-source-coverage-audit.json",
+        "docs/audits/label-source-coverage-audit.md"
+      ],
+      "licenseNote": "Use public label metadata and source identifiers only until reviewed; do not copy protected label content beyond allowed excerpts.",
+      "rateLimit": "Build-time only; no browser runtime calls.",
+      "bundledInPublicApp": false,
+      "canAffectScoring": false,
+      "reviewRequired": true,
+      "refreshCadence": "weekly"
+    },
+    {
       "name": "PharmCAT output",
       "type": "user_session_pgx",
       "purpose": "Future session-only phenotype/diplotype/report imports from user-provided PGx files.",

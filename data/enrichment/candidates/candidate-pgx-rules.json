@@ -1,0 +1,4993 @@
+{
+  "schema": "diognosis.candidate-relation-store.v1",
+  "store": "pgx_rules",
+  "layer": "pgx",
+  "title": "PGx rules",
+  "generatedAt": "2026-06-15T13:45:49.726Z",
+  "sourceStagedFiles": [
+    {
+      "file": "data/enrichment/staged/clinpgx-staged-records.json",
+      "records": 128
+    },
+    {
+      "file": "data/enrichment/staged/cpic-staged-records.json",
+      "records": 156
+    },
+    {
+      "file": "data/enrichment/staged/label-staged-records.json",
+      "records": 0
+    },
+    {
+      "file": "data/enrichment/staged/legal-literature-staged-records.json",
+      "records": 248
+    }
+  ],
+  "totalCandidates": 68,
+  "candidates": [
+    {
+      "candidateId": "candidate_relation_pgx_rules_abacavir_hla_b_pa165987830_ec2fb1b990",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_hla_b_abacavir_ot_pharmacogenetics_chembl1380_72_pa165987830_clinpgx_evidence_1a_e9b14e4a56"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Abacavir"
+      ],
+      "genes": [
+        "HLA-B"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "HLA-B"
+      ],
+      "riskMarkers": [
+        "PA165987830"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Abacavir",
+        "HLA-B"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "increased risk of hypersensitivity",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1380_72",
+        "PA165987830",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Abacavir"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_capecitabine_dpyd_rs17376848_b47f517421",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_40_rs17376848_clinpgx_evidence_1a_d7b33eb863"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Capecitabine"
+      ],
+      "genes": [
+        "DPYD"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "DPYD"
+      ],
+      "riskMarkers": [
+        "rs17376848"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Capecitabine",
+        "DPYD"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "altered risk of drug toxicity",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1773_40",
+        "rs17376848",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Capecitabine"
+      ],
+      "matchedGenes": [
+        "DPYD"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_capecitabine_dpyd_rs1801158_6157b63617",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_41_rs1801158_clinpgx_evidence_1a_524ed713dc"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Capecitabine"
+      ],
+      "genes": [
+        "DPYD"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "DPYD"
+      ],
+      "riskMarkers": [
+        "rs1801158"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Capecitabine",
+        "DPYD"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "altered risk of drug toxicity",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1773_41",
+        "rs1801158",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Capecitabine"
+      ],
+      "matchedGenes": [
+        "DPYD"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_capecitabine_dpyd_rs1801265_2baf660de2",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_38_rs1801265_clinpgx_evidence_1a_401e5e6d84"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Capecitabine"
+      ],
+      "genes": [
+        "DPYD"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "DPYD"
+      ],
+      "riskMarkers": [
+        "rs1801265"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Capecitabine",
+        "DPYD"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "altered risk of drug toxicity",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1773_38",
+        "rs1801265",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Capecitabine"
+      ],
+      "matchedGenes": [
+        "DPYD"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_capecitabine_dpyd_rs2297595_13d1f2c547",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_44_rs2297595_clinpgx_evidence_1a_4680904891"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Capecitabine"
+      ],
+      "genes": [
+        "DPYD"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "DPYD"
+      ],
+      "riskMarkers": [
+        "rs2297595"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Capecitabine",
+        "DPYD"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "altered risk of drug toxicity",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1773_44",
+        "rs2297595",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Capecitabine"
+      ],
+      "matchedGenes": [
+        "DPYD"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_capecitabine_dpyd_rs3918290_ed5a29da02",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_36_rs3918290_clinpgx_evidence_1a_e113c43393",
+        "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_37_rs3918290_clinpgx_evidence_1a_05b6a50012",
+        "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_47_rs3918290_clinpgx_evidence_1a_b33932e738"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Capecitabine"
+      ],
+      "genes": [
+        "DPYD"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "DPYD"
+      ],
+      "riskMarkers": [
+        "rs3918290"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Capecitabine",
+        "DPYD"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "The T allele of rs3918290 is assigned no function by CPIC. Patients with the TT genotype and cancer who are treated with capecitabine, a fluoropyrimidine-based chemotherapy, may have increased risk and increased sever...",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1773_36",
+        "rs3918290",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1773_37",
+        "ot_pharmacogenetics_CHEMBL1773_47"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Capecitabine"
+      ],
+      "matchedGenes": [
+        "DPYD"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_capecitabine_dpyd_rs56038477_7ef487e4f6",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_42_rs56038477_clinpgx_evidence_1a_d437cb38e2"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Capecitabine"
+      ],
+      "genes": [
+        "DPYD"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "DPYD"
+      ],
+      "riskMarkers": [
+        "rs56038477"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Capecitabine",
+        "DPYD"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "increased risk and increased severity of drug toxicity",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1773_42",
+        "rs56038477",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Capecitabine"
+      ],
+      "matchedGenes": [
+        "DPYD"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_capecitabine_dpyd_rs67376798_e6760e2e55",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_39_rs67376798_clinpgx_evidence_1a_ee8318bf4c",
+        "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_45_rs67376798_clinpgx_evidence_1a_6ad5f3a35d",
+        "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_46_rs67376798_clinpgx_evidence_1a_d47eca2bc8"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Capecitabine"
+      ],
+      "genes": [
+        "DPYD"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "DPYD"
+      ],
+      "riskMarkers": [
+        "rs67376798"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Capecitabine",
+        "DPYD"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "decreased, but not absent, risk and reduced severity of drug toxicity",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1773_39",
+        "rs67376798",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1773_45",
+        "ot_pharmacogenetics_CHEMBL1773_46"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Capecitabine"
+      ],
+      "matchedGenes": [
+        "DPYD"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_capecitabine_dpyd_rs75017182_57ae695091",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_dpyd_capecitabine_ot_pharmacogenetics_chembl1773_43_rs75017182_clinpgx_evidence_1a_a02631a0c4"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Capecitabine"
+      ],
+      "genes": [
+        "DPYD"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "DPYD"
+      ],
+      "riskMarkers": [
+        "rs75017182"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Capecitabine",
+        "DPYD"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "decreased risk of drug toxicity",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1773_43",
+        "rs75017182",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Capecitabine"
+      ],
+      "matchedGenes": [
+        "DPYD"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_capecitabine_tyms_7454903098",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_25_clinpgx_evidence_clinpgx_clinical_25e31ac7b2",
+        "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_26_clinpgx_evidence_clinpgx_clinical_05f8028920",
+        "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_27_clinpgx_evidence_clinpgx_clinical_5d43925d40",
+        "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_28_clinpgx_evidence_clinpgx_clinical_a0295223b4",
+        "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_29_clinpgx_evidence_clinpgx_clinical_7466947498",
+        "candidate_clinpgx_clinical_annotation_tyms_capecitabine_ot_targetsafety_chembl1773_30_clinpgx_evidence_clinpgx_clinical_b4dfdc069f"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Capecitabine"
+      ],
+      "genes": [
+        "TYMS"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "TYMS"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [
+        "Capecitabine",
+        "TYMS"
+      ],
+      "direction": "discontinuation of therapy due to severe toxicity",
+      "mechanismSummary": "discontinuation of therapy due to severe toxicity",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_targetSafety_CHEMBL1773_25",
+        "ClinPGx evidence ClinPGx / clinical",
+        "https://api.clinpgx.org",
+        "ot_targetSafety_CHEMBL1773_26",
+        "ot_targetSafety_CHEMBL1773_27",
+        "ot_targetSafety_CHEMBL1773_28",
+        "ot_targetSafety_CHEMBL1773_29",
+        "ot_targetSafety_CHEMBL1773_30"
+      ],
+      "strongestExternalTier": "ClinPGx / clinical",
+      "matchedDiognosisDrugs": [
+        "Capecitabine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset targetSafety."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clopidogrel_cyp2c19_pa165816522_740746a968",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_88_pa165816522_clinpgx_evidence_1a_87a6b93d23",
+        "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_89_pa165816522_clinpgx_evidence_1a_c96ff195c0"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clopidogrel"
+      ],
+      "genes": [
+        "CYP2C19"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2C19"
+      ],
+      "riskMarkers": [
+        "PA165816522"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clopidogrel",
+        "CYP2C19"
+      ],
+      "direction": "efficacy",
+      "mechanismSummary": "increased risk for adverse cardiac and cerebrovascular events",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1771_88",
+        "PA165816522",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1771_89"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Clopidogrel"
+      ],
+      "matchedGenes": [
+        "CYP2C19"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clopidogrel_cyp2c19_pa165816524_1fd7b3554f",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_86_pa165816524_clinpgx_evidence_1a_d79a4ce9c1",
+        "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_90_pa165816524_clinpgx_evidence_1a_8167ac9846"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clopidogrel"
+      ],
+      "genes": [
+        "CYP2C19"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2C19"
+      ],
+      "riskMarkers": [
+        "PA165816524"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clopidogrel",
+        "CYP2C19"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "decreased metabolism of clopidogrel",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1771_86",
+        "PA165816524",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1771_90"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Clopidogrel"
+      ],
+      "matchedGenes": [
+        "CYP2C19"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clopidogrel_cyp2c19_pa165816533_3927c83be1",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_79_pa165816533_clinpgx_evidence_1a_9f1d6fd3e2",
+        "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_80_pa165816533_clinpgx_evidence_1a_8e5bd45d8d"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clopidogrel"
+      ],
+      "genes": [
+        "CYP2C19"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2C19"
+      ],
+      "riskMarkers": [
+        "PA165816533"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clopidogrel",
+        "CYP2C19"
+      ],
+      "direction": "efficacy",
+      "mechanismSummary": "increased risk for adverse cardiac and cerebrovascular events",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1771_79",
+        "PA165816533",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1771_80"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Clopidogrel"
+      ],
+      "matchedGenes": [
+        "CYP2C19"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clopidogrel_cyp2c19_pa165816540_79b79b7935",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_87_pa165816540_clinpgx_evidence_1a_b258f2db9d"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clopidogrel"
+      ],
+      "genes": [
+        "CYP2C19"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2C19"
+      ],
+      "riskMarkers": [
+        "PA165816540"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clopidogrel",
+        "CYP2C19"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "decreased metabolism of clopidogrel",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1771_87",
+        "PA165816540",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Clopidogrel"
+      ],
+      "matchedGenes": [
+        "CYP2C19"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clopidogrel_cyp2c19_pa165980635_734491376e",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_82_pa165980635_clinpgx_evidence_1a_f3d1f26951",
+        "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_83_pa165980635_clinpgx_evidence_1a_e2455a7ebf",
+        "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_84_pa165980635_clinpgx_evidence_1a_ed2c972996"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clopidogrel"
+      ],
+      "genes": [
+        "CYP2C19"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2C19"
+      ],
+      "riskMarkers": [
+        "PA165980635"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clopidogrel",
+        "CYP2C19"
+      ],
+      "direction": "efficacy",
+      "mechanismSummary": "increased risk for adverse cardiac and cerebrovascular events",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1771_82",
+        "PA165980635",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1771_83",
+        "ot_pharmacogenetics_CHEMBL1771_84"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Clopidogrel"
+      ],
+      "matchedGenes": [
+        "CYP2C19"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clopidogrel_cyp2c19_pa165980636_bdced8c6a6",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_81_pa165980636_clinpgx_evidence_1a_3438cacfe5",
+        "candidate_clinpgx_clinical_annotation_cyp2c19_clopidogrel_ot_pharmacogenetics_chembl1771_85_pa165980636_clinpgx_evidence_1a_ae6b8846b3"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clopidogrel"
+      ],
+      "genes": [
+        "CYP2C19"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2C19"
+      ],
+      "riskMarkers": [
+        "PA165980636"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clopidogrel",
+        "CYP2C19"
+      ],
+      "direction": "efficacy",
+      "mechanismSummary": "decreased platelet inhibition and increased residual platelet aggregation",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1771_81",
+        "PA165980636",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1771_85"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Clopidogrel"
+      ],
+      "matchedGenes": [
+        "CYP2C19"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_codeine_cyp2d6_pa165816576_d6723daa07",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_12_pa165816576_clinpgx_evidence_1a_6c9b12bad6",
+        "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_18_pa165816576_clinpgx_evidence_1a_9a6b3da3f3",
+        "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_19_pa165816576_clinpgx_evidence_1a_0718545b60"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Codeine"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165816576"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Codeine",
+        "CYP2D6"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "decreased risk of toxicity",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL485_12",
+        "PA165816576",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL485_18",
+        "ot_pharmacogenetics_CHEMBL485_19"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Codeine"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_codeine_cyp2d6_pa165816577_a6a2b1667e",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_15_pa165816577_clinpgx_evidence_1a_b716ec2872"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Codeine"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165816577"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Codeine",
+        "CYP2D6"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "decreased metabolism of codeine",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL485_15",
+        "PA165816577",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Codeine"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_codeine_cyp2d6_pa165816578_9be9c7ba2b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_21_pa165816578_clinpgx_evidence_1a_1567f57cbd"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Codeine"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165816578"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Codeine",
+        "CYP2D6"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "decreased metabolism of codeine",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL485_21",
+        "PA165816578",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Codeine"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_codeine_cyp2d6_pa165816581_7ad9e43895",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_16_pa165816581_clinpgx_evidence_1a_aeb1870470",
+        "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_17_pa165816581_clinpgx_evidence_1a_ba94884e0e"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Codeine"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165816581"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Codeine",
+        "CYP2D6"
+      ],
+      "direction": "efficacy",
+      "mechanismSummary": "decreased analgesic response",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL485_16",
+        "PA165816581",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL485_17"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Codeine"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_codeine_cyp2d6_pa165816583_9a91bec819",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_20_pa165816583_clinpgx_evidence_1a_2423b710f9"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Codeine"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165816583"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Codeine",
+        "CYP2D6"
+      ],
+      "direction": "efficacy",
+      "mechanismSummary": "decreased analgesic response",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL485_20",
+        "PA165816583",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Codeine"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_codeine_cyp2d6_pa165988479_441c1f3b94",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_13_pa165988479_clinpgx_evidence_1a_0958b61f48",
+        "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_14_pa165988479_clinpgx_evidence_1a_d0e775585f"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Codeine"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165988479"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Codeine",
+        "CYP2D6"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "The CYP2D6*1xN alleles (*1x2 and *1x≥3) are assigned as increased function alleles by CPIC. Patients carrying a *1xN allele with an activity value of 3 or greater in combination with a normal, increased, decreased or ...",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL485_13",
+        "PA165988479",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL485_14"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Codeine"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_codeine_cyp2d6_pa165988488_f5fb34a2ce",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_22_pa165988488_clinpgx_evidence_1a_ec4cd6fdb9",
+        "candidate_clinpgx_clinical_annotation_cyp2d6_codeine_ot_pharmacogenetics_chembl485_23_pa165988488_clinpgx_evidence_1a_f0dc711d12"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Codeine"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165988488"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Codeine",
+        "CYP2D6"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "The CYP2D6*36 allele has been assigned as a no function allele by CPIC. Patients carrying the *36 allele in combination with a decreased, normal or no function allele may have decreased metabolism of codeine as compar...",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL485_22",
+        "PA165988488",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL485_23"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Codeine"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_paroxetine_cyp2d6_pa165816579_d6e7a51ebb",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_1_pa165816579_clinpgx_evidence_1a_e3f8673f81",
+        "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_2_pa165816579_clinpgx_evidence_1a_43af369ea6",
+        "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_3_pa165816579_clinpgx_evidence_1a_8cb694457d"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Paroxetine"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165816579"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Paroxetine",
+        "CYP2D6"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "decreased metabolism",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL490_1",
+        "PA165816579",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL490_2",
+        "ot_pharmacogenetics_CHEMBL490_3"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Paroxetine"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_paroxetine_cyp2d6_pa165816582_27fdcf57c9",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_10_pa165816582_clinpgx_evidence_1a_eee914de0f"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Paroxetine"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165816582"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Paroxetine",
+        "CYP2D6"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "metabolism of paroxetine",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL490_10",
+        "PA165816582",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Paroxetine"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_paroxetine_cyp2d6_pa165948092_e7712da95b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_4_pa165948092_clinpgx_evidence_1a_036f7e6e48",
+        "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_5_pa165948092_clinpgx_evidence_1a_1caa694193",
+        "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_6_pa165948092_clinpgx_evidence_1a_4844e7acf9",
+        "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_7_pa165948092_clinpgx_evidence_1a_2dda90dcf7",
+        "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_8_pa165948092_clinpgx_evidence_1a_9a9cb5ff82",
+        "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_9_pa165948092_clinpgx_evidence_1a_72d66b9a5e"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Paroxetine"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165948092"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Paroxetine",
+        "CYP2D6"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "The CYP2D6*5 allele is assigned as a no function alleles by CPIC. Patients carrying the *5 allele in combination with a normal, decreased or no function allele may have decreased metabolism of paroxetine as compared t...",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL490_4",
+        "PA165948092",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL490_5",
+        "ot_pharmacogenetics_CHEMBL490_6",
+        "ot_pharmacogenetics_CHEMBL490_7",
+        "ot_pharmacogenetics_CHEMBL490_8",
+        "ot_pharmacogenetics_CHEMBL490_9"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Paroxetine"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_paroxetine_cyp2d6_pa165988480_0113ebb7d3",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_0_pa165988480_clinpgx_evidence_1a_506972c6f6"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Paroxetine"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165988480"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Paroxetine",
+        "CYP2D6"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "increased metabolism of paroxetine",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL490_0",
+        "PA165988480",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Paroxetine"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_paroxetine_cyp2d6_pa166181185_3e98335077",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_paroxetine_ot_pharmacogenetics_chembl490_11_pa166181185_clinpgx_evidence_1a_5a49c1d16a"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Paroxetine"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA166181185"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Paroxetine",
+        "CYP2D6"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "decreased metabolism of paroxetine",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL490_11",
+        "PA166181185",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Paroxetine"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_simvastatin_slco1b1_pa165819255_beff2f3cbf",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_30_pa165819255_clinpgx_evidence_1a_c82afbb467",
+        "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_32_pa165819255_clinpgx_evidence_1a_8a7e62c2a2"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Simvastatin"
+      ],
+      "genes": [
+        "SLCO1B1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "SLCO1B1"
+      ],
+      "riskMarkers": [
+        "PA165819255"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Simvastatin",
+        "SLCO1B1"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "higher risk of simvastatin-related myopathy",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1064_30",
+        "PA165819255",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1064_32"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Simvastatin"
+      ],
+      "matchedGenes": [
+        "SLCO1B1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_simvastatin_slco1b1_pa165819265_5f672f16b0",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_24_pa165819265_clinpgx_evidence_1a_985edc71b5",
+        "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_25_pa165819265_clinpgx_evidence_1a_141a81850d"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Simvastatin"
+      ],
+      "genes": [
+        "SLCO1B1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "SLCO1B1"
+      ],
+      "riskMarkers": [
+        "PA165819265"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Simvastatin",
+        "SLCO1B1"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "higher risk of simvastatin-related myopathy",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1064_24",
+        "PA165819265",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1064_25"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Simvastatin"
+      ],
+      "matchedGenes": [
+        "SLCO1B1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_simvastatin_slco1b1_pa165981641_51001e948b",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_29_pa165981641_clinpgx_evidence_1a_fb834131aa",
+        "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_31_pa165981641_clinpgx_evidence_1a_4c30bac203"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Simvastatin"
+      ],
+      "genes": [
+        "SLCO1B1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "SLCO1B1"
+      ],
+      "riskMarkers": [
+        "PA165981641"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Simvastatin",
+        "SLCO1B1"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "decreased simvastatin acid concentration",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1064_29",
+        "PA165981641",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1064_31"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Simvastatin"
+      ],
+      "matchedGenes": [
+        "SLCO1B1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_simvastatin_slco1b1_rs4149056_bea31a5d7f",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_26_rs4149056_clinpgx_evidence_1a_46c28fece3",
+        "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_27_rs4149056_clinpgx_evidence_1a_6cc4dfb73d",
+        "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_28_rs4149056_clinpgx_evidence_1a_4294e5bed4",
+        "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_33_rs4149056_clinpgx_evidence_1a_7875879dbf",
+        "candidate_clinpgx_clinical_annotation_slco1b1_simvastatin_ot_pharmacogenetics_chembl1064_34_rs4149056_clinpgx_evidence_1a_d8cb4d8f9e"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Simvastatin"
+      ],
+      "genes": [
+        "SLCO1B1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "SLCO1B1"
+      ],
+      "riskMarkers": [
+        "rs4149056"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Simvastatin",
+        "SLCO1B1"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "increased serum concentrations",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1064_26",
+        "rs4149056",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1064_27",
+        "ot_pharmacogenetics_CHEMBL1064_28",
+        "ot_pharmacogenetics_CHEMBL1064_33",
+        "ot_pharmacogenetics_CHEMBL1064_34"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Simvastatin"
+      ],
+      "matchedGenes": [
+        "SLCO1B1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_tamoxifen_cyp2d6_pa165816578_d09d1ca595",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_93_pa165816578_clinpgx_evidence_1a_5ebb3f9b63"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tamoxifen"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165816578"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Tamoxifen",
+        "CYP2D6"
+      ],
+      "direction": "efficacy",
+      "mechanismSummary": "increased likelihood of recurrence and lower event-free and recurrence-free survival",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL83_93",
+        "PA165816578",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Tamoxifen"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_tamoxifen_cyp2d6_pa165816579_11438584ce",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_100_pa165816579_clinpgx_evidence_1a_aaf5b29daa",
+        "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_99_pa165816579_clinpgx_evidence_1a_27e73fe44e"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tamoxifen"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165816579"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Tamoxifen",
+        "CYP2D6"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "therapeutic endoxifen concentrations",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL83_100",
+        "PA165816579",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL83_99"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Tamoxifen"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_tamoxifen_cyp2d6_pa165816582_74cc2526d3",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_91_pa165816582_clinpgx_evidence_1a_b946811b15",
+        "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_92_pa165816582_clinpgx_evidence_1a_c1bff29fed"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tamoxifen"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165816582"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Tamoxifen",
+        "CYP2D6"
+      ],
+      "direction": "efficacy",
+      "mechanismSummary": "increased likelihood of recurrence",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL83_91",
+        "PA165816582",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL83_92"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Tamoxifen"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_tamoxifen_cyp2d6_pa165816584_a4dd263de9",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_101_pa165816584_clinpgx_evidence_1a_045e988fcf"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tamoxifen"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165816584"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Tamoxifen",
+        "CYP2D6"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "decreased metabolism of tamoxifen",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL83_101",
+        "PA165816584",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Tamoxifen"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_tamoxifen_cyp2d6_pa165948092_f319822476",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_102_pa165948092_clinpgx_evidence_1a_4ec06baabe"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tamoxifen"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165948092"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Tamoxifen",
+        "CYP2D6"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "decreased endoxifen concentrations",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL83_102",
+        "PA165948092",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Tamoxifen"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_tamoxifen_cyp2d6_pa165948318_dfa091e7ee",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_98_pa165948318_clinpgx_evidence_1a_b5f7be8d04"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tamoxifen"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165948318"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Tamoxifen",
+        "CYP2D6"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "decreased metabolism of tamoxifen resulting in decreased endoxifen concentrations",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL83_98",
+        "PA165948318",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Tamoxifen"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_tamoxifen_cyp2d6_pa165971564_7d0812c19e",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_97_pa165971564_clinpgx_evidence_1a_c9c1ef4749"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tamoxifen"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165971564"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Tamoxifen",
+        "CYP2D6"
+      ],
+      "direction": "efficacy",
+      "mechanismSummary": "increased likelihood of recurrence and lower event-free and recurrence-free survival",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL83_97",
+        "PA165971564",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Tamoxifen"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_tamoxifen_cyp2d6_pa165988487_1be3f7255f",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_94_pa165988487_clinpgx_evidence_1a_b7e01f4d69",
+        "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_95_pa165988487_clinpgx_evidence_1a_a083b7a289"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tamoxifen"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165988487"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Tamoxifen",
+        "CYP2D6"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "achieve therapeutic endoxifen concentrations",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL83_94",
+        "PA165988487",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL83_95"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Tamoxifen"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_tamoxifen_cyp2d6_pa165988488_75aedb7918",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_tamoxifen_ot_pharmacogenetics_chembl83_96_pa165988488_clinpgx_evidence_1a_379ae8808e"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tamoxifen"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165988488"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Tamoxifen",
+        "CYP2D6"
+      ],
+      "direction": "efficacy",
+      "mechanismSummary": "increased likelihood of recurrence and lower event-free and recurrence-free survival",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL83_96",
+        "PA165988488",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Tamoxifen"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_warfarin_cyp2c9_pa165816543_6d3ebbf21f",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_60_pa165816543_clinpgx_evidence_1a_2212b0c438",
+        "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_69_pa165816543_clinpgx_evidence_1a_24cdd3da69"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Warfarin"
+      ],
+      "genes": [
+        "CYP2C9"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2C9"
+      ],
+      "riskMarkers": [
+        "PA165816543"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Warfarin",
+        "CYP2C9"
+      ],
+      "direction": "dosage",
+      "mechanismSummary": "lower dose of warfarin",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1464_60",
+        "PA165816543",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1464_69"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Warfarin"
+      ],
+      "matchedGenes": [
+        "CYP2C9"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_warfarin_cyp2c9_pa165816544_016e36d6b1",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_61_pa165816544_clinpgx_evidence_1a_3bb74b5fc1"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Warfarin"
+      ],
+      "genes": [
+        "CYP2C9"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2C9"
+      ],
+      "riskMarkers": [
+        "PA165816544"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Warfarin",
+        "CYP2C9"
+      ],
+      "direction": "dosage",
+      "mechanismSummary": "lower dose of warfarin",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1464_61",
+        "PA165816544",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Warfarin"
+      ],
+      "matchedGenes": [
+        "CYP2C9"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_warfarin_cyp2c9_pa165816545_4b9880fb0d",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_70_pa165816545_clinpgx_evidence_1a_e59e450495"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Warfarin"
+      ],
+      "genes": [
+        "CYP2C9"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2C9"
+      ],
+      "riskMarkers": [
+        "PA165816545"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Warfarin",
+        "CYP2C9"
+      ],
+      "direction": "dosage",
+      "mechanismSummary": "lower dose of warfarin",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1464_70",
+        "PA165816545",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Warfarin"
+      ],
+      "matchedGenes": [
+        "CYP2C9"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_warfarin_cyp2c9_pa165816546_9316747313",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_65_pa165816546_clinpgx_evidence_1a_b69c894ddb",
+        "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_71_pa165816546_clinpgx_evidence_1a_9ac8243aa9"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Warfarin"
+      ],
+      "genes": [
+        "CYP2C9"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2C9"
+      ],
+      "riskMarkers": [
+        "PA165816546"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Warfarin",
+        "CYP2C9"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "increased risk of bleeding",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1464_65",
+        "PA165816546",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1464_71"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Warfarin"
+      ],
+      "matchedGenes": [
+        "CYP2C9"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_warfarin_cyp2c9_pa165816547_585d83cfea",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_62_pa165816547_clinpgx_evidence_1a_ac8ffccc1b"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Warfarin"
+      ],
+      "genes": [
+        "CYP2C9"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2C9"
+      ],
+      "riskMarkers": [
+        "PA165816547"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Warfarin",
+        "CYP2C9"
+      ],
+      "direction": "dosage",
+      "mechanismSummary": "lower dose of warfarin",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1464_62",
+        "PA165816547",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Warfarin"
+      ],
+      "matchedGenes": [
+        "CYP2C9"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_warfarin_cyp2c9_pa165816552_fca47d8229",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_64_pa165816552_clinpgx_evidence_1a_657e3f0dde",
+        "candidate_clinpgx_clinical_annotation_cyp2c9_warfarin_ot_pharmacogenetics_chembl1464_68_pa165816552_clinpgx_evidence_1a_db084d6a7e"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Warfarin"
+      ],
+      "genes": [
+        "CYP2C9"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2C9"
+      ],
+      "riskMarkers": [
+        "PA165816552"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Warfarin",
+        "CYP2C9"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "increased risk of bleeding",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1464_64",
+        "PA165816552",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1464_68"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Warfarin"
+      ],
+      "matchedGenes": [
+        "CYP2C9"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_warfarin_rs12777823_09077d65dd",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_warfarin_ot_pharmacogenetics_chembl1464_63_rs12777823_clinpgx_evidence_1a_4503ff140b",
+        "candidate_clinpgx_clinical_annotation_warfarin_ot_pharmacogenetics_chembl1464_66_rs12777823_clinpgx_evidence_1a_5aa75b69ea"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Warfarin"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [],
+      "riskMarkers": [
+        "rs12777823"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Warfarin"
+      ],
+      "direction": "dosage",
+      "mechanismSummary": "higher dose of warfarin",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1464_63",
+        "rs12777823",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1464_66"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Warfarin"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_warfarin_vkorc1_rs9923231_85ade92bbf",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_pharmacogenetics_chembl1464_67_rs9923231_clinpgx_evidence_1a_7cfc431ad6"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Warfarin"
+      ],
+      "genes": [
+        "VKORC1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "VKORC1"
+      ],
+      "riskMarkers": [
+        "rs9923231"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Warfarin",
+        "VKORC1"
+      ],
+      "direction": "dosage",
+      "mechanismSummary": "require an increased dose of warfarin",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1464_67",
+        "rs9923231",
+        "ClinPGx evidence 1A",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "1A",
+      "matchedDiognosisDrugs": [
+        "Warfarin"
+      ],
+      "matchedGenes": [
+        "VKORC1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P1",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_abacavir_lta_rs3093726_9db2ef1b15",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_lta_abacavir_ot_pharmacogenetics_chembl1380_73_rs3093726_clinpgx_evidence_3_9e02d67750",
+        "candidate_clinpgx_clinical_annotation_lta_abacavir_ot_pharmacogenetics_chembl1380_76_rs3093726_clinpgx_evidence_3_d8822273b8"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Abacavir"
+      ],
+      "genes": [
+        "LTA"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "LTA"
+      ],
+      "riskMarkers": [
+        "rs3093726"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Abacavir",
+        "LTA"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "increased risk of hypersensitivity",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1380_73",
+        "rs3093726",
+        "ClinPGx evidence 3",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1380_76"
+      ],
+      "strongestExternalTier": "3",
+      "matchedDiognosisDrugs": [
+        "Abacavir"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_abacavir_ltb_rs3093726_2ac6a2b520",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_ltb_abacavir_ot_pharmacogenetics_chembl1380_74_rs3093726_clinpgx_evidence_3_673aaa5d3a",
+        "candidate_clinpgx_clinical_annotation_ltb_abacavir_ot_pharmacogenetics_chembl1380_77_rs3093726_clinpgx_evidence_3_07a9be4445"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Abacavir"
+      ],
+      "genes": [
+        "LTB"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "LTB"
+      ],
+      "riskMarkers": [
+        "rs3093726"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Abacavir",
+        "LTB"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "increased risk of hypersensitivity",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1380_74",
+        "rs3093726",
+        "ClinPGx evidence 3",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1380_77"
+      ],
+      "strongestExternalTier": "3",
+      "matchedDiognosisDrugs": [
+        "Abacavir"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_abacavir_tnf_rs3093726_5d106ee42f",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_tnf_abacavir_ot_pharmacogenetics_chembl1380_75_rs3093726_clinpgx_evidence_3_946276b1b8",
+        "candidate_clinpgx_clinical_annotation_tnf_abacavir_ot_pharmacogenetics_chembl1380_78_rs3093726_clinpgx_evidence_3_a5f1cda31e"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Abacavir"
+      ],
+      "genes": [
+        "TNF"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "TNF"
+      ],
+      "riskMarkers": [
+        "rs3093726"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Abacavir",
+        "TNF"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "increased risk of hypersensitivity",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1380_75",
+        "rs3093726",
+        "ClinPGx evidence 3",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL1380_78"
+      ],
+      "strongestExternalTier": "3",
+      "matchedDiognosisDrugs": [
+        "Abacavir"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clopidogrel_p2ry12_59de6e4535",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_53_clinpgx_evidence_clinpgx_clinical_683d27e433",
+        "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_54_clinpgx_evidence_clinpgx_clinical_793c3e4a3b",
+        "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_55_clinpgx_evidence_clinpgx_clinical_ca1f3a00aa",
+        "candidate_clinpgx_clinical_annotation_p2ry12_clopidogrel_ot_targetsafety_chembl1771_56_clinpgx_evidence_clinpgx_clinical_c95731be91"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clopidogrel"
+      ],
+      "genes": [
+        "P2RY12"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "P2RY12"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clopidogrel",
+        "P2RY12"
+      ],
+      "direction": "neurological events",
+      "mechanismSummary": "neurological events",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_targetSafety_CHEMBL1771_53",
+        "ClinPGx evidence ClinPGx / clinical",
+        "https://api.clinpgx.org",
+        "ot_targetSafety_CHEMBL1771_54",
+        "ot_targetSafety_CHEMBL1771_55",
+        "ot_targetSafety_CHEMBL1771_56"
+      ],
+      "strongestExternalTier": "ClinPGx / clinical",
+      "matchedDiognosisDrugs": [
+        "Clopidogrel"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset targetSafety."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clozapine_atp2a1_rs3888190_41538f61d3",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_atp2a1_clozapine_ot_pharmacogenetics_chembl42_57_rs3888190_clinpgx_evidence_3_c1d307c744"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clozapine"
+      ],
+      "genes": [
+        "ATP2A1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "ATP2A1"
+      ],
+      "riskMarkers": [
+        "rs3888190"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clozapine",
+        "ATP2A1"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "greater elevations of LDL cholesterol concentrations",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL42_57",
+        "rs3888190",
+        "ClinPGx evidence 3",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "3",
+      "matchedDiognosisDrugs": [
+        "Clozapine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clozapine_cyp1a2_rs72547516_a9d3c85ce0",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp1a2_clozapine_ot_pharmacogenetics_chembl42_56_rs72547516_clinpgx_evidence_3_bccebea6a2"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clozapine"
+      ],
+      "genes": [
+        "CYP1A2"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP1A2"
+      ],
+      "riskMarkers": [
+        "rs72547516"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clozapine",
+        "CYP1A2"
+      ],
+      "direction": "metabolism/pk",
+      "mechanismSummary": "decreased metabolism of clozapine",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL42_56",
+        "rs72547516",
+        "ClinPGx evidence 3",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "3",
+      "matchedDiognosisDrugs": [
+        "Clozapine"
+      ],
+      "matchedGenes": [
+        "CYP1A2"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clozapine_drd2_rs1079598_9ceff75fdd",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_drd2_clozapine_ot_pharmacogenetics_chembl42_51_rs1079598_clinpgx_evidence_3_49fc43056e"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clozapine"
+      ],
+      "genes": [
+        "DRD2"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "DRD2"
+      ],
+      "riskMarkers": [
+        "rs1079598"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clozapine",
+        "DRD2"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "decreased risk for weight gain",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL42_51",
+        "rs1079598",
+        "ClinPGx evidence 3",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "3",
+      "matchedDiognosisDrugs": [
+        "Clozapine"
+      ],
+      "matchedGenes": [
+        "DRD2"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clozapine_drd2_rs6277_ab856f83ee",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_drd2_clozapine_ot_pharmacogenetics_chembl42_50_rs6277_clinpgx_evidence_3_536f69d832"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clozapine"
+      ],
+      "genes": [
+        "DRD2"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "DRD2"
+      ],
+      "riskMarkers": [
+        "rs6277"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clozapine",
+        "DRD2"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "decreased risk for weight gain",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL42_50",
+        "rs6277",
+        "ClinPGx evidence 3",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "3",
+      "matchedDiognosisDrugs": [
+        "Clozapine"
+      ],
+      "matchedGenes": [
+        "DRD2"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clozapine_faah_rs324420_40bcda6b72",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_faah_clozapine_ot_pharmacogenetics_chembl42_58_rs324420_clinpgx_evidence_3_45f6e2d014"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clozapine"
+      ],
+      "genes": [
+        "FAAH"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "FAAH"
+      ],
+      "riskMarkers": [
+        "rs324420"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clozapine",
+        "FAAH"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "decreased likelihood of weight gain",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL42_58",
+        "rs324420",
+        "ClinPGx evidence 3",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "3",
+      "matchedDiognosisDrugs": [
+        "Clozapine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clozapine_gcg_rs13429709_379578b8a7",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_gcg_clozapine_ot_pharmacogenetics_chembl42_59_rs13429709_clinpgx_evidence_3_a11aa5b668"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clozapine"
+      ],
+      "genes": [
+        "GCG"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "GCG"
+      ],
+      "riskMarkers": [
+        "rs13429709"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clozapine",
+        "GCG"
+      ],
+      "direction": "other",
+      "mechanismSummary": "greater weight gain",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL42_59",
+        "rs13429709",
+        "ClinPGx evidence 3",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "3",
+      "matchedDiognosisDrugs": [
+        "Clozapine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clozapine_grin2b_rs1072388_289bd36b79",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_54_rs1072388_clinpgx_evidence_3_fdcf7d47cf",
+        "candidate_clinpgx_clinical_annotation_grin2b_clozapine_ot_pharmacogenetics_chembl42_55_rs1072388_clinpgx_evidence_3_97875b73b5"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clozapine"
+      ],
+      "genes": [
+        "GRIN2B"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "GRIN2B"
+      ],
+      "riskMarkers": [
+        "rs1072388"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clozapine",
+        "GRIN2B"
+      ],
+      "direction": "efficacy",
+      "mechanismSummary": "better response",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL42_54",
+        "rs1072388",
+        "ClinPGx evidence 3",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL42_55"
+      ],
+      "strongestExternalTier": "3",
+      "matchedDiognosisDrugs": [
+        "Clozapine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clozapine_gstm1_null_non_null_ac0d9a4ad6",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_gstm1_clozapine_ot_pharmacogenetics_chembl42_48_null_non_null_clinpgx_evidence_3_9e06461ad9"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clozapine"
+      ],
+      "genes": [
+        "GSTM1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "GSTM1"
+      ],
+      "riskMarkers": [
+        "null/non-null"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clozapine",
+        "GSTM1"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "increased risk for neutropenia",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL42_48",
+        "null/non-null",
+        "ClinPGx evidence 3",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "3",
+      "matchedDiognosisDrugs": [
+        "Clozapine"
+      ],
+      "matchedGenes": [
+        "GSTM1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clozapine_gstm1_null_null_e1796dae46",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_gstm1_clozapine_ot_pharmacogenetics_chembl42_49_null_null_clinpgx_evidence_3_0864da653e"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clozapine"
+      ],
+      "genes": [
+        "GSTM1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "GSTM1"
+      ],
+      "riskMarkers": [
+        "null/null"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clozapine",
+        "GSTM1"
+      ],
+      "direction": "toxicity",
+      "mechanismSummary": "decreased risk for neutropenia",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL42_49",
+        "null/null",
+        "ClinPGx evidence 3",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "3",
+      "matchedDiognosisDrugs": [
+        "Clozapine"
+      ],
+      "matchedGenes": [
+        "GSTM1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clozapine_htr2a_e473053db3",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_htr2a_clozapine_ot_targetsafety_chembl42_40_clinpgx_evidence_clinpgx_clinical_520cf4c39f"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clozapine"
+      ],
+      "genes": [
+        "HTR2A"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "HTR2A"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clozapine",
+        "HTR2A"
+      ],
+      "direction": "sexual dysfunctions",
+      "mechanismSummary": "sexual dysfunctions",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_targetSafety_CHEMBL42_40",
+        "ClinPGx evidence ClinPGx / clinical",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "ClinPGx / clinical",
+      "matchedDiognosisDrugs": [
+        "Clozapine"
+      ],
+      "matchedGenes": [
+        "HTR2A"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset targetSafety."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_clozapine_htr3a_rs1062613_cca585d852",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_52_rs1062613_clinpgx_evidence_3_35656e4af9",
+        "candidate_clinpgx_clinical_annotation_htr3a_clozapine_ot_pharmacogenetics_chembl42_53_rs1062613_clinpgx_evidence_3_6d5e3673a5"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Clozapine"
+      ],
+      "genes": [
+        "HTR3A"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "HTR3A"
+      ],
+      "riskMarkers": [
+        "rs1062613"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Clozapine",
+        "HTR3A"
+      ],
+      "direction": "efficacy",
+      "mechanismSummary": "less likely to respond to treatment with clozapine",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL42_52",
+        "rs1062613",
+        "ClinPGx evidence 3",
+        "https://api.clinpgx.org",
+        "ot_pharmacogenetics_CHEMBL42_53"
+      ],
+      "strongestExternalTier": "3",
+      "matchedDiognosisDrugs": [
+        "Clozapine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_codeine_oprd1_7c2ed5d22e",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_oprd1_codeine_ot_targetsafety_chembl485_23_clinpgx_evidence_clinpgx_clinical_d3afb70dfa"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Codeine"
+      ],
+      "genes": [
+        "OPRD1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "OPRD1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [
+        "Codeine",
+        "OPRD1"
+      ],
+      "direction": "heroin dependence",
+      "mechanismSummary": "heroin dependence",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_targetSafety_CHEMBL485_23",
+        "ClinPGx evidence ClinPGx / clinical",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "ClinPGx / clinical",
+      "matchedDiognosisDrugs": [
+        "Codeine"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset targetSafety."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_simvastatin_cyp2d6_pa165816578_1fce5019c4",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_cyp2d6_simvastatin_ot_pharmacogenetics_chembl1064_35_pa165816578_clinpgx_evidence_3_8ec91ec726"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Simvastatin"
+      ],
+      "genes": [
+        "CYP2D6"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [
+        "PA165816578"
+      ],
+      "phenotypes": [],
+      "affectedActors": [
+        "Simvastatin",
+        "CYP2D6"
+      ],
+      "direction": "efficacy",
+      "mechanismSummary": "decreased response to simvastatin",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_pharmacogenetics_CHEMBL1064_35",
+        "PA165816578",
+        "ClinPGx evidence 3",
+        "https://api.clinpgx.org"
+      ],
+      "strongestExternalTier": "3",
+      "matchedDiognosisDrugs": [
+        "Simvastatin"
+      ],
+      "matchedGenes": [
+        "CYP2D6"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset pharmacogenetics."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_tamoxifen_esr1_b0faf0ecbe",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_57_clinpgx_evidence_clinpgx_clinical_f4a44b62c7",
+        "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_58_clinpgx_evidence_clinpgx_clinical_00967422cb",
+        "candidate_clinpgx_clinical_annotation_esr1_tamoxifen_ot_targetsafety_chembl83_59_clinpgx_evidence_clinpgx_clinical_7dcf69d0a4"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tamoxifen"
+      ],
+      "genes": [
+        "ESR1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "ESR1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [
+        "Tamoxifen",
+        "ESR1"
+      ],
+      "direction": "azoospermia",
+      "mechanismSummary": "azoospermia",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_targetSafety_CHEMBL83_57",
+        "ClinPGx evidence ClinPGx / clinical",
+        "https://api.clinpgx.org",
+        "ot_targetSafety_CHEMBL83_58",
+        "ot_targetSafety_CHEMBL83_59"
+      ],
+      "strongestExternalTier": "ClinPGx / clinical",
+      "matchedDiognosisDrugs": [
+        "Tamoxifen"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset targetSafety."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_pgx_rules_warfarin_vkorc1_1c5f2eec3d",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "pgx_rules",
+      "layer": "pgx",
+      "candidateKind": "pgx_rules",
+      "claimType": "clinical_annotation",
+      "sourceRecords": [
+        "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_43_clinpgx_evidence_clinpgx_clinical_8ac6bb17ed",
+        "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_44_clinpgx_evidence_clinpgx_clinical_0de44787e6",
+        "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_45_clinpgx_evidence_clinpgx_clinical_4feee59b3a",
+        "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_46_clinpgx_evidence_clinpgx_clinical_f430545cd6",
+        "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_47_clinpgx_evidence_clinpgx_clinical_3402c8ac6d",
+        "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_48_clinpgx_evidence_clinpgx_clinical_7e29e488e0",
+        "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_49_clinpgx_evidence_clinpgx_clinical_ed89f733d8",
+        "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_50_clinpgx_evidence_clinpgx_clinical_a058e3dda3",
+        "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_51_clinpgx_evidence_clinpgx_clinical_4662946d6d",
+        "candidate_clinpgx_clinical_annotation_vkorc1_warfarin_ot_targetsafety_chembl1464_52_clinpgx_evidence_clinpgx_clinical_fd1b316eac"
+      ],
+      "sourceName": "ClinPGx",
+      "sourceType": "structured_guideline",
+      "sourceTruthStatus": "derived_from_open_targets_snapshot",
+      "sourceRelease": "26.03",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Warfarin"
+      ],
+      "genes": [
+        "VKORC1"
+      ],
+      "metabolites": [],
+      "pathways": [
+        "VKORC1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [
+        "Warfarin",
+        "VKORC1"
+      ],
+      "direction": "over-anticoagulation",
+      "mechanismSummary": "over-anticoagulation",
+      "clinicalSummary": "ClinPGx source context is staged for review and cannot affect severity or scoring until promoted by Diognosis review.",
+      "evidenceIdentifiers": [
+        "ot_targetSafety_CHEMBL1464_43",
+        "ClinPGx evidence ClinPGx / clinical",
+        "https://api.clinpgx.org",
+        "ot_targetSafety_CHEMBL1464_44",
+        "ot_targetSafety_CHEMBL1464_45",
+        "ot_targetSafety_CHEMBL1464_46",
+        "ot_targetSafety_CHEMBL1464_47",
+        "ot_targetSafety_CHEMBL1464_48",
+        "ot_targetSafety_CHEMBL1464_49",
+        "ot_targetSafety_CHEMBL1464_50",
+        "ot_targetSafety_CHEMBL1464_51",
+        "ot_targetSafety_CHEMBL1464_52"
+      ],
+      "strongestExternalTier": "ClinPGx / clinical",
+      "matchedDiognosisDrugs": [
+        "Warfarin"
+      ],
+      "matchedGenes": [
+        "VKORC1"
+      ],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "GENOTYPE_EFFECTS",
+      "priority": "P2",
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "unreviewed",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Open Targets release 26.03; source dataset targetSafety."
+      ]
+    }
+  ]
+}

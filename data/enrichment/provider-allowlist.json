@@ -35,6 +35,11 @@
       "name": "Open Targets",
       "hostPatterns": ["platform.opentargets.org", "api.platform.opentargets.org"],
       "allowedUse": "offline context snapshots only"
+    },
+    {
+      "name": "FDA/DailyMed Labels",
+      "hostPatterns": ["dailymed.nlm.nih.gov", "api.fda.gov", "labels.fda.gov"],
+      "allowedUse": "public label metadata and source identifiers"
     }
   ],
   "forbidden": [

@@ -60,17 +60,32 @@ function main() {
   if (!args.legalOnly) {
     commands.push(run('CPIC sync/check', node, ['scripts/enrich/cpic-sync.js', args.fetch ? '--fetch' : '--check']));
     commands.push(run('ClinPGx sync/check', node, ['scripts/enrich/clinpgx-sync.js', args.fetch ? '--fetch' : '--check']));
+    commands.push(run('label source sync/check', node, ['scripts/enrich/label-source-sync.js', '--check']));
   }
 
-  commands.push(run('gap query batch generation', node, ['scripts/enrich/build-gap-query-batch.js', `--max=${args.maxGapQueries}`]));
   commands.push(run('grouped review candidate generation', node, ['scripts/enrich/group-staged-records.js']));
   commands.push(run('enrichment review queue', node, ['scripts/enrich/build-enrichment-review-queue.js']));
+  commands.push(run('enrichment continuation baseline/archive', node, ['scripts/enrich/capture-enrichment-baseline.js']));
+  commands.push(run('engine hypothesis export', node, ['scripts/enrich/export-engine-hypotheses.js']));
+  commands.push(run('candidate relation extraction', node, ['scripts/enrich/extract-candidate-relations.js']));
+  commands.push(run('gap query batch generation', node, ['scripts/enrich/build-gap-query-batch.js', `--max=${args.maxGapQueries}`]));
+  commands.push(run('grouped review candidate v2 generation', node, ['scripts/enrich/group-candidate-relations.js']));
+  commands.push(run('enrichment review queue v2', node, ['scripts/enrich/build-review-queue-v2.js']));
+  commands.push(run('knowledge growth dashboard', node, ['scripts/audit/knowledge-growth-dashboard.js']));
+  commands.push(run('3x enrichment campaign report', node, ['scripts/enrich/run-three-x-enrichment-campaign.js']));
+  commands.push(run('generated enrichment review data', node, ['scripts/enrich/generate-enrichment-review-data.js']));
   commands.push(run('source registry audit after staging', node, ['scripts/audit/source-registry-audit.js']));
   commands.push(run('license boundary audit', node, ['scripts/audit/enrichment-license-boundary-audit.js']));
   commands.push(run('promotion boundary audit', node, ['scripts/audit/promotion-boundary-audit.js']));
   commands.push(run('review overlay audit', node, ['scripts/audit/review-overlay-audit.js']));
   commands.push(run('curated draft audit', node, ['scripts/audit/curated-draft-audit.js']));
   commands.push(run('grouped review candidate audit', node, ['scripts/audit/grouped-review-candidate-audit.js']));
+  commands.push(run('candidate relation audit', node, ['scripts/audit/candidate-relation-audit.js']));
+  commands.push(run('engine hypothesis audit', node, ['scripts/audit/engine-hypothesis-audit.js']));
+  commands.push(run('review queue v2 audit', node, ['scripts/audit/review-queue-v2-audit.js']));
+  commands.push(run('label source boundary audit', node, ['scripts/audit/label-source-boundary-audit.js']));
+  commands.push(run('3x target audit', node, ['scripts/audit/three-x-target-audit.js']));
+  commands.push(run('enrichment preview mode audit', node, ['scripts/audit/enrichment-preview-mode-audit.js']));
   commands.push(run('enrichment self-test', node, ['scripts/enrich/pubmed-enrich.js', '--self-test']));
 
   const validationCommands = [
@@ -89,10 +104,14 @@ function main() {
 
   const coverage = readJson(resolve(ROOT, 'docs/audits/enrichment-coverage-audit.json'), {});
   const reviewQueue = readJson(resolve(ROOT, 'data/enrichment/review-queue/enrichment-review-queue.json'), {});
+  const reviewQueueV2 = readJson(resolve(ROOT, 'data/enrichment/review-queue/enrichment-review-queue-v2.json'), {});
   const legalReport = readJson(resolve(ROOT, 'data/enrichment/reports/legal-literature-report.json'), {});
   const cpic = readJson(resolve(ROOT, 'data/enrichment/snapshots/cpic-snapshot-metadata.json'), {});
   const clinpgx = readJson(resolve(ROOT, 'data/enrichment/snapshots/clinpgx-snapshot-metadata.json'), {});
+  const labelSource = readJson(resolve(ROOT, 'data/enrichment/snapshots/label-source-snapshot-metadata.json'), {});
   const grouped = readJson(resolve(ROOT, 'data/enrichment/review-queue/grouped-review-candidates.json'), {});
+  const groupedV2 = readJson(resolve(ROOT, 'data/enrichment/review-queue/grouped-review-candidates-v2.json'), {});
+  const growth = readJson(resolve(ROOT, 'docs/audits/knowledge-growth-dashboard.json'), {});
   const overlayReviewCount = listJson(resolve(ROOT, 'data/review-overlays'))
     .map(file => readJson(file, null))
     .filter(overlay => overlay?.schema === 'diognosis.review-overlay.v1')
@@ -106,13 +125,14 @@ function main() {
     schema: 'diognosis.weekly-enrichment-report.v1',
     generatedAt: new Date().toISOString(),
     mode: args.fetch ? 'fetch' : 'check',
-    newStagedRecords: (cpic.stagedRecords || 0) + (clinpgx.stagedRecords || 0) + (legalReport.stagedRecords || 0),
+    newStagedRecords: (cpic.stagedRecords || 0) + (clinpgx.stagedRecords || 0) + (labelSource.stagedRecords || 0) + (legalReport.stagedRecords || 0),
     updatedStagedRecords: 0,
     dedupedRecords: reviewQueue.totalItems || 0,
     newLiteratureDrafts: legalReport.drafts || 0,
     draftsWithLegalOpenAccess: legalReport.draftsWithLegalOpenAccess || 0,
     cpicRecordsStaged: cpic.stagedRecords || 0,
     clinpgxRecordsStaged: clinpgx.stagedRecords || 0,
+    labelRecordsStaged: labelSource.stagedRecords || 0,
     cpic: {
       localCandidateRecords: cpic.localCandidateRecords || 0,
       fetchedRecords: cpic.fetchedRecords || 0,
@@ -126,8 +146,11 @@ function main() {
       rateLimitEvents: clinpgx.rateLimitEvents || 0,
     },
     review: {
-      rawStagedRecords: (cpic.stagedRecords || 0) + (clinpgx.stagedRecords || 0) + (legalReport.stagedRecords || 0),
+      rawStagedRecords: (cpic.stagedRecords || 0) + (clinpgx.stagedRecords || 0) + (labelSource.stagedRecords || 0) + (legalReport.stagedRecords || 0),
       groupedReviewCandidates: grouped.totalCandidates || 0,
+      groupedReviewCandidatesV2: groupedV2.totalCandidates || 0,
+      reviewQueueV2Items: reviewQueueV2.totalItems || 0,
+      candidateRelationRows: growth.candidates?.totalCandidates || 0,
       curatedDrafts: curatedDraftCount,
       localOverlayReviews: overlayReviewCount,
     },
@@ -162,7 +185,11 @@ Generated: ${report.generatedAt}
 - ClinPGx staged records: ${report.clinpgxRecordsStaged}
 - ClinPGx direct fetched records: ${report.clinpgx.directFetchedRecords}
 - ClinPGx/Open Targets derived records: ${report.clinpgx.openTargetsDerivedRecords}
+- Label-source staged records: ${report.labelRecordsStaged}
 - Grouped review candidates: ${report.review.groupedReviewCandidates}
+- Grouped review candidates v2: ${report.review.groupedReviewCandidatesV2}
+- Review queue v2 items: ${report.review.reviewQueueV2Items}
+- Candidate relation rows: ${report.review.candidateRelationRows}
 - Provider failures: ${report.providerFailures.length}
 - Recommendation: ${report.recommendation}
 - Human review required: ${report.humanReviewRequired ? 'yes' : 'no'}
