@@ -9315,6 +9315,20 @@ const STUDY_DB = {
     limitations:["Scoring rows are simplified educational burden approximations; they do not replace ECG, electrolytes, renal/hepatic assessment, psychiatric indication, addiction/toxicology care, anesthesia monitoring, oncology/infectious-disease protocols, or AGS Beers Criteria clinical exceptions."],
     verified:false, reviewRequired:true, verifyNote:"Grouped receptor/burden expansion pending pharmacist/geriatrician review"
   },
+  "ev_phase6_clinical_context_enrichment": {
+    id:"ev_phase6_clinical_context_enrichment", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Phase 6 clinical-context enrichment — pregnancy, transplant, and perioperative live review pairs",
+    year:2026, source:"FDA/DailyMed labels + ACOG/SMFM/KDIGO/AST/CDC guidance context",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"curated_context_rule_group", n:null,
+    phenotypes:["pregnancy","transplant","perioperative","QT","bleeding","CYP3A4","P-gp","active_moiety","immunosuppression"],
+    quantifiedEffects:{note:"Grouped source anchor for promoting clinical-context actors into live KNOWN_DDI rows. It links pregnancy/trying-to-conceive to active moiety and fetal-risk drugs, and links transplant/perioperative status to high-risk batch drugs where bleeding, QT, CYP/P-gp exposure, infection, marrow, procedure timing, or narrow-index monitoring changes review priority."},
+    temporal:{mechanism:"context_specific_medication_risk_screening_and_procedure_timing", onset:"same_day", offset:"days-years"},
+    supports:["phase6_pregnancy_active_moiety_flags","phase6_transplant_perioperative_context_pairs","phase6_batch_drug_contextualization"],
+    contradicts:[],
+    limitations:["These are live pending-review context rules, not standalone treatment recommendations. Indication, dose, gestational age, organ type, transplant timing, procedure timing, renal/hepatic function, ECG/electrolytes, trough targets, and specialty protocols determine actual management."],
+    verified:false, reviewRequired:true, verifyNote:"Grouped clinical-context enrichment pending OB/MFM, transplant, perioperative, and pharmacy review"
+  },
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──
