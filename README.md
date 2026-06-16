@@ -111,13 +111,13 @@ Diognosis is intentionally conservative about what it claims. Diognosis PK curve
 
 <!-- DIOGNOSIS_STATS_START -->
 - **1026 drugs** in DRUG_DB
-- **469 evidence entries** in STUDY_DB (276 with PMIDs; 469 with source identifiers) — **469 pending professional review**, **0 professionally reviewed**
+- **470 evidence entries** in STUDY_DB (276 with PMIDs; 470 with source identifiers) — **470 pending professional review**, **0 professionally reviewed**
 - **720 interaction pairs** (372 severe, 324 moderate, 24 mild)
 - **1257 metabolite entries** across **522 parent substances** (68 first-class metabolite actors)
 - **664 absolute PK simulation profiles** with relative fallback for half-life-only drugs
-- **69 genotype genes** and **88 receptor score profiles**
-- **66 Beers flags** and **74 washout rules**
-- **2631 KB** generated bundle (1867 lines)
+- **69 genotype genes** and **103 receptor score profiles**
+- **69 Beers flags** and **74 washout rules**
+- **2636 KB** generated bundle (1867 lines)
 <!-- DIOGNOSIS_STATS_END -->
 
 ---

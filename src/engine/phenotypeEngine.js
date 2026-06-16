@@ -5,9 +5,8 @@ function computePhenotypeAccumulation(drugList) {
   const totals = { serotonin:0, qtc:0, anticholinergic:0, sedation:0, fall_risk:0 };
   const contributors = { serotonin:[], qtc:[], anticholinergic:[], sedation:[], fall_risk:[] };
   for (const drug of drugList) {
-    const key = toGraphId(drug.name);
     // Try exact key, then props-based fallback
-    const scores = PHENOTYPE_SCORES[key] || {
+    const scores = (typeof getScoringValue === "function" ? getScoringValue(PHENOTYPE_SCORES, drug) : null) || PHENOTYPE_SCORES[toGraphId(drug.name)] || {
       serotonin:   drug.props?.serotonergic ? 2 : 0,
       qtc:         drug.props?.qtcRisk || 0,
       anticholinergic: drug.props?.anticholinergic || 0,
@@ -164,6 +163,21 @@ Object.assign(RECEPTOR_SCORES, {
   lapatinib:        { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
   lefamulin:        { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:2, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
   palonosetron:     { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  pimozide:         { SERT:0, NET:0, H1:0, M1:0, alpha1:1, hERG:3, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  ziprasidone:      { SERT:1, NET:0, H1:1, M1:0, alpha1:2, hERG:3, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  domperidone:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:3, GABA:0, muOp:0, D2:2, MAO:0, DAT:0 },
+  iloperidone:      { SERT:1, NET:0, H1:1, M1:0, alpha1:3, hERG:2, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  pimavanserin:     { SERT:0, NET:0, H1:0, M1:0, alpha1:1, hERG:2, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  thioridazine:     { SERT:1, NET:0, H1:3, M1:3, alpha1:3, hERG:3, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  chlorpromazine:   { SERT:1, NET:0, H1:3, M1:3, alpha1:3, hERG:2, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  fluphenazine:     { SERT:0, NET:0, H1:1, M1:1, alpha1:2, hERG:1, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  alfentanil:       { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:3, D2:0, MAO:0, DAT:0 },
+  bedaquiline:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:2, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  nilotinib:        { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:2, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  hydroxychloroquine:{ SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:2, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  mdma_ecstasy:     { SERT:2, NET:2, H1:0, M1:0, alpha1:0, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:2 },
+  mda:              { SERT:2, NET:2, H1:0, M1:0, alpha1:0, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:2 },
+  alcohol_ethanol:  { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:2, muOp:0, D2:0, MAO:0, DAT:0 },
   eszopiclone:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:2, muOp:0, D2:0, MAO:0, DAT:0 },
 });
 
@@ -283,17 +297,18 @@ function computeReceptorOccupancy(drugNames) {
   }
 
   for (const drugName of drugNames) {
+    const drug = getDrug(drugName);
     // Normalize lookup key (lowercase, spaces→underscore)
     const key = drugName.toLowerCase().replace(/\s+/g, '_').replace(/-/g, '');
     // Also try exact match
-    const scores = RECEPTOR_SCORES[key]
+    const scores = (typeof getScoringValue === "function" ? getScoringValue(RECEPTOR_SCORES, drug || drugName) : null)
+      || RECEPTOR_SCORES[key]
       || RECEPTOR_SCORES[drugName.toLowerCase()]
       || RECEPTOR_SCORES[drugName.toLowerCase().replace(/\s/g,'')]
       || null;
 
     if (!scores) {
       // Fall back to drug props if no receptor profile
-      const drug = getDrug(drugName);
       if (drug) {
         const fallback = {
           SERT: drug.props?.serotonergic ? 2 : 0,
@@ -356,7 +371,7 @@ function computeReceptorOccupancy(drugNames) {
 
   // Sort syndromes by severity
   const sevOrder = { critical: 0, severe: 1, moderate: 2, mild: 3 };
-  activeSyndromes.sort((a, b) => (sevOrder[a.severity] || 3) - (sevOrder[b.severity] || 3));
+  activeSyndromes.sort((a, b) => (sevOrder[a.severity] ?? 3) - (sevOrder[b.severity] ?? 3));
 
   // ── Receptor leaders ──
   const receptorLeaders = Object.entries(receptorContributors)

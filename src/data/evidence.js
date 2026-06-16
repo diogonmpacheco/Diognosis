@@ -9301,6 +9301,20 @@ const STUDY_DB = {
     limitations:["Educational pending-review rules. Many entries are qualitative review flags, not dose recommendations; labels, CPIC/DPWG guidance, therapeutic drug monitoring, ECGs, INR, platelet/procedure context, oncology protocols, and organ function remain decisive."],
     verified:false, reviewRequired:true, verifyNote:"Grouped genotype-metabolite expansion pending pharmacist/genomics review"
   },
+  "ev_phase5_receptor_burden_profiles": {
+    id:"ev_phase5_receptor_burden_profiles", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Phase 5 receptor and burden profiles — QT, CNS, antipsychotic, stimulant, and older-adult risk scoring",
+    year:2026, source:"FDA/DailyMed labels + AGS Beers Criteria 2023 + public receptor/QT pharmacology context",
+    pmid:null, doi:null, url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12478568/",
+    studyDesign:"curated_scoring_group", n:null,
+    phenotypes:["hERG","D2","H1","M1","alpha1","GABA","mu-opioid","SERT","NET","DAT","older_adult_burden"],
+    quantifiedEffects:{note:"Grouped source anchor for promoting high-yield receptor/channel and phenotype-burden rows into live scoring. It covers QT-heavy antipsychotics and antimicrobials/kinase inhibitors, opioid/CNS depressant burden, empathogen serotonergic/catecholamine load, ethanol sedation/fall burden, and older-adult Beers-style caution rows."},
+    temporal:{mechanism:"pharmacodynamic_receptor_channel_and_geriatric_burden_context", onset:"same_day", offset:"hours-weeks"},
+    supports:["phase5_receptor_score_expansion","phase5_phenotype_score_expansion","phase5_beers_flag_expansion","phase5_id_based_scoring_lookup"],
+    contradicts:[],
+    limitations:["Scoring rows are simplified educational burden approximations; they do not replace ECG, electrolytes, renal/hepatic assessment, psychiatric indication, addiction/toxicology care, anesthesia monitoring, oncology/infectious-disease protocols, or AGS Beers Criteria clinical exceptions."],
+    verified:false, reviewRequired:true, verifyNote:"Grouped receptor/burden expansion pending pharmacist/geriatrician review"
+  },
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──

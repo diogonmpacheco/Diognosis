@@ -943,6 +943,22 @@ Object.assign(PHENOTYPE_SCORES, {
   'ramelteon':       { serotonin:0, qtc:0, anticholinergic:0, sedation:1, fall_risk:1 },
   'lemborexant':     { serotonin:0, qtc:0, anticholinergic:0, sedation:3, fall_risk:3 },
   'daridorexant':    { serotonin:0, qtc:0, anticholinergic:0, sedation:3, fall_risk:3 },
+  'pimozide':        { serotonin:0, qtc:3, anticholinergic:0, sedation:1, fall_risk:2 },
+  'ziprasidone':     { serotonin:0, qtc:3, anticholinergic:0, sedation:2, fall_risk:2 },
+  'domperidone':     { serotonin:0, qtc:3, anticholinergic:0, sedation:0, fall_risk:1 },
+  'iloperidone':     { serotonin:0, qtc:2, anticholinergic:0, sedation:2, fall_risk:3 },
+  'pimavanserin':    { serotonin:0, qtc:2, anticholinergic:0, sedation:1, fall_risk:2 },
+  'thioridazine':    { serotonin:0, qtc:3, anticholinergic:3, sedation:3, fall_risk:3 },
+  'chlorpromazine':  { serotonin:0, qtc:2, anticholinergic:3, sedation:3, fall_risk:3 },
+  'fluphenazine':    { serotonin:0, qtc:1, anticholinergic:1, sedation:2, fall_risk:2 },
+  'hydroxyzine':     { serotonin:0, qtc:1, anticholinergic:3, sedation:3, fall_risk:3 },
+  'alfentanil':      { serotonin:0, qtc:0, anticholinergic:0, sedation:3, fall_risk:3 },
+  'bedaquiline':     { serotonin:0, qtc:2, anticholinergic:0, sedation:0, fall_risk:0 },
+  'nilotinib':       { serotonin:0, qtc:2, anticholinergic:0, sedation:0, fall_risk:0 },
+  'hydroxychloroquine':{ serotonin:0, qtc:2, anticholinergic:0, sedation:0, fall_risk:0 },
+  'mdma_ecstasy':    { serotonin:2, qtc:1, anticholinergic:0, sedation:0, fall_risk:1 },
+  'mda':             { serotonin:2, qtc:1, anticholinergic:0, sedation:0, fall_risk:1 },
+  'alcohol_ethanol': { serotonin:0, qtc:0, anticholinergic:0, sedation:3, fall_risk:3 },
 });
 
 // computePhenotypeAccumulation(drugList) — sums all risk scores
@@ -1104,6 +1120,9 @@ Object.assign(ACB_SCORES, {
   'prochlorperazine':2,
   'promethazine':3,
   'scopolamine':3,
+  'fluphenazine':1,
+  'ziprasidone':0,
+  'pimozide':0,
 });
 
 // BEERS_FLAGS — drugs flagged for older adults (≥65) per Beers 2023
@@ -1178,7 +1197,39 @@ Object.assign(BEERS_FLAGS, {
   'lasmiditan':      { concern:'Marked CNS impairment/driving warning; dizziness, sedation, and falls', avoid:'cns_impairing_agents_65plus_caution' },
   'lemborexant':     { concern:'Orexin antagonist hypnotic; next-day impairment, cognitive effects, and falls', avoid:'sleep_aids_65plus' },
   'daridorexant':    { concern:'Orexin antagonist hypnotic; next-day impairment, cognitive effects, and falls', avoid:'sleep_aids_65plus' },
+  'ziprasidone':      { concern:'Antipsychotic with prominent QTc prolongation potential, sedation, orthostasis, and falls', avoid:'antipsychotics_65plus_high_caution' },
+  'domperidone':      { concern:'QTc prolongation and ventricular arrhythmia concern; use extra caution in older adults and with CYP3A/QT stacks', avoid:'qt_prolonging_gi_agents_65plus_caution' },
+  'pimavanserin':     { concern:'Antipsychotic-class mortality warning context in dementia-related psychosis plus QT/sedation/fall risk', avoid:'antipsychotics_65plus_caution' },
 });
+
+function getScoringLookupKeys(drugOrName) {
+  const drug = typeof drugOrName === "object" && drugOrName !== null
+    ? drugOrName
+    : (typeof getDrug === "function" ? getDrug(drugOrName) : null);
+  const name = drug?.name || String(drugOrName || "");
+  const lower = name.toLowerCase();
+  const graphId = typeof getDrugGraphId === "function"
+    ? getDrugGraphId(name)
+    : (typeof toGraphId === "function" ? toGraphId(name) : lower.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""));
+  const simpleGraph = typeof toGraphId === "function"
+    ? toGraphId(name)
+    : lower.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  return [...new Set([
+    drug?.id,
+    graphId,
+    simpleGraph,
+    lower,
+    lower.replace(/\s+/g, "_").replace(/-/g, ""),
+    lower.replace(/\s/g, ""),
+  ].filter(Boolean))];
+}
+
+function getScoringValue(table, drugOrName) {
+  for (const key of getScoringLookupKeys(drugOrName)) {
+    if (Object.prototype.hasOwnProperty.call(table || {}, key)) return table[key];
+  }
+  return undefined;
+}
 
 function assertReviewedScoringRow(row, scorerName) {
   if (!row || typeof row !== "object") return;
@@ -1200,16 +1251,15 @@ function computeAdverseBurden(drugList) {
   };
   for (const drug of drugList) {
     assertReviewedScoringRow(drug, "computeAdverseBurden");
-    const key = toGraphId(drug.name);
-    const acb = ACB_SCORES[key];
+    const acb = getScoringValue(ACB_SCORES, drug);
     if (acb > 0) {
       result.acb_total += acb;
       result.acb_contributors.push({ name: drug.name, score: acb });
     }
-    const beers = BEERS_FLAGS[key];
+    const beers = getScoringValue(BEERS_FLAGS, drug);
     if (beers) result.beers_flags.push({ name: drug.name, ...beers });
     if (drug.props?.sedation) result.sedation_contributors.push(drug.name);
-    const fall = (PHENOTYPE_SCORES[key]?.fall_risk || 0);
+    const fall = (getScoringValue(PHENOTYPE_SCORES, drug)?.fall_risk || 0);
     if (fall > 0) {
       result.fall_risk_total += fall;
       result.fall_risk_contributors.push({ name: drug.name, score: fall });
