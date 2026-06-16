@@ -1815,8 +1815,12 @@ function top100CoverageRepresentativeDdis(drug) {
       drug2:"Paroxetine",
       severity:/opioid|antiarrhythmic|tca|antipsychotic|vmat|prodrug/i.test(text) ? "severe" : "moderate",
       category:"cyp2d6_live_route_inhibition",
-      mechanism:`${drug.name} has live CYP2D6 route context; strong CYP2D6 inhibition can shift parent exposure or active-metabolite formation.`,
-      effect:"Flag for phenotype plus inhibitor review and monitor efficacy/toxicity according to whether parent or active metabolite drives effect.",
+      mechanism:drug.prodrug
+        ? `${drug.name} has live CYP2D6 activation context; strong CYP2D6 inhibition can leave activation blocked and reduce active-metabolite formation.`
+        : `${drug.name} has live CYP2D6 route context; strong CYP2D6 inhibition can shift parent exposure or active-metabolite formation.`,
+      effect:drug.prodrug
+        ? "Flag for activation blocked, loss-of-effect risk, phenotype plus inhibitor review, and direct-active-drug alternatives."
+        : "Flag for phenotype plus inhibitor review and monitor efficacy/toxicity according to whether parent or active metabolite drives effect.",
     });
   }
   if (/CYP2C19/i.test(routes)) {
@@ -1938,5 +1942,275 @@ for (const drugName of TOP250_LIVE_COVERAGE_DRUGS) {
     if (top100CoverageAddKnownDdi(drug, row)) added += 1;
     if (added >= 2) break;
   }
+}
+
+const DDI_EXPANSION_PACK_EVIDENCE_REFS = Object.freeze(["ev_ddi_expansion_pack_adapter"]);
+
+function ddiExpansionPackPriority(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  const routes = top100CoverageRouteText(drug);
+  let score = top100CoverageKnownDdiCount(drug?.name) * 3;
+  if (/antiarrhythmic|anticoag|antiplatelet|doac|opioid|benzodiazepine|anticonvulsant|ssri|snri|tca|maoi|antipsychotic|azole|macrolide|fluoroquinolone|antiretroviral|protease inhibitor|immunosuppress|kinase|oncology|statin|diabetes|sulfonylurea|pde5|nitrate|ccB|thyroid|mood stabilizer|antibiotic/i.test(text)) score += 20;
+  if (/CYP3A4|CYP2D6|CYP2C19|CYP2C9|CYP2C8|UGT|NAT|TPMT|NUDT15/i.test(routes)) score += 12;
+  if (/P-gp|BCRP|OATP|OAT|OCT|MATE|SLCO|ABCB|ABCG/i.test(routes)) score += 8;
+  if (drug?.prodrug) score += 8;
+  if (drug?.props?.qtcRisk >= 2 || drug?.props?.bleedingRisk >= 2 || drug?.props?.narrowTherapeutic) score += 8;
+  return score;
+}
+
+function ddiExpansionPackRows(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  const routes = top100CoverageRouteText(drug);
+  const rows = [...top100CoverageRepresentativeDdis(drug)];
+  if (/CYP3A4|CYP3A5|CYP3A/i.test(routes)) {
+    rows.push(
+      {
+        drug2:"Ketoconazole",
+        severity:top100CoverageHighImpactSeverity(drug),
+        category:"cyp3a_strong_inhibition_expansion",
+        mechanism:`${drug.name} has CYP3A route context; ketoconazole represents strong CYP3A inhibition that can raise exposure or toxicity for sensitive substrates.`,
+        effect:"Flag for strong-inhibitor avoidance, dose review, or toxicity monitoring.",
+      },
+      {
+        drug2:"Diltiazem",
+        severity:"moderate",
+        category:"cyp3a_moderate_inhibition_expansion",
+        mechanism:`${drug.name} has CYP3A route context; diltiazem represents moderate CYP3A/P-gp inhibition and hemodynamic overlap where relevant.`,
+        effect:"Flag for exposure increase, bradycardia/hypotension context, and dose/monitoring review.",
+      },
+      {
+        drug2:"Nirmatrelvir/Ritonavir",
+        severity:"severe",
+        category:"cyp3a_booster_expansion",
+        mechanism:`${drug.name} has CYP3A route context; ritonavir boosting can strongly inhibit CYP3A and create large exposure shifts.`,
+        effect:"Flag for temporary hold, contraindication, dose adjustment, or alternative antiviral review.",
+      }
+    );
+  }
+  if (/CYP2D6/i.test(routes)) {
+    rows.push(
+      {
+        drug2:"Fluoxetine",
+        severity:/opioid|antiarrhythmic|tca|antipsychotic|vmat|prodrug/i.test(text) ? "severe" : "moderate",
+        category:"cyp2d6_long_offset_inhibition_expansion",
+        mechanism:`${drug.name} has CYP2D6 route context; fluoxetine/norfluoxetine can inhibit CYP2D6 with a long offset.`,
+        effect:"Flag for phenoconversion, long washout, exposure/activation shift, and delayed toxicity review.",
+      },
+      {
+        drug2:"Quinidine",
+        severity:"severe",
+        category:"cyp2d6_potent_inhibition_qt_expansion",
+        mechanism:`${drug.name} has CYP2D6 route context; quinidine represents potent CYP2D6 inhibition and can add QT/conduction burden.`,
+        effect:"Flag for CYP2D6 phenoconversion plus ECG/toxicity monitoring where relevant.",
+      }
+    );
+  }
+  if (/CYP2C19/i.test(routes)) {
+    rows.push(
+      {
+        drug2:"Fluconazole",
+        severity:"moderate",
+        category:"cyp2c19_azole_inhibition_expansion",
+        mechanism:`${drug.name} has CYP2C19 route context; fluconazole can inhibit CYP2C19 and CYP2C9 while adding QT/hepatic context.`,
+        effect:"Flag for exposure, activation, QT, and hepatic monitoring review.",
+      },
+      {
+        drug2:"Omeprazole",
+        severity:/antiplatelet|prodrug/i.test(text) ? "moderate" : "mild",
+        category:"cyp2c19_competition_absorption_expansion",
+        mechanism:`${drug.name} has CYP2C19 route context; proton-pump inhibitor overlap can indicate CYP2C19 competition or absorption/pH context for selected drugs.`,
+        effect:"Flag for efficacy, activation, or absorption review where drug-specific labels support it.",
+      }
+    );
+  }
+  if (/CYP2C9/i.test(routes)) {
+    rows.push(
+      {
+        drug2:"Trimethoprim/Sulfamethoxazole",
+        severity:/anticoag|vitamin k antagonist|nsaid|anticonvulsant/i.test(text) ? "severe" : "moderate",
+        category:"cyp2c9_sulfonamide_inhibition_expansion",
+        mechanism:`${drug.name} has CYP2C9 route context; trimethoprim/sulfamethoxazole can represent CYP2C9 inhibition and hemostasis/renal context.`,
+        effect:"Flag for INR, bleeding, renal, hypoglycemia, or exposure monitoring depending on class.",
+      },
+      {
+        drug2:"Metronidazole",
+        severity:/anticoag|vitamin k antagonist/i.test(text) ? "severe" : "moderate",
+        category:"cyp2c9_antibiotic_inhibition_expansion",
+        mechanism:`${drug.name} has CYP2C9 route context; metronidazole represents antibiotic interaction context for CYP2C9-sensitive drugs.`,
+        effect:"Flag for exposure and class-specific toxicity monitoring.",
+      }
+    );
+  }
+  if (/UGT|glucuronid/i.test(routes)) {
+    rows.push({
+      drug2:"Rifampin",
+      severity:"moderate",
+      category:"ugt_induction_expansion",
+      mechanism:`${drug.name} has glucuronidation context; rifampin can induce UGT/transporter pathways and reduce exposure for susceptible substrates.`,
+      effect:"Flag for loss-of-effect review and timing after inducer discontinuation.",
+    });
+  }
+  if (/P-gp|ABCB1|BCRP|ABCG2|OATP|SLCO|OAT1|OAT3|OCT2|MATE|Renal Cation|Renal Anion/i.test(`${routes} ${text}`)) {
+    rows.push(
+      {
+        drug2:"Amiodarone",
+        severity:/anticoag|statin|immunosuppress|digoxin|antiarrhythmic/i.test(text) ? "severe" : "moderate",
+        category:"transporter_pgp_inhibition_expansion",
+        mechanism:`${drug.name} has transporter route context; amiodarone can inhibit P-gp and add long-lived cardiac/QT context.`,
+        effect:"Flag for exposure increase, ECG, drug-level, renal, or bleeding monitoring where relevant.",
+      },
+      {
+        drug2:"Verapamil",
+        severity:"moderate",
+        category:"transporter_pgp_hemodynamic_expansion",
+        mechanism:`${drug.name} has transporter route context; verapamil represents P-gp inhibition plus bradycardia/hypotension context.`,
+        effect:"Flag for exposure and hemodynamic monitoring.",
+      }
+    );
+  }
+  if (/QT|antiarrhythmic|fluoroquinolone|macrolide|azole|antipsychotic|kinase|oncology/i.test(text)) {
+    rows.push(
+      {
+        drug2:"Ondansetron",
+        severity:"moderate",
+        category:"qt_stack_expansion",
+        mechanism:`${drug.name} has QT/conduction context; ondansetron can add QT burden, especially with electrolyte or exposure risk factors.`,
+        effect:"Flag for ECG/electrolyte monitoring and antiemetic alternative review.",
+      },
+      {
+        drug2:"Sotalol",
+        severity:"severe",
+        category:"qt_antiarrhythmic_stack_expansion",
+        mechanism:`${drug.name} has QT/conduction context; sotalol adds potent QT and bradycardia risk.`,
+        effect:"Flag for avoidance or intensive ECG/electrolyte monitoring.",
+      }
+    );
+  }
+  if (/anticoag|antiplatelet|doac|vitamin k antagonist|bleeding|nsaid|thrombin|factor xa/i.test(text)) {
+    rows.push(
+      {
+        drug2:"Aspirin",
+        severity:"moderate",
+        category:"hemostasis_antiplatelet_expansion",
+        mechanism:`${drug.name} has hemostasis context; aspirin can add antiplatelet bleeding burden.`,
+        effect:"Flag for bleeding indication review, gastroprotection, renal function, and procedure timing.",
+      },
+      {
+        drug2:"Naproxen",
+        severity:"moderate",
+        category:"hemostasis_nsaid_expansion",
+        mechanism:`${drug.name} has hemostasis context; NSAIDs can add GI/renal bleeding and renal hemodynamic risk.`,
+        effect:"Flag for bleeding, renal function, and safer analgesic review.",
+      }
+    );
+  }
+  if (/ssri|snri|maoi|serotonin|tramadol|stimulant|mdma|ayahuasca/i.test(text)) {
+    rows.push({
+      drug2:"Linezolid",
+      severity:/maoi|mdma|ayahuasca|tramadol/i.test(text) ? "severe" : "moderate",
+      category:"serotonergic_maoi_antibiotic_expansion",
+      mechanism:`${drug.name} has serotonergic/autonomic context; linezolid MAOI activity can add serotonin-toxicity risk.`,
+      effect:"Flag for serotonergic washout, symptom monitoring, and alternative antibiotic review.",
+    });
+  }
+  if (/diabetes|sulfonylurea|meglitinide/i.test(text)) {
+    rows.push({
+      drug2:"Fluconazole",
+      severity:"moderate",
+      category:"diabetes_hypoglycemia_exposure_context",
+      mechanism:`${drug.name} has live diabetes-drug exposure context; azole/CYP inhibition or illness context can increase hypoglycemia risk for insulin secretagogues.`,
+      effect:"Flag for glucose monitoring, dose review, and hypoglycemia counseling.",
+    });
+  }
+  if (/ace inhibitor|arb|diuretic|renal|lithium|mood stabilizer/i.test(text)) {
+    rows.push({
+      drug2:"Ibuprofen",
+      severity:/lithium|mood stabilizer/i.test(text) ? "severe" : "moderate",
+      category:"renal_hemodynamic_live_context",
+      mechanism:`${drug.name} has live renal/hemodynamic context; NSAIDs can reduce renal perfusion, alter clearance, and stack kidney/electrolyte risk.`,
+      effect:"Flag for renal function, potassium, blood pressure, and drug-level monitoring where relevant.",
+    });
+  }
+  if (/pde5|nitrate|alpha|ccb|antianginal|vasodilator|antihypertensive/i.test(text)) {
+    rows.push({
+      drug2:"Nitroglycerin",
+      severity:/pde5|nitrate/i.test(text) ? "severe" : "moderate",
+      category:"vasodilation_hypotension_live_context",
+      mechanism:`${drug.name} has live vasodilator/hemodynamic context; nitrate or vasodilator overlap can produce symptomatic hypotension or ischemic risk.`,
+      effect:"Flag for contraindicated nitrate/PDE5 combinations, blood-pressure monitoring, and timing separation.",
+    });
+  }
+  if (/thyroid|levothyroxine/i.test(text)) {
+    rows.push({
+      drug2:"Calcium",
+      severity:"moderate",
+      category:"absorption_binding_live_context",
+      mechanism:`${drug.name} has live absorption-sensitive context; polyvalent cations can bind or reduce oral absorption for susceptible drugs.`,
+      effect:"Flag for administration-time separation and response monitoring.",
+    });
+  }
+  if (/lama|antimuscarinic|anticholinergic|bladder|tca|antihistamine/i.test(text)) {
+    rows.push({
+      drug2:"Diphenhydramine",
+      severity:"moderate",
+      category:"anticholinergic_burden_live_context",
+      mechanism:`${drug.name} has live anticholinergic/CNS burden context; sedating anticholinergic overlap can increase delirium, urinary retention, constipation, and falls.`,
+      effect:"Flag for older-adult burden review and avoidance of duplicate anticholinergic exposure.",
+    });
+  }
+  if (/antiretroviral|protease inhibitor|pharmacokinetic enhancer|cobicistat|ritonavir/i.test(text)) {
+    rows.push({
+      drug2:"Simvastatin",
+      severity:"severe",
+      category:"booster_cyp3a_statin_live_context",
+      mechanism:`${drug.name} has live booster/antiretroviral context; strong CYP3A inhibition can greatly increase sensitive statin exposure.`,
+      effect:"Flag for contraindicated statin combinations, myopathy/rhabdomyolysis monitoring, and safer statin selection.",
+    });
+  }
+  if (/seizure|anticonvulsant|barbiturate|benzodiazepine/i.test(text)) {
+    rows.push({
+      drug2:"Alcohol (Ethanol)",
+      severity:"moderate",
+      category:"cns_seizure_threshold_live_context",
+      mechanism:`${drug.name} has live CNS/seizure-threshold context; ethanol can add sedation, respiratory impairment, psychomotor impairment, or seizure-threshold instability.`,
+      effect:"Flag for CNS depression, falls, respiratory risk, and seizure counseling.",
+    });
+  }
+  return rows;
+}
+
+function ddiExpansionPackAddKnownDdi(drug, row) {
+  if (!drug || !row?.drug2 || row.drug2 === drug.name) return false;
+  if (typeof getDrug === "function" && !getDrug(row.drug2)) return false;
+  const key = top100CoverageDdiKey(drug.name, row.drug2);
+  if (TOP100_COVERAGE_KNOWN_DDI_KEYS.has(key)) return false;
+  TOP100_COVERAGE_KNOWN_DDI_KEYS.add(key);
+  KNOWN_DDI.push({
+    drug1:drug.name,
+    drug2:row.drug2,
+    severity:row.severity || top100CoverageHighImpactSeverity(drug),
+    category:row.category,
+    mechanism:`Phase 9 DDI expansion pack: ${row.mechanism}`,
+    effect:row.effect,
+    evidence:{confidence:"low", sources:["DDI expansion pack adapter"], studyType:"class_route_adapter"},
+    evidenceRefs:[...DDI_EXPANSION_PACK_EVIDENCE_REFS],
+  });
+  return true;
+}
+
+const DDI_EXPANSION_PACK_TARGETS = DRUG_DB
+  .filter(drug => ddiExpansionPackPriority(drug) >= 20)
+  .sort((a, b) => ddiExpansionPackPriority(b) - ddiExpansionPackPriority(a) || a.name.localeCompare(b.name));
+
+for (const drug of DDI_EXPANSION_PACK_TARGETS) {
+  const priority = ddiExpansionPackPriority(drug);
+  const desiredPairs = priority >= 56 ? 10 : priority >= 44 ? 8 : 5;
+  let directPairs = top100CoverageKnownDdiCount(drug.name);
+  if (directPairs >= desiredPairs) continue;
+  for (const row of ddiExpansionPackRows(drug)) {
+    if (ddiExpansionPackAddKnownDdi(drug, row)) directPairs += 1;
+    if (directPairs >= desiredPairs || KNOWN_DDI.length >= 1700) break;
+  }
+  if (KNOWN_DDI.length >= 1700) break;
 }
 // ── COMBINATION calcFold — considers parent + metabolite inhibitions ──

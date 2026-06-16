@@ -9357,6 +9357,20 @@ const STUDY_DB = {
     limitations:["These rows are live enrichment signals, not final clinical recommendations. Drug-specific labels, CPIC/DPWG guidance, TDM, ECG/electrolyte monitoring, renal/hepatic assessment, indication, dosing, procedure context, oncology/transplant protocols, and pharmacist/physician review remain decisive."],
     verified:false, reviewRequired:true, verifyNote:"Phase 8 top-250 expansion is live pending professional review; rows are review-priority signals derived from existing route/class data."
   },
+  "ev_ddi_expansion_pack_adapter": {
+    id:"ev_ddi_expansion_pack_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Phase 9 DDI expansion pack — explicit pending-review route and class pairs",
+    year:2026, source:"Internal Diognosis enrichment adapter using existing curated routes, high-risk classes, transporter context, and pharmacodynamic burden classes",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"class_route_pair_expansion", n:null,
+    phenotypes:["CYP3A4","CYP2D6","CYP2C19","CYP2C9","CYP2C8","UGT","P-gp","BCRP","OATP","QT","bleeding","CNS","serotonin","renal","anticholinergic"],
+    quantifiedEffects:{note:"Shared evidence anchor for explicit DDI rows generated from existing route and class knowledge. These rows make pending-review interaction signals visible through KNOWN_DDI without claiming source-specific final curation."},
+    temporal:{mechanism:"class_route_and_pharmacodynamic_interaction_context", onset:"same_day", offset:"hours-weeks"},
+    supports:["phase9_ddi_pair_expansion","phase9_explicit_known_ddi_pending_review","phase9_route_class_pair_visibility"],
+    contradicts:[],
+    limitations:["Rows are intended as live review-priority signals. They do not replace drug-specific labels, measured concentration data, ECG/electrolytes, renal/hepatic assessment, INR/TDM, dose/indication context, or pharmacist/physician review."],
+    verified:false, reviewRequired:true, verifyNote:"Phase 9 DDI expansion pack rows are pending professional review and should be replaced by source-specific rows over time."
+  },
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──

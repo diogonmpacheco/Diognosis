@@ -22,21 +22,21 @@
         "Codeine"
       ],
       "genotype": {},
-      "riskScore": 88,
-      "riskLevel": "HIGH RISK",
+      "riskScore": 46,
+      "riskLevel": "MODERATE RISK",
       "interactionCount": 2,
       "severityCounts": {
         "severe": 1,
         "moderate": 1
       },
-      "factorCount": 7,
+      "factorCount": 5,
       "topInteractions": [
         {
-          "pair": "Paroxetine + Codeine",
+          "pair": "Codeine + Paroxetine",
           "severity": "severe",
-          "type": "prodrug-inhibition",
-          "source": null,
-          "enzyme": "CYP2D6"
+          "type": "known-ddi",
+          "source": "known",
+          "enzyme": "cyp2d6_live_route_inhibition"
         },
         {
           "pair": "Paroxetine + Codeine",
@@ -58,7 +58,7 @@
       "externalContextCountText": "5 context cards · not risk-scoring · fixture-2026-06",
       "externalContextReviewBadges": 5,
       "riskUnchangedAfterExternalContext": true,
-      "afterRiskScore": 88,
+      "afterRiskScore": 46,
       "afterInteractionCount": 2
     },
     {
