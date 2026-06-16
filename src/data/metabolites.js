@@ -4731,8 +4731,92 @@ Object.assign(METAB, {
 "Tafluprost":[
   {n:"Tafluprost acid",e:"Esterase Hydrolysis",a:"active_form",p:75,t:0.6,note:"Ocular prodrug hydrolyzed to active prostaglandin analog; local ocular effects dominate.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
 ],
-"Netarsudil":[
+  "Netarsudil":[
   {n:"Netarsudil-M1",e:"Esterase Hydrolysis",a:"active",p:80,t:0.3,note:"Active ROCK inhibitor metabolite formed locally/systemically after ophthalmic dosing.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+  ]
+});
+
+Object.assign(METAB, {
+// Phase 1 high-priority missing parent maps from batch 01-03 additions.
+"Adagrasib":[
+  {n:"Adagrasib oxidative metabolites",e:"CYP3A4/CYP2C8/CYP1A2/CYP2B6/CYP2C9/CYP2D6",a:"inactive",p:60,t:23,note:"CYP3A dominates single-dose metabolism; after CYP3A auto-inhibition at steady state, additional CYP pathways contribute to clearance.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
+  {n:"Adagrasib unchanged fecal fraction",e:"Biliary/Fecal Excretion",a:"active_parent",p:14,t:23,note:"Unchanged parent remains an exposure driver; fecal recovery helps explain persistence and inhibitor/inducer sensitivity.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}
+],
+"Pimozide":[
+  {n:"5-Hydroxypimozide",e:"CYP2D6/CYP3A4",a:"inactive",p:30,t:55,note:"Hydroxylated pimozide metabolite; genotype and inhibitor risk is still driven primarily by parent pimozide exposure and QT liability.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels"]},
+  {n:"6-Hydroxypimozide",e:"CYP2D6/CYP3A4",a:"inactive",p:15,t:55,note:"Minor hydroxylated clearance product in the CYP2D6/CYP3A metabolism network.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels"]},
+  {n:"DHPBI N-dealkylation metabolite",e:"CYP3A4 N-dealkylation",a:"inactive",p:35,note:"N-dealkylation is a major pimozide clearance route; CYP3A inhibition remains the clinically important parent-exposure signal.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels"]}
+],
+"Prochlorperazine":[
+  {n:"N-Desmethylprochlorperazine",e:"CYP2D6/CYP2C19",a:"inactive",p:30,t:7,note:"Major demethylated metabolite; parent phenothiazine exposure drives sedation, EPS, QT, and anticholinergic burden.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_cns_anticholinergic_beers_labels"]},
+  {n:"Prochlorperazine sulfoxide",e:"Sulfoxidation",a:"inactive",p:25,note:"Sulfoxide metabolite detected after oral/buccal administration.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_cns_anticholinergic_beers_labels"]},
+  {n:"Prochlorperazine 7-hydroxide",e:"CYP2D6/CYP2C19",a:"inactive",p:15,note:"Hydroxylated metabolite useful for pathway visibility, not an independent dosing actor.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_cns_anticholinergic_beers_labels"]}
+],
+"Ribociclib":[
+  {n:"M13 (CCI284, N-hydroxylation)",e:"CYP3A4",a:"inactive",p:9,t:32,note:"Major circulating metabolite; label notes parent ribociclib accounts for clinical activity with negligible metabolite contribution.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
+  {n:"M4 (LEQ803, N-demethylation)",e:"CYP3A4",a:"inactive",p:9,t:32,note:"Prominent circulating metabolite whose exposure can shift with CYP3A modifiers, while parent drives CDK4/6 and QT effects.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
+  {n:"M1 secondary glucuronide",e:"Glucuronidation",a:"inactive",p:8,note:"Phase II metabolite contributing to radiolabeled exposure accounting.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}
+],
+"Naldemedine":[
+  {n:"Nor-naldemedine",e:"CYP3A4",a:"active",p:35,t:11,note:"Primary CYP3A metabolite with opioid-receptor antagonistic activity, less potent than parent; CYP3A/P-gp modifiers still drive exposure context.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_gi_cyp3a_labels"]},
+  {n:"Naldemedine 3-G",e:"UGT1A3",a:"active",p:10,t:11,note:"Minor glucuronide with opioid-receptor antagonistic activity, less potent than parent.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_gi_cyp3a_labels"]}
+],
+"Naloxegol":[
+  {n:"Naloxegol N-dealkylated metabolites",e:"CYP3A4",a:"unknown_activity",p:30,t:6,note:"Naloxegol has multiple CYP3A metabolites without a single major active metabolite; parent exposure and CYP3A/P-gp interactions dominate.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_gi_cyp3a_labels"]},
+  {n:"Naloxegol O-demethylated/oxidative metabolites",e:"CYP3A4",a:"unknown_activity",p:25,note:"Clearance products formed by O-demethylation, oxidation, and partial PEG-chain loss; opioid-receptor activity is not well calibrated.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_gi_cyp3a_labels"]}
+],
+"Ticlopidine":[
+  {n:"2-Oxo-ticlopidine",e:"CYP2C19/CYP2B6/CYP3A4",a:"active_precursor",p:45,t:12,note:"Thiophene oxidation intermediate on the pathway to the irreversible P2Y12-inhibiting active thiol metabolite.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"]},
+  {n:"Ticlopidine active thiol metabolite (UR-4501)",e:"CYP-mediated Thiolactone Opening",a:"active",p:30,note:"Active thiol moiety irreversibly inhibits platelet P2Y12 signaling; bleeding and marrow-toxicity context remain parent-label guided.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"]}
+],
+"Lefamulin":[
+  {n:"Hydroxylated lefamulin metabolites",e:"CYP3A4",a:"inactive",p:35,t:8,note:"CYP3A phase I metabolites are described as devoid of antibacterial activity; parent exposure drives QT and DDI risk.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_cns_anticholinergic_beers_labels"]}
+],
+"Asciminib":[
+  {n:"Asciminib oxidative metabolites",e:"CYP3A4",a:"inactive",p:36,t:5.5,note:"CYP3A-mediated oxidation contributes to asciminib clearance alongside glucuronidation and biliary/BCRP elimination.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
+  {n:"Asciminib glucuronides",e:"UGT2B7/UGT2B17",a:"inactive",p:21,note:"UGT2B7 and UGT2B17 glucuronidation are label-relevant clearance routes.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}
+],
+"Betrixaban":[
+  {n:"Betrixaban unchanged parent",e:"P-gp/Biliary/Fecal Excretion",a:"active_parent",p:65,t:19,note:"Betrixaban undergoes minimal CYP metabolism; unchanged parent and P-gp/biliary clearance drive bleeding interaction context.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"]},
+  {n:"Betrixaban hydrolytic metabolites",e:"CYP-independent Hydrolysis",a:"inactive",p:15,note:"Minor inactive hydrolysis products; P-gp inhibition/induction remains the clinically important exposure pathway.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"]}
+],
+"Busulfan":[
+  {n:"Busulfan glutathione conjugate",e:"GSTA1/GSTM1/GSTT1",a:"clearance_context",p:55,t:2.5,note:"Primary clearance route via spontaneous and GST-catalyzed glutathione conjugation; narrow-index conditioning regimens require TDM.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_busulfan_gst_meta"]},
+  {n:"Tetrahydrothiophene",e:"Glutathione Conjugate Beta-elimination",a:"inactive",p:20,note:"Downstream busulfan metabolite; identified metabolites are not treated as independent cytotoxic actors.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_busulfan_gst_meta"]},
+  {n:"Sulfolane / 3-hydroxysulfolane",e:"Oxidative Metabolism",a:"inactive",p:20,note:"Oxidized busulfan downstream metabolites; included for GST pathway visibility.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_busulfan_gst_meta"]}
+],
+"Cangrelor":[
+  {n:"Cangrelor nucleoside metabolite (AR-C69712)",e:"Plasma Dephosphorylation",a:"inactive",p:85,t:0.1,note:"Rapid dephosphorylation forms a primary nucleoside metabolite with negligible antiplatelet activity; hepatic CYP metabolism is not the driver.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"]}
+],
+"Lapatinib":[
+  {n:"O-dealkylated lapatinib",e:"CYP3A4/CYP3A5",a:"inactive",p:20,t:24,note:"Primary oxidative pathway; further oxidation can generate reactive quinone-imine context implicated in hepatotoxicity.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
+  {n:"N-dealkylated/N-hydroxylated lapatinib metabolites",e:"CYP3A4/CYP3A5",a:"inactive",p:20,note:"Oxidative metabolite pool; no single metabolite accounts for a large fraction of parent exposure.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
+  {n:"Lapatinib reactive quinone-imine context",e:"CYP3A4/CYP3A5 Bioactivation",a:"toxic_context",p:5,note:"Reactive metabolite context for idiosyncratic hepatic stress; this is a toxicity signal, not a calibrated dose rule.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}
+],
+"Pirtobrutinib":[
+  {n:"Pirtobrutinib hydroxylated metabolites",e:"CYP3A4",a:"inactive",p:35,t:19,note:"CYP3A-mediated hydroxylation supports strong/moderate inducer and inhibitor exposure warnings.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
+  {n:"Pirtobrutinib glucuronides",e:"UGT1A8/UGT1A9",a:"inactive",p:20,note:"Direct glucuronidation pathway included for UGT/transporter context; parent exposure drives BTK and safety effects.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}
+],
+"Abrocitinib":[
+  {n:"Abrocitinib M1",e:"CYP2C19/CYP2C9",a:"active",p:10,t:4,note:"Active metabolite included in label-defined combined active exposure; CYP2C19/CYP2C9 modifiers change active moiety.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
+  {n:"Abrocitinib M2",e:"CYP2C19/CYP2C9",a:"active",p:30,t:4,note:"Active metabolite contributing substantially to combined active exposure.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
+  {n:"Abrocitinib M4",e:"CYP2C19/CYP2C9/CYP3A4",a:"inactive",p:15,t:4,note:"Inactive metabolite; active moiety interpretation should emphasize parent plus M1/M2.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}
+],
+"Acalabrutinib":[
+  {n:"ACP-5862",e:"CYP3A4/CYP3A5",a:"active",p:70,t:6.9,note:"Major active metabolite with higher AUC than parent but lower BTK potency; CYP3A modifiers affect active moiety exposure.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
+  {n:"Acalabrutinib glutathione/amide metabolites",e:"Glutathione Conjugation/Amide Hydrolysis",a:"inactive",p:15,note:"Minor non-CYP pathways included for metabolism completeness.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}
+],
+"Acenocoumarol":[
+  {n:"6-Hydroxyacenocoumarol",e:"CYP2C9/CYP1A2/CYP2C19",a:"inactive",p:30,t:10,note:"Hydroxylation clearance product; CYP2C9 genotype and inhibitors can increase parent anticoagulant exposure.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels","ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"]},
+  {n:"7-Hydroxyacenocoumarol / 8-hydroxyacenocoumarol",e:"CYP2C9/CYP2C18/CYP2C19",a:"inactive",p:25,note:"Additional hydroxylated clearance metabolites in the vitamin K antagonist pathway.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"]}
+],
+"Alfentanil":[
+  {n:"Noralfentanil",e:"CYP3A4/CYP3A5",a:"inactive",p:30,t:1.5,note:"Major CYP3A N-dealkylation product; parent alfentanil sedation/respiratory-depression risk is sensitive to CYP3A inhibition.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels"]},
+  {n:"N-phenylpropionamide",e:"CYP3A4/CYP3A5",a:"inactive",p:20,note:"Second major CYP3A pathway metabolite for alfentanil clearance.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels"]}
+],
+"Amoxapine":[
+  {n:"7-Hydroxyamoxapine",e:"CYP2D6",a:"active",p:25,t:6.5,note:"Active hydroxy metabolite contributing dopaminergic/antidepressant pharmacology and CNS adverse-effect context.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_cns_anticholinergic_beers_labels"]},
+  {n:"8-Hydroxyamoxapine",e:"CYP2D6",a:"active",p:35,t:30,note:"Major active metabolite with longer biologic half-life than parent amoxapine; supports delayed CNS/EPS/sedation burden interpretation.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_cns_anticholinergic_beers_labels"]}
 ]
 });
 
@@ -4889,6 +4973,16 @@ const METABOLITE_ACTOR_ALIASES = {
 Object.assign(METABOLITE_ACTOR_ALIASES, {
   "aprepitant": "aprepitant-from-fosaprepitant",
   "mmae-monomethyl-auristatin-e": "mmae",
+  "nor-naldemedine": "nor-naldemedine",
+  "naldemedine-3-g": "naldemedine-3-g",
+  "ticlopidine-active-thiol-metabolite-ur-4501": "ticlopidine-active-thiol",
+  "abrocitinib-m1": "abrocitinib-m1",
+  "abrocitinib-m2": "abrocitinib-m2",
+  "acp-5862": "acp-5862",
+  "lapatinib-reactive-quinone-imine-context": "lapatinib-quinone-imine",
+  "busulfan-glutathione-conjugate": "busulfan-glutathione-conjugate",
+  "7-hydroxyamoxapine": "7-hydroxyamoxapine",
+  "8-hydroxyamoxapine": "8-hydroxyamoxapine",
 });
 
 const METABOLITE_ACTORS = {
@@ -5442,6 +5536,101 @@ Object.assign(METABOLITE_ACTORS, {
     inh:[],
     evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"],
     note:"Active ROCK inhibitor metabolite after ophthalmic netarsudil dosing."
+  }
+});
+
+Object.assign(METABOLITE_ACTORS, {
+  "nor-naldemedine": {
+    id:"nor-naldemedine", type:ACTOR_TYPE.METABOLITE,
+    name:"Nor-naldemedine", parentDrug:"Naldemedine", formingEnzyme:"CYP3A4",
+    active:true, halfLife:11, potencyRatio:0.35,
+    routes:[{enzyme:"CYP3A4/P-gp clearance context",fraction:0.6,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_gi_cyp3a_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_gi_cyp3a_labels"],
+    note:"Less-potent active peripheral opioid antagonist metabolite; CYP3A/P-gp modifiers can raise the active-moiety pool."
+  },
+  "naldemedine-3-g": {
+    id:"naldemedine-3-g", type:ACTOR_TYPE.METABOLITE,
+    name:"Naldemedine 3-G", parentDrug:"Naldemedine", formingEnzyme:"UGT1A3",
+    active:true, halfLife:11, potencyRatio:0.2,
+    routes:[{enzyme:"UGT/biliary-renal clearance",fraction:0.6,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_gi_cyp3a_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_gi_cyp3a_labels"],
+    note:"Minor active glucuronide in the naldemedine active-moiety pool."
+  },
+  "ticlopidine-active-thiol": {
+    id:"ticlopidine-active-thiol", type:ACTOR_TYPE.METABOLITE,
+    name:"Ticlopidine active thiol metabolite", parentDrug:"Ticlopidine", formingEnzyme:"CYP2C19/CYP2B6/CYP3A4",
+    active:true, halfLife:0.5, potencyRatio:1.0,
+    routes:[{enzyme:"Platelet P2Y12 irreversible binding",fraction:0.8,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"],
+    note:"Active thiol moiety explains antiplatelet effect and persistent bleeding risk beyond parent plasma half-life."
+  },
+  "abrocitinib-m1": {
+    id:"abrocitinib-m1", type:ACTOR_TYPE.METABOLITE,
+    name:"Abrocitinib M1", parentDrug:"Abrocitinib", formingEnzyme:"CYP2C19/CYP2C9",
+    active:true, halfLife:4, potencyRatio:1.0,
+    routes:[{enzyme:"Renal/metabolic clearance",fraction:0.7,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"],
+    note:"Active metabolite counted in label-defined combined active exposure."
+  },
+  "abrocitinib-m2": {
+    id:"abrocitinib-m2", type:ACTOR_TYPE.METABOLITE,
+    name:"Abrocitinib M2", parentDrug:"Abrocitinib", formingEnzyme:"CYP2C19/CYP2C9",
+    active:true, halfLife:4, potencyRatio:1.0,
+    routes:[{enzyme:"Renal/metabolic clearance",fraction:0.7,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"],
+    note:"Active metabolite contributing to combined exposure and CYP2C19/CYP2C9 interaction interpretation."
+  },
+  "acp-5862": {
+    id:"acp-5862", type:ACTOR_TYPE.METABOLITE,
+    name:"ACP-5862", parentDrug:"Acalabrutinib", formingEnzyme:"CYP3A4/CYP3A5",
+    active:true, halfLife:6.9, potencyRatio:0.5,
+    routes:[{enzyme:"CYP3A4/CYP3A5",fraction:0.75,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"],
+    note:"Major active BTK-inhibiting metabolite with higher AUC than parent and lower potency; CYP3A modifiers affect active moiety."
+  },
+  "lapatinib-quinone-imine": {
+    id:"lapatinib-quinone-imine", type:ACTOR_TYPE.METABOLITE,
+    name:"Lapatinib reactive quinone-imine context", parentDrug:"Lapatinib", formingEnzyme:"CYP3A4/CYP3A5",
+    active:false, halfLife:0.1, potencyRatio:0,
+    routes:[{enzyme:"GST detoxification",fraction:0.8,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"],
+    toxicity:{target:"hepatocytes", mechanism:"Reactive quinone-imine bioactivation context linked to hepatic stress"},
+    note:"Toxic-metabolite visibility row for hepatic-risk stacking; not a dose-calibrated metabolite exposure rule."
+  },
+  "busulfan-glutathione-conjugate": {
+    id:"busulfan-glutathione-conjugate", type:ACTOR_TYPE.METABOLITE,
+    name:"Busulfan glutathione conjugate", parentDrug:"Busulfan", formingEnzyme:"GSTA1/GSTM1/GSTT1",
+    active:false, halfLife:2.5, potencyRatio:0,
+    routes:[{enzyme:"Oxidative downstream metabolism",fraction:0.7,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_busulfan_gst_meta"]}],
+    inh:[],
+    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_busulfan_gst_meta"],
+    toxicity:{target:"hepatic glutathione reserve", mechanism:"GST-dependent detoxification context for conditioning-regimen exposure/toxicity"},
+    note:"Narrow-index clearance actor linking busulfan metabolism to GST genotype context and therapeutic-drug monitoring."
+  },
+  "7-hydroxyamoxapine": {
+    id:"7-hydroxyamoxapine", type:ACTOR_TYPE.METABOLITE,
+    name:"7-Hydroxyamoxapine", parentDrug:"Amoxapine", formingEnzyme:"CYP2D6",
+    active:true, halfLife:6.5, potencyRatio:0.8,
+    routes:[{enzyme:"Glucuronidation/Renal conjugate excretion",fraction:0.75,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_cns_anticholinergic_beers_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_cns_anticholinergic_beers_labels"],
+    note:"Active hydroxy metabolite contributing CNS and dopaminergic adverse-effect context."
+  },
+  "8-hydroxyamoxapine": {
+    id:"8-hydroxyamoxapine", type:ACTOR_TYPE.METABOLITE,
+    name:"8-Hydroxyamoxapine", parentDrug:"Amoxapine", formingEnzyme:"CYP2D6",
+    active:true, halfLife:30, potencyRatio:0.8,
+    routes:[{enzyme:"Glucuronidation/Renal conjugate excretion",fraction:0.75,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_cns_anticholinergic_beers_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_cns_anticholinergic_beers_labels"],
+    note:"Major active metabolite with longer biologic half-life than parent; supports delayed sedation/EPS/fall-risk interpretation."
   }
 });
 

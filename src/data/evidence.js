@@ -9245,6 +9245,20 @@ const STUDY_DB = {
     limitations:["Grouped regulatory label anchor; drug-specific label details should replace this for dose-level recommendations."],
     verified:false, reviewRequired:true, verifyNote:"Grouped prodrug/active metabolite evidence pending pharmacist review"
   },
+  "ev_phase1_high_priority_metabolite_labels": {
+    id:"ev_phase1_high_priority_metabolite_labels", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Phase 1 high-priority metabolite labels — batch drug parent maps and active/toxic moieties",
+    year:2026, source:"FDA/DailyMed labels + public metabolism literature",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=ribociclib%20abrocitinib%20acalabrutinib%20busulfan%20cangrelor%20naloxegol%20naldemedine%20lapatinib%20pimozide",
+    studyDesign:"regulatory_label_group", n:null,
+    phenotypes:["CYP3A4","CYP2C19","CYP2C9","CYP2D6","UGT1A3","UGT2B17","GSTM1","GSTT1"],
+    quantifiedEffects:{note:"Grouped source anchor for high-priority missing parent-to-metabolite maps after batches 01-03. It covers active metabolite rows, inactive clearance rows, and toxic/reactive metabolite context where labels or public metabolism studies support live calculation use."},
+    temporal:{mechanism:"parent_to_metabolite_active_moiety_clearance_and_toxicity_context", onset:"minutes-days", offset:"hours-days"},
+    supports:["phase1_high_priority_metabolite_parent_maps","phase1_active_metabolite_actor_promotion","phase1_toxic_metabolite_actor_context"],
+    contradicts:[],
+    limitations:["Grouped source anchor for live pending-review rows; drug-specific labels, specialty protocols, and therapeutic monitoring remain decisive for clinical management."],
+    verified:false, reviewRequired:true, verifyNote:"Grouped high-priority metabolite evidence pending pharmacist/specialist review"
+  },
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──
