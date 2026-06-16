@@ -81,7 +81,7 @@
           "severity": "severe",
           "type": "known-ddi",
           "source": "known",
-          "enzyme": "pk"
+          "enzyme": "source_specific_cyp3a_exposure"
         },
         {
           "pair": "Clarithromycin + Simvastatin",
@@ -423,7 +423,7 @@
           "severity": "severe",
           "type": "known-ddi",
           "source": "known",
-          "enzyme": "prodrug"
+          "enzyme": "source_specific_prodrug_activation"
         },
         {
           "pair": "Clopidogrel + Omeprazole",
@@ -437,6 +437,7 @@
       "findingTypes": [
         "active_moiety",
         "combination_burden",
+        "pairwise_interaction",
         "phenoconversion",
         "timing_washout"
       ],
@@ -888,7 +889,7 @@
           "severity": "severe",
           "type": "known-ddi",
           "source": "known",
-          "enzyme": "pk"
+          "enzyme": "source_specific_cyp3a_exposure"
         },
         {
           "pair": "Clarithromycin + Simvastatin",
@@ -902,9 +903,9 @@
       "findingTypes": [
         "active_moiety",
         "combination_burden",
-        "pairwise_interaction",
         "phenoconversion",
-        "timing_washout"
+        "timing_washout",
+        "transporter"
       ],
       "findingCardCount": 3,
       "evidenceLadderCount": 3,

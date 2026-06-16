@@ -39,6 +39,7 @@ const MODULE_ORDER = [
   'data/pharmacology.js',   // TEMPORAL_PROFILES, PK_PARAMS, PHENOTYPE_SCORES, WASHOUT_DAYS, ACB_SCORES, BEERS_FLAGS
   'data/evidence.js',       // STUDY_DB, INGESTION_QUEUE, createStudyDraft, reviewStudyDraft
   'data/interactions.js',   // PATHWAY_DIVERSION, COMBINATION_PRODUCTS, KNOWN_DDI
+  'data/sourceSpecificPromotions.js', // source-backed rows promoted across live calculation surfaces
   'data/generatedStats.js', // DIOGNOSIS_STATS generated from source data
 
   // ── Engine layer (depends on data layer) ──

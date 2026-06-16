@@ -182,7 +182,7 @@
       "stack": ["Simvastatin", "Clarithromycin"],
       "tab": "mechanisms",
       "expect": {
-        "findingTypes": ["pairwise_interaction", "phenoconversion"],
+        "findingTypes": ["active_moiety", "phenoconversion", "timing_washout", "transporter"],
         "phenoconversionGenes": ["CYP3A4"],
         "terms": ["Simvastatin", "Clarithromycin", "CYP3A4"],
         "minFindingCards": 1,
