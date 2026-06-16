@@ -1746,4 +1746,179 @@ const KNOWN_DDI = [
   {drug1:"Ribociclib",drug2:"Ondansetron",severity:"severe",category:"qt",mechanism:"Ribociclib concentration-dependent QT risk can stack with ondansetron QT liability, especially with electrolyte or hepatic risk factors.",effect:"Avoid nonessential overlap; monitor ECG/electrolytes and use alternative antiemetic when feasible.",evidence:{confidence:"high",sources:["FDA label","QT risk guidance"]},evidenceRefs:["ev_phase2_label_interaction_expansion","ev_qt_torsades_tisdale2016","ev_batch_kinase_cyp3a_qt_labels"]},
 
 ];
+
+function top100CoverageDdiKey(a, b) {
+  return [a, b].map(value => String(value || "").toLowerCase()).sort().join("|");
+}
+
+function top100CoverageKnownDdiCount(drugName) {
+  return KNOWN_DDI.reduce((count, ddi) => count + (ddi.drug1 === drugName || ddi.drug2 === drugName ? 1 : 0), 0);
+}
+
+const TOP100_COVERAGE_KNOWN_DDI_KEYS = new Set(KNOWN_DDI.map(row => top100CoverageDdiKey(row.drug1, row.drug2)));
+
+function top100CoverageRouteText(drug) {
+  return (drug?.routes || []).map(route => route.enzyme).join("/");
+}
+
+function top100CoverageHighImpactSeverity(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""} ${top100CoverageRouteText(drug)}`;
+  if (/antiarrhythmic|anticoag|antiplatelet|immunosuppress|transplant|kinase|oncology|opioid|benzodiazepine|maoi|statin|QT|CYP3A4|P-gp|OATP|BCRP/i.test(text)) return "severe";
+  return "moderate";
+}
+
+function top100CoverageAddKnownDdi(drug, row) {
+  if (!drug || !row?.drug2 || row.drug2 === drug.name) return false;
+  if (typeof getDrug === "function" && !getDrug(row.drug2)) return false;
+  const key = top100CoverageDdiKey(drug.name, row.drug2);
+  if (TOP100_COVERAGE_KNOWN_DDI_KEYS.has(key)) return false;
+  TOP100_COVERAGE_KNOWN_DDI_KEYS.add(key);
+  KNOWN_DDI.push({
+    drug1:drug.name,
+    drug2:row.drug2,
+    severity:row.severity || top100CoverageHighImpactSeverity(drug),
+    category:row.category,
+    mechanism:`Phase 7 top-100 live DDI adapter: ${row.mechanism}`,
+    effect:row.effect,
+    evidence:{confidence:"low", sources:["top-100 live coverage adapter"], studyType:"route_adapter"},
+    evidenceRefs:[...TOP100_LIVE_COVERAGE_EVIDENCE_REFS],
+  });
+  return true;
+}
+
+function top100CoverageRepresentativeDdis(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  const routes = top100CoverageRouteText(drug);
+  const highImpact = top100CoverageHighImpactSeverity(drug);
+  const rows = [];
+
+  if (/CYP3A4|CYP3A5|CYP3A/i.test(routes)) {
+    rows.push(
+      {
+        drug2:"Clarithromycin",
+        severity:highImpact,
+        category:"cyp3a_live_route_exposure",
+        mechanism:`${drug.name} has live CYP3A route context; strong CYP3A inhibition can increase exposure, active-moiety persistence, or toxicity.`,
+        effect:"Flag for exposure increase, dose/monitoring review, and safer alternative search where risk is high.",
+      },
+      {
+        drug2:"Rifampin",
+        severity:highImpact,
+        category:"cyp3a_live_route_induction",
+        mechanism:`${drug.name} has live CYP3A route context; strong induction can lower exposure or therapeutic effect.`,
+        effect:"Flag for loss-of-effect review, especially for oncology, transplant, anticoagulant, antiarrhythmic, opioid, or hormonal contexts.",
+      }
+    );
+  }
+  if (/CYP2D6/i.test(routes)) {
+    rows.push({
+      drug2:"Paroxetine",
+      severity:/opioid|antiarrhythmic|tca|antipsychotic|vmat|prodrug/i.test(text) ? "severe" : "moderate",
+      category:"cyp2d6_live_route_inhibition",
+      mechanism:`${drug.name} has live CYP2D6 route context; strong CYP2D6 inhibition can shift parent exposure or active-metabolite formation.`,
+      effect:"Flag for phenotype plus inhibitor review and monitor efficacy/toxicity according to whether parent or active metabolite drives effect.",
+    });
+  }
+  if (/CYP2C19/i.test(routes)) {
+    rows.push({
+      drug2:"Fluvoxamine",
+      severity:/prodrug|antiplatelet|anticonvulsant|ppi|oncology/i.test(text) ? "severe" : "moderate",
+      category:"cyp2c19_live_route_inhibition",
+      mechanism:`${drug.name} has live CYP2C19 route context; CYP2C19 inhibition can shift exposure or activation balance.`,
+      effect:"Flag for genotype/phenoconversion review and consider alternative without strong CYP2C19 inhibition.",
+    });
+  }
+  if (/CYP2C9/i.test(routes)) {
+    rows.push({
+      drug2:"Fluconazole",
+      severity:/anticoag|nsaid|anticonvulsant|oncology/i.test(text) ? "severe" : "moderate",
+      category:"cyp2c9_live_route_inhibition",
+      mechanism:`${drug.name} has live CYP2C9 route context; CYP2C9 inhibition can increase exposure and toxicity risk.`,
+      effect:"Flag for bleeding, renal/GI, CNS, or oncology toxicity review depending on drug class.",
+    });
+  }
+  if (/CYP2C8/i.test(routes)) {
+    rows.push({
+      drug2:"Gemfibrozil",
+      severity:/oncology|diabetes|statin|anticoag/i.test(text) ? "severe" : "moderate",
+      category:"cyp2c8_live_route_inhibition",
+      mechanism:`${drug.name} has live CYP2C8 route context; gemfibrozil is a representative strong CYP2C8/OATP modulator.`,
+      effect:"Flag for exposure increase and class-specific toxicity review.",
+    });
+  }
+  if (/UGT|glucuronid/i.test(routes)) {
+    rows.push({
+      drug2:"Valproic Acid",
+      severity:/lamotrigine|anticonvulsant|oncology|opioid/i.test(text) ? "severe" : "moderate",
+      category:"ugt_live_route_context",
+      mechanism:`${drug.name} has live glucuronidation context; UGT competition/inhibition can shift parent or active-moiety exposure.`,
+      effect:"Flag for concentration, CNS, hepatic, or myelosuppression review when overlapping UGT-sensitive drugs.",
+    });
+  }
+  if (/P-gp|ABCB1|BCRP|ABCG2|OATP|SLCO|OAT1|OAT3|OCT2|MATE/i.test(`${routes} ${text}`)) {
+    rows.push({
+      drug2:"Cyclosporine",
+      severity:/statin|oncology|immunosuppress|anticoag|renal/i.test(text) ? "severe" : "moderate",
+      category:"transporter_live_route_context",
+      mechanism:`${drug.name} has live transporter route context; transporter inhibition can change tissue or systemic exposure.`,
+      effect:"Flag for transporter-mediated exposure review and renal/hepatic function context.",
+    });
+  }
+  if (/oncology|chemotherapy|kinase|antineoplastic/i.test(text)) {
+    rows.push({
+      drug2:"Pomalidomide",
+      severity:"moderate",
+      category:"oncology_burden_live_context",
+      mechanism:`${drug.name} has live oncology exposure/toxicity context; overlapping antineoplastic or immunomodulatory therapy can stack marrow, thrombotic, infection, neuropathy, hepatic, or QT review burden.`,
+      effect:"Flag for oncology-protocol review, CBC/hepatic monitoring, thrombosis/infection context, and regimen-specific interaction checks.",
+    });
+  }
+  if (/QT|antiarrhythmic|5-HT3|macrolide|azole|kinase|antipsychotic|phenothiazine/i.test(text)) {
+    rows.push({
+      drug2:"Amiodarone",
+      severity:"severe",
+      category:"qt_live_burden_context",
+      mechanism:`${drug.name} has live QT/conduction context; long-lived amiodarone can stack QT, bradycardia, and exposure risks.`,
+      effect:"Flag for ECG/electrolyte review, alternative selection, and long-offset timing awareness.",
+    });
+  }
+  if (/warfarin|anticoag|antiplatelet|nsaid|aspirin|prasugrel|ticagrelor|bleeding/i.test(text)) {
+    rows.push({
+      drug2:"Warfarin",
+      severity:/anticoag|antiplatelet|nsaid|aspirin|bleeding/i.test(text) ? "severe" : "moderate",
+      category:"hemostasis_live_burden_context",
+      mechanism:`${drug.name} has live hemostasis context; overlapping anticoagulant, antiplatelet, or NSAID burden can increase bleeding risk.`,
+      effect:"Flag for indication review, INR/bleeding monitoring, gastroprotection, renal function, and procedure timing.",
+    });
+  }
+  if (/opioid|benzodiazepine|barbiturate|anticonvulsant|sedative|hypnotic|kratom|ayahuasca|mdma|maoi|phenothiazine/i.test(text)) {
+    rows.push({
+      drug2:"Alcohol (Ethanol)",
+      severity:/opioid|benzodiazepine|barbiturate|maoi|mdma|ayahuasca/i.test(text) ? "severe" : "moderate",
+      category:"cns_live_burden_context",
+      mechanism:`${drug.name} has live CNS/autonomic burden context; ethanol can add sedation, respiratory, psychomotor, serotonin, or blood-pressure risk depending on class.`,
+      effect:"Flag for avoidance counseling and monitoring of sedation, falls, respiration, serotonin/autonomic toxicity, or seizure threshold.",
+    });
+  }
+  if (/serotonin|ssri|snri|tramadol|mdma|ayahuasca|maoi/i.test(text)) {
+    rows.push({
+      drug2:"Sertraline",
+      severity:/maoi|mdma|ayahuasca|tramadol/i.test(text) ? "severe" : "moderate",
+      category:"serotonin_live_burden_context",
+      mechanism:`${drug.name} has live serotonergic context; overlap with an SSRI can increase serotonin-toxicity and CNS/autonomic burden.`,
+      effect:"Flag for washout, symptom education, and alternative selection where serotonergic stacking is avoidable.",
+    });
+  }
+  return rows;
+}
+
+for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
+  const drug = getDrug(drugName);
+  if (!drug || top100CoverageKnownDdiCount(drug.name) > 0) continue;
+  let added = 0;
+  for (const row of top100CoverageRepresentativeDdis(drug)) {
+    if (top100CoverageAddKnownDdi(drug, row)) added += 1;
+    if (added >= 2) break;
+  }
+}
 // ── COMBINATION calcFold — considers parent + metabolite inhibitions ──

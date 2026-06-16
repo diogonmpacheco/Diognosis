@@ -313,7 +313,7 @@
           "enzyme": "CYP3A4"
         }
       ],
-      "findingCount": 11,
+      "findingCount": 12,
       "findingTypes": [
         "active_moiety",
         "combination_burden",
@@ -321,12 +321,12 @@
         "receptor_burden",
         "timing_washout"
       ],
-      "findingCardCount": 2,
-      "evidenceLadderCount": 2,
+      "findingCardCount": 3,
+      "evidenceLadderCount": 3,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 11,
-      "mechanismWhyPathCount": 2,
-      "rawWarningPathCount": 11,
+      "whyPathCount": 12,
+      "mechanismWhyPathCount": 3,
+      "rawWarningPathCount": 12,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
@@ -429,19 +429,19 @@
           "enzyme": "pathway competition"
         }
       ],
-      "findingCount": 9,
+      "findingCount": 10,
       "findingTypes": [
         "active_moiety",
         "combination_burden",
         "phenoconversion",
         "timing_washout"
       ],
-      "findingCardCount": 2,
-      "evidenceLadderCount": 2,
+      "findingCardCount": 3,
+      "evidenceLadderCount": 3,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 9,
-      "mechanismWhyPathCount": 2,
-      "rawWarningPathCount": 9,
+      "whyPathCount": 10,
+      "mechanismWhyPathCount": 3,
+      "rawWarningPathCount": 10,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
@@ -883,7 +883,7 @@
           "enzyme": "toxic overlap"
         }
       ],
-      "findingCount": 7,
+      "findingCount": 9,
       "findingTypes": [
         "active_moiety",
         "combination_burden",
@@ -891,18 +891,18 @@
         "phenoconversion",
         "timing_washout"
       ],
-      "findingCardCount": 2,
-      "evidenceLadderCount": 2,
+      "findingCardCount": 3,
+      "evidenceLadderCount": 3,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 7,
-      "mechanismWhyPathCount": 2,
-      "rawWarningPathCount": 7,
+      "whyPathCount": 9,
+      "mechanismWhyPathCount": 3,
+      "rawWarningPathCount": 9,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
       "activeMoietyPatterns": [
         "activation_failure",
-        "no_major_signal",
+        "mixed_direction",
         "parent_accumulation"
       ],
       "activeMoietyActors": [
@@ -1009,7 +1009,7 @@
           "enzyme": "Seizure"
         }
       ],
-      "findingCount": 16,
+      "findingCount": 17,
       "findingTypes": [
         "active_moiety",
         "pairwise_interaction",
@@ -1017,11 +1017,11 @@
         "receptor_burden",
         "timing_washout"
       ],
-      "findingCardCount": 3,
-      "evidenceLadderCount": 3,
+      "findingCardCount": 4,
+      "evidenceLadderCount": 4,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 16,
-      "mechanismWhyPathCount": 3,
+      "whyPathCount": 17,
+      "mechanismWhyPathCount": 4,
       "rawWarningPathCount": 12,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,

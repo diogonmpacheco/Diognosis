@@ -188,6 +188,78 @@ const TRANSPORTER_ACTORS = {
   },
 };
 
+function top100CoverageTransporterIds(drug) {
+  const routeText = (drug?.routes || []).map(route => route.enzyme).join("/");
+  const text = `${drug?.name || ""} ${drug?.cls || ""} ${routeText}`;
+  const classText = `${drug?.cls || ""}`;
+  const ids = [];
+  if (/P-gp|ABCB1/i.test(text)) ids.push("P-gp");
+  if (/BCRP|ABCG2/i.test(text)) ids.push("BCRP");
+  if (/OATP|SLCO1B1/i.test(text)) ids.push("OATP1B1");
+  if (/OCT2|Renal Cation Transport|SLC22A2/i.test(text)) ids.push("OCT2", "MATE1");
+  if (/OAT1|OAT3|SLC22A6|SLC22A8/i.test(text)) ids.push("OAT1", "OAT3");
+  if (/\bstatin\b/i.test(classText)) ids.push("OATP1B1", "BCRP");
+  if (/kinase|oncology/i.test(classText)) ids.push("P-gp", "BCRP");
+  if (/immunosuppress/i.test(classText)) ids.push("P-gp");
+  if (/anticoag|antiplatelet|opioid antagonist|anticonvulsant/i.test(classText)) ids.push("P-gp");
+  return [...new Set(ids)];
+}
+
+function top100CoverageTransporterPerpetrators(transporter) {
+  if (transporter === "P-gp") return [
+    { inhibitor:"Clarithromycin", effect:"AUC may increase via P-gp inhibition", severity:"high", foldChange:1.7 },
+    { inhibitor:"Rifampin", effect:"AUC may decrease via P-gp induction", severity:"high", foldChange:0.55 },
+  ];
+  if (transporter === "BCRP") return [
+    { inhibitor:"Eltrombopag", effect:"AUC may increase via BCRP inhibition", severity:"moderate", foldChange:1.8 },
+  ];
+  if (transporter === "OATP1B1") return [
+    { inhibitor:"Cyclosporine", effect:"AUC may increase via hepatic uptake inhibition", severity:"high", foldChange:2.5 },
+    { inhibitor:"Gemfibrozil", effect:"AUC may increase via OATP/CYP2C8 inhibition context", severity:"moderate", foldChange:1.8 },
+  ];
+  if (transporter === "OAT1" || transporter === "OAT3") return [
+    { inhibitor:"NSAIDs", effect:"Renal clearance may decrease via OAT competition", severity:"moderate", foldChange:1.5 },
+    { inhibitor:"Probenecid", effect:"Renal clearance may decrease via OAT inhibition", severity:"high", foldChange:1.8 },
+  ];
+  if (transporter === "OCT2" || transporter === "MATE1") return [
+    { inhibitor:"Cimetidine", effect:"Renal cation clearance may decrease", severity:"moderate", foldChange:1.5 },
+    { inhibitor:"Trimethoprim/Sulfamethoxazole", effect:"Renal cation secretion may decrease", severity:"moderate", foldChange:1.4 },
+  ];
+  return [];
+}
+
+function top100CoverageHasTransporterDdi(substrate, inhibitor, transporter) {
+  return TRANSPORTER_DDI.some(row =>
+    row.substrate === substrate &&
+    row.inhibitor === inhibitor &&
+    row.transporter === transporter
+  );
+}
+
+for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
+  const drug = getDrug(drugName);
+  if (!drug) continue;
+  for (const transporter of top100CoverageTransporterIds(drug)) {
+    const actor = TRANSPORTER_ACTORS[transporter];
+    if (actor && !actor.substrates.includes(drug.name)) actor.substrates.push(drug.name);
+    for (const row of top100CoverageTransporterPerpetrators(transporter)) {
+      if (row.inhibitor === drug.name) continue;
+      if (!top100CoverageHasTransporterDdi(drug.name, row.inhibitor, transporter)) {
+        TRANSPORTER_DDI.push({
+          substrate:drug.name,
+          inhibitor:row.inhibitor,
+          transporter,
+          effect:row.effect,
+          severity:row.severity,
+          mechanism:`Phase 7 top-100 live transporter adapter: ${drug.name} has ${transporter} route context and ${row.inhibitor} is a representative ${transporter} modulator. Pending source-specific professional review.`,
+          evidence:{confidence:"low", sources:["top-100 live coverage adapter"], foldChange:row.foldChange, studyType:"route_adapter"},
+          evidenceRefs:[...TOP100_LIVE_COVERAGE_EVIDENCE_REFS],
+        });
+      }
+    }
+  }
+}
+
 // ═══════════════════════════════════════════════════════════════════
 //  INTERACTION GRAPH — Builder + Traversal Engine
 // ═══════════════════════════════════════════════════════════════════

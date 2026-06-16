@@ -49,6 +49,8 @@ globalThis.__DIOGNOSIS_DATA__ = {
   TRANSPORTER_ACTORS: typeof TRANSPORTER_ACTORS !== "undefined" ? TRANSPORTER_ACTORS : {},
   RECEPTOR_ACTORS: typeof RECEPTOR_ACTORS !== "undefined" ? RECEPTOR_ACTORS : {},
   PHENOTYPE_ACTORS: typeof PHENOTYPE_ACTORS !== "undefined" ? PHENOTYPE_ACTORS : {},
+  TOP100_LIVE_COVERAGE_DRUGS: typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined" ? TOP100_LIVE_COVERAGE_DRUGS : [],
+  TOP100_LIVE_COVERAGE_EVIDENCE_REFS: typeof TOP100_LIVE_COVERAGE_EVIDENCE_REFS !== "undefined" ? TOP100_LIVE_COVERAGE_EVIDENCE_REFS : [],
   PENDING_CORE_ENRICHMENT: typeof PENDING_CORE_ENRICHMENT !== "undefined" ? PENDING_CORE_ENRICHMENT : null,
   normalizeDrugLookupKey: typeof normalizeDrugLookupKey !== "undefined" ? normalizeDrugLookupKey : null,
   getDrugAliases: typeof getDrugAliases !== "undefined" ? getDrugAliases : null,

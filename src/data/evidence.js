@@ -9329,6 +9329,20 @@ const STUDY_DB = {
     limitations:["These are live pending-review context rules, not standalone treatment recommendations. Indication, dose, gestational age, organ type, transplant timing, procedure timing, renal/hepatic function, ECG/electrolytes, trough targets, and specialty protocols determine actual management."],
     verified:false, reviewRequired:true, verifyNote:"Grouped clinical-context enrichment pending OB/MFM, transplant, perioperative, and pharmacy review"
   },
+  "ev_top100_live_coverage_adapter": {
+    id:"ev_top100_live_coverage_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Phase 7 top-100 live coverage adapter — DDI, metabolites, PK, washout, PGx, transporters, and burden scoring",
+    year:2026, source:"Internal Diognosis route/label-derived coverage adapter using existing curated DRUG_DB routes, public-label anchors, and pending-review enrichment rules",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"coverage_adapter_group", n:null,
+    phenotypes:["CYP3A4","CYP2D6","CYP2C19","CYP2C9","CYP2C8","UGT","P-gp","BCRP","OATP1B1","OAT/OCT/MATE","washout","burden","older_adult_burden"],
+    quantifiedEffects:{note:"Shared evidence anchor for live top-100 promotion adapters. Rows expose existing route, transporter, timing, genotype, and burden knowledge in calculation pathways while detailed source-specific professional review remains pending."},
+    temporal:{mechanism:"route_transporter_pgx_pk_washout_and_burden_context", onset:"same_day", offset:"hours-months"},
+    supports:["phase7_top100_live_ddi_coverage","phase7_top100_live_metabolite_actor_coverage","phase7_top100_live_transporter_coverage","phase7_top100_live_washout_coverage","phase7_top100_live_pgx_coverage","phase7_top100_live_burden_coverage"],
+    contradicts:[],
+    limitations:["Coverage rows are not individualized dose recommendations and do not replace labels, CPIC/DPWG guidance, TDM, ECG/electrolyte monitoring, renal/hepatic assessment, procedure protocols, oncology/transplant guidance, geriatric exceptions, or pharmacist/physician review."],
+    verified:false, reviewRequired:true, verifyNote:"Phase 7 top-100 live coverage adapter is intentionally live pending review; rows are review-priority signals derived from existing route/class data."
+  },
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──

@@ -5634,5 +5634,94 @@ Object.assign(METABOLITE_ACTORS, {
   }
 });
 
+function top100CoverageGraphId(value) {
+  return String(value || "").toLowerCase().replace(/[^a-z0-9]/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
+}
+
+function top100CoveragePrimaryRoute(drug) {
+  const routes = (drug?.routes || []).filter(route => route && route.enzyme);
+  const route = routes.find(row => /^CYP|^UGT|SLCO|ABCB|ABCG|P-gp|OATP|BCRP/i.test(row.enzyme)) || routes[0];
+  return route || { enzyme:"Various", fraction:1, evidence:{ confidence:"low", sources:["top-100 live coverage adapter"] } };
+}
+
+function top100CoverageGene(route) {
+  const parts = String(route?.enzyme || "").split(/[\/,+]/).map(part => part.trim());
+  return parts.find(part => GENOTYPE_EFFECTS?.[part]) || null;
+}
+
+function top100CoverageMergeRefs(row) {
+  row.evidenceRefs = [...new Set([...(row.evidenceRefs || []), ...TOP100_LIVE_COVERAGE_EVIDENCE_REFS])];
+  return row;
+}
+
+for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
+  const drug = getDrug(drugName);
+  if (!drug) continue;
+  const route = top100CoveragePrimaryRoute(drug);
+  const generatedMetaboliteName = `${drug.name} live clearance context`;
+  if (!METAB[drug.name]) {
+    METAB[drug.name] = [{
+      n:generatedMetaboliteName,
+      e:route.enzyme,
+      a:drug.prodrug ? "activation_context" : "clearance_context",
+      role:drug.prodrug ? "active_form_context" : "clearance_context",
+      p:Math.round((route.fraction || 0.5) * 100),
+      t:drug.hl || null,
+      note:"Phase 7 top-100 live coverage row: exposes parent route, clearance, active-moiety, and genotype context in the graph while detailed metabolite curation remains pending.",
+      evidenceRefs:[...TOP100_LIVE_COVERAGE_EVIDENCE_REFS],
+    }];
+  }
+
+  const primaryMetabolite = (METAB[drug.name] || [])[0];
+  if (!primaryMetabolite) continue;
+  top100CoverageMergeRefs(primaryMetabolite);
+  const rawMetId = top100CoverageGraphId(primaryMetabolite.n);
+  const metId = METABOLITE_ACTOR_ALIASES[rawMetId] || rawMetId;
+  if (!METABOLITE_ACTORS[metId]) {
+    METABOLITE_ACTORS[metId] = {
+      id:metId,
+      type:ACTOR_TYPE.METABOLITE,
+      name:primaryMetabolite.n,
+      parentDrug:drug.name,
+      formingEnzyme:primaryMetabolite.e || route.enzyme,
+      active:/active|activation/i.test(`${primaryMetabolite.a || ""} ${primaryMetabolite.role || ""}`),
+      halfLife:primaryMetabolite.t || drug.hl || null,
+      potencyRatio:/active|activation/i.test(`${primaryMetabolite.a || ""} ${primaryMetabolite.role || ""}`) ? 0.5 : 0,
+      routes:[{
+        enzyme:primaryMetabolite.e || route.enzyme,
+        fraction:(primaryMetabolite.p || Math.round((route.fraction || 0.5) * 100)) / 100,
+        role:"top100_live_coverage_context",
+        evidence:{confidence:"low", sources:["top-100 live coverage adapter"]},
+        evidenceRefs:[...TOP100_LIVE_COVERAGE_EVIDENCE_REFS],
+      }],
+      inh:[],
+      evidenceRefs:[...TOP100_LIVE_COVERAGE_EVIDENCE_REFS],
+      note:"Phase 7 first-class actor so top-100 drug route, PK, PGx, transporter, and burden views can connect through the live graph. Pending detailed metabolite-specific review.",
+    };
+  } else {
+    METABOLITE_ACTORS[metId].evidenceRefs = [...new Set([...(METABOLITE_ACTORS[metId].evidenceRefs || []), ...TOP100_LIVE_COVERAGE_EVIDENCE_REFS])];
+  }
+
+  const gene = top100CoverageGene(route);
+  if (gene && !(GENOTYPE_METABOLITE_EFFECTS || []).some(effect => effect.parent === drug.name && effect.enzyme === gene)) {
+    GENOTYPE_METABOLITE_EFFECTS.push({
+      parent:drug.name,
+      metaboliteId:metId,
+      metaboliteName:primaryMetabolite.n,
+      enzyme:gene,
+      note:`Phase 7 top-100 live PGx context: ${gene} phenotype can shift ${drug.name} parent/route exposure; use as a pending-review exposure flag, not a dose recommendation.`,
+      evidenceRefs:[...TOP100_LIVE_COVERAGE_EVIDENCE_REFS],
+      effects:{
+        [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:drug.prodrug ? "decrease" : "increase", label:drug.prodrug ? `${gene} poor function may reduce activation context` : `${gene} poor function may increase parent exposure context` },
+        [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:drug.prodrug ? "decrease" : "increase", label:`intermediate ${gene} function may shift exposure/active-moiety balance` },
+        [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+        ...(GENOTYPE_EFFECTS[gene]?.[GENOTYPE_PHENOTYPE.UM] ? {
+          [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:drug.prodrug ? "increase" : "decrease", label:`higher ${gene} activity may shift exposure in the opposite direction` },
+        } : {}),
+      },
+    });
+  }
+}
+
 // ── Food/Xenobiotic Actors ──
 // Non-drug compounds that interact with the metabolic graph

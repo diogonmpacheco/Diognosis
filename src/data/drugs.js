@@ -4926,6 +4926,38 @@ const DRUG_ALIAS_TO_GENERIC = {};
 
 DRUG_DB.sort((a,b)=>a.name.localeCompare(b.name));
 
+// Phase 7 target cohort: high-impact drugs selected from live DDI count, class
+// risk, PK/PGx route relevance, and coverage gaps. Clinical context pseudo-
+// substances are intentionally excluded so this list remains drug-centered.
+const TOP100_LIVE_COVERAGE_DRUGS = Object.freeze([
+  "Rifampin","Ketoconazole","Warfarin","Amiodarone","Tacrolimus","Clarithromycin",
+  "Simvastatin","Cyclosporine","Dronedarone","Phenelzine","Ayahuasca (DMT+MAOI)",
+  "Dofetilide","Ibuprofen","Naloxegol","Paroxetine","Propafenone","Quinidine",
+  "Rosuvastatin","Flecainide","Fluoxetine","Apalutamide","Enzalutamide",
+  "Trimethoprim/Sulfamethoxazole","Fentanyl","Mycophenolic Acid","Naldemedine",
+  "Carbamazepine","Fluconazole","Heroin (Diacetylmorphine)","Albendazole",
+  "Aspirin","Itraconazole","Naproxen","Topiramate","Eluxadoline","Cenobamate",
+  "Disopyramide","Ethosuximide","Felbamate","Mexiletine","Mitoxantrone",
+  "Omeprazole","Perampanel","Pomalidomide","Procainamide","Sufentanil",
+  "Tapentadol","Tepotinib","Tiagabine","Topotecan","Vincristine","Zonisamide",
+  "Crizotinib","Kratom (Mitragynine)","Lamotrigine","Aspirin (Low-Dose)",
+  "Erlotinib","Flurbiprofen","Pimozide","Piroxicam","Prasugrel","Tenoxicam",
+  "Valproic Acid","Lovastatin","MDMA (Ecstasy)","Mycophenolate","Sertraline",
+  "Everolimus","Lacosamide","Osimertinib","Phenobarbital","Alfentanil",
+  "Fluvoxamine","Lorlatinib","Maribavir","Midazolam","Prochlorperazine",
+  "Ribociclib","Diclofenac","Sotalol","Ticagrelor","Tramadol","Abemaciclib",
+  "Azithromycin","Delamanid","Erdafitinib","Magnesium Sulfate","Pravastatin",
+  "Adagrasib","Asciminib","Capmatinib","Dasatinib","Nilotinib","Pirtobrutinib",
+  "Tranylcypromine","Nystatin","Alpelisib","Amonafide","Binimetinib","Bortezomib",
+]);
+
+const TOP100_LIVE_COVERAGE_EVIDENCE_REFS = Object.freeze(["ev_top100_live_coverage_adapter"]);
+const TOP100_LIVE_COVERAGE_SET = new Set(TOP100_LIVE_COVERAGE_DRUGS);
+
+function isTop100LiveCoverageDrug(name) {
+  return TOP100_LIVE_COVERAGE_SET.has(name);
+}
+
 function normalizeDrugLookupKey(value) {
   return String(value || "")
     .trim()

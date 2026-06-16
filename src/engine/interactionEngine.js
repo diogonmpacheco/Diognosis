@@ -519,6 +519,8 @@ function findInteractions() {
       effect: t.effect,
       severity: sev,
       mechanism: t.mechanism,
+      evidence: t.evidence,
+      evidenceRefs: t.evidenceRefs || [],
       source: "transporter"
     });
   });

@@ -1202,6 +1202,118 @@ Object.assign(BEERS_FLAGS, {
   'pimavanserin':     { concern:'Antipsychotic-class mortality warning context in dementia-related psychosis plus QT/sedation/fall risk', avoid:'antipsychotics_65plus_caution' },
 });
 
+function top100CoveragePharmKey(drug) {
+  return drug?.id || String(drug?.name || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+function top100CoverageHasScoring(table, drug) {
+  const name = String(drug?.name || "").toLowerCase();
+  const keys = [
+    drug?.id,
+    name,
+    name.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+    name.replace(/\s+/g, "_").replace(/-/g, ""),
+    name.replace(/\s/g, ""),
+  ].filter(Boolean);
+  return keys.some(key => Object.prototype.hasOwnProperty.call(table || {}, key));
+}
+
+function top100CoverageNeedsWashout(drug) {
+  return /rifamp|rifamycin|azole|macrolide|amiodarone|fluoxetine|paroxetine|carbamazepine|phenytoin|phenobarbital|st\. john|maoi|antiplatelet|anticoag|antiarrhythmic|qt|immunosuppress|kinase|oncology|opioid|benzodiazepine|anticonvulsant|mTOR|CDK|EGFR|ALK|BCR-ABL/i
+    .test(`${drug?.name || ""} ${drug?.cls || ""} ${(drug?.routes || []).map(route => route.enzyme).join("/")}`);
+}
+
+function top100CoverageWashoutDays(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  const halfLifeDays = drug?.hl ? Math.ceil((drug.hl * 5) / 24) : 3;
+  if (/maoi|phenelzine|tranylcypromine/i.test(text)) return 14;
+  if (/phenobarbital|carbamazepine|phenytoin|rifamp|rifamycin/i.test(text)) return 21;
+  if (/antiplatelet|aspirin|prasugrel|ticagrelor/i.test(text)) return 7;
+  if (/warfarin|anticoag/i.test(text)) return 5;
+  if (/amiodarone/i.test(text)) return 90;
+  if (/azole|macrolide|fluoxetine|paroxetine|fluvoxamine/i.test(text)) return Math.max(5, Math.min(35, halfLifeDays));
+  if (/antiarrhythmic|qt|dofetilide|sotalol|dronedarone|quinidine|pimozide/i.test(text)) return Math.max(3, Math.min(21, halfLifeDays));
+  if (/kinase|oncology|immunosuppress|mTOR|CDK|EGFR|ALK|BCR-ABL/i.test(text)) return Math.max(7, Math.min(30, halfLifeDays));
+  if (/opioid|benzodiazepine|anticonvulsant/i.test(text)) return Math.max(3, Math.min(14, halfLifeDays));
+  return Math.max(3, Math.min(14, halfLifeDays));
+}
+
+function top100CoverageBurdenScore(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  const props = drug?.props || {};
+  return {
+    serotonin:/ssri|snri|serotonin|tramadol|mdma|ayahuasca|maoi/i.test(text) ? 2 : 0,
+    qtc:Math.max(props.qtcRisk || 0, /dofetilide|sotalol|quinidine|dronedarone|pimozide|ribociclib|nilotinib|delamanid|macrolide|azole|antiarrhythmic|kinase|oncology/i.test(text) ? 2 : 0),
+    anticholinergic:Math.max(props.anticholinergic || 0, /tca|paroxetine|phenothiazine|prochlorperazine|disopyramide/i.test(text) ? 2 : 0),
+    sedation:(props.sedation || /opioid|benzodiazepine|barbiturate|phenobarbital|midazolam|anticonvulsant|ayahuasca|kratom|prochlorperazine|maoi/i.test(text)) ? 2 : 0,
+    fall_risk:/opioid|benzodiazepine|barbiturate|anticonvulsant|antiarrhythmic|ssri|snri|tca|maoi|phenothiazine|alpha|magnesium|anticoag|antiplatelet|nsaid|immunosuppress|kinase|oncology/i.test(text) ? 2 : 0,
+  };
+}
+
+function top100CoverageNeedsBurden(drug) {
+  return /ssri|snri|tca|maoi|antipsychotic|phenothiazine|opioid|benzodiazepine|sedative|hypnotic|anticonvulsant|antiarrhythmic|anticholinergic|antihistamine|nsaid|statin|alpha|parkinson|vmat|muscle relax|psychedelic|anticoag|antiplatelet|azole|macrolide|immunosuppress|kinase|oncology|QT|bleeding/i
+    .test(`${drug?.name || ""} ${drug?.cls || ""}`);
+}
+
+function top100CoveragePkParams(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  const halfLife = Math.max(0.5, drug?.hl || 8);
+  const tmax = /iv|infusion|sulfate|magnesium|naloxone/i.test(text) ? 0.5 :
+    /opioid|benzodiazepine|antiemetic|nsaid|azole|antibiotic|maoi|ssri/i.test(text) ? 2 :
+    /kinase|oncology|immunosuppress|statin|anticonvulsant/i.test(text) ? 3 : 2.5;
+  const F = /nystatin/i.test(text) ? 0.01 :
+    /iv|infusion|sulfate|magnesium/i.test(text) ? 1 :
+    /nsaid|anticonvulsant|maoi|ssri|antiplatelet|anticoag/i.test(text) ? 0.85 :
+    /kinase|oncology|immunosuppress|statin|azole|macrolide/i.test(text) ? 0.65 :
+    /opioid|benzodiazepine|antiemetic/i.test(text) ? 0.5 : 0.7;
+  const Vd = /amiodarone|kinase|oncology|phenothiazine|ssri|maoi|ayahuasca|mdma|opioid/i.test(text) ? 5 :
+    /statin|anticonvulsant|benzodiazepine|azole|macrolide/i.test(text) ? 2 :
+    /nsaid|antiplatelet|anticoag|electrolyte|sulfate|magnesium/i.test(text) ? 0.3 : 1;
+  const dose_mg = /magnesium/i.test(text) ? 1000 :
+    /nystatin/i.test(text) ? 500 :
+    /kinase|oncology/i.test(text) ? 100 :
+    /opioid|benzodiazepine/i.test(text) ? 10 :
+    /ssri|maoi|antiarrhythmic|statin|anticoag|antiplatelet/i.test(text) ? 25 : 100;
+  return {
+    F, ka:pkKaFromTmax(tmax, halfLife), halfLife, Vd, dose_mg,
+    note:`Phase 7 top-100 live PK approximation for ${drug.name}; uses existing half-life/class/route context so PK simulation is available while source-specific parameters remain pending review.`,
+    nonlinear:/phenytoin|saturable|nonlinear|autoinduction|mdma|paroxetine|phenytoin/i.test(`${text} ${drug?.note || ""}`),
+    evidenceRefs:[...TOP100_LIVE_COVERAGE_EVIDENCE_REFS],
+  };
+}
+
+for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
+  const drug = getDrug(drugName);
+  if (!drug) continue;
+  const key = top100CoveragePharmKey(drug);
+  if (!top100CoverageHasScoring(PK_PARAMS, drug)) {
+    PK_PARAMS[key] = top100CoveragePkParams(drug);
+  }
+  if (!top100CoverageHasScoring(WASHOUT_DAYS, drug)) {
+    const days = top100CoverageWashoutDays(drug);
+    WASHOUT_DAYS[key] = {
+      days,
+      mechanism:"top100_live_coverage_timing_context",
+      note:`Phase 7 top-100 live timing row for ${drug.name}: conservative ${days}-day context from half-life/class/interaction persistence. Pending source-specific professional review.`,
+      evidenceRefs:[...TOP100_LIVE_COVERAGE_EVIDENCE_REFS],
+    };
+  }
+  if (top100CoverageNeedsBurden(drug) && !top100CoverageHasScoring(PHENOTYPE_SCORES, drug)) {
+    PHENOTYPE_SCORES[key] = top100CoverageBurdenScore(drug);
+  }
+  if (top100CoverageNeedsBurden(drug) && !top100CoverageHasScoring(BEERS_FLAGS, drug) &&
+    /tca|maoi|antipsychotic|phenothiazine|opioid|benzodiazepine|barbiturate|anticonvulsant|antiarrhythmic|nsaid|alpha/i.test(`${drug.name} ${drug.cls}`)) {
+    BEERS_FLAGS[key] = {
+      concern:`Phase 7 top-100 older-adult burden context for ${drug.name}: class-linked fall, CNS, bleeding, renal, QT, or orthostasis risk may matter in age >=65.`,
+      avoid:"top100_65plus_caution_pending_review",
+      evidenceRefs:[...TOP100_LIVE_COVERAGE_EVIDENCE_REFS],
+    };
+  }
+  if (!top100CoverageHasScoring(ACB_SCORES, drug) && /tca|paroxetine|phenothiazine|prochlorperazine|disopyramide/i.test(`${drug.name} ${drug.cls}`)) {
+    ACB_SCORES[key] = /tca|phenothiazine|disopyramide/i.test(`${drug.name} ${drug.cls}`) ? 2 : 1;
+  }
+}
+
 function getScoringLookupKeys(drugOrName) {
   const drug = typeof drugOrName === "object" && drugOrName !== null
     ? drugOrName
