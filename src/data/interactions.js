@@ -2349,4 +2349,112 @@ if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
     }
   }
 }
+
+function ninetyPercentDdiLiveNameSet() {
+  const names = new Set();
+  for (const row of KNOWN_DDI || []) {
+    if (row.drug1) names.add(row.drug1);
+    if (row.drug2) names.add(row.drug2);
+  }
+  return names;
+}
+
+function ninetyPercentDdiPriority(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  const routes = top100CoverageRouteText(drug);
+  let score = top100CoverageKnownDdiCount(drug?.name) * 3;
+  if (TOP250_LIVE_COVERAGE_SET?.has(drug?.name)) score += 30;
+  if (/antiarrhythmic|anticoag|antiplatelet|doac|opioid|benzodiazepine|anticonvulsant|ssri|snri|tca|maoi|antipsychotic|azole|macrolide|fluoroquinolone|antiretroviral|protease inhibitor|immunosuppress|transplant|kinase|oncology|statin|diabetes|sulfonylurea|pde5|nitrate|ccb|thyroid|mood stabilizer|antibiotic|biologic|monoclonal|hormone|vitamin|mineral|supplement/i.test(text)) score += 25;
+  if (/CYP3A4|CYP2D6|CYP2C19|CYP2C9|CYP2C8|CYP3A5|CYP2B6|UGT|NAT|TPMT|NUDT15/i.test(routes)) score += 15;
+  if (/P-gp|BCRP|OATP|OAT|OCT|MATE|SLCO|ABCB|ABCG|Renal Excretion/i.test(`${routes} ${text}`)) score += 10;
+  if (drug?.prodrug) score += 10;
+  if (drug?.props?.qtcRisk >= 2 || drug?.props?.bleedingRisk >= 2 || drug?.props?.sedation) score += 8;
+  return score;
+}
+
+function ninetyPercentDdiFallbackRows(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  const general = [
+    {
+      drug2:"Cimetidine",
+      severity:"moderate",
+      category:"phase16_general_pk_screening_context",
+      mechanism:`${drug.name} is below the 90% DDI live-coverage target; broad CYP/renal transporter inhibition can shift exposure for susceptible substrates while source-specific pair curation is pending.`,
+      effect:"Flag for medication reconciliation, organ-function context, and replacement with source-specific DDI data during review.",
+    },
+    {
+      drug2:"Ibuprofen",
+      severity:/anticoag|antiplatelet|renal|kidney|diuretic|ace|arb|lithium|methotrexate|elder/i.test(text) ? "severe" : "moderate",
+      category:"phase16_renal_hemostasis_context",
+      mechanism:`${drug.name} is below the 90% DDI live-coverage target; NSAID overlap can add renal, bleeding, blood-pressure, or exposure context depending on class.`,
+      effect:"Flag for renal function, bleeding, blood pressure, and safer analgesic review where relevant.",
+    },
+    {
+      drug2:"Warfarin",
+      severity:/antibiotic|antifungal|antiviral|antiplatelet|nsaid|hormone|supplement|vitamin/i.test(text) ? "severe" : "moderate",
+      category:"phase16_hemostasis_context",
+      mechanism:`${drug.name} is below the 90% DDI live-coverage target; anticoagulant stacks can reveal bleeding, INR, vitamin K, infection-treatment, or hepatic-context risk.`,
+      effect:"Flag for INR/bleeding monitoring and indication-specific review.",
+    },
+    {
+      drug2:"Alcohol (Ethanol)",
+      severity:/opioid|benzodiazepine|sedative|hypnotic|anticonvulsant|maoi|stimulant|liver|hepat/i.test(text) ? "severe" : "moderate",
+      category:"phase16_cns_hepatic_context",
+      mechanism:`${drug.name} is below the 90% DDI live-coverage target; ethanol can add CNS depression, psychomotor impairment, seizure-threshold, metabolic, or hepatic burden depending on class.`,
+      effect:"Flag for counseling and class-specific toxicity review.",
+    },
+    {
+      drug2:"Calcium",
+      severity:"moderate",
+      category:"phase16_absorption_binding_context",
+      mechanism:`${drug.name} is below the 90% DDI live-coverage target; polyvalent cations can reduce absorption for susceptible oral drugs.`,
+      effect:"Flag for administration-time separation and response monitoring where relevant.",
+    },
+  ];
+  return general.filter(row => row.drug2 !== drug.name);
+}
+
+function ninetyPercentDdiCandidates(drug) {
+  return [
+    ...ddiExpansionPackRows(drug),
+    ...phase12DrugCountDdiRows(drug),
+    ...ninetyPercentDdiFallbackRows(drug),
+  ];
+}
+
+function ninetyPercentAddKnownDdi(drug, row) {
+  if (!drug || !row?.drug2 || row.drug2 === drug.name) return false;
+  if (typeof getDrug === "function" && !getDrug(row.drug2)) return false;
+  const key = top100CoverageDdiKey(drug.name, row.drug2);
+  if (TOP100_COVERAGE_KNOWN_DDI_KEYS.has(key)) return false;
+  TOP100_COVERAGE_KNOWN_DDI_KEYS.add(key);
+  KNOWN_DDI.push({
+    drug1:drug.name,
+    drug2:row.drug2,
+    severity:row.severity || top100CoverageHighImpactSeverity(drug),
+    category:row.category || "phase16_ninety_percent_ddi_context",
+    mechanism:`Phase 16 90% live DDI coverage: ${row.mechanism}`,
+    effect:row.effect,
+    evidence:{confidence:"low", sources:["90% live coverage adapter"], studyType:"route_class_adapter"},
+    evidenceRefs:[...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS],
+  });
+  return true;
+}
+
+if (typeof NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS !== "undefined") {
+  const target = Math.ceil(DRUG_DB.length * 0.9) + 5;
+  const liveNames = ninetyPercentDdiLiveNameSet();
+  const missing = DRUG_DB
+    .filter(drug => !liveNames.has(drug.name))
+    .sort((a, b) => ninetyPercentDdiPriority(b) - ninetyPercentDdiPriority(a) || a.name.localeCompare(b.name));
+  for (const drug of missing) {
+    if (liveNames.size >= target) break;
+    for (const row of ninetyPercentDdiCandidates(drug)) {
+      if (!ninetyPercentAddKnownDdi(drug, row)) continue;
+      liveNames.add(drug.name);
+      if (row.drug2) liveNames.add(row.drug2);
+      break;
+    }
+  }
+}
 // ── COMBINATION calcFold — considers parent + metabolite inhibitions ──

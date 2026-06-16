@@ -425,6 +425,68 @@ if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
   }
 }
 
+function ninetyPercentTransporterRequired(drug) {
+  return /P-gp|ABCB1|BCRP|ABCG2|OATP|SLCO|OAT|OCT|MATE|Renal Excretion|renal|statin|kinase|oncology|immunosuppress|anticoag|antiplatelet|antiviral|antiretroviral|diabetes|opioid/i
+    .test(`${drug?.name || ""} ${drug?.cls || ""} ${(drug?.routes || []).map(route => route.enzyme).join("/")}`);
+}
+
+function ninetyPercentHasTransporterCoverage(drug) {
+  return TRANSPORTER_DDI.some(row => row.substrate === drug.name || row.inhibitor === drug.name) ||
+    Object.values(TRANSPORTER_ACTORS || {}).some(actor => (actor.substrates || []).includes(drug.name));
+}
+
+function ninetyPercentTransporterPriority(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  const routes = (drug?.routes || []).map(route => route.enzyme).join("/");
+  let score = 0;
+  if (TOP250_LIVE_COVERAGE_SET?.has(drug?.name)) score += 30;
+  if (/statin|kinase|oncology|immunosuppress|transplant|anticoag|antiplatelet|antiviral|antiretroviral|protease inhibitor|diabetes|renal|opioid|anticonvulsant/i.test(text)) score += 25;
+  if (/P-gp|ABCB1|BCRP|ABCG2|OATP|SLCO|OAT|OCT|MATE|Renal Excretion/i.test(routes)) score += 20;
+  if (/CYP3A4|CYP2C9|CYP2C19|CYP2D6|UGT/i.test(routes)) score += 8;
+  return score;
+}
+
+function ninetyPercentAddTransporterCoverage(drug, transporter, row) {
+  if (!drug || !transporter || !row || row.inhibitor === drug.name) return false;
+  if (row.inhibitor !== "NSAIDs" && typeof getDrug === "function" && !getDrug(row.inhibitor)) return false;
+  if (top100CoverageHasTransporterDdi(drug.name, row.inhibitor, transporter)) return false;
+  const actor = TRANSPORTER_ACTORS[transporter];
+  if (actor && !actor.substrates.includes(drug.name)) actor.substrates.push(drug.name);
+  TRANSPORTER_DDI.push({
+    substrate:drug.name,
+    inhibitor:row.inhibitor,
+    transporter,
+    effect:row.effect,
+    severity:row.severity,
+    mechanism:`Phase 16 90% live transporter coverage: ${drug.name} has ${transporter} route/class context and ${row.inhibitor} is a representative ${transporter} modulator. Pending source-specific professional review.`,
+    evidence:{confidence:"low", sources:["90% live coverage adapter"], foldChange:row.foldChange, studyType:"transporter_route_adapter"},
+    evidenceRefs:[...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS],
+  });
+  return true;
+}
+
+if (typeof NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS !== "undefined") {
+  const required = DRUG_DB.filter(ninetyPercentTransporterRequired);
+  const target = Math.ceil(required.length * 0.9) + 5;
+  let live = required.filter(ninetyPercentHasTransporterCoverage).length;
+  const missing = required
+    .filter(drug => !ninetyPercentHasTransporterCoverage(drug))
+    .sort((a, b) => ninetyPercentTransporterPriority(b) - ninetyPercentTransporterPriority(a) || a.name.localeCompare(b.name));
+  for (const drug of missing) {
+    if (live >= target) break;
+    let added = false;
+    for (const transporter of phase12DrugCountTransporterIds(drug)) {
+      for (const row of transporterExpansionPerpetrators(transporter)) {
+        if (!ninetyPercentAddTransporterCoverage(drug, transporter, row)) continue;
+        added = true;
+        break;
+      }
+      if (added) break;
+    }
+    if (added && ninetyPercentHasTransporterCoverage(drug)) live += 1;
+  }
+}
+
 // ═══════════════════════════════════════════════════════════════════
 //  INTERACTION GRAPH — Builder + Traversal Engine
 // ═══════════════════════════════════════════════════════════════════

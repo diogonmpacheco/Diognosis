@@ -9371,6 +9371,20 @@ const STUDY_DB = {
     limitations:["Gold rows are coverage/depth enrichments, not final clinical recommendations. Replace adapter rows with drug-specific labels, CPIC/DPWG guidance, TDM, ECG/electrolyte monitoring, organ-function assessment, and pharmacist/physician-reviewed entries over time."],
     verified:false, reviewRequired:true, verifyNote:"Phase 13 top-100 gold enrichment is live pending professional review; rows are audit-enforced review-priority signals."
   },
+  "ev_ninety_percent_live_coverage_adapter": {
+    id:"ev_ninety_percent_live_coverage_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Phase 16 ninety-percent live coverage adapter — broad live coverage across DDI, PK, washout, transporter, burden, Beers, and receptor surfaces",
+    year:2026, source:"Internal Diognosis ninety-percent coverage adapter using existing curated drug identities, routes, half-lives, class risk flags, transporter actors, and burden-scoring rules",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"coverage_adapter_group", n:null,
+    phenotypes:["DDI","PK","washout","transporter_context","phenotype_burden","older_adult_burden","receptor_burden"],
+    quantifiedEffects:{note:"Shared evidence anchor for raising live surface coverage to at least 90% of applicable Diognosis drug cohorts. Rows are derived from existing route/class/half-life metadata and should be replaced with source-specific label, guideline, PK, transporter, and receptor rows over time."},
+    temporal:{mechanism:"route_class_half_life_transporter_and_burden_context", onset:"same_day", offset:"hours-months"},
+    supports:["phase16_ninety_percent_ddi_coverage","phase16_ninety_percent_pk_coverage","phase16_ninety_percent_washout_coverage","phase16_ninety_percent_transporter_coverage","phase16_ninety_percent_burden_coverage","phase16_ninety_percent_beers_coverage","phase16_ninety_percent_receptor_coverage"],
+    contradicts:[],
+    limitations:["Coverage rows are live screening/review-priority signals, not final clinical recommendations, dose rules, contraindication labels, or professional review. Drug-specific labels, CPIC/DPWG guidance, receptor-binding sources, TDM, ECG/electrolytes, renal/hepatic assessment, indication, dose, age/frailty, pregnancy/transplant/procedure context, and pharmacist/physician review remain decisive."],
+    verified:false, reviewRequired:true, verifyNote:"Phase 16 ninety-percent coverage adapter is intentionally live pending professional review; rows are broad coverage scaffolds derived from existing Diognosis metadata."
+  },
   "ev_ddi_expansion_pack_adapter": {
     id:"ev_ddi_expansion_pack_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
     title:"Phase 9 DDI expansion pack — explicit pending-review route and class pairs",

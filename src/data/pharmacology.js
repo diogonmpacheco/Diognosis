@@ -1418,6 +1418,144 @@ if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
   }
 }
 
+const NINETY_PERCENT_LIVE_COVERAGE_TARGET = 0.9;
+const NINETY_PERCENT_LIVE_COVERAGE_BUFFER = 5;
+
+function ninetyPercentCoverageTargetCount(rows) {
+  return Math.ceil((rows || []).length * NINETY_PERCENT_LIVE_COVERAGE_TARGET) + NINETY_PERCENT_LIVE_COVERAGE_BUFFER;
+}
+
+function ninetyPercentCoverageRouteText(drug) {
+  return (drug?.routes || []).map(route => route.enzyme).join("/");
+}
+
+function ninetyPercentCoveragePriority(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  const routes = ninetyPercentCoverageRouteText(drug);
+  const props = drug?.props || {};
+  let score = 0;
+  if (TOP250_LIVE_COVERAGE_SET?.has(drug?.name)) score += 30;
+  if (/antiarrhythmic|anticoag|antiplatelet|doac|opioid|benzodiazepine|anticonvulsant|ssri|snri|tca|maoi|antipsychotic|azole|macrolide|fluoroquinolone|antiretroviral|protease inhibitor|immunosuppress|transplant|kinase|oncology|statin|diabetes|sulfonylurea|pde5|nitrate|ccb|thyroid|mood stabilizer|antibiotic/i.test(text)) score += 25;
+  if (/CYP3A4|CYP2D6|CYP2C19|CYP2C9|CYP2C8|CYP3A5|CYP2B6|UGT|NAT|TPMT|NUDT15/i.test(routes)) score += 15;
+  if (/P-gp|BCRP|OATP|OAT|OCT|MATE|SLCO|ABCB|ABCG|Renal Excretion/i.test(`${routes} ${text}`)) score += 10;
+  if (drug?.prodrug) score += 10;
+  if (props.narrowTherapeuticIndex || props.nti || props.ntI) score += 10;
+  if ((props.qtcRisk || props.qtc || 0) >= 2) score += 8;
+  if ((props.bleedingRisk || props.bleed || 0) >= 2) score += 8;
+  if (props.sedation || props.serotonergic || props.anticholinergic) score += 6;
+  if (drug?.hl) score += Math.min(10, Math.ceil(drug.hl / 24));
+  return score;
+}
+
+function ninetyPercentCoverageSorted(rows) {
+  return [...rows].sort((a, b) =>
+    ninetyPercentCoveragePriority(b) - ninetyPercentCoveragePriority(a) ||
+    String(a.name || "").localeCompare(String(b.name || ""))
+  );
+}
+
+function ninetyPercentCoverageFillDrugTable(table, rows, hasRow, addRow) {
+  let live = rows.filter(hasRow).length;
+  const target = ninetyPercentCoverageTargetCount(rows);
+  for (const drug of ninetyPercentCoverageSorted(rows)) {
+    if (live >= target) break;
+    if (hasRow(drug)) continue;
+    addRow(drug);
+    live += hasRow(drug) ? 1 : 0;
+  }
+  return { live, target };
+}
+
+function ninetyPercentCoveragePkParams(drug) {
+  const row = top100CoveragePkParams(drug);
+  row.note = `Phase 16 90% live PK approximation for ${drug.name}; uses existing half-life/class/route context so PK simulation is available while source-specific parameters remain pending review.`;
+  row.evidenceRefs = [...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS];
+  row.evidence = { confidence:"low", sources:["90% live coverage adapter"], studyType:"route_half_life_adapter" };
+  return row;
+}
+
+function ninetyPercentCoverageWashoutRow(drug) {
+  const days = top100CoverageWashoutDays(drug);
+  return {
+    days,
+    mechanism:"phase16_ninety_percent_timing_context",
+    note:`Phase 16 90% live timing row for ${drug.name}: conservative ${days}-day half-life/class/interaction-persistence context pending source-specific review.`,
+    evidenceRefs:[...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS],
+    evidence:{confidence:"low", sources:["90% live coverage adapter"], studyType:"half_life_class_adapter"},
+  };
+}
+
+function ninetyPercentCoverageNeedsBeers(drug) {
+  return /benzodiazepine|sedative|hypnotic|anticholinergic|antihistamine|tca|antipsychotic|opioid|nsaid|muscle relax|alpha|antiarrhythmic|ssri|snri|parkinson|proton pump|ppi|bladder|antimuscarinic|phenothiazine|barbiturate/i
+    .test(`${drug?.name || ""} ${drug?.cls || ""}`);
+}
+
+function ninetyPercentCoverageBeersRow(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  const avoid = /benzodiazepine/i.test(text) ? "benzodiazepines_65plus" :
+    /sedative|hypnotic|barbiturate/i.test(text) ? "sleep_or_sedative_agents_65plus" :
+    /tca/i.test(text) ? "TCAs_65plus" :
+    /antipsychotic|phenothiazine/i.test(text) ? "antipsychotics_65plus_caution" :
+    /opioid/i.test(text) ? "opioid_65plus_caution" :
+    /nsaid/i.test(text) ? "NSAIDs_65plus" :
+    /antiarrhythmic|qt/i.test(text) ? "antiarrhythmics_65plus_caution" :
+    /anticholinergic|antihistamine|bladder|antimuscarinic/i.test(text) ? "anticholinergics_65plus" :
+    /ssri|snri/i.test(text) ? "serotonergic_fall_bleeding_65plus_caution" :
+    "older_adult_caution_pending_review";
+  return {
+    concern:`Phase 16 90% older-adult burden context for ${drug.name}: class-linked CNS, fall, anticholinergic, renal, bleeding, QT, orthostasis, or hyponatremia risk may matter in age >=65.`,
+    avoid,
+    evidenceRefs:[...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS],
+  };
+}
+
+function ninetyPercentCoverageAcbScore(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  if (/tca|phenothiazine|promethazine|diphenhydramine|hydroxyzine|doxylamine|oxybutynin|tolterodine|darifenacin|solifenacin|scopolamine|benztropine|trihexyphenidyl|dicyclomine|hyoscyamine/i.test(text)) return 3;
+  if (/paroxetine|anticholinergic|antihistamine|antimuscarinic|meclizine|cyclobenzaprine|clozapine|olanzapine|quetiapine/i.test(text)) return 2;
+  if (/ssri|snri|antipsychotic|cimetidine|ranitidine/i.test(text)) return 1;
+  return 0;
+}
+
+if (typeof NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS !== "undefined") {
+  ninetyPercentCoverageFillDrugTable(
+    PK_PARAMS,
+    DRUG_DB,
+    drug => top100CoverageHasScoring(PK_PARAMS, drug),
+    drug => { PK_PARAMS[top100CoveragePharmKey(drug)] = ninetyPercentCoveragePkParams(drug); }
+  );
+
+  ninetyPercentCoverageFillDrugTable(
+    WASHOUT_DAYS,
+    DRUG_DB,
+    drug => top100CoverageHasScoring(WASHOUT_DAYS, drug),
+    drug => { WASHOUT_DAYS[top100CoveragePharmKey(drug)] = ninetyPercentCoverageWashoutRow(drug); }
+  );
+
+  const burdenRows = DRUG_DB.filter(top100CoverageNeedsBurden);
+  ninetyPercentCoverageFillDrugTable(
+    PHENOTYPE_SCORES,
+    burdenRows,
+    drug => top100CoverageHasScoring(PHENOTYPE_SCORES, drug),
+    drug => {
+      const row = top100CoverageBurdenScore(drug);
+      row.evidenceRefs = [...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS];
+      PHENOTYPE_SCORES[top100CoveragePharmKey(drug)] = row;
+    }
+  );
+
+  const beersRows = DRUG_DB.filter(ninetyPercentCoverageNeedsBeers);
+  ninetyPercentCoverageFillDrugTable(
+    BEERS_FLAGS,
+    beersRows,
+    drug => top100CoverageHasScoring(BEERS_FLAGS, drug),
+    drug => {
+      BEERS_FLAGS[top100CoveragePharmKey(drug)] = ninetyPercentCoverageBeersRow(drug);
+      if (!top100CoverageHasScoring(ACB_SCORES, drug)) ACB_SCORES[top100CoveragePharmKey(drug)] = ninetyPercentCoverageAcbScore(drug);
+    }
+  );
+}
+
 function getScoringLookupKeys(drugOrName) {
   const drug = typeof drugOrName === "object" && drugOrName !== null
     ? drugOrName

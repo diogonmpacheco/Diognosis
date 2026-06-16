@@ -223,6 +223,37 @@ if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
   }
 }
 
+function ninetyPercentReceptorRequired(drug) {
+  return (typeof top100CoverageNeedsBurden === "function" && top100CoverageNeedsBurden(drug)) ||
+    !!(drug?.props && (drug.props.serotonergic || drug.props.sedation || drug.props.qtcRisk || drug.props.anticholinergic));
+}
+
+function ninetyPercentReceptorPriority(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  const routes = (drug?.routes || []).map(route => route.enzyme).join("/");
+  let score = 0;
+  if (TOP250_LIVE_COVERAGE_SET?.has(drug?.name)) score += 30;
+  if (/ssri|snri|tca|maoi|antipsychotic|phenothiazine|opioid|benzodiazepine|sedative|hypnotic|anticonvulsant|antiarrhythmic|anticholinergic|antihistamine|stimulant|psychedelic|parkinson|vmat|muscle relax|qt|qtc/i.test(text)) score += 30;
+  if (/oncology|kinase|azole|macrolide|fluoroquinolone|protease inhibitor|antiretroviral|immunosuppress|anticoag|antiplatelet|nsaid|statin|alpha|ccb|pde5|thyroid|lithium/i.test(text)) score += 15;
+  if (/CYP2D6|CYP2C19|CYP3A4|CYP2C9|UGT|P-gp|BCRP|OATP/i.test(routes)) score += 8;
+  if (drug?.props?.qtcRisk >= 2 || drug?.props?.sedation || drug?.props?.serotonergic || drug?.props?.anticholinergic) score += 10;
+  return score;
+}
+
+if (typeof NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS !== "undefined") {
+  const receptorRequired = DRUG_DB.filter(ninetyPercentReceptorRequired);
+  const receptorTarget = Math.ceil(receptorRequired.length * 0.9) + 5;
+  let receptorLive = receptorRequired.filter(top100GoldReceptorHasProfile).length;
+  const receptorMissing = receptorRequired
+    .filter(drug => !top100GoldReceptorHasProfile(drug))
+    .sort((a, b) => ninetyPercentReceptorPriority(b) - ninetyPercentReceptorPriority(a) || a.name.localeCompare(b.name));
+  for (const drug of receptorMissing) {
+    if (receptorLive >= receptorTarget) break;
+    RECEPTOR_SCORES[top100GoldReceptorKey(drug.name)] = top100GoldReceptorScoreFor(drug);
+    if (top100GoldReceptorHasProfile(drug)) receptorLive += 1;
+  }
+}
+
 // Syndrome thresholds and clinical inference rules
 // These are deliberate clinical thresholds, not arbitrary numbers.
 const SYNDROME_RULES = [

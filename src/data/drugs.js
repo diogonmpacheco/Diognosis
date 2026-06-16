@@ -5074,6 +5074,7 @@ const TOP250_LIVE_COVERAGE_EXTENSION_DRUGS = Object.freeze([
 const TOP250_LIVE_COVERAGE_DRUGS = Object.freeze([...TOP100_LIVE_COVERAGE_DRUGS, ...TOP250_LIVE_COVERAGE_EXTENSION_DRUGS]);
 const TOP250_LIVE_COVERAGE_EVIDENCE_REFS = Object.freeze([...TOP100_LIVE_COVERAGE_EVIDENCE_REFS, "ev_top250_live_coverage_adapter"]);
 const TOP250_LIVE_COVERAGE_SET = new Set(TOP250_LIVE_COVERAGE_DRUGS);
+const NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS = Object.freeze(["ev_ninety_percent_live_coverage_adapter"]);
 
 function isTop250LiveCoverageDrug(name) {
   return TOP250_LIVE_COVERAGE_SET.has(name);
