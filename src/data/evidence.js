@@ -9273,6 +9273,20 @@ const STUDY_DB = {
     limitations:["Grouped source anchor; individual labels, indication, renal/hepatic function, procedure timing, ECG/electrolytes, and monitoring protocols determine management."],
     verified:false, reviewRequired:true, verifyNote:"Grouped interaction expansion evidence pending pharmacist/specialist review"
   },
+  "ev_phase3_pk_washout_labels": {
+    id:"ev_phase3_pk_washout_labels", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Phase 3 PK and washout label expansion — high-risk batch drugs and persistence rules",
+    year:2026, source:"FDA/DailyMed labels + specialty pharmacology context",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=bedaquiline%20dofetilide%20sotalol%20ticlopidine%20cangrelor%20alteplase%20gemtuzumab%20inotuzumab",
+    studyDesign:"regulatory_label_group", n:null,
+    phenotypes:["CYP3A4","CYP2C9","P-gp","QT","platelet_turnover","immune_oncology"],
+    quantifiedEffects:{note:"Grouped source anchor for adding simplified absolute PK profiles and practical washout/persistence rules for high-risk drugs where half-life, irreversible pharmacodynamics, induction/inhibition offset, or long terminal persistence changes live timing calculations."},
+    temporal:{mechanism:"pk_simulation_and_persistence_timing_context", onset:"minutes-days", offset:"days-months"},
+    supports:["phase3_pk_profile_expansion","phase3_washout_rule_expansion","phase3_id_based_pk_washout_lookup"],
+    contradicts:[],
+    limitations:["Simplified educational PK model; not for dose selection. Washout windows are conservative display rules and do not replace labels, procedure protocols, TDM, ECGs, renal/hepatic assessment, or oncology/transplant/PCI guidance."],
+    verified:false, reviewRequired:true, verifyNote:"Grouped PK/washout expansion evidence pending pharmacist/specialist review"
+  },
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──

@@ -790,6 +790,34 @@ for (const [drugId, F, tmax, halfLife, Vd, dose_mg, note] of PK_LABEL_BATCH_3) {
   }
 }
 
+const PK_LABEL_BATCH_4 = [
+  ["gemtuzumab_ozogamicin",1,2,72,0.08,4.5,"Phase 3 ADC approximation; antibody disposition and calicheamicin payload toxicity are regimen/protocol dependent."],
+  ["inotuzumab_ozogamicin",1,2,288,0.08,1.8,"Phase 3 ADC approximation; long antibody/payload persistence and hepatic sinusoidal-obstruction risk dominate timing."],
+  ["ado_trastuzumab_emtansine",1,2,96,0.06,3.6,"Phase 3 ADC approximation; DM1 payload, hepatic function, thrombocytopenia, and oncology protocol dominate."],
+  ["ziprasidone",0.6,6,7,1.5,40,"Phase 3 antipsychotic label approximation; food-dependent absorption and QT context are clinically important."],
+  ["mdma_ecstasy",0.8,2,8,5,100,"Phase 3 recreational empathogen approximation; nonlinear/autoinhibition, hyperthermia, hyponatremia, serotonergic, and CYP2D6 context can dominate."],
+  ["mda",0.8,2,8,5,100,"Phase 3 empathogen approximation; active metabolite/related stimulant context, serotonin toxicity, hyperthermia, and CYP2D6 variability matter."],
+  ["alcohol_ethanol",1,0.5,4,0.6,14000,"Phase 3 ethanol approximation; nonlinear zero-order clearance, CNS depression, hypoglycemia, and hepatic context dominate."],
+  ["cangrelor",1,0.03,0.1,0.06,1,"Phase 3 IV P2Y12 approximation; very short parent half-life, platelet recovery, and transition timing dominate."],
+  ["abciximab",1,0.5,24,0.05,25,"Phase 3 GP IIb/IIIa approximation; plasma PK is less important than prolonged platelet-bound effect and bleeding monitoring."],
+  ["alteplase",1,0.05,0.1,0.05,50,"Phase 3 thrombolytic approximation; rapid clearance but fibrinolytic/bleeding protocol context dominates."],
+  ["tenecteplase",1,0.05,0.4,0.05,40,"Phase 3 thrombolytic approximation; bolus fibrinolytic with short plasma half-life and protocol-driven bleeding risk."],
+  ["dalteparin",1,0.5,4,0.05,5000,"Phase 3 LMWH approximation; renal function, anti-Xa context, and bleeding/procedure timing dominate."],
+  ["tinzaparin",1,0.5,3.9,0.05,10000,"Phase 3 LMWH approximation; renal function, anti-Xa context, and procedural timing dominate."],
+  ["desirudin",1,0.5,2,0.25,15,"Phase 3 direct thrombin inhibitor approximation; renal function and bleeding/procedure timing dominate."],
+  ["lepirudin",1,0.5,1.3,0.2,50,"Phase 3 direct thrombin inhibitor approximation; renal function and aPTT/bleeding monitoring dominate."],
+  ["gemfibrozil",0.98,2,1.5,0.15,600,"Phase 3 CYP2C8/OATP inhibitor approximation; interaction persistence can outlast parent half-life for sensitive substrates."],
+];
+
+for (const [drugId, F, tmax, halfLife, Vd, dose_mg, note] of PK_LABEL_BATCH_4) {
+  if (!PK_PARAMS[drugId]) {
+    PK_PARAMS[drugId] = {
+      F, ka: pkKaFromTmax(tmax, halfLife), halfLife, Vd, dose_mg, note,
+      nonlinear: /nonlinear|saturable|autoinduction|michaelis|zero-order/i.test(note),
+    };
+  }
+}
+
 // pkConcentration(params, t_h) — one-compartment oral model
 // Returns plasma concentration (ng/mL equiv. relative units)
 function pkConcentration(params, t_h) {
@@ -806,7 +834,9 @@ function pkConcentration(params, t_h) {
 
 // pkCurve(drugName, nPoints) — returns array of {t, c} points for SVG rendering
 function pkCurve(drugName, nPoints = 80) {
-  const params = PK_PARAMS[toGraphId(drugName)] || PK_PARAMS[drugName.toLowerCase()];
+  const key = toGraphId(drugName);
+  const drug = typeof getDrug === "function" ? getDrug(drugName) : null;
+  const params = PK_PARAMS[key] || (drug?.id && PK_PARAMS[drug.id]) || PK_PARAMS[drugName.toLowerCase()];
   if (!params) return null;
   const ke = 0.693 / params.halfLife;
   const tMax = Math.min(params.halfLife * 8, 200); // up to 8 half-lives or 200h
@@ -965,13 +995,49 @@ Object.assign(WASHOUT_DAYS, {
   'teriflunomide':  { days:730, mechanism:'enterohepatic_recirculation_accelerated_elimination_needed', note:"Teriflunomide can persist for many months to years without accelerated elimination; use label washout procedures for pregnancy or toxicity." },
 });
 
+Object.assign(WASHOUT_DAYS, {
+  // Phase 3 persistence/timing additions for high-risk PK, QT, bleeding, and active-moiety rows.
+  'busulfan':       { days:14, mechanism:'conditioning_TDM_and_myelohepatic_toxicity_offset', note:"Busulfan plasma half-life is short, but conditioning toxicity, marrow reserve, seizure prophylaxis, and VOD monitoring persist beyond parent clearance." },
+  'dofetilide':     { days:3, mechanism:'renal_QT_offset', note:"Dofetilide QT risk follows renal clearance and dose interval; use at least several days before assuming additive QT risk has settled." },
+  'sotalol':        { days:3, mechanism:'renal_beta_blocker_QT_offset', note:"Sotalol has renal clearance and QT/bradycardia context; allow several days and reassess renal function/electrolytes." },
+  'disopyramide':   { days:3, mechanism:'class_Ia_QT_anticholinergic_offset', note:"Disopyramide QT, negative inotropy, and anticholinergic effects generally require a multi-day offset after stopping." },
+  'procainamide':   { days:3, mechanism:'class_Ia_NAPA_QT_offset', note:"Procainamide and NAPA can persist longer in renal impairment; use a conservative multi-day QT/proarrhythmia offset." },
+  'propafenone':    { days:7, mechanism:'cyp2d6_class_Ic_offset', note:"Propafenone has CYP2D6-sensitive exposure and active metabolites; allow about a week for antiarrhythmic and CYP2D6-inhibition context to settle." },
+  'flecainide':     { days:7, mechanism:'class_Ic_narrow_index_offset', note:"Flecainide is narrow-index with renal/CYP2D6 context; use about a week before assuming conduction risk has normalized." },
+  'mexiletine':     { days:3, mechanism:'class_Ib_cyp_offset', note:"Mexiletine CNS/cardiac exposure and CYP interaction context generally settles over several days." },
+  'ticlopidine':    { days:10, mechanism:'irreversible_P2Y12_platelet_turnover', note:"Ticlopidine irreversibly inhibits platelets; practical antiplatelet offset follows platelet turnover, not parent plasma half-life." },
+  'clopidogrel':    { days:7, mechanism:'irreversible_P2Y12_platelet_turnover', note:"Clopidogrel active thiol effect persists for platelet lifespan; use about 5-7 days for procedure/bleeding timing." },
+  'prasugrel':      { days:7, mechanism:'irreversible_P2Y12_platelet_turnover', note:"Prasugrel platelet inhibition persists after parent clearance; procedure planning usually follows platelet turnover." },
+  'cangrelor':      { days:1, mechanism:'short_acting_P2Y12_transition_timing', note:"Cangrelor offset is minutes to hours, but transition timing to oral P2Y12 agents is protocol-critical on the same day." },
+  'vorapaxar':      { days:56, mechanism:'long_half_life_PAR1_platelet_antagonism', note:"Vorapaxar has very long persistence; bleeding-risk context can last many weeks after discontinuation." },
+  'betrixaban':     { days:5, mechanism:'factor_Xa_bleeding_offset', note:"Betrixaban half-life supports a multi-day anticoagulant/procedure timing window, longer with renal impairment or bleeding risk." },
+  'acenocoumarol':  { days:5, mechanism:'vitamin_K_antagonist_INR_offset', note:"Acenocoumarol offset follows INR and vitamin-K-cycle recovery, not only parent half-life." },
+  'bedaquiline':    { days:180, mechanism:'very_long_terminal_half_life_QT_offset', note:"Bedaquiline has very long terminal persistence and QT context; additive QT/interacting-drug planning can remain relevant for months." },
+  'nilotinib':      { days:7, mechanism:'CYP3A_QT_oncology_offset', note:"Nilotinib CYP3A and QT context supports about a week of conservative interaction/QT offset after stopping." },
+  'hydroxychloroquine':{ days:60, mechanism:'large_volume_long_terminal_QT_offset', note:"Hydroxychloroquine has long tissue persistence; QT, retinal, and toxicity context can outlast short dosing interruptions." },
+  'methadone':      { days:14, mechanism:'variable_long_half_life_QT_resp_offset', note:"Methadone has variable long half-life, respiratory-depression, and QT context; conservative offset is days to weeks." },
+  'pimozide':       { days:14, mechanism:'long_half_life_CYP2D6_CYP3A_QT_offset', note:"Pimozide label titration/genotype context and long half-life support a conservative 2-week QT/CYP-sensitive offset." },
+  'leflunomide':    { days:730, mechanism:'teriflunomide_enterohepatic_recirculation', note:"Leflunomide forms teriflunomide; without accelerated elimination, pregnancy/toxicity washout can require months to years." },
+  'prochlorperazine':{ days:3, mechanism:'phenothiazine_QT_EPS_sedation_offset', note:"Phenothiazine QT/EPS/sedation context generally settles over several days, longer after high-dose or depot-like exposure." },
+  'ziprasidone':    { days:3, mechanism:'antipsychotic_QT_offset', note:"Ziprasidone QT risk generally needs several half-lives plus electrolyte/risk-factor reassessment." },
+  'lapatinib':      { days:7, mechanism:'CYP3A_hepatotoxicity_QT_offset', note:"Lapatinib CYP3A, hepatic, diarrhea, and QT context supports about a week of conservative offset for sensitive combinations." },
+  'gemfibrozil':    { days:4, mechanism:'CYP2C8_OATP_inhibition_offset', note:"Gemfibrozil interaction context can outlast parent half-life for CYP2C8/OATP-sensitive victims; use several days before assuming offset." },
+  'everolimus':     { days:7, mechanism:'CYP3A_Pgp_mTOR_offset', note:"Everolimus has CYP3A/P-gp interaction and immunosuppressive context; use about a week for practical exposure offset." },
+  'abciximab':      { days:2, mechanism:'platelet_bound_GPIIbIIIa_offset', note:"Abciximab platelet-bound effect can persist after plasma clearance; procedure/bleeding timing is protocol-driven." },
+  'alteplase':      { days:1, mechanism:'thrombolytic_bleeding_protocol_offset', note:"Alteplase plasma clearance is rapid, but acute bleeding/thrombolysis protocol precautions remain same-day critical." },
+  'tenecteplase':   { days:1, mechanism:'thrombolytic_bleeding_protocol_offset', note:"Tenecteplase offset is dominated by acute fibrinolytic protocol and bleeding monitoring rather than long plasma persistence." },
+  'alcohol_ethanol':{ days:1, mechanism:'acute_CNS_metabolic_offset', note:"Ethanol clearance is variable and nonlinear; same-day CNS depression, hypoglycemia, and withdrawal/context risk should be considered." },
+  'mdma_ecstasy':   { days:3, mechanism:'serotonergic_stimulant_hyperthermia_offset', note:"MDMA serotonergic/stimulant and hyponatremia/hyperthermia context can persist beyond acute intoxication." },
+  'mda':            { days:3, mechanism:'serotonergic_stimulant_offset', note:"MDA serotonergic/stimulant context supports a multi-day caution window after exposure." },
+});
+
 // computeWashoutCalendar(drugNames, stopDate) — returns washout schedule
 // stopDate: Date object (today by default)
 function computeWashoutCalendar(drugNames, stopDate = new Date()) {
   const graph = getInteractionGraph();
   const events = [];
   for (const drugName of drugNames) {
-    const drugId = toGraphId(drugName);
+    const drugId = typeof getDrugGraphId === "function" ? getDrugGraphId(drugName) : toGraphId(drugName);
     const nodeIds = [drugId].concat(WASHOUT_SOURCE_ALIASES[drugId] || []);
     const metabEdges = (graph.edges||[]).filter(e => e.from === drugId &&
       (e.type === EDGE_TYPE.METABOLIZED_TO));

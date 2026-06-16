@@ -30,7 +30,8 @@ function renderPKSimulation() {
 
 function getPKParams(name) {
   const key = toGraphId(name);
-  return PK_PARAMS[key] || PK_PARAMS[name.toLowerCase()];
+  const drug = typeof getDrug === "function" ? getDrug(name) : null;
+  return PK_PARAMS[key] || (drug?.id && PK_PARAMS[drug.id]) || PK_PARAMS[name.toLowerCase()];
 }
 
 function renderAbsolutePKCard(name) {
