@@ -5871,5 +5871,125 @@ for (const drug of DRUG_DB) {
   }
 }
 
+function top100GoldMergeRefs(row) {
+  if (!row || typeof row !== "object") return row;
+  row.evidenceRefs = [...new Set([...(row.evidenceRefs || []), ...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS])];
+  return row;
+}
+
+function top100GoldMetaboliteRow(drug) {
+  const primaryRoute = top100CoveragePrimaryRoute(drug);
+  const route = primaryRoute || { enzyme:"Various clearance", fraction:1 };
+  const routeLabel = String(route.enzyme || "clearance").replace(/[^A-Za-z0-9]+/g, " ").trim() || "clearance";
+  const role = drug?.prodrug ? "active_moiety_context" : /oncology|kinase|antiarrhythmic|anticoag|antiplatelet|nsaid|opioid|maoi|azole/i.test(`${drug?.name || ""} ${drug?.cls || ""}`)
+    ? "toxicity_or_exposure_context"
+    : "clearance_context";
+  return {
+    n:`${drug.name} top-100 gold ${routeLabel} context`,
+    e:route.enzyme || "Various clearance",
+    a:drug?.prodrug ? "activation_context" : "clearance_context",
+    role,
+    p:Math.max(5, Math.min(100, Math.round((route.fraction || 0.5) * 100))),
+    t:drug.hl || null,
+    note:`Phase 13 top-100 gold metabolite row for ${drug.name}: keeps active-moiety, PK, PGx, transporter, and washout review context live while named metabolite/source-specific curation remains pending.`,
+    evidenceRefs:[...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS],
+  };
+}
+
+function top100GoldEnsureMetaboliteActor(drug, metabolite) {
+  metaboliteExpansionEnsureActor(drug, metabolite);
+  const rawMetId = top100CoverageGraphId(metabolite.n);
+  const metId = METABOLITE_ACTOR_ALIASES[rawMetId] || rawMetId;
+  const actor = METABOLITE_ACTORS[metId];
+  if (!actor) return metId;
+  actor.evidenceRefs = [...new Set([...(actor.evidenceRefs || []), ...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS])];
+  actor.parentDrugs = [...new Set([...(actor.parentDrugs || []), actor.parentDrug, drug.name].filter(Boolean))];
+  actor.note = `${actor.note || ""} Top-100 gold enrichment confirms this metabolite actor is live pending named-metabolite review.`.trim();
+  return metId;
+}
+
+function top100GoldPgxFallbackGenes(drug) {
+  const byName = {
+    "Rifampin":["SLCO1B1","ABCB1"],
+    "Ayahuasca (DMT+MAOI)":["CYP2D6","HTR2A"],
+    "Fluconazole":["CYP2C9","CYP2C19"],
+    "Aspirin":["CYP2C9","UGT1A9"],
+    "Aspirin (Low-Dose)":["CYP2C9","UGT1A9"],
+    "Mycophenolate":["UGT1A9","UGT2B7"],
+    "Mycophenolic Acid":["UGT1A9","UGT2B7"],
+    "Sotalol":["SLC22A2","SLC47A1"],
+    "Magnesium Sulfate":["SLC22A2","SLC47A1"],
+    "Nystatin":["ABCB1"],
+  };
+  if (byName[drug?.name]) return byName[drug.name];
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  if (/azole|fluconazole|ketoconazole|itraconazole/i.test(text)) return ["CYP2C9","CYP2C19","CYP3A4"];
+  if (/anticoag|antiplatelet|nsaid|warfarin|aspirin|naproxen|ibuprofen|diclofenac|oxicam/i.test(text)) return ["CYP2C9","UGT2B7"];
+  if (/renal|unchanged|sotalol|magnesium/i.test(text)) return ["SLC22A2","SLC47A1"];
+  if (/immunosuppress|mycophenolate/i.test(text)) return ["UGT1A9","UGT2B7"];
+  if (/opioid|morphine|fentanyl|tramadol|tapentadol|sufentanil|alfentanil|kratom/i.test(text)) return ["CYP2D6","UGT2B7","OPRM1"];
+  if (/ssri|maoi|serotonin|psychedelic|mdma/i.test(text)) return ["CYP2D6","CYP2C19","SLC6A4","HTR2A"];
+  if (/antiarrhythmic|qtc|qt|dofetilide|dronedarone|amiodarone|flecainide|propafenone|quinidine|mexiletine|pimozide/i.test(text)) return ["CYP2D6","CYP2C19","KCNH2 long-QT variant"].filter(gene => GENOTYPE_EFFECTS?.[gene]);
+  return [];
+}
+
+function top100GoldPgxGenes(drug) {
+  const routeGenes = [];
+  for (const route of drug?.routes || []) routeGenes.push(...pgxExpansionGenesForRoute(route));
+  return [...new Set([...routeGenes, ...top100GoldPgxFallbackGenes(drug)])]
+    .filter(gene => GENOTYPE_EFFECTS?.[gene]);
+}
+
+function top100GoldPgxEffects(drug, gene) {
+  const prodrug = !!drug?.prodrug;
+  return {
+    [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:prodrug ? "decrease" : "increase", label:prodrug ? `${gene} poor function may reduce active-moiety formation context` : `${gene} poor function may increase exposure, transporter, receptor, or clearance context` },
+    [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:prodrug ? "decrease" : "increase", label:`intermediate ${gene} function may shift exposure, active-moiety, transport, or receptor context` },
+    [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+    ...(GENOTYPE_EFFECTS[gene]?.[GENOTYPE_PHENOTYPE.UM] ? {
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:prodrug ? "increase" : "decrease", label:`higher ${gene} activity may shift exposure in the opposite direction` },
+    } : {}),
+  };
+}
+
+if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
+  for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
+    const drug = getDrug(drugName);
+    if (!drug) continue;
+    const rows = METAB[drug.name] || (METAB[drug.name] = []);
+    let goldRow = rows.find(row => (row.evidenceRefs || []).includes("ev_top100_gold_enrichment_adapter"));
+    if (!goldRow) {
+      goldRow = top100GoldMetaboliteRow(drug);
+      rows.push(goldRow);
+    } else {
+      top100GoldMergeRefs(goldRow);
+    }
+    const metId = top100GoldEnsureMetaboliteActor(drug, goldRow);
+
+    const hasGoldPgx = (GENOTYPE_METABOLITE_EFFECTS || []).some(effect =>
+      effect.parent === drug.name && (effect.evidenceRefs || []).includes("ev_top100_gold_enrichment_adapter")
+    );
+    if (hasGoldPgx) continue;
+    const primaryMetabolite = goldRow || (METAB[drug.name] || [])[0];
+    for (const gene of top100GoldPgxGenes(drug)) {
+      const existing = (GENOTYPE_METABOLITE_EFFECTS || []).find(effect => effect.parent === drug.name && effect.enzyme === gene);
+      if (existing) {
+        top100GoldMergeRefs(existing);
+        break;
+      }
+      GENOTYPE_METABOLITE_EFFECTS.push({
+        parent:drug.name,
+        metaboliteId:metId,
+        metaboliteName:primaryMetabolite.n,
+        enzyme:gene,
+        note:`Phase 13 top-100 gold PGx context: ${gene} phenotype can shift ${drug.name} exposure, active-moiety, transporter, receptor, or clearance context. Pending review; not a dose recommendation.`,
+        evidenceRefs:[...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS],
+        effects:top100GoldPgxEffects(drug, gene),
+      });
+      break;
+    }
+  }
+}
+
 // ── Food/Xenobiotic Actors ──
 // Non-drug compounds that interact with the metabolic graph

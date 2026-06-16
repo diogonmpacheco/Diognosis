@@ -9357,6 +9357,20 @@ const STUDY_DB = {
     limitations:["These rows are live enrichment signals, not final clinical recommendations. Drug-specific labels, CPIC/DPWG guidance, TDM, ECG/electrolyte monitoring, renal/hepatic assessment, indication, dosing, procedure context, oncology/transplant protocols, and pharmacist/physician review remain decisive."],
     verified:false, reviewRequired:true, verifyNote:"Phase 8 top-250 expansion is live pending professional review; rows are review-priority signals derived from existing route/class data."
   },
+  "ev_top100_gold_enrichment_adapter": {
+    id:"ev_top100_gold_enrichment_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Phase 13 top-100 gold enrichment — complete live surfaces across interaction, metabolite, PK, PGx, transporter, washout, and burden rows",
+    year:2026, source:"Internal Diognosis top-100 enrichment adapter using existing curated routes, classes, live labels, genotype genes, transporter actors, and risk-burden tables",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"top100_gold_live_surface_enrichment", n:null,
+    phenotypes:["DDI","active_moiety","PK","washout","PGx_context","transporter_context","phenotype_burden","receptor_burden","older_adult_burden"],
+    quantifiedEffects:{note:"Shared evidence anchor for strengthening the top-100 cohort so each drug has gold-tagged live rows across DDI, metabolite/actor, PK, washout, PGx context, transporter, burden, and receptor score surfaces. Rows are pending source-specific professional review."},
+    temporal:{mechanism:"top100_complete_live_surface_context", onset:"baseline/same_day", offset:"hours-months"},
+    supports:["phase13_top100_gold_ddi","phase13_top100_gold_metabolite_actor","phase13_top100_gold_pk_washout","phase13_top100_gold_pgx_transporter","phase13_top100_gold_burden_receptor"],
+    contradicts:[],
+    limitations:["Gold rows are coverage/depth enrichments, not final clinical recommendations. Replace adapter rows with drug-specific labels, CPIC/DPWG guidance, TDM, ECG/electrolyte monitoring, organ-function assessment, and pharmacist/physician-reviewed entries over time."],
+    verified:false, reviewRequired:true, verifyNote:"Phase 13 top-100 gold enrichment is live pending professional review; rows are audit-enforced review-priority signals."
+  },
   "ev_ddi_expansion_pack_adapter": {
     id:"ev_ddi_expansion_pack_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
     title:"Phase 9 DDI expansion pack — explicit pending-review route and class pairs",

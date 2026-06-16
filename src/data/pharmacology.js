@@ -1348,6 +1348,76 @@ if (typeof PHASE12_DRUG_EXPANSION_NAMES !== "undefined") {
   }
 }
 
+function top100GoldScoringRow(table, drug) {
+  const name = String(drug?.name || "").toLowerCase();
+  const keys = [
+    drug?.id,
+    name,
+    name.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
+    name.replace(/\s+/g, "_").replace(/-/g, ""),
+    name.replace(/\s/g, ""),
+  ].filter(Boolean);
+  const key = keys.find(candidate => Object.prototype.hasOwnProperty.call(table || {}, candidate));
+  return key ? { key, row:table[key] } : null;
+}
+
+function top100GoldMergeEvidenceRefs(row) {
+  if (!row || typeof row !== "object") return row;
+  row.evidenceRefs = [...new Set([...(row.evidenceRefs || []), ...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS])];
+  return row;
+}
+
+if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
+  for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
+    const drug = getDrug(drugName);
+    if (!drug) continue;
+    const key = top100CoveragePharmKey(drug);
+
+    const existingPk = top100GoldScoringRow(PK_PARAMS, drug);
+    if (existingPk) {
+      top100GoldMergeEvidenceRefs(existingPk.row);
+      existingPk.row.note = `${existingPk.row.note || ""} Top-100 gold enrichment confirms this profile is live in PK simulation pending source-specific review.`.trim();
+    } else {
+      const pk = top100CoveragePkParams(drug);
+      pk.note = `Phase 13 top-100 gold PK approximation for ${drug.name}; source-specific PK curation pending.`;
+      pk.evidenceRefs = [...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS];
+      PK_PARAMS[key] = pk;
+    }
+
+    const existingWashout = top100GoldScoringRow(WASHOUT_DAYS, drug);
+    if (existingWashout) {
+      top100GoldMergeEvidenceRefs(existingWashout.row);
+    } else {
+      const days = top100CoverageWashoutDays(drug);
+      WASHOUT_DAYS[key] = {
+        days,
+        mechanism:"top100_gold_timing_context",
+        note:`Phase 13 top-100 gold timing row for ${drug.name}: conservative ${days}-day half-life/class context pending source-specific review.`,
+        evidenceRefs:[...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS],
+      };
+    }
+
+    const existingPhenotype = top100GoldScoringRow(PHENOTYPE_SCORES, drug);
+    if (existingPhenotype) {
+      top100GoldMergeEvidenceRefs(existingPhenotype.row);
+    } else {
+      PHENOTYPE_SCORES[key] = top100GoldMergeEvidenceRefs(top100CoverageBurdenScore(drug));
+    }
+
+    if (!top100CoverageHasScoring(BEERS_FLAGS, drug) &&
+      /maoi|antipsychotic|phenothiazine|opioid|benzodiazepine|barbiturate|anticonvulsant|antiarrhythmic|nsaid|alpha|sedative|hypnotic|anticholinergic|stimulant/i.test(`${drug.name} ${drug.cls}`)) {
+      BEERS_FLAGS[key] = {
+        concern:`Phase 13 top-100 gold older-adult burden context for ${drug.name}: class-linked CNS, fall, QT, bleeding, renal, anticholinergic, or orthostasis risk may matter in age >=65.`,
+        avoid:"top100_gold_65plus_caution_pending_review",
+        evidenceRefs:[...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS],
+      };
+    } else {
+      const existingBeers = top100GoldScoringRow(BEERS_FLAGS, drug);
+      if (existingBeers) top100GoldMergeEvidenceRefs(existingBeers.row);
+    }
+  }
+}
+
 function getScoringLookupKeys(drugOrName) {
   const drug = typeof drugOrName === "object" && drugOrName !== null
     ? drugOrName

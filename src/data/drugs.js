@@ -5033,6 +5033,7 @@ const TOP100_LIVE_COVERAGE_DRUGS = Object.freeze([
 ]);
 
 const TOP100_LIVE_COVERAGE_EVIDENCE_REFS = Object.freeze(["ev_top100_live_coverage_adapter"]);
+const TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS = Object.freeze(["ev_top100_gold_enrichment_adapter"]);
 const TOP100_LIVE_COVERAGE_SET = new Set(TOP100_LIVE_COVERAGE_DRUGS);
 
 function isTop100LiveCoverageDrug(name) {

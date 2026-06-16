@@ -181,6 +181,48 @@ Object.assign(RECEPTOR_SCORES, {
   eszopiclone:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:2, muOp:0, D2:0, MAO:0, DAT:0 },
 });
 
+function top100GoldReceptorKey(value) {
+  return String(value || "").toLowerCase().replace(/\s+/g, "_").replace(/-/g, "");
+}
+
+function top100GoldReceptorHasProfile(drug) {
+  const name = String(drug?.name || "");
+  const keys = [
+    drug?.id,
+    top100GoldReceptorKey(name),
+    name.toLowerCase(),
+    name.toLowerCase().replace(/\s/g, ""),
+  ].filter(Boolean);
+  return keys.some(key => Object.prototype.hasOwnProperty.call(RECEPTOR_SCORES, key));
+}
+
+function top100GoldReceptorScoreFor(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  const score = { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 };
+  if (/ssri|snri|serotonin|tramadol|tapentadol|mdma|ayahuasca|psychedelic/i.test(text)) score.SERT = /ssri|snri|mdma|ayahuasca/i.test(text) ? 2 : 1;
+  if (/snri|stimulant|amphetamine|mdma|bupropion|tapentadol|tramadol/i.test(text)) score.NET = /stimulant|amphetamine|mdma/i.test(text) ? 2 : 1;
+  if (/stimulant|amphetamine|mdma|cocaine/i.test(text)) score.DAT = 2;
+  if (/maoi|phenelzine|tranylcypromine|ayahuasca/i.test(text)) score.MAO = 3;
+  if (/opioid|fentanyl|sufentanil|alfentanil|heroin|tramadol|tapentadol|kratom|naloxegol|naldemedine/i.test(text)) score.muOp = /naloxegol|naldemedine/i.test(text) ? 1 : 3;
+  if (/benzodiazepine|midazolam|barbiturate|phenobarbital|anesthesia|sufentanil|alfentanil/i.test(text)) score.GABA = /benzodiazepine|midazolam|barbiturate|phenobarbital/i.test(text) ? 2 : 1;
+  if (/antipsychotic|phenothiazine|pimozide|prochlorperazine/i.test(text)) score.D2 = 3;
+  if (/antihistamine|phenothiazine|prochlorperazine|dronedarone|ketoconazole|itraconazole/i.test(text)) score.H1 = /phenothiazine|prochlorperazine/i.test(text) ? 2 : 1;
+  if (/anticholinergic|phenothiazine|prochlorperazine|disopyramide/i.test(text)) score.M1 = /disopyramide|phenothiazine/i.test(text) ? 2 : 1;
+  if (/alpha|phenothiazine|antipsychotic|tricyclic|dronedarone|quinidine|disopyramide/i.test(text)) score.alpha1 = /phenothiazine|antipsychotic/i.test(text) ? 2 : 1;
+  if (/qt|qtc|antiarrhythmic|dofetilide|dronedarone|amiodarone|flecainide|propafenone|quinidine|disopyramide|procainamide|sotalol|pimozide|macrolide|azole|fluoroquinolone|kinase|ribociclib|nilotinib|delamanid|osimertinib|crizotinib|tepotinib|capmatinib|dasatinib|bortezomib/i.test(text)) {
+    score.hERG = /dofetilide|sotalol|pimozide|quinidine|disopyramide|procainamide|ribociclib|nilotinib|delamanid/i.test(text) ? 3 : 2;
+  }
+  return score;
+}
+
+if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
+  for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
+    const drug = typeof getDrug === "function" ? getDrug(drugName) : null;
+    if (!drug || top100GoldReceptorHasProfile(drug)) continue;
+    RECEPTOR_SCORES[top100GoldReceptorKey(drug.name)] = top100GoldReceptorScoreFor(drug);
+  }
+}
+
 // Syndrome thresholds and clinical inference rules
 // These are deliberate clinical thresholds, not arbitrary numbers.
 const SYNDROME_RULES = [

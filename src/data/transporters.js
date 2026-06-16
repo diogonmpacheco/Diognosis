@@ -374,6 +374,57 @@ if (typeof PHASE12_DRUG_EXPANSION_NAMES !== "undefined") {
   }
 }
 
+function top100GoldHasTransporterRow(drug) {
+  return TRANSPORTER_DDI.some(row =>
+    (row.substrate === drug.name || row.inhibitor === drug.name) &&
+    (row.evidenceRefs || []).includes("ev_top100_gold_enrichment_adapter")
+  );
+}
+
+function top100GoldMergeTransporterRow(drug, row, transporter) {
+  const existing = TRANSPORTER_DDI.find(item =>
+    item.substrate === drug.name &&
+    item.inhibitor === row.inhibitor &&
+    item.transporter === transporter
+  );
+  if (!existing) return false;
+  existing.evidenceRefs = [...new Set([...(existing.evidenceRefs || []), ...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS])];
+  return true;
+}
+
+if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
+  for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
+    const drug = getDrug(drugName);
+    if (!drug || top100GoldHasTransporterRow(drug)) continue;
+    let added = false;
+    for (const transporter of phase12DrugCountTransporterIds(drug)) {
+      const actor = TRANSPORTER_ACTORS[transporter];
+      if (actor && !actor.substrates.includes(drug.name)) actor.substrates.push(drug.name);
+      for (const row of transporterExpansionPerpetrators(transporter)) {
+        if (row.inhibitor === drug.name) continue;
+        if (row.inhibitor !== "NSAIDs" && typeof getDrug === "function" && !getDrug(row.inhibitor)) continue;
+        if (top100GoldMergeTransporterRow(drug, row, transporter)) {
+          added = true;
+          break;
+        }
+        TRANSPORTER_DDI.push({
+          substrate:drug.name,
+          inhibitor:row.inhibitor,
+          transporter,
+          effect:row.effect,
+          severity:row.severity,
+          mechanism:`Phase 13 top-100 gold enrichment: ${drug.name} has ${transporter} transport context so the top-100 cohort has complete live transporter coverage. Pending source-specific professional review.`,
+          evidence:{confidence:"low", sources:["top-100 gold enrichment adapter"], foldChange:row.foldChange, studyType:"pending_review_gold_transporter_adapter"},
+          evidenceRefs:[...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS],
+        });
+        added = true;
+        break;
+      }
+      if (added) break;
+    }
+  }
+}
+
 // ═══════════════════════════════════════════════════════════════════
 //  INTERACTION GRAPH — Builder + Traversal Engine
 // ═══════════════════════════════════════════════════════════════════

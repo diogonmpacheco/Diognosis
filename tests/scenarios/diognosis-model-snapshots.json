@@ -313,7 +313,7 @@
           "enzyme": "CYP3A4"
         }
       ],
-      "findingCount": 15,
+      "findingCount": 16,
       "findingTypes": [
         "active_moiety",
         "combination_burden",
@@ -324,7 +324,7 @@
       "findingCardCount": 6,
       "evidenceLadderCount": 6,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 15,
+      "whyPathCount": 16,
       "mechanismWhyPathCount": 6,
       "rawWarningPathCount": 12,
       "evidenceLedgerPresent": true,
@@ -339,6 +339,7 @@
       "activeMoietyActors": [
         "Codeine-6-glucuronide",
         "Fluoxetine glucuronide",
+        "Fluoxetine top-100 gold CYP2D6 context",
         "Morphine",
         "Morphine-3-glucuronide",
         "Morphine-6-glucuronide",
@@ -372,6 +373,7 @@
         "Codeine-6-glucuronide",
         "Fluoxetine",
         "Fluoxetine glucuronide",
+        "Fluoxetine top-100 gold CYP2D6 context",
         "Morphine",
         "Morphine-3-glucuronide",
         "Morphine-6-glucuronide",
@@ -431,7 +433,7 @@
           "enzyme": "pathway competition"
         }
       ],
-      "findingCount": 10,
+      "findingCount": 11,
       "findingTypes": [
         "active_moiety",
         "combination_burden",
@@ -441,9 +443,9 @@
       "findingCardCount": 3,
       "evidenceLadderCount": 3,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 10,
+      "whyPathCount": 11,
       "mechanismWhyPathCount": 3,
-      "rawWarningPathCount": 10,
+      "rawWarningPathCount": 11,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
@@ -459,7 +461,8 @@
         "5-O-Desmethylomeprazole",
         "Active thiol metabolite",
         "Clopidogrel carboxylic acid (SR26334)",
-        "Omeprazole sulfone"
+        "Omeprazole sulfone",
+        "Omeprazole top-100 gold CYP2C19 context"
       ],
       "phenoconversionGenes": [
         "CYP1A2",
@@ -487,7 +490,8 @@
         "Clopidogrel",
         "Clopidogrel carboxylic acid (SR26334)",
         "Omeprazole",
-        "Omeprazole sulfone"
+        "Omeprazole sulfone",
+        "Omeprazole top-100 gold CYP2C19 context"
       ],
       "sections": {
         "findings": true,
@@ -894,7 +898,7 @@
           "enzyme": "toxic overlap"
         }
       ],
-      "findingCount": 10,
+      "findingCount": 12,
       "findingTypes": [
         "active_moiety",
         "combination_burden",
@@ -905,9 +909,9 @@
       "findingCardCount": 3,
       "evidenceLadderCount": 3,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 10,
+      "whyPathCount": 12,
       "mechanismWhyPathCount": 3,
-      "rawWarningPathCount": 10,
+      "rawWarningPathCount": 12,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
@@ -921,8 +925,10 @@
         "3',5'-Dihydrodiol-SVA",
         "6'-Hydroxy-SVA",
         "Clarithromycin glucuronide",
+        "Clarithromycin top-100 gold CYP3A4 context",
         "N-Desmethylclarithromycin",
         "Simvastatin acid (SVA)",
+        "Simvastatin top-100 gold CYP3A4 context",
         "simvastatin-acid-slco1b1-exposure"
       ],
       "phenoconversionGenes": [
@@ -946,9 +952,11 @@
         "6'-Hydroxy-SVA",
         "Clarithromycin",
         "Clarithromycin glucuronide",
+        "Clarithromycin top-100 gold CYP3A4 context",
         "N-Desmethylclarithromycin",
         "Simvastatin",
-        "Simvastatin acid (SVA)"
+        "Simvastatin acid (SVA)",
+        "Simvastatin top-100 gold CYP3A4 context"
       ],
       "sections": {
         "findings": true,
@@ -1022,7 +1030,7 @@
           "enzyme": "Seizure"
         }
       ],
-      "findingCount": 19,
+      "findingCount": 21,
       "findingTypes": [
         "active_moiety",
         "pairwise_interaction",
@@ -1033,7 +1041,7 @@
       "findingCardCount": 6,
       "evidenceLadderCount": 6,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 19,
+      "whyPathCount": 21,
       "mechanismWhyPathCount": 6,
       "rawWarningPathCount": 12,
       "evidenceLedgerPresent": true,
@@ -1045,11 +1053,13 @@
       ],
       "activeMoietyActors": [
         "Fluoxetine glucuronide",
+        "Fluoxetine top-100 gold CYP2D6 context",
         "M1 catechol metabolite",
         "M2 methylenedioxy ring-opened",
         "Norfluoxetine",
         "Paroxetine glucuronide",
         "Paroxetine sulfate",
+        "Paroxetine top-100 gold CYP2D6 context",
         "p-Trifluoromethylphenol",
         "slc6a4-fluoxetine-response"
       ],
@@ -1075,12 +1085,14 @@
       "persistenceActors": [
         "Fluoxetine",
         "Fluoxetine glucuronide",
+        "Fluoxetine top-100 gold CYP2D6 context",
         "M1 catechol metabolite",
         "M2 methylenedioxy ring-opened",
         "Norfluoxetine",
         "Paroxetine",
         "Paroxetine glucuronide",
         "Paroxetine sulfate",
+        "Paroxetine top-100 gold CYP2D6 context",
         "p-Trifluoromethylphenol"
       ],
       "sections": {

@@ -44,6 +44,7 @@ globalThis.__DIOGNOSIS_DATA__ = {
   ACB_SCORES: typeof ACB_SCORES !== "undefined" ? ACB_SCORES : {},
   BEERS_FLAGS: typeof BEERS_FLAGS !== "undefined" ? BEERS_FLAGS : {},
   PHENOTYPE_SCORES: typeof PHENOTYPE_SCORES !== "undefined" ? PHENOTYPE_SCORES : {},
+  RECEPTOR_SCORES: typeof RECEPTOR_SCORES !== "undefined" ? RECEPTOR_SCORES : {},
   STUDY_DB: typeof STUDY_DB !== "undefined" ? STUDY_DB : {},
   TRANSPORTER_DDI: typeof TRANSPORTER_DDI !== "undefined" ? TRANSPORTER_DDI : [],
   TRANSPORTER_ACTORS: typeof TRANSPORTER_ACTORS !== "undefined" ? TRANSPORTER_ACTORS : {},

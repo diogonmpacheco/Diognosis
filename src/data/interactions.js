@@ -2283,4 +2283,70 @@ if (typeof PHASE12_DRUG_EXPANSION_NAMES !== "undefined") {
     }
   }
 }
+
+function top100GoldHasDdi(drugName) {
+  return KNOWN_DDI.some(row =>
+    (row.drug1 === drugName || row.drug2 === drugName) &&
+    (row.evidenceRefs || []).includes("ev_top100_gold_enrichment_adapter")
+  );
+}
+
+function top100GoldDdiCandidates(drug) {
+  return [
+    {
+      drug2:"Cimetidine",
+      severity:"moderate",
+      category:"top100_gold_general_pk_context",
+      mechanism:`${drug.name} is in the top-100 gold cohort; broad CYP/renal transporter inhibition can shift exposure for susceptible substrates while source-specific pair curation is pending.`,
+      effect:"Flag for medication reconciliation, organ-function context, and source-specific DDI replacement during review.",
+    },
+    {
+      drug2:"Ibuprofen",
+      severity:"moderate",
+      category:"top100_gold_renal_hemostasis_context",
+      mechanism:`${drug.name} is in the top-100 gold cohort; NSAID overlap can add renal, bleeding, blood-pressure, or exposure context depending on class.`,
+      effect:"Flag for renal function, bleeding, blood pressure, and safer analgesic review where relevant.",
+    },
+    ...ddiExpansionPackRows(drug),
+    ...phase12DrugCountDdiRows(drug),
+  ];
+}
+
+function top100GoldMergeExistingDdi(drug, row) {
+  const key = top100CoverageDdiKey(drug.name, row.drug2);
+  const existing = KNOWN_DDI.find(item => top100CoverageDdiKey(item.drug1, item.drug2) === key);
+  if (!existing) return false;
+  existing.evidenceRefs = [...new Set([...(existing.evidenceRefs || []), ...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS])];
+  return true;
+}
+
+function top100GoldAddKnownDdi(drug, row) {
+  if (!drug || !row?.drug2 || row.drug2 === drug.name) return false;
+  if (typeof getDrug === "function" && !getDrug(row.drug2)) return false;
+  const key = top100CoverageDdiKey(drug.name, row.drug2);
+  if (TOP100_COVERAGE_KNOWN_DDI_KEYS.has(key)) return top100GoldMergeExistingDdi(drug, row);
+  TOP100_COVERAGE_KNOWN_DDI_KEYS.add(key);
+  KNOWN_DDI.push({
+    drug1:drug.name,
+    drug2:row.drug2,
+    severity:row.severity || "moderate",
+    category:row.category || "top100_gold_live_context",
+    mechanism:`Phase 13 top-100 gold enrichment: ${row.mechanism}`,
+    effect:row.effect,
+    evidence:{confidence:"low", sources:["top-100 gold enrichment adapter"], studyType:"pending_review_gold_pair_adapter"},
+    evidenceRefs:[...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS],
+  });
+  return true;
+}
+
+if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
+  for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
+    const drug = getDrug(drugName);
+    if (!drug || (top100GoldHasDdi(drug.name) && top100CoverageKnownDdiCount(drug.name) >= 3)) continue;
+    for (const row of top100GoldDdiCandidates(drug)) {
+      if (!top100GoldAddKnownDdi(drug, row)) continue;
+      if (top100GoldHasDdi(drug.name) && top100CoverageKnownDdiCount(drug.name) >= 3) break;
+    }
+  }
+}
 // ── COMBINATION calcFold — considers parent + metabolite inhibitions ──
