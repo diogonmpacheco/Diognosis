@@ -3,7 +3,7 @@
   "store": "beers_geriatrics",
   "layer": "safety_phenotype",
   "title": "Geriatric safety flags",
-  "generatedAt": "2026-06-15T14:34:04.479Z",
+  "generatedAt": "2026-06-15T23:57:50.396Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",
@@ -25,7 +25,7 @@
   "totalCandidates": 43,
   "candidates": [
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_alprazolam_geriatric_safety_flag_54b60e20b1",
+      "candidateId": "candidate_relation_beers_geriatrics_local_alprazolam_geriatric_safety_flag_069c65fc88",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -38,7 +38,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "alprazolam"
+        "Alprazolam"
       ],
       "genes": [],
       "metabolites": [],
@@ -54,7 +54,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "alprazolam"
+        "Alprazolam"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_amiodarone_geriatric_safety_flag_5dcbdf7924",
+      "candidateId": "candidate_relation_beers_geriatrics_local_amiodarone_geriatric_safety_flag_48430ba924",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -95,7 +95,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "amiodarone"
+        "Amiodarone"
       ],
       "genes": [],
       "metabolites": [],
@@ -111,7 +111,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "amiodarone"
+        "Amiodarone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_amitriptyline_geriatric_safety_flag_b1737dd12e",
+      "candidateId": "candidate_relation_beers_geriatrics_local_amitriptyline_geriatric_safety_flag_44d170b40e",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -152,7 +152,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "amitriptyline"
+        "Amitriptyline"
       ],
       "genes": [],
       "metabolites": [],
@@ -168,7 +168,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "amitriptyline"
+        "Amitriptyline"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_benztropine_geriatric_safety_flag_1ee5a67701",
+      "candidateId": "candidate_relation_beers_geriatrics_local_benztropine_geriatric_safety_flag_0e9bb89184",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -209,7 +209,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "benztropine"
+        "Benztropine"
       ],
       "genes": [],
       "metabolites": [],
@@ -225,7 +225,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "benztropine"
+        "Benztropine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_chlorpromazine_geriatric_safety_flag_1609eeab14",
+      "candidateId": "candidate_relation_beers_geriatrics_local_chlorpromazine_geriatric_safety_flag_4fb24c0e1e",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -266,7 +266,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "chlorpromazine"
+        "Chlorpromazine"
       ],
       "genes": [],
       "metabolites": [],
@@ -282,7 +282,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "chlorpromazine"
+        "Chlorpromazine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -310,7 +310,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_chlorzoxazone_geriatric_safety_flag_82ff59a9c0",
+      "candidateId": "candidate_relation_beers_geriatrics_local_chlorzoxazone_geriatric_safety_flag_f560c48ecd",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -323,7 +323,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "chlorzoxazone"
+        "Chlorzoxazone"
       ],
       "genes": [],
       "metabolites": [],
@@ -339,7 +339,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "chlorzoxazone"
+        "Chlorzoxazone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -367,7 +367,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_clonidine_geriatric_safety_flag_2cd1a01a35",
+      "candidateId": "candidate_relation_beers_geriatrics_local_clonidine_geriatric_safety_flag_ee93d8f1ae",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -380,7 +380,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "clonidine"
+        "Clonidine"
       ],
       "genes": [],
       "metabolites": [],
@@ -396,7 +396,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "clonidine"
+        "Clonidine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -424,7 +424,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_clorazepate_geriatric_safety_flag_0d9e23a6ad",
+      "candidateId": "candidate_relation_beers_geriatrics_local_clorazepate_geriatric_safety_flag_4f335cb9b3",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -437,7 +437,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "clorazepate"
+        "Clorazepate"
       ],
       "genes": [],
       "metabolites": [],
@@ -453,7 +453,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "clorazepate"
+        "Clorazepate"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -481,7 +481,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_desipramine_geriatric_safety_flag_96da4d74fb",
+      "candidateId": "candidate_relation_beers_geriatrics_local_desipramine_geriatric_safety_flag_5e8c27cced",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -494,7 +494,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "desipramine"
+        "Desipramine"
       ],
       "genes": [],
       "metabolites": [],
@@ -510,7 +510,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "desipramine"
+        "Desipramine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -538,7 +538,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_desmopressin_geriatric_safety_flag_30d9557951",
+      "candidateId": "candidate_relation_beers_geriatrics_local_desmopressin_geriatric_safety_flag_707c770870",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -551,7 +551,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "desmopressin"
+        "Desmopressin"
       ],
       "genes": [],
       "metabolites": [],
@@ -567,7 +567,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "desmopressin"
+        "Desmopressin"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -595,7 +595,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_diazepam_geriatric_safety_flag_12ecfb96b6",
+      "candidateId": "candidate_relation_beers_geriatrics_local_diazepam_geriatric_safety_flag_5da2f5cd0f",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -608,7 +608,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "diazepam"
+        "Diazepam"
       ],
       "genes": [],
       "metabolites": [],
@@ -624,7 +624,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "diazepam"
+        "Diazepam"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -652,7 +652,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_diphenhydramine_geriatric_safety_flag_7f0d19a88b",
+      "candidateId": "candidate_relation_beers_geriatrics_local_diphenhydramine_geriatric_safety_flag_3aea95ab97",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -665,7 +665,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "diphenhydramine"
+        "Diphenhydramine"
       ],
       "genes": [],
       "metabolites": [],
@@ -681,7 +681,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "diphenhydramine"
+        "Diphenhydramine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -709,7 +709,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_dipyridamole_geriatric_safety_flag_8ffcb8c2ce",
+      "candidateId": "candidate_relation_beers_geriatrics_local_dipyridamole_geriatric_safety_flag_ce3a983464",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -722,7 +722,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "dipyridamole"
+        "Dipyridamole"
       ],
       "genes": [],
       "metabolites": [],
@@ -738,7 +738,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "dipyridamole"
+        "Dipyridamole"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -766,7 +766,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_disopyramide_geriatric_safety_flag_edf835e6cf",
+      "candidateId": "candidate_relation_beers_geriatrics_local_disopyramide_geriatric_safety_flag_319086ed02",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -779,7 +779,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "disopyramide"
+        "Disopyramide"
       ],
       "genes": [],
       "metabolites": [],
@@ -795,7 +795,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "disopyramide"
+        "Disopyramide"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -823,7 +823,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_dofetilide_geriatric_safety_flag_3a652fe155",
+      "candidateId": "candidate_relation_beers_geriatrics_local_dofetilide_geriatric_safety_flag_05cb3e3569",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -836,7 +836,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "dofetilide"
+        "Dofetilide"
       ],
       "genes": [],
       "metabolites": [],
@@ -852,7 +852,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "dofetilide"
+        "Dofetilide"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -880,7 +880,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_dronedarone_geriatric_safety_flag_f13c281498",
+      "candidateId": "candidate_relation_beers_geriatrics_local_dronedarone_geriatric_safety_flag_04f39266e8",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -893,7 +893,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "dronedarone"
+        "Dronedarone"
       ],
       "genes": [],
       "metabolites": [],
@@ -909,7 +909,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "dronedarone"
+        "Dronedarone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -937,7 +937,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_eszopiclone_geriatric_safety_flag_577e8e8bd3",
+      "candidateId": "candidate_relation_beers_geriatrics_local_eszopiclone_geriatric_safety_flag_4648a83eb0",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -950,7 +950,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "eszopiclone"
+        "Eszopiclone"
       ],
       "genes": [],
       "metabolites": [],
@@ -966,7 +966,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "eszopiclone"
+        "Eszopiclone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -994,7 +994,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_fluphenazine_geriatric_safety_flag_9aff46df70",
+      "candidateId": "candidate_relation_beers_geriatrics_local_fluphenazine_geriatric_safety_flag_46d87983fa",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -1007,7 +1007,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "fluphenazine"
+        "Fluphenazine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1023,7 +1023,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "fluphenazine"
+        "Fluphenazine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1051,7 +1051,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_flurazepam_geriatric_safety_flag_e11b659058",
+      "candidateId": "candidate_relation_beers_geriatrics_local_flurazepam_geriatric_safety_flag_c1e8cd86f4",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -1064,7 +1064,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "flurazepam"
+        "Flurazepam"
       ],
       "genes": [],
       "metabolites": [],
@@ -1080,7 +1080,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "flurazepam"
+        "Flurazepam"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1108,7 +1108,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_hydroxyzine_geriatric_safety_flag_7a27ed2c4e",
+      "candidateId": "candidate_relation_beers_geriatrics_local_hydroxyzine_geriatric_safety_flag_948a2bf675",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -1121,7 +1121,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "hydroxyzine"
+        "Hydroxyzine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1137,7 +1137,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "hydroxyzine"
+        "Hydroxyzine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1165,7 +1165,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_iloperidone_geriatric_safety_flag_47754e9bbd",
+      "candidateId": "candidate_relation_beers_geriatrics_local_iloperidone_geriatric_safety_flag_75571d0b74",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -1178,7 +1178,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "iloperidone"
+        "Iloperidone"
       ],
       "genes": [],
       "metabolites": [],
@@ -1194,7 +1194,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "iloperidone"
+        "Iloperidone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1222,7 +1222,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_imipramine_geriatric_safety_flag_e33539add3",
+      "candidateId": "candidate_relation_beers_geriatrics_local_imipramine_geriatric_safety_flag_6d93904349",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -1235,7 +1235,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "imipramine"
+        "Imipramine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1251,7 +1251,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "imipramine"
+        "Imipramine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1279,7 +1279,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_indomethacin_geriatric_safety_flag_1e34719754",
+      "candidateId": "candidate_relation_beers_geriatrics_local_indomethacin_geriatric_safety_flag_4309bf45a5",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -1292,7 +1292,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "indomethacin"
+        "Indomethacin"
       ],
       "genes": [],
       "metabolites": [],
@@ -1308,7 +1308,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "indomethacin"
+        "Indomethacin"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1336,7 +1336,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_lorazepam_geriatric_safety_flag_8004b9c48d",
+      "candidateId": "candidate_relation_beers_geriatrics_local_lorazepam_geriatric_safety_flag_45979eebc1",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -1349,7 +1349,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "lorazepam"
+        "Lorazepam"
       ],
       "genes": [],
       "metabolites": [],
@@ -1365,7 +1365,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "lorazepam"
+        "Lorazepam"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1393,7 +1393,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_maprotiline_geriatric_safety_flag_d1d1586fc3",
+      "candidateId": "candidate_relation_beers_geriatrics_local_maprotiline_geriatric_safety_flag_b79fa59587",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -1406,7 +1406,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "maprotiline"
+        "Maprotiline"
       ],
       "genes": [],
       "metabolites": [],
@@ -1422,7 +1422,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "maprotiline"
+        "Maprotiline"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1507,7 +1507,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_methadone_geriatric_safety_flag_d18038c807",
+      "candidateId": "candidate_relation_beers_geriatrics_local_methadone_geriatric_safety_flag_a6e8bd1914",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -1520,7 +1520,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "methadone"
+        "Methadone"
       ],
       "genes": [],
       "metabolites": [],
@@ -1536,7 +1536,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "methadone"
+        "Methadone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1564,7 +1564,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_methyldopa_geriatric_safety_flag_3fbe6dcb17",
+      "candidateId": "candidate_relation_beers_geriatrics_local_methyldopa_geriatric_safety_flag_75cfea5417",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -1577,7 +1577,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "methyldopa"
+        "Methyldopa"
       ],
       "genes": [],
       "metabolites": [],
@@ -1593,7 +1593,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "methyldopa"
+        "Methyldopa"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1621,7 +1621,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_nifedipine_geriatric_safety_flag_d8bcd53343",
+      "candidateId": "candidate_relation_beers_geriatrics_local_nifedipine_geriatric_safety_flag_6fbb7207ba",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -1634,7 +1634,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "nifedipine"
+        "Nifedipine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1650,7 +1650,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "nifedipine"
+        "Nifedipine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1678,7 +1678,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_olanzapine_geriatric_safety_flag_c154fd60b0",
+      "candidateId": "candidate_relation_beers_geriatrics_local_olanzapine_geriatric_safety_flag_b6cb7e42de",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -1691,7 +1691,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "olanzapine"
+        "Olanzapine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1707,7 +1707,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "olanzapine"
+        "Olanzapine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1735,7 +1735,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_oxazepam_geriatric_safety_flag_2f5d4bbd22",
+      "candidateId": "candidate_relation_beers_geriatrics_local_oxazepam_geriatric_safety_flag_68bd37816c",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -1748,7 +1748,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "oxazepam"
+        "Oxazepam"
       ],
       "genes": [],
       "metabolites": [],
@@ -1764,7 +1764,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "oxazepam"
+        "Oxazepam"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1849,7 +1849,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_perphenazine_geriatric_safety_flag_089668f761",
+      "candidateId": "candidate_relation_beers_geriatrics_local_perphenazine_geriatric_safety_flag_d58cc8550c",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -1862,7 +1862,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "perphenazine"
+        "Perphenazine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1878,7 +1878,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "perphenazine"
+        "Perphenazine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1906,7 +1906,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_pimozide_geriatric_safety_flag_6ee6cbabeb",
+      "candidateId": "candidate_relation_beers_geriatrics_local_pimozide_geriatric_safety_flag_5c45be260c",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -1919,7 +1919,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "pimozide"
+        "Pimozide"
       ],
       "genes": [],
       "metabolites": [],
@@ -1935,7 +1935,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "pimozide"
+        "Pimozide"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1963,7 +1963,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_procainamide_geriatric_safety_flag_272396c697",
+      "candidateId": "candidate_relation_beers_geriatrics_local_procainamide_geriatric_safety_flag_82089caaff",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -1976,7 +1976,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "procainamide"
+        "Procainamide"
       ],
       "genes": [],
       "metabolites": [],
@@ -1992,7 +1992,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "procainamide"
+        "Procainamide"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2020,7 +2020,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_quazepam_geriatric_safety_flag_0905be6704",
+      "candidateId": "candidate_relation_beers_geriatrics_local_quazepam_geriatric_safety_flag_e5fd608f25",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -2033,7 +2033,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "quazepam"
+        "Quazepam"
       ],
       "genes": [],
       "metabolites": [],
@@ -2049,7 +2049,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "quazepam"
+        "Quazepam"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2077,7 +2077,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_quetiapine_geriatric_safety_flag_5d84c1ee40",
+      "candidateId": "candidate_relation_beers_geriatrics_local_quetiapine_geriatric_safety_flag_2e37922a96",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -2090,7 +2090,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "quetiapine"
+        "Quetiapine"
       ],
       "genes": [],
       "metabolites": [],
@@ -2106,7 +2106,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "quetiapine"
+        "Quetiapine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2134,7 +2134,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_sotalol_geriatric_safety_flag_bec36bd1c2",
+      "candidateId": "candidate_relation_beers_geriatrics_local_sotalol_geriatric_safety_flag_319491d409",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -2147,7 +2147,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "sotalol"
+        "Sotalol"
       ],
       "genes": [],
       "metabolites": [],
@@ -2163,7 +2163,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "sotalol"
+        "Sotalol"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2191,7 +2191,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_temazepam_geriatric_safety_flag_ebe76cbc52",
+      "candidateId": "candidate_relation_beers_geriatrics_local_temazepam_geriatric_safety_flag_80fdf393b7",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -2204,7 +2204,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "temazepam"
+        "Temazepam"
       ],
       "genes": [],
       "metabolites": [],
@@ -2220,7 +2220,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "temazepam"
+        "Temazepam"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2248,7 +2248,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_thioridazine_geriatric_safety_flag_3b53b14cf6",
+      "candidateId": "candidate_relation_beers_geriatrics_local_thioridazine_geriatric_safety_flag_5ce1a5e0d2",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -2261,7 +2261,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "thioridazine"
+        "Thioridazine"
       ],
       "genes": [],
       "metabolites": [],
@@ -2277,7 +2277,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "thioridazine"
+        "Thioridazine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2305,7 +2305,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_trihexyphenidyl_geriatric_safety_flag_f18459d06b",
+      "candidateId": "candidate_relation_beers_geriatrics_local_trihexyphenidyl_geriatric_safety_flag_547fc3fc40",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -2318,7 +2318,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "trihexyphenidyl"
+        "Trihexyphenidyl"
       ],
       "genes": [],
       "metabolites": [],
@@ -2334,7 +2334,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "trihexyphenidyl"
+        "Trihexyphenidyl"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2362,7 +2362,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_beers_geriatrics_local_trimipramine_geriatric_safety_flag_2329818086",
+      "candidateId": "candidate_relation_beers_geriatrics_local_trimipramine_geriatric_safety_flag_7c45ca05e1",
       "schema": "diognosis.candidate-relation.v1",
       "store": "beers_geriatrics",
       "layer": "safety_phenotype",
@@ -2375,7 +2375,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "trimipramine"
+        "Trimipramine"
       ],
       "genes": [],
       "metabolites": [],
@@ -2391,7 +2391,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "trimipramine"
+        "Trimipramine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],

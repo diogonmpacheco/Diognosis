@@ -3,7 +3,7 @@
   "store": "receptor_effects",
   "layer": "safety_phenotype",
   "title": "Receptor and phenotype effects",
-  "generatedAt": "2026-06-15T14:34:04.479Z",
+  "generatedAt": "2026-06-15T23:57:50.395Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",
@@ -25,7 +25,7 @@
   "totalCandidates": 28,
   "candidates": [
     {
-      "candidateId": "candidate_relation_receptor_effects_local_alprazolam_phenotype_burden_21f479e10b",
+      "candidateId": "candidate_relation_receptor_effects_local_alprazolam_phenotype_burden_cbe4f160b1",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -38,7 +38,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "alprazolam"
+        "Alprazolam"
       ],
       "genes": [],
       "metabolites": [],
@@ -58,7 +58,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "alprazolam"
+        "Alprazolam"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -86,7 +86,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_amiodarone_phenotype_burden_5b9945dca1",
+      "candidateId": "candidate_relation_receptor_effects_local_amiodarone_phenotype_burden_12390a7faf",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -99,7 +99,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "amiodarone"
+        "Amiodarone"
       ],
       "genes": [],
       "metabolites": [],
@@ -119,7 +119,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "amiodarone"
+        "Amiodarone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -147,7 +147,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_amitriptyline_phenotype_burden_58d2039b60",
+      "candidateId": "candidate_relation_receptor_effects_local_amitriptyline_phenotype_burden_8edd29c5bf",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -160,7 +160,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "amitriptyline"
+        "Amitriptyline"
       ],
       "genes": [],
       "metabolites": [],
@@ -180,7 +180,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "amitriptyline"
+        "Amitriptyline"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_citalopram_phenotype_burden_352dad317b",
+      "candidateId": "candidate_relation_receptor_effects_local_citalopram_phenotype_burden_25f97c7f0a",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -221,7 +221,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "citalopram"
+        "Citalopram"
       ],
       "genes": [],
       "metabolites": [],
@@ -241,7 +241,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "citalopram"
+        "Citalopram"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_clomipramine_phenotype_burden_7108f6d525",
+      "candidateId": "candidate_relation_receptor_effects_local_clomipramine_phenotype_burden_ee9d579ad2",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -282,7 +282,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "clomipramine"
+        "Clomipramine"
       ],
       "genes": [],
       "metabolites": [],
@@ -302,7 +302,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "clomipramine"
+        "Clomipramine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -330,7 +330,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_codeine_phenotype_burden_b9a8abfd6f",
+      "candidateId": "candidate_relation_receptor_effects_local_codeine_phenotype_burden_769808f39c",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -343,7 +343,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "codeine"
+        "Codeine"
       ],
       "genes": [],
       "metabolites": [],
@@ -363,7 +363,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "codeine"
+        "Codeine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -391,7 +391,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_diazepam_phenotype_burden_08f5bd6ba9",
+      "candidateId": "candidate_relation_receptor_effects_local_diazepam_phenotype_burden_c328e0b8c4",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -404,7 +404,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "diazepam"
+        "Diazepam"
       ],
       "genes": [],
       "metabolites": [],
@@ -424,7 +424,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "diazepam"
+        "Diazepam"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -452,7 +452,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_diphenhydramine_phenotype_burden_6a5db330ac",
+      "candidateId": "candidate_relation_receptor_effects_local_diphenhydramine_phenotype_burden_4c8cf047d2",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -465,7 +465,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "diphenhydramine"
+        "Diphenhydramine"
       ],
       "genes": [],
       "metabolites": [],
@@ -485,7 +485,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "diphenhydramine"
+        "Diphenhydramine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -513,7 +513,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_duloxetine_phenotype_burden_4f46adf394",
+      "candidateId": "candidate_relation_receptor_effects_local_duloxetine_phenotype_burden_34c3c6c029",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -526,7 +526,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "duloxetine"
+        "Duloxetine"
       ],
       "genes": [],
       "metabolites": [],
@@ -546,7 +546,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "duloxetine"
+        "Duloxetine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -574,7 +574,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_escitalopram_phenotype_burden_9983adc10d",
+      "candidateId": "candidate_relation_receptor_effects_local_escitalopram_phenotype_burden_f285eabb18",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -587,7 +587,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "escitalopram"
+        "Escitalopram"
       ],
       "genes": [],
       "metabolites": [],
@@ -607,7 +607,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "escitalopram"
+        "Escitalopram"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -635,7 +635,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_fluoxetine_phenotype_burden_58201a44e9",
+      "candidateId": "candidate_relation_receptor_effects_local_fluoxetine_phenotype_burden_79a1b68a3e",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -648,7 +648,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "fluoxetine"
+        "Fluoxetine"
       ],
       "genes": [],
       "metabolites": [],
@@ -668,7 +668,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "fluoxetine"
+        "Fluoxetine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -696,7 +696,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_haloperidol_phenotype_burden_117b2e2a71",
+      "candidateId": "candidate_relation_receptor_effects_local_haloperidol_phenotype_burden_06cbf7866b",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -709,7 +709,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "haloperidol"
+        "Haloperidol"
       ],
       "genes": [],
       "metabolites": [],
@@ -729,7 +729,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "haloperidol"
+        "Haloperidol"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -757,7 +757,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_imipramine_phenotype_burden_5b638fdf29",
+      "candidateId": "candidate_relation_receptor_effects_local_imipramine_phenotype_burden_c07b79d70d",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -770,7 +770,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "imipramine"
+        "Imipramine"
       ],
       "genes": [],
       "metabolites": [],
@@ -790,7 +790,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "imipramine"
+        "Imipramine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -818,7 +818,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_linezolid_phenotype_burden_719087c926",
+      "candidateId": "candidate_relation_receptor_effects_local_linezolid_phenotype_burden_cd7bc98e56",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -831,7 +831,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "linezolid"
+        "Linezolid"
       ],
       "genes": [],
       "metabolites": [],
@@ -851,7 +851,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "linezolid"
+        "Linezolid"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -879,7 +879,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_lorazepam_phenotype_burden_955df970fb",
+      "candidateId": "candidate_relation_receptor_effects_local_lorazepam_phenotype_burden_9eb1176c06",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -892,7 +892,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "lorazepam"
+        "Lorazepam"
       ],
       "genes": [],
       "metabolites": [],
@@ -912,7 +912,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "lorazepam"
+        "Lorazepam"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -940,7 +940,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_methadone_phenotype_burden_dfb4622bf2",
+      "candidateId": "candidate_relation_receptor_effects_local_methadone_phenotype_burden_46fb702953",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -953,7 +953,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "methadone"
+        "Methadone"
       ],
       "genes": [],
       "metabolites": [],
@@ -973,7 +973,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "methadone"
+        "Methadone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1001,7 +1001,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_morphine_phenotype_burden_f2b5ed1d7b",
+      "candidateId": "candidate_relation_receptor_effects_local_morphine_phenotype_burden_d39ba26968",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -1014,7 +1014,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "morphine"
+        "Morphine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1034,7 +1034,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "morphine"
+        "Morphine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1062,7 +1062,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_nortriptyline_phenotype_burden_5f752a783f",
+      "candidateId": "candidate_relation_receptor_effects_local_nortriptyline_phenotype_burden_dfa9051b66",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -1075,7 +1075,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "nortriptyline"
+        "Nortriptyline"
       ],
       "genes": [],
       "metabolites": [],
@@ -1095,7 +1095,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "nortriptyline"
+        "Nortriptyline"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1123,7 +1123,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_olanzapine_phenotype_burden_1b0d0685b9",
+      "candidateId": "candidate_relation_receptor_effects_local_olanzapine_phenotype_burden_3e7b0fb33f",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -1136,7 +1136,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "olanzapine"
+        "Olanzapine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1156,7 +1156,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "olanzapine"
+        "Olanzapine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1184,7 +1184,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_ondansetron_phenotype_burden_10b284d945",
+      "candidateId": "candidate_relation_receptor_effects_local_ondansetron_phenotype_burden_459eae6d52",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -1197,7 +1197,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "ondansetron"
+        "Ondansetron"
       ],
       "genes": [],
       "metabolites": [],
@@ -1217,7 +1217,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "ondansetron"
+        "Ondansetron"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1245,7 +1245,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_oxycodone_phenotype_burden_c13b742443",
+      "candidateId": "candidate_relation_receptor_effects_local_oxycodone_phenotype_burden_27f3fd7537",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -1258,7 +1258,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "oxycodone"
+        "Oxycodone"
       ],
       "genes": [],
       "metabolites": [],
@@ -1278,7 +1278,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "oxycodone"
+        "Oxycodone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1306,7 +1306,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_paroxetine_phenotype_burden_d514fe76b3",
+      "candidateId": "candidate_relation_receptor_effects_local_paroxetine_phenotype_burden_bfadcc013a",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -1319,7 +1319,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "paroxetine"
+        "Paroxetine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1339,7 +1339,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "paroxetine"
+        "Paroxetine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1367,7 +1367,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_quetiapine_phenotype_burden_900f12deaf",
+      "candidateId": "candidate_relation_receptor_effects_local_quetiapine_phenotype_burden_5c749b60ad",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -1380,7 +1380,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "quetiapine"
+        "Quetiapine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1400,7 +1400,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "quetiapine"
+        "Quetiapine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1428,7 +1428,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_risperidone_phenotype_burden_a88805c44e",
+      "candidateId": "candidate_relation_receptor_effects_local_risperidone_phenotype_burden_0a4c40db2f",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -1441,7 +1441,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "risperidone"
+        "Risperidone"
       ],
       "genes": [],
       "metabolites": [],
@@ -1461,7 +1461,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "risperidone"
+        "Risperidone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1489,7 +1489,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_sertraline_phenotype_burden_48d0d6a19c",
+      "candidateId": "candidate_relation_receptor_effects_local_sertraline_phenotype_burden_6b68223d57",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -1502,7 +1502,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "sertraline"
+        "Sertraline"
       ],
       "genes": [],
       "metabolites": [],
@@ -1522,7 +1522,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "sertraline"
+        "Sertraline"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1550,7 +1550,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_tramadol_phenotype_burden_3d3f4eef82",
+      "candidateId": "candidate_relation_receptor_effects_local_tramadol_phenotype_burden_3167bfd109",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -1563,7 +1563,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "tramadol"
+        "Tramadol"
       ],
       "genes": [],
       "metabolites": [],
@@ -1583,7 +1583,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "tramadol"
+        "Tramadol"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1611,7 +1611,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_receptor_effects_local_venlafaxine_phenotype_burden_8e74b84052",
+      "candidateId": "candidate_relation_receptor_effects_local_venlafaxine_phenotype_burden_fbeff27018",
       "schema": "diognosis.candidate-relation.v1",
       "store": "receptor_effects",
       "layer": "safety_phenotype",
@@ -1624,7 +1624,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "venlafaxine"
+        "Venlafaxine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1644,7 +1644,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "venlafaxine"
+        "Venlafaxine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],

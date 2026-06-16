@@ -2,17 +2,15 @@
 import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'fs';
 import { join, resolve } from 'path';
 import { ROOT, loadDiognosisData, normalizeName, uniq } from './lib/diognosis-source-loader.js';
+import { buildCandidateNameContext, normalizeSourceDrugCandidateName } from './lib/candidate-name-normalizer.js';
 
 const SCHEMA = 'diognosis.source-drug-name-candidates.v1';
-const OUT_SOURCE = resolve(ROOT, 'src/data/generatedSourceDrugNameCandidates.js');
+const OUT_SOURCE = resolve(ROOT, 'data/enrichment/generated/source-drug-name-candidates.json');
 const SOURCE_ROOTS = [
   'data/enrichment/cache',
   'data/enrichment/candidates',
   'data/enrichment/review-queue',
 ];
-
-const BROAD_CONTEXT_PATTERN = /\b(no drug|unknown|xenobiotics)\b/i;
-const GENE_CONTEXT_PATTERN = /\b(rs\d+|chr\d+|genotype|allele|variant|polymorphism|gene|protein|receptor|transporter|enzyme|cyp\d|ugt\d|hla|ifnl|vkorc|slco|abcg|abcb|dpyd|tpmt|nudt|cftr|nat2|mt-rnr|g6pd|ryr1|cacna|cyb5r)\b/i;
 
 function walkJson(dir, out = []) {
   if (!existsSync(dir)) return out;
@@ -38,41 +36,14 @@ function sourceFileLabel(file) {
   return file.replace(`${ROOT}/`, '');
 }
 
-function isBadDrugName(name, data, existingDrugKeys, geneKeys) {
-  const value = String(name || '').trim();
-  const key = normalizeName(value);
-  if (!key || existingDrugKeys.has(key) || geneKeys.has(key)) return true;
-  if (value.length < 3 || value.length > 80) return true;
-  if (/^\*/.test(value)) return true;
-  if (/[()<>={}]/.test(value)) return true;
-  if (/^m\.\d/i.test(value)) return true;
-  if (GENE_CONTEXT_PATTERN.test(value)) return true;
-  if (BROAD_CONTEXT_PATTERN.test(value)) return true;
-  if (typeof data.normalizeDrugLookupKey === 'function' && geneKeys.has(data.normalizeDrugLookupKey(value))) return true;
-  return false;
-}
-
-function splitDrugName(value) {
-  const text = String(value || '').trim();
-  if (!text) return [];
-  if (/\s(?:\/|\+)\s|\//.test(text)) {
-    return text.split(/\s*(?:\/|\+)\s*/).filter(Boolean);
-  }
-  return [text];
-}
-
-function addCandidate(map, name, meta, data, existingDrugKeys, geneKeys) {
-  for (let piece of splitDrugName(name)) {
-    piece = piece
-      .replace(/^and\s+/i, '')
-      .replace(/\s+and$/i, '')
-      .replace(/\s+/g, ' ')
-      .trim();
-    if (isBadDrugName(piece, data, existingDrugKeys, geneKeys)) continue;
-    const key = normalizeName(piece);
+function addCandidate(map, name, meta, nameContext) {
+  const normalized = normalizeSourceDrugCandidateName(name, nameContext);
+  for (const candidate of normalized.accepted) {
+    const key = normalizeName(candidate.name);
     const row = map.get(key) || {
       id: `source_drug_name_${key.replace(/\s+/g, '_').slice(0, 90)}`,
-      name: piece,
+      name: candidate.name,
+      candidateCategory: candidate.candidateCategory,
       sourceNames: new Set(),
       sourceObjectIds: new Set(),
       sourceFiles: new Set(),
@@ -88,10 +59,10 @@ function addCandidate(map, name, meta, data, existingDrugKeys, geneKeys) {
   }
 }
 
-function visit(value, meta, map, data, existingDrugKeys, geneKeys) {
+function visit(value, meta, map, nameContext) {
   if (!value) return;
   if (Array.isArray(value)) {
-    for (const child of value) visit(child, meta, map, data, existingDrugKeys, geneKeys);
+    for (const child of value) visit(child, meta, map, nameContext);
     return;
   }
   if (typeof value !== 'object') return;
@@ -106,10 +77,10 @@ function visit(value, meta, map, data, existingDrugKeys, geneKeys) {
   if (value.drugid) next.evidenceIdentifier = value.drugid;
 
   if (value.objCls === 'Chemical' && value.name) {
-    addCandidate(map, value.name, { ...next, sourceName: next.sourceName || 'ClinPGx' }, data, existingDrugKeys, geneKeys);
+    addCandidate(map, value.name, { ...next, sourceName: next.sourceName || 'ClinPGx' }, nameContext);
   }
   if (value.drugid && value.name) {
-    addCandidate(map, value.name, { ...next, sourceName: next.sourceName || 'CPIC Data' }, data, existingDrugKeys, geneKeys);
+    addCandidate(map, value.name, { ...next, sourceName: next.sourceName || 'CPIC Data' }, nameContext);
   }
   if (value.candidateKind && Array.isArray(value.drugs)) {
     for (const drug of value.drugs) {
@@ -121,34 +92,19 @@ function visit(value, meta, map, data, existingDrugKeys, geneKeys) {
           sourceName: value.sourceName || next.sourceName || 'Candidate relation store',
           sourceObjectId: value.candidateId || value.id || next.sourceObjectId,
         },
-        data,
-        existingDrugKeys,
-        geneKeys
+        nameContext
       );
     }
   }
 
   for (const child of Object.values(value)) {
-    visit(child, next, map, data, existingDrugKeys, geneKeys);
+    visit(child, next, map, nameContext);
   }
 }
 
 function collectCandidates() {
   const data = loadDiognosisData(['src/data/pendingLiveCoreAugmentation.js']);
-  const existingDrugKeys = new Set();
-  for (const drug of data.DRUG_DB || []) {
-    for (const term of [
-      drug.name,
-      drug.id,
-      ...(drug.brandNames || []),
-      ...(drug.aliases || []),
-      ...(typeof data.getDrugAliases === 'function' ? data.getDrugAliases(drug) || [] : []),
-    ]) {
-      const key = normalizeName(term);
-      if (key) existingDrugKeys.add(key);
-    }
-  }
-  const geneKeys = new Set(Object.keys(data.GENE_ENZYMES || {}).map(normalizeName));
+  const nameContext = buildCandidateNameContext(data);
   const map = new Map();
   const sourceFiles = SOURCE_ROOTS.flatMap(root => walkJson(resolve(ROOT, root)));
 
@@ -162,13 +118,14 @@ function collectCandidates() {
     visit(payload, {
       sourceName: sourceNameForPath(file),
       sourceFile: sourceFileLabel(file),
-    }, map, data, existingDrugKeys, geneKeys);
+    }, map, nameContext);
   }
 
   return [...map.values()]
     .map(row => ({
       id: row.id,
       name: row.name,
+      candidateCategory: row.candidateCategory || 'unmatched_substance',
       observationCount: row.observationCount,
       sourceNames: uniq([...row.sourceNames]).slice(0, 8),
       sourceObjectIds: uniq([...row.sourceObjectIds]).slice(0, 16),
@@ -183,12 +140,6 @@ function collectCandidates() {
       canBeUsedForClinicalAction: false,
     }))
     .sort((a, b) => b.observationCount - a.observationCount || a.name.localeCompare(b.name));
-}
-
-function generatedSource(payload) {
-  return `// Auto-generated by scripts/enrich/generate-source-drug-name-candidates.js. Do not edit by hand.
-const SOURCE_DRUG_NAME_CANDIDATES = ${JSON.stringify(payload, null, 2)};
-`;
 }
 
 const candidates = collectCandidates();
@@ -208,7 +159,7 @@ const payload = {
   candidates,
 };
 
-writeFileSync(OUT_SOURCE, generatedSource(payload), 'utf8');
+writeFileSync(OUT_SOURCE, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
 console.log(JSON.stringify({
   ok: true,
   sourceDrugNameCandidates: candidates.length,

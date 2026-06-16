@@ -3,7 +3,7 @@
   "store": "pk_parameters",
   "layer": "pk_timing",
   "title": "PK parameters",
-  "generatedAt": "2026-06-15T14:34:04.478Z",
+  "generatedAt": "2026-06-15T23:57:50.395Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",
@@ -25,7 +25,7 @@
   "totalCandidates": 80,
   "candidates": [
     {
-      "candidateId": "candidate_relation_pk_parameters_local_alectinib_pk_parameter_80ee54f288",
+      "candidateId": "candidate_relation_pk_parameters_local_alectinib_pk_parameter_ff8a991353",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -38,7 +38,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "alectinib"
+        "Alectinib"
       ],
       "genes": [],
       "metabolites": [],
@@ -52,7 +52,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "alectinib"
+        "Alectinib"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_amiodarone_pk_parameter_708829b06c",
+      "candidateId": "candidate_relation_pk_parameters_local_amiodarone_pk_parameter_8ded1be2bc",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -93,7 +93,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "amiodarone"
+        "Amiodarone"
       ],
       "genes": [],
       "metabolites": [],
@@ -107,7 +107,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "amiodarone"
+        "Amiodarone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_amitriptyline_pk_parameter_b2c142ccc1",
+      "candidateId": "candidate_relation_pk_parameters_local_amitriptyline_pk_parameter_b3d89617e2",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -148,7 +148,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "amitriptyline"
+        "Amitriptyline"
       ],
       "genes": [],
       "metabolites": [],
@@ -162,7 +162,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "amitriptyline"
+        "Amitriptyline"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_amlodipine_pk_parameter_bdcc8d290e",
+      "candidateId": "candidate_relation_pk_parameters_local_amlodipine_pk_parameter_7083aabc65",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -203,7 +203,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "amlodipine"
+        "Amlodipine"
       ],
       "genes": [],
       "metabolites": [],
@@ -217,7 +217,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "amlodipine"
+        "Amlodipine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_apalutamide_pk_parameter_170e2b2a4d",
+      "candidateId": "candidate_relation_pk_parameters_local_apalutamide_pk_parameter_1104f07d1b",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -258,7 +258,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "apalutamide"
+        "Apalutamide"
       ],
       "genes": [],
       "metabolites": [],
@@ -272,7 +272,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "apalutamide"
+        "Apalutamide"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -300,7 +300,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_apixaban_pk_parameter_1ceca11e4e",
+      "candidateId": "candidate_relation_pk_parameters_local_apixaban_pk_parameter_9df697afa6",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -313,7 +313,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "apixaban"
+        "Apixaban"
       ],
       "genes": [],
       "metabolites": [],
@@ -327,7 +327,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "apixaban"
+        "Apixaban"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -355,7 +355,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_aripiprazole_pk_parameter_f213092f98",
+      "candidateId": "candidate_relation_pk_parameters_local_aripiprazole_pk_parameter_8b8d82604d",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -368,7 +368,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "aripiprazole"
+        "Aripiprazole"
       ],
       "genes": [],
       "metabolites": [],
@@ -382,7 +382,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "aripiprazole"
+        "Aripiprazole"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -410,7 +410,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_atenolol_pk_parameter_ddb3c17e2c",
+      "candidateId": "candidate_relation_pk_parameters_local_atenolol_pk_parameter_4346c4fd53",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -423,7 +423,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "atenolol"
+        "Atenolol"
       ],
       "genes": [],
       "metabolites": [],
@@ -437,7 +437,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "atenolol"
+        "Atenolol"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -465,7 +465,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_atomoxetine_pk_parameter_2db3b0843d",
+      "candidateId": "candidate_relation_pk_parameters_local_atomoxetine_pk_parameter_9518d3db4b",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -478,7 +478,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "atomoxetine"
+        "Atomoxetine"
       ],
       "genes": [],
       "metabolites": [],
@@ -492,7 +492,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "atomoxetine"
+        "Atomoxetine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -520,7 +520,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_atorvastatin_pk_parameter_f8c176cfe8",
+      "candidateId": "candidate_relation_pk_parameters_local_atorvastatin_pk_parameter_3b1cd5f3e2",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -533,7 +533,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "atorvastatin"
+        "Atorvastatin"
       ],
       "genes": [],
       "metabolites": [],
@@ -547,7 +547,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "atorvastatin"
+        "Atorvastatin"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -575,7 +575,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_bisoprolol_pk_parameter_65390cb218",
+      "candidateId": "candidate_relation_pk_parameters_local_bisoprolol_pk_parameter_cf9a5ca648",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -588,7 +588,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "bisoprolol"
+        "Bisoprolol"
       ],
       "genes": [],
       "metabolites": [],
@@ -602,7 +602,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "bisoprolol"
+        "Bisoprolol"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -630,7 +630,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_brigatinib_pk_parameter_a272468fe6",
+      "candidateId": "candidate_relation_pk_parameters_local_brigatinib_pk_parameter_de7fede478",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -643,7 +643,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "brigatinib"
+        "Brigatinib"
       ],
       "genes": [],
       "metabolites": [],
@@ -657,7 +657,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "brigatinib"
+        "Brigatinib"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -685,7 +685,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_capmatinib_pk_parameter_617902e272",
+      "candidateId": "candidate_relation_pk_parameters_local_capmatinib_pk_parameter_8b6e58cda7",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -698,7 +698,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "capmatinib"
+        "Capmatinib"
       ],
       "genes": [],
       "metabolites": [],
@@ -712,7 +712,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "capmatinib"
+        "Capmatinib"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -740,7 +740,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_carvedilol_pk_parameter_7956f2334f",
+      "candidateId": "candidate_relation_pk_parameters_local_carvedilol_pk_parameter_5c94b3d6a4",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -753,7 +753,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "carvedilol"
+        "Carvedilol"
       ],
       "genes": [],
       "metabolites": [],
@@ -767,7 +767,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "carvedilol"
+        "Carvedilol"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -795,7 +795,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_cilostazol_pk_parameter_185ea88897",
+      "candidateId": "candidate_relation_pk_parameters_local_cilostazol_pk_parameter_26d856b7b2",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -808,7 +808,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "cilostazol"
+        "Cilostazol"
       ],
       "genes": [],
       "metabolites": [],
@@ -822,7 +822,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "cilostazol"
+        "Cilostazol"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -850,7 +850,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_citalopram_pk_parameter_5c15c614b2",
+      "candidateId": "candidate_relation_pk_parameters_local_citalopram_pk_parameter_ecfc0321ff",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -863,7 +863,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "citalopram"
+        "Citalopram"
       ],
       "genes": [],
       "metabolites": [],
@@ -877,7 +877,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "citalopram"
+        "Citalopram"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -905,7 +905,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_clarithromycin_pk_parameter_db5255e998",
+      "candidateId": "candidate_relation_pk_parameters_local_clarithromycin_pk_parameter_ee6e352c6f",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -918,7 +918,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "clarithromycin"
+        "Clarithromycin"
       ],
       "genes": [],
       "metabolites": [],
@@ -932,7 +932,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "clarithromycin"
+        "Clarithromycin"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -960,7 +960,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_clobazam_pk_parameter_651d71f224",
+      "candidateId": "candidate_relation_pk_parameters_local_clobazam_pk_parameter_82468b6316",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -973,7 +973,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "clobazam"
+        "Clobazam"
       ],
       "genes": [],
       "metabolites": [],
@@ -987,7 +987,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "clobazam"
+        "Clobazam"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1015,7 +1015,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_clopidogrel_pk_parameter_8a06f13bca",
+      "candidateId": "candidate_relation_pk_parameters_local_clopidogrel_pk_parameter_7522dc69a2",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1028,7 +1028,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "clopidogrel"
+        "Clopidogrel"
       ],
       "genes": [],
       "metabolites": [],
@@ -1042,7 +1042,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "clopidogrel"
+        "Clopidogrel"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1070,7 +1070,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_codeine_pk_parameter_6ebb55fca1",
+      "candidateId": "candidate_relation_pk_parameters_local_codeine_pk_parameter_70d47aa045",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1083,7 +1083,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "codeine"
+        "Codeine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1097,7 +1097,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "codeine"
+        "Codeine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1125,7 +1125,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_crizotinib_pk_parameter_804c439825",
+      "candidateId": "candidate_relation_pk_parameters_local_crizotinib_pk_parameter_f213ec96e1",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1138,7 +1138,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "crizotinib"
+        "Crizotinib"
       ],
       "genes": [],
       "metabolites": [],
@@ -1152,7 +1152,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "crizotinib"
+        "Crizotinib"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1180,7 +1180,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_cyclosporine_pk_parameter_8ac42dbab3",
+      "candidateId": "candidate_relation_pk_parameters_local_cyclosporine_pk_parameter_938ec5a2ad",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1193,7 +1193,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "cyclosporine"
+        "Cyclosporine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1207,7 +1207,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "cyclosporine"
+        "Cyclosporine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1235,7 +1235,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_dabigatran_pk_parameter_2f06d01ccf",
+      "candidateId": "candidate_relation_pk_parameters_local_dabigatran_pk_parameter_0ea8e07d2a",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1248,7 +1248,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "dabigatran"
+        "Dabigatran"
       ],
       "genes": [],
       "metabolites": [],
@@ -1262,7 +1262,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "dabigatran"
+        "Dabigatran"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1290,7 +1290,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_darolutamide_pk_parameter_f61bf8164f",
+      "candidateId": "candidate_relation_pk_parameters_local_darolutamide_pk_parameter_dda136ba57",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1303,7 +1303,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "darolutamide"
+        "Darolutamide"
       ],
       "genes": [],
       "metabolites": [],
@@ -1317,7 +1317,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "darolutamide"
+        "Darolutamide"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1345,7 +1345,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_diazepam_pk_parameter_acb1b44f14",
+      "candidateId": "candidate_relation_pk_parameters_local_diazepam_pk_parameter_cd10be2a17",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1358,7 +1358,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "diazepam"
+        "Diazepam"
       ],
       "genes": [],
       "metabolites": [],
@@ -1372,7 +1372,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "diazepam"
+        "Diazepam"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1400,7 +1400,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_digoxin_pk_parameter_1b6592e142",
+      "candidateId": "candidate_relation_pk_parameters_local_digoxin_pk_parameter_4e6f72e798",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1413,7 +1413,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "digoxin"
+        "Digoxin"
       ],
       "genes": [],
       "metabolites": [],
@@ -1427,7 +1427,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "digoxin"
+        "Digoxin"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1455,7 +1455,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_duloxetine_pk_parameter_33dd5a3ffd",
+      "candidateId": "candidate_relation_pk_parameters_local_duloxetine_pk_parameter_4f4194f8ea",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1468,7 +1468,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "duloxetine"
+        "Duloxetine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1482,7 +1482,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "duloxetine"
+        "Duloxetine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1510,7 +1510,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_edoxaban_pk_parameter_31620bf0d3",
+      "candidateId": "candidate_relation_pk_parameters_local_edoxaban_pk_parameter_9bc87038cf",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1523,7 +1523,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "edoxaban"
+        "Edoxaban"
       ],
       "genes": [],
       "metabolites": [],
@@ -1537,7 +1537,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "edoxaban"
+        "Edoxaban"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1565,7 +1565,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_enzalutamide_pk_parameter_6e4708bdc1",
+      "candidateId": "candidate_relation_pk_parameters_local_enzalutamide_pk_parameter_aab51fd03d",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1578,7 +1578,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "enzalutamide"
+        "Enzalutamide"
       ],
       "genes": [],
       "metabolites": [],
@@ -1592,7 +1592,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "enzalutamide"
+        "Enzalutamide"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1620,7 +1620,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_escitalopram_pk_parameter_e88cc05503",
+      "candidateId": "candidate_relation_pk_parameters_local_escitalopram_pk_parameter_64c5912a17",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1633,7 +1633,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "escitalopram"
+        "Escitalopram"
       ],
       "genes": [],
       "metabolites": [],
@@ -1647,7 +1647,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "escitalopram"
+        "Escitalopram"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1675,7 +1675,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_esomeprazole_pk_parameter_b81c47070f",
+      "candidateId": "candidate_relation_pk_parameters_local_esomeprazole_pk_parameter_cefd38c819",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1688,7 +1688,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "esomeprazole"
+        "Esomeprazole"
       ],
       "genes": [],
       "metabolites": [],
@@ -1702,7 +1702,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "esomeprazole"
+        "Esomeprazole"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1730,7 +1730,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_everolimus_pk_parameter_d784ca05ce",
+      "candidateId": "candidate_relation_pk_parameters_local_everolimus_pk_parameter_e76745cc21",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1743,7 +1743,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "everolimus"
+        "Everolimus"
       ],
       "genes": [],
       "metabolites": [],
@@ -1757,7 +1757,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "everolimus"
+        "Everolimus"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1785,7 +1785,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_fentanyl_pk_parameter_475dea2304",
+      "candidateId": "candidate_relation_pk_parameters_local_fentanyl_pk_parameter_3dea610cae",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1798,7 +1798,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "fentanyl"
+        "Fentanyl"
       ],
       "genes": [],
       "metabolites": [],
@@ -1812,7 +1812,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "fentanyl"
+        "Fentanyl"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1840,7 +1840,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_fluconazole_pk_parameter_aeb7c21039",
+      "candidateId": "candidate_relation_pk_parameters_local_fluconazole_pk_parameter_c36aca1d28",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1853,7 +1853,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "fluconazole"
+        "Fluconazole"
       ],
       "genes": [],
       "metabolites": [],
@@ -1867,7 +1867,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "fluconazole"
+        "Fluconazole"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1895,7 +1895,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_fluoxetine_pk_parameter_d9b1847ff3",
+      "candidateId": "candidate_relation_pk_parameters_local_fluoxetine_pk_parameter_af53b2cbe9",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1908,7 +1908,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "fluoxetine"
+        "Fluoxetine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1922,7 +1922,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "fluoxetine"
+        "Fluoxetine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1950,7 +1950,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_glipizide_pk_parameter_666e6d2726",
+      "candidateId": "candidate_relation_pk_parameters_local_glipizide_pk_parameter_40cda7c411",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -1963,7 +1963,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "glipizide"
+        "Glipizide"
       ],
       "genes": [],
       "metabolites": [],
@@ -1977,7 +1977,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "glipizide"
+        "Glipizide"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2005,7 +2005,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_haloperidol_pk_parameter_9abdee13d5",
+      "candidateId": "candidate_relation_pk_parameters_local_haloperidol_pk_parameter_04c95207aa",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2018,7 +2018,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "haloperidol"
+        "Haloperidol"
       ],
       "genes": [],
       "metabolites": [],
@@ -2032,7 +2032,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "haloperidol"
+        "Haloperidol"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2060,7 +2060,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_ibuprofen_pk_parameter_c90fce09c8",
+      "candidateId": "candidate_relation_pk_parameters_local_ibuprofen_pk_parameter_9a1b7c4dc7",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2073,7 +2073,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "ibuprofen"
+        "Ibuprofen"
       ],
       "genes": [],
       "metabolites": [],
@@ -2087,7 +2087,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "ibuprofen"
+        "Ibuprofen"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2115,7 +2115,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_itraconazole_pk_parameter_8baceafcd2",
+      "candidateId": "candidate_relation_pk_parameters_local_itraconazole_pk_parameter_1d3134a23c",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2128,7 +2128,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "itraconazole"
+        "Itraconazole"
       ],
       "genes": [],
       "metabolites": [],
@@ -2142,7 +2142,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "itraconazole"
+        "Itraconazole"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2170,7 +2170,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_ketoconazole_pk_parameter_8f643de669",
+      "candidateId": "candidate_relation_pk_parameters_local_ketoconazole_pk_parameter_afd7ede05d",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2183,7 +2183,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "ketoconazole"
+        "Ketoconazole"
       ],
       "genes": [],
       "metabolites": [],
@@ -2197,7 +2197,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "ketoconazole"
+        "Ketoconazole"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2225,7 +2225,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_lansoprazole_pk_parameter_4207a2cf2e",
+      "candidateId": "candidate_relation_pk_parameters_local_lansoprazole_pk_parameter_bf7dfb52f9",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2238,7 +2238,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "lansoprazole"
+        "Lansoprazole"
       ],
       "genes": [],
       "metabolites": [],
@@ -2252,7 +2252,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "lansoprazole"
+        "Lansoprazole"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2280,7 +2280,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_lenvatinib_pk_parameter_8841850eb9",
+      "candidateId": "candidate_relation_pk_parameters_local_lenvatinib_pk_parameter_a9835f3cd5",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2293,7 +2293,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "lenvatinib"
+        "Lenvatinib"
       ],
       "genes": [],
       "metabolites": [],
@@ -2307,7 +2307,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "lenvatinib"
+        "Lenvatinib"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2335,7 +2335,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_lorlatinib_pk_parameter_ba6b2083ca",
+      "candidateId": "candidate_relation_pk_parameters_local_lorlatinib_pk_parameter_0b8336a5c1",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2348,7 +2348,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "lorlatinib"
+        "Lorlatinib"
       ],
       "genes": [],
       "metabolites": [],
@@ -2362,7 +2362,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "lorlatinib"
+        "Lorlatinib"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2390,7 +2390,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_losartan_pk_parameter_a8daac6078",
+      "candidateId": "candidate_relation_pk_parameters_local_losartan_pk_parameter_620735746d",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2403,7 +2403,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "losartan"
+        "Losartan"
       ],
       "genes": [],
       "metabolites": [],
@@ -2417,7 +2417,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "losartan"
+        "Losartan"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2445,7 +2445,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_lurasidone_pk_parameter_e2e85c6ed2",
+      "candidateId": "candidate_relation_pk_parameters_local_lurasidone_pk_parameter_73042190bb",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2458,7 +2458,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "lurasidone"
+        "Lurasidone"
       ],
       "genes": [],
       "metabolites": [],
@@ -2472,7 +2472,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "lurasidone"
+        "Lurasidone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2500,7 +2500,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_meloxicam_pk_parameter_0602738c4c",
+      "candidateId": "candidate_relation_pk_parameters_local_meloxicam_pk_parameter_b89aba4063",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2513,7 +2513,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "meloxicam"
+        "Meloxicam"
       ],
       "genes": [],
       "metabolites": [],
@@ -2527,7 +2527,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "meloxicam"
+        "Meloxicam"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2555,7 +2555,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_metformin_pk_parameter_e5642a6bc2",
+      "candidateId": "candidate_relation_pk_parameters_local_metformin_pk_parameter_f0c5c160e5",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2568,7 +2568,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "metformin"
+        "Metformin"
       ],
       "genes": [],
       "metabolites": [],
@@ -2582,7 +2582,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "metformin"
+        "Metformin"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2610,7 +2610,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_methadone_pk_parameter_6e4f9614c0",
+      "candidateId": "candidate_relation_pk_parameters_local_methadone_pk_parameter_7869fdc047",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2623,7 +2623,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "methadone"
+        "Methadone"
       ],
       "genes": [],
       "metabolites": [],
@@ -2637,7 +2637,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "methadone"
+        "Methadone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2665,7 +2665,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_metoprolol_pk_parameter_0e4f7a0af5",
+      "candidateId": "candidate_relation_pk_parameters_local_metoprolol_pk_parameter_a681199e67",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2678,7 +2678,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "metoprolol"
+        "Metoprolol"
       ],
       "genes": [],
       "metabolites": [],
@@ -2692,7 +2692,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "metoprolol"
+        "Metoprolol"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2720,7 +2720,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_midazolam_pk_parameter_d895210ca2",
+      "candidateId": "candidate_relation_pk_parameters_local_midazolam_pk_parameter_b90e4d6659",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2733,7 +2733,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "midazolam"
+        "Midazolam"
       ],
       "genes": [],
       "metabolites": [],
@@ -2747,7 +2747,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "midazolam"
+        "Midazolam"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2775,7 +2775,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_naproxen_pk_parameter_50abcc34de",
+      "candidateId": "candidate_relation_pk_parameters_local_naproxen_pk_parameter_958c6dc209",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2788,7 +2788,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "naproxen"
+        "Naproxen"
       ],
       "genes": [],
       "metabolites": [],
@@ -2802,7 +2802,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "naproxen"
+        "Naproxen"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2830,7 +2830,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_nebivolol_pk_parameter_7b5227bbee",
+      "candidateId": "candidate_relation_pk_parameters_local_nebivolol_pk_parameter_db25ba44e9",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2843,7 +2843,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "nebivolol"
+        "Nebivolol"
       ],
       "genes": [],
       "metabolites": [],
@@ -2857,7 +2857,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "nebivolol"
+        "Nebivolol"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2885,7 +2885,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_nortriptyline_pk_parameter_0a2c3e677f",
+      "candidateId": "candidate_relation_pk_parameters_local_nortriptyline_pk_parameter_56abafc5c6",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2898,7 +2898,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "nortriptyline"
+        "Nortriptyline"
       ],
       "genes": [],
       "metabolites": [],
@@ -2912,7 +2912,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "nortriptyline"
+        "Nortriptyline"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2940,7 +2940,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_omeprazole_pk_parameter_8b0d61743e",
+      "candidateId": "candidate_relation_pk_parameters_local_omeprazole_pk_parameter_b51499061e",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -2953,7 +2953,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "omeprazole"
+        "Omeprazole"
       ],
       "genes": [],
       "metabolites": [],
@@ -2967,7 +2967,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "omeprazole"
+        "Omeprazole"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2995,7 +2995,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_ondansetron_pk_parameter_9fb8695e46",
+      "candidateId": "candidate_relation_pk_parameters_local_ondansetron_pk_parameter_90bebe3857",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3008,7 +3008,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "ondansetron"
+        "Ondansetron"
       ],
       "genes": [],
       "metabolites": [],
@@ -3022,7 +3022,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "ondansetron"
+        "Ondansetron"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3050,7 +3050,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_oxycodone_pk_parameter_c7762491e1",
+      "candidateId": "candidate_relation_pk_parameters_local_oxycodone_pk_parameter_8e7cf5af41",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3063,7 +3063,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "oxycodone"
+        "Oxycodone"
       ],
       "genes": [],
       "metabolites": [],
@@ -3077,7 +3077,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "oxycodone"
+        "Oxycodone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3105,7 +3105,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_pantoprazole_pk_parameter_61f3b1a61b",
+      "candidateId": "candidate_relation_pk_parameters_local_pantoprazole_pk_parameter_555d3a0cc8",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3118,7 +3118,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "pantoprazole"
+        "Pantoprazole"
       ],
       "genes": [],
       "metabolites": [],
@@ -3132,7 +3132,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "pantoprazole"
+        "Pantoprazole"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3160,7 +3160,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_paroxetine_pk_parameter_2c423f9764",
+      "candidateId": "candidate_relation_pk_parameters_local_paroxetine_pk_parameter_85bee67572",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3173,7 +3173,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "paroxetine"
+        "Paroxetine"
       ],
       "genes": [],
       "metabolites": [],
@@ -3187,7 +3187,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "paroxetine"
+        "Paroxetine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3215,7 +3215,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_phenytoin_pk_parameter_056f8d817a",
+      "candidateId": "candidate_relation_pk_parameters_local_phenytoin_pk_parameter_1c0da9faf3",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3228,7 +3228,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "phenytoin"
+        "Phenytoin"
       ],
       "genes": [],
       "metabolites": [],
@@ -3242,7 +3242,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "phenytoin"
+        "Phenytoin"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3270,7 +3270,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_prasugrel_pk_parameter_b7f008f2c4",
+      "candidateId": "candidate_relation_pk_parameters_local_prasugrel_pk_parameter_f64155fc06",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3283,7 +3283,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "prasugrel"
+        "Prasugrel"
       ],
       "genes": [],
       "metabolites": [],
@@ -3297,7 +3297,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "prasugrel"
+        "Prasugrel"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3325,7 +3325,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_propranolol_pk_parameter_b52540e5db",
+      "candidateId": "candidate_relation_pk_parameters_local_propranolol_pk_parameter_424f70246e",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3338,7 +3338,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "propranolol"
+        "Propranolol"
       ],
       "genes": [],
       "metabolites": [],
@@ -3352,7 +3352,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "propranolol"
+        "Propranolol"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3380,7 +3380,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_quetiapine_pk_parameter_e5c26c6882",
+      "candidateId": "candidate_relation_pk_parameters_local_quetiapine_pk_parameter_ca85db35db",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3393,7 +3393,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "quetiapine"
+        "Quetiapine"
       ],
       "genes": [],
       "metabolites": [],
@@ -3407,7 +3407,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "quetiapine"
+        "Quetiapine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3435,7 +3435,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_rifampin_pk_parameter_5ae92f0e98",
+      "candidateId": "candidate_relation_pk_parameters_local_rifampin_pk_parameter_d7daac4e3c",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3448,7 +3448,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "rifampin"
+        "Rifampin"
       ],
       "genes": [],
       "metabolites": [],
@@ -3462,7 +3462,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "rifampin"
+        "Rifampin"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3490,7 +3490,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_risperidone_pk_parameter_a4dbca315b",
+      "candidateId": "candidate_relation_pk_parameters_local_risperidone_pk_parameter_f57a8cc678",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3503,7 +3503,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "risperidone"
+        "Risperidone"
       ],
       "genes": [],
       "metabolites": [],
@@ -3517,7 +3517,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "risperidone"
+        "Risperidone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3545,7 +3545,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_rivaroxaban_pk_parameter_81fbf1a7b0",
+      "candidateId": "candidate_relation_pk_parameters_local_rivaroxaban_pk_parameter_6a0695f896",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3558,7 +3558,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "rivaroxaban"
+        "Rivaroxaban"
       ],
       "genes": [],
       "metabolites": [],
@@ -3572,7 +3572,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "rivaroxaban"
+        "Rivaroxaban"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3600,7 +3600,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_rosuvastatin_pk_parameter_0d1a9bd916",
+      "candidateId": "candidate_relation_pk_parameters_local_rosuvastatin_pk_parameter_15627d68d7",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3613,7 +3613,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "rosuvastatin"
+        "Rosuvastatin"
       ],
       "genes": [],
       "metabolites": [],
@@ -3627,7 +3627,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "rosuvastatin"
+        "Rosuvastatin"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3655,7 +3655,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_sertraline_pk_parameter_2bf3498c86",
+      "candidateId": "candidate_relation_pk_parameters_local_sertraline_pk_parameter_b0fd651abb",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3668,7 +3668,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "sertraline"
+        "Sertraline"
       ],
       "genes": [],
       "metabolites": [],
@@ -3682,7 +3682,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "sertraline"
+        "Sertraline"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3710,7 +3710,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_sildenafil_pk_parameter_11799143ef",
+      "candidateId": "candidate_relation_pk_parameters_local_sildenafil_pk_parameter_3ed5ba95ef",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3723,7 +3723,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "sildenafil"
+        "Sildenafil"
       ],
       "genes": [],
       "metabolites": [],
@@ -3737,7 +3737,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "sildenafil"
+        "Sildenafil"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3765,7 +3765,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_simvastatin_pk_parameter_253fa0790c",
+      "candidateId": "candidate_relation_pk_parameters_local_simvastatin_pk_parameter_3ff33ee914",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3778,7 +3778,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "simvastatin"
+        "Simvastatin"
       ],
       "genes": [],
       "metabolites": [],
@@ -3792,7 +3792,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "simvastatin"
+        "Simvastatin"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3820,7 +3820,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_sirolimus_pk_parameter_ba2853dc80",
+      "candidateId": "candidate_relation_pk_parameters_local_sirolimus_pk_parameter_20c56a9f4f",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3833,7 +3833,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "sirolimus"
+        "Sirolimus"
       ],
       "genes": [],
       "metabolites": [],
@@ -3847,7 +3847,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "sirolimus"
+        "Sirolimus"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3875,7 +3875,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_sorafenib_pk_parameter_b20746a8f2",
+      "candidateId": "candidate_relation_pk_parameters_local_sorafenib_pk_parameter_257604722d",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3888,7 +3888,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "sorafenib"
+        "Sorafenib"
       ],
       "genes": [],
       "metabolites": [],
@@ -3902,7 +3902,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "sorafenib"
+        "Sorafenib"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3930,7 +3930,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_sunitinib_pk_parameter_4a563d7715",
+      "candidateId": "candidate_relation_pk_parameters_local_sunitinib_pk_parameter_4f52d813a5",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3943,7 +3943,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "sunitinib"
+        "Sunitinib"
       ],
       "genes": [],
       "metabolites": [],
@@ -3957,7 +3957,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "sunitinib"
+        "Sunitinib"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -3985,7 +3985,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_tacrolimus_pk_parameter_e0a5da4af0",
+      "candidateId": "candidate_relation_pk_parameters_local_tacrolimus_pk_parameter_8f79bbde4c",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -3998,7 +3998,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "tacrolimus"
+        "Tacrolimus"
       ],
       "genes": [],
       "metabolites": [],
@@ -4012,7 +4012,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "tacrolimus"
+        "Tacrolimus"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -4040,7 +4040,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_tamoxifen_pk_parameter_4fff0decd3",
+      "candidateId": "candidate_relation_pk_parameters_local_tamoxifen_pk_parameter_039ebb4c21",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -4053,7 +4053,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "tamoxifen"
+        "Tamoxifen"
       ],
       "genes": [],
       "metabolites": [],
@@ -4067,7 +4067,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "tamoxifen"
+        "Tamoxifen"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -4095,7 +4095,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_ticagrelor_pk_parameter_22297039b6",
+      "candidateId": "candidate_relation_pk_parameters_local_ticagrelor_pk_parameter_47ab74e947",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -4108,7 +4108,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "ticagrelor"
+        "Ticagrelor"
       ],
       "genes": [],
       "metabolites": [],
@@ -4122,7 +4122,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "ticagrelor"
+        "Ticagrelor"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -4150,7 +4150,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_tramadol_pk_parameter_d5663df4b5",
+      "candidateId": "candidate_relation_pk_parameters_local_tramadol_pk_parameter_9815c5615c",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -4163,7 +4163,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "tramadol"
+        "Tramadol"
       ],
       "genes": [],
       "metabolites": [],
@@ -4177,7 +4177,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "tramadol"
+        "Tramadol"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -4205,7 +4205,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_venlafaxine_pk_parameter_9e9aeb2068",
+      "candidateId": "candidate_relation_pk_parameters_local_venlafaxine_pk_parameter_ed3da6dbae",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -4218,7 +4218,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "venlafaxine"
+        "Venlafaxine"
       ],
       "genes": [],
       "metabolites": [],
@@ -4232,7 +4232,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "venlafaxine"
+        "Venlafaxine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -4260,7 +4260,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_vorapaxar_pk_parameter_6bcd4d3a72",
+      "candidateId": "candidate_relation_pk_parameters_local_vorapaxar_pk_parameter_798aa18f3c",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -4273,7 +4273,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "vorapaxar"
+        "Vorapaxar"
       ],
       "genes": [],
       "metabolites": [],
@@ -4287,7 +4287,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "vorapaxar"
+        "Vorapaxar"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -4315,7 +4315,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_voriconazole_pk_parameter_1c6ed92ab4",
+      "candidateId": "candidate_relation_pk_parameters_local_voriconazole_pk_parameter_271fb60570",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -4328,7 +4328,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "voriconazole"
+        "Voriconazole"
       ],
       "genes": [],
       "metabolites": [],
@@ -4342,7 +4342,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "voriconazole"
+        "Voriconazole"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -4370,7 +4370,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pk_parameters_local_warfarin_pk_parameter_770c469fe7",
+      "candidateId": "candidate_relation_pk_parameters_local_warfarin_pk_parameter_17bdeb8ae9",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pk_parameters",
       "layer": "pk_timing",
@@ -4383,7 +4383,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "warfarin"
+        "Warfarin"
       ],
       "genes": [],
       "metabolites": [],
@@ -4397,7 +4397,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "warfarin"
+        "Warfarin"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],

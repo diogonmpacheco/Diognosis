@@ -3,7 +3,7 @@
   "store": "timing_rules",
   "layer": "pk_timing",
   "title": "Timing and washout rules",
-  "generatedAt": "2026-06-15T14:34:04.479Z",
+  "generatedAt": "2026-06-15T23:57:50.395Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",
@@ -25,7 +25,7 @@
   "totalCandidates": 24,
   "candidates": [
     {
-      "candidateId": "candidate_relation_timing_rules_local_amiodarone_washout_timing_14594dd011",
+      "candidateId": "candidate_relation_timing_rules_local_amiodarone_washout_timing_71b164dca8",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -38,7 +38,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "amiodarone"
+        "Amiodarone"
       ],
       "genes": [],
       "metabolites": [],
@@ -52,7 +52,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "amiodarone"
+        "Amiodarone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -135,7 +135,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_carbamazepine_washout_timing_61940e3216",
+      "candidateId": "candidate_relation_timing_rules_local_carbamazepine_washout_timing_19ae857a60",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -148,7 +148,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "carbamazepine"
+        "Carbamazepine"
       ],
       "genes": [],
       "metabolites": [],
@@ -162,7 +162,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "carbamazepine"
+        "Carbamazepine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -190,7 +190,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_ciprofloxacin_washout_timing_16d1ed230e",
+      "candidateId": "candidate_relation_timing_rules_local_ciprofloxacin_washout_timing_ff40aafa09",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -203,7 +203,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "ciprofloxacin"
+        "Ciprofloxacin"
       ],
       "genes": [],
       "metabolites": [],
@@ -217,7 +217,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "ciprofloxacin"
+        "Ciprofloxacin"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_clarithromycin_washout_timing_1b10b82dcd",
+      "candidateId": "candidate_relation_timing_rules_local_clarithromycin_washout_timing_86494d29f9",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -258,7 +258,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "clarithromycin"
+        "Clarithromycin"
       ],
       "genes": [],
       "metabolites": [],
@@ -272,7 +272,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "clarithromycin"
+        "Clarithromycin"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -300,7 +300,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_erythromycin_washout_timing_367b0894ac",
+      "candidateId": "candidate_relation_timing_rules_local_erythromycin_washout_timing_200fa330a4",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -313,7 +313,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "erythromycin"
+        "Erythromycin"
       ],
       "genes": [],
       "metabolites": [],
@@ -327,7 +327,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "erythromycin"
+        "Erythromycin"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -355,7 +355,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_fluconazole_washout_timing_142596bc90",
+      "candidateId": "candidate_relation_timing_rules_local_fluconazole_washout_timing_0573bb6942",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -368,7 +368,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "fluconazole"
+        "Fluconazole"
       ],
       "genes": [],
       "metabolites": [],
@@ -382,7 +382,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "fluconazole"
+        "Fluconazole"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -410,7 +410,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_fluvoxamine_washout_timing_847ee58ccb",
+      "candidateId": "candidate_relation_timing_rules_local_fluvoxamine_washout_timing_07c0b77f53",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -423,7 +423,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "fluvoxamine"
+        "Fluvoxamine"
       ],
       "genes": [],
       "metabolites": [],
@@ -437,7 +437,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "fluvoxamine"
+        "Fluvoxamine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -520,7 +520,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_itraconazole_washout_timing_2d60907649",
+      "candidateId": "candidate_relation_timing_rules_local_itraconazole_washout_timing_453b5a6310",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -533,7 +533,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "itraconazole"
+        "Itraconazole"
       ],
       "genes": [],
       "metabolites": [],
@@ -547,7 +547,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "itraconazole"
+        "Itraconazole"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -575,7 +575,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_ketoconazole_washout_timing_e95805b5dc",
+      "candidateId": "candidate_relation_timing_rules_local_ketoconazole_washout_timing_06377db43f",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -588,7 +588,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "ketoconazole"
+        "Ketoconazole"
       ],
       "genes": [],
       "metabolites": [],
@@ -602,7 +602,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "ketoconazole"
+        "Ketoconazole"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -630,7 +630,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_linezolid_washout_timing_bce2c9259e",
+      "candidateId": "candidate_relation_timing_rules_local_linezolid_washout_timing_2b58ac5b68",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -643,7 +643,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "linezolid"
+        "Linezolid"
       ],
       "genes": [],
       "metabolites": [],
@@ -657,7 +657,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "linezolid"
+        "Linezolid"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -740,7 +740,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_paroxetine_washout_timing_83f7e8f3e5",
+      "candidateId": "candidate_relation_timing_rules_local_paroxetine_washout_timing_9576bf2c64",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -753,7 +753,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "paroxetine"
+        "Paroxetine"
       ],
       "genes": [],
       "metabolites": [],
@@ -767,7 +767,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "paroxetine"
+        "Paroxetine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -795,7 +795,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_phenelzine_washout_timing_cba98bfdf6",
+      "candidateId": "candidate_relation_timing_rules_local_phenelzine_washout_timing_f5460cc44d",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -808,7 +808,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "phenelzine"
+        "Phenelzine"
       ],
       "genes": [],
       "metabolites": [],
@@ -822,7 +822,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "phenelzine"
+        "Phenelzine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -850,7 +850,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_phenytoin_washout_timing_03aedfef4d",
+      "candidateId": "candidate_relation_timing_rules_local_phenytoin_washout_timing_bdf0d3b02c",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -863,7 +863,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "phenytoin"
+        "Phenytoin"
       ],
       "genes": [],
       "metabolites": [],
@@ -877,7 +877,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "phenytoin"
+        "Phenytoin"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -905,7 +905,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_primidone_washout_timing_274f449e3a",
+      "candidateId": "candidate_relation_timing_rules_local_primidone_washout_timing_82855407e0",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -918,7 +918,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "primidone"
+        "Primidone"
       ],
       "genes": [],
       "metabolites": [],
@@ -932,7 +932,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "primidone"
+        "Primidone"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -960,7 +960,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_rasagiline_washout_timing_18af4dcdcc",
+      "candidateId": "candidate_relation_timing_rules_local_rasagiline_washout_timing_a313d3d700",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -973,7 +973,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "rasagiline"
+        "Rasagiline"
       ],
       "genes": [],
       "metabolites": [],
@@ -987,7 +987,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "rasagiline"
+        "Rasagiline"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1015,7 +1015,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_rifampin_washout_timing_45e8216706",
+      "candidateId": "candidate_relation_timing_rules_local_rifampin_washout_timing_c4af36613f",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -1028,7 +1028,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "rifampin"
+        "Rifampin"
       ],
       "genes": [],
       "metabolites": [],
@@ -1042,7 +1042,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "rifampin"
+        "Rifampin"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1070,7 +1070,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_selegiline_washout_timing_29dbfb8018",
+      "candidateId": "candidate_relation_timing_rules_local_selegiline_washout_timing_1130c2aa2f",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -1083,7 +1083,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "selegiline"
+        "Selegiline"
       ],
       "genes": [],
       "metabolites": [],
@@ -1097,7 +1097,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "selegiline"
+        "Selegiline"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1125,7 +1125,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_st_johns_wort_washout_timing_78d557e0ab",
+      "candidateId": "candidate_relation_timing_rules_local_st_john_s_wort_washout_timing_f7f96d17f8",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -1138,7 +1138,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "st-johns-wort"
+        "St. John's Wort"
       ],
       "genes": [],
       "metabolites": [],
@@ -1152,7 +1152,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "st-johns-wort"
+        "St. John's Wort"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1180,7 +1180,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_tranylcypromine_washout_timing_3cc0e59b8e",
+      "candidateId": "candidate_relation_timing_rules_local_tranylcypromine_washout_timing_db96879136",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -1193,7 +1193,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "tranylcypromine"
+        "Tranylcypromine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1207,7 +1207,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "tranylcypromine"
+        "Tranylcypromine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1235,7 +1235,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_valproic_acid_washout_timing_75cd12d809",
+      "candidateId": "candidate_relation_timing_rules_local_valproic_acid_washout_timing_4db167f847",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -1248,7 +1248,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "valproic-acid"
+        "Valproic Acid"
       ],
       "genes": [],
       "metabolites": [],
@@ -1262,7 +1262,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "valproic-acid"
+        "Valproic Acid"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -1290,7 +1290,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_timing_rules_local_voriconazole_washout_timing_c625df97eb",
+      "candidateId": "candidate_relation_timing_rules_local_voriconazole_washout_timing_d196bbf88e",
       "schema": "diognosis.candidate-relation.v1",
       "store": "timing_rules",
       "layer": "pk_timing",
@@ -1303,7 +1303,7 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "voriconazole"
+        "Voriconazole"
       ],
       "genes": [],
       "metabolites": [],
@@ -1317,7 +1317,7 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "voriconazole"
+        "Voriconazole"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],

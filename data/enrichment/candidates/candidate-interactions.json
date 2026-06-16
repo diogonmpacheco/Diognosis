@@ -3,7 +3,7 @@
   "store": "interactions",
   "layer": "interaction",
   "title": "Interaction events",
-  "generatedAt": "2026-06-15T14:34:04.465Z",
+  "generatedAt": "2026-06-15T23:57:50.380Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",
@@ -71,72 +71,6 @@
       "matchedMetabolites": [],
       "possibleExistingRows": [
         "Apixaban_Rifampin"
-      ],
-      "suggestedTarget": "KNOWN_DDI",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_interactions_local_ayahuasca_dmt_maoi_tyramine_rich_foods_interaction_event_43befd0f05",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "interactions",
-      "layer": "interaction",
-      "candidateKind": "interactions",
-      "claimType": "interaction_event",
-      "sourceRecords": [
-        "ev_tyramine_maoi_labels"
-      ],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Ayahuasca (DMT+MAOI)",
-        "Tyramine-rich Foods"
-      ],
-      "genes": [],
-      "metabolites": [],
-      "pathways": [
-        "diet"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "severe",
-      "mechanismSummary": "MAO-A/MAO-B inhibition reduces gut tyramine clearance; absorbed tyramine can trigger norepinephrine release and hypertensive crisis",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [
-        "ev_tyramine_maoi_labels",
-        "https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=phenelzine%20tyramine%20hypertensive%20crisis"
-      ],
-      "strongestExternalTier": "existing_source_ref",
-      "matchedDiognosisDrugs": [
-        "Ayahuasca (DMT+MAOI)",
-        "Tyramine-rich Foods"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [
-        "Ayahuasca (DMT+MAOI)_Tyramine-rich Foods"
       ],
       "suggestedTarget": "KNOWN_DDI",
       "priority": "P1",
@@ -2487,7 +2421,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_interactions_local_spironolactone_trimethoprim_sulfamethoxazole_interaction_event_80b2537de1",
+      "candidateId": "candidate_relation_interactions_local_spironolactone_trimethoprim_sulfamethoxazole_interaction_event_a4921072a2",
       "schema": "diognosis.candidate-relation.v1",
       "store": "interactions",
       "layer": "interaction",
@@ -2503,7 +2437,8 @@
       "rawSourceCachePath": "",
       "drugs": [
         "Spironolactone",
-        "Trimethoprim/Sulfamethoxazole"
+        "Trimethoprim",
+        "Sulfamethoxazole"
       ],
       "genes": [],
       "metabolites": [],
@@ -2524,7 +2459,8 @@
       "strongestExternalTier": "existing_source_ref",
       "matchedDiognosisDrugs": [
         "Spironolactone",
-        "Trimethoprim/Sulfamethoxazole"
+        "Trimethoprim",
+        "Sulfamethoxazole"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2818,6 +2754,72 @@
       "notes": [
         "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
         "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_interactions_local_tyramine_rich_foods_interaction_event_57d1a8bd9f",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "interactions",
+      "layer": "interaction",
+      "candidateKind": "interactions",
+      "claimType": "interaction_event",
+      "sourceRecords": [
+        "ev_tyramine_maoi_labels"
+      ],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [
+        "Tyramine-rich Foods"
+      ],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "diet"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "severe",
+      "mechanismSummary": "MAO-A/MAO-B inhibition reduces gut tyramine clearance; absorbed tyramine can trigger norepinephrine release and hypertensive crisis",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [
+        "ev_tyramine_maoi_labels",
+        "https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=phenelzine%20tyramine%20hypertensive%20crisis"
+      ],
+      "strongestExternalTier": "existing_source_ref",
+      "matchedDiognosisDrugs": [
+        "Tyramine-rich Foods"
+      ],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [
+        "Ayahuasca (DMT+MAOI)_Tyramine-rich Foods"
+      ],
+      "suggestedTarget": "KNOWN_DDI",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name).",
+        "Dropped candidate-name artifact (invalid_substance_name)."
       ]
     },
     {

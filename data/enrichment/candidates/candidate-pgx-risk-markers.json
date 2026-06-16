@@ -3,7 +3,7 @@
   "store": "pgx_risk_markers",
   "layer": "pgx",
   "title": "PGx risk markers",
-  "generatedAt": "2026-06-15T14:34:04.473Z",
+  "generatedAt": "2026-06-15T23:57:50.390Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",
@@ -22,7 +22,7 @@
       "records": 248
     }
   ],
-  "totalCandidates": 670,
+  "totalCandidates": 633,
   "candidates": [
     {
       "candidateId": "candidate_relation_pgx_risk_markers_amitriptyline_cyp2d6_4_5_4_4_920a3bfe0d",
@@ -1590,16 +1590,23 @@
       "candidateKind": "pgx_risk_markers",
       "claimType": "allele_function",
       "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2b6_10_cpic_allele_definition_777440_cc3f2c7673"
+        "candidate_cpic_data_allele_function_cyp2b6_10_cpic_allele_definition_777440_cc3f2c7673",
+        "candidate_cpic_data_allele_function_cyp2b6_15_cpic_allele_definition_777450_cce6c08e28",
+        "candidate_cpic_data_allele_function_cyp2b6_17_cpic_allele_definition_777452_1a94455d13",
+        "candidate_cpic_data_allele_function_cyp2b6_18_cpic_allele_definition_777454_9aa3fbb1d5",
+        "candidate_cpic_data_allele_function_cyp2b6_21_cpic_allele_definition_777460_609d702fa8",
+        "candidate_cpic_data_allele_function_cyp2b6_37_cpic_allele_definition_777492_2561ad774c",
+        "candidate_cpic_data_allele_function_cyp2b6_38_cpic_allele_definition_777494_6db14753bc",
+        "candidate_cpic_data_allele_function_cyp2b6_45_cpic_allele_definition_2899154_3ce398de13",
+        "candidate_cpic_data_allele_function_cyp2b6_49_cpic_allele_definition_2899162_4c3e53d7fe",
+        "candidate_cpic_data_allele_function_cyp2b6_8_cpic_allele_definition_777436_489a41a016"
       ],
       "sourceName": "CPIC Data",
       "sourceType": "structured_guideline",
       "sourceTruthStatus": "fetched_from_cpic_source",
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*10"
-      ],
+      "drugs": [],
       "genes": [
         "CYP2B6"
       ],
@@ -1615,12 +1622,19 @@
       "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
       "evidenceIdentifiers": [
         "CPIC:allele_definition:777440",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
+        "https://api.cpicpgx.org/v1/allele_definition?limit=50",
+        "CPIC:allele_definition:777450",
+        "CPIC:allele_definition:777452",
+        "CPIC:allele_definition:777454",
+        "CPIC:allele_definition:777460",
+        "CPIC:allele_definition:777492",
+        "CPIC:allele_definition:777494",
+        "CPIC:allele_definition:2899154",
+        "CPIC:allele_definition:2899162",
+        "CPIC:allele_definition:777436"
       ],
       "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*10"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [
         "CYP2B6"
       ],
@@ -1644,6 +1658,8 @@
       },
       "notes": [
         "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Dropped candidate-name artifact (gene_symbol_not_substance).",
+        "Dropped candidate-name artifact (gene_symbol_not_substance).",
         "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
       ]
     },
@@ -1655,16 +1671,27 @@
       "candidateKind": "pgx_risk_markers",
       "claimType": "allele_function",
       "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2d6_12_cpic_allele_definition_777958_0b1cccadb9"
+        "candidate_cpic_data_allele_function_cyp2d6_12_cpic_allele_definition_777958_0b1cccadb9",
+        "candidate_cpic_data_allele_function_cyp2d6_131_cpic_allele_definition_778180_b8383eddbf",
+        "candidate_cpic_data_allele_function_cyp2d6_132_cpic_allele_definition_778182_eb4d06abba",
+        "candidate_cpic_data_allele_function_cyp2d6_133_cpic_allele_definition_778184_c71b2bcb01",
+        "candidate_cpic_data_allele_function_cyp2d6_135_cpic_allele_definition_778188_ab71d9b34e",
+        "candidate_cpic_data_allele_function_cyp2d6_139_cpic_allele_definition_778196_03e553a51a",
+        "candidate_cpic_data_allele_function_cyp2d6_142_cpic_allele_definition_778202_f891b92e96",
+        "candidate_cpic_data_allele_function_cyp2d6_144_cpic_allele_definition_778206_441b27c2c3",
+        "candidate_cpic_data_allele_function_cyp2d6_145_cpic_allele_definition_778208_4aaf5d4165",
+        "candidate_cpic_data_allele_function_cyp2d6_148_cpic_allele_definition_1609527_59e58e9820",
+        "candidate_cpic_data_allele_function_cyp2d6_152_cpic_allele_definition_2091236_d5b8775a06",
+        "candidate_cpic_data_allele_function_cyp2d6_153_cpic_allele_definition_2091238_49402b759a",
+        "candidate_cpic_data_allele_function_cyp2d6_157_cpic_allele_definition_2091246_4d8a9685f7",
+        "candidate_cpic_data_allele_function_cyp2d6_68_4_cpic_allele_definition_7977340_4f42ffed6d"
       ],
       "sourceName": "CPIC Data",
       "sourceType": "structured_guideline",
       "sourceTruthStatus": "fetched_from_cpic_source",
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*12"
-      ],
+      "drugs": [],
       "genes": [
         "CYP2D6"
       ],
@@ -1680,597 +1707,23 @@
       "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
       "evidenceIdentifiers": [
         "CPIC:allele_definition:777958",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*12"
-      ],
-      "matchedGenes": [
-        "CYP2D6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_131_cyp2d6_88393fa44e",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2d6_131_cpic_allele_definition_778180_b8383eddbf"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*131"
-      ],
-      "genes": [
-        "CYP2D6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 778180.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
+        "https://api.cpicpgx.org/v1/allele_definition?limit=50",
         "CPIC:allele_definition:778180",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*131"
-      ],
-      "matchedGenes": [
-        "CYP2D6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_132_cyp2d6_e74b6f2482",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2d6_132_cpic_allele_definition_778182_eb4d06abba"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*132"
-      ],
-      "genes": [
-        "CYP2D6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 778182.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
         "CPIC:allele_definition:778182",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*132"
-      ],
-      "matchedGenes": [
-        "CYP2D6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_133_cyp2d6_92cca658db",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2d6_133_cpic_allele_definition_778184_c71b2bcb01"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*133"
-      ],
-      "genes": [
-        "CYP2D6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 778184.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
         "CPIC:allele_definition:778184",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*133"
-      ],
-      "matchedGenes": [
-        "CYP2D6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_135_cyp2d6_38bfcec9f8",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2d6_135_cpic_allele_definition_778188_ab71d9b34e"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*135"
-      ],
-      "genes": [
-        "CYP2D6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 778188.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
         "CPIC:allele_definition:778188",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*135"
-      ],
-      "matchedGenes": [
-        "CYP2D6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_139_cyp2d6_46c7294524",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2d6_139_cpic_allele_definition_778196_03e553a51a"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*139"
-      ],
-      "genes": [
-        "CYP2D6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 778196.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
         "CPIC:allele_definition:778196",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*139"
-      ],
-      "matchedGenes": [
-        "CYP2D6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_142_cyp2d6_cc65cc3435",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2d6_142_cpic_allele_definition_778202_f891b92e96"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*142"
-      ],
-      "genes": [
-        "CYP2D6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 778202.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
         "CPIC:allele_definition:778202",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*142"
-      ],
-      "matchedGenes": [
-        "CYP2D6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_144_cyp2d6_ea4e04b292",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2d6_144_cpic_allele_definition_778206_441b27c2c3"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*144"
-      ],
-      "genes": [
-        "CYP2D6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 778206.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
         "CPIC:allele_definition:778206",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*144"
-      ],
-      "matchedGenes": [
-        "CYP2D6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_145_cyp2d6_738a740c6a",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2d6_145_cpic_allele_definition_778208_4aaf5d4165"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*145"
-      ],
-      "genes": [
-        "CYP2D6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 778208.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
         "CPIC:allele_definition:778208",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*145"
-      ],
-      "matchedGenes": [
-        "CYP2D6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_148_cyp2d6_1751e97bbf",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2d6_148_cpic_allele_definition_1609527_59e58e9820"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*148"
-      ],
-      "genes": [
-        "CYP2D6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 1609527.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
         "CPIC:allele_definition:1609527",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
+        "CPIC:allele_definition:2091236",
+        "CPIC:allele_definition:2091238",
+        "CPIC:allele_definition:2091246",
+        "CPIC:allele_definition:7977340"
       ],
       "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*148"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [
         "CYP2D6"
       ],
@@ -2294,6 +1747,8 @@
       },
       "notes": [
         "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Dropped candidate-name artifact (gene_symbol_not_substance).",
+        "Dropped candidate-name artifact (gene_symbol_not_substance).",
         "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
       ]
     },
@@ -2305,16 +1760,16 @@
       "candidateKind": "pgx_risk_markers",
       "claimType": "allele_function",
       "sourceRecords": [
-        "candidate_cpic_data_allele_function_hla_b_15_02_cpic_allele_definition_9001_3bffaba638"
+        "candidate_cpic_data_allele_function_hla_b_15_02_cpic_allele_definition_9001_3bffaba638",
+        "candidate_cpic_data_allele_function_hla_b_57_01_cpic_allele_definition_9002_6263d8ce2b",
+        "candidate_cpic_data_allele_function_hla_b_58_01_cpic_allele_definition_9003_315aff42a0"
       ],
       "sourceName": "CPIC Data",
       "sourceType": "structured_guideline",
       "sourceTruthStatus": "fetched_from_cpic_source",
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*15:02"
-      ],
+      "drugs": [],
       "genes": [
         "HLA-B"
       ],
@@ -2330,12 +1785,12 @@
       "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
       "evidenceIdentifiers": [
         "CPIC:allele_definition:9001",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
+        "https://api.cpicpgx.org/v1/allele_definition?limit=50",
+        "CPIC:allele_definition:9002",
+        "CPIC:allele_definition:9003"
       ],
       "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*15:02"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [
         "HLA-B"
       ],
@@ -2359,396 +1814,8 @@
       },
       "notes": [
         "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_15_cyp2b6_2930b3fd4c",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2b6_15_cpic_allele_definition_777450_cce6c08e28"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*15"
-      ],
-      "genes": [
-        "CYP2B6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2B6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 777450.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:777450",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*15"
-      ],
-      "matchedGenes": [
-        "CYP2B6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_152_cyp2d6_b093917b12",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2d6_152_cpic_allele_definition_2091236_d5b8775a06"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*152"
-      ],
-      "genes": [
-        "CYP2D6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 2091236.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:2091236",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*152"
-      ],
-      "matchedGenes": [
-        "CYP2D6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_153_cyp2d6_f0504f564a",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2d6_153_cpic_allele_definition_2091238_49402b759a"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*153"
-      ],
-      "genes": [
-        "CYP2D6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 2091238.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:2091238",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*153"
-      ],
-      "matchedGenes": [
-        "CYP2D6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_157_cyp2d6_8afc671649",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2d6_157_cpic_allele_definition_2091246_4d8a9685f7"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*157"
-      ],
-      "genes": [
-        "CYP2D6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 2091246.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:2091246",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*157"
-      ],
-      "matchedGenes": [
-        "CYP2D6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_17_cyp2b6_181055e8c3",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2b6_17_cpic_allele_definition_777452_1a94455d13"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*17"
-      ],
-      "genes": [
-        "CYP2B6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2B6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 777452.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:777452",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*17"
-      ],
-      "matchedGenes": [
-        "CYP2B6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_18_cyp2b6_af1dd735cb",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2b6_18_cpic_allele_definition_777454_9aa3fbb1d5"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*18"
-      ],
-      "genes": [
-        "CYP2B6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2B6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 777454.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:777454",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*18"
-      ],
-      "matchedGenes": [
-        "CYP2B6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Dropped candidate-name artifact (invalid_substance_name).",
+        "Dropped candidate-name artifact (invalid_substance_name).",
         "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
       ]
     },
@@ -2760,16 +1827,23 @@
       "candidateKind": "pgx_risk_markers",
       "claimType": "allele_function",
       "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2c9_19_cpic_allele_definition_777704_720bf5b6af"
+        "candidate_cpic_data_allele_function_cyp2c9_19_cpic_allele_definition_777704_720bf5b6af",
+        "candidate_cpic_data_allele_function_cyp2c9_25_cpic_allele_definition_777716_8e13b30c34",
+        "candidate_cpic_data_allele_function_cyp2c9_33_cpic_allele_definition_777732_36cdb80b9e",
+        "candidate_cpic_data_allele_function_cyp2c9_50_cpic_allele_definition_777766_588dc98764",
+        "candidate_cpic_data_allele_function_cyp2c9_55_cpic_allele_definition_777776_92b97c11f8",
+        "candidate_cpic_data_allele_function_cyp2c9_6_cpic_allele_definition_777678_5d2bee909e",
+        "candidate_cpic_data_allele_function_cyp2c9_64_cpic_allele_definition_777794_52584ebf39",
+        "candidate_cpic_data_allele_function_cyp2c9_7_cpic_allele_definition_777680_463c89f77e",
+        "candidate_cpic_data_allele_function_cyp2c9_75_cpic_allele_definition_1406321_6e525bd7ee",
+        "candidate_cpic_data_allele_function_cyp2c9_85_cpic_allele_definition_1933003_9da1dc8450"
       ],
       "sourceName": "CPIC Data",
       "sourceType": "structured_guideline",
       "sourceTruthStatus": "fetched_from_cpic_source",
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*19"
-      ],
+      "drugs": [],
       "genes": [
         "CYP2C9"
       ],
@@ -2785,142 +1859,19 @@
       "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
       "evidenceIdentifiers": [
         "CPIC:allele_definition:777704",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*19"
-      ],
-      "matchedGenes": [
-        "CYP2C9"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_21_cyp2b6_ce884c107b",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2b6_21_cpic_allele_definition_777460_609d702fa8"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*21"
-      ],
-      "genes": [
-        "CYP2B6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2B6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 777460.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:777460",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*21"
-      ],
-      "matchedGenes": [
-        "CYP2B6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_25_cyp2c9_3f76b63b92",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2c9_25_cpic_allele_definition_777716_8e13b30c34"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*25"
-      ],
-      "genes": [
-        "CYP2C9"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2C9"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 777716.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
+        "https://api.cpicpgx.org/v1/allele_definition?limit=50",
         "CPIC:allele_definition:777716",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
+        "CPIC:allele_definition:777732",
+        "CPIC:allele_definition:777766",
+        "CPIC:allele_definition:777776",
+        "CPIC:allele_definition:777678",
+        "CPIC:allele_definition:777794",
+        "CPIC:allele_definition:777680",
+        "CPIC:allele_definition:1406321",
+        "CPIC:allele_definition:1933003"
       ],
       "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*25"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [
         "CYP2C9"
       ],
@@ -2944,6 +1895,8 @@
       },
       "notes": [
         "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Dropped candidate-name artifact (gene_symbol_not_substance).",
+        "Dropped candidate-name artifact (gene_symbol_not_substance).",
         "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
       ]
     },
@@ -2962,9 +1915,7 @@
       "sourceTruthStatus": "fetched_from_cpic_source",
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*31:01"
-      ],
+      "drugs": [],
       "genes": [
         "HLA-A"
       ],
@@ -2983,9 +1934,7 @@
         "https://api.cpicpgx.org/v1/allele_definition?limit=50"
       ],
       "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*31:01"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [
         "HLA-A"
       ],
@@ -3009,71 +1958,8 @@
       },
       "notes": [
         "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_33_cyp2c9_3d62adf5f1",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2c9_33_cpic_allele_definition_777732_36cdb80b9e"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*33"
-      ],
-      "genes": [
-        "CYP2C9"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2C9"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 777732.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:777732",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*33"
-      ],
-      "matchedGenes": [
-        "CYP2C9"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Dropped candidate-name artifact (invalid_substance_name).",
+        "Dropped candidate-name artifact (invalid_substance_name).",
         "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
       ]
     },
@@ -3085,16 +1971,16 @@
       "candidateKind": "pgx_risk_markers",
       "claimType": "allele_function",
       "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2c19_34_cpic_allele_definition_777592_dc0f990106"
+        "candidate_cpic_data_allele_function_cyp2c19_34_cpic_allele_definition_777592_dc0f990106",
+        "candidate_cpic_data_allele_function_cyp2c19_41_cpic_allele_definition_6235065_f1202f94c8",
+        "candidate_cpic_data_allele_function_cyp2c19_42_cpic_allele_definition_7721584_59c9552937"
       ],
       "sourceName": "CPIC Data",
       "sourceType": "structured_guideline",
       "sourceTruthStatus": "fetched_from_cpic_source",
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*34"
-      ],
+      "drugs": [],
       "genes": [
         "CYP2C19"
       ],
@@ -3110,207 +1996,12 @@
       "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
       "evidenceIdentifiers": [
         "CPIC:allele_definition:777592",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*34"
-      ],
-      "matchedGenes": [
-        "CYP2C19"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_37_cyp2b6_2f2ee8be4c",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2b6_37_cpic_allele_definition_777492_2561ad774c"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*37"
-      ],
-      "genes": [
-        "CYP2B6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2B6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 777492.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:777492",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*37"
-      ],
-      "matchedGenes": [
-        "CYP2B6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_38_cyp2b6_d201ebefb2",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2b6_38_cpic_allele_definition_777494_6db14753bc"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*38"
-      ],
-      "genes": [
-        "CYP2B6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2B6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 777494.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:777494",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*38"
-      ],
-      "matchedGenes": [
-        "CYP2B6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_41_cyp2c19_7fd47fa6a4",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2c19_41_cpic_allele_definition_6235065_f1202f94c8"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*41"
-      ],
-      "genes": [
-        "CYP2C19"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2C19"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 6235065.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
+        "https://api.cpicpgx.org/v1/allele_definition?limit=50",
         "CPIC:allele_definition:6235065",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
+        "CPIC:allele_definition:7721584"
       ],
       "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*41"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [
         "CYP2C19"
       ],
@@ -3334,331 +2025,8 @@
       },
       "notes": [
         "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_42_cyp2c19_973caac2e2",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2c19_42_cpic_allele_definition_7721584_59c9552937"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*42"
-      ],
-      "genes": [
-        "CYP2C19"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2C19"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 7721584.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:7721584",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*42"
-      ],
-      "matchedGenes": [
-        "CYP2C19"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_45_cyp2b6_da57996bec",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2b6_45_cpic_allele_definition_2899154_3ce398de13"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*45"
-      ],
-      "genes": [
-        "CYP2B6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2B6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 2899154.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:2899154",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*45"
-      ],
-      "matchedGenes": [
-        "CYP2B6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_49_cyp2b6_88fe30095f",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2b6_49_cpic_allele_definition_2899162_4c3e53d7fe"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*49"
-      ],
-      "genes": [
-        "CYP2B6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2B6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 2899162.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:2899162",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*49"
-      ],
-      "matchedGenes": [
-        "CYP2B6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_50_cyp2c9_6478201fab",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2c9_50_cpic_allele_definition_777766_588dc98764"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*50"
-      ],
-      "genes": [
-        "CYP2C9"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2C9"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 777766.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:777766",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*50"
-      ],
-      "matchedGenes": [
-        "CYP2C9"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_55_cyp2c9_bd81d88665",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2c9_55_cpic_allele_definition_777776_92b97c11f8"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*55"
-      ],
-      "genes": [
-        "CYP2C9"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2C9"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 777776.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:777776",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*55"
-      ],
-      "matchedGenes": [
-        "CYP2C9"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Dropped candidate-name artifact (gene_symbol_not_substance).",
+        "Dropped candidate-name artifact (gene_symbol_not_substance).",
         "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
       ]
     },
@@ -3670,16 +2038,15 @@
       "candidateKind": "pgx_risk_markers",
       "claimType": "allele_function",
       "sourceRecords": [
-        "candidate_cpic_data_allele_function_slco1b1_55_cpic_allele_definition_6970385_e8e83fd2d0"
+        "candidate_cpic_data_allele_function_slco1b1_55_cpic_allele_definition_6970385_e8e83fd2d0",
+        "candidate_cpic_data_allele_function_slco1b1_56_cpic_allele_definition_6970387_719c0d3a23"
       ],
       "sourceName": "CPIC Data",
       "sourceType": "structured_guideline",
       "sourceTruthStatus": "fetched_from_cpic_source",
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*55"
-      ],
+      "drugs": [],
       "genes": [
         "SLCO1B1"
       ],
@@ -3695,12 +2062,11 @@
       "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
       "evidenceIdentifiers": [
         "CPIC:allele_definition:6970385",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
+        "https://api.cpicpgx.org/v1/allele_definition?limit=50",
+        "CPIC:allele_definition:6970387"
       ],
       "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*55"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [
         "SLCO1B1"
       ],
@@ -3724,656 +2090,8 @@
       },
       "notes": [
         "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_56_slco1b1_4e05e47254",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_slco1b1_56_cpic_allele_definition_6970387_719c0d3a23"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*56"
-      ],
-      "genes": [
-        "SLCO1B1"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "SLCO1B1"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 6970387.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:6970387",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*56"
-      ],
-      "matchedGenes": [
-        "SLCO1B1"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_57_01_hla_b_049360a2da",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_hla_b_57_01_cpic_allele_definition_9002_6263d8ce2b"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*57:01"
-      ],
-      "genes": [
-        "HLA-B"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "HLA-B"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 9002.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:9002",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*57:01"
-      ],
-      "matchedGenes": [
-        "HLA-B"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_58_01_hla_b_4077f2abff",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_hla_b_58_01_cpic_allele_definition_9003_315aff42a0"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*58:01"
-      ],
-      "genes": [
-        "HLA-B"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "HLA-B"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 9003.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:9003",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*58:01"
-      ],
-      "matchedGenes": [
-        "HLA-B"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_6_cyp2c9_61d9970bc0",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2c9_6_cpic_allele_definition_777678_5d2bee909e"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*6"
-      ],
-      "genes": [
-        "CYP2C9"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2C9"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 777678.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:777678",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*6"
-      ],
-      "matchedGenes": [
-        "CYP2C9"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_64_cyp2c9_b6dec4e99c",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2c9_64_cpic_allele_definition_777794_52584ebf39"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*64"
-      ],
-      "genes": [
-        "CYP2C9"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2C9"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 777794.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:777794",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*64"
-      ],
-      "matchedGenes": [
-        "CYP2C9"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_68_4_cyp2d6_ce87ed9bf6",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2d6_68_4_cpic_allele_definition_7977340_4f42ffed6d"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*68+*4"
-      ],
-      "genes": [
-        "CYP2D6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 7977340.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:7977340",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*68+*4"
-      ],
-      "matchedGenes": [
-        "CYP2D6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_7_cyp2c9_7b60b16e00",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2c9_7_cpic_allele_definition_777680_463c89f77e"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*7"
-      ],
-      "genes": [
-        "CYP2C9"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2C9"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 777680.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:777680",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*7"
-      ],
-      "matchedGenes": [
-        "CYP2C9"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_75_cyp2c9_e407a13875",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2c9_75_cpic_allele_definition_1406321_6e525bd7ee"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*75"
-      ],
-      "genes": [
-        "CYP2C9"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2C9"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 1406321.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:1406321",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*75"
-      ],
-      "matchedGenes": [
-        "CYP2C9"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_8_cyp2b6_470396662f",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2b6_8_cpic_allele_definition_777436_489a41a016"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*8"
-      ],
-      "genes": [
-        "CYP2B6"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2B6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 777436.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:777436",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*8"
-      ],
-      "matchedGenes": [
-        "CYP2B6"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_pgx_risk_markers_85_cyp2c9_6eba763d35",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cyp2c9_85_cpic_allele_definition_1933003_9da1dc8450"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "*85"
-      ],
-      "genes": [
-        "CYP2C9"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CYP2C9"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 1933003.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:1933003",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "*85"
-      ],
-      "matchedGenes": [
-        "CYP2C9"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Dropped candidate-name artifact (invalid_substance_name).",
+        "Dropped candidate-name artifact (invalid_substance_name).",
         "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
       ]
     },
@@ -8904,7 +6622,8 @@
         "candidate_cpic_data_allele_function_cftr_cpic_allele_definition_6355217_331f9db145",
         "candidate_cpic_data_allele_function_cftr_cpic_allele_definition_6355249_6e0551fe54",
         "candidate_cpic_data_allele_function_cftr_cpic_allele_definition_6355257_d417d039e0",
-        "candidate_cpic_data_allele_function_cftr_cpic_allele_definition_6355265_c0990f1e54"
+        "candidate_cpic_data_allele_function_cftr_cpic_allele_definition_6355265_c0990f1e54",
+        "candidate_cpic_data_allele_function_cftr_g194r_g_c_cpic_allele_definition_6355263_e9cb763206"
       ],
       "sourceName": "CPIC Data",
       "sourceType": "structured_guideline",
@@ -8931,7 +6650,8 @@
         "CPIC:allele_definition:6355217",
         "CPIC:allele_definition:6355249",
         "CPIC:allele_definition:6355257",
-        "CPIC:allele_definition:6355265"
+        "CPIC:allele_definition:6355265",
+        "CPIC:allele_definition:6355263"
       ],
       "strongestExternalTier": "CPIC Data",
       "matchedDiognosisDrugs": [],
@@ -25496,71 +23216,6 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_pgx_risk_markers_g194r_g_c_cftr_9b347021d2",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "pgx_risk_markers",
-      "layer": "pgx",
-      "candidateKind": "pgx_risk_markers",
-      "claimType": "allele_function",
-      "sourceRecords": [
-        "candidate_cpic_data_allele_function_cftr_g194r_g_c_cpic_allele_definition_6355263_e9cb763206"
-      ],
-      "sourceName": "CPIC Data",
-      "sourceType": "structured_guideline",
-      "sourceTruthStatus": "fetched_from_cpic_source",
-      "sourceRelease": "api-v1",
-      "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "G194R(G>C)"
-      ],
-      "genes": [
-        "CFTR"
-      ],
-      "metabolites": [],
-      "pathways": [
-        "CFTR"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "",
-      "mechanismSummary": "allele_definition source object 6355263.",
-      "clinicalSummary": "Fetched CPIC source object is staged for review and cannot affect scoring or public severity until explicitly promoted.",
-      "evidenceIdentifiers": [
-        "CPIC:allele_definition:6355263",
-        "https://api.cpicpgx.org/v1/allele_definition?limit=50"
-      ],
-      "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "G194R(G>C)"
-      ],
-      "matchedGenes": [
-        "CFTR"
-      ],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "GENOTYPE_EFFECTS",
-      "priority": "P2",
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "unreviewed",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "ready_for_source_faithfulness_review"
-      },
-      "notes": [
-        "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
-        "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
-      ]
-    },
-    {
       "candidateId": "candidate_relation_pgx_risk_markers_gba_d1641b3e86",
       "schema": "diognosis.candidate-relation.v1",
       "store": "pgx_risk_markers",
@@ -28247,9 +25902,7 @@
       "sourceTruthStatus": "fetched_from_cpic_source",
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/allele_definition?limit=50",
-      "drugs": [
-        "m.930G>A"
-      ],
+      "drugs": [],
       "genes": [
         "MT-RNR1"
       ],
@@ -28268,9 +25921,7 @@
         "https://api.cpicpgx.org/v1/allele_definition?limit=50"
       ],
       "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "M.930G>A"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [
         "MT-RNR1"
       ],
@@ -28294,6 +25945,8 @@
       },
       "notes": [
         "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Dropped candidate-name artifact (invalid_substance_name).",
+        "Dropped candidate-name artifact (invalid_substance_name).",
         "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
       ]
     },

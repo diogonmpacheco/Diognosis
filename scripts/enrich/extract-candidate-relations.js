@@ -2,6 +2,7 @@
 import { createHash } from 'crypto';
 import { resolve } from 'path';
 import { loadDiognosisData, ROOT } from './lib/diognosis-source-loader.js';
+import { buildCandidateNameContext, normalizeRelationDrugNames } from './lib/candidate-name-normalizer.js';
 import { loadAllStagedRecords, markdownTable, readJson, writeJson, writeText } from './lib/enrichment-common.js';
 import {
   baseCandidateGovernance,
@@ -14,8 +15,18 @@ import {
 import { stableToken } from './lib/staged-source-schema.js';
 
 const OUT_DIR = resolve(ROOT, 'data/enrichment/candidates');
-const OUT_AUDIT = resolve(ROOT, 'docs/audits/candidate-relation-extraction.json');
-const OUT_MD = resolve(ROOT, 'docs/audits/candidate-relation-extraction.md');
+const OUT_AUDIT = resolve(ROOT, 'data/enrichment/reports/candidate-relation-extraction.json');
+const OUT_MD = resolve(ROOT, 'data/enrichment/reports/candidate-relation-extraction.md');
+const DIOGNOSIS_DATA = loadDiognosisData();
+const NAME_CONTEXT = buildCandidateNameContext(DIOGNOSIS_DATA);
+
+function normalizedDrugField(values = []) {
+  return normalizeRelationDrugNames(values, NAME_CONTEXT);
+}
+
+function candidateNameNotes(rejected = []) {
+  return rejected.map(row => `Dropped candidate-name artifact (${row.reason}).`);
+}
 
 function candidateId(record, storeKey) {
   const actors = [
@@ -37,6 +48,8 @@ function candidateId(record, storeKey) {
 function relationForRecord(record) {
   const storeKey = candidateStoreForClaimType(record.claim?.claimType || 'other');
   const def = candidateStoreDefinition(storeKey);
+  const drugNormalization = normalizedDrugField(record.claim?.drugs || []);
+  const matchedDrugNormalization = normalizedDrugField(record.mapping?.matchedDiognosisDrugs || []);
   return {
     candidateId: candidateId(record, storeKey),
     schema: 'diognosis.candidate-relation.v1',
@@ -50,7 +63,7 @@ function relationForRecord(record) {
     sourceTruthStatus: record.provenance?.sourceTruthStatus || 'local_review_candidate_not_fetched',
     sourceRelease: record.provenance?.sourceRelease || '',
     rawSourceCachePath: record.provenance?.rawSourceCachePath || '',
-    drugs: record.claim?.drugs || [],
+    drugs: drugNormalization.names,
     genes: record.claim?.genes || [],
     metabolites: record.claim?.metabolites || [],
     pathways: record.claim?.pathways || [],
@@ -62,7 +75,7 @@ function relationForRecord(record) {
     clinicalSummary: record.claim?.clinicalSummary || '',
     evidenceIdentifiers: normalizeEvidenceIdentifiers(record),
     strongestExternalTier: record.evidence?.strongestExternalTier || '',
-    matchedDiognosisDrugs: record.mapping?.matchedDiognosisDrugs || [],
+    matchedDiognosisDrugs: matchedDrugNormalization.names,
     matchedGenes: record.mapping?.matchedGenes || [],
     matchedMetabolites: record.mapping?.matchedMetabolites || [],
     possibleExistingRows: record.mapping?.possibleExistingRows || [],
@@ -77,6 +90,7 @@ function relationForRecord(record) {
     }),
     notes: [
       'Candidate relation extracted from staged enrichment data. Review required before any curated data change.',
+      ...candidateNameNotes([...drugNormalization.rejected, ...matchedDrugNormalization.rejected]),
       ...(record.notes || []),
     ],
   };
@@ -223,8 +237,10 @@ function localCandidateId(storeKey, row) {
 
 function localRelation(storeKey, row) {
   const def = candidateStoreDefinition(storeKey);
+  const drugNormalization = normalizedDrugField(row.drugs || []);
+  const normalizedRow = { ...row, drugs: drugNormalization.names };
   return {
-    candidateId: localCandidateId(storeKey, row),
+    candidateId: localCandidateId(storeKey, normalizedRow),
     schema: 'diognosis.candidate-relation.v1',
     store: storeKey,
     layer: def.layer,
@@ -236,7 +252,7 @@ function localRelation(storeKey, row) {
     sourceTruthStatus: row.sourceTruthStatus || 'existing_core_data_review_prompt',
     sourceRelease: '',
     rawSourceCachePath: '',
-    drugs: row.drugs || [],
+    drugs: drugNormalization.names,
     genes: row.genes || [],
     metabolites: row.metabolites || [],
     pathways: row.pathways || [],
@@ -248,7 +264,7 @@ function localRelation(storeKey, row) {
     clinicalSummary: row.clinicalSummary || 'Existing Diognosis row surfaced for source review and expansion.',
     evidenceIdentifiers: row.evidenceIdentifiers || [],
     strongestExternalTier: row.strongestExternalTier || '',
-    matchedDiognosisDrugs: row.drugs || [],
+    matchedDiognosisDrugs: drugNormalization.names,
     matchedGenes: row.genes || [],
     matchedMetabolites: row.metabolites || [],
     possibleExistingRows: row.possibleExistingRows || [],
@@ -262,6 +278,7 @@ function localRelation(storeKey, row) {
     notes: [
       'Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.',
       'This is not a new external source claim and should not create duplicate live rows.',
+      ...candidateNameNotes(drugNormalization.rejected),
       ...(row.notes || []),
     ],
   };
@@ -281,7 +298,7 @@ function evidenceIdentifiersForRefs(data, refs = []) {
 }
 
 function buildLocalCoverageCandidates() {
-  const data = loadDiognosisData();
+  const data = DIOGNOSIS_DATA;
   const candidates = [];
   for (const row of (data.KNOWN_DDI || []).slice(0, 80)) {
     const refs = row.evidenceRefs || row.refs || [];

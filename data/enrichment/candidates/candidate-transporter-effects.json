@@ -3,7 +3,7 @@
   "store": "transporter_effects",
   "layer": "enzyme_transporter",
   "title": "Transporter effects",
-  "generatedAt": "2026-06-15T14:34:04.468Z",
+  "generatedAt": "2026-06-15T23:57:50.383Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",

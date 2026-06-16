@@ -3,7 +3,7 @@
   "store": "drug_identity",
   "layer": "identity",
   "title": "Drug identities and aliases",
-  "generatedAt": "2026-06-15T14:34:04.464Z",
+  "generatedAt": "2026-06-15T23:57:50.379Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",
@@ -22,7 +22,7 @@
       "records": 248
     }
   ],
-  "totalCandidates": 150,
+  "totalCandidates": 144,
   "candidates": [
     {
       "candidateId": "candidate_relation_drug_identity_local_abciximab_drug_identity_f0b914ff5b",
@@ -484,63 +484,6 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_drug_identity_local_aspirin_low_dose_drug_identity_f0ca3022d5",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "drug_identity",
-      "layer": "identity",
-      "candidateKind": "drug_identity",
-      "claimType": "drug_identity",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Aspirin (Low-Dose)"
-      ],
-      "genes": [],
-      "metabolites": [],
-      "pathways": [
-        "CYP2C9"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "identity_context",
-      "mechanismSummary": "Aspirin (Low-Dose) exists in DRUG_DB with Antiplatelet/NSAID class metadata.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Aspirin (Low-Dose)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "DRUG_DB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
       "candidateId": "candidate_relation_drug_identity_local_azithromycin_drug_identity_745a4f91f8",
       "schema": "diognosis.candidate-relation.v1",
       "store": "drug_identity",
@@ -884,6 +827,60 @@
       ]
     },
     {
+      "candidateId": "candidate_relation_drug_identity_local_drug_identity_e150c95137",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "drug_identity",
+      "layer": "identity",
+      "candidateKind": "drug_identity",
+      "claimType": "drug_identity",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [],
+      "pathways": [
+        "CYP2E1"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "identity_context",
+      "mechanismSummary": "Alcohol (Ethanol) exists in DRUG_DB with Depressant class metadata.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [],
+      "possibleExistingRows": [],
+      "suggestedTarget": "DRUG_DB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
       "candidateId": "candidate_relation_drug_identity_abacavir_d8bbd8d712",
       "schema": "diognosis.candidate-relation.v1",
       "store": "drug_identity",
@@ -899,7 +896,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "abacavir"
+        "Abacavir"
       ],
       "genes": [],
       "metabolites": [],
@@ -1019,7 +1016,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "allopurinol"
+        "Allopurinol"
       ],
       "genes": [],
       "metabolites": [],
@@ -1079,7 +1076,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "amikacin"
+        "Amikacin"
       ],
       "genes": [],
       "metabolites": [],
@@ -1139,7 +1136,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "amitriptyline"
+        "Amitriptyline"
       ],
       "genes": [],
       "metabolites": [],
@@ -1199,7 +1196,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "aspirin"
+        "Aspirin"
       ],
       "genes": [],
       "metabolites": [],
@@ -1259,7 +1256,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "atomoxetine"
+        "Atomoxetine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1319,7 +1316,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "atorvastatin"
+        "Atorvastatin"
       ],
       "genes": [],
       "metabolites": [],
@@ -1378,9 +1375,7 @@
       "sourceTruthStatus": "fetched_from_cpic_source",
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
-      "drugs": [
-        "Bisphosphonates"
-      ],
+      "drugs": [],
       "genes": [],
       "metabolites": [],
       "pathways": [],
@@ -1396,9 +1391,7 @@
         "https://api.cpicpgx.org/v1/drug?limit=50"
       ],
       "strongestExternalTier": "CPIC Data",
-      "matchedDiognosisDrugs": [
-        "Bisphosphonates"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [],
       "matchedMetabolites": [],
       "possibleExistingRows": [],
@@ -1420,6 +1413,8 @@
       },
       "notes": [
         "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Dropped candidate-name artifact (bare_class_noun).",
+        "Dropped candidate-name artifact (bare_class_noun).",
         "Fetched from CPIC API cache. Review source faithfulness, mapping, wording, and clinical status before any promotion."
       ]
     },
@@ -1439,7 +1434,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "budesonide"
+        "Budesonide"
       ],
       "genes": [],
       "metabolites": [],
@@ -1499,7 +1494,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "buprenorphine"
+        "Buprenorphine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1559,7 +1554,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "capecitabine"
+        "Capecitabine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1619,7 +1614,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "carbamazepine"
+        "Carbamazepine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1739,7 +1734,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "carboplatin"
+        "Carboplatin"
       ],
       "genes": [],
       "metabolites": [],
@@ -1799,7 +1794,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "clomipramine"
+        "Clomipramine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1859,7 +1854,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "dapsone"
+        "Dapsone"
       ],
       "genes": [],
       "metabolites": [],
@@ -1919,7 +1914,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "desipramine"
+        "Desipramine"
       ],
       "genes": [],
       "metabolites": [],
@@ -1979,7 +1974,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "doxepin"
+        "Doxepin"
       ],
       "genes": [],
       "metabolites": [],
@@ -2039,7 +2034,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "eltrombopag"
+        "Eltrombopag"
       ],
       "genes": [],
       "metabolites": [],
@@ -2159,7 +2154,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "fluorouracil"
+        "Fluorouracil"
       ],
       "genes": [],
       "metabolites": [],
@@ -2219,7 +2214,8 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "fluticasone/salmeterol"
+        "Fluticasone",
+        "salmeterol"
       ],
       "genes": [],
       "metabolites": [],
@@ -2237,7 +2233,8 @@
       ],
       "strongestExternalTier": "CPIC Data",
       "matchedDiognosisDrugs": [
-        "Fluticasone/Salmeterol"
+        "Fluticasone",
+        "Salmeterol"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -2279,7 +2276,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "fosphenytoin"
+        "Fosphenytoin"
       ],
       "genes": [],
       "metabolites": [],
@@ -2339,7 +2336,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "gentamicin"
+        "Gentamicin"
       ],
       "genes": [],
       "metabolites": [],
@@ -2399,7 +2396,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "imipramine"
+        "Imipramine"
       ],
       "genes": [],
       "metabolites": [],
@@ -2459,7 +2456,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "isoflurane"
+        "Isoflurane"
       ],
       "genes": [],
       "metabolites": [],
@@ -3202,63 +3199,6 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_drug_identity_local_alcohol_ethanol_drug_identity_a563dc27f1",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "drug_identity",
-      "layer": "identity",
-      "candidateKind": "drug_identity",
-      "claimType": "drug_identity",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Alcohol (Ethanol)"
-      ],
-      "genes": [],
-      "metabolites": [],
-      "pathways": [
-        "CYP2E1"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "identity_context",
-      "mechanismSummary": "Alcohol (Ethanol) exists in DRUG_DB with Depressant class metadata.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Alcohol (Ethanol)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "DRUG_DB",
-      "priority": "P2",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
       "candidateId": "candidate_relation_drug_identity_local_alectinib_drug_identity_944149580b",
       "schema": "diognosis.candidate-relation.v1",
       "store": "drug_identity",
@@ -3888,7 +3828,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_drug_identity_local_amoxicillin_clavulanate_drug_identity_c50f72630e",
+      "candidateId": "candidate_relation_drug_identity_local_amoxicillin_clavulanate_drug_identity_28cbdaa200",
       "schema": "diognosis.candidate-relation.v1",
       "store": "drug_identity",
       "layer": "identity",
@@ -3901,7 +3841,8 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "Amoxicillin/Clavulanate"
+        "Amoxicillin",
+        "Clavulanate"
       ],
       "genes": [],
       "metabolites": [],
@@ -3917,7 +3858,8 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "Amoxicillin/Clavulanate"
+        "Amoxicillin",
+        "Clavulanate"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -4402,7 +4344,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_drug_identity_local_artemether_lumefantrine_drug_identity_f9170637ff",
+      "candidateId": "candidate_relation_drug_identity_local_artemether_lumefantrine_drug_identity_c18b621fca",
       "schema": "diognosis.candidate-relation.v1",
       "store": "drug_identity",
       "layer": "identity",
@@ -4415,7 +4357,8 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "Artemether/Lumefantrine"
+        "Artemether",
+        "Lumefantrine"
       ],
       "genes": [],
       "metabolites": [],
@@ -4431,64 +4374,8 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "Artemether/Lumefantrine"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "DRUG_DB",
-      "priority": "P2",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_drug_identity_local_ascorbic_acid_vitamin_c_drug_identity_116c47cfc0",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "drug_identity",
-      "layer": "identity",
-      "candidateKind": "drug_identity",
-      "claimType": "drug_identity",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Ascorbic Acid (Vitamin C)"
-      ],
-      "genes": [],
-      "metabolites": [],
-      "pathways": [
-        "Renal Excretion / Saturable Handling"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "identity_context",
-      "mechanismSummary": "Ascorbic Acid (Vitamin C) exists in DRUG_DB with Acidifying Supplement / Vitamin class metadata.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Ascorbic Acid (Vitamin C)"
+        "Artemether",
+        "Lumefantrine"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -4890,61 +4777,6 @@
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
         "Axitinib"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "DRUG_DB",
-      "priority": "P2",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_drug_identity_local_ayahuasca_dmt_maoi_drug_identity_03925459c5",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "drug_identity",
-      "layer": "identity",
-      "candidateKind": "drug_identity",
-      "claimType": "drug_identity",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Ayahuasca (DMT+MAOI)"
-      ],
-      "genes": [],
-      "metabolites": [],
-      "pathways": [],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "identity_context",
-      "mechanismSummary": "Ayahuasca (DMT+MAOI) exists in DRUG_DB with Psychedelic class metadata.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Ayahuasca (DMT+MAOI)"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -5740,63 +5572,6 @@
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
         "Bivalirudin"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "DRUG_DB",
-      "priority": "P2",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_drug_identity_local_black_pepper_piperine_drug_identity_35e5080c1a",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "drug_identity",
-      "layer": "identity",
-      "candidateKind": "drug_identity",
-      "claimType": "drug_identity",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Black Pepper (Piperine)"
-      ],
-      "genes": [],
-      "metabolites": [],
-      "pathways": [
-        "CYP3A4"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "identity_context",
-      "mechanismSummary": "Black Pepper (Piperine) exists in DRUG_DB with Food class metadata.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Black Pepper (Piperine)"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -6678,122 +6453,6 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_drug_identity_local_cannabis_cbd_drug_identity_5cf810a56a",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "drug_identity",
-      "layer": "identity",
-      "candidateKind": "drug_identity",
-      "claimType": "drug_identity",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Cannabis (CBD)"
-      ],
-      "genes": [],
-      "metabolites": [],
-      "pathways": [
-        "CYP3A4",
-        "CYP2C19"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "identity_context",
-      "mechanismSummary": "Cannabis (CBD) exists in DRUG_DB with Cannabinoid class metadata.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Cannabis (CBD)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "DRUG_DB",
-      "priority": "P2",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_drug_identity_local_cannabis_thc_drug_identity_9a8f5fb7ea",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "drug_identity",
-      "layer": "identity",
-      "candidateKind": "drug_identity",
-      "claimType": "drug_identity",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Cannabis (THC)"
-      ],
-      "genes": [],
-      "metabolites": [],
-      "pathways": [
-        "CYP3A4",
-        "CYP2C9"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "identity_context",
-      "mechanismSummary": "Cannabis (THC) exists in DRUG_DB with Cannabinoid class metadata.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Cannabis (THC)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [],
-      "possibleExistingRows": [],
-      "suggestedTarget": "DRUG_DB",
-      "priority": "P2",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
       "candidateId": "candidate_relation_drug_identity_local_capecitabine_drug_identity_2a1bb2fd5a",
       "schema": "diognosis.candidate-relation.v1",
       "store": "drug_identity",
@@ -7423,7 +7082,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_drug_identity_local_ceftazidime_avibactam_drug_identity_9f64d2f768",
+      "candidateId": "candidate_relation_drug_identity_local_ceftazidime_avibactam_drug_identity_701baf9fd0",
       "schema": "diognosis.candidate-relation.v1",
       "store": "drug_identity",
       "layer": "identity",
@@ -7436,7 +7095,8 @@
       "sourceRelease": "",
       "rawSourceCachePath": "",
       "drugs": [
-        "Ceftazidime/Avibactam"
+        "Ceftazidime",
+        "Avibactam"
       ],
       "genes": [],
       "metabolites": [],
@@ -7452,7 +7112,8 @@
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
       "matchedDiognosisDrugs": [
-        "Ceftazidime/Avibactam"
+        "Ceftazidime",
+        "Avibactam"
       ],
       "matchedGenes": [],
       "matchedMetabolites": [],
@@ -7555,7 +7216,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "meloxicam"
+        "Meloxicam"
       ],
       "genes": [],
       "metabolites": [],
@@ -7615,7 +7276,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "mercaptopurine"
+        "Mercaptopurine"
       ],
       "genes": [],
       "metabolites": [],
@@ -7675,7 +7336,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "methylene blue"
+        "Methylene Blue"
       ],
       "genes": [],
       "metabolites": [],
@@ -7795,7 +7456,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "primaquine"
+        "Primaquine"
       ],
       "genes": [],
       "metabolites": [],
@@ -7855,7 +7516,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "rasburicase"
+        "Rasburicase"
       ],
       "genes": [],
       "metabolites": [],
@@ -7915,7 +7576,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "ribavirin"
+        "Ribavirin"
       ],
       "genes": [],
       "metabolites": [],
@@ -7975,7 +7636,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "sevoflurane"
+        "Sevoflurane"
       ],
       "genes": [],
       "metabolites": [],
@@ -8035,7 +7696,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "streptomycin"
+        "Streptomycin"
       ],
       "genes": [],
       "metabolites": [],
@@ -8095,7 +7756,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "succinylcholine"
+        "Succinylcholine"
       ],
       "genes": [],
       "metabolites": [],
@@ -8155,7 +7816,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "tacrolimus"
+        "Tacrolimus"
       ],
       "genes": [],
       "metabolites": [],
@@ -8215,7 +7876,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "tafenoquine"
+        "Tafenoquine"
       ],
       "genes": [],
       "metabolites": [],
@@ -8275,7 +7936,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "tamoxifen"
+        "Tamoxifen"
       ],
       "genes": [],
       "metabolites": [],
@@ -8335,7 +7996,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "tenoxicam"
+        "Tenoxicam"
       ],
       "genes": [],
       "metabolites": [],
@@ -8395,7 +8056,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "thioguanine"
+        "Thioguanine"
       ],
       "genes": [],
       "metabolites": [],
@@ -8455,7 +8116,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "tobramycin"
+        "Tobramycin"
       ],
       "genes": [],
       "metabolites": [],
@@ -8575,7 +8236,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "trimipramine"
+        "Trimipramine"
       ],
       "genes": [],
       "metabolites": [],
@@ -8635,7 +8296,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "tropisetron"
+        "Tropisetron"
       ],
       "genes": [],
       "metabolites": [],
@@ -8695,7 +8356,7 @@
       "sourceRelease": "api-v1",
       "rawSourceCachePath": "https://api.cpicpgx.org/v1/drug?limit=50",
       "drugs": [
-        "warfarin"
+        "Warfarin"
       ],
       "genes": [],
       "metabolites": [],

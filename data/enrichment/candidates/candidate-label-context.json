@@ -3,7 +3,7 @@
   "store": "label_context",
   "layer": "safety_phenotype",
   "title": "Label source context",
-  "generatedAt": "2026-06-15T14:34:04.482Z",
+  "generatedAt": "2026-06-15T23:57:50.398Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",
@@ -1129,9 +1129,7 @@
       "sourceTruthStatus": "fetched_public_label_metadata_only",
       "sourceRelease": "Mar 07, 2024",
       "rawSourceCachePath": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls.json?drug_name=Alcohol%20(Ethanol)&name_type=both",
-      "drugs": [
-        "Alcohol (Ethanol)"
-      ],
+      "drugs": [],
       "genes": [],
       "metabolites": [],
       "pathways": [],
@@ -1155,9 +1153,7 @@
         "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d4257536-598f-2318-e053-2a95a90a9642"
       ],
       "strongestExternalTier": "FDA_LABEL",
-      "matchedDiognosisDrugs": [
-        "Alcohol (Ethanol)"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [],
       "matchedMetabolites": [],
       "possibleExistingRows": [],
@@ -1179,6 +1175,8 @@
       },
       "notes": [
         "Candidate relation extracted from staged enrichment data. Review required before any curated data change.",
+        "Dropped candidate-name artifact (invalid_substance_name).",
+        "Dropped candidate-name artifact (invalid_substance_name).",
         "DailyMed metadata record. Label body text was not copied or stored."
       ]
     },

@@ -1,0 +1,152 @@
+{
+  "schema": "diognosis.candidate-relation-extraction.v1",
+  "generatedAt": "2026-06-15T23:57:50.409Z",
+  "stagedRecords": 2355,
+  "stagedFiles": 4,
+  "stores": [
+    {
+      "store": "drug_identity",
+      "file": "data/enrichment/candidates/candidate-drug-identities.json",
+      "layer": "identity",
+      "totalCandidates": 144,
+      "priorityCounts": {
+        "P1": 15,
+        "P2": 129
+      }
+    },
+    {
+      "store": "interactions",
+      "file": "data/enrichment/candidates/candidate-interactions.json",
+      "layer": "interaction",
+      "totalCandidates": 80,
+      "priorityCounts": {
+        "P1": 46,
+        "P2": 34
+      }
+    },
+    {
+      "store": "parent_metabolite_relations",
+      "file": "data/enrichment/candidates/candidate-parent-metabolite-relations.json",
+      "layer": "parent_metabolite",
+      "totalCandidates": 260,
+      "priorityCounts": {
+        "P1": 259,
+        "P2": 1
+      }
+    },
+    {
+      "store": "metabolite_roles",
+      "file": "data/enrichment/candidates/candidate-metabolite-roles.json",
+      "layer": "parent_metabolite",
+      "totalCandidates": 33,
+      "priorityCounts": {
+        "P2": 33
+      }
+    },
+    {
+      "store": "enzyme_effects",
+      "file": "data/enrichment/candidates/candidate-enzyme-effects.json",
+      "layer": "enzyme_transporter",
+      "totalCandidates": 43,
+      "priorityCounts": {
+        "P2": 43
+      }
+    },
+    {
+      "store": "transporter_effects",
+      "file": "data/enrichment/candidates/candidate-transporter-effects.json",
+      "layer": "enzyme_transporter",
+      "totalCandidates": 1,
+      "priorityCounts": {
+        "P2": 1
+      }
+    },
+    {
+      "store": "pgx_rules",
+      "file": "data/enrichment/candidates/candidate-pgx-rules.json",
+      "layer": "pgx",
+      "totalCandidates": 334,
+      "priorityCounts": {
+        "P1": 263,
+        "P2": 71
+      }
+    },
+    {
+      "store": "pgx_risk_markers",
+      "file": "data/enrichment/candidates/candidate-pgx-risk-markers.json",
+      "layer": "pgx",
+      "totalCandidates": 633,
+      "priorityCounts": {
+        "P1": 22,
+        "P2": 611
+      }
+    },
+    {
+      "store": "pk_parameters",
+      "file": "data/enrichment/candidates/candidate-pk-parameters.json",
+      "layer": "pk_timing",
+      "totalCandidates": 80,
+      "priorityCounts": {
+        "P2": 80
+      }
+    },
+    {
+      "store": "timing_rules",
+      "file": "data/enrichment/candidates/candidate-timing-rules.json",
+      "layer": "pk_timing",
+      "totalCandidates": 24,
+      "priorityCounts": {
+        "P2": 24
+      }
+    },
+    {
+      "store": "receptor_effects",
+      "file": "data/enrichment/candidates/candidate-receptor-effects.json",
+      "layer": "safety_phenotype",
+      "totalCandidates": 28,
+      "priorityCounts": {
+        "P2": 28
+      }
+    },
+    {
+      "store": "beers_geriatrics",
+      "file": "data/enrichment/candidates/candidate-beers-geriatrics.json",
+      "layer": "safety_phenotype",
+      "totalCandidates": 43,
+      "priorityCounts": {
+        "P1": 43
+      }
+    },
+    {
+      "store": "evidence_links",
+      "file": "data/enrichment/candidates/candidate-evidence-links.json",
+      "layer": "evidence",
+      "totalCandidates": 19,
+      "priorityCounts": {
+        "P1": 11,
+        "P2": 8
+      }
+    },
+    {
+      "store": "engine_hypotheses",
+      "file": "data/enrichment/candidates/candidate-engine-hypotheses.json",
+      "layer": "engine_hypothesis",
+      "totalCandidates": 157,
+      "priorityCounts": {
+        "P1": 52,
+        "P2": 105
+      }
+    },
+    {
+      "store": "label_context",
+      "file": "data/enrichment/candidates/candidate-label-context.json",
+      "layer": "safety_phenotype",
+      "totalCandidates": 362,
+      "priorityCounts": {
+        "P1": 362
+      }
+    }
+  ],
+  "totalCandidates": 2241,
+  "reviewBoundary": "candidate_relations_only_no_core_promotion"
+}

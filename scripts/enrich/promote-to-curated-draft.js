@@ -25,6 +25,9 @@ function parseArgs(argv) {
 
 const args = parseArgs(process.argv.slice(2));
 if (!args.record) throw new Error('Usage: node scripts/enrich/promote-to-curated-draft.js --record candidate_...');
+if (/\bDRUG_DB\b/i.test(args.target || '')) {
+  throw new Error('Promotion to DRUG_DB is blocked. New drugs require deliberate hand curation from primary regulatory/clinical sources.');
+}
 
 const { records } = loadAllStagedRecords();
 const record = records.find(row => row.id === args.record);

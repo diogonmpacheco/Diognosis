@@ -3,7 +3,7 @@
   "store": "parent_metabolite_relations",
   "layer": "parent_metabolite",
   "title": "Parent-metabolite relations",
-  "generatedAt": "2026-06-15T14:34:04.466Z",
+  "generatedAt": "2026-06-15T23:57:50.381Z",
   "sourceStagedFiles": [
     {
       "file": "data/enrichment/staged/clinpgx-staged-records.json",
@@ -24,6 +24,180 @@
   ],
   "totalCandidates": 260,
   "candidates": [
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_11_hydroxy_thc_11_oh_thc_parent_metabolite_relation_930bcd75b8",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "11-Hydroxy-THC (11-OH-THC)"
+      ],
+      "pathways": [
+        "CYP2C9"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "active",
+      "mechanismSummary": "Cannabis (THC) maps to 11-Hydroxy-THC (11-OH-THC) in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "11-Hydroxy-THC (11-OH-THC)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_11_nor_9_carboxy_thc_thc_cooh_parent_metabolite_relation_7c880be846",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "11-Nor-9-carboxy-THC (THC-COOH)"
+      ],
+      "pathways": [
+        "CYP2C9"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "inactive",
+      "mechanismSummary": "Cannabis (THC) maps to 11-Nor-9-carboxy-THC (THC-COOH) in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "11-Nor-9-carboxy-THC (THC-COOH)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_16_carboxy_mitragynine_parent_metabolite_relation_d019436cb9",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "16-Carboxy-mitragynine"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "inactive",
+      "mechanismSummary": "Kratom (Mitragynine) maps to 16-Carboxy-mitragynine in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "16-Carboxy-mitragynine"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
     {
       "candidateId": "candidate_relation_parent_metabolite_relations_local_2c_b_2_4_bromo_2_5_dimethoxyphenyl_ethanol_parent_metabolite_relation_ab51c1ab70",
       "schema": "diognosis.candidate-relation.v1",
@@ -452,7 +626,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_alcohol_ethanol_acetaldehyde_parent_metabolite_relation_69ef5d1c89",
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_3_4_seco_solanidine_3_4_dioic_acid_ssda_parent_metabolite_relation_d82bae691c",
       "schema": "diognosis.candidate-relation.v1",
       "store": "parent_metabolite_relations",
       "layer": "parent_metabolite",
@@ -464,9 +638,647 @@
       "sourceTruthStatus": "existing_core_data_review_prompt",
       "sourceRelease": "",
       "rawSourceCachePath": "",
-      "drugs": [
-        "Alcohol (Ethanol)"
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "3,4-seco-solanidine-3,4-dioic acid (SSDA)"
       ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "inactive",
+      "mechanismSummary": "Potatoes (Solanine/Solanidine) maps to 3,4-seco-solanidine-3,4-dioic acid (SSDA) in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "3,4-seco-solanidine-3,4-dioic acid (SSDA)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name).",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_3_hydroxymorphinan_3_hm_parent_metabolite_relation_e479a5245d",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "3-Hydroxymorphinan (3-HM)"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "inactive",
+      "mechanismSummary": "DXM (Dextromethorphan) maps to 3-Hydroxymorphinan (3-HM) in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "3-Hydroxymorphinan (3-HM)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_3_methoxymorphinan_3_mm_parent_metabolite_relation_5a3013d6f0",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "3-Methoxymorphinan (3-MM)"
+      ],
+      "pathways": [
+        "CYP3A4"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "inactive",
+      "mechanismSummary": "DXM (Dextromethorphan) maps to 3-Methoxymorphinan (3-MM) in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "3-Methoxymorphinan (3-MM)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_4_oh_solanidine_parent_metabolite_relation_e52c064353",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "4-OH-solanidine"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "inactive",
+      "mechanismSummary": "Potatoes (Solanine/Solanidine) maps to 4-OH-solanidine in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "4-OH-solanidine"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name).",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_6_hydroxy_cbd_parent_metabolite_relation_2a3df838eb",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "6α-Hydroxy-CBD"
+      ],
+      "pathways": [
+        "CYP3A4"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "active",
+      "mechanismSummary": "Cannabis (CBD) maps to 6α-Hydroxy-CBD in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "6α-Hydroxy-CBD"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_6_monoacetylmorphine_6_mam_parent_metabolite_relation_685bc66fd7",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "6-Monoacetylmorphine (6-MAM)"
+      ],
+      "pathways": [
+        "Esterase"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "active",
+      "mechanismSummary": "Heroin (Diacetylmorphine) maps to 6-Monoacetylmorphine (6-MAM) in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "6-Monoacetylmorphine (6-MAM)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_7_cooh_cbd_parent_metabolite_relation_0337d3f7a6",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "7-COOH-CBD"
+      ],
+      "pathways": [
+        "CYP2C19"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "inactive",
+      "mechanismSummary": "Cannabis (CBD) maps to 7-COOH-CBD in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "7-COOH-CBD"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_7_hydroxy_cbd_7_oh_cbd_parent_metabolite_relation_a58c34fa47",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "7-Hydroxy-CBD (7-OH-CBD)"
+      ],
+      "pathways": [
+        "CYP2C19"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "active",
+      "mechanismSummary": "Cannabis (CBD) maps to 7-Hydroxy-CBD (7-OH-CBD) in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "7-Hydroxy-CBD (7-OH-CBD)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_7_hydroxymitragynine_7_oh_m_parent_metabolite_relation_8b0c503f21",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "7-Hydroxymitragynine (7-OH-M)"
+      ],
+      "pathways": [
+        "CYP3A4"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "active",
+      "mechanismSummary": "Kratom (Mitragynine) maps to 7-Hydroxymitragynine (7-OH-M) in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "7-Hydroxymitragynine (7-OH-M)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_8_hydroxy_thc_parent_metabolite_relation_1ba1d3a410",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "8β-Hydroxy-THC"
+      ],
+      "pathways": [
+        "CYP3A4"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "active",
+      "mechanismSummary": "Cannabis (THC) maps to 8β-Hydroxy-THC in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "8β-Hydroxy-THC"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_9_o_demethylmitragynine_parent_metabolite_relation_97baa32b37",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "9-O-Demethylmitragynine"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "active",
+      "mechanismSummary": "Kratom (Mitragynine) maps to 9-O-Demethylmitragynine in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "9-O-Demethylmitragynine"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_acetaldehyde_parent_metabolite_relation_890ea27173",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
       "genes": [],
       "metabolites": [
         "Acetaldehyde"
@@ -482,9 +1294,7 @@
       "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Alcohol (Ethanol)"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [],
       "matchedMetabolites": [
         "Acetaldehyde"
@@ -509,11 +1319,12 @@
       },
       "notes": [
         "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
       ]
     },
     {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_alcohol_ethanol_acetic_acid_acetyl_coa_parent_metabolite_relation_89b2801fdb",
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_acetic_acid_acetyl_coa_parent_metabolite_relation_19ffb65d65",
       "schema": "diognosis.candidate-relation.v1",
       "store": "parent_metabolite_relations",
       "layer": "parent_metabolite",
@@ -525,9 +1336,7 @@
       "sourceTruthStatus": "existing_core_data_review_prompt",
       "sourceRelease": "",
       "rawSourceCachePath": "",
-      "drugs": [
-        "Alcohol (Ethanol)"
-      ],
+      "drugs": [],
       "genes": [],
       "metabolites": [
         "Acetic acid → Acetyl-CoA"
@@ -543,9 +1352,7 @@
       "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Alcohol (Ethanol)"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [],
       "matchedMetabolites": [
         "Acetic acid → Acetyl-CoA"
@@ -570,129 +1377,8 @@
       },
       "notes": [
         "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_alcohol_ethanol_ethyl_glucuronide_etg_parent_metabolite_relation_193c7b0059",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Alcohol (Ethanol)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "Ethyl glucuronide (EtG)"
-      ],
-      "pathways": [
-        "UGT"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "inactive",
-      "mechanismSummary": "Alcohol (Ethanol) maps to Ethyl glucuronide (EtG) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Alcohol (Ethanol)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "Ethyl glucuronide (EtG)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_alcohol_ethanol_ethyl_sulfate_ets_parent_metabolite_relation_8ddbb1330c",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Alcohol (Ethanol)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "Ethyl sulfate (EtS)"
-      ],
-      "pathways": [
-        "SULT"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "inactive",
-      "mechanismSummary": "Alcohol (Ethanol) maps to Ethyl sulfate (EtS) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Alcohol (Ethanol)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "Ethyl sulfate (EtS)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
       ]
     },
     {
@@ -1916,250 +2602,6 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_ayahuasca_dmt_maoi_dmt_protected_from_mao_parent_metabolite_relation_4846d4db39",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Ayahuasca (DMT+MAOI)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "DMT (protected from MAO)"
-      ],
-      "pathways": [
-        "Oral"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "active",
-      "mechanismSummary": "Ayahuasca (DMT+MAOI) maps to DMT (protected from MAO) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Ayahuasca (DMT+MAOI)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "DMT (protected from MAO)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_ayahuasca_dmt_maoi_harmaline_harmalol_parent_metabolite_relation_4fad686612",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Ayahuasca (DMT+MAOI)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "Harmaline → Harmalol"
-      ],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "inactive",
-      "mechanismSummary": "Ayahuasca (DMT+MAOI) maps to Harmaline → Harmalol in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Ayahuasca (DMT+MAOI)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "Harmaline → Harmalol"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_ayahuasca_dmt_maoi_harmine_harmol_parent_metabolite_relation_89e890cb09",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Ayahuasca (DMT+MAOI)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "Harmine → Harmol"
-      ],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "inactive",
-      "mechanismSummary": "Ayahuasca (DMT+MAOI) maps to Harmine → Harmol in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Ayahuasca (DMT+MAOI)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "Harmine → Harmol"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_ayahuasca_dmt_maoi_thh_tetrahydroharmine_parent_metabolite_relation_d9451a35ec",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Ayahuasca (DMT+MAOI)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "THH (tetrahydroharmine)"
-      ],
-      "pathways": [
-        "MAO-A"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "active",
-      "mechanismSummary": "Ayahuasca (DMT+MAOI) maps to THH (tetrahydroharmine) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Ayahuasca (DMT+MAOI)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "THH (tetrahydroharmine)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
       "candidateId": "candidate_relation_parent_metabolite_relations_local_buprenorphine_buprenorphine_3_glucuronide_parent_metabolite_relation_4e864e5c16",
       "schema": "diognosis.candidate-relation.v1",
       "store": "parent_metabolite_relations",
@@ -2831,494 +3273,6 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_cannabis_cbd_6_hydroxy_cbd_parent_metabolite_relation_fe49899efd",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Cannabis (CBD)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "6α-Hydroxy-CBD"
-      ],
-      "pathways": [
-        "CYP3A4"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "active",
-      "mechanismSummary": "Cannabis (CBD) maps to 6α-Hydroxy-CBD in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Cannabis (CBD)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "6α-Hydroxy-CBD"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_cannabis_cbd_7_cooh_cbd_parent_metabolite_relation_eff5bb7afe",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Cannabis (CBD)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "7-COOH-CBD"
-      ],
-      "pathways": [
-        "CYP2C19"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "inactive",
-      "mechanismSummary": "Cannabis (CBD) maps to 7-COOH-CBD in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Cannabis (CBD)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "7-COOH-CBD"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_cannabis_cbd_7_hydroxy_cbd_7_oh_cbd_parent_metabolite_relation_f7376f890d",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Cannabis (CBD)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "7-Hydroxy-CBD (7-OH-CBD)"
-      ],
-      "pathways": [
-        "CYP2C19"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "active",
-      "mechanismSummary": "Cannabis (CBD) maps to 7-Hydroxy-CBD (7-OH-CBD) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Cannabis (CBD)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "7-Hydroxy-CBD (7-OH-CBD)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_cannabis_cbd_cbd_glucuronide_parent_metabolite_relation_c098b24332",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Cannabis (CBD)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "CBD-glucuronide"
-      ],
-      "pathways": [
-        "UGT"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "inactive",
-      "mechanismSummary": "Cannabis (CBD) maps to CBD-glucuronide in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Cannabis (CBD)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "CBD-glucuronide"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_cannabis_thc_11_hydroxy_thc_11_oh_thc_parent_metabolite_relation_bd20cfe607",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Cannabis (THC)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "11-Hydroxy-THC (11-OH-THC)"
-      ],
-      "pathways": [
-        "CYP2C9"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "active",
-      "mechanismSummary": "Cannabis (THC) maps to 11-Hydroxy-THC (11-OH-THC) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Cannabis (THC)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "11-Hydroxy-THC (11-OH-THC)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_cannabis_thc_11_nor_9_carboxy_thc_thc_cooh_parent_metabolite_relation_2ce748b3e2",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Cannabis (THC)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "11-Nor-9-carboxy-THC (THC-COOH)"
-      ],
-      "pathways": [
-        "CYP2C9"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "inactive",
-      "mechanismSummary": "Cannabis (THC) maps to 11-Nor-9-carboxy-THC (THC-COOH) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Cannabis (THC)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "11-Nor-9-carboxy-THC (THC-COOH)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_cannabis_thc_8_hydroxy_thc_parent_metabolite_relation_4b0e26c799",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Cannabis (THC)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "8β-Hydroxy-THC"
-      ],
-      "pathways": [
-        "CYP3A4"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "active",
-      "mechanismSummary": "Cannabis (THC) maps to 8β-Hydroxy-THC in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Cannabis (THC)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "8β-Hydroxy-THC"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_cannabis_thc_thc_cooh_glucuronide_parent_metabolite_relation_6f6e0cc955",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Cannabis (THC)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "THC-COOH glucuronide"
-      ],
-      "pathways": [
-        "UGT"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "inactive",
-      "mechanismSummary": "Cannabis (THC) maps to THC-COOH glucuronide in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Cannabis (THC)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "THC-COOH glucuronide"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
       "candidateId": "candidate_relation_parent_metabolite_relations_local_carvedilol_1_hydroxyphenyl_carvedilol_parent_metabolite_relation_ca28101566",
       "schema": "diognosis.candidate-relation.v1",
       "store": "parent_metabolite_relations",
@@ -3560,6 +3514,64 @@
       "notes": [
         "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
         "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_cbd_glucuronide_parent_metabolite_relation_b0b2863dae",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "CBD-glucuronide"
+      ],
+      "pathways": [
+        "UGT"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "inactive",
+      "mechanismSummary": "Cannabis (CBD) maps to CBD-glucuronide in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "CBD-glucuronide"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
       ]
     },
     {
@@ -5393,189 +5405,6 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_cruciferous_vegetables_isothiocyanates_isothiocyanate_mercapturic_acids_parent_metabolite_relation_fb8796c731",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Cruciferous Vegetables (Isothiocyanates)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "Isothiocyanate mercapturic acids"
-      ],
-      "pathways": [
-        "GST/GSH → mercapturic acid pathway"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "inactive",
-      "mechanismSummary": "Cruciferous Vegetables (Isothiocyanates) maps to Isothiocyanate mercapturic acids in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Cruciferous Vegetables (Isothiocyanates)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "Isothiocyanate mercapturic acids"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_cruciferous_vegetables_isothiocyanates_phenethyl_isothiocyanate_peitc_parent_metabolite_relation_9c998e2d76",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Cruciferous Vegetables (Isothiocyanates)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "Phenethyl isothiocyanate (PEITC)"
-      ],
-      "pathways": [
-        "Myrosinase / gut microbiome"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "active",
-      "mechanismSummary": "Cruciferous Vegetables (Isothiocyanates) maps to Phenethyl isothiocyanate (PEITC) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Cruciferous Vegetables (Isothiocyanates)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "Phenethyl isothiocyanate (PEITC)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_cruciferous_vegetables_isothiocyanates_sulforaphane_parent_metabolite_relation_8857455220",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Cruciferous Vegetables (Isothiocyanates)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "Sulforaphane"
-      ],
-      "pathways": [
-        "Myrosinase / gut microbiome"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "active",
-      "mechanismSummary": "Cruciferous Vegetables (Isothiocyanates) maps to Sulforaphane in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Cruciferous Vegetables (Isothiocyanates)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "Sulforaphane"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
       "candidateId": "candidate_relation_parent_metabolite_relations_local_desvenlafaxine_desvenlafaxine_glucuronide_parent_metabolite_relation_58c065f9b8",
       "schema": "diognosis.candidate-relation.v1",
       "store": "parent_metabolite_relations",
@@ -5695,6 +5524,64 @@
       "notes": [
         "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
         "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_dextrorphan_dxo_parent_metabolite_relation_e6ccb59c7c",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "Dextrorphan (DXO)"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "active_form",
+      "mechanismSummary": "DXM (Dextromethorphan) maps to Dextrorphan (DXO) in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Dextrorphan (DXO)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
       ]
     },
     {
@@ -6125,6 +6012,65 @@
       ]
     },
     {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_dmt_protected_from_mao_parent_metabolite_relation_231059fc4c",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "DMT (protected from MAO)"
+      ],
+      "pathways": [
+        "Oral"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "active",
+      "mechanismSummary": "Ayahuasca (DMT+MAOI) maps to DMT (protected from MAO) in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "DMT (protected from MAO)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name).",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
       "candidateId": "candidate_relation_parent_metabolite_relations_local_doxepin_doxepin_glucuronide_parent_metabolite_relation_52504d43c3",
       "schema": "diognosis.candidate-relation.v1",
       "store": "parent_metabolite_relations",
@@ -6491,7 +6437,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_dxm_dextromethorphan_3_hydroxymorphinan_3_hm_parent_metabolite_relation_ff3b61b4f5",
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_dxm_unchanged_in_pm_parent_metabolite_relation_db41d6a7e8",
       "schema": "diognosis.candidate-relation.v1",
       "store": "parent_metabolite_relations",
       "layer": "parent_metabolite",
@@ -6503,192 +6449,7 @@
       "sourceTruthStatus": "existing_core_data_review_prompt",
       "sourceRelease": "",
       "rawSourceCachePath": "",
-      "drugs": [
-        "DXM (Dextromethorphan)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "3-Hydroxymorphinan (3-HM)"
-      ],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "inactive",
-      "mechanismSummary": "DXM (Dextromethorphan) maps to 3-Hydroxymorphinan (3-HM) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "DXM (Dextromethorphan)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "3-Hydroxymorphinan (3-HM)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_dxm_dextromethorphan_3_methoxymorphinan_3_mm_parent_metabolite_relation_7efbd03d04",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "DXM (Dextromethorphan)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "3-Methoxymorphinan (3-MM)"
-      ],
-      "pathways": [
-        "CYP3A4"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "inactive",
-      "mechanismSummary": "DXM (Dextromethorphan) maps to 3-Methoxymorphinan (3-MM) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "DXM (Dextromethorphan)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "3-Methoxymorphinan (3-MM)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_dxm_dextromethorphan_dextrorphan_dxo_parent_metabolite_relation_9d225fd6d7",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "DXM (Dextromethorphan)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "Dextrorphan (DXO)"
-      ],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "active_form",
-      "mechanismSummary": "DXM (Dextromethorphan) maps to Dextrorphan (DXO) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "DXM (Dextromethorphan)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "Dextrorphan (DXO)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_dxm_dextromethorphan_dxm_unchanged_in_pm_parent_metabolite_relation_2131cb63d1",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "DXM (Dextromethorphan)"
-      ],
+      "drugs": [],
       "genes": [],
       "metabolites": [
         "DXM (unchanged in PM)"
@@ -6704,9 +6465,7 @@
       "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "DXM (Dextromethorphan)"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [],
       "matchedMetabolites": [
         "DXM (unchanged in PM)"
@@ -6731,7 +6490,8 @@
       },
       "notes": [
         "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
       ]
     },
     {
@@ -7281,6 +7041,122 @@
       "notes": [
         "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
         "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_ethyl_glucuronide_etg_parent_metabolite_relation_5b1c54cc26",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "Ethyl glucuronide (EtG)"
+      ],
+      "pathways": [
+        "UGT"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "inactive",
+      "mechanismSummary": "Alcohol (Ethanol) maps to Ethyl glucuronide (EtG) in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Ethyl glucuronide (EtG)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_ethyl_sulfate_ets_parent_metabolite_relation_abaeb9774e",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "Ethyl sulfate (EtS)"
+      ],
+      "pathways": [
+        "SULT"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "inactive",
+      "mechanismSummary": "Alcohol (Ethanol) maps to Ethyl sulfate (EtS) in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Ethyl sulfate (EtS)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
       ]
     },
     {
@@ -8077,7 +7953,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_heroin_diacetylmorphine_6_monoacetylmorphine_6_mam_parent_metabolite_relation_6d127c8f6d",
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_harmaline_harmalol_parent_metabolite_relation_f0a960bd87",
       "schema": "diognosis.candidate-relation.v1",
       "store": "parent_metabolite_relations",
       "layer": "parent_metabolite",
@@ -8089,91 +7965,26 @@
       "sourceTruthStatus": "existing_core_data_review_prompt",
       "sourceRelease": "",
       "rawSourceCachePath": "",
-      "drugs": [
-        "Heroin (Diacetylmorphine)"
-      ],
+      "drugs": [],
       "genes": [],
       "metabolites": [
-        "6-Monoacetylmorphine (6-MAM)"
+        "Harmaline → Harmalol"
       ],
       "pathways": [
-        "Esterase"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "active",
-      "mechanismSummary": "Heroin (Diacetylmorphine) maps to 6-Monoacetylmorphine (6-MAM) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Heroin (Diacetylmorphine)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "6-Monoacetylmorphine (6-MAM)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_heroin_diacetylmorphine_morphine_3_glucuronide_parent_metabolite_relation_bed66fa029",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Heroin (Diacetylmorphine)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "Morphine-3-glucuronide"
-      ],
-      "pathways": [
-        "UGT2B7"
+        "CYP2D6"
       ],
       "riskMarkers": [],
       "phenotypes": [],
       "affectedActors": [],
       "direction": "inactive",
-      "mechanismSummary": "Heroin (Diacetylmorphine) maps to Morphine-3-glucuronide in existing Diognosis metabolism data.",
+      "mechanismSummary": "Ayahuasca (DMT+MAOI) maps to Harmaline → Harmalol in existing Diognosis metabolism data.",
       "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Heroin (Diacetylmorphine)"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [],
       "matchedMetabolites": [
-        "Morphine-3-glucuronide"
+        "Harmaline → Harmalol"
       ],
       "possibleExistingRows": [],
       "suggestedTarget": "METAB",
@@ -8195,11 +8006,13 @@
       },
       "notes": [
         "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name).",
+        "Dropped candidate-name artifact (invalid_substance_name)."
       ]
     },
     {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_heroin_diacetylmorphine_morphine_6_glucuronide_parent_metabolite_relation_96f63a5477",
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_harmine_harmol_parent_metabolite_relation_8e93edfd8d",
       "schema": "diognosis.candidate-relation.v1",
       "store": "parent_metabolite_relations",
       "layer": "parent_metabolite",
@@ -8211,30 +8024,143 @@
       "sourceTruthStatus": "existing_core_data_review_prompt",
       "sourceRelease": "",
       "rawSourceCachePath": "",
-      "drugs": [
-        "Heroin (Diacetylmorphine)"
-      ],
+      "drugs": [],
       "genes": [],
       "metabolites": [
-        "Morphine-6-glucuronide"
+        "Harmine → Harmol"
       ],
       "pathways": [
-        "UGT2B7"
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "inactive",
+      "mechanismSummary": "Ayahuasca (DMT+MAOI) maps to Harmine → Harmol in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Harmine → Harmol"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name).",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_hha_3_4_dihydroxyamphetamine_parent_metabolite_relation_b40bbca1c0",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "HHA (3,4-dihydroxyamphetamine)"
+      ],
+      "pathways": [
+        "CYP2D6"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "toxic",
+      "mechanismSummary": "MDMA (Ecstasy) maps to HHA (3,4-dihydroxyamphetamine) in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "HHA (3,4-dihydroxyamphetamine)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_hhma_3_4_dihydroxymethamphetamine_parent_metabolite_relation_f6135c73d9",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "HHMA (3,4-dihydroxymethamphetamine)"
+      ],
+      "pathways": [
+        "CYP2D6"
       ],
       "riskMarkers": [],
       "phenotypes": [],
       "affectedActors": [],
       "direction": "active",
-      "mechanismSummary": "Heroin (Diacetylmorphine) maps to Morphine-6-glucuronide in existing Diognosis metabolism data.",
+      "mechanismSummary": "MDMA (Ecstasy) maps to HHMA (3,4-dihydroxymethamphetamine) in existing Diognosis metabolism data.",
       "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Heroin (Diacetylmorphine)"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [],
       "matchedMetabolites": [
-        "Morphine-6-glucuronide"
+        "HHMA (3,4-dihydroxymethamphetamine)"
       ],
       "possibleExistingRows": [],
       "suggestedTarget": "METAB",
@@ -8256,11 +8182,12 @@
       },
       "notes": [
         "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
       ]
     },
     {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_heroin_diacetylmorphine_morphine_parent_metabolite_relation_12b56dc5c8",
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_hmma_4_hydroxy_3_methoxymethamphetamine_parent_metabolite_relation_721aa3f8b3",
       "schema": "diognosis.candidate-relation.v1",
       "store": "parent_metabolite_relations",
       "layer": "parent_metabolite",
@@ -8272,30 +8199,26 @@
       "sourceTruthStatus": "existing_core_data_review_prompt",
       "sourceRelease": "",
       "rawSourceCachePath": "",
-      "drugs": [
-        "Heroin (Diacetylmorphine)"
-      ],
+      "drugs": [],
       "genes": [],
       "metabolites": [
-        "Morphine"
+        "HMMA (4-hydroxy-3-methoxymethamphetamine)"
       ],
       "pathways": [
-        "Esterase"
+        "COMT"
       ],
       "riskMarkers": [],
       "phenotypes": [],
       "affectedActors": [],
-      "direction": "active_form",
-      "mechanismSummary": "Heroin (Diacetylmorphine) maps to Morphine in existing Diognosis metabolism data.",
+      "direction": "inactive",
+      "mechanismSummary": "MDMA (Ecstasy) maps to HMMA (4-hydroxy-3-methoxymethamphetamine) in existing Diognosis metabolism data.",
       "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Heroin (Diacetylmorphine)"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [],
       "matchedMetabolites": [
-        "Morphine"
+        "HMMA (4-hydroxy-3-methoxymethamphetamine)"
       ],
       "possibleExistingRows": [],
       "suggestedTarget": "METAB",
@@ -8317,7 +8240,8 @@
       },
       "notes": [
         "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
       ]
     },
     {
@@ -8931,6 +8855,64 @@
       ]
     },
     {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_isothiocyanate_mercapturic_acids_parent_metabolite_relation_90ac74b29e",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "Isothiocyanate mercapturic acids"
+      ],
+      "pathways": [
+        "GST/GSH → mercapturic acid pathway"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "inactive",
+      "mechanismSummary": "Cruciferous Vegetables (Isothiocyanates) maps to Isothiocyanate mercapturic acids in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Isothiocyanate mercapturic acids"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
       "candidateId": "candidate_relation_parent_metabolite_relations_local_itraconazole_hydroxyitraconazole_parent_metabolite_relation_f187fa501d",
       "schema": "diognosis.candidate-relation.v1",
       "store": "parent_metabolite_relations",
@@ -9333,250 +9315,6 @@
       "matchedGenes": [],
       "matchedMetabolites": [
         "Norketamine"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_kratom_mitragynine_16_carboxy_mitragynine_parent_metabolite_relation_ded3802a05",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Kratom (Mitragynine)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "16-Carboxy-mitragynine"
-      ],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "inactive",
-      "mechanismSummary": "Kratom (Mitragynine) maps to 16-Carboxy-mitragynine in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Kratom (Mitragynine)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "16-Carboxy-mitragynine"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_kratom_mitragynine_7_hydroxymitragynine_7_oh_m_parent_metabolite_relation_790acfb4a7",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Kratom (Mitragynine)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "7-Hydroxymitragynine (7-OH-M)"
-      ],
-      "pathways": [
-        "CYP3A4"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "active",
-      "mechanismSummary": "Kratom (Mitragynine) maps to 7-Hydroxymitragynine (7-OH-M) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Kratom (Mitragynine)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "7-Hydroxymitragynine (7-OH-M)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_kratom_mitragynine_9_o_demethylmitragynine_parent_metabolite_relation_e63393be31",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Kratom (Mitragynine)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "9-O-Demethylmitragynine"
-      ],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "active",
-      "mechanismSummary": "Kratom (Mitragynine) maps to 9-O-Demethylmitragynine in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Kratom (Mitragynine)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "9-O-Demethylmitragynine"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_kratom_mitragynine_mitragynine_glucuronide_parent_metabolite_relation_98f8bc3dca",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Kratom (Mitragynine)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "Mitragynine glucuronide"
-      ],
-      "pathways": [
-        "UGT"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "inactive",
-      "mechanismSummary": "Kratom (Mitragynine) maps to Mitragynine glucuronide in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Kratom (Mitragynine)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "Mitragynine glucuronide"
       ],
       "possibleExistingRows": [],
       "suggestedTarget": "METAB",
@@ -10212,7 +9950,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_mdma_ecstasy_hha_3_4_dihydroxyamphetamine_parent_metabolite_relation_e7e4590452",
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_mda_tenamfetamine_parent_metabolite_relation_03e325f352",
       "schema": "diognosis.candidate-relation.v1",
       "store": "parent_metabolite_relations",
       "layer": "parent_metabolite",
@@ -10224,192 +9962,7 @@
       "sourceTruthStatus": "existing_core_data_review_prompt",
       "sourceRelease": "",
       "rawSourceCachePath": "",
-      "drugs": [
-        "MDMA (Ecstasy)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "HHA (3,4-dihydroxyamphetamine)"
-      ],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "toxic",
-      "mechanismSummary": "MDMA (Ecstasy) maps to HHA (3,4-dihydroxyamphetamine) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "MDMA (Ecstasy)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "HHA (3,4-dihydroxyamphetamine)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_mdma_ecstasy_hhma_3_4_dihydroxymethamphetamine_parent_metabolite_relation_d4b0e453bd",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "MDMA (Ecstasy)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "HHMA (3,4-dihydroxymethamphetamine)"
-      ],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "active",
-      "mechanismSummary": "MDMA (Ecstasy) maps to HHMA (3,4-dihydroxymethamphetamine) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "MDMA (Ecstasy)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "HHMA (3,4-dihydroxymethamphetamine)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_mdma_ecstasy_hmma_4_hydroxy_3_methoxymethamphetamine_parent_metabolite_relation_342846c34f",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "MDMA (Ecstasy)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "HMMA (4-hydroxy-3-methoxymethamphetamine)"
-      ],
-      "pathways": [
-        "COMT"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "inactive",
-      "mechanismSummary": "MDMA (Ecstasy) maps to HMMA (4-hydroxy-3-methoxymethamphetamine) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "MDMA (Ecstasy)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "HMMA (4-hydroxy-3-methoxymethamphetamine)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_mdma_ecstasy_mda_tenamfetamine_parent_metabolite_relation_1eadb7ff42",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "MDMA (Ecstasy)"
-      ],
+      "drugs": [],
       "genes": [],
       "metabolites": [
         "MDA (tenamfetamine)"
@@ -10425,9 +9978,7 @@
       "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "MDMA (Ecstasy)"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [],
       "matchedMetabolites": [
         "MDA (tenamfetamine)"
@@ -10452,7 +10003,8 @@
       },
       "notes": [
         "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
       ]
     },
     {
@@ -11737,6 +11289,180 @@
       ]
     },
     {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_mitragynine_glucuronide_parent_metabolite_relation_eec1b5e0e8",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "Mitragynine glucuronide"
+      ],
+      "pathways": [
+        "UGT"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "inactive",
+      "mechanismSummary": "Kratom (Mitragynine) maps to Mitragynine glucuronide in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Mitragynine glucuronide"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_morphine_3_glucuronide_parent_metabolite_relation_03bd31da82",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "Morphine-3-glucuronide"
+      ],
+      "pathways": [
+        "UGT2B7"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "inactive",
+      "mechanismSummary": "Heroin (Diacetylmorphine) maps to Morphine-3-glucuronide in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Morphine-3-glucuronide"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_morphine_6_glucuronide_parent_metabolite_relation_fa28669cc7",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "Morphine-6-glucuronide"
+      ],
+      "pathways": [
+        "UGT2B7"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "active",
+      "mechanismSummary": "Heroin (Diacetylmorphine) maps to Morphine-6-glucuronide in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Morphine-6-glucuronide"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
       "candidateId": "candidate_relation_parent_metabolite_relations_local_morphine_morphine_3_glucuronide_m3g_parent_metabolite_relation_97aec23d40",
       "schema": "diognosis.candidate-relation.v1",
       "store": "parent_metabolite_relations",
@@ -11978,6 +11704,64 @@
       "notes": [
         "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
         "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_morphine_parent_metabolite_relation_68ca4b51ee",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "Morphine"
+      ],
+      "pathways": [
+        "Esterase"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "active_form",
+      "mechanismSummary": "Heroin (Diacetylmorphine) maps to Morphine in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Morphine"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
       ]
     },
     {
@@ -13445,7 +13229,7 @@
       ]
     },
     {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_potatoes_solanine_solanidine_3_4_seco_solanidine_3_4_dioic_acid_ssda_parent_metabolite_relation_3efdb2a182",
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_phenethyl_isothiocyanate_peitc_parent_metabolite_relation_9515bdf18d",
       "schema": "diognosis.candidate-relation.v1",
       "store": "parent_metabolite_relations",
       "layer": "parent_metabolite",
@@ -13457,152 +13241,26 @@
       "sourceTruthStatus": "existing_core_data_review_prompt",
       "sourceRelease": "",
       "rawSourceCachePath": "",
-      "drugs": [
-        "Potatoes (Solanine/Solanidine)"
-      ],
+      "drugs": [],
       "genes": [],
       "metabolites": [
-        "3,4-seco-solanidine-3,4-dioic acid (SSDA)"
+        "Phenethyl isothiocyanate (PEITC)"
       ],
       "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "inactive",
-      "mechanismSummary": "Potatoes (Solanine/Solanidine) maps to 3,4-seco-solanidine-3,4-dioic acid (SSDA) in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Potatoes (Solanine/Solanidine)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "3,4-seco-solanidine-3,4-dioic acid (SSDA)"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_potatoes_solanine_solanidine_4_oh_solanidine_parent_metabolite_relation_a43aae74ad",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Potatoes (Solanine/Solanidine)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "4-OH-solanidine"
-      ],
-      "pathways": [
-        "CYP2D6"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "inactive",
-      "mechanismSummary": "Potatoes (Solanine/Solanidine) maps to 4-OH-solanidine in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Potatoes (Solanine/Solanidine)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "4-OH-solanidine"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_potatoes_solanine_solanidine_solanidine_solanine_chaconine_aglycone_parent_metabolite_relation_21ecd1eed9",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Potatoes (Solanine/Solanidine)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "Solanidine (α-solanine/α-chaconine aglycone)"
-      ],
-      "pathways": [
-        "Gut hydrolysis"
+        "Myrosinase / gut microbiome"
       ],
       "riskMarkers": [],
       "phenotypes": [],
       "affectedActors": [],
       "direction": "active",
-      "mechanismSummary": "Potatoes (Solanine/Solanidine) maps to Solanidine (α-solanine/α-chaconine aglycone) in existing Diognosis metabolism data.",
+      "mechanismSummary": "Cruciferous Vegetables (Isothiocyanates) maps to Phenethyl isothiocyanate (PEITC) in existing Diognosis metabolism data.",
       "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
       "evidenceIdentifiers": [],
       "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Potatoes (Solanine/Solanidine)"
-      ],
+      "matchedDiognosisDrugs": [],
       "matchedGenes": [],
       "matchedMetabolites": [
-        "Solanidine (α-solanine/α-chaconine aglycone)"
+        "Phenethyl isothiocyanate (PEITC)"
       ],
       "possibleExistingRows": [],
       "suggestedTarget": "METAB",
@@ -13624,68 +13282,8 @@
       },
       "notes": [
         "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
-      ]
-    },
-    {
-      "candidateId": "candidate_relation_parent_metabolite_relations_local_potatoes_solanine_solanidine_solanine_parent_metabolite_relation_70d6a65cdd",
-      "schema": "diognosis.candidate-relation.v1",
-      "store": "parent_metabolite_relations",
-      "layer": "parent_metabolite",
-      "candidateKind": "parent_metabolite_relations",
-      "claimType": "parent_metabolite_relation",
-      "sourceRecords": [],
-      "sourceName": "Diognosis local coverage",
-      "sourceType": "internal_diognosis",
-      "sourceTruthStatus": "existing_core_data_review_prompt",
-      "sourceRelease": "",
-      "rawSourceCachePath": "",
-      "drugs": [
-        "Potatoes (Solanine/Solanidine)"
-      ],
-      "genes": [],
-      "metabolites": [
-        "α-Solanine"
-      ],
-      "pathways": [
-        "Dietary glycoalkaloid"
-      ],
-      "riskMarkers": [],
-      "phenotypes": [],
-      "affectedActors": [],
-      "direction": "active",
-      "mechanismSummary": "Potatoes (Solanine/Solanidine) maps to α-Solanine in existing Diognosis metabolism data.",
-      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
-      "evidenceIdentifiers": [],
-      "strongestExternalTier": "",
-      "matchedDiognosisDrugs": [
-        "Potatoes (Solanine/Solanidine)"
-      ],
-      "matchedGenes": [],
-      "matchedMetabolites": [
-        "α-Solanine"
-      ],
-      "possibleExistingRows": [],
-      "suggestedTarget": "METAB",
-      "priority": "P1",
-      "existingCoreRow": true,
-      "governance": {
-        "reviewRequired": true,
-        "professionalReviewStatus": "pending",
-        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
-        "localReviewStatus": "none",
-        "curationStatus": "candidate",
-        "publicDisplayStatus": "review_queue_only",
-        "scoringStatus": "cannot_affect_scoring",
-        "canAutoPromote": false,
-        "canAffectScoring": false,
-        "canAffectPublicSeverity": false,
-        "canBeBundledPublicly": false,
-        "promotionReadiness": "not_ready"
-      },
-      "notes": [
-        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
-        "This is not a new external source claim and should not create duplicate live rows."
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
       ]
     },
     {
@@ -14787,6 +14385,182 @@
       ]
     },
     {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_solanidine_solanine_chaconine_aglycone_parent_metabolite_relation_1b4e9b94fd",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "Solanidine (α-solanine/α-chaconine aglycone)"
+      ],
+      "pathways": [
+        "Gut hydrolysis"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "active",
+      "mechanismSummary": "Potatoes (Solanine/Solanidine) maps to Solanidine (α-solanine/α-chaconine aglycone) in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Solanidine (α-solanine/α-chaconine aglycone)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name).",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_solanine_parent_metabolite_relation_7446312b6e",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "α-Solanine"
+      ],
+      "pathways": [
+        "Dietary glycoalkaloid"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "active",
+      "mechanismSummary": "Potatoes (Solanine/Solanidine) maps to α-Solanine in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "α-Solanine"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name).",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_sulforaphane_parent_metabolite_relation_9b585a499a",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "Sulforaphane"
+      ],
+      "pathways": [
+        "Myrosinase / gut microbiome"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "active",
+      "mechanismSummary": "Cruciferous Vegetables (Isothiocyanates) maps to Sulforaphane in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "Sulforaphane"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
       "candidateId": "candidate_relation_parent_metabolite_relations_local_tenecteplase_tenecteplase_driven_plasmin_activity_parent_metabolite_relation_b47733c4f2",
       "schema": "diognosis.candidate-relation.v1",
       "store": "parent_metabolite_relations",
@@ -14845,6 +14619,123 @@
       "notes": [
         "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
         "This is not a new external source claim and should not create duplicate live rows."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_thc_cooh_glucuronide_parent_metabolite_relation_1d399df585",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "THC-COOH glucuronide"
+      ],
+      "pathways": [
+        "UGT"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "inactive",
+      "mechanismSummary": "Cannabis (THC) maps to THC-COOH glucuronide in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "THC-COOH glucuronide"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name)."
+      ]
+    },
+    {
+      "candidateId": "candidate_relation_parent_metabolite_relations_local_thh_tetrahydroharmine_parent_metabolite_relation_98312bdf46",
+      "schema": "diognosis.candidate-relation.v1",
+      "store": "parent_metabolite_relations",
+      "layer": "parent_metabolite",
+      "candidateKind": "parent_metabolite_relations",
+      "claimType": "parent_metabolite_relation",
+      "sourceRecords": [],
+      "sourceName": "Diognosis local coverage",
+      "sourceType": "internal_diognosis",
+      "sourceTruthStatus": "existing_core_data_review_prompt",
+      "sourceRelease": "",
+      "rawSourceCachePath": "",
+      "drugs": [],
+      "genes": [],
+      "metabolites": [
+        "THH (tetrahydroharmine)"
+      ],
+      "pathways": [
+        "MAO-A"
+      ],
+      "riskMarkers": [],
+      "phenotypes": [],
+      "affectedActors": [],
+      "direction": "active",
+      "mechanismSummary": "Ayahuasca (DMT+MAOI) maps to THH (tetrahydroharmine) in existing Diognosis metabolism data.",
+      "clinicalSummary": "Existing Diognosis row surfaced for source review and expansion.",
+      "evidenceIdentifiers": [],
+      "strongestExternalTier": "",
+      "matchedDiognosisDrugs": [],
+      "matchedGenes": [],
+      "matchedMetabolites": [
+        "THH (tetrahydroharmine)"
+      ],
+      "possibleExistingRows": [],
+      "suggestedTarget": "METAB",
+      "priority": "P1",
+      "existingCoreRow": true,
+      "governance": {
+        "reviewRequired": true,
+        "professionalReviewStatus": "pending",
+        "sourceFaithfulnessStatus": "existing_core_needs_source_review",
+        "localReviewStatus": "none",
+        "curationStatus": "candidate",
+        "publicDisplayStatus": "review_queue_only",
+        "scoringStatus": "cannot_affect_scoring",
+        "canAutoPromote": false,
+        "canAffectScoring": false,
+        "canAffectPublicSeverity": false,
+        "canBeBundledPublicly": false,
+        "promotionReadiness": "not_ready"
+      },
+      "notes": [
+        "Candidate relation generated from existing Diognosis local data so review lanes do not appear empty.",
+        "This is not a new external source claim and should not create duplicate live rows.",
+        "Dropped candidate-name artifact (invalid_substance_name).",
+        "Dropped candidate-name artifact (invalid_substance_name)."
       ]
     },
     {
