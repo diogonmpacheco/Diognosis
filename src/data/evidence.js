@@ -9413,6 +9413,20 @@ const STUDY_DB = {
     limitations:["Rows are qualitative review-priority signals, not genotype-based dose recommendations. Replace with source-specific CPIC/DPWG/label rows over time; clinical use still requires labels, genotype quality, organ function, TDM, and professional review."],
     verified:false, reviewRequired:true, verifyNote:"Phase 11 PGx/transporter expansion rows are pending professional review."
   },
+  "ev_phase15_source_backed_pgx_pairs": {
+    id:"ev_phase15_source_backed_pgx_pairs", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Phase 15 source-backed PGx pair cleanup — CPIC and ClinPGx guideline/pair rows promoted from backlog",
+    year:2026, source:"CPIC Data and ClinPGx staged guideline/pair metadata",
+    pmid:null, doi:null, url:"https://api.cpicpgx.org/",
+    studyDesign:"source_backed_pgx_pair_cleanup", n:null,
+    phenotypes:["PGx_context","CPIC","ClinPGx","CYP2D6","CYP2C19","CYP2C9","CYP2C8","CYP3A4","CYP3A5","DPYD","TPMT","NUDT15","SLCO1B1","ABCG2","ABCB1","HLA-A","HLA-B"],
+    quantifiedEffects:{note:"Shared evidence anchor for source-backed PGx guideline and pair rows promoted from backlog when the drug and gene already map to live Diognosis entities and the pair was missing from PHARMGKB_EVIDENCE/GENOTYPE_METABOLITE_EFFECTS."},
+    temporal:{mechanism:"source_backed_gene_drug_context", onset:"baseline", offset:"persistent"},
+    supports:["phase15_source_backed_pgx_pair_cleanup","phase15_backlog_noise_reduction"],
+    contradicts:[],
+    limitations:["Rows are source-backed context links, not final genotype-specific prescribing recommendations. They remain pending source-specific professional review and should be replaced with precise CPIC/DPWG/FDA-label recommendation rows over time."],
+    verified:false, reviewRequired:true, verifyNote:"Backlog cleanup source anchor for live PGx rows promoted from CPIC/ClinPGx guideline and pair metadata only."
+  },
   "ev_drug_count_expansion_batch": {
     id:"ev_drug_count_expansion_batch", public:true, type:EVIDENCE_TIER.GUIDELINE,
     title:"Phase 12 net-new drug count expansion — source candidates plus therapeutic-domain gap fill",

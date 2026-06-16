@@ -260,9 +260,11 @@ External enrichment now uses one staged-source architecture:
 
 ```text
 External Source -> Fetch / Discover -> Normalize -> Stage -> Dedupe
-  -> Coverage Audit -> Review Queue -> Human Review -> Optional Promotion
-  -> Validation -> Build
+  -> Optional Backlog Review -> Explicit Promotion
+  -> Live Validation -> Build
 ```
+
+Version 1 treats source-linked live data as the product surface. The default enrichment audit is therefore a live-readiness gate: it checks promoted DDI, metabolites, PK, washout, PGx, transporter, burden, and boundary metadata. Backlog cleanup should promote source-backed rows only when they fill concrete live gaps, archive rows already represented in live core data, and delete model-only or unmapped rows. Generated review queues, candidate stores, source-faithfulness decision exports, and gap-query batches are not kept as active project backlog; regenerate them only for a deliberate enrichment campaign.
 
 Canonical schema helpers live in `scripts/enrich/lib/staged-source-schema.js`. Every staged record defaults to `reviewRequired:true`, `professionalReviewStatus:"pending"`, `sourceFaithfulnessStatus:"unreviewed"`, `canAffectScoring:false`, and `canAffectPublicSeverity:false`.
 
@@ -288,9 +290,9 @@ Structured source workflows:
 - `scripts/enrich/stage-legal-literature.js` normalizes PubMed, Europe PMC, OpenAlex, and Unpaywall literature drafts into the same staged schema.
 - `scripts/enrich/group-staged-records.js` groups CPIC/ClinPGx raw staged rows into human-readable review candidates.
 - `scripts/audit/enrichment-coverage-audit.js` ranks missing drugs, likely missing combinations, PGx gaps, metabolite gaps, and evidence gaps.
-- `scripts/enrich/build-enrichment-review-queue.js` builds the human review queue. Queue items cannot auto-promote.
-- `scripts/enrich/generate-pending-review-enrichment.js` builds `PENDING_REVIEW_ENRICHMENT`, a compact app-facing export of all staged external source records. `src/engine/pendingReviewContextEngine.js` matches those records to the active stack as pending-human-review context; they cannot affect scoring, public severity, professional-review status, `KNOWN_DDI`, curated PGx rules, or core rule data.
-- `scripts/enrich/run-weekly-enrichment.js` orchestrates the Monday staged enrichment run.
+- `scripts/enrich/build-enrichment-review-queue.js` can regenerate a temporary human review queue for an enrichment campaign. Queue items cannot auto-promote and do not define V1 completeness.
+- `scripts/enrich/generate-pending-review-enrichment.js` and `scripts/enrich/generate-pending-core-enrichment.js` are optional export tools. Their generated files are not required for the live app gate and should only be regenerated when the team is actively reviewing that backlog.
+- `scripts/enrich/run-weekly-enrichment.js` orchestrates the staged enrichment run for a deliberate enrichment campaign, not the normal release gate.
 
 PharmCAT remains a future session-input source. It is not a global database enrichment source and should not mutate shipped data files.
 

@@ -19,6 +19,7 @@ diogo.html
 diogo_new_base.html
 
 # Generated audit/report outputs
+docs/audits/
 scripts/audit/genotype-gap-report.json
 scripts/audit/genotype-gap-report.md
 scripts/audit/mechanistic-curation-gaps.md

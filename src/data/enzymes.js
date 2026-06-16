@@ -539,6 +539,81 @@ const PHARMGKB_EVIDENCE = {
   }
 };
 
+const PHASE15_SOURCE_BACKED_PGX_PAIRS = Object.freeze([
+  ["ABCB1","Methotrexate","ClinPGx / guideline_annotation / RNPGx",["ClinPGx:guideline_annotation:PA166202781","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=ABCB1","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=SLCO1B1"]],
+  ["ABCG2","Allopurinol","ClinPGx / guideline_annotation / DPWG",["ClinPGx:guideline_annotation:PA166264961","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=ABCG2","candidate_clinpgx_guideline_annotation_abcg2_allopurinol_clinpgx_guideline_annotation_pa166264961_5260da47e3"]],
+  ["ABCG2","Atorvastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166262661","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=ABCG2","candidate_clinpgx_guideline_annotation_abcg2_atorvastatin_fluvastatin_lovastatin_pitavastatin_9d352fe410"]],
+  ["ABCG2","Fluvastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166262661","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=ABCG2","candidate_clinpgx_guideline_annotation_abcg2_atorvastatin_fluvastatin_lovastatin_pitavastatin_9d352fe410"]],
+  ["ABCG2","Lovastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166262661","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=ABCG2","candidate_clinpgx_guideline_annotation_abcg2_atorvastatin_fluvastatin_lovastatin_pitavastatin_9d352fe410"]],
+  ["ABCG2","Pitavastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166262661","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=ABCG2","candidate_clinpgx_guideline_annotation_abcg2_atorvastatin_fluvastatin_lovastatin_pitavastatin_9d352fe410"]],
+  ["ABCG2","Pravastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166262661","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=ABCG2","candidate_clinpgx_guideline_annotation_abcg2_atorvastatin_fluvastatin_lovastatin_pitavastatin_9d352fe410"]],
+  ["ABCG2","Simvastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166262661","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=ABCG2","candidate_clinpgx_guideline_annotation_abcg2_atorvastatin_fluvastatin_lovastatin_pitavastatin_9d352fe410"]],
+  ["COMT","Methadone","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166228022","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2D6","candidate_clinpgx_guideline_annotation_comt_cyp2d6_oprm1_methadone_oxycodone_fe0e05a845"]],
+  ["COMT","Oxycodone","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166228022","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2D6","candidate_clinpgx_guideline_annotation_comt_cyp2d6_oprm1_methadone_oxycodone_fe0e05a845"]],
+  ["CYP2C19","Duloxetine","CPIC Data / pgx_pair / C",["PMID:37032427","CPIC:pair_view:3122081","https://www.clinpgx.org/guideline/PA166251452"]],
+  ["CYP2C19","Fluoxetine","CPIC Data / pgx_pair / C",["PMID:37032427","CPIC:pair_view:3122091","https://www.clinpgx.org/guideline/PA166251452"]],
+  ["CYP2C19","Fluvoxamine","ClinPGx / guideline_annotation / DPWG",["ClinPGx:guideline_annotation:PA166182814","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2C19","candidate_clinpgx_guideline_annotation_cyp2c19_fluvoxamine_clinpgx_guideline_annotation_pa166182814_cc1a9412ae"]],
+  ["CYP2C19","Mirtazapine","ClinPGx / guideline_annotation / DPWG",["ClinPGx:guideline_annotation:PA166182805","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2C19","candidate_clinpgx_guideline_annotation_cyp2c19_mirtazapine_clinpgx_guideline_annotation_pa166182805_439c1ab0b5"]],
+  ["CYP2C19","Prasugrel","ClinPGx / guideline_annotation / DPWG",["ClinPGx:guideline_annotation:PA166182820","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2C19","candidate_clinpgx_guideline_annotation_cyp2c19_prasugrel_clinpgx_guideline_annotation_pa166182820_fb641b7f6e"]],
+  ["CYP2C19","Ticagrelor","ClinPGx / guideline_annotation / DPWG",["ClinPGx:guideline_annotation:PA166182807","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2C19","candidate_clinpgx_guideline_annotation_cyp2c19_ticagrelor_clinpgx_guideline_annotation_pa166182807_2dd1d56546"]],
+  ["CYP2C8","Diclofenac","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166222181","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2C8","candidate_clinpgx_guideline_annotation_cyp2c8_diclofenac_ibuprofen_clinpgx_guideline_annotation_pa166222181_e5ac580973"]],
+  ["CYP2C8","Ibuprofen","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166222181","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2C8","candidate_clinpgx_guideline_annotation_cyp2c8_diclofenac_ibuprofen_clinpgx_guideline_annotation_pa166222181_e5ac580973"]],
+  ["CYP2C9","Fosphenytoin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166122806","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2C9","candidate_clinpgx_guideline_annotation_cyp2c9_hla_b_fosphenytoin_phenytoin_clinpgx_guideline_annotation_pa166122806_e8e4e5105b"]],
+  ["CYP2D6","Acebutolol","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166341341","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2D6","candidate_clinpgx_guideline_annotation_cyp2d6_acebutolol_betaxolol_bisoprolol_carvedilol_80cc55546e"]],
+  ["CYP2D6","Amiodarone","ClinPGx / guideline_annotation / DPWG",["ClinPGx:guideline_annotation:PA166182815","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2D6","candidate_clinpgx_guideline_annotation_cyp2d6_amiodarone_clinpgx_guideline_annotation_pa166182815_8c1b105f2e"]],
+  ["CYP2D6","Atenolol","ClinPGx / guideline_annotation / DPWG",["ClinPGx:guideline_annotation:PA166182822","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2D6","candidate_clinpgx_guideline_annotation_cyp2d6_atenolol_clinpgx_guideline_annotation_pa166182822_adf0e19051"]],
+  ["CYP2D6","Disopyramide","ClinPGx / guideline_annotation / DPWG",["ClinPGx:guideline_annotation:PA166182811","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2D6","candidate_clinpgx_guideline_annotation_cyp2d6_disopyramide_clinpgx_guideline_annotation_pa166182811_39d1fc4ff1"]],
+  ["CYP2D6","Escitalopram","ClinPGx / guideline_annotation / DPWG",["ClinPGx:guideline_annotation:PA166182817","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2D6","candidate_clinpgx_guideline_annotation_cyp2d6_citalopram_escitalopram_clinpgx_guideline_annotation_pa166182817_d149f7855f"]],
+  ["CYP2D6","lofexidine","CPIC Data / pgx_pair / B/C",["CPIC:pair_view:110272","https://api.cpicpgx.org/v1/pair_view?limit=50","candidate_cpic_data_pgx_pair_cyp2d6_lofexidine_cpic_pair_view_110272_e55be9f98e"]],
+  ["CYP2D6","Methylphenidate","ClinPGx / guideline_annotation / DPWG",["ClinPGx:guideline_annotation:PA166182808","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2D6","candidate_clinpgx_guideline_annotation_cyp2d6_methylphenidate_clinpgx_guideline_annotation_pa166182808_bef68611e7"]],
+  ["CYP2D6","Ondansetron and Tropisetron","CPIC Data / guideline",["CPIC:guideline:100417","PA166251457","https://api.cpicpgx.org/v1/guideline?limit=50"]],
+  ["CYP2D6","Quetiapine","ClinPGx / guideline_annotation / DPWG",["ClinPGx:guideline_annotation:PA166182854","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2D6","candidate_clinpgx_guideline_annotation_cyp2d6_quetiapine_clinpgx_guideline_annotation_pa166182854_cad0efc370"]],
+  ["CYP2D6","Quinidine","ClinPGx / guideline_annotation / DPWG",["ClinPGx:guideline_annotation:PA166182803","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2D6","candidate_clinpgx_guideline_annotation_cyp2d6_quinidine_clinpgx_guideline_annotation_pa166182803_875db67725"]],
+  ["CYP2D6","Sotalol","ClinPGx / guideline_annotation / DPWG",["ClinPGx:guideline_annotation:PA166182855","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2D6","candidate_clinpgx_guideline_annotation_cyp2d6_sotalol_clinpgx_guideline_annotation_pa166182855_ea40a51da8"]],
+  ["CYP3A4","Fluvastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166273401","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A5","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A4"]],
+  ["CYP3A4","Pitavastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166273401","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A5","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A4"]],
+  ["CYP3A4","Pravastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166273401","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A5","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A4"]],
+  ["CYP3A4","Rosuvastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166273401","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A5","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A4"]],
+  ["CYP3A5","Atorvastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166273401","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A5","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A4"]],
+  ["CYP3A5","Fluvastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166273401","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A5","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A4"]],
+  ["CYP3A5","Lovastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166273401","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A5","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A4"]],
+  ["CYP3A5","Pitavastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166273401","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A5","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A4"]],
+  ["CYP3A5","Pravastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166273401","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A5","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A4"]],
+  ["CYP3A5","Rosuvastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166273401","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A5","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A4"]],
+  ["CYP3A5","Simvastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166273401","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A5","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP3A4"]],
+  ["DPYD","Flucytosine","ClinPGx / guideline_annotation / DPWG",["ClinPGx:guideline_annotation:PA166222801","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=DPYD","candidate_clinpgx_guideline_annotation_dpyd_flucytosine_clinpgx_guideline_annotation_pa166222801_4f42809480"]],
+  ["DPYD","Fluoropyrimidines","CPIC Data / guideline",["CPIC:guideline:100419","PA166251462","https://api.cpicpgx.org/v1/guideline?limit=50"]],
+  ["G6PD","lidocaine","CPIC Data / pgx_pair / B/C",["CPIC:pair_view:110270","https://api.cpicpgx.org/v1/pair_view?limit=50","candidate_cpic_data_pgx_pair_g6pd_lidocaine_cpic_pair_view_110270_b7274b79e2"]],
+  ["HLA-A","Carbamazepine and Oxcarbazepine","CPIC Data / guideline",["CPIC:guideline:100423","PA166251448","https://api.cpicpgx.org/v1/guideline?limit=50"]],
+  ["HLA-B","Carbamazepine and Oxcarbazepine","CPIC Data / guideline",["CPIC:guideline:100423","PA166251448","https://api.cpicpgx.org/v1/guideline?limit=50"]],
+  ["HLA-B","Fosphenytoin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166122806","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2C9","candidate_clinpgx_guideline_annotation_cyp2c9_hla_b_fosphenytoin_phenytoin_clinpgx_guideline_annotation_pa166122806_e8e4e5105b"]],
+  ["NUDT15","Thiopurines","CPIC Data / guideline",["CPIC:guideline:100428","PA166251442","https://api.cpicpgx.org/v1/guideline?limit=50"]],
+  ["SLCO1B1","elagolix","CPIC Data / pgx_pair / B/C",["CPIC:pair_view:110259","https://api.cpicpgx.org/v1/pair_view?limit=50","candidate_cpic_data_pgx_pair_slco1b1_elagolix_cpic_pair_view_110259_355cb68616"]],
+  ["SLCO1B1","Fluvastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166262341","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=CYP2C9","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=SLCO1B1"]],
+  ["SLCO1B1","Lovastatin","ClinPGx / guideline_annotation / CPIC",["ClinPGx:guideline_annotation:PA166262241","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=SLCO1B1","candidate_clinpgx_guideline_annotation_slco1b1_lovastatin_clinpgx_guideline_annotation_pa166262241_fd177a2cc7"]],
+  ["SLCO1B1","Methotrexate","ClinPGx / guideline_annotation / RNPGx",["ClinPGx:guideline_annotation:PA166202781","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=ABCB1","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=SLCO1B1"]],
+  ["TPMT","Cisplatin","ClinPGx / guideline_annotation / CPNDS",["ClinPGx:guideline_annotation:PA166170751","https://api.clinpgx.org/v1/data/guidelineAnnotation?relatedGenes.symbol=TPMT","candidate_clinpgx_guideline_annotation_tpmt_cisplatin_clinpgx_guideline_annotation_pa166170751_cdfaaf9702"]],
+  ["TPMT","Thiopurines","CPIC Data / guideline",["CPIC:guideline:100428","PA166251442","https://api.cpicpgx.org/v1/guideline?limit=50"]]
+]);
+for (const [gene, drug, sourceLabel, sourceIdentifiers] of PHASE15_SOURCE_BACKED_PGX_PAIRS) {
+  const entry = PHARMGKB_EVIDENCE[gene] || (PHARMGKB_EVIDENCE[gene] = {
+    grade:"C",
+    guideline:"CPIC/ClinPGx source-backed pending review",
+    pairs:[]
+  });
+  if ((entry.pairs || []).some(pair => pair.drug === drug)) continue;
+  entry.pairs.push({
+    drug,
+    level:"C",
+    action:`Source-backed ${gene} pharmacogenomic context for ${drug}; keep as pending source-specific review until a drug-specific CPIC/DPWG-style recommendation is curated.`,
+    sourceLabel,
+    sourceIdentifiers,
+    evidenceRefs:["ev_phase15_source_backed_pgx_pairs"],
+    reviewRequired:true,
+    verified:false
+  });
+}
+
 let userGenetics = {};
 
 function genotypeToLegacyPhenotype(phenotype) {
