@@ -4616,6 +4616,126 @@ const METAB = {
 ]
 };
 
+Object.assign(METAB, {
+// Batch 01-03 live metabolite promotions.
+"Fosaprepitant":[
+  {n:"Aprepitant",e:"Phosphatase Activation",a:"active_form",p:90,t:13,note:"IV fosaprepitant is rapidly converted to aprepitant; CYP3A inhibition/induction and delayed offset follow the active NK1 antagonist.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Balsalazide":[
+  {n:"Mesalamine (5-ASA)",e:"Bacterial Azoreduction",a:"active_form",p:80,t:1,note:"Colonic bacterial azoreduction releases active 5-ASA for local IBD effect; renal safety follows mesalamine exposure context.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]},
+  {n:"4-aminobenzoyl-beta-alanine carrier",e:"Bacterial Azoreduction",a:"inactive",p:80,note:"Inactive carrier released with mesalamine."}
+],
+"Olsalazine":[
+  {n:"Mesalamine (5-ASA)",e:"Bacterial Azoreduction",a:"active_form",p:90,t:1,note:"Azo-linked prodrug that releases two 5-ASA molecules in the colon.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Mesalamine":[
+  {n:"N-acetyl-5-aminosalicylic acid",e:"NAT/Acetylation",a:"inactive",p:70,t:6,note:"Major inactive acetylated metabolite; renal function and nephrotoxicity monitoring remain clinically relevant.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Dimethyl Fumarate":[
+  {n:"Monomethyl fumarate",e:"Esterase Hydrolysis",a:"active_form",p:85,t:1,note:"Rapid presystemic hydrolysis forms the active fumarate exposure; lymphopenia and GI intolerance are active-moiety signals.",evidenceRefs:["ev_batch_s1p_ms_labels"]}
+],
+"Diroximel Fumarate":[
+  {n:"Monomethyl fumarate",e:"Esterase Hydrolysis",a:"active_form",p:85,t:1,note:"Converted to the same active monomethyl fumarate moiety as dimethyl fumarate, with different GI tolerability context.",evidenceRefs:["ev_batch_s1p_ms_labels"]},
+  {n:"HES inactive metabolite",e:"Esterase Hydrolysis",a:"inactive",p:80,note:"Major inactive coproduct after diroximel fumarate activation.",evidenceRefs:["ev_batch_s1p_ms_labels"]}
+],
+"Fingolimod":[
+  {n:"Fingolimod phosphate",e:"Sphingosine Kinase",a:"active_form",p:70,t:216,note:"Active S1P receptor modulator; long persistence supports extended infection/bradycardia and therapy-switch timing context.",evidenceRefs:["ev_batch_s1p_ms_labels"]}
+],
+"Ozanimod":[
+  {n:"CC112273 active metabolite",e:"CYP2C8/MAO-B/Aldehyde Oxidase",a:"active",p:70,t:264,note:"Long-lived active metabolite contributes much of ozanimod activity and drives prolonged offset after stopping.",evidenceRefs:["ev_batch_s1p_ms_labels"]},
+  {n:"CC1084037 active metabolite",e:"CYP2C8/MAO-B/Aldehyde Oxidase",a:"active",p:20,t:264,note:"Interconverting active metabolite in the ozanimod active-moiety pool.",evidenceRefs:["ev_batch_s1p_ms_labels"]}
+],
+"Cladribine":[
+  {n:"Cladribine triphosphate",e:"Intracellular Phosphorylation",a:"active_form",p:45,t:24,note:"Intracellular active nucleotide accumulates in lymphocytes and underlies lymphocyte-depleting MS/oncology activity.",evidenceRefs:["ev_batch_s1p_ms_labels"]}
+],
+"Selexipag":[
+  {n:"ACT-333679 active metabolite",e:"CES1 Hydrolysis",a:"active_form",p:70,t:8,note:"Selexipag is hydrolyzed to a more potent prostacyclin receptor agonist; clinical titration follows active metabolite tolerability.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Fostamatinib":[
+  {n:"R406",e:"Alkaline Phosphatase Activation",a:"active_form",p:50,t:15,note:"Fostamatinib is a prodrug; R406 is the active SYK inhibitor and CYP3A substrate for exposure interactions.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Brincidofovir":[
+  {n:"Cidofovir diphosphate",e:"Phospholipase Activation/Phosphorylation",a:"active_form",p:55,t:24,note:"Lipid-conjugated prodrug ultimately forms intracellular cidofovir diphosphate; hepatic/GI safety remains label-guided.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Baloxavir Marboxil":[
+  {n:"Baloxavir acid",e:"Esterase Hydrolysis",a:"active_form",p:85,t:79,note:"Prodrug hydrolysis forms the active cap-dependent endonuclease inhibitor; polyvalent cation binding can reduce exposure.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Molnupiravir":[
+  {n:"N-hydroxycytidine",e:"Esterase Hydrolysis",a:"active_form",p:90,t:3,note:"Prodrug activation forms NHC, which is phosphorylated intracellularly to the antiviral ribonucleoside triphosphate.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]},
+  {n:"NHC triphosphate",e:"Intracellular Phosphorylation",a:"active",p:70,t:6,note:"Intracellular active antiviral nucleotide form.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Remdesivir":[
+  {n:"GS-441524",e:"Hydrolysis/Phosphoramidate Activation",a:"active_precursor",p:50,t:24,note:"Circulating nucleoside metabolite/precursor to intracellular active triphosphate.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]},
+  {n:"Remdesivir triphosphate",e:"Intracellular Phosphorylation",a:"active",p:60,t:24,note:"Active antiviral nucleotide analog responsible for polymerase inhibition.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Beclomethasone":[
+  {n:"Beclomethasone-17-monopropionate",e:"Esterase Activation",a:"active_form",p:70,t:2.8,note:"Active corticosteroid metabolite; systemic CYP3A inhibition context is usually smaller than with high-systemic-bioavailability steroids.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Ciclesonide":[
+  {n:"Des-ciclesonide",e:"Esterase Activation",a:"active_form",p:70,t:6,note:"Active inhaled corticosteroid metabolite; CYP3A handles downstream clearance.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Fenofibrate":[
+  {n:"Fenofibric acid",e:"Esterase Hydrolysis",a:"active_form",p:80,t:20,note:"Active PPAR-alpha agonist; renal function and statin myopathy context drive safety interpretation.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Bempedoic Acid":[
+  {n:"Bempedoyl-CoA",e:"ACSVL1 Activation",a:"active_form",p:60,t:21,note:"Liver-selective active CoA thioester inhibits ACL; OATP/statin and uric-acid context remain clinically relevant.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]},
+  {n:"ESP15228 glucuronide",e:"UGT2B7/UGT2B17",a:"inactive",p:45,note:"Glucuronide clearance pathway for parent and active metabolite.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Ezetimibe":[
+  {n:"Ezetimibe glucuronide",e:"UGT/Enterohepatic Recycling",a:"active",p:75,t:22,note:"Active glucuronide recirculates enterohepatically and contributes to NPC1L1 inhibition.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Naltrexone":[
+  {n:"6-beta-naltrexol",e:"Dihydrodiol Dehydrogenase",a:"active",p:80,t:13,note:"Major active metabolite with opioid antagonist activity and longer persistence than parent.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Tetrabenazine":[
+  {n:"alpha-dihydrotetrabenazine",e:"Carbonyl Reductase",a:"active",p:45,t:7,note:"Active VMAT2-inhibiting metabolite; CYP2D6 clears active metabolites and shapes exposure/QT/parkinsonism risk.",evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"]},
+  {n:"beta-dihydrotetrabenazine",e:"Carbonyl Reductase",a:"active",p:45,t:7,note:"Active VMAT2-inhibiting metabolite; CYP2D6 phenotype or inhibitors can raise active-metabolite exposure.",evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"]}
+],
+"Valbenazine":[
+  {n:"[+]-alpha-dihydrotetrabenazine",e:"Hydrolysis/CYP3A4/CYP2D6",a:"active",p:55,t:20,note:"Active VMAT2-inhibiting metabolite; strong CYP2D6 or CYP3A modifiers can raise active exposure and QT/sedation risk.",evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"]}
+],
+"Deutetrabenazine":[
+  {n:"Deuterated alpha-dihydrotetrabenazine",e:"Carbonyl Reductase/CYP2D6",a:"active",p:45,t:9,note:"Active VMAT2 metabolite; deuteration slows clearance but CYP2D6 phenotype/inhibition remains relevant.",evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"]},
+  {n:"Deuterated beta-dihydrotetrabenazine",e:"Carbonyl Reductase/CYP2D6",a:"active",p:45,t:9,note:"Active VMAT2 metabolite contributing to VMAT2 inhibition and dose limits.",evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"]}
+],
+"Sacituzumab Govitecan":[
+  {n:"SN-38 (7-ethyl-10-hydroxycamptothecin)",e:"Linker Hydrolysis",a:"active_payload",p:60,t:12,note:"ADC releases SN-38 payload; UGT1A1 reduced function can increase neutropenia/diarrhea risk context.",evidenceRefs:["ev_batch_adc_payload_labels"]}
+],
+"Trastuzumab Deruxtecan":[
+  {n:"DXd deruxtecan payload",e:"Lysosomal Protease Linker Cleavage",a:"active_payload",p:75,t:144,note:"Released topoisomerase I inhibitor payload; pulmonary, marrow, and cardiac context remains oncology-protocol guided.",evidenceRefs:["ev_batch_adc_payload_labels"]}
+],
+"Ado-Trastuzumab Emtansine":[
+  {n:"DM1 payload",e:"Lysosomal Proteolysis/Linker Catabolism",a:"active_payload",p:75,t:96,note:"Released maytansinoid payload; CYP3A context and hepatic/thrombocytopenia warnings are label-relevant.",evidenceRefs:["ev_batch_adc_payload_labels"]}
+],
+"Brentuximab Vedotin":[
+  {n:"MMAE (monomethyl auristatin E)",e:"Protease Linker Cleavage",a:"active_payload",p:70,t:96,note:"Released microtubule-disrupting payload; CYP3A inhibitors can increase MMAE exposure and neuropathy/myelosuppression risk.",evidenceRefs:["ev_batch_adc_payload_labels"]}
+],
+"Polatuzumab Vedotin":[
+  {n:"MMAE (monomethyl auristatin E)",e:"Protease Linker Cleavage",a:"active_payload",p:70,t:288,note:"Released MMAE payload; neuropathy and myelosuppression are payload-linked toxicity signals.",evidenceRefs:["ev_batch_adc_payload_labels"]}
+],
+"Enfortumab Vedotin":[
+  {n:"MMAE (monomethyl auristatin E)",e:"Protease Linker Cleavage",a:"active_payload",p:70,t:84,note:"Released MMAE payload; skin toxicity, neuropathy, and hyperglycemia context remain label-guided.",evidenceRefs:["ev_batch_adc_payload_labels"]}
+],
+"Inotuzumab Ozogamicin":[
+  {n:"Calicheamicin derivative",e:"Acid-labile Linker Hydrolysis",a:"active_payload",p:80,t:288,note:"Released DNA-damaging payload; hepatic sinusoidal obstruction and myelosuppression are central safety signals.",evidenceRefs:["ev_batch_adc_payload_labels"]}
+],
+"Gemtuzumab Ozogamicin":[
+  {n:"Calicheamicin derivative",e:"Acid-labile Linker Hydrolysis",a:"active_payload",p:80,t:72,note:"Released DNA-damaging payload; hepatic and marrow toxicity are payload-linked risks.",evidenceRefs:["ev_batch_adc_payload_labels"]}
+],
+"Latanoprost":[
+  {n:"Latanoprost acid",e:"Esterase Hydrolysis",a:"active_form",p:75,t:0.3,note:"Ocular prodrug hydrolyzed to active prostaglandin F2alpha analog; systemic DDI burden is low.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Travoprost":[
+  {n:"Travoprost acid",e:"Esterase Hydrolysis",a:"active_form",p:75,t:0.8,note:"Ocular prodrug hydrolyzed to active prostaglandin analog; local ocular effects dominate.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Tafluprost":[
+  {n:"Tafluprost acid",e:"Esterase Hydrolysis",a:"active_form",p:75,t:0.6,note:"Ocular prodrug hydrolyzed to active prostaglandin analog; local ocular effects dominate.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+],
+"Netarsudil":[
+  {n:"Netarsudil-M1",e:"Esterase Hydrolysis",a:"active",p:80,t:0.3,note:"Active ROCK inhibitor metabolite formed locally/systemically after ophthalmic dosing.",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}
+]
+});
+
 
 // ── SIDER-INFORMED PHARMACODYNAMIC FLAGS (Phase 5) ──
 // Augments DB entries with additional PD risk flags sourced from SIDER, DrugBank, FDA labels
@@ -4765,6 +4885,11 @@ const METABOLITE_ACTOR_ALIASES = {
   "hypertonic-sodium-chloride-load": "hypertonic-sodium-chloride-load",
 
 };
+
+Object.assign(METABOLITE_ACTOR_ALIASES, {
+  "aprepitant": "aprepitant-from-fosaprepitant",
+  "mmae-monomethyl-auristatin-e": "mmae",
+});
 
 const METABOLITE_ACTORS = {
   "hydroxybupropion": {
@@ -5090,6 +5215,235 @@ const METABOLITE_ACTORS = {
     note:"Normally detoxified by glutathione; CYP2E1 inducers (alcohol, isoniazid) ↑ NAPQI production 3-5×"
   },
 };
+
+Object.assign(METABOLITE_ACTORS, {
+  "aprepitant-from-fosaprepitant": {
+    id:"aprepitant-from-fosaprepitant", type:ACTOR_TYPE.METABOLITE,
+    name:"Aprepitant", parentDrug:"Fosaprepitant", formingEnzyme:"Phosphatase Activation",
+    active:true, halfLife:13, potencyRatio:1.0,
+    routes:[{enzyme:"CYP3A4",fraction:0.75,evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    inh:[{target:"CYP3A4",strength:"moderate",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"],
+    note:"Active NK1 antagonist formed rapidly from fosaprepitant; CYP3A inhibition/induction and delayed offset follow aprepitant exposure."
+  },
+  "monomethyl-fumarate": {
+    id:"monomethyl-fumarate", type:ACTOR_TYPE.METABOLITE,
+    name:"Monomethyl fumarate", parentDrug:"Dimethyl Fumarate / Diroximel Fumarate", formingEnzyme:"Esterase Hydrolysis",
+    active:true, halfLife:1, potencyRatio:1.0,
+    routes:[{enzyme:"TCA cycle/CO2",fraction:0.6,evidenceRefs:["ev_batch_s1p_ms_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_s1p_ms_labels"],
+    note:"Shared active fumarate moiety for dimethyl fumarate and diroximel fumarate; lymphopenia and GI effects track active-moiety exposure."
+  },
+  "fingolimod-phosphate": {
+    id:"fingolimod-phosphate", type:ACTOR_TYPE.METABOLITE,
+    name:"Fingolimod phosphate", parentDrug:"Fingolimod", formingEnzyme:"Sphingosine Kinase",
+    active:true, halfLife:216, potencyRatio:1.0,
+    routes:[{enzyme:"CYP4F2/oxidative clearance",fraction:0.65,evidenceRefs:["ev_batch_s1p_ms_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_s1p_ms_labels"],
+    note:"Active S1P modulator with long persistence; washout and immune reconstitution timing are clinically important."
+  },
+  "cc112273-active-metabolite": {
+    id:"cc112273-active-metabolite", type:ACTOR_TYPE.METABOLITE,
+    name:"CC112273 active metabolite", parentDrug:"Ozanimod", formingEnzyme:"CYP2C8/MAO-B/Aldehyde Oxidase",
+    active:true, halfLife:264, potencyRatio:1.0,
+    routes:[{enzyme:"CYP2C8",fraction:0.45,evidenceRefs:["ev_batch_s1p_ms_labels"]},{enzyme:"MAO-B",fraction:0.25,evidenceRefs:["ev_batch_s1p_ms_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_s1p_ms_labels"],
+    note:"Long-lived ozanimod active metabolite; CYP2C8 inhibition/induction and MAO context can shape active exposure."
+  },
+  "cladribine-triphosphate": {
+    id:"cladribine-triphosphate", type:ACTOR_TYPE.METABOLITE,
+    name:"Cladribine triphosphate", parentDrug:"Cladribine", formingEnzyme:"Intracellular Phosphorylation",
+    active:true, halfLife:24, potencyRatio:1.0,
+    routes:[{enzyme:"Intracellular nucleotide turnover",fraction:0.7,evidenceRefs:["ev_batch_s1p_ms_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_s1p_ms_labels"],
+    note:"Intracellular active nucleotide driving lymphocyte depletion; persistence is more pharmacodynamic than simple plasma half-life."
+  },
+  "act-333679-active-metabolite": {
+    id:"act-333679-active-metabolite", type:ACTOR_TYPE.METABOLITE,
+    name:"ACT-333679 active metabolite", parentDrug:"Selexipag", formingEnzyme:"CES1 Hydrolysis",
+    active:true, halfLife:8, potencyRatio:10.0,
+    routes:[{enzyme:"UGT/CYP2C8 clearance",fraction:0.7,evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"],
+    note:"More potent prostacyclin receptor agonist than parent selexipag; tolerability and interactions should consider active metabolite exposure."
+  },
+  "r406": {
+    id:"r406", type:ACTOR_TYPE.METABOLITE,
+    name:"R406", parentDrug:"Fostamatinib", formingEnzyme:"Alkaline Phosphatase Activation",
+    active:true, halfLife:15, potencyRatio:1.0,
+    routes:[{enzyme:"CYP3A4",fraction:0.65,evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    inh:[{target:"BCRP",strength:"moderate",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"],
+    note:"Active SYK inhibitor formed from fostamatinib; CYP3A modifiers can change R406 exposure."
+  },
+  "cidofovir-diphosphate": {
+    id:"cidofovir-diphosphate", type:ACTOR_TYPE.METABOLITE,
+    name:"Cidofovir diphosphate", parentDrug:"Brincidofovir", formingEnzyme:"Phospholipase Activation/Phosphorylation",
+    active:true, halfLife:24, potencyRatio:1.0,
+    routes:[{enzyme:"Intracellular nucleotide turnover",fraction:0.8,evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"],
+    note:"Intracellular active antiviral nucleotide formed from brincidofovir."
+  },
+  "baloxavir-acid": {
+    id:"baloxavir-acid", type:ACTOR_TYPE.METABOLITE,
+    name:"Baloxavir acid", parentDrug:"Baloxavir Marboxil", formingEnzyme:"Esterase Hydrolysis",
+    active:true, halfLife:79, potencyRatio:1.0,
+    routes:[{enzyme:"UGT1A3/CYP3A4",fraction:0.7,evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"],
+    note:"Active influenza endonuclease inhibitor; exposure can be reduced by polyvalent-cation binding."
+  },
+  "n-hydroxycytidine": {
+    id:"n-hydroxycytidine", type:ACTOR_TYPE.METABOLITE,
+    name:"N-hydroxycytidine", parentDrug:"Molnupiravir", formingEnzyme:"Esterase Hydrolysis",
+    active:true, halfLife:3, potencyRatio:1.0,
+    routes:[{enzyme:"Intracellular phosphorylation",fraction:0.7,evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"],
+    note:"Circulating active precursor to NHC triphosphate after molnupiravir activation."
+  },
+  "remdesivir-triphosphate": {
+    id:"remdesivir-triphosphate", type:ACTOR_TYPE.METABOLITE,
+    name:"Remdesivir triphosphate", parentDrug:"Remdesivir", formingEnzyme:"Intracellular Phosphorylation",
+    active:true, halfLife:24, potencyRatio:1.0,
+    routes:[{enzyme:"Intracellular nucleotide turnover",fraction:0.8,evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"],
+    note:"Intracellular active nucleotide analog responsible for antiviral polymerase inhibition."
+  },
+  "beclomethasone-17-monopropionate": {
+    id:"beclomethasone-17-monopropionate", type:ACTOR_TYPE.METABOLITE,
+    name:"Beclomethasone-17-monopropionate", parentDrug:"Beclomethasone", formingEnzyme:"Esterase Activation",
+    active:true, halfLife:2.8, potencyRatio:1.0,
+    routes:[{enzyme:"CYP3A4",fraction:0.7,evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"],
+    note:"Active inhaled corticosteroid metabolite."
+  },
+  "des-ciclesonide": {
+    id:"des-ciclesonide", type:ACTOR_TYPE.METABOLITE,
+    name:"Des-ciclesonide", parentDrug:"Ciclesonide", formingEnzyme:"Esterase Activation",
+    active:true, halfLife:6, potencyRatio:1.0,
+    routes:[{enzyme:"CYP3A4",fraction:0.7,evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"],
+    note:"Active corticosteroid metabolite formed after inhaled/nasal ciclesonide activation."
+  },
+  "fenofibric-acid": {
+    id:"fenofibric-acid", type:ACTOR_TYPE.METABOLITE,
+    name:"Fenofibric acid", parentDrug:"Fenofibrate", formingEnzyme:"Esterase Hydrolysis",
+    active:true, halfLife:20, potencyRatio:1.0,
+    routes:[{enzyme:"UGT",fraction:0.8,evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"],
+    note:"Active PPAR-alpha agonist formed from fenofibrate; renal function and statin myopathy context remain important."
+  },
+  "bempedoyl-coa": {
+    id:"bempedoyl-coa", type:ACTOR_TYPE.METABOLITE,
+    name:"Bempedoyl-CoA", parentDrug:"Bempedoic Acid", formingEnzyme:"ACSVL1 Activation",
+    active:true, halfLife:21, potencyRatio:1.0,
+    routes:[{enzyme:"UGT2B7/UGT2B17",fraction:0.7,evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    inh:[{target:"OATP1B1",strength:"moderate",evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"],
+    note:"Liver-selective active ACL inhibitor; transporter interactions with statins and uric-acid context are clinically relevant."
+  },
+  "ezetimibe-glucuronide": {
+    id:"ezetimibe-glucuronide", type:ACTOR_TYPE.METABOLITE,
+    name:"Ezetimibe glucuronide", parentDrug:"Ezetimibe", formingEnzyme:"UGT/Enterohepatic Recycling",
+    active:true, halfLife:22, potencyRatio:1.0,
+    routes:[{enzyme:"Biliary/enterohepatic recycling",fraction:0.75,evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"],
+    note:"Active glucuronide that contributes to NPC1L1 inhibition and enterohepatic persistence."
+  },
+  "6-beta-naltrexol": {
+    id:"6-beta-naltrexol", type:ACTOR_TYPE.METABOLITE,
+    name:"6-beta-naltrexol", parentDrug:"Naltrexone", formingEnzyme:"Dihydrodiol Dehydrogenase",
+    active:true, halfLife:13, potencyRatio:0.5,
+    routes:[{enzyme:"Renal/Conjugation",fraction:0.7,evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"],
+    note:"Major active opioid antagonist metabolite with longer persistence than parent naltrexone."
+  },
+  "alpha-dihydrotetrabenazine": {
+    id:"alpha-dihydrotetrabenazine", type:ACTOR_TYPE.METABOLITE,
+    name:"alpha-dihydrotetrabenazine", parentDrug:"Tetrabenazine", formingEnzyme:"Carbonyl Reductase",
+    active:true, halfLife:7, potencyRatio:1.0,
+    routes:[{enzyme:"CYP2D6",fraction:0.75,evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"],
+    note:"Active VMAT2 inhibitor metabolite; CYP2D6 PM status or strong inhibition increases exposure."
+  },
+  "beta-dihydrotetrabenazine": {
+    id:"beta-dihydrotetrabenazine", type:ACTOR_TYPE.METABOLITE,
+    name:"beta-dihydrotetrabenazine", parentDrug:"Tetrabenazine", formingEnzyme:"Carbonyl Reductase",
+    active:true, halfLife:7, potencyRatio:1.0,
+    routes:[{enzyme:"CYP2D6",fraction:0.75,evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"],
+    note:"Active VMAT2 inhibitor metabolite; CYP2D6 exposure context drives dose limits."
+  },
+  "dxd-deruxtecan-payload": {
+    id:"dxd-deruxtecan-payload", type:ACTOR_TYPE.METABOLITE,
+    name:"DXd deruxtecan payload", parentDrug:"Trastuzumab Deruxtecan", formingEnzyme:"Lysosomal Protease Linker Cleavage",
+    active:true, halfLife:144, potencyRatio:1.0,
+    routes:[{enzyme:"CYP3A4",fraction:0.4,evidenceRefs:["ev_batch_adc_payload_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_adc_payload_labels"],
+    note:"Released topoisomerase I inhibitor payload; pneumonitis, marrow, and hepatic signals remain oncology-protocol guided."
+  },
+  "dm1-payload": {
+    id:"dm1-payload", type:ACTOR_TYPE.METABOLITE,
+    name:"DM1 payload", parentDrug:"Ado-Trastuzumab Emtansine", formingEnzyme:"Lysosomal Proteolysis/Linker Catabolism",
+    active:true, halfLife:96, potencyRatio:1.0,
+    routes:[{enzyme:"CYP3A4",fraction:0.5,evidenceRefs:["ev_batch_adc_payload_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_adc_payload_labels"],
+    note:"Released maytansinoid payload; hepatic toxicity and thrombocytopenia are payload-linked signals."
+  },
+  "mmae": {
+    id:"mmae", type:ACTOR_TYPE.METABOLITE,
+    name:"MMAE (monomethyl auristatin E)", parentDrug:"Vedotin ADCs", formingEnzyme:"Protease Linker Cleavage",
+    active:true, halfLife:96, potencyRatio:1.0,
+    routes:[{enzyme:"CYP3A4",fraction:0.65,evidenceRefs:["ev_batch_adc_payload_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_adc_payload_labels"],
+    note:"Shared active microtubule-disrupting payload for vedotin ADCs; CYP3A inhibition can increase payload exposure."
+  },
+  "calicheamicin-derivative": {
+    id:"calicheamicin-derivative", type:ACTOR_TYPE.METABOLITE,
+    name:"Calicheamicin derivative", parentDrug:"Ozogamicin ADCs", formingEnzyme:"Acid-labile Linker Hydrolysis",
+    active:true, halfLife:72, potencyRatio:1.0,
+    routes:[{enzyme:"Cellular catabolism",fraction:0.8,evidenceRefs:["ev_batch_adc_payload_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_adc_payload_labels"],
+    toxicity:{target:"DNA", mechanism:"DNA strand break cytotoxic payload"},
+    note:"Shared DNA-damaging payload context for gemtuzumab and inotuzumab ozogamicin."
+  },
+  "latanoprost-acid": {
+    id:"latanoprost-acid", type:ACTOR_TYPE.METABOLITE,
+    name:"Latanoprost acid", parentDrug:"Latanoprost", formingEnzyme:"Esterase Hydrolysis",
+    active:true, halfLife:0.3, potencyRatio:1.0,
+    routes:[{enzyme:"Beta-oxidation",fraction:0.7,evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"],
+    note:"Active ocular prostaglandin analog after topical prodrug hydrolysis."
+  },
+  "netarsudil-m1": {
+    id:"netarsudil-m1", type:ACTOR_TYPE.METABOLITE,
+    name:"Netarsudil-M1", parentDrug:"Netarsudil", formingEnzyme:"Esterase Hydrolysis",
+    active:true, halfLife:0.3, potencyRatio:1.0,
+    routes:[{enzyme:"Esterase/Local ocular clearance",fraction:0.8,evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"]}],
+    inh:[],
+    evidenceRefs:["ev_batch_prodrug_active_metabolite_labels"],
+    note:"Active ROCK inhibitor metabolite after ophthalmic netarsudil dosing."
+  }
+});
 
 // ── Food/Xenobiotic Actors ──
 // Non-drug compounds that interact with the metabolic graph

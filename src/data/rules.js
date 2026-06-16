@@ -2010,4 +2010,95 @@ const GENOTYPE_METABOLITE_EFFECTS = [
       [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"decrease", label:"persistent CYP3A7 expression: altered DHEA-S/estrogen metabolism context; not a dose rule" },
     }
   },
+  {
+    parent:"Tetrabenazine",
+    metaboliteId:"alpha-dihydrotetrabenazine",
+    metaboliteName:"alpha-dihydrotetrabenazine",
+    enzyme:"CYP2D6",
+    note:"Tetrabenazine active VMAT2 metabolites are cleared by CYP2D6; poor function or strong inhibition can raise active-metabolite exposure and dose-limiting QT, parkinsonism, depression, akathisia, and sedation context.",
+    evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"CYP2D6 inhibition/phenoconversion context: higher active VMAT2 metabolite exposure expected",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"higher active dihydrotetrabenazine exposure; use label dose limits" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"possible active-metabolite exposure increase; monitor tolerability" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline CYP2D6 clearance context" },
+      [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:"decrease", label:"possibly lower active-metabolite exposure; clinical response still dominates" },
+    }
+  },
+  {
+    parent:"Tetrabenazine",
+    metaboliteId:"beta-dihydrotetrabenazine",
+    metaboliteName:"beta-dihydrotetrabenazine",
+    enzyme:"CYP2D6",
+    note:"The beta-dihydrotetrabenazine active metabolite shares CYP2D6-sensitive clearance with the active VMAT2 metabolite pool.",
+    evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"CYP2D6 inhibition/phenoconversion context: higher active VMAT2 metabolite exposure expected",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"higher active dihydrotetrabenazine exposure; use label dose limits" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"possible active-metabolite exposure increase; monitor tolerability" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline CYP2D6 clearance context" },
+    }
+  },
+  {
+    parent:"Valbenazine",
+    metaboliteId:"alpha-dihydrotetrabenazine",
+    metaboliteName:"[+]-alpha-dihydrotetrabenazine",
+    enzyme:"CYP2D6",
+    note:"Valbenazine active metabolite exposure is sensitive to CYP2D6 poor function or strong CYP2D6 inhibition, with QT, parkinsonism, and somnolence monitoring context.",
+    evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"CYP2D6 inhibition/phenoconversion context: higher active VMAT2 metabolite exposure expected",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"higher active metabolite exposure; use label dose guidance" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"possible active-metabolite exposure increase; monitor tolerability" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline CYP2D6 clearance context" },
+    }
+  },
+  {
+    parent:"Deutetrabenazine",
+    metaboliteId:"deuterated-alpha-dihydrotetrabenazine",
+    metaboliteName:"Deuterated alpha-dihydrotetrabenazine",
+    enzyme:"CYP2D6",
+    note:"Deutetrabenazine active metabolite clearance remains CYP2D6-sensitive despite deuteration; label dose limits apply in CYP2D6 poor metabolizers or strong CYP2D6 inhibition.",
+    evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"CYP2D6 inhibition/phenoconversion context: higher active VMAT2 metabolite exposure expected",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"higher active metabolite exposure; use label maximum dose limits" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"possible active-metabolite exposure increase; monitor tolerability" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline CYP2D6 clearance context" },
+    }
+  },
+  {
+    parent:"Deutetrabenazine",
+    metaboliteId:"deuterated-beta-dihydrotetrabenazine",
+    metaboliteName:"Deuterated beta-dihydrotetrabenazine",
+    enzyme:"CYP2D6",
+    note:"The deuterated beta active metabolite is part of the CYP2D6-sensitive VMAT2 active-metabolite pool.",
+    evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"CYP2D6 inhibition/phenoconversion context: higher active VMAT2 metabolite exposure expected",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"higher active metabolite exposure; use label maximum dose limits" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"possible active-metabolite exposure increase; monitor tolerability" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline CYP2D6 clearance context" },
+    }
+  },
+  {
+    parent:"Sacituzumab Govitecan",
+    metaboliteId:"sn-38-7-ethyl-10-hydroxycamptothecin",
+    metaboliteName:"SN-38",
+    enzyme:"UGT1A1",
+    note:"Sacituzumab govitecan releases SN-38 payload. Reduced UGT1A1 glucuronidation can increase SN-38 toxicity context, especially neutropenia and diarrhea, but oncology protocol and label guidance dominate dosing decisions.",
+    evidenceRefs:["ev_batch_adc_payload_labels","ev_irinotecan_ugt1a1_ramsey2014"],
+    inhibitionDirection:"increase",
+    inhibitionLabel:"UGT1A1 poor function context: higher SN-38 payload exposure/toxicity risk possible",
+    effects:{
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"increase", label:"higher SN-38 toxicity context; monitor neutropenia/diarrhea closely" },
+      [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"increase", label:"possible SN-38 toxicity context; monitor CBC/GI toxicity" },
+      [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline UGT1A1 glucuronidation context" },
+    }
+  },
 ];

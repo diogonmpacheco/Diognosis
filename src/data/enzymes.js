@@ -47,7 +47,12 @@ const PHARMGKB_EVIDENCE = {
       {drug:"Ondansetron",level:"B",action:"PM: elevated levels may increase QTc risk; UM effect is usually minor/no dose change"},
       {drug:"Tropisetron",level:"A",action:"UM: select alternative drug not predominantly metabolized by CYP2D6 (i.e., granisetron)",guidelineName:"CYP2D6 and Ondansetron and Tropisetron",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251457",pmids:["28002639"],evidenceRefs:["ev_ondansetron_cyp2d6_cpic2017"],classification:"Moderate"},
       {drug:"Vortioxetine",level:"A",action:"UM: select alternative not predominantly metabolized by CYP2D6; if used, titrate by efficacy/side effects and target maintenance dose may need 50% or more increase",guidelineName:"CYP2D6, CYP2C19, CYP2B6, SLC6A4, HTR2A and Serotonin Reuptake Inhibitor Antidepressants",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251452",pmids:["37032427"],evidenceRefs:["ev_ssri_snri_cpic_2023_slc6a4_htr2a","ev_vortioxetine_cyp2d6_pk"],classification:"Optional"},
-      {drug:"Metoclopramide",level:"C",action:"PM: ↑ EPS risk"}
+      {drug:"Metoclopramide",level:"C",action:"PM: ↑ EPS risk"},
+      {drug:"Tetrabenazine",level:"B",action:"PM or strong CYP2D6 inhibition: active metabolite exposure rises; use label dose limits",evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"]},
+      {drug:"Deutetrabenazine",level:"B",action:"PM or strong CYP2D6 inhibition: active metabolite exposure rises; use label maximum dose limits",evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"]},
+      {drug:"Valbenazine",level:"B",action:"PM or strong CYP2D6 inhibition: active metabolite exposure rises; use label dose adjustment",evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"]},
+      {drug:"Pitolisant",level:"C",action:"PM or strong CYP2D6 inhibition: parent exposure may rise; use label titration/dose adjustment",evidenceRefs:["ev_batch_vmat2_cyp2d6_labels"]},
+      {drug:"Dacomitinib",level:"C",action:"CYP2D6 contributes to clearance and dacomitinib inhibits CYP2D6; DDI context usually dominates genotype alone",evidenceRefs:["ev_batch_kinase_cyp3a_qt_labels"]}
     ]
   },
   "CYP2C19":{
@@ -68,7 +73,9 @@ const PHARMGKB_EVIDENCE = {
       {drug:"Clomipramine",level:"A",action:"PM: reduce dose"},
       {drug:"Phenytoin",level:"A",action:"PM: reduce dose by 25%; monitor levels"},
       {drug:"Brivaracetam",level:"C",action:"Minor CYP2C19 contribution"},
-      {drug:"Diazepam",level:"B",action:"PM: ↑ t½; reduced clearance"}
+      {drug:"Diazepam",level:"B",action:"PM: ↑ t½; reduced clearance"},
+      {drug:"Mavacamten",level:"B",action:"CYP2C19 phenotype affects exposure and label dosing/contraindication context; REMS and echocardiography dominate",evidenceRefs:["ev_batch_kinase_cyp3a_qt_labels"]},
+      {drug:"Abrocitinib",level:"C",action:"CYP2C19/CYP2C9 contribute to active moiety exposure; monitor infection, thrombosis, and cytopenia context",evidenceRefs:["ev_batch_kinase_cyp3a_qt_labels"]}
     ]
   },
   "CYP2C9":{
@@ -92,7 +99,11 @@ const PHARMGKB_EVIDENCE = {
       {drug:"Paclitaxel",level:"B",action:"Reduced function or CYP2C8 inhibition may raise parent exposure; monitor neuropathy/myelosuppression"},
       {drug:"Pioglitazone",level:"C",action:"Reduced function or inhibitors may raise parent and active metabolite exposure; edema/hypoglycemia context matters"},
       {drug:"Repaglinide",level:"C",action:"CYP2C8/OATP1B1 substrate; gemfibrozil-like inhibition is high impact; genotype-only actionability is weaker"},
-      {drug:"Montelukast",level:"C",action:"CYP2C8 contributes to clearance; clinical actionability uncertain"}
+      {drug:"Montelukast",level:"C",action:"CYP2C8 contributes to clearance; clinical actionability uncertain"},
+      {drug:"Ozanimod",level:"C",action:"CYP2C8 contributes to active-metabolite exposure; strong inhibitors/inducers are more actionable than genotype alone",evidenceRefs:["ev_batch_s1p_ms_labels"]},
+      {drug:"Treprostinil",level:"C",action:"CYP2C8 contributes to clearance; inhibitors such as gemfibrozil can raise exposure and prostacyclin adverse effects",evidenceRefs:["ev_batch_hemostasis_labels"]},
+      {drug:"Roxadustat",level:"C",action:"CYP2C8/UGT1A9 clearance context; thrombosis and anemia protocol monitoring dominate genotype alone",evidenceRefs:["ev_batch_hemostasis_labels"]},
+      {drug:"Daprodustat",level:"C",action:"CYP2C8 clearance context; anemia protocol monitoring and thrombotic risk dominate genotype alone",evidenceRefs:["ev_batch_hemostasis_labels"]}
     ]
   },
   "BCHE":{
@@ -243,7 +254,8 @@ const PHARMGKB_EVIDENCE = {
     guideline:"CPIC",
     pairs:[
       {drug:"Atazanavir",level:"A",action:"*28/*28: ↑ hyperbilirubinemia, but usually benign"},
-      {drug:"Irinotecan",level:"A",action:"*28/*28: reduce dose 30%; severe neutropenia risk"}
+      {drug:"Irinotecan",level:"A",action:"*28/*28: reduce dose 30%; severe neutropenia risk"},
+      {drug:"Sacituzumab Govitecan",level:"B",action:"Reduced UGT1A1 function can increase SN-38 toxicity context; monitor neutropenia and diarrhea per oncology label/protocol",evidenceRefs:["ev_batch_adc_payload_labels"]}
     ]
   },
   "UGT1A4":{

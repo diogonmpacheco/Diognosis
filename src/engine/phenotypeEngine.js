@@ -127,6 +127,46 @@ const RECEPTOR_SCORES = {
   carisoprodol:    { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:2, muOp:0, D2:0, MAO:0, DAT:0 },
 };
 
+Object.assign(RECEPTOR_SCORES, {
+  // Batch 01-03 receptor/channel burden profiles.
+  amoxapine:        { SERT:2, NET:3, H1:3, M1:3, alpha1:2, hERG:2, GABA:0, muOp:0, D2:2, MAO:0, DAT:0 },
+  amisulpride:      { SERT:0, NET:0, H1:0, M1:0, alpha1:1, hERG:2, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  sulpiride:        { SERT:0, NET:0, H1:0, M1:0, alpha1:1, hERG:1, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  loxapine:         { SERT:1, NET:0, H1:3, M1:2, alpha1:2, hERG:1, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  thiothixene:      { SERT:0, NET:0, H1:2, M1:1, alpha1:2, hERG:1, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  flupentixol:      { SERT:0, NET:0, H1:1, M1:1, alpha1:2, hERG:1, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  zuclopenthixol:   { SERT:0, NET:0, H1:2, M1:1, alpha1:2, hERG:1, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  prochlorperazine: { SERT:0, NET:0, H1:2, M1:2, alpha1:2, hERG:2, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  scopolamine:      { SERT:0, NET:0, H1:0, M1:3, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  meclizine:        { SERT:0, NET:0, H1:3, M1:2, alpha1:1, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  solifenacin:      { SERT:0, NET:0, H1:0, M1:2, alpha1:0, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  tolterodine:      { SERT:0, NET:0, H1:0, M1:3, alpha1:0, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  darifenacin:      { SERT:0, NET:0, H1:0, M1:3, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  trospium:         { SERT:0, NET:0, H1:0, M1:2, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  glycopyrrolate:   { SERT:0, NET:0, H1:0, M1:2, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  umeclidinium:     { SERT:0, NET:0, H1:0, M1:1, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  revefenacin:      { SERT:0, NET:0, H1:0, M1:1, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  alfuzosin:        { SERT:0, NET:0, H1:0, M1:0, alpha1:3, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  silodosin:        { SERT:0, NET:0, H1:0, M1:0, alpha1:3, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  mirabegron:       { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  lasmiditan:       { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  valbenazine:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  deutetrabenazine: { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  tetrabenazine:    { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  pitolisant:       { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  solriamfetol:     { SERT:0, NET:2, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:2 },
+  rotigotine:       { SERT:0, NET:0, H1:0, M1:0, alpha1:1, hERG:0, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  pramipexole:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  ropinirole:       { SERT:0, NET:0, H1:0, M1:0, alpha1:1, hERG:0, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  apomorphine:      { SERT:0, NET:0, H1:0, M1:0, alpha1:2, hERG:1, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  ribociclib:       { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:3, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  adagrasib:        { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:2, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  lapatinib:        { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  lefamulin:        { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:2, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  palonosetron:     { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  eszopiclone:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:2, muOp:0, D2:0, MAO:0, DAT:0 },
+});
+
 // Syndrome thresholds and clinical inference rules
 // These are deliberate clinical thresholds, not arbitrary numbers.
 const SYNDROME_RULES = [
