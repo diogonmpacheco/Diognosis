@@ -5823,5 +5823,53 @@ for (const drug of DRUG_DB) {
   }
 }
 
+const PGX_TRANSPORTER_EXPANSION_EVIDENCE_REFS = Object.freeze(["ev_pgx_transporter_expansion_adapter"]);
+
+function pgxExpansionGenesForRoute(route) {
+  const raw = String(route?.enzyme || "");
+  const genes = raw.split(/[\/,+]/).map(part => part.trim()).filter(gene => GENOTYPE_EFFECTS?.[gene]);
+  if (/P-gp|ABCB1/i.test(raw) && GENOTYPE_EFFECTS?.ABCB1) genes.push("ABCB1");
+  if (/BCRP|ABCG2/i.test(raw) && GENOTYPE_EFFECTS?.ABCG2) genes.push("ABCG2");
+  if (/OATP|SLCO/i.test(raw) && GENOTYPE_EFFECTS?.SLCO1B1) genes.push("SLCO1B1");
+  if (/OCT2|SLC22A2/i.test(raw) && GENOTYPE_EFFECTS?.SLC22A2) genes.push("SLC22A2");
+  if (/OCT1|SLC22A1/i.test(raw) && GENOTYPE_EFFECTS?.SLC22A1) genes.push("SLC22A1");
+  if (/MATE|SLC47A/i.test(raw) && GENOTYPE_EFFECTS?.SLC47A1) genes.push("SLC47A1");
+  return [...new Set(genes)];
+}
+
+function pgxExpansionMetaboliteId(drug) {
+  const primaryMetabolite = (METAB[drug.name] || [])[0];
+  if (!primaryMetabolite) return null;
+  const rawMetId = top100CoverageGraphId(primaryMetabolite.n);
+  return METABOLITE_ACTOR_ALIASES[rawMetId] || rawMetId;
+}
+
+for (const drug of DRUG_DB) {
+  const metId = pgxExpansionMetaboliteId(drug);
+  const primaryMetabolite = (METAB[drug.name] || [])[0];
+  if (!metId || !primaryMetabolite) continue;
+  for (const route of drug.routes || []) {
+    for (const gene of pgxExpansionGenesForRoute(route)) {
+      if ((GENOTYPE_METABOLITE_EFFECTS || []).some(effect => effect.parent === drug.name && effect.enzyme === gene)) continue;
+      GENOTYPE_METABOLITE_EFFECTS.push({
+        parent:drug.name,
+        metaboliteId:metId,
+        metaboliteName:primaryMetabolite.n,
+        enzyme:gene,
+        note:`Phase 11 PGx/transporter expansion: ${gene} phenotype can shift ${drug.name} exposure, active-moiety balance, transport, or clearance context. Pending review; not a dose recommendation.`,
+        evidenceRefs:[...PGX_TRANSPORTER_EXPANSION_EVIDENCE_REFS],
+        effects:{
+          [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:drug.prodrug ? "decrease" : "increase", label:drug.prodrug ? `${gene} poor function may reduce active-moiety formation/transport context` : `${gene} poor function may increase exposure or reduce clearance context` },
+          [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:drug.prodrug ? "decrease" : "increase", label:`intermediate ${gene} function may shift exposure/active-moiety balance` },
+          [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
+          ...(GENOTYPE_EFFECTS[gene]?.[GENOTYPE_PHENOTYPE.UM] ? {
+            [GENOTYPE_PHENOTYPE.UM]: { qualitative:true, direction:drug.prodrug ? "increase" : "decrease", label:`higher ${gene} activity may shift exposure in the opposite direction` },
+          } : {}),
+        },
+      });
+    }
+  }
+}
+
 // ── Food/Xenobiotic Actors ──
 // Non-drug compounds that interact with the metabolic graph

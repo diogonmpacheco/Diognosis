@@ -9385,6 +9385,20 @@ const STUDY_DB = {
     limitations:["Rows are route/context placeholders and should be replaced by source-specific named metabolites over time. They are not dose recommendations and do not replace labels, TDM, organ-function assessment, genotype guidance, or pharmacist/physician review."],
     verified:false, reviewRequired:true, verifyNote:"Phase 10 metabolite expansion rows are pending professional review and intended to prevent hollow drug records in the live graph."
   },
+  "ev_pgx_transporter_expansion_adapter": {
+    id:"ev_pgx_transporter_expansion_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Phase 11 PGx and transporter expansion — genotype-metabolite rules and transporter DDI rows",
+    year:2026, source:"Internal Diognosis enrichment adapter using existing genotype genes, drug routes, transporter routes, and high-risk drug classes",
+    pmid:null, doi:null, url:"https://www.pharmgkb.org/",
+    studyDesign:"pgx_transporter_context_expansion", n:null,
+    phenotypes:["CYP2D6","CYP2C19","CYP2C9","CYP3A4","CYP3A5","CYP2B6","CYP2C8","UGT","NAT","TPMT","NUDT15","SLCO1B1","ABCB1","ABCG2","SLC22A1","SLC22A2","SLC47A1","P-gp","BCRP","OATP","OAT","OCT","MATE"],
+    quantifiedEffects:{note:"Shared evidence anchor for expanding pending-review genotype-metabolite rules and transporter interaction rows from already modeled route/transporter context."},
+    temporal:{mechanism:"genotype_route_transporter_exposure_context", onset:"baseline/same_day", offset:"persistent-hours-weeks"},
+    supports:["phase11_genotype_metabolite_rule_expansion","phase11_transporter_ddi_expansion","phase11_pgx_transport_route_visibility"],
+    contradicts:[],
+    limitations:["Rows are qualitative review-priority signals, not genotype-based dose recommendations. Replace with source-specific CPIC/DPWG/label rows over time; clinical use still requires labels, genotype quality, organ function, TDM, and professional review."],
+    verified:false, reviewRequired:true, verifyNote:"Phase 11 PGx/transporter expansion rows are pending professional review."
+  },
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──

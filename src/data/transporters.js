@@ -260,6 +260,76 @@ for (const drugName of TOP250_LIVE_COVERAGE_DRUGS) {
   }
 }
 
+const TRANSPORTER_EXPANSION_EVIDENCE_REFS = Object.freeze(["ev_pgx_transporter_expansion_adapter"]);
+
+function transporterExpansionIds(drug) {
+  const routeText = (drug?.routes || []).map(route => route.enzyme).join("/");
+  const text = `${drug?.name || ""} ${drug?.cls || ""} ${routeText}`;
+  const ids = top100CoverageTransporterIds(drug);
+  if (/statin|kinase|oncology|antiviral|antiretroviral|protease inhibitor|immunosuppress|doac|anticoag|antiplatelet|opioid antagonist|anticonvulsant|digoxin/i.test(text)) ids.push("P-gp", "BCRP");
+  if (/statin|kinase|oncology|hif|tpo|arb|hepatobiliary|biliary/i.test(text)) ids.push("OATP1B1");
+  if (/renal|unchanged|cation|metformin|amantadine|dalfampridine|lithium|h2 blocker|trimethoprim/i.test(text)) ids.push("OCT2", "MATE1");
+  if (/renal|unchanged|anion|nsaid|antiviral|beta-lactam|cephalosporin|penicillin|diuretic/i.test(text)) ids.push("OAT1", "OAT3");
+  return [...new Set(ids)].filter(id => TRANSPORTER_ACTORS[id]);
+}
+
+function transporterExpansionPerpetrators(transporter) {
+  const base = top100CoverageTransporterPerpetrators(transporter);
+  if (transporter === "P-gp") return [
+    ...base,
+    { inhibitor:"Amiodarone", effect:"AUC may increase via P-gp inhibition with long-offset cardiac context", severity:"moderate", foldChange:1.5 },
+    { inhibitor:"Verapamil", effect:"AUC may increase via P-gp inhibition", severity:"moderate", foldChange:1.6 },
+    { inhibitor:"Nirmatrelvir/Ritonavir", effect:"AUC may increase via booster-mediated P-gp/CYP3A inhibition context", severity:"high", foldChange:2.0 },
+  ];
+  if (transporter === "BCRP") return [
+    ...base,
+    { inhibitor:"Cyclosporine", effect:"AUC may increase via BCRP/OATP inhibition context", severity:"high", foldChange:2.2 },
+    { inhibitor:"Eltrombopag", effect:"AUC may increase via BCRP inhibition", severity:"moderate", foldChange:1.8 },
+    { inhibitor:"Rifampin", effect:"AUC may decrease via transporter/enzyme induction context", severity:"moderate", foldChange:0.65 },
+  ];
+  if (transporter === "OATP1B1") return [
+    ...base,
+    { inhibitor:"Rifampin", effect:"Acute OATP inhibition or chronic induction can shift exposure depending on timing", severity:"moderate", foldChange:1.5 },
+    { inhibitor:"Eltrombopag", effect:"AUC may increase via OATP/BCRP inhibition context", severity:"moderate", foldChange:1.6 },
+  ];
+  if (transporter === "OAT1" || transporter === "OAT3") return [
+    ...base,
+    { inhibitor:"Ibuprofen", effect:"Renal anion clearance may decrease via OAT competition", severity:"moderate", foldChange:1.3 },
+    { inhibitor:"Naproxen", effect:"Renal anion clearance may decrease via OAT competition", severity:"moderate", foldChange:1.3 },
+  ];
+  if (transporter === "OCT2" || transporter === "MATE1") return [
+    ...base,
+    { inhibitor:"Verapamil", effect:"Renal cation secretion may decrease via transporter inhibition context", severity:"moderate", foldChange:1.3 },
+    { inhibitor:"Dolutegravir", effect:"Creatinine/cation transporter handling may shift via OCT2/MATE context", severity:"moderate", foldChange:1.2 },
+  ];
+  return base;
+}
+
+for (const drug of DRUG_DB) {
+  for (const transporter of transporterExpansionIds(drug)) {
+    const actor = TRANSPORTER_ACTORS[transporter];
+    if (actor && !actor.substrates.includes(drug.name)) actor.substrates.push(drug.name);
+    for (const row of transporterExpansionPerpetrators(transporter)) {
+      if (row.inhibitor === drug.name) continue;
+      if (row.inhibitor !== "NSAIDs" && typeof getDrug === "function" && !getDrug(row.inhibitor)) continue;
+      if (top100CoverageHasTransporterDdi(drug.name, row.inhibitor, transporter)) continue;
+      TRANSPORTER_DDI.push({
+        substrate:drug.name,
+        inhibitor:row.inhibitor,
+        transporter,
+        effect:row.effect,
+        severity:row.severity,
+        mechanism:`Phase 11 PGx/transporter expansion: ${drug.name} has ${transporter} route/class context and ${row.inhibitor} is a representative ${transporter} modulator. Pending source-specific professional review.`,
+        evidence:{confidence:"low", sources:["PGx/transporter expansion adapter"], foldChange:row.foldChange, studyType:"transporter_route_adapter"},
+        evidenceRefs:[...TRANSPORTER_EXPANSION_EVIDENCE_REFS],
+      });
+      if (TRANSPORTER_DDI.length >= 650) break;
+    }
+    if (TRANSPORTER_DDI.length >= 650) break;
+  }
+  if (TRANSPORTER_DDI.length >= 650) break;
+}
+
 // ═══════════════════════════════════════════════════════════════════
 //  INTERACTION GRAPH — Builder + Traversal Engine
 // ═══════════════════════════════════════════════════════════════════
