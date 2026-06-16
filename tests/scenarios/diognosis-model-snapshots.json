@@ -313,7 +313,7 @@
           "enzyme": "CYP3A4"
         }
       ],
-      "findingCount": 13,
+      "findingCount": 15,
       "findingTypes": [
         "active_moiety",
         "combination_burden",
@@ -321,11 +321,11 @@
         "receptor_burden",
         "timing_washout"
       ],
-      "findingCardCount": 4,
-      "evidenceLadderCount": 4,
+      "findingCardCount": 6,
+      "evidenceLadderCount": 6,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 13,
-      "mechanismWhyPathCount": 4,
+      "whyPathCount": 15,
+      "mechanismWhyPathCount": 6,
       "rawWarningPathCount": 12,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
@@ -340,7 +340,9 @@
         "Codeine-6-glucuronide",
         "Fluoxetine glucuronide",
         "Morphine",
+        "Morphine-3-glucuronide",
         "Morphine-6-glucuronide",
+        "Norcodeine",
         "Norfluoxetine",
         "p-Trifluoromethylphenol",
         "slc6a4-fluoxetine-response"
@@ -448,6 +450,7 @@
       "activeMoietyPatterns": [
         "activation_failure",
         "mixed_direction",
+        "no_major_signal",
         "parent_accumulation"
       ],
       "activeMoietyActors": [
@@ -455,6 +458,7 @@
         "5-Hydroxyomeprazole",
         "5-O-Desmethylomeprazole",
         "Active thiol metabolite",
+        "Clopidogrel carboxylic acid (SR26334)",
         "Omeprazole sulfone"
       ],
       "phenoconversionGenes": [
@@ -519,7 +523,7 @@
       "interactionCount": 0,
       "severityCounts": {},
       "topInteractions": [],
-      "findingCount": 2,
+      "findingCount": 3,
       "findingTypes": [
         "active_moiety",
         "phenoconversion"
@@ -527,17 +531,19 @@
       "findingCardCount": 1,
       "evidenceLadderCount": 1,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 2,
+      "whyPathCount": 3,
       "mechanismWhyPathCount": 1,
-      "rawWarningPathCount": 2,
+      "rawWarningPathCount": 3,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
       "activeMoietyPatterns": [
+        "mixed_direction",
         "toxic_metabolite_accumulation"
       ],
       "activeMoietyActors": [
-        "SN-38"
+        "SN-38",
+        "SN-38G (SN-38 glucuronide)"
       ],
       "phenoconversionGenes": [
         "CYP3A4",
@@ -606,10 +612,12 @@
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
       "activeMoietyPatterns": [
+        "no_major_signal",
         "toxic_metabolite_accumulation"
       ],
       "activeMoietyActors": [
-        "5-Fluorouracil"
+        "5-Fluorouracil",
+        "Capecitabine primary live metabolite context"
       ],
       "phenoconversionGenes": [
         "DPYD"
@@ -623,7 +631,8 @@
       ],
       "persistenceActors": [
         "5-Fluorouracil",
-        "Capecitabine"
+        "Capecitabine",
+        "Capecitabine primary live metabolite context"
       ],
       "sections": {
         "findings": true,
@@ -671,7 +680,7 @@
           "enzyme": "metabolic"
         }
       ],
-      "findingCount": 4,
+      "findingCount": 5,
       "findingTypes": [
         "active_moiety",
         "pairwise_interaction",
@@ -680,13 +689,14 @@
       "findingCardCount": 2,
       "evidenceLadderCount": 2,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 4,
+      "whyPathCount": 5,
       "mechanismWhyPathCount": 2,
-      "rawWarningPathCount": 4,
+      "rawWarningPathCount": 5,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
       "activeMoietyPatterns": [
+        "mixed_direction",
         "no_major_signal",
         "toxic_metabolite_accumulation"
       ],
@@ -694,7 +704,8 @@
         "6-Mercaptopurine (6-MP)",
         "6-Methylmercaptopurine (6-MMP)",
         "6-Thioguanine nucleotides (6-TGN)",
-        "Oxypurinol (alloxanthine)"
+        "Oxypurinol (alloxanthine)",
+        "Thiouric acid"
       ],
       "phenoconversionGenes": [
         "NUDT15",
@@ -883,7 +894,7 @@
           "enzyme": "toxic overlap"
         }
       ],
-      "findingCount": 9,
+      "findingCount": 10,
       "findingTypes": [
         "active_moiety",
         "combination_burden",
@@ -894,21 +905,23 @@
       "findingCardCount": 3,
       "evidenceLadderCount": 3,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 9,
+      "whyPathCount": 10,
       "mechanismWhyPathCount": 3,
-      "rawWarningPathCount": 9,
+      "rawWarningPathCount": 10,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
       "activeMoietyPatterns": [
-        "activation_failure",
         "mixed_direction",
+        "no_major_signal",
         "parent_accumulation"
       ],
       "activeMoietyActors": [
         "14-Hydroxyclarithromycin",
         "3',5'-Dihydrodiol-SVA",
         "6'-Hydroxy-SVA",
+        "Clarithromycin glucuronide",
+        "N-Desmethylclarithromycin",
         "Simvastatin acid (SVA)",
         "simvastatin-acid-slco1b1-exposure"
       ],
@@ -1009,7 +1022,7 @@
           "enzyme": "Seizure"
         }
       ],
-      "findingCount": 17,
+      "findingCount": 19,
       "findingTypes": [
         "active_moiety",
         "pairwise_interaction",
@@ -1017,11 +1030,11 @@
         "receptor_burden",
         "timing_washout"
       ],
-      "findingCardCount": 4,
-      "evidenceLadderCount": 4,
+      "findingCardCount": 6,
+      "evidenceLadderCount": 6,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 17,
-      "mechanismWhyPathCount": 4,
+      "whyPathCount": 19,
+      "mechanismWhyPathCount": 6,
       "rawWarningPathCount": 12,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
@@ -1151,7 +1164,8 @@
         "N-Acetyldapsone (MADDS)",
         "Primaquine",
         "Primaquine hydroxylamine / quinone-imine metabolites",
-        "Rasburicase"
+        "Rasburicase",
+        "Rasburicase primary live metabolite context"
       ],
       "sections": {
         "findings": true,
@@ -1224,7 +1238,8 @@
       ],
       "persistenceActors": [
         "Succinic acid + choline",
-        "Succinylcholine"
+        "Succinylcholine",
+        "Succinylmonocholine"
       ],
       "sections": {
         "findings": true,

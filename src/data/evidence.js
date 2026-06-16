@@ -9371,6 +9371,20 @@ const STUDY_DB = {
     limitations:["Rows are intended as live review-priority signals. They do not replace drug-specific labels, measured concentration data, ECG/electrolytes, renal/hepatic assessment, INR/TDM, dose/indication context, or pharmacist/physician review."],
     verified:false, reviewRequired:true, verifyNote:"Phase 9 DDI expansion pack rows are pending professional review and should be replaced by source-specific rows over time."
   },
+  "ev_metabolite_expansion_pack_adapter": {
+    id:"ev_metabolite_expansion_pack_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Phase 10 metabolite expansion pack — parent maps, active-moiety context, and graph actors",
+    year:2026, source:"Internal Diognosis enrichment adapter using existing drug routes, half-lives, prodrug flags, transport routes, and high-risk classes",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"metabolite_graph_expansion", n:null,
+    phenotypes:["active_moiety","clearance_context","toxic_metabolite_review","CYP","UGT","NAT","TPMT","NUDT15","transporters","renal_clearance","biliary_clearance"],
+    quantifiedEffects:{note:"Shared evidence anchor for adding pending-review METAB rows and first-class metabolite actors where route and active-moiety context should be visible in the live graph before named-metabolite curation is complete."},
+    temporal:{mechanism:"parent_metabolite_route_and_active_moiety_context", onset:"same_day", offset:"hours-weeks"},
+    supports:["phase10_parent_metabolite_map_expansion","phase10_first_class_metabolite_actor_expansion","phase10_active_moiety_context_rows"],
+    contradicts:[],
+    limitations:["Rows are route/context placeholders and should be replaced by source-specific named metabolites over time. They are not dose recommendations and do not replace labels, TDM, organ-function assessment, genotype guidance, or pharmacist/physician review."],
+    verified:false, reviewRequired:true, verifyNote:"Phase 10 metabolite expansion rows are pending professional review and intended to prevent hollow drug records in the live graph."
+  },
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──

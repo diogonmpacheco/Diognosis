@@ -5729,5 +5729,99 @@ for (const drugName of TOP250_LIVE_COVERAGE_DRUGS) {
   }
 }
 
+const METABOLITE_EXPANSION_PACK_EVIDENCE_REFS = Object.freeze(["ev_metabolite_expansion_pack_adapter"]);
+
+function metaboliteExpansionMergeRefs(row) {
+  row.evidenceRefs = [...new Set([...(row.evidenceRefs || []), ...METABOLITE_EXPANSION_PACK_EVIDENCE_REFS])];
+  return row;
+}
+
+function metaboliteExpansionRoleFor(drug, route, index) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""} ${route?.enzyme || ""}`;
+  if (drug?.prodrug && index === 0) return { a:"activation_context", role:"active_moiety_context" };
+  if (/tox|reactive|bioactivation|oncology|kinase|antineoplastic|chemotherapy/i.test(text)) return { a:"toxic_review_context", role:"toxicity_context" };
+  if (/unchanged|renal|biliary|fecal|transport|P-gp|BCRP|OATP|OAT|OCT|MATE/i.test(text)) return { a:"active_parent", role:"clearance_context" };
+  return { a:"clearance_context", role:"clearance_context" };
+}
+
+function metaboliteExpansionRow(drug, route, index) {
+  const role = metaboliteExpansionRoleFor(drug, route, index);
+  const enzyme = route?.enzyme || "Various clearance";
+  const routeLabel = enzyme.replace(/[^A-Za-z0-9]+/g, " ").trim() || "clearance";
+  return metaboliteExpansionMergeRefs({
+    n:index === 0 ? `${drug.name} primary live metabolite context` : `${drug.name} ${routeLabel} live context`,
+    e:enzyme,
+    a:role.a,
+    role:role.role,
+    p:Math.max(5, Math.min(100, Math.round((route?.fraction || (index === 0 ? 0.7 : 0.3)) * 100))),
+    t:drug.hl || null,
+    note:`Phase 10 metabolite expansion row for ${drug.name}: exposes ${enzyme} route, active-moiety, transporter, clearance, or toxicity context in the live graph while named metabolite curation remains pending.`,
+  });
+}
+
+function metaboliteExpansionDesiredRows(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  if (TOP250_LIVE_COVERAGE_SET?.has(drug?.name)) return 3;
+  if (/prodrug|opioid|benzodiazepine|anticonvulsant|antidepressant|antipsychotic|anticoag|antiplatelet|azole|antiviral|antiretroviral|immunosuppress|kinase|oncology|chemotherapy|statin|diabetes|antibiotic/i.test(text)) return 2;
+  return 1;
+}
+
+function metaboliteExpansionEnsureActor(drug, metabolite) {
+  if (!drug || !metabolite?.n) return;
+  const rawMetId = top100CoverageGraphId(metabolite.n);
+  const metId = METABOLITE_ACTOR_ALIASES[rawMetId] || rawMetId;
+  if (!METABOLITE_ACTORS[metId]) {
+    METABOLITE_ACTORS[metId] = {
+      id:metId,
+      type:ACTOR_TYPE.METABOLITE,
+      name:metabolite.n,
+      parentDrug:drug.name,
+      parentDrugs:[drug.name],
+      formingEnzyme:metabolite.e || "Various clearance",
+      active:/active|activation/i.test(`${metabolite.a || ""} ${metabolite.role || ""}`),
+      halfLife:metabolite.t || drug.hl || null,
+      potencyRatio:/active|activation/i.test(`${metabolite.a || ""} ${metabolite.role || ""}`) ? 0.5 : 0,
+      routes:[{
+        enzyme:metabolite.e || "Various clearance",
+        fraction:(metabolite.p || 50) / 100,
+        role:"metabolite_expansion_context",
+        evidence:{confidence:"low", sources:["metabolite expansion pack adapter"]},
+        evidenceRefs:[...METABOLITE_EXPANSION_PACK_EVIDENCE_REFS],
+      }],
+      inh:[],
+      evidenceRefs:[...METABOLITE_EXPANSION_PACK_EVIDENCE_REFS],
+      note:"Phase 10 first-class metabolite actor generated from an existing METAB row so live graph formation edges remain connected. Pending named-metabolite professional review.",
+    };
+  } else {
+    METABOLITE_ACTORS[metId].evidenceRefs = [...new Set([...(METABOLITE_ACTORS[metId].evidenceRefs || []), ...METABOLITE_EXPANSION_PACK_EVIDENCE_REFS])];
+    METABOLITE_ACTORS[metId].parentDrugs = [...new Set([
+      ...(METABOLITE_ACTORS[metId].parentDrugs || []),
+      METABOLITE_ACTORS[metId].parentDrug,
+      drug.name,
+    ].filter(Boolean))];
+  }
+}
+
+for (const drug of DRUG_DB) {
+  const rows = METAB[drug.name] || (METAB[drug.name] = []);
+  const routes = (drug.routes || []).filter(route => route?.enzyme);
+  const primaryRoute = top100CoveragePrimaryRoute(drug);
+  const routeQueue = [primaryRoute, ...routes.filter(route => route.enzyme !== primaryRoute.enzyme)];
+  const existingNames = new Set(rows.map(row => row.n));
+  const desiredRows = metaboliteExpansionDesiredRows(drug);
+  let routeIndex = 0;
+  while (rows.length < desiredRows) {
+    const route = routeQueue[routeIndex] || { enzyme:"Various clearance", fraction:1 };
+    const row = metaboliteExpansionRow(drug, route, routeIndex);
+    routeIndex += 1;
+    if (existingNames.has(row.n)) continue;
+    existingNames.add(row.n);
+    rows.push(row);
+  }
+  for (const row of rows.slice(0, Math.max(1, desiredRows))) {
+    metaboliteExpansionEnsureActor(drug, row);
+  }
+}
+
 // ── Food/Xenobiotic Actors ──
 // Non-drug compounds that interact with the metabolic graph
