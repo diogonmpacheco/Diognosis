@@ -274,6 +274,10 @@ function renderSummaryBar() {
     nextStep = genotypePriority.nextStep;
     priorityStory = genotypePriority.story || buildGenotypePriorityStory(genotypePriority);
   }
+  if (genotypePriority && genotypePriority.score >= 70 && genotypePriority.score <= interactionScore && summaryCopy) {
+    summaryCopy = `${summaryCopy} Also check: ${genotypePriority.summary}`;
+    nextStep = "Start with the severe findings, then review genotype/metabolite warnings.";
+  }
   if (!priorityStory) {
     priorityStory = buildDefaultPriorityStory(activeStack.length);
   }

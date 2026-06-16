@@ -112,8 +112,8 @@
       "genotype": {
         "DPYD": "PM"
       },
-      "riskScore": 45,
-      "riskLevel": "MODERATE RISK",
+      "riskScore": 60,
+      "riskLevel": "HIGH RISK",
       "interactionCount": 0,
       "severityCounts": {},
       "factorCount": 1,
@@ -127,7 +127,7 @@
       "externalContextCountText": "1 context card · not risk-scoring · fixture-2026-06",
       "externalContextReviewBadges": 1,
       "riskUnchangedAfterExternalContext": true,
-      "afterRiskScore": 45,
+      "afterRiskScore": 60,
       "afterInteractionCount": 0
     },
     {
@@ -191,8 +191,8 @@
       "genotype": {
         "HLA-B*57:01": "present"
       },
-      "riskScore": 45,
-      "riskLevel": "MODERATE RISK",
+      "riskScore": 60,
+      "riskLevel": "HIGH RISK",
       "interactionCount": 0,
       "severityCounts": {},
       "factorCount": 1,
@@ -207,7 +207,7 @@
       "externalContextCountText": "3 context cards · not risk-scoring · fixture-2026-06",
       "externalContextReviewBadges": 3,
       "riskUnchangedAfterExternalContext": true,
-      "afterRiskScore": 45,
+      "afterRiskScore": 60,
       "afterInteractionCount": 0
     },
     {
@@ -512,8 +512,8 @@
       "genotype": {
         "UGT1A1": "PM"
       },
-      "riskScore": 20,
-      "riskLevel": "LOW RISK",
+      "riskScore": 30,
+      "riskLevel": "MODERATE RISK",
       "interactionCount": 0,
       "severityCounts": {},
       "topInteractions": [],
@@ -584,8 +584,8 @@
       "genotype": {
         "DPYD": "PM"
       },
-      "riskScore": 45,
-      "riskLevel": "MODERATE RISK",
+      "riskScore": 60,
+      "riskLevel": "HIGH RISK",
       "interactionCount": 0,
       "severityCounts": {},
       "topInteractions": [],
@@ -654,8 +654,8 @@
         "TPMT": "PM",
         "NUDT15": "PM"
       },
-      "riskScore": 55,
-      "riskLevel": "MODERATE RISK",
+      "riskScore": 100,
+      "riskLevel": "HIGH RISK",
       "interactionCount": 1,
       "severityCounts": {
         "severe": 1
@@ -1181,7 +1181,7 @@
         "BCHE": "null",
         "RYR1/CACNA1S MH variant": "present"
       },
-      "riskScore": 80,
+      "riskScore": 100,
       "riskLevel": "HIGH RISK",
       "interactionCount": 0,
       "severityCounts": {},

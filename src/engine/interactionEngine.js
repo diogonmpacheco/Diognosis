@@ -763,13 +763,13 @@ function calcRisk() {
   // genotype creates a contraindication-level or life-threatening safety signal.
   const genotypeSafety = collectActiveGenotypeSafetySignals();
   if (genotypeSafety.critical.length) {
-    score += Math.min(70, 45 + ((genotypeSafety.critical.length - 1) * 10));
+    score += Math.min(70, 60 + ((genotypeSafety.critical.length - 1) * 10));
     factors.push({
       label:`${genotypeSafety.critical.length} genotype/metabolite critical alert${genotypeSafety.critical.length>1?"s":""}`,
       color:"red",
     });
   } else if (genotypeSafety.severe.length) {
-    score += Math.min(35, 20 + ((genotypeSafety.severe.length - 1) * 5));
+    score += Math.min(35, 30 + ((genotypeSafety.severe.length - 1) * 5));
     factors.push({
       label:`${genotypeSafety.severe.length} genotype/metabolite safety alert${genotypeSafety.severe.length>1?"s":""}`,
       color:"red",
@@ -866,8 +866,8 @@ function genotypeMetaboliteRiskKey(enzyme) {
 function genotypeSafetyBucket(text) {
   const value = String(text || "");
   if (!value.trim()) return null;
-  if (/contraindicat|life[-\s]?threat|fatal|malignant hyperthermia/i.test(value)) return "critical";
-  if (/severe|toxicit|myelosuppression|neutropenia|hemolys|methemoglobin|apnea|paralysis|torsades|arrhythm|qt/i.test(value)) return "severe";
+  if (/contraindicat|life[-\s]?threat|fatal|malignant hyperthermia|\bavoid\b|do not use|permanent hearing[-\s]?loss|irreversible (?:aminoglycoside )?(?:ototoxicity|hearing loss)|sensorineural hearing loss|SJS\/?TEN|Stevens[-\s]?Johnson|toxic epidermal necrolysis|\bSCAR\b|\bDRESS\b|very high .*risk|drastic/i.test(value)) return "critical";
+  if (/severe|toxicit|myelosuppression|neutropenia|hemolys|methemoglobin|ototox|hearing loss|apnea|paralysis|torsades|arrhythm|qt/i.test(value)) return "severe";
   if (/monitor|avoid|dose|specialist|risk|CBC|blood count/i.test(value)) return "context";
   return null;
 }

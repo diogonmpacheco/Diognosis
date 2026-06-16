@@ -45,6 +45,8 @@ const PHARMGKB_EVIDENCE = {
       {drug:"Propranolol",level:"C",action:"PM: ↑ levels; clinical significance unclear"},
       {drug:"Tamoxifen",level:"A",action:"PM: ineffective; use aromatase inhibitor"},
       {drug:"Ondansetron",level:"B",action:"PM: elevated levels may increase QTc risk; UM effect is usually minor/no dose change"},
+      {drug:"Tropisetron",level:"A",action:"UM: select alternative drug not predominantly metabolized by CYP2D6 (i.e., granisetron)",guidelineName:"CYP2D6 and Ondansetron and Tropisetron",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251457",pmids:["28002639"],evidenceRefs:["ev_ondansetron_cyp2d6_cpic2017"],classification:"Moderate"},
+      {drug:"Vortioxetine",level:"A",action:"UM: select alternative not predominantly metabolized by CYP2D6; if used, titrate by efficacy/side effects and target maintenance dose may need 50% or more increase",guidelineName:"CYP2D6, CYP2C19, CYP2B6, SLC6A4, HTR2A and Serotonin Reuptake Inhibitor Antidepressants",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251452",pmids:["37032427"],evidenceRefs:["ev_ssri_snri_cpic_2023_slc6a4_htr2a","ev_vortioxetine_cyp2d6_pk"],classification:"Optional"},
       {drug:"Metoclopramide",level:"C",action:"PM: ↑ EPS risk"}
     ]
   },
@@ -99,6 +101,58 @@ const PHARMGKB_EVIDENCE = {
     pairs:[
       {drug:"Succinylcholine",level:"B",action:"Deficiency: avoid or prepare for prolonged paralysis/apnea and ventilatory support"},
       {drug:"Mivacurium",level:"B",action:"Deficiency: avoid or prepare for prolonged neuromuscular blockade"}
+    ]
+  },
+  "MT-RNR1":{
+    grade:"A",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Amikacin",level:"A",action:"Increased-risk variant: avoid aminoglycoside antibiotics unless permanent hearing-loss risk is outweighed by infection severity and lack of safe/effective alternatives",guidelineName:"MT-RNR1 and Aminoglycosides",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251466",pmids:["34032273"],evidenceRefs:["ev_aminoglycoside_mtrnr1_cpic2021"],classification:"Strong"},
+      {drug:"Dibekacin",level:"A",action:"Increased-risk variant: avoid aminoglycoside antibiotics unless permanent hearing-loss risk is outweighed by infection severity and lack of safe/effective alternatives",guidelineName:"MT-RNR1 and Aminoglycosides",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251466",pmids:["34032273"],evidenceRefs:["ev_aminoglycoside_mtrnr1_cpic2021"],classification:"Strong"},
+      {drug:"Gentamicin",level:"A",action:"Increased-risk variant: avoid aminoglycoside antibiotics unless permanent hearing-loss risk is outweighed by infection severity and lack of safe/effective alternatives",guidelineName:"MT-RNR1 and Aminoglycosides",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251466",pmids:["34032273"],evidenceRefs:["ev_aminoglycoside_mtrnr1_cpic2021"],classification:"Strong"},
+      {drug:"Kanamycin",level:"A",action:"Increased-risk variant: avoid aminoglycoside antibiotics unless permanent hearing-loss risk is outweighed by infection severity and lack of safe/effective alternatives",guidelineName:"MT-RNR1 and Aminoglycosides",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251466",pmids:["34032273"],evidenceRefs:["ev_aminoglycoside_mtrnr1_cpic2021"],classification:"Strong"},
+      {drug:"Neomycin",level:"A",action:"Increased-risk variant: avoid aminoglycoside antibiotics unless permanent hearing-loss risk is outweighed by infection severity and lack of safe/effective alternatives",guidelineName:"MT-RNR1 and Aminoglycosides",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251466",pmids:["34032273"],evidenceRefs:["ev_aminoglycoside_mtrnr1_cpic2021"],classification:"Strong"},
+      {drug:"Netilmicin",level:"A",action:"Increased-risk variant: avoid aminoglycoside antibiotics unless permanent hearing-loss risk is outweighed by infection severity and lack of safe/effective alternatives",guidelineName:"MT-RNR1 and Aminoglycosides",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251466",pmids:["34032273"],evidenceRefs:["ev_aminoglycoside_mtrnr1_cpic2021"],classification:"Strong"},
+      {drug:"Paromomycin",level:"A",action:"Increased-risk variant: avoid aminoglycoside antibiotics unless permanent hearing-loss risk is outweighed by infection severity and lack of safe/effective alternatives",guidelineName:"MT-RNR1 and Aminoglycosides",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251466",pmids:["34032273"],evidenceRefs:["ev_aminoglycoside_mtrnr1_cpic2021"],classification:"Strong"},
+      {drug:"Plazomicin",level:"A",action:"Increased-risk variant: avoid aminoglycoside antibiotics unless permanent hearing-loss risk is outweighed by infection severity and lack of safe/effective alternatives",guidelineName:"MT-RNR1 and Aminoglycosides",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251466",pmids:["34032273"],evidenceRefs:["ev_aminoglycoside_mtrnr1_cpic2021"],classification:"Strong"},
+      {drug:"Ribostamycin",level:"A",action:"Increased-risk variant: avoid aminoglycoside antibiotics unless permanent hearing-loss risk is outweighed by infection severity and lack of safe/effective alternatives",guidelineName:"MT-RNR1 and Aminoglycosides",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251466",pmids:["34032273"],evidenceRefs:["ev_aminoglycoside_mtrnr1_cpic2021"],classification:"Strong"},
+      {drug:"Streptomycin",level:"A",action:"Increased-risk variant: avoid aminoglycoside antibiotics unless permanent hearing-loss risk is outweighed by infection severity and lack of safe/effective alternatives",guidelineName:"MT-RNR1 and Aminoglycosides",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251466",pmids:["34032273"],evidenceRefs:["ev_aminoglycoside_mtrnr1_cpic2021"],classification:"Strong"},
+      {drug:"Tobramycin",level:"A",action:"Increased-risk variant: avoid aminoglycoside antibiotics unless permanent hearing-loss risk is outweighed by infection severity and lack of safe/effective alternatives",guidelineName:"MT-RNR1 and Aminoglycosides",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251466",pmids:["34032273"],evidenceRefs:["ev_aminoglycoside_mtrnr1_cpic2021"],classification:"Strong"}
+    ]
+  },
+  "HLA-B":{
+    grade:"A",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Abacavir",level:"A",action:"HLA-B*57:01 positive: Abacavir is not recommended",guidelineName:"HLA-B and Abacavir",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251444",pmids:["24561393","22378157"],evidenceRefs:["ev_abacavir_hlab5701_cpic2012"],classification:"Strong"},
+      {drug:"Allopurinol",level:"A",action:"HLA-B*58:01 positive: Allopurinol is contraindicated",guidelineName:"HLA-B and Allopurinol",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251446",pmids:["23232549","26094938"],evidenceRefs:["ev_allopurinol_hlab5801_cpic2015"],classification:"Strong"},
+      {drug:"Carbamazepine",level:"A",action:"HLA-B*15:02 positive and carbamazepine-naïve: do not use carbamazepine",guidelineName:"HLA-A, HLA-B and Carbamazepine and Oxcarbazepine",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251448",pmids:["23695185","29392710"],evidenceRefs:["ev_carbamazepine_oxcarbazepine_hla_cpic2017"],classification:"Strong"},
+      {drug:"Oxcarbazepine",level:"A",action:"HLA-B*15:02 positive and oxcarbazepine-naïve: do not use oxcarbazepine",guidelineName:"HLA-A, HLA-B and Carbamazepine and Oxcarbazepine",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251448",pmids:["29392710"],evidenceRefs:["ev_carbamazepine_oxcarbazepine_hla_cpic2017"],classification:"Strong"},
+      {drug:"Phenytoin",level:"A",action:"HLA-B*15:02 positive and phenytoin-naive: do not use phenytoin/fosphenytoin; avoid carbamazepine and oxcarbazepine",guidelineName:"CYP2C9, HLA-B and Phenytoin",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251461",pmids:["25099164","32779747"],evidenceRefs:["ev_phenytoin_cyp2c9_hlab_cpic2020"],classification:"Strong"}
+    ]
+  },
+  "HLA-A":{
+    grade:"A",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Carbamazepine",level:"A",action:"HLA-A*31:01 positive and carbamazepine-naïve with alternatives available: do not use carbamazepine",guidelineName:"HLA-A, HLA-B and Carbamazepine and Oxcarbazepine",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251448",pmids:["23695185","29392710"],evidenceRefs:["ev_carbamazepine_oxcarbazepine_hla_cpic2017"],classification:"Strong"}
+    ]
+  },
+  "CACNA1S":{
+    grade:"A",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Desflurane",level:"A",action:"MH susceptibility: halogenated volatile anesthetics or succinylcholine are relatively contraindicated and should not be used except in extraordinary circumstances",guidelineName:"RYR1, CACNA1S and Volatile anesthetic agents and Succinylcholine",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251460",pmids:["30499100"],evidenceRefs:["ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019"],classification:"Strong"},
+      {drug:"Succinylcholine",level:"A",action:"MH susceptibility: halogenated volatile anesthetics or succinylcholine are relatively contraindicated and should not be used except in extraordinary circumstances",guidelineName:"RYR1, CACNA1S and Volatile anesthetic agents and Succinylcholine",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251460",pmids:["30499100"],evidenceRefs:["ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019"],classification:"Strong"},
+      {drug:"Halothane",level:"A",action:"MH susceptibility: halogenated volatile anesthetics or succinylcholine are relatively contraindicated and should not be used except in extraordinary circumstances",guidelineName:"RYR1, CACNA1S and Volatile anesthetic agents and Succinylcholine",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251460",pmids:["30499100"],evidenceRefs:["ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019"],classification:"Strong"}
+    ]
+  },
+  "RYR1":{
+    grade:"A",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Desflurane",level:"A",action:"MH susceptibility: halogenated volatile anesthetics or succinylcholine are relatively contraindicated and should not be used except in extraordinary circumstances",guidelineName:"RYR1, CACNA1S and Volatile anesthetic agents and Succinylcholine",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251460",pmids:["30499100"],evidenceRefs:["ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019"],classification:"Strong"},
+      {drug:"Succinylcholine",level:"A",action:"MH susceptibility: halogenated volatile anesthetics or succinylcholine are relatively contraindicated and should not be used except in extraordinary circumstances",guidelineName:"RYR1, CACNA1S and Volatile anesthetic agents and Succinylcholine",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251460",pmids:["30499100"],evidenceRefs:["ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019"],classification:"Strong"}
     ]
   },
   "CYP3A4":{
@@ -175,6 +229,13 @@ const PHARMGKB_EVIDENCE = {
     pairs:[
       {drug:"Azathioprine",level:"A",action:"PM: reduce dose 90%; IM: reduce dose 30-70%"},
       {drug:"Mercaptopurine",level:"A",action:"PM: reduce dose 90%; IM: reduce dose 30-70%"}
+    ]
+  },
+  "NUDT15":{
+    grade:"A",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Thioguanine",level:"A",action:"NUDT15 IM: start 30-80% of standard dose; NUDT15 PM: 10-fold dose reduction and thrice-weekly rather than daily dosing",guidelineName:"TPMT, NUDT15 and Thiopurines",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251442",pmids:["21270794","23422873","30447069","41618934"],evidenceRefs:["ev_thiopurine_tpmt_nudt15_cpic2025"],classification:"Strong"}
     ]
   },
   "UGT1A1":{
@@ -291,6 +352,30 @@ const PHARMGKB_EVIDENCE = {
     guideline:"CPIC",
     pairs:[
       {drug:"Warfarin",level:"B",action:"V433M (*3): ↑ dose requirement ~1mg/day"}
+    ]
+  },
+  "VKORC1":{
+    grade:"A",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Warfarin",level:"A",action:"Use pharmacogenomic warfarin dosing algorithms incorporating VKORC1 with CYP2C9 and clinical factors; INR-guided dosing remains mandatory",guidelineName:"CYP2C9, VKORC1, CYP4F2 and Warfarin",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251465",pmids:["21900891","28198005"],evidenceRefs:["ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"],classification:"Strong"}
+    ]
+  },
+  "G6PD":{
+    grade:"C",
+    guideline:"CPIC",
+    pairs:[
+      {drug:"Aminosalicylic Acid",level:"C",riskTier:"low-to-no",cnsHaRiskTier:"high",action:"Deficient: no reason to avoid based on G6PD status at standard doses",cnsHaAction:"Deficient with CNSHA: use cautiously with close monitoring for acute exacerbation of chronic hemolysis",guidelineName:"G6PD",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251450",pmids:["36049896"],evidenceRefs:["ev_g6pd_cpic2022_expanded"],classification:"Optional"},
+      {drug:"Ciprofloxacin",level:"C",riskTier:"low-to-no",cnsHaRiskTier:"high",action:"Deficient: no reason to avoid based on G6PD status at standard doses",cnsHaAction:"Deficient with CNSHA: use cautiously with close monitoring for acute exacerbation of chronic hemolysis",guidelineName:"G6PD",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251450",pmids:["36049896"],evidenceRefs:["ev_g6pd_cpic2022_expanded"],classification:"Optional"},
+      {drug:"Dimercaprol",level:"C",riskTier:"low-to-no",cnsHaRiskTier:"high",action:"Deficient: no reason to avoid based on G6PD status at standard doses",cnsHaAction:"Deficient with CNSHA: use cautiously with close monitoring for acute exacerbation of chronic hemolysis",guidelineName:"G6PD",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251450",pmids:["36049896"],evidenceRefs:["ev_g6pd_cpic2022_expanded"],classification:"Optional"},
+      {drug:"Nitrofurantoin",level:"A",riskTier:"medium",cnsHaRiskTier:"high",action:"Deficient: use at standard doses with caution and close monitoring for anemia",cnsHaAction:"Deficient with CNSHA: avoid",guidelineName:"G6PD",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251450",pmids:["36049896"],evidenceRefs:["ev_g6pd_cpic2022_expanded"],classification:"Optional"},
+      {drug:"Chloroquine",level:"C",riskTier:"low-to-no",cnsHaRiskTier:"high",action:"Deficient: no reason to avoid based on G6PD status at standard doses",cnsHaAction:"Deficient with CNSHA: use cautiously with close monitoring for acute exacerbation of chronic hemolysis",guidelineName:"G6PD",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251450",pmids:["36049896"],evidenceRefs:["ev_g6pd_cpic2022_expanded"],classification:"Moderate"},
+      {drug:"Norfloxacin",level:"C",riskTier:"low-to-no",cnsHaRiskTier:"high",action:"Deficient: no reason to avoid based on G6PD status at standard doses",cnsHaAction:"Deficient with CNSHA: use cautiously with close monitoring for acute exacerbation of chronic hemolysis",guidelineName:"G6PD",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251450",pmids:["36049896"],evidenceRefs:["ev_g6pd_cpic2022_expanded"],classification:"Optional"},
+      {drug:"Sulfadiazine",level:"C",riskTier:"low-to-no",cnsHaRiskTier:"high",action:"Deficient: no reason to avoid based on G6PD status at standard doses",cnsHaAction:"Deficient with CNSHA: use cautiously with close monitoring for acute exacerbation of chronic hemolysis",guidelineName:"G6PD",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251450",pmids:["36049896"],evidenceRefs:["ev_g6pd_cpic2022_expanded"],classification:"Optional"},
+      {drug:"Aspirin",level:"C",riskTier:"low-to-no",cnsHaRiskTier:"high",action:"Deficient: no reason to avoid based on G6PD status at standard doses",cnsHaAction:"Deficient with CNSHA: use cautiously with close monitoring for acute exacerbation of chronic hemolysis",guidelineName:"G6PD",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251450",pmids:["36049896"],evidenceRefs:["ev_g6pd_cpic2022_expanded"],classification:"Moderate"}
+    ],
+    deferred:[
+      {drug:"Lidocaine",reason:"CPIC pair_view lists provisional B/C with no guideline recommendation and usedforrecommendation n/a"}
     ]
   },
   "COMT":{

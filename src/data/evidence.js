@@ -5559,6 +5559,31 @@ const STUDY_DB = {
     verified:false
   },
 
+  "ev_g6pd_cpic2022_expanded": {
+    id:"ev_g6pd_cpic2022_expanded",
+    public:true,
+    type:EVIDENCE_TIER.GUIDELINE,
+    title:"Expanded CPIC Guideline for Medication Use in the Context of G6PD Genotype",
+    year:2022,
+    source:"CPIC",
+    journal:"Clinical Pharmacology & Therapeutics",
+    pmid:"36049896",
+    doi:null,
+    url:"https://cpicpgx.org/guidelines/cpic-guideline-for-g6pd/",
+    studyDesign:"clinical_pharmacogenetics_guideline",
+    n:null,
+    phenotypes:["normal","deficient","deficient_with_CNSHA","variable","indeterminate"],
+    quantifiedEffects:{note:"Expanded CPIC guidance classifies medication-specific G6PD acute hemolytic anemia risk as high, medium, or low-to-no risk and provides drug-specific recommendations rather than a blanket avoidance rule."},
+    temporal:{mechanism:"erythrocyte_oxidative_stress_reserve"},
+    supports:["g6pd_drug_specific_risk_tiers","nitrofurantoin_G6PD_medium_risk","g6pd_low_to_no_risk_standard_dosing_context"],
+    contradicts:["g6pd_blanket_avoidance_for_all_listed_drugs"],
+    limitations:["Risk interpretation depends on G6PD activity phenotype, CNSHA status, dose, indication, infection/illness context, and monitoring feasibility"],
+    confidence:"high",
+    verified:false,
+    reviewRequired:true,
+    verifyNote:"Phase B CPIC promotion uses primary CPIC/ClinPGx recommendation rows; final professional clinical sign-off pending"
+  },
+
   "ev_aminoglycoside_mtrnr1_cpic2021": {
     id:"ev_aminoglycoside_mtrnr1_cpic2021",
     public:true,
