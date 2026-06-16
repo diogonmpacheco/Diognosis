@@ -271,6 +271,35 @@ if (typeof NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS !== "undefined") {
   }
 }
 
+Object.assign(RECEPTOR_SCORES, {
+  // Post-coverage live-data hardening rows. Biologic/mechanism-specific targets
+  // are not represented by this toxidrome axis set, so their CNS/QT axes remain 0.
+  benralizumab:     { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  bevacizumab:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  bivalirudin:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  brolucizumab:     { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  burosumab:        { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  cetuximab:        { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  crizanlizumab:    { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  daratumumab:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  desirudin:        { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  eptinezumab:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  evolocumab:       { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  faricimab:        { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  fremanezumab:     { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  galcanezumab:     { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  guselkumab:       { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  ixekizumab:       { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  mepolizumab:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  omalizumab:       { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  paliperidone:     { SERT:1, NET:0, H1:1, M1:0, alpha1:2, hERG:2, GABA:0, muOp:0, D2:3, MAO:0, DAT:0 },
+  panitumumab:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  ranibizumab:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  rituximab:        { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  trastuzumab:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  theophylline:     { SERT:0, NET:1, H1:0, M1:0, alpha1:0, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+});
+
 // Syndrome thresholds and clinical inference rules
 // These are deliberate clinical thresholds, not arbitrary numbers.
 const SYNDROME_RULES = [

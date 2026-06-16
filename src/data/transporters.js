@@ -495,7 +495,15 @@ TRANSPORTER_DDI.push(
   {substrate:"Fexofenadine",inhibitor:"Grapefruit Juice",transporter:"intestinal_uptake",effect:"Fexofenadine bioavailability decreases",severity:"moderate",mechanism:"Post-coverage label-backed fruit-juice transporter/absorption effect; grapefruit, orange, and apple juices can reduce fexofenadine exposure and response.",
     evidence:{confidence:"high",sources:["FDA label"],studyType:"regulatory_label"},evidenceRefs:["ev_fexofenadine_transporter_label"]},
   {substrate:"Acarbose",inhibitor:"Digoxin",transporter:"intestinal_absorption",effect:"Digoxin bioavailability may change",severity:"moderate",mechanism:"Post-coverage label-backed gut-lumen/bioavailability interaction; not CYP-mediated and clinically relevant because digoxin is narrow-index.",
-    evidence:{confidence:"high",sources:["FDA label"],studyType:"regulatory_label"},evidenceRefs:["ev_acarbose_digoxin_label"]}
+    evidence:{confidence:"high",sources:["FDA label"],studyType:"regulatory_label"},evidenceRefs:["ev_acarbose_digoxin_label"]},
+  {substrate:"Rosuvastatin",inhibitor:"Leflunomide",transporter:"BCRP/OATP1B1",effect:"Rosuvastatin exposure may increase; label limits rosuvastatin dose in this context",severity:"moderate",mechanism:"Post-coverage label-backed transporter row: leflunomide forms teriflunomide, which inhibits BCRP/OATP pathways relevant to rosuvastatin exposure.",
+    evidence:{confidence:"high",sources:["FDA label"],studyType:"regulatory_label"},evidenceRefs:["ev_leflunomide_teriflunomide_label"]},
+  {substrate:"Rosuvastatin",inhibitor:"Teriflunomide",transporter:"BCRP/OATP1B1",effect:"Rosuvastatin exposure may increase; dose limitation and myopathy monitoring apply",severity:"moderate",mechanism:"Post-coverage label-backed transporter row: teriflunomide inhibits BCRP/OATP transporters and can raise rosuvastatin exposure.",
+    evidence:{confidence:"high",sources:["FDA label"],studyType:"regulatory_label"},evidenceRefs:["ev_teriflunomide_label","ev_leflunomide_teriflunomide_label"]},
+  {substrate:"Pramipexole",inhibitor:"Cimetidine",transporter:"renal organic cation secretion",effect:"Pramipexole renal clearance may decrease",severity:"moderate",mechanism:"Post-coverage label-backed renal cation transport row: pramipexole is excreted mostly unchanged and renal clearance exceeds GFR, consistent with tubular organic cation secretion.",
+    evidence:{confidence:"high",sources:["FDA label"],studyType:"regulatory_label"},evidenceRefs:["ev_pramipexole_renal_cation_label"]},
+  {substrate:"Sofosbuvir",inhibitor:"Rifampin",transporter:"P-gp/BCRP induction",effect:"Sofosbuvir exposure decreases and antiviral efficacy can be lost",severity:"severe",mechanism:"Post-coverage label-backed transporter induction row: rifampin induces intestinal P-gp/BCRP pathways that reduce sofosbuvir absorption/exposure.",
+    evidence:{confidence:"high",sources:["FDA label"],studyType:"regulatory_label"},evidenceRefs:["ev_sofosbuvir_pgp_induction"]}
 );
 
 // ═══════════════════════════════════════════════════════════════════

@@ -6018,5 +6018,64 @@ if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
   }
 }
 
+const LIVE_DATA_POST_COVERAGE_METABOLITES = {
+  "Exenatide": [
+    {n:"Exenatide peptide fragments",e:"Proteolysis/Renal Filtration",a:"inactive",p:80,t:2.4,note:"Peptide degradation and renal elimination dominate exenatide clearance; gastric-emptying and glucose-lowering effects drive interaction relevance.",evidenceRefs:["ev_exenatide_gastric_emptying_label"]},
+    {n:"Exenatide (unchanged renal elimination)",e:"Renal Filtration",a:"active",p:20,t:2.4,note:"Unchanged renal elimination context; renal impairment can increase exposure and GI/hypoglycemia risk.",evidenceRefs:["ev_exenatide_gastric_emptying_label"]}
+  ],
+  "Rasagiline": [
+    {n:"1-Aminoindan",e:"CYP1A2/N-dealkylation",a:"inactive_context",p:60,t:3,note:"Major rasagiline metabolite context; CYP1A2 inhibition raises parent rasagiline exposure and MAO-B interaction risk.",evidenceRefs:["ev_rasagiline_cyp1a2_serotonin_label"]}
+  ],
+  "Ropinirole": [
+    {n:"N-despropyl ropinirole",e:"CYP1A2",a:"inactive",p:40,t:6,note:"CYP1A2-mediated inactive metabolite; ciprofloxacin inhibition and smoking induction can shift ropinirole parent exposure.",evidenceRefs:["ev_ropinirole_cyp1a2_label"]},
+    {n:"Hydroxy ropinirole conjugates",e:"CYP1A2/UGT",a:"inactive",p:40,t:6,note:"Inactive oxidative/conjugated metabolite pool supporting CYP1A2 exposure context.",evidenceRefs:["ev_ropinirole_cyp1a2_label"]}
+  ],
+  "Pramipexole": [
+    {n:"Pramipexole (unchanged renal cation secretion)",e:"Renal Organic Cation Secretion",a:"active",p:90,t:8,note:"Most pramipexole is recovered unchanged in urine; renal cation secretion and kidney function dominate exposure.",evidenceRefs:["ev_pramipexole_renal_cation_label"]}
+  ],
+};
+
+for (const [parent, rows] of Object.entries(LIVE_DATA_POST_COVERAGE_METABOLITES)) {
+  const existingRows = METAB[parent] || (METAB[parent] = []);
+  for (const row of rows) {
+    if (!existingRows.some(existing => existing.n === row.n)) existingRows.push(row);
+  }
+}
+
+Object.assign(METABOLITE_ACTORS, {
+  "exenatide-peptide-fragments": {
+    id:"exenatide-peptide-fragments", type:ACTOR_TYPE.METABOLITE,
+    name:"Exenatide peptide fragments", parentDrug:"Exenatide", formingEnzyme:"Proteolysis/Renal Filtration",
+    active:false, halfLife:2.4, potencyRatio:0,
+    routes:[{enzyme:"Renal Filtration",fraction:0.8,evidenceRefs:["ev_exenatide_gastric_emptying_label"]}],
+    inh:[], evidenceRefs:["ev_exenatide_gastric_emptying_label"],
+    note:"Inactive peptide-fragment clearance context for exenatide; renal function and gastric-emptying effects remain clinically dominant."
+  },
+  "rasagiline-1-aminoindan": {
+    id:"rasagiline-1-aminoindan", type:ACTOR_TYPE.METABOLITE,
+    name:"1-Aminoindan", parentDrug:"Rasagiline", formingEnzyme:"CYP1A2",
+    active:false, halfLife:3, potencyRatio:0,
+    routes:[{enzyme:"Renal/Conjugation",fraction:0.7,evidenceRefs:["ev_rasagiline_cyp1a2_serotonin_label"]}],
+    inh:[], evidenceRefs:["ev_rasagiline_cyp1a2_serotonin_label"],
+    note:"Major rasagiline metabolite marker; parent exposure rises when CYP1A2 is inhibited."
+  },
+  "n-despropyl-ropinirole": {
+    id:"n-despropyl-ropinirole", type:ACTOR_TYPE.METABOLITE,
+    name:"N-despropyl ropinirole", parentDrug:"Ropinirole", formingEnzyme:"CYP1A2",
+    active:false, halfLife:6, potencyRatio:0,
+    routes:[{enzyme:"Renal/Conjugation",fraction:0.7,evidenceRefs:["ev_ropinirole_cyp1a2_label"]}],
+    inh:[], evidenceRefs:["ev_ropinirole_cyp1a2_label"],
+    note:"Inactive CYP1A2 ropinirole metabolite; ciprofloxacin and smoking changes alter parent clearance."
+  },
+  "unchanged-pramipexole": {
+    id:"unchanged-pramipexole", type:ACTOR_TYPE.METABOLITE,
+    name:"Pramipexole (unchanged)", parentDrug:"Pramipexole", formingEnzyme:"Renal Organic Cation Secretion",
+    active:true, halfLife:8, potencyRatio:1,
+    routes:[{enzyme:"Renal Organic Cation Secretion",fraction:0.9,evidenceRefs:["ev_pramipexole_renal_cation_label"]}],
+    inh:[], evidenceRefs:["ev_pramipexole_renal_cation_label"],
+    note:"Unchanged active pramipexole is the dominant recovered moiety; renal secretion competition and kidney function drive exposure."
+  },
+});
+
 // ── Food/Xenobiotic Actors ──
 // Non-drug compounds that interact with the metabolic graph

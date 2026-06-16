@@ -1634,6 +1634,21 @@ Object.assign(PK_PARAMS, {
   calcitriol:{ F:0.7, ka:pkKaFromTmax(3, 7), halfLife:7, Vd:0.5, dose_mg:0.0005,
     note:"Post-coverage active vitamin D PK hardening row; calcium/phosphate effects and hypercalcemia monitoring can outlast parent serum half-life.",
     evidenceRefs:["ev_calcitriol_pk_hypercalcemia_label"] },
+  exenatide:{ F:1, ka:pkKaFromTmax(2.1, 2.4), halfLife:2.4, Vd:0.28, dose_mg:0.01,
+    note:"Post-coverage GLP-1 receptor agonist PK hardening row; renal clearance, delayed gastric emptying, oral-drug timing, and insulin/secretagogue hypoglycemia context dominate.",
+    evidenceRefs:["ev_exenatide_gastric_emptying_label"] },
+  bisacodyl:{ F:0.15, ka:pkKaFromTmax(6, 8), halfLife:8, Vd:0.2, dose_mg:5,
+    note:"Post-coverage stimulant laxative PK context row; bisacodyl is locally activated in the gut and electrolyte/volume effects dominate over systemic CYP exposure.",
+    evidenceRefs:["ev_bisacodyl_pk_electrolyte_label"] },
+  aflibercept_ophthalmic:{ F:1, ka:0.02, halfLife:144, Vd:0.05, dose_mg:2,
+    note:"Post-coverage intravitreal anti-VEGF context row. The live PK card is a local-effect approximation; ophthalmic injection interval, ocular inflammation/infection, and specialist monitoring dominate.",
+    evidenceRefs:["ev_aflibercept_ophthalmic_label"] },
+  brolucizumab:{ F:1, ka:0.02, halfLife:108, Vd:0.05, dose_mg:6,
+    note:"Post-coverage intravitreal anti-VEGF context row. The live PK card is a local-effect approximation; intraocular inflammation/retinal vasculitis warnings dominate clinical management.",
+    evidenceRefs:["ev_brolucizumab_ophthalmic_label"] },
+  phenylephrine:{ F:1, ka:1, halfLife:0.05, Vd:3, dose_mg:0.1,
+    note:"Post-coverage parenteral alpha-1 pressor context row; acute hemodynamic response and MAOI/sympathomimetic pressor stacking matter more than CYP kinetics.",
+    evidenceRefs:["ev_cabg_perioperative_medications"] },
 });
 
 Object.assign(WASHOUT_DAYS, {
@@ -1642,6 +1657,36 @@ Object.assign(WASHOUT_DAYS, {
   captopril:{ days:2, mechanism:'short_ace_inhibitor_renal_hemodynamic_offset', note:"Captopril is short acting, but renal function, potassium, and diuretic/volume-depletion hypotension context should be reassessed over the next day or two.", evidenceRefs:["ev_captopril_pk_diuretic_label"] },
   canagliflozin:{ days:3, mechanism:'sglt2_volume_depletion_and_ketoacidosis_context', note:"Canagliflozin volume-depletion and peri-illness SGLT2 safety context can persist beyond parent PK; use several days for practical sick-day/procedure timing.", evidenceRefs:["ev_canagliflozin_diuretic_label"] },
   caffeine:{ days:4, mechanism:'age_dependent_caffeine_clearance_context', note:"Adult caffeine offset is usually shorter, but caffeine citrate label data show neonatal half-life of about 3-4 days; display a conservative context row where age/prematurity matters.", evidenceRefs:["ev_caffeine_citrate_pk_label"] },
+  cetirizine:{ days:2, mechanism:'renal_antihistamine_sedation_offset', note:"Cetirizine sedation and renal/hepatic dose context usually settle over 1-2 days, longer with impaired clearance or additive CNS depressants.", evidenceRefs:["ev_cetirizine_pk_cns_label"] },
+  bisacodyl:{ days:1, mechanism:'stimulant_laxative_electrolyte_volume_offset', note:"Bisacodyl parent/metabolite exposure is short, but diarrhea-related dehydration/electrolyte effects should be reassessed the same day to next day.", evidenceRefs:["ev_bisacodyl_pk_electrolyte_label"] },
+  exenatide:{ days:2, mechanism:'glp1_gastric_emptying_and_hypoglycemia_context', note:"Exenatide immediate-release exposure is short, but oral-drug timing and hypoglycemia-risk changes can matter over the next dosing interval.", evidenceRefs:["ev_exenatide_gastric_emptying_label"] },
+  aflibercept_ophthalmic:{ days:30, mechanism:'intravitreal_anti_vegf_local_effect_context', note:"Aflibercept ophthalmic effect is local and injection-interval driven; use a 1-month display context while ophthalmology determines retreatment timing.", evidenceRefs:["ev_aflibercept_ophthalmic_label"] },
+  brolucizumab:{ days:60, mechanism:'intravitreal_anti_vegf_inflammation_monitoring_context', note:"Brolucizumab local anti-VEGF effect and ocular inflammation monitoring can extend for weeks; specialist injection interval dominates.", evidenceRefs:["ev_brolucizumab_ophthalmic_label"] },
+  pramipexole:{ days:3, mechanism:'renal_cation_dopamine_agonist_offset', note:"Pramipexole is mostly unchanged renal excretion; use several days and reassess kidney function/CNS/orthostasis when cation-transport competition or dose changes occur.", evidenceRefs:["ev_pramipexole_renal_cation_label"] },
+  ropinirole:{ days:3, mechanism:'CYP1A2_dopamine_agonist_offset', note:"Ropinirole CYP1A2 exposure changes and dopamine-agonist CNS/orthostasis effects usually settle over several half-lives after inhibitor/smoking-status changes.", evidenceRefs:["ev_ropinirole_cyp1a2_label"] },
+  phenylephrine:{ days:1, mechanism:'acute_alpha1_pressor_offset', note:"Phenylephrine has a very short plasma half-life, but same-day pressor, ischemia, reflex bradycardia, and MAOI/sympathomimetic context can remain clinically relevant.", evidenceRefs:["ev_cabg_perioperative_medications"] },
+});
+
+Object.assign(PHENOTYPE_SCORES, {
+  cetirizine:{ serotonin:0, qtc:0, anticholinergic:0, sedation:1, fall_risk:1, evidenceRefs:["ev_cetirizine_pk_cns_label"] },
+  bisacodyl:{ serotonin:0, qtc:0, anticholinergic:0, sedation:0, fall_risk:1, evidenceRefs:["ev_bisacodyl_pk_electrolyte_label"] },
+  caffeine:{ serotonin:0, qtc:0, anticholinergic:0, sedation:0, fall_risk:0, evidenceRefs:["ev_caffeine_citrate_pk_label","ev_caffeine_paraxanthine_cyp1a2_review"] },
+  methylphenidate:{ serotonin:0, qtc:1, anticholinergic:0, sedation:0, fall_risk:1, evidenceRefs:["ev_stimulant_maoi_fda"] },
+  nicotine:{ serotonin:0, qtc:0, anticholinergic:0, sedation:0, fall_risk:0 },
+  rasagiline:{ serotonin:1, qtc:0, anticholinergic:0, sedation:0, fall_risk:1, evidenceRefs:["ev_rasagiline_cyp1a2_serotonin_label"] },
+  phenylephrine:{ serotonin:0, qtc:0, anticholinergic:0, sedation:0, fall_risk:1, evidenceRefs:["ev_cabg_perioperative_medications"] },
+  aflibercept_ophthalmic:{ serotonin:0, qtc:0, anticholinergic:0, sedation:0, fall_risk:0, evidenceRefs:["ev_aflibercept_ophthalmic_label"] },
+  brolucizumab:{ serotonin:0, qtc:0, anticholinergic:0, sedation:0, fall_risk:0, evidenceRefs:["ev_brolucizumab_ophthalmic_label"] },
+});
+
+Object.assign(BEERS_FLAGS, {
+  cetirizine:{ concern:'Second-generation antihistamine with somnolence/CNS-depressant and renal-dose context; lower burden than first-generation antihistamines but still relevant in frail older adults', avoid:'antihistamines_65plus_caution', evidenceRefs:["ev_cetirizine_pk_cns_label"] },
+  fexofenadine:{ concern:'Low-sedating antihistamine, but renal function, duplicate antihistamine use, and fruit-juice absorption issues can matter in older adults', avoid:'antihistamines_65plus_low_burden_caution', evidenceRefs:["ev_fexofenadine_transporter_label"] },
+  levodopa:{ concern:'Parkinson therapy with orthostasis, hallucination/dyskinesia, and fall context; avoid dopamine-blocking counter-therapy where possible', avoid:'parkinson_agents_65plus_caution', evidenceRefs:["ev_carbidopa_levodopa_label"] },
+  rasagiline:{ concern:'MAO-B inhibitor with serotonergic/opioid, sympathomimetic, CYP1A2 inhibitor, and orthostasis context in older adults', avoid:'parkinson_maob_agents_65plus_caution', evidenceRefs:["ev_rasagiline_cyp1a2_serotonin_label"] },
+  ropinirole:{ concern:'Dopamine agonist with somnolence, orthostasis, hallucination, impulse-control, and falls concern in older adults', avoid:'dopamine_agonists_65plus_caution', evidenceRefs:["ev_ropinirole_cyp1a2_label"] },
+  dexmedetomidine:{ concern:'ICU sedative with bradycardia, hypotension, delirium/fall transition, and additive CNS-depressant context in older adults', avoid:'sedatives_icu_65plus_caution', evidenceRefs:["ev_icu_sepsis_shock_workflow"] },
+  phenylephrine:{ concern:'Alpha-1 pressor/decongestant context can worsen hypertension, ischemia, reflex bradycardia, urinary retention, and MAOI pressor risk in older adults', avoid:'alpha_agonists_65plus_caution', evidenceRefs:["ev_cabg_perioperative_medications"] },
 });
 
 function getScoringLookupKeys(drugOrName) {
