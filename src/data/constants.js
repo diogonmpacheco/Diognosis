@@ -342,6 +342,13 @@ addActivitySemantics(["UGT1A1","UGT1A4","UGT1A9","UGT2B7","UGT2B15","UGT2B17"], 
   compartments:["liver","systemic"],
   phenotypeLabels:REDUCED_ACTIVITY_LABELS,
 });
+addActivitySemantics(["GSTA1"], {
+  phenotypeStateLabel:"GSTA1 glutathione-conjugation activity context",
+  modelUseLabel:"busulfan/glutathione clearance context",
+  phenoconversion:false,
+  compartments:["liver","conditioning","glutathione detox"],
+  phenotypeLabels:REDUCED_ACTIVITY_LABELS,
+});
 addActivitySemantics(["CYP4F2"], {
   phenotypeStateLabel:"vitamin K oxidation context",
   modelUseLabel:"warfarin dose-modifier context",
@@ -591,6 +598,11 @@ const GENOTYPE_EFFECTS = {
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.2, freq_pct:null, note:"Intermediate COMT activity context; catecholamine methylation may be modestly reduced." },
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference COMT activity." },
     [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.8, freq_pct:null, note:"Higher COMT activity context, often mapped from Val/Val-like reports; catechol methylation may be faster." },
+  },
+  GSTA1: {
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.6, freq_pct:null, note:"Reduced GSTA1 expression/activity context. Busulfan clearance can fall and exposure/toxicity risk can rise, but conditioning protocols and therapeutic drug monitoring are the actionable layer." },
+    [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:1.25, freq_pct:null, note:"Intermediate GSTA1 activity context; use as a busulfan clearance/toxicity review flag with TDM." },
+    [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:null, note:"Reference GSTA1 glutathione-conjugation context." },
   },
   GSTM1: {
     [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:1.5, freq_pct:null, note:"GSTM1 null context. GSTM1 enzyme activity is absent; detoxification capacity for electrophilic/oxidative drug intermediates may be lower. Evidence is context-specific and often strongest for oncology or anti-tuberculosis toxicity signals." },
@@ -1209,6 +1221,7 @@ let activeGenotype = {
   UGT2B15: GENOTYPE_PHENOTYPE.NM,
   UGT2B17: GENOTYPE_PHENOTYPE.NM,
   COMT:    GENOTYPE_PHENOTYPE.NM,
+  GSTA1:   GENOTYPE_PHENOTYPE.NM,
   GSTM1:   GENOTYPE_PHENOTYPE.NM,
   GSTT1:   GENOTYPE_PHENOTYPE.NM,
   GSTP1:   GENOTYPE_PHENOTYPE.NM,

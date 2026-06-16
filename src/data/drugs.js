@@ -5124,6 +5124,8 @@ const CLINICAL_FOLD = {
   "Tegafur":          { "CYP2A6": { poor:0.65, null: 0.4 }, "DPYD": { poor:5.0, null: 10.0 } },
   "Vincristine":      { "CYP3A5": { poor:1.3, null: 1.6 }, "ABCB1": { poor:1.3, null: 1.6 } },
   "Mycophenolic Acid":{ "UGT1A9": { poor:1.7, null: 2.5 }, "UGT2B7": { poor:1.3, null: 1.8 }, "ABCG2": { poor:1.3, null: 1.7 } },
+  "Busulfan":         { "GSTA1": { poor:1.6, null: 2.0 }, "GSTM1": { poor:1.3, null: 1.5 }, "GSTT1": { poor:1.2, null: 1.4 } },
+  "Acenocoumarol":    { "CYP2C9": { poor:2.0, null: 3.5 } },
   "Topotecan":        { "ABCG2": { poor:1.5, null: 2.0 } },
   "Mitoxantrone":     { "ABCG2": { poor:1.4, null: 1.8 } },
 };

@@ -9287,6 +9287,20 @@ const STUDY_DB = {
     limitations:["Simplified educational PK model; not for dose selection. Washout windows are conservative display rules and do not replace labels, procedure protocols, TDM, ECGs, renal/hepatic assessment, or oncology/transplant/PCI guidance."],
     verified:false, reviewRequired:true, verifyNote:"Grouped PK/washout expansion evidence pending pharmacist/specialist review"
   },
+  "ev_phase4_genotype_metabolite_expansion": {
+    id:"ev_phase4_genotype_metabolite_expansion", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Phase 4 genotype-metabolite expansion — active moiety, parent exposure, and detoxification context",
+    year:2026, source:"CPIC/PharmGKB context + FDA/DailyMed labels + public metabolism literature",
+    pmid:null, doi:null, url:"https://www.pharmgkb.org/",
+    studyDesign:"curated_rule_group", n:null,
+    phenotypes:["CYP2C19","CYP2C9","CYP2D6","CYP2B6","CYP3A4","CYP3A5","GSTA1","GSTM1","GSTT1"],
+    quantifiedEffects:{note:"Grouped source anchor for live genotype-metabolite rules promoted from batch substances. Rows distinguish parent accumulation, active-metabolite loss/gain, active-moiety balance, and detoxification/toxic-metabolite review context."},
+    temporal:{mechanism:"genotype_specific_metabolite_and_parent_exposure_context", onset:"baseline", offset:"persistent"},
+    supports:["phase4_genotype_metabolite_rules","phase4_gsta1_gene_promotion","phase4_parent_fold_hooks"],
+    contradicts:[],
+    limitations:["Educational pending-review rules. Many entries are qualitative review flags, not dose recommendations; labels, CPIC/DPWG guidance, therapeutic drug monitoring, ECGs, INR, platelet/procedure context, oncology protocols, and organ function remain decisive."],
+    verified:false, reviewRequired:true, verifyNote:"Grouped genotype-metabolite expansion pending pharmacist/genomics review"
+  },
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──
