@@ -179,6 +179,23 @@ Object.assign(RECEPTOR_SCORES, {
   mda:              { SERT:2, NET:2, H1:0, M1:0, alpha1:0, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:2 },
   alcohol_ethanol:  { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:2, muOp:0, D2:0, MAO:0, DAT:0 },
   eszopiclone:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:2, muOp:0, D2:0, MAO:0, DAT:0 },
+  acarbose:         { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  amikacin:         { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  anagrelide:       { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  atenolol:         { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  desmopressin:     { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  enoxaparin:       { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  dalteparin:       { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  fexofenadine:     { SERT:0, NET:0, H1:1, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  formoterol:       { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:1, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  ipratropium:      { SERT:0, NET:0, H1:0, M1:1, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  benztropine:      { SERT:0, NET:0, H1:1, M1:3, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  levodopa:         { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:2, MAO:0, DAT:1 },
+  carbidopa_levodopa:{ SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:2, MAO:0, DAT:1 },
+  denosumab:        { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  dupilumab:        { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  eculizumab:       { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
+  canakinumab:      { SERT:0, NET:0, H1:0, M1:0, alpha1:0, hERG:0, GABA:0, muOp:0, D2:0, MAO:0, DAT:0 },
 });
 
 function top100GoldReceptorKey(value) {

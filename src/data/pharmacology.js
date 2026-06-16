@@ -636,6 +636,33 @@ for (const [drugId, F, tmax, halfLife, Vd, dose_mg, note] of PK_LABEL_BATCH_2) {
 }
 
 Object.assign(PK_PARAMS, {
+  acarbose:{ F:0.02, ka:pkKaFromTmax(1.0, 2), halfLife:2, Vd:0.2, dose_mg:50,
+    note:"Label-backed gut-lumen PK hardening row; acarbose has minimal systemic absorption, but can change digoxin bioavailability.",
+    evidenceRefs:["ev_acarbose_digoxin_label"] },
+  amikacin:{ F:1, ka:0.5, halfLife:2.5, Vd:0.25, dose_mg:500,
+    note:"Parenteral aminoglycoside label PK hardening row; renal clearance, therapeutic drug monitoring, nephrotoxicity, ototoxicity, and neuromuscular blockade dominate risk.",
+    evidenceRefs:["ev_amikacin_toxicity_label"] },
+  anagrelide:{ F:0.7, ka:pkKaFromTmax(1.5, 1.5), halfLife:1.5, Vd:5, dose_mg:1,
+    note:"Label-backed CYP1A2 platelet-reducing agent PK row; active metabolite and cardiovascular/bleeding monitoring can dominate clinical management.",
+    evidenceRefs:["ev_anagrelide_cyp1a2_aspirin_label"] },
+  apomorphine:{ F:1, ka:pkKaFromTmax(0.5, 0.7), halfLife:0.7, Vd:2, dose_mg:3,
+    note:"Label-backed dopamine agonist PK row for rescue formulations; orthostasis, QT context, and contraindicated 5-HT3 antagonist overlap dominate risk.",
+    evidenceRefs:["ev_apomorphine_5ht3_label"] },
+  atenolol:{ F:0.5, ka:pkKaFromTmax(3.0, 7), halfLife:7, Vd:0.7, dose_mg:50,
+    note:"Label-backed renally cleared beta-blocker PK row; bradycardia/heart-block risk with verapamil or diltiazem is pharmacodynamic rather than CYP-mediated.",
+    evidenceRefs:["ev_atenolol_ccb_label"] },
+  desmopressin:{ F:0.05, ka:pkKaFromTmax(1.0, 2.5), halfLife:2.5, Vd:0.3, dose_mg:0.2,
+    note:"Label-backed vasopressin analog PK row; sodium/water balance and contraindicated hyponatremia-risk combinations dominate risk.",
+    evidenceRefs:["ev_desmopressin_hyponatremia_label"] },
+  enoxaparin:{ F:0.9, ka:pkKaFromTmax(3.0, 4.5), halfLife:4.5, Vd:0.05, dose_mg:40,
+    note:"Label-backed low-molecular-weight heparin PK row; renal function, anti-Xa context, neuraxial timing, and additive hemostasis-active drugs dominate risk.",
+    evidenceRefs:["ev_enoxaparin_hemostasis_label"] },
+  dalteparin:{ F:0.9, ka:pkKaFromTmax(3.0, 4), halfLife:4, Vd:0.05, dose_mg:100,
+    note:"Label-backed low-molecular-weight heparin PK row; dose is a display approximation because clinical dosing is unit-based. Bleeding and neuraxial timing dominate risk.",
+    evidenceRefs:["ev_dalteparin_hemostasis_label"] },
+  formoterol:{ F:0.25, ka:pkKaFromTmax(1.0, 10), halfLife:10, Vd:4, dose_mg:0.02,
+    note:"Label-backed inhaled LABA PK row; beta-blocker antagonism and MAOI/TCA/QT cardiovascular potentiation dominate interaction risk.",
+    evidenceRefs:["ev_formoterol_label"] },
   caspofungin:{ F:1, ka:0.5, halfLife:13, Vd:0.15, dose_mg:50,
     note:"IV echinocandin label PK hardening row; rifampin and other hepatic enzyme inducers can lower trough concentrations and may require higher adult maintenance dosing.",
     evidenceRefs:["ev_caspofungin_rifampin_label"] },
@@ -909,6 +936,21 @@ const PHENOTYPE_SCORES = {
 
 Object.assign(PHENOTYPE_SCORES, {
   // Batch 01-03 receptor/phenotype score profiles.
+  'acarbose':        { serotonin:0, qtc:0, anticholinergic:0, sedation:0, fall_risk:0, evidenceRefs:["ev_acarbose_digoxin_label"] },
+  'amikacin':        { serotonin:0, qtc:0, anticholinergic:0, sedation:0, fall_risk:1, evidenceRefs:["ev_amikacin_toxicity_label"] },
+  'anagrelide':      { serotonin:0, qtc:1, anticholinergic:0, sedation:0, fall_risk:1, evidenceRefs:["ev_anagrelide_cyp1a2_aspirin_label"] },
+  'atenolol':        { serotonin:0, qtc:0, anticholinergic:0, sedation:0, fall_risk:1, evidenceRefs:["ev_atenolol_ccb_label"] },
+  'desmopressin':    { serotonin:0, qtc:0, anticholinergic:0, sedation:0, fall_risk:1, evidenceRefs:["ev_desmopressin_hyponatremia_label"] },
+  'enoxaparin':      { serotonin:0, qtc:0, anticholinergic:0, sedation:0, fall_risk:2, evidenceRefs:["ev_enoxaparin_hemostasis_label"] },
+  'dalteparin':      { serotonin:0, qtc:0, anticholinergic:0, sedation:0, fall_risk:2, evidenceRefs:["ev_dalteparin_hemostasis_label"] },
+  'formoterol':      { serotonin:0, qtc:1, anticholinergic:0, sedation:0, fall_risk:0, evidenceRefs:["ev_formoterol_label"] },
+  'levodopa':        { serotonin:0, qtc:0, anticholinergic:0, sedation:1, fall_risk:2, evidenceRefs:["ev_carbidopa_levodopa_label"] },
+  'carbidopa_levodopa':{ serotonin:0, qtc:0, anticholinergic:0, sedation:1, fall_risk:2, evidenceRefs:["ev_carbidopa_levodopa_label"] },
+  'tizanidine':      { serotonin:0, qtc:0, anticholinergic:0, sedation:2, fall_risk:3, evidenceRefs:["ev_tizanidine_ciprofloxacin_fda"] },
+  'dexmedetomidine': { serotonin:0, qtc:0, anticholinergic:0, sedation:3, fall_risk:3, evidenceRefs:["ev_icu_sepsis_shock_workflow"] },
+  'fexofenadine':    { serotonin:0, qtc:0, anticholinergic:0, sedation:0, fall_risk:0, evidenceRefs:["ev_fexofenadine_transporter_label"] },
+  'ipratropium':     { serotonin:0, qtc:0, anticholinergic:1, sedation:0, fall_risk:1 },
+  'benztropine':     { serotonin:0, qtc:0, anticholinergic:3, sedation:1, fall_risk:3, evidenceRefs:["ev_benztropine_anticholinergic_label"] },
   'amoxapine':       { serotonin:2, qtc:2, anticholinergic:3, sedation:3, fall_risk:3 },
   'amisulpride':     { serotonin:0, qtc:2, anticholinergic:0, sedation:1, fall_risk:2 },
   'sulpiride':       { serotonin:0, qtc:1, anticholinergic:0, sedation:1, fall_risk:2 },
@@ -1010,6 +1052,11 @@ Object.assign(WASHOUT_DAYS, {
   caspofungin:{ days:3, mechanism:'echinocandin_exposure_and_inducer_context', note:"Caspofungin concentration offset is usually days, but rifampin/inducer co-therapy can reduce troughs and dose needs should follow label/response.", evidenceRefs:["ev_caspofungin_rifampin_label"] },
   micafungin:{ days:3, mechanism:'echinocandin_selected_substrate_monitoring_context', note:"Micafungin has a multi-hour half-life and modestly raises sirolimus, nifedipine, and itraconazole exposure; monitor toxicity for several days around changes.", evidenceRefs:["ev_micafungin_sirolimus_itraconazole_nifedipine_label"] },
   anidulafungin:{ days:7, mechanism:'slow_chemical_degradation_terminal_pk_context', note:"Anidulafungin has terminal half-life about 40-50h and falls below quantitation around 6 days post-dose in label PK; low CYP interaction potential remains source-backed.", evidenceRefs:["ev_anidulafungin_pk_label"] },
+  formoterol:{ days:3, mechanism:'LABA_cardiovascular_interaction_context', note:"Formoterol has a multi-hour half-life; beta-blocker antagonism and MAOI/TCA/QT cardiovascular potentiation need several days of practical context after changes.", evidenceRefs:["ev_formoterol_label"] },
+  desmopressin:{ days:2, mechanism:'antidiuresis_hyponatremia_monitoring_context', note:"Desmopressin parent PK is short, but sodium monitoring and fluid restriction context can outlast the dose, especially around loop diuretics, glucocorticoids, or SIADH-prone drugs.", evidenceRefs:["ev_desmopressin_hyponatremia_label"] },
+  levodopa:{ days:1, mechanism:'short_dopaminergic_response_and_absorption_context', note:"Levodopa response changes quickly, but iron chelation, protein/meal timing, and dopamine antagonist overlap can produce same-day loss of effect.", evidenceRefs:["ev_carbidopa_levodopa_label"] },
+  carbidopa:{ days:1, mechanism:'short_dopaminergic_response_and_absorption_context', note:"Carbidopa/levodopa timing is dominated by same-day dopaminergic response and absorption context rather than long parent persistence.", evidenceRefs:["ev_carbidopa_levodopa_label"] },
+  fexofenadine:{ days:2, mechanism:'transporter_and_absorption_context', note:"Fexofenadine exposure shifts with transporter modulators, fruit juice, and antacids; a short practical offset is appropriate after timing changes.", evidenceRefs:["ev_fexofenadine_transporter_label"] },
 });
 
 Object.assign(WASHOUT_DAYS, {
@@ -1197,6 +1244,7 @@ const BEERS_FLAGS = {
 
 Object.assign(BEERS_FLAGS, {
   // Batch 01-03 older-adult safety flags.
+  'tizanidine':      { concern:'Skeletal muscle relaxant with sedation, hypotension, bradycardia, and falls concern in older adults; CYP1A2 inhibitor combinations can sharply raise exposure', avoid:'muscle_relaxants_65plus_caution', evidenceRefs:["ev_tizanidine_ciprofloxacin_fda"] },
   'amoxapine':       { concern:'Antidepressant with anticholinergic, sedating, seizure, orthostasis, and cardiac-conduction burden', avoid:'TCAs_65plus' },
   'meclizine':       { concern:'Anticholinergic antihistamine; sedation, confusion, urinary retention, and falls', avoid:'antihistamines_65plus' },
   'promethazine':    { concern:'Highly anticholinergic and sedating phenothiazine antihistamine; delirium/falls/respiratory depression risk', avoid:'antihistamines_65plus' },
@@ -1578,6 +1626,23 @@ if (typeof NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS !== "undefined") {
     }
   );
 }
+
+Object.assign(PK_PARAMS, {
+  bimatoprost:{ F:0.01, ka:pkKaFromTmax(0.5, 1), halfLife:1, Vd:0.67, dose_mg:0.0003,
+    note:"Post-coverage ophthalmic PK hardening row; systemic exposure is low, but label data support Vd/metabolism context for the live PK card.",
+    evidenceRefs:["ev_bimatoprost_pk_label"] },
+  calcitriol:{ F:0.7, ka:pkKaFromTmax(3, 7), halfLife:7, Vd:0.5, dose_mg:0.0005,
+    note:"Post-coverage active vitamin D PK hardening row; calcium/phosphate effects and hypercalcemia monitoring can outlast parent serum half-life.",
+    evidenceRefs:["ev_calcitriol_pk_hypercalcemia_label"] },
+});
+
+Object.assign(WASHOUT_DAYS, {
+  bimatoprost:{ days:2, mechanism:'ophthalmic_low_systemic_exposure_offset', note:"Bimatoprost systemic exposure is low after ophthalmic dosing; practical offset is short, while ocular IOP response and local effects are ophthalmology-directed.", evidenceRefs:["ev_bimatoprost_pk_label"] },
+  calcitriol:{ days:7, mechanism:'active_vitamin_D_hypercalcemia_offset', note:"Calcitriol parent half-life is hours, but label hypercalcemia management can take 2-7 days; calcium/phosphate monitoring dominates offset.", evidenceRefs:["ev_calcitriol_pk_hypercalcemia_label"] },
+  captopril:{ days:2, mechanism:'short_ace_inhibitor_renal_hemodynamic_offset', note:"Captopril is short acting, but renal function, potassium, and diuretic/volume-depletion hypotension context should be reassessed over the next day or two.", evidenceRefs:["ev_captopril_pk_diuretic_label"] },
+  canagliflozin:{ days:3, mechanism:'sglt2_volume_depletion_and_ketoacidosis_context', note:"Canagliflozin volume-depletion and peri-illness SGLT2 safety context can persist beyond parent PK; use several days for practical sick-day/procedure timing.", evidenceRefs:["ev_canagliflozin_diuretic_label"] },
+  caffeine:{ days:4, mechanism:'age_dependent_caffeine_clearance_context', note:"Adult caffeine offset is usually shorter, but caffeine citrate label data show neonatal half-life of about 3-4 days; display a conservative context row where age/prematurity matters.", evidenceRefs:["ev_caffeine_citrate_pk_label"] },
+});
 
 function getScoringLookupKeys(drugOrName) {
   const drug = typeof drugOrName === "object" && drugOrName !== null

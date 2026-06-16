@@ -487,6 +487,17 @@ if (typeof NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS !== "undefined") {
   }
 }
 
+TRANSPORTER_DDI.push(
+  {substrate:"Fexofenadine",inhibitor:"Ketoconazole",transporter:"P-gp",effect:"Fexofenadine plasma concentrations increase",severity:"mild",mechanism:"Post-coverage label-backed intestinal transporter exposure shift; fexofenadine has minimal metabolism and ketoconazole increases systemic concentrations.",
+    evidence:{confidence:"high",sources:["FDA label"],studyType:"regulatory_label"},evidenceRefs:["ev_fexofenadine_transporter_label"]},
+  {substrate:"Fexofenadine",inhibitor:"Erythromycin",transporter:"P-gp",effect:"Fexofenadine plasma concentrations increase",severity:"mild",mechanism:"Post-coverage label-backed intestinal transporter exposure shift; erythromycin increases fexofenadine plasma concentrations without fexofenadine altering erythromycin PK.",
+    evidence:{confidence:"high",sources:["FDA label"],studyType:"regulatory_label"},evidenceRefs:["ev_fexofenadine_transporter_label"]},
+  {substrate:"Fexofenadine",inhibitor:"Grapefruit Juice",transporter:"intestinal_uptake",effect:"Fexofenadine bioavailability decreases",severity:"moderate",mechanism:"Post-coverage label-backed fruit-juice transporter/absorption effect; grapefruit, orange, and apple juices can reduce fexofenadine exposure and response.",
+    evidence:{confidence:"high",sources:["FDA label"],studyType:"regulatory_label"},evidenceRefs:["ev_fexofenadine_transporter_label"]},
+  {substrate:"Acarbose",inhibitor:"Digoxin",transporter:"intestinal_absorption",effect:"Digoxin bioavailability may change",severity:"moderate",mechanism:"Post-coverage label-backed gut-lumen/bioavailability interaction; not CYP-mediated and clinically relevant because digoxin is narrow-index.",
+    evidence:{confidence:"high",sources:["FDA label"],studyType:"regulatory_label"},evidenceRefs:["ev_acarbose_digoxin_label"]}
+);
+
 // ═══════════════════════════════════════════════════════════════════
 //  INTERACTION GRAPH — Builder + Traversal Engine
 // ═══════════════════════════════════════════════════════════════════
