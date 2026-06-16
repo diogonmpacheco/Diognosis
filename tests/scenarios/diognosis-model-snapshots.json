@@ -313,7 +313,7 @@
           "enzyme": "CYP3A4"
         }
       ],
-      "findingCount": 12,
+      "findingCount": 13,
       "findingTypes": [
         "active_moiety",
         "combination_burden",
@@ -321,11 +321,11 @@
         "receptor_burden",
         "timing_washout"
       ],
-      "findingCardCount": 3,
-      "evidenceLadderCount": 3,
+      "findingCardCount": 4,
+      "evidenceLadderCount": 4,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 12,
-      "mechanismWhyPathCount": 3,
+      "whyPathCount": 13,
+      "mechanismWhyPathCount": 4,
       "rawWarningPathCount": 12,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
@@ -763,17 +763,17 @@
           "enzyme": "bidirectional_pk"
         }
       ],
-      "findingCount": 17,
+      "findingCount": 18,
       "findingTypes": [
         "active_moiety",
         "phenoconversion",
         "timing_washout"
       ],
-      "findingCardCount": 5,
-      "evidenceLadderCount": 5,
+      "findingCardCount": 6,
+      "evidenceLadderCount": 6,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 17,
-      "mechanismWhyPathCount": 5,
+      "whyPathCount": 18,
+      "mechanismWhyPathCount": 6,
       "rawWarningPathCount": 12,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,

@@ -236,7 +236,7 @@ function top100CoverageHasTransporterDdi(substrate, inhibitor, transporter) {
   );
 }
 
-for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
+for (const drugName of TOP250_LIVE_COVERAGE_DRUGS) {
   const drug = getDrug(drugName);
   if (!drug) continue;
   for (const transporter of top100CoverageTransporterIds(drug)) {
@@ -251,9 +251,9 @@ for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
           transporter,
           effect:row.effect,
           severity:row.severity,
-          mechanism:`Phase 7 top-100 live transporter adapter: ${drug.name} has ${transporter} route context and ${row.inhibitor} is a representative ${transporter} modulator. Pending source-specific professional review.`,
-          evidence:{confidence:"low", sources:["top-100 live coverage adapter"], foldChange:row.foldChange, studyType:"route_adapter"},
-          evidenceRefs:[...TOP100_LIVE_COVERAGE_EVIDENCE_REFS],
+          mechanism:`Phase 7 top-250 live transporter adapter: ${drug.name} has ${transporter} route context and ${row.inhibitor} is a representative ${transporter} modulator. Pending source-specific professional review.`,
+          evidence:{confidence:"low", sources:["top-250 live coverage adapter"], foldChange:row.foldChange, studyType:"route_adapter"},
+          evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
         });
       }
     }

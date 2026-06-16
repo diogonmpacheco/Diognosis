@@ -4,11 +4,14 @@ import { loadDiognosisData } from '../enrich/lib/diognosis-source-loader.js';
 const args = new Set(process.argv.slice(2));
 const check = args.has('--check');
 const json = args.has('--json') || check;
+const targetArg = process.argv.find(arg => arg.startsWith('--target='));
+const targetCount = args.has('--top250') ? 250 : Number(targetArg?.split('=')[1] || 100);
+const targetLabel = `top-${targetCount}`;
 
 const data = loadDiognosisData();
-const top100 = data.TOP100_LIVE_COVERAGE_DRUGS || [];
-const evidenceRefs = data.TOP100_LIVE_COVERAGE_EVIDENCE_REFS || [];
-const adapterEvidenceId = evidenceRefs[0] || 'ev_top100_live_coverage_adapter';
+const cohort = targetCount === 250 ? (data.TOP250_LIVE_COVERAGE_DRUGS || []) : (data.TOP100_LIVE_COVERAGE_DRUGS || []);
+const evidenceRefs = targetCount === 250 ? (data.TOP250_LIVE_COVERAGE_EVIDENCE_REFS || []) : (data.TOP100_LIVE_COVERAGE_EVIDENCE_REFS || []);
+const adapterEvidenceId = targetCount === 250 ? 'ev_top250_live_coverage_adapter' : (evidenceRefs[0] || 'ev_top100_live_coverage_adapter');
 
 function lookupKey(value) {
   return String(value || '')
@@ -63,7 +66,10 @@ function metaboliteRows(drug) {
 }
 
 function hasMetaboliteActor(drug) {
-  return Object.values(data.METABOLITE_ACTORS || {}).some(actor => actor?.parentDrug === drug.name);
+  return Object.values(data.METABOLITE_ACTORS || {}).some(actor =>
+    actor?.parentDrug === drug.name ||
+    (actor?.parentDrugs || []).includes(drug.name)
+  );
 }
 
 function routeGenes(drug) {
@@ -116,8 +122,8 @@ function domainStatus(required, live) {
   return live ? 'live' : 'missing';
 }
 
-const duplicateNames = top100.filter((name, index) => top100.indexOf(name) !== index);
-const rows = top100.map(name => {
+const duplicateNames = cohort.filter((name, index) => cohort.indexOf(name) !== index);
+const rows = cohort.map(name => {
   const drug = getDrug(name);
   if (!drug) {
     return {
@@ -185,8 +191,9 @@ const adapterUse = {
 
 const failingRows = rows.filter(row => row.gaps.length);
 const report = {
-  ok:top100.length === 100 && duplicateNames.length === 0 && !!adapterEvidence && adapterEvidence.reviewRequired === true && failingRows.length === 0,
-  targetCount:top100.length,
+  ok:cohort.length === targetCount && duplicateNames.length === 0 && !!adapterEvidence && adapterEvidence.reviewRequired === true && failingRows.length === 0,
+  target:targetLabel,
+  targetCount:cohort.length,
   duplicateNames,
   missingDrugNames:rows.filter(row => !row.present).map(row => row.name),
   adapterEvidence:{
@@ -203,8 +210,8 @@ const report = {
 if (json) {
   console.log(JSON.stringify(report, null, 2));
 } else {
-  console.log(`Top-100 live coverage: ${report.ok ? 'pass' : 'needs work'}`);
-  console.log(`Target drugs: ${report.targetCount}/100`);
+  console.log(`${targetLabel} live coverage: ${report.ok ? 'pass' : 'needs work'}`);
+  console.log(`Target drugs: ${report.targetCount}/${targetCount}`);
   for (const [domain, stats] of Object.entries(summary)) {
     console.log(`${domain}: ${stats.live}/${stats.required} live${stats.missing ? ` (${stats.missing} missing)` : ''}`);
   }

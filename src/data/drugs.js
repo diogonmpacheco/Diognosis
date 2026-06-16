@@ -4958,6 +4958,45 @@ function isTop100LiveCoverageDrug(name) {
   return TOP100_LIVE_COVERAGE_SET.has(name);
 }
 
+// Phase 8 extension: next 150 highest-priority drug records selected from live
+// interaction density, high-risk class, PGx/transport routes, and missing live
+// graph coverage. The list is fixed so audits do not drift as counts change.
+const TOP250_LIVE_COVERAGE_EXTENSION_DRUGS = Object.freeze([
+  "Clopidogrel","Digoxin","Metoprolol","Apixaban","Rivaroxaban","Dabigatran",
+  "Combined Oral Contraceptive","Ciprofloxacin","Voriconazole","Bedaquiline","Cocaine","Lefamulin",
+  "Betrixaban","Ticlopidine","Venlafaxine","Edoxaban","Vorapaxar","Duloxetine",
+  "Nirmatrelvir/Ritonavir","Sildenafil","Tadalafil","Atorvastatin","Citalopram","Clorazepate",
+  "Calcium","Lisinopril","Moxifloxacin","Acenocoumarol","Amphetamine","Letermovir",
+  "Codeine","Amitriptyline","Clomipramine","Daclatasvir","Desipramine","Grazoprevir",
+  "Methadone","Protriptyline","Trimipramine","Ritonavir","Cangrelor","Heparin",
+  "Valganciclovir","Tenofovir Alafenamide","Flurazepam","Oxazepam","Quazepam","Temazepam",
+  "Alcohol (Ethanol)","Abrocitinib","Acalabrutinib","Amoxapine","Lapatinib","Cilostazol",
+  "Griseofulvin","Mercaptopurine","Phenytoin","Regorafenib","Rifabutin","Sunitinib",
+  "Tofacitinib","Imipramine","Lithium","Sirolimus","Levofloxacin","Thioridazine",
+  "Valacyclovir","Clonazepam","Diazepam","Escitalopram","Levomilnacipran","Nortriptyline",
+  "Erythromycin","Methamphetamine","Losartan","Efavirenz","Axitinib","Brigatinib",
+  "Esomeprazole","Isavuconazonium Sulfate","Lenvatinib","Metronidazole","Pantoprazole","Sorafenib",
+  "Terbinafine","Baricitinib","Bosutinib","Cabozantinib","Ceritinib","Cobimetinib",
+  "Dacomitinib","Delafloxacin","Dexlansoprazole","Elbasvir","Encorafenib","Entrectinib",
+  "Eravacycline","Fedratinib","Filgotinib","Gilteritinib","Glimepiride","Ibrexafungerp",
+  "Ivosidenib","Larotrectinib","Midostaurin","Neratinib","Ponatinib","Pralsetinib",
+  "Ruxolitinib","Selpercatinib","Sotorasib","Stiripentol","Sulfadiazine","Thiotepa",
+  "Tivozanib","Tolbutamide","Tucatinib","Vemurafenib","Zanubrutinib","Bupropion",
+  "Cobicistat","Diltiazem","Spironolactone","Linezolid","Abciximab","Fondaparinux",
+  "Hydroxyzine","Lisdexamfetamine","Clobazam","Alprazolam","Baloxavir Marboxil","Desvenlafaxine",
+  "Doxepin","Lorazepam","Ramucirumab","Remdesivir","Triazolam","Argatroban",
+  "Minocycline","Rifapentine","Alectinib","Pazopanib","Upadacitinib","Vardenafil",
+  "Zidovudine","Afatinib","Umeclidinium","Levothyroxine","Verapamil","Methylergonovine",
+]);
+
+const TOP250_LIVE_COVERAGE_DRUGS = Object.freeze([...TOP100_LIVE_COVERAGE_DRUGS, ...TOP250_LIVE_COVERAGE_EXTENSION_DRUGS]);
+const TOP250_LIVE_COVERAGE_EVIDENCE_REFS = Object.freeze([...TOP100_LIVE_COVERAGE_EVIDENCE_REFS, "ev_top250_live_coverage_adapter"]);
+const TOP250_LIVE_COVERAGE_SET = new Set(TOP250_LIVE_COVERAGE_DRUGS);
+
+function isTop250LiveCoverageDrug(name) {
+  return TOP250_LIVE_COVERAGE_SET.has(name);
+}
+
 function normalizeDrugLookupKey(value) {
   return String(value || "")
     .trim()

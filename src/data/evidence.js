@@ -9343,6 +9343,20 @@ const STUDY_DB = {
     limitations:["Coverage rows are not individualized dose recommendations and do not replace labels, CPIC/DPWG guidance, TDM, ECG/electrolyte monitoring, renal/hepatic assessment, procedure protocols, oncology/transplant guidance, geriatric exceptions, or pharmacist/physician review."],
     verified:false, reviewRequired:true, verifyNote:"Phase 7 top-100 live coverage adapter is intentionally live pending review; rows are review-priority signals derived from existing route/class data."
   },
+  "ev_top250_live_coverage_adapter": {
+    id:"ev_top250_live_coverage_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Phase 8 top-250 live coverage adapter — high-priority drug expansion",
+    year:2026, source:"Internal Diognosis route/label-derived coverage adapter using existing curated drug routes, interaction density, high-risk class flags, and public-label anchors",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"coverage_adapter_group", n:null,
+    phenotypes:["CYP3A4","CYP2D6","CYP2C19","CYP2C9","CYP2C8","UGT","NAT","TPMT","NUDT15","P-gp","BCRP","OATP1B1","renal_transport","washout","burden"],
+    quantifiedEffects:{note:"Shared evidence anchor for extending live route, DDI, metabolite, PK, PGx, transporter, washout, and burden coverage from the top 100 to the top 250 high-priority drugs. Rows remain pending source-specific professional review."},
+    temporal:{mechanism:"route_transporter_pgx_pk_washout_and_burden_context", onset:"same_day", offset:"hours-months"},
+    supports:["phase8_top250_live_ddi_coverage","phase8_top250_live_metabolite_actor_coverage","phase8_top250_live_transporter_coverage","phase8_top250_live_washout_coverage","phase8_top250_live_pgx_coverage","phase8_top250_live_burden_coverage"],
+    contradicts:[],
+    limitations:["These rows are live enrichment signals, not final clinical recommendations. Drug-specific labels, CPIC/DPWG guidance, TDM, ECG/electrolyte monitoring, renal/hepatic assessment, indication, dosing, procedure context, oncology/transplant protocols, and pharmacist/physician review remain decisive."],
+    verified:false, reviewRequired:true, verifyNote:"Phase 8 top-250 expansion is live pending professional review; rows are review-priority signals derived from existing route/class data."
+  },
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──

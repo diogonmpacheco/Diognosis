@@ -5641,7 +5641,7 @@ function top100CoverageGraphId(value) {
 function top100CoveragePrimaryRoute(drug) {
   const routes = (drug?.routes || []).filter(route => route && route.enzyme);
   const route = routes.find(row => /^CYP|^UGT|SLCO|ABCB|ABCG|P-gp|OATP|BCRP/i.test(row.enzyme)) || routes[0];
-  return route || { enzyme:"Various", fraction:1, evidence:{ confidence:"low", sources:["top-100 live coverage adapter"] } };
+  return route || { enzyme:"Various", fraction:1, evidence:{ confidence:"low", sources:["top-250 live coverage adapter"] } };
 }
 
 function top100CoverageGene(route) {
@@ -5650,11 +5650,11 @@ function top100CoverageGene(route) {
 }
 
 function top100CoverageMergeRefs(row) {
-  row.evidenceRefs = [...new Set([...(row.evidenceRefs || []), ...TOP100_LIVE_COVERAGE_EVIDENCE_REFS])];
+  row.evidenceRefs = [...new Set([...(row.evidenceRefs || []), ...TOP250_LIVE_COVERAGE_EVIDENCE_REFS])];
   return row;
 }
 
-for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
+for (const drugName of TOP250_LIVE_COVERAGE_DRUGS) {
   const drug = getDrug(drugName);
   if (!drug) continue;
   const route = top100CoveragePrimaryRoute(drug);
@@ -5667,8 +5667,8 @@ for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
       role:drug.prodrug ? "active_form_context" : "clearance_context",
       p:Math.round((route.fraction || 0.5) * 100),
       t:drug.hl || null,
-      note:"Phase 7 top-100 live coverage row: exposes parent route, clearance, active-moiety, and genotype context in the graph while detailed metabolite curation remains pending.",
-      evidenceRefs:[...TOP100_LIVE_COVERAGE_EVIDENCE_REFS],
+      note:"Phase 7 top-250 live coverage row: exposes parent route, clearance, active-moiety, and genotype context in the graph while detailed metabolite curation remains pending.",
+      evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
     }];
   }
 
@@ -5683,6 +5683,7 @@ for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
       type:ACTOR_TYPE.METABOLITE,
       name:primaryMetabolite.n,
       parentDrug:drug.name,
+      parentDrugs:[drug.name],
       formingEnzyme:primaryMetabolite.e || route.enzyme,
       active:/active|activation/i.test(`${primaryMetabolite.a || ""} ${primaryMetabolite.role || ""}`),
       halfLife:primaryMetabolite.t || drug.hl || null,
@@ -5690,16 +5691,21 @@ for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
       routes:[{
         enzyme:primaryMetabolite.e || route.enzyme,
         fraction:(primaryMetabolite.p || Math.round((route.fraction || 0.5) * 100)) / 100,
-        role:"top100_live_coverage_context",
-        evidence:{confidence:"low", sources:["top-100 live coverage adapter"]},
-        evidenceRefs:[...TOP100_LIVE_COVERAGE_EVIDENCE_REFS],
+        role:"top250_live_coverage_context",
+        evidence:{confidence:"low", sources:["top-250 live coverage adapter"]},
+        evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
       }],
       inh:[],
-      evidenceRefs:[...TOP100_LIVE_COVERAGE_EVIDENCE_REFS],
-      note:"Phase 7 first-class actor so top-100 drug route, PK, PGx, transporter, and burden views can connect through the live graph. Pending detailed metabolite-specific review.",
+      evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
+      note:"Phase 7 first-class actor so top-250 drug route, PK, PGx, transporter, and burden views can connect through the live graph. Pending detailed metabolite-specific review.",
     };
   } else {
-    METABOLITE_ACTORS[metId].evidenceRefs = [...new Set([...(METABOLITE_ACTORS[metId].evidenceRefs || []), ...TOP100_LIVE_COVERAGE_EVIDENCE_REFS])];
+    METABOLITE_ACTORS[metId].evidenceRefs = [...new Set([...(METABOLITE_ACTORS[metId].evidenceRefs || []), ...TOP250_LIVE_COVERAGE_EVIDENCE_REFS])];
+    METABOLITE_ACTORS[metId].parentDrugs = [...new Set([
+      ...(METABOLITE_ACTORS[metId].parentDrugs || []),
+      METABOLITE_ACTORS[metId].parentDrug,
+      drug.name,
+    ].filter(Boolean))];
   }
 
   const gene = top100CoverageGene(route);
@@ -5709,8 +5715,8 @@ for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
       metaboliteId:metId,
       metaboliteName:primaryMetabolite.n,
       enzyme:gene,
-      note:`Phase 7 top-100 live PGx context: ${gene} phenotype can shift ${drug.name} parent/route exposure; use as a pending-review exposure flag, not a dose recommendation.`,
-      evidenceRefs:[...TOP100_LIVE_COVERAGE_EVIDENCE_REFS],
+      note:`Phase 7 top-250 live PGx context: ${gene} phenotype can shift ${drug.name} parent/route exposure; use as a pending-review exposure flag, not a dose recommendation.`,
+      evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
       effects:{
         [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:drug.prodrug ? "decrease" : "increase", label:drug.prodrug ? `${gene} poor function may reduce activation context` : `${gene} poor function may increase parent exposure context` },
         [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:drug.prodrug ? "decrease" : "increase", label:`intermediate ${gene} function may shift exposure/active-moiety balance` },

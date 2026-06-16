@@ -1778,10 +1778,10 @@ function top100CoverageAddKnownDdi(drug, row) {
     drug2:row.drug2,
     severity:row.severity || top100CoverageHighImpactSeverity(drug),
     category:row.category,
-    mechanism:`Phase 7 top-100 live DDI adapter: ${row.mechanism}`,
+    mechanism:`Phase 7 top-250 live DDI adapter: ${row.mechanism}`,
     effect:row.effect,
-    evidence:{confidence:"low", sources:["top-100 live coverage adapter"], studyType:"route_adapter"},
-    evidenceRefs:[...TOP100_LIVE_COVERAGE_EVIDENCE_REFS],
+    evidence:{confidence:"low", sources:["top-250 live coverage adapter"], studyType:"route_adapter"},
+    evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
   });
   return true;
 }
@@ -1873,6 +1873,24 @@ function top100CoverageRepresentativeDdis(drug) {
       effect:"Flag for oncology-protocol review, CBC/hepatic monitoring, thrombosis/infection context, and regimen-specific interaction checks.",
     });
   }
+  if (/antibiotic|antimicrobial|sulfonamide|fluoroquinolone|antifungal|antiviral|antiretroviral/i.test(text)) {
+    rows.push({
+      drug2:"Warfarin",
+      severity:/sulfonamide|azole|fluoroquinolone|macrolide|protease inhibitor|antiretroviral/i.test(text) ? "severe" : "moderate",
+      category:"antiinfective_hemostasis_live_context",
+      mechanism:`${drug.name} has live anti-infective exposure context; anti-infectives can alter anticoagulant exposure, gut vitamin K balance, QT/CNS burden, or renal clearance depending on class.`,
+      effect:"Flag for INR/bleeding, QT, renal, CNS, and organism-treatment context review where relevant.",
+    });
+  }
+  if (/monoclonal antibody|vegf|vegfr|anti-VEGF/i.test(text)) {
+    rows.push({
+      drug2:"Heparin",
+      severity:"moderate",
+      category:"biologic_bleeding_wound_healing_context",
+      mechanism:`${drug.name} has live biologic/VEGF-pathway context; anticoagulation can stack bleeding, wound-healing, or procedure-timing review burden.`,
+      effect:"Flag for oncology/procedure protocol review, bleeding monitoring, and perioperative timing.",
+    });
+  }
   if (/QT|antiarrhythmic|5-HT3|macrolide|azole|kinase|antipsychotic|phenothiazine/i.test(text)) {
     rows.push({
       drug2:"Amiodarone",
@@ -1912,7 +1930,7 @@ function top100CoverageRepresentativeDdis(drug) {
   return rows;
 }
 
-for (const drugName of TOP100_LIVE_COVERAGE_DRUGS) {
+for (const drugName of TOP250_LIVE_COVERAGE_DRUGS) {
   const drug = getDrug(drugName);
   if (!drug || top100CoverageKnownDdiCount(drug.name) > 0) continue;
   let added = 0;
