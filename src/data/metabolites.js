@@ -580,12 +580,12 @@ const METAB = {
 
 // ── ACETAMINOPHEN ──
 "Acetaminophen":[
-  {n:"Acetaminophen glucuronide",e:"UGT1A1",a:"inactive",p:52,note:"Main safe pathway"},
-  {n:"Acetaminophen sulfate",e:"SULT",a:"inactive",p:30,note:"Safe pathway"},
-  {n:"NAPQI (N-acetyl-p-benzoquinone imine)",e:"CYP2E1",a:"toxic",p:5,note:"TOXIC — normally detoxified by glutathione. Liver failure when GSH depleted (overdose/alcohol)",evidenceRefs:["ev_apap_alcohol_riordan2002"]},
-  {n:"Cysteine/mercapturic acid conjugate",e:"GST",a:"inactive",p:5,note:"NAPQI detoxification product"},
-  {n:"3-Hydroxy-acetaminophen",e:"CYP1A2",a:"inactive",p:3},
-  {n:"Methoxy-acetaminophen",e:"COMT",a:"inactive",p:2}
+  {n:"Acetaminophen glucuronide",e:"UGT1A1",a:"inactive",p:52,note:"Main safe pathway",evidenceRefs:["ev_acetaminophen_metabolism_label"]},
+  {n:"Acetaminophen sulfate",e:"SULT",a:"inactive",p:30,note:"Safe pathway",evidenceRefs:["ev_acetaminophen_metabolism_label"]},
+  {n:"NAPQI (N-acetyl-p-benzoquinone imine)",e:"CYP2E1",a:"toxic",p:5,note:"TOXIC — normally detoxified by glutathione. Liver failure when GSH depleted (overdose/alcohol)",evidenceRefs:["ev_apap_alcohol_riordan2002","ev_acetaminophen_metabolism_label"]},
+  {n:"Cysteine/mercapturic acid conjugate",e:"GST",a:"inactive",p:5,note:"NAPQI detoxification product",evidenceRefs:["ev_acetaminophen_metabolism_label"]},
+  {n:"3-Hydroxy-acetaminophen",e:"CYP1A2",a:"inactive",p:3,evidenceRefs:["ev_acetaminophen_metabolism_label"]},
+  {n:"Methoxy-acetaminophen",e:"COMT",a:"inactive",p:2,evidenceRefs:["ev_acetaminophen_metabolism_label"]}
 ],
 
 // ── MISC DRUGS WITH KNOWN METABOLITES ──
@@ -5304,9 +5304,36 @@ const METABOLITE_ACTORS = {
     active:false, halfLife:0.01, potencyRatio:0,
     routes:[{enzyme:"GST",fraction:0.95,evidenceRefs:["ev_apap_alcohol_riordan2002"]}],
     inh:[],
-    evidenceRefs:["ev_apap_alcohol_riordan2002"],
+    evidenceRefs:["ev_apap_alcohol_riordan2002","ev_acetaminophen_metabolism_label"],
     toxicity:{target:"hepatocytes", mechanism:"Glutathione depletion → covalent protein binding → necrosis"},
     note:"Normally detoxified by glutathione; CYP2E1 inducers (alcohol, isoniazid) ↑ NAPQI production 3-5×"
+  },
+  "acetaminophen-glucuronide": {
+    id:"acetaminophen-glucuronide", type:ACTOR_TYPE.METABOLITE,
+    name:"Acetaminophen glucuronide", parentDrug:"Acetaminophen", formingEnzyme:"UGT",
+    active:false, halfLife:3, potencyRatio:0,
+    routes:[{enzyme:"Renal Excretion",fraction:0.9,evidenceRefs:["ev_acetaminophen_metabolism_label"]}],
+    inh:[],
+    evidenceRefs:["ev_acetaminophen_metabolism_label"],
+    note:"Major inactive glucuronide conjugate pathway for therapeutic acetaminophen clearance."
+  },
+  "acetaminophen-sulfate": {
+    id:"acetaminophen-sulfate", type:ACTOR_TYPE.METABOLITE,
+    name:"Acetaminophen sulfate", parentDrug:"Acetaminophen", formingEnzyme:"SULT",
+    active:false, halfLife:3, potencyRatio:0,
+    routes:[{enzyme:"Renal Excretion",fraction:0.9,evidenceRefs:["ev_acetaminophen_metabolism_label"]}],
+    inh:[],
+    evidenceRefs:["ev_acetaminophen_metabolism_label"],
+    note:"Major inactive sulfate conjugate pathway for therapeutic acetaminophen clearance."
+  },
+  "acetaminophen-cysteine-mercapturate": {
+    id:"acetaminophen-cysteine-mercapturate", type:ACTOR_TYPE.METABOLITE,
+    name:"Acetaminophen cysteine/mercapturic acid conjugates", parentDrug:"Acetaminophen", formingEnzyme:"GST/GSH",
+    active:false, halfLife:3, potencyRatio:0,
+    routes:[{enzyme:"Renal Excretion",fraction:0.9,evidenceRefs:["ev_acetaminophen_metabolism_label"]}],
+    inh:[],
+    evidenceRefs:["ev_acetaminophen_metabolism_label"],
+    note:"Downstream detoxification products of NAPQI after glutathione conjugation; useful marker of NAPQI detox route rather than therapeutic activity."
   },
 };
 

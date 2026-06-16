@@ -635,6 +635,18 @@ for (const [drugId, F, tmax, halfLife, Vd, dose_mg, note] of PK_LABEL_BATCH_2) {
   }
 }
 
+Object.assign(PK_PARAMS, {
+  caspofungin:{ F:1, ka:0.5, halfLife:13, Vd:0.15, dose_mg:50,
+    note:"IV echinocandin label PK hardening row; rifampin and other hepatic enzyme inducers can lower trough concentrations and may require higher adult maintenance dosing.",
+    evidenceRefs:["ev_caspofungin_rifampin_label"] },
+  micafungin:{ F:1, ka:0.5, halfLife:15, Vd:0.3, dose_mg:100,
+    note:"IV echinocandin label PK hardening row; micafungin modestly increases sirolimus, nifedipine, and itraconazole exposure.",
+    evidenceRefs:["ev_micafungin_sirolimus_itraconazole_nifedipine_label"] },
+  anidulafungin:{ F:1, ka:0.5, halfLife:45, Vd:0.6, dose_mg:100,
+    note:"IV echinocandin label PK hardening row; terminal half-life about 40-50h with slow chemical degradation and low CYP interaction potential.",
+    evidenceRefs:["ev_anidulafungin_pk_label"] },
+});
+
 const PK_LABEL_BATCH_3 = [
   ["afatinib",0.92,3,37,28,40,"Batch 01 TKI label approximation; P-gp/BCRP transport and diarrhea/skin toxicity can dominate exposure management."],
   ["ceritinib",0.75,6,41,60,450,"Batch 01 TKI label approximation; food, hepatic toxicity, QT, and CYP3A modulation are clinically relevant."],
@@ -988,6 +1000,17 @@ const WASHOUT_DAYS = {
   'linezolid':      { days: 3,  mechanism:'MAOI_reversible',  note:"Linezolid reversible MAO inhibitor: short offset; 3-day display interval is conservative relative to label monitoring through 24h after last dose" },
   'valproic-acid':  { days: 7,  mechanism:'UGT_inhibition', note:"Valproate inhibits lamotrigine metabolism and prolongs lamotrigine half-life; allow 5-7 days for practical offset after stopping VPA" },
 };
+
+Object.assign(WASHOUT_DAYS, {
+  cimetidine:{ days:2, mechanism:'renal_transporter_and_cyp_competitive_offset', note:"Cimetidine renal transporter/CYP interaction context generally settles over several half-lives; source-backed theophylline and renal-transporter rows still require clinical monitoring.", evidenceRefs:["ev_cimetidine_theophylline_clearance","ev_valacyclovir_probenecid_label"] },
+  valproic_acid:{ days:7, mechanism:'UGT_inhibition', note:"Alias for Valproic Acid timing lookup. Valproate inhibits lamotrigine glucuronidation and can prolong lamotrigine exposure; use 5-7 days for practical interaction offset.", evidenceRefs:["ev_lamotrigine_valproate_rambeck1993"] },
+  methotrexate:{ days:3, mechanism:'renal_clearance_tdm_context', note:"Methotrexate parent half-life is short at low doses, but delayed renal clearance and high-dose oncology protocols require level-guided clearance, hydration, alkalinization, and leucovorin rescue rather than a simple washout.", evidenceRefs:["ev_mtx_interactions_bannwarth1996","ev_methotrexate_hdmtx_pgpk_taylor2021"] },
+  fluorouracil:{ days:7, mechanism:'short_parent_dpyd_and_vka_monitoring_context', note:"Fluorouracil parent clearance is rapid, but myelosuppression, mucositis, DPYD toxicity context, and warfarin INR/PT monitoring can persist beyond parent half-life.", evidenceRefs:["ev_fluorouracil_dpyd_amstutz2018","ev_fluorouracil_warfarin_label"] },
+  capecitabine:{ days:30, mechanism:'fluoropyrimidine_vka_interaction_monitoring_context', note:"Capecitabine-warfarin label interaction can occur during therapy and within about 1 month after stopping; INR/PT monitoring can outlast parent/prodrug half-life.", evidenceRefs:["ev_capecitabine_warfarin_label","ev_fluorouracil_dpyd_amstutz2018"] },
+  caspofungin:{ days:3, mechanism:'echinocandin_exposure_and_inducer_context', note:"Caspofungin concentration offset is usually days, but rifampin/inducer co-therapy can reduce troughs and dose needs should follow label/response.", evidenceRefs:["ev_caspofungin_rifampin_label"] },
+  micafungin:{ days:3, mechanism:'echinocandin_selected_substrate_monitoring_context', note:"Micafungin has a multi-hour half-life and modestly raises sirolimus, nifedipine, and itraconazole exposure; monitor toxicity for several days around changes.", evidenceRefs:["ev_micafungin_sirolimus_itraconazole_nifedipine_label"] },
+  anidulafungin:{ days:7, mechanism:'slow_chemical_degradation_terminal_pk_context', note:"Anidulafungin has terminal half-life about 40-50h and falls below quantitation around 6 days post-dose in label PK; low CYP interaction potential remains source-backed.", evidenceRefs:["ev_anidulafungin_pk_label"] },
+});
 
 Object.assign(WASHOUT_DAYS, {
   // Batch 01-03 washout additions for persistent inhibitors/inducers or long-offset immune agents.
