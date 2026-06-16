@@ -117,7 +117,7 @@ Diognosis is intentionally conservative about what it claims. Diognosis PK curve
 - **664 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **69 genotype genes** and **103 receptor score profiles**
 - **69 Beers flags** and **74 washout rules**
-- **2661 KB** generated bundle (1867 lines)
+- **2662 KB** generated bundle (1867 lines)
 <!-- DIOGNOSIS_STATS_END -->
 
 ---

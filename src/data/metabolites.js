@@ -127,7 +127,7 @@ const METAB = {
 ],
 "Ketamine":[
   {n:"Norketamine",e:"CYP3A4",a:"active",p:80,t:5,note:"~30% potency of ketamine, NMDA antagonist"},
-  {n:"Dehydronorketamine (DHNK)",e:"CYP2B6",a:"active",p:10,t:12,note:"Weak activity, long-lived"},
+  {n:"Dehydronorketamine (DHNK)",e:"CYP2B6",a:"active",p:10,t:12,note:"Weak activity, long-lived",evidenceRefs:["ev_phase4_genotype_metabolite_expansion"]},
   {n:"6-Hydroxynorketamine (6-HNK)",e:"CYP2A6",a:"active",p:5,t:4,note:"Antidepressant effects (non-NMDA)"},
   {n:"Norketamine glucuronide",e:"UGT",a:"inactive",p:5}
 ],
@@ -148,14 +148,14 @@ const METAB = {
   {n:"GHB (unchanged)",e:"Renal",a:"active",p:5,note:"Saturable metabolism — nonlinear kinetics"}
 ],
 "Cannabis (THC)":[
-  {n:"11-Hydroxy-THC (11-OH-THC)",e:"CYP2C9",a:"active",p:40,t:2,note:"MORE potent than THC at CB1. Dominant after oral ingestion"},
+  {n:"11-Hydroxy-THC (11-OH-THC)",e:"CYP2C9",a:"active",p:40,t:2,note:"MORE potent than THC at CB1. Dominant after oral ingestion",evidenceRefs:["ev_phase4_genotype_metabolite_expansion"]},
   {n:"11-Nor-9-carboxy-THC (THC-COOH)",e:"CYP2C9",a:"inactive",p:40,t:50,note:"Detection marker, very long t½"},
   {n:"THC-COOH glucuronide",e:"UGT",a:"inactive",p:10,note:"Main urinary analyte in drug testing"},
   {n:"8β-Hydroxy-THC",e:"CYP3A4",a:"active",p:5},
   {n:"THC (unchanged)",e:"Adipose",a:"active",p:5,note:"Lipophilic — stored in fat tissue"}
 ],
 "Cannabis (CBD)":[
-  {n:"7-Hydroxy-CBD (7-OH-CBD)",e:"CYP2C19",a:"active",p:35,t:4,note:"Active metabolite",inh:[{e:"CYP2C19",s:"strong"}]},
+  {n:"7-Hydroxy-CBD (7-OH-CBD)",e:"CYP2C19",a:"active",p:35,t:4,note:"Active metabolite",inh:[{e:"CYP2C19",s:"strong"}],evidenceRefs:["ev_phase4_genotype_metabolite_expansion"]},
   {n:"6α-Hydroxy-CBD",e:"CYP3A4",a:"active",p:20},
   {n:"7-COOH-CBD",e:"CYP2C19",a:"inactive",p:20},
   {n:"CBD-glucuronide",e:"UGT",a:"inactive",p:15},
@@ -395,7 +395,7 @@ const METAB = {
   {n:"Alprazolam glucuronide",e:"UGT",a:"inactive",p:10}
 ],
 "Diazepam":[
-  {n:"Nordiazepam (desmethyldiazepam)",e:"CYP2C19",a:"active",p:40,t:60,note:"Active, VERY long t½ — accumulates"},
+  {n:"Nordiazepam (desmethyldiazepam)",e:"CYP2C19",a:"active",p:40,t:60,note:"Active, VERY long t½ — accumulates",evidenceRefs:["ev_phase4_genotype_metabolite_expansion"]},
   {n:"Temazepam",e:"CYP3A4",a:"active",p:20,t:11,note:"Active — itself a marketed benzo"},
   {n:"Oxazepam",e:"CYP2C19",a:"active",p:15,t:8,note:"Active — itself a marketed benzo"},
   {n:"Diazepam glucuronide",e:"UGT",a:"inactive",p:5}
@@ -4743,7 +4743,7 @@ Object.assign(METAB, {
   {n:"Adagrasib unchanged fecal fraction",e:"Biliary/Fecal Excretion",a:"active_parent",p:14,t:23,note:"Unchanged parent remains an exposure driver; fecal recovery helps explain persistence and inhibitor/inducer sensitivity.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}
 ],
 "Pimozide":[
-  {n:"5-Hydroxypimozide",e:"CYP2D6/CYP3A4",a:"inactive",p:30,t:55,note:"Hydroxylated pimozide metabolite; genotype and inhibitor risk is still driven primarily by parent pimozide exposure and QT liability.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels"]},
+  {n:"5-Hydroxypimozide",e:"CYP2D6/CYP3A4",a:"inactive",p:30,t:55,note:"Hydroxylated pimozide metabolite; genotype and inhibitor risk is still driven primarily by parent pimozide exposure and QT liability.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_phase4_genotype_metabolite_expansion"]},
   {n:"6-Hydroxypimozide",e:"CYP2D6/CYP3A4",a:"inactive",p:15,t:55,note:"Minor hydroxylated clearance product in the CYP2D6/CYP3A metabolism network.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels"]},
   {n:"DHPBI N-dealkylation metabolite",e:"CYP3A4 N-dealkylation",a:"inactive",p:35,note:"N-dealkylation is a major pimozide clearance route; CYP3A inhibition remains the clinically important parent-exposure signal.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels"]}
 ],
@@ -4767,7 +4767,7 @@ Object.assign(METAB, {
 ],
 "Ticlopidine":[
   {n:"2-Oxo-ticlopidine",e:"CYP2C19/CYP2B6/CYP3A4",a:"active_precursor",p:45,t:12,note:"Thiophene oxidation intermediate on the pathway to the irreversible P2Y12-inhibiting active thiol metabolite.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"]},
-  {n:"Ticlopidine active thiol metabolite (UR-4501)",e:"CYP-mediated Thiolactone Opening",a:"active",p:30,note:"Active thiol moiety irreversibly inhibits platelet P2Y12 signaling; bleeding and marrow-toxicity context remain parent-label guided.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"]}
+  {n:"Ticlopidine active thiol metabolite (UR-4501)",e:"CYP-mediated Thiolactone Opening",a:"active",p:30,note:"Active thiol moiety irreversibly inhibits platelet P2Y12 signaling; bleeding and marrow-toxicity context remain parent-label guided.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels","ev_phase4_genotype_metabolite_expansion"]}
 ],
 "Lefamulin":[
   {n:"Hydroxylated lefamulin metabolites",e:"CYP3A4",a:"inactive",p:35,t:8,note:"CYP3A phase I metabolites are described as devoid of antibacterial activity; parent exposure drives QT and DDI risk.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_cns_anticholinergic_beers_labels"]}
@@ -4781,7 +4781,7 @@ Object.assign(METAB, {
   {n:"Betrixaban hydrolytic metabolites",e:"CYP-independent Hydrolysis",a:"inactive",p:15,note:"Minor inactive hydrolysis products; P-gp inhibition/induction remains the clinically important exposure pathway.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"]}
 ],
 "Busulfan":[
-  {n:"Busulfan glutathione conjugate",e:"GSTA1/GSTM1/GSTT1",a:"clearance_context",p:55,t:2.5,note:"Primary clearance route via spontaneous and GST-catalyzed glutathione conjugation; narrow-index conditioning regimens require TDM.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_busulfan_gst_meta"]},
+  {n:"Busulfan glutathione conjugate",e:"GSTA1/GSTM1/GSTT1",a:"clearance_context",p:55,t:2.5,note:"Primary clearance route via spontaneous and GST-catalyzed glutathione conjugation; narrow-index conditioning regimens require TDM.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_busulfan_gst_meta","ev_phase4_genotype_metabolite_expansion"]},
   {n:"Tetrahydrothiophene",e:"Glutathione Conjugate Beta-elimination",a:"inactive",p:20,note:"Downstream busulfan metabolite; identified metabolites are not treated as independent cytotoxic actors.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_busulfan_gst_meta"]},
   {n:"Sulfolane / 3-hydroxysulfolane",e:"Oxidative Metabolism",a:"inactive",p:20,note:"Oxidized busulfan downstream metabolites; included for GST pathway visibility.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_busulfan_gst_meta"]}
 ],
@@ -4791,23 +4791,23 @@ Object.assign(METAB, {
 "Lapatinib":[
   {n:"O-dealkylated lapatinib",e:"CYP3A4/CYP3A5",a:"inactive",p:20,t:24,note:"Primary oxidative pathway; further oxidation can generate reactive quinone-imine context implicated in hepatotoxicity.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
   {n:"N-dealkylated/N-hydroxylated lapatinib metabolites",e:"CYP3A4/CYP3A5",a:"inactive",p:20,note:"Oxidative metabolite pool; no single metabolite accounts for a large fraction of parent exposure.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
-  {n:"Lapatinib reactive quinone-imine context",e:"CYP3A4/CYP3A5 Bioactivation",a:"toxic_context",p:5,note:"Reactive metabolite context for idiosyncratic hepatic stress; this is a toxicity signal, not a calibrated dose rule.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}
+  {n:"Lapatinib reactive quinone-imine context",e:"CYP3A4/CYP3A5 Bioactivation",a:"toxic_context",p:5,note:"Reactive metabolite context for idiosyncratic hepatic stress; this is a toxicity signal, not a calibrated dose rule.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels","ev_phase4_genotype_metabolite_expansion"]}
 ],
 "Pirtobrutinib":[
   {n:"Pirtobrutinib hydroxylated metabolites",e:"CYP3A4",a:"inactive",p:35,t:19,note:"CYP3A-mediated hydroxylation supports strong/moderate inducer and inhibitor exposure warnings.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
   {n:"Pirtobrutinib glucuronides",e:"UGT1A8/UGT1A9",a:"inactive",p:20,note:"Direct glucuronidation pathway included for UGT/transporter context; parent exposure drives BTK and safety effects.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}
 ],
 "Abrocitinib":[
-  {n:"Abrocitinib M1",e:"CYP2C19/CYP2C9",a:"active",p:10,t:4,note:"Active metabolite included in label-defined combined active exposure; CYP2C19/CYP2C9 modifiers change active moiety.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
-  {n:"Abrocitinib M2",e:"CYP2C19/CYP2C9",a:"active",p:30,t:4,note:"Active metabolite contributing substantially to combined active exposure.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
+  {n:"Abrocitinib M1",e:"CYP2C19/CYP2C9",a:"active",p:10,t:4,note:"Active metabolite included in label-defined combined active exposure; CYP2C19/CYP2C9 modifiers change active moiety.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels","ev_phase4_genotype_metabolite_expansion"]},
+  {n:"Abrocitinib M2",e:"CYP2C19/CYP2C9",a:"active",p:30,t:4,note:"Active metabolite contributing substantially to combined active exposure.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels","ev_phase4_genotype_metabolite_expansion"]},
   {n:"Abrocitinib M4",e:"CYP2C19/CYP2C9/CYP3A4",a:"inactive",p:15,t:4,note:"Inactive metabolite; active moiety interpretation should emphasize parent plus M1/M2.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}
 ],
 "Acalabrutinib":[
-  {n:"ACP-5862",e:"CYP3A4/CYP3A5",a:"active",p:70,t:6.9,note:"Major active metabolite with higher AUC than parent but lower BTK potency; CYP3A modifiers affect active moiety exposure.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
+  {n:"ACP-5862",e:"CYP3A4/CYP3A5",a:"active",p:70,t:6.9,note:"Major active metabolite with higher AUC than parent but lower BTK potency; CYP3A modifiers affect active moiety exposure.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels","ev_phase4_genotype_metabolite_expansion"]},
   {n:"Acalabrutinib glutathione/amide metabolites",e:"Glutathione Conjugation/Amide Hydrolysis",a:"inactive",p:15,note:"Minor non-CYP pathways included for metabolism completeness.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}
 ],
 "Acenocoumarol":[
-  {n:"6-Hydroxyacenocoumarol",e:"CYP2C9/CYP1A2/CYP2C19",a:"inactive",p:30,t:10,note:"Hydroxylation clearance product; CYP2C9 genotype and inhibitors can increase parent anticoagulant exposure.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels","ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"]},
+  {n:"6-Hydroxyacenocoumarol",e:"CYP2C9/CYP1A2/CYP2C19",a:"inactive",p:30,t:10,note:"Hydroxylation clearance product; CYP2C9 genotype and inhibitors can increase parent anticoagulant exposure.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels","ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017","ev_phase4_genotype_metabolite_expansion"]},
   {n:"7-Hydroxyacenocoumarol / 8-hydroxyacenocoumarol",e:"CYP2C9/CYP2C18/CYP2C19",a:"inactive",p:25,note:"Additional hydroxylated clearance metabolites in the vitamin K antagonist pathway.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"]}
 ],
 "Alfentanil":[
@@ -5562,45 +5562,45 @@ Object.assign(METABOLITE_ACTORS, {
     id:"ticlopidine-active-thiol", type:ACTOR_TYPE.METABOLITE,
     name:"Ticlopidine active thiol metabolite", parentDrug:"Ticlopidine", formingEnzyme:"CYP2C19/CYP2B6/CYP3A4",
     active:true, halfLife:0.5, potencyRatio:1.0,
-    routes:[{enzyme:"Platelet P2Y12 irreversible binding",fraction:0.8,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"]}],
+    routes:[{enzyme:"Platelet P2Y12 irreversible binding",fraction:0.8,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels","ev_phase4_genotype_metabolite_expansion"]}],
     inh:[],
-    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"],
+    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels","ev_phase4_genotype_metabolite_expansion"],
     note:"Active thiol moiety explains antiplatelet effect and persistent bleeding risk beyond parent plasma half-life."
   },
   "abrocitinib-m1": {
     id:"abrocitinib-m1", type:ACTOR_TYPE.METABOLITE,
     name:"Abrocitinib M1", parentDrug:"Abrocitinib", formingEnzyme:"CYP2C19/CYP2C9",
     active:true, halfLife:4, potencyRatio:1.0,
-    routes:[{enzyme:"Renal/metabolic clearance",fraction:0.7,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}],
+    routes:[{enzyme:"Renal/metabolic clearance",fraction:0.7,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels","ev_phase4_genotype_metabolite_expansion"]}],
     inh:[],
-    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"],
+    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels","ev_phase4_genotype_metabolite_expansion"],
     note:"Active metabolite counted in label-defined combined active exposure."
   },
   "abrocitinib-m2": {
     id:"abrocitinib-m2", type:ACTOR_TYPE.METABOLITE,
     name:"Abrocitinib M2", parentDrug:"Abrocitinib", formingEnzyme:"CYP2C19/CYP2C9",
     active:true, halfLife:4, potencyRatio:1.0,
-    routes:[{enzyme:"Renal/metabolic clearance",fraction:0.7,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}],
+    routes:[{enzyme:"Renal/metabolic clearance",fraction:0.7,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels","ev_phase4_genotype_metabolite_expansion"]}],
     inh:[],
-    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"],
+    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels","ev_phase4_genotype_metabolite_expansion"],
     note:"Active metabolite contributing to combined exposure and CYP2C19/CYP2C9 interaction interpretation."
   },
   "acp-5862": {
     id:"acp-5862", type:ACTOR_TYPE.METABOLITE,
     name:"ACP-5862", parentDrug:"Acalabrutinib", formingEnzyme:"CYP3A4/CYP3A5",
     active:true, halfLife:6.9, potencyRatio:0.5,
-    routes:[{enzyme:"CYP3A4/CYP3A5",fraction:0.75,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}],
+    routes:[{enzyme:"CYP3A4/CYP3A5",fraction:0.75,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels","ev_phase4_genotype_metabolite_expansion"]}],
     inh:[],
-    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"],
+    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels","ev_phase4_genotype_metabolite_expansion"],
     note:"Major active BTK-inhibiting metabolite with higher AUC than parent and lower potency; CYP3A modifiers affect active moiety."
   },
   "lapatinib-quinone-imine": {
     id:"lapatinib-quinone-imine", type:ACTOR_TYPE.METABOLITE,
     name:"Lapatinib reactive quinone-imine context", parentDrug:"Lapatinib", formingEnzyme:"CYP3A4/CYP3A5",
     active:false, halfLife:0.1, potencyRatio:0,
-    routes:[{enzyme:"GST detoxification",fraction:0.8,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]}],
+    routes:[{enzyme:"GST detoxification",fraction:0.8,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels","ev_phase4_genotype_metabolite_expansion"]}],
     inh:[],
-    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"],
+    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels","ev_phase4_genotype_metabolite_expansion"],
     toxicity:{target:"hepatocytes", mechanism:"Reactive quinone-imine bioactivation context linked to hepatic stress"},
     note:"Toxic-metabolite visibility row for hepatic-risk stacking; not a dose-calibrated metabolite exposure rule."
   },
@@ -5608,9 +5608,9 @@ Object.assign(METABOLITE_ACTORS, {
     id:"busulfan-glutathione-conjugate", type:ACTOR_TYPE.METABOLITE,
     name:"Busulfan glutathione conjugate", parentDrug:"Busulfan", formingEnzyme:"GSTA1/GSTM1/GSTT1",
     active:false, halfLife:2.5, potencyRatio:0,
-    routes:[{enzyme:"Oxidative downstream metabolism",fraction:0.7,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_busulfan_gst_meta"]}],
+    routes:[{enzyme:"Oxidative downstream metabolism",fraction:0.7,evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_busulfan_gst_meta","ev_phase4_genotype_metabolite_expansion"]}],
     inh:[],
-    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_busulfan_gst_meta"],
+    evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_busulfan_gst_meta","ev_phase4_genotype_metabolite_expansion"],
     toxicity:{target:"hepatic glutathione reserve", mechanism:"GST-dependent detoxification context for conditioning-regimen exposure/toxicity"},
     note:"Narrow-index clearance actor linking busulfan metabolism to GST genotype context and therapeutic-drug monitoring."
   },

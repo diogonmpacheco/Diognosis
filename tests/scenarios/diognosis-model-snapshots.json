@@ -429,18 +429,19 @@
           "enzyme": "pathway competition"
         }
       ],
-      "findingCount": 8,
+      "findingCount": 9,
       "findingTypes": [
         "active_moiety",
         "combination_burden",
-        "phenoconversion"
+        "phenoconversion",
+        "timing_washout"
       ],
-      "findingCardCount": 1,
-      "evidenceLadderCount": 1,
+      "findingCardCount": 2,
+      "evidenceLadderCount": 2,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 8,
-      "mechanismWhyPathCount": 1,
-      "rawWarningPathCount": 8,
+      "whyPathCount": 9,
+      "mechanismWhyPathCount": 2,
+      "rawWarningPathCount": 9,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
@@ -470,7 +471,8 @@
       ],
       "persistenceTypes": [
         "metabolite",
-        "parent"
+        "parent",
+        "washout_rule"
       ],
       "persistenceActors": [
         "2-Oxo-clopidogrel",
@@ -761,17 +763,17 @@
           "enzyme": "bidirectional_pk"
         }
       ],
-      "findingCount": 16,
+      "findingCount": 17,
       "findingTypes": [
         "active_moiety",
         "phenoconversion",
         "timing_washout"
       ],
-      "findingCardCount": 4,
-      "evidenceLadderCount": 4,
+      "findingCardCount": 5,
+      "evidenceLadderCount": 5,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 16,
-      "mechanismWhyPathCount": 4,
+      "whyPathCount": 17,
+      "mechanismWhyPathCount": 5,
       "rawWarningPathCount": 12,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,

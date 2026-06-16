@@ -72,6 +72,7 @@ const PHENOTYPE_NARRATIVE_THRESHOLDS = {
 // Source products whose clinically relevant persistence belongs to a named
 // active constituent actor rather than the product label itself.
 const WASHOUT_SOURCE_ALIASES = {
+  'grapefruit_juice': ['bergamottin'],
   'grapefruit-juice': ['bergamottin'],
 };
 
