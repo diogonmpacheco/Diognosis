@@ -9259,6 +9259,20 @@ const STUDY_DB = {
     limitations:["Grouped source anchor for live pending-review rows; drug-specific labels, specialty protocols, and therapeutic monitoring remain decisive for clinical management."],
     verified:false, reviewRequired:true, verifyNote:"Grouped high-priority metabolite evidence pending pharmacist/specialist review"
   },
+  "ev_phase2_label_interaction_expansion": {
+    id:"ev_phase2_label_interaction_expansion", public:true, type:EVIDENCE_TIER.FDA_LABEL,
+    title:"Phase 2 label-backed interaction expansion — CYP3A, QT, bleeding, and active-moiety pairs",
+    year:2026, source:"FDA/DailyMed labels + CPIC/guideline context",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=pimozide%20abrocitinib%20acalabrutinib%20alfentanil%20betrixaban%20cangrelor%20lefamulin%20pirtobrutinib",
+    studyDesign:"regulatory_label_group", n:null,
+    phenotypes:["CYP3A4","CYP2C19","CYP2C9","CYP2D6","P-gp","QT","bleeding"],
+    quantifiedEffects:{note:"Grouped label anchor for net-new live DDI pairs promoted after batch metabolite coverage. Rows cover strong inhibitor/inducer exposure shifts, QT stacking, bleeding/antiplatelet stacking, and active-moiety timing interactions."},
+    temporal:{mechanism:"CYP_transporter_exposure_QT_bleeding_and_transition_timing_context", onset:"same_day-days", offset:"days-weeks"},
+    supports:["phase2_live_ddi_expansion","phase2_label_backed_cyp3a_pairs","phase2_qt_bleeding_and_p2y12_timing_pairs"],
+    contradicts:[],
+    limitations:["Grouped source anchor; individual labels, indication, renal/hepatic function, procedure timing, ECG/electrolytes, and monitoring protocols determine management."],
+    verified:false, reviewRequired:true, verifyNote:"Grouped interaction expansion evidence pending pharmacist/specialist review"
+  },
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──
