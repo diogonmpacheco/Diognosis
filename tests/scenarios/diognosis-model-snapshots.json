@@ -313,7 +313,7 @@
           "enzyme": "CYP3A4"
         }
       ],
-      "findingCount": 16,
+      "findingCount": 17,
       "findingTypes": [
         "active_moiety",
         "combination_burden",
@@ -321,11 +321,11 @@
         "receptor_burden",
         "timing_washout"
       ],
-      "findingCardCount": 6,
-      "evidenceLadderCount": 6,
+      "findingCardCount": 7,
+      "evidenceLadderCount": 7,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 16,
-      "mechanismWhyPathCount": 6,
+      "whyPathCount": 17,
+      "mechanismWhyPathCount": 7,
       "rawWarningPathCount": 12,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
@@ -528,17 +528,18 @@
       "interactionCount": 0,
       "severityCounts": {},
       "topInteractions": [],
-      "findingCount": 3,
+      "findingCount": 4,
       "findingTypes": [
         "active_moiety",
-        "phenoconversion"
+        "phenoconversion",
+        "timing_washout"
       ],
-      "findingCardCount": 1,
-      "evidenceLadderCount": 1,
+      "findingCardCount": 2,
+      "evidenceLadderCount": 2,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 3,
-      "mechanismWhyPathCount": 1,
-      "rawWarningPathCount": 3,
+      "whyPathCount": 4,
+      "mechanismWhyPathCount": 2,
+      "rawWarningPathCount": 4,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
@@ -560,7 +561,8 @@
       ],
       "persistenceTypes": [
         "metabolite",
-        "parent"
+        "parent",
+        "washout_rule"
       ],
       "persistenceActors": [
         "APC (7-ethyl-10-[4-N-(5-aminopentanoic acid)-1-piperidino]carbonyloxycamptothecin)",
@@ -602,17 +604,18 @@
       "interactionCount": 0,
       "severityCounts": {},
       "topInteractions": [],
-      "findingCount": 2,
+      "findingCount": 3,
       "findingTypes": [
         "active_moiety",
-        "phenoconversion"
+        "phenoconversion",
+        "timing_washout"
       ],
-      "findingCardCount": 1,
-      "evidenceLadderCount": 1,
+      "findingCardCount": 2,
+      "evidenceLadderCount": 2,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 2,
-      "mechanismWhyPathCount": 1,
-      "rawWarningPathCount": 2,
+      "whyPathCount": 3,
+      "mechanismWhyPathCount": 2,
+      "rawWarningPathCount": 3,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
@@ -632,7 +635,8 @@
       ],
       "persistenceTypes": [
         "metabolite",
-        "parent"
+        "parent",
+        "washout_rule"
       ],
       "persistenceActors": [
         "5-Fluorouracil",
@@ -685,18 +689,19 @@
           "enzyme": "metabolic"
         }
       ],
-      "findingCount": 5,
+      "findingCount": 7,
       "findingTypes": [
         "active_moiety",
         "pairwise_interaction",
-        "phenoconversion"
+        "phenoconversion",
+        "timing_washout"
       ],
-      "findingCardCount": 2,
-      "evidenceLadderCount": 2,
+      "findingCardCount": 4,
+      "evidenceLadderCount": 4,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 5,
-      "mechanismWhyPathCount": 2,
-      "rawWarningPathCount": 5,
+      "whyPathCount": 7,
+      "mechanismWhyPathCount": 4,
+      "rawWarningPathCount": 7,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
@@ -721,7 +726,8 @@
       ],
       "persistenceTypes": [
         "metabolite",
-        "parent"
+        "parent",
+        "washout_rule"
       ],
       "persistenceActors": [
         "6-Mercaptopurine (6-MP)",
@@ -779,17 +785,17 @@
           "enzyme": "bidirectional_pk"
         }
       ],
-      "findingCount": 18,
+      "findingCount": 19,
       "findingTypes": [
         "active_moiety",
         "phenoconversion",
         "timing_washout"
       ],
-      "findingCardCount": 6,
-      "evidenceLadderCount": 6,
+      "findingCardCount": 7,
+      "evidenceLadderCount": 7,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 18,
-      "mechanismWhyPathCount": 6,
+      "whyPathCount": 19,
+      "mechanismWhyPathCount": 7,
       "rawWarningPathCount": 12,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
@@ -1132,17 +1138,18 @@
       "interactionCount": 0,
       "severityCounts": {},
       "topInteractions": [],
-      "findingCount": 5,
+      "findingCount": 6,
       "findingTypes": [
         "active_moiety",
-        "risk_marker"
+        "risk_marker",
+        "timing_washout"
       ],
-      "findingCardCount": 1,
-      "evidenceLadderCount": 1,
+      "findingCardCount": 2,
+      "evidenceLadderCount": 2,
       "allFindingsHaveEvidenceLadders": true,
-      "whyPathCount": 5,
-      "mechanismWhyPathCount": 1,
-      "rawWarningPathCount": 5,
+      "whyPathCount": 6,
+      "mechanismWhyPathCount": 2,
+      "rawWarningPathCount": 6,
       "evidenceLedgerPresent": true,
       "falseReviewedClaims": 0,
       "danglingEvidenceRefs": [],
@@ -1167,7 +1174,8 @@
       ],
       "persistenceTypes": [
         "metabolite",
-        "parent"
+        "parent",
+        "washout_rule"
       ],
       "persistenceActors": [
         "Carboxyprimaquine",

@@ -4967,6 +4967,9 @@ const METABOLITE_ACTOR_ALIASES = {
   "idarucizumab-dabigatran-complex": "idarucizumab-dabigatran-complex",
   "phenytoin": "phenytoin-from-fosphenytoin",
   "hypertonic-sodium-chloride-load": "hypertonic-sodium-chloride-load",
+  "cysteine-mercapturic-acid-conjugate": "acetaminophen-cysteine-mercapturate",
+  "1-aminoindan": "rasagiline-1-aminoindan",
+  "pramipexole-unchanged-renal-cation-secretion": "unchanged-pramipexole",
 
 };
 
