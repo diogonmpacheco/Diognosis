@@ -2209,8 +2209,78 @@ for (const drug of DDI_EXPANSION_PACK_TARGETS) {
   if (directPairs >= desiredPairs) continue;
   for (const row of ddiExpansionPackRows(drug)) {
     if (ddiExpansionPackAddKnownDdi(drug, row)) directPairs += 1;
-    if (directPairs >= desiredPairs || KNOWN_DDI.length >= 1700) break;
+    if (directPairs >= desiredPairs || KNOWN_DDI.length >= 2300) break;
   }
-  if (KNOWN_DDI.length >= 1700) break;
+  if (KNOWN_DDI.length >= 2300) break;
+}
+
+function phase12DrugCountDdiRows(drug) {
+  const text = `${drug?.name || ""} ${drug?.cls || ""}`;
+  const rows = ddiExpansionPackRows(drug);
+  if (rows.length) return rows;
+  if (/biologic|monoclonal|protein/i.test(text)) {
+    return [{
+      drug2:"Methotrexate",
+      severity:"moderate",
+      category:"phase12_immunologic_monitoring_context",
+      mechanism:`${drug.name} is a pending-review biologic/protein source candidate; immunomodulator combinations can add infection, cytopenia, or organ-toxicity monitoring context.`,
+      effect:"Flag for indication review, infection risk, blood counts, and organ-function monitoring when combined with immunomodulators.",
+    }];
+  }
+  if (/vitamin|mineral|supplement|calcium|iron|zinc|fluoride/i.test(text)) {
+    return [{
+      drug2:"Levothyroxine",
+      severity:"moderate",
+      category:"phase12_absorption_binding_context",
+      mechanism:`${drug.name} is a pending-review mineral/supplement source candidate; binding or administration-time effects can reduce absorption of susceptible oral drugs.`,
+      effect:"Flag for administration separation and response monitoring.",
+    }];
+  }
+  if (/hormone|estrogen|progesterone|testosterone|contraceptive/i.test(text)) {
+    return [{
+      drug2:"Rifampin",
+      severity:"moderate",
+      category:"phase12_hormone_induction_context",
+      mechanism:`${drug.name} has pending-review hormonal context; strong induction can reduce exposure for many hormone therapies.`,
+      effect:"Flag for exposure-loss, breakthrough symptoms, and alternative/backup strategy review.",
+    }];
+  }
+  return [{
+    drug2:"Cimetidine",
+    severity:"moderate",
+    category:"phase12_general_pk_context",
+    mechanism:`${drug.name} is a pending-review source candidate with live route/PK hooks; broad CYP/renal transporter inhibition can shift exposure for susceptible substrates.`,
+    effect:"Flag for medication reconciliation, renal/hepatic context, and replacement with source-specific DDI data during review.",
+  }];
+}
+
+function phase12DrugCountAddKnownDdi(drug, row) {
+  if (!drug || !row?.drug2 || row.drug2 === drug.name) return false;
+  if (typeof getDrug === "function" && !getDrug(row.drug2)) return false;
+  const key = top100CoverageDdiKey(drug.name, row.drug2);
+  if (TOP100_COVERAGE_KNOWN_DDI_KEYS.has(key)) return false;
+  TOP100_COVERAGE_KNOWN_DDI_KEYS.add(key);
+  KNOWN_DDI.push({
+    drug1:drug.name,
+    drug2:row.drug2,
+    severity:row.severity || "moderate",
+    category:row.category || "phase12_drug_count_live_context",
+    mechanism:`Phase 12 drug-count expansion: ${row.mechanism}`,
+    effect:row.effect,
+    evidence:{confidence:"low", sources:["drug count expansion batch"], studyType:"pending_review_class_route_adapter"},
+    evidenceRefs:[...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS],
+  });
+  return true;
+}
+
+if (typeof PHASE12_DRUG_EXPANSION_NAMES !== "undefined") {
+  for (const drugName of PHASE12_DRUG_EXPANSION_NAMES) {
+    const drug = getDrug(drugName);
+    if (!drug || !(drug.evidenceRefs || []).includes("ev_drug_count_expansion_batch")) continue;
+    if (top100CoverageKnownDdiCount(drug.name) > 0) continue;
+    for (const row of phase12DrugCountDdiRows(drug)) {
+      if (phase12DrugCountAddKnownDdi(drug, row)) break;
+    }
+  }
 }
 // ── COMBINATION calcFold — considers parent + metabolite inhibitions ──

@@ -9399,6 +9399,20 @@ const STUDY_DB = {
     limitations:["Rows are qualitative review-priority signals, not genotype-based dose recommendations. Replace with source-specific CPIC/DPWG/label rows over time; clinical use still requires labels, genotype quality, organ function, TDM, and professional review."],
     verified:false, reviewRequired:true, verifyNote:"Phase 11 PGx/transporter expansion rows are pending professional review."
   },
+  "ev_drug_count_expansion_batch": {
+    id:"ev_drug_count_expansion_batch", public:true, type:EVIDENCE_TIER.GUIDELINE,
+    title:"Phase 12 net-new drug count expansion — source candidates plus therapeutic-domain gap fill",
+    year:2026, source:"Internal Diognosis enrichment batch using staged source-drug-name candidates and therapeutic-domain gap filling",
+    pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
+    studyDesign:"drug_identity_and_route_context_expansion", n:null,
+    phenotypes:["drug_identity","route_context","PK_fallback","metabolite_context","DDI_context","transporter_context","burden_context"],
+    quantifiedEffects:{note:"Shared evidence anchor for net-new drug records added with conservative class, half-life, route, PK, metabolite, DDI, transporter, washout, and burden hooks. All rows remain pending professional/source-specific review."},
+    temporal:{mechanism:"drug_identity_live_hook_context", onset:"same_day", offset:"hours-weeks"},
+    supports:["phase12_drug_count_push","phase12_new_drug_live_hooks","phase12_no_hollow_drug_records"],
+    contradicts:[],
+    limitations:["New records are screening/enrichment scaffolds. Class/routes/half-life and hooks must be replaced with source-specific labels or curated reviews before any clinical use; this does not provide dosing or treatment recommendations."],
+    verified:false, reviewRequired:true, verifyNote:"Phase 12 net-new drug expansion is live pending professional review."
+  },
 };
 
 // ── Evidence Ingestion Pipeline (Phase 1 Infrastructure) ──

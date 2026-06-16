@@ -323,11 +323,55 @@ for (const drug of DRUG_DB) {
         evidence:{confidence:"low", sources:["PGx/transporter expansion adapter"], foldChange:row.foldChange, studyType:"transporter_route_adapter"},
         evidenceRefs:[...TRANSPORTER_EXPANSION_EVIDENCE_REFS],
       });
-      if (TRANSPORTER_DDI.length >= 650) break;
+      if (TRANSPORTER_DDI.length >= 1000) break;
     }
-    if (TRANSPORTER_DDI.length >= 650) break;
+    if (TRANSPORTER_DDI.length >= 1000) break;
   }
-  if (TRANSPORTER_DDI.length >= 650) break;
+  if (TRANSPORTER_DDI.length >= 1000) break;
+}
+
+function phase12DrugCountTransporterIds(drug) {
+  const ids = transporterExpansionIds(drug);
+  const text = `${drug?.name || ""} ${drug?.cls || ""} ${(drug?.routes || []).map(route => route.enzyme).join("/")}`;
+  if (/renal|cation|metformin|h2 blocker|trimethoprim|source candidate/i.test(text)) ids.push("OCT2", "MATE1");
+  if (/anion|nsaid|antiviral|antibiotic|cephalosporin|penicillin|diuretic/i.test(text)) ids.push("OAT1", "OAT3");
+  if (!ids.length) ids.push("P-gp");
+  return [...new Set(ids)].filter(id => TRANSPORTER_ACTORS[id]);
+}
+
+function phase12DrugCountHasTransporterRow(drug) {
+  return TRANSPORTER_DDI.some(row => row.substrate === drug.name || row.inhibitor === drug.name);
+}
+
+if (typeof PHASE12_DRUG_EXPANSION_NAMES !== "undefined") {
+  for (const drugName of PHASE12_DRUG_EXPANSION_NAMES) {
+    const drug = getDrug(drugName);
+    if (!drug || !(drug.evidenceRefs || []).includes("ev_drug_count_expansion_batch")) continue;
+    if (phase12DrugCountHasTransporterRow(drug)) continue;
+    let added = false;
+    for (const transporter of phase12DrugCountTransporterIds(drug)) {
+      const actor = TRANSPORTER_ACTORS[transporter];
+      if (actor && !actor.substrates.includes(drug.name)) actor.substrates.push(drug.name);
+      for (const row of transporterExpansionPerpetrators(transporter)) {
+        if (row.inhibitor === drug.name) continue;
+        if (row.inhibitor !== "NSAIDs" && typeof getDrug === "function" && !getDrug(row.inhibitor)) continue;
+        if (top100CoverageHasTransporterDdi(drug.name, row.inhibitor, transporter)) continue;
+        TRANSPORTER_DDI.push({
+          substrate:drug.name,
+          inhibitor:row.inhibitor,
+          transporter,
+          effect:row.effect,
+          severity:row.severity,
+          mechanism:`Phase 12 drug-count expansion: ${drug.name} has pending-review ${transporter} transport context so the net-new record has live transporter screening coverage. Pending source-specific professional review.`,
+          evidence:{confidence:"low", sources:["drug count expansion batch"], foldChange:row.foldChange, studyType:"pending_review_transporter_adapter"},
+          evidenceRefs:[...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS],
+        });
+        added = true;
+        break;
+      }
+      if (added) break;
+    }
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════

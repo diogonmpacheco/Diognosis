@@ -1314,6 +1314,40 @@ for (const drugName of TOP250_LIVE_COVERAGE_DRUGS) {
   }
 }
 
+if (typeof PHASE12_DRUG_EXPANSION_NAMES !== "undefined") {
+  for (const drugName of PHASE12_DRUG_EXPANSION_NAMES) {
+    const drug = getDrug(drugName);
+    if (!drug || !(drug.evidenceRefs || []).includes("ev_drug_count_expansion_batch")) continue;
+    const key = top100CoveragePharmKey(drug);
+    if (!top100CoverageHasScoring(PK_PARAMS, drug)) {
+      const pk = top100CoveragePkParams(drug);
+      pk.note = `Phase 12 net-new drug PK approximation for ${drug.name}; source-specific PK curation pending.`;
+      pk.evidenceRefs = [...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS];
+      PK_PARAMS[key] = pk;
+    }
+    if (!top100CoverageHasScoring(WASHOUT_DAYS, drug)) {
+      const days = top100CoverageWashoutDays(drug);
+      WASHOUT_DAYS[key] = {
+        days,
+        mechanism:"phase12_drug_count_timing_context",
+        note:`Phase 12 timing row for ${drug.name}: conservative ${days}-day half-life/class context pending source-specific review.`,
+        evidenceRefs:[...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS],
+      };
+    }
+    if (top100CoverageNeedsBurden(drug) && !top100CoverageHasScoring(PHENOTYPE_SCORES, drug)) {
+      PHENOTYPE_SCORES[key] = top100CoverageBurdenScore(drug);
+    }
+    if (top100CoverageNeedsBurden(drug) && !top100CoverageHasScoring(BEERS_FLAGS, drug) &&
+      /tca|maoi|antipsychotic|phenothiazine|opioid|benzodiazepine|barbiturate|anticonvulsant|antiarrhythmic|nsaid|alpha|sedative|hypnotic|anticholinergic/i.test(`${drug.name} ${drug.cls}`)) {
+      BEERS_FLAGS[key] = {
+        concern:`Phase 12 older-adult burden context for ${drug.name}: class-linked CNS, fall, anticholinergic, renal, bleeding, QT, or orthostasis risk may matter in age >=65.`,
+        avoid:"phase12_65plus_caution_pending_review",
+        evidenceRefs:[...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS],
+      };
+    }
+  }
+}
+
 function getScoringLookupKeys(drugOrName) {
   const drug = typeof drugOrName === "object" && drugOrName !== null
     ? drugOrName
