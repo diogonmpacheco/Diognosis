@@ -8,6 +8,15 @@ const promotions = data.SOURCE_SPECIFIC_PROMOTIONS || {};
 const diagnostics = data.SOURCE_SPECIFIC_PROMOTION_DIAGNOSTICS || {};
 const surfaces = data.SOURCE_SPECIFIC_PROMOTION_SURFACES || ['ddi', 'pk', 'washout', 'metabolite', 'pgx', 'transporter', 'burden'];
 const failures = [];
+const adapterRefPatterns = [
+  /adapter/i,
+  /top100/i,
+  /top250/i,
+  /drug_count_expansion/i,
+  /ddi_expansion_pack/i,
+  /metabolite_expansion_pack/i,
+  /pgx_transporter_expansion/i,
+];
 
 function key(value) {
   return String(value || '')
@@ -51,6 +60,39 @@ function hasPendingMeta(row, id) {
     row?.promotionStatus === 'source_specific_pending_review';
 }
 
+function isAdapterEvidenceRef(ref) {
+  return adapterRefPatterns.some(pattern => pattern.test(String(ref || '')));
+}
+
+function isPromotableStudy(study) {
+  if (!study) return false;
+  return Boolean(
+    study.public === true ||
+    study.pmid ||
+    study.doi ||
+    study.url ||
+    ['fda_label', 'guideline', 'clinical_pk', 'review'].includes(String(study.type || '')) ||
+    /label|guideline|dailymed|fda|cpic|clinical|study|pubmed|doi/i.test(String(study.source || ''))
+  );
+}
+
+function promotableRefs(row) {
+  return (row?.evidenceRefs || []).filter(ref =>
+    data.STUDY_DB?.[ref] &&
+    !isAdapterEvidenceRef(ref) &&
+    isPromotableStudy(data.STUDY_DB[ref])
+  );
+}
+
+function hasBulkMeta(row) {
+  return row?.sourceSpecific === true &&
+    row?.sourceSpecificPromotion === true &&
+    row?.sourceSpecificBulkPromotion === true &&
+    row?.reviewRequired === true &&
+    row?.verified === false &&
+    row?.promotionStatus === 'source_specific_pending_review';
+}
+
 function assertRow(surface, promotion, row, label) {
   if (!row) {
     failures.push(`${surface}:${promotion.id} missing live row ${label}`);
@@ -58,6 +100,20 @@ function assertRow(surface, promotion, row, label) {
   }
   if (!hasRefs(row, promotion.evidenceRefs || [])) failures.push(`${surface}:${promotion.id} live row missing evidence refs`);
   if (!hasPendingMeta(row, promotion.id)) failures.push(`${surface}:${promotion.id} live row missing pending source-specific metadata`);
+}
+
+function assertBulkRows(surface, rows) {
+  let expected = 0;
+  for (const [index, row] of (rows || []).entries()) {
+    const refs = promotableRefs(row);
+    if (!refs.length) continue;
+    expected++;
+    if (!hasBulkMeta(row)) failures.push(`${surface}: source-linked row ${index} missing bulk source-specific metadata`);
+  }
+  if ((diagnostics.bulkApplied?.[surface] || 0) !== expected) {
+    failures.push(`${surface}: expected ${expected} bulk source-specific rows but diagnostics counted ${diagnostics.bulkApplied?.[surface] || 0}`);
+  }
+  return expected;
 }
 
 for (const surface of surfaces) {
@@ -121,11 +177,34 @@ for (const [surface, minimum] of Object.entries(minimums)) {
   if ((counts[surface] || 0) < minimum) failures.push(`${surface}: expected at least ${minimum} promotions`);
 }
 
+const bulkExpected = {
+  ddi:assertBulkRows('ddi', data.KNOWN_DDI || []),
+  pk:assertBulkRows('pk', Object.values(data.PK_PARAMS || {})),
+  washout:assertBulkRows('washout', Object.values(data.WASHOUT_DAYS || {})),
+  metabolite:assertBulkRows('metabolite', Object.values(data.METAB || {}).flat()),
+  pgx:assertBulkRows('pgx', [
+    ...(data.GENOTYPE_METABOLITE_EFFECTS || []),
+    ...Object.values(data.PHARMGKB_EVIDENCE || {}).flatMap(gene => gene?.pairs || []),
+  ]),
+  transporter:assertBulkRows('transporter', data.TRANSPORTER_DDI || []),
+  burden:assertBulkRows('burden', [
+    ...Object.values(data.PHENOTYPE_SCORES || {}),
+    ...Object.values(data.BEERS_FLAGS || {}),
+  ]),
+};
+const totalBulkExpected = Object.values(bulkExpected).reduce((sum, count) => sum + count, 0);
+if ((diagnostics.totalSourceSpecificPromoted || 0) !== totalBulkExpected) {
+  failures.push(`totalSourceSpecificPromoted: expected ${totalBulkExpected}, got ${diagnostics.totalSourceSpecificPromoted || 0}`);
+}
+
 const report = {
   ok:failures.length === 0,
   version:diagnostics.version,
   counts,
   totalApplied:diagnostics.totalApplied || 0,
+  bulkExpected,
+  bulkApplied:diagnostics.bulkApplied || {},
+  totalSourceSpecificPromoted:diagnostics.totalSourceSpecificPromoted || 0,
   missingEvidenceRefs:diagnostics.missingEvidenceRefs || [],
   missingTargets:diagnostics.missingTargets || [],
   failures,

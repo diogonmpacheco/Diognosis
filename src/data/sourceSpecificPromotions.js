@@ -15,6 +15,15 @@ const SOURCE_SPECIFIC_PROMOTION_SURFACES = Object.freeze([
   "transporter",
   "burden",
 ]);
+const SOURCE_SPECIFIC_ADAPTER_REF_PATTERNS = Object.freeze([
+  /adapter/i,
+  /top100/i,
+  /top250/i,
+  /drug_count_expansion/i,
+  /ddi_expansion_pack/i,
+  /metabolite_expansion_pack/i,
+  /pgx_transporter_expansion/i,
+]);
 
 const SOURCE_SPECIFIC_PROMOTIONS = Object.freeze({
   ddi: Object.freeze([
@@ -360,10 +369,94 @@ function sourceSpecificApplyBurdenPromotion(promotion, diagnostics) {
   return true;
 }
 
+function sourceSpecificIsAdapterEvidenceRef(ref) {
+  return SOURCE_SPECIFIC_ADAPTER_REF_PATTERNS.some(pattern => pattern.test(String(ref || "")));
+}
+
+function sourceSpecificIsPromotableStudy(study) {
+  if (!study) return false;
+  return Boolean(
+    study.public === true ||
+    study.pmid ||
+    study.doi ||
+    study.url ||
+    study.type === EVIDENCE_TIER.FDA_LABEL ||
+    study.type === EVIDENCE_TIER.GUIDELINE ||
+    study.type === EVIDENCE_TIER.CLINICAL_PK ||
+    study.type === EVIDENCE_TIER.REVIEW ||
+    /label|guideline|dailymed|fda|cpic|clinical|study|pubmed|doi/i.test(String(study.source || ""))
+  );
+}
+
+function sourceSpecificPromotableRefs(row) {
+  return (row?.evidenceRefs || []).filter(ref =>
+    STUDY_DB?.[ref] &&
+    !sourceSpecificIsAdapterEvidenceRef(ref) &&
+    sourceSpecificIsPromotableStudy(STUDY_DB[ref])
+  );
+}
+
+function sourceSpecificApplyBulkMetadata(row, surface, refs) {
+  if (!row || !refs.length) return false;
+  row.sourceSpecific = true;
+  row.sourceSpecificPromotion = true;
+  row.sourceSpecificBulkPromotion = true;
+  row.sourceSpecificPromotionId = row.sourceSpecificPromotionId || `bulk_${surface}`;
+  row.sourceSpecificPromotionSurface = row.sourceSpecificPromotionSurface || surface;
+  row.sourceSpecificEvidenceRefs = sourceSpecificUnion(row.sourceSpecificEvidenceRefs || [], refs);
+  row.promotionVersion = row.promotionVersion || SOURCE_SPECIFIC_PROMOTION_VERSION;
+  row.promotionStatus = row.promotionStatus || SOURCE_SPECIFIC_PROMOTION_STATUS.PENDING_REVIEW;
+  row.sourceType = row.sourceType || "source_specific";
+  row.sourceKind = row.sourceKind || "public_evidence_row";
+  row.supersedesAdapter = row.supersedesAdapter !== false;
+  if (row.promotionStatus !== SOURCE_SPECIFIC_PROMOTION_STATUS.REVIEWED) {
+    row.reviewRequired = true;
+    row.verified = false;
+  }
+  return true;
+}
+
+function sourceSpecificBulkPromoteRows(rows, surface, diagnostics) {
+  let count = 0;
+  for (const row of rows || []) {
+    const refs = sourceSpecificPromotableRefs(row);
+    if (!refs.length) continue;
+    if (sourceSpecificApplyBulkMetadata(row, surface, refs)) count++;
+  }
+  diagnostics.bulkApplied[surface] = (diagnostics.bulkApplied[surface] || 0) + count;
+  return count;
+}
+
+function sourceSpecificBulkPromoteDrugTable(table, surface, diagnostics) {
+  return sourceSpecificBulkPromoteRows(Object.values(table || {}), surface, diagnostics);
+}
+
+function sourceSpecificBulkPromoteMetabolites(diagnostics) {
+  return sourceSpecificBulkPromoteRows(Object.values(METAB || {}).flat(), "metabolite", diagnostics);
+}
+
+function sourceSpecificBulkPromotePharmgkbPairs(diagnostics) {
+  const rows = Object.values(PHARMGKB_EVIDENCE || {}).flatMap(gene => gene?.pairs || []);
+  return sourceSpecificBulkPromoteRows(rows, "pgx", diagnostics);
+}
+
+function sourceSpecificBulkPromoteAll(diagnostics) {
+  sourceSpecificBulkPromoteRows(KNOWN_DDI || [], "ddi", diagnostics);
+  sourceSpecificBulkPromoteDrugTable(PK_PARAMS, "pk", diagnostics);
+  sourceSpecificBulkPromoteDrugTable(WASHOUT_DAYS, "washout", diagnostics);
+  sourceSpecificBulkPromoteMetabolites(diagnostics);
+  sourceSpecificBulkPromoteRows(GENOTYPE_METABOLITE_EFFECTS || [], "pgx", diagnostics);
+  sourceSpecificBulkPromotePharmgkbPairs(diagnostics);
+  sourceSpecificBulkPromoteRows(TRANSPORTER_DDI || [], "transporter", diagnostics);
+  sourceSpecificBulkPromoteDrugTable(PHENOTYPE_SCORES, "burden", diagnostics);
+  sourceSpecificBulkPromoteDrugTable(BEERS_FLAGS, "burden", diagnostics);
+}
+
 function applySourceSpecificPromotions() {
   const diagnostics = {
     version:SOURCE_SPECIFIC_PROMOTION_VERSION,
     applied:Object.fromEntries(SOURCE_SPECIFIC_PROMOTION_SURFACES.map(surface => [surface, []])),
+    bulkApplied:Object.fromEntries(SOURCE_SPECIFIC_PROMOTION_SURFACES.map(surface => [surface, 0])),
     missingEvidenceRefs:[],
     missingTargets:[],
   };
@@ -382,6 +475,8 @@ function applySourceSpecificPromotions() {
   for (const promotion of SOURCE_SPECIFIC_PROMOTIONS.transporter) sourceSpecificApplyTransporterPromotion(promotion, diagnostics);
   for (const promotion of SOURCE_SPECIFIC_PROMOTIONS.burden) sourceSpecificApplyBurdenPromotion(promotion, diagnostics);
   diagnostics.totalApplied = Object.values(diagnostics.applied).reduce((sum, rows) => sum + rows.length, 0);
+  sourceSpecificBulkPromoteAll(diagnostics);
+  diagnostics.totalSourceSpecificPromoted = Object.values(diagnostics.bulkApplied).reduce((sum, count) => sum + count, 0);
   return diagnostics;
 }
 

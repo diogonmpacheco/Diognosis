@@ -91,7 +91,7 @@ JSON.stringify((() => {
     receptorScores: Object.keys(RECEPTOR_SCORES).length,
     beersFlags: Object.keys(BEERS_FLAGS).length,
     washoutRules: Object.keys(WASHOUT_DAYS).length,
-    sourceSpecificPromotions: typeof SOURCE_SPECIFIC_PROMOTION_DIAGNOSTICS === 'undefined' ? 0 : SOURCE_SPECIFIC_PROMOTION_DIAGNOSTICS.totalApplied,
+    sourceSpecificPromotions: typeof SOURCE_SPECIFIC_PROMOTION_DIAGNOSTICS === 'undefined' ? 0 : SOURCE_SPECIFIC_PROMOTION_DIAGNOSTICS.totalSourceSpecificPromoted,
   };
 })())`;
 
