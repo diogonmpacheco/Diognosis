@@ -1597,18 +1597,30 @@ const browseCategoryAudit = window.eval(`(() => {
   return {
     categories: Object.keys(counts).length,
     singletonCategories: Object.values(counts).filter(n => n === 1).length,
+    sourcePending: counts['Source Candidates Pending Review'] || 0,
+    legacyOther: counts['Other Specialized Agents'] || 0,
     lsd: byName.LSD,
     albuterol: byName.Albuterol,
     aspirinLowDose: byName['Aspirin (Low-Dose)'],
     alcohol: byName['Alcohol (Ethanol)'],
+    timolol: byName['Timolol Ophthalmic'] || byName.Timolol,
+    warfarin: byName.Warfarin,
+    mirabegron: byName.Mirabegron,
+    acalabrutinib: byName.Acalabrutinib,
   };
 })()`);
-assert(browseCategoryAudit.categories <= 12, `Browse UI should stay consolidated, got ${browseCategoryAudit.categories} categories`);
+assert(browseCategoryAudit.categories <= 18, `Browse UI should stay consolidated, got ${browseCategoryAudit.categories} categories`);
 assert(browseCategoryAudit.singletonCategories <= 1, `Browse UI should avoid one-item category sprawl, got ${browseCategoryAudit.singletonCategories}`);
+assert(browseCategoryAudit.legacyOther === 0, 'Browse UI should not route substances into legacy Other Specialized Agents');
+assert(browseCategoryAudit.sourcePending <= 8, `Browse UI should leave only truly ambiguous source candidates pending, got ${browseCategoryAudit.sourcePending}`);
 assert(browseCategoryAudit.lsd === 'Recreational & Social', 'LSD should browse under Recreational & Social, not Antipsychotics');
 assert(browseCategoryAudit.albuterol === 'Respiratory, Allergy & Cough', 'Albuterol should browse under Respiratory, Allergy & Cough, not Beta-Blockers');
 assert(browseCategoryAudit.aspirinLowDose === 'Cardiovascular & Blood', 'Low-dose aspirin should browse under Cardiovascular & Blood');
 assert(browseCategoryAudit.alcohol === 'Recreational & Social', 'Alcohol should browse under Recreational & Social');
+assert(browseCategoryAudit.timolol === 'Dermatology, Eye & Local Care', 'Ophthalmic timolol should browse under Dermatology, Eye & Local Care');
+assert(browseCategoryAudit.warfarin === 'Cardiovascular & Blood', 'Warfarin should browse under Cardiovascular & Blood');
+assert(browseCategoryAudit.mirabegron === 'Renal, Electrolytes & Urologic', 'Mirabegron should browse under Renal, Electrolytes & Urologic');
+assert(browseCategoryAudit.acalabrutinib === 'Oncology, Immunology & Transplant', 'Acalabrutinib should browse under Oncology, Immunology & Transplant');
 
 assert(
   /@media\(max-width:420px\)\{\s*\.active-moiety-directions\{grid-template-columns:1fr\}/.test(html),

@@ -818,59 +818,140 @@ function drugNameHasAny(drug, terms) {
   return terms.some(term => name.includes(term));
 }
 
+function getBrowseCategoryText(drug) {
+  return [
+    drug?.name,
+    drug?.id,
+    drug?.cls,
+    drug?.timing,
+    drug?.note,
+    ...(drug?.brandNames || []),
+    ...Object.keys(drug?.props || {}),
+  ].filter(Boolean).join(" ").toLowerCase();
+}
+
+function normalizeBrowseCategoryText(text) {
+  return ` ${String(text || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").replace(/\s+/g, " ").trim()} `;
+}
+
+function browseTextHasAny(text, terms) {
+  const haystack = normalizeBrowseCategoryText(text);
+  return terms.some(term => {
+    const needle = normalizeBrowseCategoryText(term).trim();
+    return needle && haystack.includes(` ${needle} `);
+  });
+}
+
+function browseRuleMatches(text, rule) {
+  if (browseTextHasAny(text, rule.terms || [])) return true;
+  const raw = String(text || "").toLowerCase();
+  return (rule.contains || []).some(term => raw.includes(String(term || "").toLowerCase()));
+}
+
+const BROWSE_CATEGORY_RULES = [
+  {
+    category:"Recreational & Social",
+    terms:["recreational", "psychedelic", "hallucinogen", "empathogen", "dissociative", "cannabinoid", "alcohol", "cannabis", "mdma", "ghb", "cocaine", "heroin", "poppers", "kratom", "ayahuasca", "ketamine", "psilocybin", "lsd", "dmt", "2c-b", "2c-i", "mephedrone", "ibogaine"],
+    contains:["cannabinoid"],
+  },
+  {
+    category:"Dermatology, Eye & Local Care",
+    terms:["ophthalmic", "glaucoma", "dry eye", "intravitreal", "ocular", "eye", "otic", "topical", "dermatology", "dermatologic", "acne", "psoriasis", "eczema", "rosacea", "keratolytic", "retinoid", "sunscreen", "wound", "local anesthetic", "prilocaine", "benzoyl peroxide", "adapalene", "tazarotene", "crisaborole", "mupirocin", "bacitracin"],
+    contains:["fluocinolone", "fluocinonide", "fluorometholone", "difluprednate", "flurandrenolide", "loteprednol", "clobetasol", "halobetasol", "desonide", "desoximetasone", "alclometasone", "amcinonide", "betamethasone", "triamcinolone", "hydroquinone", "homatropine", "lodoxamide", "apraclonidine", "pemirolast", "bimatoprost", "travoprost", "latanoprost", "olopatadine", "tropicamide", "pilocarpine", "becaplermin", "eflornithine", "ingenol", "methoxsalen", "amlexanox"],
+  },
+  {
+    category:"Renal, Electrolytes & Urologic",
+    terms:["renal", "kidney", "urologic", "urology", "overactive bladder", "bph", "phosphate binder", "potassium binder", "electrolyte", "sodium solution", "sodium bicarbonate", "calcium salt", "calcium carbonate", "hypertonic", "isotonic", "crystalloid", "resuscitation fluid", "plasma expander", "colloid", "dialysis", "diuretic", "loop diuretic", "thiazide", "uricosuric", "urate", "gout", "xanthine oxidase", "xo inhibitor", "probenecid", "carbonic anhydrase", "mra", "mineralocorticoid", "antimuscarinic"],
+    contains:["gliflozin", "benzbromarone", "lesinurad", "ethacrynic", "acetazolamide", "methazolamide", "amiloride", "bumetanide", "torsemide", "deferasirox", "alfuzosin", "silodosin", "mirabegron", "vibegron", "darifenacin", "fesoterodine", "flavoxate", "oxybutynin", "tolterodine", "trospium", "bethanechol", "cevimeline", "uric acid"],
+  },
+  {
+    category:"Mental Health & Neurology",
+    terms:["ssri", "snri", "tca", "maoi", "rima", "antidepressant", "atypical ad", "nassa", "anxiolytic", "antipsychotic", "atypical ap", "typical ap", "mood stabilizer", "anticonvulsant", "antiepileptic", "antiseizure", "barbiturate", "triptan", "ditan", "cgrp", "migraine", "dopamine", "dopa", "parkinson", "parkinsonism", "comt inhibitor", "dementia", "acetylcholinesterase", "multiple sclerosis", "s1p receptor", "potassium channel blocker", "orexin", "vmat2", "wakefulness", "wake-promoting", "wake-promoting agent", "hypnotic", "zolpidem", "z-drug", "melatonin", "adhd", "stimulant", "methylxanthine", "nri", "amphetamine", "modafinil", "histamine h3 inverse agonist", "nicotine dependence"],
+    contains:["xanthine", "aminophylline", "phenobarbital", "phenytoin", "ethosuximide", "deutetrabenazine", "bromocriptine", "carbidopa", "levodopa", "clozapine", "quetiapine", "dextromethorphan", "doxylamine", "esketamine", "flupenthixol", "mianserin", "blonanserin", "levomepromazine", "mesoridazine", "sertindole", "sibutramine", "ulotaront", "viloxazine", "xanomeline", "pridopidine", "tiagabine", "perampanel", "mephenytoin", "benztropine", "dalfampridine", "istradefylline", "etrasimod", "acamprosate", "bupropion hydrochloride", "flibanserin", "pitolisant", "suvorexant", "lemborexant", "daridorexant", "lofexidine", "clonidine"],
+  },
+  {
+    category:"Cardiovascular & Blood",
+    terms:["statin", "fibrate", "lipid-lowering", "pcsk9", "cholesterol", "omega-3", "beta-blocker", "ace inhibitor", "arb", "ccb", "calcium channel blocker", "antihypertensive", "blood pressure", "alpha-blocker", "antianginal", "antiarrhythmic", "cardiac glycoside", "heart rate", "if current", "myosin inhibitor", "inotrope", "vasopressor", "pressor", "antiplatelet", "anticoag", "anticoagulant", "doac", "direct thrombin", "factor xa", "heparin", "low molecular weight heparin", "thrombolytic", "tissue plasminogen", "antifibrinolytic", "coagulation factor", "hemophilia", "pde5 inhibitor", "nitrate", "vasodilator", "prostacyclin", "endothelin", "sgc stimulator", "thrombopoietin", "erythroid maturation", "itp"],
+    contains:["sartan", "pril", "olol", "dipine", "dihydropyridine", "azosin", "afil", "aliskiren", "antihypertensive", "bepridil", "vernakalant", "aficamten", "mavacamten", "atrasentan", "anagrelide", "fostamatinib", "luspatercept", "pentoxifylline", "fluindione", "warfarin"],
+  },
+  {
+    category:"Pain, Sedation & Anesthesia",
+    terms:["opioid", "analgesic", "nsaid", "muscle relaxant", "anesthetic", "anesthetics", "sedative", "hypnotic", "neuromuscular blocker", "nmb", "relaxant binding", "malignant hyperthermia", "benzodiazepine", "volatile anesthetic", "volatile anesthetics", "icu sedative", "alpha-2 agonist", "dexmedetomidine", "lidocaine", "ketorolac", "acetaminophen", "botulinum toxin"],
+    contains:["profen", "fenac", "coxib", "fentanil", "morph", "codeine", "tramadol", "meperidine", "ketobemidone", "propoxyphene", "dipyrone", "nitazene", "oliceridine", "piritramide", "tilidine", "opium", "botulinum", "tolperisone", "carisoprodol", "chlorzoxazone"],
+  },
+  {
+    category:"Infectious Disease",
+    terms:["antibiotic", "antimicrobial", "macrolide", "fluoroquinolone", "penicillin", "cephalosporin", "carbapenem", "beta-lactam", "rifamycin", "sulfonamide", "nitrofuran", "nitroimidazole", "lincosamide", "glycopeptide", "tetracycline", "antistaphylococcal", "antitubercular", "antimycobacterial", "antiviral", "antifungal", "azole", "echinocandin", "antimalarial", "aminoquinoline", "antiretroviral", "nrti", "protease inhibitor", "integrase inhibitor", "ccr5", "hcv", "ns5b", "aminoglycoside", "sulfone", "anthelmintic", "antiparasitic", "antiprotozoal", "orthopoxvirus", "vaccine"],
+    contains:["cillin", "cef", "ceft", "penem", "floxacin", "cycline", "thromycin", "conazole", "fungin", "vir", "quine", "artem", "artesunate", "avibactam", "clavulanate", "clofazimine", "mafenide", "clotrimazole", "miconazole", "ciclopirox", "chlorhexidine", "isoniazid", "trimethoprim", "polymyxin", "lumefantrine", "rimantadine", "stavudine"],
+  },
+  {
+    category:"Oncology, Immunology & Transplant",
+    terms:["oncology", "antineoplastic", "chemotherapy", "alkylating", "antimetabolite", "taxane", "taxanes", "platinum", "topoisomerase", "proteasome", "parp", "pi3k", "bcl-2", "braf", "mek inhibitor", "egfr", "bcr-abl", "vegfr", "fgfr", "alk tyrosine", "kinase inhibitor", "btk inhibitor", "cdk4/6", "hdac", "ezh2", "kit/pdgfra", "cyp17", "antibody-drug conjugate", "bispecific", "checkpoint", "pd-1", "pd-l1", "ctla-4", "immunosuppressant", "transplant", "dmard", "jak", "jak1", "tyk2", "mtor", "calcineurin", "tnf", "interleukin", "il-1 receptor", "il-1 trap", "monoclonal antibody", "biologic", "immune globulin", "blys", "rankl", "sclerostin", "complement", "p-selectin", "type i interferon", "t-cell", "pyrimidine synthesis", "dhodh", "cd123-directed cytotoxin"],
+    contains:["tinib", "ciclib", "platin", "rubicin", "tecan", "mustine", "parib", "rafenib", "taxel", "trexed", "trastuzumab", "bevacizumab", "nivolumab", "pembrolizumab", "ipilimumab", "atezolizumab", "durvalumab", "avelumab", "rituximab", "cetuximab", "ifosfamide", "dactinomycin", "fludarabine", "cytarabine", "gemcitabine", "capecitabine", "fluoropyrimidine", "thioguan", "thiopurine", "mercaptopurine", "asparaginase", "l-asparagine", "chop", "fec100", "vinblastine", "vindesine", "teniposide", "trabectedin", "tipifarnib", "vandetanib", "mitotane", "bisantrene", "belzutifan", "lonafarnib", "anastrozole", "letrozole", "exemestane", "fulvestrant", "bicalutamide", "goserelin", "leuprolide", "mycophenolate", "iguratimod", "anakinra", "rilonacept", "tagraxofusp", "glucarpidase", "dexrazoxane", "amifostine"],
+  },
+  {
+    category:"GI, Endocrine & Metabolic",
+    terms:["ppi", "proton pump", "h2 blocker", "gi", "ibd", "5-asa", "alpha-glucosidase", "antidiarrheal", "prokinetic", "antiemetic", "5-ht3", "laxative", "binding resin", "bile acid sequestrant", "pancreatic enzyme", "antacid", "alkalinizing", "biguanide", "sglt2", "sglt2i", "dpp-4", "dpp-4i", "glp-1", "sulfonylurea", "meglitinide", "tzd", "thiazolidinedione", "insulin", "amylin", "diabetes", "antidiabetic", "thyroid", "antithyroid", "bisphosphonate", "calcimimetic", "parathyroid", "vitamin d analog", "hif-ph", "anemia", "erythropoiesis", "iron", "metabolic", "somatostatin", "tyrosinemia", "tetrahydrobiopterin", "phenylalanine", "glucosylceramide", "growth hormone", "igf-1", "glucocorticoid", "glucocorticoids", "corticosteroid", "corticosteroids"],
+    contains:["gliptin", "glutide", "glinide", "glyburide", "gliclazide", "gliquidone", "acarbose", "miglitol", "orlistat", "vonoprazan", "resmetirom", "seladelpar", "troglitazone", "sepiapterin", "prazole", "tidine", "salazine", "mesalazine", "balsalazide", "diphenoxylate", "atropine", "colestipol", "methylcellulose", "dicyclomine", "hyoscyamine", "methimazole", "risedronate", "ibandronate", "alendronate", "teriparatide", "abaloparatide", "calcipotriene", "lanreotide", "octreotide", "aprepitant", "fosaprepitant", "casopitant", "dolasetron", "ondansetron", "tropisetron", "pyridoxine"],
+  },
+  {
+    category:"Respiratory, Allergy & Cough",
+    terms:["antihistamine", "beta-2 agonist", "bronchodilator", "laba", "lama", "decongestant", "antitussive", "expectorant", "leukotriene", "5-lipoxygenase", "pde4", "muscarinic", "cftr", "respiratory", "asthma", "copd", "allergy", "cough", "nasal", "inhaled", "fluticasone", "budesonide", "beclomethasone", "albuterol"],
+    contains:["aclidinium", "formoterol", "salmeterol", "vilanterol", "umeclidinium", "glycopyrronium", "glycopyrrolate", "levalbuterol", "terbutaline", "epinephrine auto-injector", "oxymetazoline", "azelastine", "alcaftadine", "bepotastine", "chlorpheniramine", "clemastine", "desloratadine", "levocetirizine", "epinastine", "nedocromil", "cromolyn", "cyproheptadine", "benzonatate", "guaifenesin", "noscapine", "ivacaftor", "elexacaftor", "tezacaftor", "pirfenidone"],
+  },
+  {
+    category:"Hormones & Reproductive",
+    terms:["estrogen", "estradiol", "progestin", "progesterone", "contraceptive", "serm", "progesterone receptor", "5-ari", "androgen", "testosterone", "antiandrogen", "gnrh", "uterotonic", "fertility", "reproductive", "pregnancy", "clomiphene", "ulipristal", "levonorgestrel", "norethindrone", "drospirenone"],
+    contains:["estrone", "estropipate", "hydroxyprogesterone", "hydroxytestosterone", "androstenedione", "dronabinol", "desoxycortone", "cortisone", "fludrocortisone", "dutasteride", "finasteride", "dinoprostone", "elagolix", "ospemifene", "raloxifene", "toremifene"],
+  },
+  {
+    category:"Metabolites & Active Moieties",
+    terms:["metabolite", "active metabolite", "carboxylic acid", "glucuronide", "sulfate", "sulfoxide", "hydroxy", "desmethyl", "desethyl", "norfluoxetine", "noroxycodone", "noroxymorphone", "n-des", "o-des", "r-eddp", "s-eddp", "sn-38", "simvastatin acid", "lovastatin acid", "atorvastatin lactone", "thiol metabolite", "quinone", "solanidine", "cotinine", "ritalinic acid"],
+    contains:["hydroxy", "dehydro", "desmethyl", "desethyl", "nor", "glucuronide", "sulfate", "sulfoxide", "carboxy", "n-oxide", "eddp", "ar-c", "dt-678", "sn-38", "cotinine", "bufuralol", "debrisoquine", "spartein", "coproporphyrin", "bilirubin", "gimeracil", "oteracil", "endoxifen", "pentoxifylline m5", "rhodamine", "toluidine blue", "uracil"],
+  },
+  {
+    category:"Rare Disease & Advanced Therapies",
+    terms:["enzyme replacement", "gene therapy", "aav", "oligonucleotide", "antisense", "exon-skipping", "sma", "sod1", "cftr modulator", "rare disease", "lysosomal", "gaucher", "hemoglobin s", "sickle", "fgf23", "smn2", "phenylalanine ammonia lyase"],
+  },
+  {
+    category:"Diagnostics, Antidotes & Procedures",
+    terms:["diagnostic", "imaging agent", "contrast", "radiopharmaceutical", "antidote", "reversal agent", "chelator", "detox", "methemoglobinemia", "dye", "surgery", "procedure", "current context", "clinical context"],
+    contains:["fomepizole", "calcein", "dimercaprol"],
+  },
+  {
+    category:"Supplements, Foods & Environment",
+    terms:["supplement", "vitamin", "mineral", "herbal", "food", "environment", "environmental", "toxicant", "solvent", "industrial", "grapefruit", "pomegranate", "black pepper", "vitamin k", "charbroiled", "smoked foods", "folic acid", "leucovorin", "calcium", "iron", "zinc", "fluoride"],
+    contains:["folate", "methylfolate", "glucose", "arachidonic", "berberine", "bergamottin", "coptisine", "forskolin", "pyridoxal", "silibinin", "ammonium lactate"],
+  },
+  {
+    category:"Source Candidates Pending Review",
+    terms:["source candidate drug/substance", "pending identity review", "review candidate"],
+  },
+];
+
+const BROWSE_CATEGORY_ORDER = [
+  "Mental Health & Neurology",
+  "Cardiovascular & Blood",
+  "Pain, Sedation & Anesthesia",
+  "Infectious Disease",
+  "Oncology, Immunology & Transplant",
+  "GI, Endocrine & Metabolic",
+  "Respiratory, Allergy & Cough",
+  "Hormones & Reproductive",
+  "Dermatology, Eye & Local Care",
+  "Renal, Electrolytes & Urologic",
+  "Metabolites & Active Moieties",
+  "Rare Disease & Advanced Therapies",
+  "Diagnostics, Antidotes & Procedures",
+  "Supplements, Foods & Environment",
+  "Recreational & Social",
+  "Source Candidates Pending Review",
+];
+
 function getBrowseCategory(drug) {
-  const cls = String(drug?.cls || "");
-
-  if (
-    textHasAny(cls, ["recreational", "psychedelic", "hallucinogen", "empathogen", "dissociative", "cannabinoid"]) ||
-    drugNameHasAny(drug, ["alcohol", "cannabis", "mdma", "ghb", "cocaine", "heroin", "poppers", "kratom", "ayahuasca", "ketamine", "psilocybin", "lsd", "dmt", "2c-b", "2c-i"])
-  ) return "Recreational & Social";
-
-  if (
-    textHasAny(cls, ["ssri", "snri", "tca", "maoi", "rima", "antidepressant", "atypical ad", "nassa", "anxiolytic"]) ||
-    textHasAny(cls, ["antipsychotic", "atypical ap", "typical ap", "mood stabilizer", "anticonvulsant", "antiepileptic", "barbiturate", "triptan", "dopamine", "dopa", "comt inhibitor", "dementia", "acetylcholinesterase"])
-  ) return "Mental Health & Neurology";
-
-  if (
-    textHasAny(cls, ["statin", "fibrate", "beta-blocker", "ace inhibitor", "arb", "ccb", "diuretic", "thiazide", "antihypertensive", "alpha-blocker", "antiarrhythmic", "cardiac glycoside"]) ||
-    textHasAny(cls, ["antiplatelet", "anticoag", "doac", "pde5 inhibitor", "nitrate", "vasodilator", "thrombopoietin"])
-  ) return "Cardiovascular & Blood";
-
-  if (
-    textHasAny(cls, ["opioid", "analgesic", "nsaid", "muscle relaxant", "anesthetic", "sedative-hypnotic", "neuromuscular blocker", "nmb", "relaxant binding", "malignant hyperthermia"]) ||
-    textHasAny(cls, ["benzodiazepine", "volatile anesthetic"])
-  ) return "Pain, Sedation & Anesthesia";
-
-  if (
-    textHasAny(cls, ["antibiotic", "macrolide", "fluoroquinolone", "penicillin", "rifamycin", "sulfonamide", "nitrofuran", "nitroimidazole", "lincosamide", "glycopeptide", "tetracycline", "antistaphylococcal", "antitubercular", "antiviral"]) ||
-    textHasAny(cls, ["azole", "antifungal", "antimalarial", "aminoquinoline", "antiretroviral", "nrti", "protease inhibitor", "integrase inhibitor", "ccr5", "hcv", "antimicrobial", "aminoglycoside", "sulfone"])
-  ) return "Infectious Disease";
-
-  if (
-    textHasAny(cls, ["immunosuppressant", "antimetabolite", "dmard", "jak", "kinase inhibitor", "mtor", "chemotherapy", "egfr", "bcr-abl", "vegfr", "pyrimidine synthesis", "dhodh"])
-  ) return "Oncology, Immunology & Transplant";
-
-  if (
-    textHasAny(cls, ["ppi", "h2 blocker", "gi", "antidiarrheal", "prokinetic", "antiemetic", "5-ht3", "laxative", "binding resin", "bile acid sequestrant", "pancreatic enzyme", "antacid", "alkalinizing", "biguanide", "sglt2", "dpp-4", "glp-1", "sulfonylurea", "tzd", "insulin", "contraceptive", "estrogen", "progestin", "thyroid", "antithyroid", "urate", "uricosuric", "gout", "xanthine oxidase", "xo inhibitor", "bisphosphonate", "calcimimetic"])
-  ) return "GI, Endocrine & Metabolic";
-
-  if (
-    textHasAny(cls, ["antihistamine", "beta-2 agonist", "decongestant", "antitussive", "expectorant", "leukotriene", "5-lipoxygenase", "pde4", "muscarinic", "cftr"]) ||
-    drugNameHasAny(drug, ["albuterol"])
-  ) return "Respiratory, Allergy & Cough";
-
-  if (
-    textHasAny(cls, ["estrogen", "progestin", "contraceptive", "serm", "progesterone receptor", "5-ari", "corticosteroid"])
-  ) return "Hormones & Reproductive";
-
-  if (
-    textHasAny(cls, ["supplement", "vitamin", "herbal", "food", "imaging agent"]) ||
-    drugNameHasAny(drug, ["grapefruit", "pomegranate", "black pepper", "vitamin k", "charbroiled", "smoked foods", "contrast dye"])
-  ) return "Supplements, Foods & Environment";
-
-  if (textHasAny(cls, ["stimulant", "adhd", "methylxanthine", "nri"])) return "Stimulants & ADHD";
-
-  return "Other Specialized Agents";
+  const text = getBrowseCategoryText(drug);
+  const match = BROWSE_CATEGORY_RULES.find(rule => browseRuleMatches(text, rule));
+  return match ? match.category : "Source Candidates Pending Review";
 }
 
 const MEDICATION_CLASS_GUIDES = [
@@ -921,21 +1002,7 @@ function renderBrowse() {
     if (!groups[cat].find(x => x.name === d.name)) groups[cat].push(d);
   });
 
-  const catOrder = [
-    "Mental Health & Neurology",
-    "Cardiovascular & Blood",
-    "Pain, Sedation & Anesthesia",
-    "Infectious Disease",
-    "GI, Endocrine & Metabolic",
-    "Oncology, Immunology & Transplant",
-    "Respiratory, Allergy & Cough",
-    "Hormones & Reproductive",
-    "Stimulants & ADHD",
-    "Supplements, Foods & Environment",
-    "Recreational & Social",
-    "Other Specialized Agents"
-  ];
-  const sortedCats = [...new Set([...catOrder, ...Object.keys(groups)])];
+  const sortedCats = [...new Set([...BROWSE_CATEGORY_ORDER, ...Object.keys(groups)])];
 
   el.innerHTML = renderBrowseClassGuides() + sortedCats.filter(c => groups[c]).map(cat => `
     <div class="browse-cat">
