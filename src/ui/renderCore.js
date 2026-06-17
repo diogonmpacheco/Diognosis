@@ -106,6 +106,31 @@ function setTab(name) {
   updateEmptyTabs();
 }
 
+function focusPriorityFinding(tabName = "overview", elementId = "") {
+  const resolvedTab = resolveTabAlias(tabName);
+  setTab(resolvedTab);
+  const fallbackIds = {
+    overview:"findingSection",
+    mechanisms:"mechanismWhySection",
+    "genes-metabolites":"genotypeSection",
+    "timing-levels":"persistenceTimelineSection",
+    evidence:"evidenceSection",
+    review:"reviewSummarySection",
+  };
+  const runFocus = () => {
+    const target = elementId ? document.getElementById(elementId) : null;
+    const el = target || document.getElementById(fallbackIds[resolvedTab]) || document.getElementById(`tab-${resolvedTab}`);
+    if (!el) return;
+    if (typeof el.scrollIntoView === "function") el.scrollIntoView({ behavior:"smooth", block:"center" });
+    el.classList.remove("focus-pulse");
+    void el.offsetWidth;
+    el.classList.add("focus-pulse");
+    window.setTimeout(() => el.classList.remove("focus-pulse"), 2200);
+  };
+  if (typeof requestAnimationFrame === "function") requestAnimationFrame(runFocus);
+  else runFocus();
+}
+
 function getRenderCacheKey() {
   return JSON.stringify({
     stack: activeStack,
@@ -282,14 +307,16 @@ function renderSummaryBar() {
     priorityStory = buildDefaultPriorityStory(activeStack.length);
   }
 
-  const jumpTab = genotypePriority && genotypePriority.score > interactionScore ? "genes-metabolites" : "overview";
+  const isGenotypePriority = genotypePriority && genotypePriority.score > interactionScore;
+  const jumpTab = isGenotypePriority ? (genotypePriority.targetTab || "genes-metabolites") : "overview";
+  const jumpTarget = isGenotypePriority ? (genotypePriority.targetElementId || "genotypeSection") : "findingSection";
 
     bar.innerHTML = `<div class="summary-card">
     <div class="summary-main">
       <div>
         <div class="summary-kicker">Highest Priority</div>
         <div class="summary-title">${safePublicHtml(headline)}</div>
-        <div class="summary-copy">${summaryCopy ? `${safePublicHtml(summaryCopy)} ` : ""}<span class="summary-jump" onclick="setTab('${jumpTab}')">View finding</span></div>
+        <div class="summary-copy">${summaryCopy ? `${safePublicHtml(summaryCopy)} ` : ""}<button type="button" class="summary-jump" onclick="focusPriorityFinding('${safeAttr(jumpTab)}','${safeAttr(jumpTarget)}')">View finding</button></div>
       </div>
       <div class="summary-risk ${riskClass}">
         <div class="num">${scoreValue}</div>

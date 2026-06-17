@@ -98,16 +98,18 @@ function renderGenotypePanel() {
       const geno = activeGenotype[enz] || GENOTYPE_PHENOTYPE.NM;
       const eff = GENOTYPE_EFFECTS[enz][geno];
       if (!eff) continue;
-      const fold = eff.auc_fold;
+      const fold = genotypeExposureFoldForDrug(drugName, enz, geno, eff);
+      const note = genotypeExposureNoteForDrug(drugName, enz, geno, eff, fold);
+      const clinicalFold = typeof clinicalFoldForDrugGene === "function" ? clinicalFoldForDrugGene(drugName, enz, geno) : null;
       const foldStr = fold === 1.0 ? '1× (baseline)' : fold > 1 ? `${fold.toFixed(1)}× ↑ AUC` : `${fold.toFixed(1)}× ↓ AUC`;
       const foldColor = fold > 2 ? 'var(--red)' : fold > 1.3 ? 'var(--amber)' : fold < 0.5 ? 'var(--amber)' : 'var(--green)';
-      html += `<div class="geno-effect-card">
+      html += `<div id="${safeAttr(genotypeExposureCardId(drugName, enz))}" class="geno-effect-card" data-genotype-drug="${safeAttr(drugName)}" data-genotype-gene="${safeAttr(enz)}">
           <div class="geno-effect-title">${safePublicHtml(drugName)} <span style="color:var(--text2);font-size:11px;font-weight:400">via ${safePublicHtml(enz)}</span>
           <span style="float:right;font-size:18px;font-weight:800;color:${foldColor}">${safePublicHtml(foldStr)}</span>
         </div>
         ${renderGenotypeInterpretationLine(enz, geno)}
-        <div class="geno-effect-note">${safePublicHtml(eff.note)}</div>
-        ${fold !== 1.0 ? `<div style="font-size:10px;color:var(--text2);margin-top:4px">Population frequency: ~${safePublicHtml(eff.freq_pct)}% | Vs NM baseline fold-change: ${safePublicHtml(fold.toFixed(1))}x</div>` : ''}
+        <div class="geno-effect-note">${safePublicHtml(note)}</div>
+        ${fold !== 1.0 ? `<div style="font-size:10px;color:var(--text2);margin-top:4px">Population frequency: ~${safePublicHtml(eff.freq_pct)}% | Vs NM baseline fold-change: ${safePublicHtml(fold.toFixed(1))}x${clinicalFold ? " | Drug-specific clinical fold" : ""}</div>` : ''}
       </div>`;
     }
     for (const card of getGenotypeMetaboliteEffectCards(drugName)) {
@@ -180,16 +182,18 @@ function getHighestGenotypePrioritySignal() {
       const phenotype = activeGenotype[enzyme] || GENOTYPE_PHENOTYPE.NM;
       const effect = GENOTYPE_EFFECTS[enzyme]?.[phenotype];
       if (!effect || phenotype === GENOTYPE_PHENOTYPE.NM || effect.auc_fold === 1) continue;
-      const score = scoreGenotypeExposureSignal(effect.auc_fold, effect.note, drug);
+      const fold = genotypeExposureFoldForDrug(drugName, enzyme, phenotype, effect);
+      const note = genotypeExposureNoteForDrug(drugName, enzyme, phenotype, effect, fold);
+      const score = scoreGenotypeExposureSignal(fold, note, drug);
       if (score < 30) continue;
       signals.push({
         kind:"exposure",
         score,
         label:score >= 70 ? "PGx High" : "PGx Watch",
         headline:`${enzyme} genotype may change ${drugName} exposure`,
-        summary:publicDisplayText(`${drugName} is in your list and ${enzyme} is set to ${phenotypeLabelForGene(enzyme, phenotype)}. ${effect.note}`),
+        summary:publicDisplayText(`${drugName} is in your list and ${enzyme} is set to ${phenotypeLabelForGene(enzyme, phenotype)}. ${note}`),
         why:publicDisplayText(`${drugName} depends on ${enzyme}, and the selected ${enzyme} phenotype is not the reference state.`),
-        changes:`Expected parent-drug exposure shifts to about ${effect.auc_fold}x the normal-metabolizer baseline.`,
+        changes:`Expected parent-drug exposure shifts to about ${fold}x the normal-metabolizer baseline.`,
         review:score >= 70
           ? "Review dose sensitivity, toxicity signs, inhibitors/inducers, and whether therapeutic monitoring or an alternative is preferred."
           : "Review whether the exposure shift changes monitoring, dose, or follow-up.",
@@ -197,6 +201,8 @@ function getHighestGenotypePrioritySignal() {
           ? "Review the pharmacogenomics finding before changing dose or adding inhibitors."
           : "Review the pharmacogenomics panel and monitor dose-sensitive effects.",
         evidenceRefs:[...(drug.evidenceRefs || [])],
+        targetTab:"genes-metabolites",
+        targetElementId:genotypeExposureCardId(drugName, enzyme),
       });
     }
 
@@ -222,11 +228,13 @@ function getHighestGenotypePrioritySignal() {
           ? "Review the pharmacogenomics finding before relying on this medication effect."
           : "Review metabolite-level pharmacogenomics context.",
         evidenceRefs:[...(effect.evidenceRefs || [])],
+        targetTab:"genes-metabolites",
+        targetElementId:genotypeMetaboliteCardId(effect),
       });
     }
 
     for (const card of getGenotypeRiskEffectCards(drugName)) {
-      const { risk, status, riskEffect, drugEffect } = card;
+      const { riskKey, risk, status, riskEffect, drugEffect } = card;
       if (status !== GENOTYPE_RISK_STATUS.PRESENT) continue;
       const score = riskEffect.severity === "high" ? 90 : riskEffect.severity === "moderate" ? 60 : 35;
       signals.push({
@@ -242,6 +250,8 @@ function getHighestGenotypePrioritySignal() {
           ? "Review this genotype-medication safety warning before using this medication."
           : "Review this genotype-medication context with the rest of the profile.",
         evidenceRefs:[...(drugEffect.evidenceRefs || [])],
+        targetTab:"genes-metabolites",
+        targetElementId:genotypeRiskCardId(riskKey, drugEffect.parent),
       });
     }
   }
@@ -256,6 +266,49 @@ function phenotypeLabel(phenotype) {
   if (phenotype === GENOTYPE_RISK_STATUS.PRESENT) return "present";
   if (phenotype === GENOTYPE_RISK_STATUS.ABSENT) return "absent";
   return "normal metabolizer";
+}
+
+function genotypeDomToken(value) {
+  return String(value || "item")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "") || "item";
+}
+
+function genotypeExposureCardId(drugName, enzyme) {
+  return `geno-exposure-${genotypeDomToken(drugName)}-${genotypeDomToken(enzyme)}`;
+}
+
+function genotypeMetaboliteCardId(effect = {}) {
+  return `geno-metabolite-${genotypeDomToken(effect.parent)}-${genotypeDomToken(effect.enzyme)}-${genotypeDomToken(effect.metaboliteId || effect.metaboliteName)}`;
+}
+
+function genotypeRiskCardId(riskKey, parent) {
+  return `geno-risk-${genotypeDomToken(riskKey)}-${genotypeDomToken(parent)}`;
+}
+
+function genotypeExposureFoldForDrug(drugName, enzyme, phenotype, effect = {}) {
+  const clinicalFold = typeof clinicalFoldForDrugGene === "function" ? clinicalFoldForDrugGene(drugName, enzyme, phenotype) : null;
+  if (Number.isFinite(clinicalFold)) return clinicalFold;
+  return Number.isFinite(effect.auc_fold) ? effect.auc_fold : 1;
+}
+
+function genotypeExposureNoteForDrug(drugName, enzyme, phenotype, effect = {}, fold = null) {
+  const value = Number.isFinite(fold) ? fold : genotypeExposureFoldForDrug(drugName, enzyme, phenotype, effect);
+  const clinicalFold = typeof clinicalFoldForDrugGene === "function" ? clinicalFoldForDrugGene(drugName, enzyme, phenotype) : null;
+  const phenotypeText = phenotypeLabelForGene(enzyme, phenotype);
+  const direction = value > 1.15
+    ? "higher parent exposure"
+    : value < 0.85
+    ? "lower parent exposure or reduced active-metabolite formation"
+    : "near-baseline parent exposure";
+  if (Number.isFinite(clinicalFold)) {
+    return `${drugName} has drug-specific ${enzyme} clinical PK data for ${phenotypeText}: ${direction} is modeled at about ${value}x the normal-metabolizer baseline. Review dose sensitivity, adverse-effect monitoring, and other inhibitors or inducers.`;
+  }
+  if (value !== 1) {
+    return `${drugName} uses ${enzyme}; ${phenotypeText} gives a class-level estimate of ${direction} at about ${value}x the normal-metabolizer baseline. Review drug-specific evidence and co-medications.`;
+  }
+  return `${drugName} uses ${enzyme}; the selected phenotype is the reference state for this model.`;
 }
 
 function phenotypeLabelForGene(gene, phenotype) {
@@ -441,7 +494,7 @@ function getGenotypeRiskEffectCards(drugName) {
 }
 
 function renderGenotypeRiskEffectCard(card) {
-  const { risk, status, riskEffect, drugEffect } = card;
+  const { riskKey, risk, status, riskEffect, drugEffect } = card;
   const isPresent = status === GENOTYPE_RISK_STATUS.PRESENT;
   const label = isPresent ? 'risk allele present' : 'risk allele absent';
   const foldColor = isPresent ? 'var(--red)' : 'var(--green)';
@@ -449,7 +502,7 @@ function renderGenotypeRiskEffectCard(card) {
   const evidenceText = refs.length
     ? refs.map(publicEvidenceReferenceLabel).join(' · ')
     : 'Evidence pending';
-  return `<div class="geno-effect-card">
+  return `<div id="${safeAttr(genotypeRiskCardId(riskKey, drugEffect.parent))}" class="geno-effect-card">
     <div class="geno-effect-title">${safePublicHtml(drugEffect.parent)} <span style="color:var(--text2);font-size:11px;font-weight:400">with ${safePublicHtml(risk.label)}</span>
       <span style="float:right;font-size:18px;font-weight:800;color:${foldColor}">${safePublicHtml(label)}</span>
     </div>
@@ -608,7 +661,7 @@ function renderGenotypeMetaboliteEffectCard(card) {
   }, effect.parent);
   const signal = typeof getExposureSignalLabel === 'function' ? getExposureSignalLabel(effect, phenotypeEffect) : 'metabolite level';
   const action = effect.clinicalAction || (typeof clinicalActionForMetaboliteEffect === 'function' ? clinicalActionForMetaboliteEffect(effect, phenotypeEffect) : '');
-  return `<div class="geno-effect-card">
+  return `<div id="${safeAttr(genotypeMetaboliteCardId(effect))}" class="geno-effect-card">
     <div class="geno-effect-title">${safePublicHtml(metaboliteLabel)} <span style="color:var(--text2);font-size:11px;font-weight:400">from ${safePublicHtml(effect.parent)} via ${safePublicHtml(effect.enzyme)}</span>
       <span style="float:right;font-size:18px;font-weight:800;color:${foldColor}">${safePublicHtml(foldStr)}</span>
     </div>

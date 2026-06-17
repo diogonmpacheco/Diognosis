@@ -164,11 +164,11 @@
         "VKORC1": "PM",
         "CYP2C9": "PM"
       },
-      "riskScore": 15,
-      "riskLevel": "LOW RISK",
+      "riskScore": 30,
+      "riskLevel": "MODERATE RISK",
       "interactionCount": 0,
       "severityCounts": {},
-      "factorCount": 2,
+      "factorCount": 3,
       "topInteractions": [],
       "externalContextCount": 4,
       "externalContextDatasets": [
@@ -180,7 +180,7 @@
       "externalContextCountText": "4 context cards · not risk-scoring · fixture-2026-06",
       "externalContextReviewBadges": 4,
       "riskUnchangedAfterExternalContext": true,
-      "afterRiskScore": 15,
+      "afterRiskScore": 30,
       "afterInteractionCount": 0
     },
     {
@@ -218,8 +218,8 @@
       "genotype": {
         "CYP2C19": "PM"
       },
-      "riskScore": 35,
-      "riskLevel": "MODERATE RISK",
+      "riskScore": 25,
+      "riskLevel": "LOW RISK",
       "interactionCount": 0,
       "severityCounts": {},
       "factorCount": 2,
@@ -234,7 +234,7 @@
       "externalContextCountText": "3 context cards · not risk-scoring · fixture-2026-06",
       "externalContextReviewBadges": 3,
       "riskUnchangedAfterExternalContext": true,
-      "afterRiskScore": 35,
+      "afterRiskScore": 25,
       "afterInteractionCount": 0
     },
     {

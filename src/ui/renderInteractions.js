@@ -216,7 +216,10 @@ function estimateSelfInhibitionDoseFold(name, inh) {
   if (!drug || !inh) return null;
   const route = drug.routes.find(r => r.enzyme === inh.target);
   if (!route) return null;
-  const genePheno = typeof userGenetics !== 'undefined' ? userGenetics[route.enzyme] : null;
+  const phenotype = typeof selectedPhenotypeForEnzyme === "function" ? selectedPhenotypeForEnzyme(route.enzyme) : null;
+  const genePheno = typeof clinicalFoldKeyForSelectedPhenotype === "function"
+    ? clinicalFoldKeyForSelectedPhenotype(route.enzyme, phenotype)
+    : (typeof userGenetics !== 'undefined' ? userGenetics[route.enzyme] : null);
   const clinEnz = CLINICAL_FOLD[name]?.[route.enzyme];
   const clinFold = clinEnz && (genePheno === "poor" || genePheno === "null")
     ? clinEnz[genePheno]

@@ -65,7 +65,10 @@ function calcFold(drugName) {
   for (const route of drug.routes) {
     let enzymeMult = 1;
     let routeDetails = [];
-    const genePheno = userGenetics[route.enzyme];
+    let routeClinicalGenotypeFold = null;
+    const selectedPheno = selectedPhenotypeForEnzyme(route.enzyme);
+    const clinicalGenePheno = clinicalFoldKeyForSelectedPhenotype(route.enzyme, selectedPheno);
+    const genePheno = userGenetics[route.enzyme] || clinicalGenePheno;
     const isSaturable = route.saturable || route.nonLinear;
 
     // CLINICAL FOLD CEILING: if we have observed data for this drug+enzyme,
@@ -80,10 +83,11 @@ function calcFold(drugName) {
     // Otherwise fall back to generic multiplier from PHENOTYPE_OPTIONS
     let geneticMult = 1.0;
     let usedClinicalGenetics = false;
-    if (clinEnz && (genePheno === "poor" || genePheno === "null")) {
-      const clinFold = clinEnz[genePheno];
+    if (clinEnz && (clinicalGenePheno === "poor" || clinicalGenePheno === "null")) {
+      const clinFold = clinEnz[clinicalGenePheno];
       if (clinFold !== undefined) {
         usedClinicalGenetics = true;
+        routeClinicalGenotypeFold = clinFold;
         geneticMult = (clinFold - (1 - route.fraction)) / route.fraction;
         if (geneticMult < 0.01) geneticMult = 0.01;
       }
@@ -257,7 +261,7 @@ function calcFold(drugName) {
 
           if (combinedMult > enzymeMult) {
             enzymeMult = combinedMult;
-            if (genePheno === "null") {
+            if (clinicalGenePheno === "null") {
               routeDetails = [{ perpetrator: "Genetics", enzyme: route.enzyme, type: "genetic", strength: genePheno, mult: geneticMult }];
             } else {
               const inhDetail = { perpetrator: otherName, enzyme: route.enzyme, type: "inhibits", strength: inh.strength, mult: combinedMult };
@@ -279,7 +283,7 @@ function calcFold(drugName) {
       // Check induction
       for (const ind of other.ind) {
         if (ind.target === route.enzyme) {
-          if (genePheno === "null") continue;
+          if (clinicalGenePheno === "null") continue;
           const mult = IND_MULT[ind.strength] || 1;
           const combinedMult = geneticMult > 1 ? mult : mult / geneticMult;
           if (combinedMult < enzymeMult) {
@@ -298,7 +302,7 @@ function calcFold(drugName) {
       enzymeMult = clinNullMult;
     }
 
-    routeResults.push({ enzyme: route.enzyme, fraction: route.fraction, enzymeMult, details: routeDetails });
+    routeResults.push({ enzyme: route.enzyme, fraction: route.fraction, enzymeMult, details: routeDetails, clinicalGenotypeFold: routeClinicalGenotypeFold });
   }
 
   // ═══ DYNAMIC ROUTE FRACTIONS ═══
@@ -312,9 +316,22 @@ function calcFold(drugName) {
 
   const hasInhibition = routeResults.some(r => r.enzymeMult > 1.3);
   const hasInduction = routeResults.some(r => r.enzymeMult < 0.8);
+  const observedClinicalGenotypeRoute = routeResults
+    .filter(r => Number.isFinite(r.clinicalGenotypeFold))
+    .sort((a, b) => b.fraction - a.fraction)[0];
+  const hasOnlyGenotypeDetails = observedClinicalGenotypeRoute && routeResults.every(r =>
+    !r.details.some(d => d.type && d.type !== "genetic")
+  );
 
   let fold;
-  if ((hasInhibition || hasInduction) && routeResults.length >= 2) {
+  if (hasOnlyGenotypeDetails) {
+    // CLINICAL_FOLD is already an observed whole-drug result for that genotype.
+    // Do not re-route it through the generic capacity model in single-genotype contexts.
+    fold = Math.round(observedClinicalGenotypeRoute.clinicalGenotypeFold * 100) / 100;
+    for (const r of routeResults) {
+      if (r.details.length) details.push(...r.details);
+    }
+  } else if ((hasInhibition || hasInduction) && routeResults.length >= 2) {
     // Dynamic fractions: redistribute load based on remaining capacity
     // Capacity of each route is inversely proportional to its enzymeMult
     // (inhibited enzyme → less capacity → drug reroutes to other pathways)
@@ -688,6 +705,22 @@ function legacyPhenotypeToGenotype(phenotype) {
 
 function selectedPhenotypeForEnzyme(enzyme) {
   return activeGenotype?.[enzyme] || GENOTYPE_PHENOTYPE.NM;
+}
+
+function clinicalFoldKeyForSelectedPhenotype(enzyme, phenotype = null) {
+  const legacy = typeof userGenetics !== "undefined" ? userGenetics?.[enzyme] : null;
+  if (legacy === "null") return "null";
+  if (legacy === "poor") return "poor";
+  const normalized = legacyPhenotypeToGenotype(phenotype || selectedPhenotypeForEnzyme(enzyme));
+  if (normalized === GENOTYPE_PHENOTYPE.PM) return "poor";
+  return "";
+}
+
+function clinicalFoldForDrugGene(drugName, enzyme, phenotype = null) {
+  const key = clinicalFoldKeyForSelectedPhenotype(enzyme, phenotype);
+  if (!key) return null;
+  const fold = CLINICAL_FOLD?.[drugName]?.[enzyme]?.[key];
+  return Number.isFinite(fold) ? fold : null;
 }
 
 function phenotypeExposureFold(enzyme, phenotype) {

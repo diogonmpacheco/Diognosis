@@ -646,6 +646,90 @@ assert(publicNebivololNullDemoAudit.hasBidirectionalPair, 'Public nebivolol null
 assert(publicNebivololNullDemoAudit.bidirectionalMechanism.includes('Hydroxybupropion is harder to predict'), 'Public nebivolol null demo should not claim hydroxybupropion is simply lower in CYP2D6 null context');
 assert(publicNebivololNullDemoAudit.bidirectionalRefs.includes('ev_bupropion_cyp2d6_hesse1996'), 'Public nebivolol null demo should cite hydroxybupropion CYP2D6 level/dose context');
 
+const nebivololPgxDisplayRegression = window.eval(`(() => {
+  activeStack = ['Nebivolol'];
+  userGenetics = {};
+  activeGenotypeDetails = {};
+  activeGenotype = {
+    CYP2D6: GENOTYPE_PHENOTYPE.PM,
+    CYP2C19: GENOTYPE_PHENOTYPE.NM,
+    CYP2C9: GENOTYPE_PHENOTYPE.NM,
+  };
+  renderComputationCache = null;
+  if (window.HTMLElement) window.HTMLElement.prototype.scrollIntoView = function() { this.dataset.focusScrolled = 'yes'; };
+  renderAll();
+  const priority = getHighestGenotypePrioritySignal();
+  const summaryText = document.querySelector('.summary-card')?.textContent || '';
+  const genotypeText = document.getElementById('genotypeBody')?.textContent || '';
+  focusPriorityFinding(priority.targetTab, priority.targetElementId);
+  return {
+    fold:calcFold('Nebivolol').fold,
+    priority,
+    summaryText,
+    genotypeText,
+  };
+})()`);
+await new Promise(resolve => setTimeout(resolve, 30));
+const nebivololPgxFocusRegression = window.eval(`(() => {
+  const target = document.getElementById('${nebivololPgxDisplayRegression.priority.targetElementId}');
+  return {
+    activeTab,
+    targetText:target?.textContent || '',
+    highlighted:!!target?.classList.contains('focus-pulse'),
+    scrolled:target?.dataset.focusScrolled === 'yes',
+  };
+})()`);
+assert(nebivololPgxDisplayRegression.fold === 15, 'Nebivolol + CYP2D6 PM should use the observed drug-specific 15x clinical fold');
+assert(/15x/i.test(nebivololPgxDisplayRegression.summaryText), 'Nebivolol priority summary should show the drug-specific 15x fold');
+assert(/drug-specific CYP2D6 clinical PK data/i.test(nebivololPgxDisplayRegression.summaryText), 'Nebivolol priority summary should explain the drug-specific PK basis');
+assert(!/Codeine|Tamoxifen|TCAs/i.test(`${nebivololPgxDisplayRegression.summaryText} ${nebivololPgxDisplayRegression.genotypeText}`), 'Nebivolol genotype display should not inherit unrelated CYP2D6 example-drug text');
+assert(/15\.0×|15\.0x/i.test(nebivololPgxFocusRegression.targetText), 'Nebivolol genotype card should display the 15x fold');
+assert(nebivololPgxFocusRegression.activeTab === 'genes-metabolites', 'Priority View finding should open Genes + Metabolites for genotype priorities');
+assert(nebivololPgxFocusRegression.highlighted && nebivololPgxFocusRegression.scrolled, 'Priority View finding should scroll to and highlight the target genotype card');
+
+const clinicalFoldMatrixRegression = window.eval(`(() => {
+  const cases = [
+    { drug:'Flecainide', gene:'CYP2D6', expected:2.5 },
+    { drug:'Omeprazole', gene:'CYP2C19', expected:5.0 },
+    { drug:'Codeine', gene:'CYP2D6', expected:0.41 },
+    { drug:'Tamoxifen', gene:'CYP2D6', expected:0.25 },
+    { drug:'Clopidogrel', gene:'CYP2C19', expected:0.36 },
+  ];
+  return cases.map(({ drug, gene, expected }) => {
+    activeStack = [drug];
+    userGenetics = {};
+    activeGenotypeDetails = {};
+    activeGenotype = {
+      CYP2D6: GENOTYPE_PHENOTYPE.NM,
+      CYP2C19: GENOTYPE_PHENOTYPE.NM,
+      CYP2C9: GENOTYPE_PHENOTYPE.NM,
+      [gene]: GENOTYPE_PHENOTYPE.PM,
+    };
+    renderComputationCache = null;
+    renderAll();
+    const priority = getHighestGenotypePrioritySignal();
+    const summaryText = document.querySelector('.summary-card')?.textContent || '';
+    const genotypeText = document.getElementById('genotypeBody')?.textContent || '';
+    return {
+      drug,
+      gene,
+      expected,
+      fold:calcFold(drug).fold,
+      targetTab:priority?.targetTab || '',
+      targetElementId:priority?.targetElementId || '',
+      leakedExamples:/Codeine →|Tamoxifen →|TCAs/i.test(summaryText + ' ' + genotypeText),
+    };
+  });
+})()`);
+for (const row of clinicalFoldMatrixRegression) {
+  assert(
+    Math.abs(row.fold - row.expected) < 0.01,
+    `${row.drug} ${row.gene} PM should use observed clinical fold ${row.expected}x, not route-diluted ${row.fold}x`
+  );
+  assert(row.targetTab && row.targetElementId, `${row.drug} ${row.gene} PM should expose a functional View finding target`);
+  assert(!row.leakedExamples, `${row.drug} ${row.gene} PM should not leak unrelated CYP2D6 example text`);
+}
+
 const urlReportedValueAudit = window.eval(`(() => {
   activeStack = [];
   activeGenotypeDetails = {};

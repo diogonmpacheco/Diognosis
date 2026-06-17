@@ -444,10 +444,10 @@ Object.assign(GENE_SEMANTICS, {
 // Source: CPIC guidelines, FDA labels, clinical PK studies
 const GENOTYPE_EFFECTS = {
   CYP2D6: {
-    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:4.5, freq_pct:7,  note:"Enzyme absent. Codeine → no morphine (analgesia failure). Tamoxifen → reduced endoxifen (<30% of NM). TCAs may accumulate dangerously." },
+    [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:4.5, freq_pct:7,  note:"Very low CYP2D6 activity. Sensitive CYP2D6 substrates may accumulate, while CYP2D6-activated prodrugs may have reduced active-metabolite formation." },
     [GENOTYPE_PHENOTYPE.IM]:  { auc_fold:2.0, freq_pct:11, note:"Reduced activity (~2× AUC vs NM). Allele frequencies vary substantially by ancestry; population-specific interpretation should use genotype report context." },
     [GENOTYPE_PHENOTYPE.NM]:  { auc_fold:1.0, freq_pct:75, note:"Normal metabolism (reference)." },
-    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.3, freq_pct:7,  note:"Ultra-rapid metabolism. Reduced AUC. Codeine → excess morphine → respiratory depression. Frequency varies substantially by ancestry." },
+    [GENOTYPE_PHENOTYPE.UM]:  { auc_fold:0.3, freq_pct:7,  note:"Ultra-rapid CYP2D6 activity. Sensitive substrates may have lower parent exposure, while CYP2D6-activated prodrugs may form active metabolites faster." },
   },
   CYP2C19: {
     [GENOTYPE_PHENOTYPE.PM]:  { auc_fold:3.0, freq_pct:3, note:"Clopidogrel prodrug not activated → stent thrombosis risk. PPIs highly elevated. Frequency varies substantially by ancestry." },
