@@ -88,6 +88,9 @@ if (!baseIndex) {
   fail("DATA_VIEW_INDEX was not created.");
 } else {
   if (!baseIndex.relations.length) fail("DATA_VIEW_INDEX has zero relations.");
+  if (!baseIndex.canonicalSubstances?.length) fail("DATA_VIEW_INDEX has zero canonical substances.");
+  if (!baseIndex.canonicalFacts?.length) fail("DATA_VIEW_INDEX has zero canonical facts.");
+  if (!Array.isArray(baseIndex.aliasRows)) fail("DATA_VIEW_INDEX is missing aliasRows.");
 
   const unresolved = baseIndex.relations.filter((row) => row.entityKind === "unresolved");
   if (unresolved.length) {
@@ -178,6 +181,9 @@ console.log(JSON.stringify({
   ok:true,
   urls:requiredUrls.length,
   entities:baseIndex.entities.length,
+  canonicalSubstances:baseIndex.canonicalSubstances?.length || 0,
   relations:baseIndex.relations.length,
+  canonicalFacts:baseIndex.canonicalFacts?.length || 0,
+  aliasCollisions:baseIndex.aliasCollisions?.length || 0,
   genes:baseIndex.genes.length,
 }, null, 2));

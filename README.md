@@ -117,7 +117,7 @@ Diognosis is intentionally conservative about what it claims. Diognosis PK curve
 - **1407 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **69 genotype genes** and **588 receptor score profiles**
 - **218 Beers flags** and **1411 washout rules**
-- **2928 KB** generated bundle (1866 lines)
+- **2929 KB** generated bundle (1866 lines)
 <!-- DIOGNOSIS_STATS_END -->
 
 ---
@@ -130,7 +130,7 @@ Diognosis is intentionally conservative about what it claims. Diognosis PK curve
 4. Set genotype phenotypes where relevant, or paste supported PharmGx report rows in the pharmacogenomics panel.
 5. Treat every result as an explanation to review, not as medical advice.
 
-For internals, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md). For launch readiness, see the [Launch QA Matrix](docs/LAUNCH_QA_MATRIX.md), [Public Trust Model](docs/PUBLIC_TRUST.md), and [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md).
+For internals, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md) and the [Data Model](docs/DATA_MODEL.md). For launch readiness, see the [Launch QA Matrix](docs/LAUNCH_QA_MATRIX.md), [Public Trust Model](docs/PUBLIC_TRUST.md), and [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md).
 
 ---
 

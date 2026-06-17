@@ -12,6 +12,7 @@ const OPEN_TARGETS_REVIEW_TARGETS = `${OPEN_TARGETS_TMP}/generatedOpenTargetsRev
 const TASKS = {
   database: ['scripts/database-audit.js'],
   'data-views': ['scripts/audit/data-views-audit.js'],
+  'data-hygiene': ['scripts/audit/data-hygiene-audit.js'],
   'evidence-review-ui': ['scripts/audit/evidence-review-ui-audit.js'],
   'review-workbench-ui': ['scripts/audit/review-workbench-ui-audit.js'],
   'evidence-calculation': ['scripts/audit/evidence-calculation-audit.js'],
@@ -115,6 +116,7 @@ const GROUPS = {
   data: [
     'database',
     'data-views',
+    'data-hygiene',
     'generated-boundary',
     'evidence-review-ui',
     'evidence-calculation',

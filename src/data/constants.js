@@ -19,6 +19,21 @@ const ACTOR_TYPE = Object.freeze({
   PHENOTYPE:     'phenotype',               // observable outcomes (analgesia, serotonin_syndrome...)
 });
 
+const SUBSTANCE_KIND = Object.freeze({
+  PARENT_DRUG:        'parent_drug',
+  PRODRUG:            'prodrug',
+  ACTIVE_METABOLITE:  'active_metabolite',
+  INACTIVE_METABOLITE:'inactive_metabolite',
+  METABOLITE:         'metabolite',
+  SALT_OR_FORMULATION:'salt_or_formulation',
+  COMBINATION_PRODUCT:'combination_product',
+  CLASS_PLACEHOLDER:  'class_placeholder',
+  NON_DRUG_CONTEXT:   'non_drug_context',
+  EXTERNAL_SUBSTANCE: 'external_substance',
+  GENE:               'gene',
+  ACTOR:              'actor',
+});
+
 // ── Edge Types ── (all relationship types between actors)
 const EDGE_TYPE = Object.freeze({
   SUBSTRATE_OF:    'substrate_of',     // actor is metabolized by enzyme/transporter

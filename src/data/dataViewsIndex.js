@@ -9,6 +9,21 @@
   const genotypePhenotype = typeof GENOTYPE_PHENOTYPE !== "undefined" ? GENOTYPE_PHENOTYPE : global.GENOTYPE_PHENOTYPE;
   const geneSemanticsSource = typeof GENE_SEMANTICS !== "undefined" ? GENE_SEMANTICS : global.GENE_SEMANTICS;
   const transporterActors = typeof TRANSPORTER_ACTORS !== "undefined" ? TRANSPORTER_ACTORS : global.TRANSPORTER_ACTORS;
+  const substanceKindSource = typeof SUBSTANCE_KIND !== "undefined" ? SUBSTANCE_KIND : global.SUBSTANCE_KIND;
+  const substanceKind = substanceKindSource || Object.freeze({
+    PARENT_DRUG:"parent_drug",
+    PRODRUG:"prodrug",
+    ACTIVE_METABOLITE:"active_metabolite",
+    INACTIVE_METABOLITE:"inactive_metabolite",
+    METABOLITE:"metabolite",
+    SALT_OR_FORMULATION:"salt_or_formulation",
+    COMBINATION_PRODUCT:"combination_product",
+    CLASS_PLACEHOLDER:"class_placeholder",
+    NON_DRUG_CONTEXT:"non_drug_context",
+    EXTERNAL_SUBSTANCE:"external_substance",
+    GENE:"gene",
+    ACTOR:"actor",
+  });
   const lookupKey = (value) => typeof normalizeLookup === "function"
     ? normalizeLookup(value)
     : String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
@@ -35,12 +50,13 @@
   const genotypeMetaboliteEffects = asArray(typeof GENOTYPE_METABOLITE_EFFECTS !== "undefined" ? GENOTYPE_METABOLITE_EFFECTS : global.GENOTYPE_METABOLITE_EFFECTS);
   const highImpactMetaboliteRelations = asArray(typeof HIGH_IMPACT_METABOLITE_RELATIONS !== "undefined" ? HIGH_IMPACT_METABOLITE_RELATIONS : global.HIGH_IMPACT_METABOLITE_RELATIONS);
   const pathwayDiversion = pathwayDiversionSource && typeof pathwayDiversionSource === "object" ? pathwayDiversionSource : {};
+  const metaboliteActors = typeof METABOLITE_ACTORS !== "undefined" ? METABOLITE_ACTORS : global.METABOLITE_ACTORS;
 
   const actorMaps = [
     typeof FOOD_ACTORS !== "undefined" ? FOOD_ACTORS : global.FOOD_ACTORS,
     typeof ENDOGENOUS_ACTORS !== "undefined" ? ENDOGENOUS_ACTORS : global.ENDOGENOUS_ACTORS,
     transporterActors,
-    typeof METABOLITE_ACTORS !== "undefined" ? METABOLITE_ACTORS : global.METABOLITE_ACTORS,
+    metaboliteActors,
     typeof RECEPTOR_ACTORS !== "undefined" ? RECEPTOR_ACTORS : global.RECEPTOR_ACTORS,
     typeof PHENOTYPE_ACTORS !== "undefined" ? PHENOTYPE_ACTORS : global.PHENOTYPE_ACTORS,
     typeof ENZYME_ACTORS !== "undefined" ? ENZYME_ACTORS : global.ENZYME_ACTORS,
@@ -49,26 +65,118 @@
   const entities = [];
   const entityByKey = new Map();
   const drugByKey = new Map();
+  const aliasRows = [];
+  const aliasTargets = new Map();
+  const aliasCollisionKeys = new Set();
+  const aliasCollisions = [];
+  const canonicalFactMap = new Map();
+  const canonicalFacts = [];
   const concepts = new Set(["NSAIDs", "Estradiol / endogenous estrogens", "CYP3A oncology substrates"]);
+
+  function hasDrugNamed(name) {
+    const key = lookupKey(name);
+    return drugs.some((drug) => lookupKey(drug.name) === key || lookupKey(drug.id) === key);
+  }
+
+  function stripKnownSaltSuffix(value) {
+    return String(value || "")
+      .replace(/\b(hydrochloride|hydrobromide|sulfate|sulphate|phosphate|diphosphate|fumarate|succinate|tartrate|mesylate|besylate|maleate|acetate|nitrate|sodium|potassium|calcium|magnesium|arginate|argentine|arginine)\b$/i, "")
+      .trim();
+  }
+
+  function classifyDrugSubstance(drug) {
+    const name = String(drug?.name || "");
+    const cls = String(drug?.cls || "");
+    const note = String(drug?.note || "");
+    if (drug?.prodrug) return substanceKind.PRODRUG;
+    if (/\/|\+/.test(name) || /combination/i.test(cls) || /combination/i.test(name)) return substanceKind.COMBINATION_PRODUCT;
+    if (/review candidate|system$|derivatives|corticosteroids|taxanes|antibiotics|antihypertensives|opioid anesthetics|opium derivatives|respiratory system|drugs used in/i.test(name)) return substanceKind.CLASS_PLACEHOLDER;
+    if (/source-specific placeholder|pending professional review/i.test(note) && /^[A-Z][A-Za-z\s-]+s$/.test(name)) return substanceKind.CLASS_PLACEHOLDER;
+    const saltBase = stripKnownSaltSuffix(name);
+    if (saltBase && saltBase !== name && hasDrugNamed(saltBase)) return substanceKind.SALT_OR_FORMULATION;
+    if (/food|diet|alcohol|cannabis|tobacco|grapefruit|tyramine|contrast dye/i.test(name) && !drug?.routes?.length) return substanceKind.NON_DRUG_CONTEXT;
+    return substanceKind.PARENT_DRUG;
+  }
+
+  function classifyMetaboliteSubstance(record = {}) {
+    const text = `${record.a || ""} ${record.role || ""} ${record.activity || ""} ${record.note || ""}`.toLowerCase();
+    if (/inactive|not active/.test(text)) return substanceKind.INACTIVE_METABOLITE;
+    if (/active|toxic|potent|equipotent|reactive|payload|thiol|acid/.test(text)) return substanceKind.ACTIVE_METABOLITE;
+    return substanceKind.METABOLITE;
+  }
+
+  function classifyActorSubstance(actor = {}) {
+    if (actor.type === "metabolite") return classifyMetaboliteSubstance(actor);
+    if (actor.type === "food_compound" || actor.type === "environmental_compound" || actor.type === "endogenous_compound") return substanceKind.NON_DRUG_CONTEXT;
+    if (actor.type === "drug") return substanceKind.PARENT_DRUG;
+    return substanceKind.ACTOR;
+  }
+
+  function classifyEntitySubstance(entity) {
+    if (entity.substanceKind) return entity.substanceKind;
+    if (entity.kind === "drug") return classifyDrugSubstance(entity.record || entity);
+    if (entity.kind === "metabolite") return classifyMetaboliteSubstance(entity.record || entity);
+    if (entity.kind === "gene") return substanceKind.GENE;
+    if (entity.kind === "concept") return substanceKind.CLASS_PLACEHOLDER;
+    if (entity.kind === "external") return substanceKind.EXTERNAL_SUBSTANCE;
+    if (entity.record && entity.record.type) return classifyActorSubstance(entity.record);
+    return substanceKind.ACTOR;
+  }
+
+  function registerAlias(stored, alias, source = "alias") {
+    const value = String(alias || "").trim();
+    if (!stored || !value) return;
+    const key = lookupKey(value);
+    if (!key) return;
+    const row = { alias:value, key, canonicalId:stored.id, canonicalName:stored.name, source };
+    aliasRows.push(row);
+    if (!stored.aliases.includes(value)) stored.aliases.push(value);
+    const target = aliasTargets.get(key);
+    if (target && target.canonicalId !== stored.id) {
+      const collisionKey = `${key}|${target.canonicalId}|${stored.id}`;
+      if (!aliasCollisionKeys.has(collisionKey)) {
+        aliasCollisionKeys.add(collisionKey);
+        aliasCollisions.push({
+          alias:value,
+          key,
+          first:{ canonicalId:target.canonicalId, canonicalName:target.canonicalName, source:target.source },
+          second:{ canonicalId:stored.id, canonicalName:stored.name, source },
+        });
+      }
+      return;
+    }
+    aliasTargets.set(key, row);
+    if (!entityByKey.has(key)) entityByKey.set(key, stored);
+    const rawKey = rawNorm(value);
+    if (rawKey && !entityByKey.has(rawKey)) entityByKey.set(rawKey, stored);
+  }
 
   function addEntity(entity, aliases = []) {
     if (!entity || !entity.name) return entity;
     const id = entity.id || safeId(`${entity.kind}-${entity.name}`);
     const full = {
       id,
+      canonicalId:id,
       name: entity.name,
       kind: entity.kind || "external",
+      substanceKind: classifyEntitySubstance({ ...entity, id }),
       class: entity.class || sentence(entity.kind || "external"),
       linkable: Boolean(entity.linkable),
+      aliases:[],
+      parentIds:entity.parentIds || [],
+      componentIds:entity.componentIds || [],
       record: entity.record || null,
     };
     const existing = entityByKey.get(lookupKey(full.name));
     const stored = existing || full;
     if (!existing) entities.push(stored);
-    for (const alias of uniq([full.name, id, stripParenthetical(full.name), ...aliases])) {
-      if (!alias) continue;
-      entityByKey.set(lookupKey(alias), stored);
-      entityByKey.set(rawNorm(alias), stored);
+    const strippedName = stripParenthetical(full.name);
+    const safeStrippedAlias = strippedName && strippedName !== full.name &&
+      (full.kind === "drug" || full.kind === "concept" || !hasDrugNamed(strippedName))
+      ? strippedName
+      : "";
+    for (const alias of uniq([full.name, id, safeStrippedAlias, ...aliases])) {
+      registerAlias(stored, alias, alias === full.name ? "canonical_name" : "alias");
     }
     return stored;
   }
@@ -88,14 +196,17 @@
 
   for (const [parent, entries] of Object.entries(metab)) {
     for (const item of entries || []) {
+      const metaboliteAlias = stripParenthetical(item.n);
       addEntity({
         id:`metabolite-${safeId(item.n)}`,
         name:item.n,
         kind:"metabolite",
+        substanceKind:classifyMetaboliteSubstance(item),
         class:`Metabolite${item.a ? ` / ${sentence(item.a)}` : ""}`,
         linkable:false,
+        parentIds:[drugByKey.get(lookupKey(parent))?.id].filter(Boolean),
         record:{ ...item, parent },
-      }, [stripParenthetical(item.n)]);
+      }, [metaboliteAlias && !hasDrugNamed(metaboliteAlias) ? metaboliteAlias : ""]);
     }
   }
 
@@ -105,8 +216,12 @@
         id:actor.id || safeId(actor.name),
         name:actor.name || actor.id,
         kind:actor.type || "actor",
+        substanceKind:classifyActorSubstance(actor),
         class:sentence(actor.type || "actor"),
         linkable:false,
+        parentIds:asArray(actor.parentDrugs || (actor.parentDrug ? [actor.parentDrug] : []))
+          .map((name) => drugByKey.get(lookupKey(name))?.id)
+          .filter(Boolean),
         record:actor,
       }, [actor.id]);
       for (const name of actor.substrates || []) addEntity({ name, kind:"external", class:"External substance", linkable:false }, [stripParenthetical(name)]);
@@ -225,6 +340,57 @@
   const relations = [];
   const relationIds = new Set();
 
+  function normalizedFactText(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/\b\d+(\.\d+)?\s*[x%]\b/g, "#")
+      .replace(/[^a-z0-9]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .split(" ")
+      .slice(0, 18)
+      .join(" ");
+  }
+
+  function canonicalFactKey(relation) {
+    return [
+      relation.role,
+      relation.gene || "",
+      relation.subjectId || lookupKey(relation.subject),
+      relation.objectId || lookupKey(relation.object),
+      relation.actionGroup || "",
+      normalizedFactText(relation.actionText || relation.signal),
+    ].join("|");
+  }
+
+  function registerCanonicalFact(relation) {
+    const factKey = canonicalFactKey(relation);
+    relation.factKey = factKey;
+    let fact = canonicalFactMap.get(factKey);
+    if (!fact) {
+      fact = {
+        key:factKey,
+        role:relation.role,
+        gene:relation.gene,
+        subject:relation.subject,
+        subjectId:relation.subjectId,
+        object:relation.object,
+        objectId:relation.objectId,
+        actionGroup:relation.actionGroup,
+        actionText:relation.actionText,
+        severity:relation.severity,
+        sources:[],
+        sourceRows:[],
+      };
+      canonicalFactMap.set(factKey, fact);
+      canonicalFacts.push(fact);
+    }
+    if (!fact.sources.includes(relation.source)) fact.sources.push(relation.source);
+    fact.sourceRows.push(relation.id);
+    if (severityRank(relation.severity) < severityRank(fact.severity)) fact.severity = relation.severity;
+    return fact;
+  }
+
   function addRelation(input) {
     const subject = input.subject || input.substance || input.drug || input.parent || input.title;
     const subjectEntity = getEntity(subject);
@@ -251,8 +417,12 @@
       role,
       gene,
       subject:subjectEntity?.name || subject,
+      subjectId:subjectEntity?.id || "",
       object:objectEntity?.name || input.object || "",
+      objectId:objectEntity?.id || "",
       entityKind:subjectEntity?.kind || "unresolved",
+      subjectSubstanceKind:subjectEntity?.substanceKind || "",
+      objectSubstanceKind:objectEntity?.substanceKind || "",
       class:input.class || subjectEntity?.class || "Unclassified",
       severity:displaySeverity(input.severity, input.severityFallback || "green"),
       actionGroup,
@@ -265,9 +435,10 @@
     };
     relation.searchText = [
       relation.source, relation.role, relation.gene, relation.subject, relation.object, relation.entityKind,
-      relation.class, relation.severity, relation.actionGroup, relation.actionText, relation.evidenceLevel, relation.signal,
+      relation.subjectSubstanceKind, relation.objectSubstanceKind, relation.class, relation.severity, relation.actionGroup, relation.actionText, relation.evidenceLevel, relation.signal,
     ].join(" ").toLowerCase();
     relations.push(relation);
+    registerCanonicalFact(relation);
     return relation;
   }
 
@@ -568,6 +739,80 @@
     bucket.sort(rankRelation);
   }
   relations.sort(rankRelation);
+  canonicalFacts.sort((a, b) => severityRank(a.severity) - severityRank(b.severity) ||
+    a.subject.localeCompare(b.subject) ||
+    a.role.localeCompare(b.role));
+
+  function inferComponentIds(entity) {
+    if (entity.componentIds?.length) return entity.componentIds;
+    if (entity.substanceKind !== substanceKind.COMBINATION_PRODUCT) return [];
+    const pieces = String(entity.name || "")
+      .replace(/\([^)]*\)/g, "")
+      .split(/\/|\+|\band\b|,/i)
+      .map((part) => part.trim())
+      .filter((part) => part && lookupKey(part) !== lookupKey(entity.name));
+    return uniq(pieces.map((part) => getDrugRecord(part)?.id).filter(Boolean));
+  }
+
+  for (const entity of entities) {
+    entity.componentIds = inferComponentIds(entity);
+    entity.aliases = uniq(entity.aliases).sort((a, b) => a.localeCompare(b));
+  }
+
+  const bySubstanceId = {};
+  for (const relation of relations) {
+    for (const id of [relation.subjectId, relation.objectId, ...(relation.linkSubstances || [])].filter(Boolean)) {
+      (bySubstanceId[id] ||= []).push(relation);
+    }
+  }
+
+  const canonicalSubstances = entities.map((entity) => ({
+    id:entity.id,
+    canonicalId:entity.canonicalId || entity.id,
+    name:entity.name,
+    kind:entity.kind,
+    substanceKind:entity.substanceKind,
+    class:entity.class,
+    aliases:[...entity.aliases],
+    parentIds:[...(entity.parentIds || [])],
+    componentIds:[...(entity.componentIds || [])],
+    linkable:entity.linkable,
+    relationCount:bySubstanceId[entity.id]?.length || 0,
+  })).sort((a, b) => a.substanceKind.localeCompare(b.substanceKind) || a.name.localeCompare(b.name));
+
+  const substanceKindCounts = canonicalSubstances.reduce((acc, item) => {
+    acc[item.substanceKind] = (acc[item.substanceKind] || 0) + 1;
+    return acc;
+  }, {});
+  const canonicalDuplicateFacts = canonicalFacts
+    .filter((fact) => fact.sourceRows.length > 1 || fact.sources.length > 1)
+    .map((fact) => ({
+      key:fact.key,
+      subject:fact.subject,
+      object:fact.object,
+      role:fact.role,
+      gene:fact.gene,
+      sources:fact.sources,
+      rowCount:fact.sourceRows.length,
+    }));
+  const orphanMetaboliteSubstances = canonicalSubstances
+    .filter((item) => /metabolite/.test(item.substanceKind) && !item.parentIds.length)
+    .map((item) => item.name);
+  const unresolvedRelationSubjects = relations
+    .filter((row) => row.entityKind === "unresolved")
+    .map((row) => `${row.source}:${row.subject}`)
+    .slice(0, 50);
+  const dataHygiene = {
+    substanceKindCounts,
+    aliasRows:aliasRows.length,
+    aliasCollisions,
+    duplicateFacts:canonicalDuplicateFacts,
+    orphanMetaboliteSubstances,
+    unresolvedRelationSubjects,
+    classPlaceholderSubstances:canonicalSubstances
+      .filter((item) => item.substanceKind === substanceKind.CLASS_PLACEHOLDER)
+      .map((item) => item.name),
+  };
 
   const modeledGeneKeys = new Set([
     ...Object.keys(genotypeEffects),
@@ -622,11 +867,17 @@
 
   global.DATA_VIEW_INDEX = {
     entities,
+    canonicalSubstances,
+    canonicalFacts,
+    aliasRows,
+    aliasCollisions,
+    dataHygiene,
     relations,
     byGene,
     byClass,
     byActionGroup,
     byEntity,
+    bySubstanceId,
     genes:Object.keys(byGene).sort(),
     modeledGenotypes,
     getDrugRecord,
