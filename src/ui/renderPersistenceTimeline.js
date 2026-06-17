@@ -41,27 +41,27 @@ function renderPersistenceRow(row) {
   const duration = Number.isFinite(row.estimatedPersistenceDays)
     ? formatPersistenceDays(row.estimatedPersistenceDays)
     : "unknown";
-  const reasons = (row.reasons || []).slice(0, 3).map(reason => `<li>${safeHtml(reason)}</li>`).join("");
-  const pathway = row.pathway ? `<span class="finding-tag">${safeHtml(row.pathway.replace(/_/g, " "))}</span>` : "";
-  const onset = row.onset ? `<span class="finding-tag">onset: ${safeHtml(row.onset.replace(/_/g, " "))}</span>` : "";
-  const offset = row.offset ? `<span class="finding-tag">offset: ${safeHtml(row.offset.replace(/_/g, " "))}</span>` : "";
+  const reasons = (row.reasons || []).slice(0, 3).map(reason => `<li>${safePublicHtml(reason)}</li>`).join("");
+  const pathway = row.pathway ? `<span class="finding-tag">${safePublicHtml(row.pathway.replace(/_/g, " "))}</span>` : "";
+  const onset = row.onset ? `<span class="finding-tag">onset: ${safePublicHtml(row.onset.replace(/_/g, " "))}</span>` : "";
+  const offset = row.offset ? `<span class="finding-tag">offset: ${safePublicHtml(row.offset.replace(/_/g, " "))}</span>` : "";
   return `<div class="persistence-card ${windowClass}">
     <div class="persistence-head">
       <div>
-        <div class="persistence-title">${safeHtml(row.actor)}</div>
-        <div class="persistence-subtitle">${safeHtml(row.actor === row.parent ? "parent substance" : `from ${row.parent}`)}</div>
+        <div class="persistence-title">${safePublicHtml(row.actor)}</div>
+        <div class="persistence-subtitle">${safePublicHtml(row.actor === row.parent ? "parent substance" : `from ${row.parent}`)}</div>
       </div>
-      <span class="persistence-window ${windowClass}">${safeHtml(windowClass)}</span>
+      <span class="persistence-window ${windowClass}">${safePublicHtml(windowClass)}</span>
     </div>
-    <div class="persistence-duration">${safeHtml(duration)}</div>
-    <div class="persistence-meta-line">${safeHtml(label)} · ${safeHtml((row.actorType || "actor").replace(/_/g, " "))}</div>
+    <div class="persistence-duration">${safePublicHtml(duration)}</div>
+    <div class="persistence-meta-line">${safePublicHtml(label)} · ${safePublicHtml((row.actorType || "actor").replace(/_/g, " "))}</div>
     ${reasons ? `<ul class="active-moiety-reasons">${reasons}</ul>` : ""}
     <div class="finding-meta">
-      <span class="finding-tag type">${safeHtml(label)}</span>
+      <span class="finding-tag type">${safePublicHtml(label)}</span>
       ${pathway}
       ${onset}
       ${offset}
-      <span class="finding-tag">confidence: ${safeHtml(row.confidence || "unknown")}</span>
+      <span class="finding-tag">confidence: ${safePublicHtml(row.confidence || "unknown")}</span>
       <span class="finding-tag warn">${row.reviewRequired ? "needs review" : "reviewed"}</span>
       <span class="finding-tag">${(row.evidenceRefs || []).length ? `${row.evidenceRefs.length} evidence ref${row.evidenceRefs.length === 1 ? "" : "s"}` : "inferred/review required"}</span>
     </div>

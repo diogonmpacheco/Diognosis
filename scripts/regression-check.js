@@ -1001,7 +1001,7 @@ const riskMarkerFindingRegression = window.eval(`(() => {
     g6pdFinding:g6pdFindings[0],
     g6pdOverviewCard:Boolean(g6pdOverviewCard),
     g6pdMechanismHasPath:/G6PD deficiency|oxidative reserve|oxidant/i.test(g6pdMechanismText),
-    g6pdReviewHasRaw:/G6PD deficiency/.test(g6pdReviewText) && /nodes/.test(g6pdReviewText),
+    g6pdReviewHasTechnicalDetails:/G6PD deficiency/.test(g6pdReviewText) && /copy technical path/i.test(g6pdReviewText),
     g6pdAllHaveLadders:g6pdFindings.every(f => f.evidenceLadder && f.evidenceLadder.clinicalActionConfidence),
     g6pdReviewedClaims:g6pdFindings.filter(f => f.evidenceLadder?.professionalReviewStatus === "reviewed").length,
     g6pdFakePhenoconversions:g6pdPhenoconversions.length,
@@ -1020,7 +1020,7 @@ assert(riskMarkerFindingRegression.g6pdFinding?.type === 'risk_marker', 'G6PD fi
 assert(riskMarkerFindingRegression.g6pdFinding?.whyPath?.nodes?.length > 0, 'G6PD risk-marker finding should have a why path');
 assert(riskMarkerFindingRegression.g6pdOverviewCard, 'G6PD risk-marker finding should appear in Overview');
 assert(riskMarkerFindingRegression.g6pdMechanismHasPath, 'G6PD risk-marker why path should appear in Mechanisms');
-assert(riskMarkerFindingRegression.g6pdReviewHasRaw, 'G6PD raw risk-marker path should appear in Review');
+assert(riskMarkerFindingRegression.g6pdReviewHasTechnicalDetails, 'G6PD technical risk-marker path should appear in Review');
 assert(riskMarkerFindingRegression.g6pdAllHaveLadders, 'Risk-marker findings should have evidence ladders');
 assert(riskMarkerFindingRegression.g6pdReviewedClaims === 0, 'Risk-marker findings should not claim professional review without metadata');
 assert(riskMarkerFindingRegression.g6pdFakePhenoconversions === 0, 'G6PD/HLA/RYR1 risk markers should not create fake CYP-style phenoconversion findings');
@@ -1272,10 +1272,10 @@ assert(
 );
 assert(
   ['model_only_review_prompt', 'insufficient_source_support'].includes(evidenceLadderRegression.evidenceFreeSourceSupportStatus),
-  `Evidence-free findings should show model-only/insufficient source support, got ${evidenceLadderRegression.evidenceFreeSourceSupportStatus}`
+  `Evidence-free findings should show modeled/insufficient source support, got ${evidenceLadderRegression.evidenceFreeSourceSupportStatus}`
 );
-assert(evidenceLadderRegression.modelOnlyStrongestTier === 'unknown', 'Model-only evidence ladder should not display FDA/guideline backing');
-assert(/model-only review prompt/i.test(evidenceLadderRegression.modelOnlyCompact), 'Compact ladder should visibly identify model-only review prompts');
+assert(evidenceLadderRegression.modelOnlyStrongestTier === 'unknown', 'Modeled evidence ladder should not display FDA/guideline backing');
+assert(/modeled review prompt/i.test(evidenceLadderRegression.modelOnlyCompact), 'Compact ladder should visibly identify modeled review prompts');
 assert(evidenceLadderRegression.clinicalActionConfidence === 'pending_review' || evidenceLadderRegression.clinicalActionConfidence === 'insufficient', 'Clinical action confidence should remain conservative');
 assert(evidenceLadderRegression.cardLadderCount > 0, 'Finding cards should render compact evidence ladder UI');
 assert(evidenceLadderRegression.ledgerExists, 'Evidence tab should render the evidence ladder ledger');
@@ -1465,7 +1465,7 @@ assert(reviewHomeRegression.matrixPanel === 'tab-review', 'Interaction Grid shou
 assert(reviewHomeRegression.summaryTiles >= 6, 'Review Summary should expose current-stack summary tiles');
 assert(reviewHomeRegression.scenarioCards === 0, 'Generated scenario snapshots should stay out of the slim bundle');
 assert(reviewHomeRegression.gapCards === 0, 'Generated metabolite coverage gaps should stay out of the slim bundle');
-assert(reviewHomeRegression.warningPaths > 0, 'Review should expose raw warning path diagnostics');
+assert(reviewHomeRegression.warningPaths > 0, 'Review should expose technical pathway diagnostics');
 assert(reviewHomeRegression.actionButtons >= 3, 'Review should expose report/contribute actions');
 assert(/Pending Review/i.test(reviewHomeRegression.summaryText), 'Review Summary should expose pending review status');
 
@@ -1506,9 +1506,9 @@ assert(
 );
 assert(crossTabFindingRegression.mechanismsHas, 'Mechanisms should explain findings with why paths');
 assert(crossTabFindingRegression.evidenceHas, 'Evidence should detail finding support through the evidence ledger');
-assert(crossTabFindingRegression.reviewHas, 'Review should debug findings through raw warning paths');
+assert(crossTabFindingRegression.reviewHas, 'Review should debug findings through technical pathways');
 assert(crossTabFindingRegression.mechanismPanel === 'tab-mechanisms', 'Mechanism why paths should stay in Mechanisms');
-assert(crossTabFindingRegression.reviewPanel === 'tab-review', 'Raw warning paths should stay in Review');
+assert(crossTabFindingRegression.reviewPanel === 'tab-review', 'Technical pathways should stay in Review');
 
 loadCase(window, ['Fluoxetine']);
 const fluoxetineWashout = window.eval('computeWashoutCalendar(["Fluoxetine"]).find(e => e.actorId === "norfluoxetine")');
@@ -1555,7 +1555,7 @@ assert(
 assert(
   window.document.getElementById('mechanisticSection').style.display === 'none' ||
   !/documented|already source-linked/i.test(window.document.getElementById('mechanisticBody').textContent),
-  'Mechanistic UI should keep documented interactions out of the model-only read-through section'
+  'Mechanistic UI should keep documented interactions out of the modeled read-through section'
 );
 
 loadCase(window, ['Atazanavir']);
@@ -1584,7 +1584,7 @@ assert(
 assert(
   mechanisticGenotypeDrugPredictions.some(p => p.documented) ||
   window.document.querySelectorAll('#mechanisticBody .mechanistic-card').length >= 1,
-  'Mechanistic renderer should show model-only genotype-drug cards and leave documented PGx to Genetics/Evidence'
+  'Mechanistic renderer should show modeled genotype-drug cards and leave documented PGx to Genetics/Evidence'
 );
 
 const browseCategoryAudit = window.eval(`(() => {
@@ -1670,7 +1670,7 @@ const overviewConsolidationRegression = window.eval(`(() => {
       mechanismText,
       mechanismPathCount: mechanismRows.length,
       mechanismTitles,
-      reviewRawPathCount: document.querySelectorAll("#warningPathBody .warning-path-row").length,
+      reviewTechnicalPathCount: document.querySelectorAll("#warningPathBody .warning-path-row").length,
       reviewText: document.getElementById("reviewSummaryBody")?.textContent || "",
       genesText: document.getElementById("activeMoietyBody")?.textContent || "",
     };
@@ -1693,7 +1693,7 @@ assert(tacConcern.support.some(label => /CYP3A4|CYP2C9|parent-metabolite/i.test(
 assert(overviewConsolidationRegression.tacrolimus.mechanismPathCount <= overviewConsolidationRegression.tacrolimus.concerns.length, 'Tacrolimus Mechanisms should render grouped concern paths instead of raw duplicates');
 assert(!overviewConsolidationRegression.tacrolimus.mechanismTitles.some(title => /^CYP2C19|^CYP2C9|^CYP3A4 behaves/i.test(title)), 'Tacrolimus Mechanisms should not expose standalone CYP function rows as primary paths');
 assert(/Grouped supporting signals/i.test(overviewConsolidationRegression.tacrolimus.mechanismText), 'Tacrolimus Mechanisms should keep sub-signals inside the grouped concern');
-assert(overviewConsolidationRegression.tacrolimus.reviewRawPathCount > overviewConsolidationRegression.tacrolimus.mechanismPathCount, 'Review should retain more raw paths than the grouped Mechanisms view');
+assert(overviewConsolidationRegression.tacrolimus.reviewTechnicalPathCount > overviewConsolidationRegression.tacrolimus.mechanismPathCount, 'Review should retain more technical paths than the grouped Mechanisms view');
 assert(/Clinical Concern Groups/i.test(overviewConsolidationRegression.tacrolimus.reviewText), 'Review should expose clinical concern grouping diagnostics');
 
 const simConcern = overviewConsolidationRegression.simvastatin.concerns.find(c => /Simvastatin exposure may rise with Clarithromycin/i.test(c.title));

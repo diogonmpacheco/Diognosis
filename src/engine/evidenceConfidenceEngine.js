@@ -72,7 +72,7 @@ function sourceSupportStatusLabel(status) {
     professionally_reviewed_source_linked: "professionally reviewed source-linked",
     source_linked_pending_review: "source-linked, pending professional review",
     source_linked: "source-linked",
-    model_only_review_prompt: "model-only review prompt",
+    model_only_review_prompt: "modeled review prompt",
     insufficient_source_support: "insufficient source support",
   };
   return labels[status] || "source status unknown";

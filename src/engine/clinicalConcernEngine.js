@@ -399,7 +399,7 @@ function makeClinicalConcernTitle(concern, context = {}) {
     return victim && perp ? `${victim} exposure may fall with ${perp}` : `${victim || "Exposure"} may fall`;
   }
   if (domain === "washout_or_persistence") {
-    return `${victim || row.actor || row.parent || "Persistent actor"} may persist after stopping`;
+    return "Switching and washout timing may need review";
   }
   if (clinicalBurdenDomain(domain)) {
     return `${clinicalDomainLabel(domain)} may rise`;
@@ -486,7 +486,11 @@ function clinicalConcernKey({ finding, domain, victims = [], perpetrators = [], 
     return `domain:${domain}|phenotype:${normalizeFindingToken(phenotype)}`;
   }
   if (domain === "washout_or_persistence") {
-    return `domain:${domain}|actor:${normalizeFindingToken(row.actor || clinicalActorLabel(victims[0]) || finding.title)}|parent:${normalizeFindingToken(row.parent || "")}`;
+    const stackKey = uniqueClinicalValues(context.stack || activeStack || [])
+      .map(normalizeFindingToken)
+      .sort()
+      .join(",");
+    return `domain:${domain}|stack:${stackKey || normalizeFindingToken(row.parent || row.actor || finding.title)}`;
   }
   const victimKey = uniqueClinicalValues(victims.map(actor => actor.id)).map(normalizeFindingToken).sort().join(",");
   const perpKey = uniqueClinicalValues(perpetrators.map(actor => actor.id)).map(normalizeFindingToken).sort().join(",");
@@ -595,11 +599,11 @@ function clinicalSupportingSignalForFinding(finding, entry = {}) {
     else if (row.netPattern === "mixed_direction") label = `${row.parent || "Parent drug"} parent-metabolite balance changed`;
     else label = `${row.parent || "Parent drug"} active-moiety signal`;
   } else if (type === "timing_washout") {
-    label = `${row.actor || row.parent || "Actor"} persistence or washout context`;
+    label = `${row.actor || row.parent || "Substance"} timing or washout context`;
   } else if (type === "transporter") {
     label = "Transporter or clearance pathway context";
   } else if (type === "mechanistic_pathway") {
-    label = "Model-only mechanistic pathway context";
+    label = "Modeled mechanistic pathway context";
   }
   return {
     id: finding.id,
@@ -608,7 +612,7 @@ function clinicalSupportingSignalForFinding(finding, entry = {}) {
     severity: finding.severity || "info",
     confidence: finding.confidence || "unknown",
     evidenceRefs: uniqueClinicalValues(finding.evidenceRefs || []),
-    sourceStatus: (finding.evidenceRefs || []).length ? "source-linked, pending review" : "model-only review prompt",
+    sourceStatus: (finding.evidenceRefs || []).length ? "source-linked, pending review" : "modeled review prompt",
     presentationLevel: entry.presentationLevel || "supporting",
   };
 }
@@ -636,7 +640,7 @@ function makeClinicalConcernSummary(concern, context = {}) {
     return `${clinicalDomainLabel(domain)} is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.`;
   }
   if (domain === "washout_or_persistence") {
-    return `${primary.summary || "Timing and persistence context may remain relevant after stopping or switching."} Related parent, metabolite, and recovery signals are grouped below.`;
+    return "Timing and persistence context may remain relevant after stopping or switching. Parent, metabolite, and recovery signals are grouped below.";
   }
   return `${primary.summary || "This card groups related pathway, metabolite, and evidence signals for the same clinical concern."}`;
 }

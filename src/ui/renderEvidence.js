@@ -136,30 +136,31 @@ function renderEvidenceLadderLedger(findings = []) {
     const ladder = row.ladder;
     const tier = ladder.strongestTier && ladder.strongestTier !== "unknown" ? ladder.strongestTier.replace(/_/g, " ") : "unknown";
     const identifiers = ladder.publicIdentifiers?.length ? ladder.publicIdentifiers.join(" · ") : "source-linked entry";
+    const title = publicEvidenceTitle(row.study);
     return `<div class="evidence-ledger-row">
       <div class="evidence-ledger-head">
         <div>
-          <div class="evidence-ledger-title">${safeHtml(row.study.title || row.ref)}</div>
-          <div class="evidence-ledger-meta">${safeHtml(row.ref)} · ${safeHtml(tier.toLowerCase())} · ${safeHtml(identifiers)}</div>
+          <div class="evidence-ledger-title">${safePublicHtml(title)}</div>
+          <div class="evidence-ledger-meta">${safePublicHtml(tier.toLowerCase())} · ${safePublicHtml(identifiers)}</div>
         </div>
         <span class="ev-review-badge needs-review">${ladder.professionalReviewStatus === "reviewed" ? "reviewed" : "pending professional review"}</span>
       </div>
-      <div class="evidence-ledger-support">${safeHtml([...new Set(row.findings)].slice(0, 4).join(" · "))}</div>
+      <div class="evidence-ledger-support">${safePublicHtml([...new Set(row.findings)].slice(0, 4).join(" · "))}</div>
       <div class="finding-meta">
-        <span class="finding-tag">source: ${safeHtml(sourceSupportStatusLabel(ladder.sourceSupportStatus))}</span>
-        <span class="finding-tag">mechanistic: ${safeHtml(ladder.mechanisticConfidence)}</span>
-        <span class="finding-tag">clinical action: ${safeHtml(String(ladder.clinicalActionConfidence).replace(/_/g, " "))}</span>
-        <span class="finding-tag">review: ${safeHtml(ladder.professionalReviewStatus === "reviewed" ? "professionally reviewed" : "pending professional review")}</span>
+        <span class="finding-tag">source: ${safePublicHtml(sourceSupportStatusLabel(ladder.sourceSupportStatus))}</span>
+        <span class="finding-tag">mechanistic: ${safePublicHtml(ladder.mechanisticConfidence)}</span>
+        <span class="finding-tag">clinical action: ${safePublicHtml(String(ladder.clinicalActionConfidence).replace(/_/g, " "))}</span>
+        <span class="finding-tag">review: ${safePublicHtml(ladder.professionalReviewStatus === "reviewed" ? "professionally reviewed" : "pending professional review")}</span>
         <span class="finding-tag">${row.study.quantifiedEffects ? "calculation-bearing context" : "qualitative context"}</span>
       </div>
     </div>`;
-  }).join("") : `<div class="evidence-ledger-empty">Some findings are model-only review prompts and do not yet have linked source refs. Source absence is shown on each finding card.</div>`;
+  }).join("") : `<div class="evidence-ledger-empty">Some findings are modeled review prompts and do not yet have linked source refs. Source absence is shown on each finding card.</div>`;
   return `<div class="evidence-ledger" id="evidenceLadderLedger">
     <div class="evidence-ledger-summary">
-      <div><strong>${safeHtml(String(findings.length))}</strong><span>current findings</span></div>
-      <div><strong>${safeHtml(String(sourceLinkedFindings.length))}</strong><span>source-linked findings</span></div>
-      <div><strong>${safeHtml(String(pendingFindings.length))}</strong><span>pending review</span></div>
-      <div><strong>${safeHtml(String(noRefFindings))}</strong><span>inferred / no refs</span></div>
+      <div><strong>${safePublicHtml(String(findings.length))}</strong><span>current findings</span></div>
+      <div><strong>${safePublicHtml(String(sourceLinkedFindings.length))}</strong><span>source-linked findings</span></div>
+      <div><strong>${safePublicHtml(String(pendingFindings.length))}</strong><span>pending review</span></div>
+      <div><strong>${safePublicHtml(String(noRefFindings))}</strong><span>inferred / no refs</span></div>
     </div>
     <div class="evidence-ledger-label">Evidence Browser / Evidence Ledger</div>
     <div class="evidence-ledger-list">${rowHtml}</div>
@@ -214,8 +215,8 @@ function renderQualityDashboard() {
   if (countEl) countEl.textContent = `${publicStudies.length} evidence · ${pendingProfessionalReview} pending professional review · ${stackExternalContextCount} external context cards`;
 
   const issueItems = [
-    ...reviewNotes.slice(0,3).map(s => `<div class="quality-item"><strong>Evidence review note:</strong> ${s.id} · ${s.verifyNote}</div>`),
-    ...missingSignals.slice(0,3).map(x => `<div class="quality-item"><strong>Schema upgrade:</strong> add explicit exposureSignal/action metadata for ${x}</div>`),
+    ...reviewNotes.slice(0,3).map(s => `<div class="quality-item"><strong>Evidence review note:</strong> ${safePublicHtml(publicEvidenceTitle(s))} · ${safePublicHtml(s.verifyNote)}</div>`),
+    ...missingSignals.slice(0,3).map(x => `<div class="quality-item"><strong>Schema upgrade:</strong> add explicit exposure/action metadata for ${safePublicHtml(x)}</div>`),
     knownDdiMissingRefs ? `<div class="quality-item"><strong>Interaction provenance:</strong> ${knownDdiMissingRefs} interaction rows still rely on inline evidence instead of STUDY_DB refs.</div>` : ""
   ].filter(Boolean).join("");
 
@@ -226,7 +227,7 @@ function renderQualityDashboard() {
       <div class="quality-tile"><div class="quality-num">${quantified.length}</div><div class="quality-label">Quantified PGx Effects</div><div class="quality-note">Metabolite/active-form rows with numeric folds</div></div>
       <div class="quality-tile"><div class="quality-num">${qualitative.length}</div><div class="quality-label">Qualitative PGx Effects</div><div class="quality-note">Shown without invented fold numbers</div></div>
       <div class="quality-tile"><div class="quality-num">${professionalReviewed.length}</div><div class="quality-label">Professionally Reviewed Evidence</div><div class="quality-note">${pendingProfessionalReview} entries still pending pharmacist/physician review</div></div>
-      <div class="quality-tile"><div class="quality-num">${stackExternalContextCount}</div><div class="quality-label">External Context Cards</div><div class="quality-note">${openTargetsSummary.contextFactsIncluded || 0} imported facts · ${openTargetsPromotionSummary?.unreviewed || 0} awaiting review · ${safeHtml(openTargetsRelease)}</div></div>
+      <div class="quality-tile"><div class="quality-num">${stackExternalContextCount}</div><div class="quality-label">External Context Cards</div><div class="quality-note">${safePublicHtml(openTargetsSummary.contextFactsIncluded || 0)} imported facts · ${safePublicHtml(openTargetsPromotionSummary?.unreviewed || 0)} awaiting review · ${safePublicHtml(openTargetsRelease)}</div></div>
       <div class="quality-tile"><div class="quality-num">${estimatedFoldCount}</div><div class="quality-label">Live Model Estimates</div><div class="quality-note">Estimated folds visible in the current stack</div></div>
     </div>
     ${issueItems ? `<div class="quality-list">${issueItems}</div>` : `<div class="quality-list"><div class="quality-item"><strong>Current stack:</strong> no structural quality warnings surfaced by the local dashboard.</div></div>`}

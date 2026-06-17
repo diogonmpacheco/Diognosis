@@ -902,9 +902,7 @@ function analyzeMetabolites() {
     if (!mets) return;
     mets.forEach(m => {
       DRUG_DB.forEach(d => {
-        const mn = m.n.toLowerCase();
-        const dn = d.name.toLowerCase();
-        if (mn.includes(dn) || dn.includes(mn.split(" ")[0])) {
+        if (isStrongMetaboliteDrugMatch(m, d)) {
           if (d.name !== drugName) {
             if (!drugMatches[drugName]) drugMatches[drugName] = [];
             drugMatches[drugName].push({ metabolite: m, matchedDrug: d.name });
@@ -959,6 +957,38 @@ function analyzeMetabolites() {
   }
 
   return { drugMatches, enzymeConflicts, toxicOverlap };
+}
+
+function normalizeMetaboliteDrugMatchText(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/\([^)]*\)/g, " ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isGenericMetaboliteToken(value) {
+  const text = normalizeMetaboliteDrugMatchText(value);
+  return /^(?:m|metabolite)\s*\d+[a-z]?$/.test(text) ||
+    /^m\d+[a-z]?$/.test(text) ||
+    /^(?:primary|live|clearance|exposure|route|context)$/.test(text);
+}
+
+function isStrongMetaboliteDrugMatch(metabolite, drug) {
+  if (!metabolite || !drug?.name) return false;
+  if (typeof isPublicSyntheticContextRow === "function" && isPublicSyntheticContextRow(metabolite)) return false;
+  const metaboliteName = normalizeMetaboliteDrugMatchText(metabolite.n);
+  const drugName = normalizeMetaboliteDrugMatchText(drug.name);
+  if (!metaboliteName || !drugName || drugName.length < 4) return false;
+  if (isGenericMetaboliteToken(metaboliteName)) return false;
+  const firstToken = metaboliteName.split(" ")[0] || "";
+  if (isGenericMetaboliteToken(firstToken) || firstToken.length < 4) return false;
+  if (metaboliteName === drugName) return true;
+  const drugWord = new RegExp(`(^|\\s)${drugName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(\\s|$)`);
+  if (drugName.length >= 6 && drugWord.test(metaboliteName)) return true;
+  const metaboliteWord = new RegExp(`(^|\\s)${metaboliteName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(\\s|$)`);
+  return metaboliteName.length >= 6 && metaboliteWord.test(drugName);
 }
 
 /* ================================================================

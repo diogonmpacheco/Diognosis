@@ -101,7 +101,7 @@ assert(doc.querySelectorAll('#reviewSummaryBody .review-summary-tile').length > 
 assert(doc.querySelectorAll('#scenarioSnapshotBody .review-diagnostic-card').length === 0, 'Generated scenario snapshot diagnostics should stay out of the slim bundle');
 assert(doc.querySelectorAll('#metaboliteGapBody .review-diagnostic-card').length === 0, 'Generated metabolite coverage diagnostics should stay out of the slim bundle');
 assert(doc.querySelectorAll('#contributeBody .review-action-btn').length >= 2, 'Review should expose report/contribute actions');
-assert(doc.querySelectorAll('#warningPathBody .warning-path-row').length > 0, 'Review should expose raw warning path rows');
+assert(doc.querySelectorAll('#warningPathBody .warning-path-row').length > 0, 'Review should expose technical pathway rows');
 window.setTab('overview');
 
 const findingAudit = evalInPage(window, `(() => {

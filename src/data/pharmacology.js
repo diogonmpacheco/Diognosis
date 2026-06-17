@@ -1347,9 +1347,10 @@ function top100CoveragePkParams(drug) {
     /ssri|maoi|antiarrhythmic|statin|anticoag|antiplatelet/i.test(text) ? 25 : 100;
   return {
     F, ka:pkKaFromTmax(tmax, halfLife), halfLife, Vd, dose_mg,
-    note:`Phase 7 top-250 live PK approximation for ${drug.name}; uses existing half-life/class/route context so PK simulation is available while source-specific parameters remain pending review.`,
+    note:`Approximate PK profile for ${drug.name} using available half-life, class, and route context while drug-specific parameter curation is pending review.`,
     nonlinear:/phenytoin|saturable|nonlinear|autoinduction|mdma|paroxetine|phenytoin/i.test(`${text} ${drug?.note || ""}`),
     evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
+    internalProvenance:{ phase:"phase7", batch:"top250_live_pk", reviewStatus:"pending" },
   };
 }
 
@@ -1364,9 +1365,10 @@ for (const drugName of TOP250_LIVE_COVERAGE_DRUGS) {
     const days = top100CoverageWashoutDays(drug);
     WASHOUT_DAYS[key] = {
       days,
-      mechanism:"top250_live_coverage_timing_context",
-      note:`Phase 7 top-250 live timing row for ${drug.name}: conservative ${days}-day context from half-life/class/interaction persistence. Pending source-specific professional review.`,
+      mechanism:"conservative_timing_context",
+      note:`Conservative ${days}-day timing context for ${drug.name} based on half-life, class, and interaction persistence.`,
       evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
+      internalProvenance:{ phase:"phase7", batch:"top250_live_timing", reviewStatus:"pending" },
     };
   }
   if (top100CoverageNeedsBurden(drug) && !top100CoverageHasScoring(PHENOTYPE_SCORES, drug)) {
@@ -1375,9 +1377,10 @@ for (const drugName of TOP250_LIVE_COVERAGE_DRUGS) {
   if (top100CoverageNeedsBurden(drug) && !top100CoverageHasScoring(BEERS_FLAGS, drug) &&
     /tca|maoi|antipsychotic|phenothiazine|opioid|benzodiazepine|barbiturate|anticonvulsant|antiarrhythmic|nsaid|alpha/i.test(`${drug.name} ${drug.cls}`)) {
     BEERS_FLAGS[key] = {
-      concern:`Phase 7 top-250 older-adult burden context for ${drug.name}: class-linked fall, CNS, bleeding, renal, QT, or orthostasis risk may matter in age >=65.`,
-      avoid:"top250_65plus_caution_pending_review",
+      concern:`Older-adult caution for ${drug.name}: class-linked fall, CNS, bleeding, renal, QT, or orthostasis risk may matter in age >=65.`,
+      avoid:"older_adult_caution_pending_review",
       evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
+      internalProvenance:{ phase:"phase7", batch:"top250_burden", reviewStatus:"pending" },
     };
   }
   if (!top100CoverageHasScoring(ACB_SCORES, drug) && /tca|paroxetine|phenothiazine|prochlorperazine|disopyramide/i.test(`${drug.name} ${drug.cls}`)) {
@@ -1392,17 +1395,19 @@ if (typeof PHASE12_DRUG_EXPANSION_NAMES !== "undefined") {
     const key = top100CoveragePharmKey(drug);
     if (!top100CoverageHasScoring(PK_PARAMS, drug)) {
       const pk = top100CoveragePkParams(drug);
-      pk.note = `Phase 12 net-new drug PK approximation for ${drug.name}; source-specific PK curation pending.`;
+      pk.note = `Approximate PK profile for ${drug.name}; drug-specific PK curation is pending review.`;
       pk.evidenceRefs = [...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS];
+      pk.internalProvenance = { phase:"phase12", batch:"drug_count_pk", reviewStatus:"pending" };
       PK_PARAMS[key] = pk;
     }
     if (!top100CoverageHasScoring(WASHOUT_DAYS, drug)) {
       const days = top100CoverageWashoutDays(drug);
       WASHOUT_DAYS[key] = {
         days,
-        mechanism:"phase12_drug_count_timing_context",
-        note:`Phase 12 timing row for ${drug.name}: conservative ${days}-day half-life/class context pending source-specific review.`,
+        mechanism:"conservative_timing_context",
+        note:`Conservative ${days}-day timing context for ${drug.name} based on half-life and class context.`,
         evidenceRefs:[...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS],
+        internalProvenance:{ phase:"phase12", batch:"drug_count_timing", reviewStatus:"pending" },
       };
     }
     if (top100CoverageNeedsBurden(drug) && !top100CoverageHasScoring(PHENOTYPE_SCORES, drug)) {
@@ -1411,9 +1416,10 @@ if (typeof PHASE12_DRUG_EXPANSION_NAMES !== "undefined") {
     if (top100CoverageNeedsBurden(drug) && !top100CoverageHasScoring(BEERS_FLAGS, drug) &&
       /tca|maoi|antipsychotic|phenothiazine|opioid|benzodiazepine|barbiturate|anticonvulsant|antiarrhythmic|nsaid|alpha|sedative|hypnotic|anticholinergic/i.test(`${drug.name} ${drug.cls}`)) {
       BEERS_FLAGS[key] = {
-        concern:`Phase 12 older-adult burden context for ${drug.name}: class-linked CNS, fall, anticholinergic, renal, bleeding, QT, or orthostasis risk may matter in age >=65.`,
-        avoid:"phase12_65plus_caution_pending_review",
+        concern:`Older-adult caution for ${drug.name}: class-linked CNS, fall, anticholinergic, renal, bleeding, QT, or orthostasis risk may matter in age >=65.`,
+        avoid:"older_adult_caution_pending_review",
         evidenceRefs:[...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS],
+        internalProvenance:{ phase:"phase12", batch:"drug_count_burden", reviewStatus:"pending" },
       };
     }
   }
@@ -1447,11 +1453,13 @@ if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
     const existingPk = top100GoldScoringRow(PK_PARAMS, drug);
     if (existingPk) {
       top100GoldMergeEvidenceRefs(existingPk.row);
-      existingPk.row.note = `${existingPk.row.note || ""} Top-100 gold enrichment confirms this profile is live in PK simulation pending source-specific review.`.trim();
+      existingPk.row.note = `${existingPk.row.note || ""} This profile is included in PK simulation while drug-specific curation is pending review.`.trim();
+      existingPk.row.internalProvenance = { ...(existingPk.row.internalProvenance || {}), phase:"phase13", batch:"top100_gold_pk" };
     } else {
       const pk = top100CoveragePkParams(drug);
-      pk.note = `Phase 13 top-100 gold PK approximation for ${drug.name}; source-specific PK curation pending.`;
+      pk.note = `Approximate PK profile for ${drug.name}; drug-specific PK curation is pending review.`;
       pk.evidenceRefs = [...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS];
+      pk.internalProvenance = { phase:"phase13", batch:"top100_gold_pk", reviewStatus:"pending" };
       PK_PARAMS[key] = pk;
     }
 
@@ -1462,9 +1470,10 @@ if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
       const days = top100CoverageWashoutDays(drug);
       WASHOUT_DAYS[key] = {
         days,
-        mechanism:"top100_gold_timing_context",
-        note:`Phase 13 top-100 gold timing row for ${drug.name}: conservative ${days}-day half-life/class context pending source-specific review.`,
+        mechanism:"conservative_timing_context",
+        note:`Conservative ${days}-day timing context for ${drug.name} based on half-life and class context.`,
         evidenceRefs:[...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS],
+        internalProvenance:{ phase:"phase13", batch:"top100_gold_timing", reviewStatus:"pending" },
       };
     }
 
@@ -1478,9 +1487,10 @@ if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
     if (!top100CoverageHasScoring(BEERS_FLAGS, drug) &&
       /maoi|antipsychotic|phenothiazine|opioid|benzodiazepine|barbiturate|anticonvulsant|antiarrhythmic|nsaid|alpha|sedative|hypnotic|anticholinergic|stimulant/i.test(`${drug.name} ${drug.cls}`)) {
       BEERS_FLAGS[key] = {
-        concern:`Phase 13 top-100 gold older-adult burden context for ${drug.name}: class-linked CNS, fall, QT, bleeding, renal, anticholinergic, or orthostasis risk may matter in age >=65.`,
-        avoid:"top100_gold_65plus_caution_pending_review",
+        concern:`Older-adult caution for ${drug.name}: class-linked CNS, fall, QT, bleeding, renal, anticholinergic, or orthostasis risk may matter in age >=65.`,
+        avoid:"older_adult_caution_pending_review",
         evidenceRefs:[...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS],
+        internalProvenance:{ phase:"phase13", batch:"top100_gold_burden", reviewStatus:"pending" },
       };
     } else {
       const existingBeers = top100GoldScoringRow(BEERS_FLAGS, drug);
@@ -1539,9 +1549,10 @@ function ninetyPercentCoverageFillDrugTable(table, rows, hasRow, addRow) {
 
 function ninetyPercentCoveragePkParams(drug) {
   const row = top100CoveragePkParams(drug);
-  row.note = `Phase 16 90% live PK approximation for ${drug.name}; uses existing half-life/class/route context so PK simulation is available while source-specific parameters remain pending review.`;
+  row.note = `Approximate PK profile for ${drug.name} using available half-life, class, and route context while drug-specific parameters are pending review.`;
   row.evidenceRefs = [...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS];
   row.evidence = { confidence:"low", sources:["90% live coverage adapter"], studyType:"route_half_life_adapter" };
+  row.internalProvenance = { phase:"phase16", batch:"ninety_percent_pk", reviewStatus:"pending" };
   return row;
 }
 
@@ -1549,10 +1560,11 @@ function ninetyPercentCoverageWashoutRow(drug) {
   const days = top100CoverageWashoutDays(drug);
   return {
     days,
-    mechanism:"phase16_ninety_percent_timing_context",
-    note:`Phase 16 90% live timing row for ${drug.name}: conservative ${days}-day half-life/class/interaction-persistence context pending source-specific review.`,
+    mechanism:"conservative_timing_context",
+    note:`Conservative ${days}-day timing context for ${drug.name} based on half-life, class, and interaction persistence.`,
     evidenceRefs:[...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS],
     evidence:{confidence:"low", sources:["90% live coverage adapter"], studyType:"half_life_class_adapter"},
+    internalProvenance:{ phase:"phase16", batch:"ninety_percent_timing", reviewStatus:"pending" },
   };
 }
 
@@ -1574,9 +1586,10 @@ function ninetyPercentCoverageBeersRow(drug) {
     /ssri|snri/i.test(text) ? "serotonergic_fall_bleeding_65plus_caution" :
     "older_adult_caution_pending_review";
   return {
-    concern:`Phase 16 90% older-adult burden context for ${drug.name}: class-linked CNS, fall, anticholinergic, renal, bleeding, QT, orthostasis, or hyponatremia risk may matter in age >=65.`,
+    concern:`Older-adult caution for ${drug.name}: class-linked CNS, fall, anticholinergic, renal, bleeding, QT, orthostasis, or hyponatremia risk may matter in age >=65.`,
     avoid,
     evidenceRefs:[...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS],
+    internalProvenance:{ phase:"phase16", batch:"ninety_percent_burden", reviewStatus:"pending" },
   };
 }
 

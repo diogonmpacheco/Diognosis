@@ -169,7 +169,7 @@ function renderExternalSafetyContextCard(context) {
     context.riskMarker ? `Risk marker: ${context.riskMarker}` : "",
   ].filter(Boolean);
   const reviewHref = safeUrl(buildExternalSafetyContextReviewUrl(context));
-  const contextNote = `Context only · reviewRequired:${Boolean(context.reviewRequired)} · importedContextOnly:${Boolean(context.importedContextOnly)} · notSeverityBearing:${Boolean(context.notSeverityBearing)}`;
+  const contextNote = "Context only; not used for public severity until reviewed.";
   const reviewDecision = formatOpenTargetsReviewDecision(context.reviewDecision);
   const actionHint = actionHintForOpenTargetsDataset(context.openTargetsSourceDataset || context.factType);
   const rationale = context.promotionRationale ? `Review rationale: ${context.promotionRationale}` : "";
@@ -177,14 +177,14 @@ function renderExternalSafetyContextCard(context) {
   return `<div class="external-context-card" data-source-category="open_targets_context">
     <div class="external-context-head">
       <span class="ev-review-badge needs-review">needs Diognosis review</span>
-      <span class="external-context-type">${safeHtml(typeLabel)}</span>
-      <span class="external-context-decision">${safeHtml(reviewDecision)}</span>
+      <span class="external-context-type">${safePublicHtml(typeLabel)}</span>
+      <span class="external-context-decision">${safePublicHtml(reviewDecision)}</span>
     </div>
-    <div class="external-context-title">${safeHtml(context.label)}</div>
-    <div class="external-context-meta">${safeTextList(meta, "<br>")}</div>
-    <div class="external-context-note">${safeHtml(contextNote)}</div>
-    <div class="external-context-action">${safeHtml(actionHint)}</div>
-    ${rationale ? `<div class="external-context-action">${safeHtml(rationale)}</div>` : ""}
+    <div class="external-context-title">${safePublicHtml(context.label)}</div>
+    <div class="external-context-meta">${safeTextList(meta.map(publicDisplayText), "<br>")}</div>
+    <div class="external-context-note">${safePublicHtml(contextNote)}</div>
+    <div class="external-context-action">${safePublicHtml(actionHint)}</div>
+    ${rationale ? `<div class="external-context-action">${safePublicHtml(rationale)}</div>` : ""}
     <div class="feedback-row"><a class="feedback-link external-context-report" data-external-context-report="true" href="${safeAttr(reviewHref)}" target="_blank" rel="noopener">Suggest context review</a></div>
   </div>`;
 }

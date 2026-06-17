@@ -67,7 +67,7 @@ const PANEL_DEFS = [
   { name:'review summary', sectionId:'reviewSummarySection', bodyId:'reviewSummaryBody' },
   { name:'scenario snapshots', sectionId:'scenarioSnapshotSection', bodyId:'scenarioSnapshotBody' },
   { name:'metabolite coverage gaps', sectionId:'metaboliteGapSection', bodyId:'metaboliteGapBody' },
-  { name:'raw warning paths', sectionId:'warningPathSection', bodyId:'warningPathBody' },
+  { name:'technical pathways', sectionId:'warningPathSection', bodyId:'warningPathBody' },
   { name:'review queue', sectionId:'qualitySection', bodyId:'qualityBody' },
 ];
 
@@ -237,7 +237,7 @@ function collect({ name, why, drugs, genotypes = [], tab = 'genes-metabolites', 
     metabolites: metabolites.slice(0, 500),
     evidence: evidence.slice(0, 500),
     reviewSummary: reviewSummaryText.slice(0, 500),
-    rawPaths: rawPathText.slice(0, 500),
+      technicalPaths: rawPathText.slice(0, 500),
     visiblePanels,
     staleHiddenPanels: panels.filter(p => !p.visible && p.text).map(p => ({ name:p.name, text:p.text.slice(0, 120) })),
   }, null, 2);
@@ -249,7 +249,7 @@ function collect({ name, why, drugs, genotypes = [], tab = 'genes-metabolites', 
   assert(includesAny(activeMoietyText, expect.metabolites), `${name}: missing parent-metabolite balance signal ${expect.metabolites.join(' / ')}\n${debug()}`);
   assert(includesAny(persistenceText, [...expect.metabolites, ...expect.summary]), `${name}: missing persistence timeline signal\n${debug()}`);
   assert(/findings/i.test(reviewSummaryText) && /pending review/i.test(reviewSummaryText), `${name}: missing Review Summary diagnostics\n${debug()}`);
-  assert(rawPathText.length > 0 && /copy path/i.test(rawPathText), `${name}: missing raw warning path diagnostics\n${debug()}`);
+  assert(rawPathText.length > 0 && /copy technical path/i.test(rawPathText), `${name}: missing technical pathway diagnostics\n${debug()}`);
   assert(window.document.querySelectorAll('#findingBody .evidence-ladder-compact').length > 0, `${name}: finding cards must show compact evidence ladders\n${debug()}`);
   if (expect.risk) {
     assert(includesAny(risk, expect.risk), `${name}: missing risk-panel signal ${expect.risk.join(' / ')}\n${debug()}`);

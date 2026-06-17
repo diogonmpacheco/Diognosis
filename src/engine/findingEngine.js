@@ -177,7 +177,7 @@ function normalizeMechanisticFinding(row, context = {}) {
     sourceRows: [row],
     groupedFindings: [],
     clinicalAction: row.action || "",
-    evidenceStatus: "model-only review prompt",
+    evidenceStatus: "modeled review prompt",
   };
 }
 

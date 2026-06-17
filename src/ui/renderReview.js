@@ -30,7 +30,7 @@ function renderReviewSummary() {
     ${renderReviewSummaryTile(concerns.length, "Clinical Concerns", "Grouped Overview presentation objects.")}
   </div>
   <div class="quality-list">
-    <div class="quality-item"><strong>Review scope:</strong> raw warning paths, evidence review queue, interaction grid, data diagnostics, scenario snapshots, and contribution links are grouped here for auditing.</div>
+    <div class="quality-item"><strong>Review scope:</strong> technical pathway details, evidence review queue, interaction grid, data diagnostics, scenario snapshots, and contribution links are grouped here for auditing.</div>
     ${renderClinicalConcernReviewList(concerns)}
   </div>`;
   return findings;
@@ -58,9 +58,9 @@ function renderScenarioSnapshotsReview() {
   body.innerHTML = `<div class="review-diagnostic-grid">${rows.map(row => {
     const isCurrent = currentRows.includes(row);
     return `<div class="review-diagnostic-card ${isCurrent ? "review-diagnostic-current" : ""}">
-      <div class="review-diagnostic-title">${safeHtml(row.name)}</div>
-      <div class="review-diagnostic-meta">${safeHtml((row.stack || []).join(" + "))}${row.genotype?.length ? ` · PGx: ${safeHtml(row.genotype.join(", "))}` : ""}</div>
-      <div class="review-diagnostic-meta">${safeHtml(row.focus || "scenario guard")} · ${safeHtml(row.status || "tracked")}</div>
+      <div class="review-diagnostic-title">${safePublicHtml(row.name)}</div>
+      <div class="review-diagnostic-meta">${safePublicHtml((row.stack || []).join(" + "))}${row.genotype?.length ? ` · PGx: ${safePublicHtml(row.genotype.join(", "))}` : ""}</div>
+      <div class="review-diagnostic-meta">${safePublicHtml(row.focus || "scenario guard")} · ${safePublicHtml(row.status || "tracked")}</div>
     </div>`;
   }).join("")}</div>`;
 }
@@ -83,8 +83,8 @@ function renderMetaboliteCoverageGapsReview() {
   body.innerHTML = `<div class="review-diagnostic-grid">${shown.map(row => {
     const isCurrent = currentRows.includes(row);
     return `<div class="review-diagnostic-card ${isCurrent ? "review-diagnostic-current" : ""}">
-      <div class="review-diagnostic-title">${safeHtml(row.parent)} -> ${safeHtml(row.metabolite)}</div>
-      <div class="review-diagnostic-meta">${safeHtml(row.gene)} · ${safeHtml(row.activity)} · ${safeHtml(row.priority)}</div>
+      <div class="review-diagnostic-title">${safePublicHtml(row.parent)} -> ${safePublicHtml(publicMetaboliteLabel(row.metabolite, row.parent))}</div>
+      <div class="review-diagnostic-meta">${safePublicHtml(row.gene)} · ${safePublicHtml(row.activity)} · ${safePublicHtml(row.priority)}</div>
     </div>`;
   }).join("")}</div>`;
 }
@@ -148,10 +148,9 @@ function renderClinicalConcernReviewList(concerns = []) {
     <strong>Clinical Concern Groups:</strong>
     <div class="review-diagnostic-grid" style="margin-top:8px">
       ${concerns.slice(0, 8).map(concern => `<div class="review-diagnostic-card">
-        <div class="review-diagnostic-title">${safeHtml(concern.title || concern.id)}</div>
-        <div class="review-diagnostic-meta">${safeHtml(concern.clinicalConcernDomain || "domain unknown")} · key: ${safeHtml(concern.clinicalConcernKey || concern.id)}</div>
-        <div class="review-diagnostic-meta">primary: ${safeHtml(concern.primaryFindingId || "unknown")} · supporting: ${safeHtml(String((concern.supportingSignals || []).length))} · detail-only: ${safeHtml(String(concern.detailOnlyCount || 0))} · hidden: ${safeHtml(String(concern.hiddenCount || 0))}</div>
-        <div class="review-diagnostic-meta">source ids: ${safeHtml((concern.sourceFindings || []).map(row => row.id).slice(0, 5).join(", ") || "none")}</div>
+        <div class="review-diagnostic-title">${safePublicHtml(concern.title || concern.id)}</div>
+        <div class="review-diagnostic-meta">${safePublicHtml(concern.clinicalConcernDomain || "domain unknown")} · ${safePublicHtml(concern.severity || "info")}</div>
+        <div class="review-diagnostic-meta">supporting signals: ${safePublicHtml(String((concern.supportingSignals || []).length))} · grouped details: ${safePublicHtml(String((concern.detailOnlyCount || 0) + (concern.hiddenCount || 0)))}</div>
       </div>`).join("")}
     </div>
   </div>`;
@@ -159,9 +158,9 @@ function renderClinicalConcernReviewList(concerns = []) {
 
 function renderReviewSummaryTile(value, label, note) {
   return `<div class="review-summary-tile">
-    <div class="review-summary-num">${safeHtml(String(value))}</div>
-    <div class="review-summary-label">${safeHtml(label)}</div>
-    <div class="review-summary-note">${safeHtml(note)}</div>
+    <div class="review-summary-num">${safePublicHtml(String(value))}</div>
+    <div class="review-summary-label">${safePublicHtml(label)}</div>
+    <div class="review-summary-note">${safePublicHtml(note)}</div>
   </div>`;
 }
 

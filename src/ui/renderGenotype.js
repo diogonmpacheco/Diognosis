@@ -65,7 +65,7 @@ function renderGenotypePanel() {
       const semanticTitle = genotypeOptionTitle(enz, k);
       html += `<button class="geno-btn ${cur===k?'active':''}"
         onclick="setGenotype('${enz}','${k}')"
-        title="${semanticTitle}; frequency: ~${freq}% of population">${label} <span style="font-weight:400;font-size:9px">${freq}%</span></button>`;
+        title="${safeAttr(publicDisplayText(semanticTitle))}; frequency: ~${safeAttr(freq)}% of population">${safePublicHtml(label)} <span style="font-weight:400;font-size:9px">${safePublicHtml(freq)}%</span></button>`;
     }
     html += '</div>';
   }
@@ -82,7 +82,7 @@ function renderGenotypePanel() {
       const effect = risk.effects?.[status];
       html += `<button class="geno-btn ${cur===status?'active':''}"
         onclick="setGenotype('${riskKey}','${status}')"
-        title="${effect?.note || ''}">${label}</button>`;
+        title="${safeAttr(publicDisplayText(effect?.note || ""))}">${safePublicHtml(label)}</button>`;
     }
     html += '</div>';
   }
@@ -102,12 +102,12 @@ function renderGenotypePanel() {
       const foldStr = fold === 1.0 ? '1× (baseline)' : fold > 1 ? `${fold.toFixed(1)}× ↑ AUC` : `${fold.toFixed(1)}× ↓ AUC`;
       const foldColor = fold > 2 ? 'var(--red)' : fold > 1.3 ? 'var(--amber)' : fold < 0.5 ? 'var(--amber)' : 'var(--green)';
       html += `<div class="geno-effect-card">
-        <div class="geno-effect-title">${drugName} <span style="color:var(--text2);font-size:11px;font-weight:400">via ${enz}</span>
-          <span style="float:right;font-size:18px;font-weight:800;color:${foldColor}">${foldStr}</span>
+          <div class="geno-effect-title">${safePublicHtml(drugName)} <span style="color:var(--text2);font-size:11px;font-weight:400">via ${safePublicHtml(enz)}</span>
+          <span style="float:right;font-size:18px;font-weight:800;color:${foldColor}">${safePublicHtml(foldStr)}</span>
         </div>
         ${renderGenotypeInterpretationLine(enz, geno)}
-        <div class="geno-effect-note">${eff.note}</div>
-        ${fold !== 1.0 ? `<div style="font-size:10px;color:var(--text2);margin-top:4px">Population frequency: ~${eff.freq_pct}% | Vs NM baseline fold-change: ${fold.toFixed(1)}×</div>` : ''}
+        <div class="geno-effect-note">${safePublicHtml(eff.note)}</div>
+        ${fold !== 1.0 ? `<div style="font-size:10px;color:var(--text2);margin-top:4px">Population frequency: ~${safePublicHtml(eff.freq_pct)}% | Vs NM baseline fold-change: ${safePublicHtml(fold.toFixed(1))}x</div>` : ''}
       </div>`;
     }
     for (const card of getGenotypeMetaboliteEffectCards(drugName)) {
@@ -134,7 +134,7 @@ function renderPendingReviewPgxContext() {
   ).slice(0, 6);
   if (!rows.length && !coreRows.length) return "";
   return `<div class="external-context-notice" style="margin-bottom:10px">
-    Pending external PGx/source context is available for this stack, including ${safeHtml(String(coreRows.length))} typed PGx rule candidate${coreRows.length === 1 ? "" : "s"}. It is not professionally reviewed and does not affect genotype interpretation, scoring, or public severity.
+    Pending external PGx/source context is available for this stack, including ${safePublicHtml(String(coreRows.length))} PGx candidate${coreRows.length === 1 ? "" : "s"}. It is not professionally reviewed and does not affect genotype interpretation, scoring, or public severity.
   </div>
   <div class="pending-review-grid" style="margin-bottom:12px">
     ${rows.map(row => `<div class="pending-review-card">
@@ -142,26 +142,26 @@ function renderPendingReviewPgxContext() {
         <span class="ev-review-badge needs-review">Pending verification</span>
         <span class="ev-review-badge needs-review">Not used for scoring</span>
       </div>
-      <div class="pending-review-title">${safeHtml(row.title || row.id || "Pending PGx context")}</div>
+      <div class="pending-review-title">${safePublicHtml(row.title || row.id || "Pending PGx context")}</div>
       <div class="pending-review-meta">${safeTextList([
-        row.sourceName ? `Source: ${row.sourceName}` : "",
+        row.sourceName ? `Source: ${publicDisplayText(row.sourceName)}` : "",
         (row.genes || []).length ? `Genes: ${row.genes.slice(0, 6).join(", ")}` : "",
         (row.drugs || []).length ? `Drugs: ${row.drugs.slice(0, 6).join(", ")}` : "",
-        row.claimType ? `Claim: ${formatPendingReviewToken(row.claimType)}` : "",
-        (row.evidenceIdentifiers || []).length ? `Evidence: ${row.evidenceIdentifiers.slice(0, 3).join(", ")}` : "",
+        row.claimType ? `Claim: ${publicDisplayText(formatPendingReviewToken(row.claimType))}` : "",
+        (row.evidenceIdentifiers || []).length ? `Evidence: ${row.evidenceIdentifiers.slice(0, 3).map(publicDisplayText).join(", ")}` : "",
       ].filter(Boolean), "<br>")}</div>
     </div>`).join("")}
     ${coreRows.map(row => `<div class="pending-review-card">
       <div class="pending-review-head">
-        <span class="ev-review-badge needs-review">Typed PGx candidate</span>
+        <span class="ev-review-badge needs-review">PGx candidate</span>
         <span class="ev-review-badge needs-review">Pending verification</span>
       </div>
-      <div class="pending-review-title">${safeHtml(row.gene || "PGx")} ${row.drug ? `+ ${safeHtml(row.drug)}` : ""}</div>
+      <div class="pending-review-title">${safePublicHtml(row.gene || "PGx")} ${row.drug ? `+ ${safePublicHtml(row.drug)}` : ""}</div>
       <div class="pending-review-meta">${safeTextList([
-        row.sourceName ? `Source: ${row.sourceName}` : "",
-        row.ruleKind ? `Rule kind: ${formatPendingReviewToken(row.ruleKind)}` : "",
-        row.suggestedTarget ? `Target: ${row.suggestedTarget}` : "",
-        (row.evidenceIdentifiers || []).length ? `Evidence: ${row.evidenceIdentifiers.slice(0, 3).join(", ")}` : "",
+        row.sourceName ? `Source: ${publicDisplayText(row.sourceName)}` : "",
+        row.ruleKind ? `Rule kind: ${publicDisplayText(formatPendingReviewToken(row.ruleKind))}` : "",
+        row.suggestedTarget ? `Target: ${publicDisplayText(row.suggestedTarget)}` : "",
+        (row.evidenceIdentifiers || []).length ? `Evidence: ${row.evidenceIdentifiers.slice(0, 3).map(publicDisplayText).join(", ")}` : "",
       ].filter(Boolean), "<br>")}</div>
     </div>`).join("")}
   </div>`;
@@ -187,8 +187,8 @@ function getHighestGenotypePrioritySignal() {
         score,
         label:score >= 70 ? "PGx High" : "PGx Watch",
         headline:`${enzyme} genotype may change ${drugName} exposure`,
-        summary:`${drugName} is in your list and ${enzyme} is set to ${phenotypeLabelForGene(enzyme, phenotype)}. ${effect.note}`,
-        why:`${drugName} depends on ${enzyme}, and the selected ${enzyme} phenotype is not the reference state.`,
+        summary:publicDisplayText(`${drugName} is in your list and ${enzyme} is set to ${phenotypeLabelForGene(enzyme, phenotype)}. ${effect.note}`),
+        why:publicDisplayText(`${drugName} depends on ${enzyme}, and the selected ${enzyme} phenotype is not the reference state.`),
         changes:`Expected parent-drug exposure shifts to about ${effect.auc_fold}x the normal-metabolizer baseline.`,
         review:score >= 70
           ? "Review dose sensitivity, toxicity signs, inhibitors/inducers, and whether therapeutic monitoring or an alternative is preferred."
@@ -210,11 +210,11 @@ function getHighestGenotypePrioritySignal() {
         score,
         label:score >= 70 ? "PGx High" : "PGx Watch",
         headline:`${effect.enzyme} genotype may ${direction} ${effect.metaboliteName}`,
-        summary:`${effect.parent} is in your list and ${effect.enzyme} is set to ${phenotypeLabelForGene(effect.enzyme, geno)}. ${phenotypeEffect.label || effect.note}`,
+        summary:publicDisplayText(`${effect.parent} is in your list and ${effect.enzyme} is set to ${phenotypeLabelForGene(effect.enzyme, geno)}. ${phenotypeEffect.label || effect.note}`),
         why:`${effect.parent} has a genotype-sensitive metabolite pathway through ${effect.enzyme}.`,
         changes:phenotypeEffect.fold
-          ? `${effect.metaboliteName} is expected to shift to about ${phenotypeEffect.fold}x the normal-metabolizer reference.`
-          : `${effect.metaboliteName} is expected to ${direction}; the direction is modeled but the fold is not calibrated.`,
+          ? `${publicMetaboliteLabel(effect, effect.parent)} is expected to shift to about ${phenotypeEffect.fold}x the normal-metabolizer reference.`
+          : `${publicMetaboliteLabel(effect, effect.parent)} is expected to ${direction}; the direction is modeled but the fold is not calibrated.`,
         review:effect.clinicalAction || (score >= 70
           ? "Review whether standard medication assumptions still apply before relying on efficacy or safety."
           : "Review metabolite-level context and relevant monitoring."),
@@ -234,7 +234,7 @@ function getHighestGenotypePrioritySignal() {
         score,
         label:score >= 70 ? "PGx High" : "PGx Watch",
         headline:`${risk.label} conflicts with ${drugEffect.parent}`,
-        summary:`${drugEffect.parent} is in your list and ${risk.label} is selected as present. ${drugEffect.clinicalAction || drugEffect.note}`,
+        summary:publicDisplayText(`${drugEffect.parent} is in your list and ${risk.label} is selected as present. ${drugEffect.clinicalAction || drugEffect.note}`),
         why:`${risk.label} is a medication-specific risk marker for ${drugEffect.parent}.`,
         changes:drugEffect.note,
         review:drugEffect.clinicalAction || "Review whether this medication should be avoided or substituted.",
@@ -447,17 +447,14 @@ function renderGenotypeRiskEffectCard(card) {
   const foldColor = isPresent ? 'var(--red)' : 'var(--green)';
   const refs = (drugEffect.evidenceRefs || []).filter(ref => typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref]);
   const evidenceText = refs.length
-    ? refs.map(ref => {
-      const study = typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref];
-      return study.pmid ? `PMID:${study.pmid}` : (study.doi ? `DOI:${study.doi}` : ref);
-    }).join(' · ')
+    ? refs.map(publicEvidenceReferenceLabel).join(' · ')
     : 'Evidence pending';
   return `<div class="geno-effect-card">
-    <div class="geno-effect-title">${drugEffect.parent} <span style="color:var(--text2);font-size:11px;font-weight:400">with ${risk.label}</span>
-      <span style="float:right;font-size:18px;font-weight:800;color:${foldColor}">${label}</span>
+    <div class="geno-effect-title">${safePublicHtml(drugEffect.parent)} <span style="color:var(--text2);font-size:11px;font-weight:400">with ${safePublicHtml(risk.label)}</span>
+      <span style="float:right;font-size:18px;font-weight:800;color:${foldColor}">${safePublicHtml(label)}</span>
     </div>
-    <div class="geno-effect-note">${isPresent ? drugEffect.note : riskEffect.note}</div>
-    <div style="font-size:10px;color:var(--text2);margin-top:4px">${drugEffect.phenotype}: ${isPresent ? drugEffect.clinicalAction : riskEffect.label} · ${evidenceText}</div>
+    <div class="geno-effect-note">${safePublicHtml(isPresent ? drugEffect.note : riskEffect.note)}</div>
+    <div style="font-size:10px;color:var(--text2);margin-top:4px">${safePublicHtml(drugEffect.phenotype)}: ${safePublicHtml(isPresent ? drugEffect.clinicalAction : riskEffect.label)} · ${safePublicHtml(evidenceText)}</div>
   </div>`;
 }
 
@@ -600,20 +597,24 @@ function renderGenotypeMetaboliteEffectCard(card) {
     'var(--text2)';
   const refs = (effect.evidenceRefs || []).filter(ref => typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref]);
   const evidenceText = refs.length
-    ? refs.map(ref => {
-      const study = typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref];
-      return study.pmid ? `PMID:${study.pmid}` : (study.doi ? `DOI:${study.doi}` : ref);
-    }).join(' · ')
+    ? refs.map(publicEvidenceReferenceLabel).join(' · ')
     : 'Evidence pending';
+  const metaboliteLabel = publicMetaboliteLabel({
+    metaboliteName:effect.metaboliteName,
+    name:effect.metaboliteName,
+    evidenceRefs:effect.evidenceRefs || [],
+    syntheticContext:effect.syntheticContext,
+    publicFacing:effect.publicFacing,
+  }, effect.parent);
   const signal = typeof getExposureSignalLabel === 'function' ? getExposureSignalLabel(effect, phenotypeEffect) : 'metabolite level';
   const action = effect.clinicalAction || (typeof clinicalActionForMetaboliteEffect === 'function' ? clinicalActionForMetaboliteEffect(effect, phenotypeEffect) : '');
   return `<div class="geno-effect-card">
-    <div class="geno-effect-title">${effect.metaboliteName} <span style="color:var(--text2);font-size:11px;font-weight:400">from ${effect.parent} via ${effect.enzyme}</span>
-      <span style="float:right;font-size:18px;font-weight:800;color:${foldColor}">${foldStr}</span>
+    <div class="geno-effect-title">${safePublicHtml(metaboliteLabel)} <span style="color:var(--text2);font-size:11px;font-weight:400">from ${safePublicHtml(effect.parent)} via ${safePublicHtml(effect.enzyme)}</span>
+      <span style="float:right;font-size:18px;font-weight:800;color:${foldColor}">${safePublicHtml(foldStr)}</span>
     </div>
     ${renderGenotypeInterpretationLine(effect.enzyme, card.geno)}
-    <div class="geno-effect-note">${effect.note}</div>
-    <div style="font-size:10px;color:var(--text2);margin-top:4px">${signal}: ${phenotypeEffect.label}${action ? ` · ${action}` : ""} · ${evidenceText}</div>
+    <div class="geno-effect-note">${safePublicHtml(effect.note)}</div>
+    <div style="font-size:10px;color:var(--text2);margin-top:4px">${safePublicHtml(signal)}: ${safePublicHtml(phenotypeEffect.label)}${action ? ` · ${safePublicHtml(action)}` : ""} · ${safePublicHtml(evidenceText)}</div>
   </div>`;
 }
 
@@ -630,7 +631,7 @@ function renderPharmGxImportCard() {
   const id = "pharmgxImportText";
   return `<div class="geno-import-card">
     <div class="geno-import-title">DNA / PharmGx report import <span>local preview</span></div>
-    <div class="geno-import-note">Paste gene phenotype rows from a ClawBio-style PharmGx report, or simple JSON/CSV with gene and phenotype/status fields. Nothing is uploaded.</div>
+    <div class="geno-import-note">Paste gene phenotype rows from a PharmGx report or structured text with gene and phenotype/status fields. Nothing is uploaded.</div>
     <textarea id="${id}" class="geno-import-text" placeholder="CYP2C19 | *1/*2 | Intermediate Metabolizer&#10;CYP2D6 | *4/*4 | Poor Metabolizer&#10;HLA-B*57:01 | detected"></textarea>
     <div class="geno-import-actions">
       <button onclick="applyPharmGxImport()">Apply genotypes</button>

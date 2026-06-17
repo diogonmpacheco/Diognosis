@@ -251,9 +251,10 @@ for (const drugName of TOP250_LIVE_COVERAGE_DRUGS) {
           transporter,
           effect:row.effect,
           severity:row.severity,
-          mechanism:`Phase 7 top-250 live transporter adapter: ${drug.name} has ${transporter} route context and ${row.inhibitor} is a representative ${transporter} modulator. Pending source-specific professional review.`,
+          mechanism:`${drug.name} has ${transporter} route context and ${row.inhibitor} is a representative ${transporter} modulator.`,
           evidence:{confidence:"low", sources:["top-250 live coverage adapter"], foldChange:row.foldChange, studyType:"route_adapter"},
           evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
+          internalProvenance:{ phase:"phase7", batch:"top250_transporter", reviewStatus:"pending" },
         });
       }
     }
@@ -319,9 +320,10 @@ for (const drug of DRUG_DB) {
         transporter,
         effect:row.effect,
         severity:row.severity,
-        mechanism:`Phase 11 PGx/transporter expansion: ${drug.name} has ${transporter} route/class context and ${row.inhibitor} is a representative ${transporter} modulator. Pending source-specific professional review.`,
+        mechanism:`${drug.name} has ${transporter} route/class context and ${row.inhibitor} is a representative ${transporter} modulator.`,
         evidence:{confidence:"low", sources:["PGx/transporter expansion adapter"], foldChange:row.foldChange, studyType:"transporter_route_adapter"},
         evidenceRefs:[...TRANSPORTER_EXPANSION_EVIDENCE_REFS],
+        internalProvenance:{ phase:"phase11", batch:"pgx_transporter", reviewStatus:"pending" },
       });
       if (TRANSPORTER_DDI.length >= 1000) break;
     }
@@ -362,9 +364,10 @@ if (typeof PHASE12_DRUG_EXPANSION_NAMES !== "undefined") {
           transporter,
           effect:row.effect,
           severity:row.severity,
-          mechanism:`Phase 12 drug-count expansion: ${drug.name} has pending-review ${transporter} transport context so the net-new record has live transporter screening coverage. Pending source-specific professional review.`,
+          mechanism:`${drug.name} has ${transporter} transport context for transporter interaction screening.`,
           evidence:{confidence:"low", sources:["drug count expansion batch"], foldChange:row.foldChange, studyType:"pending_review_transporter_adapter"},
           evidenceRefs:[...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS],
+          internalProvenance:{ phase:"phase12", batch:"drug_count_transporter", reviewStatus:"pending" },
         });
         added = true;
         break;
@@ -413,9 +416,10 @@ if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
           transporter,
           effect:row.effect,
           severity:row.severity,
-          mechanism:`Phase 13 top-100 gold enrichment: ${drug.name} has ${transporter} transport context so the top-100 cohort has complete live transporter coverage. Pending source-specific professional review.`,
+          mechanism:`${drug.name} has ${transporter} transport context for transporter interaction screening.`,
           evidence:{confidence:"low", sources:["top-100 gold enrichment adapter"], foldChange:row.foldChange, studyType:"pending_review_gold_transporter_adapter"},
           evidenceRefs:[...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS],
+          internalProvenance:{ phase:"phase13", batch:"top100_gold_transporter", reviewStatus:"pending" },
         });
         added = true;
         break;
@@ -458,9 +462,10 @@ function ninetyPercentAddTransporterCoverage(drug, transporter, row) {
     transporter,
     effect:row.effect,
     severity:row.severity,
-    mechanism:`Phase 16 90% live transporter coverage: ${drug.name} has ${transporter} route/class context and ${row.inhibitor} is a representative ${transporter} modulator. Pending source-specific professional review.`,
+    mechanism:`${drug.name} has ${transporter} route/class context and ${row.inhibitor} is a representative ${transporter} modulator.`,
     evidence:{confidence:"low", sources:["90% live coverage adapter"], foldChange:row.foldChange, studyType:"transporter_route_adapter"},
     evidenceRefs:[...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS],
+    internalProvenance:{ phase:"phase16", batch:"ninety_percent_transporter", reviewStatus:"pending" },
   });
   return true;
 }

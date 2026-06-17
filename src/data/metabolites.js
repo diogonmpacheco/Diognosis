@@ -5671,7 +5671,7 @@ function top100CoverageGraphId(value) {
 function top100CoveragePrimaryRoute(drug) {
   const routes = (drug?.routes || []).filter(route => route && route.enzyme);
   const route = routes.find(row => /^CYP|^UGT|SLCO|ABCB|ABCG|P-gp|OATP|BCRP/i.test(row.enzyme)) || routes[0];
-  return route || { enzyme:"Various", fraction:1, evidence:{ confidence:"low", sources:["top-250 live coverage adapter"] } };
+  return route || { enzyme:"Various", fraction:1, evidence:{ confidence:"low", sources:["top-250 live coverage adapter"] }, syntheticContext:true, publicFacing:false };
 }
 
 function top100CoverageGene(route) {
@@ -5697,8 +5697,12 @@ for (const drugName of TOP250_LIVE_COVERAGE_DRUGS) {
       role:drug.prodrug ? "active_form_context" : "clearance_context",
       p:Math.round((route.fraction || 0.5) * 100),
       t:drug.hl || null,
-      note:"Phase 7 top-250 live coverage row: exposes parent route, clearance, active-moiety, and genotype context in the graph while detailed metabolite curation remains pending.",
+      note:"Route and clearance context row used while detailed metabolite curation is pending.",
       evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
+      syntheticContext:true,
+      publicFacing:false,
+      contextType:"route_clearance_support",
+      internalProvenance:{ phase:"phase7", batch:"top250_metabolite_context", reviewStatus:"pending" },
     }];
   }
 
@@ -5727,7 +5731,11 @@ for (const drugName of TOP250_LIVE_COVERAGE_DRUGS) {
       }],
       inh:[],
       evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
-      note:"Phase 7 first-class actor so top-250 drug route, PK, PGx, transporter, and burden views can connect through the live graph. Pending detailed metabolite-specific review.",
+      note:"Route and clearance actor used while detailed metabolite curation is pending.",
+      syntheticContext:true,
+      publicFacing:false,
+      contextType:"route_clearance_support",
+      internalProvenance:{ phase:"phase7", batch:"top250_metabolite_actor", reviewStatus:"pending" },
     };
   } else {
     METABOLITE_ACTORS[metId].evidenceRefs = [...new Set([...(METABOLITE_ACTORS[metId].evidenceRefs || []), ...TOP250_LIVE_COVERAGE_EVIDENCE_REFS])];
@@ -5745,8 +5753,12 @@ for (const drugName of TOP250_LIVE_COVERAGE_DRUGS) {
       metaboliteId:metId,
       metaboliteName:primaryMetabolite.n,
       enzyme:gene,
-      note:`Phase 7 top-250 live PGx context: ${gene} phenotype can shift ${drug.name} parent/route exposure; use as a pending-review exposure flag, not a dose recommendation.`,
+      note:`${gene} phenotype can shift ${drug.name} parent or route exposure; this is an exposure-context flag, not a dose recommendation.`,
       evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
+      syntheticContext:true,
+      publicFacing:false,
+      contextType:"pgx_exposure_support",
+      internalProvenance:{ phase:"phase7", batch:"top250_pgx_context", reviewStatus:"pending" },
       effects:{
         [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:drug.prodrug ? "decrease" : "increase", label:drug.prodrug ? `${gene} poor function may reduce activation context` : `${gene} poor function may increase parent exposure context` },
         [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:drug.prodrug ? "decrease" : "increase", label:`intermediate ${gene} function may shift exposure/active-moiety balance` },
@@ -5785,7 +5797,11 @@ function metaboliteExpansionRow(drug, route, index) {
     role:role.role,
     p:Math.max(5, Math.min(100, Math.round((route?.fraction || (index === 0 ? 0.7 : 0.3)) * 100))),
     t:drug.hl || null,
-    note:`Phase 10 metabolite expansion row for ${drug.name}: exposes ${enzyme} route, active-moiety, transporter, clearance, or toxicity context in the live graph while named metabolite curation remains pending.`,
+    note:`Route, active-moiety, transporter, clearance, or toxicity context for ${drug.name} while named metabolite curation is pending.`,
+    syntheticContext:true,
+    publicFacing:false,
+    contextType:"metabolite_graph_support",
+    internalProvenance:{ phase:"phase10", batch:"metabolite_expansion", reviewStatus:"pending" },
   });
 }
 
@@ -5820,7 +5836,11 @@ function metaboliteExpansionEnsureActor(drug, metabolite) {
       }],
       inh:[],
       evidenceRefs:[...METABOLITE_EXPANSION_PACK_EVIDENCE_REFS],
-      note:"Phase 10 first-class metabolite actor generated from an existing METAB row so live graph formation edges remain connected. Pending named-metabolite professional review.",
+      note:"Metabolite actor used to keep formation and clearance edges connected while named-metabolite review is pending.",
+      syntheticContext:true,
+      publicFacing:false,
+      contextType:"metabolite_graph_support",
+      internalProvenance:{ phase:"phase10", batch:"metabolite_actor_expansion", reviewStatus:"pending" },
     };
   } else {
     METABOLITE_ACTORS[metId].evidenceRefs = [...new Set([...(METABOLITE_ACTORS[metId].evidenceRefs || []), ...METABOLITE_EXPANSION_PACK_EVIDENCE_REFS])];
@@ -5886,8 +5906,12 @@ for (const drug of DRUG_DB) {
         metaboliteId:metId,
         metaboliteName:primaryMetabolite.n,
         enzyme:gene,
-        note:`Phase 11 PGx/transporter expansion: ${gene} phenotype can shift ${drug.name} exposure, active-moiety balance, transport, or clearance context. Pending review; not a dose recommendation.`,
+        note:`${gene} phenotype can shift ${drug.name} exposure, active-moiety balance, transport, or clearance context. Not a dose recommendation.`,
         evidenceRefs:[...PGX_TRANSPORTER_EXPANSION_EVIDENCE_REFS],
+        syntheticContext:true,
+        publicFacing:false,
+        contextType:"pgx_transporter_support",
+        internalProvenance:{ phase:"phase11", batch:"pgx_transporter_context", reviewStatus:"pending" },
         effects:{
           [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:drug.prodrug ? "decrease" : "increase", label:drug.prodrug ? `${gene} poor function may reduce active-moiety formation/transport context` : `${gene} poor function may increase exposure or reduce clearance context` },
           [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:drug.prodrug ? "decrease" : "increase", label:`intermediate ${gene} function may shift exposure/active-moiety balance` },
@@ -5915,14 +5939,18 @@ function top100GoldMetaboliteRow(drug) {
     ? "toxicity_or_exposure_context"
     : "clearance_context";
   return {
-    n:`${drug.name} top-100 gold ${routeLabel} context`,
+    n:`${drug.name} ${routeLabel} exposure context`,
     e:route.enzyme || "Various clearance",
     a:drug?.prodrug ? "activation_context" : "clearance_context",
     role,
     p:Math.max(5, Math.min(100, Math.round((route.fraction || 0.5) * 100))),
     t:drug.hl || null,
-    note:`Phase 13 top-100 gold metabolite row for ${drug.name}: keeps active-moiety, PK, PGx, transporter, and washout review context live while named metabolite/source-specific curation remains pending.`,
+    note:`Exposure, PK, PGx, transporter, and washout context for ${drug.name} while named metabolite curation is pending.`,
     evidenceRefs:[...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS],
+    syntheticContext:true,
+    publicFacing:false,
+    contextType:"top_priority_exposure_support",
+    internalProvenance:{ phase:"phase13", batch:"top100_gold_metabolite_context", reviewStatus:"pending" },
   };
 }
 
@@ -5934,7 +5962,11 @@ function top100GoldEnsureMetaboliteActor(drug, metabolite) {
   if (!actor) return metId;
   actor.evidenceRefs = [...new Set([...(actor.evidenceRefs || []), ...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS])];
   actor.parentDrugs = [...new Set([...(actor.parentDrugs || []), actor.parentDrug, drug.name].filter(Boolean))];
-  actor.note = `${actor.note || ""} Top-100 gold enrichment confirms this metabolite actor is live pending named-metabolite review.`.trim();
+  actor.note = `${actor.note || ""} Exposure-context actor remains available while named-metabolite review is pending.`.trim();
+  actor.syntheticContext = true;
+  actor.publicFacing = false;
+  actor.contextType = actor.contextType || "top_priority_exposure_support";
+  actor.internalProvenance = { ...(actor.internalProvenance || {}), phase:"phase13", batch:"top100_gold_metabolite_actor" };
   return metId;
 }
 
@@ -6012,8 +6044,12 @@ if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
         metaboliteId:metId,
         metaboliteName:primaryMetabolite.n,
         enzyme:gene,
-        note:`Phase 13 top-100 gold PGx context: ${gene} phenotype can shift ${drug.name} exposure, active-moiety, transporter, receptor, or clearance context. Pending review; not a dose recommendation.`,
+        note:`${gene} phenotype can shift ${drug.name} exposure, active-moiety, transporter, receptor, or clearance context. Not a dose recommendation.`,
         evidenceRefs:[...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS],
+        syntheticContext:true,
+        publicFacing:false,
+        contextType:"top_priority_pgx_support",
+        internalProvenance:{ phase:"phase13", batch:"top100_gold_pgx_context", reviewStatus:"pending" },
         effects:top100GoldPgxEffects(drug, gene),
       });
       break;

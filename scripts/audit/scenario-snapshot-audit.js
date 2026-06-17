@@ -374,7 +374,7 @@ async function run() {
     assert(result.mechanismWhyPathCount >= (expect.minWhyPaths || 1),
       `${scenario.id}: Mechanisms tab should render why paths`);
     assert(result.rawWarningPathCount >= (expect.minWhyPaths || 1),
-      `${scenario.id}: Review tab should expose raw warning paths`);
+      `${scenario.id}: Review tab should expose technical pathways`);
     assert(result.evidenceLedgerPresent,
       `${scenario.id}: Evidence tab should expose the evidence ladder ledger`);
     assert(result.falseReviewedClaims === 0,
@@ -387,7 +387,7 @@ async function run() {
     assert(result.sections.persistence, `${scenario.id}: Timing + Levels persistence section should render`);
     assert(result.sections.evidence, `${scenario.id}: Evidence section should render`);
     assert(result.sections.reviewSummary, `${scenario.id}: Review summary section should render`);
-    assert(result.sections.rawWarningPaths, `${scenario.id}: Review raw warning paths should render`);
+    assert(result.sections.rawWarningPaths, `${scenario.id}: Review technical pathways should render`);
     assert(result.sectionPanels.findings === 'tab-overview',
       `${scenario.id}: findings should live in Overview, got ${result.sectionPanels.findings}`);
     assert(result.sectionPanels.mechanismsWhy === 'tab-mechanisms',

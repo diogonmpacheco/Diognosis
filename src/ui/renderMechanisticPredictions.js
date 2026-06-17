@@ -21,7 +21,7 @@ function renderMechanisticPredictions() {
   if (countEl) countEl.textContent = `${predictions.length} model${predictions.length === 1 ? "" : "s"}`;
   el.innerHTML = `
     <div class="mechanistic-note">
-      This section shows model-only pathway read-through from Diognosis enzyme, transporter, genotype, and metabolite data. Confirmed warnings stay in Known Interactions; citations and review status stay in Evidence.
+      This section shows modeled pathway read-through from Diognosis enzyme, transporter, genotype, and metabolite data. Confirmed warnings stay in Known Interactions; citations and review status stay in Evidence.
     </div>
     ${predictions.slice(0, 12).map(renderMechanisticPredictionCard).join("")}
     ${predictions.length > 12 ? `<div class="finding-empty">Showing 12 of ${predictions.length} model predictions for readability.</div>` : ""}
@@ -40,23 +40,23 @@ function renderMechanisticPredictionCard(prediction) {
   return `<div class="finding-card ${className} mechanistic-card">
     <div class="finding-top">
       <div>
-        <div class="finding-title">${prediction.title}</div>
-        <div class="finding-subtitle">${prediction.subtitle}</div>
+        <div class="finding-title">${safePublicHtml(prediction.title)}</div>
+        <div class="finding-subtitle">${safePublicHtml(prediction.subtitle)}</div>
       </div>
       <span class="finding-sev mild">${isDocumented ? "documented" : "experimental"}</span>
     </div>
-    <div class="finding-effect">${prediction.clinicalMeaning}</div>
+    <div class="finding-effect">${safePublicHtml(prediction.clinicalMeaning)}</div>
     <div class="finding-grid">
       <div class="finding-detail"><strong>Model</strong>${prediction.kind === "genotype-drug" ? "Genotype plus drug route" : isGenotype ? "Genotype plus metabolite pathway" : "Medication effect on enzyme plus victim route"}</div>
-      <div class="finding-detail"><strong>Pathway</strong>${prediction.pathway || "modeled pathway"}</div>
-      <div class="finding-detail"><strong>Discuss</strong>${prediction.action}</div>
+      <div class="finding-detail"><strong>Pathway</strong>${safePublicHtml(prediction.pathway || "modeled pathway")}</div>
+      <div class="finding-detail"><strong>Discuss</strong>${safePublicHtml(prediction.action)}</div>
     </div>
-    <div class="inter-trace">Path: ${prediction.drugs.join(" + ")}${prediction.metabolite ? ` -> ${prediction.metabolite}` : ""} -> ${prediction.direction}</div>
+    <div class="inter-trace">Path: ${safePublicHtml(prediction.drugs.join(" + "))}${prediction.metabolite ? ` -> ${safePublicHtml(prediction.metabolite)}` : ""} -> ${safePublicHtml(prediction.direction)}</div>
     <div class="finding-meta">
-      <span class="finding-tag">${prediction.kind}</span>
+      <span class="finding-tag">${safePublicHtml(prediction.kind)}</span>
       <span class="finding-tag ${isDocumented ? "" : "warn"}">${isDocumented ? "already source-linked" : "no direct study linked"}</span>
-      <span class="finding-tag">confidence: ${prediction.confidence}</span>
-      ${prediction.curatedSeverity ? `<span class="finding-tag">source-linked severity: ${prediction.curatedSeverity}</span>` : ""}
+      <span class="finding-tag">confidence: ${safePublicHtml(prediction.confidence)}</span>
+      ${prediction.curatedSeverity ? `<span class="finding-tag">source-linked severity: ${safePublicHtml(prediction.curatedSeverity)}</span>` : ""}
       ${estimateText}
     </div>
   </div>`;

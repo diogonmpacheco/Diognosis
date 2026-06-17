@@ -284,20 +284,20 @@ function renderSummaryBar() {
 
   const jumpTab = genotypePriority && genotypePriority.score > interactionScore ? "genes-metabolites" : "overview";
 
-  bar.innerHTML = `<div class="summary-card">
+    bar.innerHTML = `<div class="summary-card">
     <div class="summary-main">
       <div>
         <div class="summary-kicker">Highest Priority</div>
-        <div class="summary-title">${headline}</div>
-        <div class="summary-copy">${summaryCopy ? `${summaryCopy} ` : ""}<span class="summary-jump" onclick="setTab('${jumpTab}')">View finding</span></div>
+        <div class="summary-title">${safePublicHtml(headline)}</div>
+        <div class="summary-copy">${summaryCopy ? `${safePublicHtml(summaryCopy)} ` : ""}<span class="summary-jump" onclick="setTab('${jumpTab}')">View finding</span></div>
       </div>
       <div class="summary-risk ${riskClass}">
         <div class="num">${scoreValue}</div>
-        <div class="lbl">${scoreLabel}</div>
+        <div class="lbl">${safePublicHtml(scoreLabel)}</div>
       </div>
     </div>
     ${renderPriorityStory(priorityStory)}
-    <div class="summary-next"><span class="summary-next-pill">Next review</span><span>${nextStep}</span></div>
+    <div class="summary-next"><span class="summary-next-pill">Next review</span><span>${safePublicHtml(nextStep)}</span></div>
   </div>`;
   const badge = severeCount > 0 ? `<span class="tab-badge">${severeCount}</span>` : "";
   if (overviewBtn) overviewBtn.innerHTML = "Overview" + badge;
@@ -332,23 +332,23 @@ function renderInteractionFindingsOverview(risk) {
   if (count) count.textContent = `${overviewFindings.length} concern${overviewFindings.length === 1 ? "" : "s"}`;
   body.innerHTML = overviewFindings.slice(0, 8).map(renderInteractionFindingCard).join("") +
     (overviewFindings.length > 8
-      ? `<div class="finding-empty">Showing 8 of ${overviewFindings.length} grouped clinical concerns. Detailed engine rows and raw warning paths are available in Review.</div>`
-      : `<div class="finding-empty">Overview groups related pathway, metabolite, timing, and evidence signals into clinical concerns. Raw engine rows remain available in Review.</div>`);
+      ? `<div class="finding-empty">Showing 8 of ${overviewFindings.length} grouped clinical concerns. Detailed technical context is available in Review.</div>`
+      : `<div class="finding-empty">Overview groups related pathway, metabolite, timing, and evidence signals into clinical concerns. Technical details remain available in Review.</div>`);
   return overviewFindings;
 }
 
 function renderInteractionFindingCard(finding) {
   const severity = safeChoice(finding.severity, ["critical","severe","moderate","monitor","info"], "info");
-  const title = safeHtml(finding.title || "Interaction finding");
+  const title = safePublicHtml(finding.title || "Interaction finding");
   const subtitle = safeHtml((finding.affectedActors || [])
     .filter(actor => actor.type === "parent_drug")
-    .map(actor => actor.id)
-    .join(" + ") || finding.source || "current stack");
-  const summary = safeHtml(finding.summary || "Review this finding in clinical context.");
+    .map(actor => publicDisplayText(actor.id))
+    .join(" + ") || publicDisplayText(finding.source || "current stack"));
+  const summary = safePublicHtml(finding.summary || "Review this finding in clinical context.");
   const actorHtml = (finding.affectedActors || []).slice(0, 8).map(actor => `
-    <span class="finding-actor">${safeHtml(actor.id)}<small>${safeHtml(actor.direction || actor.type || "actor")}</small></span>
+    <span class="finding-actor">${safePublicHtml(actor.id)}<small>${safePublicHtml(actor.direction || actor.type || "actor")}</small></span>
   `).join("");
-  const tags = (finding.tags || []).slice(0, 6).map(tag => `<span class="finding-tag">${safeHtml(tag)}</span>`).join("");
+  const tags = (finding.tags || []).slice(0, 6).map(tag => `<span class="finding-tag">${safePublicHtml(tag)}</span>`).join("");
   const evidenceClass = finding.reviewRequired ? "warn" : "review";
   const grouped = finding.groupedFindings?.length
     ? `<span class="finding-tag">${finding.groupedFindings.length + 1} grouped signals</span>`
@@ -359,7 +359,7 @@ function renderInteractionFindingCard(finding) {
     : '<span class="finding-tag warn">inferred/review required</span>';
   const evidenceLadder = renderEvidenceLadderCompact(finding.evidenceLadder);
   const whyHtml = renderOverviewWhySummary(finding);
-  const sourceLabel = safeHtml(String(finding.source || "finding").replace(/_/g, " "));
+  const sourceLabel = safePublicHtml(String(finding.source || "finding").replace(/_/g, " "));
   return `<div class="finding-card ${severity}" data-finding-id="${safeAttr(finding.id)}">
     <div class="finding-top">
       <div>
@@ -371,14 +371,14 @@ function renderInteractionFindingCard(finding) {
     <div class="finding-effect">${summary}</div>
     ${actorHtml ? `<div class="finding-actors">${actorHtml}</div>` : ""}
     <div class="finding-grid">
-      <div class="finding-detail"><strong>Type</strong>${safeHtml(String(finding.type || "finding").replace(/_/g, " "))}</div>
-      <div class="finding-detail"><strong>Evidence</strong>${evidenceLadder || safeHtml(finding.evidenceStatus || "pending professional review")}</div>
+      <div class="finding-detail"><strong>Type</strong>${safePublicHtml(String(finding.type || "finding").replace(/_/g, " "))}</div>
+      <div class="finding-detail"><strong>Evidence</strong>${evidenceLadder || safePublicHtml(finding.evidenceStatus || "pending professional review")}</div>
       <div class="finding-detail"><strong>Review status</strong>${finding.reviewRequired ? "Pending professional review" : "Professionally reviewed"}</div>
     </div>
     ${supportingSignals}
     <div class="finding-meta">
       <span class="finding-tag type">${sourceLabel}</span>
-      <span class="finding-tag">confidence: ${safeHtml(finding.confidence || "unknown")}</span>
+      <span class="finding-tag">confidence: ${safePublicHtml(finding.confidence || "unknown")}</span>
       ${evidenceRefs}
       <span class="finding-tag ${evidenceClass}">${finding.reviewRequired ? "needs review" : "reviewed"}</span>
       ${grouped}
@@ -399,8 +399,8 @@ function renderConcernSupportingSignals(finding) {
     <div class="concern-supporting-title">Supporting signals</div>
     <ul>
       ${shown.map(signal => `<li>
-        <span>${safeHtml(signal.label || "Related signal")}</span>
-        <small>${safeHtml(signal.sourceStatus || "review prompt")}</small>
+        <span>${safePublicHtml(signal.label || "Related signal")}</span>
+        <small>${safePublicHtml(signal.sourceStatus || "review prompt")}</small>
       </li>`).join("")}
     </ul>
     ${signals.length > shown.length ? `<div class="concern-supporting-more">+${signals.length - shown.length} more in Mechanisms / Review</div>` : ""}
@@ -413,7 +413,7 @@ function renderEvidenceLadderCompact(ladder) {
     ? sourceSupportStatusLabel(ladder.sourceSupportStatus)
     : String(ladder.sourceSupportStatus || "source status unknown").replace(/_/g, " ");
   const tier = ladder.strongestTier && ladder.strongestTier !== "unknown"
-    ? `${ladder.strongestTier.replace(/_/g, " ").toLowerCase()}${ladder.studyCount ? ` · ${safeHtml(String(ladder.studyCount))} source${ladder.studyCount === 1 ? "" : "s"}` : ""}`
+    ? `${publicDisplayText(ladder.strongestTier.replace(/_/g, " ").toLowerCase())}${ladder.studyCount ? ` · ${safePublicHtml(String(ladder.studyCount))} source${ladder.studyCount === 1 ? "" : "s"}` : ""}`
     : sourceStatus;
   const clinical = String(ladder.clinicalActionConfidence || "insufficient").replace(/_/g, " ");
   const review = ladder.professionalReviewStatus === "reviewed"
@@ -422,22 +422,22 @@ function renderEvidenceLadderCompact(ladder) {
     ? "pending professional review"
     : "review status unknown";
   return `<div class="evidence-ladder-compact">
-    <span>Evidence: ${safeHtml(tier)}</span>
-    <span>Source status: ${safeHtml(sourceStatus)}</span>
-    <span>Mechanistic confidence: ${safeHtml(ladder.mechanisticConfidence || "unknown")}</span>
-    <span>Clinical action status: ${safeHtml(clinical)}</span>
-    <span>${safeHtml(review)}</span>
+    <span>Evidence: ${safePublicHtml(tier)}</span>
+    <span>Source status: ${safePublicHtml(sourceStatus)}</span>
+    <span>Mechanistic confidence: ${safePublicHtml(ladder.mechanisticConfidence || "unknown")}</span>
+    <span>Clinical action status: ${safePublicHtml(clinical)}</span>
+    <span>${safePublicHtml(review)}</span>
   </div>`;
 }
 
 function buildFindingWhyText(finding) {
   const actors = (finding.affectedActors || []).map(actor =>
-    `${actor.id}${actor.direction ? ` (${actor.direction})` : ""}`
+      `${publicDisplayText(actor.id)}${actor.direction ? ` (${publicDisplayText(actor.direction)})` : ""}`
   ).join(" -> ");
   const grouped = finding.groupedFindings?.length
     ? ` Grouped with ${finding.groupedFindings.length} related signal${finding.groupedFindings.length === 1 ? "" : "s"} from the same actor pair.`
     : "";
-  return `${finding.summary || finding.title || "This stack produced a normalized review finding."}${actors ? ` Actors: ${actors}.` : ""}${grouped}`;
+  return `${publicDisplayText(finding.summary || finding.title || "This stack produced a normalized review finding.")}${actors ? ` Actors: ${actors}.` : ""}${grouped}`;
 }
 
 function renderOverviewWhySummary(finding) {
@@ -445,7 +445,7 @@ function renderOverviewWhySummary(finding) {
   const text = path
     ? (path.summary || (typeof formatWarningPath === "function" ? formatWarningPath(path) : ""))
     : buildFindingWhyText(finding);
-  return `<div class="finding-why-body"><strong>Why:</strong> ${safeHtml(shortenOverviewWhyText(text || buildFindingWhyText(finding)))}</div>`;
+  return `<div class="finding-why-body"><strong>Why:</strong> ${safePublicHtml(shortenOverviewWhyText(text || buildFindingWhyText(finding)))}</div>`;
 }
 
 function shortenOverviewWhyText(text) {
@@ -479,9 +479,9 @@ function buildInteractionPriorityStory(ix) {
       : "Review dose, timing, monitoring, and whether the combination is still appropriate."
   );
   return {
-    why:`${pair || "This stack"} has the strongest substance-interaction signal in the current profile.`,
-    changes:`The concern is ${mechanism}${pathway ? ` through ${pathway}` : ""}.`,
-    review:action,
+    why:publicDisplayText(`${pair || "This stack"} has the strongest substance-interaction signal in the current profile.`),
+    changes:publicDisplayText(`The concern is ${mechanism}${pathway ? ` through ${pathway}` : ""}.`),
+    review:publicDisplayText(action),
   };
 }
 
@@ -538,9 +538,9 @@ function getPriorityEvidenceLayer(refs = [], inlineEvidence = null, source = "")
 function renderPriorityStory(story) {
   if (!story) return "";
   return `<div class="summary-story">
-    <div class="summary-story-row"><strong>Why this matters</strong>${story.why}</div>
-    <div class="summary-story-row"><strong>What changes</strong>${story.changes}</div>
-    <div class="summary-story-row"><strong>Next review step</strong>${story.review}</div>
+    <div class="summary-story-row"><strong>Why this matters</strong>${safePublicHtml(story.why)}</div>
+    <div class="summary-story-row"><strong>What changes</strong>${safePublicHtml(story.changes)}</div>
+    <div class="summary-story-row"><strong>Next review step</strong>${safePublicHtml(story.review)}</div>
   </div>`;
 }
 
@@ -1312,7 +1312,7 @@ function renderActorExposureSummary() {
       <span class="exposure-name">${row.name}</span>
       <span class="exposure-type">${row.type}</span>
       <span class="exposure-chip ${chipClass}">${value}</span>
-      <span>${row.driver || "current stack"}${parent}${row.note ? ` · ${row.note}` : ""}</span>
+      <span>${safePublicHtml(row.driver || "current stack")}${safePublicHtml(parent)}${row.note ? ` · ${safePublicHtml(row.note)}` : ""}</span>
     </div>`;
   }).join("")}</div>`;
 }
@@ -1327,7 +1327,7 @@ function renderRiskGauge(risk) {
       <div class="gauge-bar"><div class="gauge-fill" style="width:${pct}%;background:${barColor}"></div></div>
       <div class="gauge-score">Risk score: ${risk.score}/100</div>
       <div class="risk-factors">
-        ${risk.factors.map(f => `<span class="risk-tag ${f.color}">${f.label}</span>`).join("")}
+        ${risk.factors.map(f => `<span class="risk-tag ${safeAttr(f.color)}">${safePublicHtml(f.label)}</span>`).join("")}
       </div>
     </div>`;
 }

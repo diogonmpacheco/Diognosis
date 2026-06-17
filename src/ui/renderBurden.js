@@ -26,16 +26,16 @@ function renderWashoutCalendar() {
   for (const ev of events) {
     const pct = Math.round((ev.days / maxDays) * 100);
     html += `<tr>
-      <td><strong>${ev.name}</strong>${ev.drugName !== ev.name ? `<br><span style="font-size:10px;color:var(--text2)">from ${ev.drugName}</span>` : ''}</td>
-      <td style="color:var(--text2);font-size:11px">${ev.mechanism.replace(/_/g,' ')}</td>
+      <td><strong>${safePublicHtml(ev.name)}</strong>${ev.drugName !== ev.name ? `<br><span style="font-size:10px;color:var(--text2)">from ${safePublicHtml(ev.drugName)}</span>` : ''}</td>
+      <td style="color:var(--text2);font-size:11px">${safePublicHtml(ev.mechanism.replace(/_/g,' '))}</td>
       <td>
         <div class="washout-bar-wrap">
           <div class="washout-bar" style="width:${Math.max(pct*1.2,8)}px"></div>
-          <span style="font-size:12px;font-weight:700">${ev.days} days</span>
+          <span style="font-size:12px;font-weight:700">${safePublicHtml(ev.days)} days</span>
         </div>
-        <div style="font-size:10px;color:var(--text2);margin-top:2px">${ev.note}</div>
+        <div style="font-size:10px;color:var(--text2);margin-top:2px">${safePublicHtml(ev.note)}</div>
       </td>
-      <td class="washout-safe">${ev.safeDateStr}</td>
+      <td class="washout-safe">${safePublicHtml(ev.safeDateStr)}</td>
     </tr>`;
   }
   html += '</tbody></table>';
@@ -73,7 +73,7 @@ function renderAdverseBurden() {
   html += `<div class="burden-card">
     <div class="burden-header">Anticholinergic Cognitive Burden (ACB)</div>
     <div class="burden-score" style="color:${acbColor}">${burden.acb_total}</div>
-    <div class="burden-sub">${burden.acb_contributors.map(c=>`${c.name} (${c.score})`).join(', ') || 'None'}</div>
+    <div class="burden-sub">${safePublicHtml(burden.acb_contributors.map(c=>`${c.name} (${c.score})`).join(', ') || 'None')}</div>
     ${burden.acb_total >= 3 ? '<div style="font-size:10px;color:var(--red);margin-top:4px;font-weight:600">High risk: delirium, cognitive impairment, urinary retention</div>' : ''}
   </div>`;
 
@@ -82,7 +82,7 @@ function renderAdverseBurden() {
   html += `<div class="burden-card">
     <div class="burden-header">Fall Risk Score</div>
     <div class="burden-score" style="color:${fallColor}">${burden.fall_risk_total}</div>
-    <div class="burden-sub">${burden.fall_risk_contributors.map(c=>c.name).join(', ') || 'None'}</div>
+    <div class="burden-sub">${safePublicHtml(burden.fall_risk_contributors.map(c=>c.name).join(', ') || 'None')}</div>
     ${burden.fall_risk_total >= 4 ? '<div style="font-size:10px;color:var(--amber);margin-top:4px;font-weight:600">Elevated fall/fracture risk — especially in elderly</div>' : ''}
   </div>`;
 
@@ -91,7 +91,7 @@ function renderAdverseBurden() {
     html += `<div class="burden-card">
       <div class="burden-header">Sedating Agents</div>
       <div class="burden-score" style="color:var(--amber)">${burden.sedation_contributors.length}</div>
-      <div class="burden-sub">${burden.sedation_contributors.join(', ')}</div>
+      <div class="burden-sub">${safePublicHtml(burden.sedation_contributors.join(', '))}</div>
       ${burden.sedation_contributors.length >= 2 ? '<div style="font-size:10px;color:var(--amber);margin-top:4px;font-weight:600">Combined CNS depression — avoid driving/machinery</div>' : ''}
     </div>`;
   }
@@ -102,8 +102,8 @@ function renderAdverseBurden() {
     html += `<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text2);margin-bottom:6px">Beers Criteria 2023 Flags (≥65 years)</div>`;
     for (const flag of burden.beers_flags) {
       html += `<div class="beers-flag">
-        <span class="beers-drug">⚑ ${flag.name}</span>
-        <span>${flag.concern}</span>
+        <span class="beers-drug">⚑ ${safePublicHtml(flag.name)}</span>
+        <span>${safePublicHtml(flag.concern)}</span>
       </div>`;
     }
   }
@@ -111,7 +111,7 @@ function renderAdverseBurden() {
   // Summary
   if (burden.summary.length > 0) {
     html += `<div style="margin-top:8px;padding:8px 10px;border-radius:6px;background:var(--card2);font-size:11px">
-      ${burden.summary.map(s => `<div style="margin-bottom:3px">• ${s}</div>`).join('')}
+      ${burden.summary.map(s => `<div style="margin-bottom:3px">• ${safePublicHtml(s)}</div>`).join('')}
     </div>`;
   }
   el.innerHTML = html;

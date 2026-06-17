@@ -73,17 +73,18 @@ function renderAbsolutePKCard(name) {
     relative:false,
   });
   const daysStr = baseMetrics.t_to_ss_days < 1 ? `${Math.round(baseMetrics.t_to_ss_h)}h` : `${baseMetrics.t_to_ss_days}d`;
-  const noteHtml = params.note ? `<div class="pk-note">${params.note.substring(0,140)}${params.note.length>140?'…':''}</div>` : '';
+  const note = publicDisplayText(params.note || "");
+  const noteHtml = note ? `<div class="pk-note">${safePublicHtml(note.substring(0,140))}${note.length>140?'...' : ''}</div>` : '';
 
   return `<div class="pk-card">
-    <div class="pk-title">${name}${genoBadge}${intBadge}</div>
-    <div class="pk-params">Absolute model · F=${Math.round(params.F*100)}% · t½=${params.halfLife}h · τ=${tau}h · dose=${params.dose_mg}mg · Vd=${params.Vd}L/kg</div>
+    <div class="pk-title">${safePublicHtml(name)}${genoBadge}${intBadge}</div>
+    <div class="pk-params">Absolute model · F=${safePublicHtml(Math.round(params.F*100))}% · t½=${safePublicHtml(params.halfLife)}h · τ=${safePublicHtml(tau)}h · dose=${safePublicHtml(params.dose_mg)}mg · Vd=${safePublicHtml(params.Vd)}L/kg</div>
     ${svg}
     <div class="pk-metrics">
-      <span title="Accumulation factor R = 1/(1−e^(−ke·τ))">R = ${Math.round(baseMetrics.accum * 10)/10}×</span>
+      <span title="Accumulation factor">R = ${safePublicHtml(Math.round(baseMetrics.accum * 10)/10)}x</span>
       <span title="Steady-state peak concentration">Cmax_ss: ${fmtPK(baseMetrics.cmax_ss)} ng/mL</span>
-      ${showTrough ? `<span title="Trough concentration">Ctrough: ${fmtPK(baseMetrics.ctrough_ss)} ng/mL</span>` : ''}
-      <span title="Time to reach ~97% of true steady state">SS in ~${daysStr}</span>
+      ${showTrough ? `<span title="Trough concentration">Ctrough: ${safePublicHtml(fmtPK(baseMetrics.ctrough_ss))} ng/mL</span>` : ''}
+      <span title="Time to reach about 97% of true steady state">SS in ~${safePublicHtml(daysStr)}</span>
       ${adjMetrics ? `<span class="pk-int-metric" title="Steady-state Cmax with DDI adjustment">Adj Cmax_ss: ${fmtPK(adjMetrics.cmax_ss)} ng/mL</span>` : ''}
     </div>
     ${noteHtml}
@@ -119,17 +120,17 @@ function renderRelativePKCard(name) {
   const ssDays = metrics.timeTo90ssH < 24 ? `${Math.round(metrics.timeTo90ssH)}h` : `${Math.round(metrics.timeTo90ssH / 24 * 10) / 10}d`;
 
   return `<div class="pk-card">
-    <div class="pk-title">${name}<span class="pk-geno-badge">Relative</span>${genoBadge}${intBadge}</div>
-    <div class="pk-params">Fallback model · t½=${Math.round(metrics.effectiveHalfLifeH * 10) / 10}h effective · τ=${sim.tau}h · reference peak = 1.0</div>
+    <div class="pk-title">${safePublicHtml(name)}<span class="pk-geno-badge">Relative</span>${genoBadge}${intBadge}</div>
+    <div class="pk-params">Fallback model · t½=${safePublicHtml(Math.round(metrics.effectiveHalfLifeH * 10) / 10)}h effective · τ=${safePublicHtml(sim.tau)}h · reference peak = 1.0</div>
     ${svg}
     <div class="pk-metrics">
-      <span title="Relative AUC versus NM/no-interaction reference">AUC ${fmtFold(metrics.aucFold)}</span>
+      <span title="Relative AUC versus NM/no-interaction reference">AUC ${safePublicHtml(fmtFold(metrics.aucFold))}</span>
       <span title="Relative steady-state peak versus reference single-dose peak">Cmax_ss: ${fmtPK(metrics.cmax_ss)} rel</span>
-      <span title="Accumulation factor">R = ${Math.round(metrics.accumRatio * 10) / 10}×</span>
-      <span title="Approximate time to 90% steady state">90% SS ~${ssDays}</span>
+      <span title="Accumulation factor">R = ${safePublicHtml(Math.round(metrics.accumRatio * 10) / 10)}x</span>
+      <span title="Approximate time to 90% steady state">90% SS ~${safePublicHtml(ssDays)}</span>
       ${activeFold ? `<span class="pk-int-metric">${activeFold}</span>` : ''}
     </div>
-    <div class="pk-note">${interpretation}. Relative curve shown because full F/ka/Vd/dose parameters are not available.</div>
+    <div class="pk-note">${safePublicHtml(interpretation)}. Relative curve shown because full F/ka/Vd/dose parameters are not available.</div>
   </div>`;
 }
 

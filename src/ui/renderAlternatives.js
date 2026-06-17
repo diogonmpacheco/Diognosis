@@ -222,7 +222,7 @@ function renderPathwayDiversions() {
           <span class="badge" style="${d.activity === 'inactive' ? 'background:#f1f5f9;color:#64748b' : d.activity.includes('potent') ? 'background:var(--redBg);color:var(--red)' : d.activity.includes('toxic') || d.activity === 'neurotoxic' ? 'background:var(--redBg);color:var(--red)' : 'background:var(--amberBg);color:var(--amber)'}">${d.activity.toUpperCase()}</span>
           ${d.pct ? `<span style="font-size:11px;color:var(--text2)">${d.pct}%</span>` : ""}
         </div>
-        ${d.note ? `<div style="font-size:11px;color:var(--text2);padding-left:18px">${d.note}</div>` : ""}
+        ${d.note ? `<div style="font-size:11px;color:var(--text2);padding-left:18px">${safePublicHtml(d.note)}</div>` : ""}
       </div>`;
     });
 
@@ -340,11 +340,11 @@ function renderTransporterDDI() {
     const sevClass = t.severity === "critical" ? "critical" : t.severity === "high" ? "high" : "moderate";
     return `<div class="tr-card ${sevClass}">
       <div class="tr-head">
-        <span class="tr-drugs">${t.actualInhibitor || t.inhibitor} → ${t.substrate}</span>
-        <span class="tr-transporter">${t.transporter}</span>
+        <span class="tr-drugs">${safePublicHtml(t.actualInhibitor || t.inhibitor)} -> ${safePublicHtml(t.substrate)}</span>
+        <span class="tr-transporter">${safePublicHtml(t.transporter)}</span>
       </div>
-      <div class="tr-effect">${t.effect}</div>
-      <div class="tr-mech">${t.mechanism}</div>
+      <div class="tr-effect">${safePublicHtml(t.effect)}</div>
+      <div class="tr-mech">${safePublicHtml(t.mechanism)}</div>
     </div>`;
   }).join("");
 }
@@ -367,14 +367,15 @@ function renderMetabolites() {
 
     html += `<div style="margin-bottom:16px;padding:12px;background:var(--card2);border-radius:var(--radius);border:1px solid var(--border)">`;
     html += `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <strong style="font-size:14px">${drugName}</strong>
-      <span style="font-size:12px;color:var(--text2)">${drug ? drug.cls : ""} ${fold.fold !== 1 ? `· <strong style="color:${fold.fold>=2?'var(--red)':fold.fold<=0.5?'var(--blue)':'var(--amber)'}">${fold.fold.toFixed(1)}× AUC</strong>` : ""}</span>
+      <strong style="font-size:14px">${safePublicHtml(drugName)}</strong>
+      <span style="font-size:12px;color:var(--text2)">${safePublicHtml(drug ? drug.cls : "")} ${fold.fold !== 1 ? `· <strong style="color:${fold.fold>=2?'var(--red)':fold.fold<=0.5?'var(--blue)':'var(--amber)'}">${safePublicHtml(fold.fold.toFixed(1))}x AUC</strong>` : ""}</span>
     </div>`;
 
-    if (!mets || !mets.length) {
+    const displayMets = (mets || []).filter(m => !isPublicSyntheticContextRow(m));
+    if (!displayMets.length) {
       html += `<div style="font-size:12px;color:var(--text2);font-style:italic">Metabolite data not yet catalogued</div>`;
     } else {
-      mets.forEach(m => {
+      displayMets.forEach(m => {
         const activity = normalizeMetaboliteActivity(m.a);
         const badgeColors = { toxic: "background:var(--redBg);color:var(--red)", active_form: "background:var(--purpleBg);color:var(--purple)", active: "background:var(--blueBg);color:var(--blue)", active_equipotent: "background:var(--blueBg);color:var(--blue)", active_potent: "background:var(--purpleBg);color:var(--purple)", weak: "background:var(--amberBg);color:var(--amber)", inactive: "background:#f1f5f9;color:#64748b" };
         const badgeLabels = { toxic: "TOXIC", active_form: "ACTIVE FORM", active: "ACTIVE", active_equipotent: "ACTIVE", active_potent: "POTENT", weak: "WEAK", inactive: "INACTIVE" };
@@ -384,15 +385,15 @@ function renderMetabolites() {
 
         html += `<div style="display:flex;align-items:center;gap:6px;padding:4px 0;flex-wrap:wrap">
           <span style="color:var(--accent);font-weight:700">→</span>
-          <span style="font-size:13px;font-weight:600">${m.n}</span>
+          <span style="font-size:13px;font-weight:600">${safePublicHtml(publicMetaboliteLabel(m, drugName))}</span>
           ${m.p ? `<span style="font-size:11px;color:var(--text2);background:var(--card);padding:1px 6px;border-radius:6px;border:1px solid var(--border)">${m.p}%</span>` : ""}
-          <span style="font-size:11px;padding:1px 6px;border-radius:6px;background:#e0e7ff;color:#3730a3">${m.e}</span>
-          <span style="font-size:10px;padding:1px 6px;border-radius:6px;font-weight:700;${bc}">${bl}</span>
-          ${m.t ? `<span style="font-size:10px;color:var(--text2)">t½ ${m.t}h</span>` : ""}
+          <span style="font-size:11px;padding:1px 6px;border-radius:6px;background:#e0e7ff;color:#3730a3">${safePublicHtml(m.e)}</span>
+          <span style="font-size:10px;padding:1px 6px;border-radius:6px;font-weight:700;${bc}">${safePublicHtml(bl)}</span>
+          ${m.t ? `<span style="font-size:10px;color:var(--text2)">t½ ${safePublicHtml(m.t)}h</span>` : ""}
         </div>`;
-        if (m.note) html += `<div style="padding:0 0 2px 22px;font-size:11px;color:var(--text2);line-height:1.3">${m.note}</div>`;
+        if (m.note) html += `<div style="padding:0 0 2px 22px;font-size:11px;color:var(--text2);line-height:1.3">${safePublicHtml(m.note)}</div>`;
         if (m.inh && m.inh.length) {
-          html += `<div style="padding:0 0 2px 22px;font-size:11px;color:var(--amber);font-weight:600">⚡ Inhibits: ${m.inh.map(i=>`${i.e} (${i.s})`).join(", ")}</div>`;
+          html += `<div style="padding:0 0 2px 22px;font-size:11px;color:var(--amber);font-weight:600">Inhibits: ${safePublicHtml(m.inh.map(i=>`${i.e} (${i.s})`).join(", "))}</div>`;
         }
       });
     }
@@ -409,26 +410,26 @@ function renderMetabolites() {
         html += `<div style="margin-top:8px;padding:10px 12px;border-left:4px solid;border-radius:0 8px 8px 0;${sevStyle}">
           <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
             <span style="font-size:14px">⚗</span>
-            <span style="font-size:13px;font-weight:700;color:var(--red)">${cp.metabolite}</span>
+            <span style="font-size:13px;font-weight:700;color:var(--red)">${safePublicHtml(cp.metabolite)}</span>
             <span style="font-size:10px;padding:1px 8px;border-radius:8px;font-weight:700;background:var(--red);color:#fff">COMBINATION</span>
-            <span style="font-size:11px;color:var(--text2)">with ${otherDrug}</span>
+            <span style="font-size:11px;color:var(--text2)">with ${safePublicHtml(otherDrug)}</span>
           </div>
-          <div style="font-size:12px;margin-top:4px;line-height:1.4;color:var(--text)">${cp.mechanism}</div>
-          ${cp.effect ? `<div style="font-size:12px;margin-top:4px;font-weight:600;color:var(--red)">${cp.effect}</div>` : ""}
-          ${cp.risk ? `<div style="font-size:12px;margin-top:2px;font-weight:600;color:var(--red)">${cp.risk}</div>` : ""}
-          ${cp.management ? `<div style="font-size:11px;margin-top:4px;font-style:italic;color:var(--text2)">Management: ${cp.management}</div>` : ""}
+          <div style="font-size:12px;margin-top:4px;line-height:1.4;color:var(--text)">${safePublicHtml(cp.mechanism)}</div>
+          ${cp.effect ? `<div style="font-size:12px;margin-top:4px;font-weight:600;color:var(--red)">${safePublicHtml(cp.effect)}</div>` : ""}
+          ${cp.risk ? `<div style="font-size:12px;margin-top:2px;font-weight:600;color:var(--red)">${safePublicHtml(cp.risk)}</div>` : ""}
+          ${cp.management ? `<div style="font-size:11px;margin-top:4px;font-style:italic;color:var(--text2)">Management: ${safePublicHtml(cp.management)}</div>` : ""}
         </div>`;
       });
     }
 
     // Cross-ref: metabolite ↔ drug matches
-    const matches = analysis.drugMatches[drugName];
+    const matches = (analysis.drugMatches[drugName] || []).filter(mx => !isPublicSyntheticContextRow(mx.metabolite));
     if (matches && matches.length) {
       html += `<div style="margin-top:8px;padding:8px 10px;background:var(--amberBg);border-radius:8px;border:1px solid #fde68a">
-        <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:4px">⚠ Metabolite ↔ Drug Match</div>`;
+        <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:4px">Metabolite database overlap</div>`;
       matches.forEach(mx => {
         const inStack = activeStack.includes(mx.matchedDrug);
-        html += `<div style="font-size:12px;color:#92400e">→ <strong>${mx.metabolite.n}</strong> is/contains <strong>${mx.matchedDrug}</strong>${inStack ? " <span style='color:var(--red);font-weight:700'>(IN YOUR STACK)</span>" : " (in database)"}</div>`;
+        html += `<div style="font-size:12px;color:#92400e">-> <strong>${safePublicHtml(publicMetaboliteLabel(mx.metabolite, drugName))}</strong> may overlap with database substance <strong>${safePublicHtml(mx.matchedDrug)}</strong>${inStack ? " <span style='color:var(--red);font-weight:700'>(in your stack)</span>" : " (in database)"}</div>`;
       });
       html += `</div>`;
     }
@@ -446,8 +447,8 @@ function renderMetabolites() {
       if (seen.has(key)) return;
       seen.add(key);
       html += `<div style="font-size:12px;color:#991b1b;margin-bottom:4px;line-height:1.4">
-        <strong>${c.inhibitor}</strong>'s metabolite <em>${c.metabolite}</em> ${c.strength}ly inhibits ${c.enzyme}
-        → affects <strong>${c.victim}</strong>'s metabolite <em>${c.affectedMetabolite}</em> (${c.activity})
+        <strong>${safePublicHtml(c.inhibitor)}</strong>'s metabolite <em>${safePublicHtml(c.metabolite)}</em> ${safePublicHtml(c.strength)}ly inhibits ${safePublicHtml(c.enzyme)}
+        -> affects <strong>${safePublicHtml(c.victim)}</strong>'s metabolite <em>${safePublicHtml(c.affectedMetabolite)}</em> (${safePublicHtml(c.activity)})
       </div>`;
     });
     html += `</div>`;
@@ -457,7 +458,7 @@ function renderMetabolites() {
     html += `<div style="margin-top:8px;padding:12px;background:var(--redBg);border-radius:var(--radius);border:1px solid #fecaca">
       <div style="font-size:13px;font-weight:700;color:var(--red);margin-bottom:6px">☠ Shared Toxic Metabolite Pathways</div>`;
     analysis.toxicOverlap.forEach(t => {
-      html += `<div style="font-size:12px;color:#991b1b;margin-bottom:4px">${t.drugs.map(d => `<strong>${d.drug}</strong>→${d.metabolite}`).join(" + ")} (via ${t.pathway.split(":")[0]})</div>`;
+      html += `<div style="font-size:12px;color:#991b1b;margin-bottom:4px">${t.drugs.map(d => `<strong>${safePublicHtml(d.drug)}</strong> -> ${safePublicHtml(d.metabolite)}`).join(" + ")} (via ${safePublicHtml(t.pathway.split(":")[0])})</div>`;
     });
     html += `</div>`;
   }

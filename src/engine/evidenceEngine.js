@@ -536,6 +536,8 @@ function studyCardHTML(study) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
+  const publicText = typeof publicDisplayText === "function" ? publicDisplayText : (value) => String(value ?? "");
+  const publicTitle = typeof publicEvidenceTitle === "function" ? publicEvidenceTitle(study) : publicText(study.title || study.id || "Evidence entry");
   const pmidLink = study.pmid
     ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${encodeURIComponent(study.pmid)}/" target="_blank" style="color:var(--blue);text-decoration:none;font-weight:600">PMID:${esc(study.pmid)}</a>`
     : '';
@@ -550,14 +552,14 @@ function studyCardHTML(study) {
   if (qe.cmaxFold != null) qeItems.push(`Cmax ×${qe.cmaxFold}`);
   if (qe.clearanceReductionPct) qeItems.push(`CL ↓${qe.clearanceReductionPct}%`);
   if (qe.oddsRatio) qeItems.push(`OR ${qe.oddsRatio}`);
-  if (qe.note) qeItems.push(esc(qe.note));
+  if (qe.note) qeItems.push(esc(publicText(qe.note)));
 
   const contradicts = (study.contradicts || []).length
-    ? `<div style="font-size:11px;color:var(--amber);margin-top:4px">Contradicted by: ${study.contradicts.map(esc).join(', ')}</div>` : '';
+    ? `<div style="font-size:11px;color:var(--amber);margin-top:4px">Contradicted by: ${study.contradicts.map(item => esc(publicText(item))).join(', ')}</div>` : '';
   const limits = (study.limitations || []).length
-    ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Limitations: ${study.limitations.map(esc).join(' · ')}</div>` : '';
+    ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Limitations: ${study.limitations.map(item => esc(publicText(item))).join(' · ')}</div>` : '';
   const unverified = study.verifyNote
-    ? `<div style="font-size:10px;color:var(--amber);margin-top:3px">Review note: ${esc(study.verifyNote)}</div>` : '';
+    ? `<div style="font-size:10px;color:var(--amber);margin-top:3px">Review note: ${esc(publicText(study.verifyNote))}</div>` : '';
   const reviewBadge = '<span class="ev-review-badge needs-review">pending professional review</span>';
   const liveBadge = study.livePendingReview === true
     ? '<span class="ev-review-badge needs-review">automated curated preview</span><span class="ev-review-badge needs-review">not clinically validated</span>'
@@ -581,8 +583,8 @@ function studyCardHTML(study) {
       ${study.year ? `<span class="ev-year">${esc(study.year)}</span>` : ''}
       ${links ? `<span class="ev-links">${links}</span>` : ''}
     </div>
-    <div class="ev-title">${esc(study.title || 'Untitled study')}</div>
-    ${study.source ? `<div class="ev-source">${esc(study.source)}${study.journal ? ` · ${esc(study.journal)}` : ''}</div>` : ''}
+    <div class="ev-title">${esc(publicTitle || 'Evidence entry')}</div>
+    ${study.source ? `<div class="ev-source">${esc(publicText(study.source))}${study.journal ? ` · ${esc(publicText(study.journal))}` : ''}</div>` : ''}
     ${qeItems.length ? `<div class="ev-effects">${qeItems.join(' · ')}</div>` : ''}
     ${study.temporal && study.temporal.onset ? `<div class="ev-temporal">Onset: ${esc(study.temporal.onset)}${study.temporal.washout ? ` · Washout: ${esc(study.temporal.washout)}` : ''}</div>` : ''}
     ${study.pendingSourceSignal === true ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Pending source context · not used for scoring or public severity</div>` : ''}

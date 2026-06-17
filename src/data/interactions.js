@@ -1815,10 +1815,11 @@ function top100CoverageAddKnownDdi(drug, row) {
     drug2:row.drug2,
     severity:row.severity || top100CoverageHighImpactSeverity(drug),
     category:row.category,
-    mechanism:`Phase 7 top-250 live DDI adapter: ${row.mechanism}`,
+    mechanism:row.mechanism,
     effect:row.effect,
     evidence:{confidence:"low", sources:["top-250 live coverage adapter"], studyType:"route_adapter"},
     evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
+    internalProvenance:{ phase:"phase7", batch:"top250_live_ddi", reviewStatus:"pending" },
   });
   return true;
 }
@@ -2227,10 +2228,11 @@ function ddiExpansionPackAddKnownDdi(drug, row) {
     drug2:row.drug2,
     severity:row.severity || top100CoverageHighImpactSeverity(drug),
     category:row.category,
-    mechanism:`Phase 9 DDI expansion pack: ${row.mechanism}`,
+    mechanism:row.mechanism,
     effect:row.effect,
     evidence:{confidence:"low", sources:["DDI expansion pack adapter"], studyType:"class_route_adapter"},
     evidenceRefs:[...DDI_EXPANSION_PACK_EVIDENCE_REFS],
+    internalProvenance:{ phase:"phase9", batch:"ddi_expansion_pack", reviewStatus:"pending" },
   });
   return true;
 }
@@ -2302,10 +2304,11 @@ function phase12DrugCountAddKnownDdi(drug, row) {
     drug2:row.drug2,
     severity:row.severity || "moderate",
     category:row.category || "phase12_drug_count_live_context",
-    mechanism:`Phase 12 drug-count expansion: ${row.mechanism}`,
+    mechanism:row.mechanism,
     effect:row.effect,
     evidence:{confidence:"low", sources:["drug count expansion batch"], studyType:"pending_review_class_route_adapter"},
     evidenceRefs:[...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS],
+    internalProvenance:{ phase:"phase12", batch:"drug_count_ddi", reviewStatus:"pending" },
   });
   return true;
 }
@@ -2368,10 +2371,11 @@ function top100GoldAddKnownDdi(drug, row) {
     drug2:row.drug2,
     severity:row.severity || "moderate",
     category:row.category || "top100_gold_live_context",
-    mechanism:`Phase 13 top-100 gold enrichment: ${row.mechanism}`,
+    mechanism:row.mechanism,
     effect:row.effect,
     evidence:{confidence:"low", sources:["top-100 gold enrichment adapter"], studyType:"pending_review_gold_pair_adapter"},
     evidenceRefs:[...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS],
+    internalProvenance:{ phase:"phase13", batch:"top100_gold_ddi", reviewStatus:"pending" },
   });
   return true;
 }
@@ -2470,10 +2474,11 @@ function ninetyPercentAddKnownDdi(drug, row) {
     drug2:row.drug2,
     severity:row.severity || top100CoverageHighImpactSeverity(drug),
     category:row.category || "phase16_ninety_percent_ddi_context",
-    mechanism:`Phase 16 90% live DDI coverage: ${row.mechanism}`,
+    mechanism:row.mechanism,
     effect:row.effect,
     evidence:{confidence:"low", sources:["90% live coverage adapter"], studyType:"route_class_adapter"},
     evidenceRefs:[...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS],
+    internalProvenance:{ phase:"phase16", batch:"ninety_percent_ddi", reviewStatus:"pending" },
   });
   return true;
 }

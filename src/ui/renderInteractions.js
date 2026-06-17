@@ -50,20 +50,20 @@ function renderInteractions(interactions) {
     return `<div class="finding-card ${i.severity}">
       <div class="finding-top">
         <div>
-          <div class="finding-title">${findingTitle}</div>
-          <div class="finding-subtitle">${i.drug1} + ${i.drug2}</div>
+      <div class="finding-title">${safePublicHtml(findingTitle)}</div>
+      <div class="finding-subtitle">${safePublicHtml(i.drug1)} + ${safePublicHtml(i.drug2)}</div>
         </div>
-        <span class="finding-sev ${i.severity}">${i.severity}</span>
-      </div>
-      <div class="finding-effect">${i.effect}</div>
-      <div class="finding-grid">
-        <div class="finding-detail"><strong>Why</strong>${mechText || "Mechanism not specified."}</div>
-        <div class="finding-detail"><strong>Pathway</strong>${pathwayLabel}</div>
-        <div class="finding-detail"><strong>Discuss</strong>${actionText ? actionText.replace(/^Action:\s*/,"") : "Monitor in clinical context."}</div>
-      </div>
-      ${traceText ? `<div class="inter-trace">${traceText}</div>` : ""}
-      <div class="finding-meta">
-        <span class="finding-tag">${i.type || "interaction"}</span>
+      <span class="finding-sev ${safeAttr(i.severity)}">${safePublicHtml(i.severity)}</span>
+    </div>
+    <div class="finding-effect">${safePublicHtml(i.effect)}</div>
+    <div class="finding-grid">
+      <div class="finding-detail"><strong>Why</strong>${safePublicHtml(mechText || "Mechanism not specified.")}</div>
+      <div class="finding-detail"><strong>Pathway</strong>${safePublicHtml(pathwayLabel)}</div>
+      <div class="finding-detail"><strong>Discuss</strong>${safePublicHtml(actionText ? actionText.replace(/^Action:\s*/,"") : "Monitor in clinical context.")}</div>
+    </div>
+    ${traceText ? `<div class="inter-trace">${safePublicHtml(traceText)}</div>` : ""}
+    <div class="finding-meta">
+      <span class="finding-tag">${safePublicHtml(i.type || "interaction")}</span>
         ${hasEv ? `<span class="finding-tag">${studies.length} stud${studies.length===1?'y':'ies'}</span>` : '<span class="finding-tag warn">no linked study yet</span>'}
         ${hasEv ? `<span class="finding-tag ${reviewClass}">${reviewLabel}</span>` : ""}
       </div>
@@ -166,10 +166,6 @@ function renderFoldBars() {
     const normalPct = 20; // where 1× sits
 
     // Show details
-    const detailText = result.details.length
-      ? result.details.map(d => `${d.perpetrator}: ${d.enzyme} ${d.type} (${d.strength})`).join(", ")
-      : "No interactions affecting levels";
-
     const metaboliteRows = (typeof getGenotypeMetaboliteEffectCards === 'function'
       ? getGenotypeMetaboliteEffectCards(name)
       : []
@@ -177,11 +173,11 @@ function renderFoldBars() {
     const contextRows = renderFoldExposureContextRows(name);
 
     return `<div class="fold-row">
-      <div class="fold-name">${name}</div>
+      <div class="fold-name">${safePublicHtml(name)}</div>
       <div class="fold-bar-wrap">
         <div class="fold-bar" style="width:${barPct}%;background:${color}">${fold.toFixed(1)}×</div>
       </div>
-      <div class="fold-val" style="color:${color}">${fold.toFixed(1)}×<span class="fold-tag" style="${tagColor}">${tagText}</span></div>
+      <div class="fold-val" style="color:${color}">${safePublicHtml(fold.toFixed(1))}x<span class="fold-tag" style="${tagColor}">${safePublicHtml(tagText)}</span></div>
     </div>${contextRows}${metaboliteRows}`;
   }).join("");
 }
@@ -262,7 +258,13 @@ function renderFoldMetaboliteRow(card) {
   const action = effect.clinicalAction || clinicalActionForMetaboliteEffect(effect, phenotypeEffect);
 
   return renderFoldSubRow({
-    title:effect.metaboliteName,
+    title:publicMetaboliteLabel({
+      metaboliteName:effect.metaboliteName,
+      name:effect.metaboliteName,
+      evidenceRefs:effect.evidenceRefs || [],
+      syntheticContext:effect.syntheticContext,
+      publicFacing:effect.publicFacing,
+    }, effect.parent),
     subtitle:`from ${effect.parent}`,
     tagText,
     color,
@@ -295,20 +297,20 @@ function renderFoldSubRow({ title, subtitle, tagText, color, summary, valueText 
   if (hasFoldBar) {
     const barPct = Math.min(100, Math.max(5, (fold / 5) * 100));
     return `<div class="fold-row fold-metabolite-row fold-quantified-row">
-      <div class="fold-name fold-metabolite-name">${title} <span>${subtitle}</span></div>
+      <div class="fold-name fold-metabolite-name">${safePublicHtml(title)} <span>${safePublicHtml(subtitle)}</span></div>
       <div class="fold-subbar-cell">
         <div class="fold-bar-wrap fold-metabolite-bar-wrap">
           <div class="fold-bar fold-metabolite-bar" style="width:${barPct}%;background:${color}">${valueText}</div>
         </div>
-        <div class="fold-metabolite-note" style="color:${color}"><span class="fold-tag fold-metabolite-tag">${tagText}</span> ${summary}</div>
+        <div class="fold-metabolite-note" style="color:${color}"><span class="fold-tag fold-metabolite-tag">${safePublicHtml(tagText)}</span> ${safePublicHtml(summary)}</div>
       </div>
-      <div class="fold-val fold-metabolite-val" style="color:${color}">${valueText}</div>
+      <div class="fold-val fold-metabolite-val" style="color:${color}">${safePublicHtml(valueText)}</div>
     </div>`;
   }
   return `<div class="fold-row fold-metabolite-row">
-    <div class="fold-name fold-metabolite-name">${title} <span>${subtitle}</span></div>
-    <div class="fold-metabolite-note" style="color:${color}"><span class="fold-tag fold-metabolite-tag">${tagText}</span> ${summary}</div>
-    <div class="fold-val fold-metabolite-val" style="color:${color}">${valueText}</div>
+    <div class="fold-name fold-metabolite-name">${safePublicHtml(title)} <span>${safePublicHtml(subtitle)}</span></div>
+    <div class="fold-metabolite-note" style="color:${color}"><span class="fold-tag fold-metabolite-tag">${safePublicHtml(tagText)}</span> ${safePublicHtml(summary)}</div>
+    <div class="fold-val fold-metabolite-val" style="color:${color}">${safePublicHtml(valueText)}</div>
   </div>`;
 }
 
