@@ -64,6 +64,7 @@ function publicDisplayText(value, fallback = "") {
     .replace(/\b(?:90%|ninety[-\s]?percent)\s+(?:live\s+)?/gi, "")
     .replace(/\bInternal Diognosis\b/gi, "Diognosis")
     .replace(/\bsource[-_\s]?specific\b/gi, "source linked")
+    .replace(/\bpending\s+professional\s+(?:clinical\s+)?review\b/gi, "clinical review needed")
     .replace(/\bpending[-_\s]?review\b/gi, "pending review")
     .replace(/\b(?:live\s+)?(?:coverage|enrichment)\s+adapters?\b/gi, "coverage context")
     .replace(/\b(?:route|class|class route|transporter route|pending review|gold pair|half life class|route half life|drug count|metabolite|DDI|PGx\/transporter|transporter)\s+adapters?\b/gi, "coverage context")

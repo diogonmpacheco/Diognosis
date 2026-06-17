@@ -54,7 +54,13 @@ function renderPhenoconversionRow(row) {
     .slice(0, 3)
     .map(item => `<li>${safePublicHtml(item)}</li>`)
     .join("");
-  return `<div class="phenoconversion-card ${direction}">
+  const relatedButton = typeof renderRelatedFindingButton === "function"
+    ? renderRelatedFindingButton({
+        terms:[row.enzyme, functional, ...(row.affectedParents || []), ...(row.affectedMetabolites || []), ...(row.activeMoietyConsequences || [])],
+        evidenceRefs:row.evidenceRefs || [],
+      }, "Related overview")
+    : "";
+  return `<div class="phenoconversion-card supporting-context-row ${direction}">
     <div class="phenoconversion-head">
       <div>
         <div class="phenoconversion-gene">${safePublicHtml(row.enzyme)}</div>
@@ -67,10 +73,11 @@ function renderPhenoconversionRow(row) {
     ${parents ? `<div class="finding-actors"><strong>Affected parents</strong>${parents}</div>` : ""}
     ${metabolites ? `<div class="finding-actors"><strong>Affected metabolites</strong>${metabolites}</div>` : ""}
     ${consequences ? `<ul class="active-moiety-reasons">${consequences}</ul>` : ""}
+    ${relatedButton ? `<div class="supporting-actions">${relatedButton}</div>` : ""}
     <div class="finding-meta">
-      <span class="finding-tag type">phenoconversion engine</span>
+      <span class="finding-tag type">functional gene status</span>
       <span class="finding-tag">confidence: ${safePublicHtml(row.confidence || "unknown")}</span>
-      <span class="finding-tag warn">needs review</span>
+      <span class="finding-tag warn">review needed</span>
       <span class="finding-tag">${(row.evidenceRefs || []).length ? `${row.evidenceRefs.length} source refs` : "inferred/review required"}</span>
     </div>
   </div>`;

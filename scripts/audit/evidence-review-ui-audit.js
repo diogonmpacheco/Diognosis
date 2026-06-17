@@ -36,25 +36,26 @@ const countText = document.getElementById('evidenceCount')?.textContent || '';
 const notice = document.querySelector('.ev-review-notice');
 const ledger = document.getElementById('evidenceLadderLedger');
 const cards = [...document.querySelectorAll('#evCardsContainer .ev-explorer-card')];
-const pendingCards = cards
+const reviewNeededCards = cards
   .filter((card) => card.querySelector('.ev-review-badge.needs-review'));
 const findingCards = [...document.querySelectorAll('#findingBody .finding-card')];
-const findingLadders = [...document.querySelectorAll('#findingBody .evidence-ladder-compact')];
+const primaryFindingCards = [...document.querySelectorAll('#findingBody .primary-finding-card')];
 
 assert(browserErrors.length === 0, `Evidence UI emitted browser errors: ${browserErrors.join('; ')}`);
-assert(/all pending professional review/i.test(countText), `Evidence count must present one pending-review trust status, got "${countText}"`);
-assert(notice, 'Evidence explorer must render the panel-level professional-review notice');
-assert(/no entry below has been reviewed by a licensed pharmacist or physician/i.test(notice.textContent || ''), 'Evidence review notice lost professional-review wording');
+assert(/clinical review needed/i.test(countText), `Evidence count must present one compact review-needed trust status, got "${countText}"`);
+assert(notice, 'Evidence explorer must render the panel-level clinical-review notice');
+assert(/source entries are linked for traceability and still need clinical review/i.test(notice.textContent || ''), 'Evidence review notice lost compact clinical-review wording');
 assert(ledger, 'Evidence explorer must render the evidence ladder ledger');
-assert(/pending review/i.test(ledger.textContent || ''), 'Evidence ladder ledger must expose pending-review status');
+assert(/review needed/i.test(ledger.textContent || ''), 'Evidence ladder ledger must expose compact review-needed status');
 assert(/Evidence Browser \/ Evidence Ledger/i.test(ledger.textContent || ''), 'Evidence ladder ledger title is missing');
 assert(cards.length > 0, 'Expected representative stack to expose evidence cards');
-assert(pendingCards.length === cards.length, `Expected every evidence card to show pending professional review, found ${pendingCards.length}/${cards.length}`);
+assert(reviewNeededCards.length === cards.length, `Expected every evidence card to show review-needed state, found ${reviewNeededCards.length}/${cards.length}`);
 assert(findingCards.length > 0, 'Expected representative stack to expose normalized finding cards');
-assert(findingLadders.length === findingCards.length, `Expected every finding card to show compact evidence ladder status, found ${findingLadders.length}/${findingCards.length}`);
-assert(findingLadders.every((node) => /clinical action status/i.test(node.textContent || '')), 'Finding evidence ladders must expose clinical action status');
+assert(primaryFindingCards.length > 0, 'Expected Overview to expose primary finding cards');
+assert(primaryFindingCards.every((card) => ['What changed', 'Why it matters', 'What to review', 'Evidence'].every((label) => card.textContent.includes(label))), 'Primary finding cards must expose the four-part public explanation');
+assert(!/pending professional review/i.test(document.getElementById('evidenceBody')?.textContent || ''), 'Evidence explorer should not repeat pending-professional-review copy');
 assert(!document.querySelector('.ev-review-toggle'), 'Collapsed review-queue toggle should not return');
 assert(!document.querySelector('#evReviewCards'), 'Hidden review-queue container should not return');
 assert(!/show review queue/i.test(document.getElementById('evidenceBody')?.textContent || ''), 'Evidence explorer should not hide pending evidence behind a review queue');
 
-console.log(`Evidence review UI audit passed: ${pendingCards.length} evidence cards all pending professional review.`);
+console.log(`Evidence review UI audit passed: ${reviewNeededCards.length} evidence cards use compact review-needed labels.`);

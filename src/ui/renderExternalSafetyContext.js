@@ -181,7 +181,7 @@ function renderExternalSafetyContextCard(context) {
       <span class="external-context-decision">${safePublicHtml(reviewDecision)}</span>
     </div>
     <div class="external-context-title">${safePublicHtml(context.label)}</div>
-    <div class="external-context-meta">${safeTextList(meta.map(publicDisplayText), "<br>")}</div>
+    <div class="external-context-meta">${safeTextList(meta.map(value => publicDisplayText(value)), "<br>")}</div>
     <div class="external-context-note">${safePublicHtml(contextNote)}</div>
     <div class="external-context-action">${safePublicHtml(actionHint)}</div>
     ${rationale ? `<div class="external-context-action">${safePublicHtml(rationale)}</div>` : ""}

@@ -26,8 +26,9 @@ function renderEvidenceExplorer() {
   const pendingCalculationContext = typeof getRenderComputationCache === "function"
     ? getRenderComputationCache().pendingCalculationContext
     : (typeof getActivePendingCalculationContext === "function" ? getActivePendingCalculationContext() : null);
-  const findings = typeof getRenderComputationCache === "function"
-    ? getRenderComputationCache().findings
+  const cache = typeof getRenderComputationCache === "function" ? getRenderComputationCache() : null;
+  const findings = cache
+    ? ((cache.clinicalConcerns || []).length ? cache.clinicalConcerns : cache.findings)
     : (typeof buildInteractionFindings === "function"
       ? buildInteractionFindings(activeStack, activeGenotype || {}, { interactions:activeStack.length >= 2 ? calcRisk().interactions : [] })
       : []);
@@ -69,7 +70,7 @@ function renderEvidenceExplorer() {
 
   if (countEl) {
     const pendingRows = combinedStudies.filter(study => study.pendingSourceSignal).length;
-    countEl.textContent = `${combinedStudies.length} source-linked evidence${pendingRows ? ` · ${pendingRows} pending source signal${pendingRows === 1 ? "" : "s"}` : ""} · all pending professional review`;
+    countEl.textContent = `${combinedStudies.length} source-linked evidence${pendingRows ? ` · ${pendingRows} pending source signal${pendingRows === 1 ? "" : "s"}` : ""} · clinical review needed`;
   }
 
   // Tier filter buttons span every displayed card.
@@ -87,10 +88,8 @@ function renderEvidenceExplorer() {
     .join('') || `<div class="ev-explorer-empty" style="color:var(--text2);font-size:13px;padding:8px 4px">No evidence entries match this stack yet.</div>`;
   const ladderLedger = renderEvidenceLadderLedger(findings);
 
-  // Panel-level review notice — applies to every entry until a licensed
-  // pharmacist/physician signs off.
   const reviewNotice = `<div class="ev-review-notice" style="margin-bottom:10px;border:1px solid var(--amber);background:var(--amberBg);border-radius:8px;padding:8px 10px;font-size:11px;color:var(--amber);line-height:1.5">
-    ⚠ Educational only — no entry below has been reviewed by a licensed pharmacist or physician yet. Treat every evidence entry as source-linked and pending professional review; severity output is explanatory and not clinically final.
+    Educational only. Source entries are linked for traceability and still need clinical review; severity output is explanatory and not medical advice.
   </div>`;
 
   el.innerHTML = reviewNotice + ladderLedger + tierFilterHTML + `<div id="evCardsContainer">${cardsHTML}</div>`;
@@ -137,20 +136,24 @@ function renderEvidenceLadderLedger(findings = []) {
     const tier = ladder.strongestTier && ladder.strongestTier !== "unknown" ? ladder.strongestTier.replace(/_/g, " ") : "unknown";
     const identifiers = ladder.publicIdentifiers?.length ? ladder.publicIdentifiers.join(" · ") : "source-linked entry";
     const title = publicEvidenceTitle(row.study);
+    const relatedButton = typeof renderRelatedFindingButton === "function"
+      ? renderRelatedFindingButton({ terms:row.findings, evidenceRefs:[row.ref] }, "Related overview")
+      : "";
     return `<div class="evidence-ledger-row">
       <div class="evidence-ledger-head">
         <div>
           <div class="evidence-ledger-title">${safePublicHtml(title)}</div>
           <div class="evidence-ledger-meta">${safePublicHtml(tier.toLowerCase())} · ${safePublicHtml(identifiers)}</div>
         </div>
-        <span class="ev-review-badge needs-review">${ladder.professionalReviewStatus === "reviewed" ? "reviewed" : "pending professional review"}</span>
+        <span class="ev-review-badge needs-review">${ladder.professionalReviewStatus === "reviewed" ? "reviewed" : "review needed"}</span>
       </div>
       <div class="evidence-ledger-support">${safePublicHtml([...new Set(row.findings)].slice(0, 4).join(" · "))}</div>
+      ${relatedButton ? `<div class="supporting-actions">${relatedButton}</div>` : ""}
       <div class="finding-meta">
-        <span class="finding-tag">source: ${safePublicHtml(sourceSupportStatusLabel(ladder.sourceSupportStatus))}</span>
+        <span class="finding-tag">source: ${safePublicHtml(typeof compactReviewStatus === "function" ? compactReviewStatus(sourceSupportStatusLabel(ladder.sourceSupportStatus)) : sourceSupportStatusLabel(ladder.sourceSupportStatus))}</span>
         <span class="finding-tag">mechanistic: ${safePublicHtml(ladder.mechanisticConfidence)}</span>
         <span class="finding-tag">clinical action: ${safePublicHtml(String(ladder.clinicalActionConfidence).replace(/_/g, " "))}</span>
-        <span class="finding-tag">review: ${safePublicHtml(ladder.professionalReviewStatus === "reviewed" ? "professionally reviewed" : "pending professional review")}</span>
+        <span class="finding-tag">review: ${safePublicHtml(ladder.professionalReviewStatus === "reviewed" ? "reviewed" : "review needed")}</span>
         <span class="finding-tag">${row.study.quantifiedEffects ? "calculation-bearing context" : "qualitative context"}</span>
       </div>
     </div>`;
@@ -159,7 +162,7 @@ function renderEvidenceLadderLedger(findings = []) {
     <div class="evidence-ledger-summary">
       <div><strong>${safePublicHtml(String(findings.length))}</strong><span>current findings</span></div>
       <div><strong>${safePublicHtml(String(sourceLinkedFindings.length))}</strong><span>source-linked findings</span></div>
-      <div><strong>${safePublicHtml(String(pendingFindings.length))}</strong><span>pending review</span></div>
+      <div><strong>${safePublicHtml(String(pendingFindings.length))}</strong><span>review needed</span></div>
       <div><strong>${safePublicHtml(String(noRefFindings))}</strong><span>inferred / no refs</span></div>
     </div>
     <div class="evidence-ledger-label">Evidence Browser / Evidence Ledger</div>

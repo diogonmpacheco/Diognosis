@@ -1342,6 +1342,8 @@ const evidenceLadderRegression = window.eval(`(() => {
     modelOnlyCompact,
     clinicalActionConfidence:ladder?.clinicalActionConfidence,
     cardLadderCount:document.querySelectorAll('#findingBody .evidence-ladder-compact').length,
+    primaryFindingCards:document.querySelectorAll('#findingBody .primary-finding-card').length,
+    primaryFindingEvidenceSteps:Array.from(document.querySelectorAll('#findingBody .primary-finding-card')).filter(card => /Evidence/i.test(card.textContent || '')).length,
     ledgerExists:Boolean(document.getElementById('evidenceLadderLedger')),
   };
 })()`);
@@ -1359,9 +1361,10 @@ assert(
   `Evidence-free findings should show modeled/insufficient source support, got ${evidenceLadderRegression.evidenceFreeSourceSupportStatus}`
 );
 assert(evidenceLadderRegression.modelOnlyStrongestTier === 'unknown', 'Modeled evidence ladder should not display FDA/guideline backing');
-assert(/modeled review prompt/i.test(evidenceLadderRegression.modelOnlyCompact), 'Compact ladder should visibly identify modeled review prompts');
+assert(/modeled|clinical review needed/i.test(evidenceLadderRegression.modelOnlyCompact), 'Compact ladder should visibly identify modeled support and review need');
 assert(evidenceLadderRegression.clinicalActionConfidence === 'pending_review' || evidenceLadderRegression.clinicalActionConfidence === 'insufficient', 'Clinical action confidence should remain conservative');
-assert(evidenceLadderRegression.cardLadderCount > 0, 'Finding cards should render compact evidence ladder UI');
+assert(evidenceLadderRegression.primaryFindingCards > 0, 'Finding cards should render primary public finding UI');
+assert(evidenceLadderRegression.primaryFindingEvidenceSteps === evidenceLadderRegression.primaryFindingCards, 'Each primary finding card should include an Evidence step');
 assert(evidenceLadderRegression.ledgerExists, 'Evidence tab should render the evidence ladder ledger');
 
 const renderCacheRegression = window.eval(`(() => {
@@ -1563,7 +1566,8 @@ const crossTabFindingRegression = window.eval(`(() => {
   const firstId = document.querySelector('#findingBody .finding-card')?.getAttribute('data-finding-id') || '';
   const overviewHas = Boolean(firstId);
   const overviewFullPathCount = document.querySelectorAll('#findingBody .why-path').length;
-  const overviewWhyText = document.querySelector('#findingBody .finding-why-body')?.textContent || '';
+  const overviewWhyText = Array.from(document.querySelectorAll('#findingBody .finding-step'))
+    .find(step => /Why it matters/i.test(step.textContent || ''))?.textContent || '';
   setTab('mechanisms');
   const mechanismsHas = document.querySelectorAll('#mechanismWhyBody .mechanism-why-row .why-path').length > 0;
   setTab('evidence');
@@ -1584,15 +1588,93 @@ const crossTabFindingRegression = window.eval(`(() => {
 assert(crossTabFindingRegression.overviewHas, 'Overview should summarize a finding card');
 assert(crossTabFindingRegression.overviewFullPathCount === 0, 'Overview should show compact why text, not the detailed vertical why path');
 assert(
-  /^Why:/.test(crossTabFindingRegression.overviewWhyText.trim()) &&
-    crossTabFindingRegression.overviewWhyText.replace(/^Why:\s*/,'').length <= 220,
-  `Overview why summary should be one compact line <=220 chars, got ${crossTabFindingRegression.overviewWhyText}`
+  /^Why it matters/.test(crossTabFindingRegression.overviewWhyText.trim()) &&
+    crossTabFindingRegression.overviewWhyText.replace(/^Why it matters\s*/,'').length <= 260,
+  `Overview why summary should be one compact line <=260 chars, got ${crossTabFindingRegression.overviewWhyText}`
 );
 assert(crossTabFindingRegression.mechanismsHas, 'Mechanisms should explain findings with why paths');
 assert(crossTabFindingRegression.evidenceHas, 'Evidence should detail finding support through the evidence ledger');
 assert(crossTabFindingRegression.reviewHas, 'Review should debug findings through technical pathways');
 assert(crossTabFindingRegression.mechanismPanel === 'tab-mechanisms', 'Mechanism why paths should stay in Mechanisms');
 assert(crossTabFindingRegression.reviewPanel === 'tab-review', 'Technical pathways should stay in Review');
+
+const publicFindingHierarchyRegression = window.eval(`(() => {
+  function resetScenario(stack, setup) {
+    activeStack = stack.slice();
+    userGenetics = {};
+    activeGenotype = {};
+    Object.keys(GENOTYPE_EFFECTS || {}).forEach(g => activeGenotype[g] = GENOTYPE_PHENOTYPE.NM);
+    Object.keys(GENOTYPE_RISK_EFFECTS || {}).forEach(g => activeGenotype[g] = GENOTYPE_RISK_STATUS.ABSENT);
+    renderComputationCache = null;
+    currentInteractionFindings = [];
+    currentClinicalConcerns = [];
+    currentPublicFindingPresentations = [];
+    if (typeof setup === "function") setup();
+    renderAll();
+    setTab("overview");
+    const presentations = getCurrentPublicFindingPresentations();
+    const cards = Array.from(document.querySelectorAll("#findingBody .primary-finding-card"));
+    const overviewText = document.getElementById("findingBody")?.textContent || "";
+    const summaryOnclick = document.querySelector("#summaryBar .summary-jump")?.getAttribute("onclick") || "";
+    setTab("mechanisms");
+    const mechanismText = document.getElementById("mechanismWhyBody")?.textContent || "";
+    const mechanismRelatedButtons = document.querySelectorAll("#mechanismWhyBody .related-finding-btn").length;
+    setTab("genes-metabolites");
+    const genesText = document.getElementById("genotypeBody")?.textContent + " " + document.getElementById("phenoconversionBody")?.textContent + " " + document.getElementById("activeMoietyBody")?.textContent;
+    const genesRelatedButtons = document.querySelectorAll("#phenoconversionBody .related-finding-btn, #activeMoietyBody .related-finding-btn").length;
+    setTab("evidence");
+    const evidenceText = document.getElementById("evidenceBody")?.textContent || "";
+    const evidenceRelatedButtons = document.querySelectorAll("#evidenceBody .related-finding-btn").length;
+    return {
+      presentations: presentations.map(p => ({
+        title:p.title,
+        whatChanged:p.whatChanged,
+        whyItMatters:p.whyItMatters,
+        whatToReview:p.whatToReview,
+        evidenceSummary:p.evidenceSummary,
+        targetTab:p.targetTab,
+        targetElementId:p.targetElementId,
+      })),
+      cardCount:cards.length,
+      allCardsHaveSteps:cards.every(card => ["What changed", "Why it matters", "What to review", "Evidence"].every(label => card.textContent.includes(label))),
+      summaryOnclick,
+      overviewText,
+      mechanismText,
+      genesText,
+      evidenceText,
+      mechanismRelatedButtons,
+      genesRelatedButtons,
+      evidenceRelatedButtons,
+    };
+  }
+  return {
+    ssri:resetScenario(["Paroxetine", "Fluoxetine"]),
+    nebivolol:resetScenario(["Nebivolol"], () => { activeGenotype.CYP2D6 = GENOTYPE_PHENOTYPE.PM; }),
+    codeine:resetScenario(["Codeine", "Fluoxetine"], () => { activeGenotype.CYP2D6 = GENOTYPE_PHENOTYPE.PM; }),
+    clopidogrel:resetScenario(["Clopidogrel", "Omeprazole"], () => { activeGenotype.CYP2C19 = GENOTYPE_PHENOTYPE.PM; }),
+  };
+})()`);
+for (const [scenarioName, result] of Object.entries(publicFindingHierarchyRegression)) {
+  assert(result.presentations.length > 0, `${scenarioName}: expected at least one public Overview finding`);
+  assert(result.cardCount === result.presentations.length || result.cardCount === Math.min(8, result.presentations.length), `${scenarioName}: Overview cards should match public finding presentations`);
+  assert(result.allCardsHaveSteps, `${scenarioName}: every primary Overview card should use What changed / Why / What to review / Evidence`);
+  assert(result.presentations.every(p => p.whatChanged && p.whyItMatters && p.whatToReview && p.evidenceSummary), `${scenarioName}: public finding presentation fields must be non-empty`);
+  assert(result.presentations.every(p => p.targetTab === "overview" && /^overview-finding-/.test(p.targetElementId || "")), `${scenarioName}: public finding targets should point to Overview cards`);
+  assert(result.summaryOnclick.includes("focusPriorityFinding('overview','overview-finding-"), `${scenarioName}: Summary View finding should jump to a concrete Overview card`);
+  assert(!/Phase\\s*\\d+|top-250|top-100|coverage adapter|route adapter|pending professional review|review prompt/i.test(result.overviewText), `${scenarioName}: Overview should not expose internal labels or repeated review wording`);
+  assert(!/Phase\\s*\\d+|top-250|top-100|coverage adapter|route adapter|pending professional review/i.test(result.mechanismText), `${scenarioName}: Mechanisms should not expose internal labels`);
+  assert(!/Phase\\s*\\d+|top-250|top-100|coverage adapter|route adapter|pending professional review/i.test(result.genesText), `${scenarioName}: Genes + Metabolites should not expose internal labels`);
+  assert(!/pending professional review/i.test(result.evidenceText), `${scenarioName}: Evidence should use compact review labels instead of repeated pending-professional-review copy`);
+}
+assert(/Paroxetine|Fluoxetine/i.test(publicFindingHierarchyRegression.ssri.overviewText), 'Paroxetine + Fluoxetine should still identify affected substances in Overview');
+assert(publicFindingHierarchyRegression.nebivolol.presentations.filter(p => /Nebivolol|CYP2D6/i.test(p.title + " " + p.whatChanged)).length === 1, 'Nebivolol + CYP2D6 PM should show one clear Overview PGx priority');
+assert(publicFindingHierarchyRegression.nebivolol.cardCount <= 3, 'Nebivolol + CYP2D6 PM should not fragment into many Overview cards');
+assert(/Nebivolol/i.test(publicFindingHierarchyRegression.nebivolol.overviewText), 'Nebivolol PGx Overview should name Nebivolol');
+assert(!/Codeine|Tamoxifen|TCAs/i.test(publicFindingHierarchyRegression.nebivolol.overviewText + publicFindingHierarchyRegression.nebivolol.genesText), 'Nebivolol PGx copy should not leak generic CYP2D6 examples');
+assert(publicFindingHierarchyRegression.codeine.presentations.some(p => /Codeine activation|Morphine/i.test(p.title + " " + p.whatChanged)), 'Codeine + Fluoxetine + CYP2D6 PM should keep activation-failure interpretation in Overview');
+assert(publicFindingHierarchyRegression.codeine.genesRelatedButtons > 0, 'Codeine PGx/metabolite support should link back to the Overview finding');
+assert(publicFindingHierarchyRegression.clopidogrel.presentations.some(p => /Clopidogrel activation|active thiol/i.test(p.title + " " + p.whatChanged)), 'Clopidogrel + Omeprazole + CYP2C19 PM should keep prodrug activation traceability in Overview');
+assert(publicFindingHierarchyRegression.clopidogrel.evidenceRelatedButtons > 0, 'Clopidogrel evidence support should link back to the Overview finding');
 
 loadCase(window, ['Fluoxetine']);
 const fluoxetineWashout = window.eval('computeWashoutCalendar(["Fluoxetine"]).find(e => e.actorId === "norfluoxetine")');

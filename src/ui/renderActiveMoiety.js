@@ -50,7 +50,13 @@ function renderActiveMoietyRow(row) {
   const metaboliteFold = row.metaboliteDirection === "risk_context"
     ? "not an exposure increase"
     : (row.metaboliteFold ? `${Math.round(row.metaboliteFold * 100) / 100}x` : "directional");
-  return `<div class="active-moiety-card ${severity}">
+  const relatedButton = typeof renderRelatedFindingButton === "function"
+    ? renderRelatedFindingButton({
+        terms:[row.parent, row.actor, row.formationPathway, row.netPattern, ...(row.reasons || [])],
+        evidenceRefs:row.evidenceRefs || [],
+      }, "Related overview")
+    : "";
+  return `<div class="active-moiety-card supporting-context-row ${severity}">
     <div class="active-moiety-head">
       <div>
         <div class="active-moiety-title">${safePublicHtml(row.parent)} -> ${safePublicHtml(row.actor)}</div>
@@ -65,10 +71,11 @@ function renderActiveMoietyRow(row) {
       <div><strong>Clearance</strong><span>${safePublicHtml(row.clearancePathway || "not modeled")}</span><small>${safePublicHtml(row.clearanceDirection || "unknown")}</small></div>
     </div>
     ${reasons ? `<ul class="active-moiety-reasons">${reasons}</ul>` : ""}
+    ${relatedButton ? `<div class="supporting-actions">${relatedButton}</div>` : ""}
     <div class="finding-meta">
-      <span class="finding-tag type">active moiety engine</span>
+      <span class="finding-tag type">parent-metabolite model</span>
       <span class="finding-tag">confidence: ${safePublicHtml(row.confidence || "unknown")}</span>
-      <span class="finding-tag ${row.reviewRequired ? "warn" : "review"}">${row.reviewRequired ? "needs review" : "reviewed"}</span>
+      <span class="finding-tag ${row.reviewRequired ? "warn" : "review"}">${row.reviewRequired ? "review needed" : "reviewed"}</span>
       <span class="finding-tag">${safeHtml(evidence)}</span>
     </div>
   </div>`;

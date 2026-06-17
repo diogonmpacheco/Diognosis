@@ -48,6 +48,7 @@ let viewMode = "search";
 let activeTab = "overview";
 let currentInteractionFindings = [];
 let currentClinicalConcerns = [];
+let currentPublicFindingPresentations = [];
 let renderComputationCache = null;
 let lazyRenderState = { evidenceKey:"", reviewKey:"" };
 let manualSectionToggleKeys = {};
@@ -129,6 +130,13 @@ function focusPriorityFinding(tabName = "overview", elementId = "") {
   };
   if (typeof requestAnimationFrame === "function") requestAnimationFrame(runFocus);
   else runFocus();
+}
+
+function publicDomToken(value) {
+  return String(value || "item")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "") || "item";
 }
 
 function getRenderCacheKey() {
@@ -307,9 +315,10 @@ function renderSummaryBar() {
     priorityStory = buildDefaultPriorityStory(activeStack.length);
   }
 
+  const primaryPresentation = getCurrentPublicFindingPresentations()[0] || null;
   const isGenotypePriority = genotypePriority && genotypePriority.score > interactionScore;
-  const jumpTab = isGenotypePriority ? (genotypePriority.targetTab || "genes-metabolites") : "overview";
-  const jumpTarget = isGenotypePriority ? (genotypePriority.targetElementId || "genotypeSection") : "findingSection";
+  const jumpTab = primaryPresentation ? primaryPresentation.targetTab : (isGenotypePriority ? (genotypePriority.targetTab || "genes-metabolites") : "overview");
+  const jumpTarget = primaryPresentation ? primaryPresentation.targetElementId : (isGenotypePriority ? (genotypePriority.targetElementId || "genotypeSection") : "findingSection");
 
     bar.innerHTML = `<div class="summary-card">
     <div class="summary-main">
@@ -345,76 +354,318 @@ function renderInteractionFindingsOverview(risk) {
     : (typeof buildClinicalConcerns === "function" ? buildClinicalConcerns(findings, { stack:activeStack, genotypeState:activeGenotype || {} }) : findings);
   currentInteractionFindings = findings;
   currentClinicalConcerns = overviewFindings;
-  if (!overviewFindings.length) {
+  currentPublicFindingPresentations = buildPublicFindingPresentations(overviewFindings);
+  if (!currentPublicFindingPresentations.length) {
     if (activeStack.length < 2) {
       hideSectionAndClear("findingSection", "findingBody", "findingCount");
-      return overviewFindings;
+      return currentPublicFindingPresentations;
     }
     section.style.display = "";
     body.innerHTML = '<div class="finding-empty">No interaction findings for this stack yet. Evidence, genetics, metabolite, and timing context may still matter.</div>';
     if (count) count.textContent = "";
-    return overviewFindings;
+    return currentPublicFindingPresentations;
   }
   section.style.display = "";
-  if (count) count.textContent = `${overviewFindings.length} concern${overviewFindings.length === 1 ? "" : "s"}`;
-  body.innerHTML = overviewFindings.slice(0, 8).map(renderInteractionFindingCard).join("") +
-    (overviewFindings.length > 8
-      ? `<div class="finding-empty">Showing 8 of ${overviewFindings.length} grouped clinical concerns. Detailed technical context is available in Review.</div>`
+  if (count) count.textContent = `${currentPublicFindingPresentations.length} concern${currentPublicFindingPresentations.length === 1 ? "" : "s"}`;
+  body.innerHTML = currentPublicFindingPresentations.slice(0, 8).map(renderPublicFindingCard).join("") +
+    (currentPublicFindingPresentations.length > 8
+      ? `<div class="finding-empty">Showing 8 of ${currentPublicFindingPresentations.length} grouped concerns. Detailed technical context is available in Review.</div>`
       : `<div class="finding-empty">Overview groups related pathway, metabolite, timing, and evidence signals into clinical concerns. Technical details remain available in Review.</div>`);
-  return overviewFindings;
+  return currentPublicFindingPresentations;
 }
 
 function renderInteractionFindingCard(finding) {
-  const severity = safeChoice(finding.severity, ["critical","severe","moderate","monitor","info"], "info");
-  const title = safePublicHtml(finding.title || "Interaction finding");
-  const subtitle = safeHtml((finding.affectedActors || [])
-    .filter(actor => actor.type === "parent_drug")
+  return renderPublicFindingCard(buildPublicFindingPresentationFromFinding(finding));
+}
+
+function buildPublicFindingPresentations(overviewFindings = []) {
+  const presentations = (overviewFindings || [])
+    .map(buildPublicFindingPresentationFromFinding)
+    .filter(hasCompletePublicFindingPresentation);
+  const genotypeSignal = typeof getHighestGenotypePrioritySignal === "function" ? getHighestGenotypePrioritySignal() : null;
+  const genotypePresentation = buildPublicFindingPresentationFromGenotypeSignal(genotypeSignal);
+  if (shouldAddGenotypePublicFinding(genotypePresentation, presentations, genotypeSignal)) {
+    presentations.push(genotypePresentation);
+    presentations.sort((a, b) => publicFindingSeverityScore(b.severity) - publicFindingSeverityScore(a.severity));
+  }
+  return presentations;
+}
+
+function hasCompletePublicFindingPresentation(presentation) {
+  return !!(presentation &&
+    presentation.whatChanged &&
+    presentation.whyItMatters &&
+    presentation.whatToReview &&
+    presentation.evidenceSummary);
+}
+
+function buildPublicFindingPresentationFromFinding(finding = {}) {
+  const id = String(finding.id || finding.title || "finding");
+  const sourceIds = [
+    id,
+    ...(finding.sourceFindings || []).map(row => row.id),
+    ...(finding.groupedFindings || []).map(row => row.id),
+  ].filter(Boolean);
+  const title = publicDisplayText(finding.title || "Interaction finding");
+  const affectedSubstances = publicFindingAffectedSubstances(finding);
+  const evidenceRefs = [...new Set(finding.evidenceRefs || [])];
+  const detail = publicFindingDetailTarget(finding);
+  const presentation = {
+    id,
+    sourceIds,
+    sourceFinding:finding,
+    severity:safeChoice(finding.severity, ["critical","severe","moderate","monitor","info"], "info"),
+    title,
+    affectedSubstances,
+    whatChanged:publicDisplayText(finding.summary || title || "This stack changes expected exposure, activation, timing, or safety context."),
+    whyItMatters:publicDisplayText(publicFindingWhy(finding)),
+    whatToReview:publicDisplayText(publicFindingReviewAction(finding)),
+    evidenceSummary:publicEvidenceSummaryForFinding(finding),
+    targetTab:"overview",
+    targetElementId:publicFindingElementId(id),
+    detailTab:detail.tab,
+    detailElementId:detail.elementId,
+    tags:(finding.tags || []).slice(0, 6),
+  };
+  return presentation;
+}
+
+function buildPublicFindingPresentationFromGenotypeSignal(signal) {
+  if (!signal) return null;
+  const id = `pgx-${publicDomToken(signal.kind || "signal")}-${publicDomToken(signal.headline || signal.summary)}`;
+  const severity = signal.score >= 70 ? "severe" : signal.score >= 45 ? "moderate" : "monitor";
+  return {
+    id,
+    sourceIds:[id],
+    sourceFinding:null,
+    severity,
+    title:publicDisplayText(signal.headline || "Pharmacogenomic finding"),
+    affectedSubstances:publicFindingSignalSubstances(signal),
+    whatChanged:publicDisplayText(signal.changes || signal.summary || "A selected genotype changes expected exposure or active-metabolite behavior."),
+    whyItMatters:publicDisplayText(signal.why || "A medication in the current list depends on this gene or risk marker."),
+    whatToReview:publicDisplayText(signal.review || signal.nextStep || "Review whether dose, monitoring, or an alternative should change."),
+    evidenceSummary:publicEvidenceSummaryFromRefs(signal.evidenceRefs || []),
+    targetTab:"overview",
+    targetElementId:publicFindingElementId(id),
+    detailTab:signal.targetTab || "genes-metabolites",
+    detailElementId:signal.targetElementId || "genotypeSection",
+    tags:["PGx"],
+    signal,
+  };
+}
+
+function shouldAddGenotypePublicFinding(genotypePresentation, presentations = [], signal = null) {
+  if (!genotypePresentation || !signal || signal.score < 30) return false;
+  if (!presentations.length) return true;
+  const signalText = publicFindingSearchText(genotypePresentation);
+  const overlapsPrimary = presentations.some(presentation => {
+    const text = publicFindingSearchText(presentation);
+    const sharedSubstance = (genotypePresentation.affectedSubstances || []).some(name =>
+      name && text.includes(name.toLowerCase())
+    );
+    const headlineTokens = (signal.headline || "").split(/\s+/).filter(token => token.length >= 4);
+    const sharedHeadline = headlineTokens.some(token => text.includes(token.toLowerCase()));
+    return sharedSubstance && sharedHeadline;
+  });
+  if (overlapsPrimary) return false;
+  return signal.score >= 70 && !presentations.some(presentation => publicFindingSearchText(presentation).includes(signalText.slice(0, 40)));
+}
+
+function publicFindingAffectedSubstances(finding = {}) {
+  const actors = (finding.affectedActors || [])
+    .filter(actor => actor && (actor.type === "parent_drug" || activeStack.includes(actor.id)))
     .map(actor => publicDisplayText(actor.id))
-    .join(" + ") || publicDisplayText(finding.source || "current stack"));
-  const summary = safePublicHtml(finding.summary || "Review this finding in clinical context.");
-  const actorHtml = (finding.affectedActors || []).slice(0, 8).map(actor => `
-    <span class="finding-actor">${safePublicHtml(actor.id)}<small>${safePublicHtml(actor.direction || actor.type || "actor")}</small></span>
+    .filter(Boolean);
+  const sourceDrugs = (finding.sourceFindings || [])
+    .flatMap(row => [row.drug1, row.drug2, row.parent, row.victim, row.perpetrator])
+    .map(value => publicDisplayText(value))
+    .filter(Boolean);
+  const substances = [...new Set([...actors, ...sourceDrugs])];
+  if (substances.length) return substances.slice(0, 6);
+  return activeStack.map(value => publicDisplayText(value)).filter(Boolean).slice(0, 6);
+}
+
+function publicFindingSignalSubstances(signal = {}) {
+  const text = `${signal.headline || ""} ${signal.summary || ""}`.toLowerCase();
+  const substances = activeStack
+    .map(value => publicDisplayText(value))
+    .filter(name => name && text.includes(name.toLowerCase()));
+  return substances.length ? substances.slice(0, 6) : activeStack.map(value => publicDisplayText(value)).filter(Boolean).slice(0, 3);
+}
+
+function publicFindingWhy(finding = {}) {
+  if (finding.whyPath?.summary) return shortenOverviewWhyText(finding.whyPath.summary);
+  return shortenOverviewWhyText(buildFindingWhyText(finding));
+}
+
+function publicFindingReviewAction(finding = {}) {
+  const candidates = [
+    finding.clinicalAction,
+    finding.action,
+    finding.management,
+    ...(finding.sourceFindings || []).flatMap(row => [row.clinicalAction, row.management, row.action, row.review]),
+  ].filter(Boolean);
+  if (candidates.length) return candidates[0];
+  if (finding.severity === "critical" || finding.severity === "severe") {
+    return "Review whether this combination should be avoided, substituted, dose-adjusted, or monitored before use.";
+  }
+  if (finding.severity === "moderate") {
+    return "Review dose, timing, monitoring, and whether the combination is still appropriate.";
+  }
+  return "Review this supporting context with symptoms, doses, timing, and the rest of the medication list.";
+}
+
+function publicEvidenceSummaryForFinding(finding = {}) {
+  if (finding.evidenceLadder) {
+    const ladder = finding.evidenceLadder;
+    const tier = ladder.strongestTier && ladder.strongestTier !== "unknown"
+      ? ladder.strongestTier.replace(/_/g, " ").toLowerCase()
+      : "";
+    const source = ladder.sourceLinked ? "source-linked" : "modeled";
+    const count = ladder.studyCount ? `${ladder.studyCount} source${ladder.studyCount === 1 ? "" : "s"}` : "";
+    const review = ladder.professionalReviewStatus === "reviewed" ? "reviewed" : "clinical review needed";
+    return publicDisplayText([source, tier, count, review].filter(Boolean).join(" · "));
+  }
+  return publicEvidenceSummaryFromRefs(finding.evidenceRefs || []);
+}
+
+function publicEvidenceSummaryFromRefs(refs = []) {
+  const count = [...new Set(refs || [])].length;
+  if (count) return `${count} linked source${count === 1 ? "" : "s"} · clinical review needed`;
+  return "modeled signal · clinical review needed";
+}
+
+function publicFindingDetailTarget(finding = {}) {
+  const id = publicDomToken(finding.id || finding.title || "finding");
+  if (finding.whyPath) return { tab:"mechanisms", elementId:`mechanism-${id}` };
+  if ((finding.evidenceRefs || []).length) return { tab:"evidence", elementId:"evidenceLadderLedger" };
+  if (/timing|washout|persistence/i.test(`${finding.type || ""} ${finding.title || ""}`)) {
+    return { tab:"timing-levels", elementId:"persistenceTimelineSection" };
+  }
+  if (/genotype|pgx|active|metabolite|phenoconversion/i.test(`${finding.type || ""} ${finding.title || ""}`)) {
+    return { tab:"genes-metabolites", elementId:"genotypeSection" };
+  }
+  return { tab:"review", elementId:"reviewSummarySection" };
+}
+
+function publicFindingElementId(id) {
+  return `overview-finding-${publicDomToken(id)}`;
+}
+
+function publicFindingSeverityScore(severity) {
+  return { critical:5, severe:4, moderate:3, monitor:2, info:1 }[severity] || 0;
+}
+
+function publicFindingSearchText(presentation = {}) {
+  return [
+    presentation.id,
+    presentation.title,
+    presentation.whatChanged,
+    presentation.whyItMatters,
+    presentation.whatToReview,
+    ...(presentation.affectedSubstances || []),
+    ...(presentation.sourceIds || []),
+  ].join(" ").toLowerCase();
+}
+
+function getCurrentPublicFindingPresentations() {
+  if (currentPublicFindingPresentations.length) return currentPublicFindingPresentations;
+  const cache = typeof getRenderComputationCache === "function" ? getRenderComputationCache() : {};
+  currentPublicFindingPresentations = buildPublicFindingPresentations(cache.clinicalConcerns || []);
+  return currentPublicFindingPresentations;
+}
+
+function findRelatedPublicFindingPresentation(context = {}) {
+  const presentations = getCurrentPublicFindingPresentations();
+  if (!presentations.length) return null;
+  const sourceId = context.finding?.id || context.id || "";
+  if (sourceId) {
+    const exact = presentations.find(presentation => (presentation.sourceIds || []).includes(sourceId) || presentation.id === sourceId);
+    if (exact) return exact;
+  }
+  const refs = new Set(context.evidenceRefs || context.finding?.evidenceRefs || []);
+  const terms = [
+    ...(context.terms || []),
+    context.title,
+    context.finding?.title,
+    context.finding?.summary,
+  ].map(value => publicDisplayText(value)).filter(Boolean);
+  let best = null;
+  let bestScore = 0;
+  for (const presentation of presentations) {
+    const text = publicFindingSearchText(presentation);
+    let score = 0;
+    for (const term of terms) {
+      const normalized = term.toLowerCase();
+      if (!normalized || normalized.length < 3) continue;
+      if (text.includes(normalized)) score += normalized.length > 8 ? 3 : 1;
+    }
+    const findingRefs = new Set(presentation.sourceFinding?.evidenceRefs || presentation.signal?.evidenceRefs || []);
+    for (const ref of refs) if (findingRefs.has(ref)) score += 4;
+    if (score > bestScore) {
+      best = presentation;
+      bestScore = score;
+    }
+  }
+  return bestScore >= 2 ? best : null;
+}
+
+function renderRelatedFindingButton(context = {}, label = "Related finding") {
+  const presentation = findRelatedPublicFindingPresentation(context);
+  if (!presentation) return "";
+  return `<button type="button" class="related-finding-btn" onclick="focusPriorityFinding('overview','${safeAttr(presentation.targetElementId)}')">${safePublicHtml(label)}</button>`;
+}
+
+function renderPublicFindingCard(presentation) {
+  if (!presentation) return "";
+  const severity = safeChoice(presentation.severity, ["critical","severe","moderate","monitor","info"], "info");
+  const finding = presentation.sourceFinding || {};
+  const actorHtml = (presentation.affectedSubstances || []).slice(0, 8).map(actor => `
+    <span class="finding-actor">${safePublicHtml(actor)}</span>
   `).join("");
-  const tags = (finding.tags || []).slice(0, 6).map(tag => `<span class="finding-tag">${safePublicHtml(tag)}</span>`).join("");
-  const evidenceClass = finding.reviewRequired ? "warn" : "review";
+  const tags = (presentation.tags || []).slice(0, 6).map(tag => `<span class="finding-tag">${safePublicHtml(tag)}</span>`).join("");
   const grouped = finding.groupedFindings?.length
     ? `<span class="finding-tag">${finding.groupedFindings.length + 1} grouped signals</span>`
     : "";
   const supportingSignals = renderConcernSupportingSignals(finding);
-  const evidenceRefs = (finding.evidenceRefs || []).length
-    ? `<span class="finding-tag">${finding.evidenceRefs.length} evidence ref${finding.evidenceRefs.length === 1 ? "" : "s"}</span>`
-    : '<span class="finding-tag warn">inferred/review required</span>';
-  const evidenceLadder = renderEvidenceLadderCompact(finding.evidenceLadder);
-  const whyHtml = renderOverviewWhySummary(finding);
-  const sourceLabel = safePublicHtml(String(finding.source || "finding").replace(/_/g, " "));
-  return `<div class="finding-card ${severity}" data-finding-id="${safeAttr(finding.id)}">
+  const sourceLabel = safePublicHtml(String(finding.source || finding.type || "finding").replace(/_/g, " "));
+  const detailButton = presentation.detailTab && presentation.detailElementId
+    ? `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('${safeAttr(presentation.detailTab)}','${safeAttr(presentation.detailElementId)}')">Supporting detail</button>`
+    : "";
+  return `<div id="${safeAttr(presentation.targetElementId)}" class="finding-card primary-finding-card ${severity}" data-finding-id="${safeAttr(presentation.id)}">
     <div class="finding-top">
       <div>
-        <div class="finding-title">${title}</div>
-        <div class="finding-subtitle">${subtitle}</div>
+        <div class="finding-title">${safePublicHtml(presentation.title)}</div>
+        <div class="finding-subtitle">${safePublicHtml((presentation.affectedSubstances || []).join(" + ") || "current stack")}</div>
       </div>
-      <span class="finding-sev ${severity}">${safeHtml(severity)}</span>
+      <span class="finding-sev ${severity}">${safePublicHtml(severity)}</span>
     </div>
-    <div class="finding-effect">${summary}</div>
     ${actorHtml ? `<div class="finding-actors">${actorHtml}</div>` : ""}
-    <div class="finding-grid">
-      <div class="finding-detail"><strong>Type</strong>${safePublicHtml(String(finding.type || "finding").replace(/_/g, " "))}</div>
-      <div class="finding-detail"><strong>Evidence</strong>${evidenceLadder || safePublicHtml(finding.evidenceStatus || "pending professional review")}</div>
-      <div class="finding-detail"><strong>Review status</strong>${finding.reviewRequired ? "Pending professional review" : "Professionally reviewed"}</div>
+    <div class="finding-explain">
+      ${renderFindingStep("What changed", presentation.whatChanged)}
+      ${renderFindingStep("Why it matters", presentation.whyItMatters)}
+      ${renderFindingStep("What to review", presentation.whatToReview)}
+      ${renderFindingStep("Evidence", presentation.evidenceSummary)}
     </div>
-    ${supportingSignals}
-    <div class="finding-meta">
-      <span class="finding-tag type">${sourceLabel}</span>
-      <span class="finding-tag">confidence: ${safePublicHtml(finding.confidence || "unknown")}</span>
-      ${evidenceRefs}
-      <span class="finding-tag ${evidenceClass}">${finding.reviewRequired ? "needs review" : "reviewed"}</span>
-      ${grouped}
-      ${tags}
-    </div>
-    <details class="finding-why">
-      <summary>Why this appears</summary>
-      ${whyHtml}
+    <div class="finding-actions">${detailButton}</div>
+    <details class="finding-support-details">
+      <summary>Supporting detail</summary>
+      ${supportingSignals}
+      <div class="finding-meta">
+        <span class="finding-tag type">${sourceLabel}</span>
+        <span class="finding-tag">confidence: ${safePublicHtml(finding.confidence || presentation.signal?.label || "unknown")}</span>
+        <span class="finding-tag">${safePublicHtml(publicEvidenceSummaryForFinding(finding || {}))}</span>
+        ${grouped}
+        ${tags}
+      </div>
     </details>
+  </div>`;
+}
+
+function renderFindingStep(label, value) {
+  return `<div class="finding-step">
+    <div class="finding-step-label">${safePublicHtml(label)}</div>
+    <div class="finding-step-text">${safePublicHtml(value)}</div>
   </div>`;
 }
 
@@ -427,26 +678,35 @@ function renderConcernSupportingSignals(finding) {
     <ul>
       ${shown.map(signal => `<li>
         <span>${safePublicHtml(signal.label || "Related signal")}</span>
-        <small>${safePublicHtml(signal.sourceStatus || "review prompt")}</small>
+        <small>${safePublicHtml(compactReviewStatus(signal.sourceStatus || "modeled support"))}</small>
       </li>`).join("")}
     </ul>
     ${signals.length > shown.length ? `<div class="concern-supporting-more">+${signals.length - shown.length} more in Mechanisms / Review</div>` : ""}
   </div>`;
 }
 
+function compactReviewStatus(value) {
+  return publicDisplayText(value || "")
+    .replace(/\bpending professional review\b/gi, "review needed")
+    .replace(/\bneeds review\b/gi, "review needed")
+    .replace(/\breview prompt\b/gi, "modeled support")
+    .replace(/\bsource linked, pending review\b/gi, "source-linked support")
+    .trim();
+}
+
 function renderEvidenceLadderCompact(ladder) {
   if (!ladder) return "";
   const sourceStatus = typeof sourceSupportStatusLabel === "function"
-    ? sourceSupportStatusLabel(ladder.sourceSupportStatus)
+    ? compactReviewStatus(sourceSupportStatusLabel(ladder.sourceSupportStatus))
     : String(ladder.sourceSupportStatus || "source status unknown").replace(/_/g, " ");
   const tier = ladder.strongestTier && ladder.strongestTier !== "unknown"
     ? `${publicDisplayText(ladder.strongestTier.replace(/_/g, " ").toLowerCase())}${ladder.studyCount ? ` · ${safePublicHtml(String(ladder.studyCount))} source${ladder.studyCount === 1 ? "" : "s"}` : ""}`
     : sourceStatus;
   const clinical = String(ladder.clinicalActionConfidence || "insufficient").replace(/_/g, " ");
   const review = ladder.professionalReviewStatus === "reviewed"
-    ? "professionally reviewed"
+    ? "reviewed"
     : ladder.professionalReviewStatus === "pending"
-    ? "pending professional review"
+    ? "clinical review needed"
     : "review status unknown";
   return `<div class="evidence-ladder-compact">
     <span>Evidence: ${safePublicHtml(tier)}</span>

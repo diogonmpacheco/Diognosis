@@ -45,7 +45,13 @@ function renderPersistenceRow(row) {
   const pathway = row.pathway ? `<span class="finding-tag">${safePublicHtml(row.pathway.replace(/_/g, " "))}</span>` : "";
   const onset = row.onset ? `<span class="finding-tag">onset: ${safePublicHtml(row.onset.replace(/_/g, " "))}</span>` : "";
   const offset = row.offset ? `<span class="finding-tag">offset: ${safePublicHtml(row.offset.replace(/_/g, " "))}</span>` : "";
-  return `<div class="persistence-card ${windowClass}">
+  const relatedButton = typeof renderRelatedFindingButton === "function"
+    ? renderRelatedFindingButton({
+        terms:[row.actor, row.parent, row.pathway, label, ...(row.reasons || [])],
+        evidenceRefs:row.evidenceRefs || [],
+      }, "Related overview")
+    : "";
+  return `<div class="persistence-card supporting-context-row ${windowClass}">
     <div class="persistence-head">
       <div>
         <div class="persistence-title">${safePublicHtml(row.actor)}</div>
@@ -56,13 +62,14 @@ function renderPersistenceRow(row) {
     <div class="persistence-duration">${safePublicHtml(duration)}</div>
     <div class="persistence-meta-line">${safePublicHtml(label)} · ${safePublicHtml((row.actorType || "actor").replace(/_/g, " "))}</div>
     ${reasons ? `<ul class="active-moiety-reasons">${reasons}</ul>` : ""}
+    ${relatedButton ? `<div class="supporting-actions">${relatedButton}</div>` : ""}
     <div class="finding-meta">
       <span class="finding-tag type">${safePublicHtml(label)}</span>
       ${pathway}
       ${onset}
       ${offset}
       <span class="finding-tag">confidence: ${safePublicHtml(row.confidence || "unknown")}</span>
-      <span class="finding-tag warn">${row.reviewRequired ? "needs review" : "reviewed"}</span>
+      <span class="finding-tag warn">${row.reviewRequired ? "review needed" : "reviewed"}</span>
       <span class="finding-tag">${(row.evidenceRefs || []).length ? `${row.evidenceRefs.length} evidence ref${row.evidenceRefs.length === 1 ? "" : "s"}` : "inferred/review required"}</span>
     </div>
   </div>`;

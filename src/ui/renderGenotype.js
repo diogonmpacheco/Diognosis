@@ -150,7 +150,7 @@ function renderPendingReviewPgxContext() {
         (row.genes || []).length ? `Genes: ${row.genes.slice(0, 6).join(", ")}` : "",
         (row.drugs || []).length ? `Drugs: ${row.drugs.slice(0, 6).join(", ")}` : "",
         row.claimType ? `Claim: ${publicDisplayText(formatPendingReviewToken(row.claimType))}` : "",
-        (row.evidenceIdentifiers || []).length ? `Evidence: ${row.evidenceIdentifiers.slice(0, 3).map(publicDisplayText).join(", ")}` : "",
+        (row.evidenceIdentifiers || []).length ? `Evidence: ${row.evidenceIdentifiers.slice(0, 3).map(value => publicDisplayText(value)).join(", ")}` : "",
       ].filter(Boolean), "<br>")}</div>
     </div>`).join("")}
     ${coreRows.map(row => `<div class="pending-review-card">
@@ -163,7 +163,7 @@ function renderPendingReviewPgxContext() {
         row.sourceName ? `Source: ${publicDisplayText(row.sourceName)}` : "",
         row.ruleKind ? `Rule kind: ${publicDisplayText(formatPendingReviewToken(row.ruleKind))}` : "",
         row.suggestedTarget ? `Target: ${publicDisplayText(row.suggestedTarget)}` : "",
-        (row.evidenceIdentifiers || []).length ? `Evidence: ${row.evidenceIdentifiers.slice(0, 3).map(publicDisplayText).join(", ")}` : "",
+        (row.evidenceIdentifiers || []).length ? `Evidence: ${row.evidenceIdentifiers.slice(0, 3).map(value => publicDisplayText(value)).join(", ")}` : "",
       ].filter(Boolean), "<br>")}</div>
     </div>`).join("")}
   </div>`;

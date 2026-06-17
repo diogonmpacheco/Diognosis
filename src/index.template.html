@@ -503,9 +503,13 @@ a{color:var(--accent)}
 
 /* PRIORITIZED FINDINGS */
 .finding-card{border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:12px;background:var(--card2);padding:14px 15px;margin-bottom:10px;box-shadow:0 1px 2px rgba(61,44,30,.04)}
+.primary-finding-card{padding:16px;border-radius:10px;background:#fff;box-shadow:0 6px 18px rgba(61,44,30,.08)}
 .finding-card.severe,.finding-card.critical{border-left-color:var(--red);background:var(--redBg)}
 .finding-card.moderate{border-left-color:var(--amber);background:var(--amberBg)}
 .finding-card.mild,.finding-card.monitor,.finding-card.info{border-left-color:var(--blue);background:var(--blueBg)}
+.primary-finding-card.severe,.primary-finding-card.critical{background:linear-gradient(180deg,#fff 0%,var(--redBg) 100%)}
+.primary-finding-card.moderate{background:linear-gradient(180deg,#fff 0%,var(--amberBg) 100%)}
+.primary-finding-card.monitor,.primary-finding-card.info{background:linear-gradient(180deg,#fff 0%,var(--blueBg) 100%)}
 .finding-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:7px}
 .finding-title{font-size:15px;font-weight:800;color:var(--text);line-height:1.25}
 .finding-subtitle{font-size:12px;color:var(--text2);margin-top:2px;font-weight:600}
@@ -514,6 +518,15 @@ a{color:var(--accent)}
 .finding-sev.moderate{background:var(--amber)}
 .finding-sev.mild,.finding-sev.monitor,.finding-sev.info{background:var(--blue)}
 .finding-effect{font-size:13px;line-height:1.45;color:var(--text);font-weight:650;margin-bottom:10px}
+.finding-explain{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
+.finding-step{padding:10px 11px;border-radius:8px;background:rgba(255,255,255,.74);border:1px solid rgba(61,44,30,.09)}
+.finding-step-label{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);margin-bottom:3px}
+.finding-step-text{font-size:12px;line-height:1.45;color:var(--text)}
+.finding-actions,.supporting-actions{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:9px}
+.supporting-actions{margin:8px 0}
+.related-finding-btn{appearance:none;border:1px solid rgba(234,88,12,.24);border-radius:999px;background:var(--accentBg);color:var(--accent);font-size:10px;font-weight:900;padding:5px 9px;cursor:pointer;white-space:nowrap}
+.related-finding-btn.secondary{background:var(--card);border-color:var(--border);color:var(--text2)}
+.related-finding-btn:hover{border-color:var(--accent);background:#fff7ed;color:var(--accent)}
 .finding-grid{display:grid;grid-template-columns:1fr;gap:8px;margin:8px 0}
 .finding-detail{padding:8px 9px;border-radius:9px;background:rgba(255,255,255,.68);border:1px solid rgba(61,44,30,.08);font-size:11px;line-height:1.4;color:var(--text2)}
 .finding-detail strong{display:block;color:var(--text);font-size:10px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
@@ -530,6 +543,9 @@ a{color:var(--accent)}
 .finding-why{margin-top:9px;font-size:12px;color:var(--text2)}
 .finding-why summary{cursor:pointer;font-weight:800;color:var(--accent)}
 .finding-why-body{padding:8px 10px;margin-top:6px;border-radius:9px;background:rgba(255,255,255,.72);border:1px solid rgba(61,44,30,.08);line-height:1.45}
+.finding-support-details{margin-top:10px;font-size:12px;color:var(--text2)}
+.finding-support-details summary{cursor:pointer;font-weight:900;color:var(--text2)}
+.supporting-context-row{box-shadow:none;background:rgba(255,255,255,.72)}
 .concern-supporting,.mechanism-supporting{border:1px solid rgba(61,44,30,.08);background:rgba(255,255,255,.62);border-radius:9px;padding:9px 10px;margin:8px 0;font-size:11px;color:var(--text2)}
 .concern-supporting-title,.mechanism-supporting-title{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:var(--text);margin-bottom:5px}
 .concern-supporting ul,.mechanism-supporting ul{margin:0;padding-left:16px;display:grid;gap:4px}

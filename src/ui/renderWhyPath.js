@@ -62,7 +62,7 @@ function renderMechanismSupportingSignals(finding) {
     <ul>
       ${shown.map(signal => `<li>
         <span>${safePublicHtml(signal.label || "Related pathway signal")}</span>
-        <small>${safePublicHtml(signal.sourceStatus || "review prompt")}</small>
+        <small>${safePublicHtml(typeof compactReviewStatus === "function" ? compactReviewStatus(signal.sourceStatus || "modeled support") : signal.sourceStatus || "modeled support")}</small>
       </li>`).join("")}
     </ul>
     ${signals.length > shown.length ? `<div class="mechanism-supporting-more">+${signals.length - shown.length} more raw signal${signals.length - shown.length === 1 ? "" : "s"} in Review</div>` : ""}
@@ -83,23 +83,29 @@ function renderMechanismWhyPaths() {
   section.style.display = "";
   const usesGroupedConcerns = rows.some(finding => finding.type === "clinical_concern");
   if (count) count.textContent = `${rows.length} ${usesGroupedConcerns ? "concern " : ""}path${rows.length === 1 ? "" : "s"}`;
-  body.innerHTML = rows.slice(0, 8).map(finding => `<div class="mechanism-why-row">
+  body.innerHTML = rows.slice(0, 8).map(finding => {
+    const rowId = `mechanism-${publicDomToken(finding.id || finding.title || "finding")}`;
+    const relatedButton = typeof renderRelatedFindingButton === "function"
+      ? renderRelatedFindingButton({ finding }, "Related overview")
+      : "";
+    return `<div id="${safeAttr(rowId)}" class="mechanism-why-row supporting-context-row">
     <div class="warning-path-row-head">
       <div>
         <div class="warning-path-title">${safePublicHtml(finding.title || finding.id)}</div>
         <div class="warning-path-meta">${safePublicHtml(String(finding.type || "finding").replace(/_/g, " "))} · ${safePublicHtml(finding.severity || "info")}</div>
       </div>
-      <button class="mini-btn" onclick="setTab('review')">Open review</button>
+      <div class="supporting-actions">${relatedButton}<button class="mini-btn" onclick="setTab('review')">Open review</button></div>
     </div>
     ${renderWhyPath(finding.whyPath)}
     ${renderMechanismSupportingSignals(finding)}
     <div class="finding-meta">
       <span class="finding-tag type">${safePublicHtml(String(finding.source || "finding").replace(/_/g, " "))}</span>
       <span class="finding-tag">${safePublicHtml(finding.evidenceLadder?.mechanisticConfidence || finding.confidence || "unknown")} confidence</span>
-      <span class="finding-tag ${finding.reviewRequired ? "warn" : "review"}">${finding.reviewRequired ? "needs review" : "reviewed"}</span>
+      <span class="finding-tag ${finding.reviewRequired ? "warn" : "review"}">${finding.reviewRequired ? "review needed" : "reviewed"}</span>
       ${finding.rawFindingCount ? `<span class="finding-tag">${safePublicHtml(String(finding.rawFindingCount))} supporting signal${finding.rawFindingCount === 1 ? "" : "s"} grouped</span>` : ""}
     </div>
-  </div>`).join("") +
+  </div>`;
+  }).join("") +
     (rows.length > 8 ? `<div class="finding-empty">Showing 8 grouped mechanism paths. Raw warning paths remain available in Review.</div>` : "");
 }
 

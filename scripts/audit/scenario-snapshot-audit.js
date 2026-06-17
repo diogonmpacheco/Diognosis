@@ -284,6 +284,9 @@ function runModelScenario(window, scenario) {
       findingTypes: findingTypes(findings),
       findingCardCount: findingCards.length,
       evidenceLadderCount: document.querySelectorAll("#findingBody .evidence-ladder-compact").length,
+      primaryFindingCardCount: document.querySelectorAll("#findingBody .primary-finding-card").length,
+      primaryFindingEvidenceStepCount: Array.from(document.querySelectorAll("#findingBody .primary-finding-card"))
+        .filter(card => /Evidence/i.test(card.textContent || "")).length,
       allFindingsHaveEvidenceLadders: findings.every(finding => finding.evidenceLadder && finding.evidenceLadder.clinicalActionConfidence),
       whyPathCount: findings.filter(finding => finding.whyPath?.nodes?.length && finding.whyPath?.edges?.length).length,
       mechanismWhyPathCount: document.querySelectorAll("#mechanismWhyBody .why-path").length,
@@ -365,8 +368,10 @@ async function run() {
     assert(result.findingCount > 0, `${scenario.id}: expected normalized findings`);
     assert(result.findingCardCount >= (expect.minFindingCards || 1),
       `${scenario.id}: expected at least ${expect.minFindingCards || 1} finding cards, got ${result.findingCardCount}`);
-    assert(result.evidenceLadderCount > 0,
-      `${scenario.id}: expected compact evidence ladder on finding cards`);
+    assert(result.primaryFindingCardCount > 0,
+      `${scenario.id}: expected primary public finding cards`);
+    assert(result.primaryFindingEvidenceStepCount === result.primaryFindingCardCount,
+      `${scenario.id}: expected every primary finding card to include an Evidence step`);
     assert(result.allFindingsHaveEvidenceLadders,
       `${scenario.id}: every major finding must carry an evidence ladder`);
     assert(result.whyPathCount >= (expect.minWhyPaths || 1),

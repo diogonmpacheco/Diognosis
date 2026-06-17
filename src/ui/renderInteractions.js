@@ -67,7 +67,7 @@ function renderInteractions(interactions) {
         ${hasEv ? `<span class="finding-tag">${studies.length} stud${studies.length===1?'y':'ies'}</span>` : '<span class="finding-tag warn">no linked study yet</span>'}
         ${hasEv ? `<span class="finding-tag ${reviewClass}">${reviewLabel}</span>` : ""}
       </div>
-      ${hasEv ? `${evSummary}<div class="ev-summary-line"><span class="summary-jump" onclick="setTab('evidence')">Open Evidence tab</span> for citations and review status.</div>` : ''}
+      ${hasEv ? `${evSummary}<div class="ev-summary-line"><button type="button" class="summary-jump" onclick="focusPriorityFinding('evidence','evidenceLadderLedger')">Open Evidence tab</button> for citations and review status.</div>` : ''}
       <div class="feedback-row">${feedbackLink}</div>
     </div>`;
   }).join("");

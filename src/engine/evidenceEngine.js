@@ -560,11 +560,11 @@ function studyCardHTML(study) {
     ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Limitations: ${study.limitations.map(item => esc(publicText(item))).join(' · ')}</div>` : '';
   const unverified = study.verifyNote
     ? `<div style="font-size:10px;color:var(--amber);margin-top:3px">Review note: ${esc(publicText(study.verifyNote))}</div>` : '';
-  const reviewBadge = '<span class="ev-review-badge needs-review">pending professional review</span>';
+  const reviewBadge = '<span class="ev-review-badge needs-review">clinical review needed</span>';
   const liveBadge = study.livePendingReview === true
-    ? '<span class="ev-review-badge needs-review">automated curated preview</span><span class="ev-review-badge needs-review">not clinically validated</span>'
+    ? '<span class="ev-review-badge needs-review">source preview</span><span class="ev-review-badge needs-review">not clinical guidance</span>'
     : study.pendingSourceSignal === true
-    ? '<span class="ev-review-badge needs-review">pending source signal</span><span class="ev-review-badge needs-review">not public severity</span>'
+    ? '<span class="ev-review-badge needs-review">source signal</span><span class="ev-review-badge needs-review">not severity evidence</span>'
     : '';
   const feedbackLink = renderFeedbackLink("Suggest evidence fix", {
     type:"data",
