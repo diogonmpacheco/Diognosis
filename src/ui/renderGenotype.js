@@ -50,7 +50,7 @@ function renderGenotypePanel() {
 
   // Selector rows
   let html = importHtml + pendingPgxContextHtml + '<div style="margin-bottom:12px">';
-  html += '<p style="font-size:12px;color:var(--text2);margin:0 0 8px">Set inherited gene or risk-marker results here; Functional Gene Status shows stack-driven pathway changes below.</p>';
+  html += '<p style="font-size:12px;color:var(--text2);margin:0 0 8px">Set inherited gene or marker results here; Current Pathway Status shows stack-driven pathway changes below.</p>';
   for (const enz of showEnzymes) {
     const cur = activeGenotype[enz] || GENOTYPE_PHENOTYPE.NM;
     html += `<div class="geno-selector" style="margin-bottom:6px">
@@ -136,7 +136,7 @@ function renderPendingReviewPgxContext() {
   ).slice(0, 6);
   if (!rows.length && !coreRows.length) return "";
   return `<div class="external-context-notice" style="margin-bottom:10px">
-    Pending external PGx/source context is available for this stack, including ${safePublicHtml(String(coreRows.length))} PGx candidate${coreRows.length === 1 ? "" : "s"}. It is not professionally reviewed and does not affect genotype interpretation, scoring, or public severity.
+    Pending external gene-medication context is available for this stack, including ${safePublicHtml(String(coreRows.length))} candidate${coreRows.length === 1 ? "" : "s"}. It is not used for gene-result interpretation, scoring, or public severity.
   </div>
   <div class="pending-review-grid" style="margin-bottom:12px">
     ${rows.map(row => `<div class="pending-review-card">
@@ -144,7 +144,7 @@ function renderPendingReviewPgxContext() {
         <span class="ev-review-badge needs-review">Pending verification</span>
         <span class="ev-review-badge needs-review">Not used for scoring</span>
       </div>
-      <div class="pending-review-title">${safePublicHtml(row.title || row.id || "Pending PGx context")}</div>
+      <div class="pending-review-title">${safePublicHtml(row.title || row.id || "Pending gene-medication context")}</div>
       <div class="pending-review-meta">${safeTextList([
         row.sourceName ? `Source: ${publicDisplayText(row.sourceName)}` : "",
         (row.genes || []).length ? `Genes: ${row.genes.slice(0, 6).join(", ")}` : "",
@@ -155,10 +155,10 @@ function renderPendingReviewPgxContext() {
     </div>`).join("")}
     ${coreRows.map(row => `<div class="pending-review-card">
       <div class="pending-review-head">
-        <span class="ev-review-badge needs-review">PGx candidate</span>
+        <span class="ev-review-badge needs-review">Gene-medication candidate</span>
         <span class="ev-review-badge needs-review">Pending verification</span>
       </div>
-      <div class="pending-review-title">${safePublicHtml(row.gene || "PGx")} ${row.drug ? `+ ${safePublicHtml(row.drug)}` : ""}</div>
+      <div class="pending-review-title">${safePublicHtml(row.gene || "Gene context")} ${row.drug ? `+ ${safePublicHtml(row.drug)}` : ""}</div>
       <div class="pending-review-meta">${safeTextList([
         row.sourceName ? `Source: ${publicDisplayText(row.sourceName)}` : "",
         row.ruleKind ? `Rule kind: ${publicDisplayText(formatPendingReviewToken(row.ruleKind))}` : "",
@@ -189,7 +189,7 @@ function getHighestGenotypePrioritySignal() {
       signals.push({
         kind:"exposure",
         score,
-        label:score >= 70 ? "PGx High" : "PGx Watch",
+        label:score >= 70 ? "Gene High" : "Gene Watch",
         headline:`${enzyme} genotype may change ${drugName} exposure`,
         summary:publicDisplayText(`${drugName} is in your list and ${enzyme} is set to ${phenotypeLabelForGene(enzyme, phenotype)}. ${note}`),
         why:publicDisplayText(`${drugName} depends on ${enzyme}, and the selected ${enzyme} phenotype is not the reference state.`),
@@ -214,7 +214,7 @@ function getHighestGenotypePrioritySignal() {
       signals.push({
         kind:"metabolite",
         score,
-        label:score >= 70 ? "PGx High" : "PGx Watch",
+        label:score >= 70 ? "Gene High" : "Gene Watch",
         headline:`${effect.enzyme} genotype may ${direction} ${effect.metaboliteName}`,
         summary:publicDisplayText(`${effect.parent} is in your list and ${effect.enzyme} is set to ${phenotypeLabelForGene(effect.enzyme, geno)}. ${phenotypeEffect.label || effect.note}`),
         why:`${effect.parent} has a genotype-sensitive metabolite pathway through ${effect.enzyme}.`,
@@ -240,7 +240,7 @@ function getHighestGenotypePrioritySignal() {
       signals.push({
         kind:"risk",
         score,
-        label:score >= 70 ? "PGx High" : "PGx Watch",
+        label:score >= 70 ? "Gene High" : "Gene Watch",
         headline:`${risk.label} conflicts with ${drugEffect.parent}`,
         summary:publicDisplayText(`${drugEffect.parent} is in your list and ${risk.label} is selected as present. ${drugEffect.clinicalAction || drugEffect.note}`),
         why:`${risk.label} is a medication-specific risk marker for ${drugEffect.parent}.`,

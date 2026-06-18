@@ -715,7 +715,7 @@ a{color:var(--accent)}
 <div class="search-wrap">
   <div class="search-box">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-    <input type="text" id="searchInput" placeholder="Type a medication name..." oninput="onSearch(this.value)" onfocus="onSearch(this.value)" autocomplete="off">
+    <input type="text" id="searchInput" placeholder="Search medications, supplements, foods..." oninput="onSearch(this.value)" onfocus="onSearch(this.value)" autocomplete="off">
   </div>
   <div class="search-results" id="searchResults"></div>
 </div>
@@ -734,13 +734,13 @@ a{color:var(--accent)}
   <div class="section">
       <div class="section-title">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
-        <span id="listTitle">My Medications</span>
+        <span id="listTitle">My List</span>
         <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="medCount"></span>
       </div>
       <div class="section-body" id="medList">
         <div class="empty-state">
           <div class="icon">💊</div>
-          Add your medications above to see how they interact
+          Add substances above to see how they connect
         </div>
       </div>
     </div>
@@ -748,13 +748,13 @@ a{color:var(--accent)}
   <div class="section" id="geneticsSection">
       <div class="section-title collapsible" onclick="toggleSection('genetics')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
-        <span>My Genetics / PGx <span style="font-size:11px;font-weight:400;color:var(--text2)">(optional)</span></span>
+        <span>My Gene Results <span style="font-size:11px;font-weight:400;color:var(--text2)">(optional)</span></span>
       </div>
       <div class="section-body coll-body" id="geneticsBody">
-        <p style="font-size:12px;color:var(--text2);margin-bottom:10px;line-height:1.4">Set inherited gene or risk-marker results here. The Genes + Metabolites tab shows how the current stack may change functional enzyme status through inhibitors, inducers, and competing substrates.</p>
+        <p style="font-size:12px;color:var(--text2);margin-bottom:10px;line-height:1.4">Set inherited gene or marker results here. The Genes + Metabolites tab shows how your list may change medication response, pathway activity, and metabolite balance.</p>
         <div class="gene-add">
           <select id="geneAddSelect"></select>
-          <button onclick="addGeneFromSelect()">+ Add Enzyme</button>
+          <button onclick="addGeneFromSelect()">+ Add Gene / Marker</button>
         </div>
         <div id="geneList"></div>
       </div>
@@ -779,7 +779,7 @@ a{color:var(--accent)}
   <div class="section" id="riskSection" style="display:none">
       <div class="section-title">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        How Safe Is This Combo?
+        Overall Risk Summary
       </div>
       <div class="section-body" id="riskBody"></div>
     </div>
@@ -796,7 +796,7 @@ a{color:var(--accent)}
   <div class="section" id="interSection" style="display:none">
       <div class="section-title collapsible" onclick="toggleSection('inter')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-        <span>Known Interactions</span>
+        <span>Interaction Details</span>
         <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="interCount"></span>
       </div>
       <div class="section-body coll-body open" id="interBody"></div>
@@ -814,7 +814,7 @@ a{color:var(--accent)}
   <div class="section" id="mechanisticSection" style="display:none">
       <div class="section-title collapsible" onclick="toggleSection('mechanistic')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M4 4.5A2.5 2.5 0 0 1 6.5 7H20"/><path d="M8 7v10"/><path d="M16 7v10"/></svg>
-        <span>Mechanistic Interpretation</span>
+        <span>Pathway Explanation</span>
         <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="mechanisticCount"></span>
       </div>
       <div class="section-body coll-body open" id="mechanisticBody"></div>
@@ -841,7 +841,7 @@ a{color:var(--accent)}
       <div class="section-title collapsible" onclick="toggleSection('pd')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22V8"/><path d="M3 3l5 5"/><path d="M21 3l-5 5"/></svg>
         <span>Blocked Pathways</span>
-        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">How enzyme blocks can reroute your meds</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">How pathway changes can reroute effects</span>
       </div>
       <div class="section-body coll-body" id="pdBody"></div>
     </div>
@@ -859,7 +859,7 @@ a{color:var(--accent)}
   <div class="section" id="foldSection" style="display:none">
       <div class="section-title collapsible" onclick="toggleSection('fold')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-        <span>Fold / PK Exposure</span>
+        <span>Level Changes</span>
       </div>
       <div class="section-body coll-body open" id="foldBody"></div>
     </div>
@@ -870,8 +870,8 @@ a{color:var(--accent)}
           <path d="M12 2a4 4 0 0 1 4 4v12a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
           <path d="M8 10h8M8 14h8"/>
         </svg>
-        <span>Genotype Effects</span>
-        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Controls and selected-genotype explanations</span>
+        <span>Gene Result Effects</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Gene and marker controls</span>
       </div>
       <div class="section-body coll-body open" id="genotypeBody"></div>
     </div>
@@ -886,7 +886,7 @@ a{color:var(--accent)}
           <path d="M16 11l4 4-4 4"/>
           <path d="M20 15H9"/>
         </svg>
-        <span>Functional Gene Status</span>
+        <span>Current Pathway Status</span>
         <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="phenoconversionCount"></span>
       </div>
       <div class="section-body coll-body open" id="phenoconversionBody"></div>
@@ -900,7 +900,7 @@ a{color:var(--accent)}
           <path d="M10 15h4"/>
           <path d="M12 11v9"/>
         </svg>
-        <span>Parent-Metabolite Balance</span>
+        <span>Drug &amp; Metabolite Balance</span>
         <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400" id="activeMoietyCount"></span>
       </div>
       <div class="section-body coll-body open" id="activeMoietyBody"></div>
@@ -909,8 +909,8 @@ a{color:var(--accent)}
   <div class="section" id="metabSection" style="display:none">
       <div class="section-title collapsible" onclick="toggleSection('metab')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2v11m0 0a5 5 0 0 0 10 0V2"/><path d="M4 15a8 8 0 0 0 16 0"/></svg>
-        <span>Raw / Supporting Metabolite Map</span>
-        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Supporting metabolite data used by Parent-Metabolite Balance</span>
+        <span>Supporting Metabolite Details</span>
+        <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Metabolite data used by Drug &amp; Metabolite Balance</span>
       </div>
       <div class="section-body coll-body" id="metabBody"></div>
     </div>
@@ -983,7 +983,7 @@ a{color:var(--accent)}
           <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
           <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
         </svg>
-        <span>Medication Burden Flags</span>
+        <span>Safety Burden Flags</span>
         <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">ACB · Beers · fall risk · sedation — shown here because persistence and accumulation can affect burden</span>
       </div>
       <div class="section-body coll-body open" id="burdenBody"></div>
@@ -1155,7 +1155,7 @@ a{color:var(--accent)}
   </div>
   <div class="version-strip" aria-label="Diognosis version">
     <span><strong>Diognosis</strong></span>
-    <span>Engine <strong id="ver-engine">...</strong></span>
+    <span>Rules <strong id="ver-engine">...</strong></span>
     <span>Drug DB <strong id="ver-db">...</strong></span>
     <span>Drugs <strong id="ver-count">...</strong></span>
     <span>Schema <strong id="ver-schema">...</strong></span>

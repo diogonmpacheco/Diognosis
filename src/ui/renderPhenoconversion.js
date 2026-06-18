@@ -1,4 +1,4 @@
-// Diognosis — Functional Gene Status renderer
+// Diognosis — Current Pathway Status renderer
 
 function renderPhenoconversionDashboard() {
   const section = document.getElementById("phenoconversionSection");

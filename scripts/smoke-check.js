@@ -78,8 +78,8 @@ assert(doc.getElementById('graphSection')?.closest('.tab-panel')?.id === 'tab-me
 assert(doc.getElementById('mechanismWhySection')?.closest('.tab-panel')?.id === 'tab-mechanisms', 'Finding Why Paths should live under Mechanisms');
 assert(doc.getElementById('matrixSection')?.closest('.tab-panel')?.id === 'tab-review', 'Interaction grid should live under Review');
 assert(doc.getElementById('genotypeSection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Genotype panel should live under Genes + Metabolites');
-assert(doc.getElementById('phenoconversionSection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Functional Gene Status should live under Genes + Metabolites');
-assert(doc.getElementById('activeMoietySection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Parent-Metabolite Balance should live under Genes + Metabolites');
+assert(doc.getElementById('phenoconversionSection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Current Pathway Status should live under Genes + Metabolites');
+assert(doc.getElementById('activeMoietySection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Drug & Metabolite Balance should live under Genes + Metabolites');
 assert(doc.getElementById('pkSimSection')?.closest('.tab-panel')?.id === 'tab-timing-levels', 'PK simulation should live under Timing + Levels');
 assert(doc.getElementById('persistenceTimelineSection')?.closest('.tab-panel')?.id === 'tab-timing-levels', 'Persistence & Washout should live under Timing + Levels');
 assert(doc.getElementById('reviewWorkbenchSection')?.closest('.tab-panel')?.id === 'tab-review', 'Review workbench should live under Review');
@@ -94,8 +94,8 @@ assert([...doc.querySelectorAll('#findingBody .primary-finding-card')].every(car
 assert(doc.querySelectorAll('#findingBody .why-path').length === 0, 'Overview should not duplicate the full why-path chain');
 assert(doc.querySelectorAll('#findingBody .finding-step').length > 0, 'Overview finding cards should render compact explanation steps');
 assert(doc.querySelectorAll('#mechanismWhyBody .mechanism-why-row').length > 0, 'Mechanisms should render finding why paths');
-assert(doc.querySelectorAll('#phenoconversionBody .phenoconversion-card').length > 0, 'Genes + Metabolites should render Functional Gene Status cards');
-assert(doc.querySelectorAll('#activeMoietyBody .active-moiety-card').length > 0, 'Genes + Metabolites should render Parent-Metabolite Balance cards');
+assert(doc.querySelectorAll('#phenoconversionBody .phenoconversion-card').length > 0, 'Genes + Metabolites should render Current Pathway Status cards');
+assert(doc.querySelectorAll('#activeMoietyBody .active-moiety-card').length > 0, 'Genes + Metabolites should render Drug & Metabolite Balance cards');
 assert(doc.querySelectorAll('#persistenceTimelineBody .persistence-card').length > 0, 'Timing + Levels should render Persistence & Washout cards');
 window.setTab('review');
 assert(doc.querySelectorAll('#reviewSummaryBody .review-summary-tile').length > 0, 'Review should render current-stack summary tiles');
@@ -149,7 +149,7 @@ const phenoconversionAudit = evalInPage(window, `(() => {
     ).length,
   };
 })()`);
-assert(phenoconversionAudit.cyp2d6?.direction === 'reduced', 'Functional Gene Status should show CYP2D6 reduced by Paroxetine');
+assert(phenoconversionAudit.cyp2d6?.direction === 'reduced', 'Current Pathway Status should show CYP2D6 reduced by Paroxetine');
 assert(phenoconversionAudit.cyp2d6?.drivers?.some(driver => driver.actor === 'Paroxetine'), 'CYP2D6 phenoconversion should list Paroxetine as a driver');
 assert(phenoconversionAudit.phenoconversionFindingCount > 0, 'Phenoconversion rows should feed the shared Interaction Finding model');
 

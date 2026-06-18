@@ -1,4 +1,4 @@
-// Diognosis — Parent-Metabolite Balance renderer
+// Diognosis — Drug & Metabolite Balance renderer
 
 function renderActiveMoietyBalance() {
   const section = document.getElementById("activeMoietySection");

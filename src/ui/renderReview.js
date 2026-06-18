@@ -25,7 +25,7 @@ function renderReviewSummary() {
     ${renderReviewSummaryTile(pendingReview.length, "Pending Review", "Rows not marked professionally reviewed.")}
     ${renderReviewSummaryTile(sourceLinked.length, "Source-Linked", "Findings with evidence refs or linked source context.")}
     ${renderReviewSummaryTile(activeMetabolite.length, "Metabolite Involved", "Parent, active, or toxic metabolite reasoning present.")}
-    ${renderReviewSummaryTile(genotype.length, "Gene / PGx", "Genotype or phenoconversion context present.")}
+    ${renderReviewSummaryTile(genotype.length, "Gene Results", "Genotype or pathway-conversion context present.")}
     ${renderReviewSummaryTile(timing.length, "Timing", "Persistence, washout, recovery, or induction context present.")}
     ${renderReviewSummaryTile(concerns.length, "Clinical Concerns", "Grouped Overview presentation objects.")}
   </div>
@@ -59,7 +59,7 @@ function renderScenarioSnapshotsReview() {
     const isCurrent = currentRows.includes(row);
     return `<div class="review-diagnostic-card ${isCurrent ? "review-diagnostic-current" : ""}">
       <div class="review-diagnostic-title">${safePublicHtml(row.name)}</div>
-      <div class="review-diagnostic-meta">${safePublicHtml((row.stack || []).join(" + "))}${row.genotype?.length ? ` · PGx: ${safePublicHtml(row.genotype.join(", "))}` : ""}</div>
+      <div class="review-diagnostic-meta">${safePublicHtml((row.stack || []).join(" + "))}${row.genotype?.length ? ` · Gene: ${safePublicHtml(row.genotype.join(", "))}` : ""}</div>
       <div class="review-diagnostic-meta">${safePublicHtml(row.focus || "scenario guard")} · ${safePublicHtml(row.status || "tracked")}</div>
     </div>`;
   }).join("")}</div>`;

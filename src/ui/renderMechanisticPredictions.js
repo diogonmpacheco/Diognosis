@@ -21,7 +21,7 @@ function renderMechanisticPredictions() {
   if (countEl) countEl.textContent = `${predictions.length} model${predictions.length === 1 ? "" : "s"}`;
   el.innerHTML = `
     <div class="mechanistic-note">
-      This section shows modeled pathway read-through from Diognosis enzyme, transporter, genotype, and metabolite data. Confirmed warnings stay in Known Interactions; citations and review status stay in Evidence.
+      This section shows modeled pathway context from gene, transporter, medication, and metabolite data. Confirmed warnings stay in Interaction Details; citations and review status stay in Evidence.
     </div>
     ${predictions.slice(0, 12).map(renderMechanisticPredictionCard).join("")}
     ${predictions.length > 12 ? `<div class="finding-empty">Showing 12 of ${predictions.length} model predictions for readability.</div>` : ""}
@@ -47,7 +47,7 @@ function renderMechanisticPredictionCard(prediction) {
     </div>
     <div class="finding-effect">${safePublicHtml(prediction.clinicalMeaning)}</div>
     <div class="finding-grid">
-      <div class="finding-detail"><strong>Model</strong>${prediction.kind === "genotype-drug" ? "Genotype plus drug route" : isGenotype ? "Genotype plus metabolite pathway" : "Medication effect on enzyme plus victim route"}</div>
+      <div class="finding-detail"><strong>Model</strong>${prediction.kind === "genotype-drug" ? "Gene result plus medication route" : isGenotype ? "Gene result plus metabolite pathway" : "Medication effect on pathway plus affected substance route"}</div>
       <div class="finding-detail"><strong>Pathway</strong>${safePublicHtml(prediction.pathway || "modeled pathway")}</div>
       <div class="finding-detail"><strong>Discuss</strong>${safePublicHtml(prediction.action)}</div>
     </div>

@@ -412,8 +412,8 @@ const clopidogrelSummary = {
 assert(
   clopidogrelSummary.title.includes('CYP2C19 genotype') &&
   clopidogrelSummary.title.includes('Active thiol metabolite') &&
-  clopidogrelSummary.label === 'PGx High',
-  'Clopidogrel + CYP2C19 PM should be highest-priority PGx, not a generic single-medication prompt'
+  clopidogrelSummary.label === 'Gene High',
+  'Clopidogrel + CYP2C19 PM should be highest-priority gene-result context, not a generic single-medication prompt'
 );
 assert(
   clopidogrelSummary.metrics === 0 &&
@@ -425,7 +425,7 @@ assert(
   clopidogrelSummary.story.includes('Why this matters') &&
   clopidogrelSummary.story.includes('What changes') &&
   clopidogrelSummary.story.includes('Next review step'),
-  'Highest-priority PGx summary should include only clinical narrative and next review step'
+  'Highest-priority gene-result summary should include only clinical narrative and next review step'
 );
 
 loadCase(window, ['Abacavir']);
@@ -437,8 +437,8 @@ const abacavirSummary = {
 assert(
   abacavirSummary.title.includes('HLA-B*57:01') &&
   abacavirSummary.title.includes('Abacavir') &&
-  abacavirSummary.label === 'PGx High',
-  'Abacavir + HLA-B*57:01 present should surface as highest-priority PGx risk'
+  abacavirSummary.label === 'Gene High',
+  'Abacavir + HLA-B*57:01 present should surface as highest-priority gene-result risk'
 );
 
 const pharmGxImportAudit = window.eval(`(() => {
@@ -1521,11 +1521,11 @@ const rawMetaboliteMapRegression = window.eval(`(() => {
     manualOpenPreserved,
   };
 })()`);
-assert(/Raw \/ Supporting Metabolite Map/.test(rawMetaboliteMapRegression.titleText), 'Raw metabolite map should use the new supporting-data label');
+assert(/Supporting Metabolite Details/.test(rawMetaboliteMapRegression.titleText), 'Supporting metabolite details should use the public supporting-data label');
 assert(rawMetaboliteMapRegression.accessible, 'Raw metabolite map should remain accessible');
 assert(rawMetaboliteMapRegression.collapsedByDefault, 'Raw metabolite map should collapse by default when active-moiety rows exist');
-assert(rawMetaboliteMapRegression.parentBalanceVisible, 'Parent-Metabolite Balance should remain visible above raw metabolite details');
-assert(/raw map lists modeled metabolites/i.test(rawMetaboliteMapRegression.helperText), 'Raw metabolite map should explain that it is supporting data');
+assert(rawMetaboliteMapRegression.parentBalanceVisible, 'Drug & Metabolite Balance should remain visible above supporting metabolite details');
+assert(/supporting details list modeled metabolites/i.test(rawMetaboliteMapRegression.helperText), 'Supporting metabolite details should explain that they are supporting data');
 assert(rawMetaboliteMapRegression.manualOpen && rawMetaboliteMapRegression.manualOpenPreserved, 'Manual raw-map expansion should be preserved for the same stack');
 
 const reviewHomeRegression = window.eval(`(() => {

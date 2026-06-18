@@ -6,15 +6,15 @@ function renderInteractions(interactions) {
   const countEl = document.getElementById("interCount");
   const curatedInteractions = interactions.filter(isCuratedInteractionWarning);
   if (!curatedInteractions.length) {
-    el.innerHTML = '<div class="finding-empty">No source-linked interaction warning is documented for this stack. Check Mechanistic Interpretation for modeled pathway read-through.</div>';
+    el.innerHTML = '<div class="finding-empty">No interaction warning is documented for this list. Check Pathway Explanation for modeled pathway context.</div>';
     countEl.textContent = "";
     return;
   }
   const hasModeledActorSignal = curatedInteractions.some(i => i.actorSource && !(i.evidenceRefs || []).length);
   countEl.textContent = hasModeledActorSignal
-    ? `${curatedInteractions.length} review finding${curatedInteractions.length === 1 ? "" : "s"}`
-    : `${curatedInteractions.length} source-linked`;
-  const helper = '<div class="active-moiety-intro">Curated pairwise interaction table used by the normalized findings. Use Overview for ranked interpretation.</div>';
+    ? `${curatedInteractions.length} finding${curatedInteractions.length === 1 ? "" : "s"}`
+    : `${curatedInteractions.length} documented`;
+  const helper = '<div class="active-moiety-intro">Interaction details supporting the Overview. Use Overview for ranked interpretation.</div>';
   el.innerHTML = helper + curatedInteractions.map((i, idx) => {
     const mechText = simplifyMechanism(i);
     const traceText = buildInteractionTrace(i);

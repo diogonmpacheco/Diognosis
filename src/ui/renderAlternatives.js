@@ -35,9 +35,9 @@ function renderAlternatives() {
 }
 
 const PGX_GUIDANCE_LABELS = {
-  A: "Strong PGx guidance",
-  B: "Moderate PGx guidance",
-  C: "Limited PGx signal"
+  A: "Strong gene-medication guidance",
+  B: "Moderate gene-medication guidance",
+  C: "Limited gene-medication signal"
 };
 
 const PGX_GUIDANCE_TITLES = {
@@ -47,7 +47,7 @@ const PGX_GUIDANCE_TITLES = {
 };
 
 function pgxGuidanceLabel(level) {
-  return PGX_GUIDANCE_LABELS[level] || "PGx evidence";
+  return PGX_GUIDANCE_LABELS[level] || "gene-medication evidence";
 }
 
 function pgxGuidanceTitle(level) {
@@ -67,7 +67,7 @@ function renderGenetics() {
   }).join("");
 
   if (!activeGenes.length) {
-    body.innerHTML = '<div style="font-size:12px;color:var(--text2);text-align:center;padding:8px;">No genetic variants set yet. Add an enzyme above if you know your metabolizer status.</div>';
+    body.innerHTML = '<div style="font-size:12px;color:var(--text2);text-align:center;padding:8px;">No gene or marker results set yet. Add a result above if you know it.</div>';
     return;
   }
 
@@ -358,7 +358,7 @@ function renderMetabolites() {
   if (!activeStack.length) { el.innerHTML = ""; return; }
 
   const analysis = analyzeMetabolites();
-  let html = `<div class="active-moiety-intro">This raw map lists modeled metabolites. Use Parent-Metabolite Balance above for interpreted directionality and risk context.</div>`;
+  let html = `<div class="active-moiety-intro">These supporting details list modeled metabolites. Use Drug & Metabolite Balance above for interpreted directionality and risk context.</div>`;
 
   activeStack.forEach(drugName => {
     const drug = getDrug(drugName);
