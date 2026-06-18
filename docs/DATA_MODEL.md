@@ -14,6 +14,7 @@ For reuse, prefer these derived exports:
 - `canonicalFacts`: source-collapsed relationship facts for DDI, PGx, metabolite, transporter, pathway, and evidence views.
 - `aliasRows`: every known lookup alias and its canonical target.
 - `aliasCollisions`: aliases that still map to more than one canonical target.
+- `externalIdentifiers`: local crosswalk rows such as RxNorm CUIs attached to canonical substances when the mapping is ingredient-level and reviewable.
 - `bySubstanceId`: relationships grouped by canonical substance ID.
 - `dataHygiene`: audit counts for substance kinds, alias collisions, duplicate facts, class placeholders, orphan metabolites, and unresolved relations.
 
@@ -43,6 +44,16 @@ Use `canonicalId` and `substanceKind` as the stable identity pair. Names and ali
 Parent-metabolite relationships should use `parentIds`. Combination products should use `componentIds` when components resolve to first-class Diognosis substances.
 
 Alias collisions are intentionally preserved in `aliasCollisions`; consumers should not guess which target is correct when a collision is present.
+
+## External Standards
+
+Clinical standards live in `src/data/clinicalStandards.js` and are shipped as local static data, not fetched at runtime.
+
+- Medication identity mappings use RxNorm CUIs from NIH RxNav for selected ingredient-level substances.
+- PGx marker rows use star-allele, dbSNP `rs` identifier, or HLA nomenclature labels where applicable.
+- CPIC-linked action summaries remain review context. They can add evidence refs and a review direction, but they do not become automatic medication instructions or professional review.
+
+`npm run validate` checks that mapped substances resolve, RxNorm CUIs are numeric, PGx marker identifiers are well formed, and PGx action summaries point at existing evidence refs.
 
 ## Fact Rules
 

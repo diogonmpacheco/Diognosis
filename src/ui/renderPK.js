@@ -59,6 +59,9 @@ function renderAbsolutePKCard(name) {
 
   const baseMetrics = pkSteadyStateMetrics(genoParams, tau);
   const adjMetrics = adjParams ? pkSteadyStateMetrics(adjParams, tau) : null;
+  const baseAuc = pkIntervalAuc(genoParams);
+  const adjAuc = adjParams ? pkIntervalAuc(adjParams) : null;
+  const exposureShift = adjAuc ? adjAuc / Math.max(baseAuc || 0, 1e-9) : 1;
   const basePts = pkRepeatedDoseCurve(genoParams, tau, nDoses, 200);
   const adjPts = adjParams ? pkRepeatedDoseCurve(adjParams, tau, nDoses, 200) : null;
   const showTrough = baseMetrics.ctrough_ss > Math.max(baseMetrics.cmax_ss, adjMetrics?.cmax_ss || 0) * 0.02;
@@ -78,14 +81,22 @@ function renderAbsolutePKCard(name) {
 
   return `<div class="pk-card">
     <div class="pk-title">${safePublicHtml(name)}${genoBadge}${intBadge}</div>
-    <div class="pk-params">Absolute model · F=${safePublicHtml(Math.round(params.F*100))}% · t½=${safePublicHtml(params.halfLife)}h · τ=${safePublicHtml(tau)}h · dose=${safePublicHtml(params.dose_mg)}mg · Vd=${safePublicHtml(params.Vd)}L/kg</div>
+    <div class="pk-trust-row">
+      <span class="pk-trust-badge absolute">absolute model</span>
+      <span class="pk-trust-badge">baseline vs adjusted</span>
+      ${adjAuc ? `<span class="pk-trust-badge shift">AUC shift ${safePublicHtml(fmtFold(exposureShift))}</span>` : ""}
+    </div>
+    <div class="pk-params">F=${safePublicHtml(Math.round(params.F*100))}% · t½=${safePublicHtml(params.halfLife)}h · τ=${safePublicHtml(tau)}h · dose=${safePublicHtml(params.dose_mg)}mg · Vd=${safePublicHtml(params.Vd)}L/kg</div>
     ${svg}
+    ${renderPKLegend(!!adjPts, false)}
     <div class="pk-metrics">
       <span title="Accumulation factor">R = ${safePublicHtml(Math.round(baseMetrics.accum * 10)/10)}x</span>
+      <span title="Estimated steady-state dose-interval area under the curve">AUCτ: ${safePublicHtml(fmtPK(baseAuc))} ng*h/mL</span>
       <span title="Steady-state peak concentration">Cmax_ss: ${fmtPK(baseMetrics.cmax_ss)} ng/mL</span>
       ${showTrough ? `<span title="Trough concentration">Ctrough: ${safePublicHtml(fmtPK(baseMetrics.ctrough_ss))} ng/mL</span>` : ''}
       <span title="Time to reach about 97% of true steady state">SS in ~${safePublicHtml(daysStr)}</span>
       ${adjMetrics ? `<span class="pk-int-metric" title="Steady-state Cmax with DDI adjustment">Adj Cmax_ss: ${fmtPK(adjMetrics.cmax_ss)} ng/mL</span>` : ''}
+      ${adjAuc ? `<span class="pk-int-metric" title="Adjusted steady-state AUC over one dosing interval">Adj AUCτ: ${safePublicHtml(fmtPK(adjAuc))} ng*h/mL</span>` : ''}
     </div>
     ${noteHtml}
     ${params.nonlinear ? `<div class="pk-warning">Nonlinear kinetics: first-order simulation is approximate.</div>` : ''}
@@ -121,8 +132,14 @@ function renderRelativePKCard(name) {
 
   return `<div class="pk-card">
     <div class="pk-title">${safePublicHtml(name)}<span class="pk-geno-badge">Relative</span>${genoBadge}${intBadge}</div>
-    <div class="pk-params">Fallback model · t½=${safePublicHtml(Math.round(metrics.effectiveHalfLifeH * 10) / 10)}h effective · τ=${safePublicHtml(sim.tau)}h · reference peak = 1.0</div>
+    <div class="pk-trust-row">
+      <span class="pk-trust-badge relative">relative fallback</span>
+      <span class="pk-trust-badge">reference vs current context</span>
+      <span class="pk-trust-badge shift">AUC ${safePublicHtml(fmtFold(metrics.aucFold))}</span>
+    </div>
+    <div class="pk-params">t½=${safePublicHtml(Math.round(metrics.effectiveHalfLifeH * 10) / 10)}h effective · τ=${safePublicHtml(sim.tau)}h · reference peak = 1.0</div>
     ${svg}
+    ${renderPKLegend(true, true)}
     <div class="pk-metrics">
       <span title="Relative AUC versus NM/no-interaction reference">AUC ${safePublicHtml(fmtFold(metrics.aucFold))}</span>
       <span title="Relative steady-state peak versus reference single-dose peak">Cmax_ss: ${fmtPK(metrics.cmax_ss)} rel</span>
@@ -131,6 +148,21 @@ function renderRelativePKCard(name) {
       ${activeFold ? `<span class="pk-int-metric">${activeFold}</span>` : ''}
     </div>
     <div class="pk-note">${safePublicHtml(interpretation)}. Relative curve shown because full F/ka/Vd/dose parameters are not available.</div>
+  </div>`;
+}
+
+function pkIntervalAuc(params) {
+  if (!params || !params.halfLife || !params.Vd || !params.dose_mg) return 0;
+  const ke = 0.693 / params.halfLife;
+  const clearanceLh = ke * params.Vd * 70;
+  if (!Number.isFinite(clearanceLh) || clearanceLh <= 0) return 0;
+  return params.F * params.dose_mg * 1000 / clearanceLh;
+}
+
+function renderPKLegend(hasAdjusted, relative) {
+  return `<div class="pk-legend">
+    <span><i class="pk-legend-base"></i>${relative ? "reference" : "baseline"}</span>
+    ${hasAdjusted ? `<span><i class="pk-legend-adjusted"></i>${relative ? "current context" : "adjusted"}</span>` : ""}
   </div>`;
 }
 

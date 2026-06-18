@@ -51,6 +51,10 @@ globalThis.__VALIDATE__ = {
   FOOD_ACTORS, ENDOGENOUS_ACTORS, RECEPTOR_ACTORS, PHENOTYPE_ACTORS, EVIDENCE_TIER,
   SOURCE_CATEGORY, REVIEW_DECISION,
   REVIEW_DIAGNOSTICS: typeof REVIEW_DIAGNOSTICS !== 'undefined' ? REVIEW_DIAGNOSTICS : null,
+  CLINICAL_STANDARDS_VERSION: typeof CLINICAL_STANDARDS_VERSION !== 'undefined' ? CLINICAL_STANDARDS_VERSION : null,
+  EXTERNAL_SUBSTANCE_MAPPINGS: typeof EXTERNAL_SUBSTANCE_MAPPINGS !== 'undefined' ? EXTERNAL_SUBSTANCE_MAPPINGS : [],
+  PGX_MARKER_MAPPINGS: typeof PGX_MARKER_MAPPINGS !== 'undefined' ? PGX_MARKER_MAPPINGS : {},
+  PGX_ACTION_SUMMARIES: typeof PGX_ACTION_SUMMARIES !== 'undefined' ? PGX_ACTION_SUMMARIES : [],
   resolveUrlDrugName, normalizeDrugLookupKey, getDrugAliases,
   normalizePharmGxGene, normalizeUrlPhenotype,
 };`, context);
@@ -125,6 +129,8 @@ const report = {
     studies: studyIds.size,
     pmidsInCode: allPmids.size,
     pmidsInLedger: ledgerPmids.size,
+    externalSubstanceMappings: data.EXTERNAL_SUBSTANCE_MAPPINGS.length,
+    pgxActionSummaries: data.PGX_ACTION_SUMMARIES.length,
   },
   errors: [],
   warnings: [],
@@ -252,6 +258,102 @@ function aliasTermsForDrug(drug) {
     for (const term of data.getDrugAliases(drug) || []) terms.add(term);
   }
   return [...terms];
+}
+
+const allowedExternalMappingConfidences = new Set(['exact_ingredient', 'review_needed']);
+const rxnormOwners = new Map();
+for (const row of data.EXTERNAL_SUBSTANCE_MAPPINGS || []) {
+  const label = row.substance || row.rxnormCui || 'external substance mapping';
+  if (!row.substance || !row.rxnormCui || !row.source || !row.confidence) {
+    add('errors', 'external_mapping_incomplete', `External substance mapping is missing substance/RxNorm/source/confidence: ${JSON.stringify(row)}`, label);
+  }
+  if (row.rxnormCui && !/^\d+$/.test(String(row.rxnormCui))) {
+    add('errors', 'external_mapping_rxnorm_invalid', `${label} has invalid RxNorm CUI "${row.rxnormCui}"`, label);
+  }
+  if (row.confidence && !allowedExternalMappingConfidences.has(row.confidence)) {
+    add('errors', 'external_mapping_confidence_invalid', `${label} uses unsupported mapping confidence "${row.confidence}"`, label);
+  }
+  const resolved = row.substance ? data.resolveUrlDrugName(row.substance) : null;
+  if (row.substance && !resolved) {
+    add('errors', 'external_mapping_unresolved_substance', `${row.substance} cannot be resolved to a Diognosis substance`, row.substance);
+  }
+  if (row.rxnormCui) {
+    const ownerKey = normalizedKey(row.substance);
+    const previous = rxnormOwners.get(String(row.rxnormCui));
+    if (previous && previous !== ownerKey) {
+      add('errors', 'external_mapping_duplicate_rxnorm', `RxNorm ${row.rxnormCui} maps to both ${previous} and ${row.substance}`, row.rxnormCui);
+    }
+    rxnormOwners.set(String(row.rxnormCui), ownerKey);
+  }
+}
+
+const modeledGenes = new Set([
+  ...Object.keys(data.GENOTYPE_EFFECTS || {}),
+  ...Object.keys(data.GENOTYPE_RISK_EFFECTS || {}),
+]);
+function hasModeledGeneOrMarker(gene) {
+  if (modeledGenes.has(gene)) return true;
+  return [...modeledGenes].some(key =>
+    key === gene ||
+    key.startsWith(`${gene}*`) ||
+    key.startsWith(`${gene}:`) ||
+    key.startsWith(`${gene} `)
+  );
+}
+for (const [gene, markers] of Object.entries(data.PGX_MARKER_MAPPINGS || {})) {
+  if (!hasModeledGeneOrMarker(gene)) {
+    add('warnings', 'pgx_marker_unmodeled_gene', `${gene} has marker mappings but no active genotype model`, gene);
+  }
+  for (const marker of markers || []) {
+    const label = marker.label || `${gene} marker`;
+    if (!marker.label || !marker.system) {
+      add('errors', 'pgx_marker_incomplete', `${gene} marker is missing label/system: ${JSON.stringify(marker)}`, gene);
+    }
+    if (marker.dbsnp && !/^rs\d+$/i.test(String(marker.dbsnp))) {
+      add('errors', 'pgx_marker_dbsnp_invalid', `${label} has invalid dbSNP identifier "${marker.dbsnp}"`, label);
+    }
+  }
+}
+
+const pgxActionIds = new Set();
+for (const row of data.PGX_ACTION_SUMMARIES || []) {
+  const label = row.id || row.title || 'PGx action summary';
+  if (!row.id || !row.gene || !((row.drug || (row.drugs || []).length)) || !((row.phenotypes || []).length)) {
+    add('errors', 'pgx_action_incomplete', `PGx action summary is missing id/gene/drug(s)/phenotypes: ${JSON.stringify(row)}`, label);
+  }
+  if (row.id && pgxActionIds.has(row.id)) {
+    add('errors', 'pgx_action_duplicate_id', `Duplicate PGx action summary id ${row.id}`, row.id);
+  }
+  if (row.id) pgxActionIds.add(row.id);
+  if (row.source === 'CPIC' && !/^https:\/\/www\.clinpgx\.org\/guideline\//.test(String(row.guidelineUrl || ''))) {
+    add('errors', 'pgx_action_missing_guideline_url', `${label} is CPIC-linked but lacks a ClinPGx guideline URL`, label);
+  }
+  if (!row.reviewDirection || !row.whatChanged || !row.safetyBoundary) {
+    add('errors', 'pgx_action_missing_review_context', `${label} must include whatChanged, reviewDirection, and safetyBoundary`, label);
+  }
+  if (!hasModeledGeneOrMarker(row.gene)) {
+    add('errors', 'pgx_action_unmodeled_gene', `${label} references unmodeled gene ${row.gene}`, label);
+  }
+  for (const phenotype of row.phenotypes || []) {
+    if (!data.GENOTYPE_EFFECTS?.[row.gene]?.[phenotype] && !data.GENOTYPE_RISK_EFFECTS?.[row.gene]?.effects?.[phenotype]) {
+      add('errors', 'pgx_action_unsupported_phenotype', `${label} references unsupported ${row.gene}/${phenotype}`, label);
+    }
+  }
+  const actionDrugs = [row.drug, ...(row.drugs || [])].filter(Boolean);
+  for (const drugName of actionDrugs) {
+    if (!data.resolveUrlDrugName(drugName)) {
+      add('errors', 'pgx_action_unresolved_drug', `${label} references unresolved drug ${drugName}`, label);
+    }
+    const mapped = (data.EXTERNAL_SUBSTANCE_MAPPINGS || []).some(mapping =>
+      normalizedKey(mapping.substance) === normalizedKey(drugName)
+    );
+    if (!mapped) {
+      add('errors', 'pgx_action_drug_without_rxnorm', `${label} action drug ${drugName} lacks a local RxNorm mapping`, label);
+    }
+  }
+  for (const ref of evidenceRefsExist(row.evidenceRefs || [], studyIds)) {
+    add('errors', 'missing_pgx_action_evidence_ref', `${label} references missing study ${ref}`, label);
+  }
 }
 
 const exactNames = new Map();

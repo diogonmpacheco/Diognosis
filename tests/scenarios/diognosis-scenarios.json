@@ -230,6 +230,20 @@
         "minFindingCards": 1,
         "minWhyPaths": 1
       }
+    },
+    {
+      "id": "model-warfarin-amiodarone-cyp2c9-pm",
+      "name": "Warfarin + amiodarone with CYP2C9 poor metabolizer",
+      "stack": ["Warfarin", "Amiodarone"],
+      "genotype": { "CYP2C9": "PM", "VKORC1": "PM" },
+      "tab": "overview",
+      "expect": {
+        "findingTypes": ["pairwise_interaction", "active_moiety"],
+        "activeMoietyPatterns": ["parent_accumulation"],
+        "terms": ["Warfarin", "Amiodarone", "CYP2C9", "INR"],
+        "minFindingCards": 1,
+        "minWhyPaths": 1
+      }
     }
   ]
 }

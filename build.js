@@ -38,6 +38,7 @@ const MODULE_ORDER = [
   'data/actors.js',         // FOOD_ACTORS, ENDOGENOUS_ACTORS, RECEPTOR_ACTORS, PHENOTYPE_ACTORS
   'data/pharmacology.js',   // TEMPORAL_PROFILES, PK_PARAMS, PHENOTYPE_SCORES, WASHOUT_DAYS, ACB_SCORES, BEERS_FLAGS
   'data/evidence.js',       // STUDY_DB, INGESTION_QUEUE, createStudyDraft, reviewStudyDraft
+  'data/clinicalStandards.js', // RxNorm/PGx marker crosswalks and review-gated PGx action summaries
   'data/interactions.js',   // PATHWAY_DIVERSION, COMBINATION_PRODUCTS, KNOWN_DDI
   'data/sourceSpecificPromotions.js', // source-backed rows promoted across live calculation surfaces
   'data/generatedStats.js', // DIOGNOSIS_STATS generated from source data

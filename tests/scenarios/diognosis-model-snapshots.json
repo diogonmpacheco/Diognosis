@@ -1302,6 +1302,122 @@
         "reviewSummary": "tab-review",
         "rawWarningPaths": "tab-review"
       }
+    },
+    {
+      "id": "model-warfarin-amiodarone-cyp2c9-pm",
+      "stack": [
+        "Warfarin",
+        "Amiodarone"
+      ],
+      "genotype": {
+        "CYP2C9": "PM",
+        "VKORC1": "PM"
+      },
+      "riskScore": 60,
+      "riskLevel": "HIGH RISK",
+      "interactionCount": 1,
+      "severityCounts": {
+        "severe": 1
+      },
+      "topInteractions": [
+        {
+          "pair": "Amiodarone + Warfarin",
+          "severity": "severe",
+          "type": "known-ddi",
+          "source": "known",
+          "enzyme": "pk"
+        }
+      ],
+      "findingCount": 23,
+      "findingTypes": [
+        "active_moiety",
+        "pairwise_interaction",
+        "phenoconversion",
+        "timing_washout"
+      ],
+      "findingCardCount": 2,
+      "evidenceLadderCount": 0,
+      "primaryFindingCardCount": 2,
+      "primaryFindingEvidenceStepCount": 2,
+      "allFindingsHaveEvidenceLadders": true,
+      "whyPathCount": 23,
+      "mechanismWhyPathCount": 2,
+      "rawWarningPathCount": 12,
+      "evidenceLedgerPresent": true,
+      "falseReviewedClaims": 0,
+      "danglingEvidenceRefs": [],
+      "activeMoietyPatterns": [
+        "active_metabolite_accumulation",
+        "mixed_direction",
+        "no_major_signal",
+        "parent_accumulation"
+      ],
+      "activeMoietyActors": [
+        "Amiodarone CYP3A4 exposure context",
+        "Amiodarone primary live metabolite context",
+        "Desethylamiodarone (DEA)",
+        "Di-desethylamiodarone",
+        "R-10-Hydroxywarfarin",
+        "R-6-Hydroxywarfarin",
+        "S-6-Hydroxywarfarin",
+        "S-7-Hydroxywarfarin",
+        "Warfarin CYP2C9 exposure context",
+        "Warfarin alcohols",
+        "Warfarin dose sensitivity",
+        "vitamin-k-oxidation"
+      ],
+      "phenoconversionGenes": [
+        "CYP1A2",
+        "CYP2C9",
+        "CYP2D6",
+        "CYP3A4",
+        "CYP4F2",
+        "VKORC1"
+      ],
+      "phenoconversionDirections": [
+        "normal",
+        "reduced"
+      ],
+      "persistenceTypes": [
+        "enzyme_recovery",
+        "metabolite",
+        "parent",
+        "washout_rule"
+      ],
+      "persistenceActors": [
+        "Amiodarone",
+        "Amiodarone CYP3A4 exposure context",
+        "Amiodarone primary live metabolite context",
+        "Desethylamiodarone (DEA)",
+        "Di-desethylamiodarone",
+        "R-10-Hydroxywarfarin",
+        "R-6-Hydroxywarfarin",
+        "S-6-Hydroxywarfarin",
+        "S-7-Hydroxywarfarin",
+        "Warfarin",
+        "Warfarin CYP2C9 exposure context",
+        "Warfarin alcohols"
+      ],
+      "sections": {
+        "findings": true,
+        "mechanismsWhy": true,
+        "functionalGenes": true,
+        "parentMetabolite": true,
+        "persistence": true,
+        "evidence": true,
+        "reviewSummary": true,
+        "rawWarningPaths": true
+      },
+      "sectionPanels": {
+        "findings": "tab-overview",
+        "mechanismsWhy": "tab-mechanisms",
+        "functionalGenes": "tab-genes-metabolites",
+        "parentMetabolite": "tab-genes-metabolites",
+        "persistence": "tab-timing-levels",
+        "evidence": "tab-evidence",
+        "reviewSummary": "tab-review",
+        "rawWarningPaths": "tab-review"
+      }
     }
   ]
 }

@@ -36,7 +36,7 @@ The source is structured as editable JavaScript modules in `src/`, assembled in 
 src/
   data/
     constants, rules, drugs, enzymes, metabolites, transporters,
-    actors, pharmacology, evidence, interactions, generated stats,
+    actors, pharmacology, evidence, clinical standards, interactions, generated stats,
     generated evidence review queues, Open Targets snapshots,
     generated review diagnostics
   engine/
@@ -97,6 +97,9 @@ src/
 | `KNOWN_DDI` | Curated pairwise interaction entries with evidence refs |
 | `COMBINATION_PRODUCTS` | Additive and combination-product warnings |
 | `STUDY_DB` | Evidence entities with provenance and review status |
+| `EXTERNAL_SUBSTANCE_MAPPINGS` | Local ingredient-level RxNorm crosswalk rows for selected standardized medication identity |
+| `PGX_MARKER_MAPPINGS` | Star-allele, dbSNP, and HLA labels used to explain supported gene/marker inputs |
+| `PGX_ACTION_SUMMARIES` | Review-gated CPIC-linked action context, evidence refs, and safety boundaries |
 | `GENOTYPE_EFFECTS` / `GENOTYPE_RISK_EFFECTS` | Metabolizer fold-change and risk-marker rules |
 | `PK_PARAMS` | One-compartment absolute PK parameters |
 | `TEMPORAL_PROFILES` | Onset/offset profiles for persistent inhibitors and inducers |
@@ -297,6 +300,8 @@ Structured source workflows:
 PharmCAT remains a future session-input source. It is not a global database enrichment source and should not mutate shipped data files.
 
 Runtime rule: the browser app remains local-first/static and does not call CPIC, ClinPGx, PharmCAT, PubMed, Europe PMC, OpenAlex, Unpaywall, or Open Targets.
+
+Standards rule: RxNorm, PGx marker, and CPIC-linked action rows may be displayed only when they are committed as local reviewed source data and pass validation. They are identity/review aids, not live EHR integration and not automatic clinical orders.
 
 ## Enzyme Capacity Model
 

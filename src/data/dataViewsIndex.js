@@ -774,6 +774,9 @@
     substanceKind:entity.substanceKind,
     class:entity.class,
     aliases:[...entity.aliases],
+    externalIdentifiers:typeof getExternalIdentifiersForSubstance === "function"
+      ? getExternalIdentifiersForSubstance(entity.name)
+      : [],
     parentIds:[...(entity.parentIds || [])],
     componentIds:[...(entity.componentIds || [])],
     linkable:entity.linkable,
@@ -806,6 +809,7 @@
     substanceKindCounts,
     aliasRows:aliasRows.length,
     aliasCollisions,
+    externalIdentifierRows:canonicalSubstances.reduce((sum, item) => sum + (item.externalIdentifiers || []).length, 0),
     duplicateFacts:canonicalDuplicateFacts,
     orphanMetaboliteSubstances,
     unresolvedRelationSubjects,

@@ -43,13 +43,14 @@ function renderGenotypePanel() {
   const showRiskAlleles = Object.keys(typeof GENOTYPE_RISK_EFFECTS !== 'undefined' ? GENOTYPE_RISK_EFFECTS : {}).filter(e => relevantRiskAlleles.has(e));
   const importHtml = renderPharmGxImportCard();
   const pendingPgxContextHtml = renderPendingReviewPgxContext();
+  const pgxActionSummaryHtml = renderPgxActionSummaryCards();
   if (showEnzymes.length === 0 && showRiskAlleles.length === 0) {
-    el.innerHTML = importHtml + pendingPgxContextHtml + '<div style="color:var(--text2);font-size:12px;padding:8px">No genotype-modeled pathways in current stack.</div>';
+    el.innerHTML = importHtml + pendingPgxContextHtml + pgxActionSummaryHtml + '<div style="color:var(--text2);font-size:12px;padding:8px">No genotype-modeled pathways in current stack.</div>';
     return;
   }
 
   // Selector rows
-  let html = importHtml + pendingPgxContextHtml + '<div style="margin-bottom:12px">';
+  let html = importHtml + pendingPgxContextHtml + pgxActionSummaryHtml + '<div style="margin-bottom:12px">';
   html += '<p style="font-size:12px;color:var(--text2);margin:0 0 8px">Set inherited gene or marker results here; Current Pathway Status shows stack-driven pathway changes below.</p>';
   for (const enz of showEnzymes) {
     const cur = activeGenotype[enz] || GENOTYPE_PHENOTYPE.NM;
@@ -166,6 +167,51 @@ function renderPendingReviewPgxContext() {
         (row.evidenceIdentifiers || []).length ? `Evidence: ${row.evidenceIdentifiers.slice(0, 3).map(value => publicDisplayText(value)).join(", ")}` : "",
       ].filter(Boolean), "<br>")}</div>
     </div>`).join("")}
+	  </div>`;
+	}
+
+function renderPgxActionSummaryCards() {
+  if (typeof getPgxActionSummariesForStack !== "function") return "";
+  const rows = getPgxActionSummariesForStack(activeStack, activeGenotype || {});
+  if (!rows.length) return "";
+  return `<div class="pgx-action-wrap">
+    <div class="pgx-action-title">Guideline-Linked Review Context</div>
+    <div class="pgx-action-grid">
+      ${rows.map(renderPgxActionSummaryCard).join("")}
+    </div>
+  </div>`;
+}
+
+function renderPgxActionSummaryCard(row = {}) {
+  const phenotype = row.phenotype ? phenotypeLabelForGene(row.gene, row.phenotype) : "selected phenotype";
+  const evidenceCount = (row.evidenceRefs || []).length;
+  const markers = (row.markerMappings || []).slice(0, 4).map(marker =>
+    marker.dbsnp ? `${marker.label} (${marker.dbsnp})` : marker.label
+  );
+  const externalIds = (row.matchedDrugs || [])
+    .flatMap(name => typeof getExternalIdentifiersForSubstance === "function" ? getExternalIdentifiersForSubstance(name) : [])
+    .map(item => item.label);
+  const evidenceButton = evidenceCount
+    ? `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('evidence','evidenceLadderLedger')">Evidence</button>`
+    : "";
+  return `<div class="pgx-action-card">
+    <div class="pgx-action-head">
+      <div>
+        <div class="pgx-action-name">${safePublicHtml(row.title || "PGx action summary")}</div>
+        <div class="pgx-action-meta">${safePublicHtml([row.source || "Guideline", row.level ? `Level ${row.level}` : "", row.gene, phenotype].filter(Boolean).join(" · "))}</div>
+      </div>
+      <span class="ev-review-badge needs-review">review needed</span>
+    </div>
+    <div class="pgx-action-step"><strong>What changed</strong>${safePublicHtml(row.whatChanged || "")}</div>
+    <div class="pgx-action-step"><strong>What to review</strong>${safePublicHtml(row.reviewDirection || "")}</div>
+    <div class="pgx-action-step muted"><strong>Boundary</strong>${safePublicHtml(row.safetyBoundary || "This is source-linked review context, not medical advice.")}</div>
+    <div class="finding-meta">
+      ${(row.matchedDrugs || []).map(name => `<span class="finding-tag">${safePublicHtml(name)}</span>`).join("")}
+      ${externalIds.slice(0, 3).map(id => `<span class="finding-tag">${safePublicHtml(id)}</span>`).join("")}
+      ${markers.slice(0, 3).map(label => `<span class="finding-tag">${safePublicHtml(label)}</span>`).join("")}
+      <span class="finding-tag">${safePublicHtml(evidenceCount ? `${evidenceCount} linked source${evidenceCount === 1 ? "" : "s"}` : "source needed")}</span>
+    </div>
+    <div class="finding-actions">${evidenceButton}${row.guidelineUrl ? `<a class="related-finding-btn secondary" href="${safeAttr(row.guidelineUrl)}" target="_blank" rel="noopener">Guideline</a>` : ""}</div>
   </div>`;
 }
 
@@ -184,6 +230,9 @@ function getHighestGenotypePrioritySignal() {
       if (!effect || phenotype === GENOTYPE_PHENOTYPE.NM || effect.auc_fold === 1) continue;
       const fold = genotypeExposureFoldForDrug(drugName, enzyme, phenotype, effect);
       const note = genotypeExposureNoteForDrug(drugName, enzyme, phenotype, effect, fold);
+      const actionSummary = typeof getPgxActionSummaryForDrugGene === "function"
+        ? getPgxActionSummaryForDrugGene(drugName, enzyme, phenotype)
+        : null;
       const score = scoreGenotypeExposureSignal(fold, note, drug);
       if (score < 30) continue;
       signals.push({
@@ -194,13 +243,13 @@ function getHighestGenotypePrioritySignal() {
         summary:publicDisplayText(`${drugName} is in your list and ${enzyme} is set to ${phenotypeLabelForGene(enzyme, phenotype)}. ${note}`),
         why:publicDisplayText(`${drugName} depends on ${enzyme}, and the selected ${enzyme} phenotype is not the reference state.`),
         changes:`Expected parent-drug exposure shifts to about ${fold}x the normal-metabolizer baseline.`,
-        review:score >= 70
+        review:actionSummary?.reviewDirection || (score >= 70
           ? "Review dose sensitivity, toxicity signs, inhibitors/inducers, and whether therapeutic monitoring or an alternative is preferred."
-          : "Review whether the exposure shift changes monitoring, dose, or follow-up.",
+          : "Review whether the exposure shift changes monitoring, dose, or follow-up."),
         nextStep:score >= 70
           ? "Review the pharmacogenomics finding before changing dose or adding inhibitors."
           : "Review the pharmacogenomics panel and monitor dose-sensitive effects.",
-        evidenceRefs:[...(drug.evidenceRefs || [])],
+        evidenceRefs:[...(drug.evidenceRefs || []), ...(actionSummary?.evidenceRefs || [])],
         targetTab:"genes-metabolites",
         targetElementId:genotypeExposureCardId(drugName, enzyme),
       });
@@ -211,6 +260,9 @@ function getHighestGenotypePrioritySignal() {
       const score = scoreGenotypeMetaboliteSignal(effect, phenotypeEffect);
       if (score < 30) continue;
       const direction = phenotypeEffect.direction === "decrease" ? "reduce" : "increase";
+      const actionSummary = typeof getPgxActionSummaryForDrugGene === "function"
+        ? getPgxActionSummaryForDrugGene(effect.parent, effect.enzyme, geno)
+        : null;
       signals.push({
         kind:"metabolite",
         score,
@@ -221,13 +273,13 @@ function getHighestGenotypePrioritySignal() {
         changes:phenotypeEffect.fold
           ? `${publicMetaboliteLabel(effect, effect.parent)} is expected to shift to about ${phenotypeEffect.fold}x the normal-metabolizer reference.`
           : `${publicMetaboliteLabel(effect, effect.parent)} is expected to ${direction}; the direction is modeled but the fold is not calibrated.`,
-        review:effect.clinicalAction || (score >= 70
+        review:actionSummary?.reviewDirection || effect.clinicalAction || (score >= 70
           ? "Review whether standard medication assumptions still apply before relying on efficacy or safety."
           : "Review metabolite-level context and relevant monitoring."),
         nextStep:score >= 70
           ? "Review the pharmacogenomics finding before relying on this medication effect."
           : "Review metabolite-level pharmacogenomics context.",
-        evidenceRefs:[...(effect.evidenceRefs || [])],
+        evidenceRefs:[...(effect.evidenceRefs || []), ...(actionSummary?.evidenceRefs || [])],
         targetTab:"genes-metabolites",
         targetElementId:genotypeMetaboliteCardId(effect),
       });

@@ -91,6 +91,17 @@ const firstPartyRuntimeChecks = [
   { label: 'CacheStorage', pattern: /\bcaches\.open\s*\(/ },
 ];
 
+const firstPartyPhiLoggingChecks = [
+  {
+    label: 'console logging of medication/genotype state',
+    pattern: /\bconsole\.(?:log|debug|info|warn|error)\s*\([^)]*\b(?:activeStack|activeGenotype|userGenetics|drugDoses|searchInput|genotype|medication|substances)\b/i,
+  },
+  {
+    label: 'runtime request carrying medication/genotype state',
+    pattern: /\b(?:fetch|sendBeacon|XMLHttpRequest|WebSocket|EventSource)\b[\s\S]{0,220}\b(?:activeStack|activeGenotype|userGenetics|drugDoses|substances|genotype)\b/i,
+  },
+];
+
 let vendoredD3Scripts = 0;
 let firstPartyScripts = 0;
 for (const match of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
@@ -106,6 +117,9 @@ for (const match of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
   firstPartyScripts += 1;
   for (const label of collectMatches(content, firstPartyRuntimeChecks)) {
     findings.push({ category: 'first-party-runtime-surface', detail: label });
+  }
+  for (const label of collectMatches(content, firstPartyPhiLoggingChecks)) {
+    findings.push({ category: 'first-party-phi-logging-surface', detail: label });
   }
 }
 
