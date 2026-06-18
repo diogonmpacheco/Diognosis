@@ -16,6 +16,12 @@ Diognosis is a pre-v1, source-linked research prototype for exploring medication
 [![Open Issues](https://img.shields.io/github/issues/diogonmpacheco/Diognosis)](https://github.com/diogonmpacheco/Diognosis/issues)
 [![Live Site](https://img.shields.io/badge/live-GitHub%20Pages-222?logo=github)](https://diogonmpacheco.github.io/Diognosis/)
 
+## Development Transparency
+
+Diognosis is an AI-assisted, vibe-coded research project built by Diogo Pacheco in collaboration with OpenAI Codex and ChatGPT. Diogo directs the product vision, data priorities, clinical-safety boundaries, and final acceptance of changes. AI assistance is used for implementation, refactoring, tests, documentation, and data-organization support.
+
+AI-assisted development does not mean clinical validation. Diognosis remains a pre-v1 research prototype pending professional clinical review.
+
 ## Medication Safety Explorer
 
 Diognosis focuses on medication safety exploration, pharmacogenomics, drug-drug interactions, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, pathway explanations, and source-linked evidence.
