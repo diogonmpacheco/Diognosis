@@ -26,6 +26,7 @@ function loadBundleContext() {
         return elements[id] || (elements[id] = {
           innerHTML: '', textContent: '', style: {},
           classList: { add(){}, remove(){}, toggle(){} },
+          setAttribute(){}, removeAttribute(){},
           nextElementSibling: { classList: { toggle(){} } },
         });
       },

@@ -60,6 +60,8 @@ const DEMO_CASES = {
 function loadUrlDemoState() {
   const params = getUrlStateParams();
   const demo = DEMO_CASES[params.demo || ''];
+  const audience = normalizeAudienceMode(params.audience || params.view || demo?.audience);
+  if (audience) setAudienceMode(audience, { render:false });
   const drugParam = params.substances || params.drugs || params.medications;
   const drugNames = demo ? demo.drugs : (drugParam ? drugParam.split(',').map(d => d.trim()) : []);
   if (drugNames.length) {

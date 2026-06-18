@@ -46,6 +46,7 @@ function swapDrug(oldName, newName) {
 
 let viewMode = "search";
 let activeTab = "overview";
+let audienceMode = "clinician";
 let currentInteractionFindings = [];
 let currentClinicalConcerns = [];
 let currentPublicFindingPresentations = [];
@@ -53,6 +54,7 @@ let renderComputationCache = null;
 let lazyRenderState = { evidenceKey:"", reviewKey:"" };
 let manualSectionToggleKeys = {};
 const DIOGNOSIS_TABS = ["overview","mechanisms","genes-metabolites","timing-levels","evidence","review"];
+const AUDIENCE_MODES = ["patient","clinician"];
 const TAB_ALIASES = {
   safety:"overview",
   summary:"overview",
@@ -85,6 +87,37 @@ function resolveTabAlias(name) {
 function setActiveTab(name) {
   activeTab = resolveTabAlias(name);
   return activeTab;
+}
+
+function normalizeAudienceMode(value) {
+  const key = String(value || "").trim().toLowerCase();
+  if (key === "patient" || key === "simple" || key === "public") return "patient";
+  if (key === "clinician" || key === "clinical" || key === "professional" || key === "reviewer") return "clinician";
+  return null;
+}
+
+function isPatientAudience() {
+  return audienceMode === "patient";
+}
+
+function setAudienceMode(mode, options = {}) {
+  audienceMode = normalizeAudienceMode(mode) || "clinician";
+  if (isPatientAudience() && activeTab !== "overview") setActiveTab("overview");
+  lazyRenderState = { evidenceKey:"", reviewKey:"" };
+  syncAudienceModeUI();
+  if (options.render !== false) renderAll();
+}
+
+function syncAudienceModeUI() {
+  if (document.body) document.body.dataset.audience = audienceMode;
+  for (const mode of AUDIENCE_MODES) {
+    const btn = document.getElementById(`audience-${mode}`);
+    if (!btn) continue;
+    btn.classList.toggle("active", mode === audienceMode);
+    btn.setAttribute("aria-pressed", mode === audienceMode ? "true" : "false");
+  }
+  const findingTitle = document.getElementById("findingTitle");
+  if (findingTitle) findingTitle.textContent = isPatientAudience() ? "Safety Notes" : "Interaction Findings";
 }
 
 function setViewMode(m) {
@@ -145,6 +178,7 @@ function getRenderCacheKey() {
     genotype: activeGenotype || {},
     genetics: userGenetics || {},
     doses: typeof drugDoses !== "undefined" ? drugDoses : {},
+    audience: audienceMode,
   });
 }
 
@@ -246,7 +280,8 @@ function renderSummaryBar() {
   }
 
   bar.style.display = "";
-  tabBar.style.display = "";
+  if (isPatientAudience()) setActiveTab("overview");
+  tabBar.style.display = isPatientAudience() ? "none" : "";
   tabPanels.forEach(panel => { panel.style.display = ""; });
   setTab(activeTab);
 
@@ -320,12 +355,16 @@ function renderSummaryBar() {
   const jumpTab = primaryPresentation ? primaryPresentation.targetTab : (isGenotypePriority ? (genotypePriority.targetTab || "genes-metabolites") : "overview");
   const jumpTarget = primaryPresentation ? primaryPresentation.targetElementId : (isGenotypePriority ? (genotypePriority.targetElementId || "genotypeSection") : "findingSection");
 
+  const summaryKicker = isPatientAudience() ? "Main Safety Note" : "Highest Priority";
+  const jumpLabel = isPatientAudience() ? "View note" : "View finding";
+  const nextLabel = isPatientAudience() ? "Next step" : "Next review";
+
     bar.innerHTML = `<div class="summary-card">
     <div class="summary-main">
       <div>
-        <div class="summary-kicker">Highest Priority</div>
+        <div class="summary-kicker">${safePublicHtml(summaryKicker)}</div>
         <div class="summary-title">${safePublicHtml(headline)}</div>
-        <div class="summary-copy">${summaryCopy ? `${safePublicHtml(summaryCopy)} ` : ""}<button type="button" class="summary-jump" onclick="focusPriorityFinding('${safeAttr(jumpTab)}','${safeAttr(jumpTarget)}')">View finding</button></div>
+        <div class="summary-copy">${summaryCopy ? `${safePublicHtml(summaryCopy)} ` : ""}<button type="button" class="summary-jump" onclick="focusPriorityFinding('${safeAttr(jumpTab)}','${safeAttr(jumpTarget)}')">${safePublicHtml(jumpLabel)}</button></div>
       </div>
       <div class="summary-risk ${riskClass}">
         <div class="num">${scoreValue}</div>
@@ -333,7 +372,7 @@ function renderSummaryBar() {
       </div>
     </div>
     ${renderPriorityStory(priorityStory)}
-    <div class="summary-next"><span class="summary-next-pill">Next review</span><span>${safePublicHtml(nextStep)}</span></div>
+    <div class="summary-next"><span class="summary-next-pill">${safePublicHtml(nextLabel)}</span><span>${safePublicHtml(nextStep)}</span></div>
   </div>`;
   const badge = severeCount > 0 ? `<span class="tab-badge">${severeCount}</span>` : "";
   if (overviewBtn) overviewBtn.innerHTML = "Overview" + badge;
@@ -629,9 +668,25 @@ function renderPublicFindingCard(presentation) {
     : "";
   const supportingSignals = renderConcernSupportingSignals(finding);
   const sourceLabel = safePublicHtml(String(finding.source || finding.type || "finding").replace(/_/g, " "));
-  const detailButton = presentation.detailTab && presentation.detailElementId
+  const patient = isPatientAudience();
+  const changedText = patient ? patientFindingStepText(presentation, "changed") : presentation.whatChanged;
+  const whyText = patient ? patientFindingStepText(presentation, "why") : presentation.whyItMatters;
+  const reviewText = patient ? patientFindingStepText(presentation, "review") : presentation.whatToReview;
+  const detailButton = !patient && presentation.detailTab && presentation.detailElementId
     ? `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('${safeAttr(presentation.detailTab)}','${safeAttr(presentation.detailElementId)}')">Supporting detail</button>`
     : "";
+  const evidenceStep = patient ? "" : renderFindingStep("Evidence", presentation.evidenceSummary);
+  const technicalDetail = patient ? "" : `<details class="finding-support-details">
+      <summary>Supporting detail</summary>
+      ${supportingSignals}
+      <div class="finding-meta">
+        <span class="finding-tag type">${sourceLabel}</span>
+        <span class="finding-tag">confidence: ${safePublicHtml(finding.confidence || presentation.signal?.label || "unknown")}</span>
+        <span class="finding-tag">${safePublicHtml(publicEvidenceSummaryForFinding(finding || {}))}</span>
+        ${grouped}
+        ${tags}
+      </div>
+    </details>`;
   return `<div id="${safeAttr(presentation.targetElementId)}" class="finding-card primary-finding-card ${severity}" data-finding-id="${safeAttr(presentation.id)}">
     <div class="finding-top">
       <div>
@@ -642,24 +697,74 @@ function renderPublicFindingCard(presentation) {
     </div>
     ${actorHtml ? `<div class="finding-actors">${actorHtml}</div>` : ""}
     <div class="finding-explain">
-      ${renderFindingStep("What changed", presentation.whatChanged)}
-      ${renderFindingStep("Why it matters", presentation.whyItMatters)}
-      ${renderFindingStep("What to review", presentation.whatToReview)}
-      ${renderFindingStep("Evidence", presentation.evidenceSummary)}
+      ${renderFindingStep(patient ? "What this means" : "What changed", changedText)}
+      ${renderFindingStep("Why it matters", whyText)}
+      ${renderFindingStep(patient ? "What to ask" : "What to review", reviewText)}
+      ${evidenceStep}
     </div>
     <div class="finding-actions">${detailButton}</div>
-    <details class="finding-support-details">
-      <summary>Supporting detail</summary>
-      ${supportingSignals}
-      <div class="finding-meta">
-        <span class="finding-tag type">${sourceLabel}</span>
-        <span class="finding-tag">confidence: ${safePublicHtml(finding.confidence || presentation.signal?.label || "unknown")}</span>
-        <span class="finding-tag">${safePublicHtml(publicEvidenceSummaryForFinding(finding || {}))}</span>
-        ${grouped}
-        ${tags}
-      </div>
-    </details>
+    ${technicalDetail}
   </div>`;
+}
+
+function patientFindingStepText(presentation = {}, field = "changed") {
+  const text = publicDisplayText([
+    presentation.title,
+    presentation.whatChanged,
+    presentation.whyItMatters,
+    presentation.whatToReview,
+    ...(presentation.tags || []),
+  ].join(" "));
+  const severity = safeChoice(presentation.severity, ["critical","severe","moderate","monitor","info"], "info");
+  const serious = severity === "critical" || severity === "severe";
+  const lower = text.toLowerCase();
+  if (field === "changed") {
+    if (/bleed|inr|anticoag|warfarin|platelet|clot/.test(lower)) {
+      return serious
+        ? "This combination may raise bleeding or clotting-related risk and may need closer monitoring."
+        : "This combination may affect bleeding or clotting-related monitoring.";
+    }
+    if (/qt|torsades|arrhythm|heart rhythm|bradycard/.test(lower)) {
+      return serious
+        ? "This combination may increase heart-rhythm risk and should be checked carefully."
+        : "This combination may add heart-rhythm monitoring concerns.";
+    }
+    if (/serotonin|ssri|snri|maoi/.test(lower)) {
+      return "This combination may add serotonin-related side-effect risk.";
+    }
+    if (/sedation|fall|cns|opioid|benzodiazepine|drows/.test(lower)) {
+      return "This combination may increase sleepiness, confusion, breathing, or fall risk.";
+    }
+    if (/auc|exposure|level|concentration|metabol|cyp|enzyme|genotype|pgx|clearance/.test(lower)) {
+      return "This may change how strongly a medication works or how long it stays active.";
+    }
+    return serious
+      ? "This is the most important safety note found for the current list."
+      : "This is a safety note to review for the current list.";
+  }
+  if (field === "why") {
+    if (/avoid|contraindicat|severe|critical|high risk/.test(lower) || serious) {
+      return "The combination may need a different plan, extra monitoring, or professional review before use.";
+    }
+    return "The same medication can behave differently depending on the full list, dose, timing, and gene results.";
+  }
+  const review = String(presentation.whatToReview || "").replace(/\s+/g, " ").trim();
+  if (/ask|call|contact/i.test(review)) return shortenPatientReviewText(review);
+  const cleaned = review
+    .replace(/^review whether\s+/i, "whether ")
+    .replace(/^review\s+/i, "")
+    .replace(/\bpharmacogenomics?\b/gi, "gene result")
+    .replace(/\bgenotype\b/gi, "gene result")
+    .replace(/\bAUC\b/g, "level")
+    .replace(/\bphenoconversion\b/gi, "pathway change");
+  const base = cleaned || "this medication list needs a different plan, dose, timing, or monitoring";
+  return shortenPatientReviewText(`Ask a doctor or pharmacist about ${base}.`);
+}
+
+function shortenPatientReviewText(text) {
+  const raw = String(text || "").replace(/\s+/g, " ").trim();
+  if (raw.length <= 180) return raw;
+  return raw.slice(0, 177).trim() + "...";
 }
 
 function renderFindingStep(label, value) {
@@ -824,10 +929,11 @@ function getPriorityEvidenceLayer(refs = [], inlineEvidence = null, source = "")
 
 function renderPriorityStory(story) {
   if (!story) return "";
+  const patient = isPatientAudience();
   return `<div class="summary-story">
     <div class="summary-story-row"><strong>Why this matters</strong>${safePublicHtml(story.why)}</div>
-    <div class="summary-story-row"><strong>What changes</strong>${safePublicHtml(story.changes)}</div>
-    <div class="summary-story-row"><strong>Next review step</strong>${safePublicHtml(story.review)}</div>
+    <div class="summary-story-row"><strong>${safePublicHtml(patient ? "What this means" : "What changes")}</strong>${safePublicHtml(story.changes)}</div>
+    <div class="summary-story-row"><strong>${safePublicHtml(patient ? "What to ask" : "Next review step")}</strong>${safePublicHtml(story.review)}</div>
   </div>`;
 }
 
@@ -852,6 +958,17 @@ function updateEmptyTabs() {
     } else if (note) {
       note.style.display = "none";
     }
+  });
+}
+
+function applyAudienceModeVisibility() {
+  if (!isPatientAudience()) return;
+  [
+    "riskSection",
+    "altSection",
+  ].forEach(sectionId => {
+    const section = document.getElementById(sectionId);
+    if (section) section.style.display = "none";
   });
 }
 
@@ -1379,6 +1496,7 @@ function currentStackShareUrl(tab = activeTab) {
     }).join(",")]);
   }
   for (const token of activeGenotypeUrlTokens()) params.push(["genotype", token]);
+  if (isPatientAudience()) params.push(["audience", audienceMode]);
   if (tab) params.push(["tab", tab]);
   const query = params
     .map(([key, value]) => `${encodeURIComponent(key)}=${encodeUrlStateValueLocal(value)}`)
@@ -1453,6 +1571,7 @@ function renderFeedbackLink(label, options = {}) {
 
 // ── RENDER ALL ──
 function renderAll() {
+  syncAudienceModeUI();
   const activeDrugNames = typeof getActiveDrugNames === "function" ? getActiveDrugNames() : activeStack.filter(name => getDrug(name));
   arrangeAdvancedSections();
   renderMedList();
@@ -1545,6 +1664,7 @@ function renderAll() {
     hideSectionAndClear("altSection", "altBody");
   }
   renderSummaryBar();
+  applyAudienceModeVisibility();
   updateEmptyTabs();
   if (viewMode === "browse") renderBrowse();
 }

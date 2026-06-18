@@ -81,6 +81,8 @@ You can also build custom share links with:
 
 `https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,ibuprofen&tab=overview`
 
+Add `audience=patient` for the plain-language Patient view.
+
 For alternate entry points, see the [Diognosis Data Views](https://diogonmpacheco.github.io/Diognosis/data-views.html) and the [Medication Class Guides](https://diogonmpacheco.github.io/Diognosis/medication-classes.html).
 
 ---
@@ -123,7 +125,7 @@ Diognosis is intentionally conservative about what it claims. Diognosis PK curve
 - **1407 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **69 genotype genes** and **588 receptor score profiles**
 - **218 Beers flags** and **1411 washout rules**
-- **2958 KB** generated bundle (1947 lines)
+- **2963 KB** generated bundle (1964 lines)
 <!-- DIOGNOSIS_STATS_END -->
 
 ---

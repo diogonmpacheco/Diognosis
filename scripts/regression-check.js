@@ -646,6 +646,56 @@ assert(publicNebivololNullDemoAudit.hasBidirectionalPair, 'Public nebivolol null
 assert(publicNebivololNullDemoAudit.bidirectionalMechanism.includes('Hydroxybupropion is harder to predict'), 'Public nebivolol null demo should not claim hydroxybupropion is simply lower in CYP2D6 null context');
 assert(publicNebivololNullDemoAudit.bidirectionalRefs.includes('ev_bupropion_cyp2d6_hesse1996'), 'Public nebivolol null demo should cite hydroxybupropion CYP2D6 level/dose context');
 
+const audienceModeRegression = window.eval(`(() => {
+  activeStack = [];
+  userGenetics = {};
+  activeGenotypeDetails = {};
+  activeGenotype = {
+    CYP2D6: GENOTYPE_PHENOTYPE.NM,
+    CYP2C19: GENOTYPE_PHENOTYPE.NM,
+    CYP2C9: GENOTYPE_PHENOTYPE.NM,
+  };
+  window.history.replaceState(null, '', '/index.html?substances=warfarin,amiodarone&audience=patient&tab=review');
+  loadUrlDemoState();
+  renderAll();
+  const patient = {
+    audienceMode,
+    bodyAudience:document.body.dataset.audience,
+    activeTab,
+    tabBarDisplay:document.getElementById('tabBar')?.style.display || '',
+    findingTitle:document.getElementById('findingTitle')?.textContent || '',
+    detailButtons:document.querySelectorAll('#findingBody .related-finding-btn.secondary').length,
+    supportDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
+    findingText:document.getElementById('findingBody')?.textContent || '',
+    riskDisplay:document.getElementById('riskSection')?.style.display || '',
+    shareUrl:currentStackShareUrl(),
+  };
+  setAudienceMode('clinician');
+  const clinician = {
+    audienceMode,
+    bodyAudience:document.body.dataset.audience,
+    tabBarDisplay:document.getElementById('tabBar')?.style.display || '',
+    findingTitle:document.getElementById('findingTitle')?.textContent || '',
+    supportDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
+  };
+  return { patient, clinician };
+})()`);
+assert(audienceModeRegression.patient.audienceMode === 'patient', 'Audience URL should set Patient mode');
+assert(audienceModeRegression.patient.bodyAudience === 'patient', 'Patient mode should mark body data-audience');
+assert(audienceModeRegression.patient.activeTab === 'overview', 'Patient mode should force the Overview tab');
+assert(audienceModeRegression.patient.tabBarDisplay === 'none', 'Patient mode should hide clinician tab navigation');
+assert(audienceModeRegression.patient.findingTitle === 'Safety Notes', 'Patient mode should rename findings to Safety Notes');
+assert(audienceModeRegression.patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
+assert(audienceModeRegression.patient.supportDetails === 0, 'Patient mode should hide clinician supporting detail drawers');
+assert(/What this means/.test(audienceModeRegression.patient.findingText), 'Patient mode should use plain-language finding labels');
+assert(audienceModeRegression.patient.riskDisplay === 'none', 'Patient mode should hide the score-style risk panel');
+assert(audienceModeRegression.patient.shareUrl.includes('audience=patient'), 'Patient-mode share URL should preserve audience mode');
+assert(audienceModeRegression.clinician.audienceMode === 'clinician', 'Clinician mode should restore clinician state');
+assert(audienceModeRegression.clinician.bodyAudience === 'clinician', 'Clinician mode should mark body data-audience');
+assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mode should show tab navigation');
+assert(audienceModeRegression.clinician.findingTitle === 'Interaction Findings', 'Clinician mode should restore clinician finding title');
+assert(audienceModeRegression.clinician.supportDetails > 0, 'Clinician mode should show supporting detail drawers');
+
 const nebivololPgxDisplayRegression = window.eval(`(() => {
   activeStack = ['Nebivolol'];
   userGenetics = {};
