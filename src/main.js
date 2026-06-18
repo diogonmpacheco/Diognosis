@@ -60,8 +60,6 @@ const DEMO_CASES = {
 function loadUrlDemoState() {
   const params = getUrlStateParams();
   const demo = DEMO_CASES[params.demo || ''];
-  const language = normalizeLanguageMode(params.lang || params.language || params.locale || demo?.language);
-  if (language) setLanguageMode(language, { render:false });
   const audience = normalizeAudienceMode(params.audience || params.view || demo?.audience);
   if (audience) setAudienceMode(audience, { render:false });
   const drugParam = params.substances || params.drugs || params.medications;

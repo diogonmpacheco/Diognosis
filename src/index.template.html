@@ -74,14 +74,12 @@ a{color:var(--accent)}
 .mode-btn{flex:1;padding:10px;border:2px solid var(--border);border-radius:var(--radius);background:var(--card);cursor:pointer;font-size:13px;font-weight:600;color:var(--text2);text-align:center;transition:all 0.2s}
 .mode-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accentBg)}
 .mode-btn:hover{border-color:var(--accent2)}
-.audience-wrap,.language-wrap{max-width:700px;margin:10px auto 0;padding:0 16px;display:flex;align-items:center;gap:10px}
-.audience-label,.language-label{font-size:11px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:0.4px;white-space:nowrap}
+.audience-wrap{max-width:700px;margin:10px auto 0;padding:0 16px;display:flex;align-items:center;gap:10px}
+.audience-label{font-size:11px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:0.4px;white-space:nowrap}
 .audience-segment{display:inline-grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid var(--border);background:var(--card);border-radius:10px;padding:3px;box-shadow:var(--shadow);min-width:220px}
 .audience-btn{border:none;border-radius:7px;background:transparent;color:var(--text2);font-family:var(--font);font-size:12px;font-weight:800;padding:7px 10px;cursor:pointer;transition:background .15s,color .15s}
 .audience-btn.active{background:var(--accent);color:#fff}
 .audience-btn:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
-.language-select{border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text);font-family:var(--font);font-size:13px;font-weight:750;padding:9px 10px;box-shadow:var(--shadow);min-width:220px;cursor:pointer}
-.language-select:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
 body[data-audience="patient"] .stats-line{display:none}
 
 /* BROWSE GRID */
@@ -696,9 +694,9 @@ body[data-audience="patient"] .stats-line{display:none}
 
 /* RESPONSIVE */
 @media(max-width:700px){
-  .main,.search-wrap,.mode-toggle,.browse-wrap,.audience-wrap,.language-wrap,.disclaimer{max-width:none}
-  .audience-wrap,.language-wrap{justify-content:space-between}
-  .audience-segment,.language-select{min-width:0;flex:1}
+  .main,.search-wrap,.mode-toggle,.browse-wrap,.audience-wrap,.disclaimer{max-width:none}
+  .audience-wrap{justify-content:space-between}
+  .audience-segment{min-width:0;flex:1}
   body{overflow-x:hidden}
   .main{width:100%;max-width:100%;overflow-x:hidden}
   .result-area,.input-rail,.summary-bar,.tab-panel,.section{width:100%;max-width:100%;min-width:0}
@@ -756,24 +754,11 @@ body[data-audience="patient"] .stats-line{display:none}
 </div>
 
 <div class="audience-wrap" aria-label="Audience mode">
-  <div class="audience-label" id="audienceLabel">Audience</div>
+  <div class="audience-label">Audience</div>
   <div class="audience-segment">
     <button type="button" class="audience-btn" id="audience-patient" onclick="setAudienceMode('patient')" aria-pressed="false">Patient</button>
     <button type="button" class="audience-btn active" id="audience-clinician" onclick="setAudienceMode('clinician')" aria-pressed="true">Clinician</button>
   </div>
-</div>
-
-<div class="language-wrap" aria-label="Language">
-  <label class="language-label" id="languageLabel" for="languageSelect">Language</label>
-  <select class="language-select" id="languageSelect" onchange="setLanguageMode(this.value)">
-    <option value="en">English</option>
-    <option value="pt">Português</option>
-    <option value="es">Español</option>
-    <option value="zh">中文</option>
-    <option value="hi">हिन्दी</option>
-    <option value="ar">العربية</option>
-    <option value="fr">Français</option>
-  </select>
 </div>
 
 <div class="stats-line" id="statsLine"></div>
