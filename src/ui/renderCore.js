@@ -47,6 +47,7 @@ function swapDrug(oldName, newName) {
 let viewMode = "search";
 let activeTab = "overview";
 let audienceMode = "clinician";
+let languageMode = "en";
 let currentInteractionFindings = [];
 let currentClinicalConcerns = [];
 let currentPublicFindingPresentations = [];
@@ -55,6 +56,480 @@ let lazyRenderState = { evidenceKey:"", reviewKey:"" };
 let manualSectionToggleKeys = {};
 const DIOGNOSIS_TABS = ["overview","mechanisms","genes-metabolites","timing-levels","evidence","review"];
 const AUDIENCE_MODES = ["patient","clinician"];
+const LANGUAGE_MODES = ["en","pt","es","zh","hi","ar","fr"];
+const LANGUAGE_LABELS = {
+  en:"English",
+  pt:"Português",
+  es:"Español",
+  zh:"中文",
+  hi:"हिन्दी",
+  ar:"العربية",
+  fr:"Français",
+};
+const UI_TEXT = {
+  en:{
+    languageLabel:"Language",
+    searchPlaceholder:"Search medications, supplements, foods...",
+    searchMode:"Search",
+    browseMode:"Browse by Category",
+    audienceLabel:"Audience",
+    patientAudience:"Patient",
+    clinicianAudience:"Clinician",
+    tabOverview:"Overview",
+    tabMechanisms:"Mechanisms",
+    tabGenes:"Genes + Metabolites",
+    tabTiming:"Timing + Levels",
+    tabEvidence:"Evidence",
+    tabReview:"Review",
+    findingTitlePatient:"Safety Notes",
+    findingTitleClinician:"Interaction Findings",
+    mainSafetyNote:"Main Safety Note",
+    highestPriority:"Highest Priority",
+    viewNote:"View note",
+    viewFinding:"View finding",
+    nextStep:"Next step",
+    nextReview:"Next review",
+    add2:"Add 2+",
+    highPriorityInteractionFound:"High-priority interaction found",
+    monitoringMayBeNeeded:"Some monitoring may be needed",
+    noMajorInteractionSignalFound:"No major interaction signal found",
+    checkedNoSevere:"Checked {count} substances. Diognosis did not find a severe pairwise interaction, but genotype, transporter, metabolite, and dose context may still matter.",
+    severeFindingsSummary:"{count} severe finding{plural}{pairs}. Review the findings before changing doses or adding more substances.",
+    startSevereFindings:"Start with the severe findings, then review genotype-adjusted levels.",
+    reviewLevelChanges:"Review level changes and genotype notes for dose-sensitive substances.",
+    addAnotherSubstanceHeadline:"Add another substance to check interactions",
+    singleSubstanceContext:"Single-substance pharmacogenomic, metabolite, and PK context appears below when available. Interaction risk needs at least two substances.",
+    addSecondSubstance:"Add a second medication, supplement, herb, food, or recreational substance.",
+    alsoCheckPrefix:"Also check:",
+    noFindingsPatient:"No safety notes for this list yet. Gene, metabolite, timing, and dose context may still matter.",
+    noFindingsClinical:"No interaction findings for this stack yet. Evidence, genetics, metabolite, and timing context may still matter.",
+    findingCount:"{count} concern{plural}",
+    groupedConcernsMore:"Showing 8 of {count} grouped concerns. Detailed technical context is available in Review.",
+    overviewGroupsConcerns:"Overview groups related pathway, metabolite, timing, and evidence signals into clinical concerns. Technical details remain available in Review.",
+    whatThisMeans:"What this means",
+    whatChanged:"What changed",
+    whyItMatters:"Why it matters",
+    whatToAsk:"What to ask",
+    whatToReview:"What to review",
+    evidence:"Evidence",
+    supportingDetail:"Supporting detail",
+    currentStack:"current stack",
+    whyThisMatters:"Why this matters",
+    whatChanges:"What changes",
+    nextReviewStep:"Next review step",
+    noMatches:"No matches found",
+    medEmpty:"Add medications, supplements, or foods above to see how they interact",
+    patientBleedingSerious:"This combination may raise bleeding or clotting-related risk and may need closer monitoring.",
+    patientBleedingMonitor:"This combination may affect bleeding or clotting-related monitoring.",
+    patientRhythmSerious:"This combination may increase heart-rhythm risk and should be checked carefully.",
+    patientRhythmMonitor:"This combination may add heart-rhythm monitoring concerns.",
+    patientSerotonin:"This combination may add serotonin-related side-effect risk.",
+    patientSedation:"This combination may increase sleepiness, confusion, breathing, or fall risk.",
+    patientExposure:"This may change how strongly a medication works or how long it stays active.",
+    patientImportant:"This is the most important safety note found for the current list.",
+    patientSafetyNote:"This is a safety note to review for the current list.",
+    patientDifferentPlan:"The combination may need a different plan, extra monitoring, or professional review before use.",
+    patientContextMatters:"The same medication can behave differently depending on the full list, dose, timing, and gene results.",
+    patientAskGeneric:"Ask a doctor or pharmacist whether this medication list needs a different plan, dose, timing, or monitoring.",
+    patientAskAbout:"Ask a doctor or pharmacist about {topic}.",
+  },
+  pt:{
+    languageLabel:"Idioma",
+    searchPlaceholder:"Pesquisar medicamentos, suplementos e alimentos...",
+    searchMode:"Pesquisar",
+    browseMode:"Ver por categoria",
+    audienceLabel:"Público",
+    patientAudience:"Paciente",
+    clinicianAudience:"Clínico",
+    tabOverview:"Resumo",
+    tabMechanisms:"Mecanismos",
+    tabGenes:"Genes + Metabólitos",
+    tabTiming:"Tempo + Níveis",
+    tabEvidence:"Evidência",
+    tabReview:"Revisão",
+    findingTitlePatient:"Notas de segurança",
+    findingTitleClinician:"Achados de interação",
+    mainSafetyNote:"Principal nota de segurança",
+    highestPriority:"Maior prioridade",
+    viewNote:"Ver nota",
+    viewFinding:"Ver achado",
+    nextStep:"Próximo passo",
+    nextReview:"Próxima revisão",
+    add2:"Adicione 2+",
+    highPriorityInteractionFound:"Interação importante encontrada",
+    monitoringMayBeNeeded:"Pode ser necessário acompanhamento",
+    noMajorInteractionSignalFound:"Nenhum sinal importante de interação encontrado",
+    checkedNoSevere:"Foram verificados {count} itens. O Diognosis não encontrou uma interação grave direta, mas genes, vias de transporte, metabólitos e dose ainda podem importar.",
+    severeFindingsSummary:"{count} achado(s) grave(s){pairs}. Revise estes achados antes de mudar doses ou adicionar mais itens.",
+    startSevereFindings:"Comece pelos achados graves e depois revise os níveis ajustados por genes.",
+    reviewLevelChanges:"Revise mudanças de níveis e notas genéticas para medicamentos sensíveis à dose.",
+    addAnotherSubstanceHeadline:"Adicione outro item para verificar interações",
+    singleSubstanceContext:"Contexto de genes, metabólitos e níveis aparece abaixo quando disponível. Para risco de interação, são necessários pelo menos dois itens.",
+    addSecondSubstance:"Adicione um segundo medicamento, suplemento, erva, alimento ou substância recreativa.",
+    alsoCheckPrefix:"Verifique também:",
+    noFindingsPatient:"Ainda não há notas de segurança para esta lista. Genes, metabólitos, tempo e dose ainda podem importar.",
+    noFindingsClinical:"Ainda não há achados de interação para esta lista. Evidência, genética, metabólitos e tempo ainda podem importar.",
+    findingCount:"{count} alerta(s)",
+    groupedConcernsMore:"Mostrando 8 de {count} alertas agrupados. O detalhe técnico está disponível em Revisão.",
+    overviewGroupsConcerns:"O resumo agrupa sinais relacionados a vias, metabólitos, tempo e evidência. Detalhes técnicos permanecem em Revisão.",
+    whatThisMeans:"O que isto significa",
+    whatChanged:"O que mudou",
+    whyItMatters:"Por que importa",
+    whatToAsk:"O que perguntar",
+    whatToReview:"O que revisar",
+    evidence:"Evidência",
+    supportingDetail:"Detalhe de apoio",
+    currentStack:"lista atual",
+    whyThisMatters:"Por que isto importa",
+    whatChanges:"O que muda",
+    nextReviewStep:"Próximo passo de revisão",
+    noMatches:"Nenhum resultado encontrado",
+    medEmpty:"Adicione medicamentos, suplementos ou alimentos acima para ver como interagem",
+    patientBleedingSerious:"Esta combinação pode aumentar risco ligado a sangramento ou coagulação e pode precisar de acompanhamento mais próximo.",
+    patientBleedingMonitor:"Esta combinação pode afetar o acompanhamento de sangramento ou coagulação.",
+    patientRhythmSerious:"Esta combinação pode aumentar risco de ritmo cardíaco e deve ser verificada com cuidado.",
+    patientRhythmMonitor:"Esta combinação pode acrescentar preocupações de acompanhamento do ritmo cardíaco.",
+    patientSerotonin:"Esta combinação pode aumentar risco de efeitos relacionados à serotonina.",
+    patientSedation:"Esta combinação pode aumentar sonolência, confusão, problemas de respiração ou risco de queda.",
+    patientExposure:"Isto pode mudar a força ou a duração do efeito de um medicamento.",
+    patientImportant:"Esta é a nota de segurança mais importante encontrada para a lista atual.",
+    patientSafetyNote:"Esta é uma nota de segurança para revisar na lista atual.",
+    patientDifferentPlan:"A combinação pode precisar de outro plano, acompanhamento extra ou revisão profissional antes do uso.",
+    patientContextMatters:"O mesmo medicamento pode agir de forma diferente conforme a lista completa, dose, horário e resultados genéticos.",
+    patientAskGeneric:"Pergunte a um médico ou farmacêutico se esta lista precisa de outro plano, dose, horário ou acompanhamento.",
+    patientAskAbout:"Pergunte a um médico ou farmacêutico sobre {topic}.",
+  },
+  es:{
+    languageLabel:"Idioma",
+    searchPlaceholder:"Buscar medicamentos, suplementos y alimentos...",
+    searchMode:"Buscar",
+    browseMode:"Ver por categoría",
+    audienceLabel:"Audiencia",
+    patientAudience:"Paciente",
+    clinicianAudience:"Clínico",
+    tabOverview:"Resumen",
+    tabMechanisms:"Mecanismos",
+    tabGenes:"Genes + Metabolitos",
+    tabTiming:"Tiempo + Niveles",
+    tabEvidence:"Evidencia",
+    tabReview:"Revisión",
+    findingTitlePatient:"Notas de seguridad",
+    findingTitleClinician:"Hallazgos de interacción",
+    mainSafetyNote:"Nota principal de seguridad",
+    highestPriority:"Prioridad principal",
+    viewNote:"Ver nota",
+    viewFinding:"Ver hallazgo",
+    nextStep:"Siguiente paso",
+    nextReview:"Siguiente revisión",
+    add2:"Añada 2+",
+    highPriorityInteractionFound:"Se encontró una interacción importante",
+    monitoringMayBeNeeded:"Puede ser necesario seguimiento",
+    noMajorInteractionSignalFound:"No se encontró una señal importante de interacción",
+    checkedNoSevere:"Se revisaron {count} sustancias. Diognosis no encontró una interacción directa grave, pero genes, transportadores, metabolitos y dosis aún pueden importar.",
+    severeFindingsSummary:"{count} hallazgo(s) grave(s){pairs}. Revise estos hallazgos antes de cambiar dosis o añadir más sustancias.",
+    startSevereFindings:"Empiece por los hallazgos graves y luego revise los niveles ajustados por genes.",
+    reviewLevelChanges:"Revise cambios de niveles y notas genéticas para sustancias sensibles a la dosis.",
+    addAnotherSubstanceHeadline:"Añada otra sustancia para revisar interacciones",
+    singleSubstanceContext:"El contexto de genes, metabolitos y niveles aparece abajo cuando está disponible. El riesgo de interacción necesita al menos dos sustancias.",
+    addSecondSubstance:"Añada un segundo medicamento, suplemento, hierba, alimento o sustancia recreativa.",
+    alsoCheckPrefix:"Revise también:",
+    noFindingsPatient:"Aún no hay notas de seguridad para esta lista. Genes, metabolitos, tiempo y dosis aún pueden importar.",
+    noFindingsClinical:"Aún no hay hallazgos de interacción para esta lista. Evidencia, genética, metabolitos y tiempo aún pueden importar.",
+    findingCount:"{count} nota(s)",
+    groupedConcernsMore:"Se muestran 8 de {count} notas agrupadas. El detalle técnico está disponible en Revisión.",
+    overviewGroupsConcerns:"El resumen agrupa señales relacionadas con vías, metabolitos, tiempo y evidencia. Los detalles técnicos siguen en Revisión.",
+    whatThisMeans:"Qué significa",
+    whatChanged:"Qué cambió",
+    whyItMatters:"Por qué importa",
+    whatToAsk:"Qué preguntar",
+    whatToReview:"Qué revisar",
+    evidence:"Evidencia",
+    supportingDetail:"Detalle de apoyo",
+    currentStack:"lista actual",
+    whyThisMatters:"Por qué esto importa",
+    whatChanges:"Qué cambia",
+    nextReviewStep:"Siguiente paso de revisión",
+    noMatches:"No se encontraron resultados",
+    medEmpty:"Añada medicamentos, suplementos o alimentos arriba para ver cómo interactúan",
+    patientBleedingSerious:"Esta combinación puede aumentar el riesgo relacionado con sangrado o coagulación y puede necesitar seguimiento más cercano.",
+    patientBleedingMonitor:"Esta combinación puede afectar el seguimiento de sangrado o coagulación.",
+    patientRhythmSerious:"Esta combinación puede aumentar el riesgo de ritmo cardíaco y debe revisarse con cuidado.",
+    patientRhythmMonitor:"Esta combinación puede añadir preocupaciones de seguimiento del ritmo cardíaco.",
+    patientSerotonin:"Esta combinación puede aumentar el riesgo de efectos relacionados con la serotonina.",
+    patientSedation:"Esta combinación puede aumentar somnolencia, confusión, problemas respiratorios o riesgo de caídas.",
+    patientExposure:"Esto puede cambiar la fuerza o la duración del efecto de un medicamento.",
+    patientImportant:"Esta es la nota de seguridad más importante encontrada para la lista actual.",
+    patientSafetyNote:"Esta es una nota de seguridad para revisar en la lista actual.",
+    patientDifferentPlan:"La combinación puede necesitar otro plan, seguimiento adicional o revisión profesional antes de usarla.",
+    patientContextMatters:"El mismo medicamento puede comportarse de forma diferente según la lista completa, dosis, horario y resultados genéticos.",
+    patientAskGeneric:"Pregunte a un médico o farmacéutico si esta lista necesita otro plan, dosis, horario o seguimiento.",
+    patientAskAbout:"Pregunte a un médico o farmacéutico sobre {topic}.",
+  },
+  zh:{
+    languageLabel:"语言",
+    searchPlaceholder:"搜索药物、补充剂、食物...",
+    searchMode:"搜索",
+    browseMode:"按类别浏览",
+    audienceLabel:"受众",
+    patientAudience:"患者",
+    clinicianAudience:"临床",
+    tabOverview:"概览",
+    tabMechanisms:"机制",
+    tabGenes:"基因 + 代谢物",
+    tabTiming:"时间 + 水平",
+    tabEvidence:"证据",
+    tabReview:"审核",
+    findingTitlePatient:"安全提示",
+    findingTitleClinician:"相互作用发现",
+    mainSafetyNote:"主要安全提示",
+    highestPriority:"最高优先级",
+    viewNote:"查看提示",
+    viewFinding:"查看发现",
+    nextStep:"下一步",
+    nextReview:"下一项审核",
+    add2:"添加 2 个以上",
+    highPriorityInteractionFound:"发现重要相互作用",
+    monitoringMayBeNeeded:"可能需要监测",
+    noMajorInteractionSignalFound:"未发现主要相互作用信号",
+    checkedNoSevere:"已检查 {count} 个项目。Diognosis 未发现严重的直接相互作用，但基因、转运、代谢物和剂量仍可能重要。",
+    severeFindingsSummary:"{count} 条严重发现{pairs}。更改剂量或添加项目之前，请先复查。",
+    startSevereFindings:"先查看严重发现，再查看按基因调整后的水平。",
+    reviewLevelChanges:"查看水平变化和对剂量敏感药物的基因提示。",
+    addAnotherSubstanceHeadline:"添加另一个项目以检查相互作用",
+    singleSubstanceContext:"有可用信息时，下方会显示基因、代谢物和药物水平背景。相互作用风险至少需要两个项目。",
+    addSecondSubstance:"添加第二种药物、补充剂、草药、食物或娱乐性物质。",
+    alsoCheckPrefix:"还要查看：",
+    noFindingsPatient:"此列表目前没有安全提示。基因、代谢物、时间和剂量仍可能重要。",
+    noFindingsClinical:"此列表目前没有相互作用发现。证据、遗传、代谢物和时间背景仍可能重要。",
+    findingCount:"{count} 条提示",
+    groupedConcernsMore:"显示 {count} 条分组提示中的 8 条。技术细节在“审核”中。",
+    overviewGroupsConcerns:"概览会把通路、代谢物、时间和证据相关信号分组。技术细节仍在“审核”中。",
+    whatThisMeans:"这意味着什么",
+    whatChanged:"发生了什么变化",
+    whyItMatters:"为什么重要",
+    whatToAsk:"该问什么",
+    whatToReview:"要复查什么",
+    evidence:"证据",
+    supportingDetail:"支持细节",
+    currentStack:"当前列表",
+    whyThisMatters:"为什么重要",
+    whatChanges:"会改变什么",
+    nextReviewStep:"下一步审核",
+    noMatches:"未找到匹配项",
+    medEmpty:"在上方添加药物、补充剂或食物，以查看它们如何相互作用",
+    patientBleedingSerious:"这种组合可能增加出血或凝血相关风险，可能需要更密切监测。",
+    patientBleedingMonitor:"这种组合可能影响出血或凝血相关监测。",
+    patientRhythmSerious:"这种组合可能增加心律风险，应仔细核对。",
+    patientRhythmMonitor:"这种组合可能增加心律监测方面的注意事项。",
+    patientSerotonin:"这种组合可能增加与血清素相关的副作用风险。",
+    patientSedation:"这种组合可能增加嗜睡、意识混乱、呼吸问题或跌倒风险。",
+    patientExposure:"这可能改变药物作用强度或持续时间。",
+    patientImportant:"这是当前列表中最重要的安全提示。",
+    patientSafetyNote:"这是当前列表中需要复查的安全提示。",
+    patientDifferentPlan:"这种组合在使用前可能需要不同方案、额外监测或专业人员复查。",
+    patientContextMatters:"同一种药物的表现可能因完整用药列表、剂量、时间和基因结果而不同。",
+    patientAskGeneric:"请咨询医生或药师：此列表是否需要不同方案、剂量、时间安排或监测。",
+    patientAskAbout:"请咨询医生或药师关于 {topic}。",
+  },
+  hi:{
+    languageLabel:"भाषा",
+    searchPlaceholder:"दवाएं, सप्लीमेंट, भोजन खोजें...",
+    searchMode:"खोजें",
+    browseMode:"श्रेणी से देखें",
+    audienceLabel:"दर्शक",
+    patientAudience:"मरीज़",
+    clinicianAudience:"क्लिनिशियन",
+    tabOverview:"सारांश",
+    tabMechanisms:"तरीके",
+    tabGenes:"जीन + मेटाबोलाइट",
+    tabTiming:"समय + स्तर",
+    tabEvidence:"साक्ष्य",
+    tabReview:"समीक्षा",
+    findingTitlePatient:"सुरक्षा नोट",
+    findingTitleClinician:"इंटरैक्शन निष्कर्ष",
+    mainSafetyNote:"मुख्य सुरक्षा नोट",
+    highestPriority:"सबसे अधिक प्राथमिकता",
+    viewNote:"नोट देखें",
+    viewFinding:"निष्कर्ष देखें",
+    nextStep:"अगला कदम",
+    nextReview:"अगली समीक्षा",
+    add2:"2+ जोड़ें",
+    highPriorityInteractionFound:"महत्वपूर्ण इंटरैक्शन मिला",
+    monitoringMayBeNeeded:"निगरानी की ज़रूरत हो सकती है",
+    noMajorInteractionSignalFound:"कोई बड़ा इंटरैक्शन संकेत नहीं मिला",
+    checkedNoSevere:"{count} चीज़ें जांची गईं। Diognosis को कोई गंभीर सीधा इंटरैक्शन नहीं मिला, लेकिन जीन, ट्रांसपोर्टर, मेटाबोलाइट और खुराक अब भी मायने रख सकते हैं।",
+    severeFindingsSummary:"{count} गंभीर नोट{pairs}। खुराक बदलने या और चीज़ें जोड़ने से पहले इन्हें देखें।",
+    startSevereFindings:"पहले गंभीर नोट देखें, फिर जीन के अनुसार बदले स्तर देखें।",
+    reviewLevelChanges:"खुराक-संवेदनशील दवाओं के लिए स्तर बदलाव और जीन नोट देखें।",
+    addAnotherSubstanceHeadline:"इंटरैक्शन देखने के लिए एक और चीज़ जोड़ें",
+    singleSubstanceContext:"उपलब्ध होने पर जीन, मेटाबोलाइट और स्तर की जानकारी नीचे दिखेगी। इंटरैक्शन जोखिम के लिए कम से कम दो चीज़ें चाहिए।",
+    addSecondSubstance:"दूसरी दवा, सप्लीमेंट, जड़ी-बूटी, भोजन या मनोरंजक पदार्थ जोड़ें।",
+    alsoCheckPrefix:"यह भी देखें:",
+    noFindingsPatient:"इस सूची के लिए अभी कोई सुरक्षा नोट नहीं है। जीन, मेटाबोलाइट, समय और खुराक अब भी मायने रख सकते हैं।",
+    noFindingsClinical:"इस सूची के लिए अभी कोई इंटरैक्शन निष्कर्ष नहीं है। साक्ष्य, जीन, मेटाबोलाइट और समय अब भी मायने रख सकते हैं।",
+    findingCount:"{count} सुरक्षा नोट",
+    groupedConcernsMore:"{count} समूहित नोटों में से 8 दिखाए जा रहे हैं। तकनीकी विवरण समीक्षा में हैं।",
+    overviewGroupsConcerns:"सारांश रास्तों, मेटाबोलाइट, समय और साक्ष्य संकेतों को समूहित करता है। तकनीकी विवरण समीक्षा में रहते हैं।",
+    whatThisMeans:"इसका मतलब",
+    whatChanged:"क्या बदला",
+    whyItMatters:"यह क्यों मायने रखता है",
+    whatToAsk:"क्या पूछें",
+    whatToReview:"क्या समीक्षा करें",
+    evidence:"साक्ष्य",
+    supportingDetail:"सहायक विवरण",
+    currentStack:"मौजूदा सूची",
+    whyThisMatters:"यह क्यों मायने रखता है",
+    whatChanges:"क्या बदलता है",
+    nextReviewStep:"अगला समीक्षा कदम",
+    noMatches:"कोई परिणाम नहीं मिला",
+    medEmpty:"ऊपर दवाएं, सप्लीमेंट या भोजन जोड़ें ताकि इंटरैक्शन देख सकें",
+    patientBleedingSerious:"यह संयोजन खून बहने या थक्का बनने से जुड़े जोखिम को बढ़ा सकता है और अधिक निगरानी की ज़रूरत हो सकती है।",
+    patientBleedingMonitor:"यह संयोजन खून बहने या थक्का बनने की निगरानी को प्रभावित कर सकता है।",
+    patientRhythmSerious:"यह संयोजन हृदय-ताल जोखिम बढ़ा सकता है और सावधानी से जांचना चाहिए।",
+    patientRhythmMonitor:"यह संयोजन हृदय-ताल निगरानी की चिंता जोड़ सकता है।",
+    patientSerotonin:"यह संयोजन सेरोटोनिन से जुड़े दुष्प्रभाव का जोखिम बढ़ा सकता है।",
+    patientSedation:"यह संयोजन नींद, भ्रम, सांस या गिरने का जोखिम बढ़ा सकता है।",
+    patientExposure:"यह बदल सकता है कि दवा कितनी असरदार है या कितनी देर तक सक्रिय रहती है।",
+    patientImportant:"यह मौजूदा सूची में मिला सबसे महत्वपूर्ण सुरक्षा नोट है।",
+    patientSafetyNote:"यह मौजूदा सूची के लिए समीक्षा योग्य सुरक्षा नोट है।",
+    patientDifferentPlan:"इस संयोजन के लिए उपयोग से पहले अलग योजना, अतिरिक्त निगरानी या पेशेवर समीक्षा की ज़रूरत हो सकती है।",
+    patientContextMatters:"एक ही दवा पूरी सूची, खुराक, समय और जीन परिणामों के आधार पर अलग तरह से काम कर सकती है।",
+    patientAskGeneric:"डॉक्टर या फार्मासिस्ट से पूछें कि क्या इस सूची के लिए अलग योजना, खुराक, समय या निगरानी चाहिए।",
+    patientAskAbout:"डॉक्टर या फार्मासिस्ट से {topic} के बारे में पूछें।",
+  },
+  ar:{
+    languageLabel:"اللغة",
+    searchPlaceholder:"ابحث عن أدوية أو مكملات أو أطعمة...",
+    searchMode:"بحث",
+    browseMode:"تصفح حسب الفئة",
+    audienceLabel:"الجمهور",
+    patientAudience:"المريض",
+    clinicianAudience:"الطبيب",
+    tabOverview:"ملخص",
+    tabMechanisms:"الآليات",
+    tabGenes:"الجينات + المستقلبات",
+    tabTiming:"التوقيت + المستويات",
+    tabEvidence:"الأدلة",
+    tabReview:"المراجعة",
+    findingTitlePatient:"ملاحظات السلامة",
+    findingTitleClinician:"نتائج التداخلات",
+    mainSafetyNote:"أهم ملاحظة سلامة",
+    highestPriority:"الأولوية الأعلى",
+    viewNote:"عرض الملاحظة",
+    viewFinding:"عرض النتيجة",
+    nextStep:"الخطوة التالية",
+    nextReview:"المراجعة التالية",
+    add2:"أضف 2+",
+    highPriorityInteractionFound:"تم العثور على تداخل مهم",
+    monitoringMayBeNeeded:"قد تكون هناك حاجة إلى متابعة",
+    noMajorInteractionSignalFound:"لم يتم العثور على إشارة تداخل مهمة",
+    checkedNoSevere:"تم فحص {count} عناصر. لم يجد Diognosis تداخلا مباشرا شديدا، لكن الجينات والناقلات والمستقلبات والجرعة قد تبقى مهمة.",
+    severeFindingsSummary:"{count} ملاحظة شديدة{pairs}. راجع هذه النتائج قبل تغيير الجرعات أو إضافة عناصر أخرى.",
+    startSevereFindings:"ابدأ بالملاحظات الشديدة، ثم راجع المستويات المعدلة حسب الجينات.",
+    reviewLevelChanges:"راجع تغيرات المستويات وملاحظات الجينات للأدوية الحساسة للجرعة.",
+    addAnotherSubstanceHeadline:"أضف عنصرا آخر لفحص التداخلات",
+    singleSubstanceContext:"تظهر معلومات الجينات والمستقلبات والمستويات أدناه عند توفرها. يحتاج خطر التداخل إلى عنصرين على الأقل.",
+    addSecondSubstance:"أضف دواء أو مكملا أو عشبة أو طعاما أو مادة ترفيهية ثانية.",
+    alsoCheckPrefix:"راجع أيضا:",
+    noFindingsPatient:"لا توجد ملاحظات سلامة لهذه القائمة حتى الآن. قد تبقى الجينات والمستقلبات والتوقيت والجرعة مهمة.",
+    noFindingsClinical:"لا توجد نتائج تداخل لهذه القائمة حتى الآن. قد تبقى الأدلة والجينات والمستقلبات والتوقيت مهمة.",
+    findingCount:"{count} ملاحظة",
+    groupedConcernsMore:"يتم عرض 8 من أصل {count} ملاحظات مجمعة. التفاصيل التقنية متاحة في المراجعة.",
+    overviewGroupsConcerns:"يلخص العرض إشارات المسارات والمستقلبات والتوقيت والأدلة. تبقى التفاصيل التقنية في المراجعة.",
+    whatThisMeans:"ماذا يعني هذا",
+    whatChanged:"ما الذي تغير",
+    whyItMatters:"لماذا يهم",
+    whatToAsk:"ماذا تسأل",
+    whatToReview:"ما الذي يجب مراجعته",
+    evidence:"الأدلة",
+    supportingDetail:"تفاصيل داعمة",
+    currentStack:"القائمة الحالية",
+    whyThisMatters:"لماذا يهم هذا",
+    whatChanges:"ما الذي يتغير",
+    nextReviewStep:"خطوة المراجعة التالية",
+    noMatches:"لم يتم العثور على نتائج",
+    medEmpty:"أضف أدوية أو مكملات أو أطعمة أعلاه لمعرفة كيفية تداخلها",
+    patientBleedingSerious:"قد يزيد هذا الجمع خطر النزيف أو التخثر وقد يحتاج إلى متابعة أقرب.",
+    patientBleedingMonitor:"قد يؤثر هذا الجمع في متابعة النزيف أو التخثر.",
+    patientRhythmSerious:"قد يزيد هذا الجمع خطر اضطراب نظم القلب ويجب فحصه بعناية.",
+    patientRhythmMonitor:"قد يضيف هذا الجمع مخاوف تتعلق بمتابعة نظم القلب.",
+    patientSerotonin:"قد يزيد هذا الجمع خطر الآثار الجانبية المرتبطة بالسيروتونين.",
+    patientSedation:"قد يزيد هذا الجمع النعاس أو التشوش أو مشاكل التنفس أو خطر السقوط.",
+    patientExposure:"قد يغير هذا قوة تأثير الدواء أو مدة بقائه فعالا.",
+    patientImportant:"هذه أهم ملاحظة سلامة وجدت في القائمة الحالية.",
+    patientSafetyNote:"هذه ملاحظة سلامة يجب مراجعتها في القائمة الحالية.",
+    patientDifferentPlan:"قد يحتاج هذا الجمع إلى خطة مختلفة أو متابعة إضافية أو مراجعة مهنية قبل الاستخدام.",
+    patientContextMatters:"قد يتصرف الدواء نفسه بشكل مختلف حسب القائمة الكاملة والجرعة والتوقيت ونتائج الجينات.",
+    patientAskGeneric:"اسأل الطبيب أو الصيدلي إن كانت هذه القائمة تحتاج إلى خطة أو جرعة أو توقيت أو متابعة مختلفة.",
+    patientAskAbout:"اسأل الطبيب أو الصيدلي عن {topic}.",
+  },
+  fr:{
+    languageLabel:"Langue",
+    searchPlaceholder:"Rechercher médicaments, compléments, aliments...",
+    searchMode:"Rechercher",
+    browseMode:"Par catégorie",
+    audienceLabel:"Public",
+    patientAudience:"Patient",
+    clinicianAudience:"Clinicien",
+    tabOverview:"Résumé",
+    tabMechanisms:"Mécanismes",
+    tabGenes:"Gènes + Métabolites",
+    tabTiming:"Temps + Niveaux",
+    tabEvidence:"Preuves",
+    tabReview:"Revue",
+    findingTitlePatient:"Notes de sécurité",
+    findingTitleClinician:"Résultats d'interaction",
+    mainSafetyNote:"Note de sécurité principale",
+    highestPriority:"Priorité la plus haute",
+    viewNote:"Voir la note",
+    viewFinding:"Voir le résultat",
+    nextStep:"Étape suivante",
+    nextReview:"Revue suivante",
+    add2:"Ajouter 2+",
+    highPriorityInteractionFound:"Interaction importante détectée",
+    monitoringMayBeNeeded:"Une surveillance peut être nécessaire",
+    noMajorInteractionSignalFound:"Aucun signal majeur d'interaction détecté",
+    checkedNoSevere:"{count} éléments vérifiés. Diognosis n'a pas trouvé d'interaction directe grave, mais les gènes, transporteurs, métabolites et doses peuvent encore compter.",
+    severeFindingsSummary:"{count} résultat(s) grave(s){pairs}. Revoyez ces résultats avant de changer les doses ou d'ajouter d'autres éléments.",
+    startSevereFindings:"Commencez par les résultats graves, puis revoyez les niveaux ajustés selon les gènes.",
+    reviewLevelChanges:"Revoyez les changements de niveaux et les notes génétiques pour les médicaments sensibles à la dose.",
+    addAnotherSubstanceHeadline:"Ajoutez un autre élément pour vérifier les interactions",
+    singleSubstanceContext:"Le contexte génétique, métabolique et PK apparaît ci-dessous lorsqu'il est disponible. Le risque d'interaction demande au moins deux éléments.",
+    addSecondSubstance:"Ajoutez un second médicament, complément, aliment, plante ou substance récréative.",
+    alsoCheckPrefix:"À vérifier aussi :",
+    noFindingsPatient:"Aucune note de sécurité pour cette liste pour l'instant. Les gènes, métabolites, horaires et doses peuvent encore compter.",
+    noFindingsClinical:"Aucun résultat d'interaction pour cette liste pour l'instant. Les preuves, gènes, métabolites et horaires peuvent encore compter.",
+    findingCount:"{count} note(s)",
+    groupedConcernsMore:"Affichage de 8 notes groupées sur {count}. Le détail technique est disponible dans Revue.",
+    overviewGroupsConcerns:"Le résumé regroupe les signaux liés aux voies, métabolites, temps et preuves. Les détails techniques restent dans Revue.",
+    whatThisMeans:"Ce que cela signifie",
+    whatChanged:"Ce qui a changé",
+    whyItMatters:"Pourquoi c'est important",
+    whatToAsk:"Que demander",
+    whatToReview:"Que revoir",
+    evidence:"Preuves",
+    supportingDetail:"Détail d'appui",
+    currentStack:"liste actuelle",
+    whyThisMatters:"Pourquoi c'est important",
+    whatChanges:"Ce qui change",
+    nextReviewStep:"Étape de revue suivante",
+    noMatches:"Aucun résultat trouvé",
+    medEmpty:"Ajoutez des médicaments, compléments ou aliments ci-dessus pour voir leurs interactions",
+    patientBleedingSerious:"Cette association peut augmenter le risque lié au saignement ou à la coagulation et peut nécessiter une surveillance plus étroite.",
+    patientBleedingMonitor:"Cette association peut affecter la surveillance du saignement ou de la coagulation.",
+    patientRhythmSerious:"Cette association peut augmenter le risque de trouble du rythme cardiaque et doit être vérifiée avec soin.",
+    patientRhythmMonitor:"Cette association peut ajouter des points de surveillance du rythme cardiaque.",
+    patientSerotonin:"Cette association peut augmenter le risque d'effets liés à la sérotonine.",
+    patientSedation:"Cette association peut augmenter somnolence, confusion, problèmes respiratoires ou risque de chute.",
+    patientExposure:"Cela peut changer la force d'action d'un médicament ou la durée pendant laquelle il reste actif.",
+    patientImportant:"C'est la note de sécurité la plus importante trouvée pour la liste actuelle.",
+    patientSafetyNote:"C'est une note de sécurité à revoir pour la liste actuelle.",
+    patientDifferentPlan:"Cette association peut nécessiter un autre plan, une surveillance supplémentaire ou une revue professionnelle avant utilisation.",
+    patientContextMatters:"Le même médicament peut agir différemment selon la liste complète, la dose, le moment et les résultats génétiques.",
+    patientAskGeneric:"Demandez à un médecin ou pharmacien si cette liste nécessite un autre plan, une autre dose, un autre horaire ou une surveillance.",
+    patientAskAbout:"Demandez à un médecin ou pharmacien au sujet de {topic}.",
+  },
+};
 const TAB_ALIASES = {
   safety:"overview",
   summary:"overview",
@@ -96,6 +571,44 @@ function normalizeAudienceMode(value) {
   return null;
 }
 
+function normalizeLanguageMode(value) {
+  const key = String(value || "").trim().toLowerCase().replace(/_/g, "-");
+  if (!key) return null;
+  if (LANGUAGE_MODES.includes(key)) return key;
+  if (key === "en-us" || key === "en-gb" || key === "english") return "en";
+  if (key === "pt-br" || key === "pt-pt" || key === "portuguese" || key === "portugues" || key === "português") return "pt";
+  if (key === "es-es" || key === "es-mx" || key === "spanish" || key === "espanol" || key === "español") return "es";
+  if (key === "zh-cn" || key === "zh-hans" || key === "chinese" || key === "mandarin" || key === "simplified-chinese") return "zh";
+  if (key === "hindi" || key === "indian" || key === "hi-in") return "hi";
+  if (key === "arabic" || key === "ar-sa" || key === "ar-ae") return "ar";
+  if (key === "french" || key === "fr-fr" || key === "fr-ca") return "fr";
+  return null;
+}
+
+function uiText(key, vars = {}) {
+  const table = UI_TEXT[languageMode] || UI_TEXT.en;
+  let text = table[key] ?? UI_TEXT.en[key] ?? key;
+  Object.entries(vars || {}).forEach(([name, value]) => {
+    text = text.replace(new RegExp(`\\{${name}\\}`, "g"), String(value ?? ""));
+  });
+  return text;
+}
+
+function isEnglishLanguage() {
+  return languageMode === "en";
+}
+
+function isRtlLanguage() {
+  return languageMode === "ar";
+}
+
+function formatConcernCount(count) {
+  return uiText("findingCount", {
+    count,
+    plural: count === 1 ? "" : "s",
+  });
+}
+
 function isPatientAudience() {
   return audienceMode === "patient";
 }
@@ -104,6 +617,14 @@ function setAudienceMode(mode, options = {}) {
   audienceMode = normalizeAudienceMode(mode) || "clinician";
   if (isPatientAudience() && activeTab !== "overview") setActiveTab("overview");
   lazyRenderState = { evidenceKey:"", reviewKey:"" };
+  syncAudienceModeUI();
+  if (options.render !== false) renderAll();
+}
+
+function setLanguageMode(mode, options = {}) {
+  languageMode = normalizeLanguageMode(mode) || "en";
+  lazyRenderState = { evidenceKey:"", reviewKey:"" };
+  syncLanguageModeUI();
   syncAudienceModeUI();
   if (options.render !== false) renderAll();
 }
@@ -117,7 +638,43 @@ function syncAudienceModeUI() {
     btn.setAttribute("aria-pressed", mode === audienceMode ? "true" : "false");
   }
   const findingTitle = document.getElementById("findingTitle");
-  if (findingTitle) findingTitle.textContent = isPatientAudience() ? "Safety Notes" : "Interaction Findings";
+  if (findingTitle) findingTitle.textContent = isPatientAudience() ? uiText("findingTitlePatient") : uiText("findingTitleClinician");
+}
+
+function syncLanguageModeUI() {
+  if (document.documentElement) {
+    document.documentElement.lang = languageMode;
+    document.documentElement.dir = isRtlLanguage() ? "rtl" : "ltr";
+  }
+  if (document.body) document.body.dataset.language = languageMode;
+  const select = document.getElementById("languageSelect");
+  if (select) select.value = languageMode;
+  const searchInput = document.getElementById("searchInput");
+  if (searchInput) searchInput.placeholder = uiText("searchPlaceholder");
+  const searchModeBtn = document.getElementById("searchModeBtn");
+  if (searchModeBtn) searchModeBtn.textContent = uiText("searchMode");
+  const browseModeBtn = document.getElementById("browseModeBtn");
+  if (browseModeBtn) browseModeBtn.textContent = uiText("browseMode");
+  const audienceLabel = document.getElementById("audienceLabel");
+  if (audienceLabel) audienceLabel.textContent = uiText("audienceLabel");
+  const patientBtn = document.getElementById("audience-patient");
+  if (patientBtn) patientBtn.textContent = uiText("patientAudience");
+  const clinicianBtn = document.getElementById("audience-clinician");
+  if (clinicianBtn) clinicianBtn.textContent = uiText("clinicianAudience");
+  const languageLabel = document.getElementById("languageLabel");
+  if (languageLabel) languageLabel.textContent = uiText("languageLabel");
+  const tabLabels = {
+    "tabbtn-overview":"tabOverview",
+    "tabbtn-mechanisms":"tabMechanisms",
+    "tabbtn-genes-metabolites":"tabGenes",
+    "tabbtn-timing-levels":"tabTiming",
+    "tabbtn-evidence":"tabEvidence",
+    "tabbtn-review":"tabReview",
+  };
+  Object.entries(tabLabels).forEach(([id, key]) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = uiText(key);
+  });
 }
 
 function setViewMode(m) {
@@ -179,6 +736,7 @@ function getRenderCacheKey() {
     genetics: userGenetics || {},
     doses: typeof drugDoses !== "undefined" ? drugDoses : {},
     audience: audienceMode,
+    language: languageMode,
   });
 }
 
@@ -275,7 +833,7 @@ function renderSummaryBar() {
     bar.style.display = "none";
     tabBar.style.display = "none";
     tabPanels.forEach(panel => { panel.style.display = "none"; });
-    if (overviewBtn) overviewBtn.innerHTML = "Overview";
+    if (overviewBtn) overviewBtn.innerHTML = uiText("tabOverview");
     return;
   }
 
@@ -287,7 +845,7 @@ function renderSummaryBar() {
 
   let riskClass = "neutral";
   let scoreValue = "—";
-  let scoreLabel = "Add 2+";
+  let scoreLabel = uiText("add2");
   let headline = "";
   let summaryCopy = "";
   let nextStep = "";
@@ -311,23 +869,27 @@ function renderSummaryBar() {
     scoreValue = interactionScore;
     scoreLabel = risk.level.split(" ")[0];
     const topSevere = severePairs.slice(0, 2).join(", ");
-    headline = severeCount > 0 ? "High-priority interaction found" :
-      interactionScore >= 30 ? "Some monitoring may be needed" :
-      "No major interaction signal found";
+    headline = severeCount > 0 ? uiText("highPriorityInteractionFound") :
+      interactionScore >= 30 ? uiText("monitoringMayBeNeeded") :
+      uiText("noMajorInteractionSignalFound");
     summaryCopy = severeCount > 0
-      ? `${severeCount} severe finding${severeCount>1?"s":""}${topSevere ? `: ${topSevere}` : ""}. Review the findings before changing doses or adding more substances.`
-      : `Checked ${activeStack.length} substances. Diognosis did not find a severe pairwise interaction, but genotype, transporter, metabolite, and dose context may still matter.`;
+      ? uiText("severeFindingsSummary", {
+          count:severeCount,
+          plural:severeCount > 1 ? "s" : "",
+          pairs:topSevere ? `: ${topSevere}` : "",
+        })
+      : uiText("checkedNoSevere", { count:activeStack.length });
     nextStep = severeCount > 0
-      ? "Start with the severe findings, then review genotype-adjusted levels."
-      : "Review level changes and genotype notes for dose-sensitive substances.";
+      ? uiText("startSevereFindings")
+      : uiText("reviewLevelChanges");
     if (priorityInteraction) {
       priorityStory = buildInteractionPriorityStory(priorityInteraction);
     }
   } else {
     genotypePriority = typeof getHighestGenotypePrioritySignal === "function" ? getHighestGenotypePrioritySignal() : null;
-    headline = "Add another substance to check interactions";
-    summaryCopy = "Single-substance pharmacogenomic, metabolite, and PK context appears below when available. Interaction risk needs at least two substances.";
-    nextStep = "Add a second medication, supplement, herb, food, or recreational substance.";
+    headline = uiText("addAnotherSubstanceHeadline");
+    summaryCopy = uiText("singleSubstanceContext");
+    nextStep = uiText("addSecondSubstance");
   }
 
   if (!genotypePriority && typeof getHighestGenotypePrioritySignal === "function") {
@@ -341,10 +903,17 @@ function renderSummaryBar() {
     summaryCopy = genotypePriority.summary;
     nextStep = genotypePriority.nextStep;
     priorityStory = genotypePriority.story || buildGenotypePriorityStory(genotypePriority);
+    if (isPatientAudience() && !isEnglishLanguage()) {
+      headline = uiText("highPriorityInteractionFound");
+      summaryCopy = uiText("patientDifferentPlan");
+      nextStep = uiText("patientAskGeneric");
+    }
   }
   if (genotypePriority && genotypePriority.score >= 70 && genotypePriority.score <= interactionScore && summaryCopy) {
-    summaryCopy = `${summaryCopy} Also check: ${genotypePriority.summary}`;
-    nextStep = "Start with the severe findings, then review genotype/metabolite warnings.";
+    summaryCopy = isEnglishLanguage()
+      ? `${summaryCopy} ${uiText("alsoCheckPrefix")} ${genotypePriority.summary}`
+      : summaryCopy;
+    nextStep = uiText("startSevereFindings");
   }
   if (!priorityStory) {
     priorityStory = buildDefaultPriorityStory(activeStack.length);
@@ -355,9 +924,9 @@ function renderSummaryBar() {
   const jumpTab = primaryPresentation ? primaryPresentation.targetTab : (isGenotypePriority ? (genotypePriority.targetTab || "genes-metabolites") : "overview");
   const jumpTarget = primaryPresentation ? primaryPresentation.targetElementId : (isGenotypePriority ? (genotypePriority.targetElementId || "genotypeSection") : "findingSection");
 
-  const summaryKicker = isPatientAudience() ? "Main Safety Note" : "Highest Priority";
-  const jumpLabel = isPatientAudience() ? "View note" : "View finding";
-  const nextLabel = isPatientAudience() ? "Next step" : "Next review";
+  const summaryKicker = isPatientAudience() ? uiText("mainSafetyNote") : uiText("highestPriority");
+  const jumpLabel = isPatientAudience() ? uiText("viewNote") : uiText("viewFinding");
+  const nextLabel = isPatientAudience() ? uiText("nextStep") : uiText("nextReview");
 
     bar.innerHTML = `<div class="summary-card">
     <div class="summary-main">
@@ -375,7 +944,7 @@ function renderSummaryBar() {
     <div class="summary-next"><span class="summary-next-pill">${safePublicHtml(nextLabel)}</span><span>${safePublicHtml(nextStep)}</span></div>
   </div>`;
   const badge = severeCount > 0 ? `<span class="tab-badge">${severeCount}</span>` : "";
-  if (overviewBtn) overviewBtn.innerHTML = "Overview" + badge;
+  if (overviewBtn) overviewBtn.innerHTML = uiText("tabOverview") + badge;
 }
 
 function renderInteractionFindingsOverview(risk) {
@@ -400,16 +969,16 @@ function renderInteractionFindingsOverview(risk) {
       return currentPublicFindingPresentations;
     }
     section.style.display = "";
-    body.innerHTML = '<div class="finding-empty">No interaction findings for this stack yet. Evidence, genetics, metabolite, and timing context may still matter.</div>';
+    body.innerHTML = `<div class="finding-empty">${safePublicHtml(isPatientAudience() ? uiText("noFindingsPatient") : uiText("noFindingsClinical"))}</div>`;
     if (count) count.textContent = "";
     return currentPublicFindingPresentations;
   }
   section.style.display = "";
-  if (count) count.textContent = `${currentPublicFindingPresentations.length} concern${currentPublicFindingPresentations.length === 1 ? "" : "s"}`;
+  if (count) count.textContent = formatConcernCount(currentPublicFindingPresentations.length);
   body.innerHTML = currentPublicFindingPresentations.slice(0, 8).map(renderPublicFindingCard).join("") +
     (currentPublicFindingPresentations.length > 8
-      ? `<div class="finding-empty">Showing 8 of ${currentPublicFindingPresentations.length} grouped concerns. Detailed technical context is available in Review.</div>`
-      : `<div class="finding-empty">Overview groups related pathway, metabolite, timing, and evidence signals into clinical concerns. Technical details remain available in Review.</div>`);
+      ? `<div class="finding-empty">${safePublicHtml(uiText("groupedConcernsMore", { count:currentPublicFindingPresentations.length }))}</div>`
+      : `<div class="finding-empty">${safePublicHtml(uiText("overviewGroupsConcerns"))}</div>`);
   return currentPublicFindingPresentations;
 }
 
@@ -673,11 +1242,11 @@ function renderPublicFindingCard(presentation) {
   const whyText = patient ? patientFindingStepText(presentation, "why") : presentation.whyItMatters;
   const reviewText = patient ? patientFindingStepText(presentation, "review") : presentation.whatToReview;
   const detailButton = !patient && presentation.detailTab && presentation.detailElementId
-    ? `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('${safeAttr(presentation.detailTab)}','${safeAttr(presentation.detailElementId)}')">Supporting detail</button>`
+    ? `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('${safeAttr(presentation.detailTab)}','${safeAttr(presentation.detailElementId)}')">${safePublicHtml(uiText("supportingDetail"))}</button>`
     : "";
-  const evidenceStep = patient ? "" : renderFindingStep("Evidence", presentation.evidenceSummary);
+  const evidenceStep = patient ? "" : renderFindingStep(uiText("evidence"), presentation.evidenceSummary);
   const technicalDetail = patient ? "" : `<details class="finding-support-details">
-      <summary>Supporting detail</summary>
+      <summary>${safePublicHtml(uiText("supportingDetail"))}</summary>
       ${supportingSignals}
       <div class="finding-meta">
         <span class="finding-tag type">${sourceLabel}</span>
@@ -691,15 +1260,15 @@ function renderPublicFindingCard(presentation) {
     <div class="finding-top">
       <div>
         <div class="finding-title">${safePublicHtml(presentation.title)}</div>
-        <div class="finding-subtitle">${safePublicHtml((presentation.affectedSubstances || []).join(" + ") || "current stack")}</div>
+        <div class="finding-subtitle">${safePublicHtml((presentation.affectedSubstances || []).join(" + ") || uiText("currentStack"))}</div>
       </div>
       <span class="finding-sev ${severity}">${safePublicHtml(severity)}</span>
     </div>
     ${actorHtml ? `<div class="finding-actors">${actorHtml}</div>` : ""}
     <div class="finding-explain">
-      ${renderFindingStep(patient ? "What this means" : "What changed", changedText)}
-      ${renderFindingStep("Why it matters", whyText)}
-      ${renderFindingStep(patient ? "What to ask" : "What to review", reviewText)}
+      ${renderFindingStep(patient ? uiText("whatThisMeans") : uiText("whatChanged"), changedText)}
+      ${renderFindingStep(uiText("whyItMatters"), whyText)}
+      ${renderFindingStep(patient ? uiText("whatToAsk") : uiText("whatToReview"), reviewText)}
       ${evidenceStep}
     </div>
     <div class="finding-actions">${detailButton}</div>
@@ -721,34 +1290,35 @@ function patientFindingStepText(presentation = {}, field = "changed") {
   if (field === "changed") {
     if (/bleed|inr|anticoag|warfarin|platelet|clot/.test(lower)) {
       return serious
-        ? "This combination may raise bleeding or clotting-related risk and may need closer monitoring."
-        : "This combination may affect bleeding or clotting-related monitoring.";
+        ? uiText("patientBleedingSerious")
+        : uiText("patientBleedingMonitor");
     }
     if (/qt|torsades|arrhythm|heart rhythm|bradycard/.test(lower)) {
       return serious
-        ? "This combination may increase heart-rhythm risk and should be checked carefully."
-        : "This combination may add heart-rhythm monitoring concerns.";
+        ? uiText("patientRhythmSerious")
+        : uiText("patientRhythmMonitor");
     }
     if (/serotonin|ssri|snri|maoi/.test(lower)) {
-      return "This combination may add serotonin-related side-effect risk.";
+      return uiText("patientSerotonin");
     }
     if (/sedation|fall|cns|opioid|benzodiazepine|drows/.test(lower)) {
-      return "This combination may increase sleepiness, confusion, breathing, or fall risk.";
+      return uiText("patientSedation");
     }
     if (/auc|exposure|level|concentration|metabol|cyp|enzyme|genotype|pgx|clearance/.test(lower)) {
-      return "This may change how strongly a medication works or how long it stays active.";
+      return uiText("patientExposure");
     }
     return serious
-      ? "This is the most important safety note found for the current list."
-      : "This is a safety note to review for the current list.";
+      ? uiText("patientImportant")
+      : uiText("patientSafetyNote");
   }
   if (field === "why") {
     if (/avoid|contraindicat|severe|critical|high risk/.test(lower) || serious) {
-      return "The combination may need a different plan, extra monitoring, or professional review before use.";
+      return uiText("patientDifferentPlan");
     }
-    return "The same medication can behave differently depending on the full list, dose, timing, and gene results.";
+    return uiText("patientContextMatters");
   }
   const review = String(presentation.whatToReview || "").replace(/\s+/g, " ").trim();
+  if (!isEnglishLanguage()) return uiText("patientAskGeneric");
   if (/ask|call|contact/i.test(review)) return shortenPatientReviewText(review);
   const cleaned = review
     .replace(/^review whether\s+/i, "whether ")
@@ -758,7 +1328,7 @@ function patientFindingStepText(presentation = {}, field = "changed") {
     .replace(/\bAUC\b/g, "level")
     .replace(/\bphenoconversion\b/gi, "pathway change");
   const base = cleaned || "this medication list needs a different plan, dose, timing, or monitoring";
-  return shortenPatientReviewText(`Ask a doctor or pharmacist about ${base}.`);
+  return shortenPatientReviewText(uiText("patientAskAbout", { topic:base }));
 }
 
 function shortenPatientReviewText(text) {
@@ -930,10 +1500,13 @@ function getPriorityEvidenceLayer(refs = [], inlineEvidence = null, source = "")
 function renderPriorityStory(story) {
   if (!story) return "";
   const patient = isPatientAudience();
+  const why = patient && !isEnglishLanguage() ? uiText("patientContextMatters") : story.why;
+  const changes = patient && !isEnglishLanguage() ? uiText("patientExposure") : story.changes;
+  const review = patient && !isEnglishLanguage() ? uiText("patientAskGeneric") : story.review;
   return `<div class="summary-story">
-    <div class="summary-story-row"><strong>Why this matters</strong>${safePublicHtml(story.why)}</div>
-    <div class="summary-story-row"><strong>${safePublicHtml(patient ? "What this means" : "What changes")}</strong>${safePublicHtml(story.changes)}</div>
-    <div class="summary-story-row"><strong>${safePublicHtml(patient ? "What to ask" : "Next review step")}</strong>${safePublicHtml(story.review)}</div>
+    <div class="summary-story-row"><strong>${safePublicHtml(uiText("whyThisMatters"))}</strong>${safePublicHtml(why)}</div>
+    <div class="summary-story-row"><strong>${safePublicHtml(patient ? uiText("whatThisMeans") : uiText("whatChanges"))}</strong>${safePublicHtml(changes)}</div>
+    <div class="summary-story-row"><strong>${safePublicHtml(patient ? uiText("whatToAsk") : uiText("nextReviewStep"))}</strong>${safePublicHtml(review)}</div>
   </div>`;
 }
 
@@ -1014,7 +1587,7 @@ function onSearch(q) {
     return true;
   });
   const actorMatches = findSupplementActorMatches(q);
-  if (!matches.length && !actorMatches.length) { el.innerHTML = '<div class="sr-item"><span class="sr-name" style="color:var(--text2)">No matches found</span></div>'; el.classList.add("show"); return; }
+  if (!matches.length && !actorMatches.length) { el.innerHTML = `<div class="sr-item"><span class="sr-name" style="color:var(--text2)">${safePublicHtml(uiText("noMatches"))}</span></div>`; el.classList.add("show"); return; }
 
   // Group by practical browse category, while preserving exact class on the row.
   const groups = {};
@@ -1497,6 +2070,7 @@ function currentStackShareUrl(tab = activeTab) {
   }
   for (const token of activeGenotypeUrlTokens()) params.push(["genotype", token]);
   if (isPatientAudience()) params.push(["audience", audienceMode]);
+  if (!isEnglishLanguage()) params.push(["lang", languageMode]);
   if (tab) params.push(["tab", tab]);
   const query = params
     .map(([key, value]) => `${encodeURIComponent(key)}=${encodeUrlStateValueLocal(value)}`)
@@ -1571,6 +2145,7 @@ function renderFeedbackLink(label, options = {}) {
 
 // ── RENDER ALL ──
 function renderAll() {
+  syncLanguageModeUI();
   syncAudienceModeUI();
   const activeDrugNames = typeof getActiveDrugNames === "function" ? getActiveDrugNames() : activeStack.filter(name => getDrug(name));
   arrangeAdvancedSections();
@@ -1673,7 +2248,7 @@ function renderMedList() {
   const el = document.getElementById("medList");
   const countEl = document.getElementById("medCount");
   if (!activeStack.length) {
-    el.innerHTML = '<div class="empty-state"><div class="icon">💊</div>Add medications, supplements, or foods above to see how they interact</div>';
+    el.innerHTML = `<div class="empty-state"><div class="icon">💊</div>${safePublicHtml(uiText("medEmpty"))}</div>`;
     countEl.textContent = "";
     return;
   }

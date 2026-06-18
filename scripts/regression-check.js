@@ -696,6 +696,62 @@ assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mod
 assert(audienceModeRegression.clinician.findingTitle === 'Interaction Findings', 'Clinician mode should restore clinician finding title');
 assert(audienceModeRegression.clinician.supportDetails > 0, 'Clinician mode should show supporting detail drawers');
 
+const languageModeRegression = window.eval(`(() => {
+  activeStack = [];
+  userGenetics = {};
+  activeGenotypeDetails = {};
+  activeGenotype = {
+    CYP2D6: GENOTYPE_PHENOTYPE.NM,
+    CYP2C19: GENOTYPE_PHENOTYPE.NM,
+    CYP2C9: GENOTYPE_PHENOTYPE.NM,
+  };
+  window.history.replaceState(null, '', '/index.html?substances=warfarin,amiodarone&audience=patient&lang=pt&tab=review');
+  loadUrlDemoState();
+  renderAll();
+  const pt = {
+    languageMode,
+    htmlLang:document.documentElement.lang,
+    htmlDir:document.documentElement.dir,
+    bodyLanguage:document.body.dataset.language,
+    languageSelect:document.getElementById('languageSelect')?.value || '',
+    searchPlaceholder:document.getElementById('searchInput')?.getAttribute('placeholder') || '',
+    audienceLabel:document.getElementById('audienceLabel')?.textContent || '',
+    patientLabel:document.getElementById('audience-patient')?.textContent || '',
+    findingTitle:document.getElementById('findingTitle')?.textContent || '',
+    findingText:document.getElementById('findingBody')?.textContent || '',
+    shareUrl:currentStackShareUrl(),
+  };
+  setLanguageMode('ar');
+  const ar = {
+    languageMode,
+    htmlLang:document.documentElement.lang,
+    htmlDir:document.documentElement.dir,
+    findingTitle:document.getElementById('findingTitle')?.textContent || '',
+    findingText:document.getElementById('findingBody')?.textContent || '',
+    shareUrl:currentStackShareUrl(),
+  };
+  setLanguageMode('en');
+  setAudienceMode('clinician');
+  return { pt, ar };
+})()`);
+assert(languageModeRegression.pt.languageMode === 'pt', 'URL lang=pt should set Portuguese language mode');
+assert(languageModeRegression.pt.htmlLang === 'pt', 'Portuguese mode should update document language');
+assert(languageModeRegression.pt.htmlDir === 'ltr', 'Portuguese mode should keep left-to-right document direction');
+assert(languageModeRegression.pt.bodyLanguage === 'pt', 'Portuguese mode should mark body data-language');
+assert(languageModeRegression.pt.languageSelect === 'pt', 'Language selector should sync to Portuguese');
+assert(/Pesquisar/.test(languageModeRegression.pt.searchPlaceholder), 'Portuguese mode should translate the search placeholder');
+assert(languageModeRegression.pt.audienceLabel === 'Público', 'Portuguese mode should translate the audience label');
+assert(languageModeRegression.pt.patientLabel === 'Paciente', 'Portuguese mode should translate the patient button');
+assert(languageModeRegression.pt.findingTitle === 'Notas de segurança', 'Portuguese Patient mode should translate Safety Notes');
+assert(/O que isto significa/.test(languageModeRegression.pt.findingText), 'Portuguese Patient mode should translate patient finding labels');
+assert(languageModeRegression.pt.shareUrl.includes('lang=pt'), 'Patient-mode share URL should preserve Portuguese language mode');
+assert(languageModeRegression.ar.languageMode === 'ar', 'Arabic selection should set Arabic language mode');
+assert(languageModeRegression.ar.htmlLang === 'ar', 'Arabic mode should update document language');
+assert(languageModeRegression.ar.htmlDir === 'rtl', 'Arabic mode should use right-to-left document direction');
+assert(languageModeRegression.ar.findingTitle === 'ملاحظات السلامة', 'Arabic Patient mode should translate Safety Notes');
+assert(/ماذا يعني هذا/.test(languageModeRegression.ar.findingText), 'Arabic Patient mode should translate patient finding labels');
+assert(languageModeRegression.ar.shareUrl.includes('lang=ar'), 'Patient-mode share URL should preserve Arabic language mode');
+
 const nebivololPgxDisplayRegression = window.eval(`(() => {
   activeStack = ['Nebivolol'];
   userGenetics = {};

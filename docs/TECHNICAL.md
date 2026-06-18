@@ -206,6 +206,8 @@ The top-level app uses six tabs:
 
 Audience mode is a top-level presentation switch, not RBAC. `Clinician` is the default full-detail view. `Patient` keeps the same local calculation model but shows the Overview safety notes with simpler labels, hides clinician-only tab navigation/details, and can be loaded with `?audience=patient`.
 
+Language mode is a presentation-only switch for Patient-mode labels and conservative safety-note prompts. Supported URL values are `lang=pt`, `lang=es`, `lang=zh`, `lang=hi`, `lang=ar`, and `lang=fr`; clinician evidence/source material remains source-language/English until a reviewed clinical glossary exists.
+
 Legacy tab aliases remain supported for old demo links:
 
 ```text
