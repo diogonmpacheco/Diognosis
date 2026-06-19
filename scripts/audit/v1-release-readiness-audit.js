@@ -112,6 +112,9 @@ function extractProductReadiness(window) {
       sourceLinks:document.querySelectorAll('#findingBody a.source-link').length,
       sourceActions:document.querySelectorAll('#findingBody .finding-actions .related-finding-btn').length,
       trustChips:document.querySelectorAll('#findingBody .finding-trust-chip').length,
+      trustChipText:[...document.querySelectorAll('#findingBody .finding-trust-chip')]
+        .map(chip => chip.textContent.replace(/\\s+/g, ' ').trim())
+        .join(' | '),
       discussionGuides:document.querySelectorAll('#findingBody .finding-discussion').length,
       monitoringGuides:document.querySelectorAll('#findingBody .finding-monitoring').length,
       summaryActions:document.querySelectorAll('#summaryBar .summary-actions .summary-action-btn').length,
@@ -120,8 +123,8 @@ function extractProductReadiness(window) {
       clinicianLayoutCss:[...document.querySelectorAll('style')].some(style => {
         const css = style.textContent || '';
         return css.includes('body[data-audience="clinician"] .input-rail{display:contents}')
-          && css.includes('body[data-audience="clinician"] .result-area{order:2}')
-          && css.includes('body[data-audience="clinician"] #geneticsSection{order:3}');
+          && css.includes('body[data-audience="clinician"] #geneticsSection{order:2}')
+          && css.includes('body[data-audience="clinician"] .result-area{order:3}');
       }),
       compactMedListCss:[...document.querySelectorAll('style')].some(style => {
         const css = style.textContent || '';
@@ -164,13 +167,17 @@ for (const scenario of clinicianScenarios) {
   assert(result.reviewerMode === false, `${scenario.name}: normal V1 product URLs should not enable reviewer mode`);
   assert(result.cards > 0, `${scenario.name}: Overview should show public finding cards`);
   assert(result.trustChips >= result.cards, `${scenario.name}: Overview cards should expose trust chips`);
+  assert(!/\b(?:pending review action|review needed action|insufficient action)\b/i.test(result.trustChipText),
+    `${scenario.name}: trust chips should not expose awkward internal action-status wording`);
+  assert(/action needs clinical review|action reviewed|action evidence limited/i.test(result.trustChipText),
+    `${scenario.name}: trust chips should use readable clinical-action status copy`);
   assert(result.discussionGuides >= result.cards, `${scenario.name}: Overview cards should expose discussion guides`);
   assert(result.monitoringGuides >= result.cards, `${scenario.name}: Overview cards should expose monitoring focus`);
   assert(result.summaryActions >= 2, `${scenario.name}: Overview summary should expose copy/share actions`);
   assert(result.selectedChips >= 2, `${scenario.name}: selected-list should render selected medications`);
   assert(result.removeButtons === result.selectedChips, `${scenario.name}: selected-list should expose compact remove controls`);
   assert(result.compactMedListCss, `${scenario.name}: selected-list should use compact row styling`);
-  assert(result.clinicianLayoutCss, `${scenario.name}: results should appear before optional gene controls in Clinician mode`);
+  assert(result.clinicianLayoutCss, `${scenario.name}: optional gene controls should stay with selected-list inputs before results in Clinician mode`);
   assert(result.sourceLinkedCards > 0, `${scenario.name}: should include at least one source-linked public concern`);
   assert(result.sourceActions > 0, `${scenario.name}: source-linked cards should expose source actions`);
   assert(result.directEligible === 0 || result.sourceLinks > 0, `${scenario.name}: direct PMID/DOI/source-eligible cards need direct source links`);
@@ -225,8 +232,8 @@ const patient = patientWindow.eval(`(() => ({
   patientLayoutCss:[...document.querySelectorAll('style')].some(style => {
     const css = style.textContent || '';
     return css.includes('body[data-audience="patient"] .input-rail{display:contents}')
-      && css.includes('body[data-audience="patient"] .result-area{order:2}')
-      && css.includes('body[data-audience="patient"] #geneticsSection{order:3}');
+      && css.includes('body[data-audience="patient"] #geneticsSection{order:2}')
+      && css.includes('body[data-audience="patient"] .result-area{order:3}');
   }),
   exposureSummaryCount:document.querySelectorAll('#medList .exposure-summary').length,
   severityLabels:[...document.querySelectorAll('#findingBody .finding-sev')].map(el => el.textContent.trim()),
@@ -255,7 +262,7 @@ assert(/2 items selected/i.test(patient.medCount), 'Patient mode should use plai
 assert(!/substances?/i.test(patient.medCount), 'Patient mode selected-list count should not use substance terminology');
 assert(patient.doseSelects === 0, 'Patient mode selected list should not expose clinician dose-tier selectors');
 assert(patient.removeButtons === 2, 'Patient mode selected list should use compact removable item buttons');
-assert(patient.patientLayoutCss, 'Patient mode should place safety results before optional gene controls');
+assert(patient.patientLayoutCss, 'Patient mode should keep optional gene controls with the list before safety results');
 assert(/Gene Results/i.test(patient.geneTitle) && /Do not guess|original report|doctor or pharmacist/i.test(patient.geneIntro),
   'Patient mode should use patient-facing gene helper copy');
 assert(!/Genes \+ Metabolites tab|source-linked|parent drugs|PK timing|pathway activity|metabolite balance/i.test(

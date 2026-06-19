@@ -706,8 +706,8 @@ const audienceModeRegression = window.eval(`(() => {
     patientLayoutCss:[...document.querySelectorAll('style')].some(style => {
       const css = style.textContent || '';
       return css.includes('body[data-audience="patient"] .input-rail{display:contents}')
-        && css.includes('body[data-audience="patient"] .result-area{order:2}')
-        && css.includes('body[data-audience="patient"] #geneticsSection{order:3}');
+        && css.includes('body[data-audience="patient"] #geneticsSection{order:2}')
+        && css.includes('body[data-audience="patient"] .result-area{order:3}');
     }),
     exposureSummaryCount:document.querySelectorAll('#medList .exposure-summary').length,
     actionRows:document.querySelectorAll('#findingBody .finding-actions').length,
@@ -736,8 +736,8 @@ const audienceModeRegression = window.eval(`(() => {
     clinicianLayoutCss:[...document.querySelectorAll('style')].some(style => {
       const css = style.textContent || '';
       return css.includes('body[data-audience="clinician"] .input-rail{display:contents}')
-        && css.includes('body[data-audience="clinician"] .result-area{order:2}')
-        && css.includes('body[data-audience="clinician"] #geneticsSection{order:3}');
+        && css.includes('body[data-audience="clinician"] #geneticsSection{order:2}')
+        && css.includes('body[data-audience="clinician"] .result-area{order:3}');
     }),
     compactMedListCss:[...document.querySelectorAll('style')].some(style => {
       const css = style.textContent || '';
@@ -771,7 +771,7 @@ assert(/2 items selected/i.test(audienceModeRegression.patient.medCount), 'Patie
 assert(!/substances?/i.test(audienceModeRegression.patient.medCount), 'Patient mode selected-list count should not use substance terminology');
 assert(audienceModeRegression.patient.doseSelects === 0, 'Patient mode selected list should not expose clinician dose-tier selectors');
 assert(audienceModeRegression.patient.removeButtons === 2, 'Patient mode selected list should use compact removable item buttons');
-assert(audienceModeRegression.patient.patientLayoutCss, 'Patient mode should place safety results before optional gene controls');
+assert(audienceModeRegression.patient.patientLayoutCss, 'Patient mode should keep optional gene controls with the list before safety results');
 assert(/Gene Results/i.test(audienceModeRegression.patient.geneTitle) && /Do not guess|original report|doctor or pharmacist/i.test(audienceModeRegression.patient.geneIntro), 'Patient mode should use patient-facing gene helper copy');
 assert(!/Genes \+ Metabolites tab|source-linked|parent drugs|PK timing|pathway activity|metabolite balance/i.test(
   `${audienceModeRegression.patient.tagline} ${audienceModeRegression.patient.geneIntro}`
@@ -807,7 +807,7 @@ assert(/2 substances/i.test(audienceModeRegression.clinician.medCount), 'Clinici
 assert(audienceModeRegression.clinician.doseSelects > 0, 'Clinician mode should keep dose-tier selectors for supported medications');
 assert(audienceModeRegression.clinician.removeButtons === 2, 'Clinician mode selected list should use compact removable item buttons');
 assert(audienceModeRegression.clinician.compactMedListCss, 'Clinician mode should render selected medicines as compact rows');
-assert(audienceModeRegression.clinician.clinicianLayoutCss, 'Clinician mode should place results before optional gene controls');
+assert(audienceModeRegression.clinician.clinicianLayoutCss, 'Clinician mode should keep optional gene controls with the selected list before results');
 assert(/Genes \+ Metabolites tab|medication response|metabolite balance/i.test(audienceModeRegression.clinician.geneIntro), 'Clinician mode should restore clinician gene helper copy');
 assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mode should show tab navigation');
 assert(audienceModeRegression.clinician.findingTitle === 'Interaction Findings', 'Clinician mode should restore clinician finding title');
@@ -1952,6 +1952,9 @@ const publicFindingHierarchyRegression = window.eval(`(() => {
     const presentations = getCurrentPublicFindingPresentations();
     const cards = Array.from(document.querySelectorAll("#findingBody .primary-finding-card"));
     const overviewText = document.getElementById("findingBody")?.textContent || "";
+    const trustText = [...document.querySelectorAll("#findingBody .finding-trust-chip")]
+      .map(chip => chip.textContent.replace(/\\s+/g, " ").trim())
+      .join(" | ");
     const summaryOnclick = document.querySelector("#summaryBar .summary-jump")?.getAttribute("onclick") || "";
     setTab("mechanisms");
     const mechanismText = document.getElementById("mechanismWhyBody")?.textContent || "";
@@ -1976,6 +1979,7 @@ const publicFindingHierarchyRegression = window.eval(`(() => {
       allCardsHaveSteps:cards.every(card => ["What changed", "Why it matters", "What to review", "Evidence"].every(label => card.textContent.includes(label))),
       summaryOnclick,
       overviewText,
+      trustText,
       mechanismText,
       genesText,
       evidenceText,
@@ -1999,6 +2003,8 @@ for (const [scenarioName, result] of Object.entries(publicFindingHierarchyRegres
   assert(result.presentations.every(p => p.targetTab === "overview" && /^overview-finding-/.test(p.targetElementId || "")), `${scenarioName}: public finding targets should point to Overview cards`);
   assert(result.summaryOnclick.includes("focusPriorityFinding('overview','overview-finding-"), `${scenarioName}: Summary View finding should jump to a concrete Overview card`);
   assert(!/Phase\\s*\\d+|top-250|top-100|coverage adapter|route adapter|pending professional review|review prompt/i.test(result.overviewText), `${scenarioName}: Overview should not expose internal labels or repeated review wording`);
+  assert(!/\b(?:pending review action|review needed action|insufficient action)\b/i.test(result.trustText), `${scenarioName}: trust chips should not expose awkward internal action-status wording`);
+  assert(/action needs clinical review|action reviewed|action evidence limited/i.test(result.trustText), `${scenarioName}: trust chips should use readable clinical-action status copy`);
   assert(!/Phase\\s*\\d+|top-250|top-100|coverage adapter|route adapter|pending professional review/i.test(result.mechanismText), `${scenarioName}: Mechanisms should not expose internal labels`);
   assert(!/\b(?:Open review|reviewer panel|Raw warning paths|raw signals?|remain available in Review)\b/i.test(result.mechanismText), `${scenarioName}: normal V1 Mechanisms should not expose reviewer-only or raw-path actions`);
   assert(!/Related overview/i.test(`${result.mechanismText} ${result.genesText} ${result.evidenceText}`), `${scenarioName}: supporting tabs should use plain Open finding actions instead of Related overview`);

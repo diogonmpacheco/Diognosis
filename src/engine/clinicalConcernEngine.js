@@ -1024,7 +1024,15 @@ function v1TrustConfidenceLabel(finding = {}) {
   const ladder = finding.evidenceLadder || {};
   const mechanistic = ladder.mechanisticConfidence || finding.confidence || "unknown";
   const action = ladder.clinicalActionConfidence || (finding.reviewRequired === false ? "reviewed" : "review needed");
-  return `${v1TrustLabelCase(mechanistic)} mechanism; ${v1TrustLabelCase(action)} action`;
+  return `${v1TrustLabelCase(mechanistic)} mechanism · ${v1TrustActionStatusLabel(action)}`;
+}
+
+function v1TrustActionStatusLabel(value) {
+  const key = String(value || "").trim().toLowerCase().replace(/_/g, " ");
+  if (key === "reviewed" || key === "professionally reviewed") return "action reviewed";
+  if (key === "pending review" || key === "review needed" || key === "clinical review needed") return "action needs clinical review";
+  if (key === "insufficient") return "action evidence limited";
+  return `${v1TrustLabelCase(value)} action`;
 }
 
 function v1TrustEvidenceLabel(finding = {}, evidenceRefs = [], sourceLinked = false) {
