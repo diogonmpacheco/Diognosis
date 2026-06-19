@@ -27,6 +27,22 @@ function addFoodActor(id) {
   }
 }
 
+function addUnrecognizedSubstance(value) {
+  const name = typeof resolveUrlDrugName === "function"
+    ? resolveUrlDrugName(value, { preserveUnknown:true })
+    : publicDisplayText(value).slice(0, 80);
+  if (!name) return;
+  const key = typeof stackSelectionDedupeKey === "function" ? stackSelectionDedupeKey(name) : String(name).toLowerCase();
+  const alreadySelected = activeStack.some(item => {
+    const itemKey = typeof stackSelectionDedupeKey === "function" ? stackSelectionDedupeKey(item) : String(item).toLowerCase();
+    return itemKey === key;
+  });
+  if (!alreadySelected) activeStack.push(name);
+  document.getElementById("searchInput").value = "";
+  document.getElementById("searchResults").classList.remove("show");
+  renderAll();
+}
+
 function removeFoodActor(id) {
   const actor = typeof getSupplementActor === "function" ? getSupplementActor(id) : null;
   const actorId = actor ? actor.id : id;
@@ -1757,7 +1773,11 @@ function onSearch(q) {
     return true;
   });
   const actorMatches = findSupplementActorMatches(q);
-  if (!matches.length && !actorMatches.length) { el.innerHTML = '<div class="sr-item"><span class="sr-name" style="color:var(--text2)">No matches found</span></div>'; el.classList.add("show"); return; }
+  if (!matches.length && !actorMatches.length) {
+    el.innerHTML = renderUnrecognizedSearchResult(q);
+    el.classList.add("show");
+    return;
+  }
 
   // Group by practical browse category, while preserving exact class on the row.
   const groups = {};
@@ -1804,6 +1824,28 @@ function onSearch(q) {
   }
   el.innerHTML = html;
   el.classList.add("show");
+}
+
+function renderUnrecognizedSearchResult(query) {
+  const name = typeof resolveUrlDrugName === "function"
+    ? resolveUrlDrugName(query, { preserveUnknown:true })
+    : publicDisplayText(query).slice(0, 80);
+  if (!name) {
+    return '<div class="sr-item"><span class="sr-name" style="color:var(--text2)">No matches found</span></div>';
+  }
+  const key = typeof stackSelectionDedupeKey === "function" ? stackSelectionDedupeKey(name) : String(name).toLowerCase();
+  const added = activeStack.some(item => {
+    const itemKey = typeof stackSelectionDedupeKey === "function" ? stackSelectionDedupeKey(item) : String(item).toLowerCase();
+    return itemKey === key;
+  });
+  const action = added ? `removeDrug('${inlineJsString(name)}')` : `addUnrecognizedSubstance('${inlineJsString(name)}')`;
+  return `<div class="sr-item sr-unrecognized" onclick="${action}">
+    <span>
+      <span class="sr-name">${safePublicHtml(name)}</span>
+      <span class="sr-secondary">Not recognized here. Diognosis will keep it in the list but will not assess interactions for it.</span>
+    </span>
+    <span>${added ? '<span class="sr-added">✓ Added</span>' : '<span class="sr-class sr-unrecognized-class">Add unrecognized</span>'}</span>
+  </div>`;
 }
 
 function findSupplementActorMatches(query) {

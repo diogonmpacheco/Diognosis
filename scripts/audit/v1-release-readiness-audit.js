@@ -223,6 +223,35 @@ assertNoPatientTechnicalLeak('Unknown URL Patient Scope', unknownUrl.scopeText);
 assertNoPatientTechnicalLeak('Unknown URL Patient Copy Summary', unknownUrl.overviewHandoffText);
 assertNoUnsafeCertainty('Unknown URL Patient Scope', unknownUrl.scopeText);
 
+const manualUnknownWindow = await loadPage('http://localhost/index.html?audience=patient');
+const manualUnknown = manualUnknownWindow.eval(`(() => {
+  onSearch('mystery mix');
+  const searchText = document.getElementById('searchResults')?.textContent || '';
+  addUnrecognizedSubstance('mystery mix');
+  addDrug('Warfarin');
+  return {
+    activeStack,
+    searchText,
+    medListText:document.getElementById('medList')?.textContent || '',
+    scopeText:document.getElementById('scopeBody')?.textContent || '',
+    unknownChips:document.querySelectorAll('#medList .med-chip.unrecognized').length,
+    shareUrl:currentStackShareUrl(),
+  };
+})()`);
+
+assert(/Mystery Mix|Add unrecognized|will not assess interactions/i.test(manualUnknown.searchText),
+  'Manual no-match search should offer an explicit add-as-unrecognized action');
+assert(manualUnknown.activeStack.join('|') === 'Mystery Mix|Warfarin',
+  'Manual unknown entry should remain visible in the active stack with recognized medications');
+assert(manualUnknown.unknownChips === 1 && /Mystery Mix|Not checked here/i.test(manualUnknown.medListText),
+  'Manual unknown entry should render as an unrecognized selected chip');
+assert(/not recognized here|Mystery Mix/i.test(manualUnknown.scopeText),
+  'Manual unknown entry should be named in patient-facing scope limits');
+assert(manualUnknown.shareUrl.includes('mystery-mix') && manualUnknown.shareUrl.includes('warfarin'),
+  'Manual unknown entry should be preserved in share links');
+assertNoPatientTechnicalLeak('Manual Unknown Patient Scope', manualUnknown.scopeText);
+assertNoUnsafeCertainty('Manual Unknown Patient Scope', manualUnknown.scopeText);
+
 const olderAdultWindow = await loadPage('http://localhost/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview');
 const olderAdultDemo = olderAdultWindow.eval(`(() => ({
   activeStack,
