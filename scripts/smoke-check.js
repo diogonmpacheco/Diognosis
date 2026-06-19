@@ -49,6 +49,8 @@ assert(doc.title.includes('Diognosis'), 'Page title did not load');
 assert(doc.getElementById('ver-engine')?.textContent === '0.1.0-alpha.1', 'Version strip did not render engine 0.1.0-alpha.1');
 assert(evalInPage(window, 'DRUG_DB.length') >= 200, 'Drug database did not load');
 assert(evalInPage(window, 'DIOGNOSIS_VERSION.engine') === '0.1.0-alpha.1', 'DIOGNOSIS_VERSION is not 0.1.0-alpha.1');
+assert(evalInPage(window, 'DIOGNOSIS_VERSION.drugCount') === evalInPage(window, 'DRUG_DB.length'), 'DIOGNOSIS_VERSION drug count is stale');
+assert(doc.getElementById('ver-count')?.textContent === String(evalInPage(window, 'DRUG_DB.length')), 'Version strip drug count is stale');
 assert(!readme.includes('tab=safety'), 'README public examples should use tab=overview instead of tab=safety');
 for (const label of ['Overview', 'Mechanisms', 'Genes + Metabolites', 'Timing + Levels', 'Evidence', 'Review']) {
   assert(readme.includes(label), `README should mention the ${label} tab`);

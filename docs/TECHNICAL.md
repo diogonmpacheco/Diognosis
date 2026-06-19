@@ -382,8 +382,11 @@ npm run test:unit
 npm run test:data
 npm run test:integrations
 npm test
+npm run pages:check
 npm run release:check
 ```
+
+`npm run pages:check` is the GitHub Pages deploy gate. It rebuilds `index.html`, verifies release metadata, runs the core database and V1 no-warning audits, V1 public-docs/standards/readiness checks, smoke, strict validation, privacy/static audit, and whitespace checks. It is the fast path for live testing.
 
 `npm run release:check` rebuilds the bundle, verifies metadata, runs database and data-view audits, the V1 no-warning database gate, evidence review UI, evidence calculation, Open Targets gates, scenario snapshots, launch QA, regression, smoke, strict validation, privacy/static audit, and whitespace checks.
 
@@ -403,9 +406,10 @@ The genotype gap audit reads Diognosis source text, lists every referenced gene/
 
 1. Update `DIOGNOSIS_VERSION` in `src/data/drugs.js` when Diognosis behavior changes.
 2. Update Drug DB version/date when curated data changes.
-3. Run `npm run release:check`.
-4. Commit source changes.
-5. Push `main`; GitHub Pages builds `index.html` from source.
+3. Run `npm run pages:check` for routine live-deploy validation.
+4. Run `npm run release:check` before tagged releases or clinical-review milestones.
+5. Commit source changes.
+6. Push `main`; GitHub Pages builds `index.html` from source through `npm run pages:check`.
 
 ## Safety Contract
 

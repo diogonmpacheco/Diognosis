@@ -64,15 +64,23 @@ Do not include private patient data.
 6. The merge commit becomes the audit trail for the change.
 7. Professional-reviewed status should only be added when the reviewer role, decision, date, scope, and source snapshot are explicit.
 
-## Required Pre-Launch Gate
+## Required Gates
 
-Run:
+For routine live testing, run the same fast gate that GitHub Pages uses:
+
+```sh
+npm run pages:check
+```
+
+This rebuilds the static bundle, verifies release metadata, checks the core database and V1 public docs, verifies standards/readiness surfaces, runs smoke validation, strict validation, privacy/static audit, and whitespace checks.
+
+Before tagged releases, public launch claims, or clinical-review milestones, run the full release gate:
 
 ```sh
 npm run release:check
 ```
 
-This runs the generated stats pass, build, release metadata checks, curated data audits, scenario checks, smoke/regression tests, strict validation, privacy/static audit, and whitespace checks.
+This adds the slower data-view audit, evidence ledger and evidence-review UI checks, V1 PGx contract audit, V1 PK visualization audit, V1 finding contract audit across all recognized shipped `KNOWN_DDI` pairs, feedback privacy audit, scenario checks, regression, and other source-boundary audits.
 
 ## Current Review Priorities
 

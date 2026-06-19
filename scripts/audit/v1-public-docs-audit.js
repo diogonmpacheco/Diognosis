@@ -35,6 +35,8 @@ const readme = read('README.md');
 const publicTrust = read('docs/PUBLIC_TRUST.md');
 const launchQa = read('docs/LAUNCH_QA_MATRIX.md');
 const launchTrust = read('docs/LAUNCH_DATA_TRUST_AUDIT.md');
+const technical = read('docs/TECHNICAL.md');
+const pagesWorkflow = read('.github/workflows/pages.yml');
 const pkg = JSON.parse(read('package.json'));
 
 const missingLinks = localMarkdownLinks(readme)
@@ -42,6 +44,9 @@ const missingLinks = localMarkdownLinks(readme)
 assert(missingLinks.length === 0, `README has missing local links: ${missingLinks.join(', ')}`);
 
 assert(pkg.scripts?.['launch:qa'] === 'node scripts/launch-qa-audit.js', 'package.json should expose npm run launch:qa');
+assert(pkg.scripts?.['pages:check'] === 'node scripts/pages-check.js', 'package.json should expose npm run pages:check');
+assert(pkg.scripts?.['release:check'] === 'node scripts/release-check.js', 'package.json should expose npm run release:check');
+assert(/npm run pages:check/.test(pagesWorkflow), 'GitHub Pages workflow must run npm run pages:check');
 
 assertIncludes('Public Trust', publicTrust, '<!-- PUBLIC_TRUST_STATS_START -->');
 assertIncludes('Public Trust', publicTrust, `**${stats.sourceLinkedStudies} \`STUDY_DB\` entries** have public source identifiers.`);
@@ -70,14 +75,21 @@ assert(/no accounts, analytics, tracking, medication-data collection, or runtime
   'Launch Data Trust Audit must preserve static privacy boundary');
 
 assert(/npm run launch:qa/.test(launchQa), 'Launch QA Matrix must document npm run launch:qa');
+assert(/npm run pages:check/.test(launchQa), 'Launch QA Matrix must document npm run pages:check');
 assert(/V1 PGx contract audit|V1 PK visualization audit|V1 finding contract audit|V1 release readiness audit/i.test(launchQa),
   'Launch QA Matrix must reference the V1 release gates');
+assert(/npm run pages:check/i.test(launchTrust) && /GitHub Pages deploy gate/i.test(launchTrust),
+  'Launch Data Trust Audit must document the Pages deploy gate');
 assert(/V1 PGx contract audit/i.test(launchTrust),
   'Launch Data Trust Audit must reference the V1 PGx contract gate');
 assert(/V1 PK visualization audit/i.test(launchTrust),
   'Launch Data Trust Audit must reference the V1 PK visualization gate');
 assert(/Patient mode|Clinician|patient\/clinician/i.test(launchQa),
   'Launch QA Matrix must cover audience-mode behavior');
+assert(/npm run pages:check/i.test(publicTrust) && /npm run release:check/i.test(publicTrust),
+  'Public Trust must document both deploy and release gates');
+assert(/npm run pages:check/i.test(technical) && /GitHub Pages deploy gate/i.test(technical),
+  'Technical docs must document the Pages deploy gate');
 
 if (stats.studies !== 456) {
   for (const [label, text] of [

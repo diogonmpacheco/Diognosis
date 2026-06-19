@@ -32,10 +32,18 @@ Run the focused launch QA gate:
 npm run launch:qa
 ```
 
+Run the fast GitHub Pages deploy gate used for live testing:
+
+```sh
+npm run pages:check
+```
+
 Run the full release gate:
 
 ```sh
 npm run release:check
 ```
+
+The Pages deploy gate rebuilds the static bundle, verifies release metadata, checks the core database and V1 public docs, verifies standards/readiness surfaces, runs smoke validation, strict validation, privacy/static checks, and whitespace checks. It is intentionally fast so live testing can happen without waiting on every deep release audit.
 
 The release gate also runs the V1 PGx contract audit, the V1 PK visualization audit, the V1 finding contract audit including a complete sweep over every recognized shipped `KNOWN_DDI` pair, and the V1 release readiness audit.

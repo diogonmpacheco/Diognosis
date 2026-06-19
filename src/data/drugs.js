@@ -4970,6 +4970,7 @@ for (const [index, name] of PHASE12_DRUG_EXPANSION_NAMES.entries()) {
   DRUG_DB.push(record);
   PHASE12_EXISTING_DRUG_NAMES.add(String(record.name).toLowerCase());
 }
+DIOGNOSIS_VERSION.drugCount = DRUG_DB.length;
 
 function normalizeDrugModulators(list, sourceLabel) {
   return (list || []).map(row => typeof row === "string"

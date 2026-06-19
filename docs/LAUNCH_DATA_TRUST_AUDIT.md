@@ -35,9 +35,22 @@ This audit describes the launch-facing data trust boundary for the current stati
 - The browser app must remain static and local-first: no accounts, analytics, tracking, medication-data collection, or runtime clinical API calls.
 - GitHub feedback links must be privacy-preserving by default: they must not transmit the current medication list, genotype settings, share URL, browser URL, or selected-card context unless a contributor intentionally adds that information.
 
-## Release Evidence
+## Deploy And Release Evidence
 
-The release gate checks this trust boundary through:
+The GitHub Pages deploy gate checks the live-testing boundary through:
+
+- generated stats, build, and release metadata checks;
+- core database and V1 no-warning database audits;
+- V1 public docs, standards coverage, and readiness audits;
+- smoke, strict validation, privacy/static, and whitespace checks.
+
+Run:
+
+```sh
+npm run pages:check
+```
+
+The full release gate checks the deeper trust boundary through:
 
 - database and data-view audits;
 - evidence citation and evidence-review UI audits;

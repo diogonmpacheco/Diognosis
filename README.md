@@ -141,6 +141,8 @@ Diognosis is intentionally conservative about what it claims. Diognosis PK curve
 
 For internals, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md) and the [Data Model](docs/DATA_MODEL.md). For launch readiness, see the [Launch QA Matrix](docs/LAUNCH_QA_MATRIX.md), [Public Trust Model](docs/PUBLIC_TRUST.md), and [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md).
 
+GitHub Pages live testing uses `npm run pages:check`; tagged releases and clinical-review milestones use the deeper `npm run release:check`.
+
 ---
 
 ## Contribute / Review Data
