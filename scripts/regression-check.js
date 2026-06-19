@@ -669,6 +669,7 @@ const audienceModeRegression = window.eval(`(() => {
     detailButtons:document.querySelectorAll('#findingBody .related-finding-btn.secondary').length,
     supportDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
     findingText:document.getElementById('findingBody')?.textContent || '',
+    scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
     scopeText:document.getElementById('scopeBody')?.textContent || '',
     riskDisplay:document.getElementById('riskSection')?.style.display || '',
     shareUrl:currentStackShareUrl(),
@@ -679,6 +680,8 @@ const audienceModeRegression = window.eval(`(() => {
     bodyAudience:document.body.dataset.audience,
     tabBarDisplay:document.getElementById('tabBar')?.style.display || '',
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
+    scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
+    scopeText:document.getElementById('scopeBody')?.textContent || '',
     supportDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
   };
   return { patient, clinician };
@@ -692,6 +695,8 @@ assert(audienceModeRegression.patient.findingTitle === 'Safety Notes', 'Patient 
 assert(audienceModeRegression.patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
 assert(audienceModeRegression.patient.supportDetails === 0, 'Patient mode should hide clinician supporting detail drawers');
 assert(/What this means/.test(audienceModeRegression.patient.findingText), 'Patient mode should use plain-language finding labels');
+assert(audienceModeRegression.patient.scopeDisplay === 'none', 'Patient mode should hide the clinician Review Scope panel');
+assert(!String(audienceModeRegression.patient.scopeText || '').replace(/\s+/g, ' ').trim(), 'Patient mode should not render hidden Review Scope copy');
 assert(!/\b(?:AUC|Cmax|RxNorm|PGx|PMID|source-linked|modeled|confidence|clinical review needed|pharmacogenomics|metabolite-level|CYP\d)/i.test(
   `${audienceModeRegression.patient.summaryText} ${audienceModeRegression.patient.findingText} ${audienceModeRegression.patient.scopeText}`
 ), 'Patient mode should avoid clinician-only technical vocabulary in visible Overview copy');
@@ -701,6 +706,8 @@ assert(audienceModeRegression.clinician.audienceMode === 'clinician', 'Clinician
 assert(audienceModeRegression.clinician.bodyAudience === 'clinician', 'Clinician mode should mark body data-audience');
 assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mode should show tab navigation');
 assert(audienceModeRegression.clinician.findingTitle === 'Interaction Findings', 'Clinician mode should restore clinician finding title');
+assert(audienceModeRegression.clinician.scopeDisplay !== 'none', 'Clinician mode should restore the Review Scope panel');
+assert(/Selected|Recognized|Concerns|Limit:/i.test(audienceModeRegression.clinician.scopeText), 'Clinician mode should restore Review Scope coverage and limits');
 assert(audienceModeRegression.clinician.supportDetails > 0, 'Clinician mode should show supporting detail drawers');
 
 const olderAdultDemoPriorityRegression = window.eval(`(() => {
