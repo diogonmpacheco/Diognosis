@@ -2665,7 +2665,7 @@ function renderMedList() {
     const escaped = inlineJsString(drug ? drug.name : name);
     const tiers = DOSE_TIERS[name];
     let doseHtml = "";
-    if (drug && tiers) {
+    if (!patient && drug && tiers) {
       const current = getDoseTier(name);
       const opts = Object.entries(tiers.tiers).map(([k,v]) =>
         `<option value="${k}"${k===current?" selected":""}>${v.label}</option>`
@@ -2680,7 +2680,8 @@ function renderMedList() {
     const labelHtml = `<span class="med-chip-name"><span class="med-chip-primary">${safePublicHtml(primary)}</span>${secondary ? `<span class="med-chip-secondary">${safePublicHtml(secondary)}</span>` : ""}</span>`;
     const removeAction = actor && !drug ? `removeFoodActor('${actorId}')` : `removeDrug('${escaped}')`;
     const chipClass = recognized ? "med-chip" : "med-chip unrecognized";
-    return `<span class="${chipClass}" title="${secondary ? safeAttr(secondary) : ""}">${labelHtml}${doseHtml}<span class="x" onclick="${removeAction}">×</span></span>`;
+    const removeLabel = `Remove ${primary}`;
+    return `<span class="${chipClass}" title="${secondary ? safeAttr(secondary) : ""}">${labelHtml}${doseHtml}<button type="button" class="x" aria-label="${safeAttr(removeLabel)}" onclick="${removeAction}">×</button></span>`;
   }).join("") + renderActorExposureSummary();
 }
 

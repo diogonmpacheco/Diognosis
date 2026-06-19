@@ -175,6 +175,14 @@ const patient = patientWindow.eval(`(() => ({
   findingCount:document.getElementById('findingCount')?.textContent || '',
   findingText:document.getElementById('findingBody')?.textContent || '',
   medListText:document.getElementById('medList')?.textContent || '',
+  doseSelects:document.querySelectorAll('#medList .dose-select').length,
+  removeButtons:document.querySelectorAll('#medList button.x').length,
+  patientLayoutCss:[...document.querySelectorAll('style')].some(style => {
+    const css = style.textContent || '';
+    return css.includes('body[data-audience="patient"] .input-rail{display:contents}')
+      && css.includes('body[data-audience="patient"] .result-area{order:2}')
+      && css.includes('body[data-audience="patient"] #geneticsSection{order:3}');
+  }),
   exposureSummaryCount:document.querySelectorAll('#medList .exposure-summary').length,
   severityLabels:[...document.querySelectorAll('#findingBody .finding-sev')].map(el => el.textContent.trim()),
   sourceLinks:document.querySelectorAll('#findingBody a.source-link').length,
@@ -200,6 +208,9 @@ assert(/Search medicines/i.test(patient.searchPlaceholder), 'Patient mode should
 assert(patient.listTitle === 'My Medicine List', 'Patient mode should use patient-facing list label');
 assert(/2 items selected/i.test(patient.medCount), 'Patient mode should use plain selected-item count copy');
 assert(!/substances?/i.test(patient.medCount), 'Patient mode selected-list count should not use substance terminology');
+assert(patient.doseSelects === 0, 'Patient mode selected list should not expose clinician dose-tier selectors');
+assert(patient.removeButtons === 2, 'Patient mode selected list should use compact removable item buttons');
+assert(patient.patientLayoutCss, 'Patient mode should place safety results before optional gene controls');
 assert(/Gene Results/i.test(patient.geneTitle) && /Do not guess|original report|doctor or pharmacist/i.test(patient.geneIntro),
   'Patient mode should use patient-facing gene helper copy');
 assert(!/Genes \+ Metabolites tab|source-linked|parent drugs|PK timing|pathway activity|metabolite balance/i.test(
@@ -247,6 +258,7 @@ const patientGene = patientGeneWindow.eval(`(() => ({
   summaryText:document.getElementById('summaryBar')?.textContent || '',
   findingText:document.getElementById('findingBody')?.textContent || '',
   medListText:document.getElementById('medList')?.textContent || '',
+  doseSelects:document.querySelectorAll('#medList .dose-select').length,
   exposureSummaryCount:document.querySelectorAll('#medList .exposure-summary').length,
   cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
 }))()`);
@@ -255,6 +267,8 @@ assert(patientGene.audienceMode === 'patient', 'Patient gene-result scenario sho
 assert(patientGene.activeStack.join('|') === 'Clopidogrel|Omeprazole',
   'Patient gene-result scenario should preserve selected medicines');
 assert(patientGene.cards > 0, 'Patient gene-result scenario should still render Safety Notes');
+assert(patientGene.doseSelects === 0,
+  'Patient gene-result scenario should not expose clinician dose-tier selectors');
 assert(patientGene.exposureSummaryCount === 0,
   'Patient gene-result scenario should hide technical selected-list exposure rows');
 assert(!/\b(?:AUC|Cmax|metabolite-level|active thiol|CYP\d|clearance|confidence|parent\s+[↑↓]|direction only)\b/i.test(patientGene.medListText),

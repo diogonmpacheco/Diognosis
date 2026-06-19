@@ -694,6 +694,14 @@ const audienceModeRegression = window.eval(`(() => {
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
     findingCount:document.getElementById('findingCount')?.textContent || '',
     medListText:document.getElementById('medList')?.textContent || '',
+    doseSelects:document.querySelectorAll('#medList .dose-select').length,
+    removeButtons:document.querySelectorAll('#medList button.x').length,
+    patientLayoutCss:[...document.querySelectorAll('style')].some(style => {
+      const css = style.textContent || '';
+      return css.includes('body[data-audience="patient"] .input-rail{display:contents}')
+        && css.includes('body[data-audience="patient"] .result-area{order:2}')
+        && css.includes('body[data-audience="patient"] #geneticsSection{order:3}');
+    }),
     exposureSummaryCount:document.querySelectorAll('#medList .exposure-summary').length,
     actionRows:document.querySelectorAll('#findingBody .finding-actions').length,
     detailButtons:document.querySelectorAll('#findingBody .related-finding-btn.secondary').length,
@@ -716,6 +724,7 @@ const audienceModeRegression = window.eval(`(() => {
     geneIntro:document.getElementById('geneSectionIntro')?.textContent || '',
     tabBarDisplay:document.getElementById('tabBar')?.style.display || '',
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
+    doseSelects:document.querySelectorAll('#medList .dose-select').length,
     reviewButtonDisplay:document.getElementById('tabbtn-review')?.style.display || '',
     reviewPanelDisplay:document.getElementById('tab-review')?.style.display || '',
     scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
@@ -740,6 +749,9 @@ assert(audienceModeRegression.patient.modePressed.join('|') === 'true|false', 'S
 assert(audienceModeRegression.patient.browsePressedAfterToggle.join('|') === 'false|true', 'Browse mode control should expose the selected state after toggle');
 assert(/2 items selected/i.test(audienceModeRegression.patient.medCount), 'Patient mode should use plain selected-item count copy');
 assert(!/substances?/i.test(audienceModeRegression.patient.medCount), 'Patient mode selected-list count should not use substance terminology');
+assert(audienceModeRegression.patient.doseSelects === 0, 'Patient mode selected list should not expose clinician dose-tier selectors');
+assert(audienceModeRegression.patient.removeButtons === 2, 'Patient mode selected list should use compact removable item buttons');
+assert(audienceModeRegression.patient.patientLayoutCss, 'Patient mode should place safety results before optional gene controls');
 assert(/Gene Results/i.test(audienceModeRegression.patient.geneTitle) && /Do not guess|original report|doctor or pharmacist/i.test(audienceModeRegression.patient.geneIntro), 'Patient mode should use patient-facing gene helper copy');
 assert(!/Genes \+ Metabolites tab|source-linked|parent drugs|PK timing|pathway activity|metabolite balance/i.test(
   `${audienceModeRegression.patient.tagline} ${audienceModeRegression.patient.geneIntro}`
@@ -772,6 +784,7 @@ assert(/parent drugs|source-linked evidence/i.test(audienceModeRegression.clinic
 assert(/Search medications/i.test(audienceModeRegression.clinician.searchPlaceholder), 'Clinician mode should restore clinician search placeholder');
 assert(audienceModeRegression.clinician.listTitle === 'Selected List', 'Clinician mode should restore selected-list label');
 assert(/2 substances/i.test(audienceModeRegression.clinician.medCount), 'Clinician mode should keep substance count copy');
+assert(audienceModeRegression.clinician.doseSelects > 0, 'Clinician mode should keep dose-tier selectors for supported medications');
 assert(/Genes \+ Metabolites tab|medication response|metabolite balance/i.test(audienceModeRegression.clinician.geneIntro), 'Clinician mode should restore clinician gene helper copy');
 assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mode should show tab navigation');
 assert(audienceModeRegression.clinician.findingTitle === 'Interaction Findings', 'Clinician mode should restore clinician finding title');
@@ -834,6 +847,7 @@ const patientGeneResultListRegression = window.eval(`(() => {
   const patient = {
     audienceMode,
     medListText:document.getElementById('medList')?.textContent || '',
+    doseSelects:document.querySelectorAll('#medList .dose-select').length,
     exposureSummaryCount:document.querySelectorAll('#medList .exposure-summary').length,
     summaryText:document.getElementById('summaryBar')?.textContent || '',
     findingText:document.getElementById('findingBody')?.textContent || '',
@@ -841,16 +855,19 @@ const patientGeneResultListRegression = window.eval(`(() => {
   setAudienceMode('clinician');
   const clinician = {
     exposureSummaryCount:document.querySelectorAll('#medList .exposure-summary').length,
+    doseSelects:document.querySelectorAll('#medList .dose-select').length,
     medListText:document.getElementById('medList')?.textContent || '',
   };
   return { patient, clinician };
 })()`);
 assert(patientGeneResultListRegression.patient.audienceMode === 'patient', 'Patient gene-result selected-list regression should stay in Patient mode');
+assert(patientGeneResultListRegression.patient.doseSelects === 0, 'Patient gene-result selected list should not expose dose-tier selectors');
 assert(patientGeneResultListRegression.patient.exposureSummaryCount === 0, 'Patient gene-result selected list should hide exposure summary rows');
 assert(!/\b(?:AUC|Cmax|metabolite-level|active thiol|CYP\d|clearance|confidence|parent\s+[↑↓]|direction only)\b/i.test(
   patientGeneResultListRegression.patient.medListText
 ), 'Patient gene-result selected list should not expose technical metabolite/level rows');
 assert(patientGeneResultListRegression.clinician.exposureSummaryCount > 0, 'Clinician mode should keep exposure summary rows for gene-result stacks');
+assert(patientGeneResultListRegression.clinician.doseSelects > 0, 'Clinician mode should keep dose-tier controls for gene-result stacks');
 assert(/\b(?:AUC|CYP\d|metabolite|parent\s+[↑↓])\b/i.test(patientGeneResultListRegression.clinician.medListText),
   'Clinician selected list should retain technical exposure context');
 

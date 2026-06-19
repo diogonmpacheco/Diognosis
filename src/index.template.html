@@ -120,7 +120,7 @@ body[data-audience="patient"] .stats-line{display:none}
 
 .med-chip{display:flex;flex-direction:column;align-items:stretch;gap:8px;width:100%;max-width:100%;justify-content:flex-start;padding:10px 14px;margin:4px 0;border-radius:16px;background:var(--accentBg);border:1.5px solid var(--accent);font-size:14px;font-weight:500;color:var(--accent)}
 .med-chip.unrecognized{background:var(--amberBg);border-color:var(--amber);color:var(--amber)}
-.med-chip .x{cursor:pointer;width:100%;height:28px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--accent);transition:all 0.15s;border:1px solid color-mix(in srgb, var(--accent) 35%, transparent)}
+.med-chip .x{appearance:none;background:transparent;font-family:var(--font);padding:0;cursor:pointer;width:100%;height:28px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--accent);transition:all 0.15s;border:1px solid color-mix(in srgb, var(--accent) 35%, transparent)}
 .med-chip.unrecognized .x{color:var(--amber);border-color:color-mix(in srgb, var(--amber) 35%, transparent)}
 .med-chip .x:hover{background:var(--accent);color:#fff}
 .med-chip.unrecognized .x:hover{background:var(--amber);color:#fff}
@@ -130,6 +130,20 @@ body[data-audience="patient"] .stats-line{display:none}
 .med-chip .dose-select{background:var(--accent);color:#fff;border:1.5px solid rgba(255,255,255,0.3);border-radius:10px;padding:6px 8px;font-size:12px;font-weight:600;cursor:pointer;outline:none;width:100%;min-width:70px;text-align:center}
 .med-chip .dose-select:hover{border-color:#fff;background:color-mix(in srgb, var(--accent) 85%, #000)}
 .med-chip .dose-select option{background:var(--bg);color:var(--text);padding:4px}
+body[data-audience="patient"] .input-rail{display:contents}
+body[data-audience="patient"] #selectedListSection{order:1}
+body[data-audience="patient"] .result-area{order:2}
+body[data-audience="patient"] #geneticsSection{order:3}
+body[data-audience="patient"] #selectedListSection .section-body{padding:10px 12px}
+body[data-audience="patient"] #medList{display:grid;gap:8px;overflow-x:visible}
+body[data-audience="patient"] .med-chip{display:grid;grid-template-columns:minmax(0,1fr) 34px;align-items:center;gap:10px;margin:0;padding:10px 12px;border-radius:10px;border-width:1px;background:var(--card2);color:var(--text)}
+body[data-audience="patient"] .med-chip.unrecognized{background:var(--amberBg);color:var(--text)}
+body[data-audience="patient"] .med-chip-name{gap:2px}
+body[data-audience="patient"] .med-chip-primary{font-size:14px;color:var(--text)}
+body[data-audience="patient"] .med-chip-secondary{font-size:11px;line-height:1.25;white-space:normal;overflow:visible;text-overflow:clip;max-width:none}
+body[data-audience="patient"] .med-chip .dose-select{display:none}
+body[data-audience="patient"] .med-chip .x{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.76);color:var(--text2);border-color:var(--border)}
+body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .empty-state{text-align:center;padding:30px 20px;color:var(--text2);font-size:14px}
 .empty-state .icon{font-size:40px;margin-bottom:8px}
 .exposure-summary{margin-top:10px;padding-top:8px;border-top:1px solid var(--border);display:grid;gap:6px}
@@ -840,7 +854,7 @@ body[data-audience="patient"] .stats-line{display:none}
 
 <div class="main">
   <div class="input-rail">
-  <div class="section">
+  <div class="section" id="selectedListSection">
       <div class="section-title">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
         <span id="listTitle">My List</span>
