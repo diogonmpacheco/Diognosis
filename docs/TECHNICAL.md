@@ -206,7 +206,7 @@ The top-level app uses six tabs:
 - Evidence: external context cards, evidence browser, and evidence ladder ledger
 - Review: raw paths, diagnostics, scenario snapshots, coverage gaps, technical interaction tables, review workbench, and contribution links
 
-Audience mode is a top-level presentation switch, not RBAC. `Clinician` is the default full-detail view. `Patient` keeps the same local calculation model but shows the Overview safety notes with simpler labels, hides clinician-only tab navigation/details, and can be loaded with `?audience=patient`. The Overview Review Scope includes a context checklist for every stack; Patient mode phrases it as what to bring to a doctor or pharmacist, while Clinician mode keeps medication reconciliation, patient context, PGx, labs, timing, and monitoring prompts explicit.
+Audience mode is a top-level presentation switch, not RBAC. `Clinician` is the default full-detail view. `Patient` keeps the same local calculation model but shows the Overview safety notes with simpler labels, hides clinician-only tab navigation/details, and can be loaded with `?audience=patient`. The clinician Overview keeps the Review Scope panel with checked coverage, evidence limits, standards identity, and review checklist details. Patient mode hides that clinician audit panel; the same safety boundaries are carried through Safety Notes, no-signal states, selected-item chips, and the copyable questions summary with "bring to review" prompts for a doctor or pharmacist.
 
 Legacy tab aliases remain supported for old demo links:
 

@@ -162,9 +162,9 @@ const patient = patientWindow.eval(`(() => ({
   discussionGuides:document.querySelectorAll('#findingBody .finding-discussion').length,
   monitoringGuides:document.querySelectorAll('#findingBody .finding-monitoring').length,
   summaryActions:document.querySelectorAll('#summaryBar .summary-actions .summary-action-btn').length,
-  contextChecklist:document.querySelectorAll('#scopeBody .scope-context-list li').length,
   overviewHandoffText:buildOverviewHandoffText(),
   riskDisplay:document.getElementById('riskSection')?.style.display || '',
+  scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
   scopeText:document.getElementById('scopeBody')?.textContent || '',
   shareUrl:currentStackShareUrl(),
 }))()`);
@@ -180,7 +180,8 @@ assert(/Question to ask|Can you check/i.test(patient.findingText), 'Patient mode
 assert(patient.discussionGuides > 0, 'Patient mode should render discussion guides on safety notes');
 assert(patient.monitoringGuides > 0, 'Patient mode should render plain-language mention-if-present guidance');
 assert(patient.summaryActions >= 2, 'Patient mode should expose top-level copy/share actions');
-assert(patient.contextChecklist >= 4, 'Patient mode should expose a plain-language review checklist');
+assert(patient.scopeDisplay === 'none', 'Patient mode should hide the clinician Review Scope panel');
+assert(!normalizedText(patient.scopeText), 'Patient mode should not render hidden Review Scope copy');
 assert(/Diognosis questions to ask|Questions to ask|Symptoms or changes to mention|Bring to review|Do not start, stop, or change medication/i.test(patient.overviewHandoffText),
   'Patient mode should build a patient-safe copyable question summary');
 assert(patient.sourceLinks === 0, 'Patient mode should hide direct clinician source chips');
@@ -188,11 +189,8 @@ assert(patient.supportingDetails === 0, 'Patient mode should hide technical supp
 assert(patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
 assert(patient.riskDisplay === 'none', 'Patient mode should hide score-style risk panel');
 assert(patient.shareUrl.includes('audience=patient'), 'Patient share URL should preserve audience mode');
-assert(/No result means no major signal was found here; it does not prove the list is safe/i.test(patient.scopeText),
-  'Patient Review Scope should preserve bounded no-safety language');
 assertNoPatientTechnicalLeak('Patient Summary', patient.summaryText);
 assertNoPatientTechnicalLeak('Patient Overview', patient.findingText);
-assertNoPatientTechnicalLeak('Patient Review Scope', patient.scopeText);
 assertNoPatientTechnicalLeak('Patient Copy Summary', patient.overviewHandoffText);
 assertNoUnsafeCertainty('Patient Overview', patient.findingText);
 assertNoInternalLeak('Patient Overview', patient.findingText);
@@ -201,8 +199,8 @@ const unknownUrlWindow = await loadPage('http://localhost/index.html?substances=
 const unknownUrl = unknownUrlWindow.eval(`(() => ({
   activeStack,
   medListText:document.getElementById('medList')?.textContent || '',
+  scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
   scopeText:document.getElementById('scopeBody')?.textContent || '',
-  contextText:[...document.querySelectorAll('#scopeBody .scope-context-list li')].map(li => li.textContent || '').join(' | '),
   unknownChips:document.querySelectorAll('#medList .med-chip.unrecognized').length,
   overviewHandoffText:buildOverviewHandoffText(),
   shareUrl:currentStackShareUrl(),
@@ -213,15 +211,18 @@ assert(unknownUrl.activeStack.join('|') === 'Warfarin|Mystery Mix',
 assert(unknownUrl.unknownChips === 1, 'Unknown URL substances should render as unrecognized selected chips');
 assert(/Mystery Mix|Not checked here/i.test(unknownUrl.medListText),
   'Unknown URL substance chip should clearly show what was not checked');
-assert(/1 selected item was not recognized|Mystery Mix|Not checked here/i.test(`${unknownUrl.scopeText} ${unknownUrl.contextText}`),
-  'Unknown URL substance should be named in patient-facing scope and review checklist');
-assert(/Mystery Mix|Do not start, stop, or change medication/i.test(unknownUrl.overviewHandoffText),
-  'Unknown URL substance should be preserved in the patient copy summary with boundaries');
+assert(unknownUrl.scopeDisplay === 'none' && !normalizedText(unknownUrl.scopeText),
+  'Unknown URL Patient mode should keep the clinician Review Scope panel hidden');
+assert(/Mystery Mix/i.test(unknownUrl.overviewHandoffText),
+  'Unknown URL substance should be preserved in the patient copy summary');
+assert(/Not checked here|Confirm spelling/i.test(unknownUrl.overviewHandoffText),
+  'Unknown URL patient copy summary should explain the unrecognized item boundary');
+assert(/Do not start, stop, or change medication/i.test(unknownUrl.overviewHandoffText),
+  'Unknown URL patient copy summary should preserve medication-change boundaries');
 assert(unknownUrl.shareUrl.includes('warfarin,mystery-mix') && unknownUrl.shareUrl.includes('audience=patient'),
   'Share URL should preserve known and unknown substances plus patient audience mode');
-assertNoPatientTechnicalLeak('Unknown URL Patient Scope', unknownUrl.scopeText);
 assertNoPatientTechnicalLeak('Unknown URL Patient Copy Summary', unknownUrl.overviewHandoffText);
-assertNoUnsafeCertainty('Unknown URL Patient Scope', unknownUrl.scopeText);
+assertNoUnsafeCertainty('Unknown URL Patient Copy Summary', unknownUrl.overviewHandoffText);
 
 const manualUnknownWindow = await loadPage('http://localhost/index.html?audience=patient');
 const manualUnknown = manualUnknownWindow.eval(`(() => {
@@ -233,8 +234,10 @@ const manualUnknown = manualUnknownWindow.eval(`(() => {
     activeStack,
     searchText,
     medListText:document.getElementById('medList')?.textContent || '',
+    scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
     scopeText:document.getElementById('scopeBody')?.textContent || '',
     unknownChips:document.querySelectorAll('#medList .med-chip.unrecognized').length,
+    overviewHandoffText:buildOverviewHandoffText(),
     shareUrl:currentStackShareUrl(),
   };
 })()`);
@@ -245,18 +248,23 @@ assert(manualUnknown.activeStack.join('|') === 'Mystery Mix|Warfarin',
   'Manual unknown entry should remain visible in the active stack with recognized medications');
 assert(manualUnknown.unknownChips === 1 && /Mystery Mix|Not checked here/i.test(manualUnknown.medListText),
   'Manual unknown entry should render as an unrecognized selected chip');
-assert(/not recognized here|Mystery Mix/i.test(manualUnknown.scopeText),
-  'Manual unknown entry should be named in patient-facing scope limits');
+assert(manualUnknown.scopeDisplay === 'none' && !normalizedText(manualUnknown.scopeText),
+  'Manual unknown Patient mode should keep the clinician Review Scope panel hidden');
+assert(/Mystery Mix/i.test(manualUnknown.overviewHandoffText),
+  'Manual unknown entry should be named in the patient copy summary');
+assert(/Not checked here|Confirm spelling/i.test(manualUnknown.overviewHandoffText),
+  'Manual unknown patient copy summary should explain the unrecognized item boundary');
 assert(manualUnknown.shareUrl.includes('mystery-mix') && manualUnknown.shareUrl.includes('warfarin'),
   'Manual unknown entry should be preserved in share links');
-assertNoPatientTechnicalLeak('Manual Unknown Patient Scope', manualUnknown.scopeText);
-assertNoUnsafeCertainty('Manual Unknown Patient Scope', manualUnknown.scopeText);
+assertNoPatientTechnicalLeak('Manual Unknown Patient Copy Summary', manualUnknown.overviewHandoffText);
+assertNoUnsafeCertainty('Manual Unknown Patient Copy Summary', manualUnknown.overviewHandoffText);
 
 const noSignalUnknownWindow = await loadPage('http://localhost/index.html?substances=mystery-mix,unknown-herb&audience=patient&tab=overview');
 const noSignalUnknown = noSignalUnknownWindow.eval(`(() => ({
   activeStack,
   cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
   findingText:document.getElementById('findingBody')?.textContent || '',
+  scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
   scopeText:document.getElementById('scopeBody')?.textContent || '',
   summaryText:document.getElementById('summaryBar')?.textContent || '',
   overviewHandoffText:buildOverviewHandoffText(),
@@ -270,8 +278,14 @@ assert(/No major safety note found here|does not prove the list is safe|Still ch
   'Patient no-signal state should render bounded plain-language next steps');
 assert(!/No interaction findings|Evidence, genetics, metabolite/i.test(noSignalUnknown.findingText),
   'Patient no-signal state should not show the old technical empty message');
-assert(/No result means no major signal was found here; it does not prove the list is safe/i.test(noSignalUnknown.scopeText),
-  'Patient no-signal scope should preserve bounded no-safety language');
+assert(noSignalUnknown.scopeDisplay === 'none' && !normalizedText(noSignalUnknown.scopeText),
+  'Patient no-signal mode should keep the clinician Review Scope panel hidden');
+assert(/Mystery Mix/i.test(noSignalUnknown.overviewHandoffText) && /Unknown Herb/i.test(noSignalUnknown.overviewHandoffText),
+  'Patient no-signal copy summary should preserve unknown items');
+assert(/quiet result here does not prove the list is safe|does not prove the list is safe/i.test(noSignalUnknown.overviewHandoffText),
+  'Patient no-signal copy summary should preserve bounded no-safety language');
+assert(/Bring to review/i.test(noSignalUnknown.overviewHandoffText),
+  'Patient no-signal copy summary should keep practical review prompts');
 assert(noSignalUnknown.shareUrl.includes('mystery-mix,unknown-herb') && noSignalUnknown.shareUrl.includes('audience=patient'),
   'Patient no-signal share URL should preserve unrecognized selections and audience');
 assertNoPatientTechnicalLeak('Patient No-Signal Finding', noSignalUnknown.findingText);

@@ -469,7 +469,7 @@ function buildPatientQuestionSummaryText() {
     "",
     "Boundaries",
     "- This is for education and review, not medical advice.",
-    "- No result here proves the list is safe.",
+    "- A quiet result here does not prove the list is safe.",
     "- Do not start, stop, or change medication without a doctor or pharmacist.",
   ].filter(line => line !== "").join("\n");
 }
@@ -619,6 +619,10 @@ function renderReviewScopePanel() {
   }
   const cache = typeof getRenderComputationCache === "function" ? getRenderComputationCache() : {};
   const scope = buildReviewScopeSummary(cache);
+  if (isPatientAudience()) {
+    hideSectionAndClear("scopeSection", "scopeBody", "scopeCount");
+    return scope;
+  }
   section.style.display = "";
   if (count) count.textContent = scope.statusLabel;
   body.innerHTML = renderReviewScopeSummary(scope);
@@ -1761,6 +1765,7 @@ function updateEmptyTabs() {
 function applyAudienceModeVisibility() {
   if (!isPatientAudience()) return;
   [
+    "scopeSection",
     "riskSection",
     "altSection",
   ].forEach(sectionId => {
@@ -2471,7 +2476,7 @@ function renderAll() {
     renderMatrix(risk.interactions);
     renderAlternatives();
     document.getElementById("riskSection").style.display = "";
-    document.getElementById("scopeSection").style.display = "";
+    if (!isPatientAudience()) document.getElementById("scopeSection").style.display = "";
     document.getElementById("findingSection").style.display = "";
     document.getElementById("interSection").style.display = "";
     document.getElementById("comboSection").style.display = "";
