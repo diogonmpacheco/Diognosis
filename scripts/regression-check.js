@@ -796,6 +796,9 @@ const audienceModeRegression = window.eval(`(() => {
     scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
     scopeText:document.getElementById('scopeBody')?.textContent || '',
     riskDisplay:document.getElementById('riskSection')?.style.display || '',
+    riskText:document.getElementById('riskBody')?.textContent || '',
+    altDisplay:document.getElementById('altSection')?.style.display || '',
+    altText:document.getElementById('altBody')?.textContent || '',
     shareUrl:currentStackShareUrl(),
   };
   setAudienceMode('clinician');
@@ -875,6 +878,9 @@ assert(!/\b(?:AUC|Cmax|RxNorm|PGx|PMID|source-linked|modeled|confidence|clinical
 assert(audienceModeRegression.patient.severityLabels.length > 0 && audienceModeRegression.patient.severityLabels.every(label => !/^(critical|severe|moderate|monitor|info)$/i.test(label)),
   `Patient mode should use plain priority labels instead of raw severity labels: ${audienceModeRegression.patient.severityLabels.join(', ')}`);
 assert(audienceModeRegression.patient.riskDisplay === 'none', 'Patient mode should hide the score-style risk panel');
+assert(!String(audienceModeRegression.patient.riskText || '').replace(/\s+/g, ' ').trim(), 'Patient mode should clear hidden score-style risk text');
+assert(audienceModeRegression.patient.altDisplay === 'none', 'Patient mode should hide clinician alternative suggestions');
+assert(!String(audienceModeRegression.patient.altText || '').replace(/\s+/g, ' ').trim(), 'Patient mode should clear hidden clinician alternative text');
 assert(audienceModeRegression.patient.shareUrl.includes('audience=patient'), 'Patient-mode share URL should preserve audience mode');
 assert(audienceModeRegression.clinician.audienceMode === 'clinician', 'Clinician mode should restore clinician state');
 assert(audienceModeRegression.clinician.bodyAudience === 'clinician', 'Clinician mode should mark body data-audience');

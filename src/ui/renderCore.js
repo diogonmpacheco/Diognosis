@@ -1931,12 +1931,9 @@ function applyAudienceModeVisibility() {
   }
   if (!isPatientAudience()) return;
   [
-    "riskSection",
-    "altSection",
-  ].forEach(sectionId => {
-    const section = document.getElementById(sectionId);
-    if (section) section.style.display = "none";
-  });
+    ["riskSection", "riskBody", null],
+    ["altSection", "altBody", null],
+  ].forEach(([sectionId, bodyId, countId]) => hideSectionAndClear(sectionId, bodyId, countId));
 }
 
 function arrangeAdvancedSections() {
