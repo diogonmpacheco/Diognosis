@@ -226,7 +226,7 @@ evidence -> evidence
 
 Old detailed panels remain available but are not the primary Overview surface. `Known Interactions`, `Combination Alerts`, and `Interaction Grid` live in the hidden Reviewer Console. Full network and pathway views live in Mechanisms.
 
-## Evidence and Review Status
+## Evidence Status Boundaries
 
 These concepts are deliberately separate:
 

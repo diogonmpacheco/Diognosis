@@ -36,6 +36,7 @@ const publicTrust = read('docs/PUBLIC_TRUST.md');
 const launchQa = read('docs/LAUNCH_QA_MATRIX.md');
 const launchTrust = read('docs/LAUNCH_DATA_TRUST_AUDIT.md');
 const technical = read('docs/TECHNICAL.md');
+const dataModel = read('docs/DATA_MODEL.md');
 const pagesWorkflowPath = '.github/workflows/pages.yml';
 const pagesWorkflow = existsSync(resolve(root, pagesWorkflowPath)) ? read(pagesWorkflowPath) : '';
 const ciWorkflow = read('.github/workflows/ci.yml');
@@ -51,6 +52,21 @@ for (const [label, text] of [
   ['Technical Notes', technical],
 ]) {
   assert(!/\bpre-v1\b/i.test(text), `${label} should not describe the active public V1 candidate as pre-v1`);
+}
+for (const [label, text] of [
+  ['README', readme],
+  ['Launch QA Matrix', launchQa],
+  ['Data Model', dataModel],
+  ['Technical Notes', technical],
+]) {
+  assert(!new RegExp(`\\b${['review', 'scope'].join('-')}\\b`, 'i').test(text),
+    `${label} should use hidden Reviewer Console wording for reviewer diagnostics`);
+  assert(!new RegExp('\\bReview\\s+Scope\\b', 'i').test(text),
+    `${label} should use hidden Reviewer Console scope wording`);
+  assert(!new RegExp('\\bReview\\s+tab\\b', 'i').test(text),
+    `${label} should not describe reviewer diagnostics as a normal tab`);
+  assert(!new RegExp('\\bEvidence\\s+and\\s+Review\\b', 'i').test(text),
+    `${label} should keep Evidence separate from hidden reviewer diagnostics`);
 }
 
 assert(pkg.scripts?.['launch:qa'] === 'node scripts/launch-qa-audit.js', 'package.json should expose npm run launch:qa');
