@@ -49,7 +49,7 @@ function renderPersistenceRow(row) {
     ? renderRelatedFindingButton({
         terms:[row.actor, row.parent, row.pathway, label, ...(row.reasons || [])],
         evidenceRefs:row.evidenceRefs || [],
-      }, "Related overview")
+      }, "Open finding")
     : "";
   return `<div class="persistence-card supporting-context-row ${windowClass}">
     <div class="persistence-head">

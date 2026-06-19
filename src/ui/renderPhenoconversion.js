@@ -58,7 +58,7 @@ function renderPhenoconversionRow(row) {
     ? renderRelatedFindingButton({
         terms:[row.enzyme, functional, ...(row.affectedParents || []), ...(row.affectedMetabolites || []), ...(row.activeMoietyConsequences || [])],
         evidenceRefs:row.evidenceRefs || [],
-      }, "Related overview")
+      }, "Open finding")
     : "";
   return `<div class="phenoconversion-card supporting-context-row ${direction}">
     <div class="phenoconversion-head">

@@ -195,6 +195,10 @@ for (const scenario of clinicianScenarios) {
   assertNoInternalLeak(`${scenario.name} Overview`, result.findingText);
   assert(!/\\b(?:Open review|reviewer panel|Raw warning paths|raw signals?|remain available in Review)\\b/i.test(result.mechanismVisibleText),
     `${scenario.name}: normal V1 Mechanisms tab should not expose reviewer-only or raw-path actions`);
+  assert(!/Related overview/i.test(result.mechanismVisibleText),
+    `${scenario.name}: normal V1 Mechanisms tab should use plain Open finding actions instead of Related overview`);
+  assert(/Open finding/i.test(result.mechanismVisibleText),
+    `${scenario.name}: normal V1 Mechanisms tab should provide clear Open finding actions`);
   assertNoInternalLeak(`${scenario.name} Mechanisms`, result.mechanismVisibleText);
 }
 

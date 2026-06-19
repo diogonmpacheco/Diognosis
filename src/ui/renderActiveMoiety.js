@@ -54,7 +54,7 @@ function renderActiveMoietyRow(row) {
     ? renderRelatedFindingButton({
         terms:[row.parent, row.actor, row.formationPathway, row.netPattern, ...(row.reasons || [])],
         evidenceRefs:row.evidenceRefs || [],
-      }, "Related overview")
+      }, "Open finding")
     : "";
   return `<div class="active-moiety-card supporting-context-row ${severity}">
     <div class="active-moiety-head">

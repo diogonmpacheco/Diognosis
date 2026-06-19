@@ -137,7 +137,7 @@ function renderEvidenceLadderLedger(findings = []) {
     const identifiers = ladder.publicIdentifiers?.length ? ladder.publicIdentifiers.join(" · ") : "source-linked entry";
     const title = publicEvidenceTitle(row.study);
     const relatedButton = typeof renderRelatedFindingButton === "function"
-      ? renderRelatedFindingButton({ terms:row.findings, evidenceRefs:[row.ref] }, "Related overview")
+      ? renderRelatedFindingButton({ terms:row.findings, evidenceRefs:[row.ref] }, "Open finding")
       : "";
     return `<div class="evidence-ledger-row">
       <div class="evidence-ledger-head">

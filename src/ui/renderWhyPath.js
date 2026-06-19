@@ -89,7 +89,7 @@ function renderMechanismWhyPaths() {
   body.innerHTML = rows.slice(0, 8).map(finding => {
     const rowId = `mechanism-${publicDomToken(finding.id || finding.title || "finding")}`;
     const relatedButton = typeof renderRelatedFindingButton === "function"
-      ? renderRelatedFindingButton({ finding }, "Related overview")
+      ? renderRelatedFindingButton({ finding }, "Open finding")
       : "";
     const reviewerButton = typeof isReviewerMode === "function" && isReviewerMode()
       ? `<button class="mini-btn" onclick="setTab('review')">Open reviewer panel</button>`
