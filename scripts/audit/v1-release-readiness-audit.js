@@ -158,12 +158,18 @@ const patient = patientWindow.eval(`(() => ({
   audienceMode,
   bodyAudience:document.body.dataset.audience,
   activeTab,
+  tagline:document.getElementById('audienceTagline')?.textContent || '',
+  searchPlaceholder:document.getElementById('searchInput')?.getAttribute('placeholder') || '',
+  listTitle:document.getElementById('listTitle')?.textContent || '',
+  geneTitle:document.getElementById('geneSectionTitle')?.textContent || '',
+  geneIntro:document.getElementById('geneSectionIntro')?.textContent || '',
   tabBarDisplay:document.getElementById('tabBar')?.style.display || '',
   summaryText:document.getElementById('summaryBar')?.textContent || '',
   summaryRisk:document.querySelector('#summaryBar .summary-risk')?.textContent || '',
   findingTitle:document.getElementById('findingTitle')?.textContent || '',
   findingCount:document.getElementById('findingCount')?.textContent || '',
   findingText:document.getElementById('findingBody')?.textContent || '',
+  severityLabels:[...document.querySelectorAll('#findingBody .finding-sev')].map(el => el.textContent.trim()),
   sourceLinks:document.querySelectorAll('#findingBody a.source-link').length,
   actionRows:document.querySelectorAll('#findingBody .finding-actions').length,
   supportingDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
@@ -181,6 +187,15 @@ const patient = patientWindow.eval(`(() => ({
 assert(patient.audienceMode === 'patient', 'Patient URL should activate Patient mode');
 assert(patient.bodyAudience === 'patient', 'Patient mode should mark body data-audience');
 assert(patient.activeTab === 'overview', 'Patient mode should force Overview even if URL asks for Review');
+assert(/prepare medicine-list questions|doctor or pharmacist/i.test(patient.tagline),
+  'Patient mode should use patient-facing app tagline');
+assert(/Search medicines/i.test(patient.searchPlaceholder), 'Patient mode should use patient-facing search placeholder');
+assert(patient.listTitle === 'My Medicine List', 'Patient mode should use patient-facing list label');
+assert(/Gene Results/i.test(patient.geneTitle) && /Do not guess|original report|doctor or pharmacist/i.test(patient.geneIntro),
+  'Patient mode should use patient-facing gene helper copy');
+assert(!/Genes \+ Metabolites tab|source-linked|parent drugs|PK timing|pathway activity|metabolite balance/i.test(
+  `${patient.tagline} ${patient.geneIntro}`
+), 'Patient chrome should not refer to hidden clinician tabs or technical tagline language');
 assert(patient.tabBarDisplay === 'none', 'Patient mode should hide clinician tab navigation');
 assert(patient.summaryRisk.trim() === '', 'Patient mode should hide score-style summary badges');
 assert(patient.findingTitle === 'Safety Notes', 'Patient mode should rename public findings');
@@ -199,11 +214,14 @@ assert(patient.sourceLinks === 0, 'Patient mode should hide direct clinician sou
 assert(patient.actionRows === 0, 'Patient mode should not render empty clinician action rows on Safety Notes');
 assert(patient.supportingDetails === 0, 'Patient mode should hide technical supporting detail drawers');
 assert(patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
+assert(patient.severityLabels.length > 0 && patient.severityLabels.every(label => !/^(critical|severe|moderate|monitor|info)$/i.test(label)),
+  `Patient mode should use plain priority labels instead of raw severity labels: ${patient.severityLabels.join(', ')}`);
 assert(patient.riskDisplay === 'none', 'Patient mode should hide score-style risk panel');
 assert(patient.shareUrl.includes('audience=patient'), 'Patient share URL should preserve audience mode');
 assertNoPatientTechnicalLeak('Patient Summary', patient.summaryText);
 assertNoPatientTechnicalLeak('Patient Overview', patient.findingText);
 assertNoPatientTechnicalLeak('Patient Copy Summary', patient.overviewHandoffText);
+assertNoPatientTechnicalLeak('Patient Chrome', `${patient.tagline} ${patient.searchPlaceholder} ${patient.listTitle} ${patient.geneTitle} ${patient.geneIntro}`);
 assertNoPatientFooterLeak('Patient Overview', patient.findingText);
 assertNoUnsafeCertainty('Patient Overview', patient.findingText);
 assertNoInternalLeak('Patient Overview', patient.findingText);
@@ -219,6 +237,8 @@ const patientSingle = patientSingleWindow.eval(`(() => ({
 assert(patientSingle.activeStack.join('|') === 'Mystery Mix', 'Patient single-item URL should preserve the unrecognized selection');
 assert(patientSingle.findingDisplay === 'none', 'Patient single-item mode should hide Safety Notes when no note exists');
 assert(patientSingle.summaryJumpCount === 0, 'Patient single-item mode should not show a View note jump to a hidden section');
+assert(/Current Check/i.test(patientSingle.summaryText),
+  'Patient single-item mode should label the summary as a current check when no safety note exists');
 assert(/Add another medicine to check the list/i.test(patientSingle.summaryText),
   'Patient single-item mode should keep the add-another-medicine guidance');
 assertNoPatientTechnicalLeak('Patient Single Summary', patientSingle.summaryText);

@@ -132,6 +132,7 @@ function setAudienceMode(mode, options = {}) {
 }
 
 function syncAudienceModeUI() {
+  const patient = isPatientAudience();
   if (document.body) document.body.dataset.audience = audienceMode;
   for (const mode of AUDIENCE_MODES) {
     const btn = document.getElementById(`audience-${mode}`);
@@ -139,8 +140,34 @@ function syncAudienceModeUI() {
     btn.classList.toggle("active", mode === audienceMode);
     btn.setAttribute("aria-pressed", mode === audienceMode ? "true" : "false");
   }
+  const tagline = document.getElementById("audienceTagline") || document.querySelector(".header p");
+  if (tagline) {
+    tagline.textContent = patient
+      ? "Diognosis helps you prepare medicine-list questions for a doctor or pharmacist."
+      : "Diognosis - parent drugs, metabolites, genes, pathways, PK timing, and source-linked evidence checked together";
+  }
+  const searchInput = document.getElementById("searchInput");
+  if (searchInput) {
+    searchInput.placeholder = patient
+      ? "Search medicines, supplements, foods..."
+      : "Search medications, supplements, foods...";
+  }
+  const listTitle = document.getElementById("listTitle");
+  if (listTitle) listTitle.textContent = patient ? "My Medicine List" : "Selected List";
+  const geneTitle = document.getElementById("geneSectionTitle");
+  if (geneTitle) {
+    geneTitle.innerHTML = patient
+      ? 'Gene Results <span style="font-size:11px;font-weight:400;color:var(--text2)">(optional)</span>'
+      : 'Gene / Marker Results <span style="font-size:11px;font-weight:400;color:var(--text2)">(optional)</span>';
+  }
+  const geneIntro = document.getElementById("geneSectionIntro");
+  if (geneIntro) {
+    geneIntro.textContent = patient
+      ? "Only add a medication gene-test result if you already have one. Do not guess a result; bring the original report to a doctor or pharmacist."
+      : "Set inherited gene or marker results here. The Genes + Metabolites tab shows how your list may change medication response, pathway activity, and metabolite balance.";
+  }
   const findingTitle = document.getElementById("findingTitle");
-  if (findingTitle) findingTitle.textContent = isPatientAudience() ? "Safety Notes" : "Interaction Findings";
+  if (findingTitle) findingTitle.textContent = patient ? "Safety Notes" : "Interaction Findings";
 }
 
 function setViewMode(m) {
@@ -409,7 +436,7 @@ function renderSummaryBar() {
     }
   }
 
-  const summaryKicker = patient ? "Main Safety Note" : "Highest Priority";
+  const summaryKicker = patient ? (primaryPresentation ? "Main Safety Note" : "Current Check") : "Highest Priority";
   const jumpLabel = patient ? "View note" : "View finding";
   const hasVisibleSummaryJump = Boolean(primaryPresentation) || activeStack.length >= 2 || (!patient && Boolean(isGenotypePriority));
   const summaryJumpHtml = hasVisibleSummaryJump
@@ -1110,6 +1137,14 @@ function publicFindingSeverityScore(severity) {
   return { critical:5, severe:4, moderate:3, monitor:2, info:1 }[severity] || 0;
 }
 
+function patientSeverityLabel(severity) {
+  const key = safeChoice(severity, ["critical","severe","moderate","monitor","info"], "info");
+  if (key === "critical" || key === "severe") return "Higher priority";
+  if (key === "moderate") return "Review soon";
+  if (key === "monitor") return "Mention";
+  return "Note";
+}
+
 function publicFindingSearchText(presentation = {}) {
   return [
     presentation.id,
@@ -1194,6 +1229,7 @@ function renderPublicFindingCard(presentation) {
     : "";
   const sourceLinks = patient ? "" : renderFindingSourceLinks(presentation, trust);
   const evidenceStep = patient ? "" : renderFindingStep("Evidence", presentation.evidenceSummary);
+  const severityLabel = patient ? patientSeverityLabel(severity) : severity;
   const discussionGuide = renderFindingDiscussionGuide(presentation, trust, patient);
   const monitoringGuide = renderFindingMonitoringGuide(presentation, trust, patient);
   const actionHtml = detailButton || sourceLinks
@@ -1217,7 +1253,7 @@ function renderPublicFindingCard(presentation) {
         <div class="finding-title">${safePublicHtml(title)}</div>
         <div class="finding-subtitle">${safePublicHtml((presentation.affectedSubstances || []).join(" + ") || "current stack")}</div>
       </div>
-      <span class="finding-sev ${severity}">${safePublicHtml(severity)}</span>
+      <span class="finding-sev ${severity}">${safePublicHtml(severityLabel)}</span>
     </div>
     ${renderFindingTrustStrip(trust, patient)}
     ${actorHtml ? `<div class="finding-actors">${actorHtml}</div>` : ""}
