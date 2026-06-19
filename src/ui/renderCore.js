@@ -72,6 +72,16 @@ let manualSectionToggleKeys = {};
 const DIOGNOSIS_TABS = ["overview","mechanisms","genes-metabolites","timing-levels","evidence","review"];
 const AUDIENCE_MODES = ["patient","clinician"];
 
+function keyboardButtonAttrs() {
+  return `role="button" tabindex="0" onkeydown="activateKeyboardButton(event)"`;
+}
+
+function activateKeyboardButton(event) {
+  if (!event || (event.key !== "Enter" && event.key !== " ")) return;
+  event.preventDefault();
+  event.currentTarget?.click();
+}
+
 function clearCurrentFindingState() {
   currentInteractionFindings = [];
   currentClinicalConcerns = [];
@@ -1974,7 +1984,7 @@ function onSearch(q) {
       const displayName = matchedAlias ? `${highlight(matchedAlias, q)} -> ${d.name}` : highlight(d.name, q);
       const matchNote = row.match.reason && row.match.reason !== "name" ? `<span class="sr-match">${row.match.reason}</span>` : "";
       const secondaryHtml = secondary || matchNote ? `<span class="sr-secondary">${[secondary, matchNote].filter(Boolean).join(" ")}</span>` : "";
-      html += `<div class="sr-item" onclick="${added ? `removeDrug('${d.name.replace(/'/g,"\\'")}')` : `addDrug('${d.name.replace(/'/g,"\\'")}')` }">
+      html += `<div class="sr-item" ${keyboardButtonAttrs()} onclick="${added ? `removeDrug('${d.name.replace(/'/g,"\\'")}')` : `addDrug('${d.name.replace(/'/g,"\\'")}')` }">
         <span><span class="sr-name">${displayName}</span>${secondaryHtml}</span>
         <span>${added ? '<span class="sr-added">✓ Added</span>' : `<span class="sr-class">${d.cls}</span>`}</span>
       </div>`;
@@ -1991,7 +2001,7 @@ function onSearch(q) {
       const secondary = formatActorSources(actor);
       const matchedAlias = row.match.term && row.match.term !== actor.name && row.match.term !== actor.id ? row.match.term : "";
       const displayName = matchedAlias ? `${highlight(matchedAlias, q)} -> ${actor.name}` : highlight(actor.name, q);
-      html += `<div class="sr-item" onclick="${added ? `removeFoodActor('${actor.id}')` : `addFoodActor('${actor.id}')`}">
+      html += `<div class="sr-item" ${keyboardButtonAttrs()} onclick="${added ? `removeFoodActor('${actor.id}')` : `addFoodActor('${actor.id}')`}">
         <span><span class="sr-name">${displayName}</span>${secondary ? `<span class="sr-secondary">${secondary}</span>` : ""}</span>
         <span>${added ? '<span class="sr-added">✓ Added</span>' : '<span class="sr-class">Food/Supplement</span>'}</span>
       </div>`;
@@ -2014,7 +2024,7 @@ function renderUnrecognizedSearchResult(query) {
     return itemKey === key;
   });
   const action = added ? `removeDrug('${inlineJsString(name)}')` : `addUnrecognizedSubstance('${inlineJsString(name)}')`;
-  return `<div class="sr-item sr-unrecognized" onclick="${action}">
+  return `<div class="sr-item sr-unrecognized" ${keyboardButtonAttrs()} onclick="${action}">
     <span>
       <span class="sr-name">${safePublicHtml(name)}</span>
       <span class="sr-secondary">Not recognized here. Diognosis will keep it in the list but will not assess interactions for it.</span>
@@ -2370,14 +2380,14 @@ function renderBrowse() {
 
   el.innerHTML = renderBrowseClassGuides() + sortedCats.filter(c => groups[c]).map(cat => `
     <div class="browse-cat">
-      <div class="browse-cat-title" onclick="toggleBrowseCat(this)">
+      <div class="browse-cat-title" ${keyboardButtonAttrs()} aria-expanded="false" onclick="toggleBrowseCat(this)">
         ${cat} <span style="font-weight:400;font-size:12px;color:var(--text2)">(${groups[cat].length})</span>
         <span class="arrow">▶</span>
       </div>
       <div class="browse-items" data-cat="${cat}">
         ${groups[cat].sort((a,b)=>a.name.localeCompare(b.name)).map(d => {
           const alias = typeof getDrugSecondaryLabel === "function" ? getDrugSecondaryLabel(d, 2) : "";
-          return `<div class="browse-chip ${activeStack.includes(d.name)?'added':''}" onclick="toggleDrug('${d.name.replace(/'/g,"\\'")}')">${d.name}<span class="browse-chip-class">${d.cls}</span>${alias ? `<span class="browse-chip-alias">${alias}</span>` : ""}</div>`;
+          return `<div class="browse-chip ${activeStack.includes(d.name)?'added':''}" ${keyboardButtonAttrs()} onclick="toggleDrug('${d.name.replace(/'/g,"\\'")}')">${d.name}<span class="browse-chip-class">${d.cls}</span>${alias ? `<span class="browse-chip-alias">${alias}</span>` : ""}</div>`;
         }).join("")}
       </div>
     </div>
@@ -2386,7 +2396,7 @@ function renderBrowse() {
 
 function renderBrowseClassGuides() {
   return `<div class="class-guide-list">
-    ${MEDICATION_CLASS_GUIDES.map((guide, idx) => `<div class="class-guide-card" onclick="loadMedicationClassGuide(${idx})">
+    ${MEDICATION_CLASS_GUIDES.map((guide, idx) => `<div class="class-guide-card" ${keyboardButtonAttrs()} onclick="loadMedicationClassGuide(${idx})">
       <div class="class-guide-title">${guide.title}</div>
       <div class="class-guide-note">${guide.note}</div>
       <div class="class-guide-tags">${guide.tags.map(tag => `<span class="class-guide-tag">${tag}</span>`).join("")}</div>
@@ -2411,6 +2421,7 @@ function loadMedicationClassGuide(index) {
 function toggleBrowseCat(el) {
   el.classList.toggle("open");
   el.nextElementSibling.classList.toggle("show");
+  el.setAttribute("aria-expanded", el.classList.contains("open") ? "true" : "false");
 }
 
 function toggleDrug(name) {

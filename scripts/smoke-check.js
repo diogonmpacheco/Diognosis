@@ -105,6 +105,35 @@ assert(/body\[data-audience="patient"\]\s*\.result-area\s*\{\s*order\s*:\s*3\s*\
 assert(/body\[data-audience="clinician"\]\s*\.result-area\s*\{\s*order\s*:\s*3\s*\}/i.test(styleText),
   'Clinician mode should keep results after Gene / Marker Results');
 
+window.onSearch('parox');
+let keyboardSearchResult = doc.querySelector('#searchResults .sr-item[role="button"][tabindex="0"]');
+assert(keyboardSearchResult?.getAttribute('onkeydown')?.includes('activateKeyboardButton'), 'Search results should support keyboard activation');
+keyboardSearchResult.dispatchEvent(new window.KeyboardEvent('keydown', { key:'Enter', bubbles:true, cancelable:true }));
+assert(evalInPage(window, 'activeStack.includes("Paroxetine")'), 'Enter on a search result should add the selected medication');
+window.removeDrug('Paroxetine');
+
+window.onSearch('not in this database');
+const keyboardUnknownResult = doc.querySelector('#searchResults .sr-unrecognized[role="button"][tabindex="0"]');
+assert(keyboardUnknownResult, 'Unrecognized search row should support keyboard activation');
+keyboardUnknownResult.dispatchEvent(new window.KeyboardEvent('keydown', { key:' ', bubbles:true, cancelable:true }));
+assert(evalInPage(window, 'activeStack.includes("Not In This Database")'), 'Space on an unrecognized search row should keep the item in the selected list');
+window.removeDrug('Not In This Database');
+
+window.setViewMode('browse');
+const keyboardGuide = doc.querySelector('.class-guide-card[role="button"][tabindex="0"]');
+assert(keyboardGuide?.getAttribute('onkeydown')?.includes('activateKeyboardButton'), 'Browse example cards should support keyboard activation');
+keyboardGuide.dispatchEvent(new window.KeyboardEvent('keydown', { key:'Enter', bubbles:true, cancelable:true }));
+assert(evalInPage(window, 'activeStack.length') > 0, 'Enter on a browse example card should load its example stack');
+evalInPage(window, `(() => { activeStack = []; renderAll(); setViewMode('browse'); })()`);
+const keyboardBrowseCategory = doc.querySelector('.browse-cat-title[role="button"][tabindex="0"]');
+assert(keyboardBrowseCategory?.getAttribute('aria-expanded') === 'false', 'Browse category headers should expose collapsed state');
+keyboardBrowseCategory.dispatchEvent(new window.KeyboardEvent('keydown', { key:' ', bubbles:true, cancelable:true }));
+assert(keyboardBrowseCategory.getAttribute('aria-expanded') === 'true' && keyboardBrowseCategory.nextElementSibling?.classList.contains('show'),
+  'Space on a browse category header should expand the category');
+const keyboardBrowseChip = doc.querySelector('.browse-chip[role="button"][tabindex="0"]');
+assert(keyboardBrowseChip?.getAttribute('onkeydown')?.includes('activateKeyboardButton'), 'Browse medication chips should support keyboard activation');
+window.setViewMode('search');
+
 window.addDrug('Paroxetine');
 window.addDrug('Codeine');
 await new Promise((resolveReady) => setTimeout(resolveReady, 100));
