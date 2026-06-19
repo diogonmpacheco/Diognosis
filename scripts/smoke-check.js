@@ -68,6 +68,43 @@ assert(
   `Unexpected top-level tabs: ${tabLabels.join('|')}`
 );
 
+const styleText = Array.from(doc.querySelectorAll('style')).map((style) => style.textContent || '').join('\n');
+const themeColor = doc.querySelector('meta[name="theme-color"]')?.getAttribute('content') || '';
+const approvedPalette = {
+  themeColor: '#e85d26',
+  bg: '#fef7f0',
+  card2: '#fefcf9',
+  text: '#3d2c1e',
+  text2: '#8b7355',
+  border: '#f0e4d4',
+  accent: '#e85d26',
+  accent2: '#f97316',
+  accentBg: '#fff7ed',
+};
+assert(themeColor === approvedPalette.themeColor, `Theme color should keep the approved warm V1 palette; got ${themeColor}`);
+for (const [name, value] of Object.entries(approvedPalette).filter(([name]) => name !== 'themeColor')) {
+  assert(new RegExp(`--${name}\\s*:\\s*${value}\\b`, 'i').test(styleText), `Warm V1 palette token --${name} should be ${value}`);
+}
+assert(!/--accent\s*:\s*#2563eb\b/i.test(styleText), 'Smoke check should catch the rejected blue accent palette');
+assert(!/--accent2\s*:\s*#0f766e\b/i.test(styleText), 'Smoke check should catch the rejected teal secondary palette');
+
+const inputRailOrder = Array.from(doc.querySelector('.input-rail')?.children || []).map((el) => el.id || el.className);
+const mainOrder = Array.from(doc.querySelector('.main')?.children || []).map((el) =>
+  el.id || (el.classList.contains('input-rail') ? 'input-rail' : el.classList.contains('result-area') ? 'result-area' : el.className)
+);
+assert(inputRailOrder.join('|') === 'selectedListSection|geneticsSection',
+  `Gene / Marker Results should stay directly after the selected list; got ${inputRailOrder.join('|')}`);
+assert(mainOrder.join('|') === 'input-rail|result-area',
+  `Results should remain after the input rail; got ${mainOrder.join('|')}`);
+assert(/body\[data-audience="patient"\]\s*#geneticsSection\s*\{\s*order\s*:\s*2\s*\}/i.test(styleText),
+  'Patient mode should keep Gene Results before results');
+assert(/body\[data-audience="clinician"\]\s*#geneticsSection\s*\{\s*order\s*:\s*2\s*\}/i.test(styleText),
+  'Clinician mode should keep Gene / Marker Results before results');
+assert(/body\[data-audience="patient"\]\s*\.result-area\s*\{\s*order\s*:\s*3\s*\}/i.test(styleText),
+  'Patient mode should keep results after Gene Results');
+assert(/body\[data-audience="clinician"\]\s*\.result-area\s*\{\s*order\s*:\s*3\s*\}/i.test(styleText),
+  'Clinician mode should keep results after Gene / Marker Results');
+
 window.addDrug('Paroxetine');
 window.addDrug('Codeine');
 await new Promise((resolveReady) => setTimeout(resolveReady, 100));
