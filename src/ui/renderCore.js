@@ -517,8 +517,8 @@ function renderSummaryActions(patient = isPatientAudience()) {
   return `<div class="summary-actions">
     <button type="button" class="summary-action-btn" onclick="copyOverviewHandoffSummary()">${safePublicHtml(copyLabel)}</button>
     ${shareUrl ? `<a class="summary-action-btn" href="${safeAttr(shareUrl)}" target="_blank" rel="noopener">Share link</a>` : ""}
-    <span class="summary-action-status" id="summaryCopyStatus"></span>
-    <pre class="summary-copy-text" id="summaryCopyText" hidden></pre>
+    <span class="summary-action-status" id="summaryCopyStatus" role="status" aria-live="polite" aria-atomic="true"></span>
+    <pre class="summary-copy-text" id="summaryCopyText" tabindex="0" aria-label="Copyable Diognosis handoff text" hidden></pre>
   </div>`;
 }
 
@@ -614,6 +614,8 @@ function copyOverviewHandoffSummary() {
     if (message === "Copy unavailable") {
       showSummaryCopyText(text);
       message = "Select text below";
+    } else {
+      hideSummaryCopyText();
     }
     if (status) status.textContent = message;
   };
@@ -656,6 +658,13 @@ function showSummaryCopyText(text) {
   if (!el) return;
   el.textContent = text;
   el.hidden = false;
+  el.focus();
+}
+
+function hideSummaryCopyText() {
+  const el = document.getElementById("summaryCopyText");
+  if (!el) return;
+  el.hidden = true;
 }
 
 function renderInteractionFindingsOverview(risk) {

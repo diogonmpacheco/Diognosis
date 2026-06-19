@@ -156,6 +156,20 @@ await new Promise((resolveReady) => setTimeout(resolveReady, 100));
 
 assert(evalInPage(window, 'activeStack.length') === 2, 'Medication stack did not update');
 assert(doc.getElementById('medCount')?.textContent.includes('2'), 'Medication count did not update');
+const summaryCopyStatus = doc.getElementById('summaryCopyStatus');
+const summaryCopyText = doc.getElementById('summaryCopyText');
+assert(summaryCopyStatus?.getAttribute('role') === 'status' && summaryCopyStatus?.getAttribute('aria-live') === 'polite',
+  'Summary copy status should be announced politely');
+assert(summaryCopyText?.getAttribute('tabindex') === '0' && summaryCopyText?.getAttribute('aria-label'),
+  'Summary copy fallback text should be keyboard focusable');
+const originalExecCommand = doc.execCommand;
+doc.execCommand = () => false;
+window.copyOverviewHandoffSummary();
+assert(summaryCopyStatus.textContent === 'Select text below', 'Summary copy fallback should explain manual selection');
+assert(summaryCopyText.hidden === false && /Diognosis V1 handoff summary|Diognosis questions to ask/i.test(summaryCopyText.textContent),
+  'Summary copy fallback should reveal the copyable handoff text');
+assert(doc.activeElement === summaryCopyText, 'Summary copy fallback should move focus to the copyable handoff text');
+doc.execCommand = originalExecCommand;
 assert(doc.getElementById('tab-overview')?.classList.contains('active'), 'Overview tab should be active by default');
 assert(doc.getElementById('findingSection')?.closest('.tab-panel')?.id === 'tab-overview', 'Normalized interaction findings should live under Overview');
 assert(doc.getElementById('interSection')?.closest('.tab-panel')?.id === 'tab-review', 'Detailed known interactions should live under Reviewer Console');

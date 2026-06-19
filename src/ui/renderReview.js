@@ -52,7 +52,7 @@ function renderV1HandoffSummary() {
     <div class="review-actions">
       <button type="button" class="review-action-btn" onclick="copyV1HandoffSummary()">Copy summary</button>
       ${shareUrl ? `<a class="review-action-btn" href="${safeAttr(shareUrl)}" target="_blank" rel="noopener">Open share link</a>` : ""}
-      <span class="review-action-status" id="v1HandoffCopyStatus"></span>
+      <span class="review-action-status" id="v1HandoffCopyStatus" role="status" aria-live="polite" aria-atomic="true"></span>
     </div>
   </div>`;
 }
