@@ -318,8 +318,8 @@ function renderSummaryBar() {
       ? `${severeCount} severe finding${severeCount>1?"s":""}${topSevere ? `: ${topSevere}` : ""}. Review the findings before changing doses or adding more substances.`
       : `Checked ${activeStack.length} substances. Diognosis did not find a severe pairwise interaction, but genotype, transporter, metabolite, and dose context may still matter.`;
     nextStep = severeCount > 0
-      ? "Start with the severe findings, then review genotype-adjusted levels."
-      : "Review level changes and genotype notes for dose-sensitive substances.";
+      ? "Start with the severe findings, then review timing, burden, and evidence context."
+      : "Review level changes, burden, timing, and any selected gene results.";
     if (priorityInteraction) {
       priorityStory = buildInteractionPriorityStory(priorityInteraction);
     }

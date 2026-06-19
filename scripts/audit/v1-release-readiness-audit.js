@@ -172,6 +172,24 @@ assertNoPatientTechnicalLeak('Patient Review Scope', patient.scopeText);
 assertNoUnsafeCertainty('Patient Overview', patient.findingText);
 assertNoInternalLeak('Patient Overview', patient.findingText);
 
+const olderAdultWindow = await loadPage('http://localhost/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview');
+const olderAdultDemo = olderAdultWindow.eval(`(() => ({
+  activeStack,
+  activeTab,
+  summaryText:document.getElementById('summaryBar')?.textContent || '',
+  findingText:document.getElementById('findingBody')?.textContent || '',
+  cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
+}))()`);
+
+assert(olderAdultDemo.activeStack.join('|') === 'Amitriptyline|Diazepam|Diphenhydramine|Oxycodone',
+  'Older-adult public demo should load the documented four-drug stack');
+assert(olderAdultDemo.activeTab === 'overview', 'Older-adult public demo should open Overview');
+assert(olderAdultDemo.cards > 0, 'Older-adult public demo should render public finding cards');
+assert(/sedation|sleepiness|fall|anticholinergic|burden|Amitriptyline|Diazepam|Diphenhydramine|Oxycodone/i.test(`${olderAdultDemo.summaryText} ${olderAdultDemo.findingText}`),
+  'Older-adult public demo should surface the promised burden-oriented safety context');
+assert(!/genotype may|CYP2D6 genotype|normal metabolizer/i.test(olderAdultDemo.summaryText),
+  'Older-adult public demo summary should not be led by default normal-genotype context');
+
 const structuralWindow = await loadPage('http://localhost/');
 const structural = structuralWindow.eval(`(() => ({
   hasReadinessHelper:typeof buildV1ReadinessSnapshot === 'function',

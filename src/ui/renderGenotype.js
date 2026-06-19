@@ -257,6 +257,7 @@ function getHighestGenotypePrioritySignal() {
 
     for (const card of getGenotypeMetaboliteEffectCards(drugName)) {
       const { effect, phenotypeEffect, geno } = card;
+      if (geno === GENOTYPE_PHENOTYPE.NM) continue;
       const score = scoreGenotypeMetaboliteSignal(effect, phenotypeEffect);
       if (score < 30) continue;
       const direction = phenotypeEffect.direction === "decrease" ? "reduce" : "increase";

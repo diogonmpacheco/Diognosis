@@ -703,6 +703,40 @@ assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mod
 assert(audienceModeRegression.clinician.findingTitle === 'Interaction Findings', 'Clinician mode should restore clinician finding title');
 assert(audienceModeRegression.clinician.supportDetails > 0, 'Clinician mode should show supporting detail drawers');
 
+const olderAdultDemoPriorityRegression = window.eval(`(() => {
+  activeStack = [];
+  userGenetics = {};
+  activeGenotypeDetails = {};
+  activeGenotype = {
+    CYP2D6: GENOTYPE_PHENOTYPE.NM,
+    CYP2C19: GENOTYPE_PHENOTYPE.NM,
+    CYP2C9: GENOTYPE_PHENOTYPE.NM,
+  };
+  window.history.replaceState(null, '', '/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview');
+  loadUrlDemoState();
+  renderComputationCache = null;
+  renderAll();
+  return {
+    activeStack,
+    activeTab,
+    priority:getHighestGenotypePrioritySignal(),
+    summaryText:document.getElementById('summaryBar')?.textContent || '',
+    findingText:document.getElementById('findingBody')?.textContent || '',
+    cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
+  };
+})()`);
+assert(olderAdultDemoPriorityRegression.activeStack.join('|') === 'Amitriptyline|Diazepam|Diphenhydramine|Oxycodone',
+  'Older-adult demo URL should load the documented four-drug stack');
+assert(olderAdultDemoPriorityRegression.activeTab === 'overview', 'Older-adult demo URL should open Overview');
+assert(olderAdultDemoPriorityRegression.cards > 0, 'Older-adult demo should render Overview findings');
+assert(!olderAdultDemoPriorityRegression.priority || !/normal metabolizer|reference state/i.test(olderAdultDemoPriorityRegression.priority.summary || ''),
+  'Default normal-genotype metabolite context should not become the top genotype priority');
+assert(!/genotype may|CYP2D6 genotype|normal metabolizer/i.test(olderAdultDemoPriorityRegression.summaryText),
+  'Older-adult demo summary should not be led by default normal-genotype context');
+assert(/sedation|fall|anticholinergic|burden|Amitriptyline|Diazepam|Diphenhydramine|Oxycodone/i.test(
+  `${olderAdultDemoPriorityRegression.summaryText} ${olderAdultDemoPriorityRegression.findingText}`
+), 'Older-adult demo should surface burden-oriented safety context');
+
 const nebivololPgxDisplayRegression = window.eval(`(() => {
   activeStack = ['Nebivolol'];
   userGenetics = {};
