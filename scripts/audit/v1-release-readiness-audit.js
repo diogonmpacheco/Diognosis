@@ -165,6 +165,7 @@ const patient = patientWindow.eval(`(() => ({
   findingCount:document.getElementById('findingCount')?.textContent || '',
   findingText:document.getElementById('findingBody')?.textContent || '',
   sourceLinks:document.querySelectorAll('#findingBody a.source-link').length,
+  actionRows:document.querySelectorAll('#findingBody .finding-actions').length,
   supportingDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
   detailButtons:document.querySelectorAll('#findingBody .related-finding-btn.secondary').length,
   discussionGuides:document.querySelectorAll('#findingBody .finding-discussion').length,
@@ -195,6 +196,7 @@ assert(!normalizedText(patient.scopeText), 'Patient mode should not render hidde
 assert(/Diognosis questions to ask|Questions to ask|Symptoms or changes to mention|Bring to review|Do not start, stop, or change medication/i.test(patient.overviewHandoffText),
   'Patient mode should build a patient-safe copyable question summary');
 assert(patient.sourceLinks === 0, 'Patient mode should hide direct clinician source chips');
+assert(patient.actionRows === 0, 'Patient mode should not render empty clinician action rows on Safety Notes');
 assert(patient.supportingDetails === 0, 'Patient mode should hide technical supporting detail drawers');
 assert(patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
 assert(patient.riskDisplay === 'none', 'Patient mode should hide score-style risk panel');

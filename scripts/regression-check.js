@@ -667,6 +667,7 @@ const audienceModeRegression = window.eval(`(() => {
     summaryRisk:document.querySelector('#summaryBar .summary-risk')?.textContent || '',
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
     findingCount:document.getElementById('findingCount')?.textContent || '',
+    actionRows:document.querySelectorAll('#findingBody .finding-actions').length,
     detailButtons:document.querySelectorAll('#findingBody .related-finding-btn.secondary').length,
     supportDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
     findingText:document.getElementById('findingBody')?.textContent || '',
@@ -683,6 +684,7 @@ const audienceModeRegression = window.eval(`(() => {
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
     scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
     scopeText:document.getElementById('scopeBody')?.textContent || '',
+    actionRows:document.querySelectorAll('#findingBody .finding-actions').length,
     supportDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
   };
   return { patient, clinician };
@@ -694,6 +696,7 @@ assert(audienceModeRegression.patient.tabBarDisplay === 'none', 'Patient mode sh
 assert(audienceModeRegression.patient.summaryRisk.trim() === '', 'Patient mode should hide summary score badges');
 assert(audienceModeRegression.patient.findingTitle === 'Safety Notes', 'Patient mode should rename findings to Safety Notes');
 assert(/safety notes?/i.test(audienceModeRegression.patient.findingCount), 'Patient mode should label public finding count as safety notes');
+assert(audienceModeRegression.patient.actionRows === 0, 'Patient mode should not render empty clinician action rows on Safety Notes');
 assert(audienceModeRegression.patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
 assert(audienceModeRegression.patient.supportDetails === 0, 'Patient mode should hide clinician supporting detail drawers');
 assert(/What this means/.test(audienceModeRegression.patient.findingText), 'Patient mode should use plain-language finding labels');
@@ -714,6 +717,7 @@ assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mod
 assert(audienceModeRegression.clinician.findingTitle === 'Interaction Findings', 'Clinician mode should restore clinician finding title');
 assert(audienceModeRegression.clinician.scopeDisplay !== 'none', 'Clinician mode should restore the Review Scope panel');
 assert(/Selected|Recognized|Concerns|Limit:/i.test(audienceModeRegression.clinician.scopeText), 'Clinician mode should restore Review Scope coverage and limits');
+assert(audienceModeRegression.clinician.actionRows > 0, 'Clinician mode should restore finding action rows');
 assert(audienceModeRegression.clinician.supportDetails > 0, 'Clinician mode should show supporting detail drawers');
 
 const olderAdultDemoPriorityRegression = window.eval(`(() => {

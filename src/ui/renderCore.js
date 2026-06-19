@@ -1185,6 +1185,9 @@ function renderPublicFindingCard(presentation) {
   const evidenceStep = patient ? "" : renderFindingStep("Evidence", presentation.evidenceSummary);
   const discussionGuide = renderFindingDiscussionGuide(presentation, trust, patient);
   const monitoringGuide = renderFindingMonitoringGuide(presentation, trust, patient);
+  const actionHtml = detailButton || sourceLinks
+    ? `<div class="finding-actions">${detailButton}${sourceLinks}</div>`
+    : "";
   const technicalDetail = patient ? "" : `<details class="finding-support-details">
       <summary>Supporting detail</summary>
       ${renderFindingTrustDetails(trust)}
@@ -1215,7 +1218,7 @@ function renderPublicFindingCard(presentation) {
     </div>
     ${discussionGuide}
     ${monitoringGuide}
-    <div class="finding-actions">${detailButton}${sourceLinks}</div>
+    ${actionHtml}
     ${technicalDetail}
   </div>`;
 }
