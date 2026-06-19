@@ -484,6 +484,13 @@ const structural = structuralWindow.eval(`(() => ({
   modeLabels:[document.getElementById('searchModeBtn')?.textContent?.trim(), document.getElementById('browseModeBtn')?.textContent?.trim()],
   modeTags:[document.getElementById('searchModeBtn')?.tagName, document.getElementById('browseModeBtn')?.tagName],
   modePressed:[document.getElementById('searchModeBtn')?.getAttribute('aria-pressed'), document.getElementById('browseModeBtn')?.getAttribute('aria-pressed')],
+  compactChromeCss:[...document.querySelectorAll('style')].some(style => {
+    const css = style.textContent || '';
+    return css.includes('.mode-toggle{display:grid;grid-template-columns:1fr 1fr')
+      && css.includes('.stats-line{display:none}')
+      && css.includes('@media(min-width:760px)')
+      && css.includes('.summary-story{grid-template-columns:repeat(3,minmax(0,1fr))');
+  }),
   browsePressedAfterToggle:(() => {
     setViewMode('browse');
     const state = [document.getElementById('searchModeBtn')?.getAttribute('aria-pressed'), document.getElementById('browseModeBtn')?.getAttribute('aria-pressed')];
@@ -505,6 +512,7 @@ assert(structural.modeGroupLabel === 'Choose how to add items', 'Search/Browse m
 assert(structural.modeLabels.join('|') === 'Search by Name|Browse Categories', 'Search/Browse mode labels should describe add modes, not submit actions');
 assert(structural.modeTags.join('|') === 'BUTTON|BUTTON', 'Search/Browse mode controls should be real buttons');
 assert(structural.modePressed.join('|') === 'true|false', 'Search/Browse mode controls should expose initial pressed state');
+assert(structural.compactChromeCss, 'V1 chrome should keep add-mode controls compact, hide database stats from the work surface, and compact summary layout on wide screens');
 assert(structural.browsePressedAfterToggle.join('|') === 'false|true', 'Browse mode control should expose selected state after toggle');
 assert(structural.remoteScripts.length === 0, `Static privacy posture should not rely on remote scripts: ${structural.remoteScripts.join(', ')}`);
 assert(/not medical advice|No information is uploaded/i.test(normalizedText(structural.disclaimer)),

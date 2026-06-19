@@ -683,6 +683,13 @@ const audienceModeRegression = window.eval(`(() => {
     modeLabels:[document.getElementById('searchModeBtn')?.textContent?.trim(), document.getElementById('browseModeBtn')?.textContent?.trim()],
     modeTags:[document.getElementById('searchModeBtn')?.tagName, document.getElementById('browseModeBtn')?.tagName],
     modePressed:[document.getElementById('searchModeBtn')?.getAttribute('aria-pressed'), document.getElementById('browseModeBtn')?.getAttribute('aria-pressed')],
+    compactChromeCss:[...document.querySelectorAll('style')].some(style => {
+      const css = style.textContent || '';
+      return css.includes('.mode-toggle{display:grid;grid-template-columns:1fr 1fr')
+        && css.includes('.stats-line{display:none}')
+        && css.includes('@media(min-width:760px)')
+        && css.includes('.summary-story{grid-template-columns:repeat(3,minmax(0,1fr))');
+    }),
     browsePressedAfterToggle:(() => {
       setViewMode('browse');
       const state = [document.getElementById('searchModeBtn')?.getAttribute('aria-pressed'), document.getElementById('browseModeBtn')?.getAttribute('aria-pressed')];
@@ -758,6 +765,7 @@ assert(audienceModeRegression.patient.modeGroupLabel === 'Choose how to add item
 assert(audienceModeRegression.patient.modeLabels.join('|') === 'Search by Name|Browse Categories', 'Search/Browse mode labels should describe add modes, not submit actions');
 assert(audienceModeRegression.patient.modeTags.join('|') === 'BUTTON|BUTTON', 'Search/Browse mode controls should be keyboard-accessible buttons');
 assert(audienceModeRegression.patient.modePressed.join('|') === 'true|false', 'Search/Browse mode controls should expose the selected state');
+assert(audienceModeRegression.patient.compactChromeCss, 'V1 chrome should keep add-mode controls compact and database stats off the work surface');
 assert(audienceModeRegression.patient.browsePressedAfterToggle.join('|') === 'false|true', 'Browse mode control should expose the selected state after toggle');
 assert(/2 items selected/i.test(audienceModeRegression.patient.medCount), 'Patient mode should use plain selected-item count copy');
 assert(!/substances?/i.test(audienceModeRegression.patient.medCount), 'Patient mode selected-list count should not use substance terminology');
