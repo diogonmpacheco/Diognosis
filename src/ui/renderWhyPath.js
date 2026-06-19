@@ -57,6 +57,9 @@ function renderMechanismSupportingSignals(finding) {
   const signals = finding?.supportingSignals || [];
   if (!signals.length) return "";
   const shown = signals.slice(0, 5);
+  const extraLocation = typeof isReviewerMode === "function" && isReviewerMode()
+    ? "in Review"
+    : "across supporting tabs";
   return `<div class="mechanism-supporting">
     <div class="mechanism-supporting-title">Grouped supporting signals</div>
     <ul>
@@ -65,7 +68,7 @@ function renderMechanismSupportingSignals(finding) {
         <small>${safePublicHtml(typeof compactReviewStatus === "function" ? compactReviewStatus(signal.sourceStatus || "modeled support") : signal.sourceStatus || "modeled support")}</small>
       </li>`).join("")}
     </ul>
-    ${signals.length > shown.length ? `<div class="mechanism-supporting-more">+${signals.length - shown.length} more raw signal${signals.length - shown.length === 1 ? "" : "s"} in Review</div>` : ""}
+    ${signals.length > shown.length ? `<div class="mechanism-supporting-more">+${signals.length - shown.length} more supporting signal${signals.length - shown.length === 1 ? "" : "s"} ${safePublicHtml(extraLocation)}</div>` : ""}
   </div>`;
 }
 
@@ -88,13 +91,16 @@ function renderMechanismWhyPaths() {
     const relatedButton = typeof renderRelatedFindingButton === "function"
       ? renderRelatedFindingButton({ finding }, "Related overview")
       : "";
+    const reviewerButton = typeof isReviewerMode === "function" && isReviewerMode()
+      ? `<button class="mini-btn" onclick="setTab('review')">Open reviewer panel</button>`
+      : "";
     return `<div id="${safeAttr(rowId)}" class="mechanism-why-row supporting-context-row">
     <div class="warning-path-row-head">
       <div>
         <div class="warning-path-title">${safePublicHtml(finding.title || finding.id)}</div>
         <div class="warning-path-meta">${safePublicHtml(String(finding.type || "finding").replace(/_/g, " "))} · ${safePublicHtml(finding.severity || "info")}</div>
       </div>
-      <div class="supporting-actions">${relatedButton}<button class="mini-btn" onclick="setTab('review')">Open review</button></div>
+      <div class="supporting-actions">${relatedButton}${reviewerButton}</div>
     </div>
     ${renderWhyPath(finding.whyPath)}
     ${renderMechanismSupportingSignals(finding)}
@@ -106,7 +112,7 @@ function renderMechanismWhyPaths() {
     </div>
   </div>`;
   }).join("") +
-    (rows.length > 8 ? `<div class="finding-empty">Showing 8 grouped mechanism paths. Raw warning paths remain available in Review.</div>` : "");
+    (rows.length > 8 ? `<div class="finding-empty">Showing 8 grouped mechanism paths. Additional supporting paths remain available ${typeof isReviewerMode === "function" && isReviewerMode() ? "in Review" : "across the supporting tabs"}.</div>` : "");
 }
 
 function copyWarningPath(findingId) {

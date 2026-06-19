@@ -2000,6 +2000,7 @@ for (const [scenarioName, result] of Object.entries(publicFindingHierarchyRegres
   assert(result.summaryOnclick.includes("focusPriorityFinding('overview','overview-finding-"), `${scenarioName}: Summary View finding should jump to a concrete Overview card`);
   assert(!/Phase\\s*\\d+|top-250|top-100|coverage adapter|route adapter|pending professional review|review prompt/i.test(result.overviewText), `${scenarioName}: Overview should not expose internal labels or repeated review wording`);
   assert(!/Phase\\s*\\d+|top-250|top-100|coverage adapter|route adapter|pending professional review/i.test(result.mechanismText), `${scenarioName}: Mechanisms should not expose internal labels`);
+  assert(!/\b(?:Open review|reviewer panel|Raw warning paths|raw signals?|remain available in Review)\b/i.test(result.mechanismText), `${scenarioName}: normal V1 Mechanisms should not expose reviewer-only or raw-path actions`);
   assert(!/Phase\\s*\\d+|top-250|top-100|coverage adapter|route adapter|pending professional review/i.test(result.genesText), `${scenarioName}: Genes + Metabolites should not expose internal labels`);
   assert(!/pending professional review/i.test(result.evidenceText), `${scenarioName}: Evidence should use compact review labels instead of repeated pending-professional-review copy`);
 }

@@ -74,6 +74,26 @@ function assertNoPatientFooterLeak(label, text) {
 
 function extractProductReadiness(window) {
   return window.eval(`(() => {
+    function isVisibleForAudit(el) {
+      for (let node = el; node && node.nodeType === 1; node = node.parentElement) {
+        const style = getComputedStyle(node);
+        if (style.display === 'none' || style.visibility === 'hidden' || node.hidden) return false;
+      }
+      return true;
+    }
+    function visibleTextForAudit(root) {
+      if (!root) return '';
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      const out = [];
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        const text = String(node.nodeValue || '').replace(/\\s+/g, ' ').trim();
+        if (text && isVisibleForAudit(node.parentElement)) out.push(text);
+      }
+      return out.join(' ').replace(/\\s+/g, ' ').trim();
+    }
+    setTab('mechanisms');
+    const mechanismVisibleText = visibleTextForAudit(document.getElementById('tab-mechanisms'));
     setTab('overview');
     const handoffText = typeof buildOverviewHandoffText === 'function'
       ? buildOverviewHandoffText()
@@ -83,6 +103,7 @@ function extractProductReadiness(window) {
       reviewerMode:typeof isReviewerMode === 'function' ? isReviewerMode() : false,
       handoffText,
       findingText:document.getElementById('findingBody')?.textContent || '',
+      mechanismVisibleText,
       reviewButtonDisplay:document.getElementById('tabbtn-review')?.style.display || '',
       reviewPanelDisplay:document.getElementById('tab-review')?.style.display || '',
       reviewText:document.getElementById('reviewSummaryBody')?.textContent || '',
@@ -172,6 +193,9 @@ for (const scenario of clinicianScenarios) {
   assertNoUnsafeCertainty(`${scenario.name} handoff`, result.handoffText);
   assertNoUnsafeCertainty(`${scenario.name} Overview`, result.findingText);
   assertNoInternalLeak(`${scenario.name} Overview`, result.findingText);
+  assert(!/\\b(?:Open review|reviewer panel|Raw warning paths|raw signals?|remain available in Review)\\b/i.test(result.mechanismVisibleText),
+    `${scenario.name}: normal V1 Mechanisms tab should not expose reviewer-only or raw-path actions`);
+  assertNoInternalLeak(`${scenario.name} Mechanisms`, result.mechanismVisibleText);
 }
 
 const patientWindow = await loadPage('http://localhost/index.html?substances=warfarin,amiodarone&audience=patient&tab=review');
