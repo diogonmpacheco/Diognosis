@@ -194,6 +194,7 @@ function buildV1HandoffSummaryText(options = {}) {
     scope ? `- Recognized in local dataset: ${scope.recognizedDrugCount + scope.recognizedActorCount}` : "",
     scope ? `- Selected gene/marker results: ${scope.genotypeCount}` : "",
     scope ? `- Public concerns: ${scope.publicConcernCount} (${scope.sourceLinked} source-linked, ${scope.modeled} modeled)` : "",
+    scope?.unknownCount ? `- Unrecognized selections: ${typeof formatScopeUnknownItems === "function" ? formatScopeUnknownItems(scope.unknownItems) : `${scope.unknownCount} item(s)`}` : "",
     scope?.standardsCoverage ? `- Standards identity: ${scope.standardsCoverage.mappedDrugCount}/${scope.standardsCoverage.recognizedDrugCount} recognized medications mapped to RxNorm; ${scope.standardsCoverage.markerMappingCount} PGx marker rows; ${scope.standardsCoverage.pgxActionCount} CPIC-linked action contexts` : "",
     "",
     "Review checklist",
@@ -208,7 +209,7 @@ function buildV1HandoffSummaryText(options = {}) {
     "- This is a medication-safety review aid, not medical advice, diagnosis, prescribing, or proof of safety.",
     "- Source-linked evidence is traceability; it does not equal professional clinical validation.",
     "- Do not start, stop, or change medication without a qualified doctor or pharmacist.",
-    scope?.unknownCount ? `- ${scope.unknownCount} selected item${scope.unknownCount === 1 ? " was" : "s were"} not recognized by the local dataset.` : "- Dose, timing, allergies, diagnoses, labs, pregnancy status, and clinical history are not fully assessed.",
+    scope?.unknownCount ? `- ${scope.unknownCount} selected item${scope.unknownCount === 1 ? " was" : "s were"} not recognized by the local dataset: ${typeof formatScopeUnknownItems === "function" ? formatScopeUnknownItems(scope.unknownItems) : "unrecognized item"}.` : "- Dose, timing, allergies, diagnoses, labs, pregnancy status, and clinical history are not fully assessed.",
   ].filter(line => line !== "");
   return lines.join("\n");
 }

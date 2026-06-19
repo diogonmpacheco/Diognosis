@@ -65,9 +65,16 @@ function loadUrlDemoState() {
   const drugParam = params.substances || params.drugs || params.medications;
   const drugNames = demo ? demo.drugs : (drugParam ? drugParam.split(',').map(d => d.trim()) : []);
   if (drugNames.length) {
+    const seen = new Set();
     activeStack = drugNames
-      .map(resolveUrlDrugName)
-      .filter((name, idx, arr) => name && arr.indexOf(name) === idx);
+      .map(name => resolveUrlDrugName(name, { preserveUnknown:true }))
+      .filter(name => {
+        if (!name) return false;
+        const key = stackSelectionDedupeKey(name);
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
   }
 
   const genotypeSpec = {};
@@ -163,7 +170,7 @@ function normalizeUrlPhenotype(geneOrValue, maybeValue) {
   return { gene, phenotype:String(value || "").trim(), reportedLabel:String(value || "").trim(), mechanism:"raw" };
 }
 
-function resolveUrlDrugName(value) {
+function resolveUrlDrugName(value, options = {}) {
   const raw = String(value || '').trim();
   if (!raw) return null;
   const slug = toGraphId(raw);
@@ -187,7 +194,36 @@ function resolveUrlDrugName(value) {
     (typeof getDrugSearchTerms === "function" ? getDrugSearchTerms(d) : (BRAND_NAMES[d.name] || []))
       .some(term => String(term || "").toLowerCase() === raw.toLowerCase() || toGraphId(term) === slug)
   );
-  return match ? match.name : null;
+  if (match) return match.name;
+  return options.preserveUnknown ? sanitizeUrlUnknownSubstance(raw) : null;
+}
+
+function sanitizeUrlUnknownSubstance(value) {
+  const cleaned = String(value || "")
+    .replace(/[_-]+/g, " ")
+    .replace(/[\u0000-\u001f\u007f]/g, " ")
+    .replace(/[<>`{}[\]\\]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 80)
+    .trim();
+  if (!cleaned || !/[a-z0-9]/i.test(cleaned)) return null;
+  if (/^(?:null|undefined|nan)$/i.test(cleaned)) return null;
+  if (cleaned === cleaned.toLowerCase()) {
+    return cleaned.replace(/\b([a-z])/g, letter => letter.toUpperCase());
+  }
+  return cleaned;
+}
+
+function stackSelectionDedupeKey(value) {
+  const actor = typeof getStackSupplementActor === "function" ? getStackSupplementActor(value) : null;
+  if (actor) return `actor:${actor.id}`;
+  const drug = typeof getStackDrug === "function" ? getStackDrug(value) : getDrug(value);
+  if (drug) return `drug:${drug.id || toGraphId(drug.name)}`;
+  const normalized = typeof normalizeDrugLookupKey === "function"
+    ? normalizeDrugLookupKey(value)
+    : String(value || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  return `unknown:${normalized || toGraphId(String(value || ""))}`;
 }
 
 function replaceDemoUrlWithSubstances(demo) {

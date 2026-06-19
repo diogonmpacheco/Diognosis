@@ -197,6 +197,32 @@ assertNoPatientTechnicalLeak('Patient Copy Summary', patient.overviewHandoffText
 assertNoUnsafeCertainty('Patient Overview', patient.findingText);
 assertNoInternalLeak('Patient Overview', patient.findingText);
 
+const unknownUrlWindow = await loadPage('http://localhost/index.html?substances=warfarin,mystery-mix&audience=patient&tab=overview');
+const unknownUrl = unknownUrlWindow.eval(`(() => ({
+  activeStack,
+  medListText:document.getElementById('medList')?.textContent || '',
+  scopeText:document.getElementById('scopeBody')?.textContent || '',
+  contextText:[...document.querySelectorAll('#scopeBody .scope-context-list li')].map(li => li.textContent || '').join(' | '),
+  unknownChips:document.querySelectorAll('#medList .med-chip.unrecognized').length,
+  overviewHandoffText:buildOverviewHandoffText(),
+  shareUrl:currentStackShareUrl(),
+}))()`);
+
+assert(unknownUrl.activeStack.join('|') === 'Warfarin|Mystery Mix',
+  'Unknown URL substances should remain visible in the active stack instead of being dropped');
+assert(unknownUrl.unknownChips === 1, 'Unknown URL substances should render as unrecognized selected chips');
+assert(/Mystery Mix|Not checked here/i.test(unknownUrl.medListText),
+  'Unknown URL substance chip should clearly show what was not checked');
+assert(/1 selected item was not recognized|Mystery Mix|Not checked here/i.test(`${unknownUrl.scopeText} ${unknownUrl.contextText}`),
+  'Unknown URL substance should be named in patient-facing scope and review checklist');
+assert(/Mystery Mix|Do not start, stop, or change medication/i.test(unknownUrl.overviewHandoffText),
+  'Unknown URL substance should be preserved in the patient copy summary with boundaries');
+assert(unknownUrl.shareUrl.includes('warfarin,mystery-mix') && unknownUrl.shareUrl.includes('audience=patient'),
+  'Share URL should preserve known and unknown substances plus patient audience mode');
+assertNoPatientTechnicalLeak('Unknown URL Patient Scope', unknownUrl.scopeText);
+assertNoPatientTechnicalLeak('Unknown URL Patient Copy Summary', unknownUrl.overviewHandoffText);
+assertNoUnsafeCertainty('Unknown URL Patient Scope', unknownUrl.scopeText);
+
 const olderAdultWindow = await loadPage('http://localhost/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview');
 const olderAdultDemo = olderAdultWindow.eval(`(() => ({
   activeStack,

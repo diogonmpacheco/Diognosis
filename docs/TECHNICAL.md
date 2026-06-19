@@ -351,7 +351,7 @@ Legacy named demos, hash links, and old tab params are also supported for static
 ?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx
 ```
 
-Custom links should use `substances=`. The older `drugs=` and `medications=` names remain accepted as aliases.
+Custom links should use `substances=`. The older `drugs=` and `medications=` names remain accepted as aliases. Link-loaded substances that are not recognized by the local medication/actor dataset are preserved in the selected list, shown as unrecognized, included in share/copy context, and excluded from modeled interaction evidence rather than being silently dropped.
 
 ## DNA / PharmGx Report Import
 

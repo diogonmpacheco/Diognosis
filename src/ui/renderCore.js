@@ -573,12 +573,18 @@ function renderReviewScopePanel() {
 
 function buildReviewScopeSummary(cache = {}) {
   const stack = activeStack || [];
-  const recognizedDrugCount = stack.filter(name => typeof getStackDrug === "function" ? getStackDrug(name) : getDrug(name)).length;
-  const recognizedActorCount = stack.filter(name => {
-    const actor = typeof getStackSupplementActor === "function" ? getStackSupplementActor(name) : null;
-    return actor && !(typeof getStackDrug === "function" ? getStackDrug(name) : getDrug(name));
-  }).length;
-  const unknownCount = Math.max(0, stack.length - recognizedDrugCount - recognizedActorCount);
+  const scopeEntries = stack.map(name => {
+    const drug = typeof getStackDrug === "function" ? getStackDrug(name) : getDrug(name);
+    const actor = drug ? null : (typeof getStackSupplementActor === "function" ? getStackSupplementActor(name) : null);
+    return { name, drug, actor };
+  });
+  const recognizedDrugCount = scopeEntries.filter(entry => entry.drug).length;
+  const recognizedActorCount = scopeEntries.filter(entry => entry.actor).length;
+  const unknownItems = scopeEntries
+    .filter(entry => !entry.drug && !entry.actor)
+    .map(entry => publicDisplayText(entry.name))
+    .filter(Boolean);
+  const unknownCount = unknownItems.length;
   const genotypeCount = typeof activeGenotypeUrlTokens === "function" ? activeGenotypeUrlTokens().length : 0;
   const standardsCoverage = typeof buildClinicalStandardsCoverage === "function"
     ? buildClinicalStandardsCoverage(stack, activeGenotype || {})
@@ -602,6 +608,9 @@ function buildReviewScopeSummary(cache = {}) {
     stack.length >= 2
       ? `Checked pairwise and grouped interaction logic across ${stack.length} selected substances.`
       : "Single-substance context checked; pairwise interactions need at least two selected substances.",
+    unknownCount
+      ? `Unrecognized selections kept visible: ${formatScopeUnknownItems(unknownItems)}. These items are not assessed by the local interaction model.`
+      : "",
     genotypeCount
       ? `Included ${genotypeCount} selected gene or marker result${genotypeCount === 1 ? "" : "s"}.`
       : "No gene or marker result is selected.",
@@ -611,13 +620,13 @@ function buildReviewScopeSummary(cache = {}) {
     findings.length
       ? `Normalized ${findings.length} engine signal${findings.length === 1 ? "" : "s"} into ${publicPresentations.length} public concern${publicPresentations.length === 1 ? "" : "s"}.`
       : "No major normalized signal was found in the current local dataset.",
-  ];
+  ].filter(Boolean);
   const limits = [
     "No result means no major signal was found here; it does not prove the list is safe.",
     "Source-linked evidence is traceability, not professional clinical validation.",
     ...(standardsCoverage?.limitations || []),
     unknownCount
-      ? `${unknownCount} selected item${unknownCount === 1 ? " was" : "s were"} not recognized by the medication dataset.`
+      ? `${unknownCount} selected item${unknownCount === 1 ? " was" : "s were"} not recognized by the medication dataset: ${formatScopeUnknownItems(unknownItems)}.`
       : "Dose, timing, allergies, diagnoses, labs, pregnancy status, and clinical history are not fully assessed.",
   ];
   return {
@@ -625,6 +634,7 @@ function buildReviewScopeSummary(cache = {}) {
     recognizedDrugCount,
     recognizedActorCount,
     unknownCount,
+    unknownItems,
     genotypeCount,
     rawFindingCount: findings.length,
     publicConcernCount: publicPresentations.length,
@@ -676,18 +686,21 @@ function renderPatientReviewScopeSummary(scope) {
     scope.selectedCount >= 2
       ? "Checked the selected list for safety notes in the local dataset."
       : "Add at least two selected items to check for interaction safety notes.",
+    scope.unknownCount
+      ? `Not checked here: ${formatScopeUnknownItems(scope.unknownItems)}. Ask a doctor or pharmacist to identify it before relying on this review.`
+      : "",
     scope.genotypeCount
       ? `Included ${scope.genotypeCount} selected gene result${scope.genotypeCount === 1 ? "" : "s"}.`
       : "No gene result is selected.",
     scope.publicConcernCount
       ? `Found ${scope.publicConcernCount} safety note${scope.publicConcernCount === 1 ? "" : "s"} to discuss with a doctor or pharmacist.`
       : "No major signal was found in the current local dataset.",
-  ];
+  ].filter(Boolean);
   const limits = [
     "No result means no major signal was found here; it does not prove the list is safe.",
     "This page is for education and review, not medical advice.",
     scope.unknownCount
-      ? `${scope.unknownCount} selected item${scope.unknownCount === 1 ? " was" : "s were"} not recognized by the medication dataset.`
+      ? `${scope.unknownCount} selected item${scope.unknownCount === 1 ? " was" : "s were"} not recognized here: ${formatScopeUnknownItems(scope.unknownItems)}.`
       : "Dose, timing, allergies, diagnoses, labs, pregnancy status, and health history are not fully assessed.",
   ];
   return `<div class="scope-grid">
@@ -756,7 +769,7 @@ function buildReviewContextChecklist(scope = null, options = {}) {
       add("Any medication gene-test report you already have; do not guess a result.");
     }
     if (currentScope.unknownCount) {
-      add("Unrecognized items: confirm spelling, generic or brand name, strength, and formulation.");
+      add(`Not checked here: ${formatScopeUnknownItems(currentScope.unknownItems)}. Confirm spelling, generic or brand name, strength, and formulation.`);
     }
     if (/bleed|inr|anticoag|warfarin|platelet|clot|hemostasis/.test(text)) {
       add("Bleeding or clotting symptoms, recent procedures, and any lab checks your care team follows.");
@@ -787,7 +800,7 @@ function buildReviewContextChecklist(scope = null, options = {}) {
     add("PGx context if available: original report quality, allele/star result, phenotype translation, and clinical indication.");
   }
   if (currentScope.unknownCount) {
-    add("Unrecognized selections: verify generic/brand identity, formulation, route, and whether the item is outside the local dataset.");
+    add(`Unrecognized selections (${formatScopeUnknownItems(currentScope.unknownItems)}): verify generic/brand identity, formulation, route, and whether the item is outside the local dataset.`);
   }
   if (/bleed|inr|anticoag|warfarin|platelet|clot|hemostasis/.test(text)) {
     add("Bleeding/clotting: INR or relevant anticoagulation labs, platelet count, procedure timing, bleeding history, and indication.");
@@ -808,6 +821,16 @@ function buildReviewContextChecklist(scope = null, options = {}) {
     add("No-signal review: verify whether dose, timing, missing diagnoses, labs, or unmodeled context could change the risk assessment.");
   }
   return items.slice(0, 9);
+}
+
+function formatScopeUnknownItems(items = [], limit = 4) {
+  const clean = (items || [])
+    .map(item => publicDisplayText(item))
+    .filter(Boolean);
+  if (!clean.length) return "unrecognized item";
+  const shown = clean.slice(0, limit).join(", ");
+  const remaining = clean.length - limit;
+  return remaining > 0 ? `${shown}, and ${remaining} more` : shown;
 }
 
 function renderInteractionFindingCard(finding) {
@@ -2413,7 +2436,7 @@ function renderMedList() {
     const actor = typeof getStackSupplementActor === "function" ? getStackSupplementActor(name) : null;
     const drug = typeof getStackDrug === "function" ? getStackDrug(name) : getDrug(name);
     const actorId = actor?.id || "";
-    const escaped = (drug ? drug.name : name).replace(/'/g,"\\'");
+    const escaped = inlineJsString(drug ? drug.name : name);
     const tiers = DOSE_TIERS[name];
     let doseHtml = "";
     if (drug && tiers) {
@@ -2423,14 +2446,23 @@ function renderMedList() {
       ).join("");
       doseHtml = `<select class="dose-select" onclick="event.stopPropagation()" onchange="setDoseTier('${escaped}',this.value)">${opts}</select>`;
     }
+    const recognized = !!(drug || actor);
     const secondary = drug
       ? (typeof getDrugSecondaryLabel === "function" ? getDrugSecondaryLabel(drug, 2) : "")
-      : (actor ? formatActorSources(actor) : "");
+      : (actor ? formatActorSources(actor) : (isPatientAudience() ? "Not checked here" : "Not recognized by local dataset"));
     const primary = drug ? getDrugDisplayName(drug) : (actor ? actor.name : name);
-    const labelHtml = `<span class="med-chip-name"><span class="med-chip-primary">${primary}</span>${secondary ? `<span class="med-chip-secondary">${secondary}</span>` : ""}</span>`;
+    const labelHtml = `<span class="med-chip-name"><span class="med-chip-primary">${safePublicHtml(primary)}</span>${secondary ? `<span class="med-chip-secondary">${safePublicHtml(secondary)}</span>` : ""}</span>`;
     const removeAction = actor && !drug ? `removeFoodActor('${actorId}')` : `removeDrug('${escaped}')`;
-    return `<span class="med-chip" title="${secondary ? secondary.replace(/"/g, "&quot;") : ""}">${labelHtml}${doseHtml}<span class="x" onclick="${removeAction}">×</span></span>`;
+    const chipClass = recognized ? "med-chip" : "med-chip unrecognized";
+    return `<span class="${chipClass}" title="${secondary ? safeAttr(secondary) : ""}">${labelHtml}${doseHtml}<span class="x" onclick="${removeAction}">×</span></span>`;
   }).join("") + renderActorExposureSummary();
+}
+
+function inlineJsString(value) {
+  return String(value ?? "")
+    .replace(/\\/g, "\\\\")
+    .replace(/'/g, "\\'")
+    .replace(/[\u0000-\u001f\u007f]/g, " ");
 }
 
 function renderActorExposureSummary() {
