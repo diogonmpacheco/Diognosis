@@ -47,8 +47,10 @@ assert(missingLinks.length === 0, `README has missing local links: ${missingLink
 assert(pkg.scripts?.['launch:qa'] === 'node scripts/launch-qa-audit.js', 'package.json should expose npm run launch:qa');
 assert(pkg.scripts?.['pages:check'] === 'node scripts/pages-check.js', 'package.json should expose npm run pages:check');
 assert(pkg.scripts?.['release:check'] === 'node scripts/release-check.js', 'package.json should expose npm run release:check');
+assert(pkg.scripts?.['security:audit'] === 'npm audit --audit-level=low', 'package.json should expose npm run security:audit');
 assert(pkg.engines?.node === '>=24', 'package.json should declare the supported Node.js runtime');
 assert(/npm run pages:check/.test(pagesWorkflow), 'GitHub Pages workflow must run npm run pages:check');
+assert(/npm run security:audit/.test(ciWorkflow), 'CI workflow must run dependency security audit');
 assert(/cancel-in-progress:\s*true/.test(pagesWorkflow), 'GitHub Pages workflow should cancel stale in-progress deploys');
 for (const [label, workflow] of [['GitHub Pages', pagesWorkflow], ['CI', ciWorkflow]]) {
   assert(/node-version:\s*["']24["']/.test(workflow), `${label} workflow should use Node.js 24`);
