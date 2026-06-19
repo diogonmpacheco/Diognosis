@@ -32,7 +32,7 @@ Run the focused launch QA gate:
 npm run launch:qa
 ```
 
-Run the fast GitHub Pages deploy gate used for live testing:
+Run the fast GitHub Pages pre-publish gate used for live testing:
 
 ```sh
 npm run pages:check
@@ -44,6 +44,6 @@ Run the full release gate:
 npm run release:check
 ```
 
-The Pages deploy gate rebuilds the static bundle, verifies release metadata, runs smoke validation, privacy/static checks, and whitespace checks. It is intentionally limited to live-publish safety so live testing can happen without waiting on every release-depth data and readiness audit.
+The Pages pre-publish gate rebuilds the static bundle, verifies release metadata, runs smoke validation, privacy/static checks, and whitespace checks. GitHub Pages then publishes the committed root `index.html` from `main`, keeping live testing from waiting on every release-depth data and readiness audit.
 
 The release gate also runs the database, V1 public-docs, standards/readiness, strict validation, V1 PGx contract audit, V1 PK visualization audit, V1 finding contract audit including a complete sweep over every recognized shipped `KNOWN_DDI` pair, and the V1 release readiness audit.
