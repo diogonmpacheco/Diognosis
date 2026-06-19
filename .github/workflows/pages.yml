@@ -31,7 +31,7 @@ jobs:
         run: npm ci
 
       - name: Build and test
-        run: node scripts/release-check.js
+        run: npm run pages:check
 
       - name: Prepare artifact
         run: |
