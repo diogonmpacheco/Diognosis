@@ -4,6 +4,9 @@
   "description": "Parent–metabolite-aware medication safety and pharmacogenomics platform exploring active and toxic metabolites, PK shifts, gene effects, pathway mechanisms, and source-linked interaction evidence.",
   "license": "MIT",
   "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "stats": "node scripts/gen-stats.js",
     "report:severity": "node scripts/severity-report.js",

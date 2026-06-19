@@ -37,6 +37,7 @@ const launchQa = read('docs/LAUNCH_QA_MATRIX.md');
 const launchTrust = read('docs/LAUNCH_DATA_TRUST_AUDIT.md');
 const technical = read('docs/TECHNICAL.md');
 const pagesWorkflow = read('.github/workflows/pages.yml');
+const ciWorkflow = read('.github/workflows/ci.yml');
 const pkg = JSON.parse(read('package.json'));
 
 const missingLinks = localMarkdownLinks(readme)
@@ -46,7 +47,13 @@ assert(missingLinks.length === 0, `README has missing local links: ${missingLink
 assert(pkg.scripts?.['launch:qa'] === 'node scripts/launch-qa-audit.js', 'package.json should expose npm run launch:qa');
 assert(pkg.scripts?.['pages:check'] === 'node scripts/pages-check.js', 'package.json should expose npm run pages:check');
 assert(pkg.scripts?.['release:check'] === 'node scripts/release-check.js', 'package.json should expose npm run release:check');
+assert(pkg.engines?.node === '>=24', 'package.json should declare the supported Node.js runtime');
 assert(/npm run pages:check/.test(pagesWorkflow), 'GitHub Pages workflow must run npm run pages:check');
+for (const [label, workflow] of [['GitHub Pages', pagesWorkflow], ['CI', ciWorkflow]]) {
+  assert(/node-version:\s*["']24["']/.test(workflow), `${label} workflow should use Node.js 24`);
+  assert(!/node-version:\s*["']20["']/.test(workflow), `${label} workflow should not use deprecated Node.js 20`);
+}
+assert(/Node\.js-24%2B/.test(readme), 'README Node.js badge should advertise the current supported runtime');
 
 assertIncludes('Public Trust', publicTrust, '<!-- PUBLIC_TRUST_STATS_START -->');
 assertIncludes('Public Trust', publicTrust, `**${stats.sourceLinkedStudies} \`STUDY_DB\` entries** have public source identifiers.`);
