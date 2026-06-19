@@ -40,6 +40,10 @@ function renderReviewWorkbench(overrides = {}) {
   const body = document.getElementById("reviewWorkbenchBody");
   const count = document.getElementById("reviewWorkbenchCount");
   if (!body) return;
+  if (typeof isReviewerMode === "function" && !isReviewerMode()) {
+    hideSectionAndClear("reviewWorkbenchSection", "reviewWorkbenchBody", "reviewWorkbenchCount");
+    return;
+  }
 
   if (activeStack.length < 1) {
     hideSectionAndClear("reviewWorkbenchSection", "reviewWorkbenchBody", "reviewWorkbenchCount");

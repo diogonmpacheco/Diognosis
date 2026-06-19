@@ -67,6 +67,7 @@ const seeds = window.eval(`(() => {
 
 function loadSeed(seed) {
   window.eval(`(() => {
+    window.history.replaceState(null, '', '/index.html?reviewer=1');
     activeStack = [];
     currentInteractionFindings = [];
     currentClinicalConcerns = [];

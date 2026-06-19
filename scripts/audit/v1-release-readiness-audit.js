@@ -58,6 +58,13 @@ function assertNoPatientTechnicalLeak(label, text) {
   );
 }
 
+function assertNoPatientDirectiveLeak(label, text) {
+  assert(
+    !/\b(?:contraindicated|hold (?:statin|medicine)|dose[-\s]?adjust(?:ed|ment)?|substitut(?:ed|ion)|should be avoided|label-guided|specialist monitoring)\b/i.test(text),
+    `${label} exposes clinician-style medication-change directions`
+  );
+}
+
 function assertNoPatientFooterLeak(label, text) {
   assert(
     !/(?:Technical details remain available in Review|Detailed technical context|pathway, metabolite, timing, and evidence signals|clinical concerns)/i.test(text),
@@ -65,19 +72,22 @@ function assertNoPatientFooterLeak(label, text) {
   );
 }
 
-function extractReadiness(window) {
+function extractProductReadiness(window) {
   return window.eval(`(() => {
-    setTab('review');
-    const snapshot = buildV1ReadinessSnapshot();
-    const panel = document.getElementById('v1ReadinessPanel');
+    setTab('overview');
+    const handoffText = typeof buildOverviewHandoffText === 'function'
+      ? buildOverviewHandoffText()
+      : buildV1HandoffSummaryText();
     return {
-      snapshot,
-      panelReady:panel?.dataset.ready || '',
-      panelText:panel?.textContent || '',
-      handoffText:buildV1HandoffSummaryText(),
+      activeTab,
+      reviewerMode:typeof isReviewerMode === 'function' ? isReviewerMode() : false,
+      handoffText,
+      findingText:document.getElementById('findingBody')?.textContent || '',
+      reviewButtonDisplay:document.getElementById('tabbtn-review')?.style.display || '',
+      reviewPanelDisplay:document.getElementById('tab-review')?.style.display || '',
       reviewText:document.getElementById('reviewSummaryBody')?.textContent || '',
+      scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
       scopeText:document.getElementById('scopeBody')?.textContent || '',
-      contextChecklist:document.querySelectorAll('#scopeBody .scope-context-list li').length,
       sourceLinks:document.querySelectorAll('#findingBody a.source-link').length,
       sourceActions:document.querySelectorAll('#findingBody .finding-actions .related-finding-btn').length,
       trustChips:document.querySelectorAll('#findingBody .finding-trust-chip').length,
@@ -85,7 +95,6 @@ function extractReadiness(window) {
       monitoringGuides:document.querySelectorAll('#findingBody .finding-monitoring').length,
       summaryActions:document.querySelectorAll('#summaryBar .summary-actions .summary-action-btn').length,
       cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
-      reviewTiles:document.querySelectorAll('#reviewSummaryBody .review-summary-tile').length,
       shareUrl:currentStackShareUrl('overview'),
       sourceLinkedCards:getCurrentPublicFindingPresentations().filter(p => p.trustContract?.sourceLinked).length,
       directEligible:getCurrentPublicFindingPresentations().filter(p => (p.trustContract?.evidenceRefs || []).some(ref => {
@@ -116,12 +125,9 @@ const clinicianScenarios = [
 
 for (const scenario of clinicianScenarios) {
   const window = await loadPage(scenario.url);
-  const result = extractReadiness(window);
-  const snapshot = result.snapshot;
-  assert(snapshot?.ready, `${scenario.name}: V1 readiness snapshot should pass, got ${snapshot?.passed}/${snapshot?.total}`);
-  assert(result.panelReady === 'true', `${scenario.name}: V1 readiness panel should report ready`);
-  assert(/V1 Readiness|Review scope|Finding contracts|Source traceability|Standards identity|Clinical boundaries/i.test(result.panelText),
-    `${scenario.name}: V1 readiness panel missing required checks`);
+  const result = extractProductReadiness(window);
+  assert(result.activeTab === 'overview', `${scenario.name}: normal V1 product URLs should open Overview, not reviewer Review`);
+  assert(result.reviewerMode === false, `${scenario.name}: normal V1 product URLs should not enable reviewer mode`);
   assert(result.cards > 0, `${scenario.name}: Overview should show public finding cards`);
   assert(result.trustChips >= result.cards, `${scenario.name}: Overview cards should expose trust chips`);
   assert(result.discussionGuides >= result.cards, `${scenario.name}: Overview cards should expose discussion guides`);
@@ -130,16 +136,15 @@ for (const scenario of clinicianScenarios) {
   assert(result.sourceLinkedCards > 0, `${scenario.name}: should include at least one source-linked public concern`);
   assert(result.sourceActions > 0, `${scenario.name}: source-linked cards should expose source actions`);
   assert(result.directEligible === 0 || result.sourceLinks > 0, `${scenario.name}: direct PMID/DOI/source-eligible cards need direct source links`);
-  assert(result.reviewTiles > 0, `${scenario.name}: Review Summary should render summary tiles`);
-  assert(result.contextChecklist >= 4, `${scenario.name}: Overview scope should expose a current-stack review checklist`);
-  assert(/Selected|Recognized|Concerns|Source-linked|Limit:/i.test(result.scopeText),
-    `${scenario.name}: Review Scope should expose coverage and limits`);
-  assert(/Diognosis V1 review summary|Review scope|Standards identity|Top concerns|Boundaries|Share link:/i.test(result.handoffText),
-    `${scenario.name}: handoff summary missing required sections`);
-  assert(/Review checklist|Medication reconciliation|Patient context/i.test(result.handoffText),
-    `${scenario.name}: handoff summary missing practical review checklist`);
-  assert(/Monitoring focus|Current symptoms|dose changes|last-dose timing/i.test(result.handoffText),
-    `${scenario.name}: handoff summary missing per-concern monitoring focus`);
+  assert(result.reviewButtonDisplay === 'none', `${scenario.name}: normal V1 clinician UI should hide reviewer-only Review navigation`);
+  assert(result.reviewPanelDisplay === 'none', `${scenario.name}: normal V1 clinician UI should hide the reviewer panel`);
+  assert(result.scopeDisplay === 'none' && !normalizedText(result.scopeText),
+    `${scenario.name}: normal V1 clinician UI should hide reviewer-only Review Scope`);
+  assert(!normalizedText(result.reviewText), `${scenario.name}: normal V1 clinician UI should not render reviewer summary copy`);
+  assert(/Diognosis questions to ask|Review this medication list|Top concerns|Boundaries|Share link:/i.test(result.handoffText),
+    `${scenario.name}: product handoff summary missing required sections`);
+  assert(/Mention or verify|Monitoring focus|Current symptoms|dose changes|last-dose timing|doctor or pharmacist/i.test(result.handoffText),
+    `${scenario.name}: product handoff summary missing practical review context`);
   for (const expected of scenario.expected) {
     assert(result.handoffText.includes(expected), `${scenario.name}: handoff should preserve ${expected}`);
   }
@@ -147,10 +152,9 @@ for (const scenario of clinicianScenarios) {
   assert(/Do not start, stop, or change medication/i.test(result.handoffText), `${scenario.name}: handoff missing medication-change boundary`);
   assert(result.shareUrl.includes('substances='), `${scenario.name}: share URL should preserve selected substances`);
   assert(result.handoffText.includes(result.shareUrl), `${scenario.name}: handoff should include generated share URL`);
-  assertNoUnsafeCertainty(`${scenario.name} Review Scope`, result.scopeText);
   assertNoUnsafeCertainty(`${scenario.name} handoff`, result.handoffText);
-  assertNoInternalLeak(`${scenario.name} readiness panel`, result.panelText);
-  assertNoInternalLeak(`${scenario.name} review summary`, result.reviewText);
+  assertNoUnsafeCertainty(`${scenario.name} Overview`, result.findingText);
+  assertNoInternalLeak(`${scenario.name} Overview`, result.findingText);
 }
 
 const patientWindow = await loadPage('http://localhost/index.html?substances=warfarin,amiodarone&audience=patient&tab=review');
@@ -229,6 +233,9 @@ assertNoPatientTechnicalLeak('Patient Overview', patient.findingText);
 assertNoPatientTechnicalLeak('Patient Copy Summary', patient.overviewHandoffText);
 assertNoPatientTechnicalLeak('Patient Chrome', `${patient.tagline} ${patient.searchPlaceholder} ${patient.listTitle} ${patient.geneTitle} ${patient.geneIntro}`);
 assertNoPatientTechnicalLeak('Patient Selected List', patient.medListText);
+assertNoPatientDirectiveLeak('Patient Summary', patient.summaryText);
+assertNoPatientDirectiveLeak('Patient Overview', patient.findingText);
+assertNoPatientDirectiveLeak('Patient Copy Summary', patient.overviewHandoffText);
 assertNoPatientFooterLeak('Patient Overview', patient.findingText);
 assertNoUnsafeCertainty('Patient Overview', patient.findingText);
 assertNoInternalLeak('Patient Overview', patient.findingText);
@@ -255,7 +262,29 @@ assert(!/\b(?:AUC|Cmax|metabolite-level|active thiol|CYP\d|clearance|confidence|
 assertNoPatientTechnicalLeak('Patient Gene Summary', patientGene.summaryText);
 assertNoPatientTechnicalLeak('Patient Gene Overview', patientGene.findingText);
 assertNoPatientTechnicalLeak('Patient Gene Selected List', patientGene.medListText);
+assertNoPatientDirectiveLeak('Patient Gene Summary', patientGene.summaryText);
+assertNoPatientDirectiveLeak('Patient Gene Overview', patientGene.findingText);
 assertNoUnsafeCertainty('Patient Gene Overview', patientGene.findingText);
+
+const patientContraindicatedWindow = await loadPage('http://localhost/index.html?substances=simvastatin,clarithromycin&audience=patient&tab=overview');
+const patientContraindicated = patientContraindicatedWindow.eval(`(() => ({
+  summaryText:document.getElementById('summaryBar')?.textContent || '',
+  findingText:document.getElementById('findingBody')?.textContent || '',
+  overviewHandoffText:buildOverviewHandoffText(),
+  cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
+}))()`);
+
+assert(patientContraindicated.cards > 0, 'Patient contraindicated-source scenario should still render Safety Notes');
+assert(/should be used together|one should be changed|doctor or pharmacist/i.test(
+  `${patientContraindicated.summaryText} ${patientContraindicated.findingText}`
+), 'Patient contraindicated-source scenario should translate clinician directions into review questions');
+assertNoPatientTechnicalLeak('Patient Contraindicated Summary', patientContraindicated.summaryText);
+assertNoPatientTechnicalLeak('Patient Contraindicated Overview', patientContraindicated.findingText);
+assertNoPatientTechnicalLeak('Patient Contraindicated Copy Summary', patientContraindicated.overviewHandoffText);
+assertNoPatientDirectiveLeak('Patient Contraindicated Summary', patientContraindicated.summaryText);
+assertNoPatientDirectiveLeak('Patient Contraindicated Overview', patientContraindicated.findingText);
+assertNoPatientDirectiveLeak('Patient Contraindicated Copy Summary', patientContraindicated.overviewHandoffText);
+assertNoUnsafeCertainty('Patient Contraindicated Overview', patientContraindicated.findingText);
 
 const patientSingleWindow = await loadPage('http://localhost/index.html?substances=mystery-mix&audience=patient&tab=overview');
 const patientSingle = patientSingleWindow.eval(`(() => ({

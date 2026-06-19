@@ -175,6 +175,10 @@ function renderQualityDashboard() {
   const el = document.getElementById("qualityBody");
   const countEl = document.getElementById("qualityCount");
   if (!el) return;
+  if (typeof isReviewerMode === "function" && !isReviewerMode()) {
+    hideSectionAndClear("qualitySection", "qualityBody", "qualityCount");
+    return;
+  }
   if (activeStack.length < 1) {
     hideSectionAndClear("qualitySection", "qualityBody", "qualityCount");
     return;

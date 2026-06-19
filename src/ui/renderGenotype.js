@@ -124,6 +124,7 @@ function renderGenotypePanel() {
 }
 
 function renderPendingReviewPgxContext() {
+  if (typeof isReviewerMode === "function" && !isReviewerMode()) return "";
   const cache = typeof getRenderComputationCache === "function" ? getRenderComputationCache() : {};
   const context = cache.pendingReviewContext;
   const pendingCore = cache.pendingCoreContext;

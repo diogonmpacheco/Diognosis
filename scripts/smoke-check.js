@@ -99,12 +99,17 @@ assert(doc.querySelectorAll('#mechanismWhyBody .mechanism-why-row').length > 0, 
 assert(doc.querySelectorAll('#phenoconversionBody .phenoconversion-card').length > 0, 'Genes + Metabolites should render Current Pathway Status cards');
 assert(doc.querySelectorAll('#activeMoietyBody .active-moiety-card').length > 0, 'Genes + Metabolites should render Drug & Metabolite Balance cards');
 assert(doc.querySelectorAll('#persistenceTimelineBody .persistence-card').length > 0, 'Timing + Levels should render Persistence & Washout cards');
+assert(doc.getElementById('tabbtn-review')?.style.display === 'none', 'Normal V1 smoke path should hide reviewer-only Review navigation');
+window.setTab('review');
+assert(evalInPage(window, 'activeTab') === 'overview', 'Normal V1 smoke path should route Review requests back to Overview');
+window.history.replaceState(null, '', '/index.html?reviewer=1');
 window.setTab('review');
 assert(doc.querySelectorAll('#reviewSummaryBody .review-summary-tile').length > 0, 'Review should render current-stack summary tiles');
 assert(doc.querySelectorAll('#scenarioSnapshotBody .review-diagnostic-card').length === 0, 'Generated scenario snapshot diagnostics should stay out of the slim bundle');
 assert(doc.querySelectorAll('#metaboliteGapBody .review-diagnostic-card').length === 0, 'Generated metabolite coverage diagnostics should stay out of the slim bundle');
 assert(doc.querySelectorAll('#contributeBody .review-action-btn').length >= 2, 'Review should expose report/contribute actions');
 assert(doc.querySelectorAll('#warningPathBody .warning-path-row').length > 0, 'Review should expose technical pathway rows');
+window.history.replaceState(null, '', '/index.html');
 window.setTab('overview');
 
 const findingAudit = evalInPage(window, `(() => {
@@ -210,7 +215,11 @@ assert(doc.getElementById('tab-genes-metabolites')?.classList.contains('active')
 window.setTab('network');
 assert(evalInPage(window, 'activeTab') === 'mechanisms', 'Legacy network tab alias should resolve to Mechanisms');
 window.setTab('advanced');
-assert(evalInPage(window, 'activeTab') === 'review', 'Legacy advanced tab alias should resolve to Review');
+assert(evalInPage(window, 'activeTab') === 'overview', 'Legacy advanced tab alias should resolve to Overview in normal V1 mode');
+window.history.replaceState(null, '', '/index.html?reviewer=1');
+window.setTab('advanced');
+assert(evalInPage(window, 'activeTab') === 'review', 'Legacy advanced tab alias should resolve to Review in reviewer mode');
+window.history.replaceState(null, '', '/index.html');
 window.setTab('safety');
 assert(evalInPage(window, 'activeTab') === 'overview', 'Legacy safety tab alias should resolve to Overview');
 

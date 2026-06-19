@@ -126,6 +126,10 @@ function renderExternalSafetyContext(snapshot = null) {
   const body = document.getElementById("externalContextBody");
   const count = document.getElementById("externalContextCount");
   if (!body) return;
+  if (typeof isReviewerMode === "function" && !isReviewerMode()) {
+    hideSectionAndClear("externalContextSection", "externalContextBody", "externalContextCount");
+    return;
+  }
 
   if (activeStack.length < 1) {
     hideSectionAndClear("externalContextSection", "externalContextBody", "externalContextCount");

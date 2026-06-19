@@ -102,9 +102,10 @@ const TAB_ALIASES = {
 
 function resolveTabAlias(name) {
   const raw = String(name || "").trim();
-  if (DIOGNOSIS_TABS.includes(raw)) return raw;
+  if (DIOGNOSIS_TABS.includes(raw)) return raw === "review" && !isReviewerMode() ? "overview" : raw;
   const key = raw.toLowerCase();
-  return TAB_ALIASES[key] || "overview";
+  const resolved = TAB_ALIASES[key] || "overview";
+  return resolved === "review" && !isReviewerMode() ? "overview" : resolved;
 }
 
 function setActiveTab(name) {
@@ -121,6 +122,12 @@ function normalizeAudienceMode(value) {
 
 function isPatientAudience() {
   return audienceMode === "patient";
+}
+
+function isReviewerMode() {
+  const params = typeof getUrlStateParams === "function" ? getUrlStateParams() : {};
+  const raw = String(params.reviewer || params.reviewMode || "").trim().toLowerCase();
+  return raw === "1" || raw === "true" || raw === "yes" || raw === "reviewer";
 }
 
 function setAudienceMode(mode, options = {}) {
@@ -191,8 +198,15 @@ function setTab(name) {
   DIOGNOSIS_TABS.forEach(t => {
     const panel = document.getElementById("tab-" + t);
     const btn = document.getElementById("tabbtn-" + t);
-    if (panel) panel.classList.toggle("active", t === resolvedTab);
-    if (btn) btn.classList.toggle("active", t === resolvedTab);
+    const reviewerTab = t === "review";
+    if (panel) {
+      panel.classList.toggle("active", t === resolvedTab);
+      if (reviewerTab && !isReviewerMode()) panel.style.display = "none";
+    }
+    if (btn) {
+      btn.classList.toggle("active", t === resolvedTab);
+      if (reviewerTab) btn.style.display = isReviewerMode() ? "" : "none";
+    }
   });
   renderLazyTab(resolvedTab);
   updateEmptyTabs();
@@ -308,6 +322,7 @@ function renderLazyTab(tabId = activeTab) {
     return;
   }
   if (tabId === "review") {
+    if (!isReviewerMode()) return;
     if (lazyRenderState.reviewKey === key) return;
     if (typeof renderReviewSummary === "function") renderReviewSummary();
     if (typeof renderReviewWorkbench === "function") renderReviewWorkbench();
@@ -662,8 +677,8 @@ function renderFindingOverviewFooter(totalCount = 0) {
       : `<div class="finding-empty">Safety notes group related concerns for this list. Ask a doctor or pharmacist to review dose, timing, health history, symptoms, and anything not recognized here before making medication changes.</div>`;
   }
   return totalCount > 8
-    ? `<div class="finding-empty">Showing 8 of ${safePublicHtml(totalCount)} grouped concerns. Detailed technical context is available in Review.</div>`
-    : `<div class="finding-empty">Overview groups related pathway, metabolite, timing, and evidence signals into clinical concerns. Technical details remain available in Review.</div>`;
+    ? `<div class="finding-empty">Showing 8 of ${safePublicHtml(totalCount)} grouped concerns. Use the Mechanisms, Genes, Timing, and Evidence tabs for supporting detail.</div>`
+    : `<div class="finding-empty">Overview groups related pathway, metabolite, timing, and evidence signals into clinical concerns. Supporting detail is organized in the Mechanisms, Genes, Timing, and Evidence tabs.</div>`;
 }
 
 function renderReviewScopePanel() {
@@ -677,7 +692,7 @@ function renderReviewScopePanel() {
   }
   const cache = typeof getRenderComputationCache === "function" ? getRenderComputationCache() : {};
   const scope = buildReviewScopeSummary(cache);
-  if (isPatientAudience()) {
+  if (isPatientAudience() || !isReviewerMode()) {
     hideSectionAndClear("scopeSection", "scopeBody", "scopeCount");
     return scope;
   }
@@ -1134,7 +1149,9 @@ function publicFindingDetailTarget(finding = {}) {
   if (/genotype|pgx|active|metabolite|phenoconversion/i.test(`${finding.type || ""} ${finding.title || ""}`)) {
     return { tab:"genes-metabolites", elementId:"genotypeSection" };
   }
-  return { tab:"review", elementId:"reviewSummarySection" };
+  return isReviewerMode()
+    ? { tab:"review", elementId:"reviewSummarySection" }
+    : { tab:"evidence", elementId:"evidenceSection" };
 }
 
 function publicFindingElementId(id) {
@@ -1570,6 +1587,8 @@ function patientFindingStepText(presentation = {}, field = "changed") {
     return "The same medicine can behave differently depending on the full list, dose, timing, and gene results.";
   }
   const review = String(presentation.whatToReview || "").replace(/\s+/g, " ").trim();
+  const patientSafeDirective = patientSafeReviewDirective(presentation, review, { serious });
+  if (patientSafeDirective) return patientSafeDirective;
   if (/^use\s+/i.test(review)) {
     const optionText = review.replace(/^use\s+/i, "").replace(/\.$/, "");
     return shortenPatientReviewText(`Ask a doctor or pharmacist whether ${optionText} would be a better option.`);
@@ -1589,6 +1608,24 @@ function patientFindingStepText(presentation = {}, field = "changed") {
     .replace(/\bphenoconversion\b/gi, "pathway change");
   const base = cleaned || "this medication list needs a different plan, dose, timing, or monitoring";
   return shortenPatientReviewText(`Ask a doctor or pharmacist about ${base}.`);
+}
+
+function patientSafeReviewDirective(presentation = {}, review = "", options = {}) {
+  const cleaned = publicDisplayText(review);
+  if (!cleaned) return "";
+  const lower = cleaned.toLowerCase();
+  const directive = /\b(?:contraindicat(?:ed|ion)?|avoid(?:ed|ance)?|do not use|do not take|hold|substitut(?:e|ed|ion)?|dose[-\s]?adjust(?:ed|ment)?|dose reduction|dose limit|label-guided|specialist|monitor(?:ed|ing)?|ecg|inr|cbc|tdm)\b/i.test(cleaned);
+  if (!directive) return "";
+  const actors = (presentation.affectedSubstances || []).filter(Boolean);
+  const pair = actors.slice(0, 2).join(" + ");
+  const subject = pair || "these medicines";
+  if (/(?:contraindicat|avoid|do not use|do not take|hold)/.test(lower)) {
+    return shortenPatientReviewText(`Ask a doctor or pharmacist whether ${subject} should be used together, or whether one should be changed before use.`);
+  }
+  if (/(?:substitut|alternative|different medicine)/.test(lower)) {
+    return shortenPatientReviewText(`Ask a doctor or pharmacist whether ${subject} should be changed or whether there is a safer option.`);
+  }
+  return shortenPatientReviewText(`Ask a doctor or pharmacist whether dose, timing, monitoring, or a different medicine should be reviewed for ${subject}.`);
 }
 
 function shortenPatientReviewText(text) {
@@ -1833,9 +1870,34 @@ function updateEmptyTabs() {
 }
 
 function applyAudienceModeVisibility() {
+  const reviewer = isReviewerMode();
+  if (document.body) document.body.dataset.reviewer = reviewer ? "reviewer" : "standard";
+  const reviewBtn = document.getElementById("tabbtn-review");
+  const reviewPanel = document.getElementById("tab-review");
+  if (reviewBtn) reviewBtn.style.display = reviewer ? "" : "none";
+  if (reviewPanel && !reviewer) {
+    reviewPanel.classList.remove("active");
+    reviewPanel.style.display = "none";
+  }
+  if (!reviewer && activeTab === "review") setActiveTab("overview");
+  const reviewerSections = [
+    ["scopeSection", "scopeBody", "scopeCount"],
+    ["pendingReviewEnrichmentSection", "pendingReviewEnrichmentBody", "pendingReviewEnrichmentCount"],
+    ["externalContextSection", "externalContextBody", "externalContextCount"],
+    ["reviewSummarySection", "reviewSummaryBody", "reviewSummaryCount"],
+    ["reviewWorkbenchSection", "reviewWorkbenchBody", "reviewWorkbenchCount"],
+    ["scenarioSnapshotSection", "scenarioSnapshotBody", "scenarioSnapshotCount"],
+    ["metaboliteGapSection", "metaboliteGapBody", "metaboliteGapCount"],
+    ["warningPathSection", "warningPathBody", "warningPathCount"],
+    ["qualitySection", "qualityBody", "qualityCount"],
+    ["contributeSection", "contributeBody", null],
+  ];
+  if (!reviewer) {
+    reviewerSections.forEach(([sectionId, bodyId, countId]) => hideSectionAndClear(sectionId, bodyId, countId));
+    lazyRenderState.reviewKey = "";
+  }
   if (!isPatientAudience()) return;
   [
-    "scopeSection",
     "riskSection",
     "altSection",
   ].forEach(sectionId => {
@@ -2395,7 +2457,9 @@ function currentStackShareUrl(tab = activeTab) {
   }
   for (const token of activeGenotypeUrlTokens()) params.push(["genotype", token]);
   if (isPatientAudience()) params.push(["audience", audienceMode]);
-  if (tab) params.push(["tab", tab]);
+  if (isReviewerMode()) params.push(["reviewer", "1"]);
+  const shareTab = tab === "review" && !isReviewerMode() ? "overview" : tab;
+  if (shareTab) params.push(["tab", shareTab]);
   const query = params
     .map(([key, value]) => `${encodeURIComponent(key)}=${encodeUrlStateValueLocal(value)}`)
     .join("&");
@@ -2547,7 +2611,7 @@ function renderAll() {
     renderMatrix(risk.interactions);
     renderAlternatives();
     document.getElementById("riskSection").style.display = "";
-    if (!isPatientAudience()) document.getElementById("scopeSection").style.display = "";
+    if (isReviewerMode()) document.getElementById("scopeSection").style.display = "";
     document.getElementById("findingSection").style.display = "";
     document.getElementById("interSection").style.display = "";
     document.getElementById("comboSection").style.display = "";

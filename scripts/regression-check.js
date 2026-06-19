@@ -17,6 +17,13 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
+function assertNoPatientDirectiveLeak(label, text) {
+  assert(
+    !/\b(?:contraindicated|hold (?:statin|medicine)|dose[-\s]?adjust(?:ed|ment)?|substitut(?:ed|ion)|should be avoided|label-guided|specialist monitoring)\b/i.test(text),
+    `${label} exposes clinician-style medication-change directions`
+  );
+}
+
 function loadCase(win, drugs) {
   win.eval(`activeStack = [];
     if (typeof drugDoses !== "undefined") Object.keys(drugDoses).forEach(k => delete drugDoses[k]);
@@ -709,6 +716,8 @@ const audienceModeRegression = window.eval(`(() => {
     geneIntro:document.getElementById('geneSectionIntro')?.textContent || '',
     tabBarDisplay:document.getElementById('tabBar')?.style.display || '',
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
+    reviewButtonDisplay:document.getElementById('tabbtn-review')?.style.display || '',
+    reviewPanelDisplay:document.getElementById('tab-review')?.style.display || '',
     scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
     scopeText:document.getElementById('scopeBody')?.textContent || '',
     actionRows:document.querySelectorAll('#findingBody .finding-actions').length,
@@ -766,8 +775,10 @@ assert(/2 substances/i.test(audienceModeRegression.clinician.medCount), 'Clinici
 assert(/Genes \+ Metabolites tab|medication response|metabolite balance/i.test(audienceModeRegression.clinician.geneIntro), 'Clinician mode should restore clinician gene helper copy');
 assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mode should show tab navigation');
 assert(audienceModeRegression.clinician.findingTitle === 'Interaction Findings', 'Clinician mode should restore clinician finding title');
-assert(audienceModeRegression.clinician.scopeDisplay !== 'none', 'Clinician mode should restore the Review Scope panel');
-assert(/Selected|Recognized|Concerns|Limit:/i.test(audienceModeRegression.clinician.scopeText), 'Clinician mode should restore Review Scope coverage and limits');
+assert(audienceModeRegression.clinician.reviewButtonDisplay === 'none', 'Clinician V1 mode should hide reviewer-only Review navigation');
+assert(audienceModeRegression.clinician.reviewPanelDisplay === 'none', 'Clinician V1 mode should keep the reviewer panel hidden');
+assert(audienceModeRegression.clinician.scopeDisplay === 'none', 'Clinician V1 mode should hide reviewer-only Review Scope');
+assert(!String(audienceModeRegression.clinician.scopeText || '').replace(/\s+/g, ' ').trim(), 'Clinician V1 mode should not render reviewer-only Review Scope copy');
 assert(audienceModeRegression.clinician.actionRows > 0, 'Clinician mode should restore finding action rows');
 assert(audienceModeRegression.clinician.supportDetails > 0, 'Clinician mode should show supporting detail drawers');
 
@@ -1326,8 +1337,10 @@ const riskMarkerFindingRegression = window.eval(`(() => {
   );
   setTab("mechanisms");
   const g6pdMechanismText = document.getElementById("mechanismWhyBody")?.textContent || "";
+  window.history.replaceState(null, '', '/index.html?reviewer=1');
   setTab("review");
   const g6pdReviewText = document.getElementById("warningPathBody")?.textContent || "";
+  window.history.replaceState(null, '', '/index.html');
   const g6pdOverviewCard = document.querySelector('#findingBody .finding-card[data-finding-id*="risk-marker"]');
 
   reset(["Succinylcholine"], {
@@ -1703,6 +1716,7 @@ assert(renderCacheRegression.stackFindingsChanged, 'Changing stack should update
 assert(renderCacheRegression.doseKeyChanged, 'Render computation cache key should change when dose tier changes');
 
 const lazyRenderingRegression = window.eval(`(() => {
+  window.history.replaceState(null, '', '/index.html?reviewer=1');
   activeStack = [];
   userGenetics = {};
   activeGenotype = {
@@ -1737,7 +1751,7 @@ const lazyRenderingRegression = window.eval(`(() => {
   const evidenceKeyB = lazyRenderState.evidenceKey;
   setTab("review");
   const reviewKeyB = lazyRenderState.reviewKey;
-  return {
+  const result = {
     evidenceBeforeOpen,
     reviewBeforeOpen,
     evidenceRendered,
@@ -1747,6 +1761,8 @@ const lazyRenderingRegression = window.eval(`(() => {
     evidenceInvalidated:evidenceKeyA !== evidenceKeyB,
     reviewInvalidated:reviewKeyA !== reviewKeyB,
   };
+  window.history.replaceState(null, '', '/index.html');
+  return result;
 })()`);
 assert(!lazyRenderingRegression.evidenceBeforeOpen, 'Evidence ledger should not render before Evidence tab is opened in a fresh lazy state');
 assert(lazyRenderingRegression.reviewBeforeOpen === 0, 'Review summary should not render before Review tab is opened in a fresh lazy state');
@@ -1794,6 +1810,7 @@ assert(/supporting details list modeled metabolites/i.test(rawMetaboliteMapRegre
 assert(rawMetaboliteMapRegression.manualOpen && rawMetaboliteMapRegression.manualOpenPreserved, 'Manual raw-map expansion should be preserved for the same stack');
 
 const reviewHomeRegression = window.eval(`(() => {
+  window.history.replaceState(null, '', '/index.html?reviewer=1');
   activeStack = [];
   userGenetics = {};
   activeGenotype = { CYP2D6:GENOTYPE_PHENOTYPE.PM, CYP2C19:GENOTYPE_PHENOTYPE.NM, CYP2C9:GENOTYPE_PHENOTYPE.NM, CYP3A4:GENOTYPE_PHENOTYPE.NM };
@@ -1801,7 +1818,7 @@ const reviewHomeRegression = window.eval(`(() => {
   addDrug('Fluoxetine');
   renderAll();
   setTab('review');
-  return {
+  const result = {
     activeTab,
     matrixPanel:document.getElementById('matrixSection')?.closest('.tab-panel')?.id,
     summaryTiles:document.querySelectorAll('#reviewSummaryBody .review-summary-tile').length,
@@ -1811,6 +1828,8 @@ const reviewHomeRegression = window.eval(`(() => {
     actionButtons:document.querySelectorAll('#contributeBody .review-action-btn').length,
     summaryText:document.getElementById('reviewSummaryBody')?.textContent || '',
   };
+  window.history.replaceState(null, '', '/index.html');
+  return result;
 })()`);
 assert(reviewHomeRegression.activeTab === 'review', 'Review tab should activate');
 assert(reviewHomeRegression.matrixPanel === 'tab-review', 'Interaction Grid should live in Review');
@@ -1837,18 +1856,28 @@ const crossTabFindingRegression = window.eval(`(() => {
   const mechanismsHas = document.querySelectorAll('#mechanismWhyBody .mechanism-why-row .why-path').length > 0;
   setTab('evidence');
   const evidenceHas = Boolean(document.getElementById('evidenceLadderLedger')) && /Evidence Browser \\/ Evidence Ledger/i.test(document.getElementById('evidenceLadderLedger')?.textContent || '');
+  const reviewHiddenInV1 = document.getElementById('tabbtn-review')?.style.display === 'none';
   setTab('review');
-  const reviewHas = document.querySelectorAll('#warningPathBody .warning-path-row').length > 0;
-  return {
+  const activeAfterStandardReview = activeTab;
+  const standardReviewHas = document.querySelectorAll('#warningPathBody .warning-path-row').length > 0;
+  window.history.replaceState(null, '', '/index.html?reviewer=1');
+  setTab('review');
+  const reviewerReviewHas = document.querySelectorAll('#warningPathBody .warning-path-row').length > 0;
+  const result = {
     overviewHas,
     overviewFullPathCount,
     overviewWhyText,
     mechanismsHas,
     evidenceHas,
-    reviewHas,
+    reviewHiddenInV1,
+    activeAfterStandardReview,
+    standardReviewHas,
+    reviewerReviewHas,
     mechanismPanel:document.getElementById('mechanismWhySection')?.closest('.tab-panel')?.id,
     reviewPanel:document.getElementById('warningPathSection')?.closest('.tab-panel')?.id,
   };
+  window.history.replaceState(null, '', '/index.html');
+  return result;
 })()`);
 assert(crossTabFindingRegression.overviewHas, 'Overview should summarize a finding card');
 assert(crossTabFindingRegression.overviewFullPathCount === 0, 'Overview should show compact why text, not the detailed vertical why path');
@@ -1859,7 +1888,10 @@ assert(
 );
 assert(crossTabFindingRegression.mechanismsHas, 'Mechanisms should explain findings with why paths');
 assert(crossTabFindingRegression.evidenceHas, 'Evidence should detail finding support through the evidence ledger');
-assert(crossTabFindingRegression.reviewHas, 'Review should debug findings through technical pathways');
+assert(crossTabFindingRegression.reviewHiddenInV1, 'Normal V1 navigation should hide reviewer-only Review');
+assert(crossTabFindingRegression.activeAfterStandardReview === 'overview', 'Normal V1 should route Review requests back to Overview');
+assert(!crossTabFindingRegression.standardReviewHas, 'Normal V1 should not render reviewer-only technical pathways');
+assert(crossTabFindingRegression.reviewerReviewHas, 'Reviewer mode should still expose technical pathway diagnostics');
 assert(crossTabFindingRegression.mechanismPanel === 'tab-mechanisms', 'Mechanism why paths should stay in Mechanisms');
 assert(crossTabFindingRegression.reviewPanel === 'tab-review', 'Technical pathways should stay in Review');
 
@@ -2086,8 +2118,9 @@ const overviewConsolidationRegression = window.eval(`(() => {
     const mechanismRows = Array.from(document.querySelectorAll("#mechanismWhyBody .mechanism-why-row"));
     const mechanismTitles = mechanismRows.map(row => row.querySelector(".warning-path-title")?.textContent || "");
     const mechanismText = document.getElementById("mechanismWhyBody")?.textContent || "";
+    window.history.replaceState(null, '', '/index.html?reviewer=1');
     setTab("review");
-    return {
+    const result = {
       concerns: (cache.clinicalConcerns || []).map(c => ({
         title:c.title,
         domain:c.clinicalConcernDomain,
@@ -2105,6 +2138,8 @@ const overviewConsolidationRegression = window.eval(`(() => {
       reviewText: document.getElementById("reviewSummaryBody")?.textContent || "",
       genesText: document.getElementById("activeMoietyBody")?.textContent || "",
     };
+    window.history.replaceState(null, '', '/index.html');
+    return result;
   }
   return {
     tacrolimus: resetScenario(["Tacrolimus", "Fluconazole"]),

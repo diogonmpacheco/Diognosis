@@ -5,6 +5,10 @@ function renderReviewSummary() {
   const body = document.getElementById("reviewSummaryBody");
   const count = document.getElementById("reviewSummaryCount");
   if (!section || !body) return [];
+  if (typeof isReviewerMode === "function" && !isReviewerMode()) {
+    hideSectionAndClear("reviewSummarySection", "reviewSummaryBody", "reviewSummaryCount");
+    return [];
+  }
   if (!activeStack.length) {
     hideSectionAndClear("reviewSummarySection", "reviewSummaryBody", "reviewSummaryCount");
     return [];
