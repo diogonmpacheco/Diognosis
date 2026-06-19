@@ -226,6 +226,7 @@ function buildV1HandoffConcernLines(presentations = []) {
       `   Evidence/status: ${trust.evidence || presentation.evidenceSummary || "Evidence status unknown"}; ${trust.limitationStatus || "clinical review needed"}`,
       `   Patient-safe next step: ${trust.patientAction || "Review with a doctor or pharmacist before making medication changes."}`,
       `   Clinician review: ${trust.clinicianAction || presentation.whatToReview || "Review dose, timing, source evidence, and clinical context."}`,
+      `   Monitoring focus: ${typeof buildFindingMonitoringItems === "function" ? buildFindingMonitoringItems(presentation, trust, { patient:false }).join("; ") : "Review symptoms, dose, timing, labs, organ function, and current medication context."}`,
     ];
   });
 }

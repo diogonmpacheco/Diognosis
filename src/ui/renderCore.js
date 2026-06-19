@@ -445,6 +445,9 @@ function buildPatientQuestionSummaryText() {
     "Questions to ask",
     ...questions.map((question, index) => `${index + 1}. ${question}`),
     "",
+    "Symptoms or changes to mention",
+    ...buildPatientMentionSummaryItems(presentations).map(item => `- ${item}`),
+    "",
     "Bring to review",
     ...buildReviewContextChecklist(null, { patient:true }).map(item => `- ${item}`),
     "",
@@ -1088,6 +1091,7 @@ function renderPublicFindingCard(presentation) {
   const sourceLinks = patient ? "" : renderFindingSourceLinks(presentation, trust);
   const evidenceStep = patient ? "" : renderFindingStep("Evidence", presentation.evidenceSummary);
   const discussionGuide = renderFindingDiscussionGuide(presentation, trust, patient);
+  const monitoringGuide = renderFindingMonitoringGuide(presentation, trust, patient);
   const technicalDetail = patient ? "" : `<details class="finding-support-details">
       <summary>Supporting detail</summary>
       ${renderFindingTrustDetails(trust)}
@@ -1117,6 +1121,7 @@ function renderPublicFindingCard(presentation) {
       ${evidenceStep}
     </div>
     ${discussionGuide}
+    ${monitoringGuide}
     <div class="finding-actions">${detailButton}${sourceLinks}</div>
     ${technicalDetail}
   </div>`;
@@ -1180,6 +1185,113 @@ function buildClinicianDiscussionGuide(presentation = {}, trust = null) {
     concern,
     action ? `Action: ${action}` : "",
   ].filter(Boolean).join(" ");
+}
+
+function renderFindingMonitoringGuide(presentation = {}, trust = null, patient = false) {
+  const items = buildFindingMonitoringItems(presentation, trust, { patient });
+  if (!items.length) return "";
+  return `<div class="finding-monitoring">
+    <div class="finding-monitoring-label">${safePublicHtml(patient ? "Mention if present" : "Monitoring focus")}</div>
+    <ul class="finding-monitoring-list">
+      ${items.map(item => `<li>${safePublicHtml(item)}</li>`).join("")}
+    </ul>
+  </div>`;
+}
+
+function buildPatientMentionSummaryItems(presentations = getCurrentPublicFindingPresentations()) {
+  const items = [];
+  const add = (item) => {
+    const clean = publicDisplayText(item);
+    if (clean && !items.includes(clean)) items.push(clean);
+  };
+  const shown = (presentations || []).length ? presentations.slice(0, 4) : [null];
+  for (const presentation of shown) {
+    for (const item of buildFindingMonitoringItems(presentation || {}, presentation?.trustContract || null, { patient:true })) {
+      add(item);
+    }
+  }
+  return items.slice(0, 6);
+}
+
+function buildFindingMonitoringItems(presentation = {}, trust = null, options = {}) {
+  const patient = !!options.patient;
+  const text = publicDisplayText([
+    presentation?.title,
+    presentation?.whatChanged,
+    presentation?.whyItMatters,
+    presentation?.whatToReview,
+    ...(presentation?.tags || []),
+    trust?.concernCategory,
+    trust?.expectedChange,
+    trust?.clinicalConcern,
+    trust?.clinicianAction,
+  ].filter(Boolean).join(" ")).toLowerCase();
+  const items = [];
+  const add = (item) => {
+    const clean = publicDisplayText(item);
+    if (clean && !items.includes(clean)) items.push(clean);
+  };
+  if (patient) {
+    add("New or worsening symptoms, side effects, missed doses, or recent dose changes.");
+    if (/work less well|activation|antiplatelet|effectiveness|prodrug|active thiol/.test(text)) {
+      add("Symptoms the medicine is meant to prevent or treat, especially if they are new or getting worse.");
+      add("Any recent changes to stomach acid medicines, antibiotics, seizure medicines, or herbal products.");
+    }
+    if (/bleed|inr|anticoag|warfarin|platelet|clot|hemostasis/.test(text)) {
+      add("Unusual bruising, bleeding, dark stools, severe headache, or clot-related symptoms.");
+    }
+    if (/qt|torsades|arrhythm|heart rhythm|bradycard|electrolyte/.test(text)) {
+      add("Fainting, palpitations, chest pain, severe dizziness, vomiting, or dehydration.");
+    }
+    if (/sedation|fall|sleepiness|breathing|confusion|cns|opioid|benzodiazepine|anticholinergic|drows/.test(text)) {
+      add("Extreme sleepiness, confusion, falls, slowed breathing, constipation, or trouble urinating.");
+    }
+    if (/serotonin|ssri|snri|maoi|linezolid|methylene blue/.test(text)) {
+      add("Agitation, fever, sweating, diarrhea, tremor, stiffness, or unusual restlessness.");
+    }
+    if (/hypogly|glucose|diabetes|insulin|sulfonylurea/.test(text)) {
+      add("Shakiness, sweating, confusion, weakness, or very high or low blood sugar readings.");
+    }
+    if (/washout|persistence|timing|switch|overlap|induction offset/.test(text)) {
+      add("Last dose dates, planned switch dates, overlap periods, and symptoms after stopping or starting.");
+    }
+    if (/auc|cmax|exposure|level|concentration|toxicity|renal|hepatic|kidney|liver|clearance|tdm|nephro|electrolyte/.test(text)) {
+      add("Nausea, weakness, confusion, less urination, yellowing skin or eyes, or severe side effects.");
+    }
+    if (/infection|immunosupp|neutrop|myelosuppression|marrow|cytopenia/.test(text)) {
+      add("Fever, infection symptoms, mouth sores, unusual bruising, or unusual tiredness.");
+    }
+    return items.slice(0, 4);
+  }
+  add("Current symptoms, indication, dose changes, adherence, and last-dose timing.");
+  if (/work less well|activation|antiplatelet|effectiveness|prodrug|active thiol/.test(text)) {
+    add("Therapeutic failure risk, indication acuity, adherence, genotype/phenotype context, and alternative selection.");
+  }
+  if (/bleed|inr|anticoag|warfarin|platelet|clot|hemostasis/.test(text)) {
+    add("Bleeding/thrombosis history, INR or anticoagulation labs, platelet count, procedure timing, and concomitant antithrombotics.");
+  }
+  if (/qt|torsades|arrhythm|heart rhythm|bradycard|electrolyte/.test(text)) {
+    add("ECG/QTc, potassium, magnesium, calcium, bradycardia, structural heart disease, and other QT-risk medicines.");
+  }
+  if (/sedation|fall|sleepiness|breathing|confusion|cns|opioid|benzodiazepine|anticholinergic|drows/.test(text)) {
+    add("Respiratory status, cognition, falls, driving/work risk, alcohol/CNS depressants, opioid and anticholinergic burden.");
+  }
+  if (/serotonin|ssri|snri|maoi|linezolid|methylene blue/.test(text)) {
+    add("Temperature, clonus/rigidity, tremor, autonomic symptoms, serotonergic burden, and washout timing.");
+  }
+  if (/hypogly|glucose|diabetes|insulin|sulfonylurea/.test(text)) {
+    add("Glucose log, renal function, meal pattern, sick-day context, and concurrent glucose-lowering medicines.");
+  }
+  if (/washout|persistence|timing|switch|overlap|induction offset/.test(text)) {
+    add("Start/stop dates, overlap plan, half-life, induction/recovery offset, and monitoring window.");
+  }
+  if (/auc|cmax|exposure|level|concentration|toxicity|renal|hepatic|kidney|liver|clearance|tdm|nephro|electrolyte/.test(text)) {
+    add("Renal/hepatic function, electrolytes, troughs or levels, toxicity signs, inhibitor/inducer timing, and dose changes.");
+  }
+  if (/infection|immunosupp|neutrop|myelosuppression|marrow|cytopenia/.test(text)) {
+    add("CBC with differential, infection symptoms, immunosuppression burden, prophylaxis/vaccine context, and specialty protocol.");
+  }
+  return items.slice(0, 5);
 }
 
 function renderFindingSourceLinks(presentation = {}, trust = null) {
