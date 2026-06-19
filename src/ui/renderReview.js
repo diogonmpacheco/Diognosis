@@ -1,4 +1,4 @@
-// Diognosis — Review tab summary and diagnostics
+// Diognosis — Reviewer console summary and diagnostics
 
 function renderReviewSummary() {
   const section = document.getElementById("reviewSummarySection");
@@ -36,7 +36,7 @@ function renderReviewSummary() {
     ${renderReviewSummaryTile(concerns.length, "Clinical Concerns", "Grouped Overview presentation objects.")}
   </div>
   <div class="quality-list">
-    <div class="quality-item"><strong>Review scope:</strong> technical pathway details, evidence review queue, interaction grid, data diagnostics, scenario snapshots, and contribution links are grouped here for auditing.</div>
+    <div class="quality-item"><strong>Reviewer console scope:</strong> technical pathway details, evidence review queue, interaction grid, data diagnostics, scenario snapshots, and contribution links are grouped here for auditing.</div>
     ${renderClinicalConcernReviewList(concerns)}
   </div>`;
   return findings;
@@ -46,7 +46,7 @@ function renderV1HandoffSummary() {
   const text = buildV1HandoffSummaryText();
   const shareUrl = typeof currentStackShareUrl === "function" ? currentStackShareUrl("overview") : "";
   return `<div class="v1-handoff">
-    <div class="v1-handoff-title">V1 Review Summary</div>
+    <div class="v1-handoff-title">V1 Handoff Summary</div>
     <div class="v1-handoff-note">Plain-language handoff for the current stack. It preserves the same source-linked and clinical-review boundaries as the finding cards.</div>
     <pre class="v1-handoff-text" id="v1HandoffText">${safePublicHtml(text)}</pre>
     <div class="review-actions">
@@ -81,7 +81,7 @@ function buildV1ReadinessSnapshot(options = {}) {
   const checks = [
     {
       key:"scope",
-      label:"Review scope",
+      label:"V1 scope",
       ok:!!scope && scope.selectedCount === activeStack.length && Array.isArray(scope.limits) && scope.limits.length >= 2,
       detail:scope ? `${scope.selectedCount} selected, ${scope.recognizedDrugCount + scope.recognizedActorCount} recognized, ${scope.unknownCount} unknown.` : "Scope summary is not available.",
     },
@@ -120,7 +120,7 @@ function buildV1ReadinessSnapshot(options = {}) {
     {
       key:"handoff",
       label:"Handoff summary",
-      ok:/Diognosis V1 review summary|Review scope|Top concerns|Boundaries/i.test(handoffText),
+      ok:/Diognosis V1 handoff summary|V1 scope|Top concerns|Boundaries/i.test(handoffText),
       detail:"Plain-text handoff includes scope, top concerns, boundaries, and share context.",
     },
     {
@@ -189,11 +189,11 @@ function buildV1HandoffSummaryText(options = {}) {
   const scope = typeof buildReviewScopeSummary === "function" ? buildReviewScopeSummary(cache) : null;
   const shareUrl = typeof currentStackShareUrl === "function" ? currentStackShareUrl("overview") : "";
   const lines = [
-    "Diognosis V1 review summary",
+    "Diognosis V1 handoff summary",
     `Stack: ${(activeStack || []).join(" + ") || "none selected"}`,
     shareUrl ? `Share link: ${shareUrl}` : "",
     "",
-    "Review scope",
+    "V1 scope",
     scope ? `- Selected substances: ${scope.selectedCount}` : "",
     scope ? `- Recognized in local dataset: ${scope.recognizedDrugCount + scope.recognizedActorCount}` : "",
     scope ? `- Selected gene/marker results: ${scope.genotypeCount}` : "",

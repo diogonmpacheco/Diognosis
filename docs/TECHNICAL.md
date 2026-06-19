@@ -105,7 +105,7 @@ src/
 | `TEMPORAL_PROFILES` | Onset/offset profiles for persistent inhibitors and inducers |
 | `WASHOUT_DAYS` | Evidence-based enzyme recovery timelines |
 | `ACB_SCORES` / `BEERS_FLAGS` | Adverse burden lookup tables |
-| `REVIEW_DIAGNOSTICS` | Static scenario snapshot and coverage-gap summaries shown in Review |
+| `REVIEW_DIAGNOSTICS` | Static scenario snapshot and coverage-gap summaries shown in the hidden Reviewer Console |
 
 ## Reasoning Layers
 
@@ -117,11 +117,11 @@ Input data: `calcRisk()` interactions, `COMBINATION_PRODUCTS`, active-moiety row
 
 Output shape: finding objects with `id`, `type`, `severity`, `confidence`, `summary`, `affectedActors`, `evidenceRefs`, `reviewRequired`, `whyPath`, `evidenceLadder`, `sourceRows`, and optional grouped findings.
 
-UI placement: Overview shows ranked finding cards; Mechanisms explains them; Evidence details support; Review exposes raw path objects and technical tables.
+UI placement: Overview shows ranked finding cards; Mechanisms explains them; Evidence details support; the hidden Reviewer Console exposes raw path objects and technical tables.
 
 Review/safety limitations: findings are review prompts. They are not clinical decisions and should not be treated as final severity judgments without professional review.
 
-V1 trust contract: each public Overview finding is normalized into a reusable trust contract with concern category, affected actors, mechanism, expected change, clinical concern, confidence, evidence status, patient-safe action, clinician action, and limitation status. Source-linked finding cards expose direct source chips when public identifiers are available, or a jump to the Evidence ledger otherwise. Finding cards also include a bounded symptom/monitoring discussion guide: Patient mode phrases it as what to mention if present, while Clinician mode lists monitoring focus areas to review with dose, timing, labs, and clinical context. Empty/no-signal Overview states are also bounded: they say no major public concern was generated, name unrecognized selections when present, and provide patient/clinician next-step review prompts instead of implying safety. The clinician Overview Review Scope panel summarizes what was checked, how many public concerns were produced, source-linked versus modeled support, selected gene-marker context, RxNorm/PGx standards identity coverage, and explicit limits. Patient mode hides that clinician audit panel and carries its practical safety boundaries through Safety Notes, no-signal states, selected-item chips, and the copyable questions summary. The Review tab V1 handoff summary turns the same contract into a shareable text artifact with stack, scope, top concerns, evidence/status, standards identity coverage, monitoring focus, patient-safe boundaries, and share URL. The Review tab also exposes a V1 readiness snapshot for the current stack; it checks scope, contracts, source traceability, standards identity disclosure, action wording, handoff, safety boundaries, share state, and Audience Mode availability without claiming clinical validation. `scripts/audit/v1-finding-contract-audit.js` checks this contract, direct source traceability, scope wording, and handoff summary across broad data-derived stacks, then sweeps every recognized shipped `KNOWN_DDI` pair for a complete public contract. `scripts/audit/v1-pgx-contract-audit.js` checks every supported CPIC-linked action case, recognized risk-marker drug row, and high-priority genotype-metabolite row for V1-ready public contracts and PGx marker identity coverage. `scripts/audit/v1-pk-visualization-audit.js` checks every PK-eligible drug for a nonblank absolute or relative SVG curve, model badges, AUC/Cmax metrics, safety disclaimer text, short-acting compressed display windows, and a DDI-adjusted AUC curve. `scripts/audit/v1-standards-coverage-audit.js` checks RxNorm, PGx marker, CPIC action, and standards-gap disclosure. `scripts/audit/v1-release-readiness-audit.js` checks the cross-surface V1 behavior for representative clinician and patient modes.
+V1 trust contract: each public Overview finding is normalized into a reusable trust contract with concern category, affected actors, mechanism, expected change, clinical concern, confidence, evidence status, patient-safe action, clinician action, and limitation status. Source-linked finding cards expose direct source chips when public identifiers are available, or a jump to the Evidence ledger otherwise. Finding cards also include a bounded symptom/monitoring discussion guide: Patient mode phrases it as what to mention if present, while Clinician mode lists monitoring focus areas to review with dose, timing, labs, and clinical context. Empty/no-signal Overview states are also bounded: they say no major public concern was generated, name unrecognized selections when present, and provide patient/clinician next-step review prompts instead of implying safety. Reviewer-only scope and readiness details stay in the hidden Reviewer Console, while Patient and Clinician V1 keep the normal workflow focused on selected items, optional gene/marker results, and the relevant findings. The V1 handoff summary turns the same contract into a shareable text artifact with stack, scope, top concerns, evidence/status, standards identity coverage, monitoring focus, patient-safe boundaries, and share URL. The hidden Reviewer Console also exposes a V1 readiness snapshot for the current stack; it checks scope, contracts, source traceability, standards identity disclosure, action wording, handoff, safety boundaries, share state, and Audience Mode availability without claiming clinical validation. `scripts/audit/v1-finding-contract-audit.js` checks this contract, direct source traceability, scope wording, and handoff summary across broad data-derived stacks, then sweeps every recognized shipped `KNOWN_DDI` pair for a complete public contract. `scripts/audit/v1-pgx-contract-audit.js` checks every supported CPIC-linked action case, recognized risk-marker drug row, and high-priority genotype-metabolite row for V1-ready public contracts and PGx marker identity coverage. `scripts/audit/v1-pk-visualization-audit.js` checks every PK-eligible drug for a nonblank absolute or relative SVG curve, model badges, AUC/Cmax metrics, safety disclaimer text, short-acting compressed display windows, and a DDI-adjusted AUC curve. `scripts/audit/v1-standards-coverage-audit.js` checks RxNorm, PGx marker, CPIC action, and standards-gap disclosure. `scripts/audit/v1-release-readiness-audit.js` checks the cross-surface V1 behavior for representative clinician and patient modes.
 
 ### Active-Moiety Balance
 
@@ -131,7 +131,7 @@ Input data: `METAB`, `METABOLITE_ACTORS`, `GENOTYPE_METABOLITE_EFFECTS`, enzyme 
 
 Output shape: rows with parent, metabolite actor, role, formation/clearance pathways, parent/metabolite direction, net pattern, confidence, severity hint, evidence refs, and review status.
 
-UI placement: top active-moiety findings may appear in Overview; the full Parent-Metabolite Balance section appears in Genes + Metabolites; why paths can appear in Mechanisms and Review.
+UI placement: top active-moiety findings may appear in Overview; the full Parent-Metabolite Balance section appears in Genes + Metabolites; why paths can appear in Mechanisms and the hidden Reviewer Console.
 
 Review/safety limitations: directionality is conservative and mechanistic. Unknown rows should stay unknown, not zero-risk.
 
@@ -155,7 +155,7 @@ Input data: normalized findings, source rows, active-moiety rows, phenoconversio
 
 Output shape: path objects with nodes, edges, summary, evidence refs, and review status.
 
-UI placement: compact why paths appear inside finding cards and in Mechanisms; raw JSON-like path payloads are inspectable in Review.
+UI placement: compact why paths appear inside finding cards and in Mechanisms; raw JSON-like path payloads are inspectable in the hidden Reviewer Console.
 
 Review/safety limitations: why paths explain why a signal appears. They do not by themselves validate clinical action.
 
@@ -167,7 +167,7 @@ Input data: `PK_PARAMS`, `METAB`, `METABOLITE_ACTORS`, `WASHOUT_DAYS`, `TEMPORAL
 
 Output shape: rows with actor, parent, actor type, half-life, estimated persistence days, pathway, persistence type, risk window, reasons, confidence, evidence refs, and review status.
 
-UI placement: important timing rows can feed Overview; the full Persistence & Washout section appears in Timing + Levels; timing why paths can appear in Mechanisms and Review.
+UI placement: important timing rows can feed Overview; the full Persistence & Washout section appears in Timing + Levels; timing why paths can appear in Mechanisms and the hidden Reviewer Console.
 
 Review/safety limitations: five-half-life estimates are display approximations. Missing half-life data is shown as unknown, not omitted or treated as zero.
 
@@ -179,34 +179,34 @@ Input data: evidence refs, `STUDY_DB`, inline evidence flags, source category, r
 
 Output shape: ladders with evidence refs, tiers present, strongest tier, source-linked status, source-support status, public identifiers, professional-review status, mechanistic confidence, clinical-action confidence, and notes.
 
-UI placement: compact evidence status appears on finding cards; the Evidence tab shows the Evidence Browser / Evidence Ledger; Review keeps governance diagnostics visible.
+UI placement: compact evidence status appears on finding cards; the Evidence tab shows the Evidence Browser / Evidence Ledger; the hidden Reviewer Console keeps governance diagnostics visible.
 
 Review/safety limitations: source-linked does not mean professionally reviewed. Model-only review prompts should remain distinct from FDA-label/guideline-backed findings.
 
-### Review Diagnostics
+### Reviewer Console Diagnostics
 
 Purpose: keep technical audit surfaces available without making them compete with the primary user flow.
 
 Input data: current findings, generated review workbench rows, scenario snapshots, metabolite coverage gaps, evidence queues, Open Targets review queues, raw warning paths, and interaction matrices.
 
-Output shape: Review summary tiles, scenario snapshot cards, gap cards, raw warning path payloads, technical tables, and contribution links.
+Output shape: reviewer summary tiles, scenario snapshot cards, gap cards, raw warning path payloads, technical tables, and contribution links.
 
-UI placement: Review tab.
+UI placement: hidden Reviewer Console, available through `?reviewer=1`.
 
 Review/safety limitations: diagnostics are for audit, debugging, and contribution workflows. They are not user-facing clinical advice.
 
 ## UI Information Architecture
 
-The top-level app uses six tabs:
+The normal V1 product uses Patient and Clinician audience modes. Clinician mode exposes five top-level tabs:
 
 - Overview: ranked findings and highest-priority summary
 - Mechanisms: why paths, pathway chains, transporter/pathway bottlenecks, and full network
 - Genes + Metabolites: genotype input, phenoconversion, parent-metabolite balance, and metabolite catalog rows
 - Timing + Levels: PK curves, relative exposure shifts, persistence, washout, and burden timing
 - Evidence: external context cards, evidence browser, and evidence ladder ledger
-- Review: raw paths, diagnostics, scenario snapshots, coverage gaps, technical interaction tables, review workbench, and contribution links
+- Reviewer Console: hidden unless `?reviewer=1`; contains raw paths, diagnostics, scenario snapshots, coverage gaps, technical interaction tables, review workbench, and contribution links
 
-Audience mode is a top-level presentation switch, not RBAC. `Clinician` is the default full-detail view. `Patient` keeps the same local calculation model but shows the Overview safety notes with simpler labels, hides clinician-only tab navigation/details, and can be loaded with `?audience=patient`. The top chrome also follows the selected audience: Patient mode uses medicine-list, doctor/pharmacist, and "do not guess" gene-result language, while Clinician mode restores pathway, evidence, and Genes + Metabolites helper copy. The clinician Overview keeps the Review Scope panel with checked coverage, evidence limits, standards identity, and review checklist details. Patient mode hides that clinician audit panel; the same safety boundaries are carried through Safety Notes, no-signal states, selected-item chips, and the copyable questions summary with "bring to review" prompts for a doctor or pharmacist. Patient selected-list chips keep names, dose selectors, and not-checked boundaries visible, but hide clinician-only exposure/metabolite rollups. Patient selected-list count and empty-state copy use "items selected" and doctor/pharmacist list-building language instead of clinician-oriented substance/interaction wording. Patient Safety Notes also use patient-facing count/footer copy and plain priority labels instead of raw severity terms or hidden Review-tab pointers, and summary jump controls are shown only when there is a visible note or status target.
+Audience mode is a top-level presentation switch, not RBAC. `Clinician` is the default full-detail view. `Patient` keeps the same local calculation model but shows the Overview safety notes with simpler labels, hides clinician-only tab navigation/details, and can be loaded with `?audience=patient`. The top chrome also follows the selected audience: Patient mode uses medicine-list, doctor/pharmacist, and "do not guess" gene-result language, while Clinician mode restores pathway, evidence, and Genes + Metabolites helper copy. Both modes keep the selected list and optional gene/marker results together before the results. Reviewer-only scope, readiness, raw paths, and contribution tooling stay out of normal V1 and live behind `?reviewer=1`. Patient selected-list chips keep names and not-checked boundaries visible, but hide clinician-only dose selectors and exposure/metabolite rollups. Patient selected-list count and empty-state copy use "items selected" and doctor/pharmacist list-building language instead of clinician-oriented substance/interaction wording. Patient Safety Notes also use patient-facing count/footer copy and plain priority labels instead of raw severity terms or hidden Reviewer Console pointers, and summary jump controls are shown only when there is a visible note or status target.
 
 Legacy tab aliases remain supported for old demo links:
 
@@ -224,7 +224,7 @@ contributors -> review
 evidence -> evidence
 ```
 
-Old detailed panels remain available but are not the primary Overview surface. `Known Interactions`, `Combination Alerts`, and `Interaction Grid` live in Review. Full network and pathway views live in Mechanisms.
+Old detailed panels remain available but are not the primary Overview surface. `Known Interactions`, `Combination Alerts`, and `Interaction Grid` live in the hidden Reviewer Console. Full network and pathway views live in Mechanisms.
 
 ## Evidence and Review Status
 

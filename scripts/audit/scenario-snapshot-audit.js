@@ -379,7 +379,7 @@ async function run() {
     assert(result.mechanismWhyPathCount >= (expect.minWhyPaths || 1),
       `${scenario.id}: Mechanisms tab should render why paths`);
     assert(result.rawWarningPathCount >= (expect.minWhyPaths || 1),
-      `${scenario.id}: Review tab should expose technical pathways`);
+      `${scenario.id}: Reviewer Console should expose technical pathways`);
     assert(result.evidenceLedgerPresent,
       `${scenario.id}: Evidence tab should expose the evidence ladder ledger`);
     assert(result.falseReviewedClaims === 0,

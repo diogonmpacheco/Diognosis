@@ -259,12 +259,12 @@ for (const seed of seeds) {
   const result = loadSeed(seed);
   const presentations = result.presentations || [];
   if (!result.scopeVisible || !/Selected|Recognized|Concerns|Source-linked|Limit:/i.test(result.scopeText || '')) {
-    failures.push(`${seed.label}: Review Scope panel missing required coverage and limit wording`);
+    failures.push(`${seed.label}: Reviewer Console scope panel missing required coverage and limit wording`);
   }
   if (/this list is safe|proved safe|no risk/i.test(result.scopeText || '')) {
-    failures.push(`${seed.label}: Review Scope panel implies safety instead of bounded review`);
+    failures.push(`${seed.label}: Reviewer Console scope panel implies safety instead of bounded review`);
   }
-  if (!/Diognosis V1 review summary|Review scope|Top concerns|Boundaries|Share link:/i.test(result.handoffText || '')) {
+  if (!/Diognosis V1 handoff summary|V1 scope|Top concerns|Boundaries|Share link:/i.test(result.handoffText || '')) {
     failures.push(`${seed.label}: V1 handoff summary missing required sections`);
   }
   if (!seed.drugs.every(drug => (result.handoffText || '').includes(drug))) {

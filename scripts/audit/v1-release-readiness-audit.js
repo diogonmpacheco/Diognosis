@@ -181,10 +181,10 @@ for (const scenario of clinicianScenarios) {
   assert(result.sourceLinkedCards > 0, `${scenario.name}: should include at least one source-linked public concern`);
   assert(result.sourceActions > 0, `${scenario.name}: source-linked cards should expose source actions`);
   assert(result.directEligible === 0 || result.sourceLinks > 0, `${scenario.name}: direct PMID/DOI/source-eligible cards need direct source links`);
-  assert(result.reviewButtonDisplay === 'none', `${scenario.name}: normal V1 clinician UI should hide reviewer-only Review navigation`);
+  assert(result.reviewButtonDisplay === 'none', `${scenario.name}: normal V1 clinician UI should hide reviewer-only console navigation`);
   assert(result.reviewPanelDisplay === 'none', `${scenario.name}: normal V1 clinician UI should hide the reviewer panel`);
   assert(result.scopeDisplay === 'none' && !normalizedText(result.scopeText),
-    `${scenario.name}: normal V1 clinician UI should hide reviewer-only Review Scope`);
+    `${scenario.name}: normal V1 clinician UI should hide reviewer-only console scope`);
   assert(!normalizedText(result.reviewText), `${scenario.name}: normal V1 clinician UI should not render reviewer summary copy`);
   assert(/Diognosis questions to ask|Review this medication list|Top concerns|Boundaries|Share link:/i.test(result.handoffText),
     `${scenario.name}: product handoff summary missing required sections`);
@@ -279,8 +279,8 @@ assert(/Safety notes group related concerns|doctor or pharmacist/i.test(patient.
 assert(patient.discussionGuides > 0, 'Patient mode should render discussion guides on safety notes');
 assert(patient.monitoringGuides > 0, 'Patient mode should render plain-language mention-if-present guidance');
 assert(patient.summaryActions >= 2, 'Patient mode should expose top-level copy/share actions');
-assert(patient.scopeDisplay === 'none', 'Patient mode should hide the clinician Review Scope panel');
-assert(!normalizedText(patient.scopeText), 'Patient mode should not render hidden Review Scope copy');
+assert(patient.scopeDisplay === 'none', 'Patient mode should hide the reviewer-only console scope panel');
+assert(!normalizedText(patient.scopeText), 'Patient mode should not render hidden reviewer console scope copy');
 assert(/Diognosis questions to ask|Questions to ask|Symptoms or changes to mention|Bring to review|Do not start, stop, or change medication/i.test(patient.overviewHandoffText),
   'Patient mode should build a patient-safe copyable question summary');
 assert(patient.sourceLinks === 0, 'Patient mode should hide direct clinician source chips');
@@ -405,7 +405,7 @@ assert(unknownUrl.unknownChips === 1, 'Unknown URL substances should render as u
 assert(/Mystery Mix|Not checked here/i.test(unknownUrl.medListText),
   'Unknown URL substance chip should clearly show what was not checked');
 assert(unknownUrl.scopeDisplay === 'none' && !normalizedText(unknownUrl.scopeText),
-  'Unknown URL Patient mode should keep the clinician Review Scope panel hidden');
+  'Unknown URL Patient mode should keep the reviewer-only console scope panel hidden');
 assert(/Mystery Mix/i.test(unknownUrl.overviewHandoffText),
   'Unknown URL substance should be preserved in the patient copy summary');
 assert(/Not checked here|Confirm spelling/i.test(unknownUrl.overviewHandoffText),
@@ -442,7 +442,7 @@ assert(manualUnknown.activeStack.join('|') === 'Mystery Mix|Warfarin',
 assert(manualUnknown.unknownChips === 1 && /Mystery Mix|Not checked here/i.test(manualUnknown.medListText),
   'Manual unknown entry should render as an unrecognized selected chip');
 assert(manualUnknown.scopeDisplay === 'none' && !normalizedText(manualUnknown.scopeText),
-  'Manual unknown Patient mode should keep the clinician Review Scope panel hidden');
+  'Manual unknown Patient mode should keep the reviewer-only console scope panel hidden');
 assert(/Mystery Mix/i.test(manualUnknown.overviewHandoffText),
   'Manual unknown entry should be named in the patient copy summary');
 assert(/Not checked here|Confirm spelling/i.test(manualUnknown.overviewHandoffText),
@@ -472,7 +472,7 @@ assert(/No major safety note found here|does not prove the list is safe|Still ch
 assert(!/No interaction findings|Evidence, genetics, metabolite/i.test(noSignalUnknown.findingText),
   'Patient no-signal state should not show the old technical empty message');
 assert(noSignalUnknown.scopeDisplay === 'none' && !normalizedText(noSignalUnknown.scopeText),
-  'Patient no-signal mode should keep the clinician Review Scope panel hidden');
+  'Patient no-signal mode should keep the reviewer-only console scope panel hidden');
 assert(/Mystery Mix/i.test(noSignalUnknown.overviewHandoffText) && /Unknown Herb/i.test(noSignalUnknown.overviewHandoffText),
   'Patient no-signal copy summary should preserve unknown items');
 assert(/quiet result here does not prove the list is safe|does not prove the list is safe/i.test(noSignalUnknown.overviewHandoffText),
@@ -539,7 +539,7 @@ const structural = structuralWindow.eval(`(() => ({
 assert(structural.hasReadinessHelper, 'V1 readiness snapshot helper should be bundled');
 assert(structural.hasTrustHelper, 'V1 trust contract helper should be bundled');
 assert(structural.hasHandoffHelper, 'V1 handoff helper should be bundled');
-assert(structural.hasScopeHelper, 'Review Scope helper should be bundled');
+assert(structural.hasScopeHelper, 'Reviewer console scope helper should be bundled');
 assert(structural.patientButton && structural.clinicianButton, 'Audience toggle should be top-level and bundled');
 assert(structural.firstUseOrder.join('|').startsWith('audience|search|mode'),
   `Audience toggle should sit above search, followed by search/browse controls; got ${structural.firstUseOrder.join('|')}`);

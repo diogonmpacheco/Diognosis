@@ -502,7 +502,7 @@ function buildOverviewHandoffText() {
   if (isPatientAudience()) return buildPatientQuestionSummaryText();
   if (typeof buildV1HandoffSummaryText === "function") return buildV1HandoffSummaryText({ limit:5 });
   return [
-    "Diognosis V1 review summary",
+    "Diognosis V1 handoff summary",
     `Stack: ${(activeStack || []).join(" + ") || "none selected"}`,
     "Boundary: not medical advice; review with a qualified clinician or pharmacist.",
   ].join("\n");

@@ -94,8 +94,8 @@ assert(fullyMapped.coverage.pgxActionCount >= 1, 'CYP2C19 clopidogrel case shoul
 assert(fullyMapped.coverage.systemsPresent.includes('RxNorm'), 'Standards systems should include RxNorm');
 assert(fullyMapped.coverage.systemsPresent.some(system => /PharmVar|dbSNP/i.test(system)), 'Standards systems should include PGx marker systems');
 assert(/Standards coverage: 2\/2 recognized medications mapped to RxNorm/i.test(fullyMapped.scopeText),
-  'Review Scope should summarize fully mapped RxNorm coverage');
-assert(/PGx marker identity row/i.test(fullyMapped.scopeText), 'Review Scope should mention PGx marker identity rows');
+  'Reviewer Console scope should summarize fully mapped RxNorm coverage');
+assert(/PGx marker identity row/i.test(fullyMapped.scopeText), 'Reviewer Console scope should mention PGx marker identity rows');
 assert(/Standards identity: 2\/2 recognized medications mapped to RxNorm/i.test(fullyMapped.handoffText),
   'V1 handoff should include standards identity coverage');
 assert(/Standards identity/i.test(fullyMapped.readinessText), 'V1 readiness panel should include Standards identity check');
@@ -109,9 +109,9 @@ assert(partial.coverage.unmappedDrugCount >= 1, 'Partial standards case should d
 assert(partial.coverage.unmappedSubstances.some(name => /metoprolol/i.test(name)), 'Metoprolol should be disclosed as unmapped until RxNorm row exists');
 assert(partial.coverage.markerMappingCount >= 2, 'CYP2C9 IM should expose marker mappings');
 assert(partial.coverage.pgxActionCount >= 1, 'Warfarin CYP2C9 case should expose CPIC-linked action context');
-assert(/recognized medications mapped to RxNorm/i.test(partial.scopeText), 'Partial Review Scope should summarize RxNorm coverage');
-assert(/lack local RxNorm identity mappings/i.test(partial.scopeText), 'Partial Review Scope should disclose RxNorm mapping gaps');
-assert(/SNOMED CT diagnosis\/symptom mapping is not used/i.test(partial.scopeText), 'Review Scope should state SNOMED boundary');
+assert(/recognized medications mapped to RxNorm/i.test(partial.scopeText), 'Partial Reviewer Console scope should summarize RxNorm coverage');
+assert(/lack local RxNorm identity mappings/i.test(partial.scopeText), 'Partial Reviewer Console scope should disclose RxNorm mapping gaps');
+assert(/SNOMED CT diagnosis\/symptom mapping is not used/i.test(partial.scopeText), 'Reviewer Console scope should state SNOMED boundary');
 assert(/Standards identity:/i.test(partial.handoffText), 'Partial V1 handoff should include standards identity coverage');
 assert(partial.readiness.checks.some(check => check.key === 'standards' && check.ok === true),
   'Partial standards disclosure should keep the Standards identity readiness check passing');

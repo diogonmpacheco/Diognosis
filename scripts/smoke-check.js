@@ -52,17 +52,19 @@ assert(evalInPage(window, 'DIOGNOSIS_VERSION.engine') === '0.1.0-alpha.1', 'DIOG
 assert(evalInPage(window, 'DIOGNOSIS_VERSION.drugCount') === evalInPage(window, 'DRUG_DB.length'), 'DIOGNOSIS_VERSION drug count is stale');
 assert(doc.getElementById('ver-count')?.textContent === String(evalInPage(window, 'DRUG_DB.length')), 'Version strip drug count is stale');
 assert(!readme.includes('tab=safety'), 'README public examples should use tab=overview instead of tab=safety');
-for (const label of ['Overview', 'Mechanisms', 'Genes + Metabolites', 'Timing + Levels', 'Evidence', 'Review']) {
+for (const label of ['Overview', 'Mechanisms', 'Genes + Metabolites', 'Timing + Levels', 'Evidence']) {
   assert(readme.includes(label), `README should mention the ${label} tab`);
   assert(technical.includes(label), `TECHNICAL.md should document the ${label} tab`);
 }
+assert(readme.includes('Reviewer Console'), 'README should document that the Reviewer Console is hidden from normal V1');
+assert(technical.includes('Reviewer Console'), 'TECHNICAL.md should document the hidden Reviewer Console');
 for (const moduleName of ['activeMoietyEngine', 'phenoconversionEngine', 'persistenceTimelineEngine', 'findingEngine', 'warningPathEngine', 'evidenceConfidenceEngine']) {
   assert(technical.includes(moduleName), `TECHNICAL.md should document ${moduleName}`);
 }
 
 const tabLabels = Array.from(doc.querySelectorAll('#tabBar .tab-btn')).map((btn) => btn.textContent.trim());
 assert(
-  tabLabels.join('|') === 'Overview|Mechanisms|Genes + Metabolites|Timing + Levels|Evidence|Review',
+  tabLabels.join('|') === 'Overview|Mechanisms|Genes + Metabolites|Timing + Levels|Evidence|Reviewer Console',
   `Unexpected top-level tabs: ${tabLabels.join('|')}`
 );
 
@@ -74,22 +76,22 @@ assert(evalInPage(window, 'activeStack.length') === 2, 'Medication stack did not
 assert(doc.getElementById('medCount')?.textContent.includes('2'), 'Medication count did not update');
 assert(doc.getElementById('tab-overview')?.classList.contains('active'), 'Overview tab should be active by default');
 assert(doc.getElementById('findingSection')?.closest('.tab-panel')?.id === 'tab-overview', 'Normalized interaction findings should live under Overview');
-assert(doc.getElementById('interSection')?.closest('.tab-panel')?.id === 'tab-review', 'Detailed known interactions should live under Review');
-assert(doc.getElementById('comboSection')?.closest('.tab-panel')?.id === 'tab-review', 'Detailed combination alerts should live under Review');
+assert(doc.getElementById('interSection')?.closest('.tab-panel')?.id === 'tab-review', 'Detailed known interactions should live under Reviewer Console');
+assert(doc.getElementById('comboSection')?.closest('.tab-panel')?.id === 'tab-review', 'Detailed combination alerts should live under Reviewer Console');
 assert(doc.getElementById('graphSection')?.closest('.tab-panel')?.id === 'tab-mechanisms', 'Full network should live under Mechanisms');
 assert(doc.getElementById('mechanismWhySection')?.closest('.tab-panel')?.id === 'tab-mechanisms', 'Finding Why Paths should live under Mechanisms');
-assert(doc.getElementById('matrixSection')?.closest('.tab-panel')?.id === 'tab-review', 'Interaction grid should live under Review');
+assert(doc.getElementById('matrixSection')?.closest('.tab-panel')?.id === 'tab-review', 'Interaction grid should live under Reviewer Console');
 assert(doc.getElementById('genotypeSection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Genotype panel should live under Genes + Metabolites');
 assert(doc.getElementById('phenoconversionSection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Current Pathway Status should live under Genes + Metabolites');
 assert(doc.getElementById('activeMoietySection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Drug & Metabolite Balance should live under Genes + Metabolites');
 assert(doc.getElementById('pkSimSection')?.closest('.tab-panel')?.id === 'tab-timing-levels', 'PK simulation should live under Timing + Levels');
 assert(doc.getElementById('persistenceTimelineSection')?.closest('.tab-panel')?.id === 'tab-timing-levels', 'Persistence & Washout should live under Timing + Levels');
-assert(doc.getElementById('reviewWorkbenchSection')?.closest('.tab-panel')?.id === 'tab-review', 'Review workbench should live under Review');
-assert(doc.getElementById('reviewSummarySection')?.closest('.tab-panel')?.id === 'tab-review', 'Review Summary should live under Review');
-assert(doc.getElementById('scenarioSnapshotSection')?.closest('.tab-panel')?.id === 'tab-review', 'Scenario Snapshots should live under Review');
-assert(doc.getElementById('metaboliteGapSection')?.closest('.tab-panel')?.id === 'tab-review', 'Metabolite Coverage Gaps should live under Review');
-assert(doc.getElementById('contributeSection')?.closest('.tab-panel')?.id === 'tab-review', 'Report / Contribute should live under Review');
-assert(doc.getElementById('warningPathSection')?.closest('.tab-panel')?.id === 'tab-review', 'Raw Warning Paths should live under Review');
+assert(doc.getElementById('reviewWorkbenchSection')?.closest('.tab-panel')?.id === 'tab-review', 'Reviewer workbench should live under Reviewer Console');
+assert(doc.getElementById('reviewSummarySection')?.closest('.tab-panel')?.id === 'tab-review', 'Reviewer Summary should live under Reviewer Console');
+assert(doc.getElementById('scenarioSnapshotSection')?.closest('.tab-panel')?.id === 'tab-review', 'Scenario Snapshots should live under Reviewer Console');
+assert(doc.getElementById('metaboliteGapSection')?.closest('.tab-panel')?.id === 'tab-review', 'Metabolite Coverage Gaps should live under Reviewer Console');
+assert(doc.getElementById('contributeSection')?.closest('.tab-panel')?.id === 'tab-review', 'Report / Contribute should live under Reviewer Console');
+assert(doc.getElementById('warningPathSection')?.closest('.tab-panel')?.id === 'tab-review', 'Technical Warning Paths should live under Reviewer Console');
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
 assert(doc.querySelectorAll('#findingBody .primary-finding-card').length > 0, 'Overview finding cards should render primary public finding cards');
 assert([...doc.querySelectorAll('#findingBody .primary-finding-card')].every(card => ['What changed', 'Why it matters', 'What to review', 'Evidence'].every(label => card.textContent.includes(label))), 'Overview finding cards should render the four-part public explanation');
@@ -99,9 +101,9 @@ assert(doc.querySelectorAll('#mechanismWhyBody .mechanism-why-row').length > 0, 
 assert(doc.querySelectorAll('#phenoconversionBody .phenoconversion-card').length > 0, 'Genes + Metabolites should render Current Pathway Status cards');
 assert(doc.querySelectorAll('#activeMoietyBody .active-moiety-card').length > 0, 'Genes + Metabolites should render Drug & Metabolite Balance cards');
 assert(doc.querySelectorAll('#persistenceTimelineBody .persistence-card').length > 0, 'Timing + Levels should render Persistence & Washout cards');
-assert(doc.getElementById('tabbtn-review')?.style.display === 'none', 'Normal V1 smoke path should hide reviewer-only Review navigation');
+assert(doc.getElementById('tabbtn-review')?.style.display === 'none', 'Normal V1 smoke path should hide reviewer-only console navigation');
 window.setTab('review');
-assert(evalInPage(window, 'activeTab') === 'overview', 'Normal V1 smoke path should route Review requests back to Overview');
+assert(evalInPage(window, 'activeTab') === 'overview', 'Normal V1 smoke path should route reviewer-console requests back to Overview');
 window.history.replaceState(null, '', '/index.html?reviewer=1');
 window.setTab('review');
 assert(doc.querySelectorAll('#reviewSummaryBody .review-summary-tile').length > 0, 'Review should render current-stack summary tiles');

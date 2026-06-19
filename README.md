@@ -64,7 +64,7 @@ These links open the live app with example medication stacks already loaded:
 | [Clopidogrel + CYP2C19 PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:poor_metabolizer&tab=genes-metabolites) | Clopidogrel is a prodrug. The Genes + Metabolites view shows CYP2C19 functional status and reduced active-thiol formation as an activation-failure review prompt. |
 | [Codeine + CYP2D6 PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=genes-metabolites) | Codeine must be converted into morphine. The app separates parent codeine, active morphine, CYP2D6 phenoconversion, and the why path behind reduced activation. |
 | [Simvastatin + clarithromycin](https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&tab=mechanisms) | Clarithromycin blocks a major simvastatin cleanup route. The Mechanisms view shows the CYP3A4 pathway chain and source-linked evidence status. |
-| [Older-adult burden](https://diogonmpacheco.github.io/Diognosis/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview) | Each medicine can add sedation, confusion, or fall risk. Overview groups the main interaction findings while Review keeps evidence and diagnostics inspectable. |
+| [Older-adult burden](https://diogonmpacheco.github.io/Diognosis/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview) | Each medicine can add sedation, confusion, or fall risk. Overview groups the main interaction findings while Clinician mode keeps evidence and mechanisms inspectable. |
 
 The deeper examples below stress cases that are often missed when a checker only looks at parent drug names. The important signal may come from an active metabolite, a toxic metabolite, a blocked clearance pathway, or a genetic no-function state.
 
@@ -135,9 +135,11 @@ Diognosis is intentionally conservative about what it claims. Diognosis PK curve
 
 1. Open the [live Diognosis app](https://diogonmpacheco.github.io/Diognosis/).
 2. Search for medications, supplements, foods, or substances.
-3. Review the Overview, Mechanisms, Genes + Metabolites, Timing + Levels, Evidence, and Review tabs.
+3. Use Patient mode for plain-language safety notes, or Clinician mode for Overview, Mechanisms, Genes + Metabolites, Timing + Levels, and Evidence.
 4. Set genotype phenotypes where relevant, or paste supported PharmGx report rows in the pharmacogenomics panel.
 5. Treat every result as an explanation to review, not as medical advice.
+
+The Reviewer Console is not part of the normal V1 surface. It is available only through `?reviewer=1` for data review, QA, and contribution workflows.
 
 For internals, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md) and the [Data Model](docs/DATA_MODEL.md). For launch readiness, see the [Launch QA Matrix](docs/LAUNCH_QA_MATRIX.md), [Public Trust Model](docs/PUBLIC_TRUST.md), and [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md).
 

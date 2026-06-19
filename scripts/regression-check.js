@@ -789,8 +789,8 @@ assert(/Safety notes group related concerns|doctor or pharmacist/i.test(audience
 assert(!/(?:Technical details remain available in Review|Detailed technical context|pathway, metabolite, timing, and evidence signals|clinical concerns)/i.test(
   audienceModeRegression.patient.findingText
 ), 'Patient mode should not expose clinician-only Overview footer language');
-assert(audienceModeRegression.patient.scopeDisplay === 'none', 'Patient mode should hide the clinician Review Scope panel');
-assert(!String(audienceModeRegression.patient.scopeText || '').replace(/\s+/g, ' ').trim(), 'Patient mode should not render hidden Review Scope copy');
+assert(audienceModeRegression.patient.scopeDisplay === 'none', 'Patient mode should hide the reviewer-only console scope panel');
+assert(!String(audienceModeRegression.patient.scopeText || '').replace(/\s+/g, ' ').trim(), 'Patient mode should not render hidden reviewer console scope copy');
 assert(!/\b(?:AUC|Cmax|RxNorm|PGx|PMID|source-linked|modeled|confidence|clinical review needed|pharmacogenomics|metabolite-level|CYP\d)/i.test(
   `${audienceModeRegression.patient.tagline} ${audienceModeRegression.patient.geneIntro} ${audienceModeRegression.patient.summaryText} ${audienceModeRegression.patient.findingText} ${audienceModeRegression.patient.medListText} ${audienceModeRegression.patient.scopeText}`
 ), 'Patient mode should avoid clinician-only technical vocabulary in visible Overview copy');
@@ -811,10 +811,10 @@ assert(audienceModeRegression.clinician.clinicianLayoutCss, 'Clinician mode shou
 assert(/Genes \+ Metabolites tab|medication response|metabolite balance/i.test(audienceModeRegression.clinician.geneIntro), 'Clinician mode should restore clinician gene helper copy');
 assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mode should show tab navigation');
 assert(audienceModeRegression.clinician.findingTitle === 'Interaction Findings', 'Clinician mode should restore clinician finding title');
-assert(audienceModeRegression.clinician.reviewButtonDisplay === 'none', 'Clinician V1 mode should hide reviewer-only Review navigation');
+assert(audienceModeRegression.clinician.reviewButtonDisplay === 'none', 'Clinician V1 mode should hide reviewer-only console navigation');
 assert(audienceModeRegression.clinician.reviewPanelDisplay === 'none', 'Clinician V1 mode should keep the reviewer panel hidden');
-assert(audienceModeRegression.clinician.scopeDisplay === 'none', 'Clinician V1 mode should hide reviewer-only Review Scope');
-assert(!String(audienceModeRegression.clinician.scopeText || '').replace(/\s+/g, ' ').trim(), 'Clinician V1 mode should not render reviewer-only Review Scope copy');
+assert(audienceModeRegression.clinician.scopeDisplay === 'none', 'Clinician V1 mode should hide reviewer-only console scope');
+assert(!String(audienceModeRegression.clinician.scopeText || '').replace(/\s+/g, ' ').trim(), 'Clinician V1 mode should not render reviewer-only console scope copy');
 assert(audienceModeRegression.clinician.actionRows > 0, 'Clinician mode should restore finding action rows');
 assert(audienceModeRegression.clinician.supportDetails > 0, 'Clinician mode should show supporting detail drawers');
 
@@ -1805,13 +1805,13 @@ const lazyRenderingRegression = window.eval(`(() => {
   return result;
 })()`);
 assert(!lazyRenderingRegression.evidenceBeforeOpen, 'Evidence ledger should not render before Evidence tab is opened in a fresh lazy state');
-assert(lazyRenderingRegression.reviewBeforeOpen === 0, 'Review summary should not render before Review tab is opened in a fresh lazy state');
+assert(lazyRenderingRegression.reviewBeforeOpen === 0, 'Reviewer summary should not render before Reviewer Console is opened in a fresh lazy state');
 assert(lazyRenderingRegression.evidenceRendered, 'Evidence should render when active tab is evidence');
-assert(lazyRenderingRegression.reviewRendered, 'Review should render when active tab is review');
+assert(lazyRenderingRegression.reviewRendered, 'Reviewer Console should render when active tab is review');
 assert(lazyRenderingRegression.findingsRetained, 'Switching lazy tabs should not lose current findings');
 assert(lazyRenderingRegression.genotypeChangedFindings, 'Changing genotype should update normalized findings');
 assert(lazyRenderingRegression.evidenceInvalidated, 'Changing genotype should invalidate lazy Evidence content');
-assert(lazyRenderingRegression.reviewInvalidated, 'Changing genotype should invalidate lazy Review content');
+assert(lazyRenderingRegression.reviewInvalidated, 'Changing genotype should invalidate lazy Reviewer Console content');
 
 const rawMetaboliteMapRegression = window.eval(`(() => {
   activeStack = [];
@@ -1871,14 +1871,14 @@ const reviewHomeRegression = window.eval(`(() => {
   window.history.replaceState(null, '', '/index.html');
   return result;
 })()`);
-assert(reviewHomeRegression.activeTab === 'review', 'Review tab should activate');
-assert(reviewHomeRegression.matrixPanel === 'tab-review', 'Interaction Grid should live in Review');
-assert(reviewHomeRegression.summaryTiles >= 6, 'Review Summary should expose current-stack summary tiles');
+assert(reviewHomeRegression.activeTab === 'review', 'Reviewer Console should activate');
+assert(reviewHomeRegression.matrixPanel === 'tab-review', 'Interaction Grid should live in Reviewer Console');
+assert(reviewHomeRegression.summaryTiles >= 6, 'Reviewer Summary should expose current-stack summary tiles');
 assert(reviewHomeRegression.scenarioCards === 0, 'Generated scenario snapshots should stay out of the slim bundle');
 assert(reviewHomeRegression.gapCards === 0, 'Generated metabolite coverage gaps should stay out of the slim bundle');
-assert(reviewHomeRegression.warningPaths > 0, 'Review should expose technical pathway diagnostics');
-assert(reviewHomeRegression.actionButtons >= 3, 'Review should expose report/contribute actions');
-assert(/Pending Review/i.test(reviewHomeRegression.summaryText), 'Review Summary should expose pending review status');
+assert(reviewHomeRegression.warningPaths > 0, 'Reviewer Console should expose technical pathway diagnostics');
+assert(reviewHomeRegression.actionButtons >= 3, 'Reviewer Console should expose report/contribute actions');
+assert(/Pending Review/i.test(reviewHomeRegression.summaryText), 'Reviewer Summary should expose pending review status');
 
 const crossTabFindingRegression = window.eval(`(() => {
   activeStack = [];
@@ -1928,12 +1928,12 @@ assert(
 );
 assert(crossTabFindingRegression.mechanismsHas, 'Mechanisms should explain findings with why paths');
 assert(crossTabFindingRegression.evidenceHas, 'Evidence should detail finding support through the evidence ledger');
-assert(crossTabFindingRegression.reviewHiddenInV1, 'Normal V1 navigation should hide reviewer-only Review');
-assert(crossTabFindingRegression.activeAfterStandardReview === 'overview', 'Normal V1 should route Review requests back to Overview');
+assert(crossTabFindingRegression.reviewHiddenInV1, 'Normal V1 navigation should hide reviewer-only console');
+assert(crossTabFindingRegression.activeAfterStandardReview === 'overview', 'Normal V1 should route reviewer-console requests back to Overview');
 assert(!crossTabFindingRegression.standardReviewHas, 'Normal V1 should not render reviewer-only technical pathways');
 assert(crossTabFindingRegression.reviewerReviewHas, 'Reviewer mode should still expose technical pathway diagnostics');
 assert(crossTabFindingRegression.mechanismPanel === 'tab-mechanisms', 'Mechanism why paths should stay in Mechanisms');
-assert(crossTabFindingRegression.reviewPanel === 'tab-review', 'Technical pathways should stay in Review');
+assert(crossTabFindingRegression.reviewPanel === 'tab-review', 'Technical pathways should stay in Reviewer Console');
 
 const publicFindingHierarchyRegression = window.eval(`(() => {
   function resetScenario(stack, setup) {
