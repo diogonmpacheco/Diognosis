@@ -74,6 +74,7 @@ function extractReadiness(window) {
       sourceActions:document.querySelectorAll('#findingBody .finding-actions .related-finding-btn').length,
       trustChips:document.querySelectorAll('#findingBody .finding-trust-chip').length,
       discussionGuides:document.querySelectorAll('#findingBody .finding-discussion').length,
+      summaryActions:document.querySelectorAll('#summaryBar .summary-actions .summary-action-btn').length,
       cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
       reviewTiles:document.querySelectorAll('#reviewSummaryBody .review-summary-tile').length,
       shareUrl:currentStackShareUrl('overview'),
@@ -115,6 +116,7 @@ for (const scenario of clinicianScenarios) {
   assert(result.cards > 0, `${scenario.name}: Overview should show public finding cards`);
   assert(result.trustChips >= result.cards, `${scenario.name}: Overview cards should expose trust chips`);
   assert(result.discussionGuides >= result.cards, `${scenario.name}: Overview cards should expose discussion guides`);
+  assert(result.summaryActions >= 2, `${scenario.name}: Overview summary should expose copy/share actions`);
   assert(result.sourceLinkedCards > 0, `${scenario.name}: should include at least one source-linked public concern`);
   assert(result.sourceActions > 0, `${scenario.name}: source-linked cards should expose source actions`);
   assert(result.directEligible === 0 || result.sourceLinks > 0, `${scenario.name}: direct PMID/DOI/source-eligible cards need direct source links`);
@@ -150,6 +152,8 @@ const patient = patientWindow.eval(`(() => ({
   supportingDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
   detailButtons:document.querySelectorAll('#findingBody .related-finding-btn.secondary').length,
   discussionGuides:document.querySelectorAll('#findingBody .finding-discussion').length,
+  summaryActions:document.querySelectorAll('#summaryBar .summary-actions .summary-action-btn').length,
+  overviewHandoffText:buildOverviewHandoffText(),
   riskDisplay:document.getElementById('riskSection')?.style.display || '',
   scopeText:document.getElementById('scopeBody')?.textContent || '',
   shareUrl:currentStackShareUrl(),
@@ -164,6 +168,9 @@ assert(patient.findingTitle === 'Safety Notes', 'Patient mode should rename publ
 assert(/What this means|What to ask/i.test(patient.findingText), 'Patient mode should use plain-language labels');
 assert(/Question to ask|Can you check/i.test(patient.findingText), 'Patient mode should expose a plain-language discussion question');
 assert(patient.discussionGuides > 0, 'Patient mode should render discussion guides on safety notes');
+assert(patient.summaryActions >= 2, 'Patient mode should expose top-level copy/share actions');
+assert(/Diognosis questions to ask|Questions to ask|Do not start, stop, or change medication/i.test(patient.overviewHandoffText),
+  'Patient mode should build a patient-safe copyable question summary');
 assert(patient.sourceLinks === 0, 'Patient mode should hide direct clinician source chips');
 assert(patient.supportingDetails === 0, 'Patient mode should hide technical supporting detail drawers');
 assert(patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
@@ -174,6 +181,7 @@ assert(/No result means no major signal was found here; it does not prove the li
 assertNoPatientTechnicalLeak('Patient Summary', patient.summaryText);
 assertNoPatientTechnicalLeak('Patient Overview', patient.findingText);
 assertNoPatientTechnicalLeak('Patient Review Scope', patient.scopeText);
+assertNoPatientTechnicalLeak('Patient Copy Summary', patient.overviewHandoffText);
 assertNoUnsafeCertainty('Patient Overview', patient.findingText);
 assertNoInternalLeak('Patient Overview', patient.findingText);
 

@@ -404,9 +404,113 @@ function renderSummaryBar() {
     </div>
     ${renderPriorityStory(priorityStory)}
     <div class="summary-next"><span class="summary-next-pill">${safePublicHtml(nextLabel)}</span><span>${safePublicHtml(nextStep)}</span></div>
+    ${renderSummaryActions(patient)}
   </div>`;
   const badge = severeCount > 0 ? `<span class="tab-badge">${severeCount}</span>` : "";
   if (overviewBtn) overviewBtn.innerHTML = "Overview" + badge;
+}
+
+function renderSummaryActions(patient = isPatientAudience()) {
+  const shareUrl = typeof currentStackShareUrl === "function" ? currentStackShareUrl("overview") : "";
+  const copyLabel = patient ? "Copy questions" : "Copy handoff";
+  return `<div class="summary-actions">
+    <button type="button" class="summary-action-btn" onclick="copyOverviewHandoffSummary()">${safePublicHtml(copyLabel)}</button>
+    ${shareUrl ? `<a class="summary-action-btn" href="${safeAttr(shareUrl)}" target="_blank" rel="noopener">Share link</a>` : ""}
+    <span class="summary-action-status" id="summaryCopyStatus"></span>
+    <pre class="summary-copy-text" id="summaryCopyText" hidden></pre>
+  </div>`;
+}
+
+function buildOverviewHandoffText() {
+  if (isPatientAudience()) return buildPatientQuestionSummaryText();
+  if (typeof buildV1HandoffSummaryText === "function") return buildV1HandoffSummaryText({ limit:5 });
+  return [
+    "Diognosis V1 review summary",
+    `Stack: ${(activeStack || []).join(" + ") || "none selected"}`,
+    "Boundary: not medical advice; review with a qualified clinician or pharmacist.",
+  ].join("\n");
+}
+
+function buildPatientQuestionSummaryText() {
+  const presentations = getCurrentPublicFindingPresentations();
+  const questions = presentations.length
+    ? presentations.slice(0, 5).map(presentation => buildPatientDiscussionQuestion(presentation, presentation.trustContract))
+    : [patientFallbackQuestionForCurrentStack()];
+  const shareUrl = typeof currentStackShareUrl === "function" ? currentStackShareUrl("overview") : "";
+  return [
+    "Diognosis questions to ask",
+    `Selected list: ${(activeStack || []).join(" + ") || "none selected"}`,
+    shareUrl ? `Share link: ${shareUrl}` : "",
+    "",
+    "Questions to ask",
+    ...questions.map((question, index) => `${index + 1}. ${question}`),
+    "",
+    "Boundaries",
+    "- This is for education and review, not medical advice.",
+    "- No result here proves the list is safe.",
+    "- Do not start, stop, or change medication without a doctor or pharmacist.",
+  ].filter(line => line !== "").join("\n");
+}
+
+function patientFallbackQuestionForCurrentStack() {
+  if ((activeStack || []).length >= 2) {
+    return "Can you check this medication list for dose, timing, symptoms, and health-history concerns? I do not want to start, stop, or change anything without guidance.";
+  }
+  if ((activeStack || []).length === 1) {
+    return "Can you check whether this medicine has any safety or monitoring concerns for me? I do not want to start, stop, or change anything without guidance.";
+  }
+  return "Can you help me review my medication list? I do not want to start, stop, or change anything without guidance.";
+}
+
+function copyOverviewHandoffSummary() {
+  const text = buildOverviewHandoffText();
+  const status = document.getElementById("summaryCopyStatus");
+  const done = (message) => {
+    if (message === "Copy unavailable") {
+      showSummaryCopyText(text);
+      message = "Select text below";
+    }
+    if (status) status.textContent = message;
+  };
+  copyTextToClipboard(text, done);
+}
+
+function copyTextToClipboard(text, done = () => {}) {
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(text).then(() => done("Copied")).catch(() => {
+      done(copyTextWithSelectionFallback(text) ? "Copied" : "Copy unavailable");
+    });
+    return;
+  }
+  done(copyTextWithSelectionFallback(text) ? "Copied" : "Copy unavailable");
+}
+
+function copyTextWithSelectionFallback(text) {
+  if (!document?.body) return false;
+  const textarea = document.createElement("textarea");
+  textarea.value = String(text || "");
+  textarea.setAttribute("readonly", "readonly");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  textarea.style.top = "0";
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  let ok = false;
+  try {
+    ok = document.execCommand && document.execCommand("copy");
+  } catch {
+    ok = false;
+  }
+  textarea.remove();
+  return !!ok;
+}
+
+function showSummaryCopyText(text) {
+  const el = document.getElementById("summaryCopyText");
+  if (!el) return;
+  el.textContent = text;
+  el.hidden = false;
 }
 
 function renderInteractionFindingsOverview(risk) {

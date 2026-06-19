@@ -229,13 +229,11 @@ function copyV1HandoffSummary() {
   const text = buildV1HandoffSummaryText();
   const status = document.getElementById("v1HandoffCopyStatus");
   const done = (message) => {
+    if (message === "Copy unavailable") message = "Select summary text";
     if (status) status.textContent = message;
   };
-  if (navigator.clipboard?.writeText) {
-    navigator.clipboard.writeText(text).then(() => done("Copied")).catch(() => done("Copy unavailable"));
-  } else {
-    done("Copy unavailable");
-  }
+  if (typeof copyTextToClipboard === "function") copyTextToClipboard(text, done);
+  else done("Copy unavailable");
 }
 
 function getReviewDiagnostics() {
