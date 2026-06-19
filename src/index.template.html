@@ -829,9 +829,9 @@ body[data-audience="patient"] .stats-line{display:none}
   <div class="search-results" id="searchResults"></div>
 </div>
 
-<div class="mode-toggle">
-  <button type="button" class="mode-btn active" id="searchModeBtn" onclick="setViewMode('search')" aria-pressed="true">Search</button>
-  <button type="button" class="mode-btn" id="browseModeBtn" onclick="setViewMode('browse')" aria-pressed="false">Browse by Category</button>
+<div class="mode-toggle" role="group" aria-label="Choose how to add items">
+  <button type="button" class="mode-btn active" id="searchModeBtn" onclick="setViewMode('search')" aria-pressed="true">Search by Name</button>
+  <button type="button" class="mode-btn" id="browseModeBtn" onclick="setViewMode('browse')" aria-pressed="false">Browse Categories</button>
 </div>
 
 <div class="stats-line" id="statsLine"></div>

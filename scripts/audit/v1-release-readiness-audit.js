@@ -420,6 +420,8 @@ const structural = structuralWindow.eval(`(() => ({
   firstUseOrder:[...document.body.children]
     .map(el => el.classList?.contains('audience-wrap') ? 'audience' : el.classList?.contains('search-wrap') ? 'search' : el.classList?.contains('mode-toggle') ? 'mode' : '')
     .filter(Boolean),
+  modeGroupLabel:document.querySelector('.mode-toggle')?.getAttribute('aria-label') || '',
+  modeLabels:[document.getElementById('searchModeBtn')?.textContent?.trim(), document.getElementById('browseModeBtn')?.textContent?.trim()],
   modeTags:[document.getElementById('searchModeBtn')?.tagName, document.getElementById('browseModeBtn')?.tagName],
   modePressed:[document.getElementById('searchModeBtn')?.getAttribute('aria-pressed'), document.getElementById('browseModeBtn')?.getAttribute('aria-pressed')],
   browsePressedAfterToggle:(() => {
@@ -439,6 +441,8 @@ assert(structural.hasScopeHelper, 'Review Scope helper should be bundled');
 assert(structural.patientButton && structural.clinicianButton, 'Audience toggle should be top-level and bundled');
 assert(structural.firstUseOrder.join('|').startsWith('audience|search|mode'),
   `Audience toggle should sit above search, followed by search/browse controls; got ${structural.firstUseOrder.join('|')}`);
+assert(structural.modeGroupLabel === 'Choose how to add items', 'Search/Browse mode group should describe the add-choice control');
+assert(structural.modeLabels.join('|') === 'Search by Name|Browse Categories', 'Search/Browse mode labels should describe add modes, not submit actions');
 assert(structural.modeTags.join('|') === 'BUTTON|BUTTON', 'Search/Browse mode controls should be real buttons');
 assert(structural.modePressed.join('|') === 'true|false', 'Search/Browse mode controls should expose initial pressed state');
 assert(structural.browsePressedAfterToggle.join('|') === 'false|true', 'Browse mode control should expose selected state after toggle');

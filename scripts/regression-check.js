@@ -672,6 +672,8 @@ const audienceModeRegression = window.eval(`(() => {
     firstUseOrder:[...document.body.children]
       .map(el => el.classList?.contains('audience-wrap') ? 'audience' : el.classList?.contains('search-wrap') ? 'search' : el.classList?.contains('mode-toggle') ? 'mode' : '')
       .filter(Boolean),
+    modeGroupLabel:document.querySelector('.mode-toggle')?.getAttribute('aria-label') || '',
+    modeLabels:[document.getElementById('searchModeBtn')?.textContent?.trim(), document.getElementById('browseModeBtn')?.textContent?.trim()],
     modeTags:[document.getElementById('searchModeBtn')?.tagName, document.getElementById('browseModeBtn')?.tagName],
     modePressed:[document.getElementById('searchModeBtn')?.getAttribute('aria-pressed'), document.getElementById('browseModeBtn')?.getAttribute('aria-pressed')],
     browsePressedAfterToggle:(() => {
@@ -722,6 +724,8 @@ assert(/Search medicines/i.test(audienceModeRegression.patient.searchPlaceholder
 assert(audienceModeRegression.patient.listTitle === 'My Medicine List', 'Patient mode should use patient-facing selected-list label');
 assert(audienceModeRegression.patient.firstUseOrder.join('|').startsWith('audience|search|mode'),
   `Audience toggle should sit above search in Patient mode; got ${audienceModeRegression.patient.firstUseOrder.join('|')}`);
+assert(audienceModeRegression.patient.modeGroupLabel === 'Choose how to add items', 'Search/Browse mode group should describe the add-choice control');
+assert(audienceModeRegression.patient.modeLabels.join('|') === 'Search by Name|Browse Categories', 'Search/Browse mode labels should describe add modes, not submit actions');
 assert(audienceModeRegression.patient.modeTags.join('|') === 'BUTTON|BUTTON', 'Search/Browse mode controls should be keyboard-accessible buttons');
 assert(audienceModeRegression.patient.modePressed.join('|') === 'true|false', 'Search/Browse mode controls should expose the selected state');
 assert(audienceModeRegression.patient.browsePressedAfterToggle.join('|') === 'false|true', 'Browse mode control should expose the selected state after toggle');
