@@ -2469,6 +2469,7 @@ function renderFeedbackLink(label, options = {}) {
 // ── RENDER ALL ──
 function renderAll() {
   syncAudienceModeUI();
+  if (isPatientAudience() && activeTab !== "overview") setActiveTab("overview");
   const activeDrugNames = typeof getActiveDrugNames === "function" ? getActiveDrugNames() : activeStack.filter(name => getDrug(name));
   arrangeAdvancedSections();
   renderMedList();
@@ -2573,12 +2574,18 @@ function renderAll() {
 function renderMedList() {
   const el = document.getElementById("medList");
   const countEl = document.getElementById("medCount");
+  const patient = isPatientAudience();
   if (!activeStack.length) {
-    el.innerHTML = '<div class="empty-state"><div class="icon">💊</div>Add medications, supplements, or foods above to see how they interact</div>';
+    const emptyCopy = patient
+      ? "Add medicines, supplements, or foods above to start a list for your doctor or pharmacist"
+      : "Add medications, supplements, or foods above to see how they interact";
+    el.innerHTML = `<div class="empty-state"><div class="icon">💊</div>${emptyCopy}</div>`;
     countEl.textContent = "";
     return;
   }
-  countEl.textContent = `${activeStack.length} substance${activeStack.length>1?"s":""}`;
+  countEl.textContent = patient
+    ? `${activeStack.length} item${activeStack.length>1?"s":""} selected`
+    : `${activeStack.length} substance${activeStack.length>1?"s":""}`;
   el.innerHTML = activeStack.map(name => {
     const actor = typeof getStackSupplementActor === "function" ? getStackSupplementActor(name) : null;
     const drug = typeof getStackDrug === "function" ? getStackDrug(name) : getDrug(name);

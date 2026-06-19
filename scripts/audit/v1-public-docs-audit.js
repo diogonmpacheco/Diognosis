@@ -39,6 +39,7 @@ const technical = read('docs/TECHNICAL.md');
 const pagesWorkflowPath = '.github/workflows/pages.yml';
 const pagesWorkflow = existsSync(resolve(root, pagesWorkflowPath)) ? read(pagesWorkflowPath) : '';
 const ciWorkflow = read('.github/workflows/ci.yml');
+const gitignore = read('.gitignore');
 const pkg = JSON.parse(read('package.json'));
 
 const missingLinks = localMarkdownLinks(readme)
@@ -50,22 +51,22 @@ assert(pkg.scripts?.['pages:check'] === 'node scripts/pages-check.js', 'package.
 assert(pkg.scripts?.['release:check'] === 'node scripts/release-check.js', 'package.json should expose npm run release:check');
 assert(pkg.scripts?.['security:audit'] === 'npm audit --audit-level=low', 'package.json should expose npm run security:audit');
 assert(pkg.engines?.node === '>=24', 'package.json should declare the supported Node.js runtime');
+assert(/\/index\.html/.test(gitignore), 'Generated root index.html should remain ignored when Pages deploys workflow artifacts');
+assert(pagesWorkflow, 'GitHub Pages must use a workflow artifact deploy because generated index.html is ignored');
+assert(/npm run pages:check/.test(pagesWorkflow), 'GitHub Pages workflow must run npm run pages:check');
+assert(/cancel-in-progress:\s*true/.test(pagesWorkflow), 'GitHub Pages workflow should cancel stale in-progress deploys');
+assert(/node-version:\s*["']24["']/.test(pagesWorkflow), 'GitHub Pages workflow should use Node.js 24');
+assert(!/node-version:\s*["']20["']/.test(pagesWorkflow), 'GitHub Pages workflow should not use deprecated Node.js 20');
+assert(/actions\/checkout@v7/.test(pagesWorkflow), 'GitHub Pages workflow should use the current checkout action major');
+assert(/actions\/setup-node@v6/.test(pagesWorkflow), 'GitHub Pages workflow should use the current setup-node action major');
+assert(/actions\/configure-pages@v6/.test(pagesWorkflow), 'GitHub Pages workflow should use the current configure-pages action major');
+assert(/actions\/upload-pages-artifact@v5/.test(pagesWorkflow), 'GitHub Pages workflow should use the current upload-pages-artifact action major');
+assert(/actions\/deploy-pages@v5/.test(pagesWorkflow), 'GitHub Pages workflow should use the current deploy-pages action major');
 assert(/npm run security:audit/.test(ciWorkflow), 'CI workflow must run dependency security audit');
 assert(/node-version:\s*["']24["']/.test(ciWorkflow), 'CI workflow should use Node.js 24');
 assert(!/node-version:\s*["']20["']/.test(ciWorkflow), 'CI workflow should not use deprecated Node.js 20');
 assert(/actions\/checkout@v7/.test(ciWorkflow), 'CI workflow should use the current checkout action major');
 assert(/actions\/setup-node@v6/.test(ciWorkflow), 'CI workflow should use the current setup-node action major');
-if (pagesWorkflow) {
-  assert(/npm run pages:check/.test(pagesWorkflow), 'GitHub Pages workflow must run npm run pages:check');
-  assert(/cancel-in-progress:\s*true/.test(pagesWorkflow), 'GitHub Pages workflow should cancel stale in-progress deploys');
-  assert(/node-version:\s*["']24["']/.test(pagesWorkflow), 'GitHub Pages workflow should use Node.js 24');
-  assert(!/node-version:\s*["']20["']/.test(pagesWorkflow), 'GitHub Pages workflow should not use deprecated Node.js 20');
-  assert(/actions\/checkout@v7/.test(pagesWorkflow), 'GitHub Pages workflow should use the current checkout action major');
-  assert(/actions\/setup-node@v6/.test(pagesWorkflow), 'GitHub Pages workflow should use the current setup-node action major');
-  assert(/actions\/configure-pages@v6/.test(pagesWorkflow), 'GitHub Pages workflow should use the current configure-pages action major');
-  assert(/actions\/upload-pages-artifact@v5/.test(pagesWorkflow), 'GitHub Pages workflow should use the current upload-pages-artifact action major');
-  assert(/actions\/deploy-pages@v5/.test(pagesWorkflow), 'GitHub Pages workflow should use the current deploy-pages action major');
-}
 assert(/Node\.js-24%2B/.test(readme), 'README Node.js badge should advertise the current supported runtime');
 
 assertIncludes('Public Trust', publicTrust, '<!-- PUBLIC_TRUST_STATS_START -->');
@@ -98,8 +99,8 @@ assert(/npm run launch:qa/.test(launchQa), 'Launch QA Matrix must document npm r
 assert(/npm run pages:check/.test(launchQa), 'Launch QA Matrix must document npm run pages:check');
 assert(/V1 PGx contract audit|V1 PK visualization audit|V1 finding contract audit|V1 release readiness audit/i.test(launchQa),
   'Launch QA Matrix must reference the V1 release gates');
-assert(/npm run pages:check/i.test(launchTrust) && /GitHub Pages pre-publish gate/i.test(launchTrust),
-  'Launch Data Trust Audit must document the Pages pre-publish gate');
+assert(/npm run pages:check/i.test(launchTrust) && /GitHub Pages deploy gate/i.test(launchTrust),
+  'Launch Data Trust Audit must document the Pages deploy gate');
 assert(/V1 PGx contract audit/i.test(launchTrust),
   'Launch Data Trust Audit must reference the V1 PGx contract gate');
 assert(/V1 PK visualization audit/i.test(launchTrust),
@@ -107,9 +108,9 @@ assert(/V1 PK visualization audit/i.test(launchTrust),
 assert(/Patient mode|Clinician|patient\/clinician/i.test(launchQa),
   'Launch QA Matrix must cover audience-mode behavior');
 assert(/npm run pages:check/i.test(publicTrust) && /npm run release:check/i.test(publicTrust),
-  'Public Trust must document both pre-publish and release gates');
-assert(/npm run pages:check/i.test(technical) && /GitHub Pages pre-publish gate/i.test(technical),
-  'Technical docs must document the Pages pre-publish gate');
+  'Public Trust must document both deploy and release gates');
+assert(/npm run pages:check/i.test(technical) && /GitHub Pages deploy gate/i.test(technical),
+  'Technical docs must document the Pages deploy gate');
 
 if (stats.studies !== 456) {
   for (const [label, text] of [

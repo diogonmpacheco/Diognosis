@@ -665,6 +665,7 @@ const audienceModeRegression = window.eval(`(() => {
     tagline:document.getElementById('audienceTagline')?.textContent || '',
     searchPlaceholder:document.getElementById('searchInput')?.getAttribute('placeholder') || '',
     listTitle:document.getElementById('listTitle')?.textContent || '',
+    medCount:document.getElementById('medCount')?.textContent || '',
     geneTitle:document.getElementById('geneSectionTitle')?.textContent || '',
     geneIntro:document.getElementById('geneSectionIntro')?.textContent || '',
     tabBarDisplay:document.getElementById('tabBar')?.style.display || '',
@@ -691,6 +692,7 @@ const audienceModeRegression = window.eval(`(() => {
     tagline:document.getElementById('audienceTagline')?.textContent || '',
     searchPlaceholder:document.getElementById('searchInput')?.getAttribute('placeholder') || '',
     listTitle:document.getElementById('listTitle')?.textContent || '',
+    medCount:document.getElementById('medCount')?.textContent || '',
     geneIntro:document.getElementById('geneSectionIntro')?.textContent || '',
     tabBarDisplay:document.getElementById('tabBar')?.style.display || '',
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
@@ -707,6 +709,8 @@ assert(audienceModeRegression.patient.activeTab === 'overview', 'Patient mode sh
 assert(/prepare medicine-list questions|doctor or pharmacist/i.test(audienceModeRegression.patient.tagline), 'Patient mode should use patient-facing app tagline');
 assert(/Search medicines/i.test(audienceModeRegression.patient.searchPlaceholder), 'Patient mode should use patient-facing search placeholder');
 assert(audienceModeRegression.patient.listTitle === 'My Medicine List', 'Patient mode should use patient-facing selected-list label');
+assert(/2 items selected/i.test(audienceModeRegression.patient.medCount), 'Patient mode should use plain selected-item count copy');
+assert(!/substances?/i.test(audienceModeRegression.patient.medCount), 'Patient mode selected-list count should not use substance terminology');
 assert(/Gene Results/i.test(audienceModeRegression.patient.geneTitle) && /Do not guess|original report|doctor or pharmacist/i.test(audienceModeRegression.patient.geneIntro), 'Patient mode should use patient-facing gene helper copy');
 assert(!/Genes \+ Metabolites tab|source-linked|parent drugs|PK timing|pathway activity|metabolite balance/i.test(
   `${audienceModeRegression.patient.tagline} ${audienceModeRegression.patient.geneIntro}`
@@ -738,6 +742,7 @@ assert(audienceModeRegression.clinician.bodyAudience === 'clinician', 'Clinician
 assert(/parent drugs|source-linked evidence/i.test(audienceModeRegression.clinician.tagline), 'Clinician mode should restore clinician technical tagline');
 assert(/Search medications/i.test(audienceModeRegression.clinician.searchPlaceholder), 'Clinician mode should restore clinician search placeholder');
 assert(audienceModeRegression.clinician.listTitle === 'Selected List', 'Clinician mode should restore selected-list label');
+assert(/2 substances/i.test(audienceModeRegression.clinician.medCount), 'Clinician mode should keep substance count copy');
 assert(/Genes \+ Metabolites tab|medication response|metabolite balance/i.test(audienceModeRegression.clinician.geneIntro), 'Clinician mode should restore clinician gene helper copy');
 assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mode should show tab navigation');
 assert(audienceModeRegression.clinician.findingTitle === 'Interaction Findings', 'Clinician mode should restore clinician finding title');
@@ -745,6 +750,42 @@ assert(audienceModeRegression.clinician.scopeDisplay !== 'none', 'Clinician mode
 assert(/Selected|Recognized|Concerns|Limit:/i.test(audienceModeRegression.clinician.scopeText), 'Clinician mode should restore Review Scope coverage and limits');
 assert(audienceModeRegression.clinician.actionRows > 0, 'Clinician mode should restore finding action rows');
 assert(audienceModeRegression.clinician.supportDetails > 0, 'Clinician mode should show supporting detail drawers');
+
+const emptyAudienceListRegression = window.eval(`(() => {
+  activeStack = [];
+  userGenetics = {};
+  activeGenotypeDetails = {};
+  activeGenotype = {
+    CYP2D6: GENOTYPE_PHENOTYPE.NM,
+    CYP2C19: GENOTYPE_PHENOTYPE.NM,
+    CYP2C9: GENOTYPE_PHENOTYPE.NM,
+  };
+  window.history.replaceState(null, '', '/index.html?audience=patient');
+  loadUrlDemoState();
+  renderAll();
+  const patient = {
+    audienceMode,
+    medListText:document.getElementById('medList')?.textContent || '',
+    medCount:document.getElementById('medCount')?.textContent || '',
+  };
+  setAudienceMode('clinician');
+  const clinician = {
+    audienceMode,
+    medListText:document.getElementById('medList')?.textContent || '',
+    medCount:document.getElementById('medCount')?.textContent || '',
+  };
+  return { patient, clinician };
+})()`);
+assert(emptyAudienceListRegression.patient.audienceMode === 'patient', 'Empty selected-list regression should enter Patient mode');
+assert(/Add medicines, supplements, or foods above to start a list for your doctor or pharmacist/i.test(emptyAudienceListRegression.patient.medListText),
+  'Patient empty selected-list state should give patient-facing start guidance');
+assert(!/interact|substances?/i.test(emptyAudienceListRegression.patient.medListText),
+  'Patient empty selected-list state should avoid clinician-oriented interaction/substance wording');
+assert(emptyAudienceListRegression.patient.medCount.trim() === '', 'Patient empty selected-list state should not show a count');
+assert(emptyAudienceListRegression.clinician.audienceMode === 'clinician', 'Empty selected-list regression should return to Clinician mode');
+assert(/Add medications, supplements, or foods above to see how they interact/i.test(emptyAudienceListRegression.clinician.medListText),
+  'Clinician empty selected-list state should keep interaction-oriented guidance');
+assert(emptyAudienceListRegression.clinician.medCount.trim() === '', 'Clinician empty selected-list state should not show a count');
 
 const patientGeneResultListRegression = window.eval(`(() => {
   activeStack = [];

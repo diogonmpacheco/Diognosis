@@ -37,7 +37,7 @@ This audit describes the launch-facing data trust boundary for the current stati
 
 ## Deploy And Release Evidence
 
-The GitHub Pages pre-publish gate checks the live-testing boundary through:
+The GitHub Pages deploy gate checks the live-testing boundary through:
 
 - generated stats, build, and release metadata checks;
 - smoke validation;
@@ -49,7 +49,7 @@ Run:
 npm run pages:check
 ```
 
-GitHub Pages publishes the committed root `index.html` from `main`, so no separate custom Pages workflow is required.
+GitHub Pages builds `index.html` from `src/` and publishes the generated artifact through `.github/workflows/pages.yml`.
 
 The full release gate checks the deeper trust boundary through:
 

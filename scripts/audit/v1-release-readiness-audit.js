@@ -161,6 +161,7 @@ const patient = patientWindow.eval(`(() => ({
   tagline:document.getElementById('audienceTagline')?.textContent || '',
   searchPlaceholder:document.getElementById('searchInput')?.getAttribute('placeholder') || '',
   listTitle:document.getElementById('listTitle')?.textContent || '',
+  medCount:document.getElementById('medCount')?.textContent || '',
   geneTitle:document.getElementById('geneSectionTitle')?.textContent || '',
   geneIntro:document.getElementById('geneSectionIntro')?.textContent || '',
   tabBarDisplay:document.getElementById('tabBar')?.style.display || '',
@@ -193,6 +194,8 @@ assert(/prepare medicine-list questions|doctor or pharmacist/i.test(patient.tagl
   'Patient mode should use patient-facing app tagline');
 assert(/Search medicines/i.test(patient.searchPlaceholder), 'Patient mode should use patient-facing search placeholder');
 assert(patient.listTitle === 'My Medicine List', 'Patient mode should use patient-facing list label');
+assert(/2 items selected/i.test(patient.medCount), 'Patient mode should use plain selected-item count copy');
+assert(!/substances?/i.test(patient.medCount), 'Patient mode selected-list count should not use substance terminology');
 assert(/Gene Results/i.test(patient.geneTitle) && /Do not guess|original report|doctor or pharmacist/i.test(patient.geneIntro),
   'Patient mode should use patient-facing gene helper copy');
 assert(!/Genes \+ Metabolites tab|source-linked|parent drugs|PK timing|pathway activity|metabolite balance/i.test(
@@ -271,6 +274,24 @@ assert(/Add another medicine to check the list/i.test(patientSingle.summaryText)
   'Patient single-item mode should keep the add-another-medicine guidance');
 assertNoPatientTechnicalLeak('Patient Single Summary', patientSingle.summaryText);
 assertNoUnsafeCertainty('Patient Single Summary', patientSingle.summaryText);
+
+const patientEmptyWindow = await loadPage('http://localhost/index.html?audience=patient&tab=review');
+const patientEmpty = patientEmptyWindow.eval(`(() => ({
+  audienceMode,
+  activeTab,
+  medListText:document.getElementById('medList')?.textContent || '',
+  medCount:document.getElementById('medCount')?.textContent || '',
+}))()`);
+
+assert(patientEmpty.audienceMode === 'patient', 'Patient empty start should activate Patient mode');
+assert(patientEmpty.activeTab === 'overview', 'Patient empty start should force Overview');
+assert(/Add medicines, supplements, or foods above to start a list for your doctor or pharmacist/i.test(patientEmpty.medListText),
+  'Patient empty selected-list state should give patient-facing start guidance');
+assert(!/interact|substances?/i.test(patientEmpty.medListText),
+  'Patient empty selected-list state should avoid clinician-oriented interaction/substance wording');
+assert(patientEmpty.medCount.trim() === '', 'Patient empty selected-list state should not show a count');
+assertNoPatientTechnicalLeak('Patient Empty Selected List', patientEmpty.medListText);
+assertNoUnsafeCertainty('Patient Empty Selected List', patientEmpty.medListText);
 
 const unknownUrlWindow = await loadPage('http://localhost/index.html?substances=warfarin,mystery-mix&audience=patient&tab=overview');
 const unknownUrl = unknownUrlWindow.eval(`(() => ({

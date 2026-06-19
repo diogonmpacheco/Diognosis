@@ -206,7 +206,7 @@ The top-level app uses six tabs:
 - Evidence: external context cards, evidence browser, and evidence ladder ledger
 - Review: raw paths, diagnostics, scenario snapshots, coverage gaps, technical interaction tables, review workbench, and contribution links
 
-Audience mode is a top-level presentation switch, not RBAC. `Clinician` is the default full-detail view. `Patient` keeps the same local calculation model but shows the Overview safety notes with simpler labels, hides clinician-only tab navigation/details, and can be loaded with `?audience=patient`. The top chrome also follows the selected audience: Patient mode uses medicine-list, doctor/pharmacist, and "do not guess" gene-result language, while Clinician mode restores pathway, evidence, and Genes + Metabolites helper copy. The clinician Overview keeps the Review Scope panel with checked coverage, evidence limits, standards identity, and review checklist details. Patient mode hides that clinician audit panel; the same safety boundaries are carried through Safety Notes, no-signal states, selected-item chips, and the copyable questions summary with "bring to review" prompts for a doctor or pharmacist. Patient selected-list chips keep names, dose selectors, and not-checked boundaries visible, but hide clinician-only exposure/metabolite rollups. Patient Safety Notes also use patient-facing count/footer copy and plain priority labels instead of raw severity terms or hidden Review-tab pointers, and summary jump controls are shown only when there is a visible note or status target.
+Audience mode is a top-level presentation switch, not RBAC. `Clinician` is the default full-detail view. `Patient` keeps the same local calculation model but shows the Overview safety notes with simpler labels, hides clinician-only tab navigation/details, and can be loaded with `?audience=patient`. The top chrome also follows the selected audience: Patient mode uses medicine-list, doctor/pharmacist, and "do not guess" gene-result language, while Clinician mode restores pathway, evidence, and Genes + Metabolites helper copy. The clinician Overview keeps the Review Scope panel with checked coverage, evidence limits, standards identity, and review checklist details. Patient mode hides that clinician audit panel; the same safety boundaries are carried through Safety Notes, no-signal states, selected-item chips, and the copyable questions summary with "bring to review" prompts for a doctor or pharmacist. Patient selected-list chips keep names, dose selectors, and not-checked boundaries visible, but hide clinician-only exposure/metabolite rollups. Patient selected-list count and empty-state copy use "items selected" and doctor/pharmacist list-building language instead of clinician-oriented substance/interaction wording. Patient Safety Notes also use patient-facing count/footer copy and plain priority labels instead of raw severity terms or hidden Review-tab pointers, and summary jump controls are shown only when there is a visible note or status target.
 
 Legacy tab aliases remain supported for old demo links:
 
@@ -386,11 +386,11 @@ npm run pages:check
 npm run release:check
 ```
 
-`npm run pages:check` is the GitHub Pages pre-publish gate. It rebuilds `index.html`, verifies release metadata, runs the smoke check, privacy/static audit, and whitespace checks. It is intentionally scoped to catch broken live pages without re-running release-depth clinical/data readiness audits on every push.
+`npm run pages:check` is the GitHub Pages deploy gate. It rebuilds `index.html`, verifies release metadata, runs the smoke check, privacy/static audit, and whitespace checks. It is intentionally scoped to catch broken live pages without re-running release-depth clinical/data readiness audits on every push.
 
 `npm run release:check` rebuilds the bundle, verifies metadata, runs database and data-view audits, the V1 no-warning database gate, V1 public-docs/standards/readiness gates, evidence review UI, evidence calculation, Open Targets gates, scenario snapshots, launch QA, regression, smoke, strict validation, privacy/static audit, and whitespace checks.
 
-Routine GitHub Pages deployment publishes the committed root `index.html` from `main`; there is no custom Pages workflow because the repository is configured for branch-based Pages publishing. The separate CI workflow is intentionally lighter: branch and pull-request CI run `npm run test:unit`, while the deeper `npm run test:data`, `npm run test:integrations`, and severity report steps are available from manual CI dispatch when a full audit is needed. This keeps live testing from waiting on release-depth data, standards/readiness, and integration audits.
+Routine GitHub Pages deployment uses `.github/workflows/pages.yml` to build `index.html` from `src/` and upload it as a Pages artifact. The generated root `index.html` is ignored locally, so branch-based Pages publishing is not sufficient for live deploys. The separate CI workflow is intentionally lighter: branch and pull-request CI run `npm run test:unit`, while the deeper `npm run test:data`, `npm run test:integrations`, and severity report steps are available from manual CI dispatch when a full audit is needed. This keeps live testing from waiting on release-depth data, standards/readiness, and integration audits.
 
 ## Genotype Gap Audit
 
@@ -406,10 +406,10 @@ The genotype gap audit reads Diognosis source text, lists every referenced gene/
 
 1. Update `DIOGNOSIS_VERSION` in `src/data/drugs.js` when Diognosis behavior changes.
 2. Update Drug DB version/date when curated data changes.
-3. Run `npm run pages:check` for routine pre-publish validation.
+3. Run `npm run pages:check` for routine live-deploy validation.
 4. Run `npm run release:check` before tagged releases or clinical-review milestones.
 5. Commit source changes.
-6. Push `main`; GitHub Pages publishes the committed root `index.html`.
+6. Push `main`; GitHub Pages builds `index.html` from source and deploys the generated artifact.
 
 ## Safety Contract
 

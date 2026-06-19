@@ -66,13 +66,13 @@ Do not include private patient data.
 
 ## Required Gates
 
-For routine live testing, run the fast pre-publish gate before pushing to GitHub Pages:
+For routine live testing, run the same fast deploy gate that GitHub Pages uses:
 
 ```sh
 npm run pages:check
 ```
 
-This rebuilds the static bundle, verifies release metadata, runs smoke validation, checks the app remains static and privacy-preserving, and catches whitespace errors before the committed root `index.html` is published from `main`.
+This rebuilds the static bundle, verifies release metadata, runs smoke validation, checks the app remains static and privacy-preserving, and catches whitespace errors before the generated `index.html` artifact is published.
 
 Before tagged releases, public launch claims, or clinical-review milestones, run the full release gate:
 
