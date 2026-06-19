@@ -52,7 +52,12 @@ assert(/npm run pages:check/.test(pagesWorkflow), 'GitHub Pages workflow must ru
 for (const [label, workflow] of [['GitHub Pages', pagesWorkflow], ['CI', ciWorkflow]]) {
   assert(/node-version:\s*["']24["']/.test(workflow), `${label} workflow should use Node.js 24`);
   assert(!/node-version:\s*["']20["']/.test(workflow), `${label} workflow should not use deprecated Node.js 20`);
+  assert(/actions\/checkout@v7/.test(workflow), `${label} workflow should use the current checkout action major`);
+  assert(/actions\/setup-node@v6/.test(workflow), `${label} workflow should use the current setup-node action major`);
 }
+assert(/actions\/configure-pages@v6/.test(pagesWorkflow), 'GitHub Pages workflow should use the current configure-pages action major');
+assert(/actions\/upload-pages-artifact@v5/.test(pagesWorkflow), 'GitHub Pages workflow should use the current upload-pages-artifact action major');
+assert(/actions\/deploy-pages@v5/.test(pagesWorkflow), 'GitHub Pages workflow should use the current deploy-pages action major');
 assert(/Node\.js-24%2B/.test(readme), 'README Node.js badge should advertise the current supported runtime');
 
 assertIncludes('Public Trust', publicTrust, '<!-- PUBLIC_TRUST_STATS_START -->');
