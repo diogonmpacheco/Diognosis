@@ -51,6 +51,13 @@ function assertNoInternalLeak(label, text) {
   );
 }
 
+function assertNoPatientTechnicalLeak(label, text) {
+  assert(
+    !/\b(?:AUC|Cmax|RxNorm|PGx|PMID|source-linked|modeled|confidence|clinical review needed|pharmacogenomics|metabolite-level|CYP\d)/i.test(text),
+    `${label} exposes clinician-only technical vocabulary`
+  );
+}
+
 function extractReadiness(window) {
   return window.eval(`(() => {
     setTab('review');
@@ -133,6 +140,8 @@ const patient = patientWindow.eval(`(() => ({
   bodyAudience:document.body.dataset.audience,
   activeTab,
   tabBarDisplay:document.getElementById('tabBar')?.style.display || '',
+  summaryText:document.getElementById('summaryBar')?.textContent || '',
+  summaryRisk:document.querySelector('#summaryBar .summary-risk')?.textContent || '',
   findingTitle:document.getElementById('findingTitle')?.textContent || '',
   findingText:document.getElementById('findingBody')?.textContent || '',
   sourceLinks:document.querySelectorAll('#findingBody a.source-link').length,
@@ -147,6 +156,7 @@ assert(patient.audienceMode === 'patient', 'Patient URL should activate Patient 
 assert(patient.bodyAudience === 'patient', 'Patient mode should mark body data-audience');
 assert(patient.activeTab === 'overview', 'Patient mode should force Overview even if URL asks for Review');
 assert(patient.tabBarDisplay === 'none', 'Patient mode should hide clinician tab navigation');
+assert(patient.summaryRisk.trim() === '', 'Patient mode should hide score-style summary badges');
 assert(patient.findingTitle === 'Safety Notes', 'Patient mode should rename public findings');
 assert(/What this means|What to ask/i.test(patient.findingText), 'Patient mode should use plain-language labels');
 assert(patient.sourceLinks === 0, 'Patient mode should hide direct clinician source chips');
@@ -156,6 +166,9 @@ assert(patient.riskDisplay === 'none', 'Patient mode should hide score-style ris
 assert(patient.shareUrl.includes('audience=patient'), 'Patient share URL should preserve audience mode');
 assert(/No result means no major signal was found here; it does not prove the list is safe/i.test(patient.scopeText),
   'Patient Review Scope should preserve bounded no-safety language');
+assertNoPatientTechnicalLeak('Patient Summary', patient.summaryText);
+assertNoPatientTechnicalLeak('Patient Overview', patient.findingText);
+assertNoPatientTechnicalLeak('Patient Review Scope', patient.scopeText);
 assertNoUnsafeCertainty('Patient Overview', patient.findingText);
 assertNoInternalLeak('Patient Overview', patient.findingText);
 

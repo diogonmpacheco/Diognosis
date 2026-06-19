@@ -663,10 +663,13 @@ const audienceModeRegression = window.eval(`(() => {
     bodyAudience:document.body.dataset.audience,
     activeTab,
     tabBarDisplay:document.getElementById('tabBar')?.style.display || '',
+    summaryText:document.getElementById('summaryBar')?.textContent || '',
+    summaryRisk:document.querySelector('#summaryBar .summary-risk')?.textContent || '',
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
     detailButtons:document.querySelectorAll('#findingBody .related-finding-btn.secondary').length,
     supportDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
     findingText:document.getElementById('findingBody')?.textContent || '',
+    scopeText:document.getElementById('scopeBody')?.textContent || '',
     riskDisplay:document.getElementById('riskSection')?.style.display || '',
     shareUrl:currentStackShareUrl(),
   };
@@ -684,10 +687,14 @@ assert(audienceModeRegression.patient.audienceMode === 'patient', 'Audience URL 
 assert(audienceModeRegression.patient.bodyAudience === 'patient', 'Patient mode should mark body data-audience');
 assert(audienceModeRegression.patient.activeTab === 'overview', 'Patient mode should force the Overview tab');
 assert(audienceModeRegression.patient.tabBarDisplay === 'none', 'Patient mode should hide clinician tab navigation');
+assert(audienceModeRegression.patient.summaryRisk.trim() === '', 'Patient mode should hide summary score badges');
 assert(audienceModeRegression.patient.findingTitle === 'Safety Notes', 'Patient mode should rename findings to Safety Notes');
 assert(audienceModeRegression.patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
 assert(audienceModeRegression.patient.supportDetails === 0, 'Patient mode should hide clinician supporting detail drawers');
 assert(/What this means/.test(audienceModeRegression.patient.findingText), 'Patient mode should use plain-language finding labels');
+assert(!/\b(?:AUC|Cmax|RxNorm|PGx|PMID|source-linked|modeled|confidence|clinical review needed|pharmacogenomics|metabolite-level|CYP\d)/i.test(
+  `${audienceModeRegression.patient.summaryText} ${audienceModeRegression.patient.findingText} ${audienceModeRegression.patient.scopeText}`
+), 'Patient mode should avoid clinician-only technical vocabulary in visible Overview copy');
 assert(audienceModeRegression.patient.riskDisplay === 'none', 'Patient mode should hide the score-style risk panel');
 assert(audienceModeRegression.patient.shareUrl.includes('audience=patient'), 'Patient-mode share URL should preserve audience mode');
 assert(audienceModeRegression.clinician.audienceMode === 'clinician', 'Clinician mode should restore clinician state');

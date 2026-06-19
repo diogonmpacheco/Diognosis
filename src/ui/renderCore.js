@@ -355,9 +355,40 @@ function renderSummaryBar() {
   const jumpTab = primaryPresentation ? primaryPresentation.targetTab : (isGenotypePriority ? (genotypePriority.targetTab || "genes-metabolites") : "overview");
   const jumpTarget = primaryPresentation ? primaryPresentation.targetElementId : (isGenotypePriority ? (genotypePriority.targetElementId || "genotypeSection") : "findingSection");
 
-  const summaryKicker = isPatientAudience() ? "Main Safety Note" : "Highest Priority";
-  const jumpLabel = isPatientAudience() ? "View note" : "View finding";
-  const nextLabel = isPatientAudience() ? "Next step" : "Next review";
+  const patient = isPatientAudience();
+  if (patient) {
+    if (primaryPresentation) {
+      const serious = primaryPresentation.severity === "critical" || primaryPresentation.severity === "severe";
+      headline = patientFindingTitleText(primaryPresentation);
+      summaryCopy = serious
+        ? "A higher-priority safety note was found for this list. Discuss it before starting, stopping, or changing medicines."
+        : "A safety note was found for this list. Discuss the next step before changing medicines.";
+      nextStep = patientFindingStepText(primaryPresentation, "review");
+      priorityStory = patientPriorityStory(primaryPresentation);
+    } else if (activeStack.length >= 2) {
+      headline = "No major safety note found here";
+      summaryCopy = "This does not prove the list is safe. Dose, timing, health history, and medicines not in the list can still matter.";
+      nextStep = "Ask a doctor or pharmacist if symptoms, dose changes, or new medicines are involved.";
+      priorityStory = {
+        why:"The checker did not find a higher-priority note in the local dataset for this list.",
+        changes:"No result here does not mean no risk.",
+        review:"Ask a doctor or pharmacist before changing medicines.",
+      };
+    } else {
+      headline = "Add another medicine to check the list";
+      summaryCopy = "One medicine can show some safety context, but interaction checking needs at least two selected items.";
+      nextStep = "Add another medicine, supplement, food, or known gene result if relevant.";
+      priorityStory = {
+        why:"A single item cannot show pairwise interactions.",
+        changes:"More context can change the safety note.",
+        review:"Add another item or ask a doctor or pharmacist if you have a concern.",
+      };
+    }
+  }
+
+  const summaryKicker = patient ? "Main Safety Note" : "Highest Priority";
+  const jumpLabel = patient ? "View note" : "View finding";
+  const nextLabel = patient ? "Next step" : "Next review";
 
     bar.innerHTML = `<div class="summary-card">
     <div class="summary-main">
@@ -366,10 +397,10 @@ function renderSummaryBar() {
         <div class="summary-title">${safePublicHtml(headline)}</div>
         <div class="summary-copy">${summaryCopy ? `${safePublicHtml(summaryCopy)} ` : ""}<button type="button" class="summary-jump" onclick="focusPriorityFinding('${safeAttr(jumpTab)}','${safeAttr(jumpTarget)}')">${safePublicHtml(jumpLabel)}</button></div>
       </div>
-      <div class="summary-risk ${riskClass}">
+      ${patient ? "" : `<div class="summary-risk ${riskClass}">
         <div class="num">${scoreValue}</div>
         <div class="lbl">${safePublicHtml(scoreLabel)}</div>
-      </div>
+      </div>`}
     </div>
     ${renderPriorityStory(priorityStory)}
     <div class="summary-next"><span class="summary-next-pill">${safePublicHtml(nextLabel)}</span><span>${safePublicHtml(nextStep)}</span></div>
@@ -503,6 +534,7 @@ function buildReviewScopeSummary(cache = {}) {
 }
 
 function renderReviewScopeSummary(scope) {
+  if (isPatientAudience()) return renderPatientReviewScopeSummary(scope);
   const tiles = [
     [scope.selectedCount, "Selected"],
     [scope.recognizedDrugCount + scope.recognizedActorCount, "Recognized"],
@@ -519,6 +551,40 @@ function renderReviewScopeSummary(scope) {
   <ul class="scope-list">
     ${scope.checks.map(item => `<li><span>${safePublicHtml(item)}</span></li>`).join("")}
     ${scope.limits.map(item => `<li><span><strong>Limit:</strong> ${safePublicHtml(item)}</span></li>`).join("")}
+  </ul>`;
+}
+
+function renderPatientReviewScopeSummary(scope) {
+  const tiles = [
+    [scope.selectedCount, "Selected"],
+    [scope.recognizedDrugCount + scope.recognizedActorCount, "Recognized"],
+    [scope.genotypeCount, "Gene results"],
+    [scope.publicConcernCount, "Safety notes"],
+  ];
+  const checks = [
+    scope.selectedCount >= 2
+      ? "Checked the selected list for safety notes in the local dataset."
+      : "Add at least two selected items to check for interaction safety notes.",
+    scope.genotypeCount
+      ? `Included ${scope.genotypeCount} selected gene result${scope.genotypeCount === 1 ? "" : "s"}.`
+      : "No gene result is selected.",
+    scope.publicConcernCount
+      ? `Found ${scope.publicConcernCount} safety note${scope.publicConcernCount === 1 ? "" : "s"} to discuss with a doctor or pharmacist.`
+      : "No major signal was found in the current local dataset.",
+  ];
+  const limits = [
+    "No result means no major signal was found here; it does not prove the list is safe.",
+    "This page is for education and review, not medical advice.",
+    scope.unknownCount
+      ? `${scope.unknownCount} selected item${scope.unknownCount === 1 ? " was" : "s were"} not recognized by the medication dataset.`
+      : "Dose, timing, allergies, diagnoses, labs, pregnancy status, and health history are not fully assessed.",
+  ];
+  return `<div class="scope-grid">
+    ${tiles.map(([value, label]) => `<div class="scope-tile"><strong>${safePublicHtml(value)}</strong><span>${safePublicHtml(label)}</span></div>`).join("")}
+  </div>
+  <ul class="scope-list">
+    ${checks.map(item => `<li><span>${safePublicHtml(item)}</span></li>`).join("")}
+    ${limits.map(item => `<li><span><strong>Limit:</strong> ${safePublicHtml(item)}</span></li>`).join("")}
   </ul>`;
 }
 
@@ -792,6 +858,7 @@ function renderPublicFindingCard(presentation) {
   const supportingSignals = renderConcernSupportingSignals(finding);
   const sourceLabel = safePublicHtml(String(finding.source || finding.type || "finding").replace(/_/g, " "));
   const patient = isPatientAudience();
+  const title = patient ? patientFindingTitleText(presentation) : presentation.title;
   const trust = presentation.trustContract || (typeof buildV1FindingTrustContract === "function" ? buildV1FindingTrustContract(finding, { stack:activeStack }) : null);
   const changedText = patient ? patientFindingStepText(presentation, "changed") : presentation.whatChanged;
   const whyText = patient ? patientFindingStepText(presentation, "why") : presentation.whyItMatters;
@@ -816,7 +883,7 @@ function renderPublicFindingCard(presentation) {
   return `<div id="${safeAttr(presentation.targetElementId)}" class="finding-card primary-finding-card ${severity}" data-finding-id="${safeAttr(presentation.id)}">
     <div class="finding-top">
       <div>
-        <div class="finding-title">${safePublicHtml(presentation.title)}</div>
+        <div class="finding-title">${safePublicHtml(title)}</div>
         <div class="finding-subtitle">${safePublicHtml((presentation.affectedSubstances || []).join(" + ") || "current stack")}</div>
       </div>
       <span class="finding-sev ${severity}">${safePublicHtml(severity)}</span>
@@ -859,6 +926,15 @@ function renderFindingSourceLinks(presentation = {}, trust = null) {
 
 function renderFindingTrustStrip(trust, patient = false) {
   if (!trust) return "";
+  if (patient) {
+    const chips = [
+      ["Note", patientConcernLabel(trust.concernCategory)],
+      ["Status", trust.clinicalReviewStatus === "reviewed" ? "Reviewed" : "Ask a doctor or pharmacist"],
+    ].filter(([, value]) => value);
+    return `<div class="finding-trust-strip">
+      ${chips.map(([label, value]) => `<span class="finding-trust-chip"><strong>${safePublicHtml(label)}</strong>${safePublicHtml(value)}</span>`).join("")}
+    </div>`;
+  }
   const source = trust.sourceLinked ? "Source-linked" : "Modeled";
   const status = trust.clinicalReviewStatus === "reviewed" ? "Reviewed" : "Clinical review needed";
   const chips = [
@@ -869,6 +945,17 @@ function renderFindingTrustStrip(trust, patient = false) {
   return `<div class="finding-trust-strip">
     ${chips.map(([label, value]) => `<span class="finding-trust-chip"><strong>${safePublicHtml(label)}</strong>${safePublicHtml(value)}</span>`).join("")}
   </div>`;
+}
+
+function patientConcernLabel(value = "") {
+  const key = String(value || "").toLowerCase();
+  if (/activation|prodrug|effectiveness/.test(key)) return "Medicine may work differently";
+  if (/bleed|clot|anticoag|platelet|hemostasis/.test(key)) return "Bleeding or clotting";
+  if (/heart|qt|rhythm|brady/.test(key)) return "Heart rhythm";
+  if (/sedation|fall|cns|sleep|breath/.test(key)) return "Sleepiness or falls";
+  if (/washout|timing|persistence/.test(key)) return "Timing may matter";
+  if (/exposure|toxicity|level|concentration/.test(key)) return "Side effects may change";
+  return "Safety note";
 }
 
 function renderFindingTrustDetails(trust) {
@@ -901,6 +988,14 @@ function patientFindingStepText(presentation = {}, field = "changed") {
   const serious = severity === "critical" || severity === "severe";
   const lower = text.toLowerCase();
   if (field === "changed") {
+    if (/washout|persistence|timing|switch/.test(lower)) {
+      return "Stop or switch timing may matter because some effects can last after a medicine is changed.";
+    }
+    if (/clopidogrel|antiplatelet|stent|thrombosis|active thiol|activation failure/.test(lower)) {
+      return serious
+        ? "This combination may make an antiplatelet medicine work less well, which can raise clot-related risk."
+        : "This combination may change how well an antiplatelet medicine works.";
+    }
     if (/bleed|inr|anticoag|warfarin|platelet|clot/.test(lower)) {
       return serious
         ? "This combination may raise bleeding or clotting-related risk and may need closer monitoring."
@@ -914,7 +1009,7 @@ function patientFindingStepText(presentation = {}, field = "changed") {
     if (/serotonin|ssri|snri|maoi/.test(lower)) {
       return "This combination may add serotonin-related side-effect risk.";
     }
-    if (/sedation|fall|cns|opioid|benzodiazepine|drows/.test(lower)) {
+    if (/sedation|falls?\s+risk|fall-risk|cns|opioid|benzodiazepine|drows/.test(lower)) {
       return "This combination may increase sleepiness, confusion, breathing, or fall risk.";
     }
     if (/auc|exposure|level|concentration|metabol|cyp|enzyme|genotype|pgx|clearance/.test(lower)) {
@@ -926,17 +1021,26 @@ function patientFindingStepText(presentation = {}, field = "changed") {
   }
   if (field === "why") {
     if (/avoid|contraindicat|severe|critical|high risk/.test(lower) || serious) {
-      return "The combination may need a different plan, extra monitoring, or professional review before use.";
+      return "The combination may need a different plan or extra monitoring before use.";
     }
-    return "The same medication can behave differently depending on the full list, dose, timing, and gene results.";
+    return "The same medicine can behave differently depending on the full list, dose, timing, and gene results.";
   }
   const review = String(presentation.whatToReview || "").replace(/\s+/g, " ").trim();
+  if (/^use\s+/i.test(review)) {
+    const optionText = review.replace(/^use\s+/i, "").replace(/\.$/, "");
+    return shortenPatientReviewText(`Ask a doctor or pharmacist whether ${optionText} would be a better option.`);
+  }
   if (/ask|call|contact/i.test(review)) return shortenPatientReviewText(review);
   const cleaned = review
     .replace(/^review whether\s+/i, "whether ")
     .replace(/^review\s+/i, "")
     .replace(/\bpharmacogenomics?\b/gi, "gene result")
     .replace(/\bgenotype\b/gi, "gene result")
+    .replace(/\bactive[-\s]?metabolite persistence\b/gi, "how long active effects last")
+    .replace(/\benzyme recovery\b/gi, "how long body processing takes to return to normal")
+    .replace(/\bactive[-\s]?metabolite\b/gi, "active effect")
+    .replace(/\bmetabolite\b/gi, "active effect")
+    .replace(/\bCYP[0-9A-Z]*\b/g, "medicine-processing pathway")
     .replace(/\bAUC\b/g, "level")
     .replace(/\bphenoconversion\b/gi, "pathway change");
   const base = cleaned || "this medication list needs a different plan, dose, timing, or monitoring";
@@ -945,8 +1049,49 @@ function patientFindingStepText(presentation = {}, field = "changed") {
 
 function shortenPatientReviewText(text) {
   const raw = String(text || "").replace(/\s+/g, " ").trim();
-  if (raw.length <= 180) return raw;
-  return raw.slice(0, 177).trim() + "...";
+  const cleaned = raw
+    .replace(/\s+\./g, ".")
+    .replace(/\.\.+/g, ".")
+    .replace(/\.\s*\./g, ".");
+  if (cleaned.length <= 180) return cleaned;
+  return cleaned.slice(0, 177).trim() + "...";
+}
+
+function patientFindingTitleText(presentation = {}) {
+  const text = publicDisplayText([
+    presentation.title,
+    presentation.whatChanged,
+    presentation.whyItMatters,
+    ...(presentation.tags || []),
+  ].join(" ")).toLowerCase();
+  const actors = (presentation.affectedSubstances || []).filter(Boolean);
+  const pair = actors.slice(0, 2).join(" + ");
+  if (/activation failure|stent|thrombosis|antiplatelet/.test(text)) {
+    return actors.length >= 2
+      ? `${actors[0]} may work less well with ${actors[1]}`
+      : "An antiplatelet medicine may work less well";
+  }
+  if (/bleed|inr|anticoag|warfarin|platelet|clot/.test(text)) {
+    return pair ? `${pair} may need closer monitoring` : "Bleeding or clotting monitoring may change";
+  }
+  if (/qt|torsades|arrhythm|heart rhythm|bradycard/.test(text)) {
+    return pair ? `${pair} may need heart-rhythm review` : "Heart-rhythm monitoring may matter";
+  }
+  if (/serotonin|ssri|snri|maoi/.test(text)) return "Serotonin-related side effects may increase";
+  if (/sedation|falls?\s+risk|fall-risk|cns|opioid|benzodiazepine|drows/.test(text)) return "Sleepiness, breathing, or fall risk may increase";
+  if (/washout|persistence|timing|switch/.test(text)) return "Switching or stop timing may need review";
+  if (/auc|exposure|level|concentration|metabol|cyp|enzyme|genotype|pgx|clearance/.test(text)) {
+    return pair ? `${pair} may change medicine effects` : "Medicine effects may change";
+  }
+  return pair ? `Safety note for ${pair}` : "Safety note for this list";
+}
+
+function patientPriorityStory(presentation = {}) {
+  return {
+    why:patientFindingStepText(presentation, "why"),
+    changes:patientFindingStepText(presentation, "changed"),
+    review:patientFindingStepText(presentation, "review"),
+  };
 }
 
 function renderFindingStep(label, value) {
