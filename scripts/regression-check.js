@@ -725,6 +725,18 @@ const audienceModeRegression = window.eval(`(() => {
     tabBarDisplay:document.getElementById('tabBar')?.style.display || '',
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
     doseSelects:document.querySelectorAll('#medList .dose-select').length,
+    removeButtons:document.querySelectorAll('#medList button.x').length,
+    clinicianLayoutCss:[...document.querySelectorAll('style')].some(style => {
+      const css = style.textContent || '';
+      return css.includes('body[data-audience="clinician"] .input-rail{display:contents}')
+        && css.includes('body[data-audience="clinician"] .result-area{order:2}')
+        && css.includes('body[data-audience="clinician"] #geneticsSection{order:3}');
+    }),
+    compactMedListCss:[...document.querySelectorAll('style')].some(style => {
+      const css = style.textContent || '';
+      return css.includes('.med-chip{display:grid;grid-template-columns:minmax(0,1fr) minmax(106px,150px) 32px')
+        && css.includes('.med-chip .x{grid-column:3');
+    }),
     reviewButtonDisplay:document.getElementById('tabbtn-review')?.style.display || '',
     reviewPanelDisplay:document.getElementById('tab-review')?.style.display || '',
     scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
@@ -785,6 +797,9 @@ assert(/Search medications/i.test(audienceModeRegression.clinician.searchPlaceho
 assert(audienceModeRegression.clinician.listTitle === 'Selected List', 'Clinician mode should restore selected-list label');
 assert(/2 substances/i.test(audienceModeRegression.clinician.medCount), 'Clinician mode should keep substance count copy');
 assert(audienceModeRegression.clinician.doseSelects > 0, 'Clinician mode should keep dose-tier selectors for supported medications');
+assert(audienceModeRegression.clinician.removeButtons === 2, 'Clinician mode selected list should use compact removable item buttons');
+assert(audienceModeRegression.clinician.compactMedListCss, 'Clinician mode should render selected medicines as compact rows');
+assert(audienceModeRegression.clinician.clinicianLayoutCss, 'Clinician mode should place results before optional gene controls');
 assert(/Genes \+ Metabolites tab|medication response|metabolite balance/i.test(audienceModeRegression.clinician.geneIntro), 'Clinician mode should restore clinician gene helper copy');
 assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mode should show tab navigation');
 assert(audienceModeRegression.clinician.findingTitle === 'Interaction Findings', 'Clinician mode should restore clinician finding title');

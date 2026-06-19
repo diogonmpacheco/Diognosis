@@ -94,6 +94,19 @@ function extractProductReadiness(window) {
       discussionGuides:document.querySelectorAll('#findingBody .finding-discussion').length,
       monitoringGuides:document.querySelectorAll('#findingBody .finding-monitoring').length,
       summaryActions:document.querySelectorAll('#summaryBar .summary-actions .summary-action-btn').length,
+      selectedChips:document.querySelectorAll('#medList .med-chip').length,
+      removeButtons:document.querySelectorAll('#medList button.x').length,
+      clinicianLayoutCss:[...document.querySelectorAll('style')].some(style => {
+        const css = style.textContent || '';
+        return css.includes('body[data-audience="clinician"] .input-rail{display:contents}')
+          && css.includes('body[data-audience="clinician"] .result-area{order:2}')
+          && css.includes('body[data-audience="clinician"] #geneticsSection{order:3}');
+      }),
+      compactMedListCss:[...document.querySelectorAll('style')].some(style => {
+        const css = style.textContent || '';
+        return css.includes('.med-chip{display:grid;grid-template-columns:minmax(0,1fr) minmax(106px,150px) 32px')
+          && css.includes('.med-chip .x{grid-column:3');
+      }),
       cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
       shareUrl:currentStackShareUrl('overview'),
       sourceLinkedCards:getCurrentPublicFindingPresentations().filter(p => p.trustContract?.sourceLinked).length,
@@ -133,6 +146,10 @@ for (const scenario of clinicianScenarios) {
   assert(result.discussionGuides >= result.cards, `${scenario.name}: Overview cards should expose discussion guides`);
   assert(result.monitoringGuides >= result.cards, `${scenario.name}: Overview cards should expose monitoring focus`);
   assert(result.summaryActions >= 2, `${scenario.name}: Overview summary should expose copy/share actions`);
+  assert(result.selectedChips >= 2, `${scenario.name}: selected-list should render selected medications`);
+  assert(result.removeButtons === result.selectedChips, `${scenario.name}: selected-list should expose compact remove controls`);
+  assert(result.compactMedListCss, `${scenario.name}: selected-list should use compact row styling`);
+  assert(result.clinicianLayoutCss, `${scenario.name}: results should appear before optional gene controls in Clinician mode`);
   assert(result.sourceLinkedCards > 0, `${scenario.name}: should include at least one source-linked public concern`);
   assert(result.sourceActions > 0, `${scenario.name}: source-linked cards should expose source actions`);
   assert(result.directEligible === 0 || result.sourceLinks > 0, `${scenario.name}: direct PMID/DOI/source-eligible cards need direct source links`);
