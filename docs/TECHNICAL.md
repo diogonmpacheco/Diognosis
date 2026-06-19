@@ -386,11 +386,11 @@ npm run pages:check
 npm run release:check
 ```
 
-`npm run pages:check` is the GitHub Pages deploy gate. It rebuilds `index.html`, verifies release metadata, runs the core database and V1 no-warning audits, V1 public-docs/standards/readiness checks, smoke, strict validation, privacy/static audit, and whitespace checks. It is the fast path for live testing.
+`npm run pages:check` is the GitHub Pages deploy gate. It rebuilds `index.html`, verifies release metadata, runs the smoke check, privacy/static audit, and whitespace checks. It is intentionally scoped to catch broken live pages without re-running release-depth clinical/data readiness audits on every push.
 
-`npm run release:check` rebuilds the bundle, verifies metadata, runs database and data-view audits, the V1 no-warning database gate, evidence review UI, evidence calculation, Open Targets gates, scenario snapshots, launch QA, regression, smoke, strict validation, privacy/static audit, and whitespace checks.
+`npm run release:check` rebuilds the bundle, verifies metadata, runs database and data-view audits, the V1 no-warning database gate, V1 public-docs/standards/readiness gates, evidence review UI, evidence calculation, Open Targets gates, scenario snapshots, launch QA, regression, smoke, strict validation, privacy/static audit, and whitespace checks.
 
-Routine GitHub Pages deployment uses `npm run pages:check` on `main`. The separate CI workflow is intentionally lighter: branch and pull-request CI run `npm run test:unit`, while the deeper `npm run test:data`, `npm run test:integrations`, and severity report steps are available from manual CI dispatch when a full audit is needed. This keeps live testing from waiting on release-depth data and integration audits.
+Routine GitHub Pages deployment uses `npm run pages:check` on `main`. The separate CI workflow is intentionally lighter: branch and pull-request CI run `npm run test:unit`, while the deeper `npm run test:data`, `npm run test:integrations`, and severity report steps are available from manual CI dispatch when a full audit is needed. This keeps live testing from waiting on release-depth data, standards/readiness, and integration audits.
 
 ## Genotype Gap Audit
 
@@ -409,7 +409,7 @@ The genotype gap audit reads Diognosis source text, lists every referenced gene/
 3. Run `npm run pages:check` for routine live-deploy validation.
 4. Run `npm run release:check` before tagged releases or clinical-review milestones.
 5. Commit source changes.
-6. Push `main`; GitHub Pages builds `index.html` from source through `npm run pages:check`.
+6. Push `main`; GitHub Pages rebuilds and smoke-checks `index.html` from source through `npm run pages:check`.
 
 ## Safety Contract
 

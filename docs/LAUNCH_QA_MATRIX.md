@@ -44,6 +44,6 @@ Run the full release gate:
 npm run release:check
 ```
 
-The Pages deploy gate rebuilds the static bundle, verifies release metadata, checks the core database and V1 public docs, verifies standards/readiness surfaces, runs smoke validation, strict validation, privacy/static checks, and whitespace checks. It is intentionally fast so live testing can happen without waiting on every deep release audit.
+The Pages deploy gate rebuilds the static bundle, verifies release metadata, runs smoke validation, privacy/static checks, and whitespace checks. It is intentionally limited to live-publish safety so live testing can happen without waiting on every release-depth data and readiness audit.
 
-The release gate also runs the V1 PGx contract audit, the V1 PK visualization audit, the V1 finding contract audit including a complete sweep over every recognized shipped `KNOWN_DDI` pair, and the V1 release readiness audit.
+The release gate also runs the database, V1 public-docs, standards/readiness, strict validation, V1 PGx contract audit, V1 PK visualization audit, V1 finding contract audit including a complete sweep over every recognized shipped `KNOWN_DDI` pair, and the V1 release readiness audit.

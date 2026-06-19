@@ -40,9 +40,8 @@ This audit describes the launch-facing data trust boundary for the current stati
 The GitHub Pages deploy gate checks the live-testing boundary through:
 
 - generated stats, build, and release metadata checks;
-- core database and V1 no-warning database audits;
-- V1 public docs, standards coverage, and readiness audits;
-- smoke, strict validation, privacy/static, and whitespace checks.
+- smoke validation;
+- privacy/static and whitespace checks.
 
 Run:
 
@@ -52,7 +51,7 @@ npm run pages:check
 
 The full release gate checks the deeper trust boundary through:
 
-- database and data-view audits;
+- database, V1 no-warning database, public docs, standards coverage, readiness, and data-view audits;
 - evidence citation and evidence-review UI audits;
 - V1 PGx contract audit, V1 PK visualization audit, V1 finding contract audit including all recognized shipped `KNOWN_DDI` pairs, and V1 release readiness audit;
 - V1 feedback privacy audit;

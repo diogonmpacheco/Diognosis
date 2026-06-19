@@ -72,7 +72,7 @@ For routine live testing, run the same fast gate that GitHub Pages uses:
 npm run pages:check
 ```
 
-This rebuilds the static bundle, verifies release metadata, checks the core database and V1 public docs, verifies standards/readiness surfaces, runs smoke validation, strict validation, privacy/static audit, and whitespace checks.
+This rebuilds the static bundle, verifies release metadata, runs smoke validation, checks the app remains static and privacy-preserving, and catches whitespace errors before the live page is published.
 
 Before tagged releases, public launch claims, or clinical-review milestones, run the full release gate:
 
@@ -80,7 +80,7 @@ Before tagged releases, public launch claims, or clinical-review milestones, run
 npm run release:check
 ```
 
-This adds the slower data-view audit, evidence ledger and evidence-review UI checks, V1 PGx contract audit, V1 PK visualization audit, V1 finding contract audit across all recognized shipped `KNOWN_DDI` pairs, feedback privacy audit, scenario checks, regression, and other source-boundary audits.
+This adds the database, V1 public-docs, standards/readiness, strict validation, data-view, evidence ledger, evidence-review UI, V1 PGx contract, V1 PK visualization, V1 finding contract, feedback privacy, scenario, regression, and other source-boundary audits.
 
 ## Current Review Priorities
 
