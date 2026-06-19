@@ -104,6 +104,7 @@ function loadSeed(seed) {
       cardText:document.getElementById(presentation.targetElementId)?.textContent || '',
       sourceActionCount:document.getElementById(presentation.targetElementId)?.querySelectorAll('.finding-actions .related-finding-btn').length || 0,
       directSourceCount:document.getElementById(presentation.targetElementId)?.querySelectorAll('a.source-link').length || 0,
+      discussionGuideCount:document.getElementById(presentation.targetElementId)?.querySelectorAll('.finding-discussion').length || 0,
       directSourceEligible:(presentation.trustContract?.evidenceRefs || []).some(ref => {
         const study = typeof getStudy === 'function' ? getStudy(ref) : STUDY_DB[ref];
         return !!(study && (study.pmid || study.doi || study.url));
@@ -216,6 +217,9 @@ function runKnownDdiPairContractSweep() {
         if (!/Concern|Evidence|Confidence/i.test(cardText)) {
           addFailure(label + ' public card does not expose trust strip');
         }
+        if (!/Discussion guide/i.test(cardText)) {
+          addFailure(label + ' public card missing clinician discussion guide');
+        }
         if (trust.sourceLinked) {
           sourceLinkedPresentations += 1;
           if (!/related-finding-btn/.test(cardHtml)) addFailure(label + ' source-linked card missing source action');
@@ -293,6 +297,9 @@ for (const seed of seeds) {
     }
     if (presentation.cardText && !/Concern|Evidence|Confidence/i.test(presentation.cardText)) {
       failures.push(`${seed.label}: ${presentation.title} card does not expose trust strip`);
+    }
+    if (presentation.discussionGuideCount < 1 || !/Discussion guide/i.test(presentation.cardText || '')) {
+      failures.push(`${seed.label}: ${presentation.title} missing clinician discussion guide`);
     }
     if (trust.sourceLinked && presentation.sourceActionCount < 1) {
       failures.push(`${seed.label}: ${presentation.title} source-linked card missing source action`);

@@ -868,6 +868,7 @@ function renderPublicFindingCard(presentation) {
     : "";
   const sourceLinks = patient ? "" : renderFindingSourceLinks(presentation, trust);
   const evidenceStep = patient ? "" : renderFindingStep("Evidence", presentation.evidenceSummary);
+  const discussionGuide = renderFindingDiscussionGuide(presentation, trust, patient);
   const technicalDetail = patient ? "" : `<details class="finding-support-details">
       <summary>Supporting detail</summary>
       ${renderFindingTrustDetails(trust)}
@@ -896,9 +897,70 @@ function renderPublicFindingCard(presentation) {
       ${renderFindingStep(patient ? "What to ask" : "What to review", reviewText)}
       ${evidenceStep}
     </div>
+    ${discussionGuide}
     <div class="finding-actions">${detailButton}${sourceLinks}</div>
     ${technicalDetail}
   </div>`;
+}
+
+function renderFindingDiscussionGuide(presentation = {}, trust = null, patient = false) {
+  const text = patient
+    ? buildPatientDiscussionQuestion(presentation, trust)
+    : buildClinicianDiscussionGuide(presentation, trust);
+  if (!text) return "";
+  const label = patient ? "Question to ask" : "Discussion guide";
+  return `<div class="finding-discussion">
+    <div class="finding-discussion-label">${safePublicHtml(label)}</div>
+    <div class="finding-discussion-text">${safePublicHtml(text)}</div>
+  </div>`;
+}
+
+function buildPatientDiscussionQuestion(presentation = {}, trust = null) {
+  const title = patientFindingTitleText(presentation);
+  const text = publicDisplayText([
+    title,
+    presentation.whatChanged,
+    presentation.whyItMatters,
+    presentation.whatToReview,
+  ].join(" ")).toLowerCase();
+  const actors = (presentation.affectedSubstances || []).filter(Boolean);
+  const pair = actors.slice(0, 2).join(" + ");
+  const concern = patientConcernLabel(trust?.concernCategory || "");
+  const topic = concern && concern !== "Safety note" ? concern.toLowerCase() : "this safety note";
+  let question = pair
+    ? `Can you check whether ${pair} needs closer review?`
+    : `Can you check ${topic} for my medication list?`;
+  if (/work less well|activation|antiplatelet|effectiveness|prodrug/.test(text)) {
+    question = actors[0]
+      ? `Can you check whether ${actors[0]} may work less well with my current list?`
+      : "Can you check whether one of my medicines may work less well with my current list?";
+  } else if (/bleed|inr|anticoag|warfarin|platelet|clot/.test(text)) {
+    question = pair
+      ? `Can you check whether ${pair} needs closer bleeding or clotting monitoring?`
+      : "Can you check whether my list needs closer bleeding or clotting monitoring?";
+  } else if (/qt|torsades|arrhythm|heart rhythm|bradycard/.test(text)) {
+    question = pair
+      ? `Can you check whether ${pair} needs heart-rhythm review?`
+      : "Can you check whether my list needs heart-rhythm review?";
+  } else if (/sedation|fall|sleepiness|breathing|confusion|cns|opioid|benzodiazepine/.test(text)) {
+    question = "Can you check whether this list raises sleepiness, breathing, confusion, or fall risk?";
+  } else if (/washout|persistence|timing|switch/.test(text)) {
+    question = "Can you check whether timing, overlap, or washout matters for this list?";
+  }
+  return `${question} I do not want to start, stop, or change anything without guidance.`;
+}
+
+function buildClinicianDiscussionGuide(presentation = {}, trust = null) {
+  const affected = (presentation.affectedSubstances || []).join(" + ") || trust?.affected || "current stack";
+  const change = trust?.expectedChange || presentation.whatChanged || "";
+  const concern = trust?.clinicalConcern || presentation.whyItMatters || "";
+  const action = trust?.clinicianAction || presentation.whatToReview || "";
+  return [
+    `Review ${affected}.`,
+    change,
+    concern,
+    action ? `Action: ${action}` : "",
+  ].filter(Boolean).join(" ");
 }
 
 function renderFindingSourceLinks(presentation = {}, trust = null) {

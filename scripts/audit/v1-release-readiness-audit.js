@@ -73,6 +73,7 @@ function extractReadiness(window) {
       sourceLinks:document.querySelectorAll('#findingBody a.source-link').length,
       sourceActions:document.querySelectorAll('#findingBody .finding-actions .related-finding-btn').length,
       trustChips:document.querySelectorAll('#findingBody .finding-trust-chip').length,
+      discussionGuides:document.querySelectorAll('#findingBody .finding-discussion').length,
       cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
       reviewTiles:document.querySelectorAll('#reviewSummaryBody .review-summary-tile').length,
       shareUrl:currentStackShareUrl('overview'),
@@ -113,6 +114,7 @@ for (const scenario of clinicianScenarios) {
     `${scenario.name}: V1 readiness panel missing required checks`);
   assert(result.cards > 0, `${scenario.name}: Overview should show public finding cards`);
   assert(result.trustChips >= result.cards, `${scenario.name}: Overview cards should expose trust chips`);
+  assert(result.discussionGuides >= result.cards, `${scenario.name}: Overview cards should expose discussion guides`);
   assert(result.sourceLinkedCards > 0, `${scenario.name}: should include at least one source-linked public concern`);
   assert(result.sourceActions > 0, `${scenario.name}: source-linked cards should expose source actions`);
   assert(result.directEligible === 0 || result.sourceLinks > 0, `${scenario.name}: direct PMID/DOI/source-eligible cards need direct source links`);
@@ -147,6 +149,7 @@ const patient = patientWindow.eval(`(() => ({
   sourceLinks:document.querySelectorAll('#findingBody a.source-link').length,
   supportingDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
   detailButtons:document.querySelectorAll('#findingBody .related-finding-btn.secondary').length,
+  discussionGuides:document.querySelectorAll('#findingBody .finding-discussion').length,
   riskDisplay:document.getElementById('riskSection')?.style.display || '',
   scopeText:document.getElementById('scopeBody')?.textContent || '',
   shareUrl:currentStackShareUrl(),
@@ -159,6 +162,8 @@ assert(patient.tabBarDisplay === 'none', 'Patient mode should hide clinician tab
 assert(patient.summaryRisk.trim() === '', 'Patient mode should hide score-style summary badges');
 assert(patient.findingTitle === 'Safety Notes', 'Patient mode should rename public findings');
 assert(/What this means|What to ask/i.test(patient.findingText), 'Patient mode should use plain-language labels');
+assert(/Question to ask|Can you check/i.test(patient.findingText), 'Patient mode should expose a plain-language discussion question');
+assert(patient.discussionGuides > 0, 'Patient mode should render discussion guides on safety notes');
 assert(patient.sourceLinks === 0, 'Patient mode should hide direct clinician source chips');
 assert(patient.supportingDetails === 0, 'Patient mode should hide technical supporting detail drawers');
 assert(patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
