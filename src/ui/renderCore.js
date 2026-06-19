@@ -484,6 +484,44 @@ function patientFallbackQuestionForCurrentStack() {
   return "Can you help me review my medication list? I do not want to start, stop, or change anything without guidance.";
 }
 
+function renderNoPublicFindingPanel(scope = null) {
+  const patient = isPatientAudience();
+  const currentScope = scope || (typeof buildReviewScopeSummary === "function"
+    ? buildReviewScopeSummary(typeof getRenderComputationCache === "function" ? getRenderComputationCache() : {})
+    : {});
+  const unknownText = currentScope.unknownCount
+    ? `${patient ? "Not assessed here" : "Unrecognized selections"}: ${formatScopeUnknownItems(currentScope.unknownItems)}.`
+    : "";
+  const title = patient ? "No major safety note found here" : "No public concern generated";
+  const body = patient
+    ? "Diognosis did not find a higher-priority safety note for this selected list. That does not prove the list is safe."
+    : "No public Overview concern was generated from the current local finding set. This is a bounded no-signal state, not a safety clearance.";
+  const label = patient ? "Still check" : "Review before relying on this";
+  const items = patient
+    ? [
+        unknownText,
+        "Exact product names, spelling, dose, strength, and formulation.",
+        "Recent starts, stops, missed doses, or timing changes.",
+        "New symptoms, allergies, pregnancy status, kidney or liver problems, and recent labs.",
+        "Ask a doctor or pharmacist before starting, stopping, or changing medicines.",
+      ]
+    : [
+        unknownText,
+        "Medication reconciliation: identity, formulation, route, dose, timing, adherence, and indication.",
+        "Clinical context: renal/hepatic function, allergies, pregnancy/lactation, labs, symptoms, diagnoses, and recent procedures.",
+        "Concomitants: OTC products, supplements, alcohol/substance exposure, duplicate classes, and unrecognized selected items.",
+        "Review detailed tabs and source evidence before treating this as clinically quiet.",
+      ];
+  return `<div class="no-signal-card ${patient ? "patient" : "clinician"}">
+    <div class="no-signal-title">${safePublicHtml(title)}</div>
+    <div class="no-signal-copy">${safePublicHtml(body)}</div>
+    <div class="no-signal-label">${safePublicHtml(label)}</div>
+    <ul class="no-signal-list">
+      ${items.filter(Boolean).map(item => `<li>${safePublicHtml(item)}</li>`).join("")}
+    </ul>
+  </div>`;
+}
+
 function copyOverviewHandoffSummary() {
   const text = buildOverviewHandoffText();
   const status = document.getElementById("summaryCopyStatus");
@@ -557,7 +595,7 @@ function renderInteractionFindingsOverview(risk) {
       return currentPublicFindingPresentations;
     }
     section.style.display = "";
-    body.innerHTML = '<div class="finding-empty">No interaction findings for this stack yet. Evidence, genetics, metabolite, and timing context may still matter.</div>';
+    body.innerHTML = renderNoPublicFindingPanel();
     if (count) count.textContent = "";
     return currentPublicFindingPresentations;
   }

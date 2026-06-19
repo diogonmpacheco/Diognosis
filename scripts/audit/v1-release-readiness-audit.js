@@ -252,6 +252,33 @@ assert(manualUnknown.shareUrl.includes('mystery-mix') && manualUnknown.shareUrl.
 assertNoPatientTechnicalLeak('Manual Unknown Patient Scope', manualUnknown.scopeText);
 assertNoUnsafeCertainty('Manual Unknown Patient Scope', manualUnknown.scopeText);
 
+const noSignalUnknownWindow = await loadPage('http://localhost/index.html?substances=mystery-mix,unknown-herb&audience=patient&tab=overview');
+const noSignalUnknown = noSignalUnknownWindow.eval(`(() => ({
+  activeStack,
+  cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
+  findingText:document.getElementById('findingBody')?.textContent || '',
+  scopeText:document.getElementById('scopeBody')?.textContent || '',
+  summaryText:document.getElementById('summaryBar')?.textContent || '',
+  overviewHandoffText:buildOverviewHandoffText(),
+  shareUrl:currentStackShareUrl(),
+}))()`);
+
+assert(noSignalUnknown.activeStack.join('|') === 'Mystery Mix|Unknown Herb',
+  'No-signal unknown-only URL should preserve both unrecognized selections');
+assert(noSignalUnknown.cards === 0, 'Unknown-only no-signal scenario should not render public finding cards');
+assert(/No major safety note found here|does not prove the list is safe|Still check|Not assessed here: Mystery Mix, Unknown Herb/i.test(noSignalUnknown.findingText),
+  'Patient no-signal state should render bounded plain-language next steps');
+assert(!/No interaction findings|Evidence, genetics, metabolite/i.test(noSignalUnknown.findingText),
+  'Patient no-signal state should not show the old technical empty message');
+assert(/No result means no major signal was found here; it does not prove the list is safe/i.test(noSignalUnknown.scopeText),
+  'Patient no-signal scope should preserve bounded no-safety language');
+assert(noSignalUnknown.shareUrl.includes('mystery-mix,unknown-herb') && noSignalUnknown.shareUrl.includes('audience=patient'),
+  'Patient no-signal share URL should preserve unrecognized selections and audience');
+assertNoPatientTechnicalLeak('Patient No-Signal Finding', noSignalUnknown.findingText);
+assertNoPatientTechnicalLeak('Patient No-Signal Summary', noSignalUnknown.summaryText);
+assertNoPatientTechnicalLeak('Patient No-Signal Copy Summary', noSignalUnknown.overviewHandoffText);
+assertNoUnsafeCertainty('Patient No-Signal Finding', noSignalUnknown.findingText);
+
 const olderAdultWindow = await loadPage('http://localhost/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview');
 const olderAdultDemo = olderAdultWindow.eval(`(() => ({
   activeStack,
