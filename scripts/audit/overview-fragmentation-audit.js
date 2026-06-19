@@ -22,7 +22,7 @@ const SCENARIOS = [
   { id:'azathioprine-allopurinol-tpmt-nudt15-pm', name:'Azathioprine + allopurinol + TPMT/NUDT15 PM', stack:['Azathioprine','Allopurinol'], genotype:{ TPMT:'PM', NUDT15:'PM' }, maxConcerns:4, expectedTitle:/Azathioprine|6-Thioguanine|6-TGN/i },
   { id:'g6pd-oxidant-stack', name:'G6PD oxidant stack', stack:['Rasburicase','Primaquine','Dapsone'], riskMarkers:{ 'G6PD deficiency':'present' }, maxConcerns:4, expectedTitle:/G6PD/i },
   { id:'succinylcholine-bche-ryr1', name:'Succinylcholine + BCHE/RYR1 context', stack:['Succinylcholine'], genotype:{ BCHE:'PM' }, riskMarkers:{ 'RYR1/CACNA1S MH variant':'present' }, maxConcerns:3, expectedTitle:/BCHE|RYR1|Succinylcholine|malignant/i },
-  { id:'warfarin-ibuprofen', name:'Warfarin + ibuprofen', stack:['Warfarin','Ibuprofen'], maxConcerns:4, expectedTitle:/Warfarin|Bleeding|bleeding/i },
+  { id:'warfarin-ibuprofen', name:'Warfarin + ibuprofen', stack:['Warfarin','Ibuprofen'], maxConcerns:4, expectedTitle:/Bleeding burden|bleeding/i, forbiddenTitle:/Ibuprofen exposure may rise|Ibuprofen may fall/i },
   { id:'qtc-burden', name:'Haloperidol + azithromycin + methadone', stack:['Haloperidol','Azithromycin','Methadone'], maxConcerns:5, expectedTitle:/QT|burden|Methadone|Haloperidol/i },
   { id:'sertraline-linezolid', name:'Sertraline + linezolid', stack:['Sertraline','Linezolid'], maxConcerns:4, expectedTitle:/Serotonin|serotonin|Sertraline/i },
   { id:'diazepam-morphine', name:'Diazepam + morphine', stack:['Diazepam','Morphine'], maxConcerns:4, expectedTitle:/CNS|sedation|Morphine|Diazepam/i },

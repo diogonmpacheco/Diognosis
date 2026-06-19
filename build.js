@@ -65,6 +65,7 @@ const MODULE_ORDER = [
   // ── UI layer (depends on engine + data) ──
   'ui/renderSafe.js',         // escaping helpers for generated/imported strings
   'ui/renderCore.js',         // addDrug, removeDrug, renderAll, renderMedList
+  'ui/runtimeFacade.js',      // stable V1 handoff API for wrapper/redesign apps
   'ui/renderInteractions.js', // renderInteractions, renderFoldBars, renderMatrix, renderTiming
   'ui/renderMechanisticPredictions.js', // experimental predictions below warnings
   'ui/renderEvidence.js',     // renderEvidenceExplorer

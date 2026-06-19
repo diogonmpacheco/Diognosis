@@ -89,7 +89,7 @@ For alternate entry points, see the [Diognosis Data Views](https://diogonmpachec
 
 ## Privacy
 
-Diognosis currently ships the Diognosis as a static client-side app. It does not use accounts, analytics, cookies, tracking pixels, backend logging, or medication-data collection. Searches, medication stacks, genotype settings, and pasted report rows stay in your browser.
+Diognosis currently ships as a static client-side app. It does not use accounts, analytics, cookies, tracking pixels, backend logging, or medication-data collection. Searches, medication stacks, genotype settings, and pasted report rows stay in your browser.
 
 There are no routine third-party runtime requests. Evidence links, demo links, and GitHub feedback links are only opened when selected.
 
@@ -126,7 +126,7 @@ Diognosis is intentionally conservative about what it claims. Diognosis PK curve
 - **69 genotype genes** and **588 receptor score profiles**
 - **32 RxNorm identity mappings**, **21 PGx marker rows**, and **9 CPIC-linked action summaries**
 - **218 Beers flags** and **1411 washout rules**
-- **3040 KB** generated bundle (2158 lines)
+- **3044 KB** generated bundle (2165 lines)
 <!-- DIOGNOSIS_STATS_END -->
 
 ---
@@ -142,6 +142,8 @@ Diognosis is intentionally conservative about what it claims. Diognosis PK curve
 The Reviewer Console is not part of the normal V1 surface. It is available only through `?reviewer=1` for data review, QA, and contribution workflows.
 
 For internals, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md) and the [Data Model](docs/DATA_MODEL.md). For launch readiness, see the [Launch QA Matrix](docs/LAUNCH_QA_MATRIX.md), [Public Trust Model](docs/PUBLIC_TRUST.md), and [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md).
+
+For redesign or wrapper apps, the built page exposes a small `window.DIOGNOSIS_V1` runtime handoff contract documented in [Technical Notes](docs/TECHNICAL.md#runtime-handoff-contract).
 
 GitHub Pages uses the workflow in `.github/workflows/pages.yml` to build the app from `src/` with the lean `npm run pages:check` deploy gate; tagged releases, public launch claims, and clinical-review milestones use the deeper `npm run release:check`.
 

@@ -67,6 +67,17 @@ assert(
   tabLabels.join('|') === 'Overview|Mechanisms|Genes + Metabolites|Timing + Levels|Evidence|Reviewer Console',
   `Unexpected top-level tabs: ${tabLabels.join('|')}`
 );
+const reviewTabButton = doc.getElementById('tabbtn-review');
+const reviewTabPanel = doc.getElementById('tab-review');
+assert(reviewTabButton?.hidden && reviewTabButton?.getAttribute('aria-hidden') === 'true',
+  'Normal V1 should keep the reviewer tab button hidden from the accessibility tree');
+assert(reviewTabPanel?.hidden && reviewTabPanel?.getAttribute('aria-hidden') === 'true',
+  'Normal V1 should keep the reviewer panel hidden from the accessibility tree');
+assert(typeof window.DIOGNOSIS_V1?.getState === 'function', 'V1 should expose a small runtime handoff facade');
+const initialHandoffState = window.DIOGNOSIS_V1.getState();
+assert(initialHandoffState.version.engine === '0.1.0-alpha.1', 'V1 facade should expose version metadata');
+assert(Array.isArray(initialHandoffState.substances) && initialHandoffState.substances.length === 0,
+  'V1 facade should expose an empty selected-list state at startup');
 
 const styleText = Array.from(doc.querySelectorAll('style')).map((style) => style.textContent || '').join('\n');
 const themeColor = doc.querySelector('meta[name="theme-color"]')?.getAttribute('content') || '';
@@ -87,6 +98,14 @@ for (const [name, value] of Object.entries(approvedPalette).filter(([name]) => n
 }
 assert(!/--accent\s*:\s*#2563eb\b/i.test(styleText), 'Smoke check should catch the rejected blue accent palette');
 assert(!/--accent2\s*:\s*#0f766e\b/i.test(styleText), 'Smoke check should catch the rejected teal secondary palette');
+assert(/--shadow\s*:\s*0 1px 3px rgba\(0,0,0,0\.08\)/i.test(styleText),
+  'Warm V1 theme should keep the original soft card shadow');
+assert(/--shadow2\s*:\s*0 4px 12px rgba\(0,0,0,0\.12\)/i.test(styleText),
+  'Warm V1 theme should keep the original elevated card shadow');
+assert(/--radius\s*:\s*14px\b/i.test(styleText),
+  'Warm V1 theme should keep the original card radius');
+assert(/@media\(max-width:480px\)[\s\S]*\.summary-next\s*\{\s*display:grid;grid-template-columns:1fr/i.test(styleText),
+  'Mobile Patient summary next-step card should stack label and text for readability');
 
 const inputRailOrder = Array.from(doc.querySelector('.input-rail')?.children || []).map((el) => el.id || el.className);
 const mainOrder = Array.from(doc.querySelector('.main')?.children || []).map((el) =>
@@ -121,18 +140,48 @@ assert(!geneticsBody?.classList.contains('open') && geneticsToggle.getAttribute(
 assert(doc.querySelectorAll('.section-title.collapsible[role="button"][tabindex="0"][aria-controls][aria-expanded]').length >= 10,
   'Core collapsible section headers should expose keyboard and aria state');
 
-window.onSearch('parox');
+const searchInput = doc.getElementById('searchInput');
+const searchResults = doc.getElementById('searchResults');
+searchInput.value = 'parox';
+window.onSearch(searchInput.value);
+assert(doc.querySelector('#searchResults .sr-close'), 'Search suggestions should include an explicit close control');
+doc.querySelector('#searchResults .sr-close').click();
+assert(!searchResults.classList.contains('show'), 'Search suggestions close button should dismiss the panel');
+searchInput.value = 'parox';
+window.onSearch(searchInput.value);
+searchInput.dispatchEvent(new window.KeyboardEvent('keydown', { key:'Escape', bubbles:true, cancelable:true }));
+assert(!searchResults.classList.contains('show') && searchInput.value === '',
+  'Escape in search should clear and dismiss the suggestions panel');
+
+searchInput.value = 'parox';
+window.onSearch(searchInput.value);
 let keyboardSearchResult = doc.querySelector('#searchResults .sr-item[role="button"][tabindex="0"]');
 assert(keyboardSearchResult?.getAttribute('onkeydown')?.includes('activateKeyboardButton'), 'Search results should support keyboard activation');
 keyboardSearchResult.dispatchEvent(new window.KeyboardEvent('keydown', { key:'Enter', bubbles:true, cancelable:true }));
 assert(evalInPage(window, 'activeStack.includes("Paroxetine")'), 'Enter on a search result should add the selected medication');
-window.removeDrug('Paroxetine');
+assert(!searchResults.classList.contains('show') && searchInput.value === '',
+  'Selecting a search result should clear and dismiss the suggestions panel');
+const handoffAfterSearchAdd = window.DIOGNOSIS_V1.getState();
+assert(handoffAfterSearchAdd.substances.some(item => item.name === 'Paroxetine'),
+  'V1 facade should expose the selected medication for redesign handoff');
+searchInput.value = 'parox';
+window.onSearch(searchInput.value);
+keyboardSearchResult = doc.querySelector('#searchResults .sr-item[role="button"][tabindex="0"]');
+keyboardSearchResult.dispatchEvent(new window.KeyboardEvent('keydown', { key:'Enter', bubbles:true, cancelable:true }));
+assert(!evalInPage(window, 'activeStack.includes("Paroxetine")'), 'Enter on an already-selected search result should remove the medication');
+assert(!searchResults.classList.contains('show') && searchInput.value === '',
+  'Removing from a search result should also dismiss the suggestions panel');
+assert(!window.DIOGNOSIS_V1.getState().substances.some(item => item.name === 'Paroxetine'),
+  'V1 facade should update after medication removal');
 
-window.onSearch('not in this database');
+searchInput.value = 'not in this database';
+window.onSearch(searchInput.value);
 const keyboardUnknownResult = doc.querySelector('#searchResults .sr-unrecognized[role="button"][tabindex="0"]');
 assert(keyboardUnknownResult, 'Unrecognized search row should support keyboard activation');
 keyboardUnknownResult.dispatchEvent(new window.KeyboardEvent('keydown', { key:' ', bubbles:true, cancelable:true }));
 assert(evalInPage(window, 'activeStack.includes("Not In This Database")'), 'Space on an unrecognized search row should keep the item in the selected list');
+assert(!searchResults.classList.contains('show') && searchInput.value === '',
+  'Adding an unrecognized search row should dismiss the suggestions panel');
 window.removeDrug('Not In This Database');
 
 window.setViewMode('browse');

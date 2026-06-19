@@ -775,6 +775,8 @@ const audienceModeRegression = window.eval(`(() => {
       return state;
     })(),
     summaryText:document.getElementById('summaryBar')?.textContent || '',
+    summaryStoryCount:document.querySelectorAll('#summaryBar .summary-story-row').length,
+    summaryNext:document.querySelector('#summaryBar .summary-next')?.textContent || '',
     summaryRisk:document.querySelector('#summaryBar .summary-risk')?.textContent || '',
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
     findingCount:document.getElementById('findingCount')?.textContent || '',
@@ -811,6 +813,7 @@ const audienceModeRegression = window.eval(`(() => {
     medCount:document.getElementById('medCount')?.textContent || '',
     geneIntro:document.getElementById('geneSectionIntro')?.textContent || '',
     tabBarDisplay:document.getElementById('tabBar')?.style.display || '',
+    summaryStoryCount:document.querySelectorAll('#summaryBar .summary-story-row').length,
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
     doseSelects:document.querySelectorAll('#medList .dose-select').length,
     removeButtons:document.querySelectorAll('#medList button.x').length,
@@ -858,6 +861,12 @@ assert(!/Genes \+ Metabolites tab|source-linked|parent drugs|PK timing|pathway a
   `${audienceModeRegression.patient.tagline} ${audienceModeRegression.patient.geneIntro}`
 ), 'Patient mode should not refer to hidden clinician tabs or technical tagline copy');
 assert(audienceModeRegression.patient.tabBarDisplay === 'none', 'Patient mode should hide clinician tab navigation');
+assert(audienceModeRegression.patient.summaryStoryCount === 0, 'Patient mode top summary should stay compact and leave detailed explanation to Safety Notes');
+assert(!/higher-priority safety note was found|safety note was found for this list/i.test(audienceModeRegression.patient.summaryText),
+  'Patient mode top summary should not repeat report-style safety-note body copy before Safety Notes');
+assert(!/\bView note\b/i.test(audienceModeRegression.patient.summaryText),
+  'Patient mode top summary should not show a redundant jump link when Safety Notes are directly below');
+assert(/Next step|doctor or pharmacist/i.test(audienceModeRegression.patient.summaryNext), 'Patient mode compact summary should still keep a plain next-step line');
 assert(audienceModeRegression.patient.summaryRisk.trim() === '', 'Patient mode should hide summary score badges');
 assert(audienceModeRegression.patient.findingTitle === 'Safety Notes', 'Patient mode should rename findings to Safety Notes');
 assert(/safety notes?/i.test(audienceModeRegression.patient.findingCount), 'Patient mode should label public finding count as safety notes');
@@ -894,6 +903,7 @@ assert(audienceModeRegression.clinician.compactMedListCss, 'Clinician mode shoul
 assert(audienceModeRegression.clinician.clinicianLayoutCss, 'Clinician mode should keep optional gene controls with the selected list before results');
 assert(/Genes \+ Metabolites tab|medication response|metabolite balance/i.test(audienceModeRegression.clinician.geneIntro), 'Clinician mode should restore clinician gene helper copy');
 assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mode should show tab navigation');
+assert(audienceModeRegression.clinician.summaryStoryCount > 0, 'Clinician mode should keep detailed summary story rows');
 assert(audienceModeRegression.clinician.findingTitle === 'Interaction Findings', 'Clinician mode should restore clinician finding title');
 assert(audienceModeRegression.clinician.reviewButtonDisplay === 'none', 'Clinician V1 mode should hide reviewer-only console navigation');
 assert(audienceModeRegression.clinician.reviewPanelDisplay === 'none', 'Clinician V1 mode should keep the reviewer panel hidden');

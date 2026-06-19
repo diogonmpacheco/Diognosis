@@ -76,7 +76,10 @@ function isPrimaryConcernCandidate(finding, context = {}) {
   if (finding?.type === "pairwise_interaction") {
     return severity >= clinicalSeverityValue("moderate") || (finding.evidenceRefs || []).length > 0 || !!finding.clinicalAction;
   }
-  if (finding?.type === "transporter") return severity >= clinicalSeverityValue("moderate");
+  if (finding?.type === "transporter") {
+    if (isSelfScreeningTransporterFinding(finding, sourceRow)) return false;
+    return severity >= clinicalSeverityValue("moderate");
+  }
   if (finding?.type === "receptor_burden" || finding?.type === "combination_burden") {
     return severity >= clinicalSeverityValue("moderate") || /qtc|bleed|serotonin|sedation|fall|anticholinergic|hyperkalemia/.test(text);
   }
@@ -114,7 +117,10 @@ function isSupportingSignalCandidate(finding, context = {}) {
   }
   if (finding?.type === "timing_washout") return true;
   if (finding?.type === "mechanistic_pathway") return true;
-  if (finding?.type === "transporter") return clinicalSeverityValue(finding.severity) < clinicalSeverityValue("moderate");
+  if (finding?.type === "transporter") {
+    if (isSelfScreeningTransporterFinding(finding, row)) return false;
+    return clinicalSeverityValue(finding.severity) < clinicalSeverityValue("moderate");
+  }
   return false;
 }
 
@@ -130,6 +136,7 @@ function isDetailOnlyFinding(finding, context = {}) {
       /inactive clearance|pseudo|unchanged/.test(text);
   }
   if (finding?.type === "timing_washout") return clinicalSeverityValue(finding.severity) <= clinicalSeverityValue("info");
+  if (finding?.type === "transporter" && isSelfScreeningTransporterFinding(finding, row)) return true;
   return false;
 }
 
@@ -460,6 +467,7 @@ function inferClinicalConcernDomain(finding, context = {}) {
     return "enzyme_capacity_context";
   }
   if (finding?.type === "timing_washout") return "washout_or_persistence";
+  if (isBleedingBurdenInteraction(finding, row)) return "bleeding_burden";
   if (/increase|higher|raises|toxicity|inhibit|accumul|↑|rhabdomyolysis/.test(text) && !/↓|loss of efficacy|efficacy loss/.test(text)) return "exposure_increase_toxicity";
   if (/prodrug|activation|active metabolite|efficacy loss|loss of efficacy/.test(text)) return "activation_failure";
   if (/induc|lower|reduced|decrease|↓↓|↓/.test(text)) return "induction_loss_of_efficacy";
@@ -473,6 +481,24 @@ function inferClinicalConcernDomain(finding, context = {}) {
   if (/hyperkalemia|nephrotoxicity|renal reserve/.test(text)) return "pharmacodynamic_burden";
   if (finding?.type === "mechanistic_pathway") return "model_only_mechanistic_context";
   return "model_only_mechanistic_context";
+}
+
+function isBleedingBurdenInteraction(finding = {}, row = {}) {
+  const category = String(row.category || row.type || "").toLowerCase();
+  const tags = (finding.tags || []).join(" ").toLowerCase();
+  const text = clinicalConcernText(finding).toLowerCase();
+  return ["pairwise_interaction", "receptor_burden", "combination_burden"].includes(finding?.type) &&
+    (/bleed|hemostasis|anticoag|antiplatelet/.test(category) ||
+      /bleed|hemostasis|anticoag|antiplatelet/.test(tags) ||
+      /\b(additive|major|gi|mucosal)?\s*bleeding risk\b/.test(text));
+}
+
+function isSelfScreeningTransporterFinding(finding = {}, row = {}) {
+  const left = normalizeFindingToken(row.drug1 || row.parent || "");
+  const right = normalizeFindingToken(row.drug2 || row.actor || "");
+  const text = clinicalConcernText(finding).toLowerCase();
+  return left && right && left === right &&
+    /transporter interaction screening|transport context|has .* transport context/.test(text);
 }
 
 function clinicalConcernKey({ finding, domain, victims = [], perpetrators = [], pathwayActors = [], phenotypeActors = [], context = {} }) {

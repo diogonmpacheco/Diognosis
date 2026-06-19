@@ -58,6 +58,7 @@ src/
   ui/
     renderSafe
     renderCore
+    runtimeFacade
     renderInteractions
     renderMechanisticPredictions
     renderEvidence
@@ -197,14 +198,15 @@ Review/safety limitations: diagnostics are for audit, debugging, and contributio
 
 ## UI Information Architecture
 
-The normal V1 product uses Patient and Clinician audience modes. Clinician mode exposes five top-level tabs:
+The normal V1 product uses Patient and Clinician audience modes. Clinician mode exposes five normal top-level tabs:
 
 - Overview: ranked findings and highest-priority summary
 - Mechanisms: why paths, pathway chains, transporter/pathway bottlenecks, and full network
 - Genes + Metabolites: genotype input, phenoconversion, parent-metabolite balance, and metabolite catalog rows
 - Timing + Levels: PK curves, relative exposure shifts, persistence, washout, and burden timing
 - Evidence: external context cards, evidence browser, and evidence ladder ledger
-- Reviewer Console: hidden unless `?reviewer=1`; contains raw paths, diagnostics, scenario snapshots, coverage gaps, technical interaction tables, review workbench, and contribution links
+
+The Reviewer Console is a separate hidden reviewer-only surface. It is available only with `?reviewer=1` and contains raw paths, diagnostics, scenario snapshots, coverage gaps, technical interaction tables, review workbench, and contribution links.
 
 Audience mode is a top-level presentation switch, not RBAC. `Clinician` is the default full-detail view. `Patient` keeps the same local calculation model but shows the Overview safety notes with simpler labels, hides clinician-only tab navigation/details, and can be loaded with `?audience=patient`. The top chrome also follows the selected audience: Patient mode uses medicine-list, doctor/pharmacist, and "do not guess" gene-result language, while Clinician mode restores pathway, evidence, and Genes + Metabolites helper copy. Both modes keep the selected list and optional gene/marker results together before the results. Reviewer-only scope, readiness, raw paths, and contribution tooling stay out of normal V1 and live behind `?reviewer=1`. Patient selected-list chips keep names and not-checked boundaries visible, but hide clinician-only dose selectors and exposure/metabolite rollups. Patient selected-list count and empty-state copy use "items selected" and doctor/pharmacist list-building language instead of clinician-oriented substance/interaction wording. Patient Safety Notes also use patient-facing count/footer copy and plain priority labels instead of raw severity terms or hidden Reviewer Console pointers, and summary jump controls are shown only when there is a visible note or status target.
 
@@ -225,6 +227,21 @@ evidence -> evidence
 ```
 
 Old detailed panels remain available but are not the primary Overview surface. `Known Interactions`, `Combination Alerts`, and `Interaction Grid` live in the hidden Reviewer Console. Full network and pathway views live in Mechanisms.
+
+## Runtime Handoff Contract
+
+The built V1 app exposes a small browser runtime facade at `window.DIOGNOSIS_V1` so another UI can wrap or redesign the experience without scraping DOM internals. This is the supported handoff surface for V1:
+
+```js
+window.DIOGNOSIS_V1.getState();
+window.DIOGNOSIS_V1.addSubstance("Warfarin");
+window.DIOGNOSIS_V1.removeSubstance("Warfarin");
+window.DIOGNOSIS_V1.setAudience("patient"); // or "clinician"
+window.DIOGNOSIS_V1.setTab("overview");
+window.DIOGNOSIS_V1.render();
+```
+
+`getState()` returns release metadata, active audience, reviewer mode, active tab, selected substances, compact summary text, public finding summaries, counts, and the current share URL. The facade intentionally does not expose private scoring internals, raw reviewer diagnostics, or mutable data tables. Normal V1 keeps reviewer surfaces hidden unless the page is opened with `?reviewer=1`.
 
 ## Evidence Status Boundaries
 

@@ -1,11 +1,26 @@
 // Diognosis — Core app state management and main render loop
 // Phase A: modular source — concatenated by build.js
 
+function closeSearchResults(options = {}) {
+  const input = document.getElementById("searchInput");
+  const results = document.getElementById("searchResults");
+  if (input && options.clearInput) input.value = "";
+  if (results) {
+    results.classList.remove("show");
+    results.innerHTML = "";
+  }
+  if (input && options.blurInput && typeof input.blur === "function") input.blur();
+}
+
+function handleSearchKeydown(event) {
+  if (!event || event.key !== "Escape") return;
+  closeSearchResults({ clearInput:true, blurInput:true });
+}
+
 function addDrug(name) {
   if (!activeStack.includes(name)) {
     activeStack.push(name);
-    document.getElementById("searchInput").value = "";
-    document.getElementById("searchResults").classList.remove("show");
+    closeSearchResults({ clearInput:true, blurInput:true });
     renderAll();
   }
 }
@@ -13,6 +28,7 @@ function addDrug(name) {
 function removeDrug(name) {
   activeStack = activeStack.filter(n => n !== name);
   delete drugDoses[name];
+  closeSearchResults({ clearInput:true, blurInput:true });
   renderAll();
 }
 
@@ -21,8 +37,7 @@ function addFoodActor(id) {
   const actorId = actor ? actor.id : id;
   if (!activeStack.includes(actorId)) {
     activeStack.push(actorId);
-    document.getElementById("searchInput").value = "";
-    document.getElementById("searchResults").classList.remove("show");
+    closeSearchResults({ clearInput:true, blurInput:true });
     renderAll();
   }
 }
@@ -38,8 +53,7 @@ function addUnrecognizedSubstance(value) {
     return itemKey === key;
   });
   if (!alreadySelected) activeStack.push(name);
-  document.getElementById("searchInput").value = "";
-  document.getElementById("searchResults").classList.remove("show");
+  closeSearchResults({ clearInput:true, blurInput:true });
   renderAll();
 }
 
@@ -50,6 +64,7 @@ function removeFoodActor(id) {
     const selectedActor = typeof getStackSupplementActor === "function" ? getStackSupplementActor(n) : null;
     return (selectedActor ? selectedActor.id : n) !== actorId;
   });
+  closeSearchResults({ clearInput:true, blurInput:true });
   renderAll();
 }
 
@@ -154,6 +169,13 @@ function isReviewerMode() {
   return raw === "1" || raw === "true" || raw === "yes" || raw === "reviewer";
 }
 
+function setReviewerShellHidden(el, hidden) {
+  if (!el) return;
+  el.hidden = hidden;
+  el.style.display = hidden ? "none" : "";
+  el.setAttribute("aria-hidden", hidden ? "true" : "false");
+}
+
 function setAudienceMode(mode, options = {}) {
   audienceMode = normalizeAudienceMode(mode) || "clinician";
   if (isPatientAudience() && activeTab !== "overview") setActiveTab("overview");
@@ -225,11 +247,11 @@ function setTab(name) {
     const reviewerTab = t === "review";
     if (panel) {
       panel.classList.toggle("active", t === resolvedTab);
-      if (reviewerTab && !isReviewerMode()) panel.style.display = "none";
+      if (reviewerTab) setReviewerShellHidden(panel, !isReviewerMode());
     }
     if (btn) {
       btn.classList.toggle("active", t === resolvedTab);
-      if (reviewerTab) btn.style.display = isReviewerMode() ? "" : "none";
+      if (reviewerTab) setReviewerShellHidden(btn, !isReviewerMode());
     }
   });
   renderLazyTab(resolvedTab);
@@ -455,11 +477,8 @@ function renderSummaryBar() {
   const patient = isPatientAudience();
   if (patient) {
     if (primaryPresentation) {
-      const serious = primaryPresentation.severity === "critical" || primaryPresentation.severity === "severe";
       headline = patientFindingTitleText(primaryPresentation);
-      summaryCopy = serious
-        ? "A higher-priority safety note was found for this list. Discuss it before starting, stopping, or changing medicines."
-        : "A safety note was found for this list. Discuss the next step before changing medicines.";
+      summaryCopy = "";
       nextStep = patientFindingStepText(primaryPresentation, "review");
       priorityStory = patientPriorityStory(primaryPresentation);
     } else if (activeStack.length >= 2) {
@@ -485,7 +504,7 @@ function renderSummaryBar() {
 
   const summaryKicker = patient ? (primaryPresentation ? "Main Safety Note" : "Current Check") : "Highest Priority";
   const jumpLabel = patient ? "View note" : "View finding";
-  const hasVisibleSummaryJump = Boolean(primaryPresentation) || activeStack.length >= 2 || (!patient && Boolean(isGenotypePriority));
+  const hasVisibleSummaryJump = !patient && (Boolean(primaryPresentation) || activeStack.length >= 2 || Boolean(isGenotypePriority));
   const summaryJumpHtml = hasVisibleSummaryJump
     ? `<button type="button" class="summary-jump" onclick="focusPriorityFinding('${safeAttr(jumpTab)}','${safeAttr(jumpTarget)}')">${safePublicHtml(jumpLabel)}</button>`
     : "";
@@ -503,7 +522,7 @@ function renderSummaryBar() {
         <div class="lbl">${safePublicHtml(scoreLabel)}</div>
       </div>`}
     </div>
-    ${renderPriorityStory(priorityStory)}
+    ${patient ? "" : renderPriorityStory(priorityStory)}
     <div class="summary-next"><span class="summary-next-pill">${safePublicHtml(nextLabel)}</span><span>${safePublicHtml(nextStep)}</span></div>
     ${renderSummaryActions(patient)}
   </div>`;
@@ -1907,10 +1926,10 @@ function applyAudienceModeVisibility() {
   if (document.body) document.body.dataset.reviewer = reviewer ? "reviewer" : "standard";
   const reviewBtn = document.getElementById("tabbtn-review");
   const reviewPanel = document.getElementById("tab-review");
-  if (reviewBtn) reviewBtn.style.display = reviewer ? "" : "none";
+  setReviewerShellHidden(reviewBtn, !reviewer);
+  setReviewerShellHidden(reviewPanel, !reviewer);
   if (reviewPanel && !reviewer) {
     reviewPanel.classList.remove("active");
-    reviewPanel.style.display = "none";
   }
   if (!reviewer && activeTab === "review") setActiveTab("overview");
   const reviewerSections = [
@@ -1957,7 +1976,8 @@ function arrangeAdvancedSections() {
 
 function onSearch(q) {
   const el = document.getElementById("searchResults");
-  if (!q || q.length < 1) { el.classList.remove("show"); return; }
+  if (!q || q.length < 1) { closeSearchResults(); return; }
+  const panelHead = `<div class="search-results-head"><span class="search-results-title">Matches</span><button type="button" class="sr-close" onclick="closeSearchResults({ clearInput:true, blurInput:true })" aria-label="Close search suggestions">&times;</button></div>`;
   const seen = new Set();
   const seenAliasMatches = new Set();
   const rawMatches = DRUG_DB
@@ -1979,7 +1999,7 @@ function onSearch(q) {
   });
   const actorMatches = findSupplementActorMatches(q);
   if (!matches.length && !actorMatches.length) {
-    el.innerHTML = renderUnrecognizedSearchResult(q);
+    el.innerHTML = panelHead + renderUnrecognizedSearchResult(q);
     el.classList.add("show");
     return;
   }
@@ -1993,7 +2013,7 @@ function onSearch(q) {
     groups[cat].push(row);
   });
 
-  let html = "";
+  let html = panelHead;
   for (const [cls, rows] of Object.entries(groups)) {
     if (matches.length > 5) html += `<div class="sr-cat">${cls}</div>`;
     rows.forEach(row => {

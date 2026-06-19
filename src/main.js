@@ -3,7 +3,7 @@
 
 document.addEventListener("click", function(e) {
   if (!e.target.closest(".search-wrap")) {
-    document.getElementById("searchResults").classList.remove("show");
+    closeSearchResults();
   }
 });
 
@@ -259,6 +259,7 @@ function encodeUrlStateValue(value) {
 loadUrlDemoState();
 renderGenetics();
 renderAll();
+installV1RuntimeFacade();
 
 // ── Populate version display ──
 (function() {
