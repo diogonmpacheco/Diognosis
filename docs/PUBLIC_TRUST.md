@@ -1,6 +1,6 @@
 # Diognosis Public Trust Model
 
-Generated: 2026-06-09
+Generated: 2026-06-19
 
 ## Launch Status
 
@@ -14,10 +14,12 @@ Diognosis is a source-linked educational preview. It is designed to make pharmac
 
 Current evidence status:
 
-- 456 `STUDY_DB` entries are source-linked.
-- 456 entries are pending professional review.
-- 0 entries are professionally reviewed.
-- 295 entries are currently marked `reviewRequired:true` as an internal enrichment/scoring flag, not a public reviewed/unreviewed boundary.
+<!-- PUBLIC_TRUST_STATS_START -->
+- **517 `STUDY_DB` entries** have public source identifiers.
+- **517 entries** are pending professional review.
+- **0 entries** are professionally reviewed.
+- **356 entries** are currently marked `reviewRequired:true` as an internal enrichment/scoring flag, not a public reviewed/unreviewed boundary.
+<!-- PUBLIC_TRUST_STATS_END -->
 - Severe and critical warnings remain visible for discovery, but severity is not clinically final until reviewed.
 
 ## External Enrichment Boundary
@@ -48,7 +50,7 @@ The app includes contextual feedback links on:
 - Known interaction cards.
 - Evidence cards.
 
-These links open a GitHub issue with the current stack, share URL, evidence refs, and warning/evidence context. Contributors should include public identifiers such as PMIDs, DOIs, DailyMed/FDA labels, CPIC/DPWG guidance, or guideline URLs.
+These links open privacy-preserving GitHub issue drafts. They do not include the current medication list, genotype settings, share URL, browser URL, evidence refs, or warning/evidence context unless a contributor intentionally adds that information. Contributors should include public identifiers such as PMIDs, DOIs, DailyMed/FDA labels, CPIC/DPWG guidance, or guideline URLs.
 
 Do not include private patient data.
 

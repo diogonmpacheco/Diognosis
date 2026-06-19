@@ -1,0 +1,56 @@
+# Launch Data Trust Audit
+
+Audit date: 2026-06-19
+
+## Scope
+
+This audit describes the launch-facing data trust boundary for the current static bundle. Diognosis can show source-linked evidence, pathway reasoning, pharmacogenomic context, and high-priority findings, but source-linked does not mean professionally reviewed and no output should be treated as medical advice.
+
+## Current Counts
+
+<!-- LAUNCH_DATA_TRUST_STATS_START -->
+| Metric | Count |
+| --- | ---: |
+| Drugs in `DRUG_DB` | 1549 |
+| Evidence entries in `STUDY_DB` | 517 |
+| Source-linked evidence entries | 517 |
+| Pending professional review entries | 517 |
+| Professional-reviewed evidence entries | 0 |
+| Internal `reviewRequired:true` evidence entries | 356 |
+| RxNorm identity mappings | 32 |
+| PGx marker rows | 21 |
+| CPIC-linked action summaries | 9 |
+| Interaction pairs | 3184 |
+| Severe interaction pairs | 1610 |
+| Moderate interaction pairs | 1539 |
+| Mild interaction pairs | 35 |
+<!-- LAUNCH_DATA_TRUST_STATS_END -->
+
+## Required Boundaries
+
+- Public evidence remains pending professional review unless explicit reviewer metadata says otherwise.
+- `reviewRequired:true` is an internal enrichment/scoring flag, not the boundary between reviewed and unreviewed evidence.
+- Severe and critical findings can be visible as review priorities, but severity is not clinically final until reviewed by an appropriate professional.
+- Source-linked rows need source-faithfulness, mapping, directionality, clinical wording, and reviewer-scope checks before professional-review status can change.
+- The browser app must remain static and local-first: no accounts, analytics, tracking, medication-data collection, or runtime clinical API calls.
+- GitHub feedback links must be privacy-preserving by default: they must not transmit the current medication list, genotype settings, share URL, browser URL, or selected-card context unless a contributor intentionally adds that information.
+
+## Release Evidence
+
+The release gate checks this trust boundary through:
+
+- database and data-view audits;
+- evidence citation and evidence-review UI audits;
+- V1 PGx contract audit, V1 PK visualization audit, V1 finding contract audit including all recognized shipped `KNOWN_DDI` pairs, and V1 release readiness audit;
+- V1 feedback privacy audit;
+- evidence calculation, external-context firewall, source registry, promotion boundary, review overlay, label-source boundary, scenario snapshot, launch QA, regression, smoke, strict validation, privacy/static, and whitespace checks.
+
+Run:
+
+```sh
+npm run release:check
+```
+
+## Human Review Priorities
+
+The first professional review pass should prioritize severe/critical findings, public demo and deep-QA scenarios, calculation-bearing evidence, source-linked guideline/label claims, and any row that implies a quantified fold change, dose strategy, avoidance/substitution decision, contraindication, or monitoring plan.

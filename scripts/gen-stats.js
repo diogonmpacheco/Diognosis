@@ -19,6 +19,17 @@ const DIOGNOSIS_STATS = ${JSON.stringify(stats, null, 2)};
 `;
 writeFileSync(resolve(root, 'src/data/generatedStats.js'), generatedSource, 'utf8');
 
+function generatedDate(stats) {
+  return new Date(stats.generatedAt).toISOString().slice(0, 10);
+}
+
+function replaceMarkedBlock(content, start, end, replacement, fileLabel) {
+  if (!content.includes(start) || !content.includes(end)) {
+    throw new Error(`${fileLabel} is missing generated block markers ${start} / ${end}`);
+  }
+  return content.replace(new RegExp(`${start}[\\s\\S]*?${end}`), replacement);
+}
+
 const readmePath = resolve(root, 'README.md');
 const readme = readFileSync(readmePath, 'utf8');
 const start = '<!-- DIOGNOSIS_STATS_START -->';
@@ -30,6 +41,7 @@ const statsBlock = `${start}
 - **${stats.metaboliteEntries} metabolite entries** across **${stats.metaboliteParents} parent substances** (${stats.metaboliteActors} first-class metabolite actors)
 - **${stats.pkParams} absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **${stats.genotypeGenes} genotype genes** and **${stats.receptorScores} receptor score profiles**
+- **${stats.externalSubstanceMappings} RxNorm identity mappings**, **${stats.pgxMarkerRows} PGx marker rows**, and **${stats.pgxActionSummaries} CPIC-linked action summaries**
 - **${stats.beersFlags} Beers flags** and **${stats.washoutRules} washout rules**
 - **${stats.bundleKB || 'Not yet built'} KB** generated bundle${stats.bundleLines ? ` (${stats.bundleLines} lines)` : ''}
 ${end}`;
@@ -44,5 +56,48 @@ if (readme.includes(start) && readme.includes(end)) {
   );
 }
 writeFileSync(readmePath, nextReadme, 'utf8');
+
+const publicTrustPath = resolve(root, 'docs/PUBLIC_TRUST.md');
+if (existsSync(publicTrustPath)) {
+  const trustStart = '<!-- PUBLIC_TRUST_STATS_START -->';
+  const trustEnd = '<!-- PUBLIC_TRUST_STATS_END -->';
+  const trustBlock = `${trustStart}
+- **${stats.sourceLinkedStudies} \`STUDY_DB\` entries** have public source identifiers.
+- **${stats.pendingProfessionalReviewStudies} entries** are pending professional review.
+- **${stats.professionalReviewedStudies} entries** are professionally reviewed.
+- **${stats.internalReviewRequiredEntries} entries** are currently marked \`reviewRequired:true\` as an internal enrichment/scoring flag, not a public reviewed/unreviewed boundary.
+${trustEnd}`;
+  let trust = readFileSync(publicTrustPath, 'utf8')
+    .replace(/^Generated: .*/m, `Generated: ${generatedDate(stats)}`);
+  trust = replaceMarkedBlock(trust, trustStart, trustEnd, trustBlock, 'docs/PUBLIC_TRUST.md');
+  writeFileSync(publicTrustPath, trust, 'utf8');
+}
+
+const launchTrustPath = resolve(root, 'docs/LAUNCH_DATA_TRUST_AUDIT.md');
+if (existsSync(launchTrustPath)) {
+  const launchStart = '<!-- LAUNCH_DATA_TRUST_STATS_START -->';
+  const launchEnd = '<!-- LAUNCH_DATA_TRUST_STATS_END -->';
+  const launchBlock = `${launchStart}
+| Metric | Count |
+| --- | ---: |
+| Drugs in \`DRUG_DB\` | ${stats.drugs} |
+| Evidence entries in \`STUDY_DB\` | ${stats.studies} |
+| Source-linked evidence entries | ${stats.sourceLinkedStudies} |
+| Pending professional review entries | ${stats.pendingProfessionalReviewStudies} |
+| Professional-reviewed evidence entries | ${stats.professionalReviewedStudies} |
+| Internal \`reviewRequired:true\` evidence entries | ${stats.internalReviewRequiredEntries} |
+| RxNorm identity mappings | ${stats.externalSubstanceMappings} |
+| PGx marker rows | ${stats.pgxMarkerRows} |
+| CPIC-linked action summaries | ${stats.pgxActionSummaries} |
+| Interaction pairs | ${stats.ddiPairs} |
+| Severe interaction pairs | ${stats.severeDdi} |
+| Moderate interaction pairs | ${stats.moderateDdi} |
+| Mild interaction pairs | ${stats.mildDdi} |
+${launchEnd}`;
+  let launchTrust = readFileSync(launchTrustPath, 'utf8')
+    .replace(/^Audit date: .*/m, `Audit date: ${generatedDate(stats)}`);
+  launchTrust = replaceMarkedBlock(launchTrust, launchStart, launchEnd, launchBlock, 'docs/LAUNCH_DATA_TRUST_AUDIT.md');
+  writeFileSync(launchTrustPath, launchTrust, 'utf8');
+}
 
 process.stdout.write(`Generated stats: ${stats.drugs} drugs, ${stats.studies} studies, ${stats.ddiPairs} DDI pairs\n`);

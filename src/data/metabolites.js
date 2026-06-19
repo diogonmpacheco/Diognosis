@@ -4745,7 +4745,7 @@ Object.assign(METAB, {
 "Pimozide":[
   {n:"5-Hydroxypimozide",e:"CYP2D6/CYP3A4",a:"inactive",p:30,t:55,note:"Hydroxylated pimozide metabolite; genotype and inhibitor risk is still driven primarily by parent pimozide exposure and QT liability.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_phase4_genotype_metabolite_expansion"]},
   {n:"6-Hydroxypimozide",e:"CYP2D6/CYP3A4",a:"inactive",p:15,t:55,note:"Minor hydroxylated clearance product in the CYP2D6/CYP3A metabolism network.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels"]},
-  {n:"DHPBI N-dealkylation metabolite",e:"CYP3A4 N-dealkylation",a:"inactive",p:35,note:"N-dealkylation is a major pimozide clearance route; CYP3A inhibition remains the clinically important parent-exposure signal.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels"]}
+  {n:"DHPBI N-dealkylation metabolite",e:"CYP3A4",a:"inactive",p:35,note:"CYP3A4 N-dealkylation is a major pimozide clearance route; CYP3A inhibition remains the clinically important parent-exposure signal.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels"]}
 ],
 "Prochlorperazine":[
   {n:"N-Desmethylprochlorperazine",e:"CYP2D6/CYP2C19",a:"inactive",p:30,t:7,note:"Major demethylated metabolite; parent phenothiazine exposure drives sedation, EPS, QT, and anticholinergic burden.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_cns_anticholinergic_beers_labels"]},
@@ -4767,7 +4767,7 @@ Object.assign(METAB, {
 ],
 "Ticlopidine":[
   {n:"2-Oxo-ticlopidine",e:"CYP2C19/CYP2B6/CYP3A4",a:"active_precursor",p:45,t:12,note:"Thiophene oxidation intermediate on the pathway to the irreversible P2Y12-inhibiting active thiol metabolite.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"]},
-  {n:"Ticlopidine active thiol metabolite (UR-4501)",e:"CYP-mediated Thiolactone Opening",a:"active",p:30,note:"Active thiol moiety irreversibly inhibits platelet P2Y12 signaling; bleeding and marrow-toxicity context remain parent-label guided.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels","ev_phase4_genotype_metabolite_expansion"]}
+  {n:"Ticlopidine active thiol metabolite (UR-4501)",e:"CYP2C19/CYP2B6/CYP3A4",a:"active",p:30,note:"CYP-mediated thiolactone opening forms the active thiol moiety that irreversibly inhibits platelet P2Y12 signaling; bleeding and marrow-toxicity context remain parent-label guided.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels","ev_phase4_genotype_metabolite_expansion"]}
 ],
 "Lefamulin":[
   {n:"Hydroxylated lefamulin metabolites",e:"CYP3A4",a:"inactive",p:35,t:8,note:"CYP3A phase I metabolites are described as devoid of antibacterial activity; parent exposure drives QT and DDI risk.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_cns_anticholinergic_beers_labels"]}
@@ -4778,7 +4778,7 @@ Object.assign(METAB, {
 ],
 "Betrixaban":[
   {n:"Betrixaban unchanged parent",e:"P-gp/Biliary/Fecal Excretion",a:"active_parent",p:65,t:19,note:"Betrixaban undergoes minimal CYP metabolism; unchanged parent and P-gp/biliary clearance drive bleeding interaction context.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"]},
-  {n:"Betrixaban hydrolytic metabolites",e:"CYP-independent Hydrolysis",a:"inactive",p:15,note:"Minor inactive hydrolysis products; P-gp inhibition/induction remains the clinically important exposure pathway.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"]}
+  {n:"Betrixaban hydrolytic metabolites",e:"Hydrolysis",a:"inactive",p:15,note:"CYP-independent minor inactive hydrolysis products; P-gp inhibition/induction remains the clinically important exposure pathway.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_hemostasis_labels"]}
 ],
 "Busulfan":[
   {n:"Busulfan glutathione conjugate",e:"GSTA1/GSTM1/GSTT1",a:"clearance_context",p:55,t:2.5,note:"Primary clearance route via spontaneous and GST-catalyzed glutathione conjugation; narrow-index conditioning regimens require TDM.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_busulfan_gst_meta","ev_phase4_genotype_metabolite_expansion"]},
@@ -4791,7 +4791,7 @@ Object.assign(METAB, {
 "Lapatinib":[
   {n:"O-dealkylated lapatinib",e:"CYP3A4/CYP3A5",a:"inactive",p:20,t:24,note:"Primary oxidative pathway; further oxidation can generate reactive quinone-imine context implicated in hepatotoxicity.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
   {n:"N-dealkylated/N-hydroxylated lapatinib metabolites",e:"CYP3A4/CYP3A5",a:"inactive",p:20,note:"Oxidative metabolite pool; no single metabolite accounts for a large fraction of parent exposure.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},
-  {n:"Lapatinib reactive quinone-imine context",e:"CYP3A4/CYP3A5 Bioactivation",a:"toxic_context",p:5,note:"Reactive metabolite context for idiosyncratic hepatic stress; this is a toxicity signal, not a calibrated dose rule.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels","ev_phase4_genotype_metabolite_expansion"]}
+  {n:"Lapatinib reactive quinone-imine context",e:"CYP3A4/CYP3A5",a:"toxic_context",p:5,note:"CYP3A4/CYP3A5 bioactivation can generate reactive quinone-imine context for idiosyncratic hepatic stress; this is a toxicity signal, not a calibrated dose rule.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels","ev_phase4_genotype_metabolite_expansion"]}
 ],
 "Pirtobrutinib":[
   {n:"Pirtobrutinib hydroxylated metabolites",e:"CYP3A4",a:"inactive",p:35,t:19,note:"CYP3A-mediated hydroxylation supports strong/moderate inducer and inhibitor exposure warnings.",evidenceRefs:["ev_phase1_high_priority_metabolite_labels","ev_batch_kinase_cyp3a_qt_labels"]},

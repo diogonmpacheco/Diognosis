@@ -15,6 +15,7 @@ const dataFiles = [
   'src/data/actors.js',
   'src/data/pharmacology.js',
   'src/data/evidence.js',
+  'src/data/clinicalStandards.js',
   'src/data/interactions.js',
   'src/data/sourceSpecificPromotions.js',
   'src/engine/phenotypeEngine.js',
@@ -58,6 +59,9 @@ JSON.stringify((() => {
     study.reviewStatus === 'clinician_reviewed'
   );
   const pendingProfessionalReviewStudies = studyValues.length - professionalReviewedStudies.length;
+  const pgxMarkerRows = typeof PGX_MARKER_MAPPINGS === 'undefined'
+    ? 0
+    : Object.values(PGX_MARKER_MAPPINGS).reduce((sum, rows) => sum + (rows || []).length, 0);
   const liveGenotypeGeneKeys = new Set([
     ...Object.keys(GENOTYPE_EFFECTS).filter((key) => !key.startsWith('_')),
     ...(typeof GENOTYPE_RISK_EFFECTS === 'undefined' ? [] : Object.keys(GENOTYPE_RISK_EFFECTS)),
@@ -77,6 +81,9 @@ JSON.stringify((() => {
     livePendingReviewStudies: studyValues.filter((study) => study.livePendingReview === true).length,
     internalReviewRequiredEntries: studyValues.filter((study) => study.reviewRequired === true).length,
     studiesWithPmid: studyValues.filter((study) => !!study.pmid).length,
+    externalSubstanceMappings: typeof EXTERNAL_SUBSTANCE_MAPPINGS === 'undefined' ? 0 : EXTERNAL_SUBSTANCE_MAPPINGS.length,
+    pgxMarkerRows,
+    pgxActionSummaries: typeof PGX_ACTION_SUMMARIES === 'undefined' ? 0 : PGX_ACTION_SUMMARIES.length,
     nonRegulatoryUncited: nonRegulatoryUncited.length,
     ddiPairs: KNOWN_DDI.length,
     severeDdi: severitySplit.severe || 0,

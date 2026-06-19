@@ -11,6 +11,7 @@
     "enrich": "node scripts/enrich/run.js",
     "build": "node build.js",
     "build:dev": "node build.js --dev --out /tmp/diognosis_dev.html",
+    "launch:qa": "node scripts/launch-qa-audit.js",
     "smoke": "node scripts/smoke-check.js",
     "regression": "node scripts/regression-check.js",
     "validate": "node scripts/validate-db.js",

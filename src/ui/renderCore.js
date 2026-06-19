@@ -413,6 +413,115 @@ function renderInteractionFindingsOverview(risk) {
   return currentPublicFindingPresentations;
 }
 
+function renderReviewScopePanel() {
+  const section = document.getElementById("scopeSection");
+  const body = document.getElementById("scopeBody");
+  const count = document.getElementById("scopeCount");
+  if (!section || !body) return null;
+  if (!activeStack.length) {
+    hideSectionAndClear("scopeSection", "scopeBody", "scopeCount");
+    return null;
+  }
+  const cache = typeof getRenderComputationCache === "function" ? getRenderComputationCache() : {};
+  const scope = buildReviewScopeSummary(cache);
+  section.style.display = "";
+  if (count) count.textContent = scope.statusLabel;
+  body.innerHTML = renderReviewScopeSummary(scope);
+  return scope;
+}
+
+function buildReviewScopeSummary(cache = {}) {
+  const stack = activeStack || [];
+  const recognizedDrugCount = stack.filter(name => typeof getStackDrug === "function" ? getStackDrug(name) : getDrug(name)).length;
+  const recognizedActorCount = stack.filter(name => {
+    const actor = typeof getStackSupplementActor === "function" ? getStackSupplementActor(name) : null;
+    return actor && !(typeof getStackDrug === "function" ? getStackDrug(name) : getDrug(name));
+  }).length;
+  const unknownCount = Math.max(0, stack.length - recognizedDrugCount - recognizedActorCount);
+  const genotypeCount = typeof activeGenotypeUrlTokens === "function" ? activeGenotypeUrlTokens().length : 0;
+  const standardsCoverage = typeof buildClinicalStandardsCoverage === "function"
+    ? buildClinicalStandardsCoverage(stack, activeGenotype || {})
+    : null;
+  const findings = cache.findings || currentInteractionFindings || [];
+  const concerns = cache.clinicalConcerns || currentClinicalConcerns || [];
+  const publicPresentations = currentPublicFindingPresentations.length
+    ? currentPublicFindingPresentations
+    : buildPublicFindingPresentations(concerns);
+  const sourceLinked = publicPresentations.filter(presentation => presentation.trustContract?.sourceLinked).length;
+  const modeled = publicPresentations.filter(presentation => presentation.trustContract && !presentation.trustContract.sourceLinked).length;
+  const trustReady = publicPresentations.filter(presentation => presentation.trustContract?.ready).length;
+  const maxSeverity = publicPresentations.reduce((best, presentation) =>
+    publicFindingSeverityScore(presentation.severity) > publicFindingSeverityScore(best) ? presentation.severity : best,
+    "info"
+  );
+  const statusLabel = publicPresentations.length
+    ? `${publicPresentations.length} concern${publicPresentations.length === 1 ? "" : "s"}`
+    : "No major signal";
+  const checks = [
+    stack.length >= 2
+      ? `Checked pairwise and grouped interaction logic across ${stack.length} selected substances.`
+      : "Single-substance context checked; pairwise interactions need at least two selected substances.",
+    genotypeCount
+      ? `Included ${genotypeCount} selected gene or marker result${genotypeCount === 1 ? "" : "s"}.`
+      : "No gene or marker result is selected.",
+    standardsCoverage
+      ? `Standards coverage: ${standardsCoverage.mappedDrugCount}/${standardsCoverage.recognizedDrugCount} recognized medication${standardsCoverage.recognizedDrugCount === 1 ? "" : "s"} mapped to RxNorm; ${standardsCoverage.markerMappingCount} PGx marker identity row${standardsCoverage.markerMappingCount === 1 ? "" : "s"} available.`
+      : "Standards coverage was not available for this render.",
+    findings.length
+      ? `Normalized ${findings.length} engine signal${findings.length === 1 ? "" : "s"} into ${publicPresentations.length} public concern${publicPresentations.length === 1 ? "" : "s"}.`
+      : "No major normalized signal was found in the current local dataset.",
+  ];
+  const limits = [
+    "No result means no major signal was found here; it does not prove the list is safe.",
+    "Source-linked evidence is traceability, not professional clinical validation.",
+    ...(standardsCoverage?.limitations || []),
+    unknownCount
+      ? `${unknownCount} selected item${unknownCount === 1 ? " was" : "s were"} not recognized by the medication dataset.`
+      : "Dose, timing, allergies, diagnoses, labs, pregnancy status, and clinical history are not fully assessed.",
+  ];
+  return {
+    selectedCount: stack.length,
+    recognizedDrugCount,
+    recognizedActorCount,
+    unknownCount,
+    genotypeCount,
+    rawFindingCount: findings.length,
+    publicConcernCount: publicPresentations.length,
+    sourceLinked,
+    modeled,
+    trustReady,
+    standardsCoverage,
+    standardsMappedCount:standardsCoverage?.mappedDrugCount || 0,
+    standardsUnmappedCount:standardsCoverage?.unmappedDrugCount || 0,
+    pgxMarkerMappingCount:standardsCoverage?.markerMappingCount || 0,
+    pgxActionCount:standardsCoverage?.pgxActionCount || 0,
+    maxSeverity,
+    statusLabel,
+    checks,
+    limits,
+  };
+}
+
+function renderReviewScopeSummary(scope) {
+  const tiles = [
+    [scope.selectedCount, "Selected"],
+    [scope.recognizedDrugCount + scope.recognizedActorCount, "Recognized"],
+    [scope.genotypeCount, "Gene results"],
+    [scope.publicConcernCount, "Concerns"],
+    [scope.sourceLinked, "Source-linked"],
+    [scope.modeled, "Modeled"],
+    [scope.standardsMappedCount, "RxNorm IDs"],
+    [scope.pgxMarkerMappingCount, "PGx IDs"],
+  ];
+  return `<div class="scope-grid">
+    ${tiles.map(([value, label]) => `<div class="scope-tile"><strong>${safePublicHtml(value)}</strong><span>${safePublicHtml(label)}</span></div>`).join("")}
+  </div>
+  <ul class="scope-list">
+    ${scope.checks.map(item => `<li><span>${safePublicHtml(item)}</span></li>`).join("")}
+    ${scope.limits.map(item => `<li><span><strong>Limit:</strong> ${safePublicHtml(item)}</span></li>`).join("")}
+  </ul>`;
+}
+
 function renderInteractionFindingCard(finding) {
   return renderPublicFindingCard(buildPublicFindingPresentationFromFinding(finding));
 }
@@ -453,6 +562,7 @@ function buildPublicFindingPresentationFromFinding(finding = {}) {
     id,
     sourceIds,
     sourceFinding:finding,
+    trustContract: typeof buildV1FindingTrustContract === "function" ? buildV1FindingTrustContract(finding, { stack:activeStack }) : null,
     severity:safeChoice(finding.severity, ["critical","severe","moderate","monitor","info"], "info"),
     title,
     affectedSubstances,
@@ -477,6 +587,7 @@ function buildPublicFindingPresentationFromGenotypeSignal(signal) {
     id,
     sourceIds:[id],
     sourceFinding:null,
+    trustContract: typeof buildV1GenotypeSignalTrustContract === "function" ? buildV1GenotypeSignalTrustContract(signal, severity, { stack:activeStack }) : null,
     severity,
     title:publicDisplayText(signal.headline || "Pharmacogenomic finding"),
     affectedSubstances:publicFindingSignalSubstances(signal),
@@ -496,6 +607,18 @@ function buildPublicFindingPresentationFromGenotypeSignal(signal) {
 function shouldAddGenotypePublicFinding(genotypePresentation, presentations = [], signal = null) {
   if (!genotypePresentation || !signal || signal.score < 30) return false;
   if (!presentations.length) return true;
+  const signalEvidenceRefs = new Set(signal.evidenceRefs || []);
+  const sourceBackedSignal = signalEvidenceRefs.size > 0;
+  const equivalentSourceBackedPresentation = sourceBackedSignal && presentations.some(presentation => {
+    const presentationRefs = new Set([
+      ...(presentation.trustContract?.evidenceRefs || []),
+      ...(presentation.sourceFinding?.evidenceRefs || []),
+      ...(presentation.signal?.evidenceRefs || []),
+    ]);
+    return presentation.trustContract?.sourceLinked &&
+      [...signalEvidenceRefs].some(ref => presentationRefs.has(ref));
+  });
+  if (sourceBackedSignal && !equivalentSourceBackedPresentation) return true;
   const signalText = publicFindingSearchText(genotypePresentation);
   const overlapsPrimary = presentations.some(presentation => {
     const text = publicFindingSearchText(presentation);
@@ -669,15 +792,18 @@ function renderPublicFindingCard(presentation) {
   const supportingSignals = renderConcernSupportingSignals(finding);
   const sourceLabel = safePublicHtml(String(finding.source || finding.type || "finding").replace(/_/g, " "));
   const patient = isPatientAudience();
+  const trust = presentation.trustContract || (typeof buildV1FindingTrustContract === "function" ? buildV1FindingTrustContract(finding, { stack:activeStack }) : null);
   const changedText = patient ? patientFindingStepText(presentation, "changed") : presentation.whatChanged;
   const whyText = patient ? patientFindingStepText(presentation, "why") : presentation.whyItMatters;
   const reviewText = patient ? patientFindingStepText(presentation, "review") : presentation.whatToReview;
   const detailButton = !patient && presentation.detailTab && presentation.detailElementId
     ? `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('${safeAttr(presentation.detailTab)}','${safeAttr(presentation.detailElementId)}')">Supporting detail</button>`
     : "";
+  const sourceLinks = patient ? "" : renderFindingSourceLinks(presentation, trust);
   const evidenceStep = patient ? "" : renderFindingStep("Evidence", presentation.evidenceSummary);
   const technicalDetail = patient ? "" : `<details class="finding-support-details">
       <summary>Supporting detail</summary>
+      ${renderFindingTrustDetails(trust)}
       ${supportingSignals}
       <div class="finding-meta">
         <span class="finding-tag type">${sourceLabel}</span>
@@ -695,6 +821,7 @@ function renderPublicFindingCard(presentation) {
       </div>
       <span class="finding-sev ${severity}">${safePublicHtml(severity)}</span>
     </div>
+    ${renderFindingTrustStrip(trust, patient)}
     ${actorHtml ? `<div class="finding-actors">${actorHtml}</div>` : ""}
     <div class="finding-explain">
       ${renderFindingStep(patient ? "What this means" : "What changed", changedText)}
@@ -702,8 +829,63 @@ function renderPublicFindingCard(presentation) {
       ${renderFindingStep(patient ? "What to ask" : "What to review", reviewText)}
       ${evidenceStep}
     </div>
-    <div class="finding-actions">${detailButton}</div>
+    <div class="finding-actions">${detailButton}${sourceLinks}</div>
     ${technicalDetail}
+  </div>`;
+}
+
+function renderFindingSourceLinks(presentation = {}, trust = null) {
+  const refs = [...new Set([
+    ...(trust?.evidenceRefs || []),
+    ...(presentation.sourceFinding?.evidenceRefs || []),
+    ...(presentation.signal?.evidenceRefs || []),
+  ])].filter(Boolean);
+  if (!refs.length) {
+    return `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('evidence','evidenceLadderLedger')">Evidence status</button>`;
+  }
+  const chips = refs.slice(0, 3).map(ref => {
+    const label = typeof publicEvidenceReferenceLabel === "function" ? publicEvidenceReferenceLabel(ref) : "Source";
+    const url = typeof publicEvidenceReferenceUrl === "function" ? publicEvidenceReferenceUrl(ref) : "";
+    if (url) {
+      return `<a class="related-finding-btn secondary source-link" href="${safeAttr(url)}" target="_blank" rel="noopener">${safePublicHtml(label)}</a>`;
+    }
+    return `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('evidence','evidenceLadderLedger')">${safePublicHtml(label)}</button>`;
+  }).join("");
+  const more = refs.length > 3
+    ? `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('evidence','evidenceLadderLedger')">+${safePublicHtml(String(refs.length - 3))} sources</button>`
+    : "";
+  return `${chips}${more}`;
+}
+
+function renderFindingTrustStrip(trust, patient = false) {
+  if (!trust) return "";
+  const source = trust.sourceLinked ? "Source-linked" : "Modeled";
+  const status = trust.clinicalReviewStatus === "reviewed" ? "Reviewed" : "Clinical review needed";
+  const chips = [
+    ["Concern", trust.concernCategory],
+    ["Evidence", source],
+    patient ? ["Status", status] : ["Confidence", trust.confidence],
+  ].filter(([, value]) => value);
+  return `<div class="finding-trust-strip">
+    ${chips.map(([label, value]) => `<span class="finding-trust-chip"><strong>${safePublicHtml(label)}</strong>${safePublicHtml(value)}</span>`).join("")}
+  </div>`;
+}
+
+function renderFindingTrustDetails(trust) {
+  if (!trust) return "";
+  const rows = [
+    ["Mechanism", trust.mechanism],
+    ["Expected change", trust.expectedChange],
+    ["Clinical concern", trust.clinicalConcern],
+    ["Clinician action", trust.clinicianAction],
+    ["Evidence", trust.evidence],
+    ["Status", trust.limitationStatus],
+  ].filter(([, value]) => value);
+  return `<div class="finding-trust-details">
+    <div class="finding-trust-title">Review basis</div>
+    <div class="finding-trust-grid">
+      ${rows.map(([label, value]) => `<div class="finding-trust-row"><strong>${safePublicHtml(label)}</strong><span>${safePublicHtml(value)}</span></div>`).join("")}
+    </div>
   </div>`;
 }
 
@@ -974,7 +1156,7 @@ function applyAudienceModeVisibility() {
 
 function arrangeAdvancedSections() {
   const placements = {
-    overview:["riskSection","findingSection","altSection"],
+    overview:["scopeSection","riskSection","findingSection","altSection"],
     mechanisms:["mechanismWhySection","mechanisticSection","transporterSection","pdSection","cascadeSection","phenoAccumSection","graphSection"],
     "genes-metabolites":["genotypeSection","phenoconversionSection","activeMoietySection","metabSection"],
     "timing-levels":["foldSection","pkSimSection","persistenceTimelineSection","washoutSection","burdenSection"],
@@ -1534,30 +1716,37 @@ function encodeUrlStateValueLocal(value) {
   return encodeURIComponent(value).replace(/%2C/g, ",").replace(/%3A/g, ":");
 }
 
-function buildDiognosisIssueUrl({ type = "data", title = "Diognosis feedback", focus = "", details = "", evidenceRefs = [] } = {}) {
-  const stack = activeStack.length ? activeStack.join(" + ") : "No active stack";
-  const shareLink = currentStackShareUrl(activeTab || "overview");
-  const currentUrl = typeof window !== "undefined" && window.location ? window.location.href : "";
+function buildDiognosisIssueUrl({ type = "data", title = "", focus = "", details = "", evidenceRefs = [], includeUserContext = false } = {}) {
   const labels = type === "bug" ? "bug" : "data-review";
+  const safeTitle = includeUserContext && title
+    ? title
+    : type === "evidence"
+      ? "[Evidence suggestion]: Diognosis"
+      : type === "scenario"
+        ? "[Scenario request]: Diognosis"
+        : "[Data review]: Diognosis";
   const body = [
-    "## Diognosis context",
-    `- Stack: ${stack}`,
-    `- Share link: ${shareLink}`,
-    currentUrl ? `- Current URL: ${currentUrl}` : "",
-    focus ? `- Focus: ${focus}` : "",
-    evidenceRefs && evidenceRefs.length ? `- Evidence refs: ${evidenceRefs.join(", ")}` : "",
+    "## Diognosis feedback",
+    `- Type: ${type}`,
+    includeUserContext && focus ? `- Focus: ${focus}` : "",
+    includeUserContext && evidenceRefs && evidenceRefs.length ? `- Evidence refs: ${evidenceRefs.join(", ")}` : "",
     "",
     "## What should change?",
-    details || "Describe the suspected issue, missing evidence, stale source, or confusing behavior.",
+    includeUserContext && details
+      ? details
+      : "Describe the suspected issue, missing evidence, stale source, or confusing behavior. Add medication or genotype context only if you intentionally want to share it publicly.",
     "",
     "## Public sources",
     "Add PMID, DOI, DailyMed/FDA, CPIC/DPWG, guideline, label, or other public source identifiers.",
     "",
+    "## Optional context",
+    "If useful, paste a copied V1 review summary or share link from Diognosis. Do not include private patient data.",
+    "",
     "## Review note",
-    "Diognosis is educational, source-linked, pre-v1, and pending professional clinical review. Diognosis outputs are not medical advice or clinical decision support. Do not include private patient data."
+    "Diognosis feedback links are privacy-preserving by default: they do not include the current medication list, genotype settings, share URL, or browser URL unless a contributor intentionally adds that information."
   ].filter(Boolean).join("\n");
   const params = new URLSearchParams({
-    title,
+    title:safeTitle,
     body,
     labels,
   });
@@ -1598,6 +1787,7 @@ function renderAll() {
     document.getElementById("pdSection").style.display = activeDrugNames.length ? "" : "none";
   } else {
     currentInteractionFindings = [];
+    hideSectionAndClear("scopeSection", "scopeBody", "scopeCount");
     hideSectionAndClear("findingSection", "findingBody", "findingCount");
     hideSectionAndClear("phenoconversionSection", "phenoconversionBody", "phenoconversionCount");
     hideSectionAndClear("activeMoietySection", "activeMoietyBody", "activeMoietyCount");
@@ -1630,6 +1820,7 @@ function renderAll() {
     const risk = typeof getRenderComputationCache === "function"
       ? getRenderComputationCache().risk
       : calcRisk();
+    renderReviewScopePanel();
     renderRiskGauge(risk);
     renderInteractionFindingsOverview(risk);
     if (typeof renderMechanismWhyPaths === "function") renderMechanismWhyPaths();
@@ -1639,6 +1830,7 @@ function renderAll() {
     renderMatrix(risk.interactions);
     renderAlternatives();
     document.getElementById("riskSection").style.display = "";
+    document.getElementById("scopeSection").style.display = "";
     document.getElementById("findingSection").style.display = "";
     document.getElementById("interSection").style.display = "";
     document.getElementById("comboSection").style.display = "";
@@ -1648,6 +1840,7 @@ function renderAll() {
   } else {
     if (activeDrugNames.length) {
       renderInteractionFindingsOverview({ interactions:[] });
+      renderReviewScopePanel();
       if (typeof renderMechanismWhyPaths === "function") renderMechanismWhyPaths();
     }
     else {

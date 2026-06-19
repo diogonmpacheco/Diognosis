@@ -52,8 +52,9 @@ Clinical standards live in `src/data/clinicalStandards.js` and are shipped as lo
 - Medication identity mappings use RxNorm CUIs from NIH RxNav for selected ingredient-level substances.
 - PGx marker rows use star-allele, dbSNP `rs` identifier, or HLA nomenclature labels where applicable.
 - CPIC-linked action summaries remain review context. They can add evidence refs and a review direction, but they do not become automatic medication instructions or professional review.
+- `buildClinicalStandardsCoverage()` reports selected-stack standards coverage for V1 surfaces. It shows RxNorm-mapped and unmapped recognized medications, PGx marker rows, CPIC-linked action summaries, and the explicit SNOMED boundary for non-ingested diagnoses/symptoms.
 
-`npm run validate` checks that mapped substances resolve, RxNorm CUIs are numeric, PGx marker identifiers are well formed, and PGx action summaries point at existing evidence refs.
+`npm run validate` checks that mapped substances resolve, RxNorm CUIs are numeric, PGx marker identifiers are well formed, and PGx action summaries point at existing evidence refs. `scripts/audit/v1-standards-coverage-audit.js` checks that Review Scope, V1 handoff, and V1 readiness expose standards coverage and standards gaps.
 
 ## Fact Rules
 

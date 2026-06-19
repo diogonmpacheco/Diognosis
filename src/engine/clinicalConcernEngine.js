@@ -384,7 +384,7 @@ function makeClinicalConcernTitle(concern, context = {}) {
   }
   if (domain === "toxic_metabolite_accumulation") {
     const metabolite = clinicalActiveMetaboliteName(primary, row);
-    return metabolite && victim ? `${metabolite} may accumulate from ${victim}` : `${victim || "Toxic metabolite"} accumulation review prompt`;
+    return metabolite && victim ? `${metabolite} may accumulate from ${victim}` : `${victim || "Toxic metabolite"} accumulation concern`;
   }
   if (domain === "active_metabolite_accumulation") {
     const metabolite = clinicalActiveMetaboliteName(primary, row);
@@ -405,10 +405,10 @@ function makeClinicalConcernTitle(concern, context = {}) {
     return `${clinicalDomainLabel(domain)} may rise`;
   }
   if (domain === "renal_clearance_or_transporter") {
-    return victim && perp ? `${victim} transport or clearance may change with ${perp}` : `${victim || "Transporter"} clearance review prompt`;
+    return victim && perp ? `${victim} transport or clearance may change with ${perp}` : `${victim || "Transporter"} clearance concern`;
   }
   if (domain === "absorption_or_chelation") {
-    return victim && perp ? `${victim} absorption may change with ${perp}` : `${victim || "Absorption"} review prompt`;
+    return victim && perp ? `${victim} absorption may change with ${perp}` : `${victim || "Absorption"} concern`;
   }
   if (domain === "parent_accumulation") {
     return `${victim || row.parent || "Parent drug"} exposure may rise${perp ? ` with ${perp}` : ""}`;
@@ -420,7 +420,7 @@ function makeClinicalConcernTitle(concern, context = {}) {
     return victim && perp ? `${victim} exposure may rise with ${perp}` : `${victim || "Exposure"} may rise`;
   }
   const stackLabel = clinicalActorListLabel([...(victims || []), ...(perpetrators || [])]);
-  return stackLabel ? `${stackLabel}: interaction review prompt` : "Clinical concern review prompt";
+  return stackLabel ? `${stackLabel}: interaction concern` : "Clinical concern";
 }
 
 function groupFindingsForReview(context = {}) {
@@ -612,7 +612,7 @@ function clinicalSupportingSignalForFinding(finding, entry = {}) {
     severity: finding.severity || "info",
     confidence: finding.confidence || "unknown",
     evidenceRefs: uniqueClinicalValues(finding.evidenceRefs || []),
-    sourceStatus: (finding.evidenceRefs || []).length ? "source-linked, pending review" : "modeled review prompt",
+    sourceStatus: (finding.evidenceRefs || []).length ? "source-linked, pending review" : "modeled support",
     presentationLevel: entry.presentationLevel || "supporting",
   };
 }
@@ -847,4 +847,246 @@ function mergeClinicalActors(actors = []) {
 
 function uniqueClinicalValues(values = []) {
   return [...new Set((values || []).map(value => String(value || "").trim()).filter(Boolean))];
+}
+
+const V1_FINDING_TRUST_REQUIRED_FIELDS = [
+  "concernCategory",
+  "affected",
+  "mechanism",
+  "expectedChange",
+  "clinicalConcern",
+  "confidence",
+  "evidence",
+  "patientAction",
+  "clinicianAction",
+  "limitationStatus",
+];
+
+function buildV1FindingTrustContract(finding = {}, context = {}) {
+  const safeFinding = finding || {};
+  const domain = safeFinding.clinicalConcernDomain || inferClinicalConcernDomain(safeFinding, {
+    ...context,
+    findings: safeFinding.sourceFindingsFull || context.findings || [],
+  });
+  const evidenceRefs = uniqueClinicalValues([
+    ...(safeFinding.evidenceRefs || []),
+    ...(safeFinding.sourceFindingsFull || []).flatMap(item => item.evidenceRefs || []),
+  ]);
+  const sourceRows = safeFinding.sourceRows || [];
+  const studies = typeof resolveFindingStudies === "function" ? resolveFindingStudies(evidenceRefs) : [];
+  const sourceLinked = !!safeFinding.evidenceLadder?.sourceLinked || evidenceRefs.length > 0;
+  const reviewed = safeFinding.evidenceLadder?.professionalReviewStatus === "reviewed" ||
+    (typeof hasProfessionalFindingReview === "function" && hasProfessionalFindingReview(studies));
+  const contract = {
+    version: "v1-finding-trust-1",
+    concernCategory: clinicalDomainLabel(domain),
+    affected: v1TrustAffectedLabel(safeFinding, context),
+    mechanism: v1TrustMechanism(safeFinding, domain, context),
+    expectedChange: v1TrustExpectedChange(safeFinding, domain, context),
+    clinicalConcern: v1TrustClinicalConcern(safeFinding, domain, context),
+    confidence: v1TrustConfidenceLabel(safeFinding),
+    evidence: v1TrustEvidenceLabel(safeFinding, evidenceRefs, sourceLinked),
+    patientAction: v1TrustPatientAction(safeFinding, domain),
+    clinicianAction: v1TrustClinicianAction(safeFinding, domain),
+    limitationStatus: v1TrustLimitationStatus({ sourceLinked, reviewed, finding:safeFinding }),
+    sourceLinked,
+    clinicalReviewStatus: reviewed ? "reviewed" : "clinical review needed",
+    evidenceRefs,
+    sourceCount: safeFinding.evidenceLadder?.studyCount || evidenceRefs.length,
+    sourceTypes: uniqueClinicalValues(studies.map(study => String(study.type || "").replace(/_/g, " "))),
+    reviewed,
+    sourceRowCount: sourceRows.length,
+  };
+  contract.missingFields = V1_FINDING_TRUST_REQUIRED_FIELDS.filter(field => !v1TrustHasValue(contract[field]));
+  contract.ready = contract.missingFields.length === 0;
+  return contract;
+}
+
+function buildV1GenotypeSignalTrustContract(signal = {}, severity = "monitor", context = {}) {
+  if (!signal) return null;
+  const syntheticFinding = {
+    id: `pgx-signal-${signal.kind || signal.headline || "finding"}`,
+    type: "risk_marker",
+    title: signal.headline || "Pharmacogenomic finding",
+    severity,
+    confidence: signal.confidence || (signal.score >= 70 ? "moderate" : "low"),
+    summary: signal.summary || signal.changes || signal.why || "A selected gene result changes expected medication response.",
+    clinicalAction: signal.review || signal.nextStep || "",
+    evidenceRefs: signal.evidenceRefs || [],
+    affectedActors: (signal.substances || signal.drugs || context.stack || [])
+      .map(id => ({ id, type:"parent_drug", direction:"affected" })),
+    tags: ["PGx", signal.kind || ""].filter(Boolean),
+    sourceRows: [{
+      marker: signal.gene || signal.marker || "",
+      phenotype: signal.phenotype || signal.label || "",
+      effect: signal.changes || signal.summary || "",
+      mechanism: signal.why || "",
+      management: signal.review || signal.nextStep || "",
+    }],
+    clinicalConcernDomain: /activat|prodrug|metabolite/i.test(`${signal.headline || ""} ${signal.summary || ""}`)
+      ? "activation_failure"
+      : "risk_marker_context",
+  };
+  return buildV1FindingTrustContract(syntheticFinding, context);
+}
+
+function v1TrustHasValue(value) {
+  if (Array.isArray(value)) return value.length > 0;
+  return String(value || "").trim().length > 0;
+}
+
+function v1TrustAffectedLabel(finding = {}, context = {}) {
+  const actors = uniqueClinicalValues([
+    ...(finding.victimActors || []).map(clinicalActorLabel),
+    ...(finding.perpetratorActors || []).map(clinicalActorLabel),
+    ...(finding.affectedActors || []).map(clinicalActorLabel),
+    ...(finding.sourceRows || []).flatMap(row => [row.drug1, row.drug2, row.parent, row.actor]),
+    ...(finding.sourceFindingsFull || []).flatMap(sourceFinding =>
+      (sourceFinding.sourceRows || []).flatMap(row => [row.drug1, row.drug2, row.parent, row.actor])
+    ),
+    ...(finding.sourceFindings || []).flatMap(row => [row.drug1, row.drug2, row.parent, row.actor]),
+    ...(context.stack || []).slice(0, 4),
+  ]).filter(value => !/^(pathway|unknown)$/i.test(value));
+  return actors.slice(0, 6).join(" + ") || "Current medication stack";
+}
+
+function v1TrustMechanism(finding = {}, domain = "", context = {}) {
+  const text = v1TrustCompactText(`${finding.whyPath?.summary || ""} ${finding.summary || ""}`);
+  const victim = clinicalActorLabel(finding.victimActors?.[0]) || clinicalPrimaryVictimFromFinding(finding);
+  const perpetrator = clinicalActorListLabel(finding.perpetratorActors || []);
+  const pathway = clinicalActorListLabel(finding.pathwayActors || []);
+  if (domain === "exposure_increase_toxicity") {
+    return perpetrator && victim
+      ? `${perpetrator} may reduce clearance or raise exposure of ${victim}${pathway ? ` through ${pathway}` : ""}.`
+      : text || "A pathway in the current stack may raise medication exposure.";
+  }
+  if (domain === "exposure_decrease_failure" || domain === "induction_loss_of_efficacy") {
+    return perpetrator && victim
+      ? `${perpetrator} may increase clearance or reduce expected effect of ${victim}${pathway ? ` through ${pathway}` : ""}.`
+      : text || "A pathway in the current stack may reduce medication exposure or effect.";
+  }
+  if (domain === "activation_failure") {
+    return victim
+      ? `${victim} may depend on metabolic activation, and the current context may reduce active-form formation.`
+      : text || "A prodrug or active-metabolite pathway may be reduced.";
+  }
+  if (domain === "active_metabolite_accumulation" || domain === "toxic_metabolite_accumulation") {
+    return victim
+      ? `${victim} metabolite balance may shift toward active or toxic exposure.`
+      : text || "A parent-metabolite pathway may shift toward clinically important metabolite exposure.";
+  }
+  if (domain === "washout_or_persistence") {
+    return text || "Parent drug, metabolite, or enzyme-recovery timing may outlast the visible dosing window.";
+  }
+  if (domain === "risk_marker_context" || domain === "hypersensitivity_or_scar") {
+    return text || "A selected genetic or risk marker matches a medication-specific safety context.";
+  }
+  if (clinicalBurdenDomain(domain)) {
+    return text || "Multiple substances may contribute to the same safety burden.";
+  }
+  if (domain === "renal_clearance_or_transporter") {
+    return text || "Transporter or renal-clearance pathways may change medication exposure.";
+  }
+  if (domain === "absorption_or_chelation") {
+    return text || "Absorption, food, pH, or binding effects may change how much medication is available.";
+  }
+  return text || "A source-linked or modeled pathway signal connects the current stack to this concern.";
+}
+
+function v1TrustExpectedChange(finding = {}, domain = "", context = {}) {
+  const victim = clinicalActorLabel(finding.victimActors?.[0]) || clinicalPrimaryVictimFromFinding(finding);
+  if (domain === "exposure_increase_toxicity") return victim ? `${victim} exposure may rise.` : "Exposure may rise.";
+  if (domain === "exposure_decrease_failure" || domain === "induction_loss_of_efficacy") return victim ? `${victim} exposure or effect may fall.` : "Exposure or effect may fall.";
+  if (domain === "activation_failure") return victim ? `${victim} active-form formation may fall.` : "Active-form formation may fall.";
+  if (domain === "active_metabolite_accumulation") return "Active metabolite exposure may rise.";
+  if (domain === "toxic_metabolite_accumulation") return "Toxic metabolite exposure may rise.";
+  if (domain === "parent_accumulation") return victim ? `${victim} parent-drug exposure may rise.` : "Parent-drug exposure may rise.";
+  if (domain === "mixed_parent_metabolite_direction") return "Parent and metabolite directions may diverge.";
+  if (domain === "washout_or_persistence") return "Effect or pathway context may persist after a dose change or stop.";
+  if (clinicalBurdenDomain(domain)) return `${clinicalDomainLabel(domain)} may increase.`;
+  if (domain === "risk_marker_context" || domain === "hypersensitivity_or_scar") return "A selected marker may increase review priority.";
+  return v1TrustCompactText(finding.summary) || "Exposure, activation, timing, or safety context may change.";
+}
+
+function v1TrustClinicalConcern(finding = {}, domain = "", context = {}) {
+  if (domain === "exposure_increase_toxicity" || domain === "parent_accumulation") return "Higher exposure can increase toxicity or monitoring priority.";
+  if (domain === "exposure_decrease_failure" || domain === "induction_loss_of_efficacy") return "Lower exposure or effect can reduce expected benefit.";
+  if (domain === "activation_failure") return "Reduced activation can lower expected medication response.";
+  if (domain === "active_metabolite_accumulation") return "Active-metabolite accumulation can increase effect or adverse effects.";
+  if (domain === "toxic_metabolite_accumulation") return "Toxic-metabolite accumulation can increase adverse-effect risk.";
+  if (domain === "washout_or_persistence") return "Timing can matter when starting, stopping, or switching medicines.";
+  if (domain === "hypersensitivity_or_scar") return "Marker-linked hypersensitivity needs careful clinical review.";
+  if (clinicalBurdenDomain(domain)) return `${clinicalDomainLabel(domain)} can become clinically important when multiple contributors stack.`;
+  return `${clinicalDomainLabel(domain)} should be reviewed with dose, timing, symptoms, and source evidence.`;
+}
+
+function v1TrustConfidenceLabel(finding = {}) {
+  const ladder = finding.evidenceLadder || {};
+  const mechanistic = ladder.mechanisticConfidence || finding.confidence || "unknown";
+  const action = ladder.clinicalActionConfidence || (finding.reviewRequired === false ? "reviewed" : "review needed");
+  return `${v1TrustLabelCase(mechanistic)} mechanism; ${v1TrustLabelCase(action)} action`;
+}
+
+function v1TrustEvidenceLabel(finding = {}, evidenceRefs = [], sourceLinked = false) {
+  const ladder = finding.evidenceLadder || {};
+  const count = ladder.studyCount || evidenceRefs.length;
+  const tier = ladder.strongestTier && ladder.strongestTier !== "unknown"
+    ? String(ladder.strongestTier).replace(/_/g, " ").toLowerCase()
+    : "";
+  if (sourceLinked || count) {
+    return `${tier ? `${tier}; ` : ""}${count || 1} linked source${(count || 1) === 1 ? "" : "s"}`;
+  }
+  return "modeled signal; source review needed";
+}
+
+function v1TrustPatientAction(finding = {}, domain = "") {
+  const severity = finding.severity || "info";
+  if (severity === "critical" || severity === "severe") {
+    return "Ask a doctor or pharmacist before using or changing this combination. Do not stop or change medicines without medical advice.";
+  }
+  if (severity === "moderate") {
+    return "Ask a doctor or pharmacist whether dose, timing, or monitoring should change. Do not stop medicines on your own.";
+  }
+  if (domain === "washout_or_persistence") {
+    return "Ask whether timing, overlap, or washout matters for this medication list.";
+  }
+  return "Review this note with a doctor or pharmacist, especially if symptoms, doses, or timing change.";
+}
+
+function v1TrustClinicianAction(finding = {}, domain = "") {
+  const rowActions = [
+    finding.clinicalAction,
+    finding.action,
+    finding.management,
+    ...(finding.sourceRows || []).flatMap(row => [row.clinicalAction, row.management, row.action, row.review]),
+  ].filter(Boolean);
+  if (rowActions.length) return v1TrustCompactText(rowActions[0]);
+  if (domain === "exposure_increase_toxicity" || domain === "parent_accumulation") return "Review exposure-sensitive toxicity, dose, monitoring, and alternatives.";
+  if (domain === "exposure_decrease_failure" || domain === "induction_loss_of_efficacy") return "Review expected efficacy, timing, dose, and whether an alternative is needed.";
+  if (domain === "activation_failure") return "Review prodrug activation, phenotype context, response monitoring, and alternatives.";
+  if (domain === "washout_or_persistence") return "Review timing, overlap, persistence, and recovery before switching or adding therapy.";
+  if (clinicalBurdenDomain(domain)) return "Review additive burden, patient-specific risk factors, monitoring, and deprescribing opportunities.";
+  return "Review dose, timing, clinical context, source evidence, and whether action is warranted.";
+}
+
+function v1TrustLimitationStatus({ sourceLinked = false, reviewed = false, finding = {} } = {}) {
+  if (reviewed) return "Professionally reviewed source-linked finding.";
+  if (sourceLinked) return "Source-linked; clinical review needed.";
+  if (finding.reviewRequired === false) return "Reviewed modeled context.";
+  return "Modeled signal; verify before clinical use.";
+}
+
+function v1TrustLabelCase(value) {
+  return String(value || "unknown")
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, char => char.toUpperCase());
+}
+
+function v1TrustCompactText(value) {
+  return String(value || "")
+    .replace(/\bpending\s+professional\s+(?:clinical\s+)?review\b/gi, "clinical review needed")
+    .replace(/\bmodel-only\b/gi, "modeled")
+    .replace(/_/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }

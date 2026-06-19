@@ -436,6 +436,7 @@ body[data-audience="patient"] .stats-line{display:none}
 .pk-metrics span{white-space:nowrap}
 .pk-int-metric{color:var(--amber);font-weight:700}
 .pk-note{font-size:9px;color:var(--text2);margin-top:3px;font-style:italic}
+.pk-window-note{font-size:9px;color:var(--text2);margin:2px 0 4px}
 .pk-warning{font-size:9px;margin-top:3px;color:var(--amber)}
 .pk-taper{font-size:9px;margin-top:3px;color:var(--red)}
 .pk-disclaimer{font-size:10px;color:var(--text2);margin-top:6px;padding:5px 0;border-top:1px solid var(--border)}
@@ -527,6 +528,16 @@ body[data-audience="patient"] .stats-line{display:none}
 .summary-jump{appearance:none;border:0;background:transparent;padding:0;font-size:12px;color:var(--accent);cursor:pointer;font-weight:800;text-decoration:underline}
 .focus-pulse{outline:3px solid rgba(14,165,233,.55);outline-offset:3px;box-shadow:0 0 0 7px rgba(14,165,233,.14)}
 
+/* REVIEW SCOPE */
+.scope-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:8px;margin-bottom:10px}
+.scope-tile{border:1px solid rgba(61,44,30,.1);border-radius:9px;background:rgba(255,255,255,.72);padding:9px 10px;min-width:0}
+.scope-tile strong{display:block;font-size:20px;line-height:1;font-weight:900;color:var(--text)}
+.scope-tile span{display:block;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;color:var(--text2);margin-top:4px}
+.scope-list{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.scope-list li{display:flex;gap:7px;align-items:flex-start;font-size:12px;line-height:1.4;color:var(--text2)}
+.scope-list li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);margin-top:5px;flex:0 0 auto}
+.scope-list strong{color:var(--text);font-weight:850}
+
 /* PRIORITIZED FINDINGS */
 .finding-card{border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:12px;background:var(--card2);padding:14px 15px;margin-bottom:10px;box-shadow:0 1px 2px rgba(61,44,30,.04)}
 .primary-finding-card{padding:16px;border-radius:10px;background:#fff;box-shadow:0 6px 18px rgba(61,44,30,.08)}
@@ -543,6 +554,15 @@ body[data-audience="patient"] .stats-line{display:none}
 .finding-sev.severe,.finding-sev.critical{background:var(--red)}
 .finding-sev.moderate{background:var(--amber)}
 .finding-sev.mild,.finding-sev.monitor,.finding-sev.info{background:var(--blue)}
+.finding-trust-strip{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 2px}
+.finding-trust-chip{display:inline-flex;align-items:center;gap:5px;max-width:100%;font-size:10px;font-weight:800;color:var(--text2);background:rgba(255,255,255,.74);border:1px solid rgba(61,44,30,.1);border-radius:999px;padding:4px 8px;overflow-wrap:anywhere}
+.finding-trust-chip strong{color:var(--text);font-weight:900;text-transform:uppercase;letter-spacing:.03em}
+.finding-trust-details{border:1px solid rgba(61,44,30,.08);background:rgba(255,255,255,.62);border-radius:9px;padding:9px 10px;margin:8px 0;font-size:11px;color:var(--text2)}
+.finding-trust-title{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:var(--text);margin-bottom:6px}
+.finding-trust-grid{display:grid;gap:5px}
+.finding-trust-row{display:grid;grid-template-columns:minmax(96px,.35fr) minmax(0,1fr);gap:8px;line-height:1.35}
+.finding-trust-row strong{font-size:10px;color:var(--text);text-transform:uppercase;letter-spacing:.03em}
+.finding-trust-row span{min-width:0;overflow-wrap:anywhere}
 .finding-effect{font-size:13px;line-height:1.45;color:var(--text);font-weight:650;margin-bottom:10px}
 .finding-explain{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
 .finding-step{padding:10px 11px;border-radius:8px;background:rgba(255,255,255,.74);border:1px solid rgba(61,44,30,.09)}
@@ -552,6 +572,7 @@ body[data-audience="patient"] .stats-line{display:none}
 .supporting-actions{margin:8px 0}
 .related-finding-btn{appearance:none;border:1px solid rgba(234,88,12,.24);border-radius:999px;background:var(--accentBg);color:var(--accent);font-size:10px;font-weight:900;padding:5px 9px;cursor:pointer;white-space:nowrap}
 .related-finding-btn.secondary{background:var(--card);border-color:var(--border);color:var(--text2)}
+.related-finding-btn.source-link{text-decoration:none;display:inline-flex;align-items:center}
 .related-finding-btn:hover{border-color:var(--accent);background:#fff7ed;color:var(--accent)}
 .finding-grid{display:grid;grid-template-columns:1fr;gap:8px;margin:8px 0}
 .finding-detail{padding:8px 9px;border-radius:9px;background:rgba(255,255,255,.68);border:1px solid rgba(61,44,30,.08);font-size:11px;line-height:1.4;color:var(--text2)}
@@ -663,8 +684,27 @@ body[data-audience="patient"] .stats-line{display:none}
 .review-diagnostic-meta{font-size:10px;color:var(--text2);line-height:1.4;margin-top:4px;overflow-wrap:anywhere}
 .review-diagnostic-current{border-color:var(--accent);background:var(--accentBg)}
 .review-actions{display:flex;flex-wrap:wrap;gap:8px}
+.review-action-status{font-size:11px;color:var(--text2);align-self:center}
 .review-action-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid var(--border);border-radius:8px;background:var(--card2);color:var(--text);font-size:11px;font-weight:900;padding:8px 10px}
+.review-action-btn[type="button"]{font-family:var(--font);cursor:pointer}
 .review-action-btn:hover{border-color:var(--accent);background:var(--accentBg);color:var(--accent)}
+.v1-handoff{border:1px solid var(--border);border-radius:10px;background:var(--card2);padding:11px 12px;margin-bottom:10px}
+.v1-handoff-title{font-size:12px;font-weight:900;color:var(--text);line-height:1.3;margin-bottom:4px}
+.v1-handoff-note{font-size:11px;color:var(--text2);line-height:1.4;margin-bottom:9px}
+.v1-handoff-text{white-space:pre-wrap;overflow-wrap:anywhere;max-height:260px;overflow:auto;border:1px solid rgba(61,44,30,.1);border-radius:8px;background:rgba(255,255,255,.72);padding:10px;font-size:11px;line-height:1.45;color:var(--text);margin:0 0 9px}
+.v1-readiness{border:1px solid var(--border);border-radius:10px;background:rgba(255,255,255,.64);padding:11px 12px;margin-bottom:10px}
+.v1-readiness.ready{border-color:rgba(34,197,94,.35);background:var(--greenBg)}
+.v1-readiness.needs-review{border-color:rgba(245,158,11,.34);background:var(--amberBg)}
+.v1-readiness-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px}
+.v1-readiness-title{font-size:12px;font-weight:900;color:var(--text);line-height:1.3}
+.v1-readiness-note{font-size:11px;color:var(--text2);line-height:1.4;margin-top:2px}
+.v1-readiness-status{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;border:1px solid rgba(61,44,30,.12);border-radius:999px;background:rgba(255,255,255,.72);color:var(--text);padding:4px 8px;white-space:nowrap}
+.v1-readiness-list{display:grid;gap:6px}
+.v1-readiness-item{display:grid;grid-template-columns:58px minmax(0,1fr);gap:8px;align-items:flex-start;font-size:11px;line-height:1.4;color:var(--text2);overflow-wrap:anywhere}
+.v1-readiness-item strong{display:block;color:var(--text);font-size:10px;text-transform:uppercase;letter-spacing:.03em;margin-bottom:1px}
+.v1-readiness-mark{display:inline-flex;justify-content:center;border:1px solid rgba(61,44,30,.12);border-radius:999px;background:rgba(255,255,255,.74);font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.03em;color:var(--text2);padding:3px 6px}
+.v1-readiness-item.ok .v1-readiness-mark{color:var(--green);border-color:rgba(34,197,94,.3)}
+.v1-readiness-item.warn .v1-readiness-mark{color:var(--amber);border-color:rgba(245,158,11,.34)}
 .mechanistic-note{padding:10px 12px;margin-bottom:10px;border:1px solid var(--border);border-radius:10px;background:var(--accentBg);color:var(--text2);font-size:12px;line-height:1.4}
 .mechanistic-card{border-style:dashed}
 .mechanistic-card .finding-sev{background:var(--blueBg);color:var(--blue);border:1px solid var(--blue)}
@@ -812,6 +852,15 @@ body[data-audience="patient"] .stats-line{display:none}
   </div>
 
   <div class="tab-panel active" id="tab-overview">
+  <div class="section" id="scopeSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('scope')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/></svg>
+        <span>Review Scope</span>
+        <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="scopeCount"></span>
+      </div>
+      <div class="section-body coll-body open" id="scopeBody"></div>
+    </div>
+
   <div class="section" id="riskSection" style="display:none">
       <div class="section-title">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>

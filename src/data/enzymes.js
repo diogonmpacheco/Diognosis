@@ -684,6 +684,7 @@ const ENZYME_ACTORS = {
   "CYP3A5":  {id:"CYP3A5",  type:ACTOR_TYPE.ENZYME, name:"CYP3A5",  family:"CYP450", tissue:["liver","gut"],         polymorphic:true, substrateCount:0},
   "CYP3A7":  {id:"CYP3A7",  type:ACTOR_TYPE.ENZYME, name:"CYP3A7",  family:"CYP450", tissue:["fetal_liver","neonatal_liver","adult_liver_variant"], polymorphic:true, substrateCount:0},
   "CYP2C19": {id:"CYP2C19", type:ACTOR_TYPE.ENZYME, name:"CYP2C19", family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
+  "CYP2C18": {id:"CYP2C18", type:ACTOR_TYPE.ENZYME, name:"CYP2C18", family:"CYP450", tissue:["liver"],              polymorphic:false,substrateCount:0},
   "CYP2C9":  {id:"CYP2C9",  type:ACTOR_TYPE.ENZYME, name:"CYP2C9",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP2C8":  {id:"CYP2C8",  type:ACTOR_TYPE.ENZYME, name:"CYP2C8",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP1A1":  {id:"CYP1A1",  type:ACTOR_TYPE.ENZYME, name:"CYP1A1",  family:"CYP450", tissue:["gut","lung","extrahepatic"], polymorphic:false,substrateCount:0, inducible:["cruciferous","charbroiled"]},

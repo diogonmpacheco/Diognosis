@@ -83,10 +83,18 @@ console.log(`✓ ${DRUG_DB.length} drugs`);
 console.log(`✓ ${Object.keys(STUDY_DB).length} evidence entries`);
 
 run('Database audit', node, ['scripts/database-audit.js']);
+run('V1 database warning audit', node, ['scripts/audit/v1-database-warning-audit.js']);
 run('Data views audit', node, ['scripts/audit/data-views-audit.js']);
 run('Evidence ledger check', node, ['scripts/check-evidence.js']);
 run('Generated artifact boundary audit', node, ['scripts/audit/generated-artifact-boundary-audit.js']);
+run('V1 public docs audit', node, ['scripts/audit/v1-public-docs-audit.js']);
 run('Evidence review UI audit', node, ['scripts/audit/evidence-review-ui-audit.js']);
+run('V1 standards coverage audit', node, ['scripts/audit/v1-standards-coverage-audit.js']);
+run('V1 PGx contract audit', node, ['scripts/audit/v1-pgx-contract-audit.js']);
+run('V1 PK visualization audit', node, ['scripts/audit/v1-pk-visualization-audit.js']);
+run('V1 finding contract audit', node, ['scripts/audit/v1-finding-contract-audit.js']);
+run('V1 release readiness audit', node, ['scripts/audit/v1-release-readiness-audit.js']);
+run('V1 feedback privacy audit', node, ['scripts/audit/v1-feedback-privacy-audit.js']);
 run('Evidence calculation audit', node, ['scripts/audit/evidence-calculation-audit.js']);
 run('External context firewall audit', node, ['scripts/audit/external-context-firewall-audit.js']);
 run('External context UI audit', node, ['scripts/audit/external-safety-context-ui-audit.js']);

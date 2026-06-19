@@ -62,14 +62,22 @@ function renderAbsolutePKCard(name) {
   const baseAuc = pkIntervalAuc(genoParams);
   const adjAuc = adjParams ? pkIntervalAuc(adjParams) : null;
   const exposureShift = adjAuc ? adjAuc / Math.max(baseAuc || 0, 1e-9) : 1;
-  const basePts = pkRepeatedDoseCurve(genoParams, tau, nDoses, 200);
-  const adjPts = adjParams ? pkRepeatedDoseCurve(adjParams, tau, nDoses, 200) : null;
+  const displayWindow = typeof pkDisplayCurveWindow === "function"
+    ? pkDisplayCurveWindow(genoParams, tau, nDoses)
+    : { nDoses, tTotal:tau * nDoses, compressed:false };
+  const adjDisplayWindow = adjParams && typeof pkDisplayCurveWindow === "function"
+    ? pkDisplayCurveWindow(adjParams, tau, nDoses)
+    : displayWindow;
+  const displayTTotal = Math.max(displayWindow.tTotal, adjParams ? adjDisplayWindow.tTotal : 0);
+  const displayDoseCount = Math.max(displayWindow.nDoses, adjParams ? adjDisplayWindow.nDoses : 0);
+  const basePts = pkRepeatedDoseCurve(genoParams, tau, displayDoseCount, 200, displayTTotal);
+  const adjPts = adjParams ? pkRepeatedDoseCurve(adjParams, tau, displayDoseCount, 200, displayTTotal) : null;
   const showTrough = baseMetrics.ctrough_ss > Math.max(baseMetrics.cmax_ss, adjMetrics?.cmax_ss || 0) * 0.02;
   const svg = renderPKCurveSvg({
     key,
     basePts,
     adjPts,
-    tTotal: tau * nDoses,
+    tTotal: displayTTotal,
     yMax: Math.max(baseMetrics.cmax_ss, adjMetrics?.cmax_ss || 0) * 1.15,
     cmax: baseMetrics.cmax_ss,
     ctrough: showTrough ? baseMetrics.ctrough_ss : null,
@@ -89,6 +97,7 @@ function renderAbsolutePKCard(name) {
     <div class="pk-params">F=${safePublicHtml(Math.round(params.F*100))}% · t½=${safePublicHtml(params.halfLife)}h · τ=${safePublicHtml(tau)}h · dose=${safePublicHtml(params.dose_mg)}mg · Vd=${safePublicHtml(params.Vd)}L/kg</div>
     ${svg}
     ${renderPKLegend(!!adjPts, false)}
+    ${displayWindow.compressed ? `<div class="pk-window-note">Curve window compressed to show the early concentration peak for a short-acting profile; AUC and steady-state metrics still use τ=${safePublicHtml(tau)}h.</div>` : ""}
     <div class="pk-metrics">
       <span title="Accumulation factor">R = ${safePublicHtml(Math.round(baseMetrics.accum * 10)/10)}x</span>
       <span title="Estimated steady-state dose-interval area under the curve">AUCτ: ${safePublicHtml(fmtPK(baseAuc))} ng*h/mL</span>

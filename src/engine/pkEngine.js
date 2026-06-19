@@ -11,6 +11,60 @@ function pkGetTau(drugName) {
   return PK_DOSE_INTERVALS[key] || PK_DOSE_INTERVALS[drugName.toLowerCase()] || 24;
 }
 
+function pkApproxTmax(params = {}) {
+  if (!params?.halfLife || !params?.ka) return 0;
+  const ke = 0.693 / params.halfLife;
+  const ka = params.ka;
+  if (!Number.isFinite(ke) || !Number.isFinite(ka) || ke <= 0 || ka <= 0) return 0;
+  if (Math.abs(ka - ke) < 1e-6) return Math.max(0.01, 1 / Math.max(ka, ke));
+  return Math.max(0.01, Math.log(ka / ke) / (ka - ke));
+}
+
+function pkCurveSampleTimes(params = {}, tTotal, nPoints, tau = null) {
+  const times = new Set([0, tTotal]);
+  const linearPoints = Math.max(20, nPoints || 120);
+  for (let i = 0; i <= linearPoints; i++) times.add((i / linearPoints) * tTotal);
+
+  const halfLife = Number(params.halfLife) || 0;
+  const tmax = pkApproxTmax(params);
+  const offsets = [
+    0.01,
+    tmax * 0.25,
+    tmax * 0.5,
+    tmax,
+    tmax * 1.5,
+    tmax * 2,
+    halfLife * 0.5,
+    halfLife,
+    halfLife * 2,
+    halfLife * 4,
+    halfLife * 8,
+  ].filter(value => Number.isFinite(value) && value > 0);
+  const doseInterval = Number.isFinite(tau) && tau > 0 ? tau : tTotal + 1;
+  for (let doseTime = 0; doseTime <= tTotal; doseTime += doseInterval) {
+    for (const offset of offsets) {
+      const t = doseTime + offset;
+      if (t >= 0 && t <= tTotal) times.add(t);
+    }
+  }
+  return [...times].sort((a, b) => a - b);
+}
+
+function pkDisplayCurveWindow(params = {}, tau, nDoses = 5) {
+  const fullHorizon = tau * nDoses;
+  const halfLife = Number(params.halfLife) || 0;
+  const absorptionWindow = params.ka ? (6 / params.ka) : 0;
+  const earlyWindow = Math.max(2, halfLife * 12, pkApproxTmax(params) * 8, absorptionWindow);
+  if (halfLife > 0 && halfLife < tau / 6 && earlyWindow < fullHorizon * 0.35) {
+    return {
+      nDoses: 1,
+      tTotal: Math.min(tau, Math.max(earlyWindow, halfLife * 8, 1)),
+      compressed:true,
+    };
+  }
+  return { nDoses, tTotal:fullHorizon, compressed:false };
+}
+
 // pkSteadyStateCurve — exact Css(t) within one dosing interval [0, τ]
 // One-compartment oral superposition formula:
 //   Css(t) = A·(ka/(ka−ke)) · [exp(−ke·t)/(1−exp(−ke·τ)) − exp(−ka·t)/(1−exp(−ka·τ))]
@@ -25,8 +79,7 @@ function pkSteadyStateCurve(params, tau, nPoints) {
   if (Math.abs(ka - ke) < 1e-6) {
     // Degenerate: approximate using accumulation on simplified model
     const R = 1 / (1 - Math.exp(-ke * tau));
-    for (let i = 0; i <= nPoints; i++) {
-      const t = (i / nPoints) * tau;
+    for (const t of pkCurveSampleTimes(params, tau, nPoints, tau)) {
       pts.push({ t, c: Math.max(0, A * ke * t * Math.exp(-ke * t) * R) });
     }
     return pts;
@@ -34,8 +87,7 @@ function pkSteadyStateCurve(params, tau, nPoints) {
 
   const R_ke = 1 / (1 - Math.exp(-ke * tau));
   const R_ka = 1 / (1 - Math.exp(-ka * tau));
-  for (let i = 0; i <= nPoints; i++) {
-    const t = (i / nPoints) * tau;
+  for (const t of pkCurveSampleTimes(params, tau, nPoints, tau)) {
     const c = A * (ka / (ka - ke)) * (R_ke * Math.exp(-ke * t) - R_ka * Math.exp(-ka * t));
     pts.push({ t, c: Math.max(0, c) });
   }
@@ -43,13 +95,12 @@ function pkSteadyStateCurve(params, tau, nPoints) {
 }
 
 // pkRepeatedDoseCurve — superposition of nDoses single doses, from t=0 to t=nDoses×τ
-function pkRepeatedDoseCurve(params, tau, nDoses, nPoints) {
+function pkRepeatedDoseCurve(params, tau, nDoses, nPoints, tTotalOverride = null) {
   nDoses  = nDoses  || 5;
   nPoints = nPoints || 120;
-  const tTotal = tau * nDoses;
+  const tTotal = Number.isFinite(tTotalOverride) && tTotalOverride > 0 ? tTotalOverride : tau * nDoses;
   const pts = [];
-  for (let i = 0; i <= nPoints; i++) {
-    const t = (i / nPoints) * tTotal;
+  for (const t of pkCurveSampleTimes(params, tTotal, nPoints, tau)) {
     let c = 0;
     for (let d = 0; d < nDoses; d++) {
       const td = t - d * tau;

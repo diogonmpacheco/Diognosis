@@ -19,7 +19,9 @@ function renderReviewSummary() {
   const timing = findings.filter(finding => finding.type === "timing_washout" || findingInvolves(finding, /washout|persistence|enzyme recovery|induction offset/i));
   section.style.display = "";
   if (count) count.textContent = `${findings.length} finding${findings.length === 1 ? "" : "s"}`;
-  body.innerHTML = `<div class="review-summary-grid">
+  body.innerHTML = `${renderV1HandoffSummary()}
+  ${renderV1ReadinessPanel()}
+  <div class="review-summary-grid">
     ${renderReviewSummaryTile(findings.length, "Findings", "Normalized current-stack findings across all engines.")}
     ${renderReviewSummaryTile(severeCritical.length, "Severe/Critical", "Highest priority rows for professional review.")}
     ${renderReviewSummaryTile(pendingReview.length, "Pending Review", "Rows not marked professionally reviewed.")}
@@ -34,6 +36,206 @@ function renderReviewSummary() {
     ${renderClinicalConcernReviewList(concerns)}
   </div>`;
   return findings;
+}
+
+function renderV1HandoffSummary() {
+  const text = buildV1HandoffSummaryText();
+  const shareUrl = typeof currentStackShareUrl === "function" ? currentStackShareUrl("overview") : "";
+  return `<div class="v1-handoff">
+    <div class="v1-handoff-title">V1 Review Summary</div>
+    <div class="v1-handoff-note">Plain-language handoff for the current stack. It preserves the same source-linked and clinical-review boundaries as the finding cards.</div>
+    <pre class="v1-handoff-text" id="v1HandoffText">${safePublicHtml(text)}</pre>
+    <div class="review-actions">
+      <button type="button" class="review-action-btn" onclick="copyV1HandoffSummary()">Copy summary</button>
+      ${shareUrl ? `<a class="review-action-btn" href="${safeAttr(shareUrl)}" target="_blank" rel="noopener">Open share link</a>` : ""}
+      <span class="review-action-status" id="v1HandoffCopyStatus"></span>
+    </div>
+  </div>`;
+}
+
+function buildV1ReadinessSnapshot(options = {}) {
+  const findings = getReviewTabFindings();
+  const concerns = getReviewClinicalConcerns(findings);
+  const presentations = currentPublicFindingPresentations.length
+    ? currentPublicFindingPresentations
+    : (typeof buildPublicFindingPresentations === "function" ? buildPublicFindingPresentations(concerns) : []);
+  const cache = typeof getRenderComputationCache === "function" ? getRenderComputationCache() : {};
+  const scope = typeof buildReviewScopeSummary === "function" ? buildReviewScopeSummary(cache) : null;
+  const handoffText = options.handoffText || buildV1HandoffSummaryText({ limit: options.limit || 5 });
+  const shareUrl = typeof currentStackShareUrl === "function" ? currentStackShareUrl("overview") : "";
+  const sourceLinked = presentations.filter(presentation => presentation.trustContract?.sourceLinked);
+  const modeled = presentations.filter(presentation => presentation.trustContract && !presentation.trustContract.sourceLinked);
+  const readyContracts = presentations.filter(presentation => {
+    const trust = presentation.trustContract || {};
+    return trust.ready && !(trust.missingFields || []).length;
+  });
+  const patientActions = presentations.filter(presentation =>
+    presentation.trustContract?.patientAction && presentation.trustContract?.clinicianAction
+  );
+  const unsafeCertaintyPattern = /\b(?:guaranteed safe|safe to take|this list is safe|no risks?|risk[-\s]?free|clinically validated)\b/i;
+  const boundaryText = `${handoffText} ${(scope?.limits || []).join(" ")}`;
+  const checks = [
+    {
+      key:"scope",
+      label:"Review scope",
+      ok:!!scope && scope.selectedCount === activeStack.length && Array.isArray(scope.limits) && scope.limits.length >= 2,
+      detail:scope ? `${scope.selectedCount} selected, ${scope.recognizedDrugCount + scope.recognizedActorCount} recognized, ${scope.unknownCount} unknown.` : "Scope summary is not available.",
+    },
+    {
+      key:"contracts",
+      label:"Finding contracts",
+      ok:presentations.length === 0 || readyContracts.length === presentations.length,
+      detail:presentations.length
+        ? `${readyContracts.length}/${presentations.length} public concern${presentations.length === 1 ? "" : "s"} have complete V1 trust fields.`
+        : "No public concern was generated for this stack.",
+    },
+    {
+      key:"sources",
+      label:"Source traceability",
+      ok:presentations.length === 0 || sourceLinked.length > 0,
+      detail:presentations.length
+        ? `${sourceLinked.length} source-linked, ${modeled.length} modeled.`
+        : "No source-backed concern was needed for an empty concern set.",
+    },
+    {
+      key:"standards",
+      label:"Standards identity",
+      ok:!!scope?.standardsCoverage,
+      detail:scope?.standardsCoverage
+        ? `${scope.standardsCoverage.mappedDrugCount}/${scope.standardsCoverage.recognizedDrugCount} recognized medication${scope.standardsCoverage.recognizedDrugCount === 1 ? "" : "s"} mapped to RxNorm; ${scope.standardsCoverage.markerMappingCount} PGx marker row${scope.standardsCoverage.markerMappingCount === 1 ? "" : "s"}.`
+        : "Standards coverage summary is not available.",
+    },
+    {
+      key:"actions",
+      label:"Action language",
+      ok:presentations.length === 0 || patientActions.length === presentations.length,
+      detail:presentations.length
+        ? `${patientActions.length}/${presentations.length} concern${presentations.length === 1 ? "" : "s"} include patient-safe and clinician-review actions.`
+        : "No concern action language is needed.",
+    },
+    {
+      key:"handoff",
+      label:"Handoff summary",
+      ok:/Diognosis V1 review summary|Review scope|Top concerns|Boundaries/i.test(handoffText),
+      detail:"Plain-text handoff includes scope, top concerns, boundaries, and share context.",
+    },
+    {
+      key:"boundaries",
+      label:"Clinical boundaries",
+      ok:/not medical advice/i.test(handoffText) && /Do not start, stop, or change medication/i.test(handoffText) && !unsafeCertaintyPattern.test(boundaryText),
+      detail:"Copy avoids certainty language and keeps medication-change decisions with qualified clinicians.",
+    },
+    {
+      key:"share",
+      label:"Shareable state",
+      ok:activeStack.length > 0 && shareUrl.includes("substances=") && handoffText.includes(shareUrl),
+      detail:shareUrl ? "Current list can be reopened from the generated share link." : "No share link is available.",
+    },
+    {
+      key:"audience",
+      label:"Audience mode",
+      ok:typeof setAudienceMode === "function" && !!document.getElementById("audience-patient") && !!document.getElementById("audience-clinician"),
+      detail:"Patient and Clinician presentation modes are available at the top level.",
+    },
+  ];
+  const passed = checks.filter(check => check.ok).length;
+  const ready = activeStack.length > 0 && passed === checks.length;
+  return {
+    version:"v1-readiness-1",
+    ready,
+    statusLabel:ready ? "V1-shaped" : "Needs review",
+    passed,
+    total:checks.length,
+    checks,
+    scope,
+    publicConcernCount:presentations.length,
+    sourceLinkedCount:sourceLinked.length,
+    modeledCount:modeled.length,
+    readyContractCount:readyContracts.length,
+    shareUrl,
+  };
+}
+
+function renderV1ReadinessPanel(snapshot = buildV1ReadinessSnapshot()) {
+  const statusClass = snapshot.ready ? "ready" : "needs-review";
+  return `<div class="v1-readiness ${statusClass}" id="v1ReadinessPanel" data-ready="${snapshot.ready ? "true" : "false"}">
+    <div class="v1-readiness-head">
+      <div>
+        <div class="v1-readiness-title">V1 Readiness</div>
+        <div class="v1-readiness-note">Current-stack product checks. This is not medical validation.</div>
+      </div>
+      <span class="v1-readiness-status">${safePublicHtml(snapshot.statusLabel)} · ${safePublicHtml(`${snapshot.passed}/${snapshot.total}`)}</span>
+    </div>
+    <div class="v1-readiness-list">
+      ${snapshot.checks.map(check => `<div class="v1-readiness-item ${check.ok ? "ok" : "warn"}">
+        <span class="v1-readiness-mark">${check.ok ? "OK" : "Review"}</span>
+        <span><strong>${safePublicHtml(check.label)}</strong>${safePublicHtml(check.detail)}</span>
+      </div>`).join("")}
+    </div>
+  </div>`;
+}
+
+function buildV1HandoffSummaryText(options = {}) {
+  const findings = getReviewTabFindings();
+  const concerns = getReviewClinicalConcerns(findings);
+  const presentations = currentPublicFindingPresentations.length
+    ? currentPublicFindingPresentations
+    : (typeof buildPublicFindingPresentations === "function" ? buildPublicFindingPresentations(concerns) : []);
+  const cache = typeof getRenderComputationCache === "function" ? getRenderComputationCache() : {};
+  const scope = typeof buildReviewScopeSummary === "function" ? buildReviewScopeSummary(cache) : null;
+  const shareUrl = typeof currentStackShareUrl === "function" ? currentStackShareUrl("overview") : "";
+  const lines = [
+    "Diognosis V1 review summary",
+    `Stack: ${(activeStack || []).join(" + ") || "none selected"}`,
+    shareUrl ? `Share link: ${shareUrl}` : "",
+    "",
+    "Review scope",
+    scope ? `- Selected substances: ${scope.selectedCount}` : "",
+    scope ? `- Recognized in local dataset: ${scope.recognizedDrugCount + scope.recognizedActorCount}` : "",
+    scope ? `- Selected gene/marker results: ${scope.genotypeCount}` : "",
+    scope ? `- Public concerns: ${scope.publicConcernCount} (${scope.sourceLinked} source-linked, ${scope.modeled} modeled)` : "",
+    scope?.standardsCoverage ? `- Standards identity: ${scope.standardsCoverage.mappedDrugCount}/${scope.standardsCoverage.recognizedDrugCount} recognized medications mapped to RxNorm; ${scope.standardsCoverage.markerMappingCount} PGx marker rows; ${scope.standardsCoverage.pgxActionCount} CPIC-linked action contexts` : "",
+    "",
+    "Top concerns",
+    ...buildV1HandoffConcernLines(presentations.slice(0, options.limit || 5)),
+    "",
+    "Boundaries",
+    "- This is a medication-safety review aid, not medical advice, diagnosis, prescribing, or proof of safety.",
+    "- Source-linked evidence is traceability; it does not equal professional clinical validation.",
+    "- Do not start, stop, or change medication without a qualified doctor or pharmacist.",
+    scope?.unknownCount ? `- ${scope.unknownCount} selected item${scope.unknownCount === 1 ? " was" : "s were"} not recognized by the local dataset.` : "- Dose, timing, allergies, diagnoses, labs, pregnancy status, and clinical history are not fully assessed.",
+  ].filter(line => line !== "");
+  return lines.join("\n");
+}
+
+function buildV1HandoffConcernLines(presentations = []) {
+  if (!presentations.length) {
+    return ["- No major public concern was generated for this stack in the current local dataset."];
+  }
+  return presentations.flatMap((presentation, index) => {
+    const trust = presentation.trustContract || {};
+    return [
+      `${index + 1}. ${presentation.title || "Clinical concern"} [${presentation.severity || "info"}]`,
+      `   Concern: ${trust.clinicalConcern || presentation.whatChanged || "Review current stack context."}`,
+      `   Mechanism: ${trust.mechanism || presentation.whyItMatters || "Mechanism needs review."}`,
+      `   Evidence/status: ${trust.evidence || presentation.evidenceSummary || "Evidence status unknown"}; ${trust.limitationStatus || "clinical review needed"}`,
+      `   Patient-safe next step: ${trust.patientAction || "Review with a doctor or pharmacist before making medication changes."}`,
+      `   Clinician review: ${trust.clinicianAction || presentation.whatToReview || "Review dose, timing, source evidence, and clinical context."}`,
+    ];
+  });
+}
+
+function copyV1HandoffSummary() {
+  const text = buildV1HandoffSummaryText();
+  const status = document.getElementById("v1HandoffCopyStatus");
+  const done = (message) => {
+    if (status) status.textContent = message;
+  };
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(text).then(() => done("Copied")).catch(() => done("Copy unavailable"));
+  } else {
+    done("Copy unavailable");
+  }
 }
 
 function getReviewDiagnostics() {
@@ -122,7 +324,7 @@ function renderContributeReview() {
     <a class="review-action-btn" href="${safeAttr(evidenceUrl)}" target="_blank" rel="noopener">Suggest evidence</a>
     <a class="review-action-btn" href="${safeAttr(scenarioUrl)}" target="_blank" rel="noopener">Request scenario</a>
   </div>
-  <div class="review-diagnostic-meta" style="margin-top:8px">These links open prefilled GitHub issues for review. They do not send medication data unless opened and submitted.</div>`;
+  <div class="review-diagnostic-meta" style="margin-top:8px">These links open privacy-preserving GitHub issue drafts. They do not include your current list, gene settings, share URL, or browser URL unless you intentionally add that context.</div>`;
 }
 
 function getReviewTabFindings() {

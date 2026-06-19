@@ -1,0 +1,92 @@
+#!/usr/bin/env node
+import { existsSync, readFileSync } from 'fs';
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
+import { collectStats } from '../collect-stats.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const root = resolve(__dirname, '..', '..');
+const stats = collectStats();
+
+function assert(condition, message) {
+  if (!condition) throw new Error(message);
+}
+
+function read(path) {
+  return readFileSync(resolve(root, path), 'utf8');
+}
+
+function assertIncludes(label, text, expected) {
+  assert(text.includes(expected), `${label} is missing expected text: ${expected}`);
+}
+
+function localMarkdownLinks(markdown) {
+  return [...markdown.matchAll(/\[[^\]]+\]\(([^)]+)\)/g)]
+    .map(match => match[1].trim())
+    .filter(href =>
+      href &&
+      !href.startsWith('#') &&
+      !/^[a-z][a-z0-9+.-]*:/i.test(href)
+    )
+    .map(href => href.split('#')[0]);
+}
+
+const readme = read('README.md');
+const publicTrust = read('docs/PUBLIC_TRUST.md');
+const launchQa = read('docs/LAUNCH_QA_MATRIX.md');
+const launchTrust = read('docs/LAUNCH_DATA_TRUST_AUDIT.md');
+const pkg = JSON.parse(read('package.json'));
+
+const missingLinks = localMarkdownLinks(readme)
+  .filter(href => !existsSync(resolve(root, href)));
+assert(missingLinks.length === 0, `README has missing local links: ${missingLinks.join(', ')}`);
+
+assert(pkg.scripts?.['launch:qa'] === 'node scripts/launch-qa-audit.js', 'package.json should expose npm run launch:qa');
+
+assertIncludes('Public Trust', publicTrust, '<!-- PUBLIC_TRUST_STATS_START -->');
+assertIncludes('Public Trust', publicTrust, `**${stats.sourceLinkedStudies} \`STUDY_DB\` entries** have public source identifiers.`);
+assertIncludes('Public Trust', publicTrust, `**${stats.pendingProfessionalReviewStudies} entries** are pending professional review.`);
+assertIncludes('Public Trust', publicTrust, `**${stats.professionalReviewedStudies} entries** are professionally reviewed.`);
+assertIncludes('Public Trust', publicTrust, `**${stats.internalReviewRequiredEntries} entries** are currently marked \`reviewRequired:true\``);
+assert(/not medical advice|not a clinical decision support system|does not replace a licensed clinician or pharmacist/i.test(publicTrust),
+  'Public Trust must preserve medical-boundary wording');
+assert(/privacy-preserving GitHub issue drafts/i.test(publicTrust) && /do not include the current medication list, genotype settings, share URL, browser URL/i.test(publicTrust),
+  'Public Trust must preserve feedback-link privacy wording');
+
+assertIncludes('Launch Data Trust Audit', launchTrust, '<!-- LAUNCH_DATA_TRUST_STATS_START -->');
+assertIncludes('Launch Data Trust Audit', launchTrust, `| Drugs in \`DRUG_DB\` | ${stats.drugs} |`);
+assertIncludes('Launch Data Trust Audit', launchTrust, `| Evidence entries in \`STUDY_DB\` | ${stats.studies} |`);
+assertIncludes('Launch Data Trust Audit', launchTrust, `| Source-linked evidence entries | ${stats.sourceLinkedStudies} |`);
+assertIncludes('Launch Data Trust Audit', launchTrust, `| Pending professional review entries | ${stats.pendingProfessionalReviewStudies} |`);
+assertIncludes('Launch Data Trust Audit', launchTrust, `| Professional-reviewed evidence entries | ${stats.professionalReviewedStudies} |`);
+assertIncludes('Launch Data Trust Audit', launchTrust, `| Internal \`reviewRequired:true\` evidence entries | ${stats.internalReviewRequiredEntries} |`);
+assertIncludes('Launch Data Trust Audit', launchTrust, `| RxNorm identity mappings | ${stats.externalSubstanceMappings} |`);
+assertIncludes('Launch Data Trust Audit', launchTrust, `| PGx marker rows | ${stats.pgxMarkerRows} |`);
+assertIncludes('Launch Data Trust Audit', launchTrust, `| CPIC-linked action summaries | ${stats.pgxActionSummaries} |`);
+assertIncludes('Launch Data Trust Audit', launchTrust, `| Interaction pairs | ${stats.ddiPairs} |`);
+assert(/source-linked does not mean professionally reviewed/i.test(launchTrust),
+  'Launch Data Trust Audit must preserve source-linked/professional-review boundary');
+assert(/no accounts, analytics, tracking, medication-data collection, or runtime clinical API calls/i.test(launchTrust),
+  'Launch Data Trust Audit must preserve static privacy boundary');
+
+assert(/npm run launch:qa/.test(launchQa), 'Launch QA Matrix must document npm run launch:qa');
+assert(/V1 PGx contract audit|V1 PK visualization audit|V1 finding contract audit|V1 release readiness audit/i.test(launchQa),
+  'Launch QA Matrix must reference the V1 release gates');
+assert(/V1 PGx contract audit/i.test(launchTrust),
+  'Launch Data Trust Audit must reference the V1 PGx contract gate');
+assert(/V1 PK visualization audit/i.test(launchTrust),
+  'Launch Data Trust Audit must reference the V1 PK visualization gate');
+assert(/Patient mode|Clinician|patient\/clinician/i.test(launchQa),
+  'Launch QA Matrix must cover audience-mode behavior');
+
+if (stats.studies !== 456) {
+  for (const [label, text] of [
+    ['Public Trust', publicTrust],
+    ['Launch Data Trust Audit', launchTrust],
+    ['Launch QA Matrix', launchQa],
+  ]) {
+    assert(!/\b456\b/.test(text), `${label} still contains stale 456-count launch data`);
+  }
+}
+
+console.log('V1 public docs audit passed: launch docs, public trust stats, package scripts, and README links are current.');

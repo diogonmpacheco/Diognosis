@@ -121,6 +121,8 @@ UI placement: Overview shows ranked finding cards; Mechanisms explains them; Evi
 
 Review/safety limitations: findings are review prompts. They are not clinical decisions and should not be treated as final severity judgments without professional review.
 
+V1 trust contract: each public Overview finding is normalized into a reusable trust contract with concern category, affected actors, mechanism, expected change, clinical concern, confidence, evidence status, patient-safe action, clinician action, and limitation status. Source-linked finding cards expose direct source chips when public identifiers are available, or a jump to the Evidence ledger otherwise. The Overview Review Scope panel summarizes what was checked, how many public concerns were produced, source-linked versus modeled support, selected gene-marker context, RxNorm/PGx standards identity coverage, and explicit limits. The Review tab V1 handoff summary turns the same contract into a shareable text artifact with stack, scope, top concerns, evidence/status, standards identity coverage, patient-safe boundaries, and share URL. The Review tab also exposes a V1 readiness snapshot for the current stack; it checks scope, contracts, source traceability, standards identity disclosure, action wording, handoff, safety boundaries, share state, and Audience Mode availability without claiming clinical validation. `scripts/audit/v1-finding-contract-audit.js` checks this contract, direct source traceability, scope wording, and handoff summary across broad data-derived stacks, then sweeps every recognized shipped `KNOWN_DDI` pair for a complete public contract. `scripts/audit/v1-pgx-contract-audit.js` checks every supported CPIC-linked action case, recognized risk-marker drug row, and high-priority genotype-metabolite row for V1-ready public contracts and PGx marker identity coverage. `scripts/audit/v1-pk-visualization-audit.js` checks every PK-eligible drug for a nonblank absolute or relative SVG curve, model badges, AUC/Cmax metrics, safety disclaimer text, short-acting compressed display windows, and a DDI-adjusted AUC curve. `scripts/audit/v1-standards-coverage-audit.js` checks RxNorm, PGx marker, CPIC action, and standards-gap disclosure. `scripts/audit/v1-release-readiness-audit.js` checks the cross-surface V1 behavior for representative clinician and patient modes.
+
 ### Active-Moiety Balance
 
 Purpose: separate the direction of parent drug, active metabolite, toxic metabolite, inactive metabolite, and net active-moiety effect.
@@ -383,7 +385,7 @@ npm test
 npm run release:check
 ```
 
-`npm run release:check` rebuilds the bundle, verifies metadata, runs database and data-view audits, evidence review UI, evidence calculation, Open Targets gates, scenario snapshots, launch QA, regression, smoke, strict validation, privacy/static audit, and whitespace checks.
+`npm run release:check` rebuilds the bundle, verifies metadata, runs database and data-view audits, the V1 no-warning database gate, evidence review UI, evidence calculation, Open Targets gates, scenario snapshots, launch QA, regression, smoke, strict validation, privacy/static audit, and whitespace checks.
 
 `npm run test:unit`, `npm run test:data`, and `npm run test:integrations` are the CI gate split. They keep failures grouped by app behavior, data/boundary integrity, and external integration checks.
 

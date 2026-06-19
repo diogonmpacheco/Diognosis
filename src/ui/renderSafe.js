@@ -80,6 +80,7 @@ function publicDisplayText(value, fallback = "") {
     .replace(/\braw warning paths?\b/gi, "technical details")
     .replace(/\bengine rows?\b/gi, "details")
     .replace(/\bmodel-only\b/gi, "modeled")
+    .replace(/\breview prompts?\b/gi, "review signal")
     .replace(/_/g, " ")
     .replace(/\bcoverage context context\b/gi, "coverage context")
     .replace(/\bcoverage coverage\b/gi, "coverage")
@@ -147,4 +148,13 @@ function publicEvidenceReferenceLabel(ref) {
   if (study?.doi) return "DOI";
   if (hasInternalCoverageRef([ref])) return publicEvidenceTitle({ id:ref });
   return study ? publicEvidenceTitle(study) : "source-linked evidence";
+}
+
+function publicEvidenceReferenceUrl(ref) {
+  const study = typeof getStudy === "function" ? getStudy(ref) : (typeof STUDY_DB !== "undefined" ? STUDY_DB?.[ref] : null);
+  if (!study) return "";
+  if (study.pmid) return `https://pubmed.ncbi.nlm.nih.gov/${encodeURIComponent(study.pmid)}/`;
+  if (study.doi) return `https://doi.org/${encodeURIComponent(study.doi)}`;
+  if (study.url) return safeUrl(study.url, "");
+  return "";
 }
