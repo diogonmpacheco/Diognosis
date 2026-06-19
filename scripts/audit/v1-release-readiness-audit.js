@@ -169,6 +169,8 @@ const patient = patientWindow.eval(`(() => ({
   findingTitle:document.getElementById('findingTitle')?.textContent || '',
   findingCount:document.getElementById('findingCount')?.textContent || '',
   findingText:document.getElementById('findingBody')?.textContent || '',
+  medListText:document.getElementById('medList')?.textContent || '',
+  exposureSummaryCount:document.querySelectorAll('#medList .exposure-summary').length,
   severityLabels:[...document.querySelectorAll('#findingBody .finding-sev')].map(el => el.textContent.trim()),
   sourceLinks:document.querySelectorAll('#findingBody a.source-link').length,
   actionRows:document.querySelectorAll('#findingBody .finding-actions').length,
@@ -200,6 +202,7 @@ assert(patient.tabBarDisplay === 'none', 'Patient mode should hide clinician tab
 assert(patient.summaryRisk.trim() === '', 'Patient mode should hide score-style summary badges');
 assert(patient.findingTitle === 'Safety Notes', 'Patient mode should rename public findings');
 assert(/safety notes?/i.test(patient.findingCount), 'Patient mode should label public finding count as safety notes');
+assert(patient.exposureSummaryCount === 0, 'Patient mode should hide technical exposure summary rows from the selected list');
 assert(/What this means|What to ask/i.test(patient.findingText), 'Patient mode should use plain-language labels');
 assert(/Question to ask|Can you check/i.test(patient.findingText), 'Patient mode should expose a plain-language discussion question');
 assert(/Safety notes group related concerns|doctor or pharmacist/i.test(patient.findingText), 'Patient mode should use a plain-language Safety Notes footer');
@@ -222,9 +225,34 @@ assertNoPatientTechnicalLeak('Patient Summary', patient.summaryText);
 assertNoPatientTechnicalLeak('Patient Overview', patient.findingText);
 assertNoPatientTechnicalLeak('Patient Copy Summary', patient.overviewHandoffText);
 assertNoPatientTechnicalLeak('Patient Chrome', `${patient.tagline} ${patient.searchPlaceholder} ${patient.listTitle} ${patient.geneTitle} ${patient.geneIntro}`);
+assertNoPatientTechnicalLeak('Patient Selected List', patient.medListText);
 assertNoPatientFooterLeak('Patient Overview', patient.findingText);
 assertNoUnsafeCertainty('Patient Overview', patient.findingText);
 assertNoInternalLeak('Patient Overview', patient.findingText);
+
+const patientGeneWindow = await loadPage('http://localhost/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&audience=patient&tab=overview');
+const patientGene = patientGeneWindow.eval(`(() => ({
+  audienceMode,
+  activeStack,
+  summaryText:document.getElementById('summaryBar')?.textContent || '',
+  findingText:document.getElementById('findingBody')?.textContent || '',
+  medListText:document.getElementById('medList')?.textContent || '',
+  exposureSummaryCount:document.querySelectorAll('#medList .exposure-summary').length,
+  cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
+}))()`);
+
+assert(patientGene.audienceMode === 'patient', 'Patient gene-result scenario should keep Patient mode active');
+assert(patientGene.activeStack.join('|') === 'Clopidogrel|Omeprazole',
+  'Patient gene-result scenario should preserve selected medicines');
+assert(patientGene.cards > 0, 'Patient gene-result scenario should still render Safety Notes');
+assert(patientGene.exposureSummaryCount === 0,
+  'Patient gene-result scenario should hide technical selected-list exposure rows');
+assert(!/\b(?:AUC|Cmax|metabolite-level|active thiol|CYP\d|clearance|confidence|parent\s+[↑↓]|direction only)\b/i.test(patientGene.medListText),
+  'Patient gene-result selected list should not expose technical metabolite/level rows');
+assertNoPatientTechnicalLeak('Patient Gene Summary', patientGene.summaryText);
+assertNoPatientTechnicalLeak('Patient Gene Overview', patientGene.findingText);
+assertNoPatientTechnicalLeak('Patient Gene Selected List', patientGene.medListText);
+assertNoUnsafeCertainty('Patient Gene Overview', patientGene.findingText);
 
 const patientSingleWindow = await loadPage('http://localhost/index.html?substances=mystery-mix&audience=patient&tab=overview');
 const patientSingle = patientSingleWindow.eval(`(() => ({

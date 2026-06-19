@@ -2613,6 +2613,7 @@ function inlineJsString(value) {
 }
 
 function renderActorExposureSummary() {
+  if (isPatientAudience()) return "";
   if (!activeStack.length || typeof computeActorExposureDeltas !== "function") return "";
   const rows = computeActorExposureDeltas(activeStack)
     .filter(row => row.direction !== "baseline")

@@ -672,6 +672,8 @@ const audienceModeRegression = window.eval(`(() => {
     summaryRisk:document.querySelector('#summaryBar .summary-risk')?.textContent || '',
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
     findingCount:document.getElementById('findingCount')?.textContent || '',
+    medListText:document.getElementById('medList')?.textContent || '',
+    exposureSummaryCount:document.querySelectorAll('#medList .exposure-summary').length,
     actionRows:document.querySelectorAll('#findingBody .finding-actions').length,
     detailButtons:document.querySelectorAll('#findingBody .related-finding-btn.secondary').length,
     supportDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
@@ -713,6 +715,7 @@ assert(audienceModeRegression.patient.tabBarDisplay === 'none', 'Patient mode sh
 assert(audienceModeRegression.patient.summaryRisk.trim() === '', 'Patient mode should hide summary score badges');
 assert(audienceModeRegression.patient.findingTitle === 'Safety Notes', 'Patient mode should rename findings to Safety Notes');
 assert(/safety notes?/i.test(audienceModeRegression.patient.findingCount), 'Patient mode should label public finding count as safety notes');
+assert(audienceModeRegression.patient.exposureSummaryCount === 0, 'Patient mode should hide technical exposure summary rows from the selected list');
 assert(audienceModeRegression.patient.actionRows === 0, 'Patient mode should not render empty clinician action rows on Safety Notes');
 assert(audienceModeRegression.patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
 assert(audienceModeRegression.patient.supportDetails === 0, 'Patient mode should hide clinician supporting detail drawers');
@@ -724,7 +727,7 @@ assert(!/(?:Technical details remain available in Review|Detailed technical cont
 assert(audienceModeRegression.patient.scopeDisplay === 'none', 'Patient mode should hide the clinician Review Scope panel');
 assert(!String(audienceModeRegression.patient.scopeText || '').replace(/\s+/g, ' ').trim(), 'Patient mode should not render hidden Review Scope copy');
 assert(!/\b(?:AUC|Cmax|RxNorm|PGx|PMID|source-linked|modeled|confidence|clinical review needed|pharmacogenomics|metabolite-level|CYP\d)/i.test(
-  `${audienceModeRegression.patient.tagline} ${audienceModeRegression.patient.geneIntro} ${audienceModeRegression.patient.summaryText} ${audienceModeRegression.patient.findingText} ${audienceModeRegression.patient.scopeText}`
+  `${audienceModeRegression.patient.tagline} ${audienceModeRegression.patient.geneIntro} ${audienceModeRegression.patient.summaryText} ${audienceModeRegression.patient.findingText} ${audienceModeRegression.patient.medListText} ${audienceModeRegression.patient.scopeText}`
 ), 'Patient mode should avoid clinician-only technical vocabulary in visible Overview copy');
 assert(audienceModeRegression.patient.severityLabels.length > 0 && audienceModeRegression.patient.severityLabels.every(label => !/^(critical|severe|moderate|monitor|info)$/i.test(label)),
   `Patient mode should use plain priority labels instead of raw severity labels: ${audienceModeRegression.patient.severityLabels.join(', ')}`);
@@ -742,6 +745,42 @@ assert(audienceModeRegression.clinician.scopeDisplay !== 'none', 'Clinician mode
 assert(/Selected|Recognized|Concerns|Limit:/i.test(audienceModeRegression.clinician.scopeText), 'Clinician mode should restore Review Scope coverage and limits');
 assert(audienceModeRegression.clinician.actionRows > 0, 'Clinician mode should restore finding action rows');
 assert(audienceModeRegression.clinician.supportDetails > 0, 'Clinician mode should show supporting detail drawers');
+
+const patientGeneResultListRegression = window.eval(`(() => {
+  activeStack = [];
+  userGenetics = {};
+  activeGenotypeDetails = {};
+  activeGenotype = {
+    CYP2D6: GENOTYPE_PHENOTYPE.NM,
+    CYP2C19: GENOTYPE_PHENOTYPE.NM,
+    CYP2C9: GENOTYPE_PHENOTYPE.NM,
+  };
+  window.history.replaceState(null, '', '/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&audience=patient&tab=overview');
+  loadUrlDemoState();
+  renderComputationCache = null;
+  renderAll();
+  const patient = {
+    audienceMode,
+    medListText:document.getElementById('medList')?.textContent || '',
+    exposureSummaryCount:document.querySelectorAll('#medList .exposure-summary').length,
+    summaryText:document.getElementById('summaryBar')?.textContent || '',
+    findingText:document.getElementById('findingBody')?.textContent || '',
+  };
+  setAudienceMode('clinician');
+  const clinician = {
+    exposureSummaryCount:document.querySelectorAll('#medList .exposure-summary').length,
+    medListText:document.getElementById('medList')?.textContent || '',
+  };
+  return { patient, clinician };
+})()`);
+assert(patientGeneResultListRegression.patient.audienceMode === 'patient', 'Patient gene-result selected-list regression should stay in Patient mode');
+assert(patientGeneResultListRegression.patient.exposureSummaryCount === 0, 'Patient gene-result selected list should hide exposure summary rows');
+assert(!/\b(?:AUC|Cmax|metabolite-level|active thiol|CYP\d|clearance|confidence|parent\s+[↑↓]|direction only)\b/i.test(
+  patientGeneResultListRegression.patient.medListText
+), 'Patient gene-result selected list should not expose technical metabolite/level rows');
+assert(patientGeneResultListRegression.clinician.exposureSummaryCount > 0, 'Clinician mode should keep exposure summary rows for gene-result stacks');
+assert(/\b(?:AUC|CYP\d|metabolite|parent\s+[↑↓])\b/i.test(patientGeneResultListRegression.clinician.medListText),
+  'Clinician selected list should retain technical exposure context');
 
 const singleItemSummaryJumpRegression = window.eval(`(() => {
   activeStack = [];
