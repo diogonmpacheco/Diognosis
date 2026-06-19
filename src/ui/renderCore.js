@@ -82,6 +82,20 @@ function activateKeyboardButton(event) {
   event.currentTarget?.click();
 }
 
+function syncCollapsibleSectionControls() {
+  document.querySelectorAll(".section-title.collapsible[onclick^=\"toggleSection\"]").forEach(title => {
+    const match = String(title.getAttribute("onclick") || "").match(/toggleSection\('([^']+)'\)/);
+    const id = match?.[1] || "";
+    const body = id ? document.getElementById(id + "Body") : null;
+    if (!body) return;
+    title.setAttribute("role", "button");
+    title.setAttribute("tabindex", "0");
+    title.setAttribute("onkeydown", "activateKeyboardButton(event)");
+    title.setAttribute("aria-controls", body.id);
+    title.setAttribute("aria-expanded", body.classList.contains("open") ? "true" : "false");
+  });
+}
+
 function clearCurrentFindingState() {
   currentInteractionFindings = [];
   currentClinicalConcerns = [];
@@ -2434,6 +2448,7 @@ function toggleSection(id) {
   if (!body) return;
   body.classList.toggle("open");
   manualSectionToggleKeys[id] = getRenderCacheKey();
+  syncCollapsibleSectionControls();
 }
 
 function applyRawMetaboliteMapDefault() {
@@ -2652,6 +2667,7 @@ function renderAll() {
   applyAudienceModeVisibility();
   updateEmptyTabs();
   if (viewMode === "browse") renderBrowse();
+  syncCollapsibleSectionControls();
 }
 
 function renderMedList() {

@@ -104,6 +104,22 @@ assert(/body\[data-audience="patient"\]\s*\.result-area\s*\{\s*order\s*:\s*3\s*\
   'Patient mode should keep results after Gene Results');
 assert(/body\[data-audience="clinician"\]\s*\.result-area\s*\{\s*order\s*:\s*3\s*\}/i.test(styleText),
   'Clinician mode should keep results after Gene / Marker Results');
+const geneticsToggle = doc.querySelector('#geneticsSection .section-title.collapsible');
+const geneticsBody = doc.getElementById('geneticsBody');
+assert(geneticsToggle?.getAttribute('role') === 'button' && geneticsToggle?.getAttribute('tabindex') === '0',
+  'Gene Results collapsible header should be keyboard focusable');
+assert(geneticsToggle?.getAttribute('aria-controls') === 'geneticsBody',
+  'Gene Results collapsible header should name the controlled panel');
+assert(geneticsToggle?.getAttribute('aria-expanded') === String(geneticsBody?.classList.contains('open')),
+  'Gene Results collapsible header should expose initial expanded state');
+geneticsToggle.dispatchEvent(new window.KeyboardEvent('keydown', { key:' ', bubbles:true, cancelable:true }));
+assert(geneticsBody?.classList.contains('open') && geneticsToggle.getAttribute('aria-expanded') === 'true',
+  'Space on Gene Results collapsible header should open the panel and update aria-expanded');
+geneticsToggle.dispatchEvent(new window.KeyboardEvent('keydown', { key:'Enter', bubbles:true, cancelable:true }));
+assert(!geneticsBody?.classList.contains('open') && geneticsToggle.getAttribute('aria-expanded') === 'false',
+  'Enter on Gene Results collapsible header should close the panel and update aria-expanded');
+assert(doc.querySelectorAll('.section-title.collapsible[role="button"][tabindex="0"][aria-controls][aria-expanded]').length >= 10,
+  'Core collapsible section headers should expose keyboard and aria state');
 
 window.onSearch('parox');
 let keyboardSearchResult = doc.querySelector('#searchResults .sr-item[role="button"][tabindex="0"]');
