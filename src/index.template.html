@@ -8,7 +8,7 @@
 <meta name="keywords" content="pharmacogenomics, medication safety, drug interactions, pharmacokinetics, CYP2D6, CYP enzymes, active metabolites, toxic metabolites, transporter pathways, evidence modeling, source-linked evidence, computational pharmacology">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://diogonmpacheco.github.io/Diognosis/">
-<meta name="theme-color" content="#2563eb">
+<meta name="theme-color" content="#e85d26">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -35,10 +35,10 @@
 *{margin:0;padding:0;box-sizing:border-box}
 img,svg{max-width:100%}
 :root{
-  --bg:#f7f9fc;--card:#fff;--card2:#f8fafc;--text:#172033;--text2:#64748b;
-  --border:#d9e2ef;--accent:#2563eb;--accent2:#0f766e;--accentBg:#eff6ff;
-  --red:#dc2626;--redBg:#fff1f2;--amber:#b45309;--amberBg:#fffbeb;
-  --green:#0f9f6e;--greenBg:#ecfdf5;--blue:#0284c7;--blueBg:#f0f9ff;
+  --bg:#fef7f0;--card:#fff;--card2:#fefcf9;--text:#3d2c1e;--text2:#8b7355;
+  --border:#f0e4d4;--accent:#e85d26;--accent2:#f97316;--accentBg:#fff7ed;
+  --red:#dc2626;--redBg:#fef2f2;--amber:#d97706;--amberBg:#fffbeb;
+  --green:#16a34a;--greenBg:#f0fdf4;--blue:#0284c7;--blueBg:#f0f9ff;
   --purple:#9333ea;--purpleBg:#faf5ff;
   --shadow:0 1px 2px rgba(15,23,42,0.08);--shadow2:0 8px 22px rgba(15,23,42,0.11);
   --radius:8px;--font:'Segoe UI',system-ui,-apple-system,sans-serif;
@@ -47,7 +47,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:1
 a{color:var(--accent)}
 
 /* HEADER */
-.header{background:linear-gradient(135deg,#0f766e,#2563eb);color:#fff;padding:10px 24px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 14px rgba(37,99,235,0.18);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.header{background:linear-gradient(135deg,#e85d26,#f97316);color:#fff;padding:10px 24px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(232,93,38,0.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
 .header h1{font-size:20px;font-weight:700;letter-spacing:-0.5px}
 .header p{font-size:12px;opacity:0.85}
 
@@ -529,7 +529,7 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 .stats-line{display:none}
 /* SUMMARY CARD */
 .summary-bar{
-  padding:14px;background:linear-gradient(180deg,#fff 0%,#f8fafc 100%);border-radius:var(--radius);
+  padding:14px;background:linear-gradient(180deg,#fff 0%,#fefcf9 100%);border-radius:var(--radius);
   box-shadow:var(--shadow2);border:1px solid var(--border);
 }
 .summary-card{display:grid;gap:10px}
@@ -622,7 +622,7 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 .related-finding-btn{appearance:none;border:1px solid rgba(234,88,12,.24);border-radius:999px;background:var(--accentBg);color:var(--accent);font-size:10px;font-weight:900;padding:5px 9px;cursor:pointer;white-space:nowrap}
 .related-finding-btn.secondary{background:var(--card);border-color:var(--border);color:var(--text2)}
 .related-finding-btn.source-link{text-decoration:none;display:inline-flex;align-items:center}
-.related-finding-btn:hover{border-color:var(--accent);background:var(--accentBg);color:var(--accent)}
+.related-finding-btn:hover{border-color:var(--accent);background:#fff7ed;color:var(--accent)}
 .finding-grid{display:grid;grid-template-columns:1fr;gap:8px;margin:8px 0}
 .finding-detail{padding:8px 9px;border-radius:9px;background:rgba(255,255,255,.68);border:1px solid rgba(61,44,30,.08);font-size:11px;line-height:1.4;color:var(--text2)}
 .finding-detail strong{display:block;color:var(--text);font-size:10px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
