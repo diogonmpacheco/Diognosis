@@ -2,9 +2,15 @@ name: CI
 
 on:
   push:
-    branches: ["**"]
+    branches-ignore: ["main"]
   pull_request:
     branches: ["**"]
+  workflow_dispatch:
+    inputs:
+      full:
+        description: "Run data, integration, and severity-report gates"
+        type: boolean
+        default: false
 
 jobs:
   build-and-test:
@@ -30,10 +36,13 @@ jobs:
         run: npm run test:unit
 
       - name: Data and boundary gate
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.full }}
         run: npm run test:data
 
       - name: Integration gate
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.full }}
         run: npm run test:integrations
 
       - name: Severity report generation
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.full }}
         run: npm run report:severity

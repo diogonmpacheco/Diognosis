@@ -390,7 +390,7 @@ npm run release:check
 
 `npm run release:check` rebuilds the bundle, verifies metadata, runs database and data-view audits, the V1 no-warning database gate, evidence review UI, evidence calculation, Open Targets gates, scenario snapshots, launch QA, regression, smoke, strict validation, privacy/static audit, and whitespace checks.
 
-`npm run test:unit`, `npm run test:data`, and `npm run test:integrations` are the CI gate split. They keep failures grouped by app behavior, data/boundary integrity, and external integration checks.
+Routine GitHub Pages deployment uses `npm run pages:check` on `main`. The separate CI workflow is intentionally lighter: branch and pull-request CI run `npm run test:unit`, while the deeper `npm run test:data`, `npm run test:integrations`, and severity report steps are available from manual CI dispatch when a full audit is needed. This keeps live testing from waiting on release-depth data and integration audits.
 
 ## Genotype Gap Audit
 
