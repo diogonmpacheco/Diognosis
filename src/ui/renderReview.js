@@ -196,6 +196,11 @@ function buildV1HandoffSummaryText(options = {}) {
     scope ? `- Public concerns: ${scope.publicConcernCount} (${scope.sourceLinked} source-linked, ${scope.modeled} modeled)` : "",
     scope?.standardsCoverage ? `- Standards identity: ${scope.standardsCoverage.mappedDrugCount}/${scope.standardsCoverage.recognizedDrugCount} recognized medications mapped to RxNorm; ${scope.standardsCoverage.markerMappingCount} PGx marker rows; ${scope.standardsCoverage.pgxActionCount} CPIC-linked action contexts` : "",
     "",
+    "Review checklist",
+    ...(typeof buildReviewContextChecklist === "function"
+      ? buildReviewContextChecklist(scope, { patient:false }).map(item => `- ${item}`)
+      : ["- Medication reconciliation, patient context, labs, timing, and source evidence should be reviewed."]),
+    "",
     "Top concerns",
     ...buildV1HandoffConcernLines(presentations.slice(0, options.limit || 5)),
     "",

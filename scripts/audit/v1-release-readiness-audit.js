@@ -70,6 +70,7 @@ function extractReadiness(window) {
       handoffText:buildV1HandoffSummaryText(),
       reviewText:document.getElementById('reviewSummaryBody')?.textContent || '',
       scopeText:document.getElementById('scopeBody')?.textContent || '',
+      contextChecklist:document.querySelectorAll('#scopeBody .scope-context-list li').length,
       sourceLinks:document.querySelectorAll('#findingBody a.source-link').length,
       sourceActions:document.querySelectorAll('#findingBody .finding-actions .related-finding-btn').length,
       trustChips:document.querySelectorAll('#findingBody .finding-trust-chip').length,
@@ -121,10 +122,13 @@ for (const scenario of clinicianScenarios) {
   assert(result.sourceActions > 0, `${scenario.name}: source-linked cards should expose source actions`);
   assert(result.directEligible === 0 || result.sourceLinks > 0, `${scenario.name}: direct PMID/DOI/source-eligible cards need direct source links`);
   assert(result.reviewTiles > 0, `${scenario.name}: Review Summary should render summary tiles`);
+  assert(result.contextChecklist >= 4, `${scenario.name}: Overview scope should expose a current-stack review checklist`);
   assert(/Selected|Recognized|Concerns|Source-linked|Limit:/i.test(result.scopeText),
     `${scenario.name}: Review Scope should expose coverage and limits`);
   assert(/Diognosis V1 review summary|Review scope|Standards identity|Top concerns|Boundaries|Share link:/i.test(result.handoffText),
     `${scenario.name}: handoff summary missing required sections`);
+  assert(/Review checklist|Medication reconciliation|Patient context/i.test(result.handoffText),
+    `${scenario.name}: handoff summary missing practical review checklist`);
   for (const expected of scenario.expected) {
     assert(result.handoffText.includes(expected), `${scenario.name}: handoff should preserve ${expected}`);
   }
@@ -153,6 +157,7 @@ const patient = patientWindow.eval(`(() => ({
   detailButtons:document.querySelectorAll('#findingBody .related-finding-btn.secondary').length,
   discussionGuides:document.querySelectorAll('#findingBody .finding-discussion').length,
   summaryActions:document.querySelectorAll('#summaryBar .summary-actions .summary-action-btn').length,
+  contextChecklist:document.querySelectorAll('#scopeBody .scope-context-list li').length,
   overviewHandoffText:buildOverviewHandoffText(),
   riskDisplay:document.getElementById('riskSection')?.style.display || '',
   scopeText:document.getElementById('scopeBody')?.textContent || '',
@@ -169,7 +174,8 @@ assert(/What this means|What to ask/i.test(patient.findingText), 'Patient mode s
 assert(/Question to ask|Can you check/i.test(patient.findingText), 'Patient mode should expose a plain-language discussion question');
 assert(patient.discussionGuides > 0, 'Patient mode should render discussion guides on safety notes');
 assert(patient.summaryActions >= 2, 'Patient mode should expose top-level copy/share actions');
-assert(/Diognosis questions to ask|Questions to ask|Do not start, stop, or change medication/i.test(patient.overviewHandoffText),
+assert(patient.contextChecklist >= 4, 'Patient mode should expose a plain-language review checklist');
+assert(/Diognosis questions to ask|Questions to ask|Bring to review|Do not start, stop, or change medication/i.test(patient.overviewHandoffText),
   'Patient mode should build a patient-safe copyable question summary');
 assert(patient.sourceLinks === 0, 'Patient mode should hide direct clinician source chips');
 assert(patient.supportingDetails === 0, 'Patient mode should hide technical supporting detail drawers');

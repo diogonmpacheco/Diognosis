@@ -445,6 +445,9 @@ function buildPatientQuestionSummaryText() {
     "Questions to ask",
     ...questions.map((question, index) => `${index + 1}. ${question}`),
     "",
+    "Bring to review",
+    ...buildReviewContextChecklist(null, { patient:true }).map(item => `- ${item}`),
+    "",
     "Boundaries",
     "- This is for education and review, not medical advice.",
     "- No result here proves the list is safe.",
@@ -655,7 +658,8 @@ function renderReviewScopeSummary(scope) {
   <ul class="scope-list">
     ${scope.checks.map(item => `<li><span>${safePublicHtml(item)}</span></li>`).join("")}
     ${scope.limits.map(item => `<li><span><strong>Limit:</strong> ${safePublicHtml(item)}</span></li>`).join("")}
-  </ul>`;
+  </ul>
+  ${renderReviewContextChecklist(scope)}`;
 }
 
 function renderPatientReviewScopeSummary(scope) {
@@ -689,7 +693,118 @@ function renderPatientReviewScopeSummary(scope) {
   <ul class="scope-list">
     ${checks.map(item => `<li><span>${safePublicHtml(item)}</span></li>`).join("")}
     ${limits.map(item => `<li><span><strong>Limit:</strong> ${safePublicHtml(item)}</span></li>`).join("")}
-  </ul>`;
+  </ul>
+  ${renderReviewContextChecklist(scope, { patient:true })}`;
+}
+
+function renderReviewContextChecklist(scope = null, options = {}) {
+  const patient = options.patient === undefined ? isPatientAudience() : !!options.patient;
+  const items = buildReviewContextChecklist(scope, { patient });
+  if (!items.length) return "";
+  return `<div class="scope-context">
+    <div class="scope-context-label">${safePublicHtml(patient ? "Bring to review" : "Review checklist")}</div>
+    <ul class="scope-context-list">
+      ${items.map(item => `<li>${safePublicHtml(item)}</li>`).join("")}
+    </ul>
+  </div>`;
+}
+
+function buildReviewContextChecklist(scope = null, options = {}) {
+  const patient = options.patient === undefined ? isPatientAudience() : !!options.patient;
+  const currentScope = scope || (typeof buildReviewScopeSummary === "function"
+    ? buildReviewScopeSummary(typeof getRenderComputationCache === "function" ? getRenderComputationCache() : {})
+    : {});
+  const presentations = getCurrentPublicFindingPresentations();
+  const text = publicDisplayText([
+    ...(presentations || []).flatMap(presentation => [
+      presentation.title,
+      presentation.whatChanged,
+      presentation.whyItMatters,
+      presentation.whatToReview,
+      presentation.trustContract?.concernCategory,
+      presentation.trustContract?.clinicalConcern,
+      presentation.trustContract?.clinicianAction,
+    ]),
+    ...(currentClinicalConcerns || []).flatMap(finding => [
+      finding.title,
+      finding.summary,
+      finding.clinicalAction,
+      finding.clinicalConcernDomain,
+      ...(finding.tags || []),
+    ]),
+  ].filter(Boolean).join(" ")).toLowerCase();
+  const items = [];
+  const add = (item) => {
+    const clean = publicDisplayText(item);
+    if (clean && !items.includes(clean)) items.push(clean);
+  };
+  if (patient) {
+    add("Exact medicine names, dose, timing, last dose, and any recent starts or stops.");
+    add("The reason each medicine is used, plus any new or worsening symptoms.");
+    add("Allergies, pregnancy or breastfeeding status, kidney or liver problems, and recent lab results.");
+    if ((currentScope.selectedCount || activeStack.length || 0) < 2) {
+      add("The rest of the medication list, including over-the-counter items, vitamins, supplements, and alcohol if relevant.");
+    } else {
+      add("Over-the-counter items, vitamins, supplements, and alcohol if relevant.");
+    }
+    if (currentScope.genotypeCount) {
+      add("The original gene-test report or portal screenshot, including the lab and date.");
+    } else {
+      add("Any medication gene-test report you already have; do not guess a result.");
+    }
+    if (currentScope.unknownCount) {
+      add("Unrecognized items: confirm spelling, generic or brand name, strength, and formulation.");
+    }
+    if (/bleed|inr|anticoag|warfarin|platelet|clot|hemostasis/.test(text)) {
+      add("Bleeding or clotting symptoms, recent procedures, and any lab checks your care team follows.");
+    }
+    if (/qt|torsades|arrhythm|heart rhythm|bradycard|electrolyte/.test(text)) {
+      add("Heart rhythm history, fainting, palpitations, and whether heart tracing or electrolyte checks are needed.");
+    }
+    if (/sedation|fall|sleepiness|breathing|confusion|cns|opioid|benzodiazepine|anticholinergic/.test(text)) {
+      add("Sleepiness, falls, confusion, breathing issues, driving risk, and alcohol or sedating products.");
+    }
+    if (/washout|persistence|timing|switch|overlap|induction offset/.test(text)) {
+      add("The planned start, stop, switch, or overlap dates for each medicine.");
+    }
+    if (/auc|cmax|exposure|level|concentration|toxicity|renal|hepatic|kidney|liver|clearance/.test(text)) {
+      add("Side effects to watch for and whether blood-level or organ-function checks are used for this medicine.");
+    }
+    if (!(presentations || []).length) {
+      add("A doctor or pharmacist should still check whether dose, timing, medical history, or labs change the answer.");
+    }
+    return items.slice(0, 8);
+  }
+  add("Medication reconciliation: product, dose, route, frequency, last dose, start/stop dates, adherence, and indication.");
+  add("Patient context: age/frailty, pregnancy/lactation, allergies, renal/hepatic function, baseline labs, and current symptoms.");
+  add("Concomitants: OTC products, supplements, alcohol/substance exposure, duplicate classes, and recent acute illness.");
+  if (currentScope.genotypeCount) {
+    add("PGx context: lab method, allele/star result, phenotype translation, report date, and CPIC/label applicability.");
+  } else {
+    add("PGx context if available: original report quality, allele/star result, phenotype translation, and clinical indication.");
+  }
+  if (currentScope.unknownCount) {
+    add("Unrecognized selections: verify generic/brand identity, formulation, route, and whether the item is outside the local dataset.");
+  }
+  if (/bleed|inr|anticoag|warfarin|platelet|clot|hemostasis/.test(text)) {
+    add("Bleeding/clotting: INR or relevant anticoagulation labs, platelet count, procedure timing, bleeding history, and indication.");
+  }
+  if (/qt|torsades|arrhythm|heart rhythm|bradycard|electrolyte/.test(text)) {
+    add("QT/rhythm: baseline QTc, potassium/magnesium/calcium, bradycardia, heart disease, and other QT-risk medicines.");
+  }
+  if (/sedation|fall|sleepiness|breathing|confusion|cns|opioid|benzodiazepine|anticholinergic/.test(text)) {
+    add("CNS/fall burden: respiratory disease, cognition, falls, driving/work risk, alcohol, opioids, benzodiazepines, and anticholinergics.");
+  }
+  if (/washout|persistence|timing|switch|overlap|induction offset/.test(text)) {
+    add("Timing: planned switch/overlap dates, washout, half-life, induction or recovery offset, and monitoring window.");
+  }
+  if (/auc|cmax|exposure|level|concentration|toxicity|renal|hepatic|kidney|liver|clearance|tdm/.test(text)) {
+    add("Exposure/TDM: renal and hepatic status, troughs or levels, toxicity symptoms, inhibitor/inducer timing, and dose changes.");
+  }
+  if (!(presentations || []).length) {
+    add("No-signal review: verify whether dose, timing, missing diagnoses, labs, or unmodeled context could change the risk assessment.");
+  }
+  return items.slice(0, 9);
 }
 
 function renderInteractionFindingCard(finding) {
