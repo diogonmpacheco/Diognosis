@@ -616,6 +616,19 @@ for (const [gene, drug, sourceLabel, sourceIdentifiers] of PHASE15_SOURCE_BACKED
 
 let userGenetics = {};
 
+function resetActiveGenotypeState() {
+  userGenetics = {};
+  activeGenotypeDetails = {};
+  activeGenotype = {};
+  Object.keys(GENOTYPE_EFFECTS || {}).forEach(gene => {
+    activeGenotype[gene] = GENOTYPE_PHENOTYPE.NM;
+  });
+  const riskEffects = typeof GENOTYPE_RISK_EFFECTS !== "undefined" ? GENOTYPE_RISK_EFFECTS : {};
+  Object.keys(riskEffects).forEach(gene => {
+    activeGenotype[gene] = GENOTYPE_RISK_STATUS.ABSENT;
+  });
+}
+
 function genotypeToLegacyPhenotype(phenotype) {
   if (!phenotype || phenotype === GENOTYPE_PHENOTYPE.NM) return "normal";
   if (phenotype === GENOTYPE_PHENOTYPE.PM) return "poor";

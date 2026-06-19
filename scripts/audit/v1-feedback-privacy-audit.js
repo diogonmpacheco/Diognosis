@@ -28,6 +28,7 @@ const { window } = dom;
 
 function runCase(drugs, genotypes = []) {
   window.eval(`(() => {
+    window.history.replaceState(null, '', '/index.html?reviewer=1');
     activeStack = [];
     if (typeof drugDoses !== "undefined") Object.keys(drugDoses).forEach(k => delete drugDoses[k]);
     userGenetics = {};
@@ -55,6 +56,7 @@ function runCase(drugs, genotypes = []) {
   return window.eval(`(() => ({
     activeStack:[...activeStack],
     genotypeTokens:activeGenotypeUrlTokens(),
+    reviewerMode:typeof isReviewerMode === 'function' ? isReviewerMode() : false,
     urls:[
       ...[...document.querySelectorAll('a.feedback-link')].map(link => link.href),
       ...[...document.querySelectorAll('a.review-action-btn[href*="github.com/diogonmpacheco/Diognosis/issues/new"]')].map(link => link.href),
@@ -82,6 +84,9 @@ const failures = [];
 let checkedUrls = 0;
 for (const scenario of cases) {
   const result = runCase(scenario.drugs, scenario.genotypes);
+  if (!result.reviewerMode) {
+    failures.push(`${scenario.name}: audit should inspect contribution copy in reviewer mode`);
+  }
   if (!/privacy-preserving GitHub issue drafts/i.test(result.contributeText)) {
     failures.push(`${scenario.name}: Review contribution copy does not explain privacy-preserving issue drafts`);
   }

@@ -2431,6 +2431,7 @@ function renderBrowseClassGuides() {
 function loadMedicationClassGuide(index) {
   const guide = MEDICATION_CLASS_GUIDES[index];
   if (!guide) return;
+  if (typeof resetActiveGenotypeState === "function") resetActiveGenotypeState();
   activeStack = guide.drugs
     .map(name => typeof resolveUrlDrugName === "function" ? resolveUrlDrugName(name) : name)
     .filter(Boolean);

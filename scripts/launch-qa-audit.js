@@ -26,9 +26,10 @@ function slug(value) {
   return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
-function stackUrl(drugs, genotypes, tab = 'genes-metabolites') {
+function stackUrl(drugs, genotypes, tab = 'genes-metabolites', options = {}) {
   const parts = [`substances=${drugs.map(slug).join(',')}`];
   for (const genotype of genotypes) parts.push(`genotype=${encodeURIComponent(genotype).replace(/%3A/g, ':')}`);
+  if (options.reviewer) parts.push('reviewer=1');
   parts.push(`tab=${tab}`);
   return `index.html?${parts.join('&')}`;
 }
@@ -178,7 +179,7 @@ function loadCase({ drugs, genotypes = [], tab = 'genes-metabolites' }) {
     Object.keys(GENOTYPE_EFFECTS || {}).forEach(g => activeGenotype[g] = GENOTYPE_PHENOTYPE.NM);
     Object.keys(GENOTYPE_RISK_EFFECTS || {}).forEach(g => activeGenotype[g] = GENOTYPE_RISK_STATUS.ABSENT);
   `);
-  const url = stackUrl(drugs, genotypes, tab);
+  const url = stackUrl(drugs, genotypes, tab, { reviewer:true });
   window.history.replaceState(null, '', `/${url}`);
   window.loadUrlDemoState();
   window.renderAll();
@@ -283,7 +284,7 @@ function collect({ name, why, drugs, genotypes = [], tab = 'genes-metabolites', 
     visiblePanels,
     feedbackLinks:feedbackLinks.length,
     evidenceLink,
-    url:stackUrl(drugs, genotypes, tab),
+    url:stackUrl(drugs, genotypes, tab, { reviewer:true }),
   };
 }
 

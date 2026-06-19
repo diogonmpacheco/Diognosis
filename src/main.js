@@ -64,6 +64,7 @@ function loadUrlDemoState() {
   if (audience) setAudienceMode(audience, { render:false });
   const drugParam = params.substances || params.drugs || params.medications;
   const drugNames = demo ? demo.drugs : (drugParam ? drugParam.split(',').map(d => d.trim()) : []);
+  if ((drugNames.length || params.genotype) && typeof resetActiveGenotypeState === "function") resetActiveGenotypeState();
   if (drugNames.length) {
     const seen = new Set();
     activeStack = drugNames

@@ -122,6 +122,84 @@ assert(
   'Repeated genotype URL params should be preserved as an array'
 );
 
+const loadStateResetRegression = window.eval(`(() => {
+  resetActiveGenotypeState();
+  activeStack = ['Codeine'];
+  setGenotypeState('CYP2D6', GENOTYPE_PHENOTYPE.PM);
+  activeGenotype['G6PD deficiency'] = GENOTYPE_RISK_STATUS.PRESENT;
+  activeGenotypeDetails['G6PD deficiency'] = buildRiskInterpretation('G6PD deficiency', GENOTYPE_RISK_STATUS.PRESENT);
+  const beforeGuide = currentStackShareUrl('overview');
+
+  loadMedicationClassGuide(0);
+  const noGenotypeGuide = {
+    stack:activeStack.slice(),
+    cyp2d6:activeGenotype.CYP2D6,
+    legacy:userGenetics.CYP2D6 || '',
+    g6pd:activeGenotype['G6PD deficiency'],
+    detailKeys:Object.keys(activeGenotypeDetails || {}),
+    shareUrl:currentStackShareUrl('overview'),
+  };
+
+  setGenotypeState('CYP2C19', GENOTYPE_PHENOTYPE.PM);
+  activeGenotype['G6PD deficiency'] = GENOTYPE_RISK_STATUS.PRESENT;
+  activeGenotypeDetails['G6PD deficiency'] = buildRiskInterpretation('G6PD deficiency', GENOTYPE_RISK_STATUS.PRESENT);
+  loadMedicationClassGuide(2);
+  const genotypeGuide = {
+    stack:activeStack.slice(),
+    cyp2d6:activeGenotype.CYP2D6,
+    cyp2c19:activeGenotype.CYP2C19,
+    g6pd:activeGenotype['G6PD deficiency'],
+    detailKeys:Object.keys(activeGenotypeDetails || {}),
+    shareUrl:currentStackShareUrl('overview'),
+  };
+
+  setGenotypeState('CYP2D6', GENOTYPE_PHENOTYPE.PM);
+  window.history.replaceState(null, '', '/index.html?substances=warfarin,ibuprofen&tab=overview');
+  loadUrlDemoState();
+  const urlNoGenotype = {
+    stack:activeStack.slice(),
+    cyp2d6:activeGenotype.CYP2D6,
+    detailKeys:Object.keys(activeGenotypeDetails || {}),
+    shareUrl:currentStackShareUrl('overview'),
+  };
+
+  return { beforeGuide, noGenotypeGuide, genotypeGuide, urlNoGenotype };
+})()`);
+assert(/genotype=.*CYP2D6/i.test(loadStateResetRegression.beforeGuide) && /G6PD/i.test(loadStateResetRegression.beforeGuide),
+  'Seeded guide reset test should start with CYP2D6 and G6PD in the share URL');
+assert(loadStateResetRegression.noGenotypeGuide.stack.join('|') === 'Warfarin|Fluconazole|Ibuprofen',
+  'No-genotype class guide should load its documented stack');
+assert(loadStateResetRegression.noGenotypeGuide.cyp2d6 === 'normal_metabolizer',
+  'No-genotype class guide should reset stale CYP2D6 PM state');
+assert(loadStateResetRegression.noGenotypeGuide.legacy === '',
+  'No-genotype class guide should clear stale legacy CYP2D6 state');
+assert(loadStateResetRegression.noGenotypeGuide.g6pd === 'risk_allele_absent',
+  'No-genotype class guide should reset stale G6PD risk-marker state');
+assert(loadStateResetRegression.noGenotypeGuide.detailKeys.length === 0,
+  `No-genotype class guide should clear stale genotype details: ${loadStateResetRegression.noGenotypeGuide.detailKeys.join(', ')}`);
+assert(!/genotype=/i.test(loadStateResetRegression.noGenotypeGuide.shareUrl),
+  'No-genotype class guide share URL should not include stale genotype params');
+assert(loadStateResetRegression.genotypeGuide.stack.join('|') === 'Flecainide|Fluoxetine',
+  'Genotype class guide should load its documented stack');
+assert(loadStateResetRegression.genotypeGuide.cyp2d6 === 'poor_metabolizer',
+  'Genotype class guide should still apply its documented CYP2D6 PM state');
+assert(loadStateResetRegression.genotypeGuide.cyp2c19 === 'normal_metabolizer',
+  'Genotype class guide should reset unrelated stale CYP2C19 PM state');
+assert(loadStateResetRegression.genotypeGuide.g6pd === 'risk_allele_absent',
+  'Genotype class guide should reset unrelated stale risk-marker state');
+assert(loadStateResetRegression.genotypeGuide.detailKeys.length === 1 && loadStateResetRegression.genotypeGuide.detailKeys[0] === 'CYP2D6',
+  `Genotype class guide should keep only its own genotype detail: ${loadStateResetRegression.genotypeGuide.detailKeys.join(', ')}`);
+assert(/genotype=.*CYP2D6/i.test(loadStateResetRegression.genotypeGuide.shareUrl) && !/CYP2C19|G6PD/i.test(loadStateResetRegression.genotypeGuide.shareUrl),
+  'Genotype class guide share URL should include only the guide-selected genotype');
+assert(loadStateResetRegression.urlNoGenotype.stack.join('|') === 'Warfarin|Ibuprofen',
+  'URL state without genotype should load the requested substances');
+assert(loadStateResetRegression.urlNoGenotype.cyp2d6 === 'normal_metabolizer',
+  'URL state without genotype should reset stale CYP2D6 PM state');
+assert(loadStateResetRegression.urlNoGenotype.detailKeys.length === 0,
+  `URL state without genotype should clear stale genotype details: ${loadStateResetRegression.urlNoGenotype.detailKeys.join(', ')}`);
+assert(!/genotype=/i.test(loadStateResetRegression.urlNoGenotype.shareUrl),
+  'URL state without genotype should not emit stale genotype params in share URL');
+
 const genotypeSemanticsAudit = window.eval(`(() => {
   const missing = [];
   const missingAxis = [];

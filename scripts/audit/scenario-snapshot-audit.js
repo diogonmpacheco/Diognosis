@@ -110,6 +110,8 @@ function runScenario(window, scenario, fixtureSnapshot) {
       return token;
     }
 
+    window.history.replaceState(null, '', '/index.html?reviewer=1');
+    setAudienceMode('clinician', { render:false });
     activeStack = [...(scenario.stack || [])];
     userGenetics = {};
     activeGenotypeDetails = {};
@@ -212,6 +214,8 @@ function runModelScenario(window, scenario) {
       return unique(out);
     }
 
+    window.history.replaceState(null, '', '/index.html?reviewer=1');
+    setAudienceMode('clinician', { render:false });
     activeStack = [...(scenario.stack || [])];
     userGenetics = {};
     activeGenotypeDetails = {};

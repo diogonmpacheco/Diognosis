@@ -90,6 +90,7 @@ const report = dom.window.eval(`(() => {
     truncatedContextCounts: {},
   };
 
+  window.history.replaceState(null, '', '/index.html?reviewer=1');
   activeStack = ["Paroxetine", "Codeine"];
   renderAll();
   const before = calcRisk();
@@ -110,6 +111,7 @@ const report = dom.window.eval(`(() => {
   return {
     contextCount: contexts.length,
     cardCount: body.querySelectorAll(".external-context-card").length,
+    reviewerMode:typeof isReviewerMode === "function" ? isReviewerMode() : false,
     sectionVisible: section.style.display !== "none",
     countText: document.getElementById("externalContextCount").textContent,
     riskSame: beforeJson === JSON.stringify(after),
@@ -132,6 +134,7 @@ const report = dom.window.eval(`(() => {
 assert(browserErrors.length === 0, `External safety context UI audit emitted browser errors: ${browserErrors.join('; ')}`);
 assert(report.contextCount === 4, `Expected four fixture context cards, got ${report.contextCount}`);
 assert(report.cardCount === 4, `Expected four rendered context cards, got ${report.cardCount}`);
+assert(report.reviewerMode === true, 'External safety context audit should inspect reviewer-only context in reviewer mode');
 assert(report.sectionVisible === true, 'External safety context section should be visible for fixture context');
 assert(report.countText.includes('not risk-scoring'), `Expected non-scoring count label, got ${report.countText}`);
 assert(report.riskSame === true, `External context cards must not alter calcRisk(); before ${report.beforeScore}, after ${report.afterScore}`);
