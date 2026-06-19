@@ -600,12 +600,24 @@ function renderInteractionFindingsOverview(risk) {
     return currentPublicFindingPresentations;
   }
   section.style.display = "";
-  if (count) count.textContent = `${currentPublicFindingPresentations.length} concern${currentPublicFindingPresentations.length === 1 ? "" : "s"}`;
+  if (count) {
+    const label = isPatientAudience() ? "safety note" : "concern";
+    count.textContent = `${currentPublicFindingPresentations.length} ${label}${currentPublicFindingPresentations.length === 1 ? "" : "s"}`;
+  }
   body.innerHTML = currentPublicFindingPresentations.slice(0, 8).map(renderPublicFindingCard).join("") +
-    (currentPublicFindingPresentations.length > 8
-      ? `<div class="finding-empty">Showing 8 of ${currentPublicFindingPresentations.length} grouped concerns. Detailed technical context is available in Review.</div>`
-      : `<div class="finding-empty">Overview groups related pathway, metabolite, timing, and evidence signals into clinical concerns. Technical details remain available in Review.</div>`);
+    renderFindingOverviewFooter(currentPublicFindingPresentations.length);
   return currentPublicFindingPresentations;
+}
+
+function renderFindingOverviewFooter(totalCount = 0) {
+  if (isPatientAudience()) {
+    return totalCount > 8
+      ? `<div class="finding-empty">Showing 8 of ${safePublicHtml(totalCount)} safety notes. Copy questions or ask a doctor or pharmacist to review the full list before making medication changes.</div>`
+      : `<div class="finding-empty">Safety notes group related concerns for this list. Ask a doctor or pharmacist to review dose, timing, health history, symptoms, and anything not recognized here before making medication changes.</div>`;
+  }
+  return totalCount > 8
+    ? `<div class="finding-empty">Showing 8 of ${safePublicHtml(totalCount)} grouped concerns. Detailed technical context is available in Review.</div>`
+    : `<div class="finding-empty">Overview groups related pathway, metabolite, timing, and evidence signals into clinical concerns. Technical details remain available in Review.</div>`;
 }
 
 function renderReviewScopePanel() {

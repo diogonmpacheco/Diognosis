@@ -58,6 +58,13 @@ function assertNoPatientTechnicalLeak(label, text) {
   );
 }
 
+function assertNoPatientFooterLeak(label, text) {
+  assert(
+    !/(?:Technical details remain available in Review|Detailed technical context|pathway, metabolite, timing, and evidence signals|clinical concerns)/i.test(text),
+    `${label} exposes clinician-only Overview footer language`
+  );
+}
+
 function extractReadiness(window) {
   return window.eval(`(() => {
     setTab('review');
@@ -155,6 +162,7 @@ const patient = patientWindow.eval(`(() => ({
   summaryText:document.getElementById('summaryBar')?.textContent || '',
   summaryRisk:document.querySelector('#summaryBar .summary-risk')?.textContent || '',
   findingTitle:document.getElementById('findingTitle')?.textContent || '',
+  findingCount:document.getElementById('findingCount')?.textContent || '',
   findingText:document.getElementById('findingBody')?.textContent || '',
   sourceLinks:document.querySelectorAll('#findingBody a.source-link').length,
   supportingDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
@@ -175,8 +183,10 @@ assert(patient.activeTab === 'overview', 'Patient mode should force Overview eve
 assert(patient.tabBarDisplay === 'none', 'Patient mode should hide clinician tab navigation');
 assert(patient.summaryRisk.trim() === '', 'Patient mode should hide score-style summary badges');
 assert(patient.findingTitle === 'Safety Notes', 'Patient mode should rename public findings');
+assert(/safety notes?/i.test(patient.findingCount), 'Patient mode should label public finding count as safety notes');
 assert(/What this means|What to ask/i.test(patient.findingText), 'Patient mode should use plain-language labels');
 assert(/Question to ask|Can you check/i.test(patient.findingText), 'Patient mode should expose a plain-language discussion question');
+assert(/Safety notes group related concerns|doctor or pharmacist/i.test(patient.findingText), 'Patient mode should use a plain-language Safety Notes footer');
 assert(patient.discussionGuides > 0, 'Patient mode should render discussion guides on safety notes');
 assert(patient.monitoringGuides > 0, 'Patient mode should render plain-language mention-if-present guidance');
 assert(patient.summaryActions >= 2, 'Patient mode should expose top-level copy/share actions');
@@ -192,6 +202,7 @@ assert(patient.shareUrl.includes('audience=patient'), 'Patient share URL should 
 assertNoPatientTechnicalLeak('Patient Summary', patient.summaryText);
 assertNoPatientTechnicalLeak('Patient Overview', patient.findingText);
 assertNoPatientTechnicalLeak('Patient Copy Summary', patient.overviewHandoffText);
+assertNoPatientFooterLeak('Patient Overview', patient.findingText);
 assertNoUnsafeCertainty('Patient Overview', patient.findingText);
 assertNoInternalLeak('Patient Overview', patient.findingText);
 

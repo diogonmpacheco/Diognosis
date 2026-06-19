@@ -666,6 +666,7 @@ const audienceModeRegression = window.eval(`(() => {
     summaryText:document.getElementById('summaryBar')?.textContent || '',
     summaryRisk:document.querySelector('#summaryBar .summary-risk')?.textContent || '',
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
+    findingCount:document.getElementById('findingCount')?.textContent || '',
     detailButtons:document.querySelectorAll('#findingBody .related-finding-btn.secondary').length,
     supportDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
     findingText:document.getElementById('findingBody')?.textContent || '',
@@ -692,9 +693,14 @@ assert(audienceModeRegression.patient.activeTab === 'overview', 'Patient mode sh
 assert(audienceModeRegression.patient.tabBarDisplay === 'none', 'Patient mode should hide clinician tab navigation');
 assert(audienceModeRegression.patient.summaryRisk.trim() === '', 'Patient mode should hide summary score badges');
 assert(audienceModeRegression.patient.findingTitle === 'Safety Notes', 'Patient mode should rename findings to Safety Notes');
+assert(/safety notes?/i.test(audienceModeRegression.patient.findingCount), 'Patient mode should label public finding count as safety notes');
 assert(audienceModeRegression.patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
 assert(audienceModeRegression.patient.supportDetails === 0, 'Patient mode should hide clinician supporting detail drawers');
 assert(/What this means/.test(audienceModeRegression.patient.findingText), 'Patient mode should use plain-language finding labels');
+assert(/Safety notes group related concerns|doctor or pharmacist/i.test(audienceModeRegression.patient.findingText), 'Patient mode should use a plain-language Safety Notes footer');
+assert(!/(?:Technical details remain available in Review|Detailed technical context|pathway, metabolite, timing, and evidence signals|clinical concerns)/i.test(
+  audienceModeRegression.patient.findingText
+), 'Patient mode should not expose clinician-only Overview footer language');
 assert(audienceModeRegression.patient.scopeDisplay === 'none', 'Patient mode should hide the clinician Review Scope panel');
 assert(!String(audienceModeRegression.patient.scopeText || '').replace(/\s+/g, ' ').trim(), 'Patient mode should not render hidden Review Scope copy');
 assert(!/\b(?:AUC|Cmax|RxNorm|PGx|PMID|source-linked|modeled|confidence|clinical review needed|pharmacogenomics|metabolite-level|CYP\d)/i.test(
