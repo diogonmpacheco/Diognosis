@@ -74,9 +74,10 @@ a{color:var(--accent)}
 
 /* MODE TOGGLE */
 .mode-toggle{display:flex;flex-direction:column;gap:8px;max-width:700px;margin:10px auto 0;padding:0 16px}
-.mode-btn{flex:1;padding:10px;border:2px solid var(--border);border-radius:var(--radius);background:var(--card);cursor:pointer;font-size:13px;font-weight:600;color:var(--text2);text-align:center;transition:all 0.2s}
+.mode-btn{appearance:none;font-family:var(--font);flex:1;padding:10px;border:2px solid var(--border);border-radius:var(--radius);background:var(--card);cursor:pointer;font-size:13px;font-weight:600;color:var(--text2);text-align:center;transition:all 0.2s}
 .mode-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accentBg)}
 .mode-btn:hover{border-color:var(--accent2)}
+.mode-btn:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
 .audience-wrap{max-width:700px;margin:14px auto 0;padding:0 16px;display:flex;align-items:center;gap:10px}
 .audience-label{font-size:11px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:0.4px;white-space:nowrap}
 .audience-segment{display:inline-grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid var(--border);background:var(--card);border-radius:10px;padding:3px;box-shadow:var(--shadow);min-width:220px}
@@ -829,8 +830,8 @@ body[data-audience="patient"] .stats-line{display:none}
 </div>
 
 <div class="mode-toggle">
-  <div class="mode-btn active" id="searchModeBtn" onclick="setViewMode('search')">Search</div>
-  <div class="mode-btn" id="browseModeBtn" onclick="setViewMode('browse')">Browse by Category</div>
+  <button type="button" class="mode-btn active" id="searchModeBtn" onclick="setViewMode('search')" aria-pressed="true">Search</button>
+  <button type="button" class="mode-btn" id="browseModeBtn" onclick="setViewMode('browse')" aria-pressed="false">Browse by Category</button>
 </div>
 
 <div class="stats-line" id="statsLine"></div>

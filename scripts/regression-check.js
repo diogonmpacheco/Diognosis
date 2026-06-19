@@ -672,6 +672,14 @@ const audienceModeRegression = window.eval(`(() => {
     firstUseOrder:[...document.body.children]
       .map(el => el.classList?.contains('audience-wrap') ? 'audience' : el.classList?.contains('search-wrap') ? 'search' : el.classList?.contains('mode-toggle') ? 'mode' : '')
       .filter(Boolean),
+    modeTags:[document.getElementById('searchModeBtn')?.tagName, document.getElementById('browseModeBtn')?.tagName],
+    modePressed:[document.getElementById('searchModeBtn')?.getAttribute('aria-pressed'), document.getElementById('browseModeBtn')?.getAttribute('aria-pressed')],
+    browsePressedAfterToggle:(() => {
+      setViewMode('browse');
+      const state = [document.getElementById('searchModeBtn')?.getAttribute('aria-pressed'), document.getElementById('browseModeBtn')?.getAttribute('aria-pressed')];
+      setViewMode('search');
+      return state;
+    })(),
     summaryText:document.getElementById('summaryBar')?.textContent || '',
     summaryRisk:document.querySelector('#summaryBar .summary-risk')?.textContent || '',
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
@@ -714,6 +722,9 @@ assert(/Search medicines/i.test(audienceModeRegression.patient.searchPlaceholder
 assert(audienceModeRegression.patient.listTitle === 'My Medicine List', 'Patient mode should use patient-facing selected-list label');
 assert(audienceModeRegression.patient.firstUseOrder.join('|').startsWith('audience|search|mode'),
   `Audience toggle should sit above search in Patient mode; got ${audienceModeRegression.patient.firstUseOrder.join('|')}`);
+assert(audienceModeRegression.patient.modeTags.join('|') === 'BUTTON|BUTTON', 'Search/Browse mode controls should be keyboard-accessible buttons');
+assert(audienceModeRegression.patient.modePressed.join('|') === 'true|false', 'Search/Browse mode controls should expose the selected state');
+assert(audienceModeRegression.patient.browsePressedAfterToggle.join('|') === 'false|true', 'Browse mode control should expose the selected state after toggle');
 assert(/2 items selected/i.test(audienceModeRegression.patient.medCount), 'Patient mode should use plain selected-item count copy');
 assert(!/substances?/i.test(audienceModeRegression.patient.medCount), 'Patient mode selected-list count should not use substance terminology');
 assert(/Gene Results/i.test(audienceModeRegression.patient.geneTitle) && /Do not guess|original report|doctor or pharmacist/i.test(audienceModeRegression.patient.geneIntro), 'Patient mode should use patient-facing gene helper copy');

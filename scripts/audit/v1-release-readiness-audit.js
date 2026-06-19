@@ -420,6 +420,14 @@ const structural = structuralWindow.eval(`(() => ({
   firstUseOrder:[...document.body.children]
     .map(el => el.classList?.contains('audience-wrap') ? 'audience' : el.classList?.contains('search-wrap') ? 'search' : el.classList?.contains('mode-toggle') ? 'mode' : '')
     .filter(Boolean),
+  modeTags:[document.getElementById('searchModeBtn')?.tagName, document.getElementById('browseModeBtn')?.tagName],
+  modePressed:[document.getElementById('searchModeBtn')?.getAttribute('aria-pressed'), document.getElementById('browseModeBtn')?.getAttribute('aria-pressed')],
+  browsePressedAfterToggle:(() => {
+    setViewMode('browse');
+    const state = [document.getElementById('searchModeBtn')?.getAttribute('aria-pressed'), document.getElementById('browseModeBtn')?.getAttribute('aria-pressed')];
+    setViewMode('search');
+    return state;
+  })(),
   remoteScripts:[...document.querySelectorAll('script[src]')].map(script => script.getAttribute('src')),
   disclaimer:document.body.textContent || '',
 }))()`);
@@ -431,6 +439,9 @@ assert(structural.hasScopeHelper, 'Review Scope helper should be bundled');
 assert(structural.patientButton && structural.clinicianButton, 'Audience toggle should be top-level and bundled');
 assert(structural.firstUseOrder.join('|').startsWith('audience|search|mode'),
   `Audience toggle should sit above search, followed by search/browse controls; got ${structural.firstUseOrder.join('|')}`);
+assert(structural.modeTags.join('|') === 'BUTTON|BUTTON', 'Search/Browse mode controls should be real buttons');
+assert(structural.modePressed.join('|') === 'true|false', 'Search/Browse mode controls should expose initial pressed state');
+assert(structural.browsePressedAfterToggle.join('|') === 'false|true', 'Browse mode control should expose selected state after toggle');
 assert(structural.remoteScripts.length === 0, `Static privacy posture should not rely on remote scripts: ${structural.remoteScripts.join(', ')}`);
 assert(/not medical advice|No information is uploaded/i.test(normalizedText(structural.disclaimer)),
   'Static disclaimer should retain medical and privacy boundaries');

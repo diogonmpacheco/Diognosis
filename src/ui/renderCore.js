@@ -172,8 +172,16 @@ function syncAudienceModeUI() {
 
 function setViewMode(m) {
   viewMode = m;
-  document.getElementById("searchModeBtn").className = "mode-btn" + (m==="search"?" active":"");
-  document.getElementById("browseModeBtn").className = "mode-btn" + (m==="browse"?" active":"");
+  const searchBtn = document.getElementById("searchModeBtn");
+  const browseBtn = document.getElementById("browseModeBtn");
+  if (searchBtn) {
+    searchBtn.className = "mode-btn" + (m==="search"?" active":"");
+    searchBtn.setAttribute("aria-pressed", m==="search" ? "true" : "false");
+  }
+  if (browseBtn) {
+    browseBtn.className = "mode-btn" + (m==="browse"?" active":"");
+    browseBtn.setAttribute("aria-pressed", m==="browse" ? "true" : "false");
+  }
   document.getElementById("browseWrap").className = "browse-wrap" + (m==="browse"?" show":"");
   if (m==="browse") renderBrowse();
 }
