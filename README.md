@@ -2,9 +2,9 @@
 
 **Parent–metabolite-aware medication safety and pharmacogenomics platform for source-linked interaction review.**
 
-Diognosis is a pre-v1, source-linked research prototype for exploring medication safety, pharmacogenomics, and mechanistic interaction signals. Instead of treating a medication only as a parent drug name, it models parent substances, active metabolites, toxic metabolites, enzymes, transporters, receptors, pharmacogenomic phenotypes, PK shifts, washout timing, pathway explanations, and source-linked evidence as connected actors.
+Diognosis is a V1 candidate, source-linked medication-safety review tool for exploring pharmacogenomics and mechanistic interaction signals. Instead of treating a medication only as a parent drug name, it models parent substances, active metabolites, toxic metabolites, enzymes, transporters, receptors, pharmacogenomic phenotypes, PK shifts, washout timing, pathway explanations, and source-linked evidence as connected actors.
 
-**Status:** pre-v1, under active validation, pending professional clinical review, and not medical advice.
+**Status:** V1 candidate, under active validation, pending professional clinical review, and not medical advice.
 
 **Data:** **Drug DB v1.2.3**.
 
@@ -20,7 +20,7 @@ Diognosis is a pre-v1, source-linked research prototype for exploring medication
 
 Diognosis is an AI-assisted, vibe-coded research project built by Diogo Pacheco in collaboration with OpenAI Codex and ChatGPT. Diogo directs the product vision, data priorities, clinical-safety boundaries, and final acceptance of changes. AI assistance is used for implementation, refactoring, tests, documentation, and data-organization support.
 
-AI-assisted development does not mean clinical validation. Diognosis remains a pre-v1 research prototype pending professional clinical review.
+AI-assisted development does not mean clinical validation. Diognosis remains a V1 candidate pending professional clinical review.
 
 ## Medication Safety Explorer
 

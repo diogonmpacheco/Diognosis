@@ -8,7 +8,7 @@ function run(label, command, args = []) {
   execFileSync(command, args, { stdio:'inherit' });
 }
 
-console.log('Diognosis pre-v1 launch gate');
+console.log('Diognosis V1 candidate launch gate');
 console.log('Checks source stats, generated bundle, Diognosis deep scenario QA, trust audit, release gate, and evidence ledger.');
 
 run('Generate stats', node, ['scripts/gen-stats.js']);
@@ -17,4 +17,4 @@ run('Release check', node, ['scripts/release-check.js']);
 run('Launch data trust audit', node, ['scripts/launch-data-trust-audit.js']);
 run('Evidence ledger check', node, ['scripts/check-evidence.js']);
 
-console.log('\nDiognosis pre-v1 launch gate passed.');
+console.log('\nDiognosis V1 candidate launch gate passed.');

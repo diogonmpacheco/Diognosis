@@ -45,6 +45,13 @@ const pkg = JSON.parse(read('package.json'));
 const missingLinks = localMarkdownLinks(readme)
   .filter(href => !existsSync(resolve(root, href)));
 assert(missingLinks.length === 0, `README has missing local links: ${missingLinks.join(', ')}`);
+for (const [label, text] of [
+  ['README', readme],
+  ['Public Trust', publicTrust],
+  ['Technical Notes', technical],
+]) {
+  assert(!/\bpre-v1\b/i.test(text), `${label} should not describe the active public V1 candidate as pre-v1`);
+}
 
 assert(pkg.scripts?.['launch:qa'] === 'node scripts/launch-qa-audit.js', 'package.json should expose npm run launch:qa');
 assert(pkg.scripts?.['pages:check'] === 'node scripts/pages-check.js', 'package.json should expose npm run pages:check');

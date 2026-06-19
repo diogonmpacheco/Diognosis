@@ -8,7 +8,7 @@ Diognosis is a source-linked medication safety and pharmacogenomics platform in 
 
 Diognosis explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
 
-Status: pre-v1, source-linked, under active validation, and not yet professionally reviewed.
+Status: V1 candidate, source-linked, under active validation, and not yet professionally reviewed.
 
 Diognosis is a source-linked educational preview. It is designed to make pharmacology, pharmacogenomics, metabolites, and interaction pathways easier to inspect. It is not medical advice, not a clinical decision support system, and it does not replace a licensed clinician or pharmacist.
 

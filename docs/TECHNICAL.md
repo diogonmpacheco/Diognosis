@@ -6,7 +6,7 @@ This page keeps implementation details out of the README front page while preser
 
 Diognosis models medication stacks as connected parent-metabolite-gene systems. The engine combines curated DDI pairs, parent/metabolite directionality, functional enzyme status, PK and washout timing, pathway graph traversal, receptor/phenotype burden, and source-linked evidence confidence into normalized interaction findings.
 
-Status: pre-v1, source-linked, under active validation, pending professional clinical review, and not medical advice.
+Status: V1 candidate, source-linked, under active validation, pending professional clinical review, and not medical advice.
 
 Diognosis currently ships as a single self-contained HTML file. All computation runs in the browser with no backend, no API, no accounts, no analytics, and no medication-data collection. D3.js is vendored locally and bundled at build time for graph visualization.
 

@@ -541,5 +541,7 @@ assert(structural.browsePressedAfterToggle.join('|') === 'false|true', 'Browse m
 assert(structural.remoteScripts.length === 0, `Static privacy posture should not rely on remote scripts: ${structural.remoteScripts.join(', ')}`);
 assert(/not medical advice|No information is uploaded/i.test(normalizedText(structural.disclaimer)),
   'Static disclaimer should retain medical and privacy boundaries');
+assert(!/\bpre-v1\b|research prototype/i.test(normalizedText(structural.disclaimer)),
+  'Static disclaimer should describe the active app as a V1 candidate, not a pre-v1 prototype');
 
 console.log(`V1 release readiness audit passed: ${clinicianScenarios.length} clinician scenarios, Patient mode boundary, and static readiness surface.`);
