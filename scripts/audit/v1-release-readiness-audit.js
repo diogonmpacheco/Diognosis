@@ -417,6 +417,9 @@ const structural = structuralWindow.eval(`(() => ({
   hasScopeHelper:typeof buildReviewScopeSummary === 'function',
   patientButton:!!document.getElementById('audience-patient'),
   clinicianButton:!!document.getElementById('audience-clinician'),
+  firstUseOrder:[...document.body.children]
+    .map(el => el.classList?.contains('audience-wrap') ? 'audience' : el.classList?.contains('search-wrap') ? 'search' : el.classList?.contains('mode-toggle') ? 'mode' : '')
+    .filter(Boolean),
   remoteScripts:[...document.querySelectorAll('script[src]')].map(script => script.getAttribute('src')),
   disclaimer:document.body.textContent || '',
 }))()`);
@@ -426,6 +429,8 @@ assert(structural.hasTrustHelper, 'V1 trust contract helper should be bundled');
 assert(structural.hasHandoffHelper, 'V1 handoff helper should be bundled');
 assert(structural.hasScopeHelper, 'Review Scope helper should be bundled');
 assert(structural.patientButton && structural.clinicianButton, 'Audience toggle should be top-level and bundled');
+assert(structural.firstUseOrder.join('|').startsWith('audience|search|mode'),
+  `Audience toggle should sit above search, followed by search/browse controls; got ${structural.firstUseOrder.join('|')}`);
 assert(structural.remoteScripts.length === 0, `Static privacy posture should not rely on remote scripts: ${structural.remoteScripts.join(', ')}`);
 assert(/not medical advice|No information is uploaded/i.test(normalizedText(structural.disclaimer)),
   'Static disclaimer should retain medical and privacy boundaries');

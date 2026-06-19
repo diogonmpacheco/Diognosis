@@ -669,6 +669,9 @@ const audienceModeRegression = window.eval(`(() => {
     geneTitle:document.getElementById('geneSectionTitle')?.textContent || '',
     geneIntro:document.getElementById('geneSectionIntro')?.textContent || '',
     tabBarDisplay:document.getElementById('tabBar')?.style.display || '',
+    firstUseOrder:[...document.body.children]
+      .map(el => el.classList?.contains('audience-wrap') ? 'audience' : el.classList?.contains('search-wrap') ? 'search' : el.classList?.contains('mode-toggle') ? 'mode' : '')
+      .filter(Boolean),
     summaryText:document.getElementById('summaryBar')?.textContent || '',
     summaryRisk:document.querySelector('#summaryBar .summary-risk')?.textContent || '',
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
@@ -709,6 +712,8 @@ assert(audienceModeRegression.patient.activeTab === 'overview', 'Patient mode sh
 assert(/prepare medicine-list questions|doctor or pharmacist/i.test(audienceModeRegression.patient.tagline), 'Patient mode should use patient-facing app tagline');
 assert(/Search medicines/i.test(audienceModeRegression.patient.searchPlaceholder), 'Patient mode should use patient-facing search placeholder');
 assert(audienceModeRegression.patient.listTitle === 'My Medicine List', 'Patient mode should use patient-facing selected-list label');
+assert(audienceModeRegression.patient.firstUseOrder.join('|').startsWith('audience|search|mode'),
+  `Audience toggle should sit above search in Patient mode; got ${audienceModeRegression.patient.firstUseOrder.join('|')}`);
 assert(/2 items selected/i.test(audienceModeRegression.patient.medCount), 'Patient mode should use plain selected-item count copy');
 assert(!/substances?/i.test(audienceModeRegression.patient.medCount), 'Patient mode selected-list count should not use substance terminology');
 assert(/Gene Results/i.test(audienceModeRegression.patient.geneTitle) && /Do not guess|original report|doctor or pharmacist/i.test(audienceModeRegression.patient.geneIntro), 'Patient mode should use patient-facing gene helper copy');

@@ -73,11 +73,11 @@ a{color:var(--accent)}
 .sr-cat{font-size:11px;font-weight:700;color:var(--accent);padding:8px 20px;background:var(--accentBg);text-transform:uppercase;letter-spacing:1px;position:sticky;top:0;z-index:1}
 
 /* MODE TOGGLE */
-.mode-toggle{display:flex;flex-direction:column;gap:8px;max-width:700px;margin:16px auto 0;padding:0 16px}
+.mode-toggle{display:flex;flex-direction:column;gap:8px;max-width:700px;margin:10px auto 0;padding:0 16px}
 .mode-btn{flex:1;padding:10px;border:2px solid var(--border);border-radius:var(--radius);background:var(--card);cursor:pointer;font-size:13px;font-weight:600;color:var(--text2);text-align:center;transition:all 0.2s}
 .mode-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accentBg)}
 .mode-btn:hover{border-color:var(--accent2)}
-.audience-wrap{max-width:700px;margin:10px auto 0;padding:0 16px;display:flex;align-items:center;gap:10px}
+.audience-wrap{max-width:700px;margin:14px auto 0;padding:0 16px;display:flex;align-items:center;gap:10px}
 .audience-label{font-size:11px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:0.4px;white-space:nowrap}
 .audience-segment{display:inline-grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid var(--border);background:var(--card);border-radius:10px;padding:3px;box-shadow:var(--shadow);min-width:220px}
 .audience-btn{border:none;border-radius:7px;background:transparent;color:var(--text2);font-family:var(--font);font-size:12px;font-weight:800;padding:7px 10px;cursor:pointer;transition:background .15s,color .15s}
@@ -812,6 +812,14 @@ body[data-audience="patient"] .stats-line{display:none}
   <p id="audienceTagline">Diognosis - parent drugs, metabolites, genes, pathways, PK timing, and source-linked evidence checked together</p>
 </div>
 
+<div class="audience-wrap" aria-label="Audience mode">
+  <div class="audience-label">Audience</div>
+  <div class="audience-segment">
+    <button type="button" class="audience-btn" id="audience-patient" onclick="setAudienceMode('patient')" aria-pressed="false">Patient</button>
+    <button type="button" class="audience-btn active" id="audience-clinician" onclick="setAudienceMode('clinician')" aria-pressed="true">Clinician</button>
+  </div>
+</div>
+
 <div class="search-wrap">
   <div class="search-box">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -823,14 +831,6 @@ body[data-audience="patient"] .stats-line{display:none}
 <div class="mode-toggle">
   <div class="mode-btn active" id="searchModeBtn" onclick="setViewMode('search')">Search</div>
   <div class="mode-btn" id="browseModeBtn" onclick="setViewMode('browse')">Browse by Category</div>
-</div>
-
-<div class="audience-wrap" aria-label="Audience mode">
-  <div class="audience-label">Audience</div>
-  <div class="audience-segment">
-    <button type="button" class="audience-btn" id="audience-patient" onclick="setAudienceMode('patient')" aria-pressed="false">Patient</button>
-    <button type="button" class="audience-btn active" id="audience-clinician" onclick="setAudienceMode('clinician')" aria-pressed="true">Clinician</button>
-  </div>
 </div>
 
 <div class="stats-line" id="statsLine"></div>
