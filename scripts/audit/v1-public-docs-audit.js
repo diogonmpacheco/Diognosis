@@ -49,6 +49,7 @@ assert(pkg.scripts?.['pages:check'] === 'node scripts/pages-check.js', 'package.
 assert(pkg.scripts?.['release:check'] === 'node scripts/release-check.js', 'package.json should expose npm run release:check');
 assert(pkg.engines?.node === '>=24', 'package.json should declare the supported Node.js runtime');
 assert(/npm run pages:check/.test(pagesWorkflow), 'GitHub Pages workflow must run npm run pages:check');
+assert(/cancel-in-progress:\s*true/.test(pagesWorkflow), 'GitHub Pages workflow should cancel stale in-progress deploys');
 for (const [label, workflow] of [['GitHub Pages', pagesWorkflow], ['CI', ciWorkflow]]) {
   assert(/node-version:\s*["']24["']/.test(workflow), `${label} workflow should use Node.js 24`);
   assert(!/node-version:\s*["']20["']/.test(workflow), `${label} workflow should not use deprecated Node.js 20`);
