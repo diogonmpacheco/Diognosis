@@ -720,6 +720,39 @@ assert(/Selected|Recognized|Concerns|Limit:/i.test(audienceModeRegression.clinic
 assert(audienceModeRegression.clinician.actionRows > 0, 'Clinician mode should restore finding action rows');
 assert(audienceModeRegression.clinician.supportDetails > 0, 'Clinician mode should show supporting detail drawers');
 
+const singleItemSummaryJumpRegression = window.eval(`(() => {
+  activeStack = [];
+  userGenetics = {};
+  activeGenotypeDetails = {};
+  activeGenotype = {
+    CYP2D6: GENOTYPE_PHENOTYPE.NM,
+    CYP2C19: GENOTYPE_PHENOTYPE.NM,
+    CYP2C9: GENOTYPE_PHENOTYPE.NM,
+  };
+  window.history.replaceState(null, '', '/index.html?substances=mystery-mix&audience=patient&tab=overview');
+  loadUrlDemoState();
+  renderAll();
+  const patient = {
+    activeStack,
+    findingDisplay:document.getElementById('findingSection')?.style.display || '',
+    summaryJumpCount:document.querySelectorAll('#summaryBar .summary-jump').length,
+    summaryText:document.getElementById('summaryBar')?.textContent || '',
+  };
+  setAudienceMode('clinician');
+  const clinician = {
+    findingDisplay:document.getElementById('findingSection')?.style.display || '',
+    summaryJumpCount:document.querySelectorAll('#summaryBar .summary-jump').length,
+    summaryText:document.getElementById('summaryBar')?.textContent || '',
+  };
+  return { patient, clinician };
+})()`);
+assert(singleItemSummaryJumpRegression.patient.activeStack.join('|') === 'Mystery Mix', 'Single-item summary jump regression should preserve the unrecognized selection');
+assert(singleItemSummaryJumpRegression.patient.findingDisplay === 'none', 'Patient single-item mode should hide Safety Notes when no note exists');
+assert(singleItemSummaryJumpRegression.patient.summaryJumpCount === 0, 'Patient single-item mode should not show a View note jump to a hidden section');
+assert(/Add another medicine to check the list/i.test(singleItemSummaryJumpRegression.patient.summaryText), 'Patient single-item mode should keep add-another-medicine guidance');
+assert(singleItemSummaryJumpRegression.clinician.findingDisplay === 'none', 'Clinician single-item mode should hide findings when no finding exists');
+assert(singleItemSummaryJumpRegression.clinician.summaryJumpCount === 0, 'Clinician single-item mode should not show a View finding jump to a hidden section');
+
 const olderAdultDemoPriorityRegression = window.eval(`(() => {
   activeStack = [];
   userGenetics = {};

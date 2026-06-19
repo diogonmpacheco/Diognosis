@@ -71,6 +71,13 @@ let lazyRenderState = { evidenceKey:"", reviewKey:"" };
 let manualSectionToggleKeys = {};
 const DIOGNOSIS_TABS = ["overview","mechanisms","genes-metabolites","timing-levels","evidence","review"];
 const AUDIENCE_MODES = ["patient","clinician"];
+
+function clearCurrentFindingState() {
+  currentInteractionFindings = [];
+  currentClinicalConcerns = [];
+  currentPublicFindingPresentations = [];
+}
+
 const TAB_ALIASES = {
   safety:"overview",
   summary:"overview",
@@ -404,6 +411,10 @@ function renderSummaryBar() {
 
   const summaryKicker = patient ? "Main Safety Note" : "Highest Priority";
   const jumpLabel = patient ? "View note" : "View finding";
+  const hasVisibleSummaryJump = Boolean(primaryPresentation) || activeStack.length >= 2 || (!patient && Boolean(isGenotypePriority));
+  const summaryJumpHtml = hasVisibleSummaryJump
+    ? `<button type="button" class="summary-jump" onclick="focusPriorityFinding('${safeAttr(jumpTab)}','${safeAttr(jumpTarget)}')">${safePublicHtml(jumpLabel)}</button>`
+    : "";
   const nextLabel = patient ? "Next step" : "Next review";
 
     bar.innerHTML = `<div class="summary-card">
@@ -411,7 +422,7 @@ function renderSummaryBar() {
       <div>
         <div class="summary-kicker">${safePublicHtml(summaryKicker)}</div>
         <div class="summary-title">${safePublicHtml(headline)}</div>
-        <div class="summary-copy">${summaryCopy ? `${safePublicHtml(summaryCopy)} ` : ""}<button type="button" class="summary-jump" onclick="focusPriorityFinding('${safeAttr(jumpTab)}','${safeAttr(jumpTarget)}')">${safePublicHtml(jumpLabel)}</button></div>
+        <div class="summary-copy">${summaryCopy ? `${safePublicHtml(summaryCopy)} ` : ""}${summaryJumpHtml}</div>
       </div>
       ${patient ? "" : `<div class="summary-risk ${riskClass}">
         <div class="num">${scoreValue}</div>
@@ -2447,7 +2458,7 @@ function renderAll() {
     document.getElementById("metabSection").style.display = activeDrugNames.length ? "" : "none";
     document.getElementById("pdSection").style.display = activeDrugNames.length ? "" : "none";
   } else {
-    currentInteractionFindings = [];
+    clearCurrentFindingState();
     hideSectionAndClear("scopeSection", "scopeBody", "scopeCount");
     hideSectionAndClear("findingSection", "findingBody", "findingCount");
     hideSectionAndClear("phenoconversionSection", "phenoconversionBody", "phenoconversionCount");
@@ -2505,7 +2516,7 @@ function renderAll() {
       if (typeof renderMechanismWhyPaths === "function") renderMechanismWhyPaths();
     }
     else {
-      currentInteractionFindings = [];
+      clearCurrentFindingState();
       hideSectionAndClear("findingSection", "findingBody", "findingCount");
       hideSectionAndClear("mechanismWhySection", "mechanismWhyBody", "mechanismWhyCount");
       hideSectionAndClear("warningPathSection", "warningPathBody", "warningPathCount");

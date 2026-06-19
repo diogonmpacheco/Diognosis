@@ -208,6 +208,22 @@ assertNoPatientFooterLeak('Patient Overview', patient.findingText);
 assertNoUnsafeCertainty('Patient Overview', patient.findingText);
 assertNoInternalLeak('Patient Overview', patient.findingText);
 
+const patientSingleWindow = await loadPage('http://localhost/index.html?substances=mystery-mix&audience=patient&tab=overview');
+const patientSingle = patientSingleWindow.eval(`(() => ({
+  activeStack,
+  findingDisplay:document.getElementById('findingSection')?.style.display || '',
+  summaryJumpCount:document.querySelectorAll('#summaryBar .summary-jump').length,
+  summaryText:document.getElementById('summaryBar')?.textContent || '',
+}))()`);
+
+assert(patientSingle.activeStack.join('|') === 'Mystery Mix', 'Patient single-item URL should preserve the unrecognized selection');
+assert(patientSingle.findingDisplay === 'none', 'Patient single-item mode should hide Safety Notes when no note exists');
+assert(patientSingle.summaryJumpCount === 0, 'Patient single-item mode should not show a View note jump to a hidden section');
+assert(/Add another medicine to check the list/i.test(patientSingle.summaryText),
+  'Patient single-item mode should keep the add-another-medicine guidance');
+assertNoPatientTechnicalLeak('Patient Single Summary', patientSingle.summaryText);
+assertNoUnsafeCertainty('Patient Single Summary', patientSingle.summaryText);
+
 const unknownUrlWindow = await loadPage('http://localhost/index.html?substances=warfarin,mystery-mix&audience=patient&tab=overview');
 const unknownUrl = unknownUrlWindow.eval(`(() => ({
   activeStack,
