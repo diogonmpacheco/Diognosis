@@ -109,6 +109,14 @@ assert(/--radius\s*:\s*14px\b/i.test(styleText),
 assert(/@media\(max-width:480px\)[\s\S]*\.summary-next\s*\{\s*display:grid;grid-template-columns:1fr/i.test(styleText),
   'Mobile Patient summary next-step card should stack label and text for readability');
 
+const patientEmptyText = doc.getElementById('mainEmptyState')?.textContent || '';
+assert(patientEmptyText.includes('Review Safety Notes first'), 'Default Patient landing copy should point to Safety Notes first');
+assert(!patientEmptyText.includes('Review the result tabs'), 'Default Patient landing copy should not point to hidden result tabs');
+window.setAudienceMode('clinician', { render:false });
+assert((doc.getElementById('mainEmptyState')?.textContent || '').includes('Review the result tabs'),
+  'Clinician landing copy should keep result-tab guidance');
+window.setAudienceMode('patient', { render:false });
+
 const inputRailOrder = Array.from(doc.querySelector('.input-rail')?.children || []).map((el) => el.id || el.className);
 const mainOrder = Array.from(doc.querySelector('.main')?.children || []).map((el) =>
   el.id || (el.classList.contains('input-rail') ? 'input-rail' : el.classList.contains('result-area') ? 'result-area' : el.className)

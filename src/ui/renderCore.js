@@ -192,6 +192,7 @@ function setAudienceMode(mode, options = {}) {
 function syncAudienceModeUI() {
   const patient = isPatientAudience();
   if (document.body) document.body.dataset.audience = audienceMode;
+  syncMainEmptyStateCopy(patient);
   for (const mode of AUDIENCE_MODES) {
     const btn = document.getElementById(`audience-${mode}`);
     if (!btn) continue;
@@ -226,6 +227,39 @@ function syncAudienceModeUI() {
   }
   const findingTitle = document.getElementById("findingTitle");
   if (findingTitle) findingTitle.textContent = patient ? "Safety Notes" : "Interaction Findings";
+}
+
+function syncMainEmptyStateCopy(patient) {
+  const setText = (id, text) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  };
+  setText("mainEmptyTitle", patient
+    ? "Check a medication list before the conversation starts"
+    : "Review a medication and pharmacogenomic stack");
+  setText("mainEmptyCopy", patient
+    ? "Diognosis runs on your device and helps prepare medication-safety questions from medicines, supplements, foods, optional gene results, timing, metabolites, and source-linked evidence."
+    : "Diognosis checks parent drugs, metabolites, genes, pathways, timing, and source-linked evidence together for clinician-oriented review.");
+  setText("mainEmptyStep3Title", patient ? "Review Safety Notes first" : "Review the result tabs");
+  setText("mainEmptyStep3Copy", patient
+    ? "Use the notes to prepare questions for a doctor or pharmacist. Switch to Clinician when more technical detail is needed."
+    : "Start with Overview, then use Genes, Timing, and Evidence when more detail is needed.");
+  const checks = document.getElementById("mainEmptyChecks");
+  if (!checks) return;
+  const items = patient
+    ? [
+        "Safety notes to discuss before changing anything",
+        "Gene and metabolite effects that may matter if results are known",
+        "Timing, persistence, washout, and level-change context",
+        "Evidence links and boundaries for doctor or pharmacist follow-up",
+      ]
+    : [
+        "Interaction warnings and grouped clinical concerns",
+        "Gene and metabolite effects that may change interpretation",
+        "Timing, persistence, washout, and level-change context",
+        "Evidence links and review boundaries for clinician follow-up",
+      ];
+  checks.innerHTML = items.map(item => `<div class="main-empty-check">${safePublicHtml(item)}</div>`).join("");
 }
 
 function setViewMode(m) {

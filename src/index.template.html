@@ -909,6 +909,14 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
   .header h1{font-size:22px}
   .header{position:static;flex-wrap:wrap;gap:4px}
   .header p{width:100%;font-size:11px}
+  .mode-btn{font-size:11px;line-height:1.15;padding:8px 6px}
+  .section-title{padding:12px;gap:7px;flex-wrap:wrap}
+  #medCount,#findingCount{margin-left:auto!important;font-size:11px!important;white-space:nowrap}
+  .summary-title{font-size:21px;line-height:1.18}
+  .patient-question-card{padding:14px 12px;gap:10px}
+  .patient-question-dot{width:8px;height:8px;margin-top:7px}
+  .patient-question-title{font-size:15px;line-height:1.35}
+  .finding-discussion,.finding-monitoring{padding:9px 10px}
   .inter-head,.pd-head,.tr-head{flex-wrap:wrap;gap:4px}
   .inter-sev,.pd-sev{font-size:11px}
   #matrixBody table{font-size:11px}
@@ -1002,24 +1010,24 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
   <div class="main-empty-state" id="mainEmptyState">
     <div class="main-empty-panel">
       <div class="main-empty-kicker">Start here</div>
-      <div class="main-empty-title">Check a medication list before the conversation starts</div>
-      <div class="main-empty-copy">Diognosis is an on-device medication and pharmacogenomic review workspace. It checks selected medicines, supplements, foods, optional gene results, timing, metabolites, and source-linked evidence together.</div>
+      <div class="main-empty-title" id="mainEmptyTitle">Check a medication list before the conversation starts</div>
+      <div class="main-empty-copy" id="mainEmptyCopy">Diognosis is an on-device medication and pharmacogenomic review workspace. It checks selected medicines, supplements, foods, optional gene results, timing, metabolites, and source-linked evidence together.</div>
       <div class="main-empty-layout">
         <div>
           <div class="main-empty-block-title">How to use it</div>
           <div class="main-empty-steps">
             <div class="main-empty-step"><span class="main-empty-step-num">1</span><div><strong>Add items to the list</strong><span>Search or browse for medications, supplements, foods, or clinical context items.</span></div></div>
             <div class="main-empty-step"><span class="main-empty-step-num">2</span><div><strong>Add gene results only if known</strong><span>Gene and marker results are optional. Leave them blank unless there is a real report.</span></div></div>
-            <div class="main-empty-step"><span class="main-empty-step-num">3</span><div><strong>Review the result tabs</strong><span>Start with Overview, then use Genes, Timing, and Evidence when more detail is needed.</span></div></div>
+            <div class="main-empty-step"><span class="main-empty-step-num">3</span><div><strong id="mainEmptyStep3Title">Review Safety Notes first</strong><span id="mainEmptyStep3Copy">Use the notes to prepare questions for a doctor or pharmacist. Switch to Clinician when more technical detail is needed.</span></div></div>
           </div>
         </div>
         <div>
           <div class="main-empty-block-title">What it can help surface</div>
-          <div class="main-empty-checks">
-            <div class="main-empty-check">Interaction warnings and grouped clinical concerns</div>
-            <div class="main-empty-check">Gene and metabolite effects that may change interpretation</div>
+          <div class="main-empty-checks" id="mainEmptyChecks">
+            <div class="main-empty-check">Safety notes to discuss before changing anything</div>
+            <div class="main-empty-check">Gene and metabolite effects that may matter if results are known</div>
             <div class="main-empty-check">Timing, persistence, washout, and level-change context</div>
-            <div class="main-empty-check">Evidence links and review boundaries for clinician follow-up</div>
+            <div class="main-empty-check">Evidence links and boundaries for doctor or pharmacist follow-up</div>
           </div>
         </div>
       </div>
