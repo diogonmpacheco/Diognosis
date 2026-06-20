@@ -872,6 +872,10 @@ assert(!/Genes \+ Metabolites tab|source-linked|parent drugs|PK timing|pathway a
 ), 'Patient mode should not refer to hidden clinician tabs or technical tagline copy');
 assert(audienceModeRegression.patient.tabBarDisplay === 'none', 'Patient mode should hide clinician tab navigation');
 assert(audienceModeRegression.patient.summaryStoryCount === 0, 'Patient mode top summary should stay compact and leave detailed explanation to Safety Notes');
+assert(/questions? ready for your list/i.test(audienceModeRegression.patient.summaryText),
+  'Patient mode top summary should orient around prepared questions');
+assert(!/Can you check/i.test(audienceModeRegression.patient.summaryText),
+  'Patient mode top summary should leave exact question wording to Safety Notes');
 assert(!/higher-priority safety note was found|safety note was found for this list/i.test(audienceModeRegression.patient.summaryText),
   'Patient mode top summary should not repeat report-style safety-note body copy before Safety Notes');
 assert(!/\bView note\b/i.test(audienceModeRegression.patient.summaryText),
@@ -881,6 +885,8 @@ assert(audienceModeRegression.patient.summaryRisk.trim() === '', 'Patient mode s
 assert(audienceModeRegression.patient.findingTitle === 'Safety Notes', 'Patient mode should rename findings to Safety Notes');
 assert(/safety notes?/i.test(audienceModeRegression.patient.findingCount), 'Patient mode should label public finding count as safety notes');
 assert(audienceModeRegression.patient.patientQuestionCards > 0, 'Patient mode should render dedicated question cards');
+assert(/What to ask[\s\S]*Why this came up/i.test(audienceModeRegression.patient.findingText),
+  'Patient mode should make the question primary before the reason text');
 assert(audienceModeRegression.patient.patientMeaningCards > 0, 'Patient mode should render a separate meaning section');
 assert(audienceModeRegression.patient.exposureSummaryCount === 0, 'Patient mode should hide technical exposure summary rows from the selected list');
 assert(audienceModeRegression.patient.actionRows === 0, 'Patient mode should not render empty clinician action rows on patient question cards');

@@ -250,9 +250,14 @@ assert(doc.getElementById('metaboliteGapSection')?.closest('.tab-panel')?.id ===
 assert(doc.getElementById('contributeSection')?.closest('.tab-panel')?.id === 'tab-review', 'Report / Contribute should live under Reviewer Console');
 assert(doc.getElementById('warningPathSection')?.closest('.tab-panel')?.id === 'tab-review', 'Technical Warning Paths should live under Reviewer Console');
 assert(evalInPage(window, 'audienceMode') === 'patient', 'Default V1 smoke path should open in Patient mode');
+const patientSummaryText = Array.from(doc.querySelectorAll('#summaryBar .summary-title, #summaryBar .summary-copy, #summaryBar .summary-next'))
+  .map(el => el.textContent || '')
+  .join(' ');
 const patientFindingText = doc.getElementById('findingBody')?.textContent || '';
+assert(/questions? ready for your list/i.test(patientSummaryText), 'Patient summary should orient around prepared questions');
+assert(!/Can you check/i.test(patientSummaryText), 'Patient summary should leave exact questions to Safety Notes');
 assert(doc.querySelectorAll('#findingBody .patient-question-card').length > 0, 'Default Overview should render Patient safety-note cards');
-assert(patientFindingText.includes('What to ask') && patientFindingText.includes('What this means'), 'Patient safety-note cards should render plain-language guidance');
+assert(patientFindingText.includes('What to ask') && patientFindingText.includes('Why this came up') && patientFindingText.includes('What this means'), 'Patient safety-note cards should render question-first plain-language guidance');
 assert(doc.querySelectorAll('#findingBody .primary-finding-card').length === 0, 'Default Patient Overview should not render clinician finding cards');
 window.setAudienceMode('clinician');
 assert(evalInPage(window, 'audienceMode') === 'clinician', 'Clinician smoke path should switch to Clinician mode');

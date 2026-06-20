@@ -520,9 +520,13 @@ function renderSummaryBar() {
   const patient = isPatientAudience();
   if (patient) {
     if (primaryPresentation) {
-      headline = patientFindingTitleText(primaryPresentation);
-      summaryCopy = "";
-      nextStep = patientFindingStepText(primaryPresentation, "review");
+      const noteCount = getCurrentPublicFindingPresentations().length;
+      const firstActors = (primaryPresentation.affectedSubstances || []).slice(0, 2).join(" + ");
+      headline = `${noteCount} question${noteCount === 1 ? "" : "s"} ready for your list`;
+      summaryCopy = firstActors
+        ? `Start with the Safety Notes below. The first question is about ${firstActors}.`
+        : "Start with the Safety Notes below.";
+      nextStep = "Copy the questions or bring this screen to a doctor or pharmacist before making medication changes.";
       priorityStory = patientPriorityStory(primaryPresentation);
     } else if (activeStack.length >= 2) {
       headline = "No major safety note found here";
@@ -802,11 +806,14 @@ function renderPatientQuestionCard(presentation = {}) {
       <div class="patient-question-top">
         <span class="patient-question-tag">${safePublicHtml(patientSeverityLabel(severity))}</span>
       </div>
-      <div class="patient-question-title">${safePublicHtml(title)}</div>
-      ${affected ? `<div class="patient-question-meta">${safePublicHtml(affected)}</div>` : ""}
       <div class="finding-discussion patient-question-discussion">
         <div class="finding-discussion-label">What to ask</div>
         <div class="finding-discussion-text">${safePublicHtml(question)}</div>
+      </div>
+      <div class="patient-question-reason">
+        <div class="patient-question-reason-label">Why this came up</div>
+        <div class="patient-question-title">${safePublicHtml(title)}</div>
+        ${affected ? `<div class="patient-question-meta">${safePublicHtml(affected)}</div>` : ""}
       </div>
       ${monitoringGuide}
     </div>
