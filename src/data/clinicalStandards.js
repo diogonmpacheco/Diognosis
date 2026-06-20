@@ -30,6 +30,7 @@ const EXTERNAL_SUBSTANCE_MAPPINGS = Object.freeze([
   { substance:"Ibuprofen", rxnormCui:"5640", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Irinotecan", rxnormCui:"51499", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Mercaptopurine", rxnormCui:"103", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Metoprolol", rxnormCui:"6918", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Nebivolol", rxnormCui:"31555", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Thioguanine", rxnormCui:"10485", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Azathioprine", rxnormCui:"1256", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },

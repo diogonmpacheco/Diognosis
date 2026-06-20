@@ -66,6 +66,7 @@ const publicV1Substances = [
   'Fluoxetine',
   'Ibuprofen',
   'Irinotecan',
+  'Metoprolol',
   'Nebivolol',
   'Omeprazole',
   'Oxycodone',
@@ -103,13 +104,26 @@ assert(/Standards identity/i.test(fullyMapped.readinessText), 'V1 readiness pane
 assert(fullyMapped.readiness.ready === true, 'Fully mapped PGx standards case should remain V1-ready');
 assert(fullyMapped.pgxActionCards >= 1, 'Fully mapped PGx case should render CPIC-linked PGx action card');
 
-const partial = standardsReport(await loadWindow('http://localhost/index.html?substances=warfarin,metoprolol&genotype=CYP2C9:IM&tab=review'));
-assert(partial.coverage.recognizedDrugCount === 2, 'Warfarin + metoprolol should resolve as two recognized drugs');
+const betaBlockerMapped = standardsReport(await loadWindow('http://localhost/index.html?substances=warfarin,metoprolol&genotype=CYP2C9:IM&tab=review'));
+assert(betaBlockerMapped.coverage.recognizedDrugCount === 2, 'Warfarin + metoprolol should resolve as two recognized drugs');
+assert(betaBlockerMapped.coverage.mappedDrugCount === 2, 'Warfarin + metoprolol should both have RxNorm mappings');
+assert(betaBlockerMapped.coverage.unmappedDrugCount === 0, 'Metoprolol standards case should not report unmapped drugs');
+assert(betaBlockerMapped.coverage.markerMappingCount >= 2, 'CYP2C9 IM should expose marker mappings');
+assert(betaBlockerMapped.coverage.pgxActionCount >= 1, 'Warfarin CYP2C9 case should expose CPIC-linked action context');
+assert(/Standards coverage: 2\/2 recognized medications mapped to RxNorm/i.test(betaBlockerMapped.scopeText),
+  'Reviewer Console scope should summarize the newly mapped Metoprolol case');
+assert(/Standards identity: 2\/2 recognized medications mapped to RxNorm/i.test(betaBlockerMapped.handoffText),
+  'V1 handoff should include full standards identity coverage for the Metoprolol case');
+assert(betaBlockerMapped.readiness.checks.some(check => check.key === 'standards' && check.ok === true),
+  'Mapped Metoprolol standards case should keep the Standards identity readiness check passing');
+
+const partial = standardsReport(await loadWindow('http://localhost/index.html?substances=warfarin,atenolol&genotype=CYP2C9:IM&tab=review'));
+assert(partial.coverage.recognizedDrugCount === 2, 'Warfarin + atenolol should resolve as two recognized drugs');
 assert(partial.coverage.mappedDrugCount >= 1, 'Partial standards case should include at least one RxNorm mapping');
 assert(partial.coverage.unmappedDrugCount >= 1, 'Partial standards case should disclose unmapped recognized drugs');
-assert(partial.coverage.unmappedSubstances.some(name => /metoprolol/i.test(name)), 'Metoprolol should be disclosed as unmapped until RxNorm row exists');
-assert(partial.coverage.markerMappingCount >= 2, 'CYP2C9 IM should expose marker mappings');
-assert(partial.coverage.pgxActionCount >= 1, 'Warfarin CYP2C9 case should expose CPIC-linked action context');
+assert(partial.coverage.unmappedSubstances.some(name => /atenolol/i.test(name)), 'Atenolol should be disclosed as unmapped until RxNorm row exists');
+assert(partial.coverage.markerMappingCount >= 2, 'CYP2C9 IM should expose marker mappings in the partial gap case');
+assert(partial.coverage.pgxActionCount >= 1, 'Warfarin CYP2C9 partial gap case should expose CPIC-linked action context');
 assert(/recognized medications mapped to RxNorm/i.test(partial.scopeText), 'Partial Reviewer Console scope should summarize RxNorm coverage');
 assert(/lack local RxNorm identity mappings/i.test(partial.scopeText), 'Partial Reviewer Console scope should disclose RxNorm mapping gaps');
 assert(/SNOMED CT diagnosis\/symptom mapping is not used/i.test(partial.scopeText), 'Reviewer Console scope should state SNOMED boundary');
