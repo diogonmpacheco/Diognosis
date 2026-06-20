@@ -1,7 +1,7 @@
 // Diognosis - external clinical standards bridge
 // Keeps runtime local while exposing source-linked identity and PGx action context.
 
-const CLINICAL_STANDARDS_VERSION = "2026-06-20-batch2-high-impact-rxnorm";
+const CLINICAL_STANDARDS_VERSION = "2026-06-20-batch3-high-impact-rxnorm";
 
 const EXTERNAL_ID_SYSTEMS = Object.freeze({
   RXNORM: "RxNorm",
@@ -217,6 +217,56 @@ const EXTERNAL_SUBSTANCE_MAPPINGS = Object.freeze([
   { substance:"isavuconazole", rxnormCui:"1720882", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Ivosidenib", rxnormCui:"2049873", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Larotrectinib", rxnormCui:"2105628", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"aripiprazole lauroxil", rxnormCui:"1673265", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Bosutinib", rxnormCui:"1307619", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Brexpiprazole", rxnormCui:"1658314", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Buprenorphine", rxnormCui:"1819", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"cabazitaxel", rxnormCui:"996051", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Cabozantinib", rxnormCui:"1363268", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"carbimazole", rxnormCui:"2020", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Ceritinib", rxnormCui:"1535457", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Clobazam", rxnormCui:"21241", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Clotrimazole", rxnormCui:"2623", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"cytarabine", rxnormCui:"3041", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Dabrafenib", rxnormCui:"1424911", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"dacarbazine", rxnormCui:"3098", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"daunorubicin", rxnormCui:"3109", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Dexlansoprazole", rxnormCui:"816346", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"doxorubicin", rxnormCui:"3639", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Econazole", rxnormCui:"3743", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Entrectinib", rxnormCui:"2197862", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Lopinavir", rxnormCui:"195088", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"lurbinectedin", rxnormCui:"2374729", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Mebendazole", rxnormCui:"6672", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Miconazole", rxnormCui:"6932", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Midostaurin", rxnormCui:"1919083", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"nelfinavir", rxnormCui:"134527", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Neratinib", rxnormCui:"1940643", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Nicardipine", rxnormCui:"7396", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Nimodipine", rxnormCui:"7426", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Nisoldipine", rxnormCui:"7435", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Ponatinib", rxnormCui:"1364347", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Pralsetinib", rxnormCui:"2394936", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Quazepam", rxnormCui:"35185", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Rilpivirine", rxnormCui:"1102270", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Saquinavir", rxnormCui:"83395", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Selpercatinib", rxnormCui:"2370147", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Selumetinib", rxnormCui:"2289380", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Sertaconazole", rxnormCui:"36435", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"temozolomide", rxnormCui:"37776", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"tenofovir", rxnormCui:"117466", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"tenofovir disoproxil", rxnormCui:"300195", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"tenofovir disoproxil fumarate", rxnormCui:"322248", source:"NIH RxNav", confidence:"exact_ingredient", scope:"precise_ingredient" },
+  { substance:"Terconazole", rxnormCui:"37806", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"tipranavir", rxnormCui:"190548", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Tivozanib", rxnormCui:"2534233", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Triazolam", rxnormCui:"10767", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Vardenafil", rxnormCui:"306674", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Vemurafenib", rxnormCui:"1147220", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Zanubrutinib", rxnormCui:"2262435", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Betrixaban", rxnormCui:"1927851", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Imipramine", rxnormCui:"5691", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Trimipramine", rxnormCui:"10834", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
 ]);
 
 const STANDARD_CONTEXT_EXEMPTIONS = Object.freeze([
@@ -231,6 +281,24 @@ const STANDARD_CONTEXT_EXEMPTIONS = Object.freeze([
     standard:"RxNorm",
     reason:"Clinical context actor, not a medication substance.",
     representativeSubstances:[],
+  },
+  {
+    substance:"Transplant Recipient / Perioperative",
+    standard:"RxNorm",
+    reason:"Clinical context actor used to surface transplant and perioperative safety constraints; not a medication substance.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"Opioid anesthetics",
+    standard:"RxNorm",
+    reason:"Search-friendly class actor; RxNorm identity should attach to the selected opioid anesthetic ingredient rather than the class abstraction.",
+    representativeSubstances:["Alfentanil", "Fentanyl", "Remifentanil", "Sufentanil"],
+  },
+  {
+    substance:"Aspirin (Low-Dose)",
+    standard:"RxNorm",
+    reason:"Dose/formulation actor; RxNorm identity should attach to aspirin or to an exact clinical product when dose is clinically relevant.",
+    representativeSubstances:["Aspirin"],
   },
 ]);
 
