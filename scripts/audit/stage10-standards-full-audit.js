@@ -80,6 +80,7 @@ const clinpgxStaged = readJson(resolve(ROOT, 'data/enrichment/staged/clinpgx-sta
 
 const drugByKey = buildDrugLookup(data.DRUG_DB || []);
 const rxNormByKey = new Map((data.EXTERNAL_SUBSTANCE_MAPPINGS || []).map(row => [normalizeName(row.substance), row]));
+const standardContextByKey = new Map((data.STANDARD_CONTEXT_EXEMPTIONS || []).map(row => [normalizeName(row.substance), row]));
 const markerMappings = data.PGX_MARKER_MAPPINGS || {};
 const actionSummaries = data.PGX_ACTION_SUMMARIES || [];
 
@@ -144,6 +145,7 @@ const report = {
   counts:{
     drugs:allDrugNames.length,
     rxNormMappings:data.EXTERNAL_SUBSTANCE_MAPPINGS?.length || 0,
+    standardsContextExemptions:data.STANDARD_CONTEXT_EXEMPTIONS?.length || 0,
     pgxMarkerRows:Object.values(markerMappings).reduce((sum, rows) => sum + (rows || []).length, 0),
     pgxMarkerGenes:mappedMarkerGenes.length,
     pgxActionSummaries:actionSummaries.length,
@@ -200,7 +202,8 @@ console.log(JSON.stringify({
   rxNorm:{
     publicV1:`${publicRxNorm.mapped}/${publicRxNorm.total}`,
     launchScenarios:`${launchRxNorm.mapped}/${launchRxNorm.total}`,
-    medicationClassGuides:`${classGuideRxNorm.mapped}/${classGuideRxNorm.total}`,
+    medicationClassGuides:`${classGuideRxNorm.mapped}/${classGuideRxNorm.total} mapped`,
+    medicationClassGuideExempted:classGuideRxNorm.exempted,
   },
   pgxMarkers:{
     actionGeneGaps:actionGeneMarkerGaps.length,
@@ -241,27 +244,44 @@ function resolveDrugName(name) {
 
 function hasRxNorm(name) {
   const resolved = resolveDrugName(name) || name;
-  return rxNormByKey.has(normalizeName(resolved));
+  return Boolean(rxNormByKey.get(normalizeName(resolved))?.rxnormCui);
+}
+
+function getStandardContextExemption(name) {
+  const resolved = resolveDrugName(name);
+  const keys = [name, resolved].map(normalizeName).filter(Boolean);
+  return keys.map(key => standardContextByKey.get(key)).find(Boolean) || null;
 }
 
 function coverageForNames(names) {
   const rows = uniq(names).map(name => {
     const resolved = resolveDrugName(name);
+    const mapped = Boolean(resolved && hasRxNorm(resolved));
+    const contextExemption = resolved && !mapped ? getStandardContextExemption(resolved) : null;
     return {
       input:name,
       resolved:resolved || null,
       recognized:Boolean(resolved),
-      mapped:Boolean(resolved && hasRxNorm(resolved)),
+      mapped,
+      exempted:Boolean(contextExemption),
+      contextExemption,
     };
   });
   const recognized = rows.filter(row => row.recognized);
   const mapped = recognized.filter(row => row.mapped);
+  const exempted = recognized.filter(row => row.exempted);
   return {
     total:recognized.length,
     inputs:rows.length,
     unrecognized:rows.filter(row => !row.recognized).map(row => row.input).sort(),
     mapped:mapped.length,
-    unmapped:recognized.filter(row => !row.mapped).map(row => row.resolved).sort(),
+    exempted:exempted.length,
+    exemptions:exempted.map(row => ({
+      substance:row.resolved,
+      reason:row.contextExemption.reason,
+      representativeSubstances:row.contextExemption.representativeSubstances || [],
+    })).sort((a, b) => a.substance.localeCompare(b.substance)),
+    unmapped:recognized.filter(row => !row.mapped && !row.exempted).map(row => row.resolved).sort(),
   };
 }
 
@@ -278,10 +298,16 @@ function actionDrugNamesForRow(row) {
 function canonicalGeneCandidates(gene) {
   const raw = String(gene || '').trim();
   const upper = raw.toUpperCase();
-  if (/^G6PD/.test(upper)) return ['G6PD', raw];
-  if (/^RYR1\/CACNA1S/.test(upper)) return ['RYR1', 'CACNA1S', raw];
+  if (/^G6PD/.test(upper)) return ['G6PD', 'G6PD deficiency', raw];
+  if (/^RYR1\b|^CACNA1S\b|^RYR1\/CACNA1S/.test(upper)) return ['RYR1', 'CACNA1S', 'RYR1/CACNA1S MH variant', raw];
   if (/^HLA-B/.test(upper)) return ['HLA-B', raw];
   if (/^HLA-A/.test(upper)) return ['HLA-A', raw];
+  if (/^MT-RNR1/.test(upper)) return ['MT-RNR1', raw];
+  if (/^MTHFR/.test(upper)) return ['MTHFR', raw];
+  if (/^KCNH2/.test(upper)) return ['KCNH2', raw];
+  if (/^SCN1A/.test(upper)) return ['SCN1A', raw];
+  if (/^SCN2A/.test(upper)) return ['SCN2A', raw];
+  if (/^GABRG2/.test(upper)) return ['GABRG2', raw];
   return [upper, raw];
 }
 
@@ -381,21 +407,21 @@ function buildDecisions() {
   return [
     {
       area:'RxNorm',
-      status:publicRxNorm.unmapped.length === 0 && launchRxNorm.unmapped.length === 0 && actionDrugRxNorm.unmapped.length === 0 ? 'pass-for-v1-core' : 'gap',
-      decision:'Public V1/demo substances, launch scenario drugs, and PGx action drugs should stay fully mapped. Full 1549-drug RxNorm coverage is not a V1 blocker but should be expanded by priority surface.',
-      nextAction:classGuideRxNorm.unmapped.length ? 'Prioritize RxNorm rows for public medication-class guide examples before broad database coverage.' : 'Maintain current V1 core coverage.',
+      status:publicRxNorm.unmapped.length === 0 && launchRxNorm.unmapped.length === 0 && actionDrugRxNorm.unmapped.length === 0 && classGuideRxNorm.unmapped.length === 0 ? 'pass-for-v1-priority-surfaces' : 'gap',
+      decision:'Public V1/demo substances, launch scenario drugs, PGx action drugs, and medication-class guide medication concepts should stay mapped. Non-drug or class-abstraction actors must be explicit standards exceptions.',
+      nextAction:classGuideRxNorm.unmapped.length ? 'Prioritize remaining medication-class guide RxNorm rows before broad database coverage.' : 'Maintain V1 priority RxNorm coverage; expand broader 1549-drug coverage only by product priority.',
     },
     {
       area:'PGx marker identity',
-      status:actionGeneMarkerGaps.length === 0 ? 'pass-for-action-genes' : 'gap',
-      decision:'Every CPIC-linked action gene should have local marker identity rows. Broad modeled genes and risk-marker genes need separate curation before they can be called standards-complete.',
-      nextAction:riskMarkerGaps.length ? 'Define a risk-marker identity model for G6PD, RYR1/CACNA1S, BCHE, HLA-A, MT-RNR1, and similar non-CYP markers.' : 'Maintain current action-gene marker coverage.',
+      status:actionGeneMarkerGaps.length === 0 && riskMarkerGaps.length === 0 ? 'pass-for-v1-action-and-risk-markers' : 'gap',
+      decision:'Every CPIC-linked action gene and modeled V1 risk marker should have local star-allele, dbSNP, HLA, HGVS, or phenotype identity rows.',
+      nextAction:riskMarkerGaps.length ? 'Close remaining risk-marker identity rows before calling Stage 10 complete.' : 'Maintain action-gene and risk-marker identity coverage.',
     },
     {
       area:'CPIC/actionability',
       status:launchActionGaps.length ? 'gap' : 'pass-for-launch',
       decision:'Launch scenarios should disclose whether they have CPIC-linked action context, not only mechanistic findings.',
-      nextAction:launchActionGaps.length ? 'Start with evidence-backed launch gaps: UGT1A1 + irinotecan, G6PD oxidant stack, and RYR1/CACNA1S + succinylcholine; keep BCHE separate because its source basis is anesthesia/FDA label rather than CPIC.' : 'Maintain current launch action coverage.',
+      nextAction:launchActionGaps.length ? 'Start with evidence-backed launch gaps: UGT1A1 + irinotecan, G6PD oxidant stack, and RYR1/CACNA1S + succinylcholine; keep BCHE separate because its source basis is anesthesia/FDA label rather than CPIC.' : 'Maintain launch action coverage; expand broader CPIC-like rows by review priority.',
     },
     {
       area:'SNOMED/FHIR',
@@ -408,11 +434,11 @@ function buildDecisions() {
 
 function renderMarkdown(report) {
   const summaryRows = [
-    ['All recognized drugs', report.rxNorm.allDrugs.mapped, report.rxNorm.allDrugs.total, report.rxNorm.allDrugs.unmapped.slice(0, 10).join(', ') || 'none'],
-    ['Public V1/demo substances', report.rxNorm.publicV1.mapped, report.rxNorm.publicV1.total, report.rxNorm.publicV1.unmapped.join(', ') || 'none'],
-    ['Launch scenario drugs', report.rxNorm.launchScenarios.mapped, report.rxNorm.launchScenarios.total, report.rxNorm.launchScenarios.unmapped.join(', ') || 'none'],
-    ['Medication-class guide substances', report.rxNorm.medicationClassGuides.mapped, report.rxNorm.medicationClassGuides.total, report.rxNorm.medicationClassGuides.unmapped.slice(0, 15).join(', ') || 'none'],
-    ['PGx action drugs', report.rxNorm.pgxActionDrugs.mapped, report.rxNorm.pgxActionDrugs.total, report.rxNorm.pgxActionDrugs.unmapped.join(', ') || 'none'],
+    ['All recognized drugs', report.rxNorm.allDrugs.mapped, report.rxNorm.allDrugs.exempted, report.rxNorm.allDrugs.total, report.rxNorm.allDrugs.unmapped.slice(0, 10).join(', ') || 'none'],
+    ['Public V1/demo substances', report.rxNorm.publicV1.mapped, report.rxNorm.publicV1.exempted, report.rxNorm.publicV1.total, report.rxNorm.publicV1.unmapped.join(', ') || 'none'],
+    ['Launch scenario drugs', report.rxNorm.launchScenarios.mapped, report.rxNorm.launchScenarios.exempted, report.rxNorm.launchScenarios.total, report.rxNorm.launchScenarios.unmapped.join(', ') || 'none'],
+    ['Medication-class guide substances', report.rxNorm.medicationClassGuides.mapped, report.rxNorm.medicationClassGuides.exempted, report.rxNorm.medicationClassGuides.total, report.rxNorm.medicationClassGuides.unmapped.slice(0, 15).join(', ') || 'none'],
+    ['PGx action drugs', report.rxNorm.pgxActionDrugs.mapped, report.rxNorm.pgxActionDrugs.exempted, report.rxNorm.pgxActionDrugs.total, report.rxNorm.pgxActionDrugs.unmapped.join(', ') || 'none'],
   ];
   const launchRows = report.actionability.launchActionCoverage.flatMap(scenario =>
     scenario.rows.map(row => [
@@ -444,12 +470,13 @@ This audit corrects Stage 10 from a patch-focused pass into a full standards inv
 
 ## Verdict
 
-Stage 10 is not standards-complete if "complete" means every launch scenario has full CPIC/actionability and marker identity parity. The core public/demo RxNorm surface is covered, and CPIC action genes have marker rows, but launch-level action gaps remain for UGT1A1/irinotecan, G6PD oxidant review, and anesthesia risk-marker review. Broad RxNorm coverage is intentionally far below the full database size.
+Stage 10 V1 priority scope is standards-closed when public/demo substances, launch scenario drugs, medication-class guide medication concepts, action genes, risk markers, and launch actionability all pass. This does not mean all 1549 database rows or every CPIC-like local evidence row has been promoted to action-summary status; that broader expansion remains review-prioritized backlog.
 
 ## Counts
 
 - Drug database rows: ${report.counts.drugs}
 - RxNorm mappings: ${report.counts.rxNormMappings}
+- Standards context exemptions: ${report.counts.standardsContextExemptions}
 - PGx marker rows: ${report.counts.pgxMarkerRows} across ${report.counts.pgxMarkerGenes} genes/markers
 - PGx action summaries: ${report.counts.pgxActionSummaries}
 - Modeled genotype genes: ${report.counts.modeledGenes}
@@ -459,7 +486,10 @@ Stage 10 is not standards-complete if "complete" means every launch scenario has
 
 ## RxNorm Coverage
 
-${markdownTable(['Surface', 'Mapped', 'Recognized total', 'Sample gaps'], summaryRows)}
+${markdownTable(['Surface', 'Mapped', 'Explicit exemptions', 'Recognized total', 'Sample gaps'], summaryRows)}
+
+Medication-class guide standards exceptions:
+${markdownTable(['Substance', 'Reason', 'Representative substances'], report.rxNorm.medicationClassGuides.exemptions.length ? report.rxNorm.medicationClassGuides.exemptions.map(row => [row.substance, row.reason, row.representativeSubstances.join(', ') || 'none']) : [['none', 'none', 'none']])}
 
 ## Launch Actionability Coverage
 

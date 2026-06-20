@@ -1,13 +1,16 @@
 // Diognosis - external clinical standards bridge
 // Keeps runtime local while exposing source-linked identity and PGx action context.
 
-const CLINICAL_STANDARDS_VERSION = "2026-06-18-first-pass";
+const CLINICAL_STANDARDS_VERSION = "2026-06-20-stage10-standards-closure";
 
 const EXTERNAL_ID_SYSTEMS = Object.freeze({
   RXNORM: "RxNorm",
   DBSNP: "dbSNP",
   PHARMVAR: "PharmVar",
   HLA: "HLA nomenclature",
+  HGNC: "HGNC gene symbol",
+  HGVS: "HGVS / ClinVar variant notation",
+  MITOCHONDRIAL: "Mitochondrial variant nomenclature",
   CPIC: "CPIC",
 });
 
@@ -45,6 +48,90 @@ const EXTERNAL_SUBSTANCE_MAPPINGS = Object.freeze([
   { substance:"Succinylcholine", rxnormCui:"10154", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Ticagrelor", rxnormCui:"1116632", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Morphine", rxnormCui:"7052", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Acetaminophen", rxnormCui:"161", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Apixaban", rxnormCui:"1364430", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Atorvastatin", rxnormCui:"83367", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Bictegravir", rxnormCui:"1999660", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Calcium", rxnormCui:"1895", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Carbamazepine", rxnormCui:"2002", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Cimetidine", rxnormCui:"2541", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Ciprofloxacin", rxnormCui:"2551", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Colchicine", rxnormCui:"2683", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Cyclosporine", rxnormCui:"3008", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Dabigatran", rxnormCui:"1546356", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Darolutamide", rxnormCui:"2180325", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Darunavir", rxnormCui:"460132", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Desmopressin", rxnormCui:"3251", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Diltiazem", rxnormCui:"3443", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Dofetilide", rxnormCui:"49247", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Dolutegravir", rxnormCui:"1433868", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Donepezil", rxnormCui:"135447", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Doxycycline", rxnormCui:"3640", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Duloxetine", rxnormCui:"72625", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Efavirenz", rxnormCui:"195085", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Erlotinib", rxnormCui:"337525", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Ethinyl Estradiol", rxnormCui:"4124", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Famotidine", rxnormCui:"4278", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Flecainide", rxnormCui:"4441", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Fluconazole", rxnormCui:"4450", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Gemfibrozil", rxnormCui:"4719", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Hydrochlorothiazide", rxnormCui:"5487", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Insulin Glargine", rxnormCui:"274783", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Insulin Lispro", rxnormCui:"86009", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Iron", rxnormCui:"90176", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Itraconazole", rxnormCui:"28031", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Ivabradine", rxnormCui:"1649480", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Lamotrigine", rxnormCui:"28439", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Leflunomide", rxnormCui:"27169", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Levonorgestrel", rxnormCui:"6373", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Levothyroxine", rxnormCui:"10582", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Linezolid", rxnormCui:"190376", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Lisinopril", rxnormCui:"29046", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Lithium", rxnormCui:"6448", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Metformin", rxnormCui:"6809", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Methotrexate", rxnormCui:"6851", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Naproxen", rxnormCui:"7258", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Nirmatrelvir/Ritonavir", rxnormCui:"2599542", source:"NIH RxNav", confidence:"review_needed", scope:"multi_ingredient_pack" },
+  { substance:"Nitroglycerin", rxnormCui:"4917", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Phenelzine", rxnormCui:"8123", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Posaconazole", rxnormCui:"282446", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Potassium Chloride", rxnormCui:"8591", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Propafenone", rxnormCui:"8754", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Ranolazine", rxnormCui:"35829", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Rifampin", rxnormCui:"9384", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Ritonavir", rxnormCui:"85762", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Rosuvastatin", rxnormCui:"301542", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Sacubitril/Valsartan", rxnormCui:"1656339", source:"NIH RxNav", confidence:"review_needed", scope:"multi_ingredient" },
+  { substance:"Sertraline", rxnormCui:"36437", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Sildenafil", rxnormCui:"136411", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Sotalol", rxnormCui:"9947", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Spironolactone", rxnormCui:"9997", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Sugammadex", rxnormCui:"1726988", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Sumatriptan", rxnormCui:"37418", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Tamsulosin", rxnormCui:"77492", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Terbinafine", rxnormCui:"37801", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Tirzepatide", rxnormCui:"2601723", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Tizanidine", rxnormCui:"57258", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Tramadol", rxnormCui:"10689", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Trimethoprim/Sulfamethoxazole", rxnormCui:"10831", source:"NIH RxNav", confidence:"review_needed", scope:"multi_ingredient" },
+  { substance:"Valproic Acid", rxnormCui:"11118", source:"NIH RxNav", confidence:"exact_ingredient", scope:"precise_ingredient" },
+  { substance:"Venetoclax", rxnormCui:"1747556", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Voriconazole", rxnormCui:"121243", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+]);
+
+const STANDARD_CONTEXT_EXEMPTIONS = Object.freeze([
+  {
+    substance:"Combined Oral Contraceptive",
+    standard:"RxNorm",
+    reason:"Search-friendly class actor; RxNorm identity should be attached to the selected formulation ingredients rather than the class abstraction.",
+    representativeSubstances:["Ethinyl Estradiol", "Levonorgestrel"],
+  },
+  {
+    substance:"Pregnancy / Trying to Conceive",
+    standard:"RxNorm",
+    reason:"Clinical context actor, not a medication substance.",
+    representativeSubstances:[],
+  },
 ]);
 
 const PGX_MARKER_MAPPINGS = Object.freeze({
@@ -92,6 +179,47 @@ const PGX_MARKER_MAPPINGS = Object.freeze({
   "HLA-B": Object.freeze([
     { label:"HLA-B*57:01", system:EXTERNAL_ID_SYSTEMS.HLA, interpretation:"abacavir hypersensitivity risk-marker context" },
     { label:"HLA-B*15:02", system:EXTERNAL_ID_SYSTEMS.HLA, interpretation:"aromatic anticonvulsant severe cutaneous adverse reaction context" },
+  ]),
+  "HLA-A": Object.freeze([
+    { label:"HLA-A*31:01", system:EXTERNAL_ID_SYSTEMS.HLA, interpretation:"aromatic anticonvulsant hypersensitivity risk-marker context" },
+    { label:"HLA-A*32:01", system:EXTERNAL_ID_SYSTEMS.HLA, interpretation:"vancomycin DRESS risk-marker context" },
+  ]),
+  G6PD: Object.freeze([
+    { label:"G6PD deficient phenotype", system:EXTERNAL_ID_SYSTEMS.CPIC, interpretation:"erythrocyte oxidative-reserve phenotype context" },
+    { label:"G6PD A- c.202G>A", system:EXTERNAL_ID_SYSTEMS.DBSNP, dbsnp:"rs1050828", interpretation:"G6PD A- deficiency haplotype component" },
+    { label:"G6PD A- c.376A>G", system:EXTERNAL_ID_SYSTEMS.DBSNP, dbsnp:"rs1050829", interpretation:"G6PD A- deficiency haplotype component" },
+    { label:"G6PD Mediterranean c.563C>T", system:EXTERNAL_ID_SYSTEMS.DBSNP, dbsnp:"rs5030868", interpretation:"severe G6PD deficiency variant context" },
+  ]),
+  BCHE: Object.freeze([
+    { label:"BCHE deficient / low pseudocholinesterase activity", system:EXTERNAL_ID_SYSTEMS.CPIC, interpretation:"butyrylcholinesterase activity phenotype context" },
+    { label:"BCHE atypical dibucaine-resistant variant", system:EXTERNAL_ID_SYSTEMS.DBSNP, dbsnp:"rs1799807", interpretation:"pseudocholinesterase deficiency context" },
+    { label:"BCHE K variant", system:EXTERNAL_ID_SYSTEMS.DBSNP, dbsnp:"rs1803274", interpretation:"reduced butyrylcholinesterase activity context" },
+  ]),
+  RYR1: Object.freeze([
+    { label:"RYR1 malignant-hyperthermia susceptibility variant", system:EXTERNAL_ID_SYSTEMS.HGVS, interpretation:"pathogenic or likely pathogenic RYR1 variant context" },
+  ]),
+  CACNA1S: Object.freeze([
+    { label:"CACNA1S malignant-hyperthermia susceptibility variant", system:EXTERNAL_ID_SYSTEMS.HGVS, interpretation:"pathogenic or likely pathogenic CACNA1S variant context" },
+  ]),
+  "MT-RNR1": Object.freeze([
+    { label:"MT-RNR1 m.1555A>G", system:EXTERNAL_ID_SYSTEMS.MITOCHONDRIAL, dbsnp:"rs267606617", interpretation:"aminoglycoside ototoxicity risk-marker context" },
+    { label:"MT-RNR1 m.1494C>T", system:EXTERNAL_ID_SYSTEMS.MITOCHONDRIAL, interpretation:"aminoglycoside ototoxicity risk-marker context" },
+    { label:"MT-RNR1 m.1095T>C", system:EXTERNAL_ID_SYSTEMS.MITOCHONDRIAL, interpretation:"aminoglycoside ototoxicity risk-marker context" },
+  ]),
+  MTHFR: Object.freeze([
+    { label:"MTHFR C677T", system:EXTERNAL_ID_SYSTEMS.DBSNP, dbsnp:"rs1801133", interpretation:"folate-pathway variant context" },
+  ]),
+  KCNH2: Object.freeze([
+    { label:"KCNH2 long-QT susceptibility variant", system:EXTERNAL_ID_SYSTEMS.HGVS, interpretation:"pathogenic or likely pathogenic long-QT variant context" },
+  ]),
+  SCN1A: Object.freeze([
+    { label:"SCN1A sodium-channel variant", system:EXTERNAL_ID_SYSTEMS.HGVS, interpretation:"seizure and sodium-channel pharmacodynamic risk-marker context" },
+  ]),
+  SCN2A: Object.freeze([
+    { label:"SCN2A sodium-channel variant", system:EXTERNAL_ID_SYSTEMS.HGVS, interpretation:"seizure and sodium-channel pharmacodynamic risk-marker context" },
+  ]),
+  GABRG2: Object.freeze([
+    { label:"GABRG2 epilepsy-associated variant", system:EXTERNAL_ID_SYSTEMS.HGVS, interpretation:"GABA-A receptor pharmacodynamic risk-marker context" },
   ]),
 });
 
@@ -236,6 +364,62 @@ const PGX_ACTION_SUMMARIES = Object.freeze([
     safetyBoundary:"Do not treat genotype alone as a metoprolol dose instruction; clinical response, indication, comorbidities, and interacting CYP2D6 inhibitors still decide.",
     evidenceRefs:["ev_metoprolol_cyp2d6_cpic"],
   },
+  {
+    id:"pgx_action_irinotecan_ugt1a1_reduced_function",
+    drug:"Irinotecan",
+    gene:"UGT1A1",
+    phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM],
+    level:"A",
+    source:"CPIC/PubMed",
+    guidelineUrl:"https://pubmed.ncbi.nlm.nih.gov/24786769/",
+    title:"CPIC-linked irinotecan SN-38 toxicity review",
+    whatChanged:"Reduced UGT1A1 function can impair SN-38 glucuronidation and increase severe neutropenia or diarrhea risk.",
+    reviewDirection:"Review irinotecan regimen, starting dose strategy, neutropenia/diarrhea monitoring, bilirubin context, and oncology protocol before relying on standard dosing assumptions.",
+    safetyBoundary:"Dose changes depend on regimen intensity, cancer protocol, prior toxicity, ancestry-linked alleles, liver function, and specialist oncology judgment.",
+    evidenceRefs:["ev_irinotecan_ugt1a1_ramsey2014","ev_irinotecan_ugt1a1_stewart2007","ev_irinotecan_ugt1a_han2006","ev_irinotecan_sn38_review_mathijssen2001"],
+  },
+  {
+    id:"pgx_action_g6pd_oxidant_drug_review",
+    drugs:["Rasburicase","Primaquine","Dapsone"],
+    gene:"G6PD deficiency",
+    phenotypes:[GENOTYPE_RISK_STATUS.PRESENT],
+    level:"A",
+    source:"CPIC",
+    guidelineUrl:"https://www.clinpgx.org/guideline/PA166251450",
+    title:"CPIC-linked G6PD oxidant-drug review",
+    whatChanged:"G6PD deficiency lowers erythrocyte oxidative-stress reserve, so selected oxidant drugs can trigger hemolysis or methemoglobinemia.",
+    reviewDirection:"Treat rasburicase as contraindication-level context and review primaquine or dapsone by drug-specific CPIC risk tier, quantitative G6PD activity, indication, dose, and monitoring feasibility.",
+    safetyBoundary:"Do not apply blanket avoidance to every G6PD-listed medicine; CPIC separates high, medium, low-to-no-risk, variable, and indeterminate contexts.",
+    evidenceRefs:["ev_rasburicase_g6pd_cpic2014","ev_g6pd_cpic2022_expanded","ev_g6pd_oxidative_antimalarials","ev_dapsone_ddsnhoh_metabolite","ev_primaquine_g6pd_safety_bastiaens2018"],
+  },
+  {
+    id:"pgx_action_succinylcholine_bche_low_activity",
+    drug:"Succinylcholine",
+    gene:"BCHE",
+    phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM],
+    level:"label",
+    source:"FDA/DailyMed",
+    guidelineUrl:"https://dailymed.nlm.nih.gov/dailymed/search.cfm?query=succinylcholine%20pseudocholinesterase",
+    title:"Label-linked succinylcholine BCHE review",
+    whatChanged:"Reduced butyrylcholinesterase activity can greatly prolong succinylcholine neuromuscular blockade.",
+    reviewDirection:"Review prior anesthesia history, pseudocholinesterase activity or dibucaine-number testing, acquired causes of low activity, and non-BCHE-dependent paralytic alternatives.",
+    safetyBoundary:"This is procedural anesthesia risk context, not an outpatient medication-change instruction; anesthesia team protocol and airway/ventilation readiness decide management.",
+    evidenceRefs:["ev_bche_succinylcholine_mivacurium_label"],
+  },
+  {
+    id:"pgx_action_succinylcholine_ryr1_cacna1s_mh_variant",
+    drug:"Succinylcholine",
+    gene:"RYR1/CACNA1S MH variant",
+    phenotypes:[GENOTYPE_RISK_STATUS.PRESENT],
+    level:"A",
+    source:"CPIC",
+    guidelineUrl:"https://www.clinpgx.org/guideline/PA166251460",
+    title:"CPIC-linked malignant-hyperthermia trigger review",
+    whatChanged:"Malignant-hyperthermia-associated RYR1 or CACNA1S variants can make succinylcholine and volatile anesthetics dangerous triggers.",
+    reviewDirection:"Use non-triggering anesthesia planning, avoid succinylcholine and potent volatile anesthetics when susceptibility is present, and review personal or family anesthesia history.",
+    safetyBoundary:"A negative genotype does not fully exclude malignant-hyperthermia susceptibility; anesthesia history and specialist planning remain necessary.",
+    evidenceRefs:["ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019"],
+  },
 ]);
 
 function clinicalStandardKey(value) {
@@ -259,9 +443,17 @@ function getExternalSubstanceMapping(name) {
   ) || null;
 }
 
+function getStandardContextExemption(name) {
+  const drug = typeof getDrug === "function" ? getDrug(name) : null;
+  const keys = [name, drug?.name, drug?.id].map(clinicalStandardKey).filter(Boolean);
+  return (STANDARD_CONTEXT_EXEMPTIONS || []).find(row =>
+    keys.includes(clinicalStandardKey(row.substance))
+  ) || null;
+}
+
 function getExternalIdentifiersForSubstance(name) {
   const mapping = getExternalSubstanceMapping(name);
-  if (!mapping) return [];
+  if (!mapping || !mapping.rxnormCui) return [];
   return [{
     system:EXTERNAL_ID_SYSTEMS.RXNORM,
     id:mapping.rxnormCui,
@@ -272,16 +464,54 @@ function getExternalIdentifiersForSubstance(name) {
   }];
 }
 
+function pgxMarkerMappingKeys(gene) {
+  const raw = String(gene || "").trim();
+  const upper = raw.toUpperCase();
+  const keys = [raw, upper];
+  if (/^G6PD\b/.test(upper)) keys.push("G6PD", "G6PD deficiency");
+  if (/^RYR1\b|^CACNA1S\b|^RYR1\/CACNA1S\b/.test(upper)) keys.push("RYR1", "CACNA1S", "RYR1/CACNA1S MH variant");
+  if (/^HLA-A\b|^HLA-A\*/.test(upper)) keys.push("HLA-A");
+  if (/^HLA-B\b|^HLA-B\*/.test(upper)) keys.push("HLA-B");
+  if (/^MT-RNR1\b/.test(upper)) keys.push("MT-RNR1");
+  if (/^MTHFR\b/.test(upper)) keys.push("MTHFR");
+  if (/^KCNH2\b/.test(upper)) keys.push("KCNH2");
+  if (/^SCN1A\b/.test(upper)) keys.push("SCN1A");
+  if (/^SCN2A\b/.test(upper)) keys.push("SCN2A");
+  if (/^GABRG2\b/.test(upper)) keys.push("GABRG2");
+  return [...new Set(keys.filter(Boolean))];
+}
+
 function getPgxMarkerMappings(gene) {
-  const key = String(gene || "").toUpperCase();
-  return PGX_MARKER_MAPPINGS[key] || [];
+  const rows = [];
+  const seen = new Set();
+  for (const key of pgxMarkerMappingKeys(gene)) {
+    for (const row of PGX_MARKER_MAPPINGS[key] || []) {
+      const rowKey = `${row.system}:${row.label}:${row.dbsnp || ""}`;
+      if (seen.has(rowKey)) continue;
+      seen.add(rowKey);
+      rows.push(row);
+    }
+  }
+  return rows;
+}
+
+function selectedPhenotypeForActionGene(gene, genotypeState = {}) {
+  for (const key of pgxMarkerMappingKeys(gene)) {
+    if (Object.prototype.hasOwnProperty.call(genotypeState, key)) return genotypeState[key];
+  }
+  return genotypeState[gene];
+}
+
+function actionGenesMatch(left, right) {
+  const leftKeys = new Set(pgxMarkerMappingKeys(left).map(clinicalStandardKey));
+  return pgxMarkerMappingKeys(right).some(key => leftKeys.has(clinicalStandardKey(key)));
 }
 
 function pgxActionSummaryMatches(row, stack = [], genotypeState = {}) {
   const stackKeys = new Set((stack || []).map(clinicalStandardKey));
   const drugHit = mappedDrugNamesForAction(row).some(name => stackKeys.has(clinicalStandardKey(name)));
   if (!drugHit || !row.gene) return false;
-  const phenotype = genotypeState[row.gene];
+  const phenotype = selectedPhenotypeForActionGene(row.gene, genotypeState);
   return (row.phenotypes || []).includes(phenotype);
 }
 
@@ -293,14 +523,14 @@ function getPgxActionSummariesForStack(stack = [], genotypeState = {}) {
       matchedDrugs:mappedDrugNamesForAction(row).filter(name =>
         (stack || []).some(stackName => clinicalStandardKey(stackName) === clinicalStandardKey(name))
       ),
-      phenotype:genotypeState[row.gene],
+      phenotype:selectedPhenotypeForActionGene(row.gene, genotypeState),
       markerMappings:getPgxMarkerMappings(row.gene),
     }));
 }
 
 function getPgxActionSummaryForDrugGene(drugName, gene, phenotype) {
   return (PGX_ACTION_SUMMARIES || []).find(row =>
-    row.gene === gene &&
+    actionGenesMatch(row.gene, gene) &&
     (row.phenotypes || []).includes(phenotype) &&
     mappedDrugNamesForAction(row).some(name => clinicalStandardKey(name) === clinicalStandardKey(drugName))
   ) || null;
@@ -319,9 +549,11 @@ function buildClinicalStandardsCoverage(stack = [], genotypeState = {}) {
   const mappedSubstances = recognizedDrugs.map(name => ({
     name:(typeof getDrug === "function" ? getDrug(name)?.name : name) || name,
     identifiers:getExternalIdentifiersForSubstance(name),
+    standardsException:getStandardContextExemption(name),
   }));
   const mappedDrugs = mappedSubstances.filter(row => row.identifiers.length);
-  const unmappedDrugs = mappedSubstances.filter(row => !row.identifiers.length);
+  const exemptedDrugs = mappedSubstances.filter(row => !row.identifiers.length && row.standardsException);
+  const unmappedDrugs = mappedSubstances.filter(row => !row.identifiers.length && !row.standardsException);
   const selectedGenotypes = Object.entries(genotypeState || {})
     .filter(([gene, phenotype]) => isSelectedGenotypePhenotype(gene, phenotype));
   const markerMappings = selectedGenotypes.map(([gene, phenotype]) => ({
@@ -339,6 +571,8 @@ function buildClinicalStandardsCoverage(stack = [], genotypeState = {}) {
   const limitations = [
     unmappedDrugs.length
       ? `${unmappedDrugs.length} recognized selected medication${unmappedDrugs.length === 1 ? "" : "s"} lack local RxNorm identity mappings.`
+      : exemptedDrugs.length
+        ? "Selected recognized medications have local RxNorm identity mappings where medication identity standards apply; non-medication context actors are explicitly marked."
       : "Selected recognized medications have local RxNorm identity mappings where medication identity standards are currently supported.",
     selectedGenotypes.length && markerMapped.length < selectedGenotypes.length
       ? `${selectedGenotypes.length - markerMapped.length} selected gene or marker result${selectedGenotypes.length - markerMapped.length === 1 ? "" : "s"} lack local star-allele, dbSNP, or HLA mapping rows.`
@@ -354,6 +588,12 @@ function buildClinicalStandardsCoverage(stack = [], genotypeState = {}) {
     mappedDrugCount:mappedDrugs.length,
     unmappedDrugCount:unmappedDrugs.length,
     mappedSubstances:mappedDrugs,
+    standardsExemptionCount:exemptedDrugs.length,
+    standardContextExemptions:exemptedDrugs.map(row => ({
+      name:row.name,
+      reason:row.standardsException.reason,
+      representativeSubstances:row.standardsException.representativeSubstances || [],
+    })),
     unmappedSubstances:unmappedDrugs.map(row => row.name),
     genotypeCount:selectedGenotypes.length,
     markerMappedGeneCount:markerMapped.length,
