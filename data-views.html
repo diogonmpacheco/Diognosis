@@ -391,12 +391,12 @@
         ["Modulation / transport", modulatorRows.length, "violet", "Inhibitors, inducers, transporters, and actor-context edges.", modulatorRows.slice(0, 8)],
       ].map(([title, count, color, body, items]) => {
         const genotypeValue = phenotype ? `${gene}:${phenotype}` : "";
-        return rowLink(index.appLink(items.flatMap((item) => item.linkSubstances), { genotype:genotypeValue, tab:"pgx" }), title, `${count} rows`, color, body, items.map((item) => item.subject).slice(0, 6));
+        return rowLink(index.appLink(items.flatMap((item) => item.linkSubstances), { genotype:genotypeValue, tab:"genes-metabolites" }), title, `${count} rows`, color, body, items.map((item) => item.subject).slice(0, 6));
       }).join("");
       $("#geneSubstanceRows").innerHTML = shown.map((row) => {
         const entity = index.getEntity(row.subject);
         const genotypeValue = phenotype ? `${gene}:${phenotype}` : "";
-        const href = appLinkForRelation(row, { genotype:genotypeValue, tab:"pgx" });
+        const href = appLinkForRelation(row, { genotype:genotypeValue, tab:"genes-metabolites" });
         return `<tr><td><a href="${esc(href)}">${esc(row.subject)}</a><br>${tag(`${row.class} · ${entity?.linkable ? "app substance" : `${row.entityKind} · no direct app substance`}`)}</td><td>${esc(sentence(row.role))}</td><td>${esc(row.signal)}</td><td>${tag(row.actionGroup, row.severity)}</td></tr>`;
       }).join("") || `<tr><td colspan="4">No indexed relationships found for ${esc(gene)}.</td></tr>`;
       renderPager($("#genePager"), rows.length, shown.length, "geneShowAll", renderGeneView);
@@ -418,7 +418,7 @@
         const key = `actionShowAll:${group}`;
         const showAll = Boolean(state.actionShowAll[key]);
         const matches = showAll ? bucket : bucket.slice(0, pageSize);
-        return `<article class="card"><div class="card-head"><h3>${group}</h3>${tag(`${bucket.length} matches`, color)}</div><div class="card-body list">${matches.map((row) => rowLink(appLinkForRelation(row, { tab:"safety" }), relationTitle(row), row.source, color, relationBody(row), [row.class, row.gene, row.evidenceLevel].filter(Boolean))).join("") || `<div class="row"><p>No matching rows.</p></div>`}<div class="pager"><span>Showing ${Math.min(matches.length, bucket.length)} of ${bucket.length} rows</span>${bucket.length > pageSize ? `<button type="button" data-action-group="${esc(group)}">${showAll ? "Show 50" : "Show all"}</button>` : ""}</div></div></article>`;
+        return `<article class="card"><div class="card-head"><h3>${group}</h3>${tag(`${bucket.length} matches`, color)}</div><div class="card-body list">${matches.map((row) => rowLink(appLinkForRelation(row, { tab:"overview" }), relationTitle(row), row.source, color, relationBody(row), [row.class, row.gene, row.evidenceLevel].filter(Boolean))).join("") || `<div class="row"><p>No matching rows.</p></div>`}<div class="pager"><span>Showing ${Math.min(matches.length, bucket.length)} of ${bucket.length} rows</span>${bucket.length > pageSize ? `<button type="button" data-action-group="${esc(group)}">${showAll ? "Show 50" : "Show all"}</button>` : ""}</div></div></article>`;
       }).join("");
       $("#actionCards").querySelectorAll("[data-action-group]").forEach((button) => {
         button.addEventListener("click", () => {

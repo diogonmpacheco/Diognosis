@@ -1,3 +1,4 @@
+<!-- Generated from data/medication-class-guides.json by scripts/generate-medication-class-pages.js. Do not edit by hand. -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,27 +10,30 @@
   <style>
     :root{--bg:#f8fafc;--card:#fff;--text:#0f172a;--text2:#64748b;--accent:#2563eb;--accentBg:#dbeafe;--border:#e2e8f0;--red:#dc2626;--redBg:#fee2e2;--amber:#d97706;--amberBg:#fef3c7;--green:#16a34a;--greenBg:#dcfce7;--radius:12px;--shadow:0 1px 3px rgba(15,23,42,.08)}
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
     header{padding:28px 18px 18px;background:linear-gradient(180deg,var(--card),var(--bg));border-bottom:1px solid var(--border)}
-    main{max-width:940px;margin:0 auto;padding:18px}
-    .top{max-width:940px;margin:0 auto}
-    h1{font-size:29px;line-height:1.1;margin:0 0 8px;font-weight:850;letter-spacing:0}
+    main{margin:0 auto;padding:18px}
     p{margin:0;color:var(--text2)}
     a{color:var(--accent);font-weight:750;text-decoration:none}
+    .top{margin:0 auto}
     .back{display:inline-block;margin:0 14px 14px 0;font-size:13px}
-    .intro{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px;margin-bottom:14px}
-    .intro strong{color:var(--text)}
-    .guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-    .guide{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;display:flex;flex-direction:column;gap:10px}
-    .guide h2{font-size:18px;line-height:1.2;margin:0}
-    .guide p{font-size:14px}
-    .links{display:grid;gap:7px}
-    .links a{display:block;padding:9px 10px;border-radius:8px;background:var(--accentBg)}
-    .see-more{display:inline-flex;align-items:center;justify-content:center;margin-top:2px;padding:9px 10px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--accent)}
+    h1{font-size:29px;line-height:1.1;margin:0 0 8px;font-weight:850;letter-spacing:0}
+    h2{font-size:18px;line-height:1.2;margin:0}
     .tagline{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
     .tag{font-size:11px;font-weight:800;border-radius:999px;padding:3px 8px;background:var(--greenBg);color:var(--green)}
     .tag.warn{background:var(--amberBg);color:var(--amber)}
     .tag.high{background:var(--redBg);color:var(--red)}
+    main{max-width:940px}
+    .top{max-width:940px}
+    .intro{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px;margin-bottom:14px}
+    .intro strong{color:var(--text)}
+    .guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .guide{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;display:flex;flex-direction:column;gap:10px}
+    .guide p{font-size:14px}
+    .links{display:grid;gap:7px}
+    .links a{display:block;padding:9px 10px;border-radius:8px;background:var(--accentBg)}
+    .see-more{display:inline-flex;align-items:center;justify-content:center;margin-top:2px;padding:9px 10px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--accent)}
     @media (max-width:760px){.guide-grid{grid-template-columns:1fr}main{padding:14px}h1{font-size:25px}}
   </style>
   <link rel="stylesheet" href="assets/auxiliary-pages.css">
@@ -49,7 +53,7 @@
   </header>
   <main>
     <section class="intro">
-      <p><strong>Scale-first grouping.</strong> These guides prioritize classes many people actually use, not only rare high-severity specialist drugs. The first three links are quick-start examples; each card then opens a longer set of known examples.</p>
+      <p><strong>Scale-first grouping.</strong> These guides prioritize classes many people actually use, not only rare high-severity specialist drugs. The first links are quick-start examples; each card then opens a longer set of known examples.</p>
       <p style="margin-top:8px">Scale lens: CDC/NCHS reports broad prescription-drug and office-visit drug-therapy use, with analgesics and antihyperlipidemic agents among frequent therapeutic classes; ClinCalc DrugStats adds recent MEPS-derived signals such as statin, GLP-1/GIP, SGLT2, and anticoagulant utilization. <a href="https://www.cdc.gov/nchs/fastats/drug-use-therapeutic.htm">CDC/NCHS</a> · <a href="https://clincalc.com/blog/2025/08/clincalc-drugstats-most-commonly-prescribed-medications-in-2023/">ClinCalc DrugStats</a></p>
     </section>
 
@@ -58,21 +62,21 @@
         <h2>Statins and Lipid Medicines</h2>
         <p>High-scale because statins are among the most common chronic medicines; CYP3A, OATP/BCRP transport, fibrates, boosters, macrolides, and azoles can shift muscle-toxicity risk.</p>
         <div class="links">
-          <a href="./index.html?substances=simvastatin,clarithromycin&tab=pk">Simvastatin + clarithromycin</a>
-          <a href="./index.html?substances=simvastatin,gemfibrozil&tab=safety">Simvastatin + gemfibrozil</a>
-          <a href="./index.html?substances=atorvastatin,clarithromycin&tab=pk">Atorvastatin + clarithromycin</a>
+          <a href="./index.html?substances=simvastatin,clarithromycin&amp;tab=timing-levels">Simvastatin + clarithromycin</a>
+          <a href="./index.html?substances=simvastatin,gemfibrozil&amp;tab=overview">Simvastatin + gemfibrozil</a>
+          <a href="./index.html?substances=atorvastatin,clarithromycin&amp;tab=timing-levels">Atorvastatin + clarithromycin</a>
           <a class="see-more" href="./medication-class-examples.html#statins-lipids">See more statin examples</a>
         </div>
-        <div class="tagline"><span class="tag high">myopathy</span><span class="tag warn">CYP3A4</span><span class="tag">transporters</span></div>
+        <div class="tagline"><span class="tag high">myopathy</span><span class="tag warn">CYP3A4</span><span class="tag">OATP/BCRP</span></div>
       </section>
 
       <section class="guide" id="blood-pressure-heart-failure">
         <h2>Blood Pressure and Heart Failure</h2>
         <p>Common chronic-care drugs can overlap through potassium, renal function, bradycardia, nitrate/PDE5 hypotension, NSAID blunting, and ACE/ARB/ARNI washout rules.</p>
         <div class="links">
-          <a href="./index.html?substances=potassium_chloride,spironolactone&tab=safety">Potassium chloride + spironolactone</a>
-          <a href="./index.html?substances=nitroglycerin,sildenafil&tab=safety">Nitroglycerin + sildenafil</a>
-          <a href="./index.html?substances=sacubitril_valsartan,lisinopril&tab=safety">Sacubitril/valsartan + lisinopril</a>
+          <a href="./index.html?substances=potassium_chloride,spironolactone&amp;tab=overview">Potassium chloride + spironolactone</a>
+          <a href="./index.html?substances=sacubitril_valsartan,lisinopril&amp;tab=overview">Sacubitril/valsartan + lisinopril</a>
+          <a href="./index.html?substances=nitroglycerin,sildenafil&amp;tab=overview">Nitroglycerin + sildenafil</a>
           <a class="see-more" href="./medication-class-examples.html#blood-pressure-heart-failure">See more blood pressure examples</a>
         </div>
         <div class="tagline"><span class="tag high">potassium</span><span class="tag high">hypotension</span><span class="tag warn">renal</span></div>
@@ -82,21 +86,21 @@
         <h2>Anticoagulants and Antiplatelets</h2>
         <p>High-value because bleeding risk, CYP2C9/VKORC1 context, NSAIDs, SSRIs, azoles, antiplatelet activation, and transporter effects can all overlap.</p>
         <div class="links">
-          <a href="./index.html?substances=warfarin,fluconazole,ibuprofen&tab=safety">Warfarin + fluconazole + ibuprofen</a>
-          <a href="./index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&tab=pgx">Clopidogrel + omeprazole with CYP2C19 poor metabolism</a>
-          <a href="./index.html?substances=apixaban,clarithromycin&tab=pk">Apixaban + clarithromycin</a>
+          <a href="./index.html?substances=warfarin,fluconazole,ibuprofen&amp;tab=overview">Warfarin + fluconazole + ibuprofen</a>
+          <a href="./index.html?substances=clopidogrel,omeprazole&amp;genotype=CYP2C19:PM&amp;tab=genes-metabolites">Clopidogrel + omeprazole with CYP2C19 PM</a>
+          <a href="./index.html?substances=apixaban,clarithromycin&amp;tab=timing-levels">Apixaban + clarithromycin</a>
           <a class="see-more" href="./medication-class-examples.html#anticoagulants-antiplatelets">See more anticoagulant examples</a>
         </div>
-        <div class="tagline"><span class="tag high">bleeding</span><span class="tag warn">CYP2C19</span><span class="tag warn">CYP2C9</span><span class="tag">transporters</span></div>
+        <div class="tagline"><span class="tag high">bleeding</span><span class="tag warn">INR</span><span class="tag">P-gp</span></div>
       </section>
 
       <section class="guide" id="diabetes-weight-loss">
         <h2>Diabetes and Weight-Loss Medicines</h2>
         <p>Scale is rising across metformin, insulin, SGLT2 inhibitors, GLP-1/GIP agents, and common cardiovascular co-meds; useful checks include hypoglycemia masking, metformin exposure, and warfarin changes.</p>
         <div class="links">
-          <a href="./index.html?substances=metformin,trimethoprim_sulfamethoxazole&tab=pk">Metformin + trimethoprim-sulfamethoxazole</a>
-          <a href="./index.html?substances=insulin_glargine,metoprolol&tab=safety">Insulin glargine + metoprolol</a>
-          <a href="./index.html?substances=insulin_glargine,tirzepatide&tab=safety">Insulin glargine + tirzepatide</a>
+          <a href="./index.html?substances=metformin,trimethoprim_sulfamethoxazole&amp;tab=timing-levels">Metformin + TMP-SMX</a>
+          <a href="./index.html?substances=insulin_glargine,metoprolol&amp;tab=overview">Insulin glargine + metoprolol</a>
+          <a href="./index.html?substances=insulin_glargine,tirzepatide&amp;tab=overview">Insulin glargine + tirzepatide</a>
           <a class="see-more" href="./medication-class-examples.html#diabetes-weight-loss">See more diabetes examples</a>
         </div>
         <div class="tagline"><span class="tag warn">metformin</span><span class="tag warn">hypoglycemia</span><span class="tag">GLP-1/GIP</span></div>
@@ -106,9 +110,9 @@
         <h2>Pain, Inflammation, and Migraine</h2>
         <p>High-scale because NSAIDs, acetaminophen, opioids, tramadol, migraine medicines, and OTC pain relievers often meet anticoagulants, antidepressants, lithium, methotrexate, and kidney-risk drugs.</p>
         <div class="links">
-          <a href="./index.html?substances=warfarin,ibuprofen&tab=safety">Warfarin + ibuprofen</a>
-          <a href="./index.html?substances=fluoxetine,tramadol&genotype=CYP2D6:PM&tab=pgx">Fluoxetine + tramadol with CYP2D6 poor metabolism</a>
-          <a href="./index.html?substances=lithium,naproxen&tab=pk">Lithium + naproxen</a>
+          <a href="./index.html?substances=warfarin,ibuprofen&amp;tab=overview">Warfarin + ibuprofen</a>
+          <a href="./index.html?substances=lithium,naproxen&amp;tab=timing-levels">Lithium + naproxen</a>
+          <a href="./index.html?substances=fluoxetine,tramadol&amp;genotype=CYP2D6:PM&amp;tab=genes-metabolites">Fluoxetine + tramadol with CYP2D6 PM</a>
           <a class="see-more" href="./medication-class-examples.html#pain-inflammation-migraine">See more pain examples</a>
         </div>
         <div class="tagline"><span class="tag high">bleeding</span><span class="tag warn">CYP2D6</span><span class="tag warn">renal</span></div>
@@ -118,21 +122,21 @@
         <h2>Psychiatry, Neurology, Sleep, and OTC Sedating Medicines</h2>
         <p>Useful for CYP2D6 and CYP2C19 phenotype shifts, QT stacking, serotonin toxicity, anticholinergic burden, seizure threshold, sleep aids, and active-metabolite exceptions.</p>
         <div class="links">
-          <a href="./index.html?substances=paroxetine,fluoxetine&tab=safety">Paroxetine + fluoxetine washout and CYP2D6 inhibition</a>
-          <a href="./index.html?substances=amitriptyline,diazepam,diphenhydramine&genotype=CYP2D6:PM&tab=pgx">Amitriptyline + diazepam + diphenhydramine with CYP2D6 poor metabolism</a>
-          <a href="./index.html?substances=lamotrigine,valproic_acid&tab=safety">Lamotrigine + valproic acid</a>
+          <a href="./index.html?substances=amitriptyline,diazepam,diphenhydramine&amp;genotype=CYP2D6:PM&amp;tab=genes-metabolites">Amitriptyline + diazepam + diphenhydramine with CYP2D6 PM</a>
+          <a href="./index.html?substances=lamotrigine,valproic_acid&amp;tab=overview">Lamotrigine + valproic acid</a>
+          <a href="./index.html?substances=phenelzine,sertraline&amp;tab=overview">Phenelzine + sertraline</a>
           <a class="see-more" href="./medication-class-examples.html#psychiatry-neurology">See more psychiatry/neurology examples</a>
         </div>
-        <div class="tagline"><span class="tag warn">CYP2D6</span><span class="tag warn">CYP2C19</span><span class="tag high">serotonin/QT</span><span class="tag">burden</span></div>
+        <div class="tagline"><span class="tag high">serotonin</span><span class="tag warn">burden</span><span class="tag">CYP2D6</span></div>
       </section>
 
       <section class="guide" id="infectious-disease">
         <h2>Antibiotics, Antifungals, and Antivirals</h2>
         <p>Often interaction-heavy because azoles, macrolides, rifamycins, boosters, and antivirals can strongly inhibit or induce CYP3A4, CYP2C9, P-gp, OATP, or absorption pathways.</p>
         <div class="links">
-          <a href="./index.html?substances=simvastatin,clarithromycin&tab=pk">Simvastatin + clarithromycin</a>
-          <a href="./index.html?substances=warfarin,trimethoprim_sulfamethoxazole&tab=safety">Warfarin + trimethoprim-sulfamethoxazole</a>
-          <a href="./index.html?substances=tacrolimus,voriconazole&tab=pk">Tacrolimus + voriconazole</a>
+          <a href="./index.html?substances=simvastatin,clarithromycin&amp;tab=timing-levels">Simvastatin + clarithromycin</a>
+          <a href="./index.html?substances=warfarin,trimethoprim_sulfamethoxazole&amp;tab=overview">Warfarin + TMP-SMX</a>
+          <a href="./index.html?substances=tacrolimus,voriconazole&amp;tab=timing-levels">Tacrolimus + voriconazole</a>
           <a class="see-more" href="./medication-class-examples.html#infectious-disease">See more anti-infective examples</a>
         </div>
         <div class="tagline"><span class="tag high">CYP3A4</span><span class="tag warn">CYP2C9</span><span class="tag">P-gp</span></div>
@@ -142,48 +146,47 @@
         <h2>Acid Suppression, GI, Minerals, and Binding Interactions</h2>
         <p>Scale matters because PPIs, H2 blockers, antacids, iron, calcium, binders, thyroid hormone, and antibiotics are common; many misses are absorption/timing rather than CYP.</p>
         <div class="links">
-          <a href="./index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&tab=pgx">Clopidogrel + omeprazole with CYP2C19 poor metabolism</a>
-          <a href="./index.html?substances=erlotinib,omeprazole&tab=pk">Erlotinib + omeprazole</a>
-          <a href="./index.html?substances=levothyroxine,iron&tab=safety">Levothyroxine + iron</a>
+          <a href="./index.html?substances=clopidogrel,omeprazole&amp;genotype=CYP2C19:PM&amp;tab=genes-metabolites">Clopidogrel + omeprazole with CYP2C19 PM</a>
+          <a href="./index.html?substances=erlotinib,omeprazole&amp;tab=timing-levels">Erlotinib + omeprazole</a>
+          <a href="./index.html?substances=levothyroxine,iron&amp;tab=overview">Levothyroxine + iron</a>
           <a class="see-more" href="./medication-class-examples.html#acid-suppression-gi-minerals">See more GI/mineral examples</a>
         </div>
-        <div class="tagline"><span class="tag warn">absorption</span><span class="tag warn">timing</span><span class="tag">PPIs</span></div>
+        <div class="tagline"><span class="tag warn">absorption</span><span class="tag warn">timing</span><span class="tag">minerals</span></div>
       </section>
 
       <section class="guide" id="contraception-hormones">
         <h2>Contraception, Hormones, and Reproductive Health</h2>
         <p>High-scale because contraceptives and hormone therapies are common and interaction outcomes include contraceptive failure, seizure destabilization, hormone exposure shifts, and perioperative counseling.</p>
         <div class="links">
-          <a href="./index.html?substances=combined_oral_contraceptive,rifampin&tab=safety">Combined oral contraceptive + rifampin</a>
-          <a href="./index.html?substances=ethinyl_estradiol,lamotrigine&tab=pk">Ethinyl estradiol + lamotrigine</a>
-          <a href="./index.html?substances=levonorgestrel,efavirenz&tab=safety">Levonorgestrel + efavirenz</a>
+          <a href="./index.html?substances=combined_oral_contraceptive,rifampin&amp;tab=overview">Combined oral contraceptive + rifampin</a>
+          <a href="./index.html?substances=ethinyl_estradiol,lamotrigine&amp;tab=timing-levels">Ethinyl estradiol + lamotrigine</a>
+          <a href="./index.html?substances=levonorgestrel,efavirenz&amp;tab=overview">Levonorgestrel + efavirenz</a>
           <a class="see-more" href="./medication-class-examples.html#contraception-hormones">See more hormone examples</a>
         </div>
-        <div class="tagline"><span class="tag high">contraception</span><span class="tag warn">induction</span><span class="tag">lamotrigine</span></div>
+        <div class="tagline"><span class="tag high">contraception</span><span class="tag warn">induction</span><span class="tag">pregnancy</span></div>
       </section>
 
       <section class="guide" id="cardiology-qt">
         <h2>QT Risk, Antiarrhythmics, and Rate Control</h2>
         <p>Prioritizes narrow-therapeutic-index exposure, QT stacking, CYP2D6 antiarrhythmic metabolism, macrolide or azole inhibition, bradycardia, and electrolyte-sensitive combinations.</p>
         <div class="links">
-          <a href="./index.html?substances=flecainide,fluoxetine&genotype=CYP2D6:PM&tab=pgx">Flecainide + fluoxetine with CYP2D6 poor metabolism</a>
-          <a href="./index.html?substances=amiodarone,warfarin&tab=safety">Amiodarone + warfarin</a>
-          <a href="./index.html?substances=dofetilide,hydrochlorothiazide&tab=safety">Dofetilide + hydrochlorothiazide</a>
+          <a href="./index.html?substances=flecainide,fluoxetine&amp;genotype=CYP2D6:PM&amp;tab=genes-metabolites">Flecainide + fluoxetine with CYP2D6 PM</a>
+          <a href="./index.html?substances=amiodarone,warfarin&amp;tab=overview">Amiodarone + warfarin</a>
+          <a href="./index.html?substances=dofetilide,hydrochlorothiazide&amp;tab=overview">Dofetilide + hydrochlorothiazide</a>
           <a class="see-more" href="./medication-class-examples.html#cardiology-qt">See more QT/cardiology examples</a>
         </div>
-        <div class="tagline"><span class="tag high">QT</span><span class="tag warn">CYP2D6</span><span class="tag">NTI</span></div>
+        <div class="tagline"><span class="tag high">QT</span><span class="tag warn">NTI</span><span class="tag">CYP2D6</span></div>
       </section>
 
       <section class="guide" id="oncology-transplant">
         <h2>Oncology, Immunology, and Transplant</h2>
         <p>Not the highest-scale outpatient group, but still kept because many drugs have narrow therapeutic windows, prodrug activation, transporter relevance, genotype actionability, and severe inducer sensitivity.</p>
         <div class="links">
-          <a href="./index.html?substances=tacrolimus,fluconazole&tab=pk">Tacrolimus + fluconazole</a>
-          <a href="./index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=pgx">Azathioprine + allopurinol with TPMT/NUDT15 poor metabolism</a>
-          <a href="./index.html?substances=tamoxifen,paroxetine&genotype=CYP2D6:PM&tab=pgx">Tamoxifen + paroxetine with CYP2D6 poor metabolism</a>
+          <a href="./index.html?substances=tacrolimus,fluconazole&amp;tab=timing-levels">Tacrolimus + fluconazole</a>
+          <a href="./index.html?substances=azathioprine,allopurinol&amp;genotype=TPMT:PM&amp;genotype=NUDT15:PM&amp;tab=genes-metabolites">Azathioprine + allopurinol with TPMT/NUDT15 PM</a>
           <a class="see-more" href="./medication-class-examples.html#oncology-transplant">See more oncology/transplant examples</a>
         </div>
-        <div class="tagline"><span class="tag high">NTI</span><span class="tag warn">prodrugs</span><span class="tag">PGx</span></div>
+        <div class="tagline"><span class="tag high">NTI</span><span class="tag warn">active metabolites</span><span class="tag">PGx</span></div>
       </section>
     </div>
   </main>

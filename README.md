@@ -139,7 +139,7 @@ Diognosis is intentionally conservative about what it claims:
 - **69 genotype genes** and **588 receptor score profiles**
 - **32 RxNorm identity mappings**, **21 PGx marker rows**, and **9 CPIC-linked action summaries**
 - **218 Beers flags** and **1411 washout rules**
-- **3059 KB** generated bundle (2314 lines)
+- **3061 KB** generated bundle (2337 lines)
 <!-- DIOGNOSIS_STATS_END -->
 
 ---

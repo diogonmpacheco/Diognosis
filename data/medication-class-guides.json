@@ -1,0 +1,901 @@
+{
+  "version": 1,
+  "blockedExamples": [
+    {
+      "substances": ["paroxetine", "fluoxetine"],
+      "reason": "Removed from public guide examples until the current engine/index path can support the example cleanly."
+    },
+    {
+      "substances": ["tamoxifen", "paroxetine"],
+      "reason": "Removed from public guide examples until the current engine/index path can support the example cleanly."
+    }
+  ],
+  "guides": [
+    {
+      "id": "statins-lipids",
+      "navLabel": "Statins",
+      "seeMoreLabel": "statin",
+      "title": "Statins and Lipid Medicines",
+      "overviewSummary": "High-scale because statins are among the most common chronic medicines; CYP3A, OATP/BCRP transport, fibrates, boosters, macrolides, and azoles can shift muscle-toxicity risk.",
+      "detailSummary": "Common chronic therapy where CYP3A inhibition, transporter blockade, fibrates, boosters, and oncology drugs can raise muscle-toxicity risk.",
+      "tags": [
+        { "label": "myopathy", "tone": "high" },
+        { "label": "CYP3A4", "tone": "warn" },
+        { "label": "OATP/BCRP", "tone": "" }
+      ],
+      "examples": [
+        {
+          "id": "simvastatin-clarithromycin",
+          "label": "Simvastatin + clarithromycin",
+          "substances": ["simvastatin", "clarithromycin"],
+          "tab": "timing-levels",
+          "description": "CYP3A inhibition and rhabdomyolysis warning.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "simvastatin-itraconazole",
+          "label": "Simvastatin + itraconazole",
+          "substances": ["simvastatin", "itraconazole"],
+          "tab": "timing-levels",
+          "description": "Strong azole inhibition of sensitive statin exposure.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "simvastatin-gemfibrozil",
+          "label": "Simvastatin + gemfibrozil",
+          "substances": ["simvastatin", "gemfibrozil"],
+          "tab": "overview",
+          "description": "Fibrate/statin myopathy risk.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "atorvastatin-clarithromycin",
+          "label": "Atorvastatin + clarithromycin",
+          "substances": ["atorvastatin", "clarithromycin"],
+          "tab": "timing-levels",
+          "description": "Common statin plus common macrolide example.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "rosuvastatin-gemfibrozil",
+          "label": "Rosuvastatin + gemfibrozil",
+          "substances": ["rosuvastatin", "gemfibrozil"],
+          "tab": "overview",
+          "description": "Non-CYP statin still has myopathy exposure context.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "nirmatrelvir-ritonavir-simvastatin",
+          "label": "Nirmatrelvir/ritonavir + simvastatin",
+          "substances": ["nirmatrelvir_ritonavir", "simvastatin"],
+          "tab": "overview",
+          "description": "Short-course booster with chronic statin.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "darolutamide-rosuvastatin",
+          "label": "Darolutamide + rosuvastatin",
+          "substances": ["darolutamide", "rosuvastatin"],
+          "tab": "timing-levels",
+          "description": "Transporter-sensitive statin exposure in oncology care.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "leflunomide-rosuvastatin",
+          "label": "Leflunomide + rosuvastatin",
+          "substances": ["leflunomide", "rosuvastatin"],
+          "tab": "timing-levels",
+          "description": "Dose-limit and muscle-toxicity review.",
+          "validation": "data-resolved"
+        }
+      ]
+    },
+    {
+      "id": "blood-pressure-heart-failure",
+      "navLabel": "Blood pressure",
+      "seeMoreLabel": "blood pressure",
+      "title": "Blood Pressure and Heart Failure",
+      "overviewSummary": "Common chronic-care drugs can overlap through potassium, renal function, bradycardia, nitrate/PDE5 hypotension, NSAID blunting, and ACE/ARB/ARNI washout rules.",
+      "detailSummary": "Common medicines where the biggest misses are often potassium, renal function, bradycardia, hypotension, or timing rules rather than CYP alone.",
+      "tags": [
+        { "label": "potassium", "tone": "high" },
+        { "label": "hypotension", "tone": "high" },
+        { "label": "renal", "tone": "warn" }
+      ],
+      "examples": [
+        {
+          "id": "potassium-chloride-spironolactone",
+          "label": "Potassium chloride + spironolactone",
+          "substances": ["potassium_chloride", "spironolactone"],
+          "tab": "overview",
+          "description": "Hyperkalemia risk from supplement plus potassium-sparing drug.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "potassium-chloride-lisinopril",
+          "label": "Potassium chloride + lisinopril",
+          "substances": ["potassium_chloride", "lisinopril"],
+          "tab": "overview",
+          "description": "ACE inhibitor plus potassium supplement.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "spironolactone-tmp-smx",
+          "label": "Spironolactone + TMP-SMX",
+          "substances": ["spironolactone", "trimethoprim_sulfamethoxazole"],
+          "tab": "overview",
+          "description": "Antibiotic choice can become a potassium problem.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "sacubitril-valsartan-lisinopril",
+          "label": "Sacubitril/valsartan + lisinopril",
+          "substances": ["sacubitril_valsartan", "lisinopril"],
+          "tab": "overview",
+          "description": "ARNI/ACE inhibitor washout rule.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "nitroglycerin-sildenafil",
+          "label": "Nitroglycerin + sildenafil",
+          "substances": ["nitroglycerin", "sildenafil"],
+          "tab": "overview",
+          "description": "Nitrate/PDE5 hypotension contraindication.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "sildenafil-tamsulosin",
+          "label": "Sildenafil + tamsulosin",
+          "substances": ["sildenafil", "tamsulosin"],
+          "tab": "overview",
+          "description": "Additive orthostatic hypotension context.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "ibuprofen-lisinopril",
+          "label": "Ibuprofen + lisinopril",
+          "substances": ["ibuprofen", "lisinopril"],
+          "tab": "overview",
+          "description": "NSAID blunts antihypertensive effect and raises renal risk.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "terbinafine-metoprolol",
+          "label": "Terbinafine + metoprolol",
+          "substances": ["terbinafine", "metoprolol"],
+          "tab": "timing-levels",
+          "description": "CYP2D6 inhibition can increase beta-blocker effect.",
+          "validation": "data-resolved"
+        }
+      ]
+    },
+    {
+      "id": "anticoagulants-antiplatelets",
+      "navLabel": "Anticoagulants",
+      "seeMoreLabel": "anticoagulant",
+      "title": "Anticoagulants and Antiplatelets",
+      "overviewSummary": "High-value because bleeding risk, CYP2C9/VKORC1 context, NSAIDs, SSRIs, azoles, antiplatelet activation, and transporter effects can all overlap.",
+      "detailSummary": "High-scale and high-review burden: bleeding, INR shifts, transporter induction, antiplatelet activation, NSAIDs, SSRIs, antibiotics, and supplements converge.",
+      "tags": [
+        { "label": "bleeding", "tone": "high" },
+        { "label": "INR", "tone": "warn" },
+        { "label": "P-gp", "tone": "" }
+      ],
+      "examples": [
+        {
+          "id": "warfarin-fluconazole-ibuprofen",
+          "label": "Warfarin + fluconazole + ibuprofen",
+          "substances": ["warfarin", "fluconazole", "ibuprofen"],
+          "tab": "overview",
+          "description": "INR increase plus NSAID bleeding stack.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "warfarin-tmp-smx",
+          "label": "Warfarin + TMP-SMX",
+          "substances": ["warfarin", "trimethoprim_sulfamethoxazole"],
+          "tab": "overview",
+          "description": "Common antibiotic with strong INR review signal.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "clopidogrel-omeprazole-cyp2c19-pm",
+          "label": "Clopidogrel + omeprazole with CYP2C19 PM",
+          "substances": ["clopidogrel", "omeprazole"],
+          "genotypes": ["CYP2C19:PM"],
+          "tab": "genes-metabolites",
+          "description": "Parent drug can look fine while activation fails.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "apixaban-clarithromycin",
+          "label": "Apixaban + clarithromycin",
+          "substances": ["apixaban", "clarithromycin"],
+          "tab": "timing-levels",
+          "description": "DOAC exposure with P-gp/CYP3A inhibition context.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "apixaban-rifampin",
+          "label": "Apixaban + rifampin",
+          "substances": ["apixaban", "rifampin"],
+          "tab": "overview",
+          "description": "Induction can reduce anticoagulant protection.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "amiodarone-warfarin",
+          "label": "Amiodarone + warfarin",
+          "substances": ["amiodarone", "warfarin"],
+          "tab": "overview",
+          "description": "Classic INR monitoring and dose-adjustment scenario.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "warfarin-acetaminophen",
+          "label": "Warfarin + acetaminophen",
+          "substances": ["warfarin", "acetaminophen"],
+          "tab": "overview",
+          "description": "Common OTC pain medicine with INR context.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "dabigatran-rifampin",
+          "label": "Dabigatran + rifampin",
+          "substances": ["dabigatran", "rifampin"],
+          "tab": "overview",
+          "description": "P-gp induction and loss-of-anticoagulation risk.",
+          "validation": "data-resolved"
+        }
+      ]
+    },
+    {
+      "id": "diabetes-weight-loss",
+      "navLabel": "Diabetes",
+      "seeMoreLabel": "diabetes",
+      "title": "Diabetes and Weight-Loss Medicines",
+      "overviewSummary": "Scale is rising across metformin, insulin, SGLT2 inhibitors, GLP-1/GIP agents, and common cardiovascular co-meds; useful checks include hypoglycemia masking, metformin exposure, and warfarin changes.",
+      "detailSummary": "Common and growing exposure. Useful for metformin renal/exposure checks, insulin hypoglycemia masking, GLP-1/GIP insulin changes, and anticoagulant monitoring.",
+      "tags": [
+        { "label": "metformin", "tone": "warn" },
+        { "label": "hypoglycemia", "tone": "warn" },
+        { "label": "GLP-1/GIP", "tone": "" }
+      ],
+      "examples": [
+        {
+          "id": "metformin-tmp-smx",
+          "label": "Metformin + TMP-SMX",
+          "substances": ["metformin", "trimethoprim_sulfamethoxazole"],
+          "tab": "timing-levels",
+          "description": "Metformin exposure and renal/lactic-acidosis context.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "dolutegravir-metformin",
+          "label": "Dolutegravir + metformin",
+          "substances": ["dolutegravir", "metformin"],
+          "tab": "timing-levels",
+          "description": "Transporter effect on metformin exposure.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "ranolazine-metformin",
+          "label": "Ranolazine + metformin",
+          "substances": ["ranolazine", "metformin"],
+          "tab": "timing-levels",
+          "description": "Exposure and dose-limit review.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "insulin-glargine-metoprolol",
+          "label": "Insulin glargine + metoprolol",
+          "substances": ["insulin_glargine", "metoprolol"],
+          "tab": "overview",
+          "description": "Hypoglycemia symptoms can be masked.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "insulin-lispro-metoprolol",
+          "label": "Insulin lispro + metoprolol",
+          "substances": ["insulin_lispro", "metoprolol"],
+          "tab": "overview",
+          "description": "Rapid-acting insulin plus beta-blocker context.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "insulin-glargine-tirzepatide",
+          "label": "Insulin glargine + tirzepatide",
+          "substances": ["insulin_glargine", "tirzepatide"],
+          "tab": "overview",
+          "description": "Starting or escalating GLP-1/GIP therapy may require insulin review.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "tirzepatide-warfarin",
+          "label": "Tirzepatide + warfarin",
+          "substances": ["tirzepatide", "warfarin"],
+          "tab": "overview",
+          "description": "Monitor INR if control changes after dose escalation.",
+          "validation": "data-resolved"
+        }
+      ]
+    },
+    {
+      "id": "pain-inflammation-migraine",
+      "navLabel": "Pain",
+      "seeMoreLabel": "pain",
+      "title": "Pain, Inflammation, and Migraine",
+      "overviewSummary": "High-scale because NSAIDs, acetaminophen, opioids, tramadol, migraine medicines, and OTC pain relievers often meet anticoagulants, antidepressants, lithium, methotrexate, and kidney-risk drugs.",
+      "detailSummary": "High-scale because OTC and prescription pain medicines commonly overlap with anticoagulants, antidepressants, lithium, methotrexate, kidneys, and CYP2D6 activation.",
+      "tags": [
+        { "label": "bleeding", "tone": "high" },
+        { "label": "CYP2D6", "tone": "warn" },
+        { "label": "renal", "tone": "warn" }
+      ],
+      "examples": [
+        {
+          "id": "warfarin-ibuprofen",
+          "label": "Warfarin + ibuprofen",
+          "substances": ["warfarin", "ibuprofen"],
+          "tab": "overview",
+          "description": "Major GI bleeding pattern.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "lithium-naproxen",
+          "label": "Lithium + naproxen",
+          "substances": ["lithium", "naproxen"],
+          "tab": "timing-levels",
+          "description": "NSAID can raise lithium exposure.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "methotrexate-ibuprofen",
+          "label": "Methotrexate + ibuprofen",
+          "substances": ["methotrexate", "ibuprofen"],
+          "tab": "overview",
+          "description": "Renal clearance and bone-marrow toxicity concern.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "fluoxetine-tramadol-cyp2d6-pm",
+          "label": "Fluoxetine + tramadol with CYP2D6 PM",
+          "substances": ["fluoxetine", "tramadol"],
+          "genotypes": ["CYP2D6:PM"],
+          "tab": "genes-metabolites",
+          "description": "Serotonin risk plus impaired active-metabolite analgesia.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "bupropion-codeine-cyp2d6-pm",
+          "label": "Bupropion + codeine with CYP2D6 PM",
+          "substances": ["bupropion", "codeine"],
+          "genotypes": ["CYP2D6:PM"],
+          "tab": "genes-metabolites",
+          "description": "Parent analgesic can fail when activation is blocked.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "sertraline-sumatriptan",
+          "label": "Sertraline + sumatriptan",
+          "substances": ["sertraline", "sumatriptan"],
+          "tab": "overview",
+          "description": "Serotonergic migraine-treatment review.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "duloxetine-tizanidine",
+          "label": "Duloxetine + tizanidine",
+          "substances": ["duloxetine", "tizanidine"],
+          "tab": "timing-levels",
+          "description": "Muscle relaxant exposure and hypotension/sedation concern.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "phenelzine-tramadol",
+          "label": "Phenelzine + tramadol",
+          "substances": ["phenelzine", "tramadol"],
+          "tab": "overview",
+          "description": "MAOI plus opioid-like analgesic danger pattern.",
+          "validation": "data-resolved"
+        }
+      ]
+    },
+    {
+      "id": "psychiatry-neurology",
+      "navLabel": "Psychiatry",
+      "seeMoreLabel": "psychiatry/neurology",
+      "title": "Psychiatry, Neurology, Sleep, and OTC Sedating Medicines",
+      "overviewSummary": "Useful for CYP2D6 and CYP2C19 phenotype shifts, QT stacking, serotonin toxicity, anticholinergic burden, seizure threshold, sleep aids, and active-metabolite exceptions.",
+      "detailSummary": "Captures serotonin toxicity, CYP2D6/CYP2C19 phenotype shifts, anticholinergic/sedation burden, seizure threshold, sodium, and bradycardia in older-adult patterns.",
+      "tags": [
+        { "label": "serotonin", "tone": "high" },
+        { "label": "burden", "tone": "warn" },
+        { "label": "CYP2D6", "tone": "" }
+      ],
+      "examples": [
+        {
+          "id": "amitriptyline-diazepam-diphenhydramine-cyp2d6-pm",
+          "label": "Amitriptyline + diazepam + diphenhydramine with CYP2D6 PM",
+          "substances": ["amitriptyline", "diazepam", "diphenhydramine"],
+          "genotypes": ["CYP2D6:PM"],
+          "tab": "genes-metabolites",
+          "description": "Burden plus genotype-exposure signal.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "lamotrigine-valproic-acid",
+          "label": "Lamotrigine + valproic acid",
+          "substances": ["lamotrigine", "valproic_acid"],
+          "tab": "overview",
+          "description": "Lamotrigine exposure and rash/SJS context.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "phenelzine-sertraline",
+          "label": "Phenelzine + sertraline",
+          "substances": ["phenelzine", "sertraline"],
+          "tab": "overview",
+          "description": "MAOI plus SSRI contraindication pattern.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "linezolid-sertraline",
+          "label": "Linezolid + sertraline",
+          "substances": ["linezolid", "sertraline"],
+          "tab": "overview",
+          "description": "Antibiotic with MAOI-like serotonin concern.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "donepezil-metoprolol",
+          "label": "Donepezil + metoprolol",
+          "substances": ["donepezil", "metoprolol"],
+          "tab": "overview",
+          "description": "Bradycardia and syncope context.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "desmopressin-sertraline",
+          "label": "Desmopressin + sertraline",
+          "substances": ["desmopressin", "sertraline"],
+          "tab": "overview",
+          "description": "Hyponatremia and neurologic symptom monitoring.",
+          "validation": "data-resolved"
+        }
+      ]
+    },
+    {
+      "id": "infectious-disease",
+      "navLabel": "Anti-infectives",
+      "seeMoreLabel": "anti-infective",
+      "title": "Antibiotics, Antifungals, and Antivirals",
+      "overviewSummary": "Often interaction-heavy because azoles, macrolides, rifamycins, boosters, and antivirals can strongly inhibit or induce CYP3A4, CYP2C9, P-gp, OATP, or absorption pathways.",
+      "detailSummary": "Common short courses can collide with chronic medicines through CYP3A, CYP2C9, P-gp, OATP, QT, and absorption.",
+      "tags": [
+        { "label": "CYP3A4", "tone": "high" },
+        { "label": "CYP2C9", "tone": "warn" },
+        { "label": "P-gp", "tone": "" }
+      ],
+      "examples": [
+        {
+          "id": "antiinfective-simvastatin-clarithromycin",
+          "label": "Simvastatin + clarithromycin",
+          "substances": ["simvastatin", "clarithromycin"],
+          "tab": "timing-levels",
+          "description": "Macrolide plus statin contraindication pattern.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "antiinfective-warfarin-tmp-smx",
+          "label": "Warfarin + TMP-SMX",
+          "substances": ["warfarin", "trimethoprim_sulfamethoxazole"],
+          "tab": "overview",
+          "description": "Antibiotic choice can destabilize INR.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "tacrolimus-voriconazole",
+          "label": "Tacrolimus + voriconazole",
+          "substances": ["tacrolimus", "voriconazole"],
+          "tab": "timing-levels",
+          "description": "Azole inhibition in transplant monitoring.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "colchicine-clarithromycin",
+          "label": "Colchicine + clarithromycin",
+          "substances": ["colchicine", "clarithromycin"],
+          "tab": "timing-levels",
+          "description": "Narrow-index toxicity warning.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "tizanidine-ciprofloxacin",
+          "label": "Tizanidine + ciprofloxacin",
+          "substances": ["tizanidine", "ciprofloxacin"],
+          "tab": "timing-levels",
+          "description": "CYP1A2 inhibition and hypotension/sedation.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "dofetilide-tmp-smx",
+          "label": "Dofetilide + TMP-SMX",
+          "substances": ["dofetilide", "trimethoprim_sulfamethoxazole"],
+          "tab": "overview",
+          "description": "Renal cation transport and torsades risk.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "antiinfective-nirmatrelvir-ritonavir-simvastatin",
+          "label": "Nirmatrelvir/ritonavir + simvastatin",
+          "substances": ["nirmatrelvir_ritonavir", "simvastatin"],
+          "tab": "overview",
+          "description": "COVID treatment plus chronic statin review.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "darunavir-rifampin",
+          "label": "Darunavir + rifampin",
+          "substances": ["darunavir", "rifampin"],
+          "tab": "overview",
+          "description": "HIV regimen failure and resistance risk.",
+          "validation": "data-resolved"
+        }
+      ]
+    },
+    {
+      "id": "acid-suppression-gi-minerals",
+      "navLabel": "GI/minerals",
+      "seeMoreLabel": "GI/mineral",
+      "title": "Acid Suppression, GI, Minerals, and Binding Interactions",
+      "overviewSummary": "Scale matters because PPIs, H2 blockers, antacids, iron, calcium, binders, thyroid hormone, and antibiotics are common; many misses are absorption/timing rather than CYP.",
+      "detailSummary": "Useful for non-CYP misses: pH-dependent absorption, chelation, binding, dose separation, thyroid monitoring, and antiviral/antibiotic treatment failure.",
+      "tags": [
+        { "label": "absorption", "tone": "warn" },
+        { "label": "timing", "tone": "warn" },
+        { "label": "minerals", "tone": "" }
+      ],
+      "examples": [
+        {
+          "id": "gi-clopidogrel-omeprazole-cyp2c19-pm",
+          "label": "Clopidogrel + omeprazole with CYP2C19 PM",
+          "substances": ["clopidogrel", "omeprazole"],
+          "genotypes": ["CYP2C19:PM"],
+          "tab": "genes-metabolites",
+          "description": "Activation failure with PPI plus genotype context.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "erlotinib-omeprazole",
+          "label": "Erlotinib + omeprazole",
+          "substances": ["erlotinib", "omeprazole"],
+          "tab": "timing-levels",
+          "description": "pH-dependent oncology exposure loss.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "erlotinib-famotidine",
+          "label": "Erlotinib + famotidine",
+          "substances": ["erlotinib", "famotidine"],
+          "tab": "timing-levels",
+          "description": "Timing strategy for acid suppression.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "levothyroxine-iron",
+          "label": "Levothyroxine + iron",
+          "substances": ["levothyroxine", "iron"],
+          "tab": "overview",
+          "description": "Binding and TSH monitoring after sustained use.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "levothyroxine-calcium",
+          "label": "Levothyroxine + calcium",
+          "substances": ["levothyroxine", "calcium"],
+          "tab": "overview",
+          "description": "Common supplement timing interaction.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "ciprofloxacin-iron",
+          "label": "Ciprofloxacin + iron",
+          "substances": ["ciprofloxacin", "iron"],
+          "tab": "overview",
+          "description": "Chelation and antibiotic treatment-failure risk.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "doxycycline-calcium",
+          "label": "Doxycycline + calcium",
+          "substances": ["doxycycline", "calcium"],
+          "tab": "overview",
+          "description": "Tetracycline-mineral separation example.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "bictegravir-iron",
+          "label": "Bictegravir + iron",
+          "substances": ["bictegravir", "iron"],
+          "tab": "overview",
+          "description": "Integrase inhibitor timing/food strategy.",
+          "validation": "data-resolved"
+        }
+      ]
+    },
+    {
+      "id": "contraception-hormones",
+      "navLabel": "Hormones",
+      "seeMoreLabel": "hormone",
+      "title": "Contraception, Hormones, and Reproductive Health",
+      "overviewSummary": "High-scale because contraceptives and hormone therapies are common and interaction outcomes include contraceptive failure, seizure destabilization, hormone exposure shifts, and perioperative counseling.",
+      "detailSummary": "High-scale counseling category where induction, lamotrigine level shifts, perioperative drugs, and pregnancy-context flags matter.",
+      "tags": [
+        { "label": "contraception", "tone": "high" },
+        { "label": "induction", "tone": "warn" },
+        { "label": "pregnancy", "tone": "" }
+      ],
+      "examples": [
+        {
+          "id": "combined-oral-contraceptive-rifampin",
+          "label": "Combined oral contraceptive + rifampin",
+          "substances": ["combined_oral_contraceptive", "rifampin"],
+          "tab": "overview",
+          "description": "Contraceptive failure risk.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "combined-oral-contraceptive-carbamazepine",
+          "label": "Combined oral contraceptive + carbamazepine",
+          "substances": ["combined_oral_contraceptive", "carbamazepine"],
+          "tab": "overview",
+          "description": "Enzyme induction and backup/alternative counseling.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "combined-oral-contraceptive-lamotrigine",
+          "label": "Combined oral contraceptive + lamotrigine",
+          "substances": ["combined_oral_contraceptive", "lamotrigine"],
+          "tab": "timing-levels",
+          "description": "Lamotrigine exposure falls during active-pill weeks.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "ethinyl-estradiol-rifampin",
+          "label": "Ethinyl estradiol + rifampin",
+          "substances": ["ethinyl_estradiol", "rifampin"],
+          "tab": "overview",
+          "description": "Hormone exposure reduction from strong induction.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "ethinyl-estradiol-lamotrigine",
+          "label": "Ethinyl estradiol + lamotrigine",
+          "substances": ["ethinyl_estradiol", "lamotrigine"],
+          "tab": "timing-levels",
+          "description": "Seizure/mood control and level rebound context.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "levonorgestrel-efavirenz",
+          "label": "Levonorgestrel + efavirenz",
+          "substances": ["levonorgestrel", "efavirenz"],
+          "tab": "overview",
+          "description": "Contraceptive efficacy concern in antiviral care.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "sugammadex-ethinyl-estradiol",
+          "label": "Sugammadex + ethinyl estradiol",
+          "substances": ["sugammadex", "ethinyl_estradiol"],
+          "tab": "overview",
+          "description": "Short-term backup contraception counseling.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "pregnancy-warfarin",
+          "label": "Pregnancy / trying to conceive + warfarin",
+          "substances": ["pregnancy_trying_to_conceive", "warfarin"],
+          "tab": "overview",
+          "description": "Pregnancy context as a medication-safety flag.",
+          "validation": "data-resolved"
+        }
+      ]
+    },
+    {
+      "id": "cardiology-qt",
+      "navLabel": "QT/cardiology",
+      "seeMoreLabel": "QT/cardiology",
+      "title": "QT Risk, Antiarrhythmics, and Rate Control",
+      "overviewSummary": "Prioritizes narrow-therapeutic-index exposure, QT stacking, CYP2D6 antiarrhythmic metabolism, macrolide or azole inhibition, bradycardia, and electrolyte-sensitive combinations.",
+      "detailSummary": "Narrow-index and electrophysiology checks: QT stacking, renal cation transport, beta-blockade, CYP2D6 phenotype, and bradycardia.",
+      "tags": [
+        { "label": "QT", "tone": "high" },
+        { "label": "NTI", "tone": "warn" },
+        { "label": "CYP2D6", "tone": "" }
+      ],
+      "examples": [
+        {
+          "id": "flecainide-fluoxetine-cyp2d6-pm",
+          "label": "Flecainide + fluoxetine with CYP2D6 PM",
+          "substances": ["flecainide", "fluoxetine"],
+          "genotypes": ["CYP2D6:PM"],
+          "tab": "genes-metabolites",
+          "description": "Antiarrhythmic exposure plus genotype/phenoconversion.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "cardiology-amiodarone-warfarin",
+          "label": "Amiodarone + warfarin",
+          "substances": ["amiodarone", "warfarin"],
+          "tab": "overview",
+          "description": "Cardiology drug that changes anticoagulation plan.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "dofetilide-hydrochlorothiazide",
+          "label": "Dofetilide + hydrochlorothiazide",
+          "substances": ["dofetilide", "hydrochlorothiazide"],
+          "tab": "overview",
+          "description": "Electrolyte and renal clearance torsades risk.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "dofetilide-cimetidine",
+          "label": "Dofetilide + cimetidine",
+          "substances": ["dofetilide", "cimetidine"],
+          "tab": "overview",
+          "description": "Renal cation transport contraindication pattern.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "sotalol-hydrochlorothiazide",
+          "label": "Sotalol + hydrochlorothiazide",
+          "substances": ["sotalol", "hydrochlorothiazide"],
+          "tab": "overview",
+          "description": "QT risk plus electrolyte context.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "ranolazine-diltiazem",
+          "label": "Ranolazine + diltiazem",
+          "substances": ["ranolazine", "diltiazem"],
+          "tab": "timing-levels",
+          "description": "CYP3A dose-limit and QT monitoring.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "ivabradine-clarithromycin",
+          "label": "Ivabradine + clarithromycin",
+          "substances": ["ivabradine", "clarithromycin"],
+          "tab": "timing-levels",
+          "description": "Bradycardia/conduction risk from CYP3A inhibition.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "propafenone-metoprolol",
+          "label": "Propafenone + metoprolol",
+          "substances": ["propafenone", "metoprolol"],
+          "tab": "overview",
+          "description": "Excess beta-blockade and conduction monitoring.",
+          "validation": "data-resolved"
+        }
+      ]
+    },
+    {
+      "id": "oncology-transplant",
+      "navLabel": "Oncology/transplant",
+      "seeMoreLabel": "oncology/transplant",
+      "title": "Oncology, Immunology, and Transplant",
+      "overviewSummary": "Not the highest-scale outpatient group, but still kept because many drugs have narrow therapeutic windows, prodrug activation, transporter relevance, genotype actionability, and severe inducer sensitivity.",
+      "detailSummary": "Specialist, not scale-first, but important because many examples are active-metabolite, genotype, transporter, or narrow-index cases that ordinary parent-drug checks miss.",
+      "tags": [
+        { "label": "NTI", "tone": "high" },
+        { "label": "active metabolites", "tone": "warn" },
+        { "label": "PGx", "tone": "" }
+      ],
+      "examples": [
+        {
+          "id": "tacrolimus-fluconazole",
+          "label": "Tacrolimus + fluconazole",
+          "substances": ["tacrolimus", "fluconazole"],
+          "tab": "timing-levels",
+          "description": "Transplant trough and renal-toxicity context.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "tacrolimus-clarithromycin",
+          "label": "Tacrolimus + clarithromycin",
+          "substances": ["tacrolimus", "clarithromycin"],
+          "tab": "timing-levels",
+          "description": "Macrolide inhibition with narrow-index immunosuppression.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "cyclosporine-posaconazole",
+          "label": "Cyclosporine + posaconazole",
+          "substances": ["cyclosporine", "posaconazole"],
+          "tab": "timing-levels",
+          "description": "Azole exposure and trough-guided dose adjustment.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "azathioprine-allopurinol-tpmt-nudt15-pm",
+          "label": "Azathioprine + allopurinol with TPMT/NUDT15 PM",
+          "substances": ["azathioprine", "allopurinol"],
+          "genotypes": ["TPMT:PM", "NUDT15:PM"],
+          "tab": "genes-metabolites",
+          "description": "Thiopurine active-metabolite and marrow-toxicity stack.",
+          "featured": true,
+          "validation": "data-resolved"
+        },
+        {
+          "id": "capecitabine-dpyd-pm",
+          "label": "Capecitabine with DPYD PM",
+          "substances": ["capecitabine"],
+          "genotypes": ["DPYD:PM"],
+          "tab": "genes-metabolites",
+          "description": "5-FU accumulation from a prodrug.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "irinotecan-ugt1a1-pm",
+          "label": "Irinotecan with UGT1A1 PM",
+          "substances": ["irinotecan"],
+          "genotypes": ["UGT1A1:PM"],
+          "tab": "genes-metabolites",
+          "description": "SN-38 detoxification and CBC monitoring.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "venetoclax-ritonavir",
+          "label": "Venetoclax + ritonavir",
+          "substances": ["venetoclax", "ritonavir"],
+          "tab": "timing-levels",
+          "description": "CYP3A/P-gp inhibition and tumor-lysis/toxicity context.",
+          "validation": "data-resolved"
+        },
+        {
+          "id": "erlotinib-rifampin",
+          "label": "Erlotinib + rifampin",
+          "substances": ["erlotinib", "rifampin"],
+          "tab": "timing-levels",
+          "description": "Strong induction and oncology efficacy loss.",
+          "validation": "data-resolved"
+        }
+      ]
+    }
+  ]
+}

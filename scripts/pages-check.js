@@ -10,7 +10,7 @@ function assert(condition, message) {
 }
 
 function verifyAuxiliaryPages() {
-  const requiredFiles = [
+  const requiredArtifactFiles = [
     'data-views.html',
     'medication-classes.html',
     'medication-class-examples.html',
@@ -18,17 +18,22 @@ function verifyAuxiliaryPages() {
     'assets/auxiliary-pages.css',
     'src/data/dataViewsIndex.js',
   ];
-  for (const file of requiredFiles) {
+  const requiredSourceFiles = [
+    'data/medication-class-guides.json',
+    'scripts/generate-medication-class-pages.js',
+  ];
+  for (const file of [...requiredArtifactFiles, ...requiredSourceFiles]) {
     assert(existsSync(file), `Pages auxiliary file is missing: ${file}`);
   }
   const workflow = readFileSync('.github/workflows/pages.yml', 'utf8');
-  for (const file of requiredFiles.slice(0, 5)) {
+  for (const file of requiredArtifactFiles.slice(0, 5)) {
     assert(workflow.includes(file), `Pages workflow does not deploy ${file}`);
   }
   assert(/cp src\/data\/\*\.js dist\/src\/data\//.test(workflow), 'Pages workflow must deploy data-views source data files');
   console.log('✓ Auxiliary Pages files and workflow artifact entries');
 }
 
+run('Generate medication class guide pages', node, ['scripts/generate-medication-class-pages.js']);
 run('Build index.html', node, ['build.js']);
 verifyReleaseMetadata();
 verifyAuxiliaryPages();
