@@ -138,7 +138,7 @@ function renderPendingReviewPgxContext() {
   ).slice(0, 6);
   if (!rows.length && !coreRows.length) return "";
   return `<div class="external-context-notice" style="margin-bottom:10px">
-    Pending external gene-medication context is available for this stack, including ${safePublicHtml(String(coreRows.length))} candidate${coreRows.length === 1 ? "" : "s"}. It is not used for gene-result interpretation, scoring, or public severity.
+    Pending external PGx context is available for this stack, including ${safePublicHtml(String(coreRows.length))} candidate${coreRows.length === 1 ? "" : "s"}. It is not used for gene-result interpretation, scoring, or public severity.
   </div>
   <div class="pending-review-grid" style="margin-bottom:12px">
     ${rows.map(row => `<div class="pending-review-card">
@@ -146,7 +146,7 @@ function renderPendingReviewPgxContext() {
         <span class="ev-review-badge needs-review">Pending verification</span>
         <span class="ev-review-badge needs-review">Not used for scoring</span>
       </div>
-      <div class="pending-review-title">${safePublicHtml(row.title || row.id || "Pending gene-medication context")}</div>
+      <div class="pending-review-title">${safePublicHtml(row.title || row.id || "Pending PGx context")}</div>
       <div class="pending-review-meta">${safeTextList([
         row.sourceName ? `Source: ${publicDisplayText(row.sourceName)}` : "",
         (row.genes || []).length ? `Genes: ${row.genes.slice(0, 6).join(", ")}` : "",
@@ -157,7 +157,7 @@ function renderPendingReviewPgxContext() {
     </div>`).join("")}
     ${coreRows.map(row => `<div class="pending-review-card">
       <div class="pending-review-head">
-        <span class="ev-review-badge needs-review">Gene-medication candidate</span>
+        <span class="ev-review-badge needs-review">PGx candidate</span>
         <span class="ev-review-badge needs-review">Pending verification</span>
       </div>
       <div class="pending-review-title">${safePublicHtml(row.gene || "Gene context")} ${row.drug ? `+ ${safePublicHtml(row.drug)}` : ""}</div>

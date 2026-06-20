@@ -35,9 +35,9 @@ function renderAlternatives() {
 }
 
 const PGX_GUIDANCE_LABELS = {
-  A: "Strong gene-medication guidance",
-  B: "Moderate gene-medication guidance",
-  C: "Limited gene-medication signal"
+  A: "Strong PGx",
+  B: "Moderate PGx",
+  C: "Limited PGx"
 };
 
 const PGX_GUIDANCE_TITLES = {
@@ -47,7 +47,7 @@ const PGX_GUIDANCE_TITLES = {
 };
 
 function pgxGuidanceLabel(level) {
-  return PGX_GUIDANCE_LABELS[level] || "gene-medication evidence";
+  return PGX_GUIDANCE_LABELS[level] || "PGx evidence";
 }
 
 function pgxGuidanceTitle(level) {
