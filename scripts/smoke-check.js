@@ -229,6 +229,12 @@ window.copyOverviewHandoffSummary();
 assert(summaryCopyStatus.textContent === 'Select text below', 'Summary copy fallback should explain manual selection');
 assert(summaryCopyText.hidden === false && /Diognosis V1 handoff summary|Diognosis questions to ask/i.test(summaryCopyText.textContent),
   'Summary copy fallback should reveal the copyable handoff text');
+assert(/Handoff type: patient question list/i.test(summaryCopyText.textContent),
+  'Patient copy fallback should identify itself as a patient question list');
+assert(/Generated from local Diognosis/i.test(summaryCopyText.textContent) && /no patient-specific data was uploaded/i.test(summaryCopyText.textContent),
+  'Patient copy fallback should carry the local-data boundary');
+assert(!/V1 scope|Clinical context still needed/i.test(summaryCopyText.textContent),
+  'Patient question list should not expose clinician handoff sections');
 assert(doc.activeElement === summaryCopyText, 'Summary copy fallback should move focus to the copyable handoff text');
 doc.execCommand = originalExecCommand;
 assert(doc.getElementById('tab-overview')?.classList.contains('active'), 'Overview tab should be active by default');

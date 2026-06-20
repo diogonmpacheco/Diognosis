@@ -940,6 +940,29 @@ assert(!String(audienceModeRegression.clinician.scopeText || '').replace(/\s+/g,
 assert(audienceModeRegression.clinician.actionRows > 0, 'Clinician mode should restore finding action rows');
 assert(audienceModeRegression.clinician.supportDetails > 0, 'Clinician mode should show supporting detail drawers');
 
+const handoffAudienceRegression = window.eval(`(() => {
+  setAudienceMode('patient');
+  const patientText = buildOverviewHandoffText();
+  const patientAria = document.getElementById('summaryCopyText')?.getAttribute('aria-label') || '';
+  setAudienceMode('clinician');
+  const clinicianText = buildOverviewHandoffText();
+  const clinicianAria = document.getElementById('summaryCopyText')?.getAttribute('aria-label') || '';
+  return { patientText, clinicianText, patientAria, clinicianAria };
+})()`);
+assert(/Handoff type: patient question list/i.test(handoffAudienceRegression.patientText), 'Patient handoff should identify itself as a question list');
+assert(/Generated from local Diognosis/i.test(handoffAudienceRegression.patientText) && /no patient-specific data was uploaded/i.test(handoffAudienceRegression.patientText),
+  'Patient handoff should carry the local-data boundary');
+assert(!/V1 scope|Clinical context still needed|clinician\/pharmacist medication-review/i.test(handoffAudienceRegression.patientText),
+  'Patient handoff should not expose clinician-only report sections');
+assert(/Handoff type: clinician\/pharmacist medication-review handoff/i.test(handoffAudienceRegression.clinicianText),
+  'Clinician handoff should identify itself as a clinician/pharmacist handoff');
+assert(['V1 scope', 'Clinical context still needed', 'Top concerns', 'Boundaries'].every(section => handoffAudienceRegression.clinicianText.includes(section)),
+  'Clinician handoff should preserve report sections');
+assert(/Selected gene\/marker results:/i.test(handoffAudienceRegression.clinicianText),
+  'Clinician handoff should include selected gene/marker result summary');
+assert(/question list/i.test(handoffAudienceRegression.patientAria) && /clinician handoff/i.test(handoffAudienceRegression.clinicianAria),
+  'Copy fallback aria labels should match Patient versus Clinician handoff types');
+
 const emptyAudienceListRegression = window.eval(`(() => {
   activeStack = [];
   userGenetics = {};

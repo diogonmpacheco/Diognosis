@@ -601,11 +601,12 @@ function summaryBandLabel(riskClass = "neutral", stackCount = 0) {
 function renderSummaryActions(patient = isPatientAudience()) {
   const shareUrl = typeof currentStackShareUrl === "function" ? currentStackShareUrl("overview") : "";
   const copyLabel = patient ? "Copy questions" : "Copy handoff";
+  const copyAriaLabel = patient ? "Copyable Diognosis question list" : "Copyable Diognosis clinician handoff text";
   return `<div class="summary-actions">
     <button type="button" class="summary-action-btn" onclick="copyOverviewHandoffSummary()">${safePublicHtml(copyLabel)}</button>
     ${shareUrl ? `<a class="summary-action-btn" href="${safeAttr(shareUrl)}" target="_blank" rel="noopener">Share link</a>` : ""}
     <span class="summary-action-status" id="summaryCopyStatus" role="status" aria-live="polite" aria-atomic="true"></span>
-    <pre class="summary-copy-text" id="summaryCopyText" tabindex="0" aria-label="Copyable Diognosis handoff text" hidden></pre>
+    <pre class="summary-copy-text" id="summaryCopyText" tabindex="0" aria-label="${safeAttr(copyAriaLabel)}" hidden></pre>
   </div>`;
 }
 
@@ -619,6 +620,24 @@ function buildOverviewHandoffText() {
   ].join("\n");
 }
 
+function currentHandoffGeneResultSummary(options = {}) {
+  const patient = !!options.patient;
+  const tokens = typeof activeGenotypeUrlTokens === "function" ? activeGenotypeUrlTokens() : [];
+  if (!tokens.length) {
+    return patient
+      ? "Gene results added in this screen: none"
+      : "Selected gene/marker results: none";
+  }
+  return patient
+    ? `Gene results added in this screen: ${tokens.join(", ")}`
+    : `Selected gene/marker results: ${tokens.join(", ")}`;
+}
+
+function currentHandoffDataBoundaryLine() {
+  const engine = typeof DIOGNOSIS_VERSION !== "undefined" ? DIOGNOSIS_VERSION.engine : "V1";
+  return `Generated from local Diognosis ${engine} static data; no patient-specific data was uploaded.`;
+}
+
 function buildPatientQuestionSummaryText() {
   const presentations = getCurrentPublicFindingPresentations();
   const questions = presentations.length
@@ -627,8 +646,11 @@ function buildPatientQuestionSummaryText() {
   const shareUrl = typeof currentStackShareUrl === "function" ? currentStackShareUrl("overview") : "";
   return [
     "Diognosis questions to ask",
+    "Handoff type: patient question list",
     `Selected list: ${(activeStack || []).join(" + ") || "none selected"}`,
+    currentHandoffGeneResultSummary({ patient:true }),
     shareUrl ? `Share link: ${shareUrl}` : "",
+    currentHandoffDataBoundaryLine(),
     "",
     "Questions to ask",
     ...questions.map((question, index) => `${index + 1}. ${question}`),

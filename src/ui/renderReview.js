@@ -46,8 +46,8 @@ function renderV1HandoffSummary() {
   const text = buildV1HandoffSummaryText();
   const shareUrl = typeof currentStackShareUrl === "function" ? currentStackShareUrl("overview") : "";
   return `<div class="v1-handoff">
-    <div class="v1-handoff-title">V1 Handoff Summary</div>
-    <div class="v1-handoff-note">Plain-language handoff for the current stack. It preserves the same source-linked and clinical-review boundaries as the finding cards.</div>
+    <div class="v1-handoff-title">V1 Clinician Handoff Summary</div>
+    <div class="v1-handoff-note">Copyable clinician/pharmacist review handoff for the current stack. It preserves the same source-linked and clinical-review boundaries as the finding cards.</div>
     <pre class="v1-handoff-text" id="v1HandoffText">${safePublicHtml(text)}</pre>
     <div class="review-actions">
       <button type="button" class="review-action-btn" onclick="copyV1HandoffSummary()">Copy summary</button>
@@ -190,8 +190,11 @@ function buildV1HandoffSummaryText(options = {}) {
   const shareUrl = typeof currentStackShareUrl === "function" ? currentStackShareUrl("overview") : "";
   const lines = [
     "Diognosis V1 handoff summary",
+    "Handoff type: clinician/pharmacist medication-review handoff",
     `Stack: ${(activeStack || []).join(" + ") || "none selected"}`,
+    typeof currentHandoffGeneResultSummary === "function" ? currentHandoffGeneResultSummary({ patient:false }) : "",
     shareUrl ? `Share link: ${shareUrl}` : "",
+    typeof currentHandoffDataBoundaryLine === "function" ? currentHandoffDataBoundaryLine() : "Generated from local Diognosis static data; no patient-specific data was uploaded.",
     "",
     "V1 scope",
     scope ? `- Selected substances: ${scope.selectedCount}` : "",
@@ -201,7 +204,7 @@ function buildV1HandoffSummaryText(options = {}) {
     scope?.unknownCount ? `- Unrecognized selections: ${typeof formatScopeUnknownItems === "function" ? formatScopeUnknownItems(scope.unknownItems) : `${scope.unknownCount} item(s)`}` : "",
     scope?.standardsCoverage ? `- Standards identity: ${scope.standardsCoverage.mappedDrugCount}/${scope.standardsCoverage.recognizedDrugCount} recognized medications mapped to RxNorm; ${scope.standardsCoverage.markerMappingCount} PGx marker rows; ${scope.standardsCoverage.pgxActionCount} CPIC-linked action contexts` : "",
     "",
-    "Review checklist",
+    "Clinical context still needed",
     ...(typeof buildReviewContextChecklist === "function"
       ? buildReviewContextChecklist(scope, { patient:false }).map(item => `- ${item}`)
       : ["- Medication reconciliation, patient context, labs, timing, and source evidence should be reviewed."]),
