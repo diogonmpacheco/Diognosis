@@ -1,7 +1,7 @@
 // Diognosis - external clinical standards bridge
 // Keeps runtime local while exposing source-linked identity and PGx action context.
 
-const CLINICAL_STANDARDS_VERSION = "2026-06-21-batch23-high-impact-rxnorm";
+const CLINICAL_STANDARDS_VERSION = "2026-06-21-batch24-high-impact-rxnorm";
 
 const EXTERNAL_ID_SYSTEMS = Object.freeze({
   RXNORM: "RxNorm",
@@ -1244,6 +1244,15 @@ const EXTERNAL_SUBSTANCE_MAPPINGS = Object.freeze([
   { substance:"Vitamin K1", rxnormCui:"8308", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"vonoprazan", rxnormCui:"2604577", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"xanomeline", rxnormCui:"2694828", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"uracil", rxnormCui:"10995", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"uric acid", rxnormCui:"1427088", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Vinyl Chloride", rxnormCui:"1995489", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Vitamin D", rxnormCui:"11253", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Vitamin D3", rxnormCui:"1244014", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Zafirlukast", rxnormCui:"114970", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Zanamivir", rxnormCui:"69722", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Zinc", rxnormCui:"11416", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Zolmitriptan", rxnormCui:"135775", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
 ]);
 
 const STANDARD_CONTEXT_EXEMPTIONS = Object.freeze([
@@ -1330,6 +1339,252 @@ const STANDARD_CONTEXT_EXEMPTIONS = Object.freeze([
     standard:"RxNorm",
     reason:"Metabolite actor; RxNorm identity should stay with the parent marketed ingredient unless a current RxNorm ingredient exists.",
     representativeSubstances:["Tramadol"],
+  },
+  {
+    substance:"1-hydroxymidazolam",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Midazolam"],
+  },
+  {
+    substance:"1,7-dimethylxanthine",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Caffeine"],
+  },
+  {
+    substance:"11a-hydroxyprogesterone",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Progesterone"],
+  },
+  {
+    substance:"11alpha-hydroxytestosterone",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["testosterone"],
+  },
+  {
+    substance:"16alpha-hydroxyprogesterone",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Progesterone"],
+  },
+  {
+    substance:"16alpha-hydroxytestosterone",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["testosterone"],
+  },
+  {
+    substance:"2-hydroxyatorvastatin",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Atorvastatin"],
+  },
+  {
+    substance:"2-hydroxyatorvastatin lactone",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Atorvastatin"],
+  },
+  {
+    substance:"2C-B",
+    standard:"RxNorm",
+    reason:"Non-prescription/recreational chemical actor; no clean active RxNorm ingredient was found in current exact-first lookup.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"2C-I",
+    standard:"RxNorm",
+    reason:"Non-prescription/recreational chemical actor; no clean active RxNorm ingredient was found in current exact-first lookup.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"3-aminoisobutyrate",
+    standard:"RxNorm",
+    reason:"Biomarker/analyte actor; RxNorm identity should not be forced onto a non-medication measurement context.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"3-cyano-7-ethoxycoumarin",
+    standard:"RxNorm",
+    reason:"Probe substrate/analyte actor; RxNorm identity should not be forced onto a non-medication measurement context.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"3-hydroxy agomelatine",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Agomelatine"],
+  },
+  {
+    substance:"3-hydroxycotinine",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Nicotine"],
+  },
+  {
+    substance:"3-hydroxycotinine glucuronide",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Nicotine"],
+  },
+  {
+    substance:"3,4-dehydrocilostazol",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Cilostazol"],
+  },
+  {
+    substance:"3,4-methylenedioxymethamphetamine",
+    standard:"RxNorm",
+    reason:"Non-prescription/recreational chemical actor; no clean active RxNorm ingredient was found in current exact-first lookup.",
+    representativeSubstances:["MDMA (Ecstasy)"],
+  },
+  {
+    substance:"4-beta-hydroxycholesterol",
+    standard:"RxNorm",
+    reason:"Biomarker/analyte actor; RxNorm identity should not be forced onto a non-medication measurement context.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"4-hydroxyatorvastatin",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Atorvastatin"],
+  },
+  {
+    substance:"4-hydroxyatorvastatin lactone",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Atorvastatin"],
+  },
+  {
+    substance:"4-hydroxybupropion",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Bupropion"],
+  },
+  {
+    substance:"4-hydroxycyclophosphamide",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Cyclophosphamide"],
+  },
+  {
+    substance:"4-hydroxysolanidine",
+    standard:"RxNorm",
+    reason:"Food-derived chemical/analyte actor; RxNorm identity should not be forced onto a non-medication exposure context.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"4-hydroxytamoxifen",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Tamoxifen"],
+  },
+  {
+    substance:"6beta-hydroxycortisol",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Hydrocortisone"],
+  },
+  {
+    substance:"6beta-hydroxyprogesterone",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Progesterone"],
+  },
+  {
+    substance:"6beta-hydroxytestosterone",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["testosterone"],
+  },
+  {
+    substance:"7-carboxycannabidiol",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent cannabinoid or selected formulation unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Cannabidiol"],
+  },
+  {
+    substance:"7-desmethyl agomelatine",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Agomelatine"],
+  },
+  {
+    substance:"7-hydroxycannabidiol",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent cannabinoid or selected formulation unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Cannabidiol"],
+  },
+  {
+    substance:"7-hydroxyefavirenz",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Efavirenz"],
+  },
+  {
+    substance:"7-hydroxyefavirenz glucuronide",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Efavirenz"],
+  },
+  {
+    substance:"7-hydroxyefavirenz sulfate",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Efavirenz"],
+  },
+  {
+    substance:"7-hydroxyprochlorperazine",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Prochlorperazine"],
+  },
+  {
+    substance:"8-hydroxyefavirenz",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Efavirenz"],
+  },
+  {
+    substance:"8-hydroxyefavirenz glucuronide",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Efavirenz"],
+  },
+  {
+    substance:"8-hydroxyefavirenz sulfate",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Efavirenz"],
+  },
+  {
+    substance:"acetaminophen sulfate",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Acetaminophen"],
+  },
+  {
+    substance:"acetylisoniazid",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Isoniazid"],
+  },
+  {
+    substance:"Aclidinium/Formoterol",
+    standard:"RxNorm",
+    reason:"Combination actor; RxNorm identity should attach to the component ingredients or exact clinical product rather than the app shortcut row.",
+    representativeSubstances:["Aclidinium", "Formoterol"],
+  },
+  {
+    substance:"Aflibercept Ophthalmic",
+    standard:"RxNorm",
+    reason:"Route/formulation actor; RxNorm identity should attach to the active ingredient or exact clinical product rather than the route label.",
+    representativeSubstances:["Aflibercept"],
   },
 ]);
 
