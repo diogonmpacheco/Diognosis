@@ -551,7 +551,12 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 }
 .summary-card{display:grid;gap:10px}
 .summary-main{display:grid;grid-template-columns:1fr;gap:12px;align-items:start}
-.summary-kicker{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:8px}
+.summary-kicker{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:8px}
+.summary-band-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--accentBg)}
+.summary-band-dot.high{background:var(--red);box-shadow:0 0 0 3px var(--redBg)}
+.summary-band-dot.moderate{background:var(--amber);box-shadow:0 0 0 3px var(--amberBg)}
+.summary-band-dot.low{background:var(--accent);box-shadow:0 0 0 3px var(--accentBg)}
+.summary-band-dot.neutral{background:var(--faint);box-shadow:0 0 0 3px var(--card2)}
 .summary-title{font-size:27px;line-height:1.18;font-weight:750;color:var(--text);letter-spacing:0;max-width:680px}
 .summary-copy{font-size:15px;color:var(--text2);line-height:1.5;margin-top:9px;max-width:680px}
 .summary-story{display:grid;gap:7px;padding:0;border-radius:0;background:transparent;border:0;font-size:12px;line-height:1.4;color:var(--faint);font-family:var(--mono)}
@@ -598,14 +603,11 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 .scope-context-list li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:7px;vertical-align:1px}
 
 /* PRIORITIZED FINDINGS */
-.finding-card{border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:12px;background:var(--card2);padding:14px 15px;margin-bottom:10px;box-shadow:0 1px 2px rgba(61,44,30,.04)}
-.primary-finding-card{padding:16px;border-radius:10px;background:#fff;box-shadow:0 6px 18px rgba(61,44,30,.08)}
-.finding-card.severe,.finding-card.critical{border-left-color:var(--red);background:var(--redBg)}
-.finding-card.moderate{border-left-color:var(--amber);background:var(--amberBg)}
-.finding-card.mild,.finding-card.monitor,.finding-card.info{border-left-color:var(--blue);background:var(--blueBg)}
-.primary-finding-card.severe,.primary-finding-card.critical{background:linear-gradient(180deg,#fff 0%,var(--redBg) 100%)}
-.primary-finding-card.moderate{background:linear-gradient(180deg,#fff 0%,var(--amberBg) 100%)}
-.primary-finding-card.monitor,.primary-finding-card.info{background:linear-gradient(180deg,#fff 0%,var(--blueBg) 100%)}
+.finding-card{border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:12px;background:var(--card);padding:14px 15px;margin-bottom:10px;box-shadow:none}
+.primary-finding-card{padding:16px;border-radius:12px;background:var(--card);box-shadow:none}
+.finding-card.severe,.finding-card.critical{border-left-color:var(--red)}
+.finding-card.moderate{border-left-color:var(--amber)}
+.finding-card.mild,.finding-card.monitor,.finding-card.info{border-left-color:var(--blue)}
 .finding-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:7px}
 .finding-title{font-size:15px;font-weight:800;color:var(--text);line-height:1.25}
 .finding-subtitle{font-size:12px;color:var(--text2);margin-top:2px;font-weight:600}
@@ -624,13 +626,13 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 .finding-trust-row span{min-width:0;overflow-wrap:anywhere}
 .finding-effect{font-size:13px;line-height:1.45;color:var(--text);font-weight:650;margin-bottom:10px}
 .finding-explain{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
-.finding-step{padding:10px 11px;border-radius:8px;background:rgba(255,255,255,.74);border:1px solid rgba(61,44,30,.09)}
+.finding-step{padding:10px 11px;border-radius:8px;background:var(--card2);border:1px solid var(--border)}
 .finding-step-label{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);margin-bottom:3px}
 .finding-step-text{font-size:12px;line-height:1.45;color:var(--text)}
-.finding-discussion{margin-top:10px;padding:10px 11px;border-radius:9px;background:rgba(255,255,255,.78);border:1px solid rgba(234,88,12,.2)}
+.finding-discussion{margin-top:10px;padding:10px 11px;border-radius:9px;background:var(--accentBg);border:1px solid var(--accentLine)}
 .finding-discussion-label{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);margin-bottom:4px}
 .finding-discussion-text{font-size:12px;line-height:1.45;color:var(--text);font-weight:650}
-.finding-monitoring{margin-top:8px;padding:10px 11px;border-radius:9px;background:rgba(236,253,245,.72);border:1px solid rgba(22,163,74,.18)}
+.finding-monitoring{margin-top:8px;padding:10px 11px;border-radius:9px;background:var(--card2);border:1px solid var(--border)}
 .finding-monitoring-label{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:0;color:var(--green);margin-bottom:6px}
 .finding-monitoring-list{display:grid;gap:5px;margin:0;padding:0;list-style:none}
 .finding-monitoring-list li{font-size:12px;line-height:1.42;color:var(--text2);overflow-wrap:anywhere}
@@ -647,12 +649,12 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 .evidence-ladder-compact{display:grid;gap:3px;color:var(--text2);line-height:1.35}
 .evidence-ladder-compact span{overflow-wrap:anywhere}
 .finding-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}
-.finding-tag{font-size:10px;font-weight:800;color:var(--text2);background:rgba(255,255,255,.72);border:1px solid rgba(61,44,30,.1);border-radius:999px;padding:3px 8px}
+.finding-tag{font-size:10px;font-weight:800;color:var(--text2);background:var(--card2);border:1px solid var(--border);border-radius:999px;padding:3px 8px}
 .finding-tag.review{color:var(--green);background:var(--greenBg)}
 .finding-tag.warn{color:var(--amber);background:var(--amberBg)}
 .finding-tag.type{color:var(--accent);background:var(--accentBg)}
 .finding-actors{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
-.finding-actor{font-size:10px;font-weight:800;color:var(--text);background:rgba(255,255,255,.78);border:1px solid rgba(61,44,30,.1);border-radius:8px;padding:3px 7px}
+.finding-actor{font-size:10px;font-weight:800;color:var(--text);background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:3px 7px}
 .finding-actor small{font-size:9px;color:var(--text2);font-weight:700;text-transform:uppercase;margin-left:4px}
 .finding-why{margin-top:9px;font-size:12px;color:var(--text2)}
 .finding-why summary{cursor:pointer;font-weight:800;color:var(--accent)}
@@ -698,6 +700,13 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 .circulating-value{font-family:var(--mono);font-size:11px;font-weight:800;border:1px solid var(--border);border-radius:999px;background:var(--card2);color:var(--text2);padding:3px 7px;white-space:nowrap}
 .circulating-value.up{color:var(--amber);background:var(--amberBg);border-color:rgba(168,120,27,.3)}
 .circulating-value.down{color:var(--blue);background:var(--blueBg);border-color:rgba(49,95,143,.25)}
+.circulating-meter{position:relative;height:8px;border-radius:999px;background:#f0efe9;margin-top:12px;overflow:hidden}
+.circulating-band{position:absolute;top:0;bottom:0;left:45%;width:10%;background:var(--accentBg);border-left:1px solid var(--accentLine);border-right:1px solid var(--accentLine)}
+.circulating-fill{position:absolute;top:0;bottom:0;border-radius:999px;background:var(--accent);opacity:.32}
+.circulating-fill.up{background:var(--amber);opacity:.38}
+.circulating-fill.down{background:var(--blue);opacity:.34}
+.circulating-marker{position:absolute;top:-3px;width:3px;height:14px;border-radius:999px;background:var(--text);box-shadow:0 0 0 2px var(--card)}
+.circulating-axis{display:flex;justify-content:space-between;gap:8px;margin-top:5px;font-size:10px;font-weight:750;color:var(--faint);font-family:var(--mono)}
 .circulating-note{font-size:12px;line-height:1.45;color:var(--text2);margin-top:8px}
 .circulating-empty{font-size:13px;line-height:1.5;color:var(--text2);border:1px dashed var(--border);border-radius:12px;background:var(--card);padding:16px 18px;text-align:center}
 .no-signal-card{border:1px solid rgba(245,158,11,.28);border-radius:10px;background:var(--amberBg);padding:13px 14px}
@@ -991,7 +1000,7 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
   <div class="section" id="riskSection" style="display:none">
       <div class="section-title">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        Overall Risk Summary
+        Risk Score Details
       </div>
       <div class="section-body" id="riskBody"></div>
     </div>

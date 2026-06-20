@@ -503,7 +503,9 @@ function renderSummaryBar() {
     }
   }
 
-  const summaryKicker = patient ? (primaryPresentation ? "Main Safety Note" : "Current Check") : "Highest Priority";
+  const summaryKicker = patient
+    ? (primaryPresentation ? "Questions ready" : "Current check")
+    : summaryBandLabel(riskClass, activeStack.length);
   const jumpLabel = patient ? "View note" : "View finding";
   const hasVisibleSummaryJump = !patient && (Boolean(primaryPresentation) || activeStack.length >= 2 || Boolean(isGenotypePriority));
   const summaryJumpHtml = hasVisibleSummaryJump
@@ -514,7 +516,7 @@ function renderSummaryBar() {
     bar.innerHTML = `<div class="summary-card">
     <div class="summary-main">
       <div>
-        <div class="summary-kicker">${safePublicHtml(summaryKicker)}</div>
+        <div class="summary-kicker"><span class="summary-band-dot ${safeAttr(riskClass)}"></span><span>${safePublicHtml(summaryKicker)}</span></div>
         <div class="summary-title">${safePublicHtml(headline)}</div>
         <div class="summary-copy">${summaryCopy ? `${safePublicHtml(summaryCopy)} ` : ""}${summaryJumpHtml}</div>
       </div>
@@ -529,6 +531,14 @@ function renderSummaryBar() {
   </div>`;
   const badge = severeCount > 0 ? `<span class="tab-badge">${severeCount}</span>` : "";
   if (overviewBtn) overviewBtn.innerHTML = "Overview" + badge;
+}
+
+function summaryBandLabel(riskClass = "neutral", stackCount = 0) {
+  if (stackCount < 2) return "Current check";
+  if (riskClass === "high") return "High priority";
+  if (riskClass === "moderate") return "Review recommended";
+  if (riskClass === "low") return "Looks manageable";
+  return "Current check";
 }
 
 function renderSummaryActions(patient = isPatientAudience()) {
@@ -2033,7 +2043,7 @@ function applyAudienceModeVisibility() {
 
 function arrangeAdvancedSections() {
   const placements = {
-    overview:["scopeSection","riskSection","findingSection","circulatingSection","altSection"],
+    overview:["scopeSection","findingSection","circulatingSection","riskSection","altSection"],
     mechanisms:["mechanismWhySection","mechanisticSection","transporterSection","pdSection","cascadeSection","phenoAccumSection","graphSection"],
     "genes-metabolites":["genotypeSection","phenoconversionSection","activeMoietySection","metabSection"],
     "timing-levels":["foldSection","pkSimSection","persistenceTimelineSection","washoutSection","burdenSection"],
@@ -2885,6 +2895,7 @@ function renderCirculatingCard(row = {}) {
     parent ? parent.trim() : "",
     row.note || "",
   ].filter(Boolean).join(" · ");
+  const meter = renderCirculatingMeter(row);
   return `<div class="circulating-card">
     <div class="circulating-head">
       <div>
@@ -2893,8 +2904,33 @@ function renderCirculatingCard(row = {}) {
       </div>
       <span class="circulating-value ${safeAttr(tone)}">${safePublicHtml(value)}</span>
     </div>
+    ${meter}
     <div class="circulating-note">${safePublicHtml(note || "No directional change detected.")}</div>
   </div>`;
+}
+
+function renderCirculatingMeter(row = {}) {
+  const direction = row.direction || "baseline";
+  const fold = Number(row.fold);
+  let marker = 50;
+  if (Number.isFinite(fold) && fold > 0) {
+    marker = 50 + Math.log2(fold) * 18;
+  } else if (direction === "increase") {
+    marker = 68;
+  } else if (direction === "decrease") {
+    marker = 32;
+  }
+  marker = Math.max(4, Math.min(96, Math.round(marker)));
+  const center = 50;
+  const left = Math.min(center, marker);
+  const width = Math.max(2, Math.abs(marker - center));
+  const tone = direction === "increase" ? "up" : direction === "decrease" ? "down" : "";
+  return `<div class="circulating-meter" aria-label="Relative exposure direction">
+    <div class="circulating-band" title="Expected range"></div>
+    <div class="circulating-fill ${safeAttr(tone)}" style="left:${safeAttr(left)}%;width:${safeAttr(width)}%"></div>
+    <div class="circulating-marker" style="left:calc(${safeAttr(marker)}% - 1.5px)"></div>
+  </div>
+  <div class="circulating-axis"><span>lower</span><span>expected</span><span>higher</span></div>`;
 }
 
 function renderRiskGauge(risk) {
