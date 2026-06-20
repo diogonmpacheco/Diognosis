@@ -91,6 +91,16 @@ if (!baseIndex) {
   if (!baseIndex.canonicalSubstances?.length) fail("DATA_VIEW_INDEX has zero canonical substances.");
   if (!baseIndex.canonicalFacts?.length) fail("DATA_VIEW_INDEX has zero canonical facts.");
   if (!Array.isArray(baseIndex.aliasRows)) fail("DATA_VIEW_INDEX is missing aliasRows.");
+  const snapshotText = base.dom.window.document.querySelector(".support-strip")?.textContent || "";
+  if (!/Local static data; no runtime uploads/i.test(snapshotText)) {
+    fail("Data Views support strip should disclose local static data boundary.");
+  }
+  if (!snapshotText.includes(String(baseIndex.relations.length))) {
+    fail(`Data Views support strip should expose relation count ${baseIndex.relations.length}. Found: ${snapshotText || "(missing)"}`);
+  }
+  if (!snapshotText.includes(String(baseIndex.genes.length))) {
+    fail(`Data Views support strip should expose gene count ${baseIndex.genes.length}. Found: ${snapshotText || "(missing)"}`);
+  }
 
   const unresolved = baseIndex.relations.filter((row) => row.entityKind === "unresolved");
   if (unresolved.length) {

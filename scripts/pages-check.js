@@ -30,6 +30,14 @@ function verifyAuxiliaryPages() {
     assert(workflow.includes(file), `Pages workflow does not deploy ${file}`);
   }
   assert(/cp src\/data\/\*\.js dist\/src\/data\//.test(workflow), 'Pages workflow must deploy data-views source data files');
+  const dataViews = readFileSync('data-views.html', 'utf8');
+  assert(dataViews.includes('dataSnapshotRelations') && dataViews.includes('Local static data; no runtime uploads'),
+    'Data Views page should expose the current data snapshot and local-data boundary');
+  for (const file of ['medication-classes.html', 'medication-class-examples.html']) {
+    const html = readFileSync(file, 'utf8');
+    assert(html.includes('support-strip') && html.includes('validated examples') && html.includes('Static examples; no runtime uploads'),
+      `${file} should expose the generated class-guide snapshot and static-example boundary`);
+  }
   console.log('✓ Auxiliary Pages files and workflow artifact entries');
 }
 

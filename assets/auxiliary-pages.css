@@ -40,6 +40,10 @@ main{padding:24px 28px 44px}
 .actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
 .pill,.back{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--border);background:var(--card);border-radius:10px;padding:9px 12px;font-size:13px;color:var(--text2);font-weight:850;white-space:nowrap}
 .pill:hover,.back:hover{border-color:var(--accent);background:var(--accentBg);color:var(--accent);text-decoration:none}
+.support-strip{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.support-strip span{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--text2);padding:8px 10px;font-size:12px;font-weight:800}
+.support-strip strong{color:var(--text);font-weight:900}
+.support-strip .support-boundary{background:var(--accentBg);border-color:var(--accentLine);color:var(--accent2)}
 .intro,.note,.card,.guide{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:none}
 .intro,.note,.guide{padding:18px 20px;margin-bottom:14px}
 .intro strong,.note strong{color:var(--text)}

@@ -145,6 +145,13 @@
             <span class="pill">Live explorer</span>
           </div>
         </div>
+        <div class="support-strip" aria-label="Data views snapshot">
+          <span><strong id="dataSnapshotDrugs">0</strong> drugs</span>
+          <span><strong id="dataSnapshotRelations">0</strong> indexed relations</span>
+          <span><strong id="dataSnapshotGenes">0</strong> genes</span>
+          <span><strong id="dataSnapshotFacts">0</strong> canonical facts</span>
+          <span class="support-boundary">Local static data; no runtime uploads</span>
+        </div>
       </header>
 
       <main>
@@ -260,6 +267,18 @@
       ranking:["Gene Ranking","Rank genotype-linked genes by substance reach, metabolite coverage, modulators, transporter rows, evidence, and high-severity burden."],
     };
     const actionGroups = [["Use-together review","red"], ["Dose/timing review","amber"], ["Option review","violet"], ["Monitoring review","green"], ["Context only",""]];
+
+    function renderDataSnapshot() {
+      const stats = window.DIOGNOSIS_STATS || {};
+      const set = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = String(value ?? 0);
+      };
+      set("dataSnapshotDrugs", stats.drugs || index.canonicalSubstances?.length || 0);
+      set("dataSnapshotRelations", index.relations?.length || 0);
+      set("dataSnapshotGenes", index.genes?.length || 0);
+      set("dataSnapshotFacts", index.canonicalFacts?.length || 0);
+    }
 
     function activateView(view) {
       if (view === "network") view = "ranking";
@@ -522,6 +541,7 @@
 
     function initDataViews() {
       const params = new URLSearchParams(location.search);
+      renderDataSnapshot();
       renderGeneSelect();
       $("#geneSearch").setAttribute("list", "geneOptions");
       const priorityGenes = (index.modeledGenotypes || []).filter((item) => item.kind === "modeled_gene").map((item) => item.gene);

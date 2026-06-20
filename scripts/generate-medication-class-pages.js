@@ -208,7 +208,7 @@ function sharedHead({ title, description, canonicalPath, extraCss = '' }) {
   <meta name="description" content="${html(description)}">
   <link rel="canonical" href="https://diogonmpacheco.github.io/Diognosis/${html(canonicalPath)}">
   <style>
-    :root{--bg:#f8fafc;--card:#fff;--text:#0f172a;--text2:#64748b;--accent:#2563eb;--accentBg:#dbeafe;--border:#e2e8f0;--red:#dc2626;--redBg:#fee2e2;--amber:#d97706;--amberBg:#fef3c7;--green:#16a34a;--greenBg:#dcfce7;--radius:12px;--shadow:0 1px 3px rgba(15,23,42,.08)}
+    :root{--bg:#f1f0ec;--surface:#fbfbf9;--rail:#f7f6f2;--card:#fff;--card2:#f7f6f2;--text:#17181b;--text2:#6c7077;--faint:#9a9ea4;--border:#e8e7e0;--border2:#ebeae3;--accent:#137a6a;--accent2:#2c5e54;--accentBg:#e7f1ee;--accentLine:#cfe4de;--red:#c23a34;--redBg:#fbeceb;--amber:#a8781b;--amberBg:#f6edda;--green:#137a6a;--greenBg:#e7f1ee;--blue:#315f8f;--blueBg:#eaf1f7;--purple:#5b58c4;--purpleBg:#ecebf8;--radius:14px;--shadow:none}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
@@ -234,6 +234,18 @@ function generatedComment() {
   return '<!-- Generated from data/medication-class-guides.json by scripts/generate-medication-class-pages.js. Do not edit by hand. -->';
 }
 
+function classGuideSnapshotHtml(source, data) {
+  const exampleCount = source.guides.reduce((sum, guide) => sum + guide.examples.length, 0);
+  const studyCount = Object.keys(data.STUDY_DB || {}).length;
+  return `      <div class="support-strip" aria-label="Medication class guide data snapshot">
+        <span><strong>${html(data.DRUG_DB?.length || 0)}</strong> drugs</span>
+        <span><strong>${html(source.guides.length)}</strong> class guides</span>
+        <span><strong>${html(exampleCount)}</strong> validated examples</span>
+        <span><strong>${html(studyCount)}</strong> evidence entries</span>
+        <span class="support-boundary">Static examples; no runtime uploads</span>
+      </div>`;
+}
+
 function renderGuideCard(guide) {
   const featured = guide.examples.filter((example) => example.featured).slice(0, 3);
   const examples = featured.length ? featured : guide.examples.slice(0, 3);
@@ -249,7 +261,7 @@ ${examples.map((example) => `          <a href="${html(exampleHref(example))}">$
       </section>`;
 }
 
-function renderOverviewPage(source) {
+function renderOverviewPage(source, data) {
   const extraCss = `    main{max-width:940px}
     .top{max-width:940px}
     .intro{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 16px;margin-bottom:14px}
@@ -280,6 +292,7 @@ ${sharedHead({
       <a class="back" href="./data-views.html">Data views</a>
       <h1>Medication Class Interaction Guides</h1>
       <p>High-yield MedCheck Engine starting points for common medication groups and known interaction patterns: pharmacogenomics, CYP inhibition or induction, active metabolites, transporters, bleeding, QT, electrolytes, acid suppression, and PK exposure.</p>
+${classGuideSnapshotHtml(source, data)}
     </div>
   </header>
   <main>
@@ -312,7 +325,7 @@ ${guide.examples.map(renderExampleCard).join('\n')}
     </section>`;
 }
 
-function renderExamplesPage(source) {
+function renderExamplesPage(source, data) {
   const extraCss = `    main{max-width:980px}
     .top{max-width:980px}
     h2{font-size:20px;margin:0 0 6px}
@@ -345,6 +358,7 @@ ${sharedHead({
       <a class="back" href="./index.html">Back to Diognosis</a>
       <h1>Expanded Medication Class Examples</h1>
       <p>Longer example sets for common, high-scale medication groups. Each link opens the Diognosis app with a focused MedCheck Engine stack.</p>
+${classGuideSnapshotHtml(source, data)}
       <nav class="nav" aria-label="Medication class example sections">
 ${source.guides.map((guide) => `        <a href="#${html(guide.id)}">${html(guide.navLabel)}</a>`).join('\n')}
       </nav>
@@ -387,8 +401,8 @@ const source = readGuideSource();
 const data = loadDiognosisData();
 const resolveSubstance = buildSubstanceResolver(data);
 const failures = validateGuides(source, data, resolveSubstance);
-const overview = renderOverviewPage(source);
-const examples = renderExamplesPage(source);
+const overview = renderOverviewPage(source, data);
+const examples = renderExamplesPage(source, data);
 
 failures.push(...verifyGeneratedHtml('medication-classes.html', overview));
 failures.push(...verifyGeneratedHtml('medication-class-examples.html', examples));
