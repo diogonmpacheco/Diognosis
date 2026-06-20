@@ -196,14 +196,14 @@ function syncAudienceModeUI() {
   const tagline = document.getElementById("audienceTagline") || document.querySelector(".header p");
   if (tagline) {
     tagline.textContent = patient
-      ? "Diognosis helps you prepare medicine-list questions for a doctor or pharmacist."
-      : "Diognosis - parent drugs, metabolites, genes, pathways, PK timing, and source-linked evidence checked together";
+      ? "Get ready to talk to your doctor or pharmacist"
+      : "Medication and pharmacogenomic interaction review";
   }
   const searchInput = document.getElementById("searchInput");
   if (searchInput) {
     searchInput.placeholder = patient
-      ? "Search medicines, supplements, foods..."
-      : "Search medications, supplements, foods...";
+      ? "Medicine, supplement, or food"
+      : "Medication, supplement, or food";
   }
   const listTitle = document.getElementById("listTitle");
   if (listTitle) listTitle.textContent = patient ? "My Medicine List" : "Selected List";
@@ -220,11 +220,12 @@ function syncAudienceModeUI() {
       : "Set inherited gene or marker results here. The Genes + Metabolites tab shows how your list may change medication response, pathway activity, and metabolite balance.";
   }
   const findingTitle = document.getElementById("findingTitle");
-  if (findingTitle) findingTitle.textContent = patient ? "Safety Notes" : "Interaction Findings";
+  if (findingTitle) findingTitle.textContent = patient ? "Questions to ask" : "Interaction Findings";
 }
 
 function setViewMode(m) {
   viewMode = m;
+  if (document.body) document.body.dataset.addMode = m;
   const searchBtn = document.getElementById("searchModeBtn");
   const browseBtn = document.getElementById("browseModeBtn");
   if (searchBtn) {
@@ -714,19 +715,93 @@ function renderInteractionFindingsOverview(risk) {
   }
   section.style.display = "";
   if (count) {
-    const label = isPatientAudience() ? "safety note" : "concern";
+    const label = isPatientAudience() ? "question" : "concern";
     count.textContent = `${currentPublicFindingPresentations.length} ${label}${currentPublicFindingPresentations.length === 1 ? "" : "s"}`;
   }
-  body.innerHTML = currentPublicFindingPresentations.slice(0, 8).map(renderPublicFindingCard).join("") +
-    renderFindingOverviewFooter(currentPublicFindingPresentations.length);
+  body.innerHTML = isPatientAudience()
+    ? renderPatientQuestionsPage(currentPublicFindingPresentations)
+    : currentPublicFindingPresentations.slice(0, 8).map(renderPublicFindingCard).join("") +
+      renderFindingOverviewFooter(currentPublicFindingPresentations.length);
   return currentPublicFindingPresentations;
+}
+
+function renderPatientQuestionsPage(presentations = []) {
+  const shown = (presentations || []).slice(0, 8);
+  return `
+    <div class="patient-question-list">
+      ${shown.map(renderPatientQuestionCard).join("")}
+    </div>
+    ${renderPatientMeaningSection(shown)}
+    ${renderFindingOverviewFooter(presentations.length)}
+  `;
+}
+
+function renderPatientQuestionCard(presentation = {}) {
+  const severity = safeChoice(presentation.severity, ["critical","severe","moderate","monitor","info"], "info");
+  const tone = patientQuestionTone(severity);
+  const trust = presentation.trustContract || (typeof buildV1FindingTrustContract === "function" ? buildV1FindingTrustContract(presentation.sourceFinding || {}, { stack:activeStack }) : null);
+  const title = patientFindingTitleText(presentation);
+  const affected = (presentation.affectedSubstances || []).slice(0, 3).join(" + ");
+  const question = buildPatientDiscussionQuestion(presentation, trust);
+  return `<div id="${safeAttr(presentation.targetElementId)}" class="patient-question-card ${safeAttr(tone)}" data-finding-id="${safeAttr(presentation.id || "")}">
+    <span class="patient-question-dot ${safeAttr(tone)}"></span>
+    <div class="patient-question-main">
+      <div class="patient-question-top">
+        <span class="patient-question-tag">${safePublicHtml(patientSeverityLabel(severity))}</span>
+      </div>
+      <div class="patient-question-title">${safePublicHtml(title)}</div>
+      ${affected ? `<div class="patient-question-meta">${safePublicHtml(affected)}</div>` : ""}
+      <div class="patient-question-ask">${safePublicHtml(question)}</div>
+    </div>
+  </div>`;
+}
+
+function patientQuestionTone(severity = "") {
+  if (severity === "critical" || severity === "severe") return "high";
+  if (severity === "moderate" || severity === "monitor") return "medium";
+  return "low";
+}
+
+function renderPatientMeaningSection(presentations = []) {
+  const notes = buildPatientMeaningNotes(presentations);
+  if (!notes.length) return "";
+  return `<div class="patient-meaning-section">
+    <div class="patient-section-eyebrow">What this may mean</div>
+    <div class="patient-meaning-grid">
+      ${notes.map(note => `<div class="patient-meaning-card">
+        <div class="patient-meaning-title">${safePublicHtml(note.title)}</div>
+        <div class="patient-meaning-body">${safePublicHtml(note.body)}</div>
+      </div>`).join("")}
+    </div>
+  </div>`;
+}
+
+function buildPatientMeaningNotes(presentations = []) {
+  const notes = [];
+  const seen = new Set();
+  const add = (title, body) => {
+    const cleanTitle = publicDisplayText(title);
+    const cleanBody = publicDisplayText(body);
+    const key = `${cleanTitle}|${cleanBody}`.toLowerCase();
+    if (!cleanTitle || !cleanBody || seen.has(key)) return;
+    seen.add(key);
+    notes.push({ title:cleanTitle, body:cleanBody });
+  };
+  for (const presentation of presentations || []) {
+    const title = patientFindingTitleText(presentation);
+    const changed = patientFindingStepText(presentation, "changed");
+    const why = patientFindingStepText(presentation, "why");
+    add(title, changed || why);
+    if (notes.length >= 3) break;
+  }
+  return notes;
 }
 
 function renderFindingOverviewFooter(totalCount = 0) {
   if (isPatientAudience()) {
     return totalCount > 8
-      ? `<div class="finding-empty">Showing 8 of ${safePublicHtml(totalCount)} safety notes. Copy questions or ask a doctor or pharmacist to review the full list before making medication changes.</div>`
-      : `<div class="finding-empty">Safety notes group related concerns for this list. Ask a doctor or pharmacist to review dose, timing, health history, symptoms, and anything not recognized here before making medication changes.</div>`;
+      ? `<div class="patient-clinician-note"><div><strong>Bring this list to a doctor or pharmacist.</strong> Showing 8 of ${safePublicHtml(totalCount)} questions. Ask them to review dose, timing, health history, symptoms, and anything not recognized here before making medication changes.</div></div>`
+      : `<div class="patient-clinician-note"><div><strong>Bring this list to a doctor or pharmacist.</strong> These questions are conversation starters, not medical advice. Ask them to review dose, timing, health history, symptoms, and anything not recognized here before making medication changes.</div></div>`;
   }
   return totalCount > 8
     ? `<div class="finding-empty">Showing 8 of ${safePublicHtml(totalCount)} grouped concerns. Use the Mechanisms, Genes, Timing, and Evidence tabs for supporting detail.</div>`
@@ -1951,13 +2026,14 @@ function applyAudienceModeVisibility() {
   if (!isPatientAudience()) return;
   [
     ["riskSection", "riskBody", null],
+    ["circulatingSection", "circulatingBody", "circulatingCount"],
     ["altSection", "altBody", null],
   ].forEach(([sectionId, bodyId, countId]) => hideSectionAndClear(sectionId, bodyId, countId));
 }
 
 function arrangeAdvancedSections() {
   const placements = {
-    overview:["scopeSection","riskSection","findingSection","altSection"],
+    overview:["scopeSection","riskSection","findingSection","circulatingSection","altSection"],
     mechanisms:["mechanismWhySection","mechanisticSection","transporterSection","pdSection","cascadeSection","phenoAccumSection","graphSection"],
     "genes-metabolites":["genotypeSection","phenoconversionSection","activeMoietySection","metabSection"],
     "timing-levels":["foldSection","pkSimSection","persistenceTimelineSection","washoutSection","burdenSection"],
@@ -2623,6 +2699,7 @@ function renderAll() {
     clearCurrentFindingState();
     hideSectionAndClear("scopeSection", "scopeBody", "scopeCount");
     hideSectionAndClear("findingSection", "findingBody", "findingCount");
+    hideSectionAndClear("circulatingSection", "circulatingBody", "circulatingCount");
     hideSectionAndClear("phenoconversionSection", "phenoconversionBody", "phenoconversionCount");
     hideSectionAndClear("activeMoietySection", "activeMoietyBody", "activeMoietyCount");
     hideSectionAndClear("persistenceTimelineSection", "persistenceTimelineBody", "persistenceTimelineCount");
@@ -2657,6 +2734,7 @@ function renderAll() {
     renderReviewScopePanel();
     renderRiskGauge(risk);
     renderInteractionFindingsOverview(risk);
+    renderCirculatingOverview();
     if (typeof renderMechanismWhyPaths === "function") renderMechanismWhyPaths();
     renderInteractions(risk.interactions);
     renderCombinationProducts();
@@ -2674,12 +2752,14 @@ function renderAll() {
   } else {
     if (activeDrugNames.length) {
       renderInteractionFindingsOverview({ interactions:[] });
+      renderCirculatingOverview();
       renderReviewScopePanel();
       if (typeof renderMechanismWhyPaths === "function") renderMechanismWhyPaths();
     }
     else {
       clearCurrentFindingState();
       hideSectionAndClear("findingSection", "findingBody", "findingCount");
+      hideSectionAndClear("circulatingSection", "circulatingBody", "circulatingCount");
       hideSectionAndClear("mechanismWhySection", "mechanismWhyBody", "mechanismWhyCount");
       hideSectionAndClear("warningPathSection", "warningPathBody", "warningPathCount");
     }
@@ -2767,6 +2847,54 @@ function renderActorExposureSummary() {
       <span>${safePublicHtml(row.driver || "current stack")}${safePublicHtml(parent)}${row.note ? ` · ${safePublicHtml(row.note)}` : ""}</span>
     </div>`;
   }).join("")}</div>`;
+}
+
+function renderCirculatingOverview() {
+  const section = document.getElementById("circulatingSection");
+  const body = document.getElementById("circulatingBody");
+  const count = document.getElementById("circulatingCount");
+  if (!section || !body) return [];
+  if (isPatientAudience() || !activeStack.length || typeof computeActorExposureDeltas !== "function") {
+    hideSectionAndClear("circulatingSection", "circulatingBody", "circulatingCount");
+    return [];
+  }
+  const rows = computeActorExposureDeltas(activeStack)
+    .filter(row => row.type === "parent" || row.direction !== "baseline")
+    .slice(0, 8);
+  section.style.display = "";
+  if (count) count.textContent = `${rows.length} item${rows.length === 1 ? "" : "s"}`;
+  if (!rows.length) {
+    body.innerHTML = `<div class="circulating-empty">No exposure or metabolite direction changes are available for the selected list.</div>`;
+    return rows;
+  }
+  body.innerHTML = `<div class="circulating-grid">${rows.map(renderCirculatingCard).join("")}</div>`;
+  return rows;
+}
+
+function renderCirculatingCard(row = {}) {
+  const direction = row.direction || "baseline";
+  const up = direction === "increase";
+  const down = direction === "decrease";
+  const tone = up ? "up" : down ? "down" : "";
+  const value = row.fold
+    ? `${up ? "↑" : down ? "↓" : "↔"} ${row.fold.toFixed(row.fold >= 10 ? 1 : 2)}×`
+    : (direction === "baseline" ? "baseline" : `${up ? "↑" : down ? "↓" : "↔"} direction`);
+  const parent = row.type === "metabolite" && row.parent ? ` from ${row.parent}` : "";
+  const note = [
+    row.driver || "current stack",
+    parent ? parent.trim() : "",
+    row.note || "",
+  ].filter(Boolean).join(" · ");
+  return `<div class="circulating-card">
+    <div class="circulating-head">
+      <div>
+        <div class="circulating-name">${safePublicHtml(row.name || "Unknown actor")}</div>
+        <div class="circulating-kind">${safePublicHtml(row.type || "actor")}</div>
+      </div>
+      <span class="circulating-value ${safeAttr(tone)}">${safePublicHtml(value)}</span>
+    </div>
+    <div class="circulating-note">${safePublicHtml(note || "No directional change detected.")}</div>
+  </div>`;
 }
 
 function renderRiskGauge(risk) {

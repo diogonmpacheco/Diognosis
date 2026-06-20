@@ -82,28 +82,30 @@ assert(Array.isArray(initialHandoffState.substances) && initialHandoffState.subs
 const styleText = Array.from(doc.querySelectorAll('style')).map((style) => style.textContent || '').join('\n');
 const themeColor = doc.querySelector('meta[name="theme-color"]')?.getAttribute('content') || '';
 const approvedPalette = {
-  themeColor: '#e85d26',
-  bg: '#fef7f0',
-  card2: '#fefcf9',
-  text: '#3d2c1e',
-  text2: '#8b7355',
-  border: '#f0e4d4',
-  accent: '#e85d26',
-  accent2: '#f97316',
-  accentBg: '#fff7ed',
+  themeColor: '#137a6a',
+  bg: '#f1f0ec',
+  surface: '#fbfbf9',
+  rail: '#f7f6f2',
+  card2: '#f7f6f2',
+  text: '#17181b',
+  text2: '#6c7077',
+  border: '#e8e7e0',
+  accent: '#137a6a',
+  accent2: '#2c5e54',
+  accentBg: '#e7f1ee',
 };
-assert(themeColor === approvedPalette.themeColor, `Theme color should keep the approved warm V1 palette; got ${themeColor}`);
+assert(themeColor === approvedPalette.themeColor, `Theme color should keep the Clinical Calm palette; got ${themeColor}`);
 for (const [name, value] of Object.entries(approvedPalette).filter(([name]) => name !== 'themeColor')) {
-  assert(new RegExp(`--${name}\\s*:\\s*${value}\\b`, 'i').test(styleText), `Warm V1 palette token --${name} should be ${value}`);
+  assert(new RegExp(`--${name}\\s*:\\s*${value}\\b`, 'i').test(styleText), `Clinical Calm palette token --${name} should be ${value}`);
 }
 assert(!/--accent\s*:\s*#2563eb\b/i.test(styleText), 'Smoke check should catch the rejected blue accent palette');
-assert(!/--accent2\s*:\s*#0f766e\b/i.test(styleText), 'Smoke check should catch the rejected teal secondary palette');
-assert(/--shadow\s*:\s*0 1px 3px rgba\(0,0,0,0\.08\)/i.test(styleText),
-  'Warm V1 theme should keep the original soft card shadow');
-assert(/--shadow2\s*:\s*0 4px 12px rgba\(0,0,0,0\.12\)/i.test(styleText),
-  'Warm V1 theme should keep the original elevated card shadow');
+assert(!/--accent2\s*:\s*#0f766e\b/i.test(styleText), 'Smoke check should catch unapproved teal secondary palette drift');
+assert(/--shadow\s*:\s*0 1px 2px rgba\(23,24,27,0\.04\)/i.test(styleText),
+  'Clinical Calm theme should keep quiet card shadows');
+assert(/--shadow2\s*:\s*0 8px 24px rgba\(23,24,27,0\.08\)/i.test(styleText),
+  'Clinical Calm theme should keep restrained elevated shadows');
 assert(/--radius\s*:\s*14px\b/i.test(styleText),
-  'Warm V1 theme should keep the original card radius');
+  'Clinical Calm theme should keep the card radius');
 assert(/@media\(max-width:480px\)[\s\S]*\.summary-next\s*\{\s*display:grid;grid-template-columns:1fr/i.test(styleText),
   'Mobile Patient summary next-step card should stack label and text for readability');
 
@@ -111,7 +113,9 @@ const inputRailOrder = Array.from(doc.querySelector('.input-rail')?.children || 
 const mainOrder = Array.from(doc.querySelector('.main')?.children || []).map((el) =>
   el.id || (el.classList.contains('input-rail') ? 'input-rail' : el.classList.contains('result-area') ? 'result-area' : el.className)
 );
-assert(inputRailOrder.join('|') === 'selectedListSection|geneticsSection',
+const selectedListIndex = inputRailOrder.indexOf('selectedListSection');
+const geneticsIndex = inputRailOrder.indexOf('geneticsSection');
+assert(selectedListIndex >= 0 && geneticsIndex === selectedListIndex + 1,
   `Gene / Marker Results should stay directly after the selected list; got ${inputRailOrder.join('|')}`);
 assert(mainOrder.join('|') === 'input-rail|result-area',
   `Results should remain after the input rail; got ${mainOrder.join('|')}`);

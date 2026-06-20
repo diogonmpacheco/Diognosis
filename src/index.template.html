@@ -8,7 +8,7 @@
 <meta name="keywords" content="pharmacogenomics, medication safety, drug interactions, pharmacokinetics, CYP2D6, CYP enzymes, active metabolites, toxic metabolites, transporter pathways, evidence modeling, source-linked evidence, computational pharmacology">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://diogonmpacheco.github.io/Diognosis/">
-<meta name="theme-color" content="#e85d26">
+<meta name="theme-color" content="#137a6a">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -35,30 +35,40 @@
 *{margin:0;padding:0;box-sizing:border-box}
 img,svg{max-width:100%}
 :root{
-  --bg:#fef7f0;--card:#fff;--card2:#fefcf9;--text:#3d2c1e;--text2:#8b7355;
-  --border:#f0e4d4;--accent:#e85d26;--accent2:#f97316;--accentBg:#fff7ed;
-  --red:#dc2626;--redBg:#fef2f2;--amber:#d97706;--amberBg:#fffbeb;
-  --green:#16a34a;--greenBg:#f0fdf4;--blue:#0284c7;--blueBg:#f0f9ff;
-  --purple:#9333ea;--purpleBg:#faf5ff;
-  --shadow:0 1px 3px rgba(0,0,0,0.08);--shadow2:0 4px 12px rgba(0,0,0,0.12);
-  --radius:14px;--font:'Segoe UI',system-ui,-apple-system,sans-serif;
+  --bg:#f1f0ec;--surface:#fbfbf9;--rail:#f7f6f2;--card:#fff;--card2:#f7f6f2;
+  --text:#17181b;--text2:#6c7077;--faint:#9a9ea4;--border:#e8e7e0;--border2:#ebeae3;
+  --accent:#137a6a;--accent2:#2c5e54;--accentBg:#e7f1ee;--accentLine:#cfe4de;
+  --red:#c23a34;--redBg:#fbeceb;--amber:#a8781b;--amberBg:#f6edda;
+  --green:#137a6a;--greenBg:#e7f1ee;--blue:#315f8f;--blueBg:#eaf1f7;
+  --purple:#5b58c4;--purpleBg:#ecebf8;
+  --shadow:0 1px 2px rgba(23,24,27,0.04);--shadow2:0 8px 24px rgba(23,24,27,0.08);
+  --radius:14px;--radius2:10px;--font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"SFMono-Regular","Cascadia Code","Roboto Mono",ui-monospace,monospace;
 }
 body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh}
 a{color:var(--accent)}
 
-/* HEADER */
-.header{background:linear-gradient(135deg,#e85d26,#f97316);color:#fff;padding:10px 24px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(232,93,38,0.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
-.header h1{font-size:20px;font-weight:700;letter-spacing:-0.5px}
-.header p{font-size:12px;opacity:0.85}
+/* CLINICAL CALM SHELL */
+.app-shell{max-width:1340px;margin:0 auto;min-height:100vh;background:var(--surface);border-left:1px solid var(--border2);border-right:1px solid var(--border2)}
+.header{background:rgba(251,251,249,.9);color:var(--text);padding:16px 28px;text-align:left;position:sticky;top:0;z-index:100;box-shadow:none;border-bottom:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between;gap:24px;backdrop-filter:saturate(160%) blur(14px)}
+.brand-lockup{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-mark{width:30px;height:30px;flex:0 0 auto;display:block;object-fit:contain}
+.brand-text{min-width:0}
+.header h1{font-size:18px;font-weight:750;letter-spacing:0;line-height:1;margin:0}
+.header p{font-size:12px;color:var(--faint);margin-top:3px;line-height:1.25;opacity:1}
+.header-actions{display:flex;align-items:center;gap:14px;flex:0 0 auto}
+.device-pill{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--text2);background:#f1f0ea;border:1px solid #e6e5dd;padding:7px 12px;border-radius:9px;white-space:nowrap}
+.device-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
 
 /* SEARCH */
-.search-wrap{max-width:700px;margin:12px auto 0;padding:0 16px;position:relative;z-index:90}
-.search-box{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow2);padding:16px 20px;display:flex;align-items:center;gap:12px}
+.search-wrap{max-width:none;margin:0 0 14px;padding:0;position:relative;z-index:90}
+.search-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius2);box-shadow:none;padding:11px 13px;display:flex;align-items:center;gap:10px}
 .search-box svg{color:var(--text2);flex-shrink:0}
 .search-box input{flex:1;border:none;outline:none;font-size:16px;background:transparent;color:var(--text);font-family:var(--font)}
 .search-box input::placeholder{color:var(--text2)}
-.search-results{position:absolute;top:100%;left:16px;right:16px;background:var(--card);border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow2);max-height:360px;overflow-y:auto;display:none;z-index:200}
+.search-results{position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow2);max-height:360px;overflow-y:auto;display:none;z-index:200}
 .search-results.show{display:block}
+body[data-add-mode="browse"] .search-wrap{display:none}
 .search-results-head{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px;background:var(--card);border-bottom:1px solid var(--border)}
 .search-results-title{font-size:11px;font-weight:800;text-transform:uppercase;color:var(--text2);letter-spacing:.3px}
 .sr-close{width:30px;height:30px;border:1px solid var(--border);border-radius:8px;background:var(--card2);color:var(--text2);font-size:20px;line-height:1;cursor:pointer}
@@ -78,36 +88,36 @@ a{color:var(--accent)}
 .sr-cat{font-size:11px;font-weight:700;color:var(--accent);padding:8px 20px;background:var(--accentBg);text-transform:uppercase;letter-spacing:1px;position:sticky;top:0;z-index:1}
 
 /* MODE TOGGLE */
-.mode-toggle{display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:700px;margin:8px auto 0;padding:3px 16px;border-radius:10px}
+.mode-toggle{display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:none;margin:0 0 14px;padding:3px;border:1px solid #e4e3db;background:#efeee8;border-radius:10px}
 .mode-btn{appearance:none;font-family:var(--font);flex:1;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);cursor:pointer;font-size:12px;font-weight:800;color:var(--text2);text-align:center;transition:all 0.2s}
 .mode-btn.active{border-color:var(--accent);color:#fff;background:var(--accent)}
 .mode-btn:hover{border-color:var(--accent2);background:var(--accentBg);color:var(--accent)}
 .mode-btn.active:hover{background:var(--accent);color:#fff}
 .mode-btn:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
-.audience-wrap{max-width:700px;margin:14px auto 0;padding:0 16px;display:flex;align-items:center;gap:10px}
-.audience-label{font-size:11px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:0.4px;white-space:nowrap}
-.audience-segment{display:inline-grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid var(--border);background:var(--card);border-radius:10px;padding:3px;box-shadow:var(--shadow);min-width:220px}
+.audience-wrap{max-width:none;margin:0;padding:0;display:flex;align-items:center;gap:10px}
+.audience-label{display:none}
+.audience-segment{display:inline-grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid #e4e3db;background:#efeee8;border-radius:11px;padding:3px;box-shadow:none;min-width:196px}
 .audience-btn{border:none;border-radius:7px;background:transparent;color:var(--text2);font-family:var(--font);font-size:12px;font-weight:800;padding:7px 10px;cursor:pointer;transition:background .15s,color .15s}
 .audience-btn.active{background:var(--accent);color:#fff}
 .audience-btn:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
 
 /* BROWSE GRID */
-.browse-wrap{max-width:700px;margin:12px auto 0;padding:0 16px;display:none}
+.browse-wrap{max-width:none;margin:0;padding:0;display:none}
 .browse-wrap.show{display:block}
 .browse-cat{margin-bottom:12px}
-.browse-cat-title{font-size:13px;font-weight:700;color:var(--accent);cursor:pointer;padding:8px 12px;background:var(--card);border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center;box-shadow:var(--shadow)}
+.browse-cat-title{font-size:13px;font-weight:700;color:var(--accent);cursor:pointer;padding:10px 12px;background:var(--card);border:1px solid var(--border);border-radius:12px;display:flex;justify-content:space-between;align-items:center;box-shadow:none}
 .browse-cat-title:hover{background:var(--accentBg)}
 .browse-cat-title .arrow{transition:transform 0.2s}
 .browse-cat-title.open .arrow{transform:rotate(90deg)}
 .browse-items{display:none;padding:6px 0}
 .browse-items.show{display:flex;flex-wrap:wrap;gap:6px;padding:8px 4px}
-.browse-chip{padding:6px 14px;border-radius:20px;font-size:13px;cursor:pointer;border:1.5px solid var(--border);background:var(--card);transition:all 0.15s;white-space:nowrap}
+.browse-chip{padding:6px 11px;border-radius:8px;font-size:13px;cursor:pointer;border:1px solid var(--border);background:#f5f4ef;transition:all 0.15s;white-space:nowrap}
 .browse-chip:hover{border-color:var(--accent);background:var(--accentBg)}
 .browse-chip.added{border-color:var(--green);background:var(--greenBg);color:var(--green)}
 .browse-chip-class{display:block;font-size:9px;color:var(--text2);font-weight:600;margin-top:1px;max-width:150px;overflow:hidden;text-overflow:ellipsis}
 .browse-chip-alias{display:block;font-size:9px;color:var(--text2);font-weight:500;margin-top:1px;max-width:150px;overflow:hidden;text-overflow:ellipsis}
 .class-guide-list{display:grid;gap:8px;margin-bottom:14px}
-.class-guide-card{padding:11px 12px;border-radius:10px;border:1px solid var(--border);background:var(--card);box-shadow:var(--shadow);cursor:pointer;transition:all .15s}
+.class-guide-card{padding:11px 12px;border-radius:12px;border:1px solid var(--border);background:var(--card);box-shadow:none;cursor:pointer;transition:all .15s}
 .class-guide-card:hover{border-color:var(--accent);background:var(--accentBg)}
 .class-guide-title{font-size:13px;font-weight:800;color:var(--text);margin-bottom:3px}
 .class-guide-note{font-size:11px;color:var(--text2);line-height:1.35;margin-bottom:7px}
@@ -116,36 +126,38 @@ a{color:var(--accent)}
 .class-guide-action{font-size:10px;font-weight:800;color:var(--accent);margin-top:7px}
 
 /* MAIN WORKSPACE */
-.main{max-width:860px;margin:20px auto;padding:0 16px;display:flex;flex-direction:column;gap:16px}
-.input-rail,.result-area{display:flex;flex-direction:column;gap:16px;min-width:0;width:100%}
-.section{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
-.section-title{font-size:15px;font-weight:700;padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.main{max-width:none;margin:0;padding:0;display:grid;grid-template-columns:340px minmax(0,1fr);gap:0;align-items:start}
+.input-rail{display:flex;flex-direction:column;gap:16px;min-width:0;width:100%;background:var(--rail);border-right:1px solid var(--border2);padding:24px 22px 40px;position:sticky;top:63px;max-height:calc(100vh - 63px);overflow:auto;align-self:start}
+.result-area{display:flex;flex-direction:column;gap:0;min-width:0;width:100%;background:var(--surface)}
+.section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:none;overflow:hidden}
+.section-title{font-size:14px;font-weight:750;padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
 .section-title svg{color:var(--accent)}
 .section-body{padding:12px 16px;overflow-x:auto}
 
-.med-chip{display:grid;grid-template-columns:minmax(0,1fr) minmax(106px,150px) 32px;align-items:center;gap:8px;width:100%;max-width:100%;justify-content:flex-start;padding:10px 12px;margin:4px 0;border-radius:10px;background:var(--accentBg);border:1.5px solid var(--accent);font-size:14px;font-weight:500;color:var(--accent)}
-.med-chip.unrecognized{background:var(--amberBg);border-color:var(--amber);color:var(--amber)}
-.med-chip .x{grid-column:3;appearance:none;background:transparent;font-family:var(--font);padding:0;cursor:pointer;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--accent);transition:all 0.15s;border:1px solid color-mix(in srgb, var(--accent) 35%, transparent)}
+.med-chip{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,128px) 28px;align-items:center;gap:8px;width:100%;max-width:100%;justify-content:flex-start;padding:11px 12px 11px 14px;margin:0;border-radius:12px;background:var(--card);border:1px solid var(--border);font-size:14px;font-weight:500;color:var(--text)}
+.med-chip + .med-chip{margin-top:8px}
+.med-chip.unrecognized{background:var(--amberBg);border-color:rgba(168,120,27,.32);color:var(--text)}
+.med-chip .x{grid-column:3;appearance:none;background:#f4f3ee;font-family:var(--font);padding:0;cursor:pointer;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--faint);transition:all 0.15s;border:1px solid transparent}
 .med-chip.unrecognized .x{color:var(--amber);border-color:color-mix(in srgb, var(--amber) 35%, transparent)}
 .med-chip .x:hover{background:var(--accent);color:#fff}
 .med-chip.unrecognized .x:hover{background:var(--amber);color:#fff}
 .med-chip-name{grid-column:1;display:inline-flex;flex-direction:column;line-height:1.15;min-width:0}
 .med-chip-primary{font-weight:700}
 .med-chip-secondary{font-size:10px;color:var(--text2);font-weight:600;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.med-chip .dose-select{grid-column:2;background:var(--accent);color:#fff;border:1.5px solid rgba(255,255,255,0.3);border-radius:8px;padding:6px 8px;font-size:12px;font-weight:600;cursor:pointer;outline:none;width:100%;min-width:70px;text-align:center}
-.med-chip .dose-select:hover{border-color:#fff;background:color-mix(in srgb, var(--accent) 85%, #000)}
+.med-chip .dose-select{grid-column:2;background:#f3f2ec;color:var(--text2);border:1px solid var(--border);border-radius:8px;padding:6px 8px;font-size:11px;font-weight:700;cursor:pointer;outline:none;width:100%;min-width:70px;text-align:center;font-family:var(--mono)}
+.med-chip .dose-select:hover{border-color:var(--accent);background:var(--accentBg)}
 .med-chip .dose-select option{background:var(--bg);color:var(--text);padding:4px}
-body[data-audience="clinician"] .input-rail{display:contents}
+body[data-audience="clinician"] .input-rail{display:flex}
 body[data-audience="clinician"] #selectedListSection{order:1}
 body[data-audience="clinician"] #geneticsSection{order:2}
 body[data-audience="clinician"] .result-area{order:3}
-body[data-audience="patient"] .input-rail{display:contents}
+body[data-audience="patient"] .input-rail{display:flex}
 body[data-audience="patient"] #selectedListSection{order:1}
 body[data-audience="patient"] #geneticsSection{order:2}
 body[data-audience="patient"] .result-area{order:3}
 body[data-audience="patient"] #selectedListSection .section-body{padding:10px 12px}
 body[data-audience="patient"] #medList{display:grid;gap:8px;overflow-x:visible}
-body[data-audience="patient"] .med-chip{display:grid;grid-template-columns:minmax(0,1fr) 34px;align-items:center;gap:10px;margin:0;padding:10px 12px;border-radius:10px;border-width:1px;background:var(--card2);color:var(--text)}
+body[data-audience="patient"] .med-chip{display:grid;grid-template-columns:minmax(0,1fr) 34px;align-items:center;gap:10px;margin:0;padding:11px 12px;border-radius:12px;border-width:1px;background:var(--card);color:var(--text)}
 body[data-audience="patient"] .med-chip.unrecognized{background:var(--amberBg);color:var(--text)}
 body[data-audience="patient"] .med-chip-name{gap:2px}
 body[data-audience="patient"] .med-chip-primary{font-size:14px;color:var(--text)}
@@ -252,8 +264,8 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 .matrix .m-self{background:#f8fafc;color:#cbd5e1}
 
 /* DISCLAIMER */
-.disclaimer{max-width:700px;margin:0 auto 30px;padding:0 16px}
-.disclaimer-box{background:var(--amberBg);border:1.5px solid var(--amber);border-radius:var(--radius);padding:14px 18px;font-size:12px;color:#92400e;line-height:1.5}
+.disclaimer{max-width:none;margin:0;padding:24px 34px 30px;border-top:1px solid var(--border2);background:var(--surface)}
+.disclaimer-box{background:#eef5f2;border:1px solid #d4e6e0;border-radius:var(--radius);padding:16px 18px;font-size:12px;color:var(--accent2);line-height:1.5}
 .disclaimer-box strong{display:block;margin-bottom:4px;font-size:13px}
 
 /* COLLAPSIBLE */
@@ -534,38 +546,39 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 .stats-line{display:none}
 /* SUMMARY CARD */
 .summary-bar{
-  padding:14px;background:linear-gradient(180deg,#fff 0%,#fefcf9 100%);border-radius:var(--radius);
-  box-shadow:var(--shadow2);border:1px solid var(--border);
+  padding:26px 34px 24px;background:var(--surface);border-radius:0;
+  box-shadow:none;border:0;border-bottom:1px solid var(--border2);
 }
 .summary-card{display:grid;gap:10px}
 .summary-main{display:grid;grid-template-columns:1fr;gap:12px;align-items:start}
-.summary-kicker{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:5px}
-.summary-title{font-size:24px;line-height:1.08;font-weight:800;color:var(--text);letter-spacing:0}
-.summary-copy{font-size:13px;color:var(--text2);line-height:1.45;margin-top:7px;max-width:620px}
-.summary-story{display:grid;gap:7px;padding:10px 12px;border-radius:10px;background:var(--card2);border:1px solid var(--border);font-size:12px;line-height:1.4;color:var(--text2)}
+.summary-kicker{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:8px}
+.summary-title{font-size:27px;line-height:1.18;font-weight:750;color:var(--text);letter-spacing:0;max-width:680px}
+.summary-copy{font-size:15px;color:var(--text2);line-height:1.5;margin-top:9px;max-width:680px}
+.summary-story{display:grid;gap:7px;padding:0;border-radius:0;background:transparent;border:0;font-size:12px;line-height:1.4;color:var(--faint);font-family:var(--mono)}
 .summary-story-row strong{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--text);margin-bottom:2px}
 .summary-risk{
-  width:100%;min-width:0;border-radius:14px;padding:12px 10px;text-align:center;color:#fff;box-shadow:0 8px 18px rgba(61,44,30,.12);
+  width:auto;min-width:0;justify-self:start;display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 10px;text-align:center;color:var(--text);box-shadow:none;border:1px solid var(--border);background:var(--card);
 }
-.summary-risk.high{background:var(--red)}
-.summary-risk.moderate{background:var(--amber)}
-.summary-risk.low{background:var(--green)}
-.summary-risk.neutral{background:var(--text2)}
-.summary-risk .num{font-size:30px;line-height:1;font-weight:900}
-.summary-risk .lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-top:3px}
-.summary-next{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;background:var(--accentBg);color:var(--text);font-size:12px;line-height:1.35;border:1px solid #fed7aa}
-.summary-next-pill{font-size:10px;font-weight:800;text-transform:uppercase;color:var(--accent);background:#fff;border:1px solid #fed7aa;border-radius:999px;padding:3px 8px;white-space:nowrap}
+.summary-risk.high{color:var(--red);border-color:var(--red)}
+.summary-risk.moderate{color:var(--amber);border-color:rgba(168,120,27,.42)}
+.summary-risk.low{color:var(--accent);border-color:var(--accentLine)}
+.summary-risk.neutral{color:var(--text2)}
+.summary-risk .num{font-size:14px;line-height:1;font-weight:900}
+.summary-risk .lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-top:0}
+.summary-next{display:flex;align-items:center;gap:8px;padding:0;border-radius:0;background:transparent;color:var(--text2);font-size:13px;line-height:1.45;border:0;max-width:680px}
+.summary-next-pill{font-size:10px;font-weight:800;text-transform:uppercase;color:var(--accent);background:var(--accentBg);border:1px solid var(--accentLine);border-radius:999px;padding:3px 8px;white-space:nowrap}
 .summary-jump{appearance:none;border:0;background:transparent;padding:0;font-size:12px;color:var(--accent);cursor:pointer;font-weight:800;text-decoration:underline}
 .summary-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.summary-action-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-size:11px;font-weight:900;padding:8px 10px;font-family:var(--font);cursor:pointer}
+.summary-action-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid var(--border);border-radius:11px;background:var(--card);color:var(--text);font-size:13px;font-weight:750;padding:11px 16px;font-family:var(--font);cursor:pointer}
+.summary-action-btn:first-child{background:var(--text);border-color:var(--text);color:#fff}
 .summary-action-btn:hover{border-color:var(--accent);background:var(--accentBg);color:var(--accent)}
 .summary-action-status{font-size:11px;color:var(--text2)}
 .summary-copy-text{flex-basis:100%;white-space:pre-wrap;overflow-wrap:anywhere;max-height:180px;overflow:auto;border:1px solid var(--border);border-radius:8px;background:rgba(255,255,255,.78);padding:10px;font-size:11px;line-height:1.45;color:var(--text)}
 .summary-copy-text[hidden]{display:none}
 .focus-pulse{outline:3px solid rgba(14,165,233,.55);outline-offset:3px;box-shadow:0 0 0 7px rgba(14,165,233,.14)}
 @media(min-width:760px){
-  .summary-main{grid-template-columns:minmax(0,1fr) 96px;align-items:stretch}
-  .summary-risk{display:flex;flex-direction:column;justify-content:center;min-height:74px}
+  .summary-main{grid-template-columns:minmax(0,1fr);align-items:start}
+  .summary-risk{min-height:0}
   .summary-story{grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
 }
 
@@ -654,7 +667,39 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 .concern-supporting li span,.mechanism-supporting li span{font-weight:800;color:var(--text)}
 .concern-supporting li small,.mechanism-supporting li small{display:block;color:var(--text2);margin-top:1px}
 .concern-supporting-more,.mechanism-supporting-more{font-size:10px;font-weight:800;color:var(--accent);margin-top:6px}
-.finding-empty{text-align:center;color:var(--green);padding:18px 12px;font-weight:700;background:var(--greenBg);border:1px solid #bbf7d0;border-radius:12px}
+.finding-empty{text-align:center;color:var(--green);padding:18px 12px;font-weight:700;background:var(--greenBg);border:1px solid var(--accentLine);border-radius:12px}
+.patient-clinician-note{display:flex;gap:12px;align-items:flex-start;color:var(--accent2);padding:16px 18px;background:#eef5f2;border:1px solid #d4e6e0;border-radius:14px;font-size:13px;line-height:1.5}
+.patient-clinician-note::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--accent);flex:0 0 auto;margin-top:5px}
+.patient-clinician-note strong{color:var(--text)}
+.patient-question-list{display:grid;gap:10px}
+.patient-question-card{display:flex;align-items:flex-start;gap:14px;border:1px solid var(--border);border-radius:14px;background:var(--card);padding:18px 20px}
+.patient-question-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);flex:0 0 auto;margin-top:6px}
+.patient-question-dot.high{background:var(--red)}
+.patient-question-dot.medium{background:var(--amber)}
+.patient-question-main{min-width:0;flex:1}
+.patient-question-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:5px}
+.patient-question-tag{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;border:1px solid var(--border);border-radius:999px;background:var(--card2);color:var(--text2);padding:3px 7px}
+.patient-question-card.high .patient-question-tag{border-color:rgba(194,58,52,.28);background:var(--redBg);color:var(--red)}
+.patient-question-card.medium .patient-question-tag{border-color:rgba(168,120,27,.3);background:var(--warn-bg,var(--amberBg));color:var(--amber)}
+.patient-question-title{font-size:16px;font-weight:750;line-height:1.4;color:var(--text)}
+.patient-question-meta{font-size:12px;color:var(--faint);font-weight:700;margin-bottom:8px}
+.patient-question-ask{font-size:14px;line-height:1.5;color:var(--text);font-weight:650}
+.patient-meaning-section{margin-top:24px}
+.patient-section-eyebrow{font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin:0 0 12px}
+.patient-meaning-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.patient-meaning-card{border:1px solid var(--border);border-radius:14px;background:var(--card);padding:16px 18px}
+.patient-meaning-title{font-size:14px;font-weight:800;color:var(--text);line-height:1.35}
+.patient-meaning-body{font-size:13px;line-height:1.55;color:var(--text2);margin-top:6px}
+.circulating-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.circulating-card{border:1px solid var(--border);border-radius:12px;background:var(--card);padding:14px 15px}
+.circulating-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.circulating-name{font-size:14px;font-weight:800;color:var(--text);line-height:1.25}
+.circulating-kind{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:var(--faint);margin-top:2px}
+.circulating-value{font-family:var(--mono);font-size:11px;font-weight:800;border:1px solid var(--border);border-radius:999px;background:var(--card2);color:var(--text2);padding:3px 7px;white-space:nowrap}
+.circulating-value.up{color:var(--amber);background:var(--amberBg);border-color:rgba(168,120,27,.3)}
+.circulating-value.down{color:var(--blue);background:var(--blueBg);border-color:rgba(49,95,143,.25)}
+.circulating-note{font-size:12px;line-height:1.45;color:var(--text2);margin-top:8px}
+.circulating-empty{font-size:13px;line-height:1.5;color:var(--text2);border:1px dashed var(--border);border-radius:12px;background:var(--card);padding:16px 18px;text-align:center}
 .no-signal-card{border:1px solid rgba(245,158,11,.28);border-radius:10px;background:var(--amberBg);padding:13px 14px}
 .no-signal-title{font-size:14px;font-weight:900;color:var(--text);line-height:1.25;margin-bottom:5px}
 .no-signal-copy{font-size:12px;line-height:1.45;color:var(--text2);margin-bottom:10px;overflow-wrap:anywhere}
@@ -772,36 +817,47 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 
 /* TABS */
 .tab-bar{
-  padding:6px;display:flex;gap:4px;background:var(--card);overflow-x:auto;
-  border-radius:var(--radius);box-shadow:var(--shadow);position:sticky;top:8px;z-index:20;
+  padding:0 34px;display:flex;gap:4px;background:var(--surface);overflow-x:auto;
+  border-radius:0;box-shadow:none;position:sticky;top:63px;z-index:20;border-bottom:1px solid var(--border2);
 }
 .tab-bar::-webkit-scrollbar{height:4px}
 .tab-bar::-webkit-scrollbar-thumb{background:var(--border);border-radius:999px}
 .tab-btn{
-  flex:0 0 auto;min-width:92px;padding:10px 8px;border:none;border-radius:10px;background:transparent;
+  flex:0 0 auto;min-width:92px;padding:15px 10px;border:none;border-radius:0;background:transparent;
   cursor:pointer;font-size:13px;font-weight:700;color:var(--text2);
   font-family:var(--font);transition:all .15s;white-space:nowrap;
 }
 .tab-btn:hover{color:var(--accent)}
-.tab-btn.active{background:var(--accentBg);color:var(--accent)}
+.tab-btn.active{background:transparent;color:var(--accent);box-shadow:inset 0 -2px 0 var(--accent)}
 .tab-btn .tab-badge{
   display:inline-block;min-width:16px;padding:0 5px;margin-left:5px;
   border-radius:9px;background:var(--red);color:#fff;font-size:10px;font-weight:800;line-height:16px;
 }
 .tab-panel{display:none}
 .tab-panel.active{display:block}
-.tab-panel .section + .section{margin-top:16px}
+.tab-panel{padding:30px 34px 48px}
+.tab-panel .section + .section{margin-top:12px}
 .tab-empty{text-align:center;color:var(--text2);font-size:13px;padding:32px 16px}
 
 /* RESPONSIVE */
-@media(max-width:700px){
+@media(max-width:980px){
+  .app-shell{border-left:0;border-right:0}
+  .main{grid-template-columns:1fr}
+  .input-rail{position:static;max-height:none;overflow:visible;border-right:0;border-bottom:1px solid var(--border2);padding:18px 16px 22px}
+  .result-area{min-height:auto}
+  .tab-bar{top:0;padding:0 16px}
+  .tab-panel{padding:22px 16px 34px}
+  .summary-bar{padding:22px 16px 20px}
+  .disclaimer{padding:20px 16px 26px}
   .main,.search-wrap,.mode-toggle,.browse-wrap,.audience-wrap,.disclaimer{max-width:none}
-  .audience-wrap{justify-content:space-between}
+  .audience-wrap{justify-content:flex-start}
   .audience-segment{min-width:0;flex:1}
   body{overflow-x:hidden}
   .main{width:100%;max-width:100%;overflow-x:hidden}
   .result-area,.input-rail,.summary-bar,.tab-panel,.section{width:100%;max-width:100%;min-width:0}
-  .header{padding:10px 16px}
+  .header{padding:12px 16px;align-items:flex-start;gap:12px;flex-wrap:wrap}
+  .header-actions{width:100%;justify-content:space-between}
+  .device-pill{display:none}
   .summary-title{font-size:22px;overflow-wrap:break-word}
   .summary-copy,.summary-next span:last-child{min-width:0;overflow-wrap:break-word}
 }
@@ -839,38 +895,45 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 <script>/* D3_BUNDLE */</script>
 </head>
 <body>
+<div class="app-shell">
 <div class="header">
-  <h1>Diognosis</h1>
-  <p id="audienceTagline">Diognosis - parent drugs, metabolites, genes, pathways, PK timing, and source-linked evidence checked together</p>
-</div>
-
-<div class="audience-wrap" aria-label="Audience mode">
-  <div class="audience-label">Audience</div>
-  <div class="audience-segment">
-    <button type="button" class="audience-btn" id="audience-patient" onclick="setAudienceMode('patient')" aria-pressed="false">Patient</button>
-    <button type="button" class="audience-btn active" id="audience-clinician" onclick="setAudienceMode('clinician')" aria-pressed="true">Clinician</button>
+  <div class="brand-lockup">
+    <img class="brand-mark" src="logo-mark.png" alt="" width="30" height="30" aria-hidden="true">
+    <div class="brand-text">
+      <h1>Diognosis</h1>
+      <p id="audienceTagline">Diognosis - parent drugs, metabolites, genes, pathways, PK timing, and source-linked evidence checked together</p>
+    </div>
   </div>
-</div>
-
-<div class="search-wrap">
-  <div class="search-box">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-    <input type="text" id="searchInput" placeholder="Search medications, supplements, foods..." oninput="onSearch(this.value)" onfocus="onSearch(this.value)" onkeydown="handleSearchKeydown(event)" autocomplete="off">
+  <div class="header-actions">
+    <div class="audience-wrap" aria-label="Audience mode">
+      <div class="audience-label">Audience</div>
+      <div class="audience-segment">
+        <button type="button" class="audience-btn" id="audience-patient" onclick="setAudienceMode('patient')" aria-pressed="false">Patient</button>
+        <button type="button" class="audience-btn active" id="audience-clinician" onclick="setAudienceMode('clinician')" aria-pressed="true">Clinician</button>
+      </div>
+    </div>
+    <div class="device-pill">On-device</div>
   </div>
-  <div class="search-results" id="searchResults"></div>
-</div>
-
-<div class="mode-toggle" role="group" aria-label="Choose how to add items">
-  <button type="button" class="mode-btn active" id="searchModeBtn" onclick="setViewMode('search')" aria-pressed="true">Search by Name</button>
-  <button type="button" class="mode-btn" id="browseModeBtn" onclick="setViewMode('browse')" aria-pressed="false">Browse Categories</button>
 </div>
 
 <div class="stats-line" id="statsLine"></div>
 
-<div class="browse-wrap" id="browseWrap"></div>
-
 <div class="main">
   <div class="input-rail">
+    <div class="mode-toggle" role="group" aria-label="Choose how to add items">
+      <button type="button" class="mode-btn active" id="searchModeBtn" onclick="setViewMode('search')" aria-pressed="true">Search by Name</button>
+      <button type="button" class="mode-btn" id="browseModeBtn" onclick="setViewMode('browse')" aria-pressed="false">Browse Categories</button>
+    </div>
+
+    <div class="search-wrap">
+      <div class="search-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="searchInput" placeholder="Medication, supplement, or food" oninput="onSearch(this.value)" onfocus="onSearch(this.value)" onkeydown="handleSearchKeydown(event)" autocomplete="off">
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+
+    <div class="browse-wrap" id="browseWrap"></div>
   <div class="section" id="selectedListSection">
       <div class="section-title">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
@@ -940,6 +1003,15 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
         <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="findingCount"></span>
       </div>
       <div class="section-body coll-body open" id="findingBody"></div>
+    </div>
+
+  <div class="section" id="circulatingSection" style="display:none">
+      <div class="section-title collapsible" onclick="toggleSection('circulating')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16"/><path d="M4 15l5-5 4 4 7-9"/><path d="M15 5h5v5"/></svg>
+        <span>What's Circulating</span>
+        <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="circulatingCount"></span>
+      </div>
+      <div class="section-body coll-body open" id="circulatingBody"></div>
     </div>
 
   <div class="section" id="interSection" style="display:none">
@@ -1311,6 +1383,8 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
     <span>Reviewed <strong id="ver-date">...</strong></span>
     <span><a href="https://github.com/diogonmpacheco/Diognosis" rel="noopener">Source repository</a></span>
   </div>
+</div>
+
 </div>
 
 <script>/* DIOGNOSIS_BUNDLE */</script>

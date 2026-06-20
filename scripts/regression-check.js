@@ -754,8 +754,11 @@ const audienceModeRegression = window.eval(`(() => {
     geneTitle:document.getElementById('geneSectionTitle')?.textContent || '',
     geneIntro:document.getElementById('geneSectionIntro')?.textContent || '',
     tabBarDisplay:document.getElementById('tabBar')?.style.display || '',
-    firstUseOrder:[...document.body.children]
-      .map(el => el.classList?.contains('audience-wrap') ? 'audience' : el.classList?.contains('search-wrap') ? 'search' : el.classList?.contains('mode-toggle') ? 'mode' : '')
+    firstUseOrder:[
+      document.querySelector('.header .audience-wrap') ? 'audience' : '',
+      ...[...document.querySelector('.input-rail')?.children || []]
+        .map(el => el.classList?.contains('mode-toggle') ? 'mode' : el.classList?.contains('search-wrap') ? 'search' : el.id === 'selectedListSection' ? 'selected-list' : el.id === 'geneticsSection' ? 'gene-results' : '')
+    ]
       .filter(Boolean),
     modeGroupLabel:document.querySelector('.mode-toggle')?.getAttribute('aria-label') || '',
     modeLabels:[document.getElementById('searchModeBtn')?.textContent?.trim(), document.getElementById('browseModeBtn')?.textContent?.trim()],
@@ -785,7 +788,7 @@ const audienceModeRegression = window.eval(`(() => {
     removeButtons:document.querySelectorAll('#medList button.x').length,
     patientLayoutCss:[...document.querySelectorAll('style')].some(style => {
       const css = style.textContent || '';
-      return css.includes('body[data-audience="patient"] .input-rail{display:contents}')
+      return css.includes('body[data-audience="patient"] .input-rail{display:flex}')
         && css.includes('body[data-audience="patient"] #geneticsSection{order:2}')
         && css.includes('body[data-audience="patient"] .result-area{order:3}');
     }),
@@ -794,7 +797,9 @@ const audienceModeRegression = window.eval(`(() => {
     detailButtons:document.querySelectorAll('#findingBody .related-finding-btn.secondary').length,
     supportDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
     findingText:document.getElementById('findingBody')?.textContent || '',
-    severityLabels:[...document.querySelectorAll('#findingBody .finding-sev')].map(el => el.textContent.trim()),
+    patientQuestionCards:document.querySelectorAll('#findingBody .patient-question-card').length,
+    patientMeaningCards:document.querySelectorAll('#findingBody .patient-meaning-card').length,
+    severityLabels:[...document.querySelectorAll('#findingBody .finding-sev, #findingBody .patient-question-tag')].map(el => el.textContent.trim()),
     scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
     scopeText:document.getElementById('scopeBody')?.textContent || '',
     riskDisplay:document.getElementById('riskSection')?.style.display || '',
@@ -819,19 +824,23 @@ const audienceModeRegression = window.eval(`(() => {
     removeButtons:document.querySelectorAll('#medList button.x').length,
     clinicianLayoutCss:[...document.querySelectorAll('style')].some(style => {
       const css = style.textContent || '';
-      return css.includes('body[data-audience="clinician"] .input-rail{display:contents}')
+      return css.includes('body[data-audience="clinician"] .input-rail{display:flex}')
         && css.includes('body[data-audience="clinician"] #geneticsSection{order:2}')
         && css.includes('body[data-audience="clinician"] .result-area{order:3}');
     }),
     compactMedListCss:[...document.querySelectorAll('style')].some(style => {
       const css = style.textContent || '';
-      return css.includes('.med-chip{display:grid;grid-template-columns:minmax(0,1fr) minmax(106px,150px) 32px')
+      return css.includes('.med-chip{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,128px) 28px')
         && css.includes('.med-chip .x{grid-column:3');
     }),
     reviewButtonDisplay:document.getElementById('tabbtn-review')?.style.display || '',
     reviewPanelDisplay:document.getElementById('tab-review')?.style.display || '',
     scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
     scopeText:document.getElementById('scopeBody')?.textContent || '',
+    circulatingDisplay:document.getElementById('circulatingSection')?.style.display || '',
+    circulatingCount:document.getElementById('circulatingCount')?.textContent || '',
+    circulatingCards:document.querySelectorAll('#circulatingBody .circulating-card').length,
+    circulatingText:document.getElementById('circulatingBody')?.textContent || '',
     actionRows:document.querySelectorAll('#findingBody .finding-actions').length,
     supportDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
   };
@@ -840,11 +849,11 @@ const audienceModeRegression = window.eval(`(() => {
 assert(audienceModeRegression.patient.audienceMode === 'patient', 'Audience URL should set Patient mode');
 assert(audienceModeRegression.patient.bodyAudience === 'patient', 'Patient mode should mark body data-audience');
 assert(audienceModeRegression.patient.activeTab === 'overview', 'Patient mode should force the Overview tab');
-assert(/prepare medicine-list questions|doctor or pharmacist/i.test(audienceModeRegression.patient.tagline), 'Patient mode should use patient-facing app tagline');
-assert(/Search medicines/i.test(audienceModeRegression.patient.searchPlaceholder), 'Patient mode should use patient-facing search placeholder');
+assert(/talk to your doctor or pharmacist/i.test(audienceModeRegression.patient.tagline), 'Patient mode should use patient-facing app tagline');
+assert(/Medicine, supplement, or food/i.test(audienceModeRegression.patient.searchPlaceholder), 'Patient mode should use patient-facing search placeholder');
 assert(audienceModeRegression.patient.listTitle === 'My Medicine List', 'Patient mode should use patient-facing selected-list label');
-assert(audienceModeRegression.patient.firstUseOrder.join('|').startsWith('audience|search|mode'),
-  `Audience toggle should sit above search in Patient mode; got ${audienceModeRegression.patient.firstUseOrder.join('|')}`);
+assert(audienceModeRegression.patient.firstUseOrder.join('|').startsWith('audience|mode|search|selected-list|gene-results'),
+  `Clinical Calm shell should keep audience in the header, then add controls and Gene Results in the rail; got ${audienceModeRegression.patient.firstUseOrder.join('|')}`);
 assert(audienceModeRegression.patient.modeGroupLabel === 'Choose how to add items', 'Search/Browse mode group should describe the add-choice control');
 assert(audienceModeRegression.patient.modeLabels.join('|') === 'Search by Name|Browse Categories', 'Search/Browse mode labels should describe add modes, not submit actions');
 assert(audienceModeRegression.patient.modeTags.join('|') === 'BUTTON|BUTTON', 'Search/Browse mode controls should be keyboard-accessible buttons');
@@ -861,21 +870,23 @@ assert(!/Genes \+ Metabolites tab|source-linked|parent drugs|PK timing|pathway a
   `${audienceModeRegression.patient.tagline} ${audienceModeRegression.patient.geneIntro}`
 ), 'Patient mode should not refer to hidden clinician tabs or technical tagline copy');
 assert(audienceModeRegression.patient.tabBarDisplay === 'none', 'Patient mode should hide clinician tab navigation');
-assert(audienceModeRegression.patient.summaryStoryCount === 0, 'Patient mode top summary should stay compact and leave detailed explanation to Safety Notes');
+assert(audienceModeRegression.patient.summaryStoryCount === 0, 'Patient mode top summary should stay compact and leave detailed explanation to Questions to ask');
 assert(!/higher-priority safety note was found|safety note was found for this list/i.test(audienceModeRegression.patient.summaryText),
-  'Patient mode top summary should not repeat report-style safety-note body copy before Safety Notes');
+  'Patient mode top summary should not repeat report-style safety-note body copy before Questions to ask');
 assert(!/\bView note\b/i.test(audienceModeRegression.patient.summaryText),
   'Patient mode top summary should not show a redundant jump link when Safety Notes are directly below');
 assert(/Next step|doctor or pharmacist/i.test(audienceModeRegression.patient.summaryNext), 'Patient mode compact summary should still keep a plain next-step line');
 assert(audienceModeRegression.patient.summaryRisk.trim() === '', 'Patient mode should hide summary score badges');
-assert(audienceModeRegression.patient.findingTitle === 'Safety Notes', 'Patient mode should rename findings to Safety Notes');
-assert(/safety notes?/i.test(audienceModeRegression.patient.findingCount), 'Patient mode should label public finding count as safety notes');
+assert(audienceModeRegression.patient.findingTitle === 'Questions to ask', 'Patient mode should rename findings to Questions to ask');
+assert(/questions?/i.test(audienceModeRegression.patient.findingCount), 'Patient mode should label public finding count as questions');
+assert(audienceModeRegression.patient.patientQuestionCards > 0, 'Patient mode should render dedicated question cards');
+assert(audienceModeRegression.patient.patientMeaningCards > 0, 'Patient mode should render a separate meaning section');
 assert(audienceModeRegression.patient.exposureSummaryCount === 0, 'Patient mode should hide technical exposure summary rows from the selected list');
-assert(audienceModeRegression.patient.actionRows === 0, 'Patient mode should not render empty clinician action rows on Safety Notes');
+assert(audienceModeRegression.patient.actionRows === 0, 'Patient mode should not render empty clinician action rows on patient question cards');
 assert(audienceModeRegression.patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
 assert(audienceModeRegression.patient.supportDetails === 0, 'Patient mode should hide clinician supporting detail drawers');
-assert(/What this means/.test(audienceModeRegression.patient.findingText), 'Patient mode should use plain-language finding labels');
-assert(/Safety notes group related concerns|doctor or pharmacist/i.test(audienceModeRegression.patient.findingText), 'Patient mode should use a plain-language Safety Notes footer');
+assert(/What this may mean/.test(audienceModeRegression.patient.findingText), 'Patient mode should use a separate plain-language meaning section');
+assert(/Bring this list to a doctor or pharmacist|conversation starters/i.test(audienceModeRegression.patient.findingText), 'Patient mode should use a plain-language bring-to-clinician footer');
 assert(!/(?:Technical details remain available in Review|Detailed technical context|pathway, metabolite, timing, and evidence signals|clinical concerns)/i.test(
   audienceModeRegression.patient.findingText
 ), 'Patient mode should not expose clinician-only Overview footer language');
@@ -893,8 +904,8 @@ assert(!String(audienceModeRegression.patient.altText || '').replace(/\s+/g, ' '
 assert(audienceModeRegression.patient.shareUrl.includes('audience=patient'), 'Patient-mode share URL should preserve audience mode');
 assert(audienceModeRegression.clinician.audienceMode === 'clinician', 'Clinician mode should restore clinician state');
 assert(audienceModeRegression.clinician.bodyAudience === 'clinician', 'Clinician mode should mark body data-audience');
-assert(/parent drugs|source-linked evidence/i.test(audienceModeRegression.clinician.tagline), 'Clinician mode should restore clinician technical tagline');
-assert(/Search medications/i.test(audienceModeRegression.clinician.searchPlaceholder), 'Clinician mode should restore clinician search placeholder');
+assert(/Medication and pharmacogenomic interaction review/i.test(audienceModeRegression.clinician.tagline), 'Clinician mode should restore clinician workbench tagline');
+assert(/Medication, supplement, or food/i.test(audienceModeRegression.clinician.searchPlaceholder), 'Clinician mode should restore clinician search placeholder');
 assert(audienceModeRegression.clinician.listTitle === 'Selected List', 'Clinician mode should restore selected-list label');
 assert(/2 substances/i.test(audienceModeRegression.clinician.medCount), 'Clinician mode should keep substance count copy');
 assert(audienceModeRegression.clinician.doseSelects > 0, 'Clinician mode should keep dose-tier selectors for supported medications');
@@ -905,6 +916,9 @@ assert(/Genes \+ Metabolites tab|medication response|metabolite balance/i.test(a
 assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mode should show tab navigation');
 assert(audienceModeRegression.clinician.summaryStoryCount > 0, 'Clinician mode should keep detailed summary story rows');
 assert(audienceModeRegression.clinician.findingTitle === 'Interaction Findings', 'Clinician mode should restore clinician finding title');
+assert(audienceModeRegression.clinician.circulatingDisplay !== 'none', 'Clinician Overview should show circulating/exposure context');
+assert(audienceModeRegression.clinician.circulatingCards > 0, 'Clinician Overview should render circulating cards');
+assert(/parent|metabolite|current stack|CYP/i.test(audienceModeRegression.clinician.circulatingText), 'Clinician circulating cards should include actor context');
 assert(audienceModeRegression.clinician.reviewButtonDisplay === 'none', 'Clinician V1 mode should hide reviewer-only console navigation');
 assert(audienceModeRegression.clinician.reviewPanelDisplay === 'none', 'Clinician V1 mode should keep the reviewer panel hidden');
 assert(audienceModeRegression.clinician.scopeDisplay === 'none', 'Clinician V1 mode should hide reviewer-only console scope');
