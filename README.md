@@ -94,7 +94,7 @@ You can also build custom share links:
 https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,ibuprofen&tab=overview
 ```
 
-Add `audience=patient` for the plain-language Patient view.
+The plain-language Patient view is the default public experience. Add `audience=clinician` for the fuller clinician-oriented view.
 
 ---
 
@@ -139,7 +139,7 @@ Diognosis is intentionally conservative about what it claims:
 - **69 genotype genes** and **588 receptor score profiles**
 - **32 RxNorm identity mappings**, **21 PGx marker rows**, and **9 CPIC-linked action summaries**
 - **218 Beers flags** and **1411 washout rules**
-- **3061 KB** generated bundle (2337 lines)
+- **3062 KB** generated bundle (2341 lines)
 <!-- DIOGNOSIS_STATS_END -->
 
 ---
@@ -152,7 +152,7 @@ Diognosis is intentionally conservative about what it claims:
 4. Set genotype phenotypes where relevant, or paste supported PharmGx report rows in the pharmacogenomics panel.
 5. Treat every result as an explanation to review, **not as medical advice**.
 
-> **Tip:** The Reviewer Console is not part of the normal V1 surface. It is available only through `?reviewer=1` for data review, QA, and contribution workflows.
+> **Tip:** The Reviewer Console is not part of the normal V1 surface. It is available only through `?reviewer=1` for data review, QA, and contribution workflows; reviewer mode forces the clinician-style surface instead of mixing with Patient mode.
 
 For internals, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md) and the [Data Model](docs/DATA_MODEL.md). For launch readiness, see the [Launch QA Matrix](docs/LAUNCH_QA_MATRIX.md), [Public Trust Model](docs/PUBLIC_TRUST.md), and [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md). For redesign or wrapper apps, the built page exposes a small `window.DIOGNOSIS_V1` runtime handoff contract documented in [Technical Notes](docs/TECHNICAL.md#runtime-handoff-contract).
 

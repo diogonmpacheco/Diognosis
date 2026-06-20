@@ -26,6 +26,7 @@ const dom = new JSDOM(html, {
 await new Promise((resolveReady) => setTimeout(resolveReady, 400));
 
 const { window } = dom;
+window.setAudienceMode('clinician', { render:false });
 window.addDrug('Codeine');
 window.addDrug('Fluoxetine');
 window.renderAll();

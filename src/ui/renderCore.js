@@ -77,7 +77,7 @@ function swapDrug(oldName, newName) {
 
 let viewMode = "search";
 let activeTab = "overview";
-let audienceMode = "clinician";
+let audienceMode = "patient";
 let currentInteractionFindings = [];
 let currentClinicalConcerns = [];
 let currentPublicFindingPresentations = [];
@@ -163,10 +163,14 @@ function isPatientAudience() {
   return audienceMode === "patient";
 }
 
-function isReviewerMode() {
-  const params = typeof getUrlStateParams === "function" ? getUrlStateParams() : {};
+function isReviewerParamEnabled(params = {}) {
   const raw = String(params.reviewer || params.reviewMode || "").trim().toLowerCase();
   return raw === "1" || raw === "true" || raw === "yes" || raw === "reviewer";
+}
+
+function isReviewerMode() {
+  const params = typeof getUrlStateParams === "function" ? getUrlStateParams() : {};
+  return isReviewerParamEnabled(params);
 }
 
 function setReviewerShellHidden(el, hidden) {
@@ -177,7 +181,8 @@ function setReviewerShellHidden(el, hidden) {
 }
 
 function setAudienceMode(mode, options = {}) {
-  audienceMode = normalizeAudienceMode(mode) || "clinician";
+  const requested = normalizeAudienceMode(mode) || "patient";
+  audienceMode = isReviewerMode() ? "clinician" : requested;
   if (isPatientAudience() && activeTab !== "overview") setActiveTab("overview");
   lazyRenderState = { evidenceKey:"", reviewKey:"" };
   syncAudienceModeUI();
@@ -202,7 +207,7 @@ function syncAudienceModeUI() {
   const searchInput = document.getElementById("searchInput");
   if (searchInput) {
     searchInput.placeholder = patient
-      ? "Medicine, supplement, or food"
+      ? "Search medicines, supplements, or foods"
       : "Medication, supplement, or food";
   }
   const listTitle = document.getElementById("listTitle");
@@ -220,7 +225,7 @@ function syncAudienceModeUI() {
       : "Set inherited gene or marker results here. The Genes + Metabolites tab shows how your list may change medication response, pathway activity, and metabolite balance.";
   }
   const findingTitle = document.getElementById("findingTitle");
-  if (findingTitle) findingTitle.textContent = patient ? "Questions to ask" : "Interaction Findings";
+  if (findingTitle) findingTitle.textContent = patient ? "Safety Notes" : "Interaction Findings";
 }
 
 function setViewMode(m) {
@@ -728,7 +733,7 @@ function renderInteractionFindingsOverview(risk) {
   }
   section.style.display = "";
   if (count) {
-    const label = isPatientAudience() ? "question" : "concern";
+    const label = isPatientAudience() ? "safety note" : "concern";
     count.textContent = `${currentPublicFindingPresentations.length} ${label}${currentPublicFindingPresentations.length === 1 ? "" : "s"}`;
   }
   body.innerHTML = isPatientAudience()
@@ -756,6 +761,7 @@ function renderPatientQuestionCard(presentation = {}) {
   const title = patientFindingTitleText(presentation);
   const affected = (presentation.affectedSubstances || []).slice(0, 3).join(" + ");
   const question = buildPatientDiscussionQuestion(presentation, trust);
+  const monitoringGuide = renderFindingMonitoringGuide(presentation, trust, true);
   return `<div id="${safeAttr(presentation.targetElementId)}" class="patient-question-card ${safeAttr(tone)}" data-finding-id="${safeAttr(presentation.id || "")}">
     <span class="patient-question-dot ${safeAttr(tone)}"></span>
     <div class="patient-question-main">
@@ -764,7 +770,11 @@ function renderPatientQuestionCard(presentation = {}) {
       </div>
       <div class="patient-question-title">${safePublicHtml(title)}</div>
       ${affected ? `<div class="patient-question-meta">${safePublicHtml(affected)}</div>` : ""}
-      <div class="patient-question-ask">${safePublicHtml(question)}</div>
+      <div class="finding-discussion patient-question-discussion">
+        <div class="finding-discussion-label">What to ask</div>
+        <div class="finding-discussion-text">${safePublicHtml(question)}</div>
+      </div>
+      ${monitoringGuide}
     </div>
   </div>`;
 }
@@ -779,7 +789,7 @@ function renderPatientMeaningSection(presentations = []) {
   const notes = buildPatientMeaningNotes(presentations);
   if (!notes.length) return "";
   return `<div class="patient-meaning-section">
-    <div class="patient-section-eyebrow">What this may mean</div>
+    <div class="patient-section-eyebrow">What this means</div>
     <div class="patient-meaning-grid">
       ${notes.map(note => `<div class="patient-meaning-card">
         <div class="patient-meaning-title">${safePublicHtml(note.title)}</div>
@@ -1447,6 +1457,14 @@ function renderFindingDiscussionGuide(presentation = {}, trust = null, patient =
   </div>`;
 }
 
+function hasAntiplateletPatientContext(text = "") {
+  return /\b(?:clopidogrel|ticlopidine|prasugrel|ticagrelor|p2y12|antiplatelet|stent|active thiol|thienopyridine)\b/i.test(String(text || ""));
+}
+
+function hasActiveMetabolitePatientContext(text = "") {
+  return /\b(?:activation failure|prodrug|bioactivation|active metabolite|work less well|less effective|reduced efficacy|reduced activation|morphine|codeine|tramadol|tamoxifen|endoxifen)\b/i.test(String(text || ""));
+}
+
 function buildPatientDiscussionQuestion(presentation = {}, trust = null) {
   const title = patientFindingTitleText(presentation);
   const text = publicDisplayText([
@@ -1462,7 +1480,7 @@ function buildPatientDiscussionQuestion(presentation = {}, trust = null) {
   let question = pair
     ? `Can you check whether ${pair} needs closer review?`
     : `Can you check ${topic} for my medication list?`;
-  if (/work less well|activation|antiplatelet|effectiveness|prodrug/.test(text)) {
+  if (hasAntiplateletPatientContext(text) || hasActiveMetabolitePatientContext(text)) {
     question = actors[0]
       ? `Can you check whether ${actors[0]} may work less well with my current list?`
       : "Can you check whether one of my medicines may work less well with my current list?";
@@ -1491,7 +1509,7 @@ function buildClinicianDiscussionGuide(presentation = {}, trust = null) {
     `Review ${affected}.`,
     change,
     concern,
-    action ? `Action: ${action}` : "",
+    action ? `Review: ${action}` : "",
   ].filter(Boolean).join(" ");
 }
 
@@ -1541,9 +1559,12 @@ function buildFindingMonitoringItems(presentation = {}, trust = null, options = 
   };
   if (patient) {
     add("New or worsening symptoms, side effects, missed doses, or recent dose changes.");
-    if (/work less well|activation|antiplatelet|effectiveness|prodrug|active thiol/.test(text)) {
+    if (hasAntiplateletPatientContext(text)) {
       add("Symptoms the medicine is meant to prevent or treat, especially if they are new or getting worse.");
       add("Any recent changes to stomach acid medicines, antibiotics, seizure medicines, or herbal products.");
+    } else if (hasActiveMetabolitePatientContext(text)) {
+      add("Pain control or symptom control that is worse than expected.");
+      add("Any recent changes to antidepressants, antibiotics, seizure medicines, or herbal products.");
     }
     if (/bleed|inr|anticoag|warfarin|platelet|clot|hemostasis/.test(text)) {
       add("Unusual bruising, bleeding, dark stools, severe headache, or clot-related symptoms.");
@@ -1572,7 +1593,7 @@ function buildFindingMonitoringItems(presentation = {}, trust = null, options = 
     return items.slice(0, 4);
   }
   add("Current symptoms, indication, dose changes, adherence, and last-dose timing.");
-  if (/work less well|activation|antiplatelet|effectiveness|prodrug|active thiol/.test(text)) {
+  if (hasAntiplateletPatientContext(text) || hasActiveMetabolitePatientContext(text)) {
     add("Therapeutic failure risk, indication acuity, adherence, genotype/phenotype context, and alternative selection.");
   }
   if (/bleed|inr|anticoag|warfarin|platelet|clot|hemostasis/.test(text)) {
@@ -1690,12 +1711,17 @@ function patientFindingStepText(presentation = {}, field = "changed") {
   const lower = text.toLowerCase();
   if (field === "changed") {
     if (/washout|persistence|timing|switch/.test(lower)) {
-      return "Stop or switch timing may matter because some effects can last after a medicine is changed.";
+      return "Timing may matter because some effects can last after a medicine is changed.";
     }
-    if (/clopidogrel|antiplatelet|stent|thrombosis|active thiol|activation failure/.test(lower)) {
+    if (hasAntiplateletPatientContext(lower)) {
       return serious
         ? "This combination may make an antiplatelet medicine work less well, which can raise clot-related risk."
         : "This combination may change how well an antiplatelet medicine works.";
+    }
+    if (hasActiveMetabolitePatientContext(lower)) {
+      return serious
+        ? "This combination may make one medicine work less well because the body may form less of its active effect."
+        : "This combination may change how well one medicine works.";
     }
     if (/bleed|inr|anticoag|warfarin|platelet|clot/.test(lower)) {
       return serious
@@ -1760,12 +1786,12 @@ function patientSafeReviewDirective(presentation = {}, review = "", options = {}
   const pair = actors.slice(0, 2).join(" + ");
   const subject = pair || "these medicines";
   if (/(?:contraindicat|avoid|do not use|do not take|hold)/.test(lower)) {
-    return shortenPatientReviewText(`Ask a doctor or pharmacist whether ${subject} should be used together, or whether one should be changed before use.`);
+    return shortenPatientReviewText(`Ask a doctor or pharmacist whether there is a concern using ${subject} together, or whether a different plan is needed.`);
   }
   if (/(?:substitut|alternative|different medicine)/.test(lower)) {
-    return shortenPatientReviewText(`Ask a doctor or pharmacist whether ${subject} should be changed or whether there is a safer option.`);
+    return shortenPatientReviewText(`Ask a doctor or pharmacist whether there may be another option to discuss for ${subject}.`);
   }
-  return shortenPatientReviewText(`Ask a doctor or pharmacist whether dose, timing, monitoring, or a different medicine should be reviewed for ${subject}.`);
+  return shortenPatientReviewText(`Ask a doctor or pharmacist whether dose, timing, symptoms, or monitoring should be discussed for ${subject}.`);
 }
 
 function shortenPatientReviewText(text) {
@@ -1787,10 +1813,13 @@ function patientFindingTitleText(presentation = {}) {
   ].join(" ")).toLowerCase();
   const actors = (presentation.affectedSubstances || []).filter(Boolean);
   const pair = actors.slice(0, 2).join(" + ");
-  if (/activation failure|stent|thrombosis|antiplatelet/.test(text)) {
+  if (hasAntiplateletPatientContext(text)) {
     return actors.length >= 2
       ? `${actors[0]} may work less well with ${actors[1]}`
       : "An antiplatelet medicine may work less well";
+  }
+  if (hasActiveMetabolitePatientContext(text)) {
+    return pair ? `${actors[0]} may work less well with ${actors[1]}` : "A medicine may work less well";
   }
   if (/bleed|inr|anticoag|warfarin|platelet|clot/.test(text)) {
     return pair ? `${pair} may need closer monitoring` : "Bleeding or clotting monitoring may change";
@@ -1800,7 +1829,7 @@ function patientFindingTitleText(presentation = {}) {
   }
   if (/serotonin|ssri|snri|maoi/.test(text)) return "Serotonin-related side effects may increase";
   if (/sedation|falls?\s+risk|fall-risk|cns|opioid|benzodiazepine|drows/.test(text)) return "Sleepiness, breathing, or fall risk may increase";
-  if (/washout|persistence|timing|switch/.test(text)) return "Switching or stop timing may need review";
+  if (/washout|persistence|timing|switch/.test(text)) return "Timing may need review";
   if (/auc|exposure|level|concentration|metabol|cyp|enzyme|genotype|pgx|clearance/.test(text)) {
     return pair ? `${pair} may change medicine effects` : "Medicine effects may change";
   }
@@ -2598,7 +2627,7 @@ function currentStackShareUrl(tab = activeTab) {
     }).join(",")]);
   }
   for (const token of activeGenotypeUrlTokens()) params.push(["genotype", token]);
-  if (isPatientAudience()) params.push(["audience", audienceMode]);
+  params.push(["audience", audienceMode]);
   if (isReviewerMode()) params.push(["reviewer", "1"]);
   const shareTab = tab === "review" && !isReviewerMode() ? "overview" : tab;
   if (shareTab) params.push(["tab", shareTab]);

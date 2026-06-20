@@ -190,8 +190,8 @@
 
         <section class="view" id="view-action">
           <div class="toolbar">
-            <input class="field" id="actionSearch" value="avoid, reduce dose, monitor" aria-label="Action search">
-            <select class="select" id="actionEvidence" aria-label="Evidence"><option value="all">Evidence: all</option><option value="high">High / level A only</option><option value="actionable">Actionable only</option></select>
+            <input class="field" id="actionSearch" value="review, monitoring, option" aria-label="Action search">
+            <select class="select" id="actionEvidence" aria-label="Evidence"><option value="all">Evidence: all</option><option value="high">High / level A only</option><option value="actionable">Review prompt only</option></select>
             <select class="select" id="actionArea" aria-label="Area"><option value="all">All therapy areas</option></select>
             <button class="primary" id="actionFilter">Filter</button>
           </div>
@@ -256,10 +256,10 @@
     const state = { geneShowAll:false, actionShowAll:{}, rankingShowAll:false };
     const copy = {
       genotype:["Genotype Lookup","Select a gene or phenotype and review every substance that uses it as a parent, child, transporter, inhibitor, or genotype-sensitive rule."],
-      action:["Review Action View","Group source-linked rows by the next review question: avoid, adjust dose, monitor, switch, or document no expected action. These groupings are discovery prompts, not clinical instructions."],
+      action:["Review Question View","Group source-linked rows by the next review question: use-together concern, dose/timing context, monitoring, option review, or context only. These groupings are discovery prompts, not clinical instructions."],
       ranking:["Gene Ranking","Rank genotype-linked genes by substance reach, metabolite coverage, modulators, transporter rows, evidence, and high-severity burden."],
     };
-    const actionGroups = [["Avoid","red"], ["Adjust Dose","amber"], ["Switch/Alternative","violet"], ["Monitor","green"], ["Informational",""]];
+    const actionGroups = [["Use-together review","red"], ["Dose/timing review","amber"], ["Option review","violet"], ["Monitoring review","green"], ["Context only",""]];
 
     function activateView(view) {
       if (view === "network") view = "ranking";
@@ -409,7 +409,7 @@
       const area = $("#actionArea").value;
       const rows = index.relations.filter((row) => {
         const queryOk = !terms.length || terms.some((term) => row.searchText.includes(term));
-        const evidenceOk = evidence === "all" || (evidence === "high" && /^(A|high|linked)$/i.test(row.evidenceLevel)) || (evidence === "actionable" && row.actionGroup !== "Informational");
+        const evidenceOk = evidence === "all" || (evidence === "high" && /^(A|high|linked)$/i.test(row.evidenceLevel)) || (evidence === "actionable" && row.actionGroup !== "Context only");
         const areaOk = area === "all" || row.class === area || row.source === area || row.role === area || row.actionGroup === area;
         return queryOk && evidenceOk && areaOk;
       });
@@ -460,7 +460,7 @@
         const transporters = setCount(rows, (row) => row.role === "transporter");
         const minors = setCount(rows, (row) => /minor|secondary|weak/i.test(`${row.signal} ${row.actionText}`));
         const high = rows.filter((row) => row.severity === "red").length;
-        const actionable = rows.filter((row) => row.actionGroup !== "Informational").length;
+        const actionable = rows.filter((row) => row.actionGroup !== "Context only").length;
         const evidence = rows.filter((row) => row.role === "evidence" || row.source === "PHARMGKB_EVIDENCE").length;
         const score = high * 5 + actionable * 2 + totalSubstances * 3 + parents * 2 + metabolites + inhibitors + inducers + transporters + Math.ceil(evidence / 2);
         const classes = [...new Set(rows.map((row) => row.class).filter(Boolean))];

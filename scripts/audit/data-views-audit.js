@@ -156,7 +156,7 @@ for (const search of requiredUrls) {
   if (view === "action") {
     const rows = actionExpectedRows(index, params.get("action") || "");
     if (rows.length && visibleRows(document, "#actionCards .row") === 0) fail(`${search}: action view rendered zero rows for ${rows.length} index matches.`);
-    for (const group of ["Avoid", "Adjust Dose", "Switch/Alternative", "Monitor", "Informational"]) {
+    for (const group of ["Use-together review", "Dose/timing review", "Option review", "Monitoring review", "Context only"]) {
       if (!document.querySelector("#actionCards")?.textContent.includes(group)) fail(`${search}: missing action group ${group}.`);
     }
   }

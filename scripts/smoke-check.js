@@ -241,6 +241,13 @@ assert(doc.getElementById('scenarioSnapshotSection')?.closest('.tab-panel')?.id 
 assert(doc.getElementById('metaboliteGapSection')?.closest('.tab-panel')?.id === 'tab-review', 'Metabolite Coverage Gaps should live under Reviewer Console');
 assert(doc.getElementById('contributeSection')?.closest('.tab-panel')?.id === 'tab-review', 'Report / Contribute should live under Reviewer Console');
 assert(doc.getElementById('warningPathSection')?.closest('.tab-panel')?.id === 'tab-review', 'Technical Warning Paths should live under Reviewer Console');
+assert(evalInPage(window, 'audienceMode') === 'patient', 'Default V1 smoke path should open in Patient mode');
+const patientFindingText = doc.getElementById('findingBody')?.textContent || '';
+assert(doc.querySelectorAll('#findingBody .patient-question-card').length > 0, 'Default Overview should render Patient safety-note cards');
+assert(patientFindingText.includes('What to ask') && patientFindingText.includes('What this means'), 'Patient safety-note cards should render plain-language guidance');
+assert(doc.querySelectorAll('#findingBody .primary-finding-card').length === 0, 'Default Patient Overview should not render clinician finding cards');
+window.setAudienceMode('clinician');
+assert(evalInPage(window, 'audienceMode') === 'clinician', 'Clinician smoke path should switch to Clinician mode');
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
 assert(doc.querySelectorAll('#findingBody .primary-finding-card').length > 0, 'Overview finding cards should render primary public finding cards');
 assert([...doc.querySelectorAll('#findingBody .primary-finding-card')].every(card => ['What changed', 'Why it matters', 'What to review', 'Evidence'].every(label => card.textContent.includes(label))), 'Overview finding cards should render the four-part public explanation');

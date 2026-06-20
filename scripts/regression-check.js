@@ -26,6 +26,7 @@ function assertNoPatientDirectiveLeak(label, text) {
 
 function loadCase(win, drugs) {
   win.eval(`activeStack = [];
+    if (typeof setAudienceMode === "function") setAudienceMode("clinician", { render:false });
     if (typeof drugDoses !== "undefined") Object.keys(drugDoses).forEach(k => delete drugDoses[k]);
     userGenetics = {};
     activeGenotypeDetails = {};
@@ -850,7 +851,7 @@ assert(audienceModeRegression.patient.audienceMode === 'patient', 'Audience URL 
 assert(audienceModeRegression.patient.bodyAudience === 'patient', 'Patient mode should mark body data-audience');
 assert(audienceModeRegression.patient.activeTab === 'overview', 'Patient mode should force the Overview tab');
 assert(/talk to your doctor or pharmacist/i.test(audienceModeRegression.patient.tagline), 'Patient mode should use patient-facing app tagline');
-assert(/Medicine, supplement, or food/i.test(audienceModeRegression.patient.searchPlaceholder), 'Patient mode should use patient-facing search placeholder');
+assert(/Search medicines, supplements, or foods/i.test(audienceModeRegression.patient.searchPlaceholder), 'Patient mode should use patient-facing search placeholder');
 assert(audienceModeRegression.patient.listTitle === 'My Medicine List', 'Patient mode should use patient-facing selected-list label');
 assert(audienceModeRegression.patient.firstUseOrder.join('|').startsWith('audience|mode|search|selected-list|gene-results'),
   `Clinical Calm shell should keep audience in the header, then add controls and Gene Results in the rail; got ${audienceModeRegression.patient.firstUseOrder.join('|')}`);
@@ -870,22 +871,22 @@ assert(!/Genes \+ Metabolites tab|source-linked|parent drugs|PK timing|pathway a
   `${audienceModeRegression.patient.tagline} ${audienceModeRegression.patient.geneIntro}`
 ), 'Patient mode should not refer to hidden clinician tabs or technical tagline copy');
 assert(audienceModeRegression.patient.tabBarDisplay === 'none', 'Patient mode should hide clinician tab navigation');
-assert(audienceModeRegression.patient.summaryStoryCount === 0, 'Patient mode top summary should stay compact and leave detailed explanation to Questions to ask');
+assert(audienceModeRegression.patient.summaryStoryCount === 0, 'Patient mode top summary should stay compact and leave detailed explanation to Safety Notes');
 assert(!/higher-priority safety note was found|safety note was found for this list/i.test(audienceModeRegression.patient.summaryText),
-  'Patient mode top summary should not repeat report-style safety-note body copy before Questions to ask');
+  'Patient mode top summary should not repeat report-style safety-note body copy before Safety Notes');
 assert(!/\bView note\b/i.test(audienceModeRegression.patient.summaryText),
   'Patient mode top summary should not show a redundant jump link when Safety Notes are directly below');
 assert(/Next step|doctor or pharmacist/i.test(audienceModeRegression.patient.summaryNext), 'Patient mode compact summary should still keep a plain next-step line');
 assert(audienceModeRegression.patient.summaryRisk.trim() === '', 'Patient mode should hide summary score badges');
-assert(audienceModeRegression.patient.findingTitle === 'Questions to ask', 'Patient mode should rename findings to Questions to ask');
-assert(/questions?/i.test(audienceModeRegression.patient.findingCount), 'Patient mode should label public finding count as questions');
+assert(audienceModeRegression.patient.findingTitle === 'Safety Notes', 'Patient mode should rename findings to Safety Notes');
+assert(/safety notes?/i.test(audienceModeRegression.patient.findingCount), 'Patient mode should label public finding count as safety notes');
 assert(audienceModeRegression.patient.patientQuestionCards > 0, 'Patient mode should render dedicated question cards');
 assert(audienceModeRegression.patient.patientMeaningCards > 0, 'Patient mode should render a separate meaning section');
 assert(audienceModeRegression.patient.exposureSummaryCount === 0, 'Patient mode should hide technical exposure summary rows from the selected list');
 assert(audienceModeRegression.patient.actionRows === 0, 'Patient mode should not render empty clinician action rows on patient question cards');
 assert(audienceModeRegression.patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
 assert(audienceModeRegression.patient.supportDetails === 0, 'Patient mode should hide clinician supporting detail drawers');
-assert(/What this may mean/.test(audienceModeRegression.patient.findingText), 'Patient mode should use a separate plain-language meaning section');
+assert(/What this means/.test(audienceModeRegression.patient.findingText), 'Patient mode should use a separate plain-language meaning section');
 assert(/Bring this list to a doctor or pharmacist|conversation starters/i.test(audienceModeRegression.patient.findingText), 'Patient mode should use a plain-language bring-to-clinician footer');
 assert(!/(?:Technical details remain available in Review|Detailed technical context|pathway, metabolite, timing, and evidence signals|clinical concerns)/i.test(
   audienceModeRegression.patient.findingText
@@ -1055,7 +1056,7 @@ const olderAdultDemoPriorityRegression = window.eval(`(() => {
     priority:getHighestGenotypePrioritySignal(),
     summaryText:document.getElementById('summaryBar')?.textContent || '',
     findingText:document.getElementById('findingBody')?.textContent || '',
-    cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
+    cards:document.querySelectorAll('#findingBody .primary-finding-card, #findingBody .patient-question-card').length,
   };
 })()`);
 assert(olderAdultDemoPriorityRegression.activeStack.join('|') === 'Amitriptyline|Diazepam|Diphenhydramine|Oxycodone',
@@ -1072,6 +1073,7 @@ assert(/sedation|fall|anticholinergic|burden|Amitriptyline|Diazepam|Diphenhydram
 
 const nebivololPgxDisplayRegression = window.eval(`(() => {
   activeStack = ['Nebivolol'];
+  if (typeof setAudienceMode === "function") setAudienceMode("clinician", { render:false });
   userGenetics = {};
   activeGenotypeDetails = {};
   activeGenotype = {

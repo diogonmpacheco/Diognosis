@@ -122,13 +122,13 @@ function extractProductReadiness(window) {
       removeButtons:document.querySelectorAll('#medList button.x').length,
       clinicianLayoutCss:[...document.querySelectorAll('style')].some(style => {
         const css = style.textContent || '';
-        return css.includes('body[data-audience="clinician"] .input-rail{display:contents}')
+        return css.includes('body[data-audience="clinician"] .input-rail{display:flex}')
           && css.includes('body[data-audience="clinician"] #geneticsSection{order:2}')
           && css.includes('body[data-audience="clinician"] .result-area{order:3}');
       }),
       compactMedListCss:[...document.querySelectorAll('style')].some(style => {
         const css = style.textContent || '';
-        return css.includes('.med-chip{display:grid;grid-template-columns:minmax(0,1fr) minmax(106px,150px) 32px')
+        return css.includes('.med-chip{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,128px) 28px')
           && css.includes('.med-chip .x{grid-column:3');
       }),
       cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
@@ -145,17 +145,17 @@ function extractProductReadiness(window) {
 const clinicianScenarios = [
   {
     name:'Warfarin + Amiodarone',
-    url:'http://localhost/index.html?substances=warfarin,amiodarone&tab=review',
+    url:'http://localhost/index.html?substances=warfarin,amiodarone&audience=clinician&tab=review',
     expected:['Warfarin', 'Amiodarone'],
   },
   {
     name:'Clopidogrel + Omeprazole with CYP2C19 PM',
-    url:'http://localhost/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&tab=review',
+    url:'http://localhost/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&audience=clinician&tab=review',
     expected:['Clopidogrel', 'Omeprazole', 'CYP2C19'],
   },
   {
     name:'Codeine + Fluoxetine with CYP2D6 PM',
-    url:'http://localhost/index.html?substances=codeine,fluoxetine&genotype=CYP2D6:PM&tab=review',
+    url:'http://localhost/index.html?substances=codeine,fluoxetine&genotype=CYP2D6:PM&audience=clinician&tab=review',
     expected:['Codeine', 'Fluoxetine', 'CYP2D6'],
   },
 ];
@@ -231,12 +231,12 @@ const patient = patientWindow.eval(`(() => ({
   removeButtons:document.querySelectorAll('#medList button.x').length,
   patientLayoutCss:[...document.querySelectorAll('style')].some(style => {
     const css = style.textContent || '';
-    return css.includes('body[data-audience="patient"] .input-rail{display:contents}')
+    return css.includes('body[data-audience="patient"] .input-rail{display:flex}')
       && css.includes('body[data-audience="patient"] #geneticsSection{order:2}')
       && css.includes('body[data-audience="patient"] .result-area{order:3}');
   }),
   exposureSummaryCount:document.querySelectorAll('#medList .exposure-summary').length,
-  severityLabels:[...document.querySelectorAll('#findingBody .finding-sev')].map(el => el.textContent.trim()),
+  severityLabels:[...document.querySelectorAll('#findingBody .finding-sev, #findingBody .patient-question-tag')].map(el => el.textContent.trim()),
   sourceLinks:document.querySelectorAll('#findingBody a.source-link').length,
   actionRows:document.querySelectorAll('#findingBody .finding-actions').length,
   supportingDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
@@ -312,7 +312,7 @@ const patientGene = patientGeneWindow.eval(`(() => ({
   medListText:document.getElementById('medList')?.textContent || '',
   doseSelects:document.querySelectorAll('#medList .dose-select').length,
   exposureSummaryCount:document.querySelectorAll('#medList .exposure-summary').length,
-  cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
+  cards:document.querySelectorAll('#findingBody .primary-finding-card, #findingBody .patient-question-card').length,
 }))()`);
 
 assert(patientGene.audienceMode === 'patient', 'Patient gene-result scenario should keep Patient mode active');
@@ -332,16 +332,34 @@ assertNoPatientDirectiveLeak('Patient Gene Summary', patientGene.summaryText);
 assertNoPatientDirectiveLeak('Patient Gene Overview', patientGene.findingText);
 assertNoUnsafeCertainty('Patient Gene Overview', patientGene.findingText);
 
+const patientCodeineWindow = await loadPage('http://localhost/index.html?substances=codeine,fluoxetine&genotype=CYP2D6:PM&audience=patient&tab=overview');
+const patientCodeine = patientCodeineWindow.eval(`(() => ({
+  findingText:document.getElementById('findingBody')?.textContent || '',
+  overviewHandoffText:buildOverviewHandoffText(),
+  cards:document.querySelectorAll('#findingBody .primary-finding-card, #findingBody .patient-question-card').length,
+}))()`);
+
+assert(patientCodeine.cards > 0, 'Patient codeine/CYP2D6 scenario should still render Safety Notes');
+assert(/Codeine may work less well|medicine may work less well|pain control|symptom control/i.test(
+  `${patientCodeine.findingText} ${patientCodeine.overviewHandoffText}`
+), 'Patient codeine/CYP2D6 scenario should describe reduced medicine effect in plain language');
+assert(!/antiplatelet|clot-related|clotting monitoring/i.test(
+  `${patientCodeine.findingText} ${patientCodeine.overviewHandoffText}`
+), 'Patient codeine/CYP2D6 scenario should not borrow antiplatelet or clotting language');
+assertNoPatientTechnicalLeak('Patient Codeine Overview', patientCodeine.findingText);
+assertNoPatientDirectiveLeak('Patient Codeine Overview', patientCodeine.findingText);
+assertNoUnsafeCertainty('Patient Codeine Overview', patientCodeine.findingText);
+
 const patientContraindicatedWindow = await loadPage('http://localhost/index.html?substances=simvastatin,clarithromycin&audience=patient&tab=overview');
 const patientContraindicated = patientContraindicatedWindow.eval(`(() => ({
   summaryText:document.getElementById('summaryBar')?.textContent || '',
   findingText:document.getElementById('findingBody')?.textContent || '',
   overviewHandoffText:buildOverviewHandoffText(),
-  cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
+  cards:document.querySelectorAll('#findingBody .primary-finding-card, #findingBody .patient-question-card').length,
 }))()`);
 
 assert(patientContraindicated.cards > 0, 'Patient contraindicated-source scenario should still render Safety Notes');
-assert(/should be used together|one should be changed|doctor or pharmacist/i.test(
+assert(/concern using|different plan|doctor or pharmacist/i.test(
   `${patientContraindicated.summaryText} ${patientContraindicated.findingText}`
 ), 'Patient contraindicated-source scenario should translate clinician directions into review questions');
 assertNoPatientTechnicalLeak('Patient Contraindicated Summary', patientContraindicated.summaryText);
@@ -455,7 +473,7 @@ assertNoUnsafeCertainty('Manual Unknown Patient Copy Summary', manualUnknown.ove
 const noSignalUnknownWindow = await loadPage('http://localhost/index.html?substances=mystery-mix,unknown-herb&audience=patient&tab=overview');
 const noSignalUnknown = noSignalUnknownWindow.eval(`(() => ({
   activeStack,
-  cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
+  cards:document.querySelectorAll('#findingBody .primary-finding-card, #findingBody .patient-question-card').length,
   findingText:document.getElementById('findingBody')?.textContent || '',
   scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
   scopeText:document.getElementById('scopeBody')?.textContent || '',
@@ -492,7 +510,7 @@ const olderAdultDemo = olderAdultWindow.eval(`(() => ({
   activeTab,
   summaryText:document.getElementById('summaryBar')?.textContent || '',
   findingText:document.getElementById('findingBody')?.textContent || '',
-  cards:document.querySelectorAll('#findingBody .primary-finding-card').length,
+  cards:document.querySelectorAll('#findingBody .primary-finding-card, #findingBody .patient-question-card').length,
 }))()`);
 
 assert(olderAdultDemo.activeStack.join('|') === 'Amitriptyline|Diazepam|Diphenhydramine|Oxycodone',
@@ -510,11 +528,27 @@ const structural = structuralWindow.eval(`(() => ({
   hasTrustHelper:typeof buildV1FindingTrustContract === 'function',
   hasHandoffHelper:typeof buildV1HandoffSummaryText === 'function',
   hasScopeHelper:typeof buildReviewScopeSummary === 'function',
+  audienceMode,
+  bodyAudience:document.body.dataset.audience,
+  bodyReviewer:document.body.dataset.reviewer,
+  patientPressed:document.getElementById('audience-patient')?.getAttribute('aria-pressed') || '',
+  clinicianPressed:document.getElementById('audience-clinician')?.getAttribute('aria-pressed') || '',
+  tagline:document.getElementById('audienceTagline')?.textContent || '',
+  searchPlaceholder:document.getElementById('searchInput')?.getAttribute('placeholder') || '',
+  reviewButtonDisplay:document.getElementById('tabbtn-review')?.style.display || '',
+  reviewPanelDisplay:document.getElementById('tab-review')?.style.display || '',
   patientButton:!!document.getElementById('audience-patient'),
   clinicianButton:!!document.getElementById('audience-clinician'),
-  firstUseOrder:[...document.body.children]
-    .map(el => el.classList?.contains('audience-wrap') ? 'audience' : el.classList?.contains('search-wrap') ? 'search' : el.classList?.contains('mode-toggle') ? 'mode' : '')
-    .filter(Boolean),
+  firstUseOrder:(() => {
+    const controls = [
+      ['audience', document.querySelector('.audience-wrap')],
+      ['mode', document.querySelector('.mode-toggle')],
+      ['search', document.querySelector('.search-wrap')],
+    ].filter(([, el]) => el);
+    return controls
+      .sort((a, b) => a[1].compareDocumentPosition(b[1]) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1)
+      .map(([label]) => label);
+  })(),
   modeGroupLabel:document.querySelector('.mode-toggle')?.getAttribute('aria-label') || '',
   modeLabels:[document.getElementById('searchModeBtn')?.textContent?.trim(), document.getElementById('browseModeBtn')?.textContent?.trim()],
   modeTags:[document.getElementById('searchModeBtn')?.tagName, document.getElementById('browseModeBtn')?.tagName],
@@ -541,8 +575,16 @@ assert(structural.hasTrustHelper, 'V1 trust contract helper should be bundled');
 assert(structural.hasHandoffHelper, 'V1 handoff helper should be bundled');
 assert(structural.hasScopeHelper, 'Reviewer console scope helper should be bundled');
 assert(structural.patientButton && structural.clinicianButton, 'Audience toggle should be top-level and bundled');
-assert(structural.firstUseOrder.join('|').startsWith('audience|search|mode'),
-  `Audience toggle should sit above search, followed by search/browse controls; got ${structural.firstUseOrder.join('|')}`);
+assert(structural.audienceMode === 'patient' && structural.bodyAudience === 'patient',
+  `Default public route should open Patient mode, got ${structural.audienceMode}/${structural.bodyAudience}`);
+assert(structural.bodyReviewer === 'standard' && structural.reviewButtonDisplay === 'none' && structural.reviewPanelDisplay === 'none',
+  'Default public route should keep Reviewer Console hidden');
+assert(structural.patientPressed === 'true' && structural.clinicianPressed === 'false',
+  'Default public route should mark Patient as selected');
+assert(/doctor or pharmacist/i.test(structural.tagline) && /Search medicines/i.test(structural.searchPlaceholder),
+  'Default public route should use patient-facing chrome');
+assert(structural.firstUseOrder.join('|').startsWith('audience|mode|search'),
+  `Audience toggle should sit above add-mode controls and search; got ${structural.firstUseOrder.join('|')}`);
 assert(structural.modeGroupLabel === 'Choose how to add items', 'Search/Browse mode group should describe the add-choice control');
 assert(structural.modeLabels.join('|') === 'Search by Name|Browse Categories', 'Search/Browse mode labels should describe add modes, not submit actions');
 assert(structural.modeTags.join('|') === 'BUTTON|BUTTON', 'Search/Browse mode controls should be real buttons');
@@ -554,5 +596,31 @@ assert(/not medical advice|No information is uploaded/i.test(normalizedText(stru
   'Static disclaimer should retain medical and privacy boundaries');
 assert(!/\bpre-v1\b|research prototype/i.test(normalizedText(structural.disclaimer)),
   'Static disclaimer should describe the active app as a V1 candidate, not a pre-v1 prototype');
+
+const reviewerIsolationWindow = await loadPage('http://localhost/index.html?audience=patient&reviewer=1&tab=review');
+const reviewerIsolation = reviewerIsolationWindow.eval(`(() => ({
+  reviewerMode:typeof isReviewerMode === 'function' ? isReviewerMode() : false,
+  audienceMode,
+  bodyAudience:document.body.dataset.audience,
+  bodyReviewer:document.body.dataset.reviewer,
+  activeTab,
+  patientPressed:document.getElementById('audience-patient')?.getAttribute('aria-pressed') || '',
+  clinicianPressed:document.getElementById('audience-clinician')?.getAttribute('aria-pressed') || '',
+  reviewButtonDisplay:document.getElementById('tabbtn-review')?.style.display || '',
+  reviewPanelDisplay:document.getElementById('tab-review')?.style.display || '',
+  reviewText:document.getElementById('tab-review')?.textContent || '',
+}))()`);
+
+assert(reviewerIsolation.reviewerMode === true, 'Reviewer URL should enable reviewer mode');
+assert(reviewerIsolation.audienceMode === 'clinician' && reviewerIsolation.bodyAudience === 'clinician',
+  'Reviewer URL should force the clinician-style surface instead of mixing with Patient mode');
+assert(reviewerIsolation.bodyReviewer === 'reviewer', 'Reviewer URL should mark the body as reviewer mode');
+assert(reviewerIsolation.activeTab === 'review', 'Reviewer URL should open the Reviewer Console tab');
+assert(reviewerIsolation.patientPressed === 'false' && reviewerIsolation.clinicianPressed === 'true',
+  'Reviewer URL should not leave Patient selected');
+assert(reviewerIsolation.reviewButtonDisplay !== 'none' && reviewerIsolation.reviewPanelDisplay !== 'none',
+  'Reviewer URL should expose the Reviewer Console only in reviewer mode');
+assert(/Review Workbench|Reviewer Console|Review Summary/i.test(reviewerIsolation.reviewText),
+  'Reviewer URL should render reviewer-only console content inside the Review tab');
 
 console.log(`V1 release readiness audit passed: ${clinicianScenarios.length} clinician scenarios, Patient mode boundary, and static readiness surface.`);

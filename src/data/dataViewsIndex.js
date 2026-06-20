@@ -330,11 +330,11 @@
 
   function classifyAction(text, severity, role) {
     const value = `${text || ""} ${severity || ""} ${role || ""}`.toLowerCase();
-    if (/avoid|contraindicat|fatal|black box|ineffective|failure|do not use/.test(value)) return "Avoid";
-    if (/alternative|switch|replace|non-cyp|preferred|use .*instead/.test(value)) return "Switch/Alternative";
-    if (/dose|reduce|increase|titrate|auc|level|clearance|fold|tdm|limit/.test(value)) return "Adjust Dose";
-    if (/monitor|risk|watch|check|review|ecg|inr|toxicity|bleed|myopathy/.test(value)) return "Monitor";
-    return "Informational";
+    if (/avoid|contraindicat|fatal|black box|ineffective|failure|do not use/.test(value)) return "Use-together review";
+    if (/alternative|switch|replace|non-cyp|preferred|use .*instead/.test(value)) return "Option review";
+    if (/dose|reduce|increase|titrate|auc|level|clearance|fold|tdm|limit/.test(value)) return "Dose/timing review";
+    if (/monitor|risk|watch|check|review|ecg|inr|toxicity|bleed|myopathy/.test(value)) return "Monitoring review";
+    return "Context only";
   }
 
   const relations = [];

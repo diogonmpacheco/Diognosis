@@ -132,13 +132,13 @@ function buildInteractionTrace(i) {
 function clinicalActionForInteraction(i) {
   if (!i) return "";
   if (i.severity === "severe") {
-    if (i.category === "bleed") return "Action: avoid or use specialist monitoring for bleeding risk.";
-    if (i.category === "prodrug") return "Action: consider an alternative that does not need the blocked activation pathway.";
-    if (i.category === "transporter") return "Action: avoid combination or monitor levels/toxicity closely.";
-    return "Action: avoid combination when possible or use clinician-guided dose/monitoring plan.";
+    if (i.category === "bleed") return "Review bleeding-risk plan and monitoring with a qualified clinician.";
+    if (i.category === "prodrug") return "Review whether a non-activated option or response monitoring is needed.";
+    if (i.category === "transporter") return "Review exposure monitoring and whether the combination needs a different plan.";
+    return "Review whether the combination needs a different plan, dose context, or monitoring.";
   }
-  if (i.severity === "moderate") return "Action: monitor response/adverse effects; dose or timing adjustment may be needed.";
-  return "Action: usually monitor; context matters.";
+  if (i.severity === "moderate") return "Review response, side effects, dose context, and timing.";
+  return "Review in clinical context.";
 }
 
 function renderFoldBars() {

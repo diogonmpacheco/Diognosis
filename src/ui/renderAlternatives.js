@@ -20,14 +20,14 @@ function renderAlternatives() {
   });
 
   if (!alts.length) {
-    el.innerHTML = '<div style="text-align:center;color:var(--text2);padding:12px;font-size:13px">No alternatives to suggest — your combination looks reasonable</div>';
+    el.innerHTML = '<div style="text-align:center;color:var(--text2);padding:12px;font-size:13px">No alternative review prompts surfaced for this list.</div>';
     return;
   }
 
   el.innerHTML = alts.map(a => `
     <div class="alt-card">
-      <button class="alt-swap" onclick="swapDrug('${a.forDrug.replace(/'/g,"\\'")}','${a.name.replace(/'/g,"\\'")}')">Try Swap</button>
-      <div class="alt-for">Instead of ${a.forDrug}:</div>
+      <button class="alt-swap" onclick="swapDrug('${a.forDrug.replace(/'/g,"\\'")}','${a.name.replace(/'/g,"\\'")}')">Preview option</button>
+      <div class="alt-for">Discussion option for ${a.forDrug}:</div>
       <div class="alt-name">${a.name}</div>
       <div class="alt-reason">${a.reason}</div>
     </div>

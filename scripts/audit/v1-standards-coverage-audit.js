@@ -31,6 +31,7 @@ async function loadWindow(url) {
 function standardsReport(window) {
   return window.eval(`(() => {
     window.history.replaceState(null, '', '/index.html?reviewer=1');
+    setAudienceMode('clinician', { render:false });
     renderAll();
     setTab('review');
     const scope = buildReviewScopeSummary(getRenderComputationCache());
