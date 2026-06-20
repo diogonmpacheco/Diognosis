@@ -19,7 +19,7 @@ This audit describes the launch-facing data trust boundary for the current stati
 | Internal `reviewRequired:true` evidence entries | 356 |
 | RxNorm identity mappings | 33 |
 | PGx marker rows | 21 |
-| CPIC-linked action summaries | 9 |
+| CPIC-linked action summaries | 10 |
 | Interaction pairs | 3184 |
 | Severe interaction pairs | 1610 |
 | Moderate interaction pairs | 1539 |

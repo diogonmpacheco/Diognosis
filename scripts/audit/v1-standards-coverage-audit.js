@@ -117,6 +117,15 @@ assert(/Standards identity: 2\/2 recognized medications mapped to RxNorm/i.test(
 assert(betaBlockerMapped.readiness.checks.some(check => check.key === 'standards' && check.ok === true),
   'Mapped Metoprolol standards case should keep the Standards identity readiness check passing');
 
+const betaBlockerAction = standardsReport(await loadWindow('http://localhost/index.html?substances=metoprolol&genotype=CYP2D6:PM&tab=review'));
+assert(betaBlockerAction.coverage.recognizedDrugCount === 1, 'Metoprolol CPIC action case should resolve as one recognized drug');
+assert(betaBlockerAction.coverage.mappedDrugCount === 1, 'Metoprolol CPIC action case should have RxNorm coverage');
+assert(betaBlockerAction.coverage.markerMappingCount >= 3, 'Metoprolol CYP2D6 PM case should expose marker identity rows');
+assert(betaBlockerAction.coverage.pgxActionCount >= 1, 'Metoprolol CYP2D6 PM case should expose CPIC-linked action context');
+assert(betaBlockerAction.pgxActionCards >= 1, 'Metoprolol CYP2D6 PM case should render a PGx action card');
+assert(/Standards identity: 1\/1 recognized medications mapped to RxNorm/i.test(betaBlockerAction.handoffText),
+  'V1 handoff should include full standards identity coverage for the Metoprolol CPIC action case');
+
 const partial = standardsReport(await loadWindow('http://localhost/index.html?substances=warfarin,atenolol&genotype=CYP2C9:IM&tab=review'));
 assert(partial.coverage.recognizedDrugCount === 2, 'Warfarin + atenolol should resolve as two recognized drugs');
 assert(partial.coverage.mappedDrugCount >= 1, 'Partial standards case should include at least one RxNorm mapping');

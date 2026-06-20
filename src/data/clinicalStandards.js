@@ -218,6 +218,20 @@ const PGX_ACTION_SUMMARIES = Object.freeze([
     safetyBoundary:"Disease protocol, leukocyte counts, liver tests, and specialist monitoring remain decisive.",
     evidenceRefs:["ev_thiopurine_tpmt_nudt15_cpic2025"],
   },
+  {
+    id:"pgx_action_metoprolol_cyp2d6_reduced_function",
+    drug:"Metoprolol",
+    gene:"CYP2D6",
+    phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM],
+    level:"A",
+    source:"CPIC",
+    guidelineUrl:"https://www.clinpgx.org/guideline/PA166343383",
+    title:"CPIC-linked metoprolol exposure review",
+    whatChanged:"Reduced CYP2D6 function can raise parent metoprolol exposure and reduce oxidative metabolite formation.",
+    reviewDirection:"Review heart rate, blood pressure, beta-blocker indication, dose tolerance, and whether a less CYP2D6-dependent beta-blocker option is appropriate.",
+    safetyBoundary:"Do not treat genotype alone as a metoprolol dose instruction; clinical response, indication, comorbidities, and interacting CYP2D6 inhibitors still decide.",
+    evidenceRefs:["ev_metoprolol_cyp2d6_cpic"],
+  },
 ]);
 
 function clinicalStandardKey(value) {
