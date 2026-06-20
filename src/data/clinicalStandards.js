@@ -1,7 +1,7 @@
 // Diognosis - external clinical standards bridge
 // Keeps runtime local while exposing source-linked identity and PGx action context.
 
-const CLINICAL_STANDARDS_VERSION = "2026-06-20-batch5-high-impact-rxnorm";
+const CLINICAL_STANDARDS_VERSION = "2026-06-20-batch6-high-impact-rxnorm";
 
 const EXTERNAL_ID_SYSTEMS = Object.freeze({
   RXNORM: "RxNorm",
@@ -367,6 +367,47 @@ const EXTERNAL_SUBSTANCE_MAPPINGS = Object.freeze([
   { substance:"Tenofovir Alafenamide", rxnormCui:"1721603", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Zidovudine", rxnormCui:"11413", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Abatacept", rxnormCui:"614391", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"GHB", rxnormCui:"1546380", source:"NIH RxNav", confidence:"review_needed", scope:"precise_ingredient_alias" },
+  { substance:"Alteplase", rxnormCui:"8410", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Apomorphine", rxnormCui:"1043", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Isoniazid", rxnormCui:"6038", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Methylene Blue", rxnormCui:"6878", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Sofosbuvir", rxnormCui:"1484911", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Tenecteplase", rxnormCui:"259280", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Tofacitinib", rxnormCui:"1357536", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Amphetamine", rxnormCui:"725", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Binimetinib", rxnormCui:"2049122", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Cenobamate", rxnormCui:"2265690", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Lacosamide", rxnormCui:"623400", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Mitoxantrone", rxnormCui:"7005", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Mycophenolate", rxnormCui:"265323", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Topotecan", rxnormCui:"57308", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Clorazepate", rxnormCui:"2353", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Eptifibatide", rxnormCui:"75635", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Netarsudil", rxnormCui:"1992864", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Norepinephrine", rxnormCui:"7512", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Procainamide", rxnormCui:"8700", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Tirofiban", rxnormCui:"73137", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Afatinib", rxnormCui:"1430438", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Atovaquone", rxnormCui:"60212", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Levofloxacin", rxnormCui:"82122", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Losartan", rxnormCui:"52175", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Talazoparib", rxnormCui:"2099704", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Umeclidinium", rxnormCui:"1487514", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Eplerenone", rxnormCui:"298869", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Fluticasone", rxnormCui:"41126", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Guanfacine", rxnormCui:"40114", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Lamivudine", rxnormCui:"68244", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Methylergonovine", rxnormCui:"6883", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Midodrine", rxnormCui:"6963", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Aflibercept", rxnormCui:"1232150", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Amonafide", rxnormCui:"1440270", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Dalteparin", rxnormCui:"67109", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Enoxaparin", rxnormCui:"67108", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Fondaparinux", rxnormCui:"321208", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Ketamine", rxnormCui:"6130", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Methamphetamine", rxnormCui:"6816", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Probenecid", rxnormCui:"8698", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
 ]);
 
 const STANDARD_CONTEXT_EXEMPTIONS = Object.freeze([
@@ -399,6 +440,60 @@ const STANDARD_CONTEXT_EXEMPTIONS = Object.freeze([
     standard:"RxNorm",
     reason:"Dose/formulation actor; RxNorm identity should attach to aspirin or to an exact clinical product when dose is clinically relevant.",
     representativeSubstances:["Aspirin"],
+  },
+  {
+    substance:"MDMA (Ecstasy)",
+    standard:"RxNorm",
+    reason:"Non-prescription/recreational substance actor; no clean active RxNorm ingredient was found in current RxNav lookup.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"Ayahuasca (DMT+MAOI)",
+    standard:"RxNorm",
+    reason:"Botanical/preparation mixture actor; RxNorm identity should not be forced onto the whole preparation.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"Kratom (Mitragynine)",
+    standard:"RxNorm",
+    reason:"Botanical/substance actor without a clean active RxNorm ingredient in current RxNav lookup; needs toxicology or chemical-ontology review.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"dihydromorphine",
+    standard:"RxNorm",
+    reason:"Non-catalogued opioid/chemical actor in current RxNav lookup; needs chemical-ontology review before standards mapping.",
+    representativeSubstances:["Morphine"],
+  },
+  {
+    substance:"n-desmethyltramadol",
+    standard:"RxNorm",
+    reason:"Metabolite actor; RxNorm identity should stay with the parent marketed ingredient unless a current RxNorm ingredient exists.",
+    representativeSubstances:["Tramadol"],
+  },
+  {
+    substance:"n,n-didesmethyltramadol",
+    standard:"RxNorm",
+    reason:"Metabolite actor; RxNorm identity should stay with the parent marketed ingredient unless a current RxNorm ingredient exists.",
+    representativeSubstances:["Tramadol"],
+  },
+  {
+    substance:"n,o-didesmethyltramadol",
+    standard:"RxNorm",
+    reason:"Metabolite actor; RxNorm identity should stay with the parent marketed ingredient unless a current RxNorm ingredient exists.",
+    representativeSubstances:["Tramadol"],
+  },
+  {
+    substance:"normeperidine",
+    standard:"RxNorm",
+    reason:"Metabolite actor; RxNorm identity should stay with the parent marketed ingredient unless a current RxNorm ingredient exists.",
+    representativeSubstances:["meperidine"],
+  },
+  {
+    substance:"o-desmethyltramadol",
+    standard:"RxNorm",
+    reason:"Metabolite actor; RxNorm identity should stay with the parent marketed ingredient unless a current RxNorm ingredient exists.",
+    representativeSubstances:["Tramadol"],
   },
 ]);
 
