@@ -67,6 +67,10 @@ const PGX_MARKER_MAPPINGS = Object.freeze({
     { label:"CYP3A5*6", system:EXTERNAL_ID_SYSTEMS.PHARMVAR, dbsnp:"rs10264272", interpretation:"splice-defect/non-expresser allele context" },
     { label:"CYP3A5*7", system:EXTERNAL_ID_SYSTEMS.PHARMVAR, dbsnp:"rs41303343", interpretation:"frameshift/non-expresser allele context" },
   ]),
+  UGT1A1: Object.freeze([
+    { label:"UGT1A1*28 / TA7 repeat", system:EXTERNAL_ID_SYSTEMS.DBSNP, dbsnp:"rs8175347", interpretation:"decreased-function promoter repeat context" },
+    { label:"UGT1A1*6", system:EXTERNAL_ID_SYSTEMS.DBSNP, dbsnp:"rs4148323", interpretation:"decreased-function coding variant context" },
+  ]),
   VKORC1: Object.freeze([
     { label:"VKORC1 -1639G>A", system:EXTERNAL_ID_SYSTEMS.DBSNP, dbsnp:"rs9923231", interpretation:"warfarin sensitivity context" },
   ]),
