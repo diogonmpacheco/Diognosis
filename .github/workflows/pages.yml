@@ -38,7 +38,7 @@ jobs:
           mkdir -p dist
           cp index.html dist/index.html
           for asset in \
-            logo-mark.png \
+            assets/logo-mark.png \
             logo.png \
             manifest.json \
             icon-32.png \
@@ -49,6 +49,7 @@ jobs:
             robots.txt \
             sitemap.xml
           do
+            mkdir -p "$(dirname "dist/$asset")"
             cp "$asset" "dist/$asset"
           done
 
