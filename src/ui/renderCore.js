@@ -385,6 +385,7 @@ function renderLazyTab(tabId = activeTab) {
 function renderSummaryBar() {
   const bar = document.getElementById("summaryBar");
   const tabBar = document.getElementById("tabBar");
+  const mainEmptyState = document.getElementById("mainEmptyState");
   if (!bar || !tabBar) return;
 
   const overviewBtn = document.getElementById("tabbtn-overview");
@@ -394,11 +395,13 @@ function renderSummaryBar() {
   if (activeStack.length < 1) {
     bar.style.display = "none";
     tabBar.style.display = "none";
+    if (mainEmptyState) mainEmptyState.style.display = "";
     tabPanels.forEach(panel => { panel.style.display = "none"; });
     if (overviewBtn) overviewBtn.innerHTML = "Overview";
     return;
   }
 
+  if (mainEmptyState) mainEmptyState.style.display = "none";
   bar.style.display = "";
   if (isPatientAudience()) setActiveTab("overview");
   tabBar.style.display = isPatientAudience() ? "none" : "";

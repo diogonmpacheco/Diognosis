@@ -38,7 +38,11 @@ jobs:
           mkdir -p dist
           cp index.html dist/index.html
           for asset in \
+            data-views.html \
+            medication-classes.html \
+            medication-class-examples.html \
             assets/logo-mark.png \
+            assets/auxiliary-pages.css \
             logo.png \
             manifest.json \
             icon-32.png \
@@ -52,6 +56,8 @@ jobs:
             mkdir -p "$(dirname "dist/$asset")"
             cp "$asset" "dist/$asset"
           done
+          mkdir -p dist/src/data
+          cp src/data/*.js dist/src/data/
 
       - name: Configure Pages
         uses: actions/configure-pages@v6

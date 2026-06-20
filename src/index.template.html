@@ -88,8 +88,8 @@ body[data-add-mode="browse"] .search-wrap{display:none}
 .sr-cat{font-size:11px;font-weight:700;color:var(--accent);padding:8px 20px;background:var(--accentBg);text-transform:uppercase;letter-spacing:1px;position:sticky;top:0;z-index:1}
 
 /* MODE TOGGLE */
-.mode-toggle{display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:none;margin:0 0 14px;padding:3px;border:1px solid #e4e3db;background:#efeee8;border-radius:10px}
-.mode-btn{appearance:none;font-family:var(--font);flex:1;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);cursor:pointer;font-size:12px;font-weight:800;color:var(--text2);text-align:center;transition:all 0.2s}
+.mode-toggle{display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:none;width:100%;min-width:0;margin:0 0 14px;padding:3px;border:1px solid #e4e3db;background:#efeee8;border-radius:10px}
+.mode-btn{appearance:none;font-family:var(--font);flex:1;min-width:0;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);cursor:pointer;font-size:12px;font-weight:800;color:var(--text2);text-align:center;transition:all 0.2s;overflow-wrap:break-word}
 .mode-btn.active{border-color:var(--accent);color:#fff;background:var(--accent)}
 .mode-btn:hover{border-color:var(--accent2);background:var(--accentBg);color:var(--accent)}
 .mode-btn.active:hover{background:var(--accent);color:#fff}
@@ -581,6 +581,16 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 .summary-copy-text{flex-basis:100%;white-space:pre-wrap;overflow-wrap:anywhere;max-height:180px;overflow:auto;border:1px solid var(--border);border-radius:8px;background:rgba(255,255,255,.78);padding:10px;font-size:11px;line-height:1.45;color:var(--text)}
 .summary-copy-text[hidden]{display:none}
 .focus-pulse{outline:3px solid rgba(14,165,233,.55);outline-offset:3px;box-shadow:0 0 0 7px rgba(14,165,233,.14)}
+.main-empty-state{min-height:calc(100vh - 64px);display:grid;place-items:center;padding:72px 34px;background:var(--surface)}
+.main-empty-panel{width:min(680px,100%);min-width:0;border:1px solid var(--border);border-radius:16px;background:var(--card);padding:30px 32px;text-align:left}
+.main-empty-kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:12px}
+.main-empty-kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--accentBg)}
+.main-empty-title{font-size:28px;line-height:1.16;font-weight:800;letter-spacing:0;color:var(--text);margin-bottom:10px;overflow-wrap:anywhere}
+.main-empty-copy{font-size:15px;line-height:1.55;color:var(--text2);max-width:560px;overflow-wrap:anywhere}
+.main-empty-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:20px}
+.main-empty-step{border:1px solid var(--border);border-radius:12px;background:var(--card2);padding:13px 14px}
+.main-empty-step strong{display:block;font-size:13px;color:var(--text);margin-bottom:4px}
+.main-empty-step span{display:block;font-size:12px;line-height:1.4;color:var(--text2)}
 @media(min-width:760px){
   .summary-main{grid-template-columns:minmax(0,1fr);align-items:start}
   .summary-risk{min-height:0}
@@ -857,6 +867,10 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
   .tab-bar{top:0;padding:0 16px}
   .tab-panel{padding:22px 16px 34px}
   .summary-bar{padding:22px 16px 20px}
+  .main-empty-state{min-height:auto;padding:22px 16px 26px;place-items:stretch}
+  .main-empty-panel{padding:20px;border-radius:14px}
+  .main-empty-title{font-size:22px}
+  .main-empty-steps{grid-template-columns:1fr}
   .disclaimer{padding:20px 16px 26px}
   .main,.search-wrap,.mode-toggle,.browse-wrap,.audience-wrap,.disclaimer{max-width:none}
   .audience-wrap{justify-content:flex-start}
@@ -976,6 +990,19 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
   <div class="result-area">
   <!-- Summary bar (populated by renderSummaryBar; hidden until a stack exists) -->
   <div class="summary-bar" id="summaryBar" style="display:none"></div>
+
+  <div class="main-empty-state" id="mainEmptyState">
+    <div class="main-empty-panel">
+      <div class="main-empty-kicker">Review workbench</div>
+      <div class="main-empty-title">Medication review starts from the left rail</div>
+      <div class="main-empty-copy">The workspace keeps the medication list, optional gene results, summary, and review surfaces separated so Patient and Clinician modes stay clear.</div>
+      <div class="main-empty-steps">
+        <div class="main-empty-step"><strong>Medicine list</strong><span>No selected items yet.</span></div>
+        <div class="main-empty-step"><strong>Gene context</strong><span>Optional marker results stay beside the list.</span></div>
+        <div class="main-empty-step"><strong>Review mode</strong><span>Patient and Clinician views remain separated.</span></div>
+      </div>
+    </div>
+  </div>
 
   <!-- Tab navigation (hidden until a stack exists) -->
   <div class="tab-bar" id="tabBar" style="display:none">
