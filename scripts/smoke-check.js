@@ -259,6 +259,9 @@ assert(evalInPage(window, 'audienceMode') === 'clinician', 'Clinician smoke path
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
 assert(doc.querySelectorAll('#findingBody .primary-finding-card').length > 0, 'Overview finding cards should render primary public finding cards');
 assert([...doc.querySelectorAll('#findingBody .primary-finding-card')].every(card => ['What changed', 'Why it matters', 'What to review', 'Evidence'].every(label => card.textContent.includes(label))), 'Overview finding cards should render the four-part public explanation');
+const clinicianVisibleReviewText = `${doc.getElementById('summaryBar')?.textContent || ''} ${doc.getElementById('findingBody')?.textContent || ''}`;
+assert(!clinicianVisibleReviewText.includes('should be avoided, substituted, dose-adjusted, or monitored before use'),
+  'Clinician review copy should avoid the old directive medication-change fallback phrase');
 assert(doc.querySelectorAll('#findingBody .why-path').length === 0, 'Overview should not duplicate the full why-path chain');
 assert(doc.querySelectorAll('#findingBody .finding-step').length > 0, 'Overview finding cards should render compact explanation steps');
 assert(doc.querySelectorAll('#mechanismWhyBody .mechanism-why-row').length > 0, 'Mechanisms should render finding why paths');

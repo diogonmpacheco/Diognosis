@@ -1295,7 +1295,7 @@ function publicFindingReviewAction(finding = {}) {
   ].filter(Boolean);
   if (candidates.length) return candidates[0];
   if (finding.severity === "critical" || finding.severity === "severe") {
-    return "Review whether this combination should be avoided, substituted, dose-adjusted, or monitored before use.";
+    return "Review whether this combination needs a different plan, dose context, timing, or monitoring before any medication changes.";
   }
   if (finding.severity === "moderate") {
     return "Review dose, timing, monitoring, and whether the combination is still appropriate.";
@@ -1978,7 +1978,7 @@ function buildInteractionPriorityStory(ix) {
   const mechanism = ix.mechanism || ix.effect || "a modeled interaction";
   const action = ix.clinicalAction || ix.management || (
     ix.severity === "severe" || ix.severity === "critical"
-      ? "Review whether this combination should be avoided, substituted, dose-adjusted, or monitored before use."
+      ? "Review whether this combination needs a different plan, dose context, timing, or monitoring before any medication changes."
       : "Review dose, timing, monitoring, and whether the combination is still appropriate."
   );
   return {
