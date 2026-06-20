@@ -819,8 +819,11 @@ const audienceModeRegression = window.eval(`(() => {
     medCount:document.getElementById('medCount')?.textContent || '',
     geneIntro:document.getElementById('geneSectionIntro')?.textContent || '',
     tabBarDisplay:document.getElementById('tabBar')?.style.display || '',
+    summaryText:document.getElementById('summaryBar')?.textContent || '',
     summaryStoryCount:document.querySelectorAll('#summaryBar .summary-story-row').length,
+    summaryNext:document.querySelector('#summaryBar .summary-next')?.textContent || '',
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
+    firstFindingText:document.querySelector('#findingBody .primary-finding-card')?.textContent || '',
     doseSelects:document.querySelectorAll('#medList .dose-select').length,
     removeButtons:document.querySelectorAll('#medList button.x').length,
     clinicianLayoutCss:[...document.querySelectorAll('style')].some(style => {
@@ -922,7 +925,11 @@ assert(audienceModeRegression.clinician.clinicianLayoutCss, 'Clinician mode shou
 assert(/Genes \+ Metabolites tab|medication response|metabolite balance/i.test(audienceModeRegression.clinician.geneIntro), 'Clinician mode should restore clinician gene helper copy');
 assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mode should show tab navigation');
 assert(audienceModeRegression.clinician.summaryStoryCount > 0, 'Clinician mode should keep detailed summary story rows');
-assert(audienceModeRegression.clinician.findingTitle === 'Interaction Findings', 'Clinician mode should restore clinician finding title');
+assert(/Clinical review queue/i.test(audienceModeRegression.clinician.summaryText), 'Clinician mode should orient the top summary around a review queue');
+assert(/Priority basis|Expected change|Review action/i.test(audienceModeRegression.clinician.summaryText), 'Clinician mode should label the summary story as a review workflow');
+assert(/Review first/i.test(audienceModeRegression.clinician.summaryNext), 'Clinician mode should make the first review action explicit');
+assert(audienceModeRegression.clinician.findingTitle === 'Clinical Review Priorities', 'Clinician mode should use a mixed drug/PGx priority title');
+assert(/Review first/i.test(audienceModeRegression.clinician.firstFindingText), 'Clinician mode should mark the first Overview card as the first review priority');
 assert(audienceModeRegression.clinician.circulatingDisplay !== 'none', 'Clinician Overview should show circulating/exposure context');
 assert(audienceModeRegression.clinician.circulatingCards > 0, 'Clinician Overview should render circulating cards');
 assert(/parent|metabolite|current stack|CYP/i.test(audienceModeRegression.clinician.circulatingText), 'Clinician circulating cards should include actor context');

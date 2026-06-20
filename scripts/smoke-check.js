@@ -261,8 +261,12 @@ assert(patientFindingText.includes('What to ask') && patientFindingText.includes
 assert(doc.querySelectorAll('#findingBody .primary-finding-card').length === 0, 'Default Patient Overview should not render clinician finding cards');
 window.setAudienceMode('clinician');
 assert(evalInPage(window, 'audienceMode') === 'clinician', 'Clinician smoke path should switch to Clinician mode');
+const clinicianSummaryText = doc.getElementById('summaryBar')?.textContent || '';
+assert(/Clinical review queue/i.test(clinicianSummaryText), 'Clinician summary should present the Overview as a review queue');
+assert(/Review first/i.test(clinicianSummaryText), 'Clinician summary should point to the first review priority');
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
 assert(doc.querySelectorAll('#findingBody .primary-finding-card').length > 0, 'Overview finding cards should render primary public finding cards');
+assert(/Review first/i.test(doc.querySelector('#findingBody .primary-finding-card')?.textContent || ''), 'Clinician first finding should be explicitly marked as the first review priority');
 assert([...doc.querySelectorAll('#findingBody .primary-finding-card')].every(card => ['What changed', 'Why it matters', 'What to review', 'Evidence'].every(label => card.textContent.includes(label))), 'Overview finding cards should render the four-part public explanation');
 const clinicianVisibleReviewText = `${doc.getElementById('summaryBar')?.textContent || ''} ${doc.getElementById('findingBody')?.textContent || ''}`;
 assert(!clinicianVisibleReviewText.includes('should be avoided, substituted, dose-adjusted, or monitored before use'),
