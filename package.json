@@ -11,6 +11,7 @@
     "stats": "node scripts/gen-stats.js",
     "report:severity": "node scripts/severity-report.js",
     "audit": "node scripts/audit/run.js",
+    "audit:stage10": "node scripts/audit/stage10-standards-full-audit.js --check",
     "enrich": "node scripts/enrich/run.js",
     "build": "node build.js",
     "build:dev": "node build.js --dev --out /tmp/diognosis_dev.html",

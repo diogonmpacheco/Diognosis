@@ -49,6 +49,7 @@ const TASKS = {
   'pending-core-enrichment': ['scripts/audit/pending-core-enrichment-audit.js'],
   'enrichment-metadata-paths': ['scripts/audit/enrichment-metadata-path-audit.js'],
   'source-registry': ['scripts/audit/source-registry-audit.js'],
+  'stage10-standards': ['scripts/audit/stage10-standards-full-audit.js'],
   'enrichment-license-boundary': ['scripts/audit/enrichment-license-boundary-audit.js'],
   'promotion-boundary': ['scripts/audit/promotion-boundary-audit.js'],
   'review-overlays': ['scripts/audit/review-overlay-audit.js'],
