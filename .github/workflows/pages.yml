@@ -37,6 +37,20 @@ jobs:
         run: |
           mkdir -p dist
           cp index.html dist/index.html
+          for asset in \
+            logo-mark.png \
+            logo.png \
+            manifest.json \
+            icon-32.png \
+            icon-180.png \
+            icon-192.png \
+            icon-512.png \
+            og-image.png \
+            robots.txt \
+            sitemap.xml
+          do
+            cp "$asset" "dist/$asset"
+          done
 
       - name: Configure Pages
         uses: actions/configure-pages@v6
