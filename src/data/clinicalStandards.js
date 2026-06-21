@@ -1,7 +1,7 @@
 // Diognosis - external clinical standards bridge
 // Keeps runtime local while exposing source-linked identity and PGx action context.
 
-const CLINICAL_STANDARDS_VERSION = "2026-06-21-batch28-high-impact-standards";
+const CLINICAL_STANDARDS_VERSION = "2026-06-21-batch29-high-impact-standards";
 
 const EXTERNAL_ID_SYSTEMS = Object.freeze({
   RXNORM: "RxNorm",
@@ -1259,6 +1259,11 @@ const EXTERNAL_SUBSTANCE_MAPPINGS = Object.freeze([
   { substance:"piritramide", rxnormCui:"8354", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Polyethylene Glycol", rxnormCui:"8516", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Protamine Sulfate", rxnormCui:"8825", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Radium-223 Dichloride", rxnormCui:"1424174", source:"NIH RxNav", confidence:"exact_ingredient", scope:"precise_ingredient" },
+  { substance:"Senna", rxnormCui:"36387", source:"NIH RxNav", confidence:"review_needed", scope:"ingredient_alias" },
+  { substance:"silibinin", rxnormCui:"155067", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Sodium Ferric Gluconate", rxnormCui:"261435", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"toluidine blue", rxnormCui:"10638", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient_alias" },
 ]);
 
 const STANDARD_CONTEXT_EXEMPTIONS = Object.freeze([
@@ -2755,6 +2760,276 @@ const STANDARD_CONTEXT_EXEMPTIONS = Object.freeze([
     standard:"RxNorm",
     reason:"Release-formulation actor; RxNorm identity should attach to quetiapine or an exact extended-release product rather than the app shortcut row.",
     representativeSubstances:["Quetiapine"],
+  },
+  {
+    substance:"Quinapril/Hydrochlorothiazide",
+    standard:"RxNorm",
+    reason:"Combination actor; RxNorm identity should attach to component ingredients or an exact clinical product rather than the app shortcut row.",
+    representativeSubstances:["Quinapril", "Hydrochlorothiazide"],
+  },
+  {
+    substance:"R-EDDP",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Methadone"],
+  },
+  {
+    substance:"r-methylphenobarbital",
+    standard:"RxNorm",
+    reason:"Stereoisomer/metabolite actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["methylphenobarbital"],
+  },
+  {
+    substance:"r-norfluoxetine",
+    standard:"RxNorm",
+    reason:"Stereoisomer metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Fluoxetine"],
+  },
+  {
+    substance:"Repaglinide/Metformin",
+    standard:"RxNorm",
+    reason:"Combination actor; RxNorm identity should attach to component ingredients or an exact clinical product rather than the app shortcut row.",
+    representativeSubstances:["Repaglinide", "Metformin"],
+  },
+  {
+    substance:"Respiratory System",
+    standard:"RxNorm",
+    reason:"Therapeutic-area actor; RxNorm identity should attach to selected respiratory medications rather than the broad anatomy/system label.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"rhodamine 123",
+    standard:"RxNorm",
+    reason:"Probe/analyte actor without a clean current exact RxNorm ingredient; needs chemical-ontology review before standards mapping.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"Ribostamycin",
+    standard:"RxNorm",
+    reason:"Medication actor without a clean current exact RxNorm ingredient in exact-first lookup; needs alternate drug ontology or regional formulary review.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"Risedronate/Calcium",
+    standard:"RxNorm",
+    reason:"Combination actor; RxNorm identity should attach to component ingredients or an exact clinical product rather than the app shortcut row.",
+    representativeSubstances:["Risedronate", "Calcium"],
+  },
+  {
+    substance:"ritalinic acid",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Methylphenidate"],
+  },
+  {
+    substance:"Roxadustat",
+    standard:"RxNorm",
+    reason:"Medication actor without a clean current exact RxNorm ingredient in exact-first lookup; needs alternate drug ontology or regional formulary review.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"S-EDDP",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Methadone"],
+  },
+  {
+    substance:"S-methadone",
+    standard:"RxNorm",
+    reason:"Stereoisomer actor; RxNorm identity should stay with methadone or a selected exact stereoisomer concept rather than the app shortcut row.",
+    representativeSubstances:["Methadone"],
+  },
+  {
+    substance:"s-methylphenobarbital",
+    standard:"RxNorm",
+    reason:"Stereoisomer/metabolite actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["methylphenobarbital"],
+  },
+  {
+    substance:"s-norfluoxetine",
+    standard:"RxNorm",
+    reason:"Stereoisomer metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Fluoxetine"],
+  },
+  {
+    substance:"Saw Palmetto",
+    standard:"RxNorm",
+    reason:"Botanical/supplement actor; RxNorm identity should not be forced onto the whole preparation without formulation review.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"Saxagliptin/Metformin",
+    standard:"RxNorm",
+    reason:"Combination actor; RxNorm identity should attach to component ingredients or an exact clinical product rather than the app shortcut row.",
+    representativeSubstances:["Saxagliptin", "Metformin"],
+  },
+  {
+    substance:"Seville Orange / Pomelo",
+    standard:"RxNorm",
+    reason:"Food exposure context actor; RxNorm identity should not be forced onto a broad citrus dietary exposure label.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"simvastatin acid",
+    standard:"RxNorm",
+    reason:"Metabolite/active-acid actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Simvastatin"],
+  },
+  {
+    substance:"SN-38",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Irinotecan"],
+  },
+  {
+    substance:"Sodium Chloride 0.9%",
+    standard:"RxNorm",
+    reason:"Fluid/formulation actor; RxNorm identity should attach to sodium chloride or an exact clinical solution product rather than the concentration shortcut.",
+    representativeSubstances:["Sodium Chloride"],
+  },
+  {
+    substance:"solithromycin",
+    standard:"RxNorm",
+    reason:"Medication actor without a clean current exact RxNorm ingredient in exact-first lookup; needs alternate drug ontology or regional formulary review.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"sparteine",
+    standard:"RxNorm",
+    reason:"Probe/chemical actor without a clean current exact RxNorm ingredient; needs chemical-ontology review before standards mapping.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"Sulfacetamide/Sulfur",
+    standard:"RxNorm",
+    reason:"Combination actor; RxNorm identity should attach to component ingredients or an exact clinical product rather than the app shortcut row.",
+    representativeSubstances:["Sulfacetamide", "Sulfur"],
+  },
+  {
+    substance:"sulfonamides, urea derivatives",
+    standard:"RxNorm",
+    reason:"Class actor; RxNorm identity should attach to selected sulfonamide or urea-derived ingredients rather than the broad class abstraction.",
+    representativeSubstances:["sulfamethoxazole"],
+  },
+  {
+    substance:"sulforidazine",
+    standard:"RxNorm",
+    reason:"Metabolite/analog actor without a clean current exact RxNorm ingredient; needs chemical-ontology review before standards mapping.",
+    representativeSubstances:["Thioridazine"],
+  },
+  {
+    substance:"taxanes",
+    standard:"RxNorm",
+    reason:"Class actor; RxNorm identity should attach to the selected taxane ingredient rather than the broad class abstraction.",
+    representativeSubstances:["Paclitaxel", "Docetaxel"],
+  },
+  {
+    substance:"Telmisartan/Hydrochlorothiazide",
+    standard:"RxNorm",
+    reason:"Combination actor; RxNorm identity should attach to component ingredients or an exact clinical product rather than the app shortcut row.",
+    representativeSubstances:["Telmisartan", "Hydrochlorothiazide"],
+  },
+  {
+    substance:"teneligliptin",
+    standard:"RxNorm",
+    reason:"Medication actor without a clean current exact RxNorm ingredient in exact-first lookup; needs alternate drug ontology or regional formulary review.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"tezacaftor metabolite m1",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Tezacaftor"],
+  },
+  {
+    substance:"thioguanosine diphosphate",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should not be forced onto a thiopurine nucleotide measurement context.",
+    representativeSubstances:["Thioguanine"],
+  },
+  {
+    substance:"thioguanosine monophosphate",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should not be forced onto a thiopurine nucleotide measurement context.",
+    representativeSubstances:["Thioguanine"],
+  },
+  {
+    substance:"thioguanosine triphosphate",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should not be forced onto a thiopurine nucleotide measurement context.",
+    representativeSubstances:["Thioguanine"],
+  },
+  {
+    substance:"Thiopurines",
+    standard:"RxNorm",
+    reason:"Class actor; RxNorm identity should attach to selected thiopurine ingredients rather than the broad class abstraction.",
+    representativeSubstances:["Azathioprine", "Mercaptopurine", "Thioguanine"],
+  },
+  {
+    substance:"threo-4-hydroxyhydrobupropion",
+    standard:"RxNorm",
+    reason:"Metabolite/analyte actor; RxNorm identity should stay with the parent marketed ingredient unless a current exact RxNorm ingredient exists.",
+    representativeSubstances:["Bupropion"],
+  },
+  {
+    substance:"Tiagabine Oral",
+    standard:"RxNorm",
+    reason:"Route/formulation actor; RxNorm identity should attach to the active ingredient or exact clinical product rather than the dosage-form label.",
+    representativeSubstances:["Tiagabine"],
+  },
+  {
+    substance:"Timolol Ophthalmic",
+    standard:"RxNorm",
+    reason:"Route/formulation actor; RxNorm identity should attach to the active ingredient or exact clinical product rather than the route label.",
+    representativeSubstances:["Timolol"],
+  },
+  {
+    substance:"tipifarnib",
+    standard:"RxNorm",
+    reason:"Medication actor without a clean current exact RxNorm ingredient in exact-first lookup; needs alternate drug ontology or regional formulary review.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"Tobramycin/Dexamethasone",
+    standard:"RxNorm",
+    reason:"Combination actor; RxNorm identity should attach to component ingredients or an exact clinical product rather than the app shortcut row.",
+    representativeSubstances:["Tobramycin", "Dexamethasone"],
+  },
+  {
+    substance:"Triamterene/Hydrochlorothiazide",
+    standard:"RxNorm",
+    reason:"Combination actor; RxNorm identity should attach to component ingredients or an exact clinical product rather than the app shortcut row.",
+    representativeSubstances:["Triamterene", "Hydrochlorothiazide"],
+  },
+  {
+    substance:"Tyramine-rich Foods",
+    standard:"RxNorm",
+    reason:"Food exposure context actor; RxNorm identity should not be forced onto a broad dietary exposure label.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"ulotaront",
+    standard:"RxNorm",
+    reason:"Medication actor without a clean current exact RxNorm ingredient in exact-first lookup; needs alternate drug ontology or regional formulary review.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"Valerian",
+    standard:"RxNorm",
+    reason:"Botanical/supplement actor; RxNorm identity should not be forced onto the whole preparation without formulation review.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"Valsartan/Hydrochlorothiazide",
+    standard:"RxNorm",
+    reason:"Combination actor; RxNorm identity should attach to component ingredients or an exact clinical product rather than the app shortcut row.",
+    representativeSubstances:["Valsartan", "Hydrochlorothiazide"],
+  },
+  {
+    substance:"Varenicline Nasal",
+    standard:"RxNorm",
+    reason:"Route/formulation actor; RxNorm identity should attach to varenicline or an exact nasal product rather than the route shortcut.",
+    representativeSubstances:["varenicline"],
   },
 ]);
 
