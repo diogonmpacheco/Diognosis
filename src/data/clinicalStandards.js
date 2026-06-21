@@ -1,7 +1,7 @@
 // Diognosis - external clinical standards bridge
 // Keeps runtime local while exposing source-linked identity and PGx action context.
 
-const CLINICAL_STANDARDS_VERSION = "2026-06-21-batch29-high-impact-standards";
+const CLINICAL_STANDARDS_VERSION = "2026-06-21-batch30-high-impact-standards";
 
 const EXTERNAL_ID_SYSTEMS = Object.freeze({
   RXNORM: "RxNorm",
@@ -1264,6 +1264,7 @@ const EXTERNAL_SUBSTANCE_MAPPINGS = Object.freeze([
   { substance:"silibinin", rxnormCui:"155067", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Sodium Ferric Gluconate", rxnormCui:"261435", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"toluidine blue", rxnormCui:"10638", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient_alias" },
+  { substance:"Vasopressin", rxnormCui:"11149", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
 ]);
 
 const STANDARD_CONTEXT_EXEMPTIONS = Object.freeze([
@@ -3030,6 +3031,30 @@ const STANDARD_CONTEXT_EXEMPTIONS = Object.freeze([
     standard:"RxNorm",
     reason:"Route/formulation actor; RxNorm identity should attach to varenicline or an exact nasal product rather than the route shortcut.",
     representativeSubstances:["varenicline"],
+  },
+  {
+    substance:"velufenacin",
+    standard:"RxNorm",
+    reason:"Medication actor without a clean current exact RxNorm ingredient in exact-first lookup; needs alternate drug ontology or regional formulary review.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"vernakalant",
+    standard:"RxNorm",
+    reason:"Medication actor without a clean current exact RxNorm ingredient in exact-first lookup; needs alternate drug ontology or regional formulary review.",
+    representativeSubstances:[],
+  },
+  {
+    substance:"Vilanterol/Umeclidinium",
+    standard:"RxNorm",
+    reason:"Combination actor; RxNorm identity should attach to component ingredients or an exact clinical product rather than the app shortcut row.",
+    representativeSubstances:["vilanterol", "umeclidinium"],
+  },
+  {
+    substance:"volatile anesthetics",
+    standard:"RxNorm",
+    reason:"Class actor; RxNorm identity should attach to selected anesthetic ingredients rather than the broad class abstraction.",
+    representativeSubstances:["Sevoflurane", "Desflurane", "Isoflurane"],
   },
 ]);
 
