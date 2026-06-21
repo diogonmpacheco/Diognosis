@@ -134,18 +134,18 @@ assert(/PGx marker identity row/i.test(irinotecanMarker.scopeText), 'Reviewer Co
 assert(/Standards identity: 1\/1 recognized medications mapped to RxNorm/i.test(irinotecanMarker.handoffText),
   'V1 handoff should include full standards identity coverage for the UGT1A1 marker case');
 
-const partial = standardsReport(await loadWindow('http://localhost/index.html?substances=warfarin,atenolol&genotype=CYP2C9:IM&tab=review'));
-assert(partial.coverage.recognizedDrugCount === 2, 'Warfarin + atenolol should resolve as two recognized drugs');
-assert(partial.coverage.mappedDrugCount >= 1, 'Partial standards case should include at least one RxNorm mapping');
-assert(partial.coverage.unmappedDrugCount >= 1, 'Partial standards case should disclose unmapped recognized drugs');
-assert(partial.coverage.unmappedSubstances.some(name => /atenolol/i.test(name)), 'Atenolol should be disclosed as unmapped until RxNorm row exists');
-assert(partial.coverage.markerMappingCount >= 2, 'CYP2C9 IM should expose marker mappings in the partial gap case');
-assert(partial.coverage.pgxActionCount >= 1, 'Warfarin CYP2C9 partial gap case should expose CPIC-linked action context');
-assert(/recognized medications mapped to RxNorm/i.test(partial.scopeText), 'Partial Reviewer Console scope should summarize RxNorm coverage');
-assert(/lack local RxNorm identity mappings/i.test(partial.scopeText), 'Partial Reviewer Console scope should disclose RxNorm mapping gaps');
-assert(/SNOMED CT diagnosis\/symptom mapping is not used/i.test(partial.scopeText), 'Reviewer Console scope should state SNOMED boundary');
-assert(/Standards identity:/i.test(partial.handoffText), 'Partial V1 handoff should include standards identity coverage');
-assert(partial.readiness.checks.some(check => check.key === 'standards' && check.ok === true),
-  'Partial standards disclosure should keep the Standards identity readiness check passing');
+const atenololMapped = standardsReport(await loadWindow('http://localhost/index.html?substances=warfarin,atenolol&genotype=CYP2C9:IM&tab=review'));
+assert(atenololMapped.coverage.recognizedDrugCount === 2, 'Warfarin + atenolol should resolve as two recognized drugs');
+assert(atenololMapped.coverage.mappedDrugCount === 2, 'Warfarin + atenolol should both have RxNorm mappings');
+assert(atenololMapped.coverage.unmappedDrugCount === 0, 'Atenolol standards case should not report unmapped drugs after enrichment');
+assert(atenololMapped.coverage.markerMappingCount >= 2, 'CYP2C9 IM should expose marker mappings in the Atenolol standards case');
+assert(atenololMapped.coverage.pgxActionCount >= 1, 'Warfarin CYP2C9 Atenolol case should expose CPIC-linked action context');
+assert(/Standards coverage: 2\/2 recognized medications mapped to RxNorm/i.test(atenololMapped.scopeText),
+  'Reviewer Console scope should summarize full RxNorm coverage for the Atenolol case');
+assert(/SNOMED CT diagnosis\/symptom mapping is not used/i.test(atenololMapped.scopeText), 'Reviewer Console scope should state SNOMED boundary');
+assert(/Standards identity: 2\/2 recognized medications mapped to RxNorm/i.test(atenololMapped.handoffText),
+  'V1 handoff should include full standards identity coverage for the Atenolol case');
+assert(atenololMapped.readiness.checks.some(check => check.key === 'standards' && check.ok === true),
+  'Mapped Atenolol standards case should keep the Standards identity readiness check passing');
 
-console.log('V1 standards coverage audit passed: RxNorm, PGx marker, CPIC action, and standards-gap disclosure are visible.');
+console.log('V1 standards coverage audit passed: RxNorm, PGx marker, CPIC action, and SNOMED boundary disclosure are visible.');

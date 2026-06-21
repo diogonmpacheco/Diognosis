@@ -1,7 +1,7 @@
 // Diognosis - external clinical standards bridge
 // Keeps runtime local while exposing source-linked identity and PGx action context.
 
-const CLINICAL_STANDARDS_VERSION = "2026-06-21-batch30-high-impact-standards";
+const CLINICAL_STANDARDS_VERSION = "2026-06-21-batch31-high-impact-standards";
 
 const EXTERNAL_ID_SYSTEMS = Object.freeze({
   RXNORM: "RxNorm",
@@ -18,6 +18,7 @@ const EXTERNAL_SUBSTANCE_MAPPINGS = Object.freeze([
   { substance:"Allopurinol", rxnormCui:"519", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Amiodarone", rxnormCui:"703", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Amitriptyline", rxnormCui:"704", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
+  { substance:"Atenolol", rxnormCui:"1202", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Bupropion", rxnormCui:"42347", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Clarithromycin", rxnormCui:"21212", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
   { substance:"Clopidogrel", rxnormCui:"32968", source:"NIH RxNav", confidence:"exact_ingredient", scope:"ingredient" },
