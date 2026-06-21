@@ -996,7 +996,7 @@ assert(!/interact|substances?/i.test(emptyAudienceListRegression.patient.medList
   'Patient empty selected-list state should avoid clinician-oriented interaction/substance wording');
 assert(emptyAudienceListRegression.patient.medCount.trim() === '', 'Patient empty selected-list state should not show a count');
 assert(/doctor or pharmacist/i.test(emptyAudienceListRegression.patient.mainEmptyText), 'Patient empty start state should orient around doctor/pharmacist follow-up');
-assert(!/\b(?:Switch to Clinician|source-linked|metabolites?|PGx|CYP\d|AUC|Cmax|pharmacogenomic)\b/i.test(emptyAudienceListRegression.patient.mainEmptyText),
+assert(!/\b(?:Switch to Clinician|clinical context|source-linked|metabolites?|PGx|CYP\d|AUC|Cmax|pharmacogenomic)\b/i.test(emptyAudienceListRegression.patient.mainEmptyText),
   'Patient empty start state should avoid clinician-only technical copy');
 assert(emptyAudienceListRegression.clinician.audienceMode === 'clinician', 'Empty selected-list regression should return to Clinician mode');
 assert(/Add medications, supplements, or foods above to see how they interact/i.test(emptyAudienceListRegression.clinician.medListText),
