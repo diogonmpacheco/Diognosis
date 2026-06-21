@@ -277,7 +277,7 @@ function renderOverviewPage(source, data) {
   return `${generatedComment()}
 ${sharedHead({
   title: 'Medication Class Interaction Guides',
-  description: 'Diognosis MedCheck Engine medication class guides for common, high-scale medication groups: statins, blood pressure drugs, anticoagulants, diabetes medicines, pain medicines, psychiatry, anti-infectives, acid suppression, hormones, and oncology/transplant examples.',
+  description: 'Diognosis medication class guides for common, high-scale medication groups: statins, blood pressure drugs, anticoagulants, diabetes medicines, pain medicines, psychiatry, anti-infectives, acid suppression, hormones, and oncology/transplant examples.',
   canonicalPath: 'medication-classes.html',
   extraCss,
 })}
@@ -291,7 +291,7 @@ ${sharedHead({
       <a class="back" href="./index.html">Back to Diognosis</a>
       <a class="back" href="./data-views.html">Data views</a>
       <h1>Medication Class Interaction Guides</h1>
-      <p>High-yield MedCheck Engine starting points for common medication groups and known interaction patterns: pharmacogenomics, CYP inhibition or induction, active metabolites, transporters, bleeding, QT, electrolytes, acid suppression, and PK exposure.</p>
+      <p>High-yield Diognosis starting points for common medication groups and known interaction patterns: pharmacogenomics, CYP inhibition or induction, active metabolites, transporters, bleeding, QT, electrolytes, acid suppression, and PK exposure.</p>
 ${classGuideSnapshotHtml(source, data)}
     </div>
   </header>
@@ -343,7 +343,7 @@ function renderExamplesPage(source, data) {
   return `${generatedComment()}
 ${sharedHead({
   title: 'Expanded Medication Class Examples',
-  description: 'Expanded Diognosis MedCheck Engine medication class example lists for common high-scale drug groups and known interaction patterns.',
+  description: 'Expanded Diognosis medication class example lists for common high-scale drug groups and known interaction patterns.',
   canonicalPath: 'medication-class-examples.html',
   extraCss,
 })}
@@ -357,7 +357,7 @@ ${sharedHead({
       <a class="back" href="./medication-classes.html">Back to class guides</a>
       <a class="back" href="./index.html">Back to Diognosis</a>
       <h1>Expanded Medication Class Examples</h1>
-      <p>Longer example sets for common, high-scale medication groups. Each link opens the Diognosis app with a focused MedCheck Engine stack.</p>
+      <p>Longer example sets for common, high-scale medication groups. Each link opens the Diognosis app with a focused medication stack.</p>
 ${classGuideSnapshotHtml(source, data)}
       <nav class="nav" aria-label="Medication class example sections">
 ${source.guides.map((guide) => `        <a href="#${html(guide.id)}">${html(guide.navLabel)}</a>`).join('\n')}
@@ -366,8 +366,8 @@ ${source.guides.map((guide) => `        <a href="#${html(guide.id)}">${html(guid
   </header>
   <main>
     <section class="note">
-      <p><strong>Not a clinical ranking.</strong> These are discovery prompts for common-use or high-review-burden classes. All MedCheck Engine evidence remains source-linked and pending professional review.</p>
-      <p style="margin-top:8px">Scale rationale uses public U.S. prescription-use signals from <a href="https://www.cdc.gov/nchs/fastats/drug-use-therapeutic.htm">CDC/NCHS</a> and MEPS-derived <a href="https://clincalc.com/blog/2025/08/clincalc-drugstats-most-commonly-prescribed-medications-in-2023/">ClinCalc DrugStats</a>; examples are chosen because they are useful MedCheck Engine discovery prompts, not because they are the most dangerous combinations.</p>
+      <p><strong>Not a clinical ranking.</strong> These are discovery prompts for common-use or high-review-burden classes. All Diognosis evidence remains source-linked and pending professional review.</p>
+      <p style="margin-top:8px">Scale rationale uses public U.S. prescription-use signals from <a href="https://www.cdc.gov/nchs/fastats/drug-use-therapeutic.htm">CDC/NCHS</a> and MEPS-derived <a href="https://clincalc.com/blog/2025/08/clincalc-drugstats-most-commonly-prescribed-medications-in-2023/">ClinCalc DrugStats</a>; examples are chosen because they are useful Diognosis discovery prompts, not because they are the most dangerous combinations.</p>
     </section>
 
 ${source.guides.map(renderExamplesSection).join('\n\n')}
