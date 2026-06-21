@@ -171,7 +171,7 @@ function normalizeDailyMedRecords(index, aliasMapRef) {
           direction: 'label_metadata',
           affectedActors: [matchedDrug],
           mechanismSummary: `DailyMed label metadata available for ${matchedDrug}.`,
-          clinicalSummary: 'Public label metadata is staged as source context only and remains pending professional review.',
+          clinicalSummary: 'Public label metadata is staged as source context only and remains without professional sign-off.',
         },
         evidence: {
           sourceIdentifiers: [`DailyMed:${sourceObjectId}`, label.splVersion && `SPL version ${label.splVersion}`].filter(Boolean),

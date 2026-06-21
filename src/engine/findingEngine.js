@@ -407,7 +407,7 @@ function summarizeFindingEvidenceStatus(evidenceRefs = [], studies = []) {
   if (!evidenceRefs.length && !studies.length) return "inferred/review required";
   const reviewed = hasProfessionalFindingReview(studies);
   const tier = strongestFindingEvidenceTier(studies);
-  return `${tier || "source-linked"}; ${reviewed ? "professionally reviewed" : "pending professional review"}`;
+  return `${tier || "source-linked"}; ${reviewed ? "professionally reviewed" : "professional sign-off not claimed"}`;
 }
 
 function strongestFindingEvidenceTier(studies = []) {

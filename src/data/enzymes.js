@@ -598,14 +598,14 @@ const PHASE15_SOURCE_BACKED_PGX_PAIRS = Object.freeze([
 for (const [gene, drug, sourceLabel, sourceIdentifiers] of PHASE15_SOURCE_BACKED_PGX_PAIRS) {
   const entry = PHARMGKB_EVIDENCE[gene] || (PHARMGKB_EVIDENCE[gene] = {
     grade:"C",
-    guideline:"CPIC/ClinPGx source-backed pending review",
+    guideline:"CPIC/ClinPGx source-backed context",
     pairs:[]
   });
   if ((entry.pairs || []).some(pair => pair.drug === drug)) continue;
   entry.pairs.push({
     drug,
     level:"C",
-    action:`Source-backed ${gene} pharmacogenomic context for ${drug}; keep as pending source-specific review until a drug-specific CPIC/DPWG-style recommendation is curated.`,
+    action:`Source-backed ${gene} pharmacogenomic context for ${drug}; treat as source context until a drug-specific CPIC/DPWG-style recommendation is curated.`,
     sourceLabel,
     sourceIdentifiers,
     evidenceRefs:["ev_phase15_source_backed_pgx_pairs"],

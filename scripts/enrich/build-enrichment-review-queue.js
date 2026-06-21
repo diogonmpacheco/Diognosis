@@ -34,7 +34,7 @@ function queueItem(record) {
     priority: priority(record),
     sourceRecords: [record.id],
     suggestedTarget: suggestedTarget(record),
-    reason: record.claim?.clinicalSummary || record.claim?.mechanismSummary || 'Staged enrichment candidate requires human review.',
+    reason: record.claim?.clinicalSummary || record.claim?.mechanismSummary || 'Staged enrichment candidate requires professional sign-off.',
     affectedDrugs: record.claim?.drugs || [],
     affectedGenes: record.claim?.genes || [],
     affectedMetabolites: record.claim?.metabolites || [],
@@ -63,7 +63,7 @@ function queueItemFromGroup(group) {
     sourceRecords: group.records || [],
     groupedCandidateId: group.candidateId,
     suggestedTarget: group.suggestedTarget || 'review_only',
-    reason: group.summary || 'Grouped structured-source candidate requires human review.',
+    reason: group.summary || 'Grouped structured-source candidate requires professional sign-off.',
     affectedDrugs: group.drugs || [],
     affectedGenes: group.genes || [],
     affectedMetabolites: group.metabolites || [],
@@ -127,7 +127,7 @@ Generated: ${report.generatedAt}
 - P2: ${report.priorityCounts.P2 || 0}
 - P3: ${report.priorityCounts.P3 || 0}
 
-No item can auto-promote. Every item requires human review.
+No item can auto-promote. Every item requires explicit professional sign-off.
 
 ${markdownTable(['Priority', 'Suggested target', 'Affected', 'Reason', 'Source record'], rows)}
 `;

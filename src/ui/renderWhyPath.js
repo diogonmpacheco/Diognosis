@@ -107,7 +107,7 @@ function renderMechanismWhyPaths() {
     <div class="finding-meta">
       <span class="finding-tag type">${safePublicHtml(String(finding.source || "finding").replace(/_/g, " "))}</span>
       <span class="finding-tag">${safePublicHtml(finding.evidenceLadder?.mechanisticConfidence || finding.confidence || "unknown")} confidence</span>
-      <span class="finding-tag ${finding.reviewRequired ? "warn" : "review"}">${finding.reviewRequired ? "review needed" : "reviewed"}</span>
+      <span class="finding-tag ${finding.reviewRequired ? "warn" : "review"}">${finding.reviewRequired ? "source context" : "source-linked"}</span>
       ${finding.rawFindingCount ? `<span class="finding-tag">${safePublicHtml(String(finding.rawFindingCount))} supporting signal${finding.rawFindingCount === 1 ? "" : "s"} grouped</span>` : ""}
     </div>
   </div>`;

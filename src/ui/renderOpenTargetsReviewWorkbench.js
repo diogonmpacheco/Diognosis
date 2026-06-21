@@ -259,7 +259,7 @@ function normalizeReviewWorkbenchEvidenceRow(row, stackMatched) {
       row.calculationBearing ? "Calculation-bearing" : "",
       severePairs.length ? `${severePairs.length} severe/critical link${severePairs.length === 1 ? "" : "s"}` : "",
     ].filter(Boolean),
-    detail: (row.priorityReasons || []).slice(0, 4).join(", ") || "Pending professional review.",
+    detail: (row.priorityReasons || []).slice(0, 4).join(", ") || "Professional sign-off not claimed.",
     raw: row,
     calculationBearing: Boolean(row.calculationBearing),
   };

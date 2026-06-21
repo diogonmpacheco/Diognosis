@@ -249,7 +249,7 @@ export function explainLiveEligibility(record = {}) {
   reasons.push('source identifier present');
   reasons.push('mapped Diognosis actor present');
   reasons.push('clear claim type and direction');
-  reasons.push('automated preview only; professional review remains pending');
+  reasons.push('automated preview only; professional sign-off is not claimed');
   return { liveEligibility: LIVE_ELIGIBILITY.ELIGIBLE, reasons };
 }
 

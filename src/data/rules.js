@@ -365,12 +365,12 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     metaboliteId:"4-hydroxy-nebivolol",
     metaboliteName:"4-Hydroxy-nebivolol",
     enzyme:"CYP2D6",
-    note:"4-Hydroxy-nebivolol is active, but CYP2D6 PM reduces formation while parent nebivolol accumulates markedly. The parent exposure fold remains on the parent row.",
+    note:"4-Hydroxy-nebivolol is active, but CYP2D6 PM/null status reduces formation while parent nebivolol exposure can rise substantially. The parent exposure fold remains on the parent row.",
     evidenceRefs:["ev_nebivolol_cyp2d6_label"],
     inhibitionDirection:"decrease",
     inhibitionLabel:"CYP2D6 inhibition/phenoconversion: 4-OH formation reduced; parent nebivolol accumulates",
     effects:{
-      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"4-OH formation reduced; parent nebivolol accumulates about 15x (see parent row/CLINICAL_FOLD)" },
+      [GENOTYPE_PHENOTYPE.PM]: { qualitative:true, direction:"decrease", label:"4-OH formation reduced; parent nebivolol exposure can rise substantially; labeling does not recommend routine genotype-only dose adjustment (see parent row/CLINICAL_FOLD)" },
       [GENOTYPE_PHENOTYPE.IM]: { qualitative:true, direction:"decrease", label:"4-OH moderately reduced; parent nebivolol higher than NM" },
       [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
     }

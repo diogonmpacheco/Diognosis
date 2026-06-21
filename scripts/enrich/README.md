@@ -52,7 +52,7 @@ Public-facts policy:
 - Safe-to-use public facts include identifiers, study design, sample size if public, genotype/drug directionality, public abstract-level effect sizes, broad metabolite relationships, and paraphrased conclusions.
 - Full text is only required for precision upgrades: exact tables, detailed subgroup values, figures, supplementary datasets, or any claim that cannot be supported from public metadata/abstract/label/guideline text.
 - Never copy protected wording, tables, figures, or full abstracts into Diognosis or Diognosis data. Store paraphrased findings and citations instead.
-- Drafts from public-only evidence must remain `verified:false` and `reviewRequired:true` until human review.
+- Drafts from public-only evidence must remain `verified:false` and `reviewRequired:true` until explicit professional sign-off.
 
 Novelty-first discovery:
 

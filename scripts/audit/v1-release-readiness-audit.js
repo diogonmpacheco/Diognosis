@@ -169,7 +169,7 @@ for (const scenario of clinicianScenarios) {
   assert(result.trustChips >= result.cards, `${scenario.name}: Overview cards should expose trust chips`);
   assert(!/\b(?:pending review action|review needed action|insufficient action)\b/i.test(result.trustChipText),
     `${scenario.name}: trust chips should not expose awkward internal action-status wording`);
-  assert(/action needs clinical review|action reviewed|action evidence limited/i.test(result.trustChipText),
+  assert(/professional sign-off not claimed|action reviewed|action evidence limited/i.test(result.trustChipText),
     `${scenario.name}: trust chips should use readable clinical-action status copy`);
   assert(result.discussionGuides >= result.cards, `${scenario.name}: Overview cards should expose discussion guides`);
   assert(result.monitoringGuides >= result.cards, `${scenario.name}: Overview cards should expose monitoring focus`);

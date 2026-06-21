@@ -220,8 +220,8 @@ function buildReviewQueue(data) {
   const summary = {
     schemaVersion: 1,
     totalRows: rows.length,
-    pendingProfessionalReviewRows: rows.filter((row) => row.professionalReviewStatus === 'pending_professional_review').length,
-    professionallyReviewedRows: rows.filter((row) => row.professionalReviewStatus === 'professionally_reviewed').length,
+    futureProfessionalSignoffCandidateRows: rows.filter((row) => row.professionalReviewStatus === 'pending_professional_review').length,
+    professionalSignoffRows: rows.filter((row) => row.professionalReviewStatus === 'professionally_reviewed').length,
     calculationBearingRows: rows.filter((row) => row.calculationBearing).length,
     severeCriticalLinkedRows: rows.filter((row) => row.severeCriticalDdiCount > 0).length,
     criticalReviewRows: rows.filter((row) => row.priorityTier === 'critical_review').length,
@@ -302,15 +302,15 @@ function renderMarkdown({ rows, summary }) {
 
 Generated from the current Diognosis source data by \`scripts/audit/evidence-review-queue.js\`.
 
-This queue ranks evidence entries for professional review. It is intentionally conservative: all current public evidence remains pending professional review, and Open Targets-ready fields are present now so imported context can enter the same governance workflow later.
+This queue ranks evidence entries for future professional sign-off. It is intentionally conservative: current public evidence is source-integrated for V1 without claiming professional sign-off, and Open Targets-ready fields are present now so imported context can enter the same governance workflow later.
 
 ## Summary
 
 | Metric | Count |
 | --- | ---: |
 | Total queue rows | ${summary.totalRows} |
-| Pending professional review | ${summary.pendingProfessionalReviewRows} |
-| Professionally reviewed | ${summary.professionallyReviewedRows} |
+| Future professional sign-off candidates | ${summary.futureProfessionalSignoffCandidateRows} |
+| Professional sign-off metadata present | ${summary.professionalSignoffRows} |
 | Calculation-bearing rows | ${summary.calculationBearingRows} |
 | Rows linked to severe/critical warnings | ${summary.severeCriticalLinkedRows} |
 | Critical review rows | ${summary.criticalReviewRows} |

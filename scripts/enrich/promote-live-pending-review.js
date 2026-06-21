@@ -156,9 +156,9 @@ function studyForCandidate(row) {
   const id = stableId('ev_live_pending', row);
   const actors = actorsForRecord(row);
   const governance = makeLivePendingReviewGovernance();
-  const title = `Source-linked pending-review preview: ${actorLabel(row)} ${claimLabel(row)}`;
+  const title = `Source-linked preview: ${actorLabel(row)} ${claimLabel(row)}`;
   const limitations = [
-    'Automated source traceability check only; professional review remains pending.',
+    'Automated source traceability check only; professional sign-off is not claimed.',
     'Diognosis-authored summary; no protected full text copied.',
   ];
   return {
@@ -181,9 +181,9 @@ function studyForCandidate(row) {
     ].filter(Boolean),
     sourceIdentifiers: sourceIdentifiersForRecord(row),
     sourceRecordIds: row.sourceRecords || [],
-    summary: `Automated curated preview for ${actorLabel(row)}. The mapped claim is kept visible as a review prompt and remains pending professional review.`,
+    summary: `Automated curated preview for ${actorLabel(row)}. The mapped claim is kept visible as source context and remains without professional sign-off.`,
     mechanismSummary: row.mechanismSummary || '',
-    clinicalSummary: 'Source-linked pending-review preview. Not clinical decision support.',
+    clinicalSummary: 'Source-linked preview. Not clinical decision support.',
     limitations,
     public: true,
     ...governance,
@@ -198,12 +198,12 @@ function ddiForCandidate(row, studyId) {
     drug1: actors.drugs[0],
     drug2: actors.drugs[1],
     severity: 'monitor',
-    category: 'source-linked pending-review context',
-    mechanism: row.mechanismSummary || `Source-linked pending-review interaction context for ${actors.drugs[0]} and ${actors.drugs[1]}.`,
+    category: 'source-linked preview context',
+    mechanism: row.mechanismSummary || `Source-linked preview interaction context for ${actors.drugs[0]} and ${actors.drugs[1]}.`,
     evidenceRefs: [studyId],
     sourceIdentifiers: sourceIdentifiersForRecord(row),
     sourceRecordIds: row.sourceRecords || [],
-    clinicalSummary: 'Live pending-review preview. Severity remains conservative until professional review.',
+    clinicalSummary: 'Live source-linked preview. Severity remains conservative without professional sign-off.',
     ...makeLivePendingReviewGovernance({ canAffectPublicSeverity: false }),
   };
 }

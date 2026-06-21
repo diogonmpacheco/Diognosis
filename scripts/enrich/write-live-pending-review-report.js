@@ -73,7 +73,7 @@ ${markdownTable(['Provider', 'Failures'], failureRows)}
 
 - Raw provider cache payloads are local build artifacts and ignored by default.
 - Small manifests, metadata, review queues, and generated summaries are the committed review surface.
-- Live records shown in the app are pending professional review and cannot affect scoring or public severity by themselves.
+- Live records shown in the app are without professional sign-off and cannot affect scoring or public severity by themselves.
 
 ## Files
 
@@ -167,7 +167,7 @@ const report = {
     publicSeverityEnabled: queue.publicSeverityEnabled || 0,
     scoringEnabled: queue.scoringEnabled || 0,
     professionalReviewPerformed: false,
-    recommendation: 'show staged enrichment as pending human review context; keep external records non-scoring and non-severity-bearing.',
+    recommendation: 'show staged enrichment as without professional sign-off context; keep external records non-scoring and non-severity-bearing.',
   },
 };
 

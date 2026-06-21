@@ -560,7 +560,7 @@ function studyCardHTML(study) {
     ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Limitations: ${study.limitations.map(item => esc(publicText(item))).join(' · ')}</div>` : '';
   const unverified = study.verifyNote
     ? `<div style="font-size:10px;color:var(--amber);margin-top:3px">Review note: ${esc(publicText(study.verifyNote))}</div>` : '';
-  const reviewBadge = '<span class="ev-review-badge needs-review">clinical review needed</span>';
+  const reviewBadge = '<span class="ev-review-badge needs-review">source-linked</span>';
   const liveBadge = study.livePendingReview === true
     ? '<span class="ev-review-badge needs-review">source preview</span><span class="ev-review-badge needs-review">not clinical guidance</span>'
     : study.pendingSourceSignal === true
@@ -588,7 +588,7 @@ function studyCardHTML(study) {
     ${qeItems.length ? `<div class="ev-effects">${qeItems.join(' · ')}</div>` : ''}
     ${study.temporal && study.temporal.onset ? `<div class="ev-temporal">Onset: ${esc(study.temporal.onset)}${study.temporal.washout ? ` · Washout: ${esc(study.temporal.washout)}` : ''}</div>` : ''}
     ${study.pendingSourceSignal === true ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Pending source context · not used for scoring or public severity</div>` : ''}
-    ${study.livePendingReview === true ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Source-linked pending review · automated source traceability check · not medical advice</div>` : ''}
+    ${study.livePendingReview === true ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Source-linked preview · automated source traceability check · not medical advice</div>` : ''}
     ${unverified}${contradicts}${limits}
     <div class="feedback-row">${feedbackLink}</div>
   </div>`;

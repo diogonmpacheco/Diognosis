@@ -183,7 +183,7 @@ for (const pmid of allPmids) {
   }
 }
 
-const pendingProfessionalReviewIds = [];
+const notProfessionallyReviewedIds = [];
 for (const [id, study] of Object.entries(data.STUDY_DB || {})) {
   const professionallyReviewed =
     study.professionalReviewed === true ||
@@ -193,7 +193,7 @@ for (const [id, study] of Object.entries(data.STUDY_DB || {})) {
   if (study.verified === true) {
     add('errors', 'legacy_verified_flag', `${id} uses deprecated verified:true; use professional review fields only after sign-off`, id);
   }
-  if (!professionallyReviewed) pendingProfessionalReviewIds.push(id);
+  if (!professionallyReviewed) notProfessionallyReviewedIds.push(id);
   if (!study.pmid && !study.doi && !study.url) {
     add('warnings', 'study_without_external_identifier', `${id} lacks PMID, DOI, and URL`, id);
   }
@@ -219,8 +219,13 @@ for (const [id, study] of Object.entries(data.STUDY_DB || {})) {
     }
   }
 }
-if (pendingProfessionalReviewIds.length) {
-  add('info', 'studies_pending_professional_review', `${pendingProfessionalReviewIds.length} studies are pending professional review`, pendingProfessionalReviewIds.length);
+if (notProfessionallyReviewedIds.length) {
+  add(
+    'info',
+    'studies_source_integrated_without_professional_signoff',
+    `${notProfessionallyReviewedIds.length} source-integrated studies do not claim professional sign-off`,
+    notProfessionallyReviewedIds.length
+  );
 }
 
 for (const ddi of data.KNOWN_DDI || []) {
@@ -292,13 +297,27 @@ const modeledGenes = new Set([
   ...Object.keys(data.GENOTYPE_EFFECTS || {}),
   ...Object.keys(data.GENOTYPE_RISK_EFFECTS || {}),
 ]);
+function modelGeneAliases(gene) {
+  const aliases = new Set([String(gene || '').trim()].filter(Boolean));
+  const normalized = gene && typeof data.normalizePharmGxGene === 'function'
+    ? data.normalizePharmGxGene(gene)
+    : null;
+  if (normalized) aliases.add(normalized);
+  const upper = String(gene || '').toUpperCase();
+  if (/^RYR1\b|^CACNA1S\b|^RYR1\/CACNA1S\b/.test(upper)) {
+    aliases.add('RYR1/CACNA1S MH variant');
+  }
+  return [...aliases];
+}
 function hasModeledGeneOrMarker(gene) {
-  if (modeledGenes.has(gene)) return true;
-  return [...modeledGenes].some(key =>
-    key === gene ||
-    key.startsWith(`${gene}*`) ||
-    key.startsWith(`${gene}:`) ||
-    key.startsWith(`${gene} `)
+  return modelGeneAliases(gene).some(alias =>
+    modeledGenes.has(alias) ||
+    [...modeledGenes].some(key =>
+      key === alias ||
+      key.startsWith(`${alias}*`) ||
+      key.startsWith(`${alias}:`) ||
+      key.startsWith(`${alias} `)
+    )
   );
 }
 for (const [gene, markers] of Object.entries(data.PGX_MARKER_MAPPINGS || {})) {

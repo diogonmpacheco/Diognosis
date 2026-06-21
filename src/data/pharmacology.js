@@ -1347,7 +1347,7 @@ function top100CoveragePkParams(drug) {
     /ssri|maoi|antiarrhythmic|statin|anticoag|antiplatelet/i.test(text) ? 25 : 100;
   return {
     F, ka:pkKaFromTmax(tmax, halfLife), halfLife, Vd, dose_mg,
-    note:`Approximate PK profile for ${drug.name} using available half-life, class, and route context while drug-specific parameter curation is pending review.`,
+    note:`Approximate PK profile for ${drug.name} using available half-life, class, and route context while drug-specific parameter curation is incomplete.`,
     nonlinear:/phenytoin|saturable|nonlinear|autoinduction|mdma|paroxetine|phenytoin/i.test(`${text} ${drug?.note || ""}`),
     evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
     internalProvenance:{ phase:"phase7", batch:"top250_live_pk", reviewStatus:"pending" },
@@ -1395,7 +1395,7 @@ if (typeof PHASE12_DRUG_EXPANSION_NAMES !== "undefined") {
     const key = top100CoveragePharmKey(drug);
     if (!top100CoverageHasScoring(PK_PARAMS, drug)) {
       const pk = top100CoveragePkParams(drug);
-      pk.note = `Approximate PK profile for ${drug.name}; drug-specific PK curation is pending review.`;
+      pk.note = `Approximate PK profile for ${drug.name}; drug-specific PK curation is incomplete.`;
       pk.evidenceRefs = [...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS];
       pk.internalProvenance = { phase:"phase12", batch:"drug_count_pk", reviewStatus:"pending" };
       PK_PARAMS[key] = pk;
@@ -1453,11 +1453,11 @@ if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
     const existingPk = top100GoldScoringRow(PK_PARAMS, drug);
     if (existingPk) {
       top100GoldMergeEvidenceRefs(existingPk.row);
-      existingPk.row.note = `${existingPk.row.note || ""} This profile is included in PK simulation while drug-specific curation is pending review.`.trim();
+      existingPk.row.note = `${existingPk.row.note || ""} This profile is included in PK simulation while drug-specific curation is incomplete.`.trim();
       existingPk.row.internalProvenance = { ...(existingPk.row.internalProvenance || {}), phase:"phase13", batch:"top100_gold_pk" };
     } else {
       const pk = top100CoveragePkParams(drug);
-      pk.note = `Approximate PK profile for ${drug.name}; drug-specific PK curation is pending review.`;
+      pk.note = `Approximate PK profile for ${drug.name}; drug-specific PK curation is incomplete.`;
       pk.evidenceRefs = [...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS];
       pk.internalProvenance = { phase:"phase13", batch:"top100_gold_pk", reviewStatus:"pending" };
       PK_PARAMS[key] = pk;
@@ -1549,7 +1549,7 @@ function ninetyPercentCoverageFillDrugTable(table, rows, hasRow, addRow) {
 
 function ninetyPercentCoveragePkParams(drug) {
   const row = top100CoveragePkParams(drug);
-  row.note = `Approximate PK profile for ${drug.name} using available half-life, class, and route context while drug-specific parameters are pending review.`;
+  row.note = `Approximate PK profile for ${drug.name} using available half-life, class, and route context while drug-specific parameters are incomplete.`;
   row.evidenceRefs = [...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS];
   row.evidence = { confidence:"low", sources:["90% live coverage adapter"], studyType:"route_half_life_adapter" };
   row.internalProvenance = { phase:"phase16", batch:"ninety_percent_pk", reviewStatus:"pending" };

@@ -618,7 +618,7 @@ function computeEnzymeCapacity(enzyme, stack) {
   if (capacity_pct <= 10) {
     clinical_note = `${enzyme} near-zero functional activity. All substrates at extreme exposure risk. Avoid new ${enzyme} substrates. Consider therapeutic drug monitoring.`;
   } else if (capacity_pct <= 25) {
-    clinical_note = `${enzyme} severely impaired (<25% normal). Substrates at 3–10× AUC increase. Dose reductions required for all significant ${enzyme} substrates.`;
+    clinical_note = `${enzyme} severely impaired (<25% normal). Substrates may have large exposure increases, but dose changes must be drug-specific. Review labeling/guidelines, indication, symptoms, and monitoring before changing therapy.`;
   } else if (capacity_pct <= 50) {
     clinical_note = `${enzyme} moderately impaired (<50% normal). Substrates at 2–4× AUC increase. Monitor for adverse effects.`;
   } else if (capacity_pct <= 75) {

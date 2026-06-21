@@ -15,22 +15,22 @@ Diognosis is a source-linked educational preview. It is designed to make pharmac
 Current evidence status:
 
 <!-- PUBLIC_TRUST_STATS_START -->
-- **517 `STUDY_DB` entries** have public source identifiers.
-- **517 entries** are pending professional review.
-- **0 entries** are professionally reviewed.
+- **517 `STUDY_DB` entries** are source-integrated for V1 evidence display and calculations.
+- **0 entries** have explicit v3 professional sign-off metadata.
+- **517 entries** remain eligible for future professional sign-off without blocking V1 source integration.
 - **356 entries** are currently marked `reviewRequired:true` as an internal enrichment/scoring flag, not a public reviewed/unreviewed boundary.
 <!-- PUBLIC_TRUST_STATS_END -->
-- Severe and critical warnings remain visible for discovery, but severity is not clinically final until reviewed.
+- Severe and critical warnings remain visible for discovery, but severity is not clinically final without explicit professional sign-off.
 
 ## External Enrichment Boundary
 
 External enrichment records from PubMed, Europe PMC, OpenAlex, Unpaywall, CPIC Data, ClinPGx, and Open Targets enter Diognosis through staged review files before any promotion decision.
 
-Unreviewed external enrichment records cannot affect scoring, public severity, contraindication wording, genotype rules, metabolite maps, or shipped database behavior. CPIC, ClinPGx, and literature records remain pending human review until source faithfulness, mapping, directionality, copyright/license, and clinical wording are checked.
+External enrichment records cannot affect scoring, public severity, contraindication wording, genotype rules, metabolite maps, or shipped database behavior unless promoted into committed Diognosis source data. CPIC, ClinPGx, and literature records can be source-integrated for V1 when local mapping and boundary checks pass; professional clinical sign-off remains a later metadata layer.
 
 ClinPGx and CPIC Data are build-time/script-time sources only. They are not queried from the browser.
 
-Diognosis may continue adding source-linked pending-review data. Pending review is shown explicitly. A source-faithfulness review does not equal professional clinical review, and local review overlays belong to the local/fork maintainer unless upstream explicitly adopts them.
+Diognosis may continue adding source-linked data. Source integration is shown explicitly and does not equal professional clinical review. Local review overlays belong to the local/fork maintainer unless upstream explicitly adopts them.
 
 ## What A Reviewer Should Check
 
@@ -82,12 +82,12 @@ npm run release:check
 
 This adds the database, V1 public-docs, standards/readiness, strict validation, data-view, evidence ledger, evidence-review UI, V1 PGx contract, V1 PK visualization, V1 finding contract, feedback privacy, scenario, regression, and other source-boundary audits.
 
-## Current Review Priorities
+## Future Professional Sign-Off Priorities
 
-The first human review pass should prioritize:
+The later professional sign-off phase should prioritize:
 
 - Severe/critical warnings used in public demos.
-- Calculation-bearing pending evidence.
+- Calculation-bearing source-integrated evidence.
 - High-impact transplant, oncology, anesthesia, G6PD, and anticoagulation cases.
 - Evidence entries linked to many severe or critical rows.
 - Any report that claims a quantified fold, dose reduction, contraindication, or guideline-backed action.

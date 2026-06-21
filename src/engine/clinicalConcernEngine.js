@@ -638,7 +638,7 @@ function clinicalSupportingSignalForFinding(finding, entry = {}) {
     severity: finding.severity || "info",
     confidence: finding.confidence || "unknown",
     evidenceRefs: uniqueClinicalValues(finding.evidenceRefs || []),
-    sourceStatus: (finding.evidenceRefs || []).length ? "source-linked, pending review" : "modeled support",
+    sourceStatus: (finding.evidenceRefs || []).length ? "source-linked support" : "modeled support",
     presentationLevel: entry.presentationLevel || "supporting",
   };
 }
@@ -916,7 +916,7 @@ function buildV1FindingTrustContract(finding = {}, context = {}) {
     clinicianAction: v1TrustClinicianAction(safeFinding, domain),
     limitationStatus: v1TrustLimitationStatus({ sourceLinked, reviewed, finding:safeFinding }),
     sourceLinked,
-    clinicalReviewStatus: reviewed ? "reviewed" : "clinical review needed",
+    clinicalReviewStatus: reviewed ? "reviewed" : "professional sign-off not claimed",
     evidenceRefs,
     sourceCount: safeFinding.evidenceLadder?.studyCount || evidenceRefs.length,
     sourceTypes: uniqueClinicalValues(studies.map(study => String(study.type || "").replace(/_/g, " "))),
@@ -1056,7 +1056,7 @@ function v1TrustConfidenceLabel(finding = {}) {
 function v1TrustActionStatusLabel(value) {
   const key = String(value || "").trim().toLowerCase().replace(/_/g, " ");
   if (key === "reviewed" || key === "professionally reviewed") return "action reviewed";
-  if (key === "pending review" || key === "review needed" || key === "clinical review needed") return "action needs clinical review";
+  if (key === "pending review" || key === "review needed" || key === "clinical review needed") return "professional sign-off not claimed";
   if (key === "insufficient") return "action evidence limited";
   return `${v1TrustLabelCase(value)} action`;
 }
@@ -1105,7 +1105,7 @@ function v1TrustClinicianAction(finding = {}, domain = "") {
 
 function v1TrustLimitationStatus({ sourceLinked = false, reviewed = false, finding = {} } = {}) {
   if (reviewed) return "Professionally reviewed source-linked finding.";
-  if (sourceLinked) return "Source-linked; clinical review needed.";
+  if (sourceLinked) return "Source-linked; professional sign-off not claimed.";
   if (finding.reviewRequired === false) return "Reviewed modeled context.";
   return "Modeled signal; verify before clinical use.";
 }
@@ -1118,7 +1118,7 @@ function v1TrustLabelCase(value) {
 
 function v1TrustCompactText(value) {
   return String(value || "")
-    .replace(/\bpending\s+professional\s+(?:clinical\s+)?review\b/gi, "clinical review needed")
+    .replace(/\bpending\s+professional\s+(?:clinical\s+)?review\b/gi, "professional sign-off not claimed")
     .replace(/\bmodel-only\b/gi, "modeled")
     .replace(/_/g, " ")
     .replace(/\s+/g, " ")

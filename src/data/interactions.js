@@ -17,7 +17,7 @@ const PATHWAY_DIVERSION = {
 "Clopidogrel":{primary:{enzyme:"CYP2C19",metabolite:"Active thiol metabolite",activity:"active",pct:15},diverted:[{enzyme:"Esterases",metabolite:"SR26334 (inactive acid)",activity:"inactive",pct:85}],clinicalImpact:"CYP2C19 PM: active metabolite ↓ 70%. FDA black box warning",severity:"critical",pmEffect:"no_effect"},
 "Warfarin":{primary:{enzyme:"CYP2C9",metabolite:"7-Hydroxywarfarin (S-warfarin clearance)",activity:"inactive",pct:85},diverted:[{enzyme:"CYP3A4",metabolite:"10-Hydroxywarfarin (R-warfarin)",activity:"inactive",pct:10},{enzyme:"CYP1A2",metabolite:"6-Hydroxywarfarin",activity:"inactive",pct:5}],clinicalImpact:"CYP2C9 PM: S-warfarin clearance ↓ 50-90%. Requires 30-50% dose reduction",severity:"critical",pmEffect:"severe_toxicity"},
 "Metoprolol":{primary:{enzyme:"CYP2D6",metabolite:"O-desmethylmetoprolol",activity:"inactive",pct:65},diverted:[{enzyme:"CYP2D6",metabolite:"alpha-Hydroxymetoprolol",activity:"inactive",pct:10}],clinicalImpact:"CYP2D6 PM: AUC ↑ 5x. Severe bradycardia/hypotension",severity:"critical",pmEffect:"severe_toxicity"},
-"Nebivolol":{primary:{enzyme:"CYP2D6",metabolite:"4-Hydroxynebivolol",activity:"weak",pct:38},diverted:[{enzyme:"UGT",metabolite:"Glucuronide conjugates",activity:"inactive",pct:30}],clinicalImpact:"CYP2D6 PM: AUC ↑ 15x (up to 23x in CYP2D6-null homozygotes). Severe bradycardia at standard doses",severity:"critical",pmEffect:"severe_toxicity"},
+"Nebivolol":{primary:{enzyme:"CYP2D6",metabolite:"4-Hydroxynebivolol",activity:"weak",pct:38},diverted:[{enzyme:"UGT",metabolite:"Glucuronide conjugates",activity:"inactive",pct:30}],clinicalImpact:"CYP2D6 poor/null: parent exposure rises substantially, but labeling/guideline context does not support routine genotype-only dose reduction. Monitor pulse, blood pressure, dizziness, syncope, dyspnea/wheezing, and bradycardia risk.",severity:"moderate",pmEffect:"exposure_monitoring"},
 "Omeprazole":{primary:{enzyme:"CYP2C19",metabolite:"5-Hydroxyomeprazole",activity:"inactive",pct:80},diverted:[{enzyme:"CYP3A4",metabolite:"Omeprazole sulfone",activity:"inactive",pct:20}],clinicalImpact:"CYP2C19 PM: AUC ↑ 5-10x. Enhanced acid suppression — beneficial but infection risk ↑",severity:"low",pmEffect:"enhanced_effect"},
 "Tamoxifen":{primary:{enzyme:"CYP2D6",metabolite:"Endoxifen",activity:"active_100x",pct:5},diverted:[{enzyme:"CYP3A4",metabolite:"N-desmethyltamoxifen",activity:"weak",pct:90}],clinicalImpact:"CYP2D6 PM: endoxifen ↓ 75%. Breast cancer recurrence risk increases",severity:"critical",pmEffect:"treatment_failure"},
 "DXM (Dextromethorphan)":{primary:{enzyme:"CYP2D6",metabolite:"Dextrorphan",activity:"active_different",pct:90},diverted:[{enzyme:"CYP3A4",metabolite:"3-Methoxymorphinan",activity:"weak",pct:10}],clinicalImpact:"CYP2D6 PM: DXM accumulates as NMDA antagonist/dissociative. Serotonin syndrome risk ↑↑",severity:"high",pmEffect:"qualitative_shift"}
@@ -506,7 +506,7 @@ const KNOWN_DDI = [
     ]
   }
 },
-  // ── Salvaged Gemini enrichment: reviewed for duplicates, pending human review ──
+  // ── Salvaged Gemini enrichment: reviewed for duplicates, without professional sign-off ──
 {
     drug1: "Dronedarone",
     drug2: "Rosuvastatin",
@@ -2500,8 +2500,31 @@ if (typeof NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS !== "undefined") {
   }
 }
 
+function ddiConfidenceRank(row) {
+  const confidence = String(row?.evidence?.confidence || "").toLowerCase();
+  if (confidence === "high") return 3;
+  if (confidence === "moderate") return 2;
+  if (confidence === "low") return 1;
+  return 0;
+}
+
+function addLabelBackedKnownDdiRows(...rows) {
+  for (const row of rows) {
+    const key = top100CoverageDdiKey(row.drug1, row.drug2);
+    const existingIndex = KNOWN_DDI.findIndex(item => top100CoverageDdiKey(item.drug1, item.drug2) === key);
+    if (existingIndex < 0) {
+      KNOWN_DDI.push(row);
+      continue;
+    }
+    const existing = KNOWN_DDI[existingIndex];
+    const evidenceRefs = [...new Set([...(existing.evidenceRefs || []), ...(row.evidenceRefs || [])])];
+    const shouldReplace = Boolean(existing.internalProvenance && !row.internalProvenance) || ddiConfidenceRank(row) >= ddiConfidenceRank(existing);
+    KNOWN_DDI[existingIndex] = shouldReplace ? { ...row, evidenceRefs } : { ...existing, evidenceRefs };
+  }
+}
+
 // Label-backed post-coverage rows: these are explicit live pairs, not fallback substitutions.
-KNOWN_DDI.push(
+addLabelBackedKnownDdiRows(
   {drug1:"Abatacept",drug2:"Adalimumab",severity:"severe",category:"biologic_immunosuppression",mechanism:"Abatacept labeling does not recommend concurrent TNF antagonist therapy because serious infection risk rises without meaningful added efficacy.",effect:"Avoid concurrent biologic immunosuppression unless a specialist protocol explicitly supports transition timing; screen and monitor infection risk.",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_abatacept_tnf_label"]},
   {drug1:"Abatacept",drug2:"Etanercept",severity:"severe",category:"biologic_immunosuppression",mechanism:"Etanercept is a TNF antagonist; abatacept labeling warns concurrent TNF antagonist therapy increases serious infection risk.",effect:"Avoid routine co-use; coordinate biologic switching/washout and infection screening with rheumatology.",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_abatacept_tnf_label"]},
   {drug1:"Abatacept",drug2:"Infliximab",severity:"severe",category:"biologic_immunosuppression",mechanism:"Infliximab is a TNF antagonist; abatacept labeling states concurrent TNF antagonist therapy is not recommended due to infection risk.",effect:"Avoid concurrent therapy; monitor for serious infection if transition overlap occurred.",evidence:{confidence:"high",sources:["FDA label"]},evidenceRefs:["ev_abatacept_tnf_label"]},

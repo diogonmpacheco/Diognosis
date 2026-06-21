@@ -22,6 +22,7 @@ function loadBundleContext() {
         return elements[id] || (elements[id] = {
           innerHTML: '', textContent: '', style: {},
           classList: { add(){}, remove(){}, toggle(){} },
+          setAttribute(){}, removeAttribute(){},
           nextElementSibling: { classList: { toggle(){} } },
         });
       },
@@ -87,7 +88,7 @@ function isRegulatoryLabel(study, tiers) {
 
 function diffStats(actual, generated) {
   const keys = [
-    'drugs', 'studies', 'sourceLinkedStudies', 'professionalReviewedStudies', 'pendingProfessionalReviewStudies', 'internalReviewRequiredEntries', 'studiesWithPmid',
+    'drugs', 'studies', 'sourceLinkedStudies', 'sourceIntegratedStudies', 'professionalReviewedStudies', 'notProfessionallyReviewedStudies', 'v3ProfessionalReviewCandidateStudies', 'internalReviewRequiredEntries', 'studiesWithPmid',
     'nonRegulatoryUncited', 'ddiPairs', 'severeDdi', 'moderateDdi', 'mildDdi',
     'genotypeGenes', 'metaboliteParents', 'metaboliteEntries', 'metaboliteActors',
     'pkParams', 'receptorScores', 'beersFlags', 'washoutRules',
@@ -97,6 +98,7 @@ function diffStats(actual, generated) {
     'pendingCoreWashoutCandidates',
   ];
   return keys
+    .filter(key => actual[key] !== undefined || generated[key] !== undefined)
     .filter(key => actual[key] !== generated[key])
     .map(key => ({ key, actual: actual[key], generated: generated[key] }));
 }
@@ -110,7 +112,8 @@ const publicStudies = Object.values(data.STUDY_DB || {}).filter(study => study.p
 const professionalReviewed = publicStudies
   .filter(study => study.professionalReviewed === true || study.clinicalReviewed === true || ['professional_reviewed', 'clinician_reviewed'].includes(study.reviewStatus))
   .map(study => ({ id: study.id, title: study.title, reviewStatus: study.reviewStatus || null }));
-const pendingProfessionalReviewStudies = publicStudies.length - professionalReviewed.length;
+const notProfessionallyReviewedStudies = publicStudies.length - professionalReviewed.length;
+const sourceIntegratedStudies = publicStudies.filter(study => hasExternalIdentifier(study) || isRegulatoryLabel(study, data.EVIDENCE_TIER)).length;
 const graphPendingEvidence = new Set();
 const ddiPendingEvidence = new Set();
 if (typeof data.getInteractionGraph === 'function') {
@@ -136,8 +139,10 @@ const report = {
     drugs: data.DRUG_DB.length,
     studies: studyIds.size,
     publicStudies: publicStudies.length,
-    sourceLinkedEvidenceEntries: publicStudies.filter(study => hasExternalIdentifier(study) || isRegulatoryLabel(study, data.EVIDENCE_TIER)).length,
-    pendingProfessionalReviewStudies,
+    sourceLinkedEvidenceEntries: sourceIntegratedStudies,
+    sourceIntegratedEvidenceEntries: sourceIntegratedStudies,
+    notProfessionallyReviewedStudies,
+    v3ProfessionalReviewCandidateStudies: notProfessionallyReviewedStudies,
     professionalReviewedStudies: professionalReviewed.length,
     internalReviewRequiredEntries: publicStudies.filter(study => study.reviewRequired === true).length,
     internalReviewRequiredFeedingGraphCalculations: graphPendingEvidence.size,
@@ -203,7 +208,7 @@ const severeMissingRefs = data.KNOWN_DDI
   .filter(ddi => (ddi.severity === 'severe' || ddi.severity === 'critical') && !(ddi.evidenceRefs || []).length)
   .map(ddi => ({ pair: `${ddi.drug1} + ${ddi.drug2}`, severity: ddi.severity, confidence: ddi.evidence?.confidence || null }));
 
-const severeOnlyPendingReviewRefs = data.KNOWN_DDI
+const severeOnlyInternalReviewRequiredRefs = data.KNOWN_DDI
   .filter(ddi => ddi.severity === 'severe' || ddi.severity === 'critical')
   .filter(ddi => (ddi.evidenceRefs || []).length)
   .filter(ddi => (ddi.evidenceRefs || []).every(ref => data.STUDY_DB?.[ref]?.reviewRequired === true))
@@ -244,8 +249,10 @@ const readmeMismatches = [
   ['studies', actualStats.studies],
   ['studiesWithPmid', actualStats.studiesWithPmid],
   ['sourceLinkedStudies', actualStats.sourceLinkedStudies],
+  ['sourceIntegratedStudies', actualStats.sourceIntegratedStudies],
   ['professionalReviewedStudies', actualStats.professionalReviewedStudies],
-  ['pendingProfessionalReviewStudies', actualStats.pendingProfessionalReviewStudies],
+  ['notProfessionallyReviewedStudies', actualStats.notProfessionallyReviewedStudies],
+  ['v3ProfessionalReviewCandidateStudies', actualStats.v3ProfessionalReviewCandidateStudies],
   ['ddiPairs', actualStats.ddiPairs],
   ['severeDdi', actualStats.severeDdi],
   ['moderateDdi', actualStats.moderateDdi],
@@ -267,8 +274,8 @@ const readmeMismatches = [
   ['pendingCorePkCandidates', actualStats.pendingCorePkCandidates],
   ['pendingCoreBeersCandidates', actualStats.pendingCoreBeersCandidates],
   ['pendingCoreWashoutCandidates', actualStats.pendingCoreWashoutCandidates],
-].filter(([, value]) => !readme.includes(String(value))).map(([key, value]) => ({ key, value }));
-const liveStatsMismatches = diffStats(actualStats, JSON.parse(index.match(/const DIOGNOSIS_STATS = (\{[\s\S]*?\n\});/)?.[1] || '{}'));
+].filter(([, value]) => value !== undefined && !readme.includes(String(value))).map(([key, value]) => ({ key, value }));
+const liveStatsMismatches = diffStats(actualStats, data.DIOGNOSIS_STATS || {});
 
 const severeDrugNames = new Set();
 for (const ddi of data.KNOWN_DDI) {
@@ -299,7 +306,7 @@ report.checks = {
   duplicateDdiPairs: duplicatePairs.length,
   conflictingDuplicateDdiPairs: conflictingDuplicatePairs.length,
   severeDdiMissingEvidenceRefs: severeMissingRefs.length,
-  severeDdiOnlyPendingReviewRefs: severeOnlyPendingReviewRefs.length,
+  severeDdiOnlyInternalReviewRequiredRefs: severeOnlyInternalReviewRequiredRefs.length,
   missingEvidenceRefs: missingEvidenceRefs.length,
   sourceLinkedNoExternalId: sourceLinkedNoExternalId.length,
   legacyVerifiedFlags: legacyVerifiedFlags.length,
@@ -318,7 +325,7 @@ report.samples = {
   duplicatePairs,
   conflictingDuplicatePairs,
   severeMissingRefs: severeMissingRefs.slice(0, 100),
-  severeOnlyPendingReviewRefs: severeOnlyPendingReviewRefs.slice(0, 100),
+  severeOnlyInternalReviewRequiredRefs: severeOnlyInternalReviewRequiredRefs.slice(0, 100),
   missingEvidenceRefs: missingEvidenceRefs.slice(0, 100),
   sourceLinkedNoExternalId,
   legacyVerifiedFlags,
@@ -330,7 +337,7 @@ report.samples = {
   highRiskMetadataGaps: highRiskMetadataGaps.slice(0, 100),
 };
 
-report.pendingProfessionalReview = publicStudies
+report.futureProfessionalSignoffCandidates = publicStudies
   .filter(study => !professionalReviewed.some(reviewed => reviewed.id === study.id))
   .map(study => ({
     id: study.id,
@@ -348,7 +355,7 @@ const refUseCounts = new Map();
 for (const ddi of data.KNOWN_DDI) {
   for (const ref of ddi.evidenceRefs || []) refUseCounts.set(ref, (refUseCounts.get(ref) || 0) + (severityRank[ddi.severity] || 1));
 }
-report.topReviewPriorities = report.pendingProfessionalReview
+report.topSignoffPriorities = report.futureProfessionalSignoffCandidates
   .map(study => ({
     id: study.id,
     title: study.title,

@@ -75,7 +75,7 @@ function renderActiveMoietyRow(row) {
     <div class="finding-meta">
       <span class="finding-tag type">parent-metabolite model</span>
       <span class="finding-tag">confidence: ${safePublicHtml(row.confidence || "unknown")}</span>
-      <span class="finding-tag ${row.reviewRequired ? "warn" : "review"}">${row.reviewRequired ? "review needed" : "reviewed"}</span>
+      <span class="finding-tag ${row.reviewRequired ? "warn" : "review"}">${row.reviewRequired ? "source context" : "source-linked"}</span>
       <span class="finding-tag">${safeHtml(evidence)}</span>
     </div>
   </div>`;

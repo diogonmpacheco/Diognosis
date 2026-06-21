@@ -622,15 +622,15 @@ function buildOverviewHandoffText() {
 
 function currentHandoffGeneResultSummary(options = {}) {
   const patient = !!options.patient;
-  const tokens = typeof activeGenotypeUrlTokens === "function" ? activeGenotypeUrlTokens() : [];
-  if (!tokens.length) {
+  const labels = typeof activeGenotypeHandoffLabels === "function" ? activeGenotypeHandoffLabels() : [];
+  if (!labels.length) {
     return patient
       ? "Gene results added in this screen: none"
       : "Selected gene/marker results: none";
   }
   return patient
-    ? `Gene results added in this screen: ${tokens.join(", ")}`
-    : `Selected gene/marker results: ${tokens.join(", ")}`;
+    ? `Gene results added in this screen: ${labels.join(", ")}`
+    : `Selected gene/marker results: ${labels.join(", ")}`;
 }
 
 function currentHandoffDataBoundaryLine() {
@@ -1351,7 +1351,7 @@ function publicEvidenceSummaryForFinding(finding = {}) {
       : "";
     const source = ladder.sourceLinked ? "source-linked" : "modeled";
     const count = ladder.studyCount ? `${ladder.studyCount} source${ladder.studyCount === 1 ? "" : "s"}` : "";
-    const review = ladder.professionalReviewStatus === "reviewed" ? "reviewed" : "clinical review needed";
+    const review = ladder.professionalReviewStatus === "reviewed" ? "reviewed" : "professional sign-off not claimed";
     return publicDisplayText([source, tier, count, review].filter(Boolean).join(" · "));
   }
   return publicEvidenceSummaryFromRefs(finding.evidenceRefs || []);
@@ -1359,8 +1359,8 @@ function publicEvidenceSummaryForFinding(finding = {}) {
 
 function publicEvidenceSummaryFromRefs(refs = []) {
   const count = [...new Set(refs || [])].length;
-  if (count) return `${count} linked source${count === 1 ? "" : "s"} · clinical review needed`;
-  return "modeled signal · clinical review needed";
+  if (count) return `${count} linked source${count === 1 ? "" : "s"} · professional sign-off not claimed`;
+  return "modeled signal · source review needed";
 }
 
 function publicFindingDetailTarget(finding = {}) {
@@ -1648,6 +1648,9 @@ function buildFindingMonitoringItems(presentation = {}, trust = null, options = 
     if (/qt|torsades|arrhythm|heart rhythm|bradycard|electrolyte/.test(text)) {
       add("Fainting, palpitations, chest pain, severe dizziness, vomiting, or dehydration.");
     }
+    if (/nebivolol|beta[-\s]?block|slow pulse|slow heart|bradycard/.test(text)) {
+      add("Dizziness, fainting, unusual fatigue, very slow pulse, low blood pressure symptoms, shortness of breath, or wheezing.");
+    }
     if (/sedation|fall|sleepiness|breathing|confusion|cns|opioid|benzodiazepine|anticholinergic|drows/.test(text)) {
       add("Extreme sleepiness, confusion, falls, slowed breathing, constipation, or trouble urinating.");
     }
@@ -1734,7 +1737,7 @@ function renderFindingTrustStrip(trust, patient = false) {
     </div>`;
   }
   const source = trust.sourceLinked ? "Source-linked" : "Modeled";
-  const status = trust.clinicalReviewStatus === "reviewed" ? "Reviewed" : "Clinical review needed";
+  const status = trust.clinicalReviewStatus === "reviewed" ? "Reviewed" : "Sign-off not claimed";
   const chips = [
     ["Concern", trust.concernCategory],
     ["Evidence", source],
@@ -1786,6 +1789,9 @@ function patientFindingStepText(presentation = {}, field = "changed") {
   const serious = severity === "critical" || severity === "severe";
   const lower = text.toLowerCase();
   if (field === "changed") {
+    if (/nebivolol/.test(lower) && /cyp2d6|gene|genotype|pgx|exposure/.test(lower)) {
+      return "Your CYP2D6 result may make nebivolol levels higher; prescribing information does not recommend a routine dose change based on this result alone.";
+    }
     if (/washout|persistence|timing|switch/.test(lower)) {
       return "Timing may matter because some effects can last after a medicine is changed.";
     }
@@ -1823,6 +1829,9 @@ function patientFindingStepText(presentation = {}, field = "changed") {
       : "This is a safety note to review for the current list.";
   }
   if (field === "why") {
+    if (/nebivolol/.test(lower) && /cyp2d6|gene|genotype|pgx|exposure/.test(lower)) {
+      return "Nebivolol is processed through CYP2D6, but pulse, blood pressure, symptoms, and other medicines still determine what needs follow-up.";
+    }
     if (/avoid|contraindicat|severe|critical|high risk/.test(lower) || serious) {
       return "The combination may need a different plan or extra monitoring before use.";
     }
@@ -1889,6 +1898,9 @@ function patientFindingTitleText(presentation = {}) {
   ].join(" ")).toLowerCase();
   const actors = (presentation.affectedSubstances || []).filter(Boolean);
   const pair = actors.slice(0, 2).join(" + ");
+  if (/nebivolol/.test(text) && /cyp2d6|gene|genotype|pgx|exposure/.test(text)) {
+    return "Nebivolol levels may be higher with your CYP2D6 result";
+  }
   if (hasAntiplateletPatientContext(text)) {
     return actors.length >= 2
       ? `${actors[0]} may work less well with ${actors[1]}`
@@ -1947,10 +1959,11 @@ function renderConcernSupportingSignals(finding) {
 
 function compactReviewStatus(value) {
   return publicDisplayText(value || "")
-    .replace(/\bpending professional review\b/gi, "review needed")
+    .replace(/\bpending professional review\b/gi, "professional sign-off not claimed")
     .replace(/\bneeds review\b/gi, "review needed")
     .replace(/\breview prompt\b/gi, "modeled support")
     .replace(/\bsource linked, pending review\b/gi, "source-linked support")
+    .replace(/\bsource-linked;\s*professional sign-off not claimed\b/gi, "source-linked support")
     .trim();
 }
 
@@ -1966,7 +1979,7 @@ function renderEvidenceLadderCompact(ladder) {
   const review = ladder.professionalReviewStatus === "reviewed"
     ? "reviewed"
     : ladder.professionalReviewStatus === "pending"
-    ? "clinical review needed"
+    ? "professional sign-off not claimed"
     : "review status unknown";
   return `<div class="evidence-ladder-compact">
     <span>Evidence: ${safePublicHtml(tier)}</span>
@@ -2739,12 +2752,47 @@ function activeGenotypeUrlTokens() {
   const genotypeState = typeof activeGenotype !== "undefined" ? activeGenotype : {};
   for (const [gene, phenotype] of Object.entries(genotypeState || {})) {
     if (GENOTYPE_EFFECTS[gene] && phenotype && phenotype !== GENOTYPE_PHENOTYPE.NM) {
-      tokens.push(`${gene}:${genotypeTokenForUrl(phenotype)}`);
+      tokens.push(activeGenotypeUrlToken(gene, phenotype));
     } else if (typeof GENOTYPE_RISK_EFFECTS !== "undefined" && GENOTYPE_RISK_EFFECTS[gene] && phenotype === GENOTYPE_RISK_STATUS.PRESENT) {
       tokens.push(riskMarkerTokenForUrl(gene));
     }
   }
   return tokens;
+}
+
+function activeGenotypeHandoffLabels() {
+  const labels = [];
+  const genotypeState = typeof activeGenotype !== "undefined" ? activeGenotype : {};
+  for (const [gene, phenotype] of Object.entries(genotypeState || {})) {
+    if (GENOTYPE_EFFECTS[gene] && phenotype && phenotype !== GENOTYPE_PHENOTYPE.NM) {
+      const token = activeGenotypeUrlToken(gene, phenotype);
+      if (token.endsWith(":null")) {
+        const interpreted = typeof phenotypeLabelForGene === "function"
+          ? phenotypeLabelForGene(gene, phenotype)
+          : genotypeTokenForUrl(phenotype);
+        labels.push(`${token} (interpreted as ${interpreted})`);
+      } else {
+        labels.push(token);
+      }
+    } else if (typeof GENOTYPE_RISK_EFFECTS !== "undefined" && GENOTYPE_RISK_EFFECTS[gene] && phenotype === GENOTYPE_RISK_STATUS.PRESENT) {
+      labels.push(riskMarkerTokenForUrl(gene));
+    }
+  }
+  return labels;
+}
+
+function activeGenotypeUrlToken(gene, phenotype) {
+  if (phenotype === GENOTYPE_PHENOTYPE.PM && isReportedNullGenotype(gene)) return `${gene}:null`;
+  return `${gene}:${genotypeTokenForUrl(phenotype)}`;
+}
+
+function isReportedNullGenotype(gene) {
+  const legacy = typeof userGenetics !== "undefined" ? userGenetics?.[gene] : "";
+  if (legacy === "null") return true;
+  const detail = typeof activeGenotypeDetails !== "undefined" ? activeGenotypeDetails?.[gene] : null;
+  const mechanism = String(detail?.mechanism || "");
+  const reported = String(detail?.reportedLabel || "").toLowerCase();
+  return mechanism === "inherited_no_function" || /(^|\b)(null|no[-\s]?function|nonfunctional|deletion|deleted|absent)(\b|$)/.test(reported);
 }
 
 function genotypeTokenForUrl(phenotype) {

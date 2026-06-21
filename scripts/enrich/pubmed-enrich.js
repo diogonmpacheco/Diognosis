@@ -653,7 +653,7 @@ function extractQuantifiedEffects(abstract, relation) {
     else if (effects.foldChange) bits.push(`approximately ${effects.foldChange}-fold change`);
     if (effects.percentChange) bits.push(`about ${effects.percentChange}% change`);
     if (effects.groupMetricValues) bits.push(`${effects.groupMetricValues.length} public metric sentence${effects.groupMetricValues.length === 1 ? '' : 's'} with grouped values`);
-    effects.note = `Public abstract/metadata extraction for ${relation || 'target relation'} found ${bits.join(' and ')}. Requires human review before promotion.`;
+    effects.note = `Public abstract/metadata extraction for ${relation || 'target relation'} found ${bits.join(' and ')}. Requires professional sign-off before promotion.`;
   } else {
     effects.note = `Citation appears relevant to ${relation || 'target relation'}, but no quantitative value was extractable from public abstract/metadata.`;
   }
@@ -702,7 +702,7 @@ function makeDraft(article, args) {
     supports: (args.supports || '').split(',').map(s => s.trim()).filter(Boolean),
     contradicts: [],
     limitations: extraction.hasNumber
-      ? ['Public abstract/metadata extraction only; requires human review before promotion']
+      ? ['Public abstract/metadata extraction only; requires professional sign-off before promotion']
       : ['Public metadata/abstract supports qualitative context only; do not promote a quantitative rule without full text, open source, label, or guideline confirmation'],
     confidence: extraction.hasNumber ? 'moderate' : 'low',
     publicFactsUsable: true,
@@ -712,7 +712,7 @@ function makeDraft(article, args) {
     openAccess: article.oa || normalizeOpenAccess(),
     provenance: article.provenance || 'search:unknown',
     verified: false,
-    verifyNote: 'Enrichment draft; requires human pharmacist/physician review before STUDY_DB promotion',
+    verifyNote: 'Enrichment draft; requires professional sign-off before STUDY_DB promotion',
     _createdAt: new Date().toISOString(),
   };
 }

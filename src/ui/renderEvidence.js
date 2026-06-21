@@ -13,9 +13,9 @@ function renderEvidenceExplorer() {
   }
 
   // Collect all relevant studies for current stack.
-  // Public trust status is intentionally unified: no evidence entry is presented
-  // as professionally reviewed yet. The reviewRequired flag remains an internal
-  // enrichment/scoring control, not a separate public trust tier.
+  // Public trust status is intentionally unified: evidence can be source-integrated
+  // for V1 without claiming professional sign-off. The reviewRequired flag remains
+  // an internal enrichment/scoring control, not a separate public trust tier.
   const relevantStudies = new Map();
   const reviewStudies = new Map();
   const drugNames = activeStack.map(n => n.toLowerCase());
@@ -57,9 +57,9 @@ function renderEvidenceExplorer() {
 
   if (section) section.style.display = "";
 
-  // Integrated display. Review-required enrichment drafts are shown inline with
-  // the older evidence entries, while every card carries the same pending
-  // professional-review badge from studyCardHTML.
+  // Integrated display. Review-required enrichment rows are shown inline with
+  // the older evidence entries, while every card carries the same source-linked
+  // badge from studyCardHTML.
   const combinedStudies = [...relevantStudies.values(), ...reviewStudies.values()]
     .sort((a, b) => {
       const ra = a.reviewRequired === true ? 1 : 0;
@@ -70,7 +70,7 @@ function renderEvidenceExplorer() {
 
   if (countEl) {
     const pendingRows = combinedStudies.filter(study => study.pendingSourceSignal).length;
-    countEl.textContent = `${combinedStudies.length} source-linked evidence${pendingRows ? ` · ${pendingRows} pending source signal${pendingRows === 1 ? "" : "s"}` : ""} · clinical review needed`;
+    countEl.textContent = `${combinedStudies.length} source-integrated evidence${pendingRows ? ` · ${pendingRows} source preview signal${pendingRows === 1 ? "" : "s"}` : ""} · professional sign-off not claimed`;
   }
 
   // Tier filter buttons span every displayed card.
@@ -89,7 +89,7 @@ function renderEvidenceExplorer() {
   const ladderLedger = renderEvidenceLadderLedger(findings);
 
   const reviewNotice = `<div class="ev-review-notice" style="margin-bottom:10px;border:1px solid var(--amber);background:var(--amberBg);border-radius:8px;padding:8px 10px;font-size:11px;color:var(--amber);line-height:1.5">
-    Educational only. Source entries are linked for traceability and still need clinical review; severity output is explanatory and not medical advice.
+    Educational only. Source entries are integrated for traceability; professional sign-off is not claimed and severity output is explanatory, not medical advice.
   </div>`;
 
   el.innerHTML = reviewNotice + ladderLedger + tierFilterHTML + `<div id="evCardsContainer">${cardsHTML}</div>`;
@@ -126,7 +126,7 @@ function renderEvidenceLadderLedger(findings = []) {
   }
   const sourceLinkedFindings = findings.filter(finding => finding.evidenceLadder?.sourceLinked);
   const noRefFindings = findings.length - sourceLinkedFindings.length;
-  const pendingFindings = findings.filter(finding => finding.evidenceLadder?.professionalReviewStatus !== "reviewed");
+  const unsignedFindings = findings.filter(finding => finding.evidenceLadder?.professionalReviewStatus !== "reviewed");
   const rows = [...rowsByRef.values()].sort((a, b) =>
     (EVIDENCE_WEIGHT[b.study.type] || 0) - (EVIDENCE_WEIGHT[a.study.type] || 0) ||
     String(a.study.title || "").localeCompare(String(b.study.title || ""))
@@ -145,7 +145,7 @@ function renderEvidenceLadderLedger(findings = []) {
           <div class="evidence-ledger-title">${safePublicHtml(title)}</div>
           <div class="evidence-ledger-meta">${safePublicHtml(tier.toLowerCase())} · ${safePublicHtml(identifiers)}</div>
         </div>
-        <span class="ev-review-badge needs-review">${ladder.professionalReviewStatus === "reviewed" ? "reviewed" : "review needed"}</span>
+        <span class="ev-review-badge needs-review">${ladder.professionalReviewStatus === "reviewed" ? "reviewed" : "source-linked"}</span>
       </div>
       <div class="evidence-ledger-support">${safePublicHtml([...new Set(row.findings)].slice(0, 4).join(" · "))}</div>
       ${relatedButton ? `<div class="supporting-actions">${relatedButton}</div>` : ""}
@@ -153,7 +153,7 @@ function renderEvidenceLadderLedger(findings = []) {
         <span class="finding-tag">source: ${safePublicHtml(typeof compactReviewStatus === "function" ? compactReviewStatus(sourceSupportStatusLabel(ladder.sourceSupportStatus)) : sourceSupportStatusLabel(ladder.sourceSupportStatus))}</span>
         <span class="finding-tag">mechanistic: ${safePublicHtml(ladder.mechanisticConfidence)}</span>
         <span class="finding-tag">clinical action: ${safePublicHtml(String(ladder.clinicalActionConfidence).replace(/_/g, " "))}</span>
-        <span class="finding-tag">review: ${safePublicHtml(ladder.professionalReviewStatus === "reviewed" ? "reviewed" : "review needed")}</span>
+        <span class="finding-tag">sign-off: ${safePublicHtml(ladder.professionalReviewStatus === "reviewed" ? "professional" : "not claimed")}</span>
         <span class="finding-tag">${row.study.quantifiedEffects ? "calculation-bearing context" : "qualitative context"}</span>
       </div>
     </div>`;
@@ -162,7 +162,7 @@ function renderEvidenceLadderLedger(findings = []) {
     <div class="evidence-ledger-summary">
       <div><strong>${safePublicHtml(String(findings.length))}</strong><span>current findings</span></div>
       <div><strong>${safePublicHtml(String(sourceLinkedFindings.length))}</strong><span>source-linked findings</span></div>
-      <div><strong>${safePublicHtml(String(pendingFindings.length))}</strong><span>review needed</span></div>
+      <div><strong>${safePublicHtml(String(unsignedFindings.length))}</strong><span>no sign-off claimed</span></div>
       <div><strong>${safePublicHtml(String(noRefFindings))}</strong><span>inferred / no refs</span></div>
     </div>
     <div class="evidence-ledger-label">Evidence Browser / Evidence Ledger</div>
@@ -192,7 +192,7 @@ function renderQualityDashboard() {
     s.reviewStatus === "professional_reviewed" ||
     s.reviewStatus === "clinician_reviewed"
   );
-  const pendingProfessionalReview = publicStudies.length - professionalReviewed.length;
+  const v3ProfessionalCandidates = publicStudies.length - professionalReviewed.length;
   const reviewNotes = publicStudies.filter(s => s.verifyNote);
   const qualitative = [];
   const quantified = [];
@@ -219,7 +219,7 @@ function renderQualityDashboard() {
   const openTargetsRelease = openTargetsSummary.release || openTargetsSnapshot?.release || "not imported";
 
   if (section) section.style.display = "";
-  if (countEl) countEl.textContent = `${publicStudies.length} evidence · ${pendingProfessionalReview} pending professional review · ${stackExternalContextCount} external context cards`;
+  if (countEl) countEl.textContent = `${publicStudies.length} evidence · ${v3ProfessionalCandidates} v3 sign-off candidates · ${stackExternalContextCount} external context cards`;
 
   const issueItems = [
     ...reviewNotes.slice(0,3).map(s => `<div class="quality-item"><strong>Evidence review note:</strong> ${safePublicHtml(publicEvidenceTitle(s))} · ${safePublicHtml(s.verifyNote)}</div>`),
@@ -230,10 +230,10 @@ function renderQualityDashboard() {
   el.innerHTML = `
     <div class="quality-grid">
       <div class="quality-tile"><div class="quality-num">${DRUG_DB.length}</div><div class="quality-label">Drugs</div><div class="quality-note">Current searchable database</div></div>
-      <div class="quality-tile"><div class="quality-num">${publicStudies.length}</div><div class="quality-label">Source-Linked Evidence</div><div class="quality-note">${stackStudies.length} relevant to this stack · all pending professional review</div></div>
+      <div class="quality-tile"><div class="quality-num">${publicStudies.length}</div><div class="quality-label">Source-Integrated Evidence</div><div class="quality-note">${stackStudies.length} relevant to this stack · professional sign-off not claimed</div></div>
       <div class="quality-tile"><div class="quality-num">${quantified.length}</div><div class="quality-label">Quantified Gene Effects</div><div class="quality-note">Metabolite/active-form rows with numeric folds</div></div>
       <div class="quality-tile"><div class="quality-num">${qualitative.length}</div><div class="quality-label">Qualitative Gene Effects</div><div class="quality-note">Shown without invented fold numbers</div></div>
-      <div class="quality-tile"><div class="quality-num">${professionalReviewed.length}</div><div class="quality-label">Professionally Reviewed Evidence</div><div class="quality-note">${pendingProfessionalReview} entries still pending pharmacist/physician review</div></div>
+      <div class="quality-tile"><div class="quality-num">${professionalReviewed.length}</div><div class="quality-label">V3 Professional Sign-Offs</div><div class="quality-note">${v3ProfessionalCandidates} source-integrated entries remain eligible for future sign-off</div></div>
       <div class="quality-tile"><div class="quality-num">${stackExternalContextCount}</div><div class="quality-label">External Context Cards</div><div class="quality-note">${safePublicHtml(openTargetsSummary.contextFactsIncluded || 0)} imported facts · ${safePublicHtml(openTargetsPromotionSummary?.unreviewed || 0)} awaiting review · ${safePublicHtml(openTargetsRelease)}</div></div>
       <div class="quality-tile"><div class="quality-num">${estimatedFoldCount}</div><div class="quality-label">Live Model Estimates</div><div class="quality-note">Estimated folds visible in the current stack</div></div>
     </div>

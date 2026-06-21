@@ -58,7 +58,7 @@ JSON.stringify((() => {
     study.reviewStatus === 'professional_reviewed' ||
     study.reviewStatus === 'clinician_reviewed'
   );
-  const pendingProfessionalReviewStudies = studyValues.length - professionalReviewedStudies.length;
+  const notProfessionallyReviewedStudies = studyValues.length - professionalReviewedStudies.length;
   const pgxMarkerRows = typeof PGX_MARKER_MAPPINGS === 'undefined'
     ? 0
     : Object.values(PGX_MARKER_MAPPINGS).reduce((sum, rows) => sum + (rows || []).length, 0);
@@ -76,8 +76,10 @@ JSON.stringify((() => {
     drugs: DRUG_DB.length,
     studies: studyValues.length,
     sourceLinkedStudies: sourceLinkedStudies.length,
+    sourceIntegratedStudies: sourceLinkedStudies.length,
     professionalReviewedStudies: professionalReviewedStudies.length,
-    pendingProfessionalReviewStudies,
+    notProfessionallyReviewedStudies,
+    v3ProfessionalReviewCandidateStudies: notProfessionallyReviewedStudies,
     livePendingReviewStudies: studyValues.filter((study) => study.livePendingReview === true).length,
     internalReviewRequiredEntries: studyValues.filter((study) => study.reviewRequired === true).length,
     studiesWithPmid: studyValues.filter((study) => !!study.pmid).length,

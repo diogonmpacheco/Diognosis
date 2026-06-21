@@ -4956,8 +4956,8 @@ function phase12DrugExpansionTemplate(name, index) {
     inh:[], ind:[],
     evidenceRefs:[...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS],
     note:
-      "Phase 12 net-new drug expansion record. Pending professional review; route/class values are conservative live hooks for screening and should be replaced with source-specific labels over time.",
-    alts:[{name:"Source-specific alternative pending review", reason:"Alternatives depend on indication, organ function, and professional review"}],
+      "Phase 12 net-new drug expansion record. Professional sign-off not claimed; route/class values are conservative live hooks for screening and should be replaced with source-specific labels over time.",
+    alts:[{name:"Source-specific alternative", reason:"Alternatives depend on indication, organ function, and professional judgment"}],
   };
 }
 
@@ -5173,8 +5173,8 @@ function getDoseModifier(drugName) {
 // Format: { drugName: { enzyme: { poor:fold, null: fold } } }
 // ═══════════════════════════════════════════════════════════════════
 const CLINICAL_FOLD = {
-  // Nebivolol: PM AUC 15× (Lefebvre 2007, Pharmgenomics); bioav 12%→96% in PM
-  "Nebivolol":       { "CYP2D6": { poor:15.0, null: 23.0 } },
+  // Nebivolol: PM/null parent exposure can be much higher, but label/guideline context does not support routine genotype-only dose reduction.
+  "Nebivolol":       { "CYP2D6": { poor:15.0, null: 15.0 } },
   // Metoprolol: PM AUC 4.9× (Blake 2013 meta-analysis, CPT)
   "Metoprolol":      { "CYP2D6": { poor:4.9, null: 8.0 } },
   // Propranolol: PM AUC ~3× (estimated from 40% CYP2D6 + first-pass)

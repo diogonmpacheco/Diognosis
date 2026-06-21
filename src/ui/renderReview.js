@@ -16,7 +16,7 @@ function renderReviewSummary() {
   const findings = getReviewTabFindings();
   const concerns = getReviewClinicalConcerns(findings);
   const severeCritical = findings.filter(finding => ["severe", "critical"].includes(finding.severity));
-  const pendingReview = findings.filter(finding => finding.reviewRequired !== false || finding.evidenceLadder?.professionalReviewStatus !== "reviewed");
+  const v3SignoffQueue = findings.filter(finding => finding.reviewRequired !== false || finding.evidenceLadder?.professionalReviewStatus !== "reviewed");
   const sourceLinked = findings.filter(finding => finding.evidenceLadder?.sourceLinked || (finding.evidenceRefs || []).length);
   const activeMetabolite = findings.filter(finding => findingInvolves(finding, /active metabolite|toxic metabolite|active moiety|prodrug|metabolite/i));
   const genotype = findings.filter(finding => findingInvolves(finding, /genotype|phenoconversion|cyp|ugt|dpyd|tpmt|nudt|hla|g6pd/i));
@@ -28,7 +28,7 @@ function renderReviewSummary() {
   <div class="review-summary-grid">
     ${renderReviewSummaryTile(findings.length, "Findings", "Normalized current-stack findings across all engines.")}
     ${renderReviewSummaryTile(severeCritical.length, "Severe/Critical", "Highest priority rows for professional review.")}
-    ${renderReviewSummaryTile(pendingReview.length, "Pending Review", "Rows not marked professionally reviewed.")}
+    ${renderReviewSummaryTile(v3SignoffQueue.length, "V3 Sign-Off Queue", "Rows without explicit professional sign-off metadata.")}
     ${renderReviewSummaryTile(sourceLinked.length, "Source-Linked", "Findings with evidence refs or linked source context.")}
     ${renderReviewSummaryTile(activeMetabolite.length, "Metabolite Involved", "Parent, active, or toxic metabolite reasoning present.")}
     ${renderReviewSummaryTile(genotype.length, "Gene Results", "Genotype or pathway-conversion context present.")}
@@ -231,7 +231,7 @@ function buildV1HandoffConcernLines(presentations = []) {
       `${index + 1}. ${presentation.title || "Clinical concern"} [${presentation.severity || "info"}]`,
       `   Concern: ${trust.clinicalConcern || presentation.whatChanged || "Review current stack context."}`,
       `   Mechanism: ${trust.mechanism || presentation.whyItMatters || "Mechanism needs review."}`,
-      `   Evidence/status: ${trust.evidence || presentation.evidenceSummary || "Evidence status unknown"}; ${trust.limitationStatus || "clinical review needed"}`,
+      `   Evidence/status: ${trust.evidence || presentation.evidenceSummary || "Evidence status unknown"}; ${trust.limitationStatus || "professional sign-off not claimed"}`,
       `   Patient-safe next step: ${trust.patientAction || "Review with a doctor or pharmacist before making medication changes."}`,
       `   Clinician review: ${trust.clinicianAction || presentation.whatToReview || "Review dose, timing, source evidence, and clinical context."}`,
       `   Monitoring focus: ${typeof buildFindingMonitoringItems === "function" ? buildFindingMonitoringItems(presentation, trust, { patient:false }).join("; ") : "Review symptoms, dose, timing, labs, organ function, and current medication context."}`,

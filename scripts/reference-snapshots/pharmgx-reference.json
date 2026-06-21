@@ -1,0 +1,69 @@
+{
+  "schema": "diognosis.pharmgx-reference.v1",
+  "generatedAt": "2026-06-21",
+  "source": "Local source-linked PGx baseline derived from committed CPIC/PharmGKB/ClinPGx-backed rows; used as a strict-validation drift guard, not as professional clinical sign-off.",
+  "GENOTYPE_EFFECTS": {
+    "CYP2D6": {
+      "poor_metabolizer": { "auc_fold": 4.5, "tolerance": 0.4 },
+      "intermediate_metabolizer": { "auc_fold": 2.0, "tolerance": 0.4 },
+      "normal_metabolizer": { "auc_fold": 1.0, "tolerance": 0.4 },
+      "ultrarapid_metabolizer": { "auc_fold": 0.3, "tolerance": 0.4 }
+    },
+    "CYP2C19": {
+      "poor_metabolizer": { "auc_fold": 3.0, "tolerance": 0.4 },
+      "intermediate_metabolizer": { "auc_fold": 1.6, "tolerance": 0.4 },
+      "normal_metabolizer": { "auc_fold": 1.0, "tolerance": 0.4 },
+      "ultrarapid_metabolizer": { "auc_fold": 0.5, "tolerance": 0.4 }
+    },
+    "CYP2C9": {
+      "poor_metabolizer": { "auc_fold": 3.5, "tolerance": 0.4 },
+      "intermediate_metabolizer": { "auc_fold": 1.8, "tolerance": 0.4 },
+      "normal_metabolizer": { "auc_fold": 1.0, "tolerance": 0.4 },
+      "ultrarapid_metabolizer": { "auc_fold": 0.7, "tolerance": 0.4 }
+    },
+    "CYP3A5": {
+      "poor_metabolizer": { "auc_fold": 1.8, "tolerance": 0.35 },
+      "intermediate_metabolizer": { "auc_fold": 0.7, "tolerance": 0.35 },
+      "normal_metabolizer": { "auc_fold": 1.0, "tolerance": 0.35 },
+      "ultrarapid_metabolizer": { "auc_fold": 0.5, "tolerance": 0.35 }
+    },
+    "SLCO1B1": {
+      "poor_metabolizer": { "auc_fold": 2.5, "tolerance": 0.35 },
+      "intermediate_metabolizer": { "auc_fold": 1.5, "tolerance": 0.35 },
+      "normal_metabolizer": { "auc_fold": 1.0, "tolerance": 0.35 },
+      "ultrarapid_metabolizer": { "auc_fold": 0.8, "tolerance": 0.35 }
+    },
+    "DPYD": {
+      "poor_metabolizer": { "auc_fold": 20.0, "tolerance": 0.35 },
+      "intermediate_metabolizer": { "auc_fold": 2.0, "tolerance": 0.35 },
+      "normal_metabolizer": { "auc_fold": 1.0, "tolerance": 0.35 }
+    },
+    "TPMT": {
+      "poor_metabolizer": { "auc_fold": 20.0, "tolerance": 0.35 },
+      "intermediate_metabolizer": { "auc_fold": 2.0, "tolerance": 0.35 },
+      "normal_metabolizer": { "auc_fold": 1.0, "tolerance": 0.35 },
+      "ultrarapid_metabolizer": { "auc_fold": 0.5, "tolerance": 0.35 }
+    },
+    "NUDT15": {
+      "poor_metabolizer": { "auc_fold": 20.0, "tolerance": 0.35 },
+      "intermediate_metabolizer": { "auc_fold": 2.0, "tolerance": 0.35 },
+      "normal_metabolizer": { "auc_fold": 1.0, "tolerance": 0.35 }
+    },
+    "UGT1A1": {
+      "poor_metabolizer": { "auc_fold": 1.7, "tolerance": 0.35 },
+      "intermediate_metabolizer": { "auc_fold": 1.2, "tolerance": 0.35 },
+      "normal_metabolizer": { "auc_fold": 1.0, "tolerance": 0.35 }
+    },
+    "VKORC1": {
+      "poor_metabolizer": { "auc_fold": 1.8, "tolerance": 0.35 },
+      "intermediate_metabolizer": { "auc_fold": 1.3, "tolerance": 0.35 },
+      "normal_metabolizer": { "auc_fold": 1.0, "tolerance": 0.35 },
+      "ultrarapid_metabolizer": { "auc_fold": 0.8, "tolerance": 0.35 }
+    },
+    "BCHE": {
+      "poor_metabolizer": { "auc_fold": 20.0, "tolerance": 0.35 },
+      "intermediate_metabolizer": { "auc_fold": 4.0, "tolerance": 0.35 },
+      "normal_metabolizer": { "auc_fold": 1.0, "tolerance": 0.35 }
+    }
+  }
+}

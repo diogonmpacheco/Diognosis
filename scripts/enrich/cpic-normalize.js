@@ -229,7 +229,7 @@ function fetchedRowToRecord(row, payload, normalizedAt) {
       fetchedAt: payload.fetchedAt || normalizedAt,
       license: 'source-specific',
       licenseUrl: 'https://cpicpgx.org',
-      attribution: 'CPIC Data API source object; staged pending source-faithfulness and professional review.',
+      attribution: 'CPIC Data API source object; staged until source faithfulness is checked and professional sign-off is explicit.',
       refreshCadence: 'weekly',
     },
     claim: {

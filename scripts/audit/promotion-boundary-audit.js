@@ -48,11 +48,11 @@ for (const file of listJson(resolve(ROOT, 'data/enrichment/source-faithfulness-d
   const decision = readJson(file, null);
   if (!decision) continue;
   if (decision.schema === 'diognosis.source-faithfulness-review.v1') {
-    if (!decision.stillPendingProfessionalReview) errors.push(`${file}: source-faithfulness review must remain pending professional review`);
+    if (!decision.stillPendingProfessionalReview) errors.push(`${file}: source-faithfulness review must remain without professional sign-off`);
     if (decision.canAffectScoring) errors.push(`${file}: source-faithfulness review can affect scoring`);
   }
   if (decision.schema === 'diognosis.automated-source-check.v1') {
-    if (decision.stillPendingProfessionalReview !== true) errors.push(`${file}: automated source check must remain pending professional review`);
+    if (decision.stillPendingProfessionalReview !== true) errors.push(`${file}: automated source check must remain without professional sign-off`);
     if (decision.canAffectScoring) errors.push(`${file}: automated source check can affect scoring`);
     if (decision.canAffectPublicSeverity) errors.push(`${file}: automated source check can affect public severity`);
   }

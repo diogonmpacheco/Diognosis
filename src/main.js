@@ -278,9 +278,9 @@ installV1RuntimeFacade();
   }
   const statsLine = el("statsLine");
   if (statsLine && typeof DIOGNOSIS_STATS !== "undefined") {
-    const pendingProfessionalReview = DIOGNOSIS_STATS.pendingProfessionalReviewStudies ??
-      Math.max(0, (DIOGNOSIS_STATS.studies || 0) - (DIOGNOSIS_STATS.professionalReviewedStudies || 0));
-    const evidenceLabel = `${DIOGNOSIS_STATS.studies} source-linked evidence entries (${pendingProfessionalReview} not professionally reviewed; ${DIOGNOSIS_STATS.professionalReviewedStudies || 0} professionally reviewed)`;
+    const sourceIntegrated = DIOGNOSIS_STATS.sourceIntegratedStudies || DIOGNOSIS_STATS.sourceLinkedStudies || DIOGNOSIS_STATS.studies || 0;
+    const professionalSigned = DIOGNOSIS_STATS.professionalReviewedStudies || 0;
+    const evidenceLabel = `${sourceIntegrated} source-integrated evidence entries (${professionalSigned} with v3 professional sign-off)`;
     const metaboliteLabel = DIOGNOSIS_STATS.metaboliteEntries
       ? `${DIOGNOSIS_STATS.metaboliteEntries} metabolites across ${DIOGNOSIS_STATS.metaboliteParents} parent substances`
       : null;

@@ -75,7 +75,7 @@ if (!payload) {
     if (record.professionalReviewStatus !== 'pending') fail(`${record.id}: professionalReviewStatus must be pending`);
     if (record.canAffectScoring !== false) fail(`${record.id}: canAffectScoring must be false`);
     if (record.canAffectPublicSeverity !== false) fail(`${record.id}: canAffectPublicSeverity must be false`);
-    if (record.displayBadge !== 'Pending human review') fail(`${record.id}: displayBadge must be Pending human review`);
+    if (record.displayBadge !== 'Professional sign-off required') fail(`${record.id}: displayBadge must be Professional sign-off required`);
     if (!Array.isArray(record.evidenceIdentifiers) || !record.evidenceIdentifiers.length) fail(`${record.id}: evidenceIdentifiers must be non-empty`);
     if (/clinical action|approved|validated|severity upgrade|\bpromotion\b/i.test(`${record.title || ''} ${record.summary || ''}`)) {
       fail(`${record.id}: public text overstates review, actionability, severity, or promotion`);

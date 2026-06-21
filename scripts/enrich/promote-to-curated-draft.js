@@ -57,7 +57,7 @@ const draft = {
     {
       reviewer: args.reviewer,
       date: new Date().toISOString().slice(0, 10),
-      notes: args.notes || 'Source identifier and mapping checked by maintainer; still pending professional review.',
+      notes: args.notes || 'Source identifier and mapping checked by maintainer; still without professional sign-off.',
     },
   ],
   requiredNextReview: ['clinical reviewer', 'pharmacist reviewer', 'source update check'],

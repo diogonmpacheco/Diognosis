@@ -692,6 +692,7 @@ const publicNebivololNullDemoAudit = window.eval(`(() => {
   };
   window.history.replaceState(null, '', '/index.html?substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null&tab=safety');
   loadUrlDemoState();
+  renderAll();
   const interactions = findInteractions();
   const sameEnzymeInhibitor = interactions.find(i =>
     i.drug1 === 'Bupropion' &&
@@ -711,6 +712,9 @@ const publicNebivololNullDemoAudit = window.eval(`(() => {
     mechanism:activeGenotypeDetails.CYP2D6?.mechanism,
     nebivololFold:calcFold('Nebivolol').fold,
     bupropionFold:calcFold('Bupropion').fold,
+    shareUrl:currentStackShareUrl('overview'),
+    patientGeneSummary:currentHandoffGeneResultSummary({ patient:true }),
+    foldText:document.getElementById('foldBody')?.textContent || '',
     hasSameEnzymeInhibitor:!!sameEnzymeInhibitor,
     bidirectionalMechanism:bidirectionalPair?.mechanism || '',
     bidirectionalRefs:bidirectionalPair?.evidenceRefs || [],
@@ -725,7 +729,10 @@ assert(publicNebivololNullDemoAudit.activeTab === 'overview', 'Public nebivolol 
 assert(publicNebivololNullDemoAudit.legacy === 'null', 'Public nebivolol null demo should preserve CYP2D6 null legacy state');
 assert(publicNebivololNullDemoAudit.phenotype === 'poor_metabolizer', 'Public nebivolol null demo should calculate with PM phenotype bucket');
 assert(publicNebivololNullDemoAudit.mechanism === 'inherited_no_function', 'Public nebivolol null demo should preserve inherited no-function semantics');
-assert(publicNebivololNullDemoAudit.nebivololFold === 23, 'CYP2D6 null should use the observed nebivolol null fold');
+assert(publicNebivololNullDemoAudit.nebivololFold === 15, 'CYP2D6 null should use the nebivolol PM/null monitoring fold, not an unsupported 23x escalation');
+assert(publicNebivololNullDemoAudit.shareUrl.includes('genotype=CYP2D6:null'), 'Public nebivolol null demo share URL should preserve the reported CYP2D6:null token');
+assert(publicNebivololNullDemoAudit.patientGeneSummary.includes('CYP2D6:null'), 'Public nebivolol null demo patient handoff should preserve the reported CYP2D6:null token');
+assert(publicNebivololNullDemoAudit.foldText.includes('MONITOR') && !publicNebivololNullDemoAudit.foldText.includes('DANGER'), 'Public nebivolol null demo fold bar should be monitoring context, not a DANGER badge');
 assert(publicNebivololNullDemoAudit.bupropionFold >= 1.6 && publicNebivololNullDemoAudit.bupropionFold <= 1.8, 'Clopidogrel should shift bupropion exposure through CYP2B6');
 assert(!publicNebivololNullDemoAudit.hasSameEnzymeInhibitor, 'CYP2D6-null nebivolol should not show a bupropion CYP2D6-inhibition card');
 assert(publicNebivololNullDemoAudit.hasBidirectionalPair, 'Public nebivolol null demo should include source-linked bupropion+clopidogrel pathway context');
@@ -1178,7 +1185,8 @@ const nebivololPgxFocusRegression = window.eval(`(() => {
 })()`);
 assert(nebivololPgxDisplayRegression.fold === 15, 'Nebivolol + CYP2D6 PM should use the observed drug-specific 15x clinical fold');
 assert(/15x/i.test(nebivololPgxDisplayRegression.summaryText), 'Nebivolol priority summary should show the drug-specific 15x fold');
-assert(/drug-specific CYP2D6 clinical PK data/i.test(nebivololPgxDisplayRegression.summaryText), 'Nebivolol priority summary should explain the drug-specific PK basis');
+assert(/CYP2D6 clinical PK data/i.test(nebivololPgxDisplayRegression.summaryText), 'Nebivolol priority summary should explain the PK basis');
+assert(/does not recommend a routine dose change/i.test(nebivololPgxDisplayRegression.summaryText), 'Nebivolol priority summary should not imply an automatic genotype-only dose change');
 assert(!/Codeine|Tamoxifen|TCAs/i.test(`${nebivololPgxDisplayRegression.summaryText} ${nebivololPgxDisplayRegression.genotypeText}`), 'Nebivolol genotype display should not inherit unrelated CYP2D6 example-drug text');
 assert(/15\.0×|15\.0x/i.test(nebivololPgxFocusRegression.targetText), 'Nebivolol genotype card should display the 15x fold');
 assert(nebivololPgxFocusRegression.activeTab === 'genes-metabolites', 'Priority View finding should open Genes + Metabolites for genotype priorities');
@@ -1860,7 +1868,7 @@ assert(
   `Evidence-free findings should show modeled/insufficient source support, got ${evidenceLadderRegression.evidenceFreeSourceSupportStatus}`
 );
 assert(evidenceLadderRegression.modelOnlyStrongestTier === 'unknown', 'Modeled evidence ladder should not display FDA/guideline backing');
-assert(/modeled|clinical review needed/i.test(evidenceLadderRegression.modelOnlyCompact), 'Compact ladder should visibly identify modeled support and review need');
+assert(/modeled|source review needed|professional sign-off not claimed/i.test(evidenceLadderRegression.modelOnlyCompact), 'Compact ladder should visibly identify modeled support and source-review boundaries');
 assert(evidenceLadderRegression.clinicalActionConfidence === 'pending_review' || evidenceLadderRegression.clinicalActionConfidence === 'insufficient', 'Clinical action confidence should remain conservative');
 assert(evidenceLadderRegression.primaryFindingCards > 0, 'Finding cards should render primary public finding UI');
 assert(evidenceLadderRegression.primaryFindingEvidenceSteps === evidenceLadderRegression.primaryFindingCards, 'Each primary finding card should include an Evidence step');
@@ -2059,7 +2067,7 @@ assert(reviewHomeRegression.scenarioCards === 0, 'Generated scenario snapshots s
 assert(reviewHomeRegression.gapCards === 0, 'Generated metabolite coverage gaps should stay out of the slim bundle');
 assert(reviewHomeRegression.warningPaths > 0, 'Reviewer Console should expose technical pathway diagnostics');
 assert(reviewHomeRegression.actionButtons >= 3, 'Reviewer Console should expose report/contribute actions');
-assert(/Pending Review/i.test(reviewHomeRegression.summaryText), 'Reviewer Summary should expose pending review status');
+assert(/V3 Sign-Off Queue/i.test(reviewHomeRegression.summaryText), 'Reviewer Summary should expose the future professional sign-off queue');
 
 const crossTabFindingRegression = window.eval(`(() => {
   activeStack = [];
@@ -2185,7 +2193,7 @@ for (const [scenarioName, result] of Object.entries(publicFindingHierarchyRegres
   assert(result.summaryOnclick.includes("focusPriorityFinding('overview','overview-finding-"), `${scenarioName}: Summary View finding should jump to a concrete Overview card`);
   assert(!/Phase\\s*\\d+|top-250|top-100|coverage adapter|route adapter|pending professional review|review prompt/i.test(result.overviewText), `${scenarioName}: Overview should not expose internal labels or repeated review wording`);
   assert(!/\b(?:pending review action|review needed action|insufficient action)\b/i.test(result.trustText), `${scenarioName}: trust chips should not expose awkward internal action-status wording`);
-  assert(/action needs clinical review|action reviewed|action evidence limited/i.test(result.trustText), `${scenarioName}: trust chips should use readable clinical-action status copy`);
+  assert(/professional sign-off not claimed|action reviewed|action evidence limited/i.test(result.trustText), `${scenarioName}: trust chips should use readable clinical-action status copy`);
   assert(!/Phase\\s*\\d+|top-250|top-100|coverage adapter|route adapter|pending professional review/i.test(result.mechanismText), `${scenarioName}: Mechanisms should not expose internal labels`);
   assert(!/\b(?:Open review|reviewer panel|Raw warning paths|raw signals?|remain available in Review)\b/i.test(result.mechanismText), `${scenarioName}: normal V1 Mechanisms should not expose reviewer-only or raw-path actions`);
   assert(!/Related overview/i.test(`${result.mechanismText} ${result.genesText} ${result.evidenceText}`), `${scenarioName}: supporting tabs should use plain Open finding actions instead of Related overview`);

@@ -34,7 +34,7 @@ function computeEvidenceLadder(evidenceRefs = [], context = {}) {
   const notes = uniqueEvidenceLadderRefs([
     !studies.length && context.reviewRequired !== false ? "No source-linked evidence refs on this finding." : "",
     studies.length && !severityBearingStudies.length ? "Linked studies are context-only and not severity-bearing." : "",
-    professionalReviewStatus === "pending" ? "Pending professional review." : "",
+    professionalReviewStatus === "pending" ? "Professional sign-off not claimed." : "",
     context.calculationBearing ? "Calculation-bearing evidence." : "",
   ]);
   return {
@@ -70,7 +70,7 @@ function classifySourceSupportStatus(sourceLinked, professionalReviewStatus = "u
 function sourceSupportStatusLabel(status) {
   const labels = {
     professionally_reviewed_source_linked: "professionally reviewed source-linked",
-    source_linked_pending_review: "source-linked, pending professional review",
+    source_linked_pending_review: "source-linked; professional sign-off not claimed",
     source_linked: "source-linked",
     model_only_review_prompt: "modeled review prompt",
     insufficient_source_support: "insufficient source support",
@@ -113,7 +113,7 @@ function summarizeEvidenceLadder(ladder) {
   const review = ladder.professionalReviewStatus === "reviewed"
     ? "professionally reviewed"
     : ladder.professionalReviewStatus === "pending"
-    ? "pending professional review"
+    ? "professional sign-off not claimed"
     : "review status unknown";
   return `${tier} · ${count} · mechanistic ${ladder.mechanisticConfidence || "unknown"} · ${review}`;
 }

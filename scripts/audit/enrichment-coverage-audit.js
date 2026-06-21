@@ -220,7 +220,7 @@ function buildEvidenceGaps(data) {
       severity: row.severity || '',
       category: row.category || '',
       refs: sourceRefs(row),
-      gap: sourceRefs(row).length ? 'pending professional review/source tier check' : 'no STUDY_DB refs',
+      gap: sourceRefs(row).length ? 'source tier/sign-off metadata check' : 'no STUDY_DB refs',
       score: severityValue(row.severity) * 20 + (sourceRefs(row).length ? 0 : 30),
     }))
     .filter(row => row.gap)

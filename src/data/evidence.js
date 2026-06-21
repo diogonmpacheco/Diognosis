@@ -883,7 +883,7 @@ const STUDY_DB = {
     supports:["simvastatin_multigene_transporter_exposure_context","simvastatin_acid_SLCO1B1_ABCG2_context"],
     contradicts:[],
     limitations:["Public-abstract extraction only; exact allele-specific effect sizes require full-text/table review","Statin muscle risk remains modified by dose, age, comorbidity, and interacting drugs"],
-    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending cardiology/pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment without professional sign-off"
   },
 
   // ═══ CLOPIDOGREL / CYP2C19 ═══
@@ -926,7 +926,7 @@ const STUDY_DB = {
     limitations:["Small healthy-volunteer probe study","Does not directly test the full bupropion + clopidogrel + nebivolol stack","Does not quantify net hydroxybupropion exposure when CYP2D6 function is absent"],
     verified:false,
     reviewRequired:true,
-    verifyNote:"Mechanistic chain is source-linked but pending professional clinical review."
+    verifyNote:"Mechanistic chain is source-linked but without professional sign-off."
   },
 
   "ev_clopidogrel_active_thiol_kim2014": {
@@ -988,7 +988,7 @@ const STUDY_DB = {
     supports:["clopidogrel_CYP2C19_active_metabolite_context","clopidogrel_CYP2C19_platelet_response_context"],
     contradicts:[],
     limitations:["Small PK/PD study; not a substitute for CPIC antiplatelet selection guidance","Public-abstract extraction only; full-text review needed for exact subgroup tables"],
-    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending cardiology/pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment without professional sign-off"
   },
 
   // ═══ ALPRAZOLAM / CYP3A5 ═══
@@ -1066,7 +1066,7 @@ const STUDY_DB = {
     supports:["atomoxetine_CYP2D6_pediatric_exposure_context","atomoxetine_4_hydroxy_metabolite_context"],
     contradicts:[],
     limitations:["Population PK model; public-abstract extraction only; concentration-based dose decisions require specialist review"],
-    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending pediatric psychopharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment without professional sign-off"
   },
 
   "ev_atomoxetine_pop_pk_tobin2026": {
@@ -1084,7 +1084,7 @@ const STUDY_DB = {
     supports:["atomoxetine_CYP2D6_pediatric_exposure_context"],
     contradicts:[],
     limitations:["Model-based synthesis; specific metabolite concentrations depend on model assumptions and population"],
-    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending pediatric psychopharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment without professional sign-off"
   },
 
   // ═══ SOLANIDINE / CYP2D6 ═══
@@ -1142,7 +1142,7 @@ const STUDY_DB = {
     supports:["solanidine_METABOLIZED_TO_4-OH-solanidine","solanidine_METABOLIZED_TO_SSDA","CYP2D6_inhibition_lowers_solanidine_metabolite_ratios"],
     contradicts:[],
     limitations:["Biomarker/metabolite-ratio evidence, not a clinical solanine toxicity threshold","Dietary intake and oncology medication context influence interpretation"],
-    verified:false, reviewRequired:true, verifyNote:"Solanidine metabolite-ratio enrichment pending pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"Solanidine metabolite-ratio enrichment without professional sign-off"
   },
 
   "ev_solanidine_ssda_tay2022": {
@@ -1159,7 +1159,7 @@ const STUDY_DB = {
     supports:["SSDA_as_solanidine_derived_CYP2D6_biomarker","solanidine_is_diet_derived_not_endogenous"],
     contradicts:[],
     limitations:["Biomarker development evidence; not a direct clinical toxicity or dosing study"],
-    verified:false, reviewRequired:true, verifyNote:"SSDA metabolite enrichment pending pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"SSDA metabolite enrichment without professional sign-off"
   },
 
   "ev_potato_glycoalkaloid_human_pk_mensinga2005": {
@@ -1177,7 +1177,7 @@ const STUDY_DB = {
     supports:["potato_glycoalkaloid_human_pk_context","alpha_solanine_alpha_chaconine_exposure_context","glycoalkaloid_toxicity_is_exposure_driven"],
     contradicts:["CYP2D6_genotype_alone_predicts_potato_toxicity"],
     limitations:["Small healthy-volunteer study","Short sampling window limits half-life certainty","Not CYP2D6 genotype stratified","Food matrix and potato preparation can change exposure"],
-    verified:false, reviewRequired:true, verifyNote:"Potato glycoalkaloid human PK/toxicology enrichment pending toxicology review"
+    verified:false, reviewRequired:true, verifyNote:"Potato glycoalkaloid human PK/toxicology enrichment without professional sign-off"
   },
 
   "ev_potato_glycoalkaloid_efsa_2020": {
@@ -1195,7 +1195,7 @@ const STUDY_DB = {
     supports:["potato_glycoalkaloid_exposure_variability_context","alpha_solanine_alpha_chaconine_food_toxicology_context","green_sprouted_peel_heavy_potato_high_exposure_context"],
     contradicts:["ordinary_potatoes_are_a_genotype_specific_medication_contraindication"],
     limitations:["Food safety risk assessment, not a pharmacogenetic dosing guideline","Does not quantify CYP2D6-specific risk"],
-    verified:false, reviewRequired:true, verifyNote:"EFSA potato glycoalkaloid context pending toxicology review"
+    verified:false, reviewRequired:true, verifyNote:"EFSA potato glycoalkaloid context without professional sign-off"
   },
 
   "ev_potato_glycoalkaloid_toxicology_review_1990": {
@@ -1213,7 +1213,7 @@ const STUDY_DB = {
     supports:["potato_glycoalkaloid_toxicology_review_context","alpha_solanine_alpha_chaconine_food_toxicology_context"],
     contradicts:["solanidine_CYP2D6_biomarker_equals_clinical_toxicity_threshold"],
     limitations:["Older narrative toxicological evaluation","Not genotype stratified","Does not provide modern individualized pharmacogenetic thresholds"],
-    verified:false, reviewRequired:true, verifyNote:"Older potato glycoalkaloid toxicology review pending toxicology review"
+    verified:false, reviewRequired:true, verifyNote:"Older potato glycoalkaloid toxicology review without professional sign-off"
   },
 
   "ev_cruciferous_isothiocyanate_gstm1_2005": {
@@ -1230,7 +1230,7 @@ const STUDY_DB = {
     supports:["sulforaphane_GST_conjugation_context","GSTM1_modifies_isothiocyanate_metabolism"],
     contradicts:[],
     limitations:["Nutrition/xenobiotic bioavailability study; direction may reflect sustained exposure rather than simple toxicity"],
-    verified:false, reviewRequired:true, verifyNote:"Cruciferous/GSTM1 enrichment pending nutrition pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"Cruciferous/GSTM1 enrichment without professional sign-off"
   },
 
   "ev_watercress_itc_gst_2009": {
@@ -1247,7 +1247,7 @@ const STUDY_DB = {
     supports:["GST_null_status_modifies_isothiocyanate_excretion","PEITC_mercapturic_acid_pathway"],
     contradicts:[],
     limitations:["Dietary exposure study; GSTT1 is not yet a first-class Diognosis genotype selector, and bioavailability is not equivalent to harm"],
-    verified:false, reviewRequired:true, verifyNote:"Watercress isothiocyanate enrichment pending nutrition pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"Watercress isothiocyanate enrichment without professional sign-off"
   },
 
   "ev_coumarin_cyp2a6_hepatotoxicity_review": {
@@ -1264,7 +1264,7 @@ const STUDY_DB = {
     supports:["coumarin_CYP2A6_7_hydroxylation_detox_context","coumarin_o_HPA_toxic_diversion_context"],
     contradicts:[],
     limitations:["Risk depends strongly on dose, product coumarin content, chronicity, liver disease, and species differences; not a standalone dietary contraindication"],
-    verified:false, reviewRequired:true, verifyNote:"Coumarin/CYP2A6 enrichment pending toxicology review"
+    verified:false, reviewRequired:true, verifyNote:"Coumarin/CYP2A6 enrichment without professional sign-off"
   },
   "ev_cyp2e1_chlorzoxazone_probe": {
     id:"ev_cyp2e1_chlorzoxazone_probe", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
@@ -1278,7 +1278,7 @@ const STUDY_DB = {
     supports:["chlorzoxazone_CYP2E1_probe_context","CYP2E1_activity_phenotyping_context"],
     contradicts:["chlorzoxazone_is_not_a_therapeutic_genotype_dose_rule"],
     limitations:["Probe interpretation is affected by dose, environmental induction, liver function, and probe-cocktail design."],
-    verified:false, reviewRequired:true, verifyNote:"CYP2E1/chlorzoxazone enrichment pending pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"CYP2E1/chlorzoxazone enrichment without professional sign-off"
   },
   "ev_cyp2e1_volatile_anesthetic_livertox": {
     id:"ev_cyp2e1_volatile_anesthetic_livertox", public:true, type:EVIDENCE_TIER.REVIEW,
@@ -1292,7 +1292,7 @@ const STUDY_DB = {
     supports:["halothane_CYP2E1_reactive_intermediate_context","volatile_anesthetic_hepatotoxicity_review_context"],
     contradicts:["modern_volatile_anesthetic_risk_is_not_driven_by_CYP2E1_genotype_alone"],
     limitations:["In vitro metabolism evidence; modern anesthesia choice depends on availability, patient factors, malignant hyperthermia risk, and anesthesiologist judgment."],
-    verified:false, reviewRequired:true, verifyNote:"Volatile anesthetic/CYP2E1 context pending anesthesia review"
+    verified:false, reviewRequired:true, verifyNote:"Volatile anesthetic/CYP2E1 context without professional sign-off"
   },
 
   "ev_solanidine_ache_griffin1995": {
@@ -1485,7 +1485,7 @@ const STUDY_DB = {
     supports:["clobazam_CYP2C19_active_metabolite_accumulation_context","n_desmethylclobazam_CYP2C19_clearance_context"],
     contradicts:[],
     limitations:["Small case-based signal; label/guideline evidence should remain primary","Public-abstract extraction only"],
-    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending neurology/pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment without professional sign-off"
   },
 
   "ev_clobazam_cbd_ddi_morrison2019": {
@@ -1503,7 +1503,7 @@ const STUDY_DB = {
     supports:["clobazam_CYP2C19_active_metabolite_accumulation_context","cannabidiol_clobazam_norclobazam_interaction"],
     contradicts:[],
     limitations:["Healthy-volunteer interaction study; epilepsy patients and chronic dosing may differ","Public-abstract extraction only"],
-    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending neurology/pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment without professional sign-off"
   },
 
   "ev_losartan_cyp2c9_sica2002": {
@@ -1607,7 +1607,7 @@ const STUDY_DB = {
     supports:["voriconazole_CYP2C19_exposure_TDM_context","voriconazole_CYP2C19_UM_subtherapeutic_context"],
     contradicts:[],
     limitations:["Population model; exact genotype subgroup dosing requires full-text/model review and TDM"],
-    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending infectious disease/pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment without professional sign-off"
   },
 
   "ev_efavirenz_cyp2b6_desta2019": {
@@ -1676,7 +1676,7 @@ const STUDY_DB = {
     supports:["irinotecan_UGT1A1_SN38_exposure_context","SN38_glucuronidation_toxicity_context"],
     contradicts:["low_dose_irinotecan_toxicity_not_fully_predicted_by_UGT1A1"],
     limitations:["Low-dose regimen; severe toxicity signal was not significant in this abstract","Public-abstract extraction only"],
-    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending oncology/pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment without professional sign-off"
   },
 
   "ev_irinotecan_ugt1a_han2006": {
@@ -1694,7 +1694,7 @@ const STUDY_DB = {
     supports:["irinotecan_UGT1A1_SN38_exposure_context","SN38_glucuronidation_toxicity_context"],
     contradicts:[],
     limitations:["Multi-UGT signal; not reducible to UGT1A1*28 alone","Public-abstract extraction only"],
-    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending oncology/pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment without professional sign-off"
   },
 
   "ev_irinotecan_sn38_review_mathijssen2001": {
@@ -1712,7 +1712,7 @@ const STUDY_DB = {
     supports:["irinotecan_METABOLIZED_TO_sn-38-7-ethyl-10-hydroxycamptothecin","SN38_is_active_cytotoxic_metabolite"],
     contradicts:[],
     limitations:["Review-level abstract; exact cytotoxicity depends on assay/model"],
-    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment pending oncology/pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"Public-facts enrichment without professional sign-off"
   },
 
   "ev_venlafaxine_cyp2d6_ncbi": {
@@ -1814,11 +1814,11 @@ const STUDY_DB = {
     studyDesign:"regulatory_label",
     n:null,
     phenotypes:["poor_metabolizer","normal_metabolizer"],
-    quantifiedEffects:{note:"Nebivolol is extensively metabolized by CYP2D6; poor metabolizers have substantially higher parent exposure and lower oxidative clearance."},
+    quantifiedEffects:{note:"Nebivolol is extensively metabolized by CYP2D6. FDA/DailyMed labeling reports higher d-nebivolol exposure in poor metabolizers and does not recommend routine dose adjustment by CYP2D6 status alone; published PK studies report substantially higher parent exposure, while the main hypertension study found similar blood-pressure response and tolerability."},
     temporal:{mechanism:"CYP2D6_nebivolol_hydroxylation"},
     supports:["nebivolol_METABOLIZED_TO_4-hydroxy-nebivolol","nebivolol_METABOLIZED_TO_hydroxylated-ring-opened-metabolites"],
     contradicts:[],
-    limitations:["Metabolite pool is simplified"],
+    limitations:["Metabolite pool is simplified","Use as monitoring context only; this source does not establish an automatic genotype-only dose change for nebivolol"],
     verified:false
   },
 
@@ -2836,14 +2836,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:pubmed",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metformin_oct2_asanos2025_40424011": {
@@ -2870,14 +2870,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metformin_oct2_ailabounias2025_40098288": {
@@ -2904,14 +2904,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metformin_oct2_choimk2026_41599173": {
@@ -2938,14 +2938,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metformin_oct2_koishikawat2025_39497599": {
@@ -2972,14 +2972,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metformin_oct2_ailabounias2025_39997705": {
@@ -3006,14 +3006,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metformin_oct2_giacomini2010_20190787": {
@@ -3040,14 +3040,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metformin_oct2_hillgren2013_23588305": {
@@ -3074,14 +3074,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metformin_oct2_morrissey2012_23140242": {
@@ -3108,14 +3108,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metformin_oct2_eyal2010_20118196": {
@@ -3142,14 +3142,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metformin_oct2_gervasoni2017_28114188": {
@@ -3176,14 +3176,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_fluoxetine_cyp2d6_alderman1997_9241008": {
@@ -3211,15 +3211,15 @@ const STUDY_DB = {
     ],
     contradicts:[],
     limitations:[
-      "Abstract-level extraction only; requires human review before promotion",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Abstract-level extraction only; requires professional sign-off before promotion",
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"moderate",
     needsFullText:false,
     provenance:"search:pubmed",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_fluoxetine_cyp2d6_ereshefsky1996_8846618": {
@@ -3247,14 +3247,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:pubmed",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_fluoxetine_cyp2d6_isoherranenn2026_41494464": {
@@ -3282,14 +3282,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_fluoxetine_cyp2d6_truongj2025_39870954": {
@@ -3317,14 +3317,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_fluoxetine_cyp2d6_tanaudommongkoni2025_40245579": {
@@ -3352,14 +3352,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_fluoxetine_cyp2d6_zakarayaz2024_38543065": {
@@ -3387,14 +3387,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_fluoxetine_cyp2d6_parshenkovm2025_41440979": {
@@ -3422,14 +3422,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_fluoxetine_cyp2d6_hiemke2017_28910830": {
@@ -3457,14 +3457,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_fluoxetine_cyp2d6_michalets1998_9469685": {
@@ -3492,14 +3492,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_fluoxetine_cyp2d6_holm1999_null": {
@@ -3527,14 +3527,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_hydroxybupropion_cyp2d6_yuj2024_39452902": {
@@ -3562,14 +3562,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_hydroxybupropion_cyp2d6_luechtur2025_40006546": {
@@ -3597,14 +3597,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_hydroxybupropion_cyp2d6_rdesheims2025_39953671": {
@@ -3632,14 +3632,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_hydroxybupropion_cyp2d6_ciocotianim2024_39590825": {
@@ -3667,14 +3667,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_hydroxybupropion_cyp2d6_bosilkovska2014_24722393": {
@@ -3702,14 +3702,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_hydroxybupropion_cyp2d6_shirasaka2013_23620487": {
@@ -3737,14 +3737,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_hydroxybupropion_cyp2d6_kirby2011_21930825": {
@@ -3772,14 +3772,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_hydroxybupropion_cyp2d6_protti2020_32285503": {
@@ -3807,14 +3807,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_vortioxetine_cyp2d6_lorvellecma2024_39444600": {
@@ -3841,14 +3841,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_vortioxetine_cyp2d6_lauschkevm2026_41806469": {
@@ -3875,14 +3875,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_vortioxetine_cyp2d6_wangsy2025_41019984": {
@@ -3909,14 +3909,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_vortioxetine_cyp2d6_chen2013_23975654": {
@@ -3943,14 +3943,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_vortioxetine_cyp2d6_strawn2023_36651686": {
@@ -3977,14 +3977,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_vortioxetine_cyp2d6_yu2018_29572333": {
@@ -4011,14 +4011,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metoclopramide_cyp2d6_desta2002_11854155": {
@@ -4045,14 +4045,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:pubmed",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metoclopramide_cyp2d6_lium2026_41820792": {
@@ -4079,14 +4079,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metoclopramide_cyp2d6_moorec2025_39899439": {
@@ -4113,14 +4113,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metoclopramide_cyp2d6_belania2024_39219201": {
@@ -4147,14 +4147,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metoclopramide_cyp2d6_wittwernl2025_40895400": {
@@ -4181,14 +4181,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metoclopramide_cyp2d6_williams2001_11573533": {
@@ -4215,14 +4215,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metoclopramide_cyp2d6_stearns2003_14652237": {
@@ -4249,14 +4249,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metoclopramide_cyp2d6_hiemke2011_21969060": {
@@ -4283,14 +4283,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_metoclopramide_cyp2d6_zhou2017_28378927": {
@@ -4317,14 +4317,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_kratom_cyp_chiang2026_41743842": {
@@ -4352,14 +4352,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:pubmed",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_kratom_cyp_tanna2023_36924284": {
@@ -4387,15 +4387,15 @@ const STUDY_DB = {
     ],
     contradicts:[],
     limitations:[
-      "Abstract-level extraction only; requires human review before promotion",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Abstract-level extraction only; requires professional sign-off before promotion",
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"moderate",
     needsFullText:false,
     provenance:"search:pubmed",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_kratom_cyp_brogdon2022_35165231": {
@@ -4423,14 +4423,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:pubmed",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_kratom_cyp_gnanasegarams2026_42051846": {
@@ -4458,14 +4458,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_kratom_cyp_akbarnh2025_40642117": {
@@ -4493,14 +4493,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_kratom_cyp_alfordas2025_40006036": {
@@ -4528,14 +4528,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_kratom_cyp_mccurdycr2024_38217374": {
@@ -4563,14 +4563,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_kratom_cyp_melchertpw2024_39299374": {
@@ -4598,14 +4598,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_kratom_cyp_eastlack2020_31994019": {
@@ -4633,14 +4633,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_kratom_cyp_rashid2026_null": {
@@ -4668,14 +4668,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_kratom_cyp_veltri2019_31308789": {
@@ -4703,14 +4703,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_kratom_cyp_wananukul2015_25995615": {
@@ -4738,14 +4738,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_kratom_cyp_kong2011_21876481": {
@@ -4773,14 +4773,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_st_johns_wort_cyp3a4_pgp_zahner2020_30739325": {
@@ -4808,14 +4808,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:pubmed",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_st_johns_wort_cyp3a4_pgp_huppertz2019_30192025": {
@@ -4843,14 +4843,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:pubmed",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_st_johns_wort_cyp3a4_pgp_arold2005_15856409": {
@@ -4878,14 +4878,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:pubmed",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_st_johns_wort_cyp3a4_pgp_cascorbii2025_40388112": {
@@ -4913,14 +4913,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_st_johns_wort_cyp3a4_pgp_coumauc2025_40349292": {
@@ -4948,14 +4948,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_st_johns_wort_cyp3a4_pgp_hollanderem2026_41552958": {
@@ -4983,14 +4983,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_st_johns_wort_cyp3a4_pgp_nersesjanm2025_38450747": {
@@ -5018,14 +5018,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_st_johns_wort_cyp3a4_pgp_yaoj2025_41258782": {
@@ -5053,14 +5053,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_st_johns_wort_cyp3a4_pgp_huang2004_14749688": {
@@ -5088,15 +5088,15 @@ const STUDY_DB = {
     ],
     contradicts:[],
     limitations:[
-      "Abstract-level extraction only; requires human review before promotion",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Abstract-level extraction only; requires professional sign-off before promotion",
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"moderate",
     needsFullText:false,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_st_johns_wort_cyp3a4_pgp_motzer2015_26406148": {
@@ -5124,14 +5124,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_st_johns_wort_cyp3a4_pgp_tsunoda2001_null": {
@@ -5159,14 +5159,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_st_johns_wort_cyp3a4_pgp_zhang2017_28986954": {
@@ -5194,15 +5194,15 @@ const STUDY_DB = {
     ],
     contradicts:[],
     limitations:[
-      "Abstract-level extraction only; requires human review before promotion",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Abstract-level extraction only; requires professional sign-off before promotion",
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"moderate",
     needsFullText:false,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_clobazam_cyp2c19_huddartr2018_29517622": {
@@ -5229,14 +5229,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_clobazam_cyp2c19_kamh2020_33266292": {
@@ -5263,14 +5263,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_clobazam_cyp2c19_deleonj2013_23318278": {
@@ -5297,14 +5297,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:europepmc",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_clobazam_cyp2c19_faulkner2015_26089675": {
@@ -5331,14 +5331,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_clobazam_cyp2c19_filipiuc2023_37513960": {
@@ -5365,14 +5365,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_clobazam_cyp2c19_motycka2018_null": {
@@ -5399,14 +5399,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   "draft_clobazam_cyp2c19_vegagarca2021_33510627": {
@@ -5433,14 +5433,14 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted before human review; do not use for severity escalation without review"
+      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
     ],
     confidence:"low",
     needsFullText:true,
     provenance:"search:openalex",
     reviewRequired:true,
     verified:false,
-    verifyNote:"Live enrichment entry awaiting human pharmacist/physician review; citation metadata and abstract-level facts only"
+    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
   // ═══ HLA IMMUNE-RISK PHARMACOGENETICS ═══
@@ -5956,7 +5956,7 @@ const STUDY_DB = {
     ],
     verified:false,
     reviewRequired:true,
-    verifyNote:"Batch 1 enrichment entry awaiting human pharmacist/physician review; do not use for severity escalation until reviewed"
+    verifyNote:"Batch 1 enrichment entry without professional sign-off; do not use for severity escalation without professional sign-off"
   },
 
   "ev_pegloticase_g6pd_fda":{
@@ -6059,7 +6059,7 @@ const STUDY_DB = {
     ],
     verified:false,
     reviewRequired:true,
-    verifyNote:"Batch 1 enrichment entry awaiting human pharmacist/physician review; do not use for severity escalation until reviewed"
+    verifyNote:"Batch 1 enrichment entry without professional sign-off; do not use for severity escalation without professional sign-off"
   },
 
   "ev_dapsone_ddsnhoh_metabolite":{
@@ -6093,7 +6093,7 @@ const STUDY_DB = {
     ],
     verified:false,
     reviewRequired:true,
-    verifyNote:"Batch 1 enrichment entry awaiting human pharmacist/physician review; do not use for severity escalation until reviewed"
+    verifyNote:"Batch 1 enrichment entry without professional sign-off; do not use for severity escalation without professional sign-off"
   },
 
   "ev_sulfasalazine_tpmt_inhibition":{
@@ -6129,7 +6129,7 @@ const STUDY_DB = {
     ],
     verified:false,
     reviewRequired:true,
-    verifyNote:"Batch 1 enrichment entry awaiting human pharmacist/physician review; do not use for severity escalation until reviewed"
+    verifyNote:"Batch 1 enrichment entry without professional sign-off; do not use for severity escalation without professional sign-off"
   },
 
   "ev_sulfasalazine_abcg2_probe_adkison2010":{
@@ -6155,7 +6155,7 @@ const STUDY_DB = {
     limitations:["Small genotype-stratified PK probe study; clinical tolerability impact is not a standalone prescribing rule."],
     verified:false,
     reviewRequired:true,
-    verifyNote:"Added for transporter-genotype enrichment; pending pharmacist/physician review before severity escalation."
+    verifyNote:"Added for transporter-genotype enrichment; professional sign-off not claimed for severity escalation."
   },
 
 
@@ -6189,7 +6189,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6222,7 +6222,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6255,7 +6255,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6290,7 +6290,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6325,7 +6325,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6360,7 +6360,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6393,7 +6393,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6426,7 +6426,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6462,7 +6462,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6495,7 +6495,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6528,7 +6528,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6561,7 +6561,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6594,7 +6594,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6631,7 +6631,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
   "ev_nat1_arylamine_review": {
@@ -6646,7 +6646,7 @@ const STUDY_DB = {
     supports:["NAT1_arylamine_substrate_context","NAT1_PABA_PAS_context","NAT_sulfonamide_context"],
     contradicts:["NAT1_is_not_a_broad_dose_guideline_gene"],
     limitations:["Review-level evidence; NAT1 clinical actionability is weaker than NAT2 and strongly substrate-specific."],
-    verified:false, reviewRequired:true, verifyNote:"NAT1 panel enrichment pending pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"NAT1 panel enrichment without professional sign-off"
   },
   "ev_nat1_paba_pas_polymorphism": {
     id:"ev_nat1_paba_pas_polymorphism", public:true, type:EVIDENCE_TIER.REVIEW,
@@ -6660,7 +6660,7 @@ const STUDY_DB = {
     supports:["PABA_NAT1_probe_context","PAS_NAT1_substrate_context"],
     contradicts:["PABA_PAS_context_is_not_a_modern_standalone_prescribing_rule"],
     limitations:["Older review; useful for substrate specificity, not contemporary dose guidance."],
-    verified:false, reviewRequired:true, verifyNote:"NAT1/PAS/PABA context pending pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"NAT1/PAS/PABA context without professional sign-off"
   },
   "ev_nat1_smx_hypersensitivity_context": {
     id:"ev_nat1_smx_hypersensitivity_context", public:true, type:EVIDENCE_TIER.OBSERVATIONAL,
@@ -6674,7 +6674,7 @@ const STUDY_DB = {
     supports:["NAT1_sulfamethoxazole_hypersensitivity_context","NAT1_fast_acetylator_expression_context"],
     contradicts:["NAT1_alone_does_not_predict_sulfonamide_allergy"],
     limitations:["Association was context-specific and modified by NAT2; allergy history, HLA/immune factors, renal function, and clinical history dominate."],
-    verified:false, reviewRequired:true, verifyNote:"NAT1/SMX context pending infectious disease pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"NAT1/SMX context without professional sign-off"
   },
 
   "ev_comt_levodopa_parkinson_2012": {
@@ -6708,7 +6708,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6741,7 +6741,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6774,7 +6774,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6807,7 +6807,7 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
@@ -6840,11 +6840,11 @@ const STUDY_DB = {
     ],
     verified: false,
     reviewRequired: true,
-    verifyNote: "Live enrichment entry awaiting human pharmacist/physician review; citation metadata imported from Gemini batch and not independently verified",
+    verifyNote: "Live enrichment entry without professional sign-off; citation metadata imported from Gemini batch and not independently verified",
     confidence: "moderate"
   },
 
-  // ── Curated Gemini salvage batch 2 evidence stubs: pending human review ──
+  // ── Curated Gemini salvage batch 2 evidence stubs: without professional sign-off ──
   "ev_loperamide_pgp_inhibitor_cns": {
     id:"ev_loperamide_pgp_inhibitor_cns", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
     title:"P-glycoprotein inhibition permits central loperamide opioid effects",
@@ -6855,7 +6855,7 @@ const STUDY_DB = {
     temporal:{mechanism:"P-gp inhibition at blood-brain barrier plus CYP3A4/P-gp inhibition for macrolides"},
     supports:["loperamide_pgp_inhibitor_cns_toxicity"], contradicts:[],
     limitations:["Imported from Gemini salvage batch; confirm exact dose and exposure context before marking verified."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_rifaximin_cyclosporine_transporter": {
     id:"ev_rifaximin_cyclosporine_transporter", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -6866,7 +6866,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Cyclosporine can increase systemic rifaximin exposure despite rifaximin's normally low bioavailability."},
     temporal:{mechanism:"P-gp/OATP transporter inhibition"}, supports:["rifaximin_cyclosporine_exposure"], contradicts:[],
     limitations:["Label-level citation; exact fold-change should be rechecked in label before verification."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_cimetidine_theophylline_clearance": {
     id:"ev_cimetidine_theophylline_clearance", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
@@ -6876,8 +6876,8 @@ const STUDY_DB = {
     studyDesign:"clinical_pk_interaction", n:null, phenotypes:[],
     quantifiedEffects:{note:"Cimetidine reduces theophylline clearance and can raise concentrations into the toxic range."},
     temporal:{mechanism:"CYP1A2 and hepatic oxidative clearance inhibition"}, supports:["cimetidine_theophylline_toxicity"], contradicts:[],
-    limitations:["Citation metadata requires human retrieval/verification."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    limitations:["Citation metadata requires independent retrieval/verification."],
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_mycophenolate_ppi_solubility": {
     id:"ev_mycophenolate_ppi_solubility", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
@@ -6888,7 +6888,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Acid suppression may reduce mycophenolate mofetil dissolution and lower mycophenolic acid exposure in some settings."},
     temporal:{mechanism:"pH-dependent dissolution/absorption"}, supports:["ppi_mycophenolate_exposure_reduction"], contradicts:[],
     limitations:["Effect varies by formulation and clinical context; verify before severity escalation."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_tofacitinib_cyp3a4_label": {
     id:"ev_tofacitinib_cyp3a4_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -6899,7 +6899,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Strong CYP3A4 inhibitors and combined CYP3A4/CYP2C19 inhibitors increase tofacitinib exposure; rifampin reduces exposure."},
     temporal:{mechanism:"CYP3A4 inhibition or induction"}, supports:["tofacitinib_cyp3a4_interactions"], contradicts:[],
     limitations:["Dose adjustment details require direct label confirmation."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_upadacitinib_cyp3a4_label": {
     id:"ev_upadacitinib_cyp3a4_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -6910,7 +6910,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Strong CYP3A inducers reduce upadacitinib exposure and may reduce efficacy."},
     temporal:{mechanism:"CYP3A4 induction"}, supports:["upadacitinib_rifampin_loss_of_exposure"], contradicts:[],
     limitations:["Imported summary; confirm exact fold-change before verification."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_zileuton_theophylline_label": {
     id:"ev_zileuton_theophylline_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -6921,7 +6921,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Zileuton increases theophylline exposure and can alter warfarin anticoagulant response."},
     temporal:{mechanism:"CYP1A2 inhibition and anticoagulant response modulation"}, supports:["zileuton_theophylline_toxicity","zileuton_warfarin_inr"], contradicts:[],
     limitations:["Label-level; exact monitoring language requires direct review."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_zafirlukast_warfarin_label": {
     id:"ev_zafirlukast_warfarin_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -6932,7 +6932,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Zafirlukast can increase prothrombin time/INR in patients receiving warfarin."},
     temporal:{mechanism:"CYP2C9 inhibition"}, supports:["zafirlukast_warfarin_inr"], contradicts:[],
     limitations:["Imported summary; verify label wording and dose context."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_roflumilast_cyp_label": {
     id:"ev_roflumilast_cyp_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -6943,7 +6943,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Strong CYP inducers reduce roflumilast and active metabolite exposure."},
     temporal:{mechanism:"CYP3A4/CYP1A2 induction"}, supports:["roflumilast_rifampin_exposure_loss"], contradicts:[],
     limitations:["Confirm fold-change and contraindication/avoidance wording before verification."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_rifampin_hormonal_contraception": {
     id:"ev_rifampin_hormonal_contraception", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -6954,7 +6954,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Rifampin-class induction can lower hormonal contraceptive exposure and efficacy."},
     temporal:{mechanism:"CYP3A4 and UGT induction"}, supports:["rifampin_hormonal_contraception_failure"], contradicts:[],
     limitations:["Use direct product label/CDC MEC review before marking verified."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_estradiol_lamotrigine_ugt1a4": {
     id:"ev_estradiol_lamotrigine_ugt1a4", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
@@ -6965,7 +6965,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Estrogen-containing contraceptives lower lamotrigine exposure; concentrations can rebound during hormone-free intervals."},
     temporal:{mechanism:"UGT1A4 induction"}, supports:["ethinyl_estradiol_lamotrigine_clearance"], contradicts:[],
     limitations:["Exact magnitude and formulation-specific details require retrieval."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_efavirenz_levonorgestrel_contraception": {
     id:"ev_efavirenz_levonorgestrel_contraception", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
@@ -6976,7 +6976,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Efavirenz induction can reduce exposure to hormonal contraceptive components including levonorgestrel."},
     temporal:{mechanism:"CYP3A4 induction"}, supports:["efavirenz_levonorgestrel_exposure_loss"], contradicts:[],
     limitations:["Formulation-specific clinical failure risk requires direct review."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_cinacalcet_cyp2d6_label": {
     id:"ev_cinacalcet_cyp2d6_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -6987,7 +6987,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Cinacalcet is affected by CYP2D6 inhibitors and itself inhibits CYP2D6 substrates."},
     temporal:{mechanism:"CYP2D6 inhibition"}, supports:["cinacalcet_cyp2d6_interactions"], contradicts:[],
     limitations:["Exact dose adjustment language requires label review."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_alendronate_cation_absorption": {
     id:"ev_alendronate_cation_absorption", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -6998,7 +6998,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Calcium, antacids, and other oral medications can interfere with alendronate absorption."},
     temporal:{mechanism:"GI binding/chelation"}, supports:["alendronate_calcium_absorption_loss"], contradicts:[],
     limitations:["Label-level; timing interval should be confirmed directly."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_mifepristone_cyp3a4_label": {
     id:"ev_mifepristone_cyp3a4_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7009,7 +7009,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Mifepristone can increase exposure of CYP3A substrates, including sensitive statins."},
     temporal:{mechanism:"CYP3A4 inhibition"}, supports:["mifepristone_cyp3a4_substrate_toxicity"], contradicts:[],
     limitations:["Risk differs by dose/indication; verify against product label."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_dantrolene_calcium_channel_warning": {
     id:"ev_dantrolene_calcium_channel_warning", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7020,7 +7020,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Dantrolene with calcium channel blockers has warning language for cardiovascular collapse/hyperkalemia risk."},
     temporal:{mechanism:"calcium handling/cardiovascular instability"}, supports:["dantrolene_verapamil_warning"], contradicts:[],
     limitations:["Primarily acute malignant hyperthermia treatment context; verify details."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_sugammadex_rocuronium_reversal": {
     id:"ev_sugammadex_rocuronium_reversal", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7031,7 +7031,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Sugammadex reverses rocuronium neuromuscular blockade by encapsulation."},
     temporal:{mechanism:"cyclodextrin binding"}, supports:["sugammadex_rocuronium_reversal"], contradicts:[],
     limitations:["Purposeful therapeutic reversal rather than harmful DDI."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_sugammadex_contraception_label": {
     id:"ev_sugammadex_contraception_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7042,7 +7042,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Sugammadex labeling advises backup contraception after exposure because it can reduce hormonal contraceptive efficacy."},
     temporal:{mechanism:"steroid binding"}, supports:["sugammadex_hormonal_contraception_warning"], contradicts:[],
     limitations:["Imported label summary; confirm exact backup interval directly."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_propofol_midazolam_sedation": {
     id:"ev_propofol_midazolam_sedation", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -7053,7 +7053,7 @@ const STUDY_DB = {
     quantifiedEffects:{note:"Propofol and benzodiazepines have additive sedative and respiratory depressant effects requiring airway monitoring."},
     temporal:{mechanism:"pharmacodynamic CNS/respiratory depression"}, supports:["propofol_midazolam_sedation_risk"], contradicts:[],
     limitations:["General clinical standard; not a single quantified PK study."],
-    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"Gemini salvage batch 2 entry without professional sign-off"
   },
   "ev_abcb1_pgp_variant_summary": {
     id:"ev_abcb1_pgp_variant_summary", public:true, type:EVIDENCE_TIER.OBSERVATIONAL,
@@ -7066,8 +7066,8 @@ const STUDY_DB = {
     temporal:{mechanism:"P-gp efflux transporter function at gut, blood-brain barrier, kidney, liver, and placenta"},
     supports:["ABCB1_P-gp_reduced_efflux_context", "ABCB1_digoxin_dabigatran_loperamide_calcineurin_context"],
     contradicts:["ABCB1_effects_are_context_dependent_and_not_uniform_across_substrates"],
-    limitations:["Not a CPIC-style prescribing rule; drug-specific magnitude requires human review and primary-source confirmation before verified use."],
-    verified:false, reviewRequired:true, verifyNote:"ABCB1 genotype-panel enrichment pending pharmacist/physician review"
+    limitations:["Not a CPIC-style prescribing rule; drug-specific magnitude requires professional sign-off and primary-source confirmation before verified use."],
+    verified:false, reviewRequired:true, verifyNote:"ABCB1 genotype-panel enrichment without professional sign-off"
   },
   "ev_cyp1a2_activity_variant_context": {
     id:"ev_cyp1a2_activity_variant_context", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
@@ -7081,7 +7081,7 @@ const STUDY_DB = {
     supports:["CYP1A2_caffeine_clozapine_theophylline_tizanidine_exposure_context"],
     contradicts:["CYP1A2_genotype_effect_is_context_dependent_and_environmentally_inducible"],
     limitations:["Not a CPIC-style prescribing rule. Smoking status, inhibitor/inducer stack, inflammation, and therapeutic drug monitoring may dominate genotype for key substrates."],
-    verified:false, reviewRequired:true, verifyNote:"CYP1A2 genotype-panel enrichment pending pharmacist/physician review; related clozapine CYP1A2 activity study PMID 11476124"
+    verified:false, reviewRequired:true, verifyNote:"CYP1A2 genotype-panel enrichment without professional sign-off; related clozapine CYP1A2 activity study PMID 11476124"
   },
   "ev_cyp3a4_22_activity_context": {
     id:"ev_cyp3a4_22_activity_context", public:true, type:EVIDENCE_TIER.OBSERVATIONAL,
@@ -7095,7 +7095,7 @@ const STUDY_DB = {
     supports:["CYP3A4_22_reduced_activity_context", "CYP3A4_sensitive_substrate_exposure_review_flag"],
     contradicts:["CYP3A4_genotype_is_not_a_standalone_dose_rule_for_most_drugs"],
     limitations:["Added as conservative review context only; no global CYP3A4 genotype-guided prescribing rule is implied."],
-    verified:false, reviewRequired:true, verifyNote:"CYP3A4 panel enrichment pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"CYP3A4 panel enrichment without professional sign-off"
   },
   "ev_ugt2b7_glucuronidation_context": {
     id:"ev_ugt2b7_glucuronidation_context", public:true, type:EVIDENCE_TIER.IN_VITRO,
@@ -7108,8 +7108,8 @@ const STUDY_DB = {
     temporal:{mechanism:"phase II glucuronidation; parent-to-glucuronide balance may alter parent exposure and active/toxic metabolite context"},
     supports:["UGT2B7_morphine_glucuronidation_context", "UGT2B7_opioid_glucuronide_review_flag"],
     contradicts:["UGT2B7_global_variant_effect_is_not_uniform_across_substrates"],
-    limitations:["In vitro and mixed clinical evidence; human review required before verified recommendations."],
-    verified:false, reviewRequired:true, verifyNote:"UGT2B7 panel enrichment pending pharmacist/physician review"
+    limitations:["In vitro and mixed clinical evidence; professional sign-off required before verified recommendations."],
+    verified:false, reviewRequired:true, verifyNote:"UGT2B7 panel enrichment without professional sign-off"
   },
   "ev_gstm1_null_detox_context": {
     id:"ev_gstm1_null_detox_context", public:true, type:EVIDENCE_TIER.META_ANALYSIS,
@@ -7123,7 +7123,7 @@ const STUDY_DB = {
     supports:["GSTM1_null_detoxification_context", "GSTM1_antituberculosis_hepatotoxicity_review_flag"],
     contradicts:["GSTM1_null_is_not_a_general_drug_contraindication"],
     limitations:["Context-specific association evidence; not a CPIC-style prescribing rule."],
-    verified:false, reviewRequired:true, verifyNote:"GSTM1 panel enrichment pending pharmacist/physician review; broader phase II review PMID 21659608"
+    verified:false, reviewRequired:true, verifyNote:"GSTM1 panel enrichment without professional sign-off; broader phase II review PMID 21659608"
   },
   "ev_gstp1_platinum_toxicity_meta": {
     id:"ev_gstp1_platinum_toxicity_meta", public:true, type:EVIDENCE_TIER.META_ANALYSIS,
@@ -7137,7 +7137,7 @@ const STUDY_DB = {
     supports:["GSTP1_platinum_toxicity_review_context","GSTP1_rs1695_reduced_activity_context"],
     contradicts:["GSTP1_is_not_a_standalone_platinum_dose_rule"],
     limitations:["Associations vary by tumor, regimen, ancestry, toxicity endpoint, and cumulative dose; oncology review required before any prescribing action."],
-    verified:false, reviewRequired:true, verifyNote:"GSTP1/platinum enrichment pending oncology pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"GSTP1/platinum enrichment without professional sign-off"
   },
   "ev_busulfan_gst_meta": {
     id:"ev_busulfan_gst_meta", public:true, type:EVIDENCE_TIER.META_ANALYSIS,
@@ -7151,7 +7151,7 @@ const STUDY_DB = {
     supports:["busulfan_GST_clearance_context","GSTM1_null_busulfan_review_flag"],
     contradicts:["GST_genotype_does_not_replace_busulfan_TDM"],
     limitations:["Gene effects differ by age, conditioning regimen, sampling strategy, and route; GSTA1 is important but not currently a Diognosis panel."],
-    verified:false, reviewRequired:true, verifyNote:"Busulfan/GST enrichment pending transplant oncology pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Busulfan/GST enrichment without professional sign-off"
   },
   "ev_phase2_anticancer_gst_review": {
     id:"ev_phase2_anticancer_gst_review", public:true, type:EVIDENCE_TIER.REVIEW,
@@ -7164,8 +7164,8 @@ const STUDY_DB = {
     temporal:{mechanism:"phase II detoxification and conjugation of anticancer drugs/intermediates"},
     supports:["GSTP1_GSTT1_anticancer_detox_context","phase_II_oncology_pgx_review_context"],
     contradicts:["GST_variants_are_not_global_anticancer_dose_rules"],
-    limitations:["Narrative synthesis; drug-specific implementation needs human review and stronger regimen-specific evidence."],
-    verified:false, reviewRequired:true, verifyNote:"Phase II anticancer GST context pending oncology pharmacy review"
+    limitations:["Narrative synthesis; drug-specific implementation needs professional sign-off and stronger regimen-specific evidence."],
+    verified:false, reviewRequired:true, verifyNote:"Phase II anticancer GST context without professional sign-off"
   },
   "ev_mthfr_c677t_methotrexate_toxicity_meta": {
     id:"ev_mthfr_c677t_methotrexate_toxicity_meta", public:true, type:EVIDENCE_TIER.META_ANALYSIS,
@@ -7179,7 +7179,7 @@ const STUDY_DB = {
     supports:["MTHFR_C677T_methotrexate_toxicity_context"],
     contradicts:["MTHFR_C677T_is_not_a_standalone_methotrexate_contraindication"],
     limitations:["Evidence varies by population, indication, dose, renal function, and folate rescue; no efficacy meta-analysis was possible in the cited review."],
-    verified:false, reviewRequired:true, verifyNote:"MTHFR risk-marker enrichment pending pharmacist/physician review"
+    verified:false, reviewRequired:true, verifyNote:"MTHFR risk-marker enrichment without professional sign-off"
   },
   "ev_gabrg2_epilepsy_drug_resistance_context": {
     id:"ev_gabrg2_epilepsy_drug_resistance_context", public:true, type:EVIDENCE_TIER.META_ANALYSIS,
@@ -7193,7 +7193,7 @@ const STUDY_DB = {
     supports:["GABRG2_epilepsy_drug_resistance_review_flag", "GABRG2_GABA_A_receptor_context"],
     contradicts:["GABRG2_variant_is_not_an_automatic_benzodiazepine_or_anti_seizure_drug_contraindication"],
     limitations:["Not a dosing rule and not a substitute for neurologist interpretation, seizure phenotype, EEG/imaging context, or therapeutic drug monitoring where relevant."],
-    verified:false, reviewRequired:true, verifyNote:"GABRG2 risk-marker enrichment pending neurologist/pharmacogenetics review; rare-variant review PMID 39143639"
+    verified:false, reviewRequired:true, verifyNote:"GABRG2 risk-marker enrichment without professional sign-off; rare-variant review PMID 39143639"
   },
   "ev_dofetilide_renal_cation_label": {
     id:"ev_dofetilide_renal_cation_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7206,7 +7206,7 @@ const STUDY_DB = {
     supports:["dofetilide_renal_cation_transport_substrate","dofetilide_contraindicated_with_cation_transport_inhibitors","dofetilide_hctz_qt_contraindication"],
     contradicts:[],
     limitations:["Label-based class logic; patient-specific renal function and QT baseline determine absolute risk."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed launch enrichment pending human clinical review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed launch enrichment without professional sign-off"
   },
   "ev_sotalol_qt_renal_label": {
     id:"ev_sotalol_qt_renal_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7219,7 +7219,7 @@ const STUDY_DB = {
     supports:["sotalol_qt_prolongation","sotalol_renal_excretion_unchanged","sotalol_electrolyte_qt_context"],
     contradicts:[],
     limitations:["Interaction impact depends on renal function, dose, potassium/magnesium, and baseline QT."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed launch enrichment pending human clinical review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed launch enrichment without professional sign-off"
   },
   "ev_ranolazine_cyp3a_label": {
     id:"ev_ranolazine_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7232,7 +7232,7 @@ const STUDY_DB = {
     supports:["ranolazine_cyp3a4_substrate","ranolazine_strong_cyp3a_contraindication","ranolazine_moderate_cyp3a_dose_limit","ranolazine_oct2_metformin_context"],
     contradicts:[],
     limitations:["Magnitude varies by ranolazine dose and inhibitor strength."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed launch enrichment pending human clinical review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed launch enrichment without professional sign-off"
   },
   "ev_venetoclax_cyp3a_pgp_label": {
     id:"ev_venetoclax_cyp3a_pgp_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7245,7 +7245,7 @@ const STUDY_DB = {
     supports:["venetoclax_cyp3a4_substrate","venetoclax_pgp_substrate","venetoclax_strong_cyp3a_inhibitor_toxicity","venetoclax_strong_cyp3a_inducer_loss_of_efficacy"],
     contradicts:[],
     limitations:["Risk is highest during initiation/ramp-up and varies by indication and tumor lysis risk."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed launch enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed launch enrichment without professional sign-off"
   },
   "ev_ibrutinib_cyp3a_label": {
     id:"ev_ibrutinib_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7258,7 +7258,7 @@ const STUDY_DB = {
     supports:["ibrutinib_cyp3a4_substrate","ibrutinib_strong_cyp3a_inhibitor_toxicity","ibrutinib_strong_cyp3a_inducer_loss_of_efficacy"],
     contradicts:[],
     limitations:["Dose modification depends on indication, inhibitor duration, and current label version."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed launch enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed launch enrichment without professional sign-off"
   },
   "ev_nilotinib_qt_cyp3a_label": {
     id:"ev_nilotinib_qt_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7271,7 +7271,7 @@ const STUDY_DB = {
     supports:["nilotinib_cyp3a4_substrate","nilotinib_qt_prolongation","nilotinib_avoid_strong_cyp3a_inhibitors","nilotinib_avoid_qt_drugs"],
     contradicts:[],
     limitations:["Absolute risk depends on food timing, electrolytes, QT baseline, and leukemia treatment context."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed launch enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed launch enrichment without professional sign-off"
   },
   "ev_dasatinib_cyp3a_acid_label": {
     id:"ev_dasatinib_cyp3a_acid_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7284,7 +7284,7 @@ const STUDY_DB = {
     supports:["dasatinib_cyp3a4_substrate","dasatinib_strong_cyp3a_inhibitor_toxicity","dasatinib_acid_suppression_reduced_absorption"],
     contradicts:[],
     limitations:["Management differs for antacids versus chronic acid suppression and by treatment context."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed launch enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed launch enrichment without professional sign-off"
   },
   "ev_osimertinib_cyp3a_qt_label": {
     id:"ev_osimertinib_cyp3a_qt_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7297,7 +7297,7 @@ const STUDY_DB = {
     supports:["osimertinib_cyp3a_inducer_loss_of_efficacy","osimertinib_qt_prolongation_context"],
     contradicts:["osimertinib_strong_cyp3a_inhibitor_effect_is_modest_in_label_pk"],
     limitations:["Strong CYP3A inhibitors had limited effect in label PK; induction is the more important metabolic concern."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed launch enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed launch enrichment without professional sign-off"
   },
 
   "ev_flecainide_cyp2d6_pgx": {
@@ -7350,7 +7350,7 @@ const STUDY_DB = {
     supports:["sofosbuvir_amiodarone_bradycardia_contraindication"],
     contradicts:[],
     limitations:["Mechanism remains unclear; interaction appears to be pharmacodynamic rather than metabolic."],
-    verified:false, reviewRequired:false, verifyNote:"Pending professional review; FDA safety communication source-linked"
+    verified:false, reviewRequired:false, verifyNote:"Professional sign-off not claimed; FDA safety communication source-linked"
   },
   "ev_sofosbuvir_pgp_induction": {
     id:"ev_sofosbuvir_pgp_induction", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7376,7 +7376,7 @@ const STUDY_DB = {
     supports:["maoi_ssri_serotonin_syndrome","maoi_snri_contraindication","maoi_tramadol_contraindication","maoi_tyramine_crisis"],
     contradicts:[],
     limitations:["Fluoxetine requires 5-week washout due to norfluoxetine's long half-life. MAOI after fluoxetine: 5 weeks. Fluoxetine after MAOI: 2 weeks."],
-    verified:false, reviewRequired:false, verifyNote:"Pending professional review; FDA-labelled contraindication source-linked"
+    verified:false, reviewRequired:false, verifyNote:"Professional sign-off not claimed; FDA-labelled contraindication source-linked"
   },
   "ev_maoi_tyramine_fda": {
     id:"ev_maoi_tyramine_fda", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7389,7 +7389,7 @@ const STUDY_DB = {
     supports:["maoi_tyramine_dietary_restriction"],
     contradicts:[],
     limitations:["Reversible selective MAO-B inhibitors (selegiline low dose) have lower dietary risk but restriction still recommended."],
-    verified:false, reviewRequired:false, verifyNote:"Pending professional review; label/clinical teaching source-linked"
+    verified:false, reviewRequired:false, verifyNote:"Professional sign-off not claimed; label/clinical teaching source-linked"
   },
   "ev_selegiline_ssri_fda": {
     id:"ev_selegiline_ssri_fda", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7415,7 +7415,7 @@ const STUDY_DB = {
     supports:["linezolid_ssri_contraindication","linezolid_snri_contraindication","linezolid_tramadol_contraindication"],
     contradicts:[],
     limitations:["If life-threatening infection, linezolid can be used with intensive monitoring if no alternative. SSRIs should be stopped if possible."],
-    verified:false, reviewRequired:false, verifyNote:"Pending professional review; FDA safety communication source-linked"
+    verified:false, reviewRequired:false, verifyNote:"Professional sign-off not claimed; FDA safety communication source-linked"
   },
   "ev_stimulant_maoi_fda": {
     id:"ev_stimulant_maoi_fda", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7506,7 +7506,7 @@ const STUDY_DB = {
     supports:["thioridazine_paroxetine_contraindication","thioridazine_fluoxetine_contraindication","thioridazine_qt_additive"],
     contradicts:[],
     limitations:["Thioridazine is a last-resort antipsychotic; alternative agents are preferred in most patients."],
-    verified:false, reviewRequired:false, verifyNote:"Pending professional review; FDA black box source-linked"
+    verified:false, reviewRequired:false, verifyNote:"Professional sign-off not claimed; FDA black box source-linked"
   },
   "ev_cobicistat_cyp3a_label": {
     id:"ev_cobicistat_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7649,7 +7649,7 @@ const STUDY_DB = {
     supports:["buspirone_cyp3a4_substrate","buspirone_strong_cyp3a_inhibitor_toxicity","buspirone_grapefruit_exposure_increase","buspirone_diltiazem_exposure_increase"],
     contradicts:[],
     limitations:["Magnitude varies by buspirone dose, inhibitor dose, and duration."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_terbinafine_cyp2d6_label": {
     id:"ev_terbinafine_cyp2d6_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7662,7 +7662,7 @@ const STUDY_DB = {
     supports:["terbinafine_cyp2d6_inhibitor","terbinafine_beta_blocker_exposure_context","terbinafine_tca_exposure_context"],
     contradicts:[],
     limitations:["Clinical magnitude differs by CYP2D6 substrate and patient phenotype."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_cephalexin_metformin_label": {
     id:"ev_cephalexin_metformin_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7675,7 +7675,7 @@ const STUDY_DB = {
     supports:["cephalexin_metformin_exposure_increase"],
     contradicts:[],
     limitations:["Multiple-dose clinical interaction data are not available in the label."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_nitrate_pde5_label": {
     id:"ev_nitrate_pde5_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7688,7 +7688,7 @@ const STUDY_DB = {
     supports:["nitroglycerin_pde5_contraindication","isosorbide_mononitrate_pde5_contraindication","nitrate_sgc_potentiation_context"],
     contradicts:[],
     limitations:["Washout timing differs by PDE5 inhibitor half-life and clinical emergency context."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_sacubitril_valsartan_label": {
     id:"ev_sacubitril_valsartan_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7701,7 +7701,7 @@ const STUDY_DB = {
     supports:["sacubitril_valsartan_ace_inhibitor_contraindication","sacubitril_valsartan_36h_washout","sacubitril_valsartan_potassium_sparing_hyperkalemia_context"],
     contradicts:[],
     limitations:["Aliskiren contraindication depends on diabetes/renal-function context; not modeled as a pair unless aliskiren is present."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_tirzepatide_oral_absorption_label": {
     id:"ev_tirzepatide_oral_absorption_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7714,7 +7714,7 @@ const STUDY_DB = {
     supports:["tirzepatide_delayed_gastric_emptying","tirzepatide_oral_medication_absorption_context"],
     contradicts:[],
     limitations:["Warfarin pair is a conservative narrow-therapeutic-margin monitoring rule, not a direct contraindication."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_paxlovid_cyp3a_label": {
     id:"ev_paxlovid_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7727,7 +7727,7 @@ const STUDY_DB = {
     supports:["paxlovid_strong_cyp3a_inhibitor","paxlovid_simvastatin_contraindication","paxlovid_antiarrhythmic_contraindication","paxlovid_rifampin_antiviral_failure"],
     contradicts:[],
     limitations:["Paxlovid interaction management depends on renal function, infection timing, temporary holds, and local COVID treatment guidance."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_hydroxyzine_qt_label": {
     id:"ev_hydroxyzine_qt_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7740,7 +7740,7 @@ const STUDY_DB = {
     supports:["hydroxyzine_qt_tdp_warning","hydroxyzine_qt_risk_with_arrhythmogenic_drugs"],
     contradicts:[],
     limitations:["Absolute QT risk varies by dose, age, cardiac disease, electrolyte status, and concomitant QT-risk medications."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_ivabradine_cyp3a_label": {
     id:"ev_ivabradine_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7753,7 +7753,7 @@ const STUDY_DB = {
     supports:["ivabradine_strong_cyp3a4_inhibitor_contraindication","ivabradine_moderate_cyp3a4_inhibitor_avoid"],
     contradicts:[],
     limitations:["Bradycardia risk depends on baseline heart rate, conduction disease, dose, and concurrent rate-lowering medicines."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_amox_clav_warfarin_label": {
     id:"ev_amox_clav_warfarin_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7766,7 +7766,7 @@ const STUDY_DB = {
     supports:["amoxicillin_clavulanate_warfarin_inr_monitoring"],
     contradicts:[],
     limitations:["INR changes may reflect infection, diet, gut flora changes, and anticoagulant dose as well as the antibiotic."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_cefuroxime_probenecid_label": {
     id:"ev_cefuroxime_probenecid_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7779,7 +7779,7 @@ const STUDY_DB = {
     supports:["cefuroxime_probenecid_exposure_increase"],
     contradicts:[],
     limitations:["Clinical relevance depends on renal function, infection severity, and antibiotic dose/duration."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_insulin_glargine_beta_blocker_label": {
     id:"ev_insulin_glargine_beta_blocker_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7792,7 +7792,7 @@ const STUDY_DB = {
     supports:["insulin_beta_blocker_hypoglycemia_masking","insulin_combination_glucose_monitoring"],
     contradicts:[],
     limitations:["Hypoglycemia risk depends on insulin dose, meals, renal function, exercise, age, and concurrent glucose-lowering therapy."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_tmp_smx_label": {
     id:"ev_tmp_smx_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7805,7 +7805,7 @@ const STUDY_DB = {
     supports:["tmp_smx_warfarin_inr_monitoring","tmp_smx_oct2_cyp2c8_inhibition","tmp_smx_folate_marrow_toxicity_context","tmp_smx_hyperkalemia_context"],
     contradicts:[],
     limitations:["Hyperkalemia and marrow-toxicity risk are strongly patient-context dependent, especially renal function, age, dose, and folate-antagonist co-therapy."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_eplerenone_cyp3a_label": {
     id:"ev_eplerenone_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7818,7 +7818,7 @@ const STUDY_DB = {
     supports:["eplerenone_strong_cyp3a_contraindication","eplerenone_moderate_cyp3a_dose_limit","eplerenone_ace_arb_hyperkalemia_monitoring"],
     contradicts:[],
     limitations:["Potassium risk depends on kidney function, diabetes, baseline potassium, dose, and concurrent RAAS/NSAID/potassium therapy."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_lacosamide_pr_label": {
     id:"ev_lacosamide_pr_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7831,7 +7831,7 @@ const STUDY_DB = {
     supports:["lacosamide_pr_prolongation","lacosamide_conduction_medicine_caution"],
     contradicts:[],
     limitations:["Risk depends on baseline conduction disease, dose, route, renal/hepatic function, and other AV-node or sodium-channel effects."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_donepezil_bradycardia_label": {
     id:"ev_donepezil_bradycardia_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7844,7 +7844,7 @@ const STUDY_DB = {
     supports:["donepezil_bradycardia_heart_block_warning","donepezil_cyp3a4_cyp2d6_metabolism"],
     contradicts:[],
     limitations:["Clinical risk depends on baseline conduction disease, age, dose, frailty, and concurrent rate-lowering medicines."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_valacyclovir_probenecid_label": {
     id:"ev_valacyclovir_probenecid_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7857,7 +7857,7 @@ const STUDY_DB = {
     supports:["valacyclovir_cimetidine_probenecid_acyclovir_exposure_increase","valacyclovir_renal_function_context"],
     contradicts:[],
     limitations:["Single-agent cimetidine or probenecid effects are usually modest; risk rises with renal impairment, dehydration, older age, or high-dose antiviral therapy."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_ceftriaxone_calcium_label": {
     id:"ev_ceftriaxone_calcium_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7870,7 +7870,7 @@ const STUDY_DB = {
     supports:["ceftriaxone_neonate_calcium_contraindication","ceftriaxone_calcium_precipitation_context"],
     contradicts:[],
     limitations:["The severe pair is neonatal/protocol-context dependent; non-neonate administration rules differ by institution and product labeling details."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_coc_label": {
     id:"ev_coc_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7883,7 +7883,7 @@ const STUDY_DB = {
     supports:["coc_enzyme_inducer_contraceptive_failure","coc_lamotrigine_level_reduction","coc_st_johns_wort_breakthrough_bleeding"],
     contradicts:[],
     limitations:["Magnitude depends on contraceptive formulation, inducer strength/duration, adherence, and whether backup/non-hormonal contraception is used."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_chlorthalidone_lithium_label": {
     id:"ev_chlorthalidone_lithium_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7896,7 +7896,7 @@ const STUDY_DB = {
     supports:["chlorthalidone_lithium_toxicity","chlorthalidone_digoxin_hypokalemia_context"],
     contradicts:[],
     limitations:["Lithium and digoxin risk depends on renal function, dose, baseline electrolytes, hydration, and monitoring intensity."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_torsemide_lithium_label": {
     id:"ev_torsemide_lithium_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7909,7 +7909,7 @@ const STUDY_DB = {
     supports:["torsemide_lithium_toxicity","torsemide_digoxin_hypokalemia_context"],
     contradicts:[],
     limitations:["Risk depends on renal function, volume status, diuretic dose, concurrent RAAS therapy, and electrolyte monitoring."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_memantine_urine_ph_label": {
     id:"ev_memantine_urine_ph_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7922,7 +7922,7 @@ const STUDY_DB = {
     supports:["memantine_alkaline_urine_exposure_increase","memantine_sodium_bicarbonate_context"],
     contradicts:[],
     limitations:["Sustained urine alkalinization matters more than occasional antacid use; renal function and dose also affect exposure."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_oseltamivir_probenecid_label": {
     id:"ev_oseltamivir_probenecid_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7935,7 +7935,7 @@ const STUDY_DB = {
     supports:["oseltamivir_probenecid_exposure_increase"],
     contradicts:[],
     limitations:["Labeling indicates no dose adjustment is usually required due to safety margin, but renal impairment can change context."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_acyclovir_probenecid_label": {
     id:"ev_acyclovir_probenecid_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7948,7 +7948,7 @@ const STUDY_DB = {
     supports:["acyclovir_probenecid_exposure_increase","acyclovir_renal_function_context"],
     contradicts:[],
     limitations:["Clinical importance is greater with IV/high-dose acyclovir, renal impairment, dehydration, and older age."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed clinician workflow enrichment without professional sign-off"
   },
   "ev_leflunomide_teriflunomide_label": {
     id:"ev_leflunomide_teriflunomide_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7961,7 +7961,7 @@ const STUDY_DB = {
     supports:["leflunomide_teriflunomide_active_metabolite","leflunomide_cholestyramine_washout","teriflunomide_rosuvastatin_transporter_interaction"],
     contradicts:[],
     limitations:["Washout can be therapeutic when toxicity, pregnancy planning, or severe adverse reaction management is intended; interaction severity is context-dependent."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment without professional sign-off"
   },
   "ev_mycophenolate_enterohepatic_label": {
     id:"ev_mycophenolate_enterohepatic_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7974,7 +7974,7 @@ const STUDY_DB = {
     supports:["mycophenolate_mpa_active_metabolite","mycophenolate_mpag_enterohepatic_recycling","cholestyramine_reduces_mpa_exposure"],
     contradicts:[],
     limitations:["Magnitude varies by formulation, transplant organ, timing post-transplant, renal function, and concurrent immunosuppressants."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment without professional sign-off"
   },
   "ev_allopurinol_oxypurinol_label": {
     id:"ev_allopurinol_oxypurinol_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -7987,7 +7987,7 @@ const STUDY_DB = {
     supports:["allopurinol_oxypurinol_active_metabolite","allopurinol_xo_inhibition_thiopurine_context"],
     contradicts:[],
     limitations:["Oxypurinol exposure is strongly renal-function dependent; thiopurine management requires dose reduction and blood-count monitoring."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment without professional sign-off"
   },
   "ev_primidone_metabolites_label": {
     id:"ev_primidone_metabolites_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8000,7 +8000,7 @@ const STUDY_DB = {
     supports:["primidone_phenobarbital_active_metabolite","primidone_pema_active_metabolite","primidone_metabolite_induction_context"],
     contradicts:[],
     limitations:["The exact parent/metabolite contribution varies by dose, duration, age, renal/hepatic function, and therapeutic drug monitoring."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending human review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment without professional sign-off"
   },
   "ev_teriflunomide_label": {
     id:"ev_teriflunomide_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8013,7 +8013,7 @@ const STUDY_DB = {
     supports:["teriflunomide_active_leflunomide_metabolite","teriflunomide_unchanged_biliary_elimination","teriflunomide_accelerated_elimination_context"],
     contradicts:[],
     limitations:["Risk and washout decisions depend on pregnancy potential, hepatotoxicity, infection, and indication-specific monitoring."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending neurology/rheumatology review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment without professional sign-off"
   },
   "ev_cholestyramine_label": {
     id:"ev_cholestyramine_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8026,7 +8026,7 @@ const STUDY_DB = {
     supports:["cholestyramine_unabsorbed_resin","cholestyramine_oral_drug_binding","cholestyramine_enterohepatic_recycling_interruption"],
     contradicts:[],
     limitations:["Interaction magnitude depends on dose separation, drug formulation, enterohepatic recycling, and nutritional/vitamin context."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment without professional sign-off"
   },
   "ev_chlorpromazine_cyp2d6_label": {
     id:"ev_chlorpromazine_cyp2d6_label", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
@@ -8039,7 +8039,7 @@ const STUDY_DB = {
     supports:["chlorpromazine_METABOLIZED_TO_7-hydroxychlorpromazine","chlorpromazine_METABOLIZED_TO_n-desmethylchlorpromazine","chlorpromazine_cyp2d6_parent_exposure_context"],
     contradicts:[],
     limitations:["Metabolite fractions and activity vary across sources; launch data should be treated as review-required until specialist curation."],
-    verified:false, reviewRequired:true, verifyNote:"Literature-backed metabolite-first enrichment pending psychiatry/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Literature-backed metabolite-first enrichment without professional sign-off"
   },
   "ev_propylthiouracil_label": {
     id:"ev_propylthiouracil_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8052,7 +8052,7 @@ const STUDY_DB = {
     supports:["propylthiouracil_glucuronidation_clearance","propylthiouracil_hepatotoxicity_context","propylthiouracil_parent_t4_t3_conversion_block"],
     contradicts:[],
     limitations:["Hepatotoxicity is idiosyncratic and cannot be predicted by this simple metabolite map."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending endocrinology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment without professional sign-off"
   },
   "ev_procainamide_nat2_label": {
     id:"ev_procainamide_nat2_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8065,7 +8065,7 @@ const STUDY_DB = {
     supports:["procainamide_METABOLIZED_TO_n-acetylprocainamide-napa","procainamide_nat2_parent_metabolite_balance","procainamide_napa_qt_context"],
     contradicts:[],
     limitations:["Clinical interpretation requires ECG/QT monitoring, renal function, dose, route, and therapeutic drug monitoring where available."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending cardiology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment without professional sign-off"
   },
   "ev_disopyramide_label": {
     id:"ev_disopyramide_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8078,7 +8078,7 @@ const STUDY_DB = {
     supports:["disopyramide_METABOLIZED_TO_mono-n-dealkyldisopyramide","disopyramide_anticholinergic_metabolite_context","disopyramide_renal_clearance_context"],
     contradicts:[],
     limitations:["Risk depends on renal function, serum concentration, QRS/QT monitoring, heart failure status, and anticholinergic vulnerability."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending cardiology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment without professional sign-off"
   },
   "ev_mexiletine_label": {
     id:"ev_mexiletine_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8091,7 +8091,7 @@ const STUDY_DB = {
     supports:["mexiletine_METABOLIZED_TO_p-hydroxymexiletine","mexiletine_cyp2d6_cyp1a2_parent_clearance","mexiletine_minor_active_n-methylmetabolite"],
     contradicts:[],
     limitations:["Clinical toxicity is mainly parent-exposure driven; hepatic disease, smoking, CYP inhibitors, and ECG monitoring matter."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending cardiology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment without professional sign-off"
   },
   "ev_quinidine_label": {
     id:"ev_quinidine_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8104,7 +8104,7 @@ const STUDY_DB = {
     supports:["quinidine_METABOLIZED_TO_3-hydroxyquinidine","quinidine_cyp3a4_inhibition_parent_exposure","quinidine_parent_cyp2d6_inhibition_context"],
     contradicts:[],
     limitations:["Narrow-therapeutic-index risk depends on QT, renal/hepatic function, electrolytes, and interacting medicines."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending cardiology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment without professional sign-off"
   },
   "ev_gefitinib_label": {
     id:"ev_gefitinib_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8117,7 +8117,7 @@ const STUDY_DB = {
     supports:["gefitinib_METABOLIZED_TO_o-desmethyl-gefitinib","gefitinib_cyp3a4_substrate","gefitinib_cyp2d6_metabolite_context"],
     contradicts:[],
     limitations:["The metabolite is not a dosing target; EGFR mutation status, ILD risk, acid suppression, and CYP3A induction remain central."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment without professional sign-off"
   },
   "ev_imatinib_label": {
     id:"ev_imatinib_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8130,7 +8130,7 @@ const STUDY_DB = {
     supports:["imatinib_METABOLIZED_TO_n-demethylated-piperazine-derivative-cgp74588","imatinib_cyp3a4_substrate"],
     contradicts:[],
     limitations:["Clinical management is still mostly parent-exposure and toxicity driven; oncology context and indication-specific monitoring apply."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment without professional sign-off"
   },
   "ev_pazopanib_label": {
     id:"ev_pazopanib_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8143,7 +8143,7 @@ const STUDY_DB = {
     supports:["pazopanib_cyp3a4_substrate","pazopanib_minor_cyp1a2_cyp2c8_metabolism","pazopanib_parent_exposure_hepatotoxicity_context"],
     contradicts:[],
     limitations:["Hepatic function, food/acid-suppression context, hypertension, and QT/hepatotoxicity monitoring remain clinically important."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite-first enrichment without professional sign-off"
   },
   "ev_vorapaxar_cyp3a_label": {
     id:"ev_vorapaxar_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8156,7 +8156,7 @@ const STUDY_DB = {
     supports:["vorapaxar_cyp3a4_substrate","vorapaxar_avoid_strong_cyp3a_inhibitors","vorapaxar_avoid_strong_cyp3a_inducers"],
     contradicts:[],
     limitations:["Magnitude depends on inhibitor/inducer strength and timing; bleeding risk is strongly affected by indication, age, prior stroke/TIA, and background antithrombotic therapy."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment pending cardiology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment without professional sign-off"
   },
   "ev_crizotinib_cyp3a_label": {
     id:"ev_crizotinib_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8169,7 +8169,7 @@ const STUDY_DB = {
     supports:["crizotinib_cyp3a4_substrate","crizotinib_strong_cyp3a_inhibitor_exposure_increase","crizotinib_rifampin_exposure_decrease"],
     contradicts:[],
     limitations:["Oncology response, mutation context, ECG risk, hepatic function, and co-administered QT-risk drugs determine clinical action."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment without professional sign-off"
   },
   "ev_enzalutamide_induction_label": {
     id:"ev_enzalutamide_induction_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8182,7 +8182,7 @@ const STUDY_DB = {
     supports:["enzalutamide_strong_cyp3a4_inducer","enzalutamide_moderate_cyp2c9_inducer","enzalutamide_moderate_cyp2c19_inducer"],
     contradicts:[],
     limitations:["Effect magnitude differs by victim drug; therapeutic-drug monitoring or pharmacodynamic monitoring is needed for narrow-therapeutic-index substrates."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment without professional sign-off"
   },
   "ev_apalutamide_induction_label": {
     id:"ev_apalutamide_induction_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8195,7 +8195,7 @@ const STUDY_DB = {
     supports:["apalutamide_cyp3a4_inducer","apalutamide_cyp2c9_inducer","apalutamide_cyp2c19_inducer","apalutamide_transporter_substrate_exposure_reduction"],
     contradicts:[],
     limitations:["Label warning is broad; victim-specific monitoring determines exact management."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment without professional sign-off"
   },
   "ev_cilostazol_cyp_inhibitor_label": {
     id:"ev_cilostazol_cyp_inhibitor_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8208,7 +8208,7 @@ const STUDY_DB = {
     supports:["cilostazol_cyp3a4_substrate","cilostazol_cyp2c19_substrate","cilostazol_reduce_dose_with_cyp_inhibitors"],
     contradicts:[],
     limitations:["Contraindication in heart failure and bleeding/cardiovascular tolerance remain key clinical modifiers."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment pending cardiology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment without professional sign-off"
   },
   "ev_lorlatinib_cyp3a_label": {
     id:"ev_lorlatinib_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8221,7 +8221,7 @@ const STUDY_DB = {
     supports:["lorlatinib_contraindicated_with_strong_cyp3a_inducers","lorlatinib_reduces_cyp3a_substrate_exposure","lorlatinib_cyp3a4_substrate"],
     contradicts:[],
     limitations:["The hepatotoxicity warning is specific to strong CYP3A inducer co-use; substrate-victim management depends on the victim drug therapeutic index."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment without professional sign-off"
   },
   "ev_darolutamide_bcrp_label": {
     id:"ev_darolutamide_bcrp_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8234,7 +8234,7 @@ const STUDY_DB = {
     supports:["darolutamide_inhibits_bcrp_oatp","darolutamide_increases_rosuvastatin_exposure","rosuvastatin_transporter_substrate"],
     contradicts:[],
     limitations:["Rosuvastatin risk also depends on SLCO1B1/ABCG2 genotype, renal function, age, statin dose, and other myopathy risks."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed correlation enrichment without professional sign-off"
   },
   "ev_alectinib_m4_food_label": {
     id:"ev_alectinib_m4_food_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8247,7 +8247,7 @@ const STUDY_DB = {
     supports:["alectinib_to_active_M4","alectinib_food_increases_active_moiety","alectinib_cyp3a_modulators_limited_active_moiety_change"],
     contradicts:[],
     limitations:["Food effect depends on meal composition and adherence; oncology response and toxicity monitoring remain individualized."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed ALK TKI active-metabolite enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed ALK TKI active-metabolite enrichment without professional sign-off"
   },
   "ev_brigatinib_cyp3a_label": {
     id:"ev_brigatinib_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8260,7 +8260,7 @@ const STUDY_DB = {
     supports:["brigatinib_cyp3a_substrate","brigatinib_strong_cyp3a_inhibitor_exposure_increase","brigatinib_rifampin_exposure_decrease"],
     contradicts:[],
     limitations:["Dose modification depends on brigatinib dose step, toxicity history, and whether the interacting medicine is avoidable."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed ALK TKI enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed ALK TKI enrichment without professional sign-off"
   },
   "ev_capmatinib_cyp3a_transporter_label": {
     id:"ev_capmatinib_cyp3a_transporter_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8273,7 +8273,7 @@ const STUDY_DB = {
     supports:["capmatinib_cyp3a_substrate","capmatinib_rifampin_exposure_decrease","capmatinib_inhibits_pgp","capmatinib_inhibits_bcrp"],
     contradicts:[],
     limitations:["Transporter victim-drug risk depends on substrate therapeutic index, renal/hepatic function, and oncology toxicity context."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed MET TKI enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed MET TKI enrichment without professional sign-off"
   },
   "ev_lenvatinib_qt_label": {
     id:"ev_lenvatinib_qt_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8286,7 +8286,7 @@ const STUDY_DB = {
     supports:["lenvatinib_qt_prolongation","lenvatinib_avoid_qt_prolonging_drugs","lenvatinib_mixed_rifampin_exposure_effects"],
     contradicts:[],
     limitations:["Hypertension, electrolytes, baseline QTc, cardiac disease, renal/hepatic function, and cancer indication determine clinical risk."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed VEGFR TKI enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed VEGFR TKI enrichment without professional sign-off"
   },
   "ev_sunitinib_cyp3a_qt_label": {
     id:"ev_sunitinib_cyp3a_qt_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8299,7 +8299,7 @@ const STUDY_DB = {
     supports:["sunitinib_cyp3a_substrate","sunitinib_active_metabolite","sunitinib_strong_cyp3a_modifier_dose_adjustment","sunitinib_qt_prolongation"],
     contradicts:[],
     limitations:["QT risk depends on active-moiety exposure, electrolytes, baseline QTc, cardiac disease, and other QT-risk medicines."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed VEGFR TKI enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed VEGFR TKI enrichment without professional sign-off"
   },
   "ev_sorafenib_cyp_ugt_warfarin_label": {
     id:"ev_sorafenib_cyp_ugt_warfarin_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8312,7 +8312,7 @@ const STUDY_DB = {
     supports:["sorafenib_cyp3a4_substrate","sorafenib_ugt1a9_clearance","sorafenib_avoid_strong_cyp3a_inducers","sorafenib_warfarin_inr_bleeding_monitoring"],
     contradicts:[],
     limitations:["INR and bleeding risk depend on tumor type, liver function, platelet count, warfarin indication, and other antithrombotics."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed multikinase TKI enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed multikinase TKI enrichment without professional sign-off"
   },
   "ev_regorafenib_cyp3a_ugt_bcrp_label": {
     id:"ev_regorafenib_cyp3a_ugt_bcrp_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8325,7 +8325,7 @@ const STUDY_DB = {
     supports:["regorafenib_active_M2_M5_metabolites","regorafenib_ketoconazole_parent_metabolite_shift","regorafenib_rifampin_parent_metabolite_shift","regorafenib_bcrp_inhibition"],
     contradicts:[],
     limitations:["Hepatic toxicity, hand-foot reaction, blood pressure, and cancer indication affect management; active-moiety interpretation is simplified."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed multikinase TKI enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed multikinase TKI enrichment without professional sign-off"
   },
   "ev_axitinib_cyp3a_label": {
     id:"ev_axitinib_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8338,7 +8338,7 @@ const STUDY_DB = {
     supports:["axitinib_cyp3a_substrate","axitinib_strong_cyp3a_inhibitor_dose_reduction","axitinib_rifampin_exposure_reduction"],
     contradicts:[],
     limitations:["Axitinib dose titration, blood pressure, hepatic function, and combination immunotherapy context modify final management."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed VEGFR TKI enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed VEGFR TKI enrichment without professional sign-off"
   },
   "ev_lumateperone_cyp3a_label": {
     id:"ev_lumateperone_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8351,7 +8351,7 @@ const STUDY_DB = {
     supports:["lumateperone_cyp3a_substrate","lumateperone_strong_cyp3a_inhibitor_dose_reduction","lumateperone_avoid_cyp3a_inducers"],
     contradicts:[],
     limitations:["Tolerability and efficacy depend on psychiatric indication, dose, adherence, sedation/orthostasis, and concomitant CNS medicines."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed psychiatry enrichment pending psychiatry/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed psychiatry enrichment without professional sign-off"
   },
   "ev_levomilnacipran_cyp3a_renal_label": {
     id:"ev_levomilnacipran_cyp3a_renal_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8364,7 +8364,7 @@ const STUDY_DB = {
     supports:["levomilnacipran_strong_cyp3a_inhibitor_dose_cap","levomilnacipran_renal_elimination","levomilnacipran_bp_hr_exposure_context"],
     contradicts:[],
     limitations:["Blood pressure, heart rate, renal function, urinary retention risk, and serotonergic co-medications modify management."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed SNRI enrichment pending psychiatry/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed SNRI enrichment without professional sign-off"
   },
   "ev_asenapine_ugt1a4_cyp1a2_label": {
     id:"ev_asenapine_ugt1a4_cyp1a2_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8377,7 +8377,7 @@ const STUDY_DB = {
     supports:["asenapine_ugt1a4_metabolism","asenapine_cyp1a2_metabolism","asenapine_fluvoxamine_exposure_context","asenapine_weak_cyp2d6_inhibition"],
     contradicts:[],
     limitations:["Clinical relevance depends on formulation, dose, sedation/orthostasis, EPS, QT-risk context, and other serotonergic/CNS medicines."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed antipsychotic enrichment pending psychiatry/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed antipsychotic enrichment without professional sign-off"
   },
   "ev_levothyroxine_absorption_label": {
     id:"ev_levothyroxine_absorption_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8390,7 +8390,7 @@ const STUDY_DB = {
     supports:["levothyroxine_cation_binding_reduced_absorption","levothyroxine_bile_acid_sequestrant_binding","levothyroxine_acid_suppression_monitor_tsh"],
     contradicts:[],
     limitations:["Magnitude depends on formulation, dose timing, baseline thyroid reserve, pregnancy status, and chronicity; TSH changes lag exposure changes."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed absorption enrichment pending endocrinology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed absorption enrichment without professional sign-off"
   },
   "ev_fluoroquinolone_cation_absorption_label": {
     id:"ev_fluoroquinolone_cation_absorption_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8403,7 +8403,7 @@ const STUDY_DB = {
     supports:["fluoroquinolone_cation_chelation_reduced_absorption","ciprofloxacin_calcium_iron_separation","levofloxacin_cation_separation","moxifloxacin_cation_separation"],
     contradicts:[],
     limitations:["Exact separation window differs by fluoroquinolone and product; infection severity and susceptibility determine clinical consequence."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed antibiotic absorption enrichment pending infectious-disease/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed antibiotic absorption enrichment without professional sign-off"
   },
   "ev_tetracycline_cation_absorption_label": {
     id:"ev_tetracycline_cation_absorption_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8416,7 +8416,7 @@ const STUDY_DB = {
     supports:["doxycycline_cation_chelation_reduced_absorption","minocycline_tetracycline_class_cation_separation"],
     contradicts:[],
     limitations:["Class extrapolation is strongest for doxycycline label text; product-specific timing should be checked for each tetracycline formulation."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed antibiotic absorption enrichment pending infectious-disease/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed antibiotic absorption enrichment without professional sign-off"
   },
   "ev_amphetamine_urinary_ph_label": {
     id:"ev_amphetamine_urinary_ph_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8429,7 +8429,7 @@ const STUDY_DB = {
     supports:["amphetamine_alkalinization_increases_exposure","amphetamine_acidification_decreases_exposure","lisdexamfetamine_active_d_amphetamine_ph_context"],
     contradicts:[],
     limitations:["Effect magnitude depends on urinary pH change, renal function, stimulant formulation, and whether the product is parent amphetamine or a prodrug."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed ADHD exposure enrichment pending psychiatry/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed ADHD exposure enrichment without professional sign-off"
   },
   "ev_lurasidone_food_label": {
     id:"ev_lurasidone_food_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8442,7 +8442,7 @@ const STUDY_DB = {
     supports:["lurasidone_take_with_food","lurasidone_food_increases_auc_cmax"],
     contradicts:[],
     limitations:["Meal size/composition and adherence pattern determine real-world exposure; this is an administration requirement rather than an avoid-all-food warning."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed psychiatry exposure enrichment pending psychiatry/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed psychiatry exposure enrichment without professional sign-off"
   },
   "ev_atovaquone_food_label": {
     id:"ev_atovaquone_food_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8455,7 +8455,7 @@ const STUDY_DB = {
     supports:["atovaquone_take_with_food","atovaquone_food_dependent_absorption"],
     contradicts:[],
     limitations:["Magnitude depends on meal fat content, GI illness, vomiting/diarrhea, formulation, and indication."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed infectious-disease exposure enrichment pending infectious-disease/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed infectious-disease exposure enrichment without professional sign-off"
   },
   "ev_maribavir_label": {
     id:"ev_maribavir_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8468,7 +8468,7 @@ const STUDY_DB = {
     supports:["maribavir_antagonizes_ganciclovir_valganciclovir","maribavir_rifampin_loss_of_response","maribavir_carbamazepine_dose_adjustment","maribavir_increases_digoxin_exposure"],
     contradicts:[],
     limitations:["CMV resistance pattern, transplant organ, viral load kinetics, and immunosuppression strategy determine clinical management."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed CMV/transplant enrichment pending infectious-disease/transplant pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed CMV/transplant enrichment without professional sign-off"
   },
   "ev_letermovir_immunosuppressant_label": {
     id:"ev_letermovir_immunosuppressant_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8481,7 +8481,7 @@ const STUDY_DB = {
     supports:["letermovir_cyclosporine_dose_adjustment","letermovir_increases_tacrolimus_exposure","letermovir_sirolimus_monitoring","letermovir_oatp_statin_exposure"],
     contradicts:[],
     limitations:["Effect magnitude varies with cyclosporine co-use, organ transplant context, renal/hepatic function, and baseline therapeutic-drug monitoring."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed CMV/transplant enrichment pending infectious-disease/transplant pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed CMV/transplant enrichment without professional sign-off"
   },
   "ev_valganciclovir_label": {
     id:"ev_valganciclovir_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8494,7 +8494,7 @@ const STUDY_DB = {
     supports:["valganciclovir_to_ganciclovir_activation","ganciclovir_myelosuppression","valganciclovir_zidovudine_additive_myelosuppression"],
     contradicts:[],
     limitations:["CMV viral kinetics, renal function, neutrophil reserve, and transplant immunosuppression modify risk."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed CMV/transplant enrichment pending infectious-disease/transplant pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed CMV/transplant enrichment without professional sign-off"
   },
   "ev_bedaquiline_label": {
     id:"ev_bedaquiline_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8507,7 +8507,7 @@ const STUDY_DB = {
     supports:["bedaquiline_rifampin_loss_of_efficacy","bedaquiline_cyp3a_inhibitor_toxicity","bedaquiline_qt_additive_risk"],
     contradicts:[],
     limitations:["MDR-TB regimens require specialist oversight; additive QT risk depends on baseline QTc, electrolytes, companion drugs, and TB severity."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed TB enrichment pending infectious-disease/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed TB enrichment without professional sign-off"
   },
   "ev_rifapentine_label": {
     id:"ev_rifapentine_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8520,7 +8520,7 @@ const STUDY_DB = {
     supports:["rifapentine_reduces_hormonal_contraceptive_exposure","rifapentine_rifamycin_induction_context","rifapentine_tacrolimus_loss_of_exposure"],
     contradicts:[],
     limitations:["Induction magnitude varies by rifamycin, dosing schedule, HIV/TB regimen, and victim-drug therapeutic index."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed TB enrichment pending infectious-disease/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed TB enrichment without professional sign-off"
   },
   "ev_praziquantel_label": {
     id:"ev_praziquantel_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8533,7 +8533,7 @@ const STUDY_DB = {
     supports:["praziquantel_rifampin_loss_of_efficacy","praziquantel_cyp3a_substrate"],
     contradicts:[],
     limitations:["Timing of rifampin discontinuation and parasite indication determine whether treatment should be delayed or changed."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed antiparasitic enrichment pending infectious-disease/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed antiparasitic enrichment without professional sign-off"
   },
   "ev_atovaquone_interactions_label": {
     id:"ev_atovaquone_interactions_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8546,7 +8546,7 @@ const STUDY_DB = {
     supports:["atovaquone_rifampin_loss_of_efficacy","atovaquone_rifabutin_loss_of_efficacy","atovaquone_tetracycline_exposure_reduction"],
     contradicts:[],
     limitations:["Clinical impact depends on indication, pathogen burden, food intake, vomiting/diarrhea, and alternative regimen availability."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed antiparasitic enrichment pending infectious-disease/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed antiparasitic enrichment without professional sign-off"
   },
   "ev_fondaparinux_bleeding_label": {
     id:"ev_fondaparinux_bleeding_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8559,7 +8559,7 @@ const STUDY_DB = {
     supports:["fondaparinux_antiplatelet_bleeding_risk","fondaparinux_renal_clearance_bleeding_context"],
     contradicts:[],
     limitations:["ACS/VTE indication, renal function, procedural timing, and baseline bleed risk determine whether the combination is appropriate."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed procedural/cardiology enrichment pending cardiology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed procedural/cardiology enrichment without professional sign-off"
   },
   "ev_gpiibiiia_bleeding_label": {
     id:"ev_gpiibiiia_bleeding_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8572,7 +8572,7 @@ const STUDY_DB = {
     supports:["gpiibiiia_heparin_bleeding_risk","eptifibatide_heparin_procedural_bleeding","tirofiban_heparin_procedural_bleeding","abciximab_heparin_procedural_bleeding"],
     contradicts:[],
     limitations:["These combinations are often protocolized rather than absolutely avoidable; renal adjustment, activated clotting time/aPTT, access site, and platelet count drive management."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed procedural/cardiology enrichment pending cardiology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed procedural/cardiology enrichment without professional sign-off"
   },
   "ev_malarone_label": {
     id:"ev_malarone_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8585,7 +8585,7 @@ const STUDY_DB = {
     supports:["atovaquone_food_dependent_absorption","atovaquone_metoclopramide_exposure_reduction","proguanil_cyp2c19_to_cycloguanil","malarone_rifamycin_exposure_loss"],
     contradicts:[],
     limitations:["Clinical outcome depends on malaria indication, vomiting/diarrhea, adherence, resistance geography, renal/hepatic function, and companion therapy."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed antimalarial enrichment pending infectious-disease/travel-medicine pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed antimalarial enrichment without professional sign-off"
   },
   "ev_albendazole_active_sulfoxide_label": {
     id:"ev_albendazole_active_sulfoxide_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8598,7 +8598,7 @@ const STUDY_DB = {
     supports:["albendazole_active_sulfoxide_metabolite","albendazole_dexamethasone_exposure_increase","albendazole_praziquantel_exposure_increase","albendazole_cimetidine_exposure_increase"],
     contradicts:[],
     limitations:["Use can be intentional in some parasitic regimens; risk depends on course length, liver function, cyst location, and CBC reserve."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed antiparasitic active-metabolite enrichment pending infectious-disease/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed antiparasitic active-metabolite enrichment without professional sign-off"
   },
   "ev_misoprostol_active_acid_label": {
     id:"ev_misoprostol_active_acid_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8611,7 +8611,7 @@ const STUDY_DB = {
     supports:["misoprostol_to_misoprostol_acid","misoprostol_acid_short_half_life"],
     contradicts:[],
     limitations:["Route, dose, pregnancy context, and local tissue effects are more clinically important than genotype-based metabolism for most use cases."],
-    verified:false, reviewRequired:true, verifyNote:"Label/PubMed-backed prodrug metabolite enrichment pending obstetric/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label/PubMed-backed prodrug metabolite enrichment without professional sign-off"
   },
   "ev_tegafur_cyp2a6_activation_pubmed": {
     id:"ev_tegafur_cyp2a6_activation_pubmed", public:true, type:EVIDENCE_TIER.IN_VITRO,
@@ -8624,7 +8624,7 @@ const STUDY_DB = {
     supports:["tegafur_to_5-fluorouracil","tegafur_cyp2a6_activation_context"],
     contradicts:[],
     limitations:["In vitro liver formation does not replace regimen-specific oncology dosing; DPYD toxicity risk remains the safety-critical fluoropyrimidine layer."],
-    verified:false, reviewRequired:true, verifyNote:"PubMed-backed tegafur prodrug enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"PubMed-backed tegafur prodrug enrichment without professional sign-off"
   },
   "ev_haloperidol_hpp_neurotoxicity": {
     id:"ev_haloperidol_hpp_neurotoxicity", public:true, type:EVIDENCE_TIER.ANIMAL,
@@ -8637,7 +8637,7 @@ const STUDY_DB = {
     supports:["haloperidol_METABOLIZED_TO_hpp-plus","hpp_plus_neurotoxicity_context"],
     contradicts:[],
     limitations:["Most data are preclinical or metabolite-detection studies; this is a network visibility/toxic-metabolite signal, not a calibrated human dose adjustment rule."],
-    verified:false, reviewRequired:true, verifyNote:"PMID-backed toxic-metabolite enrichment pending psychiatry/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"PMID-backed toxic-metabolite enrichment without professional sign-off"
   },
   "ev_griseofulvin_induction_label": {
     id:"ev_griseofulvin_induction_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8650,7 +8650,7 @@ const STUDY_DB = {
     supports:["griseofulvin_reduces_warfarin_effect","griseofulvin_reduces_hormonal_contraceptive_effect","griseofulvin_alcohol_intolerance"],
     contradicts:[],
     limitations:["Magnitude varies by formulation, duration, hepatic function, and victim-drug monitoring; terbinafine or azoles have different interaction profiles."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed dermatology/antifungal enrichment pending pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed dermatology/antifungal enrichment without professional sign-off"
   },
   "ev_darunavir_boosted_cyp3a_label": {
     id:"ev_darunavir_boosted_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8663,7 +8663,7 @@ const STUDY_DB = {
     supports:["darunavir_boosted_cyp3a_inhibition","darunavir_rifampin_contraindicated","darunavir_simvastatin_contraindicated","darunavir_midazolam_contraindicated"],
     contradicts:[],
     limitations:["Magnitude depends on booster, regimen, resistance history, hepatic function, and whether the victim drug is oral or parenteral."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed HIV enrichment pending infectious-disease/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed HIV enrichment without professional sign-off"
   },
   "ev_rilpivirine_acid_cyp3a_qt_label": {
     id:"ev_rilpivirine_acid_cyp3a_qt_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8676,7 +8676,7 @@ const STUDY_DB = {
     supports:["rilpivirine_ppi_contraindicated","rilpivirine_strong_inducer_contraindicated","rilpivirine_qt_exposure_context"],
     contradicts:[],
     limitations:["H2 blocker/antacid management uses timing rules; injectable cabotegravir/rilpivirine has different absorption constraints."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed HIV enrichment pending infectious-disease/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed HIV enrichment without professional sign-off"
   },
   "ev_bictegravir_cation_induction_label": {
     id:"ev_bictegravir_cation_induction_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8689,7 +8689,7 @@ const STUDY_DB = {
     supports:["bictegravir_rifampin_contraindicated","bictegravir_polyvalent_cation_absorption_reduction","bictegravir_cyp3a_ugt1a1_substrate"],
     contradicts:[],
     limitations:["Mineral effect depends strongly on fasting/fed state and timing; complete HIV regimen context determines failure risk."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed HIV enrichment pending infectious-disease/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed HIV enrichment without professional sign-off"
   },
   "ev_taf_pgp_induction_label": {
     id:"ev_taf_pgp_induction_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8702,7 +8702,7 @@ const STUDY_DB = {
     supports:["taf_pgp_bcrp_substrate","taf_pgp_inducers_reduce_exposure","taf_prodrug_to_tenofovir_diphosphate"],
     contradicts:[],
     limitations:["Clinical significance depends on full HIV/HBV regimen, adherence, renal function, and whether TAF is used with pharmacokinetic boosters."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed HIV enrichment pending infectious-disease/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed HIV enrichment without professional sign-off"
   },
   "ev_lamivudine_renal_transport_label": {
     id:"ev_lamivudine_renal_transport_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8715,7 +8715,7 @@ const STUDY_DB = {
     supports:["lamivudine_renal_clearance","lamivudine_trimethoprim_exposure_increase"],
     contradicts:[],
     limitations:["Usually manageable at standard doses; renal impairment and high-dose TMP-SMX make the signal more important."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed renal transporter enrichment pending infectious-disease/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed renal transporter enrichment without professional sign-off"
   },
   "ev_flucytosine_amphotericin_label": {
     id:"ev_flucytosine_amphotericin_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8728,7 +8728,7 @@ const STUDY_DB = {
     supports:["flucytosine_renal_clearance","flucytosine_concentration_dependent_toxicity","amphotericin_can_raise_flucytosine_by_nephrotoxicity"],
     contradicts:[],
     limitations:["Therapeutic-drug monitoring and renal adjustment supersede categorical pair scoring."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed antifungal enrichment pending infectious-disease/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed antifungal enrichment without professional sign-off"
   },
   "ev_olaparib_cyp3a_label": {
     id:"ev_olaparib_cyp3a_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8741,7 +8741,7 @@ const STUDY_DB = {
     supports:["olaparib_cyp3a_substrate","olaparib_cyp3a_inhibitor_dose_reduction","olaparib_avoid_cyp3a_inducers"],
     contradicts:[],
     limitations:["Dose modification depends on formulation, cancer indication, renal/hepatic function, myelosuppression, and alternative anti-infective availability."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed PARP enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed PARP enrichment without professional sign-off"
   },
   "ev_rucaparib_cyp_substrate_label": {
     id:"ev_rucaparib_cyp_substrate_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8754,7 +8754,7 @@ const STUDY_DB = {
     supports:["rucaparib_inhibits_cyp1a2","rucaparib_inhibits_cyp2c9","rucaparib_sensitive_substrate_monitoring"],
     contradicts:[],
     limitations:["Victim-specific magnitude varies; narrow-index substrates such as warfarin require closer monitoring."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed PARP enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed PARP enrichment without professional sign-off"
   },
   "ev_parp_transporter_myelosuppression_label": {
     id:"ev_parp_transporter_myelosuppression_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8767,7 +8767,7 @@ const STUDY_DB = {
     supports:["talazoparib_pgp_bcrp_substrate","niraparib_low_cyp_burden","parp_myelosuppression_monitoring"],
     contradicts:[],
     limitations:["CBC reserve, renal function, cancer regimen, and prior platinum therapy modify clinical risk."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed PARP enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed PARP enrichment without professional sign-off"
   },
   "ev_romidepsin_cyp3a_qt_warfarin_label": {
     id:"ev_romidepsin_cyp3a_qt_warfarin_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8780,7 +8780,7 @@ const STUDY_DB = {
     supports:["romidepsin_cyp3a_substrate","romidepsin_warfarin_inr_monitoring","romidepsin_ecg_monitoring"],
     contradicts:[],
     limitations:["QT signal is multifactorial; potassium/magnesium, cardiac disease, antiemetics, infection, and oncology dosing schedule matter."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed HDAC enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed HDAC enrichment without professional sign-off"
   },
   "ev_abiraterone_cyp2d6_cyp2c8_label": {
     id:"ev_abiraterone_cyp2d6_cyp2c8_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8793,7 +8793,7 @@ const STUDY_DB = {
     supports:["abiraterone_inhibits_cyp2d6","abiraterone_inhibits_cyp2c8","abiraterone_hypokalemia_hypertension_monitoring"],
     contradicts:[],
     limitations:["Prednisone coadministration, cardiac status, potassium, liver function, and oncology indication modify risk."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed oncology endocrine enrichment pending oncology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed oncology endocrine enrichment without professional sign-off"
   },
   "ev_clorazepate_nordiazepam_label": {
     id:"ev_clorazepate_nordiazepam_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8806,7 +8806,7 @@ const STUDY_DB = {
     supports:["clorazepate_to_nordiazepam","nordiazepam_long_lived_active_metabolite","clorazepate_active_metabolite_sedation"],
     contradicts:[],
     limitations:["Older age, liver disease, alcohol/CNS depressants, and benzodiazepine tolerance often matter more than a single CYP route."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed prodrug enrichment pending psychiatry/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed prodrug enrichment without professional sign-off"
   },
   "ev_midodrine_desglymidodrine_label": {
     id:"ev_midodrine_desglymidodrine_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8819,7 +8819,7 @@ const STUDY_DB = {
     supports:["midodrine_to_desglymidodrine","midodrine_supine_hypertension","midodrine_additive_pressor_risk"],
     contradicts:[],
     limitations:["Dose timing, supine BP, autonomic failure severity, renal function, and specialist indication determine management."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed autonomic/prodrug enrichment pending cardiology/neurology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed autonomic/prodrug enrichment without professional sign-off"
   },
   "ev_droxidopa_norepinephrine_label": {
     id:"ev_droxidopa_norepinephrine_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8832,7 +8832,7 @@ const STUDY_DB = {
     supports:["droxidopa_to_norepinephrine","droxidopa_supine_hypertension","droxidopa_maoi_pressor_risk"],
     contradicts:[],
     limitations:["Parkinson/autonomic failure context, carbidopa exposure, baseline BP, renal function, and timing relative to sleep are key."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed autonomic/prodrug enrichment pending neurology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed autonomic/prodrug enrichment without professional sign-off"
   },
   "ev_nitazoxanide_tizoxanide_label": {
     id:"ev_nitazoxanide_tizoxanide_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8845,7 +8845,7 @@ const STUDY_DB = {
     supports:["nitazoxanide_to_tizoxanide","tizoxanide_high_protein_binding","nitazoxanide_low_cyp_burden"],
     contradicts:[],
     limitations:["Warfarin interaction is theoretical/precautionary rather than a strong quantified clinical PK signal."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed antiparasitic prodrug enrichment pending infectious-disease/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed antiparasitic prodrug enrichment without professional sign-off"
   },
   "ev_dipyridamole_antiplatelet_label": {
     id:"ev_dipyridamole_antiplatelet_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8858,7 +8858,7 @@ const STUDY_DB = {
     supports:["dipyridamole_antiplatelet_effect","dipyridamole_aspirin_combination_context","dipyridamole_bleeding_context"],
     contradicts:[],
     limitations:["Aspirin/dipyridamole co-use is often intentional; stroke indication and bleed risk determine net benefit."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed antiplatelet enrichment pending cardiology/neurology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed antiplatelet enrichment without professional sign-off"
   },
   "ev_artemether_lumefantrine_cyp3a_qt_label": {
     id:"ev_artemether_lumefantrine_cyp3a_qt_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8871,7 +8871,7 @@ const STUDY_DB = {
     supports:["artemether_lumefantrine_cyp3a_substrate","artemether_lumefantrine_rifampin_avoid","artemether_lumefantrine_qt_context","artemether_lumefantrine_take_with_food"],
     contradicts:[],
     limitations:["Malaria severity, vomiting, resistance geography, pregnancy, and species determine actual regimen choice."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed antimalarial enrichment pending infectious-disease/travel-medicine pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed antimalarial enrichment without professional sign-off"
   },
   "ev_argatroban_bleeding_label": {
     id:"ev_argatroban_bleeding_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -8884,7 +8884,7 @@ const STUDY_DB = {
     supports:["argatroban_bleeding_with_antithrombotics","argatroban_warfarin_transition_inr_interference","argatroban_hepatic_clearance"],
     contradicts:[],
     limitations:["HIT/ACS protocols may intentionally combine or transition therapy; dose, aPTT, hepatic function, platelet count, and procedural timing determine management."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed anticoagulation enrichment pending cardiology/hematology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Label-backed anticoagulation enrichment without professional sign-off"
   },
 
   "ev_icu_sepsis_shock_workflow": {
@@ -8898,7 +8898,7 @@ const STUDY_DB = {
     supports:["sepsis_norepinephrine_first_line","sepsis_vasopressin_epinephrine_dobutamine_context","sepsis_balanced_crystalloid_resuscitation","icu_nonbenzodiazepine_sedation","icu_neuromuscular_blockade_monitoring","sepsis_stress_dose_hydrocortisone_context"],
     contradicts:[],
     limitations:["This is a workflow coverage synthesis, not a patient-specific sepsis protocol. Local antibiograms, infection source, renal/hepatic function, hemodynamics, ventilation strategy, and ICU protocols govern exact use."],
-    verified:false, reviewRequired:true, verifyNote:"ICU/sepsis enrichment batch synthesized from guideline/label sources; pending intensivist/pharmacist review"
+    verified:false, reviewRequired:true, verifyNote:"ICU/sepsis enrichment batch synthesized from guideline/label sources; without professional sign-off"
   },
   "ev_stroke_neurocritical_workflow": {
     id:"ev_stroke_neurocritical_workflow", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -8911,7 +8911,7 @@ const STUDY_DB = {
     supports:["acute_stroke_thrombolysis_anticoagulant_screening","ICH_anticoagulant_reversal_workflow","neurocritical_cerebral_edema_osmotherapy_monitoring","desmopressin_hyponatremia_context","fosphenytoin_to_phenytoin_prodrug_context"],
     contradicts:[],
     limitations:["This is a medication coverage synthesis, not an acute stroke protocol. Exact decisions depend on time-last-known-well, imaging, labs, renal function, anticoagulant timing/levels, local stroke-team criteria, and neurocritical care protocols."],
-    verified:false, reviewRequired:true, verifyNote:"Stroke/neurocritical enrichment batch synthesized from guideline/label sources; pending neurology/neurocritical-care/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Stroke/neurocritical enrichment batch synthesized from guideline/label sources; without professional sign-off"
   },
   "ev_dialysis_advanced_ckd_workflow": {
     id:"ev_dialysis_advanced_ckd_workflow", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -8924,7 +8924,7 @@ const STUDY_DB = {
     supports:["dialysis_phosphate_binder_absorption_interactions","potassium_binder_oral_drug_separation","CKD_MBD_calcium_phosphate_PTH_monitoring","CKD_anemia_ESA_iron_support","advanced_CKD_narrow_index_TDM_context"],
     contradicts:[],
     limitations:["This is a medication coverage synthesis, not a dialysis prescription or CKD protocol. Residual kidney function, dialysis modality/schedule, dialyzability, potassium/phosphate/calcium/PTH values, volume status, transplant status, and local nephrology protocols govern exact decisions."],
-    verified:false, reviewRequired:true, verifyNote:"Dialysis/advanced CKD enrichment batch synthesized from guideline/label sources; pending nephrology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Dialysis/advanced CKD enrichment batch synthesized from guideline/label sources; without professional sign-off"
   },
   "ev_pregnancy_obstetric_workflow": {
     id:"ev_pregnancy_obstetric_workflow", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -8937,7 +8937,7 @@ const STUDY_DB = {
     supports:["pregnancy_context_teratogenicity_screening","obstetric_hemorrhage_uterotonic_Txa_workflow","preeclampsia_magnesium_antihypertensive_workflow","RhD_immune_globulin_vaccine_timing","retinoid_and_leflunomide_persistent_pregnancy_risk"],
     contradicts:[],
     limitations:["This is a medication coverage synthesis, not obstetric management advice. Gestational age, indication, fetal/maternal status, exposure timing, dose, local protocols, and maternal-fetal medicine consultation determine actual management."],
-    verified:false, reviewRequired:true, verifyNote:"Pregnancy/obstetric enrichment batch synthesized from guideline/label sources; pending OB/MFM/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Pregnancy/obstetric enrichment batch synthesized from guideline/label sources; without professional sign-off"
   },
   "ev_transplant_perioperative_workflow": {
     id:"ev_transplant_perioperative_workflow", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -8950,7 +8950,7 @@ const STUDY_DB = {
     supports:["transplant_CNI_mTOR_TDM_interactions","transplant_azole_macrolide_booster_CYP3A_risk","transplant_live_vaccine_avoidance","transplant_CMV_PJP_prophylaxis_toxicity","transplant_nephrotoxin_electrolyte_monitoring"],
     contradicts:[],
     limitations:["This is a medication coverage synthesis, not a transplant protocol. Organ type, time from transplant, rejection risk, infection risk, trough targets, renal/hepatic function, pharmacogenetics, and transplant-center protocols determine actual management."],
-    verified:false, reviewRequired:true, verifyNote:"Transplant enrichment batch synthesized from guideline/label sources; pending transplant medicine/ID/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Transplant enrichment batch synthesized from guideline/label sources; without professional sign-off"
   },
   "ev_cabg_perioperative_medications": {
     id:"ev_cabg_perioperative_medications", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -8963,7 +8963,7 @@ const STUDY_DB = {
     supports:["cabg_antiplatelet_secondary_prevention","cabg_heparin_protamine_reversal","cabg_antifibrinolytic_blood_conservation","cabg_vasoactive_inotrope_support","cabg_electrolyte_and_bp_support"],
     contradicts:[],
     limitations:["This is a coverage and mechanism synthesis, not a patient-specific cardiac surgery protocol. Local surgical, anesthesia, ICU, renal-function, bleeding, and hemodynamic protocols govern exact use."],
-    verified:false, reviewRequired:true, verifyNote:"CABG enrichment batch synthesized from guideline/label sources; pending cardiac anesthesiology/cardiology/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"CABG enrichment batch synthesized from guideline/label sources; without professional sign-off"
   },
   "ev_cyp3a7_etonogestrel_implant_2019": {
     id:"ev_cyp3a7_etonogestrel_implant_2019", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
@@ -8977,7 +8977,7 @@ const STUDY_DB = {
     supports:["CYP3A7_1C_etonogestrel_lower_concentration_context","etonogestrel_CYP3A7_review_flag"],
     contradicts:["CYP3A7_is_not_a_standalone_contraceptive_failure_rule"],
     limitations:["Candidate-gene association; not a prescribing guideline. Contraceptive decisions depend on formulation, adherence, implant age, BMI, CYP3A inducers, and reproductive-health clinician review."],
-    verified:false, reviewRequired:true, verifyNote:"CYP3A7/etonogestrel enrichment pending reproductive pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"CYP3A7/etonogestrel enrichment without professional sign-off"
   },
   "ev_cyp3a7_1c_dheas_2005": {
     id:"ev_cyp3a7_1c_dheas_2005", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
@@ -8991,7 +8991,7 @@ const STUDY_DB = {
     supports:["CYP3A7_1C_persistent_expression_context","CYP3A7_DHEAS_steroid_metabolism_context"],
     contradicts:["CYP3A7_is_not_a_general_adult_CYP3A_dose_rule"],
     limitations:["Endogenous hormone association; does not by itself define medication dosing."],
-    verified:false, reviewRequired:true, verifyNote:"CYP3A7 endocrine context pending endocrinology/pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"CYP3A7 endocrine context without professional sign-off"
   },
   "ev_cyp3a7_neonatal_review_2019": {
     id:"ev_cyp3a7_neonatal_review_2019", public:true, type:EVIDENCE_TIER.REVIEW,
@@ -9005,7 +9005,7 @@ const STUDY_DB = {
     supports:["CYP3A7_developmental_expression_context","CYP3A7_xenobiotic_review_context"],
     contradicts:["CYP3A7_has_limited_routine_adult_prescribing_actionability"],
     limitations:["Review-level evidence; most adult CYP3A drug interactions remain CYP3A4/CYP3A5/P-gp driven."],
-    verified:false, reviewRequired:true, verifyNote:"CYP3A7 review context pending pharmacology review"
+    verified:false, reviewRequired:true, verifyNote:"CYP3A7 review context without professional sign-off"
   },
   "ev_tafenoquine_relapse_lacerda2019": {
     id:"ev_tafenoquine_relapse_lacerda2019", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
@@ -9019,7 +9019,7 @@ const STUDY_DB = {
     supports:["tafenoquine_radical_cure_context","tafenoquine_requires_G6PD_normal_activity","primaquine_radical_cure_context"],
     contradicts:[],
     limitations:["Trial required normal quantitative G6PD activity; this cannot be extrapolated to G6PD deficiency or unknown status."],
-    verified:false, reviewRequired:true, verifyNote:"Public abstract/metadata enrichment pending malaria/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Public abstract/metadata enrichment without professional sign-off"
   },
   "ev_primaquine_g6pd_safety_bastiaens2018": {
     id:"ev_primaquine_g6pd_safety_bastiaens2018", public:true, type:EVIDENCE_TIER.OBSERVATIONAL,
@@ -9033,7 +9033,7 @@ const STUDY_DB = {
     supports:["primaquine_G6PD_hemoglobin_drop_context","G6PD_primaquine_hemolysis_context"],
     contradicts:[],
     limitations:["Single-low-dose malaria transmission-blocking context; not the same as higher-dose radical-cure regimens or tafenoquine."],
-    verified:false, reviewRequired:true, verifyNote:"Public abstract/metadata enrichment pending malaria/pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Public abstract/metadata enrichment without professional sign-off"
   },
   "ev_tacrolimus_liver_multigene_ladd2025": {
     id:"ev_tacrolimus_liver_multigene_ladd2025", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
@@ -9047,7 +9047,7 @@ const STUDY_DB = {
     supports:["tacrolimus_CYP3A5_dose_trough_context","tacrolimus_ABCB1_transporter_context","tacrolimus_donor_recipient_genotype_context"],
     contradicts:[],
     limitations:["Association study; tacrolimus remains trough-guided and transplant-center-specific. Donor genotype only applies in transplant contexts."],
-    verified:false, reviewRequired:true, verifyNote:"Public abstract/metadata enrichment pending transplant pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Public abstract/metadata enrichment without professional sign-off"
   },
   "ev_tacrolimus_renal_dose_model_srinivas2023": {
     id:"ev_tacrolimus_renal_dose_model_srinivas2023", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
@@ -9061,7 +9061,7 @@ const STUDY_DB = {
     supports:["tacrolimus_CYP3A5_dose_trough_context","tacrolimus_ABCB1_transporter_context","tacrolimus_initial_dose_model_context"],
     contradicts:[],
     limitations:["Regional cohort/model; not a substitute for CPIC guidance or therapeutic drug monitoring."],
-    verified:false, reviewRequired:true, verifyNote:"Public abstract/metadata enrichment pending transplant pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Public abstract/metadata enrichment without professional sign-off"
   },
   "ev_mycophenolate_abcg2_boribilui2022": {
     id:"ev_mycophenolate_abcg2_boribilui2022", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
@@ -9075,7 +9075,7 @@ const STUDY_DB = {
     supports:["mycophenolic_acid_UGT_ABCG2_exposure_context","mycophenolate_mpa_exposure_transport_context"],
     contradicts:[],
     limitations:["Preprint/exploratory matched cohort; do not use as a standalone dose rule."],
-    verified:false, reviewRequired:true, verifyNote:"Public preprint abstract enrichment pending transplant pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Public preprint abstract enrichment without professional sign-off"
   },
   "ev_mycophenolate_ugt2b7_ting2009": {
     id:"ev_mycophenolate_ugt2b7_ting2009", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
@@ -9089,7 +9089,7 @@ const STUDY_DB = {
     supports:["MPAG_AcMPAG_enterohepatic_context","mycophenolic_acid_UGT_ABCG2_exposure_context","mycophenolate_acmpag_toxicity_context"],
     contradicts:[],
     limitations:["Thesis-level evidence; transplant organ, co-medications, albumin, renal function, and monitoring strategy strongly modify interpretation."],
-    verified:false, reviewRequired:true, verifyNote:"Public thesis abstract enrichment pending transplant pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Public thesis abstract enrichment without professional sign-off"
   },
   "ev_methotrexate_hdmtx_pgpk_taylor2021": {
     id:"ev_methotrexate_hdmtx_pgpk_taylor2021", public:true, type:EVIDENCE_TIER.REVIEW,
@@ -9103,7 +9103,7 @@ const STUDY_DB = {
     supports:["methotrexate_SLCO1B1_ABCC2_clearance_context","methotrexate_polyglutamate_MTHFR_context","high_dose_methotrexate_delayed_clearance_context"],
     contradicts:[],
     limitations:["Qualitative review context; clinical management still depends on levels, leucovorin rescue, hydration, alkalinization, renal function, and oncology protocol."],
-    verified:false, reviewRequired:true, verifyNote:"Public abstract/metadata enrichment pending oncology pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Public abstract/metadata enrichment without professional sign-off"
   },
   "ev_methotrexate_pgtox_meta_song2021": {
     id:"ev_methotrexate_pgtox_meta_song2021", public:true, type:EVIDENCE_TIER.META_ANALYSIS,
@@ -9117,7 +9117,7 @@ const STUDY_DB = {
     supports:["MTHFR_C677T_methotrexate_toxicity_context","methotrexate_polyglutamate_MTHFR_context"],
     contradicts:["MTHFR_C677T_is_not_a_standalone_methotrexate_contraindication"],
     limitations:["High-dose oncology context; not directly transferable to low-dose rheumatology dosing."],
-    verified:false, reviewRequired:true, verifyNote:"Public abstract/metadata enrichment pending oncology pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Public abstract/metadata enrichment without professional sign-off"
   },
   "ev_ondansetron_cyp2d6_cpic2017": {
     id:"ev_ondansetron_cyp2d6_cpic2017", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -9131,7 +9131,7 @@ const STUDY_DB = {
     supports:["ondansetron_CYP2D6_response_context","tropisetron_CYP2D6_response_context"],
     contradicts:["ondansetron_CYP2D6_is_not_a_primary_QT_genotype_rule"],
     limitations:["Recommendation scope is antiemetic response; QT risk remains driven by dose, route, electrolytes, cardiac disease, and QT-prolonging co-medications."],
-    verified:false, reviewRequired:true, verifyNote:"Public CPIC citation/PMC enrichment pending pharmacist review"
+    verified:false, reviewRequired:true, verifyNote:"Public CPIC citation/PMC enrichment without professional sign-off"
   },
   "ev_batch_kinase_cyp3a_qt_labels": {
     id:"ev_batch_kinase_cyp3a_qt_labels", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9145,7 +9145,7 @@ const STUDY_DB = {
     supports:["ribociclib_CYP3A_QT_context","adagrasib_CYP3A_QT_context","lapatinib_CYP3A_hepatotoxicity_context","batch_kinase_CYP3A_substrate_context"],
     contradicts:[],
     limitations:["Grouped regulatory label anchor; drug-specific labels and oncology protocols should replace this for fine-grained management."],
-    verified:false, reviewRequired:true, verifyNote:"Grouped batch label evidence pending oncology pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Grouped batch label evidence without professional sign-off"
   },
   "ev_batch_vmat2_cyp2d6_labels": {
     id:"ev_batch_vmat2_cyp2d6_labels", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9159,7 +9159,7 @@ const STUDY_DB = {
     supports:["VMAT2_CYP2D6_active_metabolite_context","VMAT2_QT_sedation_context"],
     contradicts:[],
     limitations:["Grouped label anchor; individual product dose recommendations differ."],
-    verified:false, reviewRequired:true, verifyNote:"Grouped VMAT2 label evidence pending neurology/psychiatry pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Grouped VMAT2 label evidence without professional sign-off"
   },
   "ev_batch_gi_cyp3a_labels": {
     id:"ev_batch_gi_cyp3a_labels", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9173,7 +9173,7 @@ const STUDY_DB = {
     supports:["naloxegol_CYP3A_contraindication_context","naldemedine_CYP3A_Pgp_context","eluxadoline_OATP_pancreatitis_context"],
     contradicts:[],
     limitations:["Grouped regulatory label anchor; indication-specific contraindications and hepatic status dominate some decisions."],
-    verified:false, reviewRequired:true, verifyNote:"Grouped GI label evidence pending pharmacist review"
+    verified:false, reviewRequired:true, verifyNote:"Grouped GI label evidence without professional sign-off"
   },
   "ev_batch_cns_anticholinergic_beers_labels": {
     id:"ev_batch_cns_anticholinergic_beers_labels", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -9187,7 +9187,7 @@ const STUDY_DB = {
     supports:["batch_anticholinergic_beers_context","batch_antipsychotic_fall_qt_context","batch_bladder_antimuscarinic_burden_context"],
     contradicts:[],
     limitations:["Grouped safety-scoring anchor; Beers applicability depends on age, indication, dose, duration, and safer alternatives."],
-    verified:false, reviewRequired:true, verifyNote:"Grouped older-adult safety evidence pending geriatric pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Grouped older-adult safety evidence without professional sign-off"
   },
   "ev_batch_s1p_ms_labels": {
     id:"ev_batch_s1p_ms_labels", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9201,7 +9201,7 @@ const STUDY_DB = {
     supports:["S1P_bradycardia_infection_washout_context","fingolimod_long_offset_context","ozanimod_CYP2C8_MAO_context"],
     contradicts:[],
     limitations:["Grouped label anchor; drug-specific washout and vaccination guidance must be handled individually."],
-    verified:false, reviewRequired:true, verifyNote:"Grouped MS label evidence pending neurology pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Grouped MS label evidence without professional sign-off"
   },
   "ev_batch_adc_payload_labels": {
     id:"ev_batch_adc_payload_labels", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9215,7 +9215,7 @@ const STUDY_DB = {
     supports:["ADC_payload_active_metabolite_context","sacituzumab_SN38_UGT1A1_context","vedotin_MMAE_CYP3A_context"],
     contradicts:[],
     limitations:["Payload exposure is regimen- and tumor-context dependent; grouped label anchor is not a substitute for oncology protocol review."],
-    verified:false, reviewRequired:true, verifyNote:"Grouped ADC label evidence pending oncology pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Grouped ADC label evidence without professional sign-off"
   },
   "ev_batch_hemostasis_labels": {
     id:"ev_batch_hemostasis_labels", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9229,7 +9229,7 @@ const STUDY_DB = {
     supports:["batch_anticoagulant_bleeding_context","batch_thrombopoietin_CYP_context","fostamatinib_R406_CYP3A_context"],
     contradicts:[],
     limitations:["Grouped label anchor; procedure timing, platelet count, liver disease, and indication-specific protocols dominate decisions."],
-    verified:false, reviewRequired:true, verifyNote:"Grouped hemostasis label evidence pending hematology pharmacy review"
+    verified:false, reviewRequired:true, verifyNote:"Grouped hemostasis label evidence without professional sign-off"
   },
   "ev_batch_prodrug_active_metabolite_labels": {
     id:"ev_batch_prodrug_active_metabolite_labels", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9243,7 +9243,7 @@ const STUDY_DB = {
     supports:["batch_prodrug_active_metabolite_context","batch_active_moiety_promotion_context","batch_payload_metabolite_context"],
     contradicts:[],
     limitations:["Grouped regulatory label anchor; drug-specific label details should replace this for dose-level recommendations."],
-    verified:false, reviewRequired:true, verifyNote:"Grouped prodrug/active metabolite evidence pending pharmacist review"
+    verified:false, reviewRequired:true, verifyNote:"Grouped prodrug/active metabolite evidence without professional sign-off"
   },
   "ev_phase1_high_priority_metabolite_labels": {
     id:"ev_phase1_high_priority_metabolite_labels", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9257,7 +9257,7 @@ const STUDY_DB = {
     supports:["phase1_high_priority_metabolite_parent_maps","phase1_active_metabolite_actor_promotion","phase1_toxic_metabolite_actor_context"],
     contradicts:[],
     limitations:["Grouped source anchor for live pending-review rows; drug-specific labels, specialty protocols, and therapeutic monitoring remain decisive for clinical management."],
-    verified:false, reviewRequired:true, verifyNote:"Grouped high-priority metabolite evidence pending pharmacist/specialist review"
+    verified:false, reviewRequired:true, verifyNote:"Grouped high-priority metabolite evidence without professional sign-off"
   },
   "ev_phase2_label_interaction_expansion": {
     id:"ev_phase2_label_interaction_expansion", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9271,7 +9271,7 @@ const STUDY_DB = {
     supports:["phase2_live_ddi_expansion","phase2_label_backed_cyp3a_pairs","phase2_qt_bleeding_and_p2y12_timing_pairs"],
     contradicts:[],
     limitations:["Grouped source anchor; individual labels, indication, renal/hepatic function, procedure timing, ECG/electrolytes, and monitoring protocols determine management."],
-    verified:false, reviewRequired:true, verifyNote:"Grouped interaction expansion evidence pending pharmacist/specialist review"
+    verified:false, reviewRequired:true, verifyNote:"Grouped interaction expansion evidence without professional sign-off"
   },
   "ev_phase3_pk_washout_labels": {
     id:"ev_phase3_pk_washout_labels", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9285,7 +9285,7 @@ const STUDY_DB = {
     supports:["phase3_pk_profile_expansion","phase3_washout_rule_expansion","phase3_id_based_pk_washout_lookup"],
     contradicts:[],
     limitations:["Simplified educational PK model; not for dose selection. Washout windows are conservative display rules and do not replace labels, procedure protocols, TDM, ECGs, renal/hepatic assessment, or oncology/transplant/PCI guidance."],
-    verified:false, reviewRequired:true, verifyNote:"Grouped PK/washout expansion evidence pending pharmacist/specialist review"
+    verified:false, reviewRequired:true, verifyNote:"Grouped PK/washout expansion evidence without professional sign-off"
   },
   "ev_phase4_genotype_metabolite_expansion": {
     id:"ev_phase4_genotype_metabolite_expansion", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -9299,7 +9299,7 @@ const STUDY_DB = {
     supports:["phase4_genotype_metabolite_rules","phase4_gsta1_gene_promotion","phase4_parent_fold_hooks"],
     contradicts:[],
     limitations:["Educational pending-review rules. Many entries are qualitative review flags, not dose recommendations; labels, CPIC/DPWG guidance, therapeutic drug monitoring, ECGs, INR, platelet/procedure context, oncology protocols, and organ function remain decisive."],
-    verified:false, reviewRequired:true, verifyNote:"Grouped genotype-metabolite expansion pending pharmacist/genomics review"
+    verified:false, reviewRequired:true, verifyNote:"Grouped genotype-metabolite expansion without professional sign-off"
   },
   "ev_phase5_receptor_burden_profiles": {
     id:"ev_phase5_receptor_burden_profiles", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -9313,7 +9313,7 @@ const STUDY_DB = {
     supports:["phase5_receptor_score_expansion","phase5_phenotype_score_expansion","phase5_beers_flag_expansion","phase5_id_based_scoring_lookup"],
     contradicts:[],
     limitations:["Scoring rows are simplified educational burden approximations; they do not replace ECG, electrolytes, renal/hepatic assessment, psychiatric indication, addiction/toxicology care, anesthesia monitoring, oncology/infectious-disease protocols, or AGS Beers Criteria clinical exceptions."],
-    verified:false, reviewRequired:true, verifyNote:"Grouped receptor/burden expansion pending pharmacist/geriatrician review"
+    verified:false, reviewRequired:true, verifyNote:"Grouped receptor/burden expansion without professional sign-off"
   },
   "ev_phase6_clinical_context_enrichment": {
     id:"ev_phase6_clinical_context_enrichment", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -9336,12 +9336,12 @@ const STUDY_DB = {
     pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
     studyDesign:"coverage_adapter_group", n:null,
     phenotypes:["CYP3A4","CYP2D6","CYP2C19","CYP2C9","CYP2C8","UGT","P-gp","BCRP","OATP1B1","OAT/OCT/MATE","washout","burden","older_adult_burden"],
-    quantifiedEffects:{note:"Shared evidence anchor for live top-100 promotion adapters. Rows expose existing route, transporter, timing, genotype, and burden knowledge in calculation pathways while detailed source-specific professional review remains pending."},
+    quantifiedEffects:{note:"Shared evidence anchor for live top-100 promotion adapters. Rows expose existing route, transporter, timing, genotype, and burden knowledge in calculation pathways while detailed source-specific professional sign-off is not claimed."},
     temporal:{mechanism:"route_transporter_pgx_pk_washout_and_burden_context", onset:"same_day", offset:"hours-months"},
     supports:["phase7_top100_live_ddi_coverage","phase7_top100_live_metabolite_actor_coverage","phase7_top100_live_transporter_coverage","phase7_top100_live_washout_coverage","phase7_top100_live_pgx_coverage","phase7_top100_live_burden_coverage"],
     contradicts:[],
-    limitations:["Coverage rows are not individualized dose recommendations and do not replace labels, CPIC/DPWG guidance, TDM, ECG/electrolyte monitoring, renal/hepatic assessment, procedure protocols, oncology/transplant guidance, geriatric exceptions, or pharmacist/physician review."],
-    verified:false, reviewRequired:true, verifyNote:"Phase 7 top-100 live coverage adapter is intentionally live pending review; rows are review-priority signals derived from existing route/class data."
+    limitations:["Coverage rows are not individualized dose recommendations and do not replace labels, CPIC/DPWG guidance, TDM, ECG/electrolyte monitoring, renal/hepatic assessment, procedure protocols, oncology/transplant guidance, geriatric exceptions, or professional judgment."],
+    verified:false, reviewRequired:true, verifyNote:"Phase 7 top-100 live coverage adapter is intentionally live without professional sign-off; rows are source-priority signals derived from existing route/class data."
   },
   "ev_top250_live_coverage_adapter": {
     id:"ev_top250_live_coverage_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -9350,12 +9350,12 @@ const STUDY_DB = {
     pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
     studyDesign:"coverage_adapter_group", n:null,
     phenotypes:["CYP3A4","CYP2D6","CYP2C19","CYP2C9","CYP2C8","UGT","NAT","TPMT","NUDT15","P-gp","BCRP","OATP1B1","renal_transport","washout","burden"],
-    quantifiedEffects:{note:"Shared evidence anchor for extending live route, DDI, metabolite, PK, PGx, transporter, washout, and burden coverage from the top 100 to the top 250 high-priority drugs. Rows remain pending source-specific professional review."},
+    quantifiedEffects:{note:"Shared evidence anchor for extending live route, DDI, metabolite, PK, PGx, transporter, washout, and burden coverage from the top 100 to the top 250 high-priority drugs. Rows remain without source-specific professional sign-off."},
     temporal:{mechanism:"route_transporter_pgx_pk_washout_and_burden_context", onset:"same_day", offset:"hours-months"},
     supports:["phase8_top250_live_ddi_coverage","phase8_top250_live_metabolite_actor_coverage","phase8_top250_live_transporter_coverage","phase8_top250_live_washout_coverage","phase8_top250_live_pgx_coverage","phase8_top250_live_burden_coverage"],
     contradicts:[],
-    limitations:["These rows are live enrichment signals, not final clinical recommendations. Drug-specific labels, CPIC/DPWG guidance, TDM, ECG/electrolyte monitoring, renal/hepatic assessment, indication, dosing, procedure context, oncology/transplant protocols, and pharmacist/physician review remain decisive."],
-    verified:false, reviewRequired:true, verifyNote:"Phase 8 top-250 expansion is live pending professional review; rows are review-priority signals derived from existing route/class data."
+    limitations:["These rows are live enrichment signals, not final clinical recommendations. Drug-specific labels, CPIC/DPWG guidance, TDM, ECG/electrolyte monitoring, renal/hepatic assessment, indication, dosing, procedure context, oncology/transplant protocols, and professional judgment remain decisive."],
+    verified:false, reviewRequired:true, verifyNote:"Phase 8 top-250 expansion is live without professional sign-off; rows are source-priority signals derived from existing route/class data."
   },
   "ev_top100_gold_enrichment_adapter": {
     id:"ev_top100_gold_enrichment_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -9364,12 +9364,12 @@ const STUDY_DB = {
     pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
     studyDesign:"top100_gold_live_surface_enrichment", n:null,
     phenotypes:["DDI","active_moiety","PK","washout","PGx_context","transporter_context","phenotype_burden","receptor_burden","older_adult_burden"],
-    quantifiedEffects:{note:"Shared evidence anchor for strengthening the top-100 cohort so each drug has gold-tagged live rows across DDI, metabolite/actor, PK, washout, PGx context, transporter, burden, and receptor score surfaces. Rows are pending source-specific professional review."},
+    quantifiedEffects:{note:"Shared evidence anchor for strengthening the top-100 cohort so each drug has gold-tagged live rows across DDI, metabolite/actor, PK, washout, PGx context, transporter, burden, and receptor score surfaces. Rows are without source-specific professional sign-off."},
     temporal:{mechanism:"top100_complete_live_surface_context", onset:"baseline/same_day", offset:"hours-months"},
     supports:["phase13_top100_gold_ddi","phase13_top100_gold_metabolite_actor","phase13_top100_gold_pk_washout","phase13_top100_gold_pgx_transporter","phase13_top100_gold_burden_receptor"],
     contradicts:[],
-    limitations:["Gold rows are coverage/depth enrichments, not final clinical recommendations. Replace adapter rows with drug-specific labels, CPIC/DPWG guidance, TDM, ECG/electrolyte monitoring, organ-function assessment, and pharmacist/physician-reviewed entries over time."],
-    verified:false, reviewRequired:true, verifyNote:"Phase 13 top-100 gold enrichment is live pending professional review; rows are audit-enforced review-priority signals."
+    limitations:["Gold rows are coverage/depth enrichments, not final clinical recommendations. Replace adapter rows with drug-specific labels, CPIC/DPWG guidance, TDM, ECG/electrolyte monitoring, organ-function assessment, and professionally signed-off entries over time."],
+    verified:false, reviewRequired:true, verifyNote:"Phase 13 top-100 gold enrichment is live without professional sign-off; rows are audit-enforced source-priority signals."
   },
   "ev_ninety_percent_live_coverage_adapter": {
     id:"ev_ninety_percent_live_coverage_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -9382,8 +9382,8 @@ const STUDY_DB = {
     temporal:{mechanism:"route_class_half_life_transporter_and_burden_context", onset:"same_day", offset:"hours-months"},
     supports:["phase16_ninety_percent_ddi_coverage","phase16_ninety_percent_pk_coverage","phase16_ninety_percent_washout_coverage","phase16_ninety_percent_transporter_coverage","phase16_ninety_percent_burden_coverage","phase16_ninety_percent_beers_coverage","phase16_ninety_percent_receptor_coverage"],
     contradicts:[],
-    limitations:["Coverage rows are live screening/review-priority signals, not final clinical recommendations, dose rules, contraindication labels, or professional review. Drug-specific labels, CPIC/DPWG guidance, receptor-binding sources, TDM, ECG/electrolytes, renal/hepatic assessment, indication, dose, age/frailty, pregnancy/transplant/procedure context, and pharmacist/physician review remain decisive."],
-    verified:false, reviewRequired:true, verifyNote:"Phase 16 ninety-percent coverage adapter is intentionally live pending professional review; rows are broad coverage scaffolds derived from existing Diognosis metadata."
+    limitations:["Coverage rows are live screening/source-priority signals, not final clinical recommendations, dose rules, contraindication labels, or professional sign-off. Drug-specific labels, CPIC/DPWG guidance, receptor-binding sources, TDM, ECG/electrolytes, renal/hepatic assessment, indication, dose, age/frailty, pregnancy/transplant/procedure context, and professional judgment remain decisive."],
+    verified:false, reviewRequired:true, verifyNote:"Phase 16 ninety-percent coverage adapter is intentionally live without professional sign-off; rows are broad coverage scaffolds derived from existing Diognosis metadata."
   },
   "ev_fluorouracil_warfarin_label": {
     id:"ev_fluorouracil_warfarin_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9396,7 +9396,7 @@ const STUDY_DB = {
     supports:["fluorouracil_warfarin_inr_pt_elevation","fluoropyrimidine_vka_bleeding_monitoring"],
     contradicts:[],
     limitations:["Magnitude and timing depend on chemotherapy schedule, nutrition, liver function, infection, antibiotics, and baseline INR stability."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending oncology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_capecitabine_warfarin_label": {
     id:"ev_capecitabine_warfarin_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9409,7 +9409,7 @@ const STUDY_DB = {
     supports:["capecitabine_warfarin_inr_pt_elevation","fluoropyrimidine_vka_bleeding_monitoring"],
     contradicts:[],
     limitations:["Interaction timing is variable; oncology, nutrition, hepatic disease, infection, antibiotics, and INR monitoring intensity modify risk."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending oncology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_caspofungin_rifampin_label": {
     id:"ev_caspofungin_rifampin_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9422,7 +9422,7 @@ const STUDY_DB = {
     supports:["caspofungin_rifampin_trough_reduction","caspofungin_inducer_dose_context"],
     contradicts:[],
     limitations:["Dose context differs by indication, age/body surface area, hepatic function, and clinical response."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending infectious disease/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_micafungin_sirolimus_itraconazole_nifedipine_label": {
     id:"ev_micafungin_sirolimus_itraconazole_nifedipine_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9435,7 +9435,7 @@ const STUDY_DB = {
     supports:["micafungin_sirolimus_exposure_increase","micafungin_nifedipine_exposure_increase","micafungin_itraconazole_exposure_increase"],
     contradicts:[],
     limitations:["Effect size is modest and clinical action depends on dose, trough/clinical monitoring, transplant status, blood pressure, and toxicity signs."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending infectious disease/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_anidulafungin_pk_label": {
     id:"ev_anidulafungin_pk_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9448,7 +9448,7 @@ const STUDY_DB = {
     supports:["anidulafungin_slow_degradation_pk","anidulafungin_low_cyp_ddi_potential"],
     contradicts:[],
     limitations:["Antifungal selection still depends on organism, site, hepatic status, infusion reaction risk, pregnancy, and institutional susceptibility patterns."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending infectious disease/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_acetaminophen_metabolism_label": {
     id:"ev_acetaminophen_metabolism_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9461,7 +9461,7 @@ const STUDY_DB = {
     supports:["acetaminophen_glucuronide_sulfate_pathways","acetaminophen_napqi_glutathione_detoxification","acetaminophen_cysteine_mercapturic_acid_conjugates"],
     contradicts:[],
     limitations:["Clinical toxicity risk is dominated by dose, chronic alcohol/fasting/liver disease, glutathione reserve, timing, and treatment with N-acetylcysteine when indicated."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite data hardening row pending toxicology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed metabolite data hardening row without professional sign-off."
   },
   "ev_acarbose_digoxin_label": {
     id:"ev_acarbose_digoxin_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9474,7 +9474,7 @@ const STUDY_DB = {
     supports:["acarbose_digoxin_bioavailability_monitoring","acarbose_minimal_systemic_exposure"],
     contradicts:[],
     limitations:["Digoxin clinical relevance depends on renal function, serum concentrations, heart rhythm indication, and formulation/timing."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_amikacin_toxicity_label": {
     id:"ev_amikacin_toxicity_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9487,7 +9487,7 @@ const STUDY_DB = {
     supports:["amikacin_loop_diuretic_ototoxicity","amikacin_nephrotoxicity_ototoxicity_monitoring","amikacin_neuromuscular_blockade_caution"],
     contradicts:[],
     limitations:["Risk is strongly shaped by renal function, peak/trough or AUC monitoring, dose, duration, age, dehydration, and concurrent nephrotoxic/ototoxic drugs."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending infectious disease/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_anagrelide_cyp1a2_aspirin_label": {
     id:"ev_anagrelide_cyp1a2_aspirin_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9500,7 +9500,7 @@ const STUDY_DB = {
     supports:["anagrelide_cyp1a2_inhibitor_exposure_increase","anagrelide_aspirin_bleeding_monitoring","anagrelide_cardiovascular_monitoring"],
     contradicts:[],
     limitations:["Bleeding and cardiovascular risk depend on platelet count, indication, dose titration, cardiac disease, age, and concurrent antithrombotic therapy."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending hematology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_apomorphine_5ht3_label": {
     id:"ev_apomorphine_5ht3_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9513,7 +9513,7 @@ const STUDY_DB = {
     supports:["apomorphine_ondansetron_contraindication","apomorphine_5ht3_hypotension_loss_of_consciousness"],
     contradicts:[],
     limitations:["Risk depends on apomorphine formulation, dose titration, baseline orthostasis, dopaminergic therapy, and other antihypertensive/vasodilator drugs."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending neurology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_atenolol_ccb_label": {
     id:"ev_atenolol_ccb_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9526,7 +9526,7 @@ const STUDY_DB = {
     supports:["atenolol_verapamil_diltiazem_bradycardia_heart_block"],
     contradicts:[],
     limitations:["Risk depends on baseline heart rate, conduction disease, heart failure, dose, renal function, and other rate-lowering drugs."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending cardiology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_enoxaparin_hemostasis_label": {
     id:"ev_enoxaparin_hemostasis_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9539,7 +9539,7 @@ const STUDY_DB = {
     supports:["enoxaparin_nsaid_platelet_anticoagulant_bleeding","enoxaparin_neuraxial_hematoma_risk"],
     contradicts:[],
     limitations:["Bleeding risk depends on renal function, age, dose, indication, procedure/neuraxial timing, platelet count, and recent surgery or trauma."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending anticoagulation/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_dalteparin_hemostasis_label": {
     id:"ev_dalteparin_hemostasis_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9552,7 +9552,7 @@ const STUDY_DB = {
     supports:["dalteparin_nsaid_platelet_anticoagulant_bleeding","dalteparin_neuraxial_hematoma_risk"],
     contradicts:[],
     limitations:["Bleeding risk depends on procedure timing, renal function, age, dose, indication, platelet count, and concomitant hemostasis-active medicines."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending anticoagulation/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_formoterol_label": {
     id:"ev_formoterol_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9565,7 +9565,7 @@ const STUDY_DB = {
     supports:["formoterol_beta_blocker_antagonism","formoterol_maoi_tca_qt_caution"],
     contradicts:[],
     limitations:["Clinical impact depends on asthma/COPD severity, beta-blocker selectivity, cardiac disease, electrolyte status, dose, and rescue inhaler dependence."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending pulmonary/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_carbidopa_levodopa_label": {
     id:"ev_carbidopa_levodopa_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9578,7 +9578,7 @@ const STUDY_DB = {
     supports:["carbidopa_levodopa_nonselective_maoi_contraindication","levodopa_iron_chelation_bioavailability_reduction","levodopa_d2_antagonist_response_reduction"],
     contradicts:[],
     limitations:["Clinical response depends on Parkinson disease state, formulation, protein/meal timing, dose schedule, dyskinesia, orthostasis, and concurrent dopaminergic therapy."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending neurology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_denosumab_label": {
     id:"ev_denosumab_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9591,7 +9591,7 @@ const STUDY_DB = {
     supports:["denosumab_rankl_receptor_profile","denosumab_hypocalcemia_monitoring","denosumab_long_half_life"],
     contradicts:[],
     limitations:["Risk depends on kidney disease, vitamin D/calcium status, malignancy/bone-metastasis indication, dental risk, and dosing product/indication."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending endocrinology/oncology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_dupilumab_label": {
     id:"ev_dupilumab_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9604,7 +9604,7 @@ const STUDY_DB = {
     supports:["dupilumab_il4r_alpha_receptor_profile","dupilumab_cytokine_cyp_context"],
     contradicts:[],
     limitations:["CYP impact is usually context-dependent and most relevant for narrow therapeutic index CYP substrates when inflammatory disease activity changes."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending allergy/dermatology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_eculizumab_label": {
     id:"ev_eculizumab_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9617,7 +9617,7 @@ const STUDY_DB = {
     supports:["eculizumab_c5_receptor_profile","eculizumab_meningococcal_infection_risk","eculizumab_plasma_exchange_supplemental_dose"],
     contradicts:[],
     limitations:["Risk depends on vaccination/prophylaxis, complement indication, active infection, plasma exchange/infusion schedule, and institutional REMS workflow."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending hematology/nephrology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_canakinumab_label": {
     id:"ev_canakinumab_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9630,7 +9630,7 @@ const STUDY_DB = {
     supports:["canakinumab_il1b_receptor_profile","canakinumab_serious_infection_risk","canakinumab_cytokine_cyp_context"],
     contradicts:[],
     limitations:["Risk depends on inflammatory disease activity, infection/TB screening, immunosuppressive co-therapy, and CYP substrate therapeutic index."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending rheumatology/immunology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_desmopressin_hyponatremia_label": {
     id:"ev_desmopressin_hyponatremia_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9643,7 +9643,7 @@ const STUDY_DB = {
     supports:["desmopressin_loop_diuretic_hyponatremia_contraindication","desmopressin_glucocorticoid_hyponatremia_contraindication"],
     contradicts:[],
     limitations:["Risk depends on product/indication, age, fluid intake, baseline sodium, kidney function, heart failure, concomitant SIADH-prone drugs, and sodium monitoring."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending endocrinology/nephrology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_fexofenadine_transporter_label": {
     id:"ev_fexofenadine_transporter_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9656,7 +9656,7 @@ const STUDY_DB = {
     supports:["fexofenadine_ketoconazole_erythromycin_exposure_increase","fexofenadine_fruit_juice_absorption_reduction","fexofenadine_antacid_absorption_reduction"],
     contradicts:[],
     limitations:["Effect depends on timing, formulation, juice/antacid amount, renal function, and whether symptom response is clinically important."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending allergy/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_abatacept_tnf_label": {
     id:"ev_abatacept_tnf_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9669,7 +9669,7 @@ const STUDY_DB = {
     supports:["abatacept_tnf_antagonist_not_recommended","abatacept_biologic_infection_stack"],
     contradicts:[],
     limitations:["Risk depends on indication, disease activity, prior biologic exposure, vaccination/infection screening, age, steroids, and other immunosuppressants."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending rheumatology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_canagliflozin_diuretic_label": {
     id:"ev_canagliflozin_diuretic_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9682,7 +9682,7 @@ const STUDY_DB = {
     supports:["canagliflozin_loop_diuretic_volume_depletion","canagliflozin_aki_hypotension_monitoring"],
     contradicts:[],
     limitations:["Risk depends on kidney function, baseline volume status, age, diuretic dose, blood pressure, glucose control, and acute illness."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending primary-care/endocrinology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_benztropine_anticholinergic_label": {
     id:"ev_benztropine_anticholinergic_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9695,7 +9695,7 @@ const STUDY_DB = {
     supports:["benztropine_anticholinergic_burden","benztropine_duplicate_anticholinergic_caution"],
     contradicts:[],
     limitations:["Burden depends on age, cognition, glaucoma/BPH/urinary retention, dose, heat exposure, and co-prescribed anticholinergic or cholinergic medicines."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending geriatrics/neurology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_bimatoprost_pk_label": {
     id:"ev_bimatoprost_pk_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9708,7 +9708,7 @@ const STUDY_DB = {
     supports:["bimatoprost_ophthalmic_pk_profile","bimatoprost_low_systemic_accumulation","bimatoprost_oxidation_deethylation_glucuronidation"],
     contradicts:[],
     limitations:["Systemic exposure is low after ophthalmic dosing; ocular adverse effects, local administration timing, and ophthalmology indication dominate clinical management."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending ophthalmology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_captopril_pk_diuretic_label": {
     id:"ev_captopril_pk_diuretic_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9721,7 +9721,7 @@ const STUDY_DB = {
     supports:["captopril_short_half_life","captopril_renal_impairment_retention","captopril_diuretic_volume_depletion_hypotension"],
     contradicts:[],
     limitations:["Risk depends on renal function, heart failure, diuretic intensity, sodium status, potassium, blood pressure, and starting dose."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending cardiology/nephrology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_calcitriol_pk_hypercalcemia_label": {
     id:"ev_calcitriol_pk_hypercalcemia_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9734,7 +9734,7 @@ const STUDY_DB = {
     supports:["calcitriol_pk_profile","calcitriol_hypercalcemia_monitoring_offset"],
     contradicts:[],
     limitations:["Risk depends on calcium/phosphate/PTH status, CKD/dialysis context, vitamin D/calcium intake, binder use, and monitoring frequency."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending nephrology/endocrinology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_caffeine_citrate_pk_label": {
     id:"ev_caffeine_citrate_pk_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9747,7 +9747,7 @@ const STUDY_DB = {
     supports:["caffeine_citrate_neonatal_long_half_life","caffeine_clearance_maturation"],
     contradicts:[],
     limitations:["Adult caffeine kinetics differ from neonatal apnea therapy; prematurity, postconceptual age, hepatic function, and interacting CYP1A2 inhibitors change exposure."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row pending neonatology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed data hardening row without professional sign-off."
   },
   "ev_cetirizine_pk_cns_label": {
     id:"ev_cetirizine_pk_cns_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9760,7 +9760,7 @@ const STUDY_DB = {
     supports:["cetirizine_cns_depressant_caution","cetirizine_somnolence","cetirizine_renal_hepatic_dose_context"],
     contradicts:[],
     limitations:["Sedation and renal-dose relevance depend on age, kidney/liver function, dose, alcohol/CNS depressant exposure, and individual sensitivity."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment pending allergy/geriatrics/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment without professional sign-off."
   },
   "ev_bisacodyl_pk_electrolyte_label": {
     id:"ev_bisacodyl_pk_electrolyte_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9773,7 +9773,7 @@ const STUDY_DB = {
     supports:["bisacodyl_bhpm_active_form","bisacodyl_electrolyte_dehydration_context"],
     contradicts:[],
     limitations:["Risk is low with occasional labeled use and increases with chronic overuse, frailty, renal disease, diuretics, digoxin, or poor oral intake."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment pending GI/geriatrics/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment without professional sign-off."
   },
   "ev_exenatide_gastric_emptying_label": {
     id:"ev_exenatide_gastric_emptying_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9786,7 +9786,7 @@ const STUDY_DB = {
     supports:["exenatide_delays_gastric_emptying","exenatide_oral_drug_absorption_timing","exenatide_insulin_secretagogue_hypoglycemia"],
     contradicts:[],
     limitations:["Clinical impact varies by exenatide formulation, oral drug threshold-dependence, dose timing, renal function, and glucose-lowering regimen."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment pending endocrinology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment without professional sign-off."
   },
   "ev_rasagiline_cyp1a2_serotonin_label": {
     id:"ev_rasagiline_cyp1a2_serotonin_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9799,7 +9799,7 @@ const STUDY_DB = {
     supports:["rasagiline_cyp1a2_inhibitor_exposure_increase","rasagiline_serotonergic_opioid_contraindication","rasagiline_mao_context"],
     contradicts:[],
     limitations:["Selectivity and interaction risk depend on rasagiline dose, Parkinson regimen, serotonergic burden, tyramine exposure, and concomitant CYP1A2 inhibitors."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment pending neurology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment without professional sign-off."
   },
   "ev_ropinirole_cyp1a2_label": {
     id:"ev_ropinirole_cyp1a2_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9812,7 +9812,7 @@ const STUDY_DB = {
     supports:["ropinirole_cyp1a2_substrate","ropinirole_ciprofloxacin_exposure_increase","ropinirole_smoking_clearance_context"],
     contradicts:[],
     limitations:["Clinical impact depends on dose titration, Parkinson/RLS indication, smoking status changes, orthostasis, somnolence, and hallucination/impulse-control vulnerability."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment pending neurology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment without professional sign-off."
   },
   "ev_pramipexole_renal_cation_label": {
     id:"ev_pramipexole_renal_cation_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9825,7 +9825,7 @@ const STUDY_DB = {
     supports:["pramipexole_unchanged_renal_excretion","pramipexole_organic_cation_secretion","pramipexole_renal_function_context"],
     contradicts:[],
     limitations:["Transporter interaction magnitude depends on renal function, age, dose titration, and the strength/duration of cation transport competition."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment pending neurology/nephrology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment without professional sign-off."
   },
   "ev_botulinum_toxin_neuromuscular_label": {
     id:"ev_botulinum_toxin_neuromuscular_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9838,7 +9838,7 @@ const STUDY_DB = {
     supports:["botulinum_toxin_aminoglycoside_potentiation","botulinum_toxin_neuromuscular_blocker_potentiation"],
     contradicts:[],
     limitations:["Risk depends on toxin product/dose/site, baseline neuromuscular disease, respiratory reserve, antibiotic exposure, and procedural timing."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment pending neurology/PMR/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment without professional sign-off."
   },
   "ev_aflibercept_ophthalmic_label": {
     id:"ev_aflibercept_ophthalmic_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9851,7 +9851,7 @@ const STUDY_DB = {
     supports:["aflibercept_ophthalmic_intravitreal_local_effect","aflibercept_ophthalmic_vegf_binding"],
     contradicts:[],
     limitations:["Systemic PK/burden rows are display context only; ophthalmology indication, infection/inflammation, IOP, and thromboembolic-risk context require specialist review."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment pending ophthalmology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment without professional sign-off."
   },
   "ev_brolucizumab_ophthalmic_label": {
     id:"ev_brolucizumab_ophthalmic_label", public:true, type:EVIDENCE_TIER.FDA_LABEL,
@@ -9864,7 +9864,7 @@ const STUDY_DB = {
     supports:["brolucizumab_intravitreal_anti_vegf","brolucizumab_intraocular_inflammation_warning"],
     contradicts:[],
     limitations:["Safety context depends on ophthalmic history, active ocular inflammation/infection, injection timing, and specialist monitoring."],
-    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment pending ophthalmology/pharmacy review."
+    verified:false, reviewRequired:true, verifyNote:"Label-backed live-data enrichment without professional sign-off."
   },
   "ev_ddi_expansion_pack_adapter": {
     id:"ev_ddi_expansion_pack_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -9873,12 +9873,12 @@ const STUDY_DB = {
     pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
     studyDesign:"class_route_pair_expansion", n:null,
     phenotypes:["CYP3A4","CYP2D6","CYP2C19","CYP2C9","CYP2C8","UGT","P-gp","BCRP","OATP","QT","bleeding","CNS","serotonin","renal","anticholinergic"],
-    quantifiedEffects:{note:"Shared evidence anchor for explicit DDI rows generated from existing route and class knowledge. These rows make pending-review interaction signals visible through KNOWN_DDI without claiming source-specific final curation."},
+    quantifiedEffects:{note:"Shared evidence anchor for explicit DDI rows generated from existing route and class knowledge. These rows make source-priority interaction signals visible through KNOWN_DDI without claiming source-specific final curation."},
     temporal:{mechanism:"class_route_and_pharmacodynamic_interaction_context", onset:"same_day", offset:"hours-weeks"},
     supports:["phase9_ddi_pair_expansion","phase9_explicit_known_ddi_pending_review","phase9_route_class_pair_visibility"],
     contradicts:[],
-    limitations:["Rows are intended as live review-priority signals. They do not replace drug-specific labels, measured concentration data, ECG/electrolytes, renal/hepatic assessment, INR/TDM, dose/indication context, or pharmacist/physician review."],
-    verified:false, reviewRequired:true, verifyNote:"Phase 9 DDI expansion pack rows are pending professional review and should be replaced by source-specific rows over time."
+    limitations:["Rows are intended as live source-priority signals. They do not replace drug-specific labels, measured concentration data, ECG/electrolytes, renal/hepatic assessment, INR/TDM, dose/indication context, or professional judgment."],
+    verified:false, reviewRequired:true, verifyNote:"Phase 9 DDI expansion pack rows are without professional sign-off and should be replaced by source-specific rows over time."
   },
   "ev_metabolite_expansion_pack_adapter": {
     id:"ev_metabolite_expansion_pack_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -9887,12 +9887,12 @@ const STUDY_DB = {
     pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
     studyDesign:"metabolite_graph_expansion", n:null,
     phenotypes:["active_moiety","clearance_context","toxic_metabolite_review","CYP","UGT","NAT","TPMT","NUDT15","transporters","renal_clearance","biliary_clearance"],
-    quantifiedEffects:{note:"Shared evidence anchor for adding pending-review METAB rows and first-class metabolite actors where route and active-moiety context should be visible in the live graph before named-metabolite curation is complete."},
+    quantifiedEffects:{note:"Shared evidence anchor for adding source-priority METAB rows and first-class metabolite actors where route and active-moiety context should be visible in the live graph before named-metabolite curation is complete."},
     temporal:{mechanism:"parent_metabolite_route_and_active_moiety_context", onset:"same_day", offset:"hours-weeks"},
     supports:["phase10_parent_metabolite_map_expansion","phase10_first_class_metabolite_actor_expansion","phase10_active_moiety_context_rows"],
     contradicts:[],
-    limitations:["Rows are route/context placeholders and should be replaced by source-specific named metabolites over time. They are not dose recommendations and do not replace labels, TDM, organ-function assessment, genotype guidance, or pharmacist/physician review."],
-    verified:false, reviewRequired:true, verifyNote:"Phase 10 metabolite expansion rows are pending professional review and intended to prevent hollow drug records in the live graph."
+    limitations:["Rows are route/context placeholders and should be replaced by source-specific named metabolites over time. They are not dose recommendations and do not replace labels, TDM, organ-function assessment, genotype guidance, or professional judgment."],
+    verified:false, reviewRequired:true, verifyNote:"Phase 10 metabolite expansion rows are without professional sign-off and intended to prevent hollow drug records in the live graph."
   },
   "ev_pgx_transporter_expansion_adapter": {
     id:"ev_pgx_transporter_expansion_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -9901,12 +9901,12 @@ const STUDY_DB = {
     pmid:null, doi:null, url:"https://www.pharmgkb.org/",
     studyDesign:"pgx_transporter_context_expansion", n:null,
     phenotypes:["CYP2D6","CYP2C19","CYP2C9","CYP3A4","CYP3A5","CYP2B6","CYP2C8","UGT","NAT","TPMT","NUDT15","SLCO1B1","ABCB1","ABCG2","SLC22A1","SLC22A2","SLC47A1","P-gp","BCRP","OATP","OAT","OCT","MATE"],
-    quantifiedEffects:{note:"Shared evidence anchor for expanding pending-review genotype-metabolite rules and transporter interaction rows from already modeled route/transporter context."},
+    quantifiedEffects:{note:"Shared evidence anchor for expanding source-priority genotype-metabolite rules and transporter interaction rows from already modeled route/transporter context."},
     temporal:{mechanism:"genotype_route_transporter_exposure_context", onset:"baseline/same_day", offset:"persistent-hours-weeks"},
     supports:["phase11_genotype_metabolite_rule_expansion","phase11_transporter_ddi_expansion","phase11_pgx_transport_route_visibility"],
     contradicts:[],
-    limitations:["Rows are qualitative review-priority signals, not genotype-based dose recommendations. Replace with source-specific CPIC/DPWG/label rows over time; clinical use still requires labels, genotype quality, organ function, TDM, and professional review."],
-    verified:false, reviewRequired:true, verifyNote:"Phase 11 PGx/transporter expansion rows are pending professional review."
+    limitations:["Rows are qualitative source-priority signals, not genotype-based dose recommendations. Replace with source-specific CPIC/DPWG/label rows over time; clinical use still requires labels, genotype quality, organ function, TDM, and professional judgment."],
+    verified:false, reviewRequired:true, verifyNote:"Phase 11 PGx/transporter expansion rows are without professional sign-off."
   },
   "ev_phase15_source_backed_pgx_pairs": {
     id:"ev_phase15_source_backed_pgx_pairs", public:true, type:EVIDENCE_TIER.GUIDELINE,
@@ -9919,7 +9919,7 @@ const STUDY_DB = {
     temporal:{mechanism:"source_backed_gene_drug_context", onset:"baseline", offset:"persistent"},
     supports:["phase15_source_backed_pgx_pair_cleanup","phase15_backlog_noise_reduction"],
     contradicts:[],
-    limitations:["Rows are source-backed context links, not final genotype-specific prescribing recommendations. They remain pending source-specific professional review and should be replaced with precise CPIC/DPWG/FDA-label recommendation rows over time."],
+    limitations:["Rows are source-backed context links, not final genotype-specific prescribing recommendations. They remain without source-specific professional sign-off and should be replaced with precise CPIC/DPWG/FDA-label recommendation rows over time."],
     verified:false, reviewRequired:true, verifyNote:"Backlog cleanup source anchor for live PGx rows promoted from CPIC/ClinPGx guideline and pair metadata only."
   },
   "ev_drug_count_expansion_batch": {
@@ -9929,12 +9929,12 @@ const STUDY_DB = {
     pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
     studyDesign:"drug_identity_and_route_context_expansion", n:null,
     phenotypes:["drug_identity","route_context","PK_fallback","metabolite_context","DDI_context","transporter_context","burden_context"],
-    quantifiedEffects:{note:"Shared evidence anchor for net-new drug records added with conservative class, half-life, route, PK, metabolite, DDI, transporter, washout, and burden hooks. All rows remain pending professional/source-specific review."},
+    quantifiedEffects:{note:"Shared evidence anchor for net-new drug records added with conservative class, half-life, route, PK, metabolite, DDI, transporter, washout, and burden hooks. All rows remain without professional/source-specific sign-off."},
     temporal:{mechanism:"drug_identity_live_hook_context", onset:"same_day", offset:"hours-weeks"},
     supports:["phase12_drug_count_push","phase12_new_drug_live_hooks","phase12_no_hollow_drug_records"],
     contradicts:[],
     limitations:["New records are screening/enrichment scaffolds. Class/routes/half-life and hooks must be replaced with source-specific labels or curated reviews before any clinical use; this does not provide dosing or treatment recommendations."],
-    verified:false, reviewRequired:true, verifyNote:"Phase 12 net-new drug expansion is live pending professional review."
+    verified:false, reviewRequired:true, verifyNote:"Phase 12 net-new drug expansion is live without professional sign-off."
   },
 };
 
@@ -9943,13 +9943,13 @@ const STUDY_DB = {
 // Architecture for structured + human-reviewed study ingestion.
 //
 // CRITICAL WARNING: Automated extraction errors in pharmacology are dangerous.
-// DO NOT auto-publish extracted evidence without pharmacist/physician review.
+// DO NOT auto-publish extracted evidence without professional judgment.
 //
 // Pipeline flow:
 //   PubMed / FDA / CPIC search
 //   → structured extraction → normalized draft (createStudyDraft)
 //   → INGESTION_QUEUE (awaiting review)
-//   → human review & approval
+//   → professional sign-off and approval
 //   → merge into STUDY_DB
 //
 // In a future version, this queue will be backed by a server-side review UI.
@@ -9980,7 +9980,7 @@ function createStudyDraft({pmid, doi, title, year, source, journal, type, studyD
     contradicts: contradicts || [],
     limitations: limitations || [],
     verified: false,
-    verifyNote:'Auto-extracted draft — requires human pharmacist/physician review before use',
+    verifyNote:'Auto-extracted draft — requires professional sign-off before use',
     _createdAt: new Date().toISOString(),
   };
   INGESTION_QUEUE.push(draft);
@@ -10000,7 +10000,7 @@ function reviewStudyDraft(draftId, reviewerNotes, approve) {
     return { status: 'rejected' };
   }
   const published = { ...draft, _status:'approved', verified:false,
-    verifyNote: reviewerNotes || 'Merged draft pending professional review', _approvedAt: new Date().toISOString() };
+    verifyNote: reviewerNotes || 'Merged draft without professional sign-off', _approvedAt: new Date().toISOString() };
   delete published._createdAt;
   STUDY_DB[published.id] = published;
   INGESTION_QUEUE.splice(idx, 1);

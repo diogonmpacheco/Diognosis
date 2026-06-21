@@ -201,7 +201,7 @@ function renderPgxActionSummaryCard(row = {}) {
         <div class="pgx-action-name">${safePublicHtml(row.title || "PGx action summary")}</div>
         <div class="pgx-action-meta">${safePublicHtml([row.source || "Guideline", row.level ? `Level ${row.level}` : "", row.gene, phenotype].filter(Boolean).join(" · "))}</div>
       </div>
-      <span class="ev-review-badge needs-review">review needed</span>
+      <span class="ev-review-badge needs-review">source context</span>
     </div>
     <div class="pgx-action-step"><strong>What changed</strong>${safePublicHtml(row.whatChanged || "")}</div>
     <div class="pgx-action-step"><strong>What to review</strong>${safePublicHtml(row.reviewDirection || "")}</div>
@@ -231,10 +231,12 @@ function getHighestGenotypePrioritySignal() {
       if (!effect || phenotype === GENOTYPE_PHENOTYPE.NM || effect.auc_fold === 1) continue;
       const fold = genotypeExposureFoldForDrug(drugName, enzyme, phenotype, effect);
       const note = genotypeExposureNoteForDrug(drugName, enzyme, phenotype, effect, fold);
+      const nebivololCyp2d6 = isNebivololCyp2d6Signal(drugName, enzyme);
       const actionSummary = typeof getPgxActionSummaryForDrugGene === "function"
         ? getPgxActionSummaryForDrugGene(drugName, enzyme, phenotype)
         : null;
-      const score = scoreGenotypeExposureSignal(fold, note, drug);
+      let score = scoreGenotypeExposureSignal(fold, note, drug);
+      if (nebivololCyp2d6) score = Math.min(score, 60);
       if (score < 30) continue;
       signals.push({
         kind:"exposure",
@@ -243,11 +245,17 @@ function getHighestGenotypePrioritySignal() {
         headline:`${enzyme} genotype may change ${drugName} exposure`,
         summary:publicDisplayText(`${drugName} is in your list and ${enzyme} is set to ${phenotypeLabelForGene(enzyme, phenotype)}. ${note}`),
         why:publicDisplayText(`${drugName} depends on ${enzyme}, and the selected ${enzyme} phenotype is not the reference state.`),
-        changes:`Expected parent-drug exposure shifts to about ${fold}x the normal-metabolizer baseline.`,
-        review:actionSummary?.reviewDirection || (score >= 70
+        changes:nebivololCyp2d6
+          ? "Nebivolol parent exposure can be higher in CYP2D6 poor/null status; clinical response is usually checked with pulse, blood pressure, and symptoms."
+          : `Expected parent-drug exposure shifts to about ${fold}x the normal-metabolizer baseline.`,
+        review:actionSummary?.reviewDirection || (nebivololCyp2d6
+          ? "Review pulse, blood pressure, dizziness/syncope, breathing symptoms, dose tolerance, and CYP2D6 inhibitors; routine genotype-only dose change is not established."
+          : score >= 70
           ? "Review dose sensitivity, toxicity signs, inhibitors/inducers, and whether therapeutic monitoring or an alternative is preferred."
           : "Review whether the exposure shift changes monitoring, dose, or follow-up."),
-        nextStep:score >= 70
+        nextStep:nebivololCyp2d6
+          ? "Discuss monitoring before changing dose or adding interacting medicines."
+          : score >= 70
           ? "Review the pharmacogenomics finding before changing dose or adding inhibitors."
           : "Review the pharmacogenomics panel and monitor dose-sensitive effects.",
         evidenceRefs:[...(drug.evidenceRefs || []), ...(actionSummary?.evidenceRefs || [])],
@@ -351,6 +359,10 @@ function genotypeExposureNoteForDrug(drugName, enzyme, phenotype, effect = {}, f
   const value = Number.isFinite(fold) ? fold : genotypeExposureFoldForDrug(drugName, enzyme, phenotype, effect);
   const clinicalFold = typeof clinicalFoldForDrugGene === "function" ? clinicalFoldForDrugGene(drugName, enzyme, phenotype) : null;
   const phenotypeText = phenotypeLabelForGene(enzyme, phenotype);
+  if (isNebivololCyp2d6Signal(drugName, enzyme)) {
+    const foldText = Number.isFinite(value) ? `about ${value}x in PK studies` : "substantially higher in PK studies";
+    return `Nebivolol has CYP2D6 clinical PK data for ${phenotypeText}: parent exposure can be ${foldText}, but prescribing information does not recommend a routine dose change based on CYP2D6 status alone. Review pulse, blood pressure, symptoms, and co-medications.`;
+  }
   const direction = value > 1.15
     ? "higher parent exposure"
     : value < 0.85
@@ -363,6 +375,10 @@ function genotypeExposureNoteForDrug(drugName, enzyme, phenotype, effect = {}, f
     return `${drugName} uses ${enzyme}; ${phenotypeText} gives a class-level estimate of ${direction} at about ${value}x the normal-metabolizer baseline. Review drug-specific evidence and co-medications.`;
   }
   return `${drugName} uses ${enzyme}; the selected phenotype is the reference state for this model.`;
+}
+
+function isNebivololCyp2d6Signal(drugName, enzyme) {
+  return String(drugName || "").toLowerCase() === "nebivolol" && enzyme === "CYP2D6";
 }
 
 function phenotypeLabelForGene(gene, phenotype) {

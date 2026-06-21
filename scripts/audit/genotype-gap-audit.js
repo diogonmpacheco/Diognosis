@@ -477,7 +477,7 @@ ${table(openOnly)}
 
 ## Open Targets / ClinPGx Gap Audit
 
-This section reads the local generated Open Targets snapshot when available. It is audit-only; Open Targets-derived PGx facts remain context until reviewed.
+This section reads the local generated Open Targets snapshot when available. It is audit-only; Open Targets-derived PGx facts remain context until explicitly signed off.
 
 Snapshot release: ${ot.release || 'not specified'}
 

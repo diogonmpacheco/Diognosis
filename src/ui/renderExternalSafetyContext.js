@@ -173,7 +173,7 @@ function renderExternalSafetyContextCard(context) {
     context.riskMarker ? `Risk marker: ${context.riskMarker}` : "",
   ].filter(Boolean);
   const reviewHref = safeUrl(buildExternalSafetyContextReviewUrl(context));
-  const contextNote = "Context only; not used for public severity until reviewed.";
+  const contextNote = "Context only; not used for public severity until explicitly signed off.";
   const reviewDecision = formatOpenTargetsReviewDecision(context.reviewDecision);
   const actionHint = actionHintForOpenTargetsDataset(context.openTargetsSourceDataset || context.factType);
   const rationale = context.promotionRationale ? `Review rationale: ${context.promotionRationale}` : "";

@@ -99,7 +99,7 @@ Passing this check means the record may be considered for the **live pending-rev
 - \`notClinicalReview: true\`
 - \`canAffectScoring: false\` in the automated decision object
 
-The separate promotion script is the only place that can create scoring-enabled live preview data, and the boundary audit must keep that data labeled as pending professional review.
+The separate promotion script is the only place that can create scoring-enabled live preview data, and the boundary audit must keep that data labeled as without professional sign-off.
 `;
 }
 

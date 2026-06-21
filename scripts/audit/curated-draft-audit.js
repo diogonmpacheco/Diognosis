@@ -18,11 +18,11 @@ for (const file of files) {
   if (!draft.draftId) errors.push(`${file}: missing draftId`);
   if (!draft.sourceRecordIds?.length) errors.push(`${file}: missing sourceRecordIds`);
   if (draft.sourceFaithfulnessStatus !== 'checked_by_maintainer') errors.push(`${file}: curated draft must be maintainer source-faithfulness checked`);
-  if (draft.professionalReviewStatus !== 'pending') errors.push(`${file}: curated draft must remain pending professional review`);
+  if (draft.professionalReviewStatus !== 'pending') errors.push(`${file}: curated draft must remain without professional sign-off`);
   if (draft.canAffectScoring) errors.push(`${file}: curated draft cannot affect scoring`);
   if (draft.canAffectPublicSeverity) errors.push(`${file}: curated draft cannot affect public severity`);
   if (draft.displayStatus !== 'curated_preview_pending_professional_review') {
-    errors.push(`${file}: curated draft display status must remain pending professional review`);
+    errors.push(`${file}: curated draft display status must remain without professional sign-off`);
   }
 }
 

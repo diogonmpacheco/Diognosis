@@ -51,7 +51,7 @@ function makeCandidate(kind, row, details = {}) {
     genes: [row.gene].filter(Boolean),
     metabolites: [row.metabolite].filter(Boolean),
     pathways: [row.route, row.theme].filter(Boolean),
-    reason: details.reason || row.theme || (row.gaps || []).join('; ') || 'Engine coverage gap requires source search and human review.',
+    reason: details.reason || row.theme || (row.gaps || []).join('; ') || 'Engine coverage gap requires source search and professional sign-off.',
     suggestedTarget: details.suggestedTarget || 'review_only',
     targetClaimType: details.targetClaimType || 'coverage_gap',
     searchPreference: details.searchPreference || ['FDA label', 'CPIC/ClinPGx if PGx', 'PubMed clinical PK', 'guideline', 'case report'],

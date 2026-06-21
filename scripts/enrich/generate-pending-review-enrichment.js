@@ -283,7 +283,7 @@ function exportedRecord(record) {
   const snippet = compactText(record.claim?.mechanismSummary || record.claim?.clinicalSummary || '');
   const summary = [
     snippet,
-    'Staged as source-linked external context pending human review.',
+    'Staged as source-linked external context without professional sign-off.',
     'Not used for scoring or public severity.',
   ].filter(Boolean).join(' ');
   return {
@@ -311,7 +311,7 @@ function exportedRecord(record) {
     canAffectScoring: false,
     canAffectPublicSeverity: false,
     canBeUsedForClinicalAction: false,
-    displayBadge: 'Pending human review',
+    displayBadge: 'Professional sign-off required',
     warnings: [
       'External source context only.',
       'Not used for scoring or public severity.',

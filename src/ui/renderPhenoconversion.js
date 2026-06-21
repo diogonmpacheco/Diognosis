@@ -77,7 +77,7 @@ function renderPhenoconversionRow(row) {
     <div class="finding-meta">
       <span class="finding-tag type">functional gene status</span>
       <span class="finding-tag">confidence: ${safePublicHtml(row.confidence || "unknown")}</span>
-      <span class="finding-tag warn">review needed</span>
+      <span class="finding-tag warn">source context</span>
       <span class="finding-tag">${(row.evidenceRefs || []).length ? `${row.evidenceRefs.length} source refs` : "inferred/review required"}</span>
     </div>
   </div>`;

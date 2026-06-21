@@ -69,7 +69,7 @@ function renderPersistenceRow(row) {
       ${onset}
       ${offset}
       <span class="finding-tag">confidence: ${safePublicHtml(row.confidence || "unknown")}</span>
-      <span class="finding-tag warn">${row.reviewRequired ? "review needed" : "reviewed"}</span>
+      <span class="finding-tag warn">${row.reviewRequired ? "source context" : "source-linked"}</span>
       <span class="finding-tag">${(row.evidenceRefs || []).length ? `${row.evidenceRefs.length} evidence ref${row.evidenceRefs.length === 1 ? "" : "s"}` : "inferred/review required"}</span>
     </div>
   </div>`;

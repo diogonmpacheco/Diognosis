@@ -37,7 +37,7 @@ function itemFromGroup(group) {
     store: group.store || group.claimFamily || 'unknown',
     claimTypes: group.claimTypes || [group.claimFamily].filter(Boolean),
     suggestedTarget,
-    reason: group.reason || group.summary || 'Candidate relation group requires human review.',
+    reason: group.reason || group.summary || 'Candidate relation group requires professional sign-off.',
     affectedDrugs: group.drugs || [],
     affectedGenes: group.genes || [],
     affectedMetabolites: group.metabolites || [],

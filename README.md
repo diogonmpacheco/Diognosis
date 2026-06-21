@@ -18,7 +18,7 @@ Diognosis is a V1 candidate review tool that models parent substances, active an
 
 ---
 
-> **⚠️ Not medical advice.** Diognosis is a V1 candidate, under active validation, pending professional clinical review. Warnings are review prompts — severity should not be treated as clinically final until reviewed by an appropriate professional.
+> **⚠️ Not medical advice.** Diognosis is a V1 candidate under active validation. Source-linked evidence is integrated for educational review, but no result should be treated as clinically final or professionally signed off.
 
 ---
 
@@ -26,7 +26,7 @@ Diognosis is a V1 candidate review tool that models parent substances, active an
 
 Diognosis is an AI-assisted, vibe-coded research project built by **Diogo Pacheco** in collaboration with OpenAI Codex and ChatGPT. Diogo directs the product vision, data priorities, clinical-safety boundaries, and final acceptance of changes. AI assistance is used for implementation, refactoring, tests, documentation, and data-organization support.
 
-> **Note:** AI-assisted development does not mean clinical validation. Diognosis remains a V1 candidate pending professional clinical review.
+> **Note:** AI-assisted development does not mean clinical validation. Diognosis remains a V1 candidate; professional clinical sign-off belongs to a later review phase.
 
 ## Medication Safety Explorer
 
@@ -44,7 +44,7 @@ Most medication checkers begin with parent drug names and return pairwise warnin
 - Is a **prodrug** failing activation?
 - Has a **genotype** been phenoconverted by an inhibitor or inducer?
 - Is the warning driven by an enzyme, transporter, receptor, metabolite, phenotype, PK shift, or washout window?
-- Is the evidence label-backed, guideline-backed, clinical-PK-backed, mechanistic, or still pending professional review?
+- Is the evidence label-backed, guideline-backed, clinical-PK-backed, mechanistic, source-integrated, or still missing a direct source?
 
 This makes Diognosis especially useful for review scenarios where the clinically important signal is not the original pill itself, but **what the body turns it into — or fails to turn it into**.
 
@@ -79,11 +79,11 @@ The important signal may come from an active metabolite, a toxic metabolite, a b
 
 | Deep demo | Why it is often missed |
 |---|---|
-| [Azathioprine + allopurinol + TPMT/NUDT15 PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=genes-metabolites) | Allopurinol can push azathioprine down a more toxic route. The parent–metabolite view highlights 6-TGN accumulation, genotype context, and pending evidence-review status. |
+| [Azathioprine + allopurinol + TPMT/NUDT15 PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=genes-metabolites) | Allopurinol can push azathioprine down a more toxic route. The parent–metabolite view highlights 6-TGN accumulation, genotype context, and source-integrated evidence status. |
 | [Capecitabine + DPYD PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=capecitabine&genotype=DPYD:PM&tab=genes-metabolites) | Capecitabine is designed to become 5-FU. If DPYD cleanup is weak, the active/toxic metabolite can accumulate, so toxicity can come from the metabolite rather than the parent drug. |
 | [Irinotecan + UGT1A1 PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=irinotecan&genotype=UGT1A1:PM&tab=genes-metabolites) | Irinotecan becomes SN-38, the stronger active metabolite. UGT1A1 helps clear SN-38; the app shows this as toxic-metabolite accumulation with a why path. |
 | [Bupropion + clopidogrel + nebivolol + CYP2D6 no-function](https://diogonmpacheco.github.io/Diognosis/index.html?substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null&tab=overview) | This stack hides several parent/metabolite directions at once: bupropion parent exposure, hydroxybupropion uncertainty, nebivolol clearance, and clopidogrel activation context. |
-| [G6PD oxidant stack](https://diogonmpacheco.github.io/Diognosis/index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency&tab=genes-metabolites) | These drugs look unrelated by name, but all can stress red blood cells. The app groups G6PD risk with toxic-metabolite and oxidant-stress review prompts. |
+| [G6PD oxidant stack](https://diogonmpacheco.github.io/Diognosis/index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency&tab=genes-metabolites) | These drugs look unrelated by name, but all can stress red blood cells. The app groups G6PD risk with toxic-metabolite and oxidant-stress screening signals. |
 | [Succinylcholine + BCHE/RYR1 risk](https://diogonmpacheco.github.io/Diognosis/index.html?substances=succinylcholine&genotype=BCHE:null&genotype=RYR1:present&tab=genes-metabolites) | The issue is not a common drug-drug pair. BCHE weakness can make paralysis last too long, while RYR1/CACNA1S context flags malignant-hyperthermia susceptibility. |
 
 </details>
@@ -110,13 +110,13 @@ Most interaction checkers return isolated warnings. Diognosis instead shows how 
 
 The goal is not to replace clinical judgment. It is to make the mechanism visible enough for education, research, review workflows, and pharmacist or clinician verification.
 
-> **⚠️ Diognosis is not a clinical decision system.** Source-linked evidence does not equal clinical validation. Warnings are review prompts, and severity should not be treated as clinically final until reviewed by an appropriate professional.
+> **⚠️ Diognosis is not a clinical decision system.** Source-linked evidence does not equal clinical validation. Warnings are educational screening signals, and severity should not be treated as clinically final without appropriate professional judgment.
 
 ## Data Enrichment Governance
 
 Diognosis uses staged, source-linked enrichment workflows for literature discovery and structured guideline context. External records from PubMed, Europe PMC, OpenAlex, Unpaywall, CPIC Data, and ClinPGx are staged for review and **do not automatically change clinical severity, scoring, or shipped database behavior**.
 
-Source-linked does not mean professionally reviewed. All public evidence remains pending professional review unless explicitly marked otherwise. Maintainer source-faithfulness checks, local fork review overlays, and professional clinical reviews are tracked separately.
+Source-linked does not mean professionally reviewed. Public evidence can be source-integrated for V1 without claiming professional sign-off. Maintainer source-faithfulness checks, local fork review overlays, and future professional clinical reviews are tracked separately.
 
 ## Current Limitations
 
@@ -124,7 +124,7 @@ Diognosis is intentionally conservative about what it claims:
 
 - PK curves use a one-compartment model or relative-exposure fallback — they **do not** replace therapeutic drug monitoring, multi-compartment/nonlinear PK models, or active-metabolite clinical interpretation.
 - Extreme exposure shifts may be capped for display clarity.
-- Evidence marked `reviewRequired:true` is visible for review and discovery, but remains pending pharmacist or physician sign-off and should not be treated as professionally reviewed.
+- Evidence marked `reviewRequired:true` is visible for review and discovery as an internal enrichment/scoring flag. It should not be treated as a professional-review status.
 
 ---
 
@@ -132,14 +132,14 @@ Diognosis is intentionally conservative about what it claims:
 
 <!-- DIOGNOSIS_STATS_START -->
 - **1549 drugs** in DRUG_DB
-- **517 evidence entries** in STUDY_DB (276 with PMIDs; 517 with source identifiers) — **517 pending professional review**, **0 professionally reviewed**
-- **3184 interaction pairs** (1610 severe, 1539 moderate, 35 mild)
+- **517 evidence entries** in STUDY_DB (276 with PMIDs; 517 source-integrated for V1; 0 with v3 professional sign-off)
+- **3183 interaction pairs** (1610 severe, 1538 moderate, 35 mild)
 - **2817 metabolite entries** across **1549 parent substances** (2375 first-class metabolite actors)
 - **1407 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **69 genotype genes** and **588 receptor score profiles**
 - **1251 RxNorm identity mappings**, **42 PGx marker rows**, and **14 CPIC-linked action summaries**
 - **218 Beers flags** and **1411 washout rules**
-- **3281 KB** generated bundle (2362 lines)
+- **3285 KB** generated bundle (2362 lines)
 <!-- DIOGNOSIS_STATS_END -->
 
 ---
@@ -164,9 +164,9 @@ GitHub Pages uses the workflow in `.github/workflows/pages.yml` to build the app
 
 Diognosis contains source-linked data. **No evidence entry has been professionally reviewed yet.** Entries marked `reviewRequired:true` are internally flagged enrichment rows, but the rest of the evidence should not be treated as verified.
 
-> **The safety contract is simple:** a warning should explain the pathway, affected actor, predicted direction, and supporting evidence. Severity should not be treated as clinically final without human review.
+> **The safety contract is simple:** a warning should explain the pathway, affected actor, predicted direction, and supporting evidence. Severity should not be treated as clinically final without explicit professional sign-off.
 
-Helpful contributions include data review, missing evidence refs, duplicate or stale interaction reports, reproducible app bugs, and focused pull requests. Use the report links on warning and evidence cards, or start with the priority list in [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md). Cite public sources such as labels, guidelines, PubMed records, PMIDs, DOIs, or URLs, and keep entries pending professional review until an appropriate reviewer signs off.
+Helpful contributions include data review, missing evidence refs, duplicate or stale interaction reports, reproducible app bugs, and focused pull requests. Use the report links on warning and evidence cards, or start with the priority list in [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md). Cite public sources such as labels, guidelines, PubMed records, PMIDs, DOIs, or URLs, and keep professional sign-off metadata separate until an appropriate reviewer signs off.
 
 ---
 

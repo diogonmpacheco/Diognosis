@@ -115,7 +115,7 @@ function phenoconversionRowsToFindings(rows, options = {}) {
       sourceRows: [row],
       groupedFindings: [],
       clinicalAction: row.clinicalNote || "",
-      evidenceStatus: (row.evidenceRefs || []).length ? "source-linked; pending professional review" : "inferred/review required",
+      evidenceStatus: (row.evidenceRefs || []).length ? "source-linked; professional sign-off not claimed" : "inferred/review required",
     }));
 }
 

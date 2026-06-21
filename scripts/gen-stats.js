@@ -65,7 +65,7 @@ const start = '<!-- DIOGNOSIS_STATS_START -->';
 const end = '<!-- DIOGNOSIS_STATS_END -->';
 const statsBlock = `${start}
 - **${stats.drugs} drugs** in DRUG_DB
-- **${stats.studies} evidence entries** in STUDY_DB (${stats.studiesWithPmid} with PMIDs; ${stats.sourceLinkedStudies} with source identifiers) — **${stats.pendingProfessionalReviewStudies} pending professional review**, **${stats.professionalReviewedStudies} professionally reviewed**
+- **${stats.studies} evidence entries** in STUDY_DB (${stats.studiesWithPmid} with PMIDs; ${stats.sourceIntegratedStudies} source-integrated for V1; ${stats.professionalReviewedStudies} with v3 professional sign-off)
 - **${stats.ddiPairs} interaction pairs** (${stats.severeDdi} severe, ${stats.moderateDdi} moderate, ${stats.mildDdi} mild)
 - **${stats.metaboliteEntries} metabolite entries** across **${stats.metaboliteParents} parent substances** (${stats.metaboliteActors} first-class metabolite actors)
 - **${stats.pkParams} absolute PK simulation profiles** with relative fallback for half-life-only drugs
@@ -90,10 +90,10 @@ const publicTrustPath = resolve(root, 'docs/PUBLIC_TRUST.md');
 if (existsSync(publicTrustPath)) {
   const trustStart = '<!-- PUBLIC_TRUST_STATS_START -->';
   const trustEnd = '<!-- PUBLIC_TRUST_STATS_END -->';
-  const trustBlock = `${trustStart}
-- **${stats.sourceLinkedStudies} \`STUDY_DB\` entries** have public source identifiers.
-- **${stats.pendingProfessionalReviewStudies} entries** are pending professional review.
-- **${stats.professionalReviewedStudies} entries** are professionally reviewed.
+const trustBlock = `${trustStart}
+- **${stats.sourceIntegratedStudies} \`STUDY_DB\` entries** are source-integrated for V1 evidence display and calculations.
+- **${stats.professionalReviewedStudies} entries** have explicit v3 professional sign-off metadata.
+- **${stats.v3ProfessionalReviewCandidateStudies} entries** remain eligible for future professional sign-off without blocking V1 source integration.
 - **${stats.internalReviewRequiredEntries} entries** are currently marked \`reviewRequired:true\` as an internal enrichment/scoring flag, not a public reviewed/unreviewed boundary.
 ${trustEnd}`;
   let trust = readFileSync(publicTrustPath, 'utf8')
@@ -111,9 +111,9 @@ if (existsSync(launchTrustPath)) {
 | --- | ---: |
 | Drugs in \`DRUG_DB\` | ${stats.drugs} |
 | Evidence entries in \`STUDY_DB\` | ${stats.studies} |
-| Source-linked evidence entries | ${stats.sourceLinkedStudies} |
-| Pending professional review entries | ${stats.pendingProfessionalReviewStudies} |
-| Professional-reviewed evidence entries | ${stats.professionalReviewedStudies} |
+| Source-integrated V1 evidence entries | ${stats.sourceIntegratedStudies} |
+| V3 professional sign-off entries | ${stats.professionalReviewedStudies} |
+| Future professional sign-off candidates | ${stats.v3ProfessionalReviewCandidateStudies} |
 | Internal \`reviewRequired:true\` evidence entries | ${stats.internalReviewRequiredEntries} |
 | RxNorm identity mappings | ${stats.externalSubstanceMappings} |
 | PGx marker rows | ${stats.pgxMarkerRows} |

@@ -154,8 +154,10 @@ function renderFoldBars() {
     const drug = getDrug(name);
     const isProdrug = drug && drug.prodrug;
 
+    const monitorContext = isNebivololCyp2d6MonitorFold(name);
     let color, tagText, tagColor;
-    if (fold >= 4) { color = "var(--red)"; tagText = "DANGER"; tagColor = "background:var(--redBg);color:var(--red)"; }
+    if (fold >= 4 && monitorContext) { color = "var(--amber)"; tagText = "MONITOR"; tagColor = "background:var(--amberBg);color:var(--amber)"; }
+    else if (fold >= 4) { color = "var(--red)"; tagText = "DANGER"; tagColor = "background:var(--redBg);color:var(--red)"; }
     else if (fold >= 2) { color = "var(--amber)"; tagText = "HIGH"; tagColor = "background:var(--amberBg);color:var(--amber)"; }
     else if (fold >= 1.5) { color = "var(--amber)"; tagText = "ELEVATED"; tagColor = "background:var(--amberBg);color:var(--amber)"; }
     else if (fold <= 0.5) { color = isProdrug ? "var(--red)" : "var(--blue)"; tagText = isProdrug ? "REDUCED" : "LOW"; tagColor = isProdrug ? "background:var(--redBg);color:var(--red)" : "background:var(--blueBg);color:var(--blue)"; }
@@ -180,6 +182,13 @@ function renderFoldBars() {
       <div class="fold-val" style="color:${color}">${safePublicHtml(fold.toFixed(1))}x<span class="fold-tag" style="${tagColor}">${safePublicHtml(tagText)}</span></div>
     </div>${contextRows}${metaboliteRows}`;
   }).join("");
+}
+
+function isNebivololCyp2d6MonitorFold(name) {
+  if (String(name || "").toLowerCase() !== "nebivolol") return false;
+  const phenotype = typeof activeGenotype !== "undefined" ? activeGenotype?.CYP2D6 : null;
+  const legacy = typeof userGenetics !== "undefined" ? userGenetics?.CYP2D6 : null;
+  return phenotype === GENOTYPE_PHENOTYPE.PM || legacy === "null";
 }
 
 function renderFoldExposureContextRows(name) {

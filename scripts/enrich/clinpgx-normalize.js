@@ -229,7 +229,7 @@ function directRowToRecord(row, payload, aliasMap, data, normalizedAt) {
       fetchedAt: payload.fetchedAt || normalizedAt,
       license: 'CC BY-SA 4.0',
       licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
-      attribution: 'ClinPGx REST API source object; staged pending source-faithfulness and professional review.',
+      attribution: 'ClinPGx REST API source object; staged until source faithfulness is checked and professional sign-off is explicit.',
       rateLimit: '2 requests/second; use >=550 ms spacing',
       refreshCadence: 'weekly',
     },

@@ -6,7 +6,7 @@ This page keeps implementation details out of the README front page while preser
 
 Diognosis models medication stacks as connected parent-metabolite-gene systems. The engine combines curated DDI pairs, parent/metabolite directionality, functional enzyme status, PK and washout timing, pathway graph traversal, receptor/phenotype burden, and source-linked evidence confidence into normalized interaction findings.
 
-Status: V1 candidate, source-linked, under active validation, pending professional clinical review, and not medical advice.
+Status: V1 candidate, source-linked, under active validation, not professionally signed off, and not medical advice.
 
 Diognosis currently ships as a single self-contained HTML file. All computation runs in the browser with no backend, no API, no accounts, no analytics, and no medication-data collection. D3.js is vendored locally and bundled at build time for graph visualization.
 
@@ -26,7 +26,7 @@ Diognosis currently models:
 - Parent persistence, active/toxic metabolite persistence, washout rules, enzyme recovery, and induction offset
 - Receptor occupancy and syndrome-style burden detection
 - Anticholinergic, sedative, fall-risk, Beers, and washout summaries
-- Evidence browsing, evidence confidence ladders, and review diagnostics with all public evidence pending professional review
+- Evidence browsing, evidence confidence ladders, and review diagnostics with V1 source-integrated evidence and separate v3 professional sign-off metadata
 
 ## Source Layout
 
@@ -120,7 +120,7 @@ Output shape: finding objects with `id`, `type`, `severity`, `confidence`, `summ
 
 UI placement: Overview shows ranked finding cards; Mechanisms explains them; Evidence details support; the hidden Reviewer Console exposes raw path objects and technical tables.
 
-Review/safety limitations: findings are review prompts. They are not clinical decisions and should not be treated as final severity judgments without professional review.
+Review/safety limitations: findings are educational screening signals. They are not clinical decisions and should not be treated as final severity judgments without appropriate professional judgment.
 
 V1 trust contract: each public Overview finding is normalized into a reusable trust contract with concern category, affected actors, mechanism, expected change, clinical concern, confidence, evidence status, patient-safe action, clinician action, and limitation status. Source-linked finding cards expose direct source chips when public identifiers are available, or a jump to the Evidence ledger otherwise. Finding cards also include a bounded symptom/monitoring discussion guide: Patient mode phrases it as what to mention if present, while Clinician mode lists monitoring focus areas to review with dose, timing, labs, and clinical context. Empty/no-signal Overview states are also bounded: they say no major public concern was generated, name unrecognized selections when present, and provide patient/clinician next-step review prompts instead of implying safety. Reviewer-only scope and readiness details stay in the hidden Reviewer Console, while Patient and Clinician V1 keep the normal workflow focused on selected items, optional gene/marker results, and the relevant findings. The V1 handoff summary turns the same contract into a shareable text artifact with stack, scope, top concerns, evidence/status, standards identity coverage, monitoring focus, patient-safe boundaries, and share URL. The hidden Reviewer Console also exposes a V1 readiness snapshot for the current stack; it checks scope, contracts, source traceability, standards identity disclosure, action wording, handoff, safety boundaries, share state, and Audience Mode availability without claiming clinical validation. `scripts/audit/v1-finding-contract-audit.js` checks this contract, direct source traceability, scope wording, and handoff summary across broad data-derived stacks, then sweeps every recognized shipped `KNOWN_DDI` pair for a complete public contract. `scripts/audit/v1-pgx-contract-audit.js` checks every supported CPIC-linked action case, recognized risk-marker drug row, and high-priority genotype-metabolite row for V1-ready public contracts and PGx marker identity coverage. `scripts/audit/v1-pk-visualization-audit.js` checks every PK-eligible drug for a nonblank absolute or relative SVG curve, model badges, AUC/Cmax metrics, safety disclaimer text, short-acting compressed display windows, and a DDI-adjusted AUC curve. `scripts/audit/v1-standards-coverage-audit.js` checks RxNorm, PGx marker, CPIC action, and standards-gap disclosure. `scripts/audit/v1-release-readiness-audit.js` checks the cross-surface V1 behavior for representative clinician and patient modes.
 
@@ -146,7 +146,7 @@ Output shape: rows with enzyme, genetic phenotype, functional phenotype, capacit
 
 UI placement: changed functional status can feed Overview findings; the full Functional Gene Status dashboard appears in Genes + Metabolites, with relevant normal rows collapsed.
 
-Review/safety limitations: normal/relevant rows are context. Changed functional status is still a mechanistic signal and remains pending review unless explicit review metadata exists.
+Review/safety limitations: normal/relevant rows are context. Changed functional status is still a mechanistic signal and does not claim professional sign-off unless explicit sign-off metadata exists.
 
 ### Per-Warning Why Paths
 
@@ -182,7 +182,7 @@ Output shape: ladders with evidence refs, tiers present, strongest tier, source-
 
 UI placement: compact evidence status appears on finding cards; the Evidence tab shows the Evidence Browser / Evidence Ledger; the hidden Reviewer Console keeps governance diagnostics visible.
 
-Review/safety limitations: source-linked does not mean professionally reviewed. Model-only review prompts should remain distinct from FDA-label/guideline-backed findings.
+Review/safety limitations: source-linked does not mean professionally signed off. Model-only screening signals should remain distinct from FDA-label/guideline-backed findings.
 
 ### Reviewer Console Diagnostics
 
@@ -249,11 +249,11 @@ These concepts are deliberately separate:
 
 - Source-linked evidence: a finding has linked public refs, labels, guidelines, papers, or curated source rows.
 - Mechanistic confidence: the strength of the pathway/source support for the mechanism.
-- Clinical-action confidence: whether the app can treat the finding as reviewed, pending review, or insufficient for action.
-- Professional-review status: explicit pharmacist/physician review metadata. This must never be inferred from source links alone.
-- Model-only review prompt: a mechanistic or computed finding without linked source refs on that specific finding.
+- Clinical-action confidence: whether the app can treat the finding as professionally signed off, source-integrated without sign-off, or insufficient for action.
+- Professional sign-off status: explicit professional sign-off metadata. This must never be inferred from source links alone.
+- Model-only screening signal: a mechanistic or computed finding without linked source refs on that specific finding.
 
-Source-linked does not mean professionally reviewed. The current public evidence ledger is intentionally presented as pending professional review. Severe and critical findings can be visible as review priorities, but severity should not be treated as clinically final until reviewed by an appropriate professional.
+Source-linked does not mean professionally reviewed. The current public evidence ledger is intentionally presented as V1 source-integrated evidence with professional sign-off not claimed. Severe and critical findings can be visible as educational review priorities, but severity should not be treated as clinically final.
 
 ## Biochemical Graph Engine
 
@@ -276,7 +276,7 @@ Each tier carries a calibrated confidence weight used by graph and finding-level
 
 Important evidence helpers include `normalizeEvidence()`, `getEvidenceSummary()`, `assertEvidencedSeverity()`, `createStudyDraft()`, `reviewStudyDraft()`, `computeEvidenceLadder()`, and `attachEvidenceLaddersToFindings()`.
 
-Live enrichment entries should remain marked `reviewRequired:true` until checked by a qualified human reviewer. Open Targets-derived context remains local/static at runtime and defaults to context-only, review-required, and not severity-bearing unless explicitly promoted by Diognosis review.
+Live enrichment entries should remain marked `reviewRequired:true` until explicitly signed off. Open Targets-derived context remains local/static at runtime and defaults to context-only, sign-off-required, and not severity-bearing unless explicitly promoted by Diognosis governance.
 
 ## Enrichment Governance
 
@@ -314,8 +314,8 @@ Structured source workflows:
 - `scripts/enrich/stage-legal-literature.js` normalizes PubMed, Europe PMC, OpenAlex, and Unpaywall literature drafts into the same staged schema.
 - `scripts/enrich/group-staged-records.js` groups CPIC/ClinPGx raw staged rows into human-readable review candidates.
 - `scripts/audit/enrichment-coverage-audit.js` ranks missing drugs, likely missing combinations, PGx gaps, metabolite gaps, and evidence gaps.
-- `scripts/enrich/build-enrichment-review-queue.js` can regenerate a temporary human review queue for an enrichment campaign. Queue items cannot auto-promote and do not define V1 completeness.
-- `scripts/enrich/generate-pending-review-enrichment.js` and `scripts/enrich/generate-pending-core-enrichment.js` are optional export tools. Their generated files are not required for the live app gate and should only be regenerated when the team is actively reviewing that backlog.
+- `scripts/enrich/build-enrichment-review-queue.js` can regenerate a temporary sign-off queue for an enrichment campaign. Queue items cannot auto-promote and do not define V1 completeness.
+- `scripts/enrich/generate-pending-review-enrichment.js` and `scripts/enrich/generate-pending-core-enrichment.js` are optional export tools. Their generated files are not required for the live app gate and should only be regenerated for a deliberate enrichment-backlog campaign.
 - `scripts/enrich/run-weekly-enrichment.js` orchestrates the staged enrichment run for a deliberate enrichment campaign, not the normal release gate.
 
 PharmCAT remains a future session-input source. It is not a global database enrichment source and should not mutate shipped data files.
@@ -436,6 +436,6 @@ No interaction should be presented as clinically final without enough provenance
 - the enzyme, transporter, receptor, metabolite, phenotype, or time window involved
 - the expected direction of effect
 - the evidence basis and source-support status
-- whether professional review is still required
+- whether professional sign-off metadata exists
 
-The safe default is to show a source-linked or model-only review prompt, not a final medical instruction.
+The safe default is to show a source-linked or model-only explanation, not a final medical instruction.
