@@ -238,20 +238,20 @@ function syncMainEmptyStateCopy(patient) {
     ? "Check a medication list before the conversation starts"
     : "Review a medication and pharmacogenomic stack");
   setText("mainEmptyCopy", patient
-    ? "Diognosis runs on your device and helps prepare medication-safety questions from medicines, supplements, foods, optional gene results, timing, metabolites, and source-linked evidence."
+    ? "Diognosis runs on your device and helps turn a medication list into safety questions for a doctor or pharmacist. Add medicines, supplements, foods, and only the gene-test results you already have."
     : "Diognosis checks parent drugs, metabolites, genes, pathways, timing, and source-linked evidence together for clinician-oriented review.");
   setText("mainEmptyStep3Title", patient ? "Review Safety Notes first" : "Review the result tabs");
   setText("mainEmptyStep3Copy", patient
-    ? "Use the notes to prepare questions for a doctor or pharmacist. Switch to Clinician when more technical detail is needed."
+    ? "Use the notes to prepare questions for a doctor or pharmacist before making medication decisions."
     : "Start with Overview, then use Genes, Timing, and Evidence when more detail is needed.");
   const checks = document.getElementById("mainEmptyChecks");
   if (!checks) return;
   const items = patient
     ? [
         "Safety notes to discuss before changing anything",
-        "Gene and metabolite effects that may matter if results are known",
-        "Timing, persistence, washout, and level-change context",
-        "Evidence links and boundaries for doctor or pharmacist follow-up",
+        "Known gene-test results that may change which questions to ask",
+        "Timing or food context that may be worth reviewing",
+        "Links and boundaries for doctor or pharmacist follow-up",
       ]
     : [
         "Interaction warnings and grouped clinical concerns",
