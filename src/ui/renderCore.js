@@ -1895,7 +1895,9 @@ function patientFindingTitleText(presentation = {}) {
       : "An antiplatelet medicine may work less well";
   }
   if (hasActiveMetabolitePatientContext(text)) {
-    return pair ? `${actors[0]} may work less well with ${actors[1]}` : "A medicine may work less well";
+    return actors.length >= 2
+      ? `${actors[0]} may work less well with ${actors[1]}`
+      : "A medicine may work less well";
   }
   if (/bleed|inr|anticoag|warfarin|platelet|clot/.test(text)) {
     return pair ? `${pair} may need closer monitoring` : "Bleeding or clotting monitoring may change";

@@ -1043,6 +1043,37 @@ assert(patientGeneResultListRegression.clinician.doseSelects > 0, 'Clinician mod
 assert(/\b(?:AUC|CYP\d|metabolite|parent\s+[↑↓])\b/i.test(patientGeneResultListRegression.clinician.medListText),
   'Clinician selected list should retain technical exposure context');
 
+const patientActiveMetaboliteFallbackRegression = window.eval(`(() => {
+  activeStack = [];
+  userGenetics = {};
+  activeGenotypeDetails = {};
+  activeGenotype = {
+    CYP2D6: GENOTYPE_PHENOTYPE.NM,
+    CYP2C19: GENOTYPE_PHENOTYPE.NM,
+    CYP2C9: GENOTYPE_PHENOTYPE.NM,
+  };
+  window.history.replaceState(null, '', '/index.html?substances=bupropion,tamoxifen&audience=patient&tab=overview');
+  loadUrlDemoState();
+  renderComputationCache = null;
+  renderAll();
+  return {
+    audienceMode,
+    activeStack,
+    findingTitle:document.getElementById('findingTitle')?.textContent || '',
+    visibleText:[
+      document.getElementById('summaryBar')?.textContent || '',
+      document.getElementById('medList')?.textContent || '',
+      document.getElementById('findingBody')?.textContent || '',
+    ].join(' '),
+  };
+})()`);
+assert(patientActiveMetaboliteFallbackRegression.audienceMode === 'patient', 'Active-metabolite fallback regression should run in Patient mode');
+assert(patientActiveMetaboliteFallbackRegression.activeStack.join('|') === 'Bupropion|Tamoxifen',
+  'Active-metabolite fallback regression should load Bupropion + Tamoxifen');
+assert(patientActiveMetaboliteFallbackRegression.findingTitle === 'Safety Notes', 'Active-metabolite fallback should render Patient Safety Notes');
+assert(!/\b(?:undefined|NaN|\[object Object\])\b/i.test(patientActiveMetaboliteFallbackRegression.visibleText),
+  'Patient active-metabolite fallback copy should not expose undefined/NaN/object text');
+
 const singleItemSummaryJumpRegression = window.eval(`(() => {
   activeStack = [];
   userGenetics = {};
