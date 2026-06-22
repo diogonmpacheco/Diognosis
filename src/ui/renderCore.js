@@ -512,16 +512,17 @@ function renderSummaryBar() {
     priorityStory = buildDefaultPriorityStory(activeStack.length);
   }
 
+  const patient = isPatientAudience();
   const publicPresentations = getCurrentPublicFindingPresentations();
-  const primaryPresentation = publicPresentations[0] || null;
+  const visiblePresentations = patient ? getPatientFacingPublicFindingPresentations(publicPresentations) : publicPresentations;
+  const primaryPresentation = visiblePresentations[0] || null;
   const isGenotypePriority = genotypePriority && genotypePriority.score > interactionScore;
   const jumpTab = primaryPresentation ? primaryPresentation.targetTab : (isGenotypePriority ? (genotypePriority.targetTab || "genes-metabolites") : "overview");
   const jumpTarget = primaryPresentation ? primaryPresentation.targetElementId : (isGenotypePriority ? (genotypePriority.targetElementId || "genotypeSection") : "findingSection");
 
-  const patient = isPatientAudience();
   if (patient) {
     if (primaryPresentation) {
-      const noteCount = publicPresentations.length;
+      const noteCount = visiblePresentations.length;
       const firstActors = (primaryPresentation.affectedSubstances || []).slice(0, 2).join(" + ");
       headline = `${noteCount} question${noteCount === 1 ? "" : "s"} ready for your list`;
       summaryCopy = firstActors
@@ -549,7 +550,7 @@ function renderSummaryBar() {
       };
     }
   } else if (primaryPresentation && !isGenotypePriority) {
-    const concernCount = publicPresentations.length;
+    const concernCount = visiblePresentations.length;
     const actorText = (primaryPresentation.affectedSubstances || []).slice(0, 3).join(" + ");
     const genotypeAlsoCheck = genotypePriority && genotypePriority.score >= 70 && genotypePriority.summary
       ? ` Also check: ${genotypePriority.summary}`
@@ -639,7 +640,7 @@ function currentHandoffDataBoundaryLine() {
 }
 
 function buildPatientQuestionSummaryText() {
-  const presentations = getCurrentPublicFindingPresentations();
+  const presentations = getPatientFacingPublicFindingPresentations();
   const questions = presentations.length
     ? presentations.slice(0, 5).map(presentation => buildPatientDiscussionQuestion(presentation, presentation.trustContract))
     : [patientFallbackQuestionForCurrentStack()];
@@ -792,6 +793,9 @@ function renderInteractionFindingsOverview(risk) {
   currentInteractionFindings = findings;
   currentClinicalConcerns = overviewFindings;
   currentPublicFindingPresentations = buildPublicFindingPresentations(overviewFindings);
+  const visiblePresentations = isPatientAudience()
+    ? getPatientFacingPublicFindingPresentations(currentPublicFindingPresentations)
+    : currentPublicFindingPresentations;
   if (!currentPublicFindingPresentations.length) {
     if (activeStack.length < 2) {
       hideSectionAndClear("findingSection", "findingBody", "findingCount");
@@ -805,10 +809,10 @@ function renderInteractionFindingsOverview(risk) {
   section.style.display = "";
   if (count) {
     const label = isPatientAudience() ? "safety note" : "concern";
-    count.textContent = `${currentPublicFindingPresentations.length} ${label}${currentPublicFindingPresentations.length === 1 ? "" : "s"}`;
+    count.textContent = `${visiblePresentations.length} ${label}${visiblePresentations.length === 1 ? "" : "s"}`;
   }
   body.innerHTML = isPatientAudience()
-    ? renderPatientQuestionsPage(currentPublicFindingPresentations)
+    ? renderPatientQuestionsPage(visiblePresentations)
     : currentPublicFindingPresentations.slice(0, 8).map((presentation, index) => renderPublicFindingCard(presentation, index)).join("") +
       renderFindingOverviewFooter(currentPublicFindingPresentations.length);
   return currentPublicFindingPresentations;
@@ -823,6 +827,101 @@ function renderPatientQuestionsPage(presentations = []) {
     ${renderPatientMeaningSection(shown)}
     ${renderFindingOverviewFooter(presentations.length)}
   `;
+}
+
+function getPatientFacingPublicFindingPresentations(presentations = getCurrentPublicFindingPresentations()) {
+  const list = Array.isArray(presentations) ? presentations.filter(Boolean) : [];
+  const filtered = list.filter(presentation =>
+    !shouldSuppressPatientTimingPresentation(presentation, list) &&
+    !shouldSuppressPatientRedundantPresentation(presentation, list)
+  );
+  const deduped = [];
+  const seen = new Set();
+  for (const presentation of filtered) {
+    const title = patientFindingTitleText(presentation).toLowerCase();
+    const question = buildPatientDiscussionQuestion(presentation, presentation?.trustContract || null).toLowerCase();
+    const key = `${title}|${question}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    deduped.push(presentation);
+  }
+  return deduped;
+}
+
+function patientTimingPresentation(presentation = {}, trust = null) {
+  const titleText = publicDisplayText(presentation?.title || "").toLowerCase();
+  const bodyText = publicDisplayText([presentation?.whatChanged, presentation?.whyItMatters].filter(Boolean).join(" ")).toLowerCase();
+  return patientTimingConcern(presentation, trust) &&
+    (/timing|washout|persist|switch|overlap/.test(titleText) || /timing|washout|persist|switch|overlap/.test(bodyText));
+}
+
+function shouldSuppressPatientTimingPresentation(presentation = {}, presentations = []) {
+  if (!patientTimingPresentation(presentation, presentation?.trustContract || null)) return false;
+  const nonTiming = (presentations || []).filter(candidate =>
+    candidate &&
+    candidate !== presentation &&
+    !patientTimingPresentation(candidate, candidate?.trustContract || null) &&
+    publicFindingSeverityScore(candidate.severity) >= publicFindingSeverityScore("moderate")
+  );
+  if (!nonTiming.length) return false;
+  const dominant = nonTiming[0];
+  const dominantText = publicDisplayText([
+    dominant?.title,
+    dominant?.whatChanged,
+    dominant?.whyItMatters,
+    dominant?.whatToReview,
+    ...(dominant?.affectedSubstances || []),
+  ].join(" ")).toLowerCase();
+  const dominantRiskMarker = patientRiskMarkerContext(dominantText);
+  if (dominantRiskMarker) return true;
+  if (nonTiming.length >= 2) return true;
+  if ((activeStack || []).length <= 1 && (
+    hasToxicMetabolitePatientContext(dominantText) ||
+    hasActiveMetabolitePatientContext(dominantText) ||
+    /\b(?:gene|genotype|cyp\d|ugt1a1|dpyd|tpmt|nudt15|hla-b\*?[0-9:]+)\b/.test(dominantText)
+  )) {
+    return true;
+  }
+  return false;
+}
+
+function patientPrimaryActor(presentation = {}) {
+  return normalizeFindingToken((presentation?.affectedSubstances || [])[0] || "");
+}
+
+function patientGenericExposureTitle(title = "") {
+  return /may change medicine effects|side-effect risk may increase|medicine side-effect risk may increase/i.test(String(title || ""));
+}
+
+function shouldSuppressPatientRedundantPresentation(presentation = {}, presentations = []) {
+  const currentTitle = patientFindingTitleText(presentation);
+  const currentText = publicDisplayText([
+    presentation?.title,
+    presentation?.whatChanged,
+    presentation?.whyItMatters,
+    presentation?.whatToReview,
+  ].join(" ")).toLowerCase();
+  if (!patientGenericExposureTitle(currentTitle)) return false;
+  const actorKey = patientPrimaryActor(presentation);
+  if (!actorKey) return false;
+  return (presentations || []).some(candidate => {
+    if (!candidate || candidate === presentation) return false;
+    const candidateTitle = patientFindingTitleText(candidate);
+    const candidateText = publicDisplayText([
+      candidate?.title,
+      candidate?.whatChanged,
+      candidate?.whyItMatters,
+      candidate?.whatToReview,
+    ].join(" ")).toLowerCase();
+    if (patientPrimaryActor(candidate) !== actorKey) return false;
+    if (publicFindingSeverityScore(candidate.severity) < publicFindingSeverityScore(presentation.severity)) return false;
+    return hasToxicMetabolitePatientContext(candidateText) ||
+      hasActiveMetabolitePatientContext(candidateText) ||
+      patientRiskMarkerContext(candidateText) ||
+      hasPatientAnticholinergicConcern(candidateText) ||
+      hasPatientSedationConcern(candidateText) ||
+      !patientGenericExposureTitle(candidateTitle);
+  });
 }
 
 function renderPatientQuestionCard(presentation = {}) {
@@ -876,12 +975,18 @@ function renderPatientMeaningSection(presentations = []) {
 function buildPatientMeaningNotes(presentations = []) {
   const notes = [];
   const seen = new Set();
+  const seenTitles = new Set();
+  const seenBodies = new Set();
   const add = (title, body) => {
     const cleanTitle = publicDisplayText(title);
     const cleanBody = publicDisplayText(body);
     const key = `${cleanTitle}|${cleanBody}`.toLowerCase();
-    if (!cleanTitle || !cleanBody || seen.has(key)) return;
+    const titleKey = cleanTitle.toLowerCase();
+    const bodyKey = cleanBody.toLowerCase();
+    if (!cleanTitle || !cleanBody || seen.has(key) || seenTitles.has(titleKey) || seenBodies.has(bodyKey)) return;
     seen.add(key);
+    seenTitles.add(titleKey);
+    seenBodies.add(bodyKey);
     notes.push({ title:cleanTitle, body:cleanBody });
   };
   for (const presentation of presentations || []) {
@@ -946,9 +1051,12 @@ function buildReviewScopeSummary(cache = {}) {
     : null;
   const findings = cache.findings || currentInteractionFindings || [];
   const concerns = cache.clinicalConcerns || currentClinicalConcerns || [];
-  const publicPresentations = currentPublicFindingPresentations.length
+  const allPublicPresentations = currentPublicFindingPresentations.length
     ? currentPublicFindingPresentations
     : buildPublicFindingPresentations(concerns);
+  const publicPresentations = isPatientAudience()
+    ? getPatientFacingPublicFindingPresentations(allPublicPresentations)
+    : allPublicPresentations;
   const sourceLinked = publicPresentations.filter(presentation => presentation.trustContract?.sourceLinked).length;
   const modeled = publicPresentations.filter(presentation => presentation.trustContract && !presentation.trustContract.sourceLinked).length;
   const trustReady = publicPresentations.filter(presentation => presentation.trustContract?.ready).length;
@@ -1538,7 +1646,103 @@ function hasAntiplateletPatientContext(text = "") {
 }
 
 function hasActiveMetabolitePatientContext(text = "") {
-  return /\b(?:activation failure|prodrug|bioactivation|active metabolite|work less well|less effective|reduced efficacy|reduced activation|morphine|codeine|tramadol|tamoxifen|endoxifen)\b/i.test(String(text || ""));
+  const value = String(text || "").toLowerCase();
+  if (/\b(?:activation failure|prodrug|bioactivation|reduced activation)\b/.test(value)) return true;
+  const activeFormCue = /\b(?:active metabolite|morphine|endoxifen|thiol metabolite|o-desmethyltramadol|m1)\b/.test(value);
+  const reducedEffectCue = /\b(?:work less well|less effective|reduced efficacy|loss of efficacy|efficacy loss|may be reduced|complete loss|blocked)\b/.test(value);
+  return activeFormCue && reducedEffectCue;
+}
+
+function hasToxicMetabolitePatientContext(text = "") {
+  return /\b(?:toxic metabolite|accumulat(?:e|ion)|5-fluorouracil|5-fu|sn-38|6-tgn|6-thioguanine|life-threatening toxicity|myelosuppression|neutropenia|mucositis|severe side effects)\b/i.test(String(text || ""));
+}
+
+function patientRiskMarkerContext(text = "") {
+  const value = String(text || "").toLowerCase();
+  if (/\bg6pd\b|hemolys|methemoglobin|oxidant/.test(value)) return "g6pd";
+  if (/malignant hyperthermia|ryr1|cacna1s|anesthesia trigger/.test(value)) return "malignant_hyperthermia";
+  if (/bche|paralysis|apnea|neuromuscular blockade/.test(value)) return "procedural_paralysis";
+  if (/abacavir/.test(value) && (/\bhla(?:-[ab]\*?[0-9:]+)?\b/.test(value) || /\bhypersens/i.test(value))) return "abacavir_hypersensitivity";
+  if (/allopurinol/.test(value) && (/\bhla(?:-[ab]\*?[0-9:]+)?\b/.test(value) || /\bscar\b|\bsjs\b|\bten\b|\bdress\b|skin reaction/.test(value))) return "allopurinol_scar";
+  if (/\bhla(?:-[ab]\*?[0-9:]+)?\b|\bhypersens/i.test(value) || /\bscar\b|\bsjs\b|\bten\b/.test(value)) return "hypersensitivity";
+  return "";
+}
+
+function hasPatientStatinMuscleConcern(text = "") {
+  return /\b(?:statin|simvastatin|atorvastatin|lovastatin|pravastatin|rosuvastatin|fluvastatin|pitavastatin|rhabdomyolysis|myopathy|muscle injury|muscle breakdown)\b/i.test(String(text || ""));
+}
+
+function hasPatientMethotrexateToxicityConcern(text = "") {
+  return /\b(?:methotrexate|mucositis|pancytopenia|bone marrow|marrow toxicity|myelosuppression|mouth sores)\b/i.test(String(text || ""));
+}
+
+function hasPatientTacrolimusToxicityConcern(text = "") {
+  return /\b(?:tacrolimus|calcineurin|transplant|nephrotoxicity|neurotoxicity|tacrolimus toxicity)\b/i.test(String(text || ""));
+}
+
+function hasPatientNebivololGeneContext(text = "") {
+  return /\bnebivolol\b/i.test(String(text || "")) &&
+    /\b(?:cyp2d6|gene|genotype|pgx|exposure)\b/i.test(String(text || ""));
+}
+
+function hasPatientHyperkalemiaConcern(text = "") {
+  return /\b(?:hyperkalemia|high potassium|potassium)\b/i.test(String(text || ""));
+}
+
+function hasPatientHypotensionConcern(text = "") {
+  return /\b(?:hypotension|low blood pressure|blood pressure|syncope|fainting|vasodil|pde5|nitrate|nitroglycerin|sildenafil|tadalafil)\b/i.test(String(text || ""));
+}
+
+function hasPatientBradycardiaConcern(text = "") {
+  return /\b(?:bradycardia|slow heart|slow pulse|heart-rate|heart rate|ivabradine)\b/i.test(String(text || ""));
+}
+
+function hasPatientAbsorptionConcern(text = "") {
+  return /\b(?:absorption|chelat|gastric|acid suppression|binder|bioavailability|separate .* from|reduced antibiotic exposure|reduced antiviral exposure)\b/i.test(String(text || ""));
+}
+
+function hasPatientExposureDecreaseConcern(text = "") {
+  return /\b(?:exposure may fall|exposure or effect may fall|effect may fall|lower exposure|reduced exposure|loss of efficacy|efficacy loss|less effective|induction\/loss of efficacy|induction|reduced expected effect)\b/i.test(String(text || ""));
+}
+
+function hasPatientExposureIncreaseConcern(text = "") {
+  return /\b(?:exposure may rise|levels? may rise|level risk|higher exposure|raise exposure|raises exposure|toxicity review priority|side-effect risk|adverse-effect risk)\b/i.test(String(text || ""));
+}
+
+function patientUsesSerotonergicAgent(name = "") {
+  const value = String(name || "").toLowerCase();
+  if (!value) return false;
+  const drug = typeof getDrug === "function" ? getDrug(name) : null;
+  if (drug?.props?.serotonergic) return true;
+  return /\b(?:fluoxetine|paroxetine|sertraline|citalopram|escitalopram|fluvoxamine|venlafaxine|desvenlafaxine|duloxetine|levomilnacipran|milnacipran|phenelzine|tranylcypromine|isocarboxazid|linezolid|methylene blue|selegiline|rasagiline)\b/.test(value);
+}
+
+function hasPatientSerotoninConcern(text = "", actors = []) {
+  if (/\b(?:serotonin|ssri|snri|maoi)\b/i.test(String(text || ""))) return true;
+  return (actors || []).filter(patientUsesSerotonergicAgent).length >= 2;
+}
+
+function patientConcernCategoryKey(trust = null) {
+  return String(trust?.concernCategory || "").toLowerCase();
+}
+
+function patientTimingConcern(presentation = {}, trust = null) {
+  const concern = patientConcernCategoryKey(trust);
+  if (/washout|persistence/.test(concern)) return true;
+  const coreText = publicDisplayText([
+    presentation?.title,
+    presentation?.whatChanged,
+    presentation?.whyItMatters,
+  ].filter(Boolean).join(" ")).toLowerCase();
+  return /\b(?:washout|overlap|switch(?:ing)?|persist(?:s|ence)?|enzyme recovery)\b/.test(coreText);
+}
+
+function hasPatientSedationConcern(text = "") {
+  return /\b(?:sedation|sleepiness|breathing|confusion|cns depression|respiratory depression|slowed breathing|drows(?:iness)?|falls|fall[-\s]?risk|delirium|anticholinergic syndrome)\b/i.test(String(text || ""));
+}
+
+function hasPatientAnticholinergicConcern(text = "") {
+  return /\b(?:anticholinergic|dry mouth|constipation|trouble urinating|urinary retention|blurred vision|delirium|confusion|fall[-\s]?risk|beers)\b/i.test(String(text || ""));
 }
 
 function buildPatientDiscussionQuestion(presentation = {}, trust = null) {
@@ -1547,19 +1751,67 @@ function buildPatientDiscussionQuestion(presentation = {}, trust = null) {
     title,
     presentation.whatChanged,
     presentation.whyItMatters,
-    presentation.whatToReview,
+    trust?.concernCategory,
+    trust?.expectedChange,
+    trust?.clinicalConcern,
   ].join(" ")).toLowerCase();
   const actors = (presentation.affectedSubstances || []).filter(Boolean);
   const pair = actors.slice(0, 2).join(" + ");
   const concern = patientConcernLabel(trust?.concernCategory || "");
+  const riskMarkerKind = patientRiskMarkerContext(text);
+  const timingPresentation = patientTimingPresentation(presentation, trust);
   const topic = concern && concern !== "Safety note" ? concern.toLowerCase() : "this safety note";
   let question = pair
     ? `Can you check whether ${pair} needs closer review?`
     : `Can you check ${topic} for my medication list?`;
-  if (hasAntiplateletPatientContext(text) || hasActiveMetabolitePatientContext(text)) {
+  if (riskMarkerKind === "g6pd") {
+    question = "Can you check whether my G6PD result changes whether these medicines are safe for me?";
+  } else if (riskMarkerKind === "abacavir_hypersensitivity") {
+    question = "Can you check whether my gene result raises serious allergy risk with Abacavir?";
+  } else if (riskMarkerKind === "allopurinol_scar") {
+    question = "Can you check whether my gene result raises serious skin-reaction risk with Allopurinol?";
+  } else if (riskMarkerKind === "malignant_hyperthermia" || riskMarkerKind === "procedural_paralysis") {
+    question = "Can you check whether my gene result changes anesthesia safety for me?";
+  } else if (riskMarkerKind) {
+    question = "Can you check whether my gene result raises serious allergy or skin-reaction risk with this medicine?";
+  } else if (timingPresentation) {
+    question = "Can you check whether timing, overlap, or washout matters for this list?";
+  } else if (hasPatientStatinMuscleConcern(text)) {
+    question = "Can you check whether this combination could raise muscle pain or muscle injury risk?";
+  } else if (hasPatientMethotrexateToxicityConcern(text)) {
+    question = "Can you check whether this combination could make Methotrexate side effects or lab problems stronger?";
+  } else if (hasPatientTacrolimusToxicityConcern(text)) {
+    question = "Can you check whether this combination could raise Tacrolimus side effects or monitoring needs?";
+  } else if (hasPatientNebivololGeneContext(text)) {
+    question = "Can you check whether my gene result and current medicines could raise Nebivolol side effects or monitoring needs?";
+  } else if (hasPatientHyperkalemiaConcern(text)) {
+    question = "Can you check whether this list could raise potassium or kidney-related monitoring concerns?";
+  } else if (hasPatientHypotensionConcern(text)) {
+    question = "Can you check whether this combination could cause low blood pressure, dizziness, or fainting?";
+  } else if (hasPatientBradycardiaConcern(text)) {
+    question = "Can you check whether this combination could slow my heart rate or pulse too much?";
+  } else if (hasPatientAbsorptionConcern(text)) {
+    question = actors[0]
+      ? `Can you check whether ${actors[0]} may not absorb as expected with my current list?`
+      : "Can you check whether one of my medicines may not absorb as expected?";
+  } else if (hasPatientSerotoninConcern(text, actors)) {
+    question = "Can you check whether this combination raises serotonin-related side effects or switching concerns?";
+  } else if (hasAntiplateletPatientContext(text) || hasActiveMetabolitePatientContext(text)) {
     question = actors[0]
       ? `Can you check whether ${actors[0]} may work less well with my current list?`
       : "Can you check whether one of my medicines may work less well with my current list?";
+  } else if (hasPatientExposureDecreaseConcern(text)) {
+    question = actors[0]
+      ? `Can you check whether ${actors[0]} may work less well with my current list?`
+      : "Can you check whether one of my medicines may work less well with my current list?";
+  } else if (hasPatientExposureIncreaseConcern(text)) {
+    question = actors[0]
+      ? `Can you check whether ${actors[0]} side effects or monitoring needs could increase?`
+      : "Can you check whether side effects or monitoring needs could increase?";
+  } else if (hasToxicMetabolitePatientContext(text)) {
+    question = actors[0]
+      ? `Can you check whether ${actors[0]} could build up and cause stronger side effects for me?`
+      : "Can you check whether one of my medicines could build up and cause stronger side effects?";
   } else if (/bleed|inr|anticoag|warfarin|platelet|clot/.test(text)) {
     question = pair
       ? `Can you check whether ${pair} needs closer bleeding or clotting monitoring?`
@@ -1568,10 +1820,10 @@ function buildPatientDiscussionQuestion(presentation = {}, trust = null) {
     question = pair
       ? `Can you check whether ${pair} needs heart-rhythm review?`
       : "Can you check whether my list needs heart-rhythm review?";
-  } else if (/sedation|fall|sleepiness|breathing|confusion|cns|opioid|benzodiazepine/.test(text)) {
+  } else if (hasPatientAnticholinergicConcern(text)) {
+    question = "Can you check whether this list raises confusion, constipation, urination, or fall risk?";
+  } else if (hasPatientSedationConcern(text)) {
     question = "Can you check whether this list raises sleepiness, breathing, confusion, or fall risk?";
-  } else if (/washout|persistence|timing|switch/.test(text)) {
-    question = "Can you check whether timing, overlap, or washout matters for this list?";
   }
   return `${question} I do not want to start, stop, or change anything without guidance.`;
 }
@@ -1601,12 +1853,13 @@ function renderFindingMonitoringGuide(presentation = {}, trust = null, patient =
 }
 
 function buildPatientMentionSummaryItems(presentations = getCurrentPublicFindingPresentations()) {
+  const rows = isPatientAudience() ? getPatientFacingPublicFindingPresentations(presentations) : (presentations || []);
   const items = [];
   const add = (item) => {
     const clean = publicDisplayText(item);
     if (clean && !items.includes(clean)) items.push(clean);
   };
-  const shown = (presentations || []).length ? presentations.slice(0, 4) : [null];
+  const shown = rows.length ? rows.slice(0, 4) : [null];
   for (const presentation of shown) {
     for (const item of buildFindingMonitoringItems(presentation || {}, presentation?.trustContract || null, { patient:true })) {
       add(item);
@@ -1633,14 +1886,19 @@ function buildFindingMonitoringItems(presentation = {}, trust = null, options = 
     const clean = publicDisplayText(item);
     if (clean && !items.includes(clean)) items.push(clean);
   };
+  const timingConcern = patientTimingConcern(presentation, trust);
+  const toxicMetabolite = hasToxicMetabolitePatientContext(text);
+  const riskMarkerKind = patientRiskMarkerContext(text);
   if (patient) {
     add("New or worsening symptoms, side effects, missed doses, or recent dose changes.");
     if (hasAntiplateletPatientContext(text)) {
       add("Symptoms the medicine is meant to prevent or treat, especially if they are new or getting worse.");
       add("Any recent changes to stomach acid medicines, antibiotics, seizure medicines, or herbal products.");
     } else if (hasActiveMetabolitePatientContext(text)) {
-      add("Pain control or symptom control that is worse than expected.");
+      add("Symptoms the medicine is meant to prevent or treat, especially if they are new, getting worse, or not improving as expected.");
       add("Any recent changes to antidepressants, antibiotics, seizure medicines, or herbal products.");
+    } else if (toxicMetabolite) {
+      add("Severe diarrhea, vomiting, mouth sores, fever, infection symptoms, unusual bruising, or extreme tiredness.");
     }
     if (/bleed|inr|anticoag|warfarin|platelet|clot|hemostasis/.test(text)) {
       add("Unusual bruising, bleeding, dark stools, severe headache, or clot-related symptoms.");
@@ -1651,7 +1909,10 @@ function buildFindingMonitoringItems(presentation = {}, trust = null, options = 
     if (/nebivolol|beta[-\s]?block|slow pulse|slow heart|bradycard/.test(text)) {
       add("Dizziness, fainting, unusual fatigue, very slow pulse, low blood pressure symptoms, shortness of breath, or wheezing.");
     }
-    if (/sedation|fall|sleepiness|breathing|confusion|cns|opioid|benzodiazepine|anticholinergic|drows/.test(text)) {
+    if (hasPatientAnticholinergicConcern(text)) {
+      add("Confusion, dry mouth, constipation, trouble urinating, blurred vision, or falls.");
+    }
+    if (hasPatientSedationConcern(text)) {
       add("Extreme sleepiness, confusion, falls, slowed breathing, constipation, or trouble urinating.");
     }
     if (/serotonin|ssri|snri|maoi|linezolid|methylene blue/.test(text)) {
@@ -1660,7 +1921,13 @@ function buildFindingMonitoringItems(presentation = {}, trust = null, options = 
     if (/hypogly|glucose|diabetes|insulin|sulfonylurea/.test(text)) {
       add("Shakiness, sweating, confusion, weakness, or very high or low blood sugar readings.");
     }
-    if (/washout|persistence|timing|switch|overlap|induction offset/.test(text)) {
+    if (riskMarkerKind === "g6pd") {
+      add("Dark urine, yellowing skin or eyes, shortness of breath, blue or gray lips, sudden weakness, or severe tiredness.");
+    }
+    if (riskMarkerKind === "malignant_hyperthermia" || riskMarkerKind === "procedural_paralysis") {
+      add("Tell the care team about prior anesthesia problems, family history, fever with anesthesia, or unusually long paralysis after a procedure.");
+    }
+    if (timingConcern) {
       add("Last dose dates, planned switch dates, overlap periods, and symptoms after stopping or starting.");
     }
     if (/auc|cmax|exposure|level|concentration|toxicity|renal|hepatic|kidney|liver|clearance|tdm|nephro|electrolyte/.test(text)) {
@@ -1750,9 +2017,13 @@ function renderFindingTrustStrip(trust, patient = false) {
 
 function patientConcernLabel(value = "") {
   const key = String(value || "").toLowerCase();
+  if (/hypersensitivity|scar/.test(key)) return "Allergic or skin reaction";
+  if (/risk-marker/.test(key)) return "Gene-related safety risk";
+  if (/toxic-metabolite/.test(key)) return "Stronger side effects may happen";
   if (/activation|prodrug|effectiveness/.test(key)) return "Medicine may work differently";
   if (/bleed|clot|anticoag|platelet|hemostasis/.test(key)) return "Bleeding or clotting";
   if (/heart|qt|rhythm|brady/.test(key)) return "Heart rhythm";
+  if (/anticholinergic|fall/.test(key)) return "Confusion or falls";
   if (/sedation|fall|cns|sleep|breath/.test(key)) return "Sleepiness or falls";
   if (/washout|timing|persistence/.test(key)) return "Timing may matter";
   if (/exposure|toxicity|level|concentration/.test(key)) return "Side effects may change";
@@ -1785,15 +2056,69 @@ function patientFindingStepText(presentation = {}, field = "changed") {
     presentation.whatToReview,
     ...(presentation.tags || []),
   ].join(" "));
+  const actors = (presentation.affectedSubstances || []).filter(Boolean);
   const severity = safeChoice(presentation.severity, ["critical","severe","moderate","monitor","info"], "info");
   const serious = severity === "critical" || severity === "severe";
   const lower = text.toLowerCase();
+  const riskMarkerKind = patientRiskMarkerContext(lower);
+  const toxicMetabolite = hasToxicMetabolitePatientContext(lower);
+  const timingPresentation = patientTimingPresentation(presentation, presentation?.trustContract || null);
   if (field === "changed") {
-    if (/nebivolol/.test(lower) && /cyp2d6|gene|genotype|pgx|exposure/.test(lower)) {
-      return "Your CYP2D6 result may make nebivolol levels higher; prescribing information does not recommend a routine dose change based on this result alone.";
+    if (hasPatientNebivololGeneContext(lower)) {
+      return "Your gene result and current medicines may raise nebivolol levels and side-effect risk, so follow-up may be needed.";
     }
-    if (/washout|persistence|timing|switch/.test(lower)) {
+    if (timingPresentation || /washout|persistence|timing|switch/.test(lower)) {
       return "Timing may matter because some effects can last after a medicine is changed.";
+    }
+    if (riskMarkerKind === "g6pd") {
+      return "A known G6PD result can make some medicines much riskier because they can damage red blood cells or reduce oxygen carrying capacity.";
+    }
+    if (riskMarkerKind === "abacavir_hypersensitivity") {
+      return "A known gene result can make abacavir much more likely to cause a serious allergic reaction.";
+    }
+    if (riskMarkerKind === "allopurinol_scar") {
+      return "A known gene result can make allopurinol much more likely to cause a serious skin reaction.";
+    }
+    if (riskMarkerKind === "malignant_hyperthermia" || riskMarkerKind === "procedural_paralysis") {
+      return "A known gene result may change anesthesia safety and needs to be reviewed before a procedure.";
+    }
+    if (riskMarkerKind) {
+      return "A known gene result may make this medicine more likely to cause a serious allergic or skin reaction.";
+    }
+    if (hasPatientStatinMuscleConcern(lower)) {
+      return "This combination may raise statin levels and increase muscle side-effect risk.";
+    }
+    if (hasPatientMethotrexateToxicityConcern(lower)) {
+      return "This combination may raise methotrexate levels and increase serious side-effect risk.";
+    }
+    if (hasPatientTacrolimusToxicityConcern(lower)) {
+      return "This combination may raise tacrolimus levels and increase side-effect or monitoring risk.";
+    }
+    if (hasPatientHyperkalemiaConcern(lower)) {
+      return "This combination may raise potassium-related safety or kidney-monitoring concerns.";
+    }
+    if (hasPatientHypotensionConcern(lower)) {
+      return "This combination may increase low blood pressure, dizziness, or fainting risk.";
+    }
+    if (hasPatientBradycardiaConcern(lower)) {
+      return "This combination may slow heart rate or pulse too much.";
+    }
+    if (hasPatientAbsorptionConcern(lower)) {
+      return "This combination may reduce how much of one medicine is absorbed.";
+    }
+    if (hasPatientSerotoninConcern(lower, actors)) {
+      return "This combination may add serotonin-related side-effect risk.";
+    }
+    if (hasPatientExposureDecreaseConcern(lower)) {
+      return "This combination may make one medicine work less well.";
+    }
+    if (hasPatientExposureIncreaseConcern(lower)) {
+      return "This combination may raise medicine levels and increase side-effect or monitoring risk.";
+    }
+    if (toxicMetabolite) {
+      return serious
+        ? "This medicine may build up into a more harmful form and raise serious side-effect risk."
+        : "This medicine may build up and change side-effect risk.";
     }
     if (hasAntiplateletPatientContext(lower)) {
       return serious
@@ -1815,8 +2140,8 @@ function patientFindingStepText(presentation = {}, field = "changed") {
         ? "This combination may increase heart-rhythm risk and should be checked carefully."
         : "This combination may add heart-rhythm monitoring concerns.";
     }
-    if (/serotonin|ssri|snri|maoi/.test(lower)) {
-      return "This combination may add serotonin-related side-effect risk.";
+    if (hasPatientAnticholinergicConcern(lower)) {
+      return "This combination may increase confusion, constipation, dry mouth, urination trouble, or fall risk.";
     }
     if (/sedation|falls?\s+risk|fall-risk|cns|opioid|benzodiazepine|drows/.test(lower)) {
       return "This combination may increase sleepiness, confusion, breathing, or fall risk.";
@@ -1829,8 +2154,47 @@ function patientFindingStepText(presentation = {}, field = "changed") {
       : "This is a safety note to review for the current list.";
   }
   if (field === "why") {
-    if (/nebivolol/.test(lower) && /cyp2d6|gene|genotype|pgx|exposure/.test(lower)) {
-      return "Nebivolol is processed through CYP2D6, but pulse, blood pressure, symptoms, and other medicines still determine what needs follow-up.";
+    if (hasPatientNebivololGeneContext(lower)) {
+      return "Nebivolol can become more sensitive to gene-related processing differences, especially when another medicine pushes levels even higher.";
+    }
+    if (riskMarkerKind === "abacavir_hypersensitivity" || riskMarkerKind === "allopurinol_scar" || riskMarkerKind === "hypersensitivity") {
+      return "Some medicines become much riskier when a known gene result changes immune reaction risk.";
+    }
+    if (riskMarkerKind) {
+      return "The same medicine can become riskier when a known gene result changes how your body reacts to it.";
+    }
+    if (hasPatientStatinMuscleConcern(lower)) {
+      return "A second medicine or food can slow statin clearance enough to raise muscle side-effect risk.";
+    }
+    if (hasPatientMethotrexateToxicityConcern(lower)) {
+      return "Methotrexate can become more dangerous when another medicine slows clearance or adds toxicity.";
+    }
+    if (hasPatientTacrolimusToxicityConcern(lower)) {
+      return "Tacrolimus can become riskier when another medicine raises levels or changes how it is cleared.";
+    }
+    if (hasPatientHyperkalemiaConcern(lower)) {
+      return "Some medicines can add together to raise potassium, especially when kidneys or potassium-sparing medicines are involved.";
+    }
+    if (hasPatientHypotensionConcern(lower)) {
+      return "Some combinations lower blood pressure through overlapping effects rather than through drug levels alone.";
+    }
+    if (hasPatientBradycardiaConcern(lower)) {
+      return "Some medicines can add together to slow heart rate or make pulse-related side effects more likely.";
+    }
+    if (hasPatientAbsorptionConcern(lower)) {
+      return "Some medicines, minerals, or stomach-acid medicines can bind or block absorption, so timing may matter.";
+    }
+    if (hasPatientExposureDecreaseConcern(lower)) {
+      return "A second medicine can lower the level or expected effect of another medicine.";
+    }
+    if (hasPatientExposureIncreaseConcern(lower)) {
+      return "A second medicine can raise the level or expected effect of another medicine.";
+    }
+    if (toxicMetabolite) {
+      return "Your body may process or clear this medicine differently, so harmful buildup can happen more easily.";
+    }
+    if (hasPatientAnticholinergicConcern(lower)) {
+      return "Several medicines can add up to stronger confusion, constipation, blurred vision, or fall risk.";
     }
     if (/avoid|contraindicat|severe|critical|high risk/.test(lower) || serious) {
       return "The combination may need a different plan or extra monitoring before use.";
@@ -1838,6 +2202,54 @@ function patientFindingStepText(presentation = {}, field = "changed") {
     return "The same medicine can behave differently depending on the full list, dose, timing, and gene results.";
   }
   const review = String(presentation.whatToReview || "").replace(/\s+/g, " ").trim();
+  if (riskMarkerKind === "g6pd") {
+    return "Ask a doctor or pharmacist whether your G6PD result changes whether any of these medicines should be avoided or monitored differently.";
+  }
+  if (riskMarkerKind === "abacavir_hypersensitivity") {
+    return "Ask a doctor or pharmacist whether your gene result means abacavir should be avoided.";
+  }
+  if (riskMarkerKind === "allopurinol_scar") {
+    return "Ask a doctor or pharmacist whether your gene result means allopurinol should be avoided.";
+  }
+  if (riskMarkerKind === "malignant_hyperthermia" || riskMarkerKind === "procedural_paralysis") {
+    return "Ask a doctor or pharmacist whether your gene result changes anesthesia planning, emergency precautions, or procedure safety.";
+  }
+  if (riskMarkerKind) {
+    return "Ask a doctor or pharmacist whether your gene result changes whether this medicine should be avoided or monitored differently.";
+  }
+  if (hasPatientStatinMuscleConcern(lower)) {
+    return "Ask a doctor or pharmacist whether this combination raises statin side effects, muscle injury risk, or monitoring needs.";
+  }
+  if (hasPatientMethotrexateToxicityConcern(lower)) {
+    return "Ask a doctor or pharmacist whether this combination raises methotrexate side effects, lab risk, or monitoring needs.";
+  }
+  if (hasPatientTacrolimusToxicityConcern(lower)) {
+    return "Ask a doctor or pharmacist whether tacrolimus monitoring, side effects, or dose timing should be reviewed with this combination.";
+  }
+  if (hasPatientHyperkalemiaConcern(lower)) {
+    return "Ask a doctor or pharmacist whether potassium, kidney function, symptoms, or lab monitoring should be reviewed.";
+  }
+  if (hasPatientHypotensionConcern(lower)) {
+    return "Ask a doctor or pharmacist whether low blood pressure, dizziness, fainting, or timing precautions should be reviewed.";
+  }
+  if (hasPatientBradycardiaConcern(lower)) {
+    return "Ask a doctor or pharmacist whether pulse, dizziness, fainting, heart symptoms, or timing should be reviewed.";
+  }
+  if (hasPatientAbsorptionConcern(lower)) {
+    return "Ask a doctor or pharmacist whether these medicines need different timing so absorption is not reduced.";
+  }
+  if (hasPatientExposureDecreaseConcern(lower)) {
+    return "Ask a doctor or pharmacist whether the medicine could work less well and what monitoring or timing matters.";
+  }
+  if (hasPatientExposureIncreaseConcern(lower)) {
+    return "Ask a doctor or pharmacist whether side effects, symptoms, labs, or timing need closer review.";
+  }
+  if (toxicMetabolite) {
+    return "Ask a doctor or pharmacist whether this medicine could build up to unsafe levels, which symptoms matter most, and whether extra monitoring is needed.";
+  }
+  if (hasPatientAnticholinergicConcern(lower)) {
+    return "Ask a doctor or pharmacist whether this list raises confusion, constipation, urination problems, or fall risk.";
+  }
   const patientSafeDirective = patientSafeReviewDirective(presentation, review, { serious });
   if (patientSafeDirective) return patientSafeDirective;
   if (/^use\s+/i.test(review)) {
@@ -1898,9 +2310,29 @@ function patientFindingTitleText(presentation = {}) {
   ].join(" ")).toLowerCase();
   const actors = (presentation.affectedSubstances || []).filter(Boolean);
   const pair = actors.slice(0, 2).join(" + ");
-  if (/nebivolol/.test(text) && /cyp2d6|gene|genotype|pgx|exposure/.test(text)) {
-    return "Nebivolol levels may be higher with your CYP2D6 result";
+  const riskMarkerKind = patientRiskMarkerContext(text);
+  const timingPresentation = patientTimingPresentation(presentation, presentation?.trustContract || null);
+  if (hasPatientNebivololGeneContext(text)) {
+    return "Nebivolol side-effect risk may increase";
   }
+  if (timingPresentation) return "Timing may need review";
+  if (riskMarkerKind === "g6pd") return "G6PD-related blood reaction risk may increase";
+  if (riskMarkerKind === "abacavir_hypersensitivity") return "Abacavir may cause a serious allergic reaction";
+  if (riskMarkerKind === "allopurinol_scar") return "Allopurinol may cause a serious skin reaction";
+  if (riskMarkerKind === "malignant_hyperthermia") return "An anesthesia reaction risk may increase";
+  if (riskMarkerKind === "procedural_paralysis") return "An anesthesia breathing risk may increase";
+  if (riskMarkerKind) return "A serious allergic or skin reaction risk may increase";
+  if (hasPatientStatinMuscleConcern(text)) return "Muscle injury risk may increase";
+  if (hasPatientMethotrexateToxicityConcern(text)) return "Methotrexate side effects may increase";
+  if (hasPatientTacrolimusToxicityConcern(text)) return actors.includes("Tacrolimus")
+    ? "Tacrolimus side-effect risk may increase"
+    : "Medicine side-effect risk may increase";
+  if (hasPatientHyperkalemiaConcern(text)) return "High potassium risk may increase";
+  if (hasPatientHypotensionConcern(text)) return "Low blood pressure risk may increase";
+  if (hasPatientBradycardiaConcern(text)) return "Slow heart-rate risk may increase";
+  if (hasPatientAbsorptionConcern(text)) return actors[0]
+    ? `${actors[0]} may not absorb as expected`
+    : "Medicine absorption may change";
   if (hasAntiplateletPatientContext(text)) {
     return actors.length >= 2
       ? `${actors[0]} may work less well with ${actors[1]}`
@@ -1909,17 +2341,27 @@ function patientFindingTitleText(presentation = {}) {
   if (hasActiveMetabolitePatientContext(text)) {
     return actors.length >= 2
       ? `${actors[0]} may work less well with ${actors[1]}`
-      : "A medicine may work less well";
+      : (actors[0] ? `${actors[0]} may work less well` : "A medicine may work less well");
+  }
+  if (hasPatientSerotoninConcern(text, actors)) return "Serotonin-related side effects may increase";
+  if (hasPatientExposureDecreaseConcern(text)) return actors[0]
+    ? `${actors[0]} may work less well`
+    : "A medicine may work less well";
+  if (hasPatientExposureIncreaseConcern(text)) return actors[0]
+    ? `${actors[0]} side-effect risk may increase`
+    : "Medicine side-effect risk may increase";
+  if (hasPatientAnticholinergicConcern(text)) return "Confusion, constipation, or fall risk may increase";
+  if (hasToxicMetabolitePatientContext(text)) {
+    return actors[0] ? `${actors[0]} may cause stronger side effects` : "Serious side-effect risk may increase";
   }
   if (/bleed|inr|anticoag|warfarin|platelet|clot/.test(text)) {
+    if (actors.some(actor => /warfarin/i.test(actor))) return "Warfarin bleeding risk may increase";
     return pair ? `${pair} may need closer monitoring` : "Bleeding or clotting monitoring may change";
   }
   if (/qt|torsades|arrhythm|heart rhythm|bradycard/.test(text)) {
     return pair ? `${pair} may need heart-rhythm review` : "Heart-rhythm monitoring may matter";
   }
-  if (/serotonin|ssri|snri|maoi/.test(text)) return "Serotonin-related side effects may increase";
   if (/sedation|falls?\s+risk|fall-risk|cns|opioid|benzodiazepine|drows/.test(text)) return "Sleepiness, breathing, or fall risk may increase";
-  if (/washout|persistence|timing|switch/.test(text)) return "Timing may need review";
   if (/auc|exposure|level|concentration|metabol|cyp|enzyme|genotype|pgx|clearance/.test(text)) {
     return pair ? `${pair} may change medicine effects` : "Medicine effects may change";
   }

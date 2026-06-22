@@ -89,9 +89,7 @@ function phenoconversionRowsToFindings(rows, options = {}) {
       id: phenoconversionFindingId(["finding", "phenoconversion", row.enzyme, row.functionalPhenotype]),
       type: "phenoconversion",
       title: `${row.enzyme} behaves as ${PHENOCONVERSION_LABELS[row.functionalPhenotype] || row.functionalPhenotype}`,
-      severity: row.functionalPhenotype === "minimal_or_no_function" || row.functionalPhenotype === "poor_function"
-        ? "moderate"
-        : "monitor",
+      severity: phenoconversionFindingSeverity(row),
       confidence: row.confidence || "unknown",
       summary: phenoconversionSummary(row),
       affectedActors: [
@@ -117,6 +115,15 @@ function phenoconversionRowsToFindings(rows, options = {}) {
       clinicalAction: row.clinicalNote || "",
       evidenceStatus: (row.evidenceRefs || []).length ? "source-linked; professional sign-off not claimed" : "inferred/review required",
     }));
+}
+
+function phenoconversionFindingSeverity(row) {
+  const text = `${row?.clinicalNote || ""} ${(row?.activeMoietyConsequences || []).join(" ")}`.toLowerCase();
+  if (row?.functionalPhenotype === "minimal_or_no_function" && /near-zero functional activity|severely impaired|large exposure increases|extreme exposure risk|parent exposure trends up/.test(text)) {
+    return "severe";
+  }
+  if (row?.functionalPhenotype === "minimal_or_no_function" || row?.functionalPhenotype === "poor_function") return "moderate";
+  return "monitor";
 }
 
 function phenoconversionRelevantEnzymes(stack) {

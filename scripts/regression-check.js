@@ -2391,6 +2391,8 @@ const overviewConsolidationRegression = window.eval(`(() => {
 const tacConcern = overviewConsolidationRegression.tacrolimus.concerns.find(c => /Tacrolimus exposure may rise with Fluconazole/i.test(c.title));
 assert(overviewConsolidationRegression.tacrolimus.concerns.length <= 4, 'Tacrolimus + fluconazole should consolidate to 1-4 Overview concerns');
 assert(tacConcern, `Tacrolimus + fluconazole should identify tacrolimus as the affected exposure concern: ${JSON.stringify(overviewConsolidationRegression.tacrolimus.concerns)}`);
+assert(/Tacrolimus exposure may rise with Fluconazole/i.test(overviewConsolidationRegression.tacrolimus.concerns[0]?.title || ''),
+  `Tacrolimus + fluconazole should lead with the exposure concern, got ${overviewConsolidationRegression.tacrolimus.concerns.map(c => c.title).join(' | ')}`);
 assert(!/Tacrolimus may raise Fluconazole exposure/i.test(overviewConsolidationRegression.tacrolimus.overviewText), 'Overview must not reverse tacrolimus/fluconazole direction');
 assert(!overviewConsolidationRegression.tacrolimus.concerns.some(c => /^CYP2C19|^CYP2C9/i.test(c.title)), 'Tacrolimus scenario should not expose CYP2C19/CYP2C9 as standalone Overview cards');
 assert(tacConcern.support.some(label => /CYP3A4|CYP2C9|parent-metabolite/i.test(label)), 'Tacrolimus concern should show CYP/metabolite supporting signals');
@@ -2422,6 +2424,182 @@ assert(
   overviewConsolidationRegression.washout.concerns.some(c => /persist|washout|Norfluoxetine/i.test(c.title)),
   'Persistence/washout scenario should retain a timing concern when relevant'
 );
+
+const publicQuestionRegression = window.eval(`(() => {
+  function resetScenario(path) {
+    window.history.replaceState(null, '', path);
+    loadUrlDemoState();
+    renderComputationCache = null;
+    currentInteractionFindings = [];
+    currentClinicalConcerns = [];
+    renderAll();
+    const cache = getRenderComputationCache();
+    setAudienceMode('patient', { render:false });
+    const patient = buildPublicFindingPresentations(cache.clinicalConcerns)[0];
+    const patientQuestion = buildPatientDiscussionQuestion(patient, patient?.trustContract);
+    const patientMonitoring = buildFindingMonitoringItems(patient, patient?.trustContract, { patient:true });
+    setAudienceMode('clinician', { render:false });
+    const clinician = buildPublicFindingPresentations(cache.clinicalConcerns)[0];
+    return {
+      patientTitle: patient?.title || '',
+      patientQuestion,
+      patientMonitoring,
+      clinicianTitle: clinician?.title || '',
+    };
+  }
+  return {
+    methotrexate: resetScenario('/index.html?substances=methotrexate,ibuprofen'),
+    tamoxifen: resetScenario('/index.html?substances=tamoxifen,paroxetine'),
+    clopidogrel: resetScenario('/index.html?substances=clopidogrel,omeprazole'),
+    olderAdult: resetScenario('/index.html?demo=older-adult-burden'),
+    capecitabine: resetScenario('/index.html?demo=fluoropyrimidine-dpyd-toxicity'),
+    irinotecan: resetScenario('/index.html?demo=irinotecan-sn38-toxicity'),
+  };
+})()`);
+assert(/Methotrexate exposure may rise with Ibuprofen/i.test(publicQuestionRegression.methotrexate.clinicianTitle),
+  `Methotrexate + ibuprofen should present increased exposure, got ${publicQuestionRegression.methotrexate.clinicianTitle}`);
+assert(!/timing, overlap, or washout matters/i.test(publicQuestionRegression.methotrexate.patientQuestion),
+  'Methotrexate + ibuprofen patient question should not collapse into the generic timing prompt');
+assert(!publicQuestionRegression.methotrexate.patientMonitoring.some(item => /Extreme sleepiness|slowed breathing/i.test(item)),
+  `Methotrexate + ibuprofen patient monitoring should not leak sedation copy: ${publicQuestionRegression.methotrexate.patientMonitoring.join(' | ')}`);
+assert(/Endoxifen/i.test(publicQuestionRegression.tamoxifen.clinicianTitle) && !/N-?desmethyltamoxifen/i.test(publicQuestionRegression.tamoxifen.clinicianTitle),
+  `Tamoxifen + paroxetine should name Endoxifen in the clinician title, got ${publicQuestionRegression.tamoxifen.clinicianTitle}`);
+assert(!publicQuestionRegression.tamoxifen.patientMonitoring.some(item => /Extreme sleepiness|slowed breathing/i.test(item)),
+  `Tamoxifen + paroxetine patient monitoring should not leak sedation copy: ${publicQuestionRegression.tamoxifen.patientMonitoring.join(' | ')}`);
+assert(/Active thiol metabolite/i.test(publicQuestionRegression.clopidogrel.clinicianTitle) && !/2-Oxo-clopidogrel/i.test(publicQuestionRegression.clopidogrel.clinicianTitle),
+  `Clopidogrel + omeprazole should name the active thiol metabolite, got ${publicQuestionRegression.clopidogrel.clinicianTitle}`);
+assert(!/timing, overlap, or washout matters/i.test(publicQuestionRegression.olderAdult.patientQuestion),
+  'Older-adult burden patient question should not default to the timing prompt');
+assert(!/timing, overlap, or washout matters/i.test(publicQuestionRegression.capecitabine.patientQuestion),
+  'Capecitabine + DPYD patient question should not default to the timing prompt');
+assert(/5-Fluorouracil may accumulate from Capecitabine/i.test(publicQuestionRegression.capecitabine.clinicianTitle),
+  `Capecitabine + DPYD should present 5-FU toxic-metabolite accumulation, got ${publicQuestionRegression.capecitabine.clinicianTitle}`);
+assert(!/timing, overlap, or washout matters/i.test(publicQuestionRegression.irinotecan.patientQuestion),
+  'Irinotecan + UGT1A1 patient question should not default to the timing prompt');
+assert(/SN-38 may accumulate from Irinotecan/i.test(publicQuestionRegression.irinotecan.clinicianTitle),
+  `Irinotecan + UGT1A1 should present SN-38 toxic-metabolite accumulation, got ${publicQuestionRegression.irinotecan.clinicianTitle}`);
+
+const patientCopyAuditRegression = window.eval(`(() => {
+  function resetScenario(path, audience = 'patient') {
+    window.history.replaceState(null, '', path);
+    loadUrlDemoState();
+    renderComputationCache = null;
+    currentInteractionFindings = [];
+    currentClinicalConcerns = [];
+    currentPublicFindingPresentations = [];
+    setAudienceMode(audience, { render:false });
+    renderAll();
+    return {
+      titles: Array.from(document.querySelectorAll(audience === 'patient'
+        ? '#findingBody .patient-question-card .patient-question-title'
+        : '#findingBody .primary-finding-card .finding-title'
+      )).map(el => el.textContent.replace(/\\s+/g, ' ').trim()),
+      questions: Array.from(document.querySelectorAll(audience === 'patient'
+        ? '#findingBody .patient-question-card .finding-discussion-text'
+        : '#findingBody .primary-finding-card .finding-discussion-text'
+      )).map(el => el.textContent.replace(/\\s+/g, ' ').trim()),
+      meanings: Array.from(document.querySelectorAll('#findingBody .patient-meaning-card .patient-meaning-title'))
+        .map(el => el.textContent.replace(/\\s+/g, ' ').trim()),
+      patientCards: document.querySelectorAll('#findingBody .patient-question-card').length,
+    };
+  }
+  return {
+    tacrolimusClinician: resetScenario('/index.html?substances=tacrolimus,fluconazole', 'clinician'),
+    simvastatinPatient: resetScenario('/index.html?substances=simvastatin,clarithromycin'),
+    grapefruitPatient: resetScenario('/index.html?substances=grapefruit%20juice,simvastatin'),
+    methotrexatePatient: resetScenario('/index.html?substances=methotrexate,ibuprofen'),
+    tamoxifenPatient: resetScenario('/index.html?substances=tamoxifen&genotype=CYP2D6:PM'),
+    g6pdPatient: resetScenario('/index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency'),
+    abacavirPatient: resetScenario('/index.html?substances=abacavir&genotype=HLA-B*57:01:present'),
+    allopurinolPatient: resetScenario('/index.html?substances=allopurinol&genotype=HLA-B*58:01:present'),
+    capecitabinePatient: resetScenario('/index.html?substances=capecitabine&genotype=DPYD:PM'),
+    clopidogrelPatient: resetScenario('/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM'),
+    olderAdultPatient: resetScenario('/index.html?demo=older-adult-burden'),
+    ssriPatient: resetScenario('/index.html?demo=ssri-switch'),
+    anesthesiaPatient: resetScenario('/index.html?demo=anesthesia-pgx-risk'),
+    nebivololNullPatient: resetScenario('/index.html?substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null'),
+    nebivololNullClinician: resetScenario('/index.html?substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null', 'clinician'),
+    thiopurinePatient: resetScenario('/index.html?demo=thiopurine-marrow-toxicity'),
+    potassiumClinician: resetScenario('/index.html?substances=potassium_chloride,spironolactone&tab=overview', 'clinician'),
+    nitrateClinician: resetScenario('/index.html?substances=nitroglycerin,sildenafil&tab=overview', 'clinician'),
+    ciprofloxacinIronPatient: resetScenario('/index.html?substances=ciprofloxacin,iron&tab=overview'),
+    ciprofloxacinIronClinician: resetScenario('/index.html?substances=ciprofloxacin,iron&tab=overview', 'clinician'),
+    tmpSmxAliasPatient: resetScenario('/index.html?substances=warfarin,sulfamethoxazole-trimethoprim&tab=overview'),
+    tmpSmxAliasClinician: resetScenario('/index.html?substances=warfarin,sulfamethoxazole-trimethoprim&tab=overview', 'clinician'),
+    ivabradinePatient: resetScenario('/index.html?substances=ivabradine,clarithromycin&tab=timing-levels'),
+    codeineBupropionPatient: resetScenario('/index.html?substances=bupropion,codeine&genotype=CYP2D6:PM&tab=genes-metabolites'),
+  };
+})()`);
+assert(/Tacrolimus exposure may rise with Fluconazole/i.test(patientCopyAuditRegression.tacrolimusClinician.titles[0] || ''),
+  `Tacrolimus + fluconazole should lead with tacrolimus exposure, got ${patientCopyAuditRegression.tacrolimusClinician.titles.join(' | ')}`);
+assert(/Muscle injury risk may increase/i.test(patientCopyAuditRegression.simvastatinPatient.titles[0] || '') &&
+  !/change medicine effects/i.test(patientCopyAuditRegression.simvastatinPatient.titles[0] || ''),
+  `Simvastatin + clarithromycin patient title should be concrete, got ${patientCopyAuditRegression.simvastatinPatient.titles.join(' | ')}`);
+assert(/muscle/i.test(patientCopyAuditRegression.simvastatinPatient.questions[0] || ''),
+  `Simvastatin + clarithromycin patient question should mention muscle risk, got ${patientCopyAuditRegression.simvastatinPatient.questions.join(' | ')}`);
+assert(/Muscle injury risk may increase/i.test(patientCopyAuditRegression.grapefruitPatient.titles[0] || '') &&
+  !/change medicine effects/i.test(patientCopyAuditRegression.grapefruitPatient.titles[0] || ''),
+  `Grapefruit + simvastatin patient title should be concrete, got ${patientCopyAuditRegression.grapefruitPatient.titles.join(' | ')}`);
+assert(/Methotrexate side effects may increase/i.test(patientCopyAuditRegression.methotrexatePatient.titles[0] || '') &&
+  !/change medicine effects/i.test(patientCopyAuditRegression.methotrexatePatient.titles[0] || ''),
+  `Methotrexate + ibuprofen patient title should be concrete, got ${patientCopyAuditRegression.methotrexatePatient.titles.join(' | ')}`);
+assert(/Tamoxifen may work less well/i.test(patientCopyAuditRegression.tamoxifenPatient.titles[0] || ''),
+  `Tamoxifen + CYP2D6 PM patient title should name tamoxifen, got ${patientCopyAuditRegression.tamoxifenPatient.titles.join(' | ')}`);
+assert(!patientCopyAuditRegression.g6pdPatient.titles.some(title => /Timing may need review/i.test(title)),
+  `G6PD patient view should suppress low-value timing clutter, got ${patientCopyAuditRegression.g6pdPatient.titles.join(' | ')}`);
+assert(/Abacavir may cause a serious allergic reaction/i.test(patientCopyAuditRegression.abacavirPatient.titles[0] || '') &&
+  !patientCopyAuditRegression.abacavirPatient.titles.some(title => /Timing may need review/i.test(title)),
+  `Abacavir + HLA-B*57:01 patient copy should be specific and suppress timing clutter, got ${patientCopyAuditRegression.abacavirPatient.titles.join(' | ')}`);
+assert(/Allopurinol may cause a serious skin reaction/i.test(patientCopyAuditRegression.allopurinolPatient.titles[0] || '') &&
+  !patientCopyAuditRegression.allopurinolPatient.titles.some(title => /Timing may need review/i.test(title)),
+  `Allopurinol + HLA-B*58:01 patient copy should be specific and suppress timing clutter, got ${patientCopyAuditRegression.allopurinolPatient.titles.join(' | ')}`);
+assert(patientCopyAuditRegression.capecitabinePatient.patientCards === 1 &&
+  !patientCopyAuditRegression.capecitabinePatient.titles.some(title => /A medicine may work less well|Timing may need review/i.test(title)),
+  `Capecitabine + DPYD patient view should keep one toxicity-first note, got ${patientCopyAuditRegression.capecitabinePatient.titles.join(' | ')}`);
+assert(new Set(patientCopyAuditRegression.clopidogrelPatient.meanings).size === patientCopyAuditRegression.clopidogrelPatient.meanings.length,
+  `Clopidogrel patient meaning cards should not duplicate, got ${patientCopyAuditRegression.clopidogrelPatient.meanings.join(' | ')}`);
+assert(/Confusion, constipation, or fall risk may increase/i.test(patientCopyAuditRegression.olderAdultPatient.titles[0] || '') &&
+  !patientCopyAuditRegression.olderAdultPatient.titles.some(title => /Timing may need review/i.test(title)) &&
+  patientCopyAuditRegression.olderAdultPatient.patientCards <= 2,
+  `Older-adult burden patient view should stay focused on burden cards, got ${patientCopyAuditRegression.olderAdultPatient.titles.join(' | ')}`);
+assert(patientCopyAuditRegression.ssriPatient.titles.length >= 2 &&
+  patientCopyAuditRegression.ssriPatient.titles.some(title => /Serotonin-related side effects may increase/i.test(title)) &&
+  !/may change medicine effects/i.test((patientCopyAuditRegression.ssriPatient.titles || []).join(' | ')),
+  `SSRI switch patient copy should avoid generic exposure wording, got ${patientCopyAuditRegression.ssriPatient.titles.join(' | ')}`);
+assert(new Set(patientCopyAuditRegression.anesthesiaPatient.titles).size === patientCopyAuditRegression.anesthesiaPatient.titles.length,
+  `Anesthesia PGx patient titles should dedupe repeated cards, got ${patientCopyAuditRegression.anesthesiaPatient.titles.join(' | ')}`);
+assert(patientCopyAuditRegression.nebivololNullPatient.patientCards <= 4 &&
+  new Set(patientCopyAuditRegression.nebivololNullPatient.titles).size === patientCopyAuditRegression.nebivololNullPatient.titles.length &&
+  !/CYP2D6/i.test(patientCopyAuditRegression.nebivololNullPatient.titles[0] || '') &&
+  /Nebivolol side-effect risk may increase/i.test(patientCopyAuditRegression.nebivololNullPatient.titles[0] || '') &&
+  !patientCopyAuditRegression.nebivololNullPatient.titles.some(title => /Timing may need review/i.test(title)),
+  `Nebivolol null patient view should reduce duplicate/noisy cards, got ${patientCopyAuditRegression.nebivololNullPatient.titles.join(' | ')}`);
+assert(patientCopyAuditRegression.nebivololNullClinician.titles.length <= 4,
+  `Nebivolol null clinician view should prune redundant overview cards, got ${patientCopyAuditRegression.nebivololNullClinician.titles.join(' | ')}`);
+assert(patientCopyAuditRegression.thiopurinePatient.patientCards <= 2 &&
+  !patientCopyAuditRegression.thiopurinePatient.titles.some(title => /may change medicine effects/i.test(title)),
+  `Thiopurine marrow toxicity patient view should stay focused on the strongest risk, got ${patientCopyAuditRegression.thiopurinePatient.titles.join(' | ')}`);
+assert(/High potassium risk may increase/i.test(patientCopyAuditRegression.potassiumClinician.titles[0] || ''),
+  `Potassium + spironolactone clinician view should classify high potassium risk, got ${patientCopyAuditRegression.potassiumClinician.titles.join(' | ')}`);
+assert(/Low blood pressure risk may increase/i.test(patientCopyAuditRegression.nitrateClinician.titles[0] || ''),
+  `Nitroglycerin + sildenafil clinician view should classify low blood pressure risk, got ${patientCopyAuditRegression.nitrateClinician.titles.join(' | ')}`);
+assert(/Ciprofloxacin may not absorb as expected/i.test(patientCopyAuditRegression.ciprofloxacinIronPatient.titles[0] || '') &&
+  !patientCopyAuditRegression.ciprofloxacinIronPatient.titles.some(title => /may change medicine effects/i.test(title)),
+  `Ciprofloxacin + iron patient view should use absorption wording, got ${patientCopyAuditRegression.ciprofloxacinIronPatient.titles.join(' | ')}`);
+assert(/Ciprofloxacin absorption may fall with Iron/i.test(patientCopyAuditRegression.ciprofloxacinIronClinician.titles[0] || '') &&
+  !patientCopyAuditRegression.ciprofloxacinIronClinician.titles.some(title => /^Ciprofloxacin may rise$/i.test(title)),
+  `Ciprofloxacin + iron clinician view should lead with absorption and suppress model-only exposure noise, got ${patientCopyAuditRegression.ciprofloxacinIronClinician.titles.join(' | ')}`);
+assert(/Warfarin bleeding risk may increase/i.test(patientCopyAuditRegression.tmpSmxAliasPatient.titles[0] || ''),
+  `Warfarin + sulfamethoxazole-trimethoprim alias should resolve to a patient bleeding/side-effect concern, got ${patientCopyAuditRegression.tmpSmxAliasPatient.titles.join(' | ')}`);
+assert(/Bleeding burden may rise/i.test(patientCopyAuditRegression.tmpSmxAliasClinician.titles[0] || ''),
+  `Warfarin + sulfamethoxazole-trimethoprim alias should resolve to the TMP-SMX interaction, got ${patientCopyAuditRegression.tmpSmxAliasClinician.titles.join(' | ')}`);
+assert(/Slow heart-rate risk may increase/i.test(patientCopyAuditRegression.ivabradinePatient.titles[0] || '') &&
+  !patientCopyAuditRegression.ivabradinePatient.titles.some(title => /may change medicine effects/i.test(title)),
+  `Ivabradine + clarithromycin patient view should use slow-heart-rate wording, got ${patientCopyAuditRegression.ivabradinePatient.titles.join(' | ')}`);
+assert(patientCopyAuditRegression.codeineBupropionPatient.patientCards <= 2 &&
+  patientCopyAuditRegression.codeineBupropionPatient.titles.some(title => /Codeine may work less well with Bupropion/i.test(title)) &&
+  !patientCopyAuditRegression.codeineBupropionPatient.titles.some(title => /may change medicine effects/i.test(title)),
+  `Bupropion + codeine patient view should suppress generic exposure wording, got ${patientCopyAuditRegression.codeineBupropionPatient.titles.join(' | ')}`);
 
 assert(browserErrors.length === 0, `Browser errors:\n${browserErrors.join('\n')}`);
 

@@ -26,9 +26,70 @@ function buildClinicalConcerns(findings, context = {}) {
     clinicalConcernRankScore(b) - clinicalConcernRankScore(a) ||
     String(a.title || "").localeCompare(String(b.title || ""))
   );
+  const pruned = pruneRedundantClinicalConcerns(ranked);
   return typeof attachEvidenceLaddersToFindings === "function"
-    ? attachEvidenceLaddersToFindings(ranked)
-    : ranked;
+    ? attachEvidenceLaddersToFindings(pruned)
+    : pruned;
+}
+
+function pruneRedundantClinicalConcerns(concerns = []) {
+  const activationConcerns = (concerns || []).filter(concern => concern?.clinicalConcernDomain === "activation_failure");
+  const absorptionConcerns = (concerns || []).filter(concern => concern?.clinicalConcernDomain === "absorption_or_chelation");
+  return (concerns || []).filter(concern => {
+    if (concern?.clinicalConcernDomain !== "exposure_increase_toxicity") return true;
+    if (clinicalConcernIsActivationFailureCompanion(concern) &&
+      activationConcerns.some(primary => clinicalConcernsShareActionability(primary, concern))) {
+      return false;
+    }
+    if (!clinicalConcernIsModelDrivenExposureContext(concern)) return true;
+    if (absorptionConcerns.some(primary => clinicalConcernsShareVictim(primary, concern))) return false;
+    return !activationConcerns.some(primary => clinicalConcernsShareActionability(primary, concern));
+  });
+}
+
+function clinicalConcernIsActivationFailureCompanion(concern = {}) {
+  const sourceFindings = concern.sourceFindingsFull || [];
+  if (!sourceFindings.length) return false;
+  let sawParentAccumulation = false;
+  for (const sourceFinding of sourceFindings) {
+    if (sourceFinding?.type === "phenoconversion") continue;
+    if (sourceFinding?.type === "pairwise_interaction" &&
+      clinicalTextImpliesActivationFailure(clinicalConcernText(sourceFinding), sourceFinding.sourceRows?.[0] || {}, sourceFinding)) {
+      sawParentAccumulation = true;
+      continue;
+    }
+    if (sourceFinding?.type !== "active_moiety") return false;
+    const rows = sourceFinding.sourceRows || [];
+    if (!rows.length) return false;
+    for (const row of rows) {
+      if (row?.netPattern !== "parent_accumulation") return false;
+      sawParentAccumulation = true;
+    }
+  }
+  return sawParentAccumulation;
+}
+
+function clinicalConcernsShareActionability(primary = {}, secondary = {}) {
+  const primaryVictims = new Set((primary.victimActors || []).map(actor => normalizeFindingToken(actor.id)).filter(Boolean));
+  const secondaryVictims = new Set((secondary.victimActors || []).map(actor => normalizeFindingToken(actor.id)).filter(Boolean));
+  if (!clinicalTokenSetsOverlap(primaryVictims, secondaryVictims)) return false;
+  const primaryPerps = new Set((primary.perpetratorActors || []).map(actor => normalizeFindingToken(actor.id)).filter(Boolean));
+  const secondaryPerps = new Set((secondary.perpetratorActors || []).map(actor => normalizeFindingToken(actor.id)).filter(Boolean));
+  if (primaryPerps.size && secondaryPerps.size) {
+    return [...primaryPerps].some(key => secondaryPerps.has(key));
+  }
+  return true;
+}
+
+function clinicalConcernsShareVictim(primary = {}, secondary = {}) {
+  const primaryVictims = new Set((primary.victimActors || []).map(actor => normalizeFindingToken(actor.id)).filter(Boolean));
+  const secondaryVictims = new Set((secondary.victimActors || []).map(actor => normalizeFindingToken(actor.id)).filter(Boolean));
+  return clinicalTokenSetsOverlap(primaryVictims, secondaryVictims);
+}
+
+function clinicalTokenSetsOverlap(first = new Set(), second = new Set()) {
+  if (!first.size || !second.size) return false;
+  return [...first].some(key => second.has(key));
 }
 
 function classifyFindingForClinicalConcern(finding, context = {}) {
@@ -306,10 +367,14 @@ function inferVictimActors(findingOrRow, context = {}) {
     return marker ? [{ id:marker, type:"risk_marker", direction:"present" }] : [];
   }
   if (finding.type === "pairwise_interaction" || finding.type === "combination_burden" || interactionRow || row.drug1 || row.drug2) {
-    const roleRow = interactionRow || row;
-    const roles = typeof inferKnownInteractionVictimPerpetrator === "function"
-      ? inferKnownInteractionVictimPerpetrator(roleRow)
-      : { victims:[roleRow.drug2].filter(Boolean), perpetrators:[roleRow.drug1].filter(Boolean) };
+    const roleRow = domain === "absorption_or_chelation"
+      ? clinicalAbsorptionRoleRow(interactionRow || row)
+      : (interactionRow || clinicalNormalizedCombinationRoleRow(row));
+    const roles = !interactionRow && finding.type === "combination_burden" && Array.isArray(row.drugs)
+      ? { victims:[roleRow.drug2].filter(Boolean), perpetrators:[roleRow.drug1].filter(Boolean) }
+      : (typeof inferKnownInteractionVictimPerpetrator === "function"
+        ? inferKnownInteractionVictimPerpetrator(roleRow)
+        : { victims:[roleRow.drug2].filter(Boolean), perpetrators:[roleRow.drug1].filter(Boolean) });
     return roles.victims.map(id => ({ id, type:"parent_drug", direction:clinicalVictimDirection(domain, finding, row) }));
   }
   if (finding.type === "active_moiety" && row.parent) {
@@ -343,10 +408,14 @@ function inferPerpetratorActors(findingOrRow, context = {}) {
     return uniqueClinicalValues(drugs).map(id => ({ id, type:"parent_drug", direction:row.drugDirection || "risk context" }));
   }
   if (finding.type === "pairwise_interaction" || finding.type === "combination_burden" || interactionRow || row.drug1 || row.drug2) {
-    const roleRow = interactionRow || row;
-    const roles = typeof inferKnownInteractionVictimPerpetrator === "function"
-      ? inferKnownInteractionVictimPerpetrator(roleRow)
-      : { victims:[roleRow.drug2].filter(Boolean), perpetrators:[roleRow.drug1].filter(Boolean) };
+    const roleRow = domain === "absorption_or_chelation"
+      ? clinicalAbsorptionRoleRow(interactionRow || row)
+      : (interactionRow || clinicalNormalizedCombinationRoleRow(row));
+    const roles = !interactionRow && finding.type === "combination_burden" && Array.isArray(row.drugs)
+      ? { victims:[roleRow.drug2].filter(Boolean), perpetrators:[roleRow.drug1].filter(Boolean) }
+      : (typeof inferKnownInteractionVictimPerpetrator === "function"
+        ? inferKnownInteractionVictimPerpetrator(roleRow)
+        : { victims:[roleRow.drug2].filter(Boolean), perpetrators:[roleRow.drug1].filter(Boolean) });
     return roles.perpetrators.map(id => ({ id, type:"parent_drug", direction:clinicalPerpetratorDirection(domain, finding, row) }));
   }
   if (finding.type === "phenoconversion") {
@@ -370,6 +439,7 @@ function inferExposureDirectionForActor(actor, findingOrRow, context = {}) {
   if (row.parent === actorName && row.parentDirection) return row.parentDirection;
   if (row.actor === actorName && row.metaboliteDirection) return row.metaboliteDirection;
   const text = clinicalConcernText(finding);
+  if (clinicalTextImpliesReducedClearanceToxicity(text)) return "up";
   if (/↑|increase|higher|raises|toxicity|accumul/i.test(text)) return "up";
   if (/↓|decrease|reduced|lower|loss|failure/i.test(text)) return "down";
   return "affected";
@@ -384,7 +454,7 @@ function makeClinicalConcernTitle(concern, context = {}) {
   const perp = clinicalActorListLabel(perpetrators);
   const row = primary.sourceRows?.[0] || {};
   if (domain === "activation_failure") {
-    const metabolite = clinicalActiveMetaboliteFromFindings(concern.sourceFindingsFull || []) || clinicalActiveMetaboliteName(primary, row);
+    const metabolite = clinicalActivationMetaboliteName(concern, primary, row);
     return metabolite
       ? `${victim || "Prodrug"} activation to ${metabolite} may be reduced${perp ? ` with ${perp}` : ""}`
       : `${victim || "Prodrug"} activation may be reduced${perp ? ` with ${perp}` : ""}`;
@@ -408,6 +478,9 @@ function makeClinicalConcernTitle(concern, context = {}) {
   if (domain === "washout_or_persistence") {
     return "Switching and washout timing may need review";
   }
+  if (domain === "pharmacodynamic_burden") {
+    return `${clinicalPharmacodynamicConcernLabel(primary)} may increase`;
+  }
   if (clinicalBurdenDomain(domain)) {
     return `${clinicalDomainLabel(domain)} may rise`;
   }
@@ -415,7 +488,9 @@ function makeClinicalConcernTitle(concern, context = {}) {
     return victim && perp ? `${victim} transport or clearance may change with ${perp}` : `${victim || "Transporter"} clearance concern`;
   }
   if (domain === "absorption_or_chelation") {
-    return victim && perp ? `${victim} absorption may change with ${perp}` : `${victim || "Absorption"} concern`;
+    const text = clinicalConcernText(primary).toLowerCase();
+    const direction = /reduc|lower|fall|decreas|chelat|bind/.test(text) ? "fall" : "change";
+    return victim && perp ? `${victim} absorption may ${direction} with ${perp}` : `${victim || "Absorption"} concern`;
   }
   if (domain === "parent_accumulation") {
     return `${victim || row.parent || "Parent drug"} exposure may rise${perp ? ` with ${perp}` : ""}`;
@@ -448,7 +523,7 @@ function inferClinicalConcernDomain(finding, context = {}) {
     return "risk_marker_context";
   }
   if (finding?.type === "active_moiety") {
-    if (row.parentDirection === "up" && clinicalHasSiblingExposureConcern(row.parent, context)) return "exposure_increase_toxicity";
+    if (row.netPattern !== "activation_failure" && row.parentDirection === "up" && clinicalHasSiblingExposureConcern(row.parent, context)) return "exposure_increase_toxicity";
     if (row.netPattern === "risk_marker_toxic_context") return "risk_marker_context";
     if (row.netPattern === "activation_failure") return "activation_failure";
     if (row.netPattern === "toxic_metabolite_accumulation") return "toxic_metabolite_accumulation";
@@ -468,17 +543,31 @@ function inferClinicalConcernDomain(finding, context = {}) {
   }
   if (finding?.type === "timing_washout") return "washout_or_persistence";
   if (isBleedingBurdenInteraction(finding, row)) return "bleeding_burden";
+  if (clinicalTextImpliesReducedClearanceToxicity(text) && !clinicalTextImpliesAbsorptionIssue(text, row)) return "exposure_increase_toxicity";
+  if (finding?.type === "receptor_burden" || finding?.type === "combination_burden" || finding?.type === "pairwise_interaction") {
+    if (clinicalTextImpliesActivationFailure(text, row, finding)) return "activation_failure";
+    if (clinicalTextImpliesAbsorptionIssue(text, row)) return "absorption_or_chelation";
+    if (/anticholinergic|dry mouth|urinary retention|constipation|delirium|beers|confusion|\bfalls\b|fall[-\s]?risk/.test(text)) return "anticholinergic_fall_burden";
+    if (/sedation|cns depression|respiratory depression|slowed breathing|overdose|coma/.test(text)) return "cns_depression_burden";
+    if (/serotonin|maoi|linezolid/.test(text)) return "serotonin_toxicity";
+    if (/qtc|qt prolong/.test(text)) return "qt_burden";
+    if (clinicalTextImpliesPharmacodynamicIssue(text, row)) return "pharmacodynamic_burden";
+    if (finding?.type === "pairwise_interaction" && clinicalHasExplicitExposureToxicitySignal(finding)) {
+      return "exposure_increase_toxicity";
+    }
+  }
+  if (clinicalTextImpliesAbsorptionIssue(text, row)) return "absorption_or_chelation";
   if (/increase|higher|raises|toxicity|inhibit|accumul|↑|rhabdomyolysis/.test(text) && !/↓|loss of efficacy|efficacy loss/.test(text)) return "exposure_increase_toxicity";
-  if (/prodrug|activation|active metabolite|efficacy loss|loss of efficacy/.test(text)) return "activation_failure";
-  if (/induc|lower|reduced|decrease|↓↓|↓/.test(text)) return "induction_loss_of_efficacy";
+  if (clinicalTextImpliesActivationFailure(text, row, finding)) return "activation_failure";
+  if (/induc|lower|reduced|decrease|↓↓|↓/.test(text) && !/clearance|transporter|oat\d?|oatp|bcrp|p-gp|renal/i.test(text)) return "induction_loss_of_efficacy";
   if (finding?.type === "transporter" || /p-gp|oatp|transporter|renal clearance/.test(text)) return "renal_clearance_or_transporter";
   if (/absorption|chelat|gastric|binder|\bph\b|food/.test(text)) return "absorption_or_chelation";
   if (/qtc|qt prolong/.test(text)) return "qt_burden";
   if (/bleed|inr|hemostasis|anticoag|antiplatelet/.test(text)) return "bleeding_burden";
   if (/serotonin|linezolid|maoi/.test(text)) return "serotonin_toxicity";
-  if (/sedation|cns depression|respiratory depression|opioid|benzodiazepine/.test(text)) return "cns_depression_burden";
+  if (/sedation|cns depression|respiratory depression|slowed breathing|overdose|coma/.test(text)) return "cns_depression_burden";
   if (/anticholinergic|beers|fall|delirium/.test(text)) return "anticholinergic_fall_burden";
-  if (/hyperkalemia|nephrotoxicity|renal reserve/.test(text)) return "pharmacodynamic_burden";
+  if (clinicalTextImpliesPharmacodynamicIssue(text, row)) return "pharmacodynamic_burden";
   if (finding?.type === "mechanistic_pathway") return "model_only_mechanistic_context";
   return "model_only_mechanistic_context";
 }
@@ -590,10 +679,12 @@ function clinicalHasSiblingExposureConcern(parent, context = {}) {
 }
 
 function inferClinicalConcernDomainShallow(finding) {
+  const row = finding?.sourceRows?.[0] || {};
   const text = clinicalConcernText(finding).toLowerCase();
-  if (/induc|lower|reduced|decrease|↓↓|↓/.test(text) && !/inhibit|increase|toxicity|↑/.test(text)) return "induction_loss_of_efficacy";
+  if (clinicalTextImpliesReducedClearanceToxicity(text)) return "exposure_increase_toxicity";
+  if (/induc|lower|reduced|decrease|↓↓|↓/.test(text) && !/inhibit|increase|toxicity|↑|clearance|transporter|oat\d?|oatp|bcrp|p-gp|renal/.test(text)) return "induction_loss_of_efficacy";
   if (/increase|higher|raises|toxicity|inhibit|accumul|↑|rhabdomyolysis/.test(text)) return "exposure_increase_toxicity";
-  if (/prodrug|activation|active metabolite|efficacy loss|loss of efficacy/.test(text)) return "activation_failure";
+  if (clinicalTextImpliesActivationFailure(text, row, finding)) return "activation_failure";
   if (/p-gp|oatp|transporter|renal clearance/.test(text)) return "renal_clearance_or_transporter";
   return "model_only_mechanistic_context";
 }
@@ -723,11 +814,75 @@ function clinicalConcernEntryScore(entry) {
 }
 
 function clinicalConcernRankScore(finding) {
+  const domain = finding?.clinicalConcernDomain || inferClinicalConcernDomainShallow(finding);
+  const evidenceWeight = domain === "washout_or_persistence" ? 40 : 120;
+  const supportingWeight = domain === "washout_or_persistence" ? 6 : 25;
+  const rawFindingWeight = domain === "washout_or_persistence" ? 3 : 12;
   return (clinicalSeverityValue(finding?.severity) * 1000) +
-    ((finding?.evidenceRefs || []).length ? 120 : 0) +
-    ((finding?.supportingSignals || []).length * 25) +
-    ((finding?.rawFindingCount || 0) * 12) +
-    ((CLINICAL_CONCERN_CONFIDENCE_ORDER[finding?.confidence] || 0) * 10);
+    ((finding?.evidenceRefs || []).length ? evidenceWeight : 0) +
+    ((finding?.supportingSignals || []).length * supportingWeight) +
+    ((finding?.rawFindingCount || 0) * rawFindingWeight) +
+    ((CLINICAL_CONCERN_CONFIDENCE_ORDER[finding?.confidence] || 0) * 10) +
+    clinicalConcernDomainPriorityBonus(finding, domain);
+}
+
+function clinicalConcernDomainPriorityBonus(finding = {}, domain = "") {
+  if (domain === "washout_or_persistence") {
+    return clinicalConcernIsHighRiskSwitchContext(finding) ? 1150 : -120;
+  }
+  if (domain === "risk_marker_context" || domain === "hypersensitivity_or_scar") return 220;
+  if (domain === "toxic_metabolite_accumulation") return 170;
+  if (domain === "activation_failure") return 140;
+  if (domain === "cns_depression_burden") return 170;
+  if (domain === "serotonin_toxicity") return 160;
+  if (domain === "anticholinergic_fall_burden" || domain === "bleeding_burden" || domain === "qt_burden") return 120;
+  if (domain === "exposure_increase_toxicity") {
+    return clinicalConcernIsModelDrivenExposureContext(finding) ? -240 : 1000;
+  }
+  return 0;
+}
+
+function clinicalConcernIsModelDrivenExposureContext(finding = {}) {
+  const domain = finding?.clinicalConcernDomain || inferClinicalConcernDomainShallow(finding);
+  if (domain !== "exposure_increase_toxicity") return false;
+  const sourceFindings = finding.sourceFindingsFull || [];
+  if (!sourceFindings.length) return false;
+  const sourceLinked = sourceFindings.some(sourceFinding =>
+    clinicalHasNonAdapterEvidenceRefs(sourceFinding?.evidenceRefs || []) ||
+    (sourceFinding?.sourceRows || []).some(row => clinicalHasNonAdapterEvidenceRefs(row?.evidenceRefs || []) || row?.evidenceStatus === "explicit")
+  );
+  if (sourceLinked) return false;
+  const explicitInteraction = sourceFindings.some(sourceFinding =>
+    ["pairwise_interaction", "transporter", "risk_marker"].includes(sourceFinding?.type) ||
+    (sourceFinding?.sourceRows || []).some(row => row?.drug1 && row?.drug2)
+  );
+  if (explicitInteraction) return false;
+  return sourceFindings.every(sourceFinding => ["active_moiety", "phenoconversion"].includes(sourceFinding?.type));
+}
+
+function clinicalHasNonAdapterEvidenceRefs(refs = []) {
+  const values = Array.isArray(refs) ? refs : [];
+  return values.some(ref => !/coverage_adapter/i.test(String(ref || "")));
+}
+
+function clinicalConcernIsHighRiskSwitchContext(finding = {}) {
+  const rows = finding.sourceRows || [];
+  const parents = uniqueClinicalValues(rows.map(row => row?.parent).filter(Boolean));
+  if (parents.length < 2) return false;
+  const longPersistence = rows.some(row =>
+    Number(row?.estimatedPersistenceDays || 0) >= 14 ||
+    /14\s*days|5\s*weeks|2-3\s*weeks|enzyme resynthesis|switch/i.test(`${(row?.reasons || []).join(" ")} ${row?.pathway || ""}`)
+  );
+  if (!longPersistence) return false;
+  const serotonergicParents = parents.filter(name => {
+    const drug = typeof getDrug === "function" ? getDrug(name) : null;
+    return !!drug?.props?.serotonergic ||
+      /fluoxetine|paroxetine|sertraline|citalopram|escitalopram|fluvoxamine|venlafaxine|desvenlafaxine|duloxetine|levomilnacipran|phenelzine|tranylcypromine|rasagiline|selegiline|linezolid|methylene blue/.test(String(name || "").toLowerCase());
+  });
+  const maoLike = parents.some(name =>
+    /phenelzine|tranylcypromine|rasagiline|selegiline|linezolid|methylene blue/.test(String(name || "").toLowerCase())
+  );
+  return serotonergicParents.length >= 2 || maoLike;
 }
 
 function clinicalSeverityValue(severity) {
@@ -752,9 +907,128 @@ function clinicalConcernText(finding) {
   return `${finding?.title || ""} ${finding?.summary || ""} ${finding?.clinicalAction || ""} ${finding?.evidenceStatus || ""} ${(finding?.tags || []).join(" ")} ${(finding?.sourceRows || []).map(row => `${row.effect || ""} ${row.mechanism || ""} ${row.clinicalAction || ""} ${row.management || ""} ${row.phenotype || ""} ${(row.reasons || []).join(" ")} ${(row.activeMoietyConsequences || []).join(" ")}`).join(" ")}`;
 }
 
+function clinicalTextImpliesReducedClearanceToxicity(text = "") {
+  const value = String(text || "").toLowerCase();
+  if (!/clearance|transporter|oat\d?|oatp|bcrp|p-gp|renal clearance|renal excretion|tubular secretion|kidney clearance/.test(value)) return false;
+  return /reduce(?:d|s)?\s+(?:mtx\s+)?renal clearance|clearance\s*[↓-]|toxicit|aki|mucositis|pancytopenia|bone marrow|nephro|accumul|↑/.test(value);
+}
+
+function clinicalTextImpliesAbsorptionIssue(text = "", row = {}) {
+  const value = `${text || ""} ${row?.type || ""} ${row?.category || ""}`.toLowerCase();
+  return /absorption|chelat|gastric|acid suppression|binder|\bbind(?:s|ing)?\b|\bpH\b|bioavailability|separate .* from|reduced antibiotic exposure|reduced antiviral exposure/.test(value);
+}
+
+function clinicalTextImpliesPharmacodynamicIssue(text = "", row = {}) {
+  const value = `${text || ""} ${row?.type || ""} ${row?.category || ""}`.toLowerCase();
+  return /pharmacodynamic|hyperkalemia|potassium|hypotension|syncope|vasodil|cGMP|pde5|nitrate|blood pressure|bradycardia/.test(value);
+}
+
+function clinicalPharmacodynamicConcernLabel(finding = {}) {
+  const text = clinicalConcernText(finding).toLowerCase();
+  if (/hyperkalemia|potassium/.test(text)) return "High potassium risk";
+  if (/hypotension|syncope|vasodil|cgmp|pde5|nitrate|blood pressure/.test(text)) return "Low blood pressure risk";
+  if (/bradycardia|slow pulse|heart rate/.test(text)) return "Slow heart-rate risk";
+  return "Pharmacodynamic risk";
+}
+
+function clinicalHasExplicitExposureToxicitySignal(finding = {}) {
+  if (finding?.type !== "pairwise_interaction") return false;
+  return (finding.sourceRows || []).some(row => {
+    const meta = `${row?.category || ""} ${row?.type || ""} ${row?.affectedPathway || ""} ${row?.enzyme || ""}`.toLowerCase();
+    const text = `${row?.effect || ""} ${row?.mechanism || ""} ${row?.clinicalAction || ""}`.toLowerCase();
+    const sourceLinked = (row?.evidenceRefs || []).length > 0 || row?.evidenceStatus === "explicit";
+    if (!sourceLinked) return false;
+    if (clinicalTextImpliesAbsorptionIssue(text, row)) return false;
+    if (clinicalTextImpliesPharmacodynamicIssue(text, row)) return false;
+    if (/↓|lower|reduced|decrease|loss of efficacy|efficacy loss|less effective/.test(text) && !clinicalTextImpliesReducedClearanceToxicity(text)) {
+      return false;
+    }
+    if (/pharmacodynamic|qtc|qt\b|bleed|hemostasis|sedation|cns depression|serotonin|fall|anticholinergic/.test(`${meta} ${text}`)) {
+      return false;
+    }
+    return /known-ddi|pk|metabolic|transporter|clearance|inhibit|level|exposure|accumul|toxicit|nephro|neuro|rhabdomyolysis/.test(`${meta} ${text}`);
+  });
+}
+
+function clinicalTextImpliesActivationFailure(text = "", row = {}, finding = {}) {
+  const value = String(text || "").toLowerCase();
+  const rowType = `${row?.type || ""} ${row?.category || ""}`.toLowerCase();
+  const decreased = String(row?.result?.decreased || "").toLowerCase();
+  if (/prodrug[-\s]?inhibition|bioactivation|activation_failure/.test(rowType)) return true;
+  if (decreased && /morphine|endoxifen|thiol|o-desmethyltramadol|active/.test(decreased)) return true;
+  const activeFormCue = /prodrug|bioactivation|activation|active metabolite|morphine|endoxifen|thiol metabolite|o-desmethyltramadol/.test(value);
+  const reducedEffectCue = /less effective|work less well|reduced efficacy|efficacy loss|loss of efficacy|complete loss|blocked|blocking|reduced|decrease|down|failure/.test(value);
+  const analgesiaCue = /analgesi|pain control/.test(value) && /complete loss|reduced|fail|blocked/.test(value);
+  return (activeFormCue && reducedEffectCue) || analgesiaCue;
+}
+
 function normalizeClinicalFindingInput(input) {
   if (input?.sourceRows || input?.affectedActors || input?.type) return input;
   return { sourceRows:[input], affectedActors:[], type:input?.type || "row" };
+}
+
+function clinicalCombinationDrugPair(row = {}) {
+  return uniqueClinicalValues([row.drug1, row.drug2, ...(row.drugs || [])]);
+}
+
+function clinicalPreferredCombinationVictim(row = {}) {
+  const pair = clinicalCombinationDrugPair(row);
+  const metaboliteText = `${row.metabolite || ""} ${row.result?.decreased || ""}`;
+  const metaboliteMatch = pair.find(name => clinicalTextNamesDrugWithEffect(metaboliteText, name));
+  if (metaboliteMatch) return metaboliteMatch;
+  const targetText = `${row.effect || ""} ${row.mechanism || ""}`;
+  const named = pair.find(name => clinicalTextNamesDrugWithEffect(targetText, name));
+  if (named) return named;
+  return pair[1] || pair[0] || "";
+}
+
+function clinicalNormalizedCombinationRoleRow(row = {}) {
+  const pair = clinicalCombinationDrugPair(row);
+  if (!pair.length) return row;
+  const victim = clinicalPreferredCombinationVictim(row);
+  if ((row.drug1 || row.drug2) && !victim) return row;
+  const perpetrator = pair.find(name => normalizeFindingToken(name) !== normalizeFindingToken(victim)) || "";
+  return {
+    ...row,
+    drug1: perpetrator || row.drug1,
+    drug2: victim || row.drug2,
+  };
+}
+
+function clinicalAbsorptionRoleRow(row = {}) {
+  const pair = clinicalCombinationDrugPair(row);
+  if (pair.length < 2) return row;
+  const victim = clinicalAbsorptionVictim(row, pair) || clinicalPreferredCombinationVictim(row);
+  if (!victim) return row;
+  const perpetrator = pair.find(name => normalizeFindingToken(name) !== normalizeFindingToken(victim)) || "";
+  return {
+    ...row,
+    drug1: perpetrator || row.drug1,
+    drug2: victim,
+  };
+}
+
+function clinicalAbsorptionVictim(row = {}, pair = clinicalCombinationDrugPair(row)) {
+  const modulators = pair.filter(clinicalAbsorptionModulatorName);
+  const nonModulators = pair.filter(name => !clinicalAbsorptionModulatorName(name));
+  if (modulators.length === 1 && nonModulators.length === 1) return nonModulators[0];
+  const text = `${row.effect || ""} ${row.mechanism || ""} ${row.management || ""} ${row.clinicalAction || ""}`.toLowerCase();
+  const separated = text.match(/separate\s+([a-z0-9/ -]{2,60})\s+from/i);
+  if (separated) {
+    const named = pair.find(name => separated[1].includes(String(name || "").toLowerCase()));
+    if (named) return named;
+  }
+  const reducedNamed = pair.find(name => {
+    const escaped = String(name || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    if (!escaped) return false;
+    return new RegExp(`\\b${escaped}\\b[^.;]{0,90}(reduc|lower|fall|decreas|bioavailability|absorption|exposure|efficacy)|(?:reduc|lower|fall|decreas|bioavailability|absorption|exposure|efficacy)[^.;]{0,90}\\b${escaped}\\b`, "i").test(text);
+  });
+  return reducedNamed || "";
+}
+
+function clinicalAbsorptionModulatorName(name = "") {
+  const value = String(name || "").toLowerCase();
+  return /\b(?:iron|calcium|magnesium|aluminum|zinc|mineral|antacid|sucralfate|cholestyramine|colesevelam|sevelamer|lanthanum|velphoro|omeprazole|esomeprazole|pantoprazole|lansoprazole|rabeprazole|famotidine|cimetidine|ranitidine|nizatidine|grapefruit|food)\b/.test(value);
 }
 
 function clinicalActorLabel(actor) {
@@ -774,6 +1048,28 @@ function clinicalActiveMetaboliteName(finding = {}, row = {}) {
   if (row.actor && row.actor !== row.parent && !/inactive|unchanged|clearance/i.test(`${row.actor || ""} ${row.actorType || ""} ${row.role || ""}`)) return row.actor;
   const met = (finding.affectedActors || []).find(actor => /metabolite/.test(actor.type || "") && !/inactive|unchanged|clearance/i.test(`${actor.id || ""} ${actor.type || ""} ${actor.direction || ""}`));
   return met?.id || "";
+}
+
+function cleanClinicalMetaboliteLabel(label = "") {
+  return String(label || "")
+    .replace(/\s+\((?:weak|potent|active|inactive)\)$/i, "")
+    .trim();
+}
+
+function clinicalActivationMetaboliteName(concern = {}, finding = {}, row = {}) {
+  const sourceRows = [
+    ...(concern?.sourceRows || []),
+    ...(concern?.sourceFindingsFull || []).flatMap(sourceFinding => sourceFinding?.sourceRows || []),
+    ...(finding?.sourceRows || []),
+  ];
+  for (const sourceRow of sourceRows) {
+    const text = `${sourceRow?.effect || ""} ${sourceRow?.mechanism || ""}`.toLowerCase();
+    const decreased = cleanClinicalMetaboliteLabel(sourceRow?.result?.decreased || "");
+    if (decreased && (/active metabolite|activation|prodrug|bioactivation|thiol|morphine|endoxifen|sn-38|5-fluorouracil|5-fu/.test(text) || /potent|active/i.test(String(sourceRow?.result?.decreased || "")))) {
+      return decreased;
+    }
+  }
+  return clinicalActiveMetaboliteFromFindings(concern.sourceFindingsFull || []) || cleanClinicalMetaboliteLabel(clinicalActiveMetaboliteName(finding, row));
 }
 
 function clinicalActiveMetaboliteFromFindings(findings = []) {

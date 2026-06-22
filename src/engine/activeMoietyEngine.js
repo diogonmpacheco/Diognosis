@@ -322,7 +322,10 @@ function activeMoietySeverityHint(row) {
   if (/life-threatening|fatal|contraindicat|severe myelosuppression|neutropenia|cytotoxic|hemolysis/.test(text)) return "severe";
   if (row.netPattern === "risk_marker_toxic_context") return "severe";
   if (row.netPattern === "toxic_metabolite_accumulation") return "severe";
-  if (row.netPattern === "activation_failure" && /clopidogrel|thiol|antiplatelet|stent/.test(text)) return "severe";
+  if (row.netPattern === "activation_failure" && /clopidogrel|thiol|antiplatelet|stent/.test(text)) {
+    if (/weak inhibitor|functional capacity is 80%|less established|not expected to meaningfully/.test(text)) return "moderate";
+    return "severe";
+  }
   if (row.netPattern === "activation_failure" || row.netPattern === "active_metabolite_accumulation") return "moderate";
   if (row.netPattern === "parent_accumulation" || row.netPattern === "mixed_direction") return "monitor";
   return "info";
