@@ -14,6 +14,10 @@ function verifyAuxiliaryPages() {
     'data-views.html',
     'medication-classes.html',
     'medication-class-examples.html',
+    'reference/index.html',
+    'data/diognosis-facts.json',
+    'data/diognosis-facts.jsonl',
+    'llms.txt',
     'assets/logo-mark.png',
     'assets/auxiliary-pages.css',
     'src/data/dataViewsIndex.js',
@@ -21,12 +25,13 @@ function verifyAuxiliaryPages() {
   const requiredSourceFiles = [
     'data/medication-class-guides.json',
     'scripts/generate-medication-class-pages.js',
+    'scripts/generate-reference-layer.js',
   ];
   for (const file of [...requiredArtifactFiles, ...requiredSourceFiles]) {
     assert(existsSync(file), `Pages auxiliary file is missing: ${file}`);
   }
   const workflow = readFileSync('.github/workflows/pages.yml', 'utf8');
-  for (const file of requiredArtifactFiles.slice(0, 5)) {
+  for (const file of requiredArtifactFiles.slice(0, 9)) {
     assert(workflow.includes(file), `Pages workflow does not deploy ${file}`);
   }
   assert(/cp src\/data\/\*\.js dist\/src\/data\//.test(workflow), 'Pages workflow must deploy data-views source data files');
@@ -38,11 +43,26 @@ function verifyAuxiliaryPages() {
     assert(html.includes('support-strip') && html.includes('validated examples') && html.includes('Static examples; no runtime uploads'),
       `${file} should expose the generated class-guide snapshot and static-example boundary`);
   }
+  const facts = JSON.parse(readFileSync('data/diognosis-facts.json', 'utf8'));
+  const jsonlLines = readFileSync('data/diognosis-facts.jsonl', 'utf8').trim().split('\n').filter(Boolean);
+  const reference = readFileSync('reference/index.html', 'utf8');
+  const llms = readFileSync('llms.txt', 'utf8');
+  assert(facts.schema === 'diognosis.reference-facts.v1' && facts.factCount >= 50 && facts.factCount <= 100,
+    `Reference facts payload should expose 50-100 facts, got ${facts.factCount || 0}`);
+  assert(jsonlLines.length === facts.factCount, 'Reference JSONL should contain one line per canonical fact');
+  assert(facts.facts.every((fact) => fact.patientSummary && fact.clinicianSummary && fact.evidenceStatus && fact.boundary),
+    'Every reference fact should expose patient summary, clinician summary, evidence status, and boundary');
+  assert(reference.includes('application/ld+json') && reference.includes('Diognosis V1 Reference Facts') && reference.includes('Educational only; no runtime uploads'),
+    'Reference page should expose JSON-LD, title, and local/static boundary');
+  assert(llms.includes('V1 Reference Facts') && llms.includes('Facts JSONL') && llms.includes('not medical advice'),
+    'llms.txt should route retrieval systems to the reference layer and boundary');
   console.log('✓ Auxiliary Pages files and workflow artifact entries');
 }
 
 run('Generate medication class guide pages', node, ['scripts/generate-medication-class-pages.js']);
 run('Build index.html', node, ['build.js']);
+run('Generate reference layer', node, ['scripts/generate-reference-layer.js']);
+run('Reference layer drift check', node, ['scripts/generate-reference-layer.js', '--check']);
 verifyReleaseMetadata();
 verifyAuxiliaryPages();
 

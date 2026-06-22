@@ -15,6 +15,8 @@
     "enrich": "node scripts/enrich/run.js",
     "build": "node build.js",
     "build:dev": "node build.js --dev --out /tmp/diognosis_dev.html",
+    "reference:generate": "node scripts/generate-reference-layer.js",
+    "reference:check": "node scripts/generate-reference-layer.js --check",
     "security:audit": "npm audit --audit-level=low",
     "launch:qa": "node scripts/launch-qa-audit.js",
     "smoke": "node scripts/smoke-check.js",

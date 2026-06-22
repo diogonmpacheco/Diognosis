@@ -1,0 +1,23 @@
+# Diognosis
+
+> Source-linked educational medication and pharmacogenomic interaction review. Diognosis is not medical advice, not a clinical decision support system, and not professionally reviewed.
+
+## Best Retrieval Entry Points
+
+- [V1 Reference Facts](https://diogonmpacheco.github.io/Diognosis/reference/index.html): static patient and clinician summaries generated from the app runtime.
+- [Facts JSON](https://diogonmpacheco.github.io/Diognosis/data/diognosis-facts.json): full canonical fact payload with metadata.
+- [Facts JSONL](https://diogonmpacheco.github.io/Diognosis/data/diognosis-facts.jsonl): one fact per line for retrieval pipelines.
+- [Data Views](https://diogonmpacheco.github.io/Diognosis/data-views.html): alternate views over genotype, action, and ranking data.
+- [Medication Class Guides](https://diogonmpacheco.github.io/Diognosis/medication-classes.html): common class-based example entry points.
+- [Live App](https://diogonmpacheco.github.io/Diognosis/): local-browser Diognosis application.
+
+## Boundary
+
+Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not professionally reviewed. Do not start, stop, or change medicines without a qualified doctor or pharmacist.
+
+## Snapshot
+
+- Facts: 85
+- Source-linked facts: 80
+- Professionally reviewed facts: 0
+- Last modified: 2026-06-22

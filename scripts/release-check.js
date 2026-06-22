@@ -5,6 +5,8 @@
 import { node, run, verifyReleaseMetadata } from './lib/release-check-common.js';
 
 run('Build index.html', node, ['build.js']);
+run('Generate reference layer', node, ['scripts/generate-reference-layer.js']);
+run('Reference layer drift check', node, ['scripts/generate-reference-layer.js', '--check']);
 verifyReleaseMetadata();
 
 run('Database audit', node, ['scripts/database-audit.js']);

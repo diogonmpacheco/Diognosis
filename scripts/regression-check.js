@@ -860,7 +860,7 @@ const audienceModeRegression = window.eval(`(() => {
 assert(audienceModeRegression.patient.audienceMode === 'patient', 'Audience URL should set Patient mode');
 assert(audienceModeRegression.patient.bodyAudience === 'patient', 'Patient mode should mark body data-audience');
 assert(audienceModeRegression.patient.activeTab === 'overview', 'Patient mode should force the Overview tab');
-assert(/mechanistic medication intelligence for better medication questions/i.test(audienceModeRegression.patient.tagline), 'Patient mode should use patient-facing app tagline');
+assert(/prepare medicine-list questions|doctor or pharmacist/i.test(audienceModeRegression.patient.tagline), 'Patient mode should use patient-facing app tagline');
 assert(/Search medicines, supplements, or foods/i.test(audienceModeRegression.patient.searchPlaceholder), 'Patient mode should use patient-facing search placeholder');
 assert(audienceModeRegression.patient.listTitle === 'My Medicine List', 'Patient mode should use patient-facing selected-list label');
 assert(audienceModeRegression.patient.firstUseOrder.join('|').startsWith('audience|mode|search|selected-list|gene-results'),
@@ -997,7 +997,7 @@ const emptyAudienceListRegression = window.eval(`(() => {
   return { patient, clinician };
 })()`);
 assert(emptyAudienceListRegression.patient.audienceMode === 'patient', 'Empty selected-list regression should enter Patient mode');
-assert(/Add medicines, supplements, or foods above to build a medication question list for a doctor or pharmacist/i.test(emptyAudienceListRegression.patient.medListText),
+assert(/Add medicines, supplements, or foods above to start a list for your doctor or pharmacist/i.test(emptyAudienceListRegression.patient.medListText),
   'Patient empty selected-list state should give patient-facing start guidance');
 assert(!/interact|substances?/i.test(emptyAudienceListRegression.patient.medListText),
   'Patient empty selected-list state should avoid clinician-oriented interaction/substance wording');

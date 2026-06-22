@@ -41,6 +41,10 @@ jobs:
             data-views.html \
             medication-classes.html \
             medication-class-examples.html \
+            reference/index.html \
+            data/diognosis-facts.json \
+            data/diognosis-facts.jsonl \
+            llms.txt \
             assets/logo-mark.png \
             assets/auxiliary-pages.css \
             logo.png \

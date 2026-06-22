@@ -202,7 +202,7 @@ function syncAudienceModeUI() {
   const tagline = document.getElementById("audienceTagline") || document.querySelector(".header p");
   if (tagline) {
     tagline.textContent = patient
-      ? "Mechanistic medication intelligence for better medication questions"
+      ? "Prepare medicine-list questions for your doctor or pharmacist"
       : "Mechanistic medication intelligence for source-linked review";
   }
   const searchInput = document.getElementById("searchInput");
@@ -3412,7 +3412,7 @@ function renderMedList() {
   const patient = isPatientAudience();
   if (!activeStack.length) {
     const emptyCopy = patient
-      ? "Add medicines, supplements, or foods above to build a medication question list for a doctor or pharmacist"
+      ? "Add medicines, supplements, or foods above to start a list for your doctor or pharmacist"
       : "Add medications, supplements, or foods above to start a mechanistic review";
     el.innerHTML = `<div class="empty-state"><div class="icon">💊</div>${emptyCopy}</div>`;
     countEl.textContent = "";

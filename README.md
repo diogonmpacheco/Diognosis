@@ -6,7 +6,9 @@
 
 Diognosis is a mechanistic medication intelligence platform that models parent substances, active and toxic metabolites, enzymes, transporters, receptors, pharmacogenomic phenotypes, PK shifts, washout timing, pathway explanations, and source-linked evidence as **connected actors** rather than isolated parent-drug names.
 
-**Live app:** [diogonmpacheco.github.io/Diognosis](https://diogonmpacheco.github.io/Diognosis/) · [Data Views](https://diogonmpacheco.github.io/Diognosis/data-views.html) · [Medication Class Guides](https://diogonmpacheco.github.io/Diognosis/medication-classes.html)
+**Live app:** [diogonmpacheco.github.io/Diognosis](https://diogonmpacheco.github.io/Diognosis/) · [Reference Facts](https://diogonmpacheco.github.io/Diognosis/reference/) · [Data Views](https://diogonmpacheco.github.io/Diognosis/data-views.html) · [Medication Class Guides](https://diogonmpacheco.github.io/Diognosis/medication-classes.html)
+
+**Machine-readable reference:** [Facts JSON](https://diogonmpacheco.github.io/Diognosis/data/diognosis-facts.json) · [Facts JSONL](https://diogonmpacheco.github.io/Diognosis/data/diognosis-facts.jsonl) · [llms.txt](https://diogonmpacheco.github.io/Diognosis/llms.txt)
 
 **Data:** **Drug DB v1.2.3**.
 
