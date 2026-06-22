@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-<title>Diognosis — Parent–Metabolite-Aware Medication Safety &amp; Pharmacogenomics</title>
-<meta name="description" content="Diognosis is a parent–metabolite-aware medication safety and pharmacogenomics platform that checks parent drugs, active and toxic metabolites, genes, enzymes, transporters, PK shifts, washout timing, pathway explanations, and source-linked evidence as connected actors.">
+<title>Diognosis — Mechanistic Medication Intelligence</title>
+<meta name="description" content="Diognosis is a mechanistic medication intelligence platform for source-linked review of parent drugs, metabolites, pharmacogenomics, timing, and pathway-driven safety signals.">
 <meta name="keywords" content="pharmacogenomics, medication safety, drug interactions, pharmacokinetics, CYP2D6, CYP enzymes, active metabolites, toxic metabolites, transporter pathways, evidence modeling, source-linked evidence, computational pharmacology">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://diogonmpacheco.github.io/Diognosis/">
@@ -14,8 +14,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Diognosis">
 <!-- Open Graph (WhatsApp, iMessage, social previews) -->
-<meta property="og:title" content="Diognosis — Parent–Metabolite-Aware Medication Safety &amp; Pharmacogenomics">
-<meta property="og:description" content="Diognosis checks parent drugs, active and toxic metabolites, genes, enzymes, transporters, PK shifts, washout timing, pathway explanations, and source-linked evidence as connected actors.">
+<meta property="og:title" content="Diognosis — Mechanistic Medication Intelligence">
+<meta property="og:description" content="Diognosis is a mechanistic medication intelligence platform for source-linked review of parent drugs, metabolites, pharmacogenomics, timing, and pathway-driven safety signals.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://diogonmpacheco.github.io/Diognosis/">
 <meta property="og:image" content="https://diogonmpacheco.github.io/Diognosis/og-image.png">
@@ -23,8 +23,8 @@
 <meta property="og:image:height" content="630">
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Diognosis — Parent–Metabolite-Aware Medication Safety &amp; Pharmacogenomics">
-<meta name="twitter:description" content="Diognosis checks parent drugs, active and toxic metabolites, genes, enzymes, transporters, PK shifts, washout timing, pathway explanations, and source-linked evidence as connected actors.">
+<meta name="twitter:title" content="Diognosis — Mechanistic Medication Intelligence">
+<meta name="twitter:description" content="Diognosis is a mechanistic medication intelligence platform for source-linked review of parent drugs, metabolites, pharmacogenomics, timing, and pathway-driven safety signals.">
 <meta name="twitter:image" content="https://diogonmpacheco.github.io/Diognosis/og-image.png">
 <!-- PWA Manifest -->
 <link rel="manifest" href="manifest.json">
@@ -949,7 +949,7 @@ body[data-audience="clinician"] .summary-story.clinician-priority .summary-story
     <img class="brand-mark" src="assets/logo-mark.png" alt="" width="30" height="30" aria-hidden="true">
     <div class="brand-text">
       <h1>Diognosis</h1>
-      <p id="audienceTagline">Get ready to talk to your doctor or pharmacist</p>
+      <p id="audienceTagline">Mechanistic medication intelligence for better medication questions</p>
     </div>
   </div>
   <div class="header-actions">
@@ -991,7 +991,7 @@ body[data-audience="clinician"] .summary-story.clinician-priority .summary-story
       <div class="section-body" id="medList">
         <div class="empty-state">
           <div class="icon">💊</div>
-          Add medicines, supplements, or foods above to start a list for your doctor or pharmacist
+          Add medicines, supplements, or foods above to build a medication question list for a doctor or pharmacist
         </div>
       </div>
     </div>
@@ -1019,28 +1019,28 @@ body[data-audience="clinician"] .summary-story.clinician-priority .summary-story
   <div class="main-empty-state" id="mainEmptyState">
     <div class="main-empty-panel">
       <div class="main-empty-kicker">Start here</div>
-      <div class="main-empty-title" id="mainEmptyTitle">Check a medication list before the conversation starts</div>
-      <div class="main-empty-copy" id="mainEmptyCopy">Diognosis runs on your device and helps turn a medication list into safety questions for a doctor or pharmacist. Add medicines, supplements, foods, and only the gene-test results you already have.</div>
+      <div class="main-empty-title" id="mainEmptyTitle">See how medicines, genes, timing, and food context may connect</div>
+      <div class="main-empty-copy" id="mainEmptyCopy">Diognosis runs on your device and turns a medication list into clearer safety questions about how medicines, timing, food, and known gene results may connect. Add only medicines, supplements, foods, and real gene-test results you already have.</div>
       <div class="main-empty-layout">
         <div>
           <div class="main-empty-block-title">How to use it</div>
           <div class="main-empty-steps">
             <div class="main-empty-step"><span class="main-empty-step-num">1</span><div><strong>Add items to the list</strong><span>Search or browse for medicines, supplements, or foods.</span></div></div>
             <div class="main-empty-step"><span class="main-empty-step-num">2</span><div><strong>Add gene results only if known</strong><span>Gene and marker results are optional. Leave them blank unless there is a real report.</span></div></div>
-            <div class="main-empty-step"><span class="main-empty-step-num">3</span><div><strong id="mainEmptyStep3Title">Review Safety Notes first</strong><span id="mainEmptyStep3Copy">Use the notes to prepare questions for a doctor or pharmacist before making medication decisions.</span></div></div>
+            <div class="main-empty-step"><span class="main-empty-step-num">3</span><div><strong id="mainEmptyStep3Title">Review priority signals first</strong><span id="mainEmptyStep3Copy">Use the notes to prepare sharper questions for a doctor or pharmacist before making medication decisions.</span></div></div>
           </div>
         </div>
         <div>
           <div class="main-empty-block-title">What it can help surface</div>
           <div class="main-empty-checks" id="mainEmptyChecks">
-            <div class="main-empty-check">Safety notes to discuss before changing anything</div>
-            <div class="main-empty-check">Known gene-test results that may change which questions to ask</div>
-            <div class="main-empty-check">Timing or food context that may be worth reviewing</div>
-            <div class="main-empty-check">Links and boundaries for doctor or pharmacist follow-up</div>
+            <div class="main-empty-check">Questions worth discussing before changing anything</div>
+            <div class="main-empty-check">Known gene-test results that may change what to ask</div>
+            <div class="main-empty-check">Timing, food, or symptom context that may matter</div>
+            <div class="main-empty-check">Clear next steps for clinician or pharmacist follow-up</div>
           </div>
         </div>
       </div>
-      <div class="main-empty-note"><strong>Boundary:</strong> Diognosis is for education and medication-safety review. It is not medical advice, diagnosis, prescribing guidance, or proof that a list is safe. No personal data is uploaded or sent to runtime APIs.</div>
+      <div class="main-empty-note"><strong>Boundary:</strong> Diognosis is a mechanistic medication intelligence platform for medication review. It is not medical advice, diagnosis, prescribing guidance, or proof that a list is safe. Professional sign-off is not claimed. No personal data is uploaded or sent to runtime APIs.</div>
     </div>
   </div>
 
@@ -1448,7 +1448,7 @@ body[data-audience="clinician"] .summary-story.clinician-priority .summary-story
 <div class="disclaimer">
   <div class="disclaimer-box">
     <strong>Important Disclaimer</strong>
-    Diognosis is a V1 candidate for educational medication-safety review. It is not medical advice, not a clinical decision support system, and not professionally reviewed. Source-linked evidence does not equal clinical validation. Always consult a qualified doctor or pharmacist before making any medication decision. No personal data is uploaded, collected, stored, tracked, or sent to runtime APIs; Diognosis runs locally in your browser.
+    Diognosis is a mechanistic medication intelligence platform for source-linked review of parent drugs, metabolites, pharmacogenomics, timing, and pathway-driven safety signals. It is not medical advice, not a clinical decision support system, and professional sign-off is not claimed. Source-linked evidence does not equal clinical validation. Always consult a qualified doctor or pharmacist before making any medication decision. No personal data is uploaded, collected, stored, tracked, or sent to runtime APIs; Diognosis runs locally in your browser.
   </div>
   <div class="version-strip" aria-label="Diognosis version">
     <span><strong>Diognosis</strong></span>

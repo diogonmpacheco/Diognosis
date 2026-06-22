@@ -860,7 +860,7 @@ const audienceModeRegression = window.eval(`(() => {
 assert(audienceModeRegression.patient.audienceMode === 'patient', 'Audience URL should set Patient mode');
 assert(audienceModeRegression.patient.bodyAudience === 'patient', 'Patient mode should mark body data-audience');
 assert(audienceModeRegression.patient.activeTab === 'overview', 'Patient mode should force the Overview tab');
-assert(/talk to your doctor or pharmacist/i.test(audienceModeRegression.patient.tagline), 'Patient mode should use patient-facing app tagline');
+assert(/mechanistic medication intelligence for better medication questions/i.test(audienceModeRegression.patient.tagline), 'Patient mode should use patient-facing app tagline');
 assert(/Search medicines, supplements, or foods/i.test(audienceModeRegression.patient.searchPlaceholder), 'Patient mode should use patient-facing search placeholder');
 assert(audienceModeRegression.patient.listTitle === 'My Medicine List', 'Patient mode should use patient-facing selected-list label');
 assert(audienceModeRegression.patient.firstUseOrder.join('|').startsWith('audience|mode|search|selected-list|gene-results'),
@@ -921,7 +921,7 @@ assert(!String(audienceModeRegression.patient.altText || '').replace(/\s+/g, ' '
 assert(audienceModeRegression.patient.shareUrl.includes('audience=patient'), 'Patient-mode share URL should preserve audience mode');
 assert(audienceModeRegression.clinician.audienceMode === 'clinician', 'Clinician mode should restore clinician state');
 assert(audienceModeRegression.clinician.bodyAudience === 'clinician', 'Clinician mode should mark body data-audience');
-assert(/Medication and pharmacogenomic interaction review/i.test(audienceModeRegression.clinician.tagline), 'Clinician mode should restore clinician workbench tagline');
+assert(/Mechanistic medication intelligence for source-linked review/i.test(audienceModeRegression.clinician.tagline), 'Clinician mode should restore clinician workbench tagline');
 assert(/Medication, supplement, or food/i.test(audienceModeRegression.clinician.searchPlaceholder), 'Clinician mode should restore clinician search placeholder');
 assert(audienceModeRegression.clinician.listTitle === 'Selected List', 'Clinician mode should restore selected-list label');
 assert(/2 substances/i.test(audienceModeRegression.clinician.medCount), 'Clinician mode should keep substance count copy');
@@ -929,7 +929,7 @@ assert(audienceModeRegression.clinician.doseSelects > 0, 'Clinician mode should 
 assert(audienceModeRegression.clinician.removeButtons === 2, 'Clinician mode selected list should use compact removable item buttons');
 assert(audienceModeRegression.clinician.compactMedListCss, 'Clinician mode should render selected medicines as compact rows');
 assert(audienceModeRegression.clinician.clinicianLayoutCss, 'Clinician mode should keep optional gene controls with the selected list before results');
-assert(/Genes \+ Metabolites tab|medication response|metabolite balance/i.test(audienceModeRegression.clinician.geneIntro), 'Clinician mode should restore clinician gene helper copy');
+assert(/Genes \+ Metabolites|functional phenotype|parent\/metabolite direction|pathway consequences/i.test(audienceModeRegression.clinician.geneIntro), 'Clinician mode should restore clinician gene helper copy');
 assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mode should show tab navigation');
 assert(audienceModeRegression.clinician.summaryStoryCount > 0, 'Clinician mode should keep detailed summary story rows');
 assert(/Clinical review queue/i.test(audienceModeRegression.clinician.summaryText), 'Clinician mode should orient the top summary around a review queue');
@@ -997,7 +997,7 @@ const emptyAudienceListRegression = window.eval(`(() => {
   return { patient, clinician };
 })()`);
 assert(emptyAudienceListRegression.patient.audienceMode === 'patient', 'Empty selected-list regression should enter Patient mode');
-assert(/Add medicines, supplements, or foods above to start a list for your doctor or pharmacist/i.test(emptyAudienceListRegression.patient.medListText),
+assert(/Add medicines, supplements, or foods above to build a medication question list for a doctor or pharmacist/i.test(emptyAudienceListRegression.patient.medListText),
   'Patient empty selected-list state should give patient-facing start guidance');
 assert(!/interact|substances?/i.test(emptyAudienceListRegression.patient.medListText),
   'Patient empty selected-list state should avoid clinician-oriented interaction/substance wording');
@@ -1006,8 +1006,8 @@ assert(/doctor or pharmacist/i.test(emptyAudienceListRegression.patient.mainEmpt
 assert(!/\b(?:Switch to Clinician|clinical context|source-linked|metabolites?|PGx|CYP\d|AUC|Cmax|pharmacogenomic)\b/i.test(emptyAudienceListRegression.patient.mainEmptyText),
   'Patient empty start state should avoid clinician-only technical copy');
 assert(emptyAudienceListRegression.clinician.audienceMode === 'clinician', 'Empty selected-list regression should return to Clinician mode');
-assert(/Add medications, supplements, or foods above to see how they interact/i.test(emptyAudienceListRegression.clinician.medListText),
-  'Clinician empty selected-list state should keep interaction-oriented guidance');
+assert(/Add medications, supplements, or foods above to start a mechanistic review/i.test(emptyAudienceListRegression.clinician.medListText),
+  'Clinician empty selected-list state should keep mechanistic-review guidance');
 assert(emptyAudienceListRegression.clinician.medCount.trim() === '', 'Clinician empty selected-list state should not show a count');
 
 const patientGeneResultListRegression = window.eval(`(() => {

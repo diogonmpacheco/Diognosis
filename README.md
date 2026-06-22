@@ -2,15 +2,15 @@
 
 # Diognosis
 
-**Parent–metabolite-aware medication safety and pharmacogenomics platform for source-linked interaction review.**
+**Mechanistic medication intelligence platform for source-linked review of parent drugs, metabolites, pharmacogenomics, timing, and pathway-driven safety signals.**
 
-Diognosis is a V1 candidate review tool that models parent substances, active and toxic metabolites, enzymes, transporters, receptors, pharmacogenomic phenotypes, PK shifts, washout timing, pathway explanations, and source-linked evidence as **connected actors** — not just parent drug names.
+Diognosis is a mechanistic medication intelligence platform that models parent substances, active and toxic metabolites, enzymes, transporters, receptors, pharmacogenomic phenotypes, PK shifts, washout timing, pathway explanations, and source-linked evidence as **connected actors** rather than isolated parent-drug names.
 
 **Live app:** [diogonmpacheco.github.io/Diognosis](https://diogonmpacheco.github.io/Diognosis/) · [Data Views](https://diogonmpacheco.github.io/Diognosis/data-views.html) · [Medication Class Guides](https://diogonmpacheco.github.io/Diognosis/medication-classes.html)
 
 **Data:** **Drug DB v1.2.3**.
 
-![Status](https://img.shields.io/badge/status-V1%20candidate-orange.svg)
+![Status](https://img.shields.io/badge/status-V1%20platform-0f766e.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Node.js](https://img.shields.io/badge/Node.js-24%2B-339933.svg)
 ![Drug DB](https://img.shields.io/badge/Drug%20DB-v1.2.3-6c7077.svg)
@@ -18,7 +18,7 @@ Diognosis is a V1 candidate review tool that models parent substances, active an
 
 ---
 
-> **⚠️ Not medical advice.** Diognosis is a V1 candidate under active validation. Source-linked evidence is integrated for educational review, but no result should be treated as clinically final or professionally signed off.
+> **⚠️ Not medical advice.** Diognosis is a source-linked mechanistic review platform under active validation. Results should not be treated as clinically final, professionally signed off, or sufficient on their own for medication decisions.
 
 ---
 
@@ -26,11 +26,11 @@ Diognosis is a V1 candidate review tool that models parent substances, active an
 
 Diognosis is an AI-assisted, vibe-coded research project built by **Diogo Pacheco** in collaboration with OpenAI Codex and ChatGPT. Diogo directs the product vision, data priorities, clinical-safety boundaries, and final acceptance of changes. AI assistance is used for implementation, refactoring, tests, documentation, and data-organization support.
 
-> **Note:** AI-assisted development does not mean clinical validation. Diognosis remains a V1 candidate; professional clinical sign-off belongs to a later review phase.
+> **Note:** AI-assisted development does not mean clinical validation. Professional clinical sign-off remains a later review layer.
 
 ## Medication Safety Explorer
 
-Diognosis focuses on medication safety exploration, pharmacogenomics, drug–drug interactions, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, pathway explanations, and source-linked evidence.
+Diognosis focuses on mechanistic medication intelligence across pharmacogenomics, drug-drug interactions, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, pathway explanations, and source-linked evidence.
 
 > **Runs entirely in the browser.** There are no accounts, no server, no medication data collection, and no user medication or genotype data is sent to Diognosis. The graph view uses a vendored D3 build bundled locally at build time.
 
@@ -94,7 +94,7 @@ You can also build custom share links:
 https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,ibuprofen&tab=overview
 ```
 
-The plain-language Patient view is the default public experience. Add `audience=clinician` for the fuller clinician-oriented view.
+The plain-language Patient view is the default public experience. Add `audience=clinician` for the fuller mechanistic review surface.
 
 ---
 
@@ -108,9 +108,9 @@ There are no routine third-party runtime requests. Evidence links, demo links, a
 
 Most interaction checkers return isolated warnings. Diognosis instead shows how a medication stack behaves as a **connected system**: parent drugs, active metabolites, toxic metabolites, pharmacogenomic phenotypes, enzyme and transporter capacity, PK curves, receptor burden, Beers-style flags, washout timing, evidence, and pathway explanations.
 
-The goal is not to replace clinical judgment. It is to make the mechanism visible enough for education, research, review workflows, and pharmacist or clinician verification.
+The goal is not to replace clinical judgment. It is to make mechanism, timing, actor-level changes, and source-linked support visible enough for education, research, review workflows, and pharmacist or clinician verification.
 
-> **⚠️ Diognosis is not a clinical decision system.** Source-linked evidence does not equal clinical validation. Warnings are educational screening signals, and severity should not be treated as clinically final without appropriate professional judgment.
+> **⚠️ Diognosis is not a clinical decision system.** Source-linked evidence does not equal clinical validation. Warnings are mechanistic review signals, and severity should not be treated as clinically final without appropriate professional judgment.
 
 ## Data Enrichment Governance
 
@@ -148,7 +148,7 @@ Diognosis is intentionally conservative about what it claims:
 
 1. Open the [live Diognosis app](https://diogonmpacheco.github.io/Diognosis/).
 2. Search for medications, supplements, foods, or substances.
-3. Use **Patient mode** for plain-language safety notes, or **Clinician mode** for Overview, Mechanisms, Genes + Metabolites, Timing + Levels, and Evidence.
+3. Use **Patient mode** for plain-language priority signals and discussion questions, or **Clinician mode** for Overview, Mechanisms, Genes + Metabolites, Timing + Levels, and Evidence.
 4. Set genotype phenotypes where relevant, or paste supported PharmGx report rows in the pharmacogenomics panel.
 5. Treat every result as an explanation to review, **not as medical advice**.
 
@@ -162,7 +162,7 @@ GitHub Pages uses the workflow in `.github/workflows/pages.yml` to build the app
 
 ## Contribute / Review Data
 
-Diognosis contains source-linked data. **No evidence entry has been professionally reviewed yet.** Entries marked `reviewRequired:true` are internally flagged enrichment rows, but the rest of the evidence should not be treated as verified.
+Diognosis contains source-linked data. **No evidence entry has professional sign-off metadata yet.** Entries marked `reviewRequired:true` are internally flagged enrichment rows, but the rest of the evidence should not be treated as clinically verified.
 
 > **The safety contract is simple:** a warning should explain the pathway, affected actor, predicted direction, and supporting evidence. Severity should not be treated as clinically final without explicit professional sign-off.
 
@@ -186,4 +186,4 @@ This attribution request is appreciated, but the license remains permissive.
 
 ## Disclaimer
 
-> **⚠️ Diognosis is for educational exploration only.** It is **not** medical advice, **not** a clinical decision support system, **not** professionally reviewed, and does **not** replace professional medical advice, clinical pharmacist review, or therapeutic drug monitoring. Source-linked evidence does not equal clinical validation. **Always consult a qualified doctor or pharmacist before making changes to medications.**
+> **⚠️ Diognosis is a mechanistic medication intelligence platform for educational and source-linked review.** It is **not** medical advice, **not** a clinical decision support system, and **not** professionally signed off. Source-linked evidence does not equal clinical validation. **Always consult a qualified doctor or pharmacist before making changes to medications.**

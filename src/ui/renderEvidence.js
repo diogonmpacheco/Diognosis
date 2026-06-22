@@ -89,7 +89,7 @@ function renderEvidenceExplorer() {
   const ladderLedger = renderEvidenceLadderLedger(findings);
 
   const reviewNotice = `<div class="ev-review-notice" style="margin-bottom:10px;border:1px solid var(--amber);background:var(--amberBg);border-radius:8px;padding:8px 10px;font-size:11px;color:var(--amber);line-height:1.5">
-    Educational only. Source entries are integrated for traceability; professional sign-off is not claimed and severity output is explanatory, not medical advice.
+    Mechanistic review only. Source entries are integrated for traceability; professional sign-off is not claimed and severity output is explanatory, not medical advice.
   </div>`;
 
   el.innerHTML = reviewNotice + ladderLedger + tierFilterHTML + `<div id="evCardsContainer">${cardsHTML}</div>`;

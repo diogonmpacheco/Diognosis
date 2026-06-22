@@ -1,16 +1,16 @@
 # Diognosis Public Trust Model
 
-Generated: 2026-06-21
+Generated: 2026-06-22
 
 ## Launch Status
 
-Diognosis is a source-linked medication safety and pharmacogenomics platform in active development.
+Diognosis is a source-linked mechanistic medication intelligence platform in active development.
 
-Diognosis explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application.
+Diognosis explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application built for mechanistic review.
 
-Status: V1 candidate, source-linked, under active validation, and not yet professionally reviewed.
+Status: V1 platform scope, source-linked, under active validation, and not yet professionally signed off.
 
-Diognosis is a source-linked educational preview. It is designed to make pharmacology, pharmacogenomics, metabolites, and interaction pathways easier to inspect. It is not medical advice, not a clinical decision support system, and it does not replace a licensed clinician or pharmacist.
+Diognosis is a source-linked mechanistic review platform. It is designed to make pharmacology, pharmacogenomics, metabolites, timing, and interaction pathways easier to inspect. It is not medical advice, not a clinical decision support system, and it does not replace a licensed clinician or pharmacist.
 
 Current evidence status:
 

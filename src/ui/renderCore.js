@@ -202,8 +202,8 @@ function syncAudienceModeUI() {
   const tagline = document.getElementById("audienceTagline") || document.querySelector(".header p");
   if (tagline) {
     tagline.textContent = patient
-      ? "Get ready to talk to your doctor or pharmacist"
-      : "Medication and pharmacogenomic interaction review";
+      ? "Mechanistic medication intelligence for better medication questions"
+      : "Mechanistic medication intelligence for source-linked review";
   }
   const searchInput = document.getElementById("searchInput");
   if (searchInput) {
@@ -223,7 +223,7 @@ function syncAudienceModeUI() {
   if (geneIntro) {
     geneIntro.textContent = patient
       ? "Only add a medication gene-test result if you already have one. Do not guess a result; bring the original report to a doctor or pharmacist."
-      : "Set inherited gene or marker results here. The Genes + Metabolites tab shows how your list may change medication response, pathway activity, and metabolite balance.";
+      : "Set inherited gene or marker results here. Genes + Metabolites maps functional phenotype, parent/metabolite direction, pathway consequences, and source-linked review context for the current stack.";
   }
   const findingTitle = document.getElementById("findingTitle");
   if (findingTitle) findingTitle.textContent = patient ? "Safety Notes" : "Clinical Review Priorities";
@@ -235,29 +235,29 @@ function syncMainEmptyStateCopy(patient) {
     if (el) el.textContent = text;
   };
   setText("mainEmptyTitle", patient
-    ? "Check a medication list before the conversation starts"
-    : "Review a medication and pharmacogenomic stack");
+    ? "See how medicines, genes, timing, and food context may connect"
+    : "Inspect a parent–metabolite–gene system");
   setText("mainEmptyCopy", patient
-    ? "Diognosis runs on your device and helps turn a medication list into safety questions for a doctor or pharmacist. Add medicines, supplements, foods, and only the gene-test results you already have."
-    : "Diognosis checks parent drugs, metabolites, genes, pathways, timing, and source-linked evidence together for clinician-oriented review.");
-  setText("mainEmptyStep3Title", patient ? "Review Safety Notes first" : "Review the result tabs");
+    ? "Diognosis runs on your device and turns a medication list into clearer safety questions about how medicines, timing, food, and known gene results may connect. Add only medicines, supplements, foods, and real gene-test results you already have."
+    : "Diognosis brings parent-drug exposure, metabolite balance, pharmacogenomics, pathway shifts, timing, and source-linked evidence into one mechanistic review surface.");
+  setText("mainEmptyStep3Title", patient ? "Review priority signals first" : "Review the priority signal");
   setText("mainEmptyStep3Copy", patient
-    ? "Use the notes to prepare questions for a doctor or pharmacist before making medication decisions."
-    : "Start with Overview, then use Genes, Timing, and Evidence when more detail is needed.");
+    ? "Use the notes to prepare sharper questions for a doctor or pharmacist before making medication decisions."
+    : "Start with Overview, then open Mechanisms, Genes, Timing, and Evidence to explain the priority signal.");
   const checks = document.getElementById("mainEmptyChecks");
   if (!checks) return;
   const items = patient
-    ? [
-        "Safety notes to discuss before changing anything",
-        "Known gene-test results that may change which questions to ask",
-        "Timing or food context that may be worth reviewing",
-        "Links and boundaries for doctor or pharmacist follow-up",
+      ? [
+        "Questions worth discussing before changing anything",
+        "Known gene-test results that may change what to ask",
+        "Timing, food, or symptom context that may matter",
+        "Clear next steps for clinician or pharmacist follow-up",
       ]
     : [
-        "Interaction warnings and grouped clinical concerns",
-        "Gene and metabolite effects that may change interpretation",
-        "Timing, persistence, washout, and level-change context",
-        "Evidence links and review boundaries for clinician follow-up",
+        "Priority signals and grouped mechanistic concerns",
+        "Gene, enzyme, transporter, and metabolite context that may change interpretation",
+        "Timing, persistence, washout, and exposure-shift context",
+        "Source links and review boundaries for follow-up",
       ];
   checks.innerHTML = items.map(item => `<div class="main-empty-check">${safePublicHtml(item)}</div>`).join("");
 }
@@ -2970,8 +2970,8 @@ function renderMedList() {
   const patient = isPatientAudience();
   if (!activeStack.length) {
     const emptyCopy = patient
-      ? "Add medicines, supplements, or foods above to start a list for your doctor or pharmacist"
-      : "Add medications, supplements, or foods above to see how they interact";
+      ? "Add medicines, supplements, or foods above to build a medication question list for a doctor or pharmacist"
+      : "Add medications, supplements, or foods above to start a mechanistic review";
     el.innerHTML = `<div class="empty-state"><div class="icon">💊</div>${emptyCopy}</div>`;
     countEl.textContent = "";
     return;

@@ -595,7 +595,7 @@ assert(structural.remoteScripts.length === 0, `Static privacy posture should not
 assert(/not medical advice|No information is uploaded/i.test(normalizedText(structural.disclaimer)),
   'Static disclaimer should retain medical and privacy boundaries');
 assert(!/\bpre-v1\b|research prototype/i.test(normalizedText(structural.disclaimer)),
-  'Static disclaimer should describe the active app as a V1 candidate, not a pre-v1 prototype');
+  'Static disclaimer should describe the active app as current platform scope, not a pre-v1 prototype');
 
 const reviewerIsolationWindow = await loadPage('http://localhost/index.html?audience=patient&reviewer=1&tab=review');
 const reviewerIsolation = reviewerIsolationWindow.eval(`(() => ({
