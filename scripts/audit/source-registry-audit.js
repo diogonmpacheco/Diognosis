@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import { resolve } from 'path';
-import { ROOT, loadDiognosisData } from '../enrich/lib/diognosis-source-loader.js';
-import { buildCandidateNameContext, candidateNamePolicyViolation } from '../enrich/lib/candidate-name-normalizer.js';
-import { loadAllStagedRecords, readJson } from '../enrich/lib/enrichment-common.js';
-import { validateStagedSourceRecord } from '../enrich/lib/staged-source-schema.js';
+import { ROOT, loadDiognosisData } from '../lib/diognosis-source-loader.js';
+import { buildCandidateNameContext, candidateNamePolicyViolation } from '../lib/candidate-name-normalizer.js';
+import { loadAllStagedRecords, readJson } from '../lib/enrichment-common.js';
+import { validateStagedSourceRecord } from '../lib/staged-source-schema.js';
 
 const REGISTRY = resolve(ROOT, 'data/enrichment/source-registry.json');
 const ALLOWLIST = resolve(ROOT, 'data/enrichment/provider-allowlist.json');

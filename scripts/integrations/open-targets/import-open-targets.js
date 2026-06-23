@@ -7,8 +7,8 @@ import vm from 'vm';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..', '..', '..');
-const DEFAULT_INPUT_DIR = resolve(__dirname, 'input');
-const DEFAULT_MANUAL_CROSSWALK = resolve(__dirname, 'manual-crosswalk.json');
+const DEFAULT_INPUT_DIR = resolve(ROOT, 'tests/fixtures/open-targets/input');
+const DEFAULT_MANUAL_CROSSWALK = resolve(ROOT, 'tests/fixtures/open-targets/manual-crosswalk.json');
 const OUT_JS = resolve(ROOT, 'src/data/generatedOpenTargetsSnapshot.js');
 const OUT_MD = resolve(ROOT, 'docs/OPEN_TARGETS_INTEGRATION_AUDIT.md');
 
@@ -644,7 +644,7 @@ ${reviewRows}
 function writeIfChanged(filePath, content, check) {
   if (existsSync(filePath) && readFileSync(filePath, 'utf8') === content) return false;
   if (check) {
-    throw new Error(`${relative(ROOT, filePath)} is stale. Run npm run enrich -- integrate-open-targets.`);
+    throw new Error(`${relative(ROOT, filePath)} is stale. Run node scripts/integrations/open-targets/import-open-targets.js.`);
   }
   mkdirSync(dirname(filePath), { recursive: true });
   writeFileSync(filePath, content, 'utf8');

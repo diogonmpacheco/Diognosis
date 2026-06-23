@@ -3,7 +3,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadDiognosisData, normalizeName } from './enrich/lib/diognosis-source-loader.js';
+import { loadDiognosisData, normalizeName } from './lib/diognosis-source-loader.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');

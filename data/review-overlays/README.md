@@ -7,7 +7,7 @@ An overlay can label records as locally reviewed for that fork. It must not clai
 Run:
 
 ```bash
-npm run audit:review-overlays
+node scripts/audit/review-overlay-audit.js
 ```
 
 The example overlay is intentionally non-operational: it shows shape and policy without approving any real staged record.

@@ -114,11 +114,11 @@ The goal is not to replace clinical judgment. It is to make mechanism, timing, a
 
 > **⚠️ Diognosis is not a clinical decision system.** Source-linked evidence does not equal clinical validation. Warnings are mechanistic review signals, and severity should not be treated as clinically final without appropriate professional judgment.
 
-## Data Enrichment Governance
+## Data Governance
 
-Diognosis uses staged, source-linked enrichment workflows for literature discovery and structured guideline context. External records from PubMed, Europe PMC, OpenAlex, Unpaywall, CPIC Data, and ClinPGx are staged for review and **do not automatically change clinical severity, scoring, or shipped database behavior**.
+Diognosis V1 ships committed, source-linked static data. There is no active enrichment pipeline in the fork path: new evidence should be added directly to the source data with identifiers, boundary notes, and validation passing.
 
-Source-linked does not mean professionally reviewed. Public evidence can be source-integrated for V1 without claiming professional sign-off. Maintainer source-faithfulness checks, local fork review overlays, and future professional clinical reviews are tracked separately.
+Source-linked does not mean professionally reviewed. Public evidence can be source-integrated for V1 without claiming professional sign-off, and future professional clinical reviews remain a separate metadata layer.
 
 ## Current Limitations
 

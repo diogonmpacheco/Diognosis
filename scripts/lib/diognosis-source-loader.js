@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 import vm from 'vm';
 
-export const ROOT = resolve(new URL('../../..', import.meta.url).pathname);
+export const ROOT = resolve(new URL('../..', import.meta.url).pathname);
 
 const SOURCE_MODULES = [
   'src/data/constants.js',

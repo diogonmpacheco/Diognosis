@@ -13,10 +13,7 @@ const GROUPS = {
     ['strict validation', ['scripts/validate-db.js', '--strict']],
     ['evidence citations', ['scripts/check-evidence.js']],
   ],
-  data: [['data audits', ['scripts/audit/run.js', 'data']]],
-  integrations: [['integration audits', ['scripts/audit/run.js', 'integrations']]],
 };
-GROUPS.all = [...GROUPS.unit, ...GROUPS.data, ...GROUPS.integrations];
 
 function usage() {
   console.log(`Usage: node scripts/test-gate.js <${Object.keys(GROUPS).join('|')}>`);

@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import { existsSync, readdirSync, statSync } from 'fs';
 import { extname, join, resolve } from 'path';
-import { ROOT } from '../enrich/lib/diognosis-source-loader.js';
-import { loadAllStagedRecords, readJson } from '../enrich/lib/enrichment-common.js';
-import { isProfessionalReviewStatus } from '../enrich/lib/review-status-model.js';
+import { ROOT } from '../lib/diognosis-source-loader.js';
+import { loadAllStagedRecords, readJson } from '../lib/enrichment-common.js';
+import { isProfessionalReviewStatus } from '../lib/review-status-model.js';
 
 const errors = [];
 const { records } = loadAllStagedRecords();

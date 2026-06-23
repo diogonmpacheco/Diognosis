@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { existsSync, readdirSync, statSync } from 'fs';
 import { extname, join, resolve } from 'path';
-import { ROOT } from '../enrich/lib/diognosis-source-loader.js';
-import { readJson } from '../enrich/lib/enrichment-common.js';
+import { ROOT } from '../lib/diognosis-source-loader.js';
+import { readJson } from '../lib/enrichment-common.js';
 
 const DIR = resolve(ROOT, 'data/enrichment/curated-drafts');
 const files = existsSync(DIR) ? listJson(DIR) : [];

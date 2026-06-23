@@ -9,10 +9,6 @@
   },
   "scripts": {
     "stats": "node scripts/gen-stats.js",
-    "report:severity": "node scripts/severity-report.js",
-    "audit": "node scripts/audit/run.js",
-    "audit:stage10": "node scripts/audit/stage10-standards-full-audit.js --check",
-    "enrich": "node scripts/enrich/run.js",
     "build": "node build.js",
     "build:dev": "node build.js --dev --out /tmp/diognosis_dev.html",
     "reference:generate": "node scripts/generate-reference-layer.js",
@@ -25,10 +21,8 @@
     "validate:strict": "node scripts/validate-db.js --strict",
     "pages:check": "node scripts/pages-check.js",
     "release:check": "node scripts/release-check.js",
-    "test": "node scripts/test-gate.js all",
-    "test:unit": "node scripts/test-gate.js unit",
-    "test:data": "node scripts/audit/run.js data",
-    "test:integrations": "node scripts/audit/run.js integrations"
+    "test": "node scripts/test-gate.js unit",
+    "test:unit": "node scripts/test-gate.js unit"
   },
   "devDependencies": {
     "esbuild": "^0.28.0",

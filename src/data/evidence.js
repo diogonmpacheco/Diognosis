@@ -2808,10 +2808,10 @@ const STUDY_DB = {
     clinicalImplication:"Sex must be considered when interpreting paroxetine serum levels. Females at any given dose will have ~2× higher concentrations than males. Current AGNP guidelines (65–125 ng/mL) are male-centric. High-dose patients (≥40mg/day) should be tapered at 5mg/2-4 weeks, not the standard 10mg/week schedule."
   },
 
-  // ═══ LIVE ENRICHMENT DRAFTS — UNREVIEWED, REVIEW REQUIRED ═══
-  // Generated from scripts/enrich/drafts.json. These entries contain citation metadata
-  // and paraphrased abstract-level findings only. They are live for review/discovery,
-  // but verified:false and reviewRequired:true prevent treating them as curated evidence.
+  // Source-integrated literature rows from an earlier discovery campaign.
+  // These entries contain citation metadata and paraphrased abstract-level findings only.
+  // They remain conservative: verified:false and reviewRequired:true prevent treating
+  // them as professionally signed-off evidence.
   "draft_metformin_oct2_elsby2018_28971610": {
     id:"draft_metformin_oct2_elsby2018_28971610",
     public:true,

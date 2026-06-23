@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { resolve } from 'path';
-import { ROOT } from '../enrich/lib/diognosis-source-loader.js';
-import { readJson } from '../enrich/lib/enrichment-common.js';
+import { ROOT } from '../lib/diognosis-source-loader.js';
+import { readJson } from '../lib/enrichment-common.js';
 
 const staged = readJson(resolve(ROOT, 'data/enrichment/staged/label-staged-records.json'), []);
 const meta = readJson(resolve(ROOT, 'data/enrichment/snapshots/label-source-snapshot-metadata.json'), {});

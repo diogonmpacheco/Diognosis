@@ -276,47 +276,28 @@ Each tier carries a calibrated confidence weight used by graph and finding-level
 
 Important evidence helpers include `normalizeEvidence()`, `getEvidenceSummary()`, `assertEvidencedSeverity()`, `createStudyDraft()`, `reviewStudyDraft()`, `computeEvidenceLadder()`, and `attachEvidenceLaddersToFindings()`.
 
-Live enrichment entries can carry internal source-governance flags until explicitly signed off. Open Targets-derived context remains local/static at runtime and defaults to context-only, sign-off-required, and not severity-bearing unless explicitly promoted by Diognosis governance.
+Committed source-context entries can carry internal source-governance flags until explicitly signed off. Open Targets-derived context remains local/static at runtime and defaults to context-only, sign-off-required, and not severity-bearing unless explicitly promoted by Diognosis governance.
 
-## Enrichment Governance
+## Source Governance
 
-External enrichment now uses one staged-source architecture:
+V1 no longer ships the old enrichment-campaign toolchain. The active fork path is intentionally simpler:
 
 ```text
-External Source -> Fetch / Discover -> Normalize -> Stage -> Dedupe
-  -> Optional Backlog Review -> Explicit Promotion
-  -> Live Validation -> Build
+Edit committed source data -> Build -> Validate -> Pages check -> Release check
 ```
 
-Version 1 treats source-linked live data as the product surface. The default enrichment audit is therefore a live-readiness gate: it checks promoted DDI, metabolites, PK, washout, PGx, transporter, burden, and boundary metadata. Backlog cleanup should promote source-backed rows only when they fill concrete live gaps, archive rows already represented in live core data, and delete model-only or unmapped rows. Generated source diagnostics, candidate stores, source-faithfulness decision exports, and gap-query batches are not kept as active project backlog; regenerate them only for a deliberate enrichment campaign.
+New evidence should be integrated directly into the source data with public identifiers, boundary notes, and conservative wording. The release gate then checks source traceability, promotion boundaries, review overlays, patient/clinician wording, standards identity, scenario snapshots, privacy, regression behavior, and database validation.
 
-Canonical schema helpers live in `scripts/enrich/lib/staged-source-schema.js`. Every staged record defaults to conservative source-governance metadata: it cannot affect scoring or public severity unless promoted through Diognosis governance.
+The small shared source-data helpers live in `scripts/lib/`. Historical staged-source records remain under `data/enrichment/` only as committed source context used by validation; they are not an active backlog or automatic promotion queue.
 
-Source governance files:
+Active source governance files:
 
 - `data/enrichment/source-registry.json`
 - `data/enrichment/provider-allowlist.json`
 - `docs/enrichment/STAGED_SOURCE_SCHEMA.md`
 - `docs/enrichment/SOURCE_REGISTRY.md`
-- `docs/enrichment/ENRICHMENT_ARCHITECTURE.md`
 - `docs/enrichment/PROMOTION_POLICY.md`
 - `docs/enrichment/REVIEW_STATUS_MODEL.md`
-- `docs/enrichment/REVIEW_OVERLAYS.md`
-- `docs/enrichment/FORK_REVIEW_TEAMS.md`
-- `docs/enrichment/CURATED_DRAFTS.md`
-- `docs/enrichment/SOURCE_FAITHFULNESS_REVIEW.md`
-- `docs/enrichment/AUTOMATION_RUNBOOK.md`
-
-Structured source workflows:
-
-- `scripts/enrich/cpic-sync.js` and `scripts/audit/cpic-coverage-audit.js` stage CPIC Data review candidates and compare them with Diognosis PGx coverage. Check mode is CPIC local coverage candidate mode; fetch mode caches real CPIC API source objects.
-- `scripts/enrich/clinpgx-sync.js` and `scripts/audit/clinpgx-coverage-audit.js` stage ClinPGx guideline, clinical annotation, label, gene, chemical, and variant context. Check mode uses ClinPGx/Open Targets derived context; fetch mode caches direct ClinPGx REST JSON and is rate-limited at 550 ms/request.
-- `scripts/enrich/stage-legal-literature.js` normalizes PubMed, Europe PMC, OpenAlex, and Unpaywall literature drafts into the same staged schema.
-- `scripts/enrich/group-staged-records.js` groups CPIC/ClinPGx raw staged rows into human-readable review candidates.
-- `scripts/audit/enrichment-coverage-audit.js` ranks missing drugs, likely missing combinations, PGx gaps, metabolite gaps, and evidence gaps.
-- `scripts/enrich/build-enrichment-review-queue.js` can regenerate temporary sign-off diagnostics for an enrichment campaign. These items cannot auto-promote and do not define V1 completeness.
-- `scripts/enrich/generate-pending-review-enrichment.js` and `scripts/enrich/generate-pending-core-enrichment.js` are optional export tools. Their generated files are not required for the live app gate and should only be regenerated for a deliberate enrichment campaign.
-- `scripts/enrich/run-weekly-enrichment.js` orchestrates the staged enrichment run for a deliberate enrichment campaign, not the normal release gate.
 
 PharmCAT remains a future session-input source. It is not a global database enrichment source and should not mutate shipped data files.
 
@@ -396,8 +377,6 @@ npm run regression
 npm run validate
 npm run validate:strict
 npm run test:unit
-npm run test:data
-npm run test:integrations
 npm test
 npm run pages:check
 npm run release:check
@@ -405,19 +384,9 @@ npm run release:check
 
 `npm run pages:check` is the GitHub Pages deploy gate. It rebuilds `index.html`, verifies release metadata, runs the smoke check, privacy/static audit, and whitespace checks. It is intentionally scoped to catch broken live pages without re-running release-depth clinical/data readiness audits on every push.
 
-`npm run release:check` rebuilds the bundle, verifies metadata, runs database and data-view audits, the V1 no-warning database gate, V1 public-docs/standards/readiness gates, evidence review UI, evidence calculation, Open Targets gates, scenario snapshots, launch QA, regression, smoke, strict validation, privacy/static audit, and whitespace checks.
+`npm run release:check` rebuilds the bundle, verifies metadata, runs database and data-view audits, the V1 no-warning database gate, V1 public-docs/standards/readiness gates, evidence review UI, evidence calculation, source-boundary gates, scenario snapshots, launch QA, regression, smoke, strict validation, privacy/static audit, and whitespace checks.
 
-Routine GitHub Pages deployment uses `.github/workflows/pages.yml` to build `index.html` from `src/` and upload it as a Pages artifact. The generated root `index.html` is ignored locally, so branch-based Pages publishing is not sufficient for live deploys. The separate CI workflow is intentionally lighter: branch and pull-request CI run `npm run test:unit`, while the deeper `npm run test:data`, `npm run test:integrations`, and severity report steps are available from manual CI dispatch when a full audit is needed. This keeps live testing from waiting on release-depth data, standards/readiness, and integration audits.
-
-## Genotype Gap Audit
-
-```bash
-npm run audit -- genotype-gaps
-node scripts/audit/genotype-gap-audit.js --catalog-dir /path/to/local-pgx-catalog
-node scripts/audit/genotype-gap-audit.js --open-targets-snapshot src/data/generatedOpenTargetsSnapshot.js
-```
-
-The genotype gap audit reads Diognosis source text, lists every referenced gene/enzyme/transporter, compares that list with `GENOTYPE_EFFECTS` and `GENOTYPE_RISK_EFFECTS`, and can optionally compare against Open Targets/ClinPGx context. Generated reports are written to ignored local files at `scripts/audit/genotype-gap-report.json` and `scripts/audit/genotype-gap-report.md`.
+Routine GitHub Pages deployment uses `.github/workflows/pages.yml` to build `index.html` from `src/` and upload it as a Pages artifact. The generated root `index.html` is ignored locally, so branch-based Pages publishing is not sufficient for live deploys. The separate CI workflow stays deliberately small: branch and pull-request CI run `npm run test:unit`, while `npm run release:check` remains the deeper local pre-release gate.
 
 ## Release Checklist
 
