@@ -9784,8 +9784,8 @@ const STUDY_DB = {
   },
   "ev_drug_count_expansion_batch": {
     id:"ev_drug_count_expansion_batch", public:true, type:EVIDENCE_TIER.GUIDELINE,
-    title:"Phase 12 net-new drug count expansion — source candidates plus therapeutic-domain gap fill",
-    year:2026, source:"Internal Diognosis enrichment batch using staged source-drug-name candidates and therapeutic-domain gap filling",
+    title:"Phase 12 net-new drug count expansion - source context plus therapeutic-domain gap fill",
+    year:2026, source:"Internal Diognosis source-linked drug identity expansion using curated public source context and therapeutic-domain gap filling",
     pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
     studyDesign:"drug_identity_and_route_context_expansion", n:null,
     phenotypes:["drug_identity","route_context","PK_fallback","metabolite_context","DDI_context","transporter_context","burden_context"],

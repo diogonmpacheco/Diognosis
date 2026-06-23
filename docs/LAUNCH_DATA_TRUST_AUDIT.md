@@ -56,7 +56,7 @@ The full release gate checks the deeper trust boundary through:
 - evidence citation and evidence-review UI audits;
 - V1 PGx contract audit, V1 PK visualization audit, V1 finding contract audit including all recognized shipped `KNOWN_DDI` pairs, and V1 release readiness audit;
 - V1 feedback privacy audit;
-- evidence calculation, external-context firewall, source registry, promotion boundary, review overlay, label-source boundary, scenario snapshot, launch QA, regression, smoke, strict validation, privacy/static, and whitespace checks.
+- evidence calculation, external-context firewall/UI, patient/clinician wording, standards identity, scenario snapshot, launch QA, regression, smoke, strict validation, privacy/static, and whitespace checks.
 
 Run:
 

@@ -128,7 +128,7 @@ Clinician mode currently has five normal tabs:
    - Safety burden flags.
 
 5. `Evidence`
-   - Pending human-review enrichment.
+   - Source-linked evidence status.
    - External safety context.
    - Evidence ledger / evidence browser.
 

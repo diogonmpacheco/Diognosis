@@ -21,15 +21,15 @@ Current evidence status:
 <!-- PUBLIC_TRUST_STATS_END -->
 - Severe and critical warnings remain visible for discovery, but severity is not clinically final without explicit professional sign-off.
 
-## External Enrichment Boundary
+## Source Data Boundary
 
-External enrichment records from PubMed, Europe PMC, OpenAlex, Unpaywall, CPIC Data, ClinPGx, and Open Targets enter Diognosis through staged review files before any promotion decision.
+Diognosis V1 ships committed, static source data. It does not run automated external-source import jobs for PubMed, Europe PMC, OpenAlex, Unpaywall, CPIC Data, ClinPGx, or Open Targets.
 
-External enrichment records cannot affect scoring, public severity, contraindication wording, genotype rules, metabolite maps, or shipped database behavior unless promoted into committed Diognosis source data. CPIC, ClinPGx, and literature records can be source-integrated for V1 when local mapping and boundary checks pass; professional clinical sign-off remains a later metadata layer.
+External records can affect scoring, public severity, contraindication wording, genotype rules, metabolite maps, or shipped database behavior only after they are intentionally added to committed Diognosis source files and pass validation. CPIC, ClinPGx, label, literature, and Open Targets context can be source-integrated for V1 when local mapping and boundary checks pass; professional clinical sign-off remains a later metadata layer.
 
-ClinPGx and CPIC Data are build-time/script-time sources only. They are not queried from the browser.
+ClinPGx, CPIC Data, PubMed, Open Targets, and label sources are not queried from the browser.
 
-Diognosis may continue adding source-linked data. Source integration is shown explicitly and does not equal professional clinical review. Local review overlays belong to the local/fork maintainer unless upstream explicitly adopts them.
+Diognosis may continue adding source-linked data. Source integration is shown explicitly and does not equal professional clinical review.
 
 ## What A Reviewer Should Check
 

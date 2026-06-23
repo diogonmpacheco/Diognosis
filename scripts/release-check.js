@@ -25,11 +25,6 @@ run('V1 feedback privacy audit', node, ['scripts/audit/v1-feedback-privacy-audit
 run('Evidence calculation audit', node, ['scripts/audit/evidence-calculation-audit.js']);
 run('External context firewall audit', node, ['scripts/audit/external-context-firewall-audit.js']);
 run('External context UI audit', node, ['scripts/audit/external-safety-context-ui-audit.js']);
-run('Source registry audit', node, ['scripts/audit/source-registry-audit.js']);
-run('Promotion boundary audit', node, ['scripts/audit/promotion-boundary-audit.js']);
-run('Review overlay audit', node, ['scripts/audit/review-overlay-audit.js']);
-run('Curated draft audit', node, ['scripts/audit/curated-draft-audit.js']);
-run('Label source boundary audit', node, ['scripts/audit/label-source-boundary-audit.js']);
 run('Scenario snapshot audit', node, ['scripts/audit/scenario-snapshot-audit.js']);
 run('Deep launch QA audit', node, ['scripts/launch-qa-audit.js']);
 run('Regression check', node, ['scripts/regression-check.js']);

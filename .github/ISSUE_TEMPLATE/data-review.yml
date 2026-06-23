@@ -18,7 +18,7 @@ body:
     id: issue
     attributes:
       label: What should change?
-      description: Describe the suspected error, missing evidence, stale source, or useful enrichment.
+      description: Describe the suspected error, missing evidence, stale source, or useful source-data addition.
     validations:
       required: true
   - type: textarea
@@ -37,7 +37,7 @@ body:
         - Safety-critical or severe recommendation
         - Moderate clinical/context issue
         - Minor wording/source cleanup
-        - New enrichment suggestion
+        - New source-data suggestion
     validations:
       required: true
   - type: checkboxes

@@ -286,18 +286,9 @@ V1 no longer ships the old enrichment-campaign toolchain. The active fork path i
 Edit committed source data -> Build -> Validate -> Pages check -> Release check
 ```
 
-New evidence should be integrated directly into the source data with public identifiers, boundary notes, and conservative wording. The release gate then checks source traceability, promotion boundaries, review overlays, patient/clinician wording, standards identity, scenario snapshots, privacy, regression behavior, and database validation.
+New evidence should be integrated directly into the source data with public identifiers, boundary notes, and conservative wording. The release gate then checks source traceability, evidence calculations, patient/clinician wording, standards identity, scenario snapshots, privacy, regression behavior, and database validation.
 
-The small shared source-data helpers live in `scripts/lib/`. Historical staged-source records remain under `data/enrichment/` only as committed source context used by validation; they are not an active backlog or automatic promotion queue.
-
-Active source governance files:
-
-- `data/enrichment/source-registry.json`
-- `data/enrichment/provider-allowlist.json`
-- `docs/enrichment/STAGED_SOURCE_SCHEMA.md`
-- `docs/enrichment/SOURCE_REGISTRY.md`
-- `docs/enrichment/PROMOTION_POLICY.md`
-- `docs/enrichment/REVIEW_STATUS_MODEL.md`
+The small shared source-data helpers live in `scripts/lib/`. Historical import artifacts and local-review examples are no longer part of the active V1 fork path.
 
 PharmCAT remains a future session-input source. It is not a global database enrichment source and should not mutate shipped data files.
 

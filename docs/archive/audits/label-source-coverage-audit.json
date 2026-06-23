@@ -1,9 +1,0 @@
-{
-  "schema": "diognosis.label-source-coverage-audit.v1",
-  "generatedAt": "2026-06-15T14:32:01.828Z",
-  "stagedRecords": 100,
-  "fetchedRecords": 40,
-  "providerFailures": [],
-  "sourceTruthStatus": "fetched_public_label_metadata_only",
-  "reviewBoundary": "label_source_lane_initialized_no_runtime_fetch_no_core_promotion"
-}
