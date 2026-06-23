@@ -9,8 +9,8 @@ External Source
       -> Stage
         -> Dedupe
           -> Coverage Audit
-            -> Review Queue
-              -> Human Review
+            -> Source-Faithfulness Diagnostics
+              -> Maintainer Check
                 -> Source-Faithfulness Review
                   -> Curated Draft / Preview
                     -> Optional Professional Review
@@ -28,7 +28,7 @@ Forks and clinics can add local review overlays. Those overlays are explicitly l
 - Literature discovery: PubMed, Europe PMC, OpenAlex, Unpaywall. These provide metadata, identifiers, legal OA status, and review candidates.
 - Structured guideline sources: CPIC Data and ClinPGx. These provide staged guideline, annotation, label, gene, chemical, variant, and publication context.
 - User/session PGx sources: PharmCAT and future PGx JSON imports. These can affect the current browser session only, never shipped data files.
-- Internal Diognosis sources: `DRUG_DB`, `KNOWN_DDI`, `METAB`, PGx, PK, timing, `STUDY_DB`, Open Targets snapshots, and generated review queues.
+- Internal Diognosis sources: `DRUG_DB`, `KNOWN_DDI`, `METAB`, PGx, PK, timing, `STUDY_DB`, Open Targets snapshots, and generated source diagnostics.
 
 ## Runtime boundary
 

@@ -152,7 +152,7 @@ function renderEvidenceLadderLedger(findings = []) {
       <div class="finding-meta">
         <span class="finding-tag">source: ${safePublicHtml(typeof compactReviewStatus === "function" ? compactReviewStatus(sourceSupportStatusLabel(ladder.sourceSupportStatus)) : sourceSupportStatusLabel(ladder.sourceSupportStatus))}</span>
         <span class="finding-tag">mechanistic: ${safePublicHtml(ladder.mechanisticConfidence)}</span>
-        <span class="finding-tag">clinical action: ${safePublicHtml(String(ladder.clinicalActionConfidence).replace(/_/g, " "))}</span>
+        <span class="finding-tag">clinical action: ${safePublicHtml(typeof compactReviewStatus === "function" ? compactReviewStatus(String(ladder.clinicalActionConfidence).replace(/_/g, " ")) : String(ladder.clinicalActionConfidence).replace(/_/g, " "))}</span>
         <span class="finding-tag">sign-off: ${safePublicHtml(ladder.professionalReviewStatus === "reviewed" ? "professional" : "not claimed")}</span>
         <span class="finding-tag">${row.study.quantifiedEffects ? "calculation-bearing context" : "qualitative context"}</span>
       </div>

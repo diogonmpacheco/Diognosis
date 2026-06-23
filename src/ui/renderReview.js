@@ -16,7 +16,7 @@ function renderReviewSummary() {
   const findings = getReviewTabFindings();
   const concerns = getReviewClinicalConcerns(findings);
   const severeCritical = findings.filter(finding => ["severe", "critical"].includes(finding.severity));
-  const v3SignoffQueue = findings.filter(finding => finding.reviewRequired !== false || finding.evidenceLadder?.professionalReviewStatus !== "reviewed");
+  const noSignoffClaimed = findings.filter(finding => finding.reviewRequired !== false || finding.evidenceLadder?.professionalReviewStatus !== "reviewed");
   const sourceLinked = findings.filter(finding => finding.evidenceLadder?.sourceLinked || (finding.evidenceRefs || []).length);
   const activeMetabolite = findings.filter(finding => findingInvolves(finding, /active metabolite|toxic metabolite|active moiety|prodrug|metabolite/i));
   const genotype = findings.filter(finding => findingInvolves(finding, /genotype|phenoconversion|cyp|ugt|dpyd|tpmt|nudt|hla|g6pd/i));
@@ -27,8 +27,8 @@ function renderReviewSummary() {
   ${renderV1ReadinessPanel()}
   <div class="review-summary-grid">
     ${renderReviewSummaryTile(findings.length, "Findings", "Normalized current-stack findings across all engines.")}
-    ${renderReviewSummaryTile(severeCritical.length, "Severe/Critical", "Highest priority rows for professional review.")}
-    ${renderReviewSummaryTile(v3SignoffQueue.length, "V3 Sign-Off Queue", "Rows without explicit professional sign-off metadata.")}
+    ${renderReviewSummaryTile(severeCritical.length, "Severe/Critical", "Highest priority rows for clinical context checking.")}
+    ${renderReviewSummaryTile(noSignoffClaimed.length, "No Sign-Off Claimed", "Source-linked or modeled rows without professional sign-off metadata.")}
     ${renderReviewSummaryTile(sourceLinked.length, "Source-Linked", "Findings with evidence refs or linked source context.")}
     ${renderReviewSummaryTile(activeMetabolite.length, "Metabolite Involved", "Parent, active, or toxic metabolite reasoning present.")}
     ${renderReviewSummaryTile(genotype.length, "Gene Results", "Genotype or pathway-conversion context present.")}
@@ -36,7 +36,7 @@ function renderReviewSummary() {
     ${renderReviewSummaryTile(concerns.length, "Clinical Concerns", "Grouped Overview presentation objects.")}
   </div>
   <div class="quality-list">
-    <div class="quality-item"><strong>Reviewer console scope:</strong> technical pathway details, evidence review queue, interaction grid, data diagnostics, scenario snapshots, and contribution links are grouped here for auditing.</div>
+    <div class="quality-item"><strong>Reviewer console scope:</strong> technical pathway details, evidence quality diagnostics, interaction grid, data diagnostics, scenario snapshots, and contribution links are grouped here for auditing.</div>
     ${renderClinicalConcernReviewList(concerns)}
   </div>`;
   return findings;

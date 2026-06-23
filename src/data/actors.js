@@ -334,6 +334,7 @@ const PHENOTYPE_ACTORS = {
   "qtc_prolongation_phenotype": {
     id:"qtc_prolongation_phenotype", type:ACTOR_TYPE.PHENOTYPE, name:"QTc Prolongation Risk",
     severity:"warn", direction:"adverse",
+    evidenceRefs:["ev_qtc_polypharmacy_ckd","ev_methadone_qtc_polypharmacy","ev_qtc_older_adults_review"],
     note:"Cardiac arrhythmia risk; additive with multiple QTc-prolonging drugs",
   },
   "hypotension_phenotype": {

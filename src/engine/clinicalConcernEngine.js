@@ -1352,7 +1352,14 @@ function v1TrustConfidenceLabel(finding = {}) {
 function v1TrustActionStatusLabel(value) {
   const key = String(value || "").trim().toLowerCase().replace(/_/g, " ");
   if (key === "reviewed" || key === "professionally reviewed") return "action reviewed";
-  if (key === "pending review" || key === "review needed" || key === "clinical review needed") return "professional sign-off not claimed";
+  if (
+    key === "no signoff" ||
+    key === "no sign off" ||
+    key === "pending review" ||
+    key === "review needed" ||
+    key === "clinical review needed" ||
+    key === "professional sign off not claimed"
+  ) return "professional sign-off not claimed";
   if (key === "insufficient") return "action evidence limited";
   return `${v1TrustLabelCase(value)} action`;
 }
@@ -1366,7 +1373,7 @@ function v1TrustEvidenceLabel(finding = {}, evidenceRefs = [], sourceLinked = fa
   if (sourceLinked || count) {
     return `${tier ? `${tier}; ` : ""}${count || 1} linked source${(count || 1) === 1 ? "" : "s"}`;
   }
-  return "modeled signal; source review needed";
+  return "modeled signal; no linked source yet";
 }
 
 function v1TrustPatientAction(finding = {}, domain = "") {

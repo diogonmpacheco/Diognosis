@@ -4468,76 +4468,6 @@ const STUDY_DB = {
     verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
   },
 
-  "draft_kratom_cyp_akbarnh2025_40642117": {
-    id:"draft_kratom_cyp_akbarnh2025_40642117",
-    public:true,
-    type:EVIDENCE_TIER.OBSERVATIONAL,
-    title:"Screening, docking, and molecular dynamics analysis of Mitragyna speciosa (Korth.) compounds for targeting HER2 in breast cancer.",
-    year:2025,
-    source:"Curr Res Struct Biol",
-    journal:"Curr Res Struct Biol",
-    pmid:"40642117",
-    doi:"10.1016/j.crstbi.2025.100171",
-    url:"https://doi.org/10.1016/j.crstbi.2025.100171",
-    studyDesign:"observational_or_screened_pubmed_record",
-    n:null,
-    phenotypes:[],
-    quantifiedEffects:{
-      "note": "Citation appears relevant to kratom:CYP, but no quantitative value was extractable from the abstract."
-    },
-    temporal:{},
-    supports:[
-      "kratom_cyp_interaction_potential",
-      "kratom_polysubstance_toxicity"
-    ],
-    contradicts:[],
-    limitations:[
-      "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
-    ],
-    confidence:"low",
-    needsFullText:true,
-    provenance:"search:europepmc",
-    reviewRequired:true,
-    verified:false,
-    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
-  },
-
-  "draft_kratom_cyp_alfordas2025_40006036": {
-    id:"draft_kratom_cyp_alfordas2025_40006036",
-    public:true,
-    type:EVIDENCE_TIER.OBSERVATIONAL,
-    title:"Exploring the Therapeutic Potential of Mitragynine and Corynoxeine: Kratom-Derived Indole and Oxindole Alkaloids for Pain Management.",
-    year:2025,
-    source:"Pharmaceuticals (Basel)",
-    journal:"Pharmaceuticals (Basel)",
-    pmid:"40006036",
-    doi:"10.3390/ph18020222",
-    url:"https://doi.org/10.3390/ph18020222",
-    studyDesign:"observational_or_screened_pubmed_record",
-    n:null,
-    phenotypes:[],
-    quantifiedEffects:{
-      "note": "Citation appears relevant to kratom:CYP, but no quantitative value was extractable from the abstract."
-    },
-    temporal:{},
-    supports:[
-      "kratom_cyp_interaction_potential",
-      "kratom_polysubstance_toxicity"
-    ],
-    contradicts:[],
-    limitations:[
-      "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
-    ],
-    confidence:"low",
-    needsFullText:true,
-    provenance:"search:europepmc",
-    reviewRequired:true,
-    verified:false,
-    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
-  },
-
   "draft_kratom_cyp_mccurdycr2024_38217374": {
     id:"draft_kratom_cyp_mccurdycr2024_38217374",
     public:true,
@@ -4619,76 +4549,6 @@ const STUDY_DB = {
     pmid:"31994019",
     doi:"10.1007/s40122-020-00151-x",
     url:"https://doi.org/10.1007/s40122-020-00151-x",
-    studyDesign:"observational_or_screened_pubmed_record",
-    n:null,
-    phenotypes:[],
-    quantifiedEffects:{
-      "note": "Citation appears relevant to kratom:CYP, but no quantitative value was extractable from the abstract."
-    },
-    temporal:{},
-    supports:[
-      "kratom_cyp_interaction_potential",
-      "kratom_polysubstance_toxicity"
-    ],
-    contradicts:[],
-    limitations:[
-      "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
-    ],
-    confidence:"low",
-    needsFullText:true,
-    provenance:"search:openalex",
-    reviewRequired:true,
-    verified:false,
-    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
-  },
-
-  "draft_kratom_cyp_rashid2026_null": {
-    id:"draft_kratom_cyp_rashid2026_null",
-    public:true,
-    type:EVIDENCE_TIER.CLINICAL_PK,
-    title:"Therapeutic Potential, Predictive Pharmaceutical Modeling, and Metabolic Interactions of the Oxindole Kratom Alkaloids",
-    year:2026,
-    source:"Journal of Phytomedicine",
-    journal:"Journal of Phytomedicine",
-    pmid:null,
-    doi:"10.3390/jphytomed1010002",
-    url:"https://doi.org/10.3390/jphytomed1010002",
-    studyDesign:"clinical_pk",
-    n:null,
-    phenotypes:[],
-    quantifiedEffects:{
-      "note": "Citation appears relevant to kratom:CYP, but no quantitative value was extractable from the abstract."
-    },
-    temporal:{},
-    supports:[
-      "kratom_cyp_interaction_potential",
-      "kratom_polysubstance_toxicity"
-    ],
-    contradicts:[],
-    limitations:[
-      "No abstract-extractable quantitative value",
-      "Live enrichment entry promoted without professional sign-off; do not use for severity escalation without sign-off"
-    ],
-    confidence:"low",
-    needsFullText:true,
-    provenance:"search:openalex",
-    reviewRequired:true,
-    verified:false,
-    verifyNote:"Live enrichment entry without professional sign-off; citation metadata and abstract-level facts only"
-  },
-
-  "draft_kratom_cyp_veltri2019_31308789": {
-    id:"draft_kratom_cyp_veltri2019_31308789",
-    public:true,
-    type:EVIDENCE_TIER.OBSERVATIONAL,
-    title:"&lt;p&gt;Current perspectives on the impact of Kratom use&lt;/p&gt;",
-    year:2019,
-    source:"Substance Abuse and Rehabilitation",
-    journal:"Substance Abuse and Rehabilitation",
-    pmid:"31308789",
-    doi:"10.2147/sar.s164261",
-    url:"https://doi.org/10.2147/sar.s164261",
     studyDesign:"observational_or_screened_pubmed_record",
     n:null,
     phenotypes:[],
@@ -5581,7 +5441,7 @@ const STUDY_DB = {
     confidence:"high",
     verified:false,
     reviewRequired:true,
-    verifyNote:"Phase B CPIC promotion uses primary CPIC/ClinPGx recommendation rows; final professional clinical sign-off pending"
+    verifyNote:"Phase B CPIC promotion uses primary CPIC/ClinPGx recommendation rows; professional clinical sign-off is not claimed"
   },
 
   "ev_aminoglycoside_mtrnr1_cpic2021": {
@@ -9256,7 +9116,7 @@ const STUDY_DB = {
     temporal:{mechanism:"parent_to_metabolite_active_moiety_clearance_and_toxicity_context", onset:"minutes-days", offset:"hours-days"},
     supports:["phase1_high_priority_metabolite_parent_maps","phase1_active_metabolite_actor_promotion","phase1_toxic_metabolite_actor_context"],
     contradicts:[],
-    limitations:["Grouped source anchor for live pending-review rows; drug-specific labels, specialty protocols, and therapeutic monitoring remain decisive for clinical management."],
+    limitations:["Grouped source anchor for live source-context rows; drug-specific labels, specialty protocols, and therapeutic monitoring remain decisive for clinical management."],
     verified:false, reviewRequired:true, verifyNote:"Grouped high-priority metabolite evidence without professional sign-off"
   },
   "ev_phase2_label_interaction_expansion": {
@@ -9298,7 +9158,7 @@ const STUDY_DB = {
     temporal:{mechanism:"genotype_specific_metabolite_and_parent_exposure_context", onset:"baseline", offset:"persistent"},
     supports:["phase4_genotype_metabolite_rules","phase4_gsta1_gene_promotion","phase4_parent_fold_hooks"],
     contradicts:[],
-    limitations:["Educational pending-review rules. Many entries are qualitative review flags, not dose recommendations; labels, CPIC/DPWG guidance, therapeutic drug monitoring, ECGs, INR, platelet/procedure context, oncology protocols, and organ function remain decisive."],
+    limitations:["Educational source-context rules. Many entries are qualitative context flags, not dose recommendations; labels, CPIC/DPWG guidance, therapeutic drug monitoring, ECGs, INR, platelet/procedure context, oncology protocols, and organ function remain decisive."],
     verified:false, reviewRequired:true, verifyNote:"Grouped genotype-metabolite expansion without professional sign-off"
   },
   "ev_phase5_receptor_burden_profiles": {
@@ -9326,13 +9186,13 @@ const STUDY_DB = {
     temporal:{mechanism:"context_specific_medication_risk_screening_and_procedure_timing", onset:"same_day", offset:"days-years"},
     supports:["phase6_pregnancy_active_moiety_flags","phase6_transplant_perioperative_context_pairs","phase6_batch_drug_contextualization"],
     contradicts:[],
-    limitations:["These are live pending-review context rules, not standalone treatment recommendations. Indication, dose, gestational age, organ type, transplant timing, procedure timing, renal/hepatic function, ECG/electrolytes, trough targets, and specialty protocols determine actual management."],
-    verified:false, reviewRequired:true, verifyNote:"Grouped clinical-context enrichment pending OB/MFM, transplant, perioperative, and pharmacy review"
+    limitations:["These are live source-context rules, not standalone treatment recommendations. Indication, dose, gestational age, organ type, transplant timing, procedure timing, renal/hepatic function, ECG/electrolytes, trough targets, and specialty protocols determine actual management."],
+    verified:false, reviewRequired:true, verifyNote:"Grouped clinical-context enrichment requires OB/MFM, transplant, perioperative, and pharmacy sign-off before clinical use"
   },
   "ev_top100_live_coverage_adapter": {
     id:"ev_top100_live_coverage_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
     title:"Phase 7 top-100 live coverage adapter — DDI, metabolites, PK, washout, PGx, transporters, and burden scoring",
-    year:2026, source:"Internal Diognosis route/label-derived coverage adapter using existing curated DRUG_DB routes, public-label anchors, and pending-review enrichment rules",
+    year:2026, source:"Internal Diognosis route/label-derived coverage adapter using existing curated DRUG_DB routes, public-label anchors, and source-context enrichment rules",
     pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
     studyDesign:"coverage_adapter_group", n:null,
     phenotypes:["CYP3A4","CYP2D6","CYP2C19","CYP2C9","CYP2C8","UGT","P-gp","BCRP","OATP1B1","OAT/OCT/MATE","washout","burden","older_adult_burden"],
@@ -9868,14 +9728,14 @@ const STUDY_DB = {
   },
   "ev_ddi_expansion_pack_adapter": {
     id:"ev_ddi_expansion_pack_adapter", public:true, type:EVIDENCE_TIER.GUIDELINE,
-    title:"Phase 9 DDI expansion pack — explicit pending-review route and class pairs",
+    title:"Phase 9 DDI expansion pack — explicit source-context route and class pairs",
     year:2026, source:"Internal Diognosis enrichment adapter using existing curated routes, high-risk classes, transporter context, and pharmacodynamic burden classes",
     pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
     studyDesign:"class_route_pair_expansion", n:null,
     phenotypes:["CYP3A4","CYP2D6","CYP2C19","CYP2C9","CYP2C8","UGT","P-gp","BCRP","OATP","QT","bleeding","CNS","serotonin","renal","anticholinergic"],
     quantifiedEffects:{note:"Shared evidence anchor for explicit DDI rows generated from existing route and class knowledge. These rows make source-priority interaction signals visible through KNOWN_DDI without claiming source-specific final curation."},
     temporal:{mechanism:"class_route_and_pharmacodynamic_interaction_context", onset:"same_day", offset:"hours-weeks"},
-    supports:["phase9_ddi_pair_expansion","phase9_explicit_known_ddi_pending_review","phase9_route_class_pair_visibility"],
+    supports:["phase9_ddi_pair_expansion","phase9_explicit_known_ddi_no_signoff","phase9_route_class_pair_visibility"],
     contradicts:[],
     limitations:["Rows are intended as live source-priority signals. They do not replace drug-specific labels, measured concentration data, ECG/electrolytes, renal/hepatic assessment, INR/TDM, dose/indication context, or professional judgment."],
     verified:false, reviewRequired:true, verifyNote:"Phase 9 DDI expansion pack rows are without professional sign-off and should be replaced by source-specific rows over time."
@@ -9948,14 +9808,14 @@ const STUDY_DB = {
 // Pipeline flow:
 //   PubMed / FDA / CPIC search
 //   → structured extraction → normalized draft (createStudyDraft)
-//   → INGESTION_QUEUE (awaiting review)
+//   → INGESTION_QUEUE (source candidate)
 //   → professional sign-off and approval
 //   → merge into STUDY_DB
 //
 // In a future version, this queue will be backed by a server-side review UI.
 // For now it persists in memory for within-session use.
 
-const INGESTION_QUEUE = [];   // drafts awaiting review
+const INGESTION_QUEUE = [];   // source-candidate drafts
 
 // createStudyDraft — create a structured evidence draft from raw inputs
 // Called by future structured extraction pipeline or manual entry
@@ -9963,7 +9823,7 @@ function createStudyDraft({pmid, doi, title, year, source, journal, type, studyD
                            phenotypes, quantifiedEffects, temporal, supports, contradicts, limitations}) {
   const id = `draft_${Date.now()}_${Math.random().toString(36).slice(2,7)}`;
   const draft = {
-    id, _status:'pending_review',
+    id, _status:'source_candidate',
     type: type || EVIDENCE_TIER.CLINICAL_PK,
     title: title || '',
     year: year || null,
@@ -10011,7 +9871,7 @@ function reviewStudyDraft(draftId, reviewerNotes, approve) {
 // getIngestionQueueStatus — returns summary for display
 function getIngestionQueueStatus() {
   return {
-    pending: INGESTION_QUEUE.filter(d => d._status === 'pending_review').length,
+    sourceCandidates: INGESTION_QUEUE.filter(d => d._status === 'source_candidate').length,
     rejected: INGESTION_QUEUE.filter(d => d._status === 'rejected').length,
     total: INGESTION_QUEUE.length,
   };

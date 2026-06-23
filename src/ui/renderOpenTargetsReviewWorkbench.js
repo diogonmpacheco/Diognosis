@@ -64,7 +64,7 @@ function renderReviewWorkbench(overrides = {}) {
 
   body.innerHTML = `
     <div class="review-workbench-notice">
-      Professional review queue, Open Targets promotion queue, ClinPGx gap roadmap, and source-driven candidate relation groups. Rows marked external or candidate remain context-only and do not change warning severity.
+      Source-faithfulness diagnostics, Open Targets promotion candidates, ClinPGx gap roadmap, and source-driven candidate relation groups. Rows marked external or candidate remain context-only and do not change warning severity.
     </div>
     <div class="review-workbench-summary">
       ${renderReviewWorkbenchTile("Internal evidence", model.summary.internalRows, `${model.summary.calculationBearingRows} calculation-bearing`)}
@@ -359,7 +359,7 @@ function normalizeReviewWorkbenchKnowledgeRow(row, stackMatched) {
     stackMatched,
     title: `${row.priority || "P2"} · ${formatReviewWorkbenchToken(row.layer || row.store || "candidate")} · ${(row.affectedDrugs || row.affectedGenes || ["candidate"])[0] || "candidate"}`,
     badges: ["candidate relation", row.priority || "review", row.suggestedTarget || "review only"],
-    decision: row.reviewStatus || "pending_professional_review",
+    decision: row.reviewStatus || "not_professionally_signed_off",
     priority: row.priority === "P1" ? 100 : row.priority === "P2" ? 50 : 10,
     meta: [
       row.id ? `ID: ${row.id}` : "",

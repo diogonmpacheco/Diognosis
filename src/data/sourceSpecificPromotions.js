@@ -3,7 +3,7 @@
 
 const SOURCE_SPECIFIC_PROMOTION_VERSION = "phase14_source_specific_promotion_framework";
 const SOURCE_SPECIFIC_PROMOTION_STATUS = Object.freeze({
-  PENDING_REVIEW: "source_specific_pending_review",
+  NO_SIGNOFF: "source_specific_no_signoff",
   REVIEWED: "source_specific_reviewed",
 });
 const SOURCE_SPECIFIC_PROMOTION_SURFACES = Object.freeze([
@@ -189,7 +189,7 @@ function sourceSpecificMetadata(promotion) {
     sourceSpecificPromotion:true,
     sourceSpecificPromotionId:promotion.id,
     promotionVersion:SOURCE_SPECIFIC_PROMOTION_VERSION,
-    promotionStatus:reviewed ? SOURCE_SPECIFIC_PROMOTION_STATUS.REVIEWED : SOURCE_SPECIFIC_PROMOTION_STATUS.PENDING_REVIEW,
+    promotionStatus:reviewed ? SOURCE_SPECIFIC_PROMOTION_STATUS.REVIEWED : SOURCE_SPECIFIC_PROMOTION_STATUS.NO_SIGNOFF,
     reviewRequired:!reviewed,
     verified:reviewed,
     supersedesAdapter:promotion.supersedesAdapter !== false,
@@ -405,7 +405,7 @@ function sourceSpecificApplyBulkMetadata(row, surface, refs) {
   row.sourceSpecificPromotionSurface = row.sourceSpecificPromotionSurface || surface;
   row.sourceSpecificEvidenceRefs = sourceSpecificUnion(row.sourceSpecificEvidenceRefs || [], refs);
   row.promotionVersion = row.promotionVersion || SOURCE_SPECIFIC_PROMOTION_VERSION;
-  row.promotionStatus = row.promotionStatus || SOURCE_SPECIFIC_PROMOTION_STATUS.PENDING_REVIEW;
+  row.promotionStatus = row.promotionStatus || SOURCE_SPECIFIC_PROMOTION_STATUS.NO_SIGNOFF;
   row.sourceType = row.sourceType || "source_specific";
   row.sourceKind = row.sourceKind || "public_evidence_row";
   row.supersedesAdapter = row.supersedesAdapter !== false;

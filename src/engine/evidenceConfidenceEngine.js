@@ -61,7 +61,7 @@ function computeEvidenceLadder(evidenceRefs = [], context = {}) {
 
 function classifySourceSupportStatus(sourceLinked, professionalReviewStatus = "unknown", context = {}) {
   if (professionalReviewStatus === "reviewed" && sourceLinked) return "professionally_reviewed_source_linked";
-  if (sourceLinked && professionalReviewStatus === "pending") return "source_linked_pending_review";
+  if (sourceLinked && professionalReviewStatus === "pending") return "source_linked_no_signoff";
   if (sourceLinked) return "source_linked";
   if (context.supportingSignals?.modelOnly || context.reviewRequired === true) return "model_only_review_prompt";
   return "insufficient_source_support";
@@ -70,7 +70,7 @@ function classifySourceSupportStatus(sourceLinked, professionalReviewStatus = "u
 function sourceSupportStatusLabel(status) {
   const labels = {
     professionally_reviewed_source_linked: "professionally reviewed source-linked",
-    source_linked_pending_review: "source-linked; professional sign-off not claimed",
+    source_linked_no_signoff: "source-linked; professional sign-off not claimed",
     source_linked: "source-linked",
     model_only_review_prompt: "modeled review prompt",
     insufficient_source_support: "insufficient source support",
@@ -100,7 +100,7 @@ function classifyClinicalActionConfidence(evidenceRefsOrStudies = [], reviewStat
     typeof item === "string" ? (typeof getStudy === "function" ? getStudy(item) : STUDY_DB?.[item]) : item
   ).filter(Boolean);
   if (reviewStatus === "reviewed") return "reviewed";
-  if (studies.length || context.sourceLinked || context.reviewRequired === true) return "pending_review";
+  if (studies.length || context.sourceLinked || context.reviewRequired === true) return "no_signoff";
   return "insufficient";
 }
 
@@ -162,7 +162,7 @@ function strongestEvidenceStudy(studies = []) {
 function classifyProfessionalReviewStatus(studies = [], explicitStatus = "") {
   const status = String(explicitStatus || "").toLowerCase();
   if (["reviewed", "professional_reviewed", "clinician_reviewed"].includes(status)) return "reviewed";
-  if (["pending", "pending_review", "review_required"].includes(status)) return "pending";
+  if (["pending", "review_required", "no_signoff", "not_signed_off"].includes(status)) return "pending";
   if ((studies || []).some(study =>
     study?.professionalReviewed === true ||
     study?.clinicalReviewed === true ||

@@ -93,8 +93,7 @@ if (existsSync(publicTrustPath)) {
 const trustBlock = `${trustStart}
 - **${stats.sourceIntegratedStudies} \`STUDY_DB\` entries** are source-integrated for V1 evidence display and calculations.
 - **${stats.professionalReviewedStudies} entries** have explicit v3 professional sign-off metadata.
-- **${stats.v3ProfessionalReviewCandidateStudies} entries** remain eligible for future professional sign-off without blocking V1 source integration.
-- **${stats.internalReviewRequiredEntries} entries** are currently marked \`reviewRequired:true\` as an internal enrichment/scoring flag, not a public reviewed/unreviewed boundary.
+- **${stats.notProfessionallyReviewedStudies} entries** publish source-linked context without claiming professional sign-off.
 ${trustEnd}`;
   let trust = readFileSync(publicTrustPath, 'utf8')
     .replace(/^Generated: .*/m, `Generated: ${generatedDate(stats)}`);
@@ -113,8 +112,7 @@ if (existsSync(launchTrustPath)) {
 | Evidence entries in \`STUDY_DB\` | ${stats.studies} |
 | Source-integrated V1 evidence entries | ${stats.sourceIntegratedStudies} |
 | V3 professional sign-off entries | ${stats.professionalReviewedStudies} |
-| Future professional sign-off candidates | ${stats.v3ProfessionalReviewCandidateStudies} |
-| Internal \`reviewRequired:true\` evidence entries | ${stats.internalReviewRequiredEntries} |
+| Evidence entries without professional sign-off claims | ${stats.notProfessionallyReviewedStudies} |
 | RxNorm identity mappings | ${stats.externalSubstanceMappings} |
 | PGx marker rows | ${stats.pgxMarkerRows} |
 | CPIC-linked action summaries | ${stats.pgxActionSummaries} |

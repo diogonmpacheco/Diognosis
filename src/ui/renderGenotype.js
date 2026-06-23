@@ -42,15 +42,15 @@ function renderGenotypePanel() {
   const showEnzymes = Object.keys(GENOTYPE_EFFECTS).filter(e => relevantEnzymes.has(e));
   const showRiskAlleles = Object.keys(typeof GENOTYPE_RISK_EFFECTS !== 'undefined' ? GENOTYPE_RISK_EFFECTS : {}).filter(e => relevantRiskAlleles.has(e));
   const importHtml = renderPharmGxImportCard();
-  const pendingPgxContextHtml = renderPendingReviewPgxContext();
+  const sourcePgxContextHtml = renderSourcePgxContext();
   const pgxActionSummaryHtml = renderPgxActionSummaryCards();
   if (showEnzymes.length === 0 && showRiskAlleles.length === 0) {
-    el.innerHTML = importHtml + pendingPgxContextHtml + pgxActionSummaryHtml + '<div style="color:var(--text2);font-size:12px;padding:8px">No genotype-modeled pathways in current stack.</div>';
+    el.innerHTML = importHtml + sourcePgxContextHtml + pgxActionSummaryHtml + '<div style="color:var(--text2);font-size:12px;padding:8px">No genotype-modeled pathways in current stack.</div>';
     return;
   }
 
   // Selector rows
-  let html = importHtml + pendingPgxContextHtml + pgxActionSummaryHtml + '<div style="margin-bottom:12px">';
+  let html = importHtml + sourcePgxContextHtml + pgxActionSummaryHtml + '<div style="margin-bottom:12px">';
   html += '<p style="font-size:12px;color:var(--text2);margin:0 0 8px">Set inherited gene or marker results here; Current Pathway Status shows stack-driven pathway changes below.</p>';
   for (const enz of showEnzymes) {
     const cur = activeGenotype[enz] || GENOTYPE_PHENOTYPE.NM;
@@ -123,31 +123,31 @@ function renderGenotypePanel() {
   el.innerHTML = html;
 }
 
-function renderPendingReviewPgxContext() {
+function renderSourcePgxContext() {
   if (typeof isReviewerMode === "function" && !isReviewerMode()) return "";
   const cache = typeof getRenderComputationCache === "function" ? getRenderComputationCache() : {};
-  const context = cache.pendingReviewContext;
-  const pendingCore = cache.pendingCoreContext;
+  const context = cache.sourceIntegrationContext;
+  const sourceCore = cache.sourceCoreContext;
   const rows = (context?.matchedRecords || []).filter(row =>
     (row.genes || []).length ||
     /pgx|gene|allele|variant|guideline|clinical_annotation/i.test(row.claimType || "")
   ).slice(0, 6);
-  const coreRows = (pendingCore?.matchedCandidates || []).filter(row =>
+  const coreRows = (sourceCore?.matchedCandidates || []).filter(row =>
     row.candidateBucket === "pgxCandidates" ||
     /PGx|curated PGx rules|gene/i.test(`${row.suggestedTarget || ""} ${row.candidateCategory || ""}`)
   ).slice(0, 6);
   if (!rows.length && !coreRows.length) return "";
   return `<div class="external-context-notice" style="margin-bottom:10px">
-    Pending external PGx context is available for this stack, including ${safePublicHtml(String(coreRows.length))} candidate${coreRows.length === 1 ? "" : "s"}. It is not used for gene-result interpretation, scoring, or public severity.
+    External PGx source context is available for this stack, including ${safePublicHtml(String(coreRows.length))} candidate${coreRows.length === 1 ? "" : "s"}. It is not used for gene-result interpretation, scoring, or public severity.
   </div>
-  <div class="pending-review-grid" style="margin-bottom:12px">
-    ${rows.map(row => `<div class="pending-review-card">
-      <div class="pending-review-head">
-        <span class="ev-review-badge needs-review">Pending verification</span>
+  <div class="source-context-grid" style="margin-bottom:12px">
+    ${rows.map(row => `<div class="source-context-card">
+      <div class="source-context-head">
+        <span class="ev-review-badge needs-review">Source verification</span>
         <span class="ev-review-badge needs-review">Not used for scoring</span>
       </div>
-      <div class="pending-review-title">${safePublicHtml(row.title || row.id || "Pending PGx context")}</div>
-      <div class="pending-review-meta">${safeTextList([
+      <div class="source-context-title">${safePublicHtml(row.title || row.id || "PGx source context")}</div>
+      <div class="source-context-meta">${safeTextList([
         row.sourceName ? `Source: ${publicDisplayText(row.sourceName)}` : "",
         (row.genes || []).length ? `Genes: ${row.genes.slice(0, 6).join(", ")}` : "",
         (row.drugs || []).length ? `Drugs: ${row.drugs.slice(0, 6).join(", ")}` : "",
@@ -155,13 +155,13 @@ function renderPendingReviewPgxContext() {
         (row.evidenceIdentifiers || []).length ? `Evidence: ${row.evidenceIdentifiers.slice(0, 3).map(value => publicDisplayText(value)).join(", ")}` : "",
       ].filter(Boolean), "<br>")}</div>
     </div>`).join("")}
-    ${coreRows.map(row => `<div class="pending-review-card">
-      <div class="pending-review-head">
+    ${coreRows.map(row => `<div class="source-context-card">
+      <div class="source-context-head">
         <span class="ev-review-badge needs-review">PGx candidate</span>
-        <span class="ev-review-badge needs-review">Pending verification</span>
+        <span class="ev-review-badge needs-review">Source verification</span>
       </div>
-      <div class="pending-review-title">${safePublicHtml(row.gene || "Gene context")} ${row.drug ? `+ ${safePublicHtml(row.drug)}` : ""}</div>
-      <div class="pending-review-meta">${safeTextList([
+      <div class="source-context-title">${safePublicHtml(row.gene || "Gene context")} ${row.drug ? `+ ${safePublicHtml(row.drug)}` : ""}</div>
+      <div class="source-context-meta">${safeTextList([
         row.sourceName ? `Source: ${publicDisplayText(row.sourceName)}` : "",
         row.ruleKind ? `Rule kind: ${publicDisplayText(formatPendingReviewToken(row.ruleKind))}` : "",
         row.suggestedTarget ? `Target: ${publicDisplayText(row.suggestedTarget)}` : "",
@@ -571,7 +571,7 @@ function renderGenotypeRiskEffectCard(card) {
   const refs = (drugEffect.evidenceRefs || []).filter(ref => typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref]);
   const evidenceText = refs.length
     ? refs.map(publicEvidenceReferenceLabel).join(' · ')
-    : 'Evidence pending';
+    : 'Evidence not linked yet';
   return `<div id="${safeAttr(genotypeRiskCardId(riskKey, drugEffect.parent))}" class="geno-effect-card">
     <div class="geno-effect-title">${safePublicHtml(drugEffect.parent)} <span style="color:var(--text2);font-size:11px;font-weight:400">with ${safePublicHtml(risk.label)}</span>
       <span style="float:right;font-size:18px;font-weight:800;color:${foldColor}">${safePublicHtml(label)}</span>
@@ -721,7 +721,7 @@ function renderGenotypeMetaboliteEffectCard(card) {
   const refs = (effect.evidenceRefs || []).filter(ref => typeof getStudy === "function" ? getStudy(ref) : STUDY_DB[ref]);
   const evidenceText = refs.length
     ? refs.map(publicEvidenceReferenceLabel).join(' · ')
-    : 'Evidence pending';
+    : 'Evidence not linked yet';
   const metaboliteLabel = publicMetaboliteLabel({
     metaboliteName:effect.metaboliteName,
     name:effect.metaboliteName,

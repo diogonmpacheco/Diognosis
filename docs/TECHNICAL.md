@@ -37,7 +37,7 @@ src/
   data/
     constants, rules, drugs, enzymes, metabolites, transporters,
     actors, pharmacology, evidence, clinical standards, interactions, generated stats,
-    generated evidence review queues, Open Targets snapshots,
+    generated evidence diagnostics, Open Targets snapshots,
     generated review diagnostics
   engine/
     evidenceEngine
@@ -188,7 +188,7 @@ Review/safety limitations: source-linked does not mean professionally signed off
 
 Purpose: keep technical audit surfaces available without making them compete with the primary user flow.
 
-Input data: current findings, generated review workbench rows, scenario snapshots, metabolite coverage gaps, evidence queues, Open Targets review queues, raw warning paths, and interaction matrices.
+Input data: current findings, generated review workbench rows, scenario snapshots, metabolite coverage gaps, evidence diagnostics, Open Targets diagnostics, raw warning paths, and interaction matrices.
 
 Output shape: reviewer summary tiles, scenario snapshot cards, gap cards, raw warning path payloads, technical tables, and contribution links.
 
@@ -276,7 +276,7 @@ Each tier carries a calibrated confidence weight used by graph and finding-level
 
 Important evidence helpers include `normalizeEvidence()`, `getEvidenceSummary()`, `assertEvidencedSeverity()`, `createStudyDraft()`, `reviewStudyDraft()`, `computeEvidenceLadder()`, and `attachEvidenceLaddersToFindings()`.
 
-Live enrichment entries should remain marked `reviewRequired:true` until explicitly signed off. Open Targets-derived context remains local/static at runtime and defaults to context-only, sign-off-required, and not severity-bearing unless explicitly promoted by Diognosis governance.
+Live enrichment entries can carry internal source-governance flags until explicitly signed off. Open Targets-derived context remains local/static at runtime and defaults to context-only, sign-off-required, and not severity-bearing unless explicitly promoted by Diognosis governance.
 
 ## Enrichment Governance
 
@@ -288,9 +288,9 @@ External Source -> Fetch / Discover -> Normalize -> Stage -> Dedupe
   -> Live Validation -> Build
 ```
 
-Version 1 treats source-linked live data as the product surface. The default enrichment audit is therefore a live-readiness gate: it checks promoted DDI, metabolites, PK, washout, PGx, transporter, burden, and boundary metadata. Backlog cleanup should promote source-backed rows only when they fill concrete live gaps, archive rows already represented in live core data, and delete model-only or unmapped rows. Generated review queues, candidate stores, source-faithfulness decision exports, and gap-query batches are not kept as active project backlog; regenerate them only for a deliberate enrichment campaign.
+Version 1 treats source-linked live data as the product surface. The default enrichment audit is therefore a live-readiness gate: it checks promoted DDI, metabolites, PK, washout, PGx, transporter, burden, and boundary metadata. Backlog cleanup should promote source-backed rows only when they fill concrete live gaps, archive rows already represented in live core data, and delete model-only or unmapped rows. Generated source diagnostics, candidate stores, source-faithfulness decision exports, and gap-query batches are not kept as active project backlog; regenerate them only for a deliberate enrichment campaign.
 
-Canonical schema helpers live in `scripts/enrich/lib/staged-source-schema.js`. Every staged record defaults to `reviewRequired:true`, `professionalReviewStatus:"pending"`, `sourceFaithfulnessStatus:"unreviewed"`, `canAffectScoring:false`, and `canAffectPublicSeverity:false`.
+Canonical schema helpers live in `scripts/enrich/lib/staged-source-schema.js`. Every staged record defaults to conservative source-governance metadata: it cannot affect scoring or public severity unless promoted through Diognosis governance.
 
 Source governance files:
 
@@ -314,8 +314,8 @@ Structured source workflows:
 - `scripts/enrich/stage-legal-literature.js` normalizes PubMed, Europe PMC, OpenAlex, and Unpaywall literature drafts into the same staged schema.
 - `scripts/enrich/group-staged-records.js` groups CPIC/ClinPGx raw staged rows into human-readable review candidates.
 - `scripts/audit/enrichment-coverage-audit.js` ranks missing drugs, likely missing combinations, PGx gaps, metabolite gaps, and evidence gaps.
-- `scripts/enrich/build-enrichment-review-queue.js` can regenerate a temporary sign-off queue for an enrichment campaign. Queue items cannot auto-promote and do not define V1 completeness.
-- `scripts/enrich/generate-pending-review-enrichment.js` and `scripts/enrich/generate-pending-core-enrichment.js` are optional export tools. Their generated files are not required for the live app gate and should only be regenerated for a deliberate enrichment-backlog campaign.
+- `scripts/enrich/build-enrichment-review-queue.js` can regenerate temporary sign-off diagnostics for an enrichment campaign. These items cannot auto-promote and do not define V1 completeness.
+- `scripts/enrich/generate-pending-review-enrichment.js` and `scripts/enrich/generate-pending-core-enrichment.js` are optional export tools. Their generated files are not required for the live app gate and should only be regenerated for a deliberate enrichment campaign.
 - `scripts/enrich/run-weekly-enrichment.js` orchestrates the staged enrichment run for a deliberate enrichment campaign, not the normal release gate.
 
 PharmCAT remains a future session-input source. It is not a global database enrichment source and should not mutate shipped data files.

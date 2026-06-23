@@ -1,6 +1,6 @@
 # Diognosis Public Trust Model
 
-Generated: 2026-06-22
+Generated: 2026-06-23
 
 ## Launch Status
 
@@ -15,10 +15,9 @@ Diognosis is a source-linked mechanistic review platform. It is designed to make
 Current evidence status:
 
 <!-- PUBLIC_TRUST_STATS_START -->
-- **517 `STUDY_DB` entries** are source-integrated for V1 evidence display and calculations.
+- **513 `STUDY_DB` entries** are source-integrated for V1 evidence display and calculations.
 - **0 entries** have explicit v3 professional sign-off metadata.
-- **517 entries** remain eligible for future professional sign-off without blocking V1 source integration.
-- **356 entries** are currently marked `reviewRequired:true` as an internal enrichment/scoring flag, not a public reviewed/unreviewed boundary.
+- **513 entries** publish source-linked context without claiming professional sign-off.
 <!-- PUBLIC_TRUST_STATS_END -->
 - Severe and critical warnings remain visible for discovery, but severity is not clinically final without explicit professional sign-off.
 

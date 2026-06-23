@@ -1,6 +1,6 @@
 # Launch Data Trust Audit
 
-Audit date: 2026-06-22
+Audit date: 2026-06-23
 
 ## Scope
 
@@ -12,11 +12,10 @@ This audit describes the launch-facing data trust boundary for the current stati
 | Metric | Count |
 | --- | ---: |
 | Drugs in `DRUG_DB` | 1549 |
-| Evidence entries in `STUDY_DB` | 517 |
-| Source-integrated V1 evidence entries | 517 |
+| Evidence entries in `STUDY_DB` | 513 |
+| Source-integrated V1 evidence entries | 513 |
 | V3 professional sign-off entries | 0 |
-| Future professional sign-off candidates | 517 |
-| Internal `reviewRequired:true` evidence entries | 356 |
+| Evidence entries without professional sign-off claims | 513 |
 | RxNorm identity mappings | 1251 |
 | PGx marker rows | 42 |
 | CPIC-linked action summaries | 14 |
@@ -29,7 +28,7 @@ This audit describes the launch-facing data trust boundary for the current stati
 ## Required Boundaries
 
 - Public evidence can be source-integrated for V1 without claiming professional sign-off.
-- `reviewRequired:true` is an internal enrichment/scoring flag, not the boundary between reviewed and unreviewed evidence.
+- Source integration and professional sign-off are separate states; V1 can publish traceable evidence without claiming clinical validation.
 - Severe and critical findings can be visible as educational review priorities, but severity is not clinically final and does not carry professional sign-off.
 - Source-linked rows need explicit reviewer role, decision, date, scope, and source snapshot before professional sign-off metadata can change.
 - The browser app must remain static and local-first: no accounts, analytics, tracking, medication-data collection, or runtime clinical API calls.

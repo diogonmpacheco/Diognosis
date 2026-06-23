@@ -932,7 +932,7 @@ assert(audienceModeRegression.clinician.clinicianLayoutCss, 'Clinician mode shou
 assert(/Genes \+ Metabolites|functional phenotype|parent\/metabolite direction|pathway consequences/i.test(audienceModeRegression.clinician.geneIntro), 'Clinician mode should restore clinician gene helper copy');
 assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mode should show tab navigation');
 assert(audienceModeRegression.clinician.summaryStoryCount > 0, 'Clinician mode should keep detailed summary story rows');
-assert(/Clinical review queue/i.test(audienceModeRegression.clinician.summaryText), 'Clinician mode should orient the top summary around a review queue');
+assert(/Clinical Review Priorities/i.test(audienceModeRegression.clinician.summaryText), 'Clinician mode should orient the top summary around review priorities');
 assert(/Priority basis|Expected change|Review action/i.test(audienceModeRegression.clinician.summaryText), 'Clinician mode should label the summary story as a review workflow');
 assert(/Review first/i.test(audienceModeRegression.clinician.summaryNext), 'Clinician mode should make the first review action explicit');
 assert(audienceModeRegression.clinician.findingTitle === 'Clinical Review Priorities', 'Clinician mode should use a mixed drug/PGx priority title');
@@ -1860,7 +1860,7 @@ assert(evidenceLadderRegression.reviewedClaims === 0, 'No finding should claim p
 assert(evidenceLadderRegression.severeWithoutRefsOrReviewRequired === 0, 'Severe/critical findings without refs must stay marked reviewRequired');
 assert(evidenceLadderRegression.strongestTier, 'Evidence ladder should report strongest tier or unknown');
 assert(
-  ['source_linked_pending_review', 'source_linked', 'professionally_reviewed_source_linked'].includes(evidenceLadderRegression.sourceSupportStatus),
+  ['source_linked_no_signoff', 'source_linked', 'professionally_reviewed_source_linked'].includes(evidenceLadderRegression.sourceSupportStatus),
   `Source-linked findings should expose source support status, got ${evidenceLadderRegression.sourceSupportStatus}`
 );
 assert(
@@ -1868,8 +1868,8 @@ assert(
   `Evidence-free findings should show modeled/insufficient source support, got ${evidenceLadderRegression.evidenceFreeSourceSupportStatus}`
 );
 assert(evidenceLadderRegression.modelOnlyStrongestTier === 'unknown', 'Modeled evidence ladder should not display FDA/guideline backing');
-assert(/modeled|source review needed|professional sign-off not claimed/i.test(evidenceLadderRegression.modelOnlyCompact), 'Compact ladder should visibly identify modeled support and source-review boundaries');
-assert(evidenceLadderRegression.clinicalActionConfidence === 'pending_review' || evidenceLadderRegression.clinicalActionConfidence === 'insufficient', 'Clinical action confidence should remain conservative');
+assert(/modeled|no linked source yet|professional sign-off not claimed/i.test(evidenceLadderRegression.modelOnlyCompact), 'Compact ladder should visibly identify modeled support and source boundaries');
+assert(evidenceLadderRegression.clinicalActionConfidence === 'no_signoff' || evidenceLadderRegression.clinicalActionConfidence === 'insufficient', 'Clinical action confidence should remain conservative');
 assert(evidenceLadderRegression.primaryFindingCards > 0, 'Finding cards should render primary public finding UI');
 assert(evidenceLadderRegression.primaryFindingEvidenceSteps === evidenceLadderRegression.primaryFindingCards, 'Each primary finding card should include an Evidence step');
 assert(evidenceLadderRegression.ledgerExists, 'Evidence tab should render the evidence ladder ledger');
@@ -2067,7 +2067,7 @@ assert(reviewHomeRegression.scenarioCards === 0, 'Generated scenario snapshots s
 assert(reviewHomeRegression.gapCards === 0, 'Generated metabolite coverage gaps should stay out of the slim bundle');
 assert(reviewHomeRegression.warningPaths > 0, 'Reviewer Console should expose technical pathway diagnostics');
 assert(reviewHomeRegression.actionButtons >= 3, 'Reviewer Console should expose report/contribute actions');
-assert(/V3 Sign-Off Queue/i.test(reviewHomeRegression.summaryText), 'Reviewer Summary should expose the future professional sign-off queue');
+assert(/No Sign-Off Claimed/i.test(reviewHomeRegression.summaryText), 'Reviewer Summary should expose sign-off boundary diagnostics');
 
 const crossTabFindingRegression = window.eval(`(() => {
   activeStack = [];
@@ -2298,7 +2298,7 @@ const browseCategoryAudit = window.eval(`(() => {
   return {
     categories: Object.keys(counts).length,
     singletonCategories: Object.values(counts).filter(n => n === 1).length,
-    sourcePending: counts['Source Candidates Pending Review'] || 0,
+    sourceCandidates: counts['Source Candidates'] || 0,
     legacyOther: counts['Other Specialized Agents'] || 0,
     lsd: byName.LSD,
     albuterol: byName.Albuterol,
@@ -2313,7 +2313,7 @@ const browseCategoryAudit = window.eval(`(() => {
 assert(browseCategoryAudit.categories <= 18, `Browse UI should stay consolidated, got ${browseCategoryAudit.categories} categories`);
 assert(browseCategoryAudit.singletonCategories <= 1, `Browse UI should avoid one-item category sprawl, got ${browseCategoryAudit.singletonCategories}`);
 assert(browseCategoryAudit.legacyOther === 0, 'Browse UI should not route substances into legacy Other Specialized Agents');
-assert(browseCategoryAudit.sourcePending <= 8, `Browse UI should leave only truly ambiguous source candidates pending, got ${browseCategoryAudit.sourcePending}`);
+assert(browseCategoryAudit.sourceCandidates <= 8, `Browse UI should leave only truly ambiguous source candidates grouped as source candidates, got ${browseCategoryAudit.sourceCandidates}`);
 assert(browseCategoryAudit.lsd === 'Recreational & Social', 'LSD should browse under Recreational & Social, not Antipsychotics');
 assert(browseCategoryAudit.albuterol === 'Respiratory, Allergy & Cough', 'Albuterol should browse under Respiratory, Allergy & Cough, not Beta-Blockers');
 assert(browseCategoryAudit.aspirinLowDose === 'Cardiovascular & Blood', 'Low-dose aspirin should browse under Cardiovascular & Blood');

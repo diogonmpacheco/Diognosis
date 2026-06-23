@@ -386,8 +386,8 @@ function getRenderComputationCache() {
     riskMarkerRows,
     phenoconversionRows,
     timelineRows,
-    pendingReviewContext:null,
-    pendingCoreContext:null,
+    sourceIntegrationContext:null,
+    sourceCoreContext:null,
     pendingCalculationContext:null,
     findings,
     clinicalConcerns,
@@ -556,14 +556,14 @@ function renderSummaryBar() {
       ? ` Also check: ${genotypePriority.summary}`
       : "";
     headline = `${clinicianPriorityHeadlineLabel(primaryPresentation.severity)}: ${primaryPresentation.title}`;
-    summaryCopy = `${concernCount} clinical review priorit${concernCount === 1 ? "y" : "ies"} queued${actorText ? `; start with ${actorText}` : ""}.${genotypeAlsoCheck} Overview keeps action, rationale, and evidence together before deeper tabs.`;
+    summaryCopy = `${concernCount} clinical review priorit${concernCount === 1 ? "y" : "ies"} identified${actorText ? `; start with ${actorText}` : ""}.${genotypeAlsoCheck} Overview keeps action, rationale, and evidence together before deeper tabs.`;
     nextStep = primaryPresentation.whatToReview || nextStep;
     priorityStory = buildClinicianPriorityStory(primaryPresentation, priorityStory);
   }
 
   const summaryKicker = patient
     ? (primaryPresentation ? "Questions ready" : "Current check")
-    : (primaryPresentation ? "Clinical review queue" : summaryBandLabel(riskClass, activeStack.length));
+    : (primaryPresentation ? "Clinical Review Priorities" : summaryBandLabel(riskClass, activeStack.length));
   const jumpLabel = patient ? "View note" : (primaryPresentation ? "Review first" : "View finding");
   const hasVisibleSummaryJump = !patient && (Boolean(primaryPresentation) || activeStack.length >= 2 || Boolean(isGenotypePriority));
   const summaryJumpHtml = hasVisibleSummaryJump
@@ -1468,7 +1468,7 @@ function publicEvidenceSummaryForFinding(finding = {}) {
 function publicEvidenceSummaryFromRefs(refs = []) {
   const count = [...new Set(refs || [])].length;
   if (count) return `${count} linked source${count === 1 ? "" : "s"} · professional sign-off not claimed`;
-  return "modeled signal · source review needed";
+  return "modeled signal · no linked source yet";
 }
 
 function publicFindingDetailTarget(finding = {}) {
@@ -2401,6 +2401,7 @@ function renderConcernSupportingSignals(finding) {
 
 function compactReviewStatus(value) {
   return publicDisplayText(value || "")
+    .replace(/\bno sign[-\s]?off\b/gi, "professional sign-off not claimed")
     .replace(/\bpending professional review\b/gi, "professional sign-off not claimed")
     .replace(/\bneeds review\b/gi, "review needed")
     .replace(/\breview prompt\b/gi, "modeled support")
@@ -2417,7 +2418,7 @@ function renderEvidenceLadderCompact(ladder) {
   const tier = ladder.strongestTier && ladder.strongestTier !== "unknown"
     ? `${publicDisplayText(ladder.strongestTier.replace(/_/g, " ").toLowerCase())}${ladder.studyCount ? ` · ${safePublicHtml(String(ladder.studyCount))} source${ladder.studyCount === 1 ? "" : "s"}` : ""}`
     : sourceStatus;
-  const clinical = String(ladder.clinicalActionConfidence || "insufficient").replace(/_/g, " ");
+  const clinical = compactReviewStatus(String(ladder.clinicalActionConfidence || "insufficient").replace(/_/g, " "));
   const review = ladder.professionalReviewStatus === "reviewed"
     ? "reviewed"
     : ladder.professionalReviewStatus === "pending"
@@ -2603,7 +2604,7 @@ function applyAudienceModeVisibility() {
   if (!reviewer && activeTab === "review") setActiveTab("overview");
   const reviewerSections = [
     ["scopeSection", "scopeBody", "scopeCount"],
-    ["pendingReviewEnrichmentSection", "pendingReviewEnrichmentBody", "pendingReviewEnrichmentCount"],
+    ["sourceIntegrationCandidateSection", "sourceIntegrationCandidateBody", "sourceIntegrationCandidateCount"],
     ["externalContextSection", "externalContextBody", "externalContextCount"],
     ["reviewSummarySection", "reviewSummaryBody", "reviewSummaryCount"],
     ["reviewWorkbenchSection", "reviewWorkbenchBody", "reviewWorkbenchCount"],
@@ -3008,8 +3009,8 @@ const BROWSE_CATEGORY_RULES = [
     contains:["folate", "methylfolate", "glucose", "arachidonic", "berberine", "bergamottin", "coptisine", "forskolin", "pyridoxal", "silibinin", "ammonium lactate"],
   },
   {
-    category:"Source Candidates Pending Review",
-    terms:["source candidate drug/substance", "pending identity review", "review candidate"],
+    category:"Source Candidates",
+    terms:["source candidate drug/substance", "identity context", "review candidate"],
   },
 ];
 
@@ -3029,13 +3030,13 @@ const BROWSE_CATEGORY_ORDER = [
   "Diagnostics, Antidotes & Procedures",
   "Supplements, Foods & Environment",
   "Recreational & Social",
-  "Source Candidates Pending Review",
+  "Source Candidates",
 ];
 
 function getBrowseCategory(drug) {
   const text = getBrowseCategoryText(drug);
   const match = BROWSE_CATEGORY_RULES.find(rule => browseRuleMatches(text, rule));
-  return match ? match.category : "Source Candidates Pending Review";
+  return match ? match.category : "Source Candidates";
 }
 
 const MEDICATION_CLASS_GUIDES = [
@@ -3337,7 +3338,7 @@ function renderAll() {
     hideSectionAndClear("pdSection", "pdBody");
     hideSectionAndClear("cascadeSection", "cascadeBody");
     hideSectionAndClear("evidenceSection", "evidenceBody", "evidenceCount");
-    hideSectionAndClear("pendingReviewEnrichmentSection", "pendingReviewEnrichmentBody", "pendingReviewEnrichmentCount");
+    hideSectionAndClear("sourceIntegrationCandidateSection", "sourceIntegrationCandidateBody", "sourceIntegrationCandidateCount");
     hideSectionAndClear("externalContextSection", "externalContextBody", "externalContextCount");
     hideSectionAndClear("reviewWorkbenchSection", "reviewWorkbenchBody", "reviewWorkbenchCount");
     hideSectionAndClear("reviewSummarySection", "reviewSummaryBody", "reviewSummaryCount");

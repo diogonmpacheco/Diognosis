@@ -587,7 +587,7 @@ function studyCardHTML(study) {
     ${study.source ? `<div class="ev-source">${esc(publicText(study.source))}${study.journal ? ` · ${esc(publicText(study.journal))}` : ''}</div>` : ''}
     ${qeItems.length ? `<div class="ev-effects">${qeItems.join(' · ')}</div>` : ''}
     ${study.temporal && study.temporal.onset ? `<div class="ev-temporal">Onset: ${esc(study.temporal.onset)}${study.temporal.washout ? ` · Washout: ${esc(study.temporal.washout)}` : ''}</div>` : ''}
-    ${study.pendingSourceSignal === true ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Pending source context · not used for scoring or public severity</div>` : ''}
+    ${study.pendingSourceSignal === true ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Source candidate context · not used for scoring or public severity</div>` : ''}
     ${study.livePendingReview === true ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Source-linked preview · automated source traceability check · not medical advice</div>` : ''}
     ${unverified}${contradicts}${limits}
     <div class="feedback-row">${feedbackLink}</div>

@@ -693,7 +693,7 @@ function addGeneFromSelect() {
 
 const ENZYME_ACTORS = {
   "CYP2D6":  {id:"CYP2D6",  type:ACTOR_TYPE.ENZYME, name:"CYP2D6",  family:"CYP450", tissue:["liver","brain","gut"], polymorphic:true, substrateCount:0},
-  "CYP3A4":  {id:"CYP3A4",  type:ACTOR_TYPE.ENZYME, name:"CYP3A4",  family:"CYP450", tissue:["liver","gut"],         polymorphic:false,substrateCount:0},
+  "CYP3A4":  {id:"CYP3A4",  type:ACTOR_TYPE.ENZYME, name:"CYP3A4",  family:"CYP450", tissue:["liver","gut"],         polymorphic:false,substrateCount:0, evidenceRefs:["ev_cyp3a4_22_activity_context"]},
   "CYP3A5":  {id:"CYP3A5",  type:ACTOR_TYPE.ENZYME, name:"CYP3A5",  family:"CYP450", tissue:["liver","gut"],         polymorphic:true, substrateCount:0},
   "CYP3A7":  {id:"CYP3A7",  type:ACTOR_TYPE.ENZYME, name:"CYP3A7",  family:"CYP450", tissue:["fetal_liver","neonatal_liver","adult_liver_variant"], polymorphic:true, substrateCount:0},
   "CYP2C19": {id:"CYP2C19", type:ACTOR_TYPE.ENZYME, name:"CYP2C19", family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
@@ -701,7 +701,7 @@ const ENZYME_ACTORS = {
   "CYP2C9":  {id:"CYP2C9",  type:ACTOR_TYPE.ENZYME, name:"CYP2C9",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP2C8":  {id:"CYP2C8",  type:ACTOR_TYPE.ENZYME, name:"CYP2C8",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP1A1":  {id:"CYP1A1",  type:ACTOR_TYPE.ENZYME, name:"CYP1A1",  family:"CYP450", tissue:["gut","lung","extrahepatic"], polymorphic:false,substrateCount:0, inducible:["cruciferous","charbroiled"]},
-  "CYP1A2":  {id:"CYP1A2",  type:ACTOR_TYPE.ENZYME, name:"CYP1A2",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0, inducible:["smoking","cruciferous","charbroiled"]},
+  "CYP1A2":  {id:"CYP1A2",  type:ACTOR_TYPE.ENZYME, name:"CYP1A2",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0, inducible:["smoking","cruciferous","charbroiled"], evidenceRefs:["ev_cyp1a2_activity_variant_context"]},
   "CYP2A6":  {id:"CYP2A6",  type:ACTOR_TYPE.ENZYME, name:"CYP2A6",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP2B6":  {id:"CYP2B6",  type:ACTOR_TYPE.ENZYME, name:"CYP2B6",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP2E1":  {id:"CYP2E1",  type:ACTOR_TYPE.ENZYME, name:"CYP2E1",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0, inducible:["alcohol","isoniazid","obesity","fasting"]},
@@ -721,7 +721,7 @@ const ENZYME_ACTORS = {
   "CYP2R1":  {id:"CYP2R1",  type:ACTOR_TYPE.ENZYME, name:"CYP2R1",  family:"CYP450", tissue:["liver"],              polymorphic:true, substrateCount:0},
   "CYP27B1": {id:"CYP27B1", type:ACTOR_TYPE.ENZYME, name:"CYP27B1", family:"CYP450", tissue:["kidney"],             polymorphic:true, substrateCount:0},
   "CYP24A1": {id:"CYP24A1", type:ACTOR_TYPE.ENZYME, name:"CYP24A1", family:"CYP450", tissue:["kidney","liver"],     polymorphic:false,substrateCount:0},
-  "UGT2B7":  {id:"UGT2B7",  type:ACTOR_TYPE.ENZYME, name:"UGT2B7",  family:"UGT",    tissue:["liver","kidney"],      polymorphic:true, substrateCount:0},
+  "UGT2B7":  {id:"UGT2B7",  type:ACTOR_TYPE.ENZYME, name:"UGT2B7",  family:"UGT",    tissue:["liver","kidney"],      polymorphic:true, substrateCount:0, evidenceRefs:["ev_ugt2b7_glucuronidation_context"]},
   "UGT1A4":  {id:"UGT1A4",  type:ACTOR_TYPE.ENZYME, name:"UGT1A4",  family:"UGT",    tissue:["liver","gut"],         polymorphic:true, substrateCount:0},
   "UGT1A9":  {id:"UGT1A9",  type:ACTOR_TYPE.ENZYME, name:"UGT1A9",  family:"UGT",    tissue:["liver","kidney"],      polymorphic:true, substrateCount:0},
   "UGT2B15": {id:"UGT2B15", type:ACTOR_TYPE.ENZYME, name:"UGT2B15", family:"UGT",    tissue:["liver"],               polymorphic:true, substrateCount:0},

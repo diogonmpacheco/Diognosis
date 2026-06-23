@@ -1819,7 +1819,7 @@ function top100CoverageAddKnownDdi(drug, row) {
     effect:row.effect,
     evidence:{confidence:"low", sources:["top-250 live coverage adapter"], studyType:"route_adapter"},
     evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
-    internalProvenance:{ phase:"phase7", batch:"top250_live_ddi", reviewStatus:"pending" },
+    internalProvenance:{ phase:"phase7", batch:"top250_live_ddi", reviewStatus:"no_signoff" },
   });
   return true;
 }
@@ -2232,7 +2232,7 @@ function ddiExpansionPackAddKnownDdi(drug, row) {
     effect:row.effect,
     evidence:{confidence:"low", sources:["DDI expansion pack adapter"], studyType:"class_route_adapter"},
     evidenceRefs:[...DDI_EXPANSION_PACK_EVIDENCE_REFS],
-    internalProvenance:{ phase:"phase9", batch:"ddi_expansion_pack", reviewStatus:"pending" },
+    internalProvenance:{ phase:"phase9", batch:"ddi_expansion_pack", reviewStatus:"no_signoff" },
   });
   return true;
 }
@@ -2262,7 +2262,7 @@ function phase12DrugCountDdiRows(drug) {
       drug2:"Methotrexate",
       severity:"moderate",
       category:"phase12_immunologic_monitoring_context",
-      mechanism:`${drug.name} is a pending-review biologic/protein source candidate; immunomodulator combinations can add infection, cytopenia, or organ-toxicity monitoring context.`,
+      mechanism:`${drug.name} is a source-context biologic/protein candidate; immunomodulator combinations can add infection, cytopenia, or organ-toxicity monitoring context.`,
       effect:"Flag for indication review, infection risk, blood counts, and organ-function monitoring when combined with immunomodulators.",
     }];
   }
@@ -2271,7 +2271,7 @@ function phase12DrugCountDdiRows(drug) {
       drug2:"Levothyroxine",
       severity:"moderate",
       category:"phase12_absorption_binding_context",
-      mechanism:`${drug.name} is a pending-review mineral/supplement source candidate; binding or administration-time effects can reduce absorption of susceptible oral drugs.`,
+      mechanism:`${drug.name} is a source-context mineral/supplement candidate; binding or administration-time effects can reduce absorption of susceptible oral drugs.`,
       effect:"Flag for administration separation and response monitoring.",
     }];
   }
@@ -2280,7 +2280,7 @@ function phase12DrugCountDdiRows(drug) {
       drug2:"Rifampin",
       severity:"moderate",
       category:"phase12_hormone_induction_context",
-      mechanism:`${drug.name} has pending-review hormonal context; strong induction can reduce exposure for many hormone therapies.`,
+      mechanism:`${drug.name} has source-context hormonal coverage; strong induction can reduce exposure for many hormone therapies.`,
       effect:"Flag for exposure-loss, breakthrough symptoms, and alternative/backup strategy review.",
     }];
   }
@@ -2288,7 +2288,7 @@ function phase12DrugCountDdiRows(drug) {
     drug2:"Cimetidine",
     severity:"moderate",
     category:"phase12_general_pk_context",
-    mechanism:`${drug.name} is a pending-review source candidate with live route/PK hooks; broad CYP/renal transporter inhibition can shift exposure for susceptible substrates.`,
+    mechanism:`${drug.name} is a source-context candidate with live route/PK hooks; broad CYP/renal transporter inhibition can shift exposure for susceptible substrates.`,
     effect:"Flag for medication reconciliation, renal/hepatic context, and replacement with source-specific DDI data during review.",
   }];
 }
@@ -2306,9 +2306,9 @@ function phase12DrugCountAddKnownDdi(drug, row) {
     category:row.category || "phase12_drug_count_live_context",
     mechanism:row.mechanism,
     effect:row.effect,
-    evidence:{confidence:"low", sources:["drug count expansion batch"], studyType:"pending_review_class_route_adapter"},
+    evidence:{confidence:"low", sources:["drug count expansion batch"], studyType:"source_context_class_route_adapter"},
     evidenceRefs:[...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS],
-    internalProvenance:{ phase:"phase12", batch:"drug_count_ddi", reviewStatus:"pending" },
+    internalProvenance:{ phase:"phase12", batch:"drug_count_ddi", reviewStatus:"no_signoff" },
   });
   return true;
 }
@@ -2337,7 +2337,7 @@ function top100GoldDdiCandidates(drug) {
       drug2:"Cimetidine",
       severity:"moderate",
       category:"top100_gold_general_pk_context",
-      mechanism:`${drug.name} is in the top-100 gold cohort; broad CYP/renal transporter inhibition can shift exposure for susceptible substrates while source-specific pair curation is pending.`,
+      mechanism:`${drug.name} is in the top-100 gold cohort; broad CYP/renal transporter inhibition can shift exposure for susceptible substrates while source-specific pair curation is incomplete.`,
       effect:"Flag for medication reconciliation, organ-function context, and source-specific DDI replacement during review.",
     },
     {
@@ -2373,9 +2373,9 @@ function top100GoldAddKnownDdi(drug, row) {
     category:row.category || "top100_gold_live_context",
     mechanism:row.mechanism,
     effect:row.effect,
-    evidence:{confidence:"low", sources:["top-100 gold enrichment adapter"], studyType:"pending_review_gold_pair_adapter"},
+    evidence:{confidence:"low", sources:["top-100 gold enrichment adapter"], studyType:"source_context_gold_pair_adapter"},
     evidenceRefs:[...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS],
-    internalProvenance:{ phase:"phase13", batch:"top100_gold_ddi", reviewStatus:"pending" },
+    internalProvenance:{ phase:"phase13", batch:"top100_gold_ddi", reviewStatus:"no_signoff" },
   });
   return true;
 }
@@ -2420,7 +2420,7 @@ function ninetyPercentDdiFallbackRows(drug) {
       drug2:"Cimetidine",
       severity:"moderate",
       category:"phase16_general_pk_screening_context",
-      mechanism:`${drug.name} is below the 90% DDI live-coverage target; broad CYP/renal transporter inhibition can shift exposure for susceptible substrates while source-specific pair curation is pending.`,
+      mechanism:`${drug.name} is below the 90% DDI live-coverage target; broad CYP/renal transporter inhibition can shift exposure for susceptible substrates while source-specific pair curation is incomplete.`,
       effect:"Flag for medication reconciliation, organ-function context, and replacement with source-specific DDI data during review.",
     },
     {
@@ -2478,7 +2478,7 @@ function ninetyPercentAddKnownDdi(drug, row) {
     effect:row.effect,
     evidence:{confidence:"low", sources:["90% live coverage adapter"], studyType:"route_class_adapter"},
     evidenceRefs:[...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS],
-    internalProvenance:{ phase:"phase16", batch:"ninety_percent_ddi", reviewStatus:"pending" },
+    internalProvenance:{ phase:"phase16", batch:"ninety_percent_ddi", reviewStatus:"no_signoff" },
   });
   return true;
 }

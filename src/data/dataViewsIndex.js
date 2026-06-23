@@ -91,7 +91,7 @@
     if (drug?.prodrug) return substanceKind.PRODRUG;
     if (/\/|\+/.test(name) || /combination/i.test(cls) || /combination/i.test(name)) return substanceKind.COMBINATION_PRODUCT;
     if (/review candidate|system$|derivatives|corticosteroids|taxanes|antibiotics|antihypertensives|opioid anesthetics|opium derivatives|respiratory system|drugs used in/i.test(name)) return substanceKind.CLASS_PLACEHOLDER;
-    if (/source-specific placeholder|pending professional review/i.test(note) && /^[A-Z][A-Za-z\s-]+s$/.test(name)) return substanceKind.CLASS_PLACEHOLDER;
+    if (/source-specific placeholder|professional sign-off not claimed/i.test(note) && /^[A-Z][A-Za-z\s-]+s$/.test(name)) return substanceKind.CLASS_PLACEHOLDER;
     const saltBase = stripKnownSaltSuffix(name);
     if (saltBase && saltBase !== name && hasDrugNamed(saltBase)) return substanceKind.SALT_OR_FORMULATION;
     if (/food|diet|alcohol|cannabis|tobacco|grapefruit|tyramine|contrast dye/i.test(name) && !drug?.routes?.length) return substanceKind.NON_DRUG_CONTEXT;

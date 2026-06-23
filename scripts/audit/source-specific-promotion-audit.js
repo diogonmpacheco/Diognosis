@@ -57,7 +57,7 @@ function hasPendingMeta(row, id) {
     row?.sourceSpecificPromotionId === id &&
     row?.reviewRequired === true &&
     row?.verified === false &&
-    row?.promotionStatus === 'source_specific_pending_review';
+    row?.promotionStatus === 'source_specific_no_signoff';
 }
 
 function isAdapterEvidenceRef(ref) {
@@ -90,7 +90,7 @@ function hasBulkMeta(row) {
     row?.sourceSpecificBulkPromotion === true &&
     row?.reviewRequired === true &&
     row?.verified === false &&
-    row?.promotionStatus === 'source_specific_pending_review';
+    row?.promotionStatus === 'source_specific_no_signoff';
 }
 
 function assertRow(surface, promotion, row, label) {

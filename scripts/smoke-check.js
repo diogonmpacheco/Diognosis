@@ -268,7 +268,7 @@ assert(doc.querySelectorAll('#findingBody .primary-finding-card').length === 0, 
 window.setAudienceMode('clinician');
 assert(evalInPage(window, 'audienceMode') === 'clinician', 'Clinician smoke path should switch to Clinician mode');
 const clinicianSummaryText = doc.getElementById('summaryBar')?.textContent || '';
-assert(/Clinical review queue/i.test(clinicianSummaryText), 'Clinician summary should present the Overview as a review queue');
+assert(/Clinical Review Priorities/i.test(clinicianSummaryText), 'Clinician summary should present the Overview as review priorities');
 assert(/Review first/i.test(clinicianSummaryText), 'Clinician summary should point to the first review priority');
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
 assert(doc.querySelectorAll('#findingBody .primary-finding-card').length > 0, 'Overview finding cards should render primary public finding cards');

@@ -95,8 +95,8 @@ assert(/Node\.js-24%2B/.test(readme), 'README Node.js badge should advertise the
 assertIncludes('Public Trust', publicTrust, '<!-- PUBLIC_TRUST_STATS_START -->');
 assertIncludes('Public Trust', publicTrust, `**${stats.sourceIntegratedStudies} \`STUDY_DB\` entries** are source-integrated for V1 evidence display and calculations.`);
 assertIncludes('Public Trust', publicTrust, `**${stats.professionalReviewedStudies} entries** have explicit v3 professional sign-off metadata.`);
-assertIncludes('Public Trust', publicTrust, `**${stats.v3ProfessionalReviewCandidateStudies} entries** remain eligible for future professional sign-off without blocking V1 source integration.`);
-assertIncludes('Public Trust', publicTrust, `**${stats.internalReviewRequiredEntries} entries** are currently marked \`reviewRequired:true\``);
+assertIncludes('Public Trust', publicTrust, `**${stats.notProfessionallyReviewedStudies} entries** publish source-linked context without claiming professional sign-off.`);
+assert(!/reviewRequired:true/i.test(publicTrust), 'Public Trust should not expose internal reviewRequired flags as V1 backlog');
 assert(/not medical advice|not a clinical decision support system|does not replace a licensed clinician or pharmacist/i.test(publicTrust),
   'Public Trust must preserve medical-boundary wording');
 assert(/privacy-preserving GitHub issue drafts/i.test(publicTrust) && /do not include the current medication list, genotype settings, share URL, browser URL/i.test(publicTrust),
@@ -107,8 +107,8 @@ assertIncludes('Launch Data Trust Audit', launchTrust, `| Drugs in \`DRUG_DB\` |
 assertIncludes('Launch Data Trust Audit', launchTrust, `| Evidence entries in \`STUDY_DB\` | ${stats.studies} |`);
 assertIncludes('Launch Data Trust Audit', launchTrust, `| Source-integrated V1 evidence entries | ${stats.sourceIntegratedStudies} |`);
 assertIncludes('Launch Data Trust Audit', launchTrust, `| V3 professional sign-off entries | ${stats.professionalReviewedStudies} |`);
-assertIncludes('Launch Data Trust Audit', launchTrust, `| Future professional sign-off candidates | ${stats.v3ProfessionalReviewCandidateStudies} |`);
-assertIncludes('Launch Data Trust Audit', launchTrust, `| Internal \`reviewRequired:true\` evidence entries | ${stats.internalReviewRequiredEntries} |`);
+assertIncludes('Launch Data Trust Audit', launchTrust, `| Evidence entries without professional sign-off claims | ${stats.notProfessionallyReviewedStudies} |`);
+assert(!/reviewRequired:true|Future professional sign-off candidates/i.test(launchTrust), 'Launch Data Trust Audit should not expose internal sign-off backlog counters');
 assertIncludes('Launch Data Trust Audit', launchTrust, `| RxNorm identity mappings | ${stats.externalSubstanceMappings} |`);
 assertIncludes('Launch Data Trust Audit', launchTrust, `| PGx marker rows | ${stats.pgxMarkerRows} |`);
 assertIncludes('Launch Data Trust Audit', launchTrust, `| CPIC-linked action summaries | ${stats.pgxActionSummaries} |`);

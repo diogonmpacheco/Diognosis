@@ -254,7 +254,7 @@ for (const drugName of TOP250_LIVE_COVERAGE_DRUGS) {
           mechanism:`${drug.name} has ${transporter} route context and ${row.inhibitor} is a representative ${transporter} modulator.`,
           evidence:{confidence:"low", sources:["top-250 live coverage adapter"], foldChange:row.foldChange, studyType:"route_adapter"},
           evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
-          internalProvenance:{ phase:"phase7", batch:"top250_transporter", reviewStatus:"pending" },
+          internalProvenance:{ phase:"phase7", batch:"top250_transporter", reviewStatus:"no_signoff" },
         });
       }
     }
@@ -323,7 +323,7 @@ for (const drug of DRUG_DB) {
         mechanism:`${drug.name} has ${transporter} route/class context and ${row.inhibitor} is a representative ${transporter} modulator.`,
         evidence:{confidence:"low", sources:["PGx/transporter expansion adapter"], foldChange:row.foldChange, studyType:"transporter_route_adapter"},
         evidenceRefs:[...TRANSPORTER_EXPANSION_EVIDENCE_REFS],
-        internalProvenance:{ phase:"phase11", batch:"pgx_transporter", reviewStatus:"pending" },
+        internalProvenance:{ phase:"phase11", batch:"pgx_transporter", reviewStatus:"no_signoff" },
       });
       if (TRANSPORTER_DDI.length >= 1000) break;
     }
@@ -365,9 +365,9 @@ if (typeof PHASE12_DRUG_EXPANSION_NAMES !== "undefined") {
           effect:row.effect,
           severity:row.severity,
           mechanism:`${drug.name} has ${transporter} transport context for transporter interaction screening.`,
-          evidence:{confidence:"low", sources:["drug count expansion batch"], foldChange:row.foldChange, studyType:"pending_review_transporter_adapter"},
+          evidence:{confidence:"low", sources:["drug count expansion batch"], foldChange:row.foldChange, studyType:"source_context_transporter_adapter"},
           evidenceRefs:[...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS],
-          internalProvenance:{ phase:"phase12", batch:"drug_count_transporter", reviewStatus:"pending" },
+          internalProvenance:{ phase:"phase12", batch:"drug_count_transporter", reviewStatus:"no_signoff" },
         });
         added = true;
         break;
@@ -417,9 +417,9 @@ if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
           effect:row.effect,
           severity:row.severity,
           mechanism:`${drug.name} has ${transporter} transport context for transporter interaction screening.`,
-          evidence:{confidence:"low", sources:["top-100 gold enrichment adapter"], foldChange:row.foldChange, studyType:"pending_review_gold_transporter_adapter"},
+          evidence:{confidence:"low", sources:["top-100 gold enrichment adapter"], foldChange:row.foldChange, studyType:"source_context_gold_transporter_adapter"},
           evidenceRefs:[...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS],
-          internalProvenance:{ phase:"phase13", batch:"top100_gold_transporter", reviewStatus:"pending" },
+          internalProvenance:{ phase:"phase13", batch:"top100_gold_transporter", reviewStatus:"no_signoff" },
         });
         added = true;
         break;
@@ -465,7 +465,7 @@ function ninetyPercentAddTransporterCoverage(drug, transporter, row) {
     mechanism:`${drug.name} has ${transporter} route/class context and ${row.inhibitor} is a representative ${transporter} modulator.`,
     evidence:{confidence:"low", sources:["90% live coverage adapter"], foldChange:row.foldChange, studyType:"transporter_route_adapter"},
     evidenceRefs:[...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS],
-    internalProvenance:{ phase:"phase16", batch:"ninety_percent_transporter", reviewStatus:"pending" },
+    internalProvenance:{ phase:"phase16", batch:"ninety_percent_transporter", reviewStatus:"no_signoff" },
   });
   return true;
 }

@@ -907,8 +907,8 @@ const PHENOTYPE_SCORES = {
   'paroxetine':    { serotonin:3, qtc:1, anticholinergic:2, sedation:1, fall_risk:1 },
   'fluoxetine':    { serotonin:3, qtc:1, anticholinergic:1, sedation:1, fall_risk:1 },
   'sertraline':    { serotonin:3, qtc:1, anticholinergic:1, sedation:1, fall_risk:1 },
-  'citalopram':    { serotonin:3, qtc:3, anticholinergic:1, sedation:1, fall_risk:1 },
-  'escitalopram':  { serotonin:3, qtc:2, anticholinergic:1, sedation:1, fall_risk:1 },
+  'citalopram':    { serotonin:3, qtc:3, anticholinergic:1, sedation:1, fall_risk:1, evidenceRefs:["ev_qtc_polypharmacy_ckd","ev_qtc_older_adults_review"] },
+  'escitalopram':  { serotonin:3, qtc:2, anticholinergic:1, sedation:1, fall_risk:1, evidenceRefs:["ev_qtc_older_adults_review"] },
   'venlafaxine':   { serotonin:3, qtc:1, anticholinergic:0, sedation:1, fall_risk:1 },
   'duloxetine':    { serotonin:3, qtc:0, anticholinergic:0, sedation:1, fall_risk:1 },
   'tramadol':      { serotonin:2, qtc:1, anticholinergic:0, sedation:2, fall_risk:2 },
@@ -921,8 +921,8 @@ const PHENOTYPE_SCORES = {
   'quetiapine':    { serotonin:0, qtc:2, anticholinergic:2, sedation:3, fall_risk:3 },
   'olanzapine':    { serotonin:0, qtc:1, anticholinergic:2, sedation:3, fall_risk:2 },
   'risperidone':   { serotonin:0, qtc:2, anticholinergic:1, sedation:2, fall_risk:2 },
-  'methadone':     { serotonin:1, qtc:3, anticholinergic:0, sedation:2, fall_risk:2 },
-  'amiodarone':    { serotonin:0, qtc:3, anticholinergic:0, sedation:0, fall_risk:0 },
+  'methadone':     { serotonin:1, qtc:3, anticholinergic:0, sedation:2, fall_risk:2, evidenceRefs:["ev_methadone_qtc_polypharmacy","ev_qtc_older_adults_review"] },
+  'amiodarone':    { serotonin:0, qtc:3, anticholinergic:0, sedation:0, fall_risk:0, evidenceRefs:["ev_qtc_polypharmacy_ckd","ev_qtc_older_adults_review"] },
   'ondansetron':   { serotonin:1, qtc:2, anticholinergic:0, sedation:0, fall_risk:0 },
   'diphenhydramine':{ serotonin:0, qtc:1, anticholinergic:3, sedation:3, fall_risk:3 },
   'diazepam':      { serotonin:0, qtc:0, anticholinergic:0, sedation:3, fall_risk:3 },
@@ -1350,7 +1350,7 @@ function top100CoveragePkParams(drug) {
     note:`Approximate PK profile for ${drug.name} using available half-life, class, and route context while drug-specific parameter curation is incomplete.`,
     nonlinear:/phenytoin|saturable|nonlinear|autoinduction|mdma|paroxetine|phenytoin/i.test(`${text} ${drug?.note || ""}`),
     evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
-    internalProvenance:{ phase:"phase7", batch:"top250_live_pk", reviewStatus:"pending" },
+    internalProvenance:{ phase:"phase7", batch:"top250_live_pk", reviewStatus:"no_signoff" },
   };
 }
 
@@ -1368,7 +1368,7 @@ for (const drugName of TOP250_LIVE_COVERAGE_DRUGS) {
       mechanism:"conservative_timing_context",
       note:`Conservative ${days}-day timing context for ${drug.name} based on half-life, class, and interaction persistence.`,
       evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
-      internalProvenance:{ phase:"phase7", batch:"top250_live_timing", reviewStatus:"pending" },
+      internalProvenance:{ phase:"phase7", batch:"top250_live_timing", reviewStatus:"no_signoff" },
     };
   }
   if (top100CoverageNeedsBurden(drug) && !top100CoverageHasScoring(PHENOTYPE_SCORES, drug)) {
@@ -1378,9 +1378,9 @@ for (const drugName of TOP250_LIVE_COVERAGE_DRUGS) {
     /tca|maoi|antipsychotic|phenothiazine|opioid|benzodiazepine|barbiturate|anticonvulsant|antiarrhythmic|nsaid|alpha/i.test(`${drug.name} ${drug.cls}`)) {
     BEERS_FLAGS[key] = {
       concern:`Older-adult caution for ${drug.name}: class-linked fall, CNS, bleeding, renal, QT, or orthostasis risk may matter in age >=65.`,
-      avoid:"older_adult_caution_pending_review",
+      avoid:"older_adult_caution_no_signoff",
       evidenceRefs:[...TOP250_LIVE_COVERAGE_EVIDENCE_REFS],
-      internalProvenance:{ phase:"phase7", batch:"top250_burden", reviewStatus:"pending" },
+      internalProvenance:{ phase:"phase7", batch:"top250_burden", reviewStatus:"no_signoff" },
     };
   }
   if (!top100CoverageHasScoring(ACB_SCORES, drug) && /tca|paroxetine|phenothiazine|prochlorperazine|disopyramide/i.test(`${drug.name} ${drug.cls}`)) {
@@ -1397,7 +1397,7 @@ if (typeof PHASE12_DRUG_EXPANSION_NAMES !== "undefined") {
       const pk = top100CoveragePkParams(drug);
       pk.note = `Approximate PK profile for ${drug.name}; drug-specific PK curation is incomplete.`;
       pk.evidenceRefs = [...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS];
-      pk.internalProvenance = { phase:"phase12", batch:"drug_count_pk", reviewStatus:"pending" };
+      pk.internalProvenance = { phase:"phase12", batch:"drug_count_pk", reviewStatus:"no_signoff" };
       PK_PARAMS[key] = pk;
     }
     if (!top100CoverageHasScoring(WASHOUT_DAYS, drug)) {
@@ -1407,7 +1407,7 @@ if (typeof PHASE12_DRUG_EXPANSION_NAMES !== "undefined") {
         mechanism:"conservative_timing_context",
         note:`Conservative ${days}-day timing context for ${drug.name} based on half-life and class context.`,
         evidenceRefs:[...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS],
-        internalProvenance:{ phase:"phase12", batch:"drug_count_timing", reviewStatus:"pending" },
+        internalProvenance:{ phase:"phase12", batch:"drug_count_timing", reviewStatus:"no_signoff" },
       };
     }
     if (top100CoverageNeedsBurden(drug) && !top100CoverageHasScoring(PHENOTYPE_SCORES, drug)) {
@@ -1417,9 +1417,9 @@ if (typeof PHASE12_DRUG_EXPANSION_NAMES !== "undefined") {
       /tca|maoi|antipsychotic|phenothiazine|opioid|benzodiazepine|barbiturate|anticonvulsant|antiarrhythmic|nsaid|alpha|sedative|hypnotic|anticholinergic/i.test(`${drug.name} ${drug.cls}`)) {
       BEERS_FLAGS[key] = {
         concern:`Older-adult caution for ${drug.name}: class-linked CNS, fall, anticholinergic, renal, bleeding, QT, or orthostasis risk may matter in age >=65.`,
-        avoid:"older_adult_caution_pending_review",
+        avoid:"older_adult_caution_no_signoff",
         evidenceRefs:[...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS],
-        internalProvenance:{ phase:"phase12", batch:"drug_count_burden", reviewStatus:"pending" },
+        internalProvenance:{ phase:"phase12", batch:"drug_count_burden", reviewStatus:"no_signoff" },
       };
     }
   }
@@ -1459,7 +1459,7 @@ if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
       const pk = top100CoveragePkParams(drug);
       pk.note = `Approximate PK profile for ${drug.name}; drug-specific PK curation is incomplete.`;
       pk.evidenceRefs = [...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS];
-      pk.internalProvenance = { phase:"phase13", batch:"top100_gold_pk", reviewStatus:"pending" };
+      pk.internalProvenance = { phase:"phase13", batch:"top100_gold_pk", reviewStatus:"no_signoff" };
       PK_PARAMS[key] = pk;
     }
 
@@ -1473,7 +1473,7 @@ if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
         mechanism:"conservative_timing_context",
         note:`Conservative ${days}-day timing context for ${drug.name} based on half-life and class context.`,
         evidenceRefs:[...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS],
-        internalProvenance:{ phase:"phase13", batch:"top100_gold_timing", reviewStatus:"pending" },
+        internalProvenance:{ phase:"phase13", batch:"top100_gold_timing", reviewStatus:"no_signoff" },
       };
     }
 
@@ -1488,9 +1488,9 @@ if (typeof TOP100_LIVE_COVERAGE_DRUGS !== "undefined") {
       /maoi|antipsychotic|phenothiazine|opioid|benzodiazepine|barbiturate|anticonvulsant|antiarrhythmic|nsaid|alpha|sedative|hypnotic|anticholinergic|stimulant/i.test(`${drug.name} ${drug.cls}`)) {
       BEERS_FLAGS[key] = {
         concern:`Older-adult caution for ${drug.name}: class-linked CNS, fall, QT, bleeding, renal, anticholinergic, or orthostasis risk may matter in age >=65.`,
-        avoid:"older_adult_caution_pending_review",
+        avoid:"older_adult_caution_no_signoff",
         evidenceRefs:[...TOP100_GOLD_ENRICHMENT_EVIDENCE_REFS],
-        internalProvenance:{ phase:"phase13", batch:"top100_gold_burden", reviewStatus:"pending" },
+        internalProvenance:{ phase:"phase13", batch:"top100_gold_burden", reviewStatus:"no_signoff" },
       };
     } else {
       const existingBeers = top100GoldScoringRow(BEERS_FLAGS, drug);
@@ -1552,7 +1552,7 @@ function ninetyPercentCoveragePkParams(drug) {
   row.note = `Approximate PK profile for ${drug.name} using available half-life, class, and route context while drug-specific parameters are incomplete.`;
   row.evidenceRefs = [...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS];
   row.evidence = { confidence:"low", sources:["90% live coverage adapter"], studyType:"route_half_life_adapter" };
-  row.internalProvenance = { phase:"phase16", batch:"ninety_percent_pk", reviewStatus:"pending" };
+  row.internalProvenance = { phase:"phase16", batch:"ninety_percent_pk", reviewStatus:"no_signoff" };
   return row;
 }
 
@@ -1564,7 +1564,7 @@ function ninetyPercentCoverageWashoutRow(drug) {
     note:`Conservative ${days}-day timing context for ${drug.name} based on half-life, class, and interaction persistence.`,
     evidenceRefs:[...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS],
     evidence:{confidence:"low", sources:["90% live coverage adapter"], studyType:"half_life_class_adapter"},
-    internalProvenance:{ phase:"phase16", batch:"ninety_percent_timing", reviewStatus:"pending" },
+    internalProvenance:{ phase:"phase16", batch:"ninety_percent_timing", reviewStatus:"no_signoff" },
   };
 }
 
@@ -1584,12 +1584,12 @@ function ninetyPercentCoverageBeersRow(drug) {
     /antiarrhythmic|qt/i.test(text) ? "antiarrhythmics_65plus_caution" :
     /anticholinergic|antihistamine|bladder|antimuscarinic/i.test(text) ? "anticholinergics_65plus" :
     /ssri|snri/i.test(text) ? "serotonergic_fall_bleeding_65plus_caution" :
-    "older_adult_caution_pending_review";
+    "older_adult_caution_no_signoff";
   return {
     concern:`Older-adult caution for ${drug.name}: class-linked CNS, fall, anticholinergic, renal, bleeding, QT, orthostasis, or hyponatremia risk may matter in age >=65.`,
     avoid,
     evidenceRefs:[...NINETY_PERCENT_LIVE_COVERAGE_EVIDENCE_REFS],
-    internalProvenance:{ phase:"phase16", batch:"ninety_percent_burden", reviewStatus:"pending" },
+    internalProvenance:{ phase:"phase16", batch:"ninety_percent_burden", reviewStatus:"no_signoff" },
   };
 }
 
@@ -1734,7 +1734,7 @@ function getScoringValue(table, drugOrName) {
 function assertReviewedScoringRow(row, scorerName) {
   if (!row || typeof row !== "object") return;
   const status = String(row.professionalReviewStatus || row.reviewStatus || "").toLowerCase();
-  if (row.pendingSourceSignal === true || row.experimentalOnly === true || status.includes("pending")) {
+  if (row.pendingSourceSignal === true || row.experimentalOnly === true || status.includes("pending") || status.includes("no_signoff")) {
     const label = row.name || row.id || row.label || "unknown row";
     throw new Error(`${scorerName} received pending or experimental input: ${label}`);
   }

@@ -126,7 +126,7 @@ Diognosis is intentionally conservative about what it claims:
 
 - PK curves use a one-compartment model or relative-exposure fallback — they **do not** replace therapeutic drug monitoring, multi-compartment/nonlinear PK models, or active-metabolite clinical interpretation.
 - Extreme exposure shifts may be capped for display clarity.
-- Evidence marked `reviewRequired:true` is visible for review and discovery as an internal enrichment/scoring flag. It should not be treated as a professional-review status.
+- Source-linked evidence is included for V1 traceability, but professional sign-off is not claimed unless explicit sign-off metadata exists.
 
 ---
 
@@ -134,14 +134,14 @@ Diognosis is intentionally conservative about what it claims:
 
 <!-- DIOGNOSIS_STATS_START -->
 - **1549 drugs** in DRUG_DB
-- **517 evidence entries** in STUDY_DB (276 with PMIDs; 517 source-integrated for V1; 0 with v3 professional sign-off)
+- **513 evidence entries** in STUDY_DB (273 with PMIDs; 513 source-integrated for V1; 0 with v3 professional sign-off)
 - **3183 interaction pairs** (1610 severe, 1538 moderate, 35 mild)
 - **2817 metabolite entries** across **1549 parent substances** (2375 first-class metabolite actors)
 - **1407 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **69 genotype genes** and **588 receptor score profiles**
 - **1251 RxNorm identity mappings**, **42 PGx marker rows**, and **14 CPIC-linked action summaries**
 - **218 Beers flags** and **1411 washout rules**
-- **3315 KB** generated bundle (2362 lines)
+- **3312 KB** generated bundle (2362 lines)
 <!-- DIOGNOSIS_STATS_END -->
 
 ---
@@ -164,7 +164,7 @@ GitHub Pages uses the workflow in `.github/workflows/pages.yml` to build the app
 
 ## Contribute / Review Data
 
-Diognosis contains source-linked data. **No evidence entry has professional sign-off metadata yet.** Entries marked `reviewRequired:true` are internally flagged enrichment rows, but the rest of the evidence should not be treated as clinically verified.
+Diognosis contains source-linked data. **No evidence entry has professional sign-off metadata yet.** Source integration means the claim is traceable to a committed source; it does not mean the claim has been clinically verified.
 
 > **The safety contract is simple:** a warning should explain the pathway, affected actor, predicted direction, and supporting evidence. Severity should not be treated as clinically final without explicit professional sign-off.
 
