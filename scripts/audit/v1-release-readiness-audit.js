@@ -273,7 +273,7 @@ assert(patient.summaryRisk.trim() === '', 'Patient mode should hide score-style 
 assert(patient.findingTitle === 'Safety Notes', 'Patient mode should rename public findings');
 assert(/safety notes?/i.test(patient.findingCount), 'Patient mode should label public finding count as safety notes');
 assert(patient.exposureSummaryCount === 0, 'Patient mode should hide technical exposure summary rows from the selected list');
-assert(/What this means|What to ask/i.test(patient.findingText), 'Patient mode should use plain-language labels');
+assert(/What to ask|Why this came up/i.test(patient.findingText), 'Patient mode should use plain-language labels');
 assert(/Question to ask|Can you check/i.test(patient.findingText), 'Patient mode should expose a plain-language discussion question');
 assert(/Safety notes group related concerns|doctor or pharmacist/i.test(patient.findingText), 'Patient mode should use a plain-language Safety Notes footer');
 assert(patient.discussionGuides > 0, 'Patient mode should render discussion guides on safety notes');

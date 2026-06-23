@@ -807,6 +807,7 @@ const audienceModeRegression = window.eval(`(() => {
     findingText:document.getElementById('findingBody')?.textContent || '',
     patientQuestionCards:document.querySelectorAll('#findingBody .patient-question-card').length,
     patientMeaningCards:document.querySelectorAll('#findingBody .patient-meaning-card').length,
+    patientStackSummary:document.querySelector('#findingBody .patient-stack-summary')?.textContent || '',
     severityLabels:[...document.querySelectorAll('#findingBody .finding-sev, #findingBody .patient-question-tag')].map(el => el.textContent.trim()),
     scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
     scopeText:document.getElementById('scopeBody')?.textContent || '',
@@ -897,12 +898,14 @@ assert(/safety notes?/i.test(audienceModeRegression.patient.findingCount), 'Pati
 assert(audienceModeRegression.patient.patientQuestionCards > 0, 'Patient mode should render dedicated question cards');
 assert(/What to ask[\s\S]*Why this came up/i.test(audienceModeRegression.patient.findingText),
   'Patient mode should make the question primary before the reason text');
-assert(audienceModeRegression.patient.patientMeaningCards > 0, 'Patient mode should render a separate meaning section');
+assert(audienceModeRegression.patient.patientStackSummary && /You entered|first thing to ask/i.test(audienceModeRegression.patient.patientStackSummary),
+  'Patient mode should render a short synthesis summary above the question cards');
+assert(audienceModeRegression.patient.patientMeaningCards === 0, 'Patient mode should not duplicate the same findings in a separate meaning grid');
 assert(audienceModeRegression.patient.exposureSummaryCount === 0, 'Patient mode should hide technical exposure summary rows from the selected list');
 assert(audienceModeRegression.patient.actionRows === 0, 'Patient mode should not render empty clinician action rows on patient question cards');
 assert(audienceModeRegression.patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
 assert(audienceModeRegression.patient.supportDetails === 0, 'Patient mode should hide clinician supporting detail drawers');
-assert(/What this means/.test(audienceModeRegression.patient.findingText), 'Patient mode should use a separate plain-language meaning section');
+assert(!/What this means/.test(audienceModeRegression.patient.findingText), 'Patient mode should fold the old meaning section into the synthesis summary');
 assert(/Bring this list to a doctor or pharmacist|conversation starters/i.test(audienceModeRegression.patient.findingText), 'Patient mode should use a plain-language bring-to-clinician footer');
 assert(!/(?:Technical details remain available in Review|Detailed technical context|pathway, metabolite, timing, and evidence signals|clinical concerns)/i.test(
   audienceModeRegression.patient.findingText

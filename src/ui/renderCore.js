@@ -313,6 +313,7 @@ function focusPriorityFinding(tabName = "overview", elementId = "") {
     const target = elementId ? document.getElementById(elementId) : null;
     const el = target || document.getElementById(fallbackIds[resolvedTab]) || document.getElementById(`tab-${resolvedTab}`);
     if (!el) return;
+    openParentDisclosure(el);
     if (typeof el.scrollIntoView === "function") el.scrollIntoView({ behavior:"smooth", block:"center" });
     el.classList.remove("focus-pulse");
     void el.offsetWidth;
@@ -321,6 +322,14 @@ function focusPriorityFinding(tabName = "overview", elementId = "") {
   };
   if (typeof requestAnimationFrame === "function") requestAnimationFrame(runFocus);
   else runFocus();
+}
+
+function openParentDisclosure(el) {
+  let node = el?.parentElement || null;
+  while (node) {
+    if (node.tagName && node.tagName.toLowerCase() === "details") node.open = true;
+    node = node.parentElement;
+  }
 }
 
 function publicDomToken(value) {
@@ -792,9 +801,9 @@ function renderInteractionFindingsOverview(risk) {
     : (typeof buildClinicalConcerns === "function" ? buildClinicalConcerns(findings, { stack:activeStack, genotypeState:activeGenotype || {} }) : findings);
   currentInteractionFindings = findings;
   currentClinicalConcerns = overviewFindings;
-  currentPublicFindingPresentations = buildPublicFindingPresentations(overviewFindings);
+  currentPublicFindingPresentations = rankPublicFindingPresentations(buildPublicFindingPresentations(overviewFindings));
   const visiblePresentations = isPatientAudience()
-    ? getPatientFacingPublicFindingPresentations(currentPublicFindingPresentations)
+    ? rankPublicFindingPresentations(getPatientFacingPublicFindingPresentations(currentPublicFindingPresentations))
     : currentPublicFindingPresentations;
   if (!currentPublicFindingPresentations.length) {
     if (activeStack.length < 2) {
@@ -813,20 +822,116 @@ function renderInteractionFindingsOverview(risk) {
   }
   body.innerHTML = isPatientAudience()
     ? renderPatientQuestionsPage(visiblePresentations)
-    : currentPublicFindingPresentations.slice(0, 8).map((presentation, index) => renderPublicFindingCard(presentation, index)).join("") +
-      renderFindingOverviewFooter(currentPublicFindingPresentations.length);
+    : renderClinicianFindingsOverview(currentPublicFindingPresentations);
   return currentPublicFindingPresentations;
 }
 
 function renderPatientQuestionsPage(presentations = []) {
-  const shown = (presentations || []).slice(0, 8);
+  const ranked = rankPublicFindingPresentations(presentations);
+  const shown = ranked.slice(0, 3);
+  const remaining = ranked.slice(3);
   return `
-    <div class="patient-question-list">
+    ${renderPatientStackSummary(buildPatientStackSummary(ranked))}
+    ${shown.length ? `<div class="patient-question-list">
       ${shown.map(renderPatientQuestionCard).join("")}
-    </div>
-    ${renderPatientMeaningSection(shown)}
-    ${renderFindingOverviewFooter(presentations.length)}
+    </div>` : ""}
+    ${renderCollapsedPatientQuestions(remaining)}
+    ${renderFindingOverviewFooter(ranked.length)}
   `;
+}
+
+function renderClinicianFindingsOverview(presentations = []) {
+  const ranked = rankPublicFindingPresentations(presentations);
+  const shown = ranked.slice(0, 4);
+  const remaining = ranked.slice(4);
+  return `
+    ${shown.map((presentation, index) => renderPublicFindingCard(presentation, index)).join("")}
+    ${renderCollapsedClinicianFindings(remaining, shown.length)}
+    ${renderFindingOverviewFooter(ranked.length)}
+  `;
+}
+
+function renderPatientStackSummary(summary = null) {
+  if (!summary) return "";
+  return `<div class="patient-stack-summary">
+    <div class="patient-stack-summary-title">${safePublicHtml(summary.headline)}</div>
+    <div class="patient-stack-summary-body">${safePublicHtml(summary.body)}</div>
+  </div>`;
+}
+
+function buildPatientStackSummary(presentations = []) {
+  const scope = typeof buildReviewScopeSummary === "function"
+    ? buildReviewScopeSummary(typeof getRenderComputationCache === "function" ? getRenderComputationCache() : {})
+    : {};
+  const selectedCount = Number(scope.selectedCount || activeStack.length || 0);
+  if (!selectedCount) return null;
+  const geneCount = Number(scope.genotypeCount || 0);
+  const ranked = rankPublicFindingPresentations(presentations);
+  const entered = buildPatientEnteredSentence(selectedCount, geneCount);
+  const unknownText = scope.unknownCount
+    ? `Also mention ${formatScopeUnknownItems(scope.unknownItems)} because ${scope.unknownCount === 1 ? "it was" : "they were"} not recognized here.`
+    : "";
+  const safety = "Do not start, stop, or change anything on your own; bring these questions to a doctor or pharmacist.";
+  if (!ranked.length) {
+    const quiet = selectedCount >= 2
+      ? "Nothing major stood out in the current local data for this list."
+      : "This view can show single-medicine gene or safety context, but interaction checks need the rest of the medication list.";
+    return {
+      headline:scope.unknownCount ? "Some items were not recognized" : "Nothing major stood out here",
+      body:[entered, quiet, unknownText, safety].filter(Boolean).join(" "),
+    };
+  }
+  const top = ranked[0];
+  const topTitle = patientFindingTitleText(top);
+  const affected = formatPatientAffectedSubstances(top.affectedSubstances || []);
+  const remaining = ranked.length - 1;
+  const priority = affected
+    ? `The first thing to ask about is ${topTitle} involving ${affected}.`
+    : `The first thing to ask about is ${topTitle}.`;
+  const others = remaining
+    ? `${remaining} other ${remaining === 1 ? "note is" : "notes are"} available after that priority.`
+    : "No other patient-facing safety note is listed after that priority.";
+  return {
+    headline:"One thing is worth checking first",
+    body:[entered, priority, `${others} ${unknownText}`.trim(), safety].filter(Boolean).join(" "),
+  };
+}
+
+function buildPatientEnteredSentence(selectedCount = 0, geneCount = 0) {
+  const selectedLabel = selectedCount === 1 ? "selected item" : "selected items";
+  const geneLabel = geneCount === 1 ? "gene result" : "gene results";
+  return `You entered ${selectedCount} ${selectedLabel}${geneCount ? ` and ${geneCount} ${geneLabel}` : ""}.`;
+}
+
+function formatPatientAffectedSubstances(items = [], limit = 2) {
+  const clean = (items || []).map(item => publicDisplayText(item)).filter(Boolean);
+  if (!clean.length) return "";
+  if (clean.length === 1) return clean[0];
+  const shown = clean.slice(0, limit);
+  if (clean.length <= limit) return `${shown.slice(0, -1).join(", ")} and ${shown.at(-1)}`;
+  return `${shown.join(", ")}, and ${clean.length - limit} more`;
+}
+
+function renderCollapsedPatientQuestions(presentations = []) {
+  if (!presentations.length) return "";
+  const label = `Show ${presentations.length} more question${presentations.length === 1 ? "" : "s"}`;
+  return `<details class="overview-more patient-more">
+    <summary>${safePublicHtml(label)}</summary>
+    <div class="overview-more-list patient-question-list">
+      ${presentations.map(renderPatientQuestionCard).join("")}
+    </div>
+  </details>`;
+}
+
+function renderCollapsedClinicianFindings(presentations = [], startIndex = 0) {
+  if (!presentations.length) return "";
+  const label = `Show ${presentations.length} more concern${presentations.length === 1 ? "" : "s"}`;
+  return `<details class="overview-more clinician-more">
+    <summary>${safePublicHtml(label)}</summary>
+    <div class="overview-more-list">
+      ${presentations.map((presentation, index) => renderPublicFindingCard(presentation, startIndex + index)).join("")}
+    </div>
+  </details>`;
 }
 
 function getPatientFacingPublicFindingPresentations(presentations = getCurrentPublicFindingPresentations()) {
@@ -958,55 +1063,12 @@ function patientQuestionTone(severity = "") {
   return "low";
 }
 
-function renderPatientMeaningSection(presentations = []) {
-  const notes = buildPatientMeaningNotes(presentations);
-  if (!notes.length) return "";
-  return `<div class="patient-meaning-section">
-    <div class="patient-section-eyebrow">What this means</div>
-    <div class="patient-meaning-grid">
-      ${notes.map(note => `<div class="patient-meaning-card">
-        <div class="patient-meaning-title">${safePublicHtml(note.title)}</div>
-        <div class="patient-meaning-body">${safePublicHtml(note.body)}</div>
-      </div>`).join("")}
-    </div>
-  </div>`;
-}
-
-function buildPatientMeaningNotes(presentations = []) {
-  const notes = [];
-  const seen = new Set();
-  const seenTitles = new Set();
-  const seenBodies = new Set();
-  const add = (title, body) => {
-    const cleanTitle = publicDisplayText(title);
-    const cleanBody = publicDisplayText(body);
-    const key = `${cleanTitle}|${cleanBody}`.toLowerCase();
-    const titleKey = cleanTitle.toLowerCase();
-    const bodyKey = cleanBody.toLowerCase();
-    if (!cleanTitle || !cleanBody || seen.has(key) || seenTitles.has(titleKey) || seenBodies.has(bodyKey)) return;
-    seen.add(key);
-    seenTitles.add(titleKey);
-    seenBodies.add(bodyKey);
-    notes.push({ title:cleanTitle, body:cleanBody });
-  };
-  for (const presentation of presentations || []) {
-    const title = patientFindingTitleText(presentation);
-    const changed = patientFindingStepText(presentation, "changed");
-    const why = patientFindingStepText(presentation, "why");
-    add(title, changed || why);
-    if (notes.length >= 3) break;
-  }
-  return notes;
-}
-
 function renderFindingOverviewFooter(totalCount = 0) {
   if (isPatientAudience()) {
-    return totalCount > 8
-      ? `<div class="patient-clinician-note"><div><strong>Bring this list to a doctor or pharmacist.</strong> Showing 8 of ${safePublicHtml(totalCount)} questions. Ask them to review dose, timing, health history, symptoms, and anything not recognized here before making medication changes.</div></div>`
-      : `<div class="patient-clinician-note"><div><strong>Bring this list to a doctor or pharmacist.</strong> These questions are conversation starters, not medical advice. Ask them to review dose, timing, health history, symptoms, and anything not recognized here before making medication changes.</div></div>`;
+    return `<div class="patient-clinician-note"><div><strong>Bring this list to a doctor or pharmacist.</strong> These questions are conversation starters, not medical advice. Ask them to review dose, timing, health history, symptoms, and anything not recognized here before making medication changes.</div></div>`;
   }
-  return totalCount > 8
-    ? `<div class="finding-empty">Showing 8 of ${safePublicHtml(totalCount)} grouped concerns. Use the Mechanisms, Genes, Timing, and Evidence tabs for supporting detail.</div>`
+  return totalCount > 4
+    ? `<div class="finding-empty">The highest-priority concerns are shown first. Expand the remaining concerns when needed, then use Mechanisms, Genes, Timing, and Evidence for supporting detail.</div>`
     : `<div class="finding-empty">Clinical Review Priorities groups pathway, metabolite, timing, and evidence signals. Use each card action to jump into Mechanisms, Genes, Timing, or Evidence for supporting detail.</div>`;
 }
 
@@ -1494,6 +1556,10 @@ function publicFindingSeverityScore(severity) {
   return { critical:5, severe:4, moderate:3, monitor:2, info:1 }[severity] || 0;
 }
 
+function rankPublicFindingPresentations(presentations = []) {
+  return (presentations || []).filter(Boolean);
+}
+
 function patientSeverityLabel(severity) {
   const key = safeChoice(severity, ["critical","severe","moderate","monitor","info"], "info");
   if (key === "critical" || key === "severe") return "Higher priority";
@@ -1517,7 +1583,7 @@ function publicFindingSearchText(presentation = {}) {
 function getCurrentPublicFindingPresentations() {
   if (currentPublicFindingPresentations.length) return currentPublicFindingPresentations;
   const cache = typeof getRenderComputationCache === "function" ? getRenderComputationCache() : {};
-  currentPublicFindingPresentations = buildPublicFindingPresentations(cache.clinicalConcerns || []);
+  currentPublicFindingPresentations = rankPublicFindingPresentations(buildPublicFindingPresentations(cache.clinicalConcerns || []));
   return currentPublicFindingPresentations;
 }
 

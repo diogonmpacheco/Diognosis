@@ -695,6 +695,16 @@ body[data-audience="clinician"] .summary-story.clinician-priority .summary-story
 .patient-clinician-note{display:flex;gap:12px;align-items:flex-start;color:var(--accent2);padding:16px 18px;background:#eef5f2;border:1px solid #d4e6e0;border-radius:14px;font-size:13px;line-height:1.5}
 .patient-clinician-note::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--accent);flex:0 0 auto;margin-top:5px}
 .patient-clinician-note strong{color:var(--text)}
+.patient-stack-summary{border:1px solid var(--accentLine);border-radius:14px;background:var(--greenBg);padding:16px 18px;margin-bottom:12px;color:var(--accent2)}
+.patient-stack-summary-title{font-size:16px;font-weight:850;line-height:1.3;color:var(--text);margin-bottom:6px}
+.patient-stack-summary-body{font-size:14px;line-height:1.55;color:var(--accent2);overflow-wrap:anywhere}
+.overview-more{border:1px solid var(--border);border-radius:14px;background:var(--card);margin:12px 0;overflow:hidden}
+.overview-more summary{cursor:pointer;list-style:none;font-size:12px;font-weight:900;color:var(--accent);padding:12px 14px;background:var(--card2)}
+.overview-more summary::-webkit-details-marker{display:none}
+.overview-more summary::after{content:"+";float:right;font-weight:900;color:var(--text2)}
+.overview-more[open] summary::after{content:"-"}
+.overview-more-list{display:grid;gap:10px;padding:12px 14px 14px}
+.overview-more-list .finding-card{margin-bottom:0}
 .patient-question-list{display:grid;gap:10px}
 .patient-question-card{display:flex;align-items:flex-start;gap:14px;border:1px solid var(--border);border-radius:14px;background:var(--card);padding:18px 20px}
 .patient-question-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);flex:0 0 auto;margin-top:6px}
@@ -712,12 +722,6 @@ body[data-audience="clinician"] .summary-story.clinician-priority .summary-story
 .patient-question-discussion .finding-discussion-text{font-size:15px;line-height:1.48}
 .patient-question-reason{margin-top:10px}
 .patient-question-reason-label{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:0;color:var(--faint);margin-bottom:4px}
-.patient-meaning-section{margin-top:24px}
-.patient-section-eyebrow{font-size:11px;font-weight:900;letter-spacing:0;text-transform:uppercase;color:var(--faint);margin:0 0 12px}
-.patient-meaning-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
-.patient-meaning-card{border:1px solid var(--border);border-radius:14px;background:var(--card);padding:16px 18px}
-.patient-meaning-title{font-size:14px;font-weight:800;color:var(--text);line-height:1.35}
-.patient-meaning-body{font-size:13px;line-height:1.55;color:var(--text2);margin-top:6px}
 .circulating-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
 .circulating-card{border:1px solid var(--border);border-radius:12px;background:var(--card);padding:14px 15px}
 .circulating-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
