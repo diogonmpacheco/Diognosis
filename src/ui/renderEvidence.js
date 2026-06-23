@@ -14,10 +14,8 @@ function renderEvidenceExplorer() {
 
   // Collect all relevant studies for current stack.
   // Public trust status is intentionally unified: evidence can be source-integrated
-  // for V1 without claiming professional sign-off. The reviewRequired flag remains
-  // an internal enrichment/scoring control, not a separate public trust tier.
+  // for V1 without claiming professional sign-off.
   const relevantStudies = new Map();
-  const reviewStudies = new Map();
   const drugNames = activeStack.map(n => n.toLowerCase());
   const geneNames = Object.keys(activeGenotype || {}).map(n => n.toLowerCase());
   const stackContext = typeof getStackEvidenceContext === "function"
@@ -46,31 +44,24 @@ function renderEvidenceExplorer() {
       geneNames.some(name => title.includes(name) || source.includes(name) || supports.includes(name)) ||
       stackContext.evidenceRefs?.has?.(sid);
     if (!relevantToStack) continue;
-    if (study.reviewRequired === true) reviewStudies.set(sid, study);
-    else relevantStudies.set(sid, study);
+    relevantStudies.set(sid, study);
   }
 
-  if (relevantStudies.size === 0 && reviewStudies.size === 0 && !findings.length) {
+  if (relevantStudies.size === 0 && !findings.length) {
     hideSectionAndClear("evidenceSection", "evidenceBody", "evidenceCount");
     return;
   }
 
   if (section) section.style.display = "";
 
-  // Integrated display. Review-required enrichment rows are shown inline with
-  // the older evidence entries, while every card carries the same source-linked
-  // badge from studyCardHTML.
-  const combinedStudies = [...relevantStudies.values(), ...reviewStudies.values()]
+  const combinedStudies = [...relevantStudies.values()]
     .sort((a, b) => {
-      const ra = a.reviewRequired === true ? 1 : 0;
-      const rb = b.reviewRequired === true ? 1 : 0;
-      if (ra !== rb) return ra - rb;                                 // baseline entries first
       return (EVIDENCE_WEIGHT[b.type] || 0) - (EVIDENCE_WEIGHT[a.type] || 0);
     });
 
   if (countEl) {
     const pendingRows = combinedStudies.filter(study => study.pendingSourceSignal).length;
-    countEl.textContent = `${combinedStudies.length} source-integrated evidence${pendingRows ? ` · ${pendingRows} source preview signal${pendingRows === 1 ? "" : "s"}` : ""} · professional sign-off not claimed`;
+    countEl.textContent = `${combinedStudies.length} source-integrated evidence${pendingRows ? ` · ${pendingRows} source context signal${pendingRows === 1 ? "" : "s"}` : ""} · professional sign-off not claimed`;
   }
 
   // Tier filter buttons span every displayed card.
@@ -118,7 +109,7 @@ function renderEvidenceLadderLedger(findings = []) {
         ref,
         study,
         findings: [],
-        ladder: computeEvidenceLadder([ref], { reviewRequired:true, calculationBearing:true }),
+        ladder: computeEvidenceLadder([ref], { sourceLinked:true, calculationBearing:true }),
       };
       row.findings.push(finding.title || finding.id || "Finding");
       rowsByRef.set(ref, row);
@@ -193,7 +184,6 @@ function renderQualityDashboard() {
     s.reviewStatus === "clinician_reviewed"
   );
   const v3ProfessionalCandidates = publicStudies.length - professionalReviewed.length;
-  const reviewNotes = publicStudies.filter(s => s.verifyNote);
   const qualitative = [];
   const quantified = [];
   const missingSignals = [];
@@ -222,7 +212,6 @@ function renderQualityDashboard() {
   if (countEl) countEl.textContent = `${publicStudies.length} evidence · ${v3ProfessionalCandidates} v3 sign-off candidates · ${stackExternalContextCount} external context cards`;
 
   const issueItems = [
-    ...reviewNotes.slice(0,3).map(s => `<div class="quality-item"><strong>Evidence review note:</strong> ${safePublicHtml(publicEvidenceTitle(s))} · ${safePublicHtml(s.verifyNote)}</div>`),
     ...missingSignals.slice(0,3).map(x => `<div class="quality-item"><strong>Schema upgrade:</strong> add explicit exposure/action metadata for ${safePublicHtml(x)}</div>`),
     knownDdiMissingRefs ? `<div class="quality-item"><strong>Interaction provenance:</strong> ${knownDdiMissingRefs} interaction rows still rely on inline evidence instead of STUDY_DB refs.</div>` : ""
   ].filter(Boolean).join("");

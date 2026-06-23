@@ -559,7 +559,7 @@ function studyCardHTML(study) {
   const limits = (study.limitations || []).length
     ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Limitations: ${study.limitations.map(item => esc(publicText(item))).join(' · ')}</div>` : '';
   const unverified = study.verifyNote
-    ? `<div style="font-size:10px;color:var(--amber);margin-top:3px">Review note: ${esc(publicText(study.verifyNote))}</div>` : '';
+    ? `<div style="font-size:10px;color:var(--amber);margin-top:3px">Source note: ${esc(publicText(study.verifyNote))}</div>` : '';
   const reviewBadge = '<span class="ev-review-badge needs-review">source-linked</span>';
   const liveBadge = study.livePendingReview === true
     ? '<span class="ev-review-badge needs-review">source preview</span><span class="ev-review-badge needs-review">not clinical guidance</span>'

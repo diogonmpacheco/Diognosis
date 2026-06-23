@@ -15,9 +15,9 @@ Diognosis is a source-linked mechanistic review platform. It is designed to make
 Current evidence status:
 
 <!-- PUBLIC_TRUST_STATS_START -->
-- **513 `STUDY_DB` entries** are source-integrated for V1 evidence display and calculations.
+- **502 `STUDY_DB` entries** are source-integrated for V1 evidence display and calculations.
 - **0 entries** have explicit v3 professional sign-off metadata.
-- **513 entries** publish source-linked context without claiming professional sign-off.
+- **502 entries** publish source-linked context without claiming professional sign-off.
 <!-- PUBLIC_TRUST_STATS_END -->
 - Severe and critical warnings remain visible for discovery, but severity is not clinically final without explicit professional sign-off.
 

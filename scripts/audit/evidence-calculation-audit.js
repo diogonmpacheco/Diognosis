@@ -26,28 +26,38 @@ const dom = new JSDOM(html, {
 await new Promise((resolveReady) => setTimeout(resolveReady, 400));
 
 const report = dom.window.eval(`(() => {
+  const hasProfessionalReview = (study) => Boolean(
+    study?.professionalReviewed === true ||
+    study?.clinicalReviewed === true ||
+    ["reviewed", "professional_reviewed", "clinician_reviewed"].includes(study?.reviewStatus)
+  );
+  const isSourceLinked = (study) => Boolean(
+    study &&
+    (study.pmid || study.doi || study.url || study.source || study.type)
+  );
+  const isSourceLinkedWithoutSignoff = (study) => isSourceLinked(study) && !hasProfessionalReview(study);
   const graph = getInteractionGraph();
-  const graphInternalReviewRequiredEvidence = new Set();
-  const ddiInternalReviewRequiredEvidence = new Set();
-  const internalReviewRequiredOnlySevereCalibrated = [];
+  const graphSourceLinkedEvidence = new Set();
+  const ddiSourceLinkedEvidence = new Set();
+  const sourceLinkedSevereCalibrated = [];
 
   for (const edge of graph.edges || []) {
     const studies = resolveEvidenceRefs(edge.props?.evidenceRefs || [], getEdgeEvidenceSupportKeys(edge));
     for (const study of studies) {
-      if (study.reviewRequired === true) graphInternalReviewRequiredEvidence.add(study.id);
+      if (isSourceLinkedWithoutSignoff(study)) graphSourceLinkedEvidence.add(study.id);
     }
   }
 
   for (const ddi of KNOWN_DDI || []) {
     const profile = getDdiEvidenceProfile(ddi);
     for (const study of profile.studies || []) {
-      if (study.reviewRequired === true) ddiInternalReviewRequiredEvidence.add(study.id);
+      if (isSourceLinkedWithoutSignoff(study)) ddiSourceLinkedEvidence.add(study.id);
     }
-    const onlyInternalReviewRequired = ["severe", "critical"].includes(ddi.severity) &&
+    const onlySourceLinkedWithoutSignoff = ["severe", "critical"].includes(ddi.severity) &&
       (ddi.evidenceRefs || []).length &&
-      (ddi.evidenceRefs || []).every(ref => STUDY_DB[ref]?.reviewRequired === true);
-    if (onlyInternalReviewRequired && calibrateDdiSeverity(ddi) === "severe") {
-      internalReviewRequiredOnlySevereCalibrated.push({ pair: ddi.drug1 + " + " + ddi.drug2, refs: ddi.evidenceRefs });
+      (ddi.evidenceRefs || []).every(ref => isSourceLinkedWithoutSignoff(STUDY_DB[ref]));
+    if (onlySourceLinkedWithoutSignoff && calibrateDdiSeverity(ddi) === "severe") {
+      sourceLinkedSevereCalibrated.push({ pair: ddi.drug1 + " + " + ddi.drug2, refs: ddi.evidenceRefs });
     }
   }
 
@@ -72,12 +82,12 @@ const report = dom.window.eval(`(() => {
   const danglingFindingEvidenceRefs = findingEvidenceRefs.filter(ref => !STUDY_DB[ref]);
 
   return {
-    graphInternalReviewRequiredEvidenceCount: graphInternalReviewRequiredEvidence.size,
-    ddiInternalReviewRequiredEvidenceCount: ddiInternalReviewRequiredEvidence.size,
-    internalReviewRequiredOnlySevereCalibratedCount: internalReviewRequiredOnlySevereCalibrated.length,
+    graphSourceLinkedEvidenceCount: graphSourceLinkedEvidence.size,
+    ddiSourceLinkedEvidenceCount: ddiSourceLinkedEvidence.size,
+    sourceLinkedSevereCalibratedCount: sourceLinkedSevereCalibrated.length,
     fluoxetineEdgeFound: Boolean(fluoxetineEdge),
     fluoxetineEdgeConfidence: fluoxetineEdge ? computeEdgeConfidence(fluoxetineEdge) : null,
-    fluoxetineInternalReviewRequiredEvidenceCount: fluoxetineStudies.filter(study => study.reviewRequired === true).length,
+    fluoxetineSourceLinkedEvidenceCount: fluoxetineStudies.filter(isSourceLinkedWithoutSignoff).length,
     fluoxetineEvidenceCount: fluoxetineStudies.length,
     findingCount: findings.length,
     findingEvidenceLadderCount: findings.filter(finding => finding.evidenceLadder?.clinicalActionConfidence).length,
@@ -88,11 +98,11 @@ const report = dom.window.eval(`(() => {
 })()`);
 
 assert(browserErrors.length === 0, `Evidence calculation audit emitted browser errors: ${browserErrors.join('; ')}`);
-assert(report.graphInternalReviewRequiredEvidenceCount > 0, 'Expected internal reviewRequired evidence to feed graph edge confidence calculations');
-assert(report.ddiInternalReviewRequiredEvidenceCount > 0, 'Expected internal reviewRequired evidence to feed DDI evidence profile calculations');
-assert(report.internalReviewRequiredOnlySevereCalibratedCount > 0, 'Expected at least one severe DDI supported only by internal reviewRequired refs to remain calculation-bearing');
+assert(report.graphSourceLinkedEvidenceCount > 0, 'Expected source-linked evidence to feed graph edge confidence calculations');
+assert(report.ddiSourceLinkedEvidenceCount > 0, 'Expected source-linked evidence to feed DDI evidence profile calculations');
+assert(report.sourceLinkedSevereCalibratedCount > 0, 'Expected at least one severe DDI supported by source-linked refs to remain calculation-bearing');
 assert(report.fluoxetineEdgeFound, 'Expected Fluoxetine -> CYP2D6 inhibition edge to exist');
-assert(report.fluoxetineInternalReviewRequiredEvidenceCount > 0, 'Expected Fluoxetine/CYP2D6 support-key evidence to include internal reviewRequired studies');
+assert(report.fluoxetineSourceLinkedEvidenceCount > 0, 'Expected Fluoxetine/CYP2D6 support-key evidence to include source-linked studies');
 assert(report.fluoxetineEdgeConfidence > 0.5, `Expected Fluoxetine/CYP2D6 edge confidence to reflect linked support evidence, got ${report.fluoxetineEdgeConfidence}`);
 assert(report.findingCount > 0, 'Expected normalized findings for Codeine + Fluoxetine + CYP2D6 PM');
 assert(report.findingEvidenceLadderCount === report.findingCount, `Expected every normalized finding to carry an evidence ladder, got ${report.findingEvidenceLadderCount}/${report.findingCount}`);
@@ -100,4 +110,4 @@ assert(report.findingReviewedClaimCount === 0, 'Normalized findings must not cla
 assert(report.severeFindingWithoutRefsOrReviewRequired === 0, 'Severe/critical findings without refs must remain reviewRequired');
 assert(report.danglingFindingEvidenceRefs.length === 0, `Normalized findings contain dangling evidence refs: ${report.danglingFindingEvidenceRefs.join(', ')}`);
 
-console.log(`Evidence calculation audit passed: ${report.graphInternalReviewRequiredEvidenceCount} internal reviewRequired studies feed graph confidence; ${report.ddiInternalReviewRequiredEvidenceCount} feed DDI profiles.`);
+console.log(`Evidence calculation audit passed: ${report.graphSourceLinkedEvidenceCount} source-linked studies feed graph confidence; ${report.ddiSourceLinkedEvidenceCount} feed DDI profiles; professional sign-off remains metadata-only.`);

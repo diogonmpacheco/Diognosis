@@ -134,14 +134,14 @@ Diognosis is intentionally conservative about what it claims:
 
 <!-- DIOGNOSIS_STATS_START -->
 - **1549 drugs** in DRUG_DB
-- **513 evidence entries** in STUDY_DB (273 with PMIDs; 513 source-integrated for V1; 0 with v3 professional sign-off)
+- **502 evidence entries** in STUDY_DB (269 with PMIDs; 502 source-integrated for V1; 0 with v3 professional sign-off)
 - **3183 interaction pairs** (1610 severe, 1538 moderate, 35 mild)
 - **2817 metabolite entries** across **1549 parent substances** (2375 first-class metabolite actors)
 - **1407 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **69 genotype genes** and **588 receptor score profiles**
 - **1251 RxNorm identity mappings**, **42 PGx marker rows**, and **14 CPIC-linked action summaries**
 - **218 Beers flags** and **1411 washout rules**
-- **3312 KB** generated bundle (2362 lines)
+- **3261 KB** generated bundle (2362 lines)
 <!-- DIOGNOSIS_STATS_END -->
 
 ---

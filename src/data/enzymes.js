@@ -608,9 +608,7 @@ for (const [gene, drug, sourceLabel, sourceIdentifiers] of PHASE15_SOURCE_BACKED
     action:`Source-backed ${gene} pharmacogenomic context for ${drug}; treat as source context until a drug-specific CPIC/DPWG-style recommendation is curated.`,
     sourceLabel,
     sourceIdentifiers,
-    evidenceRefs:["ev_phase15_source_backed_pgx_pairs"],
-    reviewRequired:true,
-    verified:false
+    evidenceRefs:["ev_phase15_source_backed_pgx_pairs"]
   });
 }
 

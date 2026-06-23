@@ -12,10 +12,10 @@ This audit describes the launch-facing data trust boundary for the current stati
 | Metric | Count |
 | --- | ---: |
 | Drugs in `DRUG_DB` | 1549 |
-| Evidence entries in `STUDY_DB` | 513 |
-| Source-integrated V1 evidence entries | 513 |
+| Evidence entries in `STUDY_DB` | 502 |
+| Source-integrated V1 evidence entries | 502 |
 | V3 professional sign-off entries | 0 |
-| Evidence entries without professional sign-off claims | 513 |
+| Evidence entries without professional sign-off claims | 502 |
 | RxNorm identity mappings | 1251 |
 | PGx marker rows | 42 |
 | CPIC-linked action summaries | 14 |
