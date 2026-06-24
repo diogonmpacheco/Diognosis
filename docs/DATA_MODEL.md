@@ -54,7 +54,7 @@ Clinical standards live in `src/data/clinicalStandards.js` and are shipped as lo
 - CPIC-linked action summaries remain review context. They can add evidence refs and a review direction, but they do not become automatic medication instructions or professional review.
 - `buildClinicalStandardsCoverage()` reports selected-stack standards coverage for V1 surfaces. It shows RxNorm-mapped and unmapped recognized medications, PGx marker rows, CPIC-linked action summaries, and the explicit SNOMED boundary for non-ingested diagnoses/symptoms.
 
-`npm run validate` checks that mapped substances resolve, RxNorm CUIs are numeric, PGx marker identifiers are well formed, and PGx action summaries point at existing evidence refs. `scripts/audit/v1-standards-coverage-audit.js` checks that hidden Reviewer Console scope, V1 handoff, and V1 readiness expose standards coverage and standards gaps.
+`npm test` runs strict validation, including checks that mapped substances resolve, RxNorm CUIs are numeric, PGx marker identifiers are well formed, and PGx action summaries point at existing evidence refs. `scripts/audit/v1-standards-coverage-audit.js` checks that hidden Reviewer Console scope, V1 handoff, and V1 readiness expose standards coverage and standards gaps.
 
 ## Fact Rules
 
@@ -77,7 +77,7 @@ Each relation has:
 Run:
 
 ```bash
-npm run validate:strict
+npm test
 ```
 
 The strict validator enforces the canonical export shape and keeps budgets for remaining known ambiguity:

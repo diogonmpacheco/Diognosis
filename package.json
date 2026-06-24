@@ -8,21 +8,11 @@
     "node": ">=24"
   },
   "scripts": {
-    "stats": "node scripts/gen-stats.js",
     "build": "node build.js",
-    "build:dev": "node build.js --dev --out /tmp/diognosis_dev.html",
-    "reference:generate": "node scripts/generate-reference-layer.js",
-    "reference:check": "node scripts/generate-reference-layer.js --check",
     "security:audit": "npm audit --audit-level=low",
-    "launch:qa": "node scripts/launch-qa-audit.js",
-    "smoke": "node scripts/smoke-check.js",
-    "regression": "node scripts/regression-check.js",
-    "validate": "node scripts/validate-db.js",
-    "validate:strict": "node scripts/validate-db.js --strict",
     "pages:check": "node scripts/pages-check.js",
     "release:check": "node scripts/release-check.js",
-    "test": "node scripts/test-gate.js unit",
-    "test:unit": "node scripts/test-gate.js unit"
+    "test": "node scripts/test-gate.js unit"
   },
   "devDependencies": {
     "esbuild": "^0.28.0",

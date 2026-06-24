@@ -360,11 +360,6 @@ Future raw-DNA integration should stay separate from the Diognosis clinical disp
 ```bash
 npm install
 npm run build
-npm run smoke
-npm run regression
-npm run validate
-npm run validate:strict
-npm run test:unit
 npm test
 npm run pages:check
 npm run release:check
@@ -374,7 +369,7 @@ npm run release:check
 
 `npm run release:check` rebuilds the bundle, verifies metadata, runs database and data-view audits, the V1 no-warning database gate, V1 public-docs/standards/readiness gates, evidence review UI, evidence calculation, source-boundary gates, scenario snapshots, launch QA, regression, smoke, strict validation, privacy/static audit, and whitespace checks.
 
-Routine GitHub Pages deployment uses `.github/workflows/pages.yml` to build `index.html` from `src/` and upload it as a Pages artifact. The generated root `index.html` is ignored locally, so branch-based Pages publishing is not sufficient for live deploys. The separate CI workflow stays deliberately small: branch and pull-request CI run `npm run test:unit`, while `npm run release:check` remains the deeper local pre-release gate.
+Routine GitHub Pages deployment uses `.github/workflows/pages.yml` to build `index.html` from `src/` and upload it as a Pages artifact. The generated root `index.html` is ignored locally, so branch-based Pages publishing is not sufficient for live deploys. The separate CI workflow stays deliberately small: branch and pull-request CI run `npm test`, while `npm run release:check` remains the deeper local pre-release gate.
 
 ## Release Checklist
 

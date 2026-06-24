@@ -69,10 +69,14 @@ for (const [label, text] of [
     `${label} should keep Evidence separate from hidden reviewer diagnostics`);
 }
 
-assert(pkg.scripts?.['launch:qa'] === 'node scripts/launch-qa-audit.js', 'package.json should expose npm run launch:qa');
+assert(!pkg.scripts?.['launch:qa'], 'package.json should keep launch QA internal to npm run release:check');
 assert(pkg.scripts?.['pages:check'] === 'node scripts/pages-check.js', 'package.json should expose npm run pages:check');
 assert(pkg.scripts?.['release:check'] === 'node scripts/release-check.js', 'package.json should expose npm run release:check');
 assert(pkg.scripts?.['security:audit'] === 'npm audit --audit-level=low', 'package.json should expose npm run security:audit');
+assert(pkg.scripts?.test === 'node scripts/test-gate.js unit', 'package.json should expose npm test');
+for (const internalScript of ['stats', 'build:dev', 'reference:generate', 'reference:check', 'smoke', 'regression', 'validate', 'validate:strict', 'test:unit']) {
+  assert(!pkg.scripts?.[internalScript], `package.json should not expose internal script ${internalScript}`);
+}
 assert(pkg.engines?.node === '>=24', 'package.json should declare the supported Node.js runtime');
 assert(/\/index\.html/.test(gitignore), 'Generated root index.html should remain ignored when Pages deploys workflow artifacts');
 assert(pagesWorkflow, 'GitHub Pages must use a workflow artifact deploy because generated index.html is ignored');
@@ -86,6 +90,7 @@ assert(/actions\/configure-pages@v6/.test(pagesWorkflow), 'GitHub Pages workflow
 assert(/actions\/upload-pages-artifact@v5/.test(pagesWorkflow), 'GitHub Pages workflow should use the current upload-pages-artifact action major');
 assert(/actions\/deploy-pages@v5/.test(pagesWorkflow), 'GitHub Pages workflow should use the current deploy-pages action major');
 assert(/npm run security:audit/.test(ciWorkflow), 'CI workflow must run dependency security audit');
+assert(/npm test/.test(ciWorkflow), 'CI workflow must run npm test');
 assert(/node-version:\s*["']24["']/.test(ciWorkflow), 'CI workflow should use Node.js 24');
 assert(!/node-version:\s*["']20["']/.test(ciWorkflow), 'CI workflow should not use deprecated Node.js 20');
 assert(/actions\/checkout@v7/.test(ciWorkflow), 'CI workflow should use the current checkout action major');
@@ -118,7 +123,7 @@ assert(/source-linked does not mean professionally reviewed/i.test(launchTrust),
 assert(/no accounts, analytics, tracking, medication-data collection, or runtime clinical API calls/i.test(launchTrust),
   'Launch Data Trust Audit must preserve static privacy boundary');
 
-assert(/npm run launch:qa/.test(launchQa), 'Launch QA Matrix must document npm run launch:qa');
+assert(!/npm run launch:qa/.test(launchQa), 'Launch QA Matrix should not expose internal launch QA as a public command');
 assert(/npm run pages:check/.test(launchQa), 'Launch QA Matrix must document npm run pages:check');
 assert(/V1 PGx contract audit|V1 PK visualization audit|V1 finding contract audit|V1 release readiness audit/i.test(launchQa),
   'Launch QA Matrix must reference the V1 release gates');

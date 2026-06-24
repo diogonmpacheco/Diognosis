@@ -26,12 +26,6 @@ The launch QA matrix guards cases that are easy to miss when a medication checke
 
 ## Commands
 
-Run the focused launch QA gate:
-
-```sh
-npm run launch:qa
-```
-
 Run the fast GitHub Pages deploy gate used for live testing:
 
 ```sh
@@ -46,4 +40,4 @@ npm run release:check
 
 The Pages deploy gate rebuilds the static bundle, verifies release metadata, runs smoke validation, privacy/static checks, and whitespace checks. GitHub Pages then publishes the generated `index.html` artifact, keeping live testing from waiting on every release-depth data and readiness audit.
 
-The release gate also runs the database, V1 public-docs, standards/readiness, strict validation, V1 PGx contract audit, V1 PK visualization audit, V1 finding contract audit including a complete sweep over every recognized shipped `KNOWN_DDI` pair, and the V1 release readiness audit.
+The release gate also runs the focused launch QA audit, database checks, V1 public-docs, standards/readiness, strict validation, V1 PGx contract audit, V1 PK visualization audit, V1 finding contract audit including a complete sweep over every recognized shipped `KNOWN_DDI` pair, and the V1 release readiness audit.
