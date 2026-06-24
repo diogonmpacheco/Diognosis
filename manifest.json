@@ -1,11 +1,11 @@
 {
-  "name": "Diognosis — MedCheck Engine",
+  "name": "Diognosis",
   "short_name": "Diognosis",
-  "description": "Source-linked medication safety and pharmacogenomics platform with the MedCheck Engine module.",
+  "description": "Source-linked medication safety and pharmacogenomics review for parent drugs, metabolites, genes, timing, and pathway-driven signals.",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#fef7f0",
-  "theme_color": "#e85d26",
+  "background_color": "#f1f0ec",
+  "theme_color": "#137a6a",
   "orientation": "portrait-primary",
   "icons": [
     { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },

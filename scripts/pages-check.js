@@ -20,6 +20,14 @@ function verifyAuxiliaryPages() {
     'llms.txt',
     'assets/logo-mark.png',
     'assets/auxiliary-pages.css',
+    'manifest.json',
+    'icon-32.png',
+    'icon-180.png',
+    'icon-192.png',
+    'icon-512.png',
+    'og-image.png',
+    'robots.txt',
+    'sitemap.xml',
     'src/data/dataViewsIndex.js',
   ];
   const requiredSourceFiles = [
@@ -31,7 +39,7 @@ function verifyAuxiliaryPages() {
     assert(existsSync(file), `Pages auxiliary file is missing: ${file}`);
   }
   const workflow = readFileSync('.github/workflows/pages.yml', 'utf8');
-  for (const file of requiredArtifactFiles.slice(0, 9)) {
+  for (const file of requiredArtifactFiles.filter(file => !file.startsWith('src/data/'))) {
     assert(workflow.includes(file), `Pages workflow does not deploy ${file}`);
   }
   assert(/cp src\/data\/\*\.js dist\/src\/data\//.test(workflow), 'Pages workflow must deploy data-views source data files');

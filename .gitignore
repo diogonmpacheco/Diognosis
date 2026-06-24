@@ -3,12 +3,6 @@ node_modules
 dist/
 .tmp/
 /index.html
-scripts/enrich/cache/
-data/enrichment/cache/**
-!data/enrichment/cache/**/
-!data/enrichment/cache/**/README.md
-!data/enrichment/cache/**/manifest.json
-!data/enrichment/cache/**/metadata.json
 .DS_Store
 *.log
 npm-debug.log*
@@ -23,13 +17,5 @@ docs/audits/
 scripts/audit/genotype-gap-report.json
 scripts/audit/genotype-gap-report.md
 scripts/audit/mechanistic-curation-gaps.md
-scripts/enrich/review-report.md
 scripts/severity-report.json
 scripts/severity-report.md
-scripts/integrations/open-targets/input/*
-!scripts/integrations/open-targets/input/.gitkeep
-!scripts/integrations/open-targets/input/drug-warnings-open-targets-spotlookups.json
-!scripts/integrations/open-targets/input/faers-open-targets-spotlookups.json
-!scripts/integrations/open-targets/input/molecule-open-targets-spotlookups.json
-!scripts/integrations/open-targets/input/pharmacogenetics-open-targets-spotlookups.json
-!scripts/integrations/open-targets/input/target-safety-open-targets-spotlookups.json

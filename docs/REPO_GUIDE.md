@@ -39,7 +39,7 @@ These are the files people should usually review and edit:
 | Interaction and pharmacology logic | `src/engine/` |
 | Curated medication, gene, metabolite, PK, and evidence data | `src/data/` |
 | Medication class guide source | `data/medication-class-guides.json` |
-| Static assets | `assets/`, `manifest.webmanifest`, `robots.txt` |
+| Static assets | `assets/`, `manifest.json`, `robots.txt`, root app icons, `og-image.png` |
 | Human-facing docs | `README.md`, `docs/` |
 
 Generated files should be regenerated from source, not manually edited.
@@ -60,6 +60,7 @@ Some generated files are intentionally committed because the live site, public d
 | `sitemap.xml` | `scripts/generate-reference-layer.js` | Yes | No |
 | `medication-classes.html` | `scripts/generate-medication-class-pages.js` | Yes | No |
 | `medication-class-examples.html` | `scripts/generate-medication-class-pages.js` | Yes | No |
+| `manifest.json`, `icon-*.png`, `og-image.png`, `robots.txt` | Static public site assets | Yes | Usually no |
 | `dist/` | GitHub Pages workflow | No | No |
 | `.tmp/`, `docs/audits/`, old report outputs | Local checks and audits | No | No |
 
