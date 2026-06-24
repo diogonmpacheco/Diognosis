@@ -94,6 +94,10 @@ function renderMechanismWhyPaths() {
     const reviewerButton = typeof isReviewerMode === "function" && isReviewerMode()
       ? `<button class="mini-btn" onclick="setTab('review')">Open reviewer panel</button>`
       : "";
+    const supportingSignals = renderMechanismSupportingSignals(finding);
+    const supportingSignalHtml = supportingSignals && typeof isReviewerMode === "function" && !isReviewerMode()
+      ? `<details class="supporting-signal-details"><summary>Grouped supporting signals</summary>${supportingSignals}</details>`
+      : supportingSignals;
     return `<div id="${safeAttr(rowId)}" class="mechanism-why-row supporting-context-row">
     <div class="warning-path-row-head">
       <div>
@@ -103,7 +107,7 @@ function renderMechanismWhyPaths() {
       <div class="supporting-actions">${relatedButton}${reviewerButton}</div>
     </div>
     ${renderWhyPath(finding.whyPath)}
-    ${renderMechanismSupportingSignals(finding)}
+    ${supportingSignalHtml}
     <div class="finding-meta">
       <span class="finding-tag type">${safePublicHtml(String(finding.source || "finding").replace(/_/g, " "))}</span>
       <span class="finding-tag">${safePublicHtml(finding.evidenceLadder?.mechanisticConfidence || finding.confidence || "unknown")} confidence</span>
