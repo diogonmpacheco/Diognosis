@@ -201,6 +201,40 @@ assert(loadStateResetRegression.urlNoGenotype.detailKeys.length === 0,
 assert(!/genotype=/i.test(loadStateResetRegression.urlNoGenotype.shareUrl),
   'URL state without genotype should not emit stale genotype params in share URL');
 
+const liveUrlStateRegression = window.eval(`(() => {
+  window.history.replaceState(null, '', '/index.html');
+  activeStack = [];
+  if (typeof resetActiveGenotypeState === "function") resetActiveGenotypeState();
+  if (typeof drugDoses !== "undefined") Object.keys(drugDoses).forEach(k => delete drugDoses[k]);
+  setAudienceMode('clinician', { render:false });
+  addDrug('Codeine');
+  addDrug('Fluoxetine');
+  setGenotype('CYP2D6', GENOTYPE_PHENOTYPE.PM);
+  setTab('genes-metabolites');
+  const withStack = window.location.search;
+  removeDrug('Fluoxetine');
+  const afterRemove = window.location.search;
+  removeDrug('Codeine');
+  if (typeof resetActiveGenotypeState === "function") resetActiveGenotypeState();
+  setAudienceMode('patient');
+  setTab('overview');
+  renderAll();
+  const afterClear = window.location.search;
+  return { withStack, afterRemove, afterClear };
+})()`);
+assert(/substances=codeine,fluoxetine/i.test(liveUrlStateRegression.withStack),
+  `Live URL sync should include selected substances: ${liveUrlStateRegression.withStack}`);
+assert(/genotype=CYP2D6:PM/i.test(liveUrlStateRegression.withStack),
+  `Live URL sync should include selected genotype: ${liveUrlStateRegression.withStack}`);
+assert(/audience=clinician/i.test(liveUrlStateRegression.withStack),
+  `Live URL sync should include current audience: ${liveUrlStateRegression.withStack}`);
+assert(/tab=genes-metabolites/i.test(liveUrlStateRegression.withStack),
+  `Live URL sync should include current tab: ${liveUrlStateRegression.withStack}`);
+assert(/substances=codeine/i.test(liveUrlStateRegression.afterRemove) && !/fluoxetine/i.test(liveUrlStateRegression.afterRemove),
+  `Live URL sync should remove deselected substances: ${liveUrlStateRegression.afterRemove}`);
+assert(!/(?:substances|drugs|medications)=/i.test(liveUrlStateRegression.afterClear) && !/genotype=/i.test(liveUrlStateRegression.afterClear),
+  `Live URL sync should clear stale stack/genotype params when the state is reset: ${liveUrlStateRegression.afterClear}`);
+
 const genotypeSemanticsAudit = window.eval(`(() => {
   const missing = [];
   const missingAxis = [];

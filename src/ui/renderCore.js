@@ -394,6 +394,7 @@ function setTab(name) {
   });
   renderLazyTab(resolvedTab);
   updateEmptyTabs();
+  syncUrlStateFromSelection(resolvedTab);
 }
 
 function focusPriorityFinding(tabName = "overview", elementId = "") {
@@ -3366,7 +3367,7 @@ function hideSectionAndClear(sectionId, bodyId, countId = null) {
   if (count) count.textContent = "";
 }
 
-function currentStackShareUrl(tab = activeTab) {
+function currentStackUrlParams(tab = activeTab) {
   const params = [];
   if (activeStack.length) {
     params.push(["substances", activeStack.map(name => {
@@ -3380,10 +3381,49 @@ function currentStackShareUrl(tab = activeTab) {
   if (isReviewerMode()) params.push(["reviewer", "1"]);
   const shareTab = tab === "review" && !isReviewerMode() ? "overview" : tab;
   if (shareTab) params.push(["tab", shareTab]);
-  const query = params
+  return params;
+}
+
+function currentStackQuery(tab = activeTab) {
+  return currentStackUrlParams(tab)
     .map(([key, value]) => `${encodeURIComponent(key)}=${encodeUrlStateValueLocal(value)}`)
     .join("&");
+}
+
+function currentStackShareUrl(tab = activeTab) {
+  const query = currentStackQuery(tab);
   return `https://diogonmpacheco.github.io/Diognosis/index.html${query ? `?${query}` : ""}`;
+}
+
+function hasUrlSelectionState() {
+  if (typeof window === "undefined") return false;
+  const search = String(window.location?.search || "");
+  const hash = String(window.location?.hash || "");
+  return /(?:^|[?&#])(?:substances|drugs|medications|genotype|audience|view|tab|reviewer|reviewMode|demo)=/i.test(search + hash);
+}
+
+function shouldExposeCurrentStateInUrl(tab = activeTab) {
+  const shareTab = tab === "review" && !isReviewerMode() ? "overview" : tab;
+  return activeStack.length > 0 ||
+    activeGenotypeUrlTokens().length > 0 ||
+    audienceMode !== "patient" ||
+    shareTab !== "overview" ||
+    isReviewerMode();
+}
+
+function currentBrowserUrlPath() {
+  const path = typeof window !== "undefined" ? (window.location?.pathname || "") : "";
+  return path.endsWith("/") ? `${path}index.html` : (path || "/index.html");
+}
+
+function syncUrlStateFromSelection(tab = activeTab) {
+  if (typeof window === "undefined" || !window.history || typeof window.history.replaceState !== "function") return;
+  const shouldExpose = shouldExposeCurrentStateInUrl(tab);
+  if (!shouldExpose && !hasUrlSelectionState()) return;
+  const query = shouldExpose ? currentStackQuery(tab) : "";
+  const nextUrl = `${currentBrowserUrlPath()}${query ? `?${query}` : ""}`;
+  const currentUrl = `${window.location.pathname || ""}${window.location.search || ""}`;
+  if (nextUrl !== currentUrl) window.history.replaceState(null, "", nextUrl);
 }
 
 function activeGenotypeUrlTokens() {
@@ -3604,6 +3644,7 @@ function renderAll() {
   updateEmptyTabs();
   if (viewMode === "browse") renderBrowse();
   syncCollapsibleSectionControls();
+  syncUrlStateFromSelection(activeTab);
 }
 
 function renderMedList() {
