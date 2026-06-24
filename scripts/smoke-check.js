@@ -217,6 +217,20 @@ await new Promise((resolveReady) => setTimeout(resolveReady, 100));
 
 assert(evalInPage(window, 'activeStack.length') === 2, 'Medication stack did not update');
 assert(doc.getElementById('medCount')?.textContent.includes('2'), 'Medication count did not update');
+assert(doc.querySelector('#medList .selected-list-action.primary')?.textContent.includes('Review'),
+  'Selected list should expose a direct review action');
+assert(doc.querySelectorAll('#medList .selected-list-action').length === 2,
+  'Selected list should expose compact review and clear actions');
+doc.querySelector('#medList .selected-list-action.primary').click();
+await new Promise((resolveReady) => setTimeout(resolveReady, 40));
+assert(evalInPage(window, 'activeTab') === 'overview', 'Selected-list review action should keep users on Overview');
+doc.querySelector('#medList .selected-list-action:not(.primary)').click();
+assert(evalInPage(window, 'activeStack.length') === 0, 'Selected-list clear action should empty the stack');
+assert(doc.querySelector('#medList .empty-undo-btn'), 'Selected-list clear action should expose undo');
+doc.querySelector('#medList .empty-undo-btn').click();
+await new Promise((resolveReady) => setTimeout(resolveReady, 40));
+assert(evalInPage(window, 'activeStack.join("|")') === 'Paroxetine|Codeine',
+  'Selected-list undo should restore the cleared stack in order');
 const summaryCopyStatus = doc.getElementById('summaryCopyStatus');
 const summaryCopyText = doc.getElementById('summaryCopyText');
 assert(summaryCopyStatus?.getAttribute('role') === 'status' && summaryCopyStatus?.getAttribute('aria-live') === 'polite',

@@ -19,6 +19,7 @@ function handleSearchKeydown(event) {
 
 function addDrug(name) {
   if (!activeStack.includes(name)) {
+    clearSelectionUndoSnapshot();
     activeStack.push(name);
     closeSearchResults({ clearInput:true, blurInput:true });
     renderAll();
@@ -36,6 +37,7 @@ function addFoodActor(id) {
   const actor = typeof getSupplementActor === "function" ? getSupplementActor(id) : null;
   const actorId = actor ? actor.id : id;
   if (!activeStack.includes(actorId)) {
+    clearSelectionUndoSnapshot();
     activeStack.push(actorId);
     closeSearchResults({ clearInput:true, blurInput:true });
     renderAll();
@@ -52,7 +54,10 @@ function addUnrecognizedSubstance(value) {
     const itemKey = typeof stackSelectionDedupeKey === "function" ? stackSelectionDedupeKey(item) : String(item).toLowerCase();
     return itemKey === key;
   });
-  if (!alreadySelected) activeStack.push(name);
+  if (!alreadySelected) {
+    clearSelectionUndoSnapshot();
+    activeStack.push(name);
+  }
   closeSearchResults({ clearInput:true, blurInput:true });
   renderAll();
 }
@@ -70,6 +75,7 @@ function removeFoodActor(id) {
 
 function swapDrug(oldName, newName) {
   const idx = activeStack.indexOf(oldName);
+  clearSelectionUndoSnapshot();
   if (idx >= 0) activeStack[idx] = newName;
   else activeStack.push(newName);
   renderAll();
@@ -84,8 +90,63 @@ let currentPublicFindingPresentations = [];
 let renderComputationCache = null;
 let lazyRenderState = { evidenceKey:"", reviewKey:"" };
 let manualSectionToggleKeys = {};
+let lastClearedSelection = null;
 const DIOGNOSIS_TABS = ["overview","mechanisms","genes-metabolites","timing-levels","evidence","review"];
 const AUDIENCE_MODES = ["patient","clinician"];
+
+function clearSelectionUndoSnapshot() {
+  lastClearedSelection = null;
+}
+
+function captureSelectionSnapshot() {
+  return {
+    stack:[...(activeStack || [])],
+    doses:{...(typeof drugDoses !== "undefined" ? drugDoses : {})},
+  };
+}
+
+function restoreDoseSnapshot(doses = {}) {
+  if (typeof drugDoses === "undefined") return;
+  Object.keys(drugDoses).forEach(key => delete drugDoses[key]);
+  Object.entries(doses || {}).forEach(([key, value]) => {
+    drugDoses[key] = value;
+  });
+}
+
+function clearSelectedList() {
+  if (!activeStack.length) return;
+  lastClearedSelection = captureSelectionSnapshot();
+  activeStack = [];
+  restoreDoseSnapshot({});
+  closeSearchResults({ clearInput:true, blurInput:true });
+  renderAll();
+}
+
+function restoreClearedList() {
+  if (!lastClearedSelection?.stack?.length) return;
+  activeStack = [...lastClearedSelection.stack];
+  restoreDoseSnapshot(lastClearedSelection.doses);
+  lastClearedSelection = null;
+  closeSearchResults({ clearInput:true, blurInput:true });
+  renderAll();
+  focusReviewNotes();
+}
+
+function focusReviewNotes() {
+  closeSearchResults({ blurInput:true });
+  setTab("overview");
+  const runFocus = () => {
+    const target = ["summaryBar", "findingSection", "mainEmptyState"]
+      .map(id => document.getElementById(id))
+      .find(el => el && !el.hidden && el.style.display !== "none");
+    if (!target) return;
+    if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+    if (typeof target.focus === "function") target.focus({ preventScroll:true });
+    if (typeof target.scrollIntoView === "function") target.scrollIntoView({ behavior:"smooth", block:"start" });
+  };
+  if (typeof requestAnimationFrame === "function") requestAnimationFrame(runFocus);
+  else runFocus();
+}
 
 function keyboardButtonAttrs() {
   return `role="button" tabindex="0" onkeydown="activateKeyboardButton(event)"`;
@@ -3481,7 +3542,10 @@ function renderMedList() {
     const emptyCopy = patient
       ? "Add medicines, supplements, or foods above to start a list for your doctor or pharmacist"
       : "Add medications, supplements, or foods above to start a mechanistic review";
-    el.innerHTML = `<div class="empty-state"><div class="icon">💊</div>${emptyCopy}</div>`;
+    const undoHtml = lastClearedSelection?.stack?.length
+      ? `<button type="button" class="empty-undo-btn" onclick="restoreClearedList()">Undo clear</button>`
+      : "";
+    el.innerHTML = `<div class="empty-state"><div class="icon">💊</div>${emptyCopy}${undoHtml ? ` ${undoHtml}` : ""}</div>`;
     countEl.textContent = "";
     return;
   }
@@ -3512,7 +3576,16 @@ function renderMedList() {
     const chipClass = recognized ? "med-chip" : "med-chip unrecognized";
     const removeLabel = `Remove ${primary}`;
     return `<span class="${chipClass}" title="${secondary ? safeAttr(secondary) : ""}">${labelHtml}${doseHtml}<button type="button" class="x" aria-label="${safeAttr(removeLabel)}" onclick="${removeAction}">×</button></span>`;
-  }).join("") + renderActorExposureSummary();
+  }).join("") + renderActorExposureSummary() + renderSelectedListActions();
+}
+
+function renderSelectedListActions() {
+  if (!activeStack.length) return "";
+  const reviewLabel = isPatientAudience() ? "Review notes" : "Review overview";
+  return `<div class="selected-list-actions">
+    <button type="button" class="selected-list-action primary" onclick="focusReviewNotes()">${safePublicHtml(reviewLabel)}</button>
+    <button type="button" class="selected-list-action" onclick="clearSelectedList()">Clear list</button>
+  </div>`;
 }
 
 function inlineJsString(value) {

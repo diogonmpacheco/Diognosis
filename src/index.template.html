@@ -147,6 +147,13 @@ body[data-add-mode="browse"] .search-wrap{display:none}
 .med-chip .dose-select{grid-column:2;background:#f3f2ec;color:var(--text2);border:1px solid var(--border);border-radius:8px;padding:6px 8px;font-size:11px;font-weight:700;cursor:pointer;outline:none;width:100%;min-width:70px;text-align:center;font-family:var(--mono)}
 .med-chip .dose-select:hover{border-color:var(--accent);background:var(--accentBg)}
 .med-chip .dose-select option{background:var(--bg);color:var(--text);padding:4px}
+.selected-list-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.selected-list-action,.empty-undo-btn{appearance:none;border:1px solid var(--border);border-radius:8px;background:var(--card2);color:var(--text2);font-family:var(--font);font-size:12px;font-weight:850;padding:9px 10px;cursor:pointer}
+.selected-list-action.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.selected-list-action:hover,.empty-undo-btn:hover{border-color:var(--accent);background:var(--accentBg);color:var(--accent)}
+.selected-list-action.primary:hover{background:var(--accent2);border-color:var(--accent2);color:#fff}
+.selected-list-action:focus-visible,.empty-undo-btn:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.empty-undo-btn{display:inline-flex;margin-top:12px}
 body[data-audience="clinician"] .input-rail{display:flex}
 body[data-audience="clinician"] #selectedListSection{order:1}
 body[data-audience="clinician"] #geneticsSection{order:2}
@@ -918,6 +925,7 @@ body[data-audience="clinician"] .summary-story.clinician-priority .summary-story
   .med-chip{grid-template-columns:minmax(0,1fr) minmax(84px,112px) 32px;gap:6px}
   .med-chip .dose-select{min-width:0;flex-shrink:0;font-size:11px;padding:6px}
   .med-chip .x{flex-shrink:0}
+  .selected-list-actions{grid-template-columns:1fr}
   .header h1{font-size:22px}
   .header{position:static;flex-wrap:wrap;gap:4px}
   .header p{width:100%;font-size:11px}
