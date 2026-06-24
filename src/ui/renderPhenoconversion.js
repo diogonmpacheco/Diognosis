@@ -54,6 +54,11 @@ function renderPhenoconversionRow(row) {
     .slice(0, 3)
     .map(item => `<li>${safePublicHtml(item)}</li>`)
     .join("");
+  const consequencesBlock = consequences
+    ? (typeof isReviewerMode === "function" && !isReviewerMode()
+      ? `<details class="supporting-row-details"><summary>Affected metabolite notes</summary><ul class="active-moiety-reasons">${consequences}</ul></details>`
+      : `<ul class="active-moiety-reasons">${consequences}</ul>`)
+    : "";
   const relatedButton = typeof renderRelatedFindingButton === "function"
     ? renderRelatedFindingButton({
         terms:[row.enzyme, functional, ...(row.affectedParents || []), ...(row.affectedMetabolites || []), ...(row.activeMoietyConsequences || [])],
@@ -72,7 +77,7 @@ function renderPhenoconversionRow(row) {
     <div class="phenoconversion-drivers">${drivers || '<span class="finding-tag">no current drivers</span>'}</div>
     ${parents ? `<div class="finding-actors"><strong>Affected parents</strong>${parents}</div>` : ""}
     ${metabolites ? `<div class="finding-actors"><strong>Affected metabolites</strong>${metabolites}</div>` : ""}
-    ${consequences ? `<ul class="active-moiety-reasons">${consequences}</ul>` : ""}
+    ${consequencesBlock}
     ${relatedButton ? `<div class="supporting-actions">${relatedButton}</div>` : ""}
     <div class="finding-meta">
       <span class="finding-tag type">functional gene status</span>

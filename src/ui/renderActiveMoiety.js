@@ -42,6 +42,11 @@ function renderActiveMoietyRow(row) {
   const pattern = safePublicHtml((ACTIVE_MOIETY_PATTERN_LABELS[row.netPattern] || row.netPattern || "review prompt").replace(/_/g, " "));
   const actorType = safePublicHtml((row.actorType || "metabolite").replace(/_/g, " "));
   const reasons = (row.reasons || []).slice(0, 4).map(reason => `<li>${safePublicHtml(reason)}</li>`).join("");
+  const reasonsBlock = reasons
+    ? (typeof isReviewerMode === "function" && !isReviewerMode()
+      ? `<details class="supporting-row-details"><summary>Why this row appears</summary><ul class="active-moiety-reasons">${reasons}</ul></details>`
+      : `<ul class="active-moiety-reasons">${reasons}</ul>`)
+    : "";
   const evidence = (row.evidenceRefs || []).length
     ? `${row.evidenceRefs.length} source ref${row.evidenceRefs.length === 1 ? "" : "s"}`
     : "inferred/review required";
@@ -70,7 +75,7 @@ function renderActiveMoietyRow(row) {
       <div><strong>Metabolite</strong><span class="${safeAttr(row.metaboliteDirection || "unknown")}">${safePublicHtml(metaboliteDirectionLabel)}</span><small>${safePublicHtml(metaboliteFold)}</small></div>
       <div><strong>Clearance</strong><span>${safePublicHtml(row.clearancePathway || "not modeled")}</span><small>${safePublicHtml(row.clearanceDirection || "unknown")}</small></div>
     </div>
-    ${reasons ? `<ul class="active-moiety-reasons">${reasons}</ul>` : ""}
+    ${reasonsBlock}
     ${relatedButton ? `<div class="supporting-actions">${relatedButton}</div>` : ""}
     <div class="finding-meta">
       <span class="finding-tag type">parent-metabolite model</span>

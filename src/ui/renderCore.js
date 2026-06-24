@@ -1757,6 +1757,9 @@ function renderPublicFindingCard(presentation, index = 0) {
   const severityLabel = patient ? patientSeverityLabel(severity) : severity;
   const discussionGuide = renderFindingDiscussionGuide(presentation, trust, patient);
   const monitoringGuide = renderFindingMonitoringGuide(presentation, trust, patient);
+  const followupGuide = !patient && typeof isReviewerMode === "function" && !isReviewerMode() && (discussionGuide || monitoringGuide)
+    ? `<details class="finding-followup-details"><summary>Review notes</summary>${discussionGuide}${monitoringGuide}</details>`
+    : `${discussionGuide}${monitoringGuide}`;
   const queueLabel = patient ? "" : (index === 0 ? "Review first" : `Review ${index + 1}`);
   const actionHtml = detailButton || sourceLinks
     ? `<div class="finding-actions">${detailButton}${sourceLinks}</div>`
@@ -1790,8 +1793,7 @@ function renderPublicFindingCard(presentation, index = 0) {
       ${renderFindingStep(patient ? "What to ask" : "What to review", reviewText)}
       ${evidenceStep}
     </div>
-    ${discussionGuide}
-    ${monitoringGuide}
+    ${followupGuide}
     ${actionHtml}
     ${technicalDetail}
   </div>`;

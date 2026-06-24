@@ -42,6 +42,11 @@ function renderPersistenceRow(row) {
     ? formatPersistenceDays(row.estimatedPersistenceDays)
     : "unknown";
   const reasons = (row.reasons || []).slice(0, 3).map(reason => `<li>${safePublicHtml(reason)}</li>`).join("");
+  const reasonsBlock = reasons
+    ? (typeof isReviewerMode === "function" && !isReviewerMode()
+      ? `<details class="supporting-row-details"><summary>Timing basis</summary><ul class="active-moiety-reasons">${reasons}</ul></details>`
+      : `<ul class="active-moiety-reasons">${reasons}</ul>`)
+    : "";
   const pathway = row.pathway ? `<span class="finding-tag">${safePublicHtml(row.pathway.replace(/_/g, " "))}</span>` : "";
   const onset = row.onset ? `<span class="finding-tag">onset: ${safePublicHtml(row.onset.replace(/_/g, " "))}</span>` : "";
   const offset = row.offset ? `<span class="finding-tag">offset: ${safePublicHtml(row.offset.replace(/_/g, " "))}</span>` : "";
@@ -61,7 +66,7 @@ function renderPersistenceRow(row) {
     </div>
     <div class="persistence-duration">${safePublicHtml(duration)}</div>
     <div class="persistence-meta-line">${safePublicHtml(label)} · ${safePublicHtml((row.actorType || "actor").replace(/_/g, " "))}</div>
-    ${reasons ? `<ul class="active-moiety-reasons">${reasons}</ul>` : ""}
+    ${reasonsBlock}
     ${relatedButton ? `<div class="supporting-actions">${relatedButton}</div>` : ""}
     <div class="finding-meta">
       <span class="finding-tag type">${safePublicHtml(label)}</span>
