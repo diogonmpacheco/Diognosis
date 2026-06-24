@@ -295,8 +295,8 @@ const patientFindingText = doc.getElementById('findingBody')?.textContent || '';
 assert(/questions? ready for your list/i.test(patientSummaryText), 'Patient summary should orient around prepared questions');
 assert(!/Can you check/i.test(patientSummaryText), 'Patient summary should leave exact questions to Safety Notes');
 assert(doc.querySelectorAll('#findingBody .patient-question-card').length > 0, 'Default Overview should render Patient safety-note cards');
-assert(doc.querySelector('#findingBody .patient-stack-summary'), 'Default Patient Overview should render a stack synthesis summary');
-assert(patientFindingText.includes('What to ask') && patientFindingText.includes('Why this came up'), 'Patient safety-note cards should render question-first plain-language guidance');
+assert(!doc.querySelector('#findingBody .patient-stack-summary'), 'Default Patient Overview should avoid a duplicate stack summary when a Safety Note is present');
+assert(patientFindingText.includes('What to ask') && patientFindingText.includes('For this list'), 'Patient safety-note cards should render question-first plain-language guidance');
 assert(doc.querySelectorAll('#findingBody .primary-finding-card').length === 0, 'Default Patient Overview should not render clinician finding cards');
 window.setAudienceMode('clinician');
 assert(evalInPage(window, 'audienceMode') === 'clinician', 'Clinician smoke path should switch to Clinician mode');
@@ -306,7 +306,7 @@ assert(/Review first/i.test(clinicianSummaryText), 'Clinician summary should poi
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
 assert(doc.querySelectorAll('#findingBody .primary-finding-card').length > 0, 'Overview finding cards should render primary public finding cards');
 assert(/Review first/i.test(doc.querySelector('#findingBody .primary-finding-card')?.textContent || ''), 'Clinician first finding should be explicitly marked as the first review priority');
-assert([...doc.querySelectorAll('#findingBody .primary-finding-card')].every(card => ['What changed', 'Why it matters', 'What to review', 'Evidence'].every(label => card.textContent.includes(label))), 'Overview finding cards should render the four-part public explanation');
+assert([...doc.querySelectorAll('#findingBody .primary-finding-card')].every(card => ['What changed', 'Why it matters', 'Review focus'].every(label => card.textContent.includes(label)) && !card.textContent.includes('What to review')), 'Overview finding cards should render the compact clinical priority explanation');
 const clinicianVisibleReviewText = `${doc.getElementById('summaryBar')?.textContent || ''} ${doc.getElementById('findingBody')?.textContent || ''}`;
 assert(!clinicianVisibleReviewText.includes('should be avoided, substituted, dose-adjusted, or monitored before use'),
   'Clinician review copy should avoid the old directive medication-change fallback phrase');

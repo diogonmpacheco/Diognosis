@@ -635,7 +635,7 @@ function renderSummaryBar() {
       summaryCopy = firstActors
         ? `Start with the Safety Notes below. The first question is about ${firstActors}.`
         : "Start with the Safety Notes below.";
-      nextStep = "Copy the questions or bring this screen to a doctor or pharmacist before making medication changes.";
+      nextStep = "Copy the question or share this screen before a medication review.";
       priorityStory = patientPriorityStory(primaryPresentation);
     } else if (activeStack.length >= 2) {
       headline = "No major safety note found here";
@@ -663,8 +663,8 @@ function renderSummaryBar() {
       ? ` Also check: ${genotypePriority.summary}`
       : "";
     headline = `${clinicianPriorityHeadlineLabel(primaryPresentation.severity)}: ${primaryPresentation.title}`;
-    summaryCopy = `${concernCount} clinical review priorit${concernCount === 1 ? "y" : "ies"} identified${actorText ? `; start with ${actorText}` : ""}.${genotypeAlsoCheck} Overview keeps action, rationale, and evidence together before deeper tabs.`;
-    nextStep = primaryPresentation.whatToReview || nextStep;
+    summaryCopy = `${actorText ? `${actorText}. ` : ""}${compactClinicianEvidenceLine(primaryPresentation)}${genotypeAlsoCheck}`;
+    nextStep = clinicianOverviewActionText(primaryPresentation, primaryPresentation.whatToReview || nextStep);
     priorityStory = buildClinicianPriorityStory(primaryPresentation, priorityStory);
   }
 
@@ -676,7 +676,13 @@ function renderSummaryBar() {
   const summaryJumpHtml = hasVisibleSummaryJump
     ? `<button type="button" class="summary-jump" onclick="focusPriorityFinding('${safeAttr(jumpTab)}','${safeAttr(jumpTarget)}')">${safePublicHtml(jumpLabel)}</button>`
     : "";
-  const nextLabel = patient ? "Next step" : (primaryPresentation ? "Review first" : "Next review");
+  const nextLabel = patient ? "Next step" : (primaryPresentation ? "Next" : "Next review");
+  const visibleNextStep = !patient && primaryPresentation && !isGenotypePriority
+    ? "Use the first card for the clinical focus; open Evidence only when source detail changes the decision."
+    : nextStep;
+  const summaryStoryHtml = !patient && primaryPresentation && !isGenotypePriority
+    ? ""
+    : renderPriorityStory(priorityStory);
 
     bar.innerHTML = `<div class="summary-card">
     <div class="summary-main">
@@ -690,8 +696,8 @@ function renderSummaryBar() {
         <div class="lbl">${safePublicHtml(scoreLabel)}</div>
       </div>`}
     </div>
-    ${patient ? "" : renderPriorityStory(priorityStory)}
-    <div class="summary-next"><span class="summary-next-pill">${safePublicHtml(nextLabel)}</span><span>${safePublicHtml(nextStep)}</span></div>
+    ${patient ? "" : summaryStoryHtml}
+    <div class="summary-next"><span class="summary-next-pill">${safePublicHtml(nextLabel)}</span><span>${safePublicHtml(visibleNextStep)}</span></div>
     ${renderSummaryActions(patient)}
   </div>`;
   const badge = severeCount > 0 ? `<span class="tab-badge">${severeCount}</span>` : "";
@@ -926,8 +932,8 @@ function renderInteractionFindingsOverview(risk) {
 
 function renderPatientQuestionsPage(presentations = []) {
   const ranked = rankPublicFindingPresentations(presentations);
-  const shown = ranked.slice(0, 3);
-  const remaining = ranked.slice(3);
+  const shown = ranked.slice(0, 1);
+  const remaining = ranked.slice(1);
   return `
     ${renderPatientStackSummary(buildPatientStackSummary(ranked))}
     ${shown.length ? `<div class="patient-question-list">
@@ -940,8 +946,8 @@ function renderPatientQuestionsPage(presentations = []) {
 
 function renderClinicianFindingsOverview(presentations = []) {
   const ranked = rankPublicFindingPresentations(presentations);
-  const shown = ranked.slice(0, 4);
-  const remaining = ranked.slice(4);
+  const shown = ranked.slice(0, 1);
+  const remaining = ranked.slice(1);
   return `
     ${shown.map((presentation, index) => renderPublicFindingCard(presentation, index)).join("")}
     ${renderCollapsedClinicianFindings(remaining, shown.length)}
@@ -963,56 +969,33 @@ function buildPatientStackSummary(presentations = []) {
     : {};
   const selectedCount = Number(scope.selectedCount || activeStack.length || 0);
   if (!selectedCount) return null;
-  const geneCount = Number(scope.genotypeCount || 0);
   const ranked = rankPublicFindingPresentations(presentations);
-  const entered = buildPatientEnteredSentence(selectedCount, geneCount);
   const unknownText = scope.unknownCount
     ? `Also mention ${formatScopeUnknownItems(scope.unknownItems)} because ${scope.unknownCount === 1 ? "it was" : "they were"} not recognized here.`
     : "";
-  const safety = "Do not start, stop, or change anything on your own; bring these questions to a doctor or pharmacist.";
+  if (ranked.length) {
+    return unknownText
+      ? {
+        headline:"Some items were not recognized",
+        body:unknownText,
+      }
+      : null;
+  }
   if (!ranked.length) {
     const quiet = selectedCount >= 2
       ? "Nothing major stood out in the current local data for this list."
       : "This view can show single-medicine gene or safety context, but interaction checks need the rest of the medication list.";
     return {
       headline:scope.unknownCount ? "Some items were not recognized" : "Nothing major stood out here",
-      body:[entered, quiet, unknownText, safety].filter(Boolean).join(" "),
+      body:[quiet, unknownText].filter(Boolean).join(" "),
     };
   }
-  const top = ranked[0];
-  const topTitle = patientFindingTitleText(top);
-  const affected = formatPatientAffectedSubstances(top.affectedSubstances || []);
-  const remaining = ranked.length - 1;
-  const priority = affected
-    ? `The first thing to ask about is ${topTitle} involving ${affected}.`
-    : `The first thing to ask about is ${topTitle}.`;
-  const others = remaining
-    ? `${remaining} other ${remaining === 1 ? "note is" : "notes are"} available after that priority.`
-    : "No other patient-facing safety note is listed after that priority.";
-  return {
-    headline:"One thing is worth checking first",
-    body:[entered, priority, `${others} ${unknownText}`.trim(), safety].filter(Boolean).join(" "),
-  };
-}
-
-function buildPatientEnteredSentence(selectedCount = 0, geneCount = 0) {
-  const selectedLabel = selectedCount === 1 ? "selected item" : "selected items";
-  const geneLabel = geneCount === 1 ? "gene result" : "gene results";
-  return `You entered ${selectedCount} ${selectedLabel}${geneCount ? ` and ${geneCount} ${geneLabel}` : ""}.`;
-}
-
-function formatPatientAffectedSubstances(items = [], limit = 2) {
-  const clean = (items || []).map(item => publicDisplayText(item)).filter(Boolean);
-  if (!clean.length) return "";
-  if (clean.length === 1) return clean[0];
-  const shown = clean.slice(0, limit);
-  if (clean.length <= limit) return `${shown.slice(0, -1).join(", ")} and ${shown.at(-1)}`;
-  return `${shown.join(", ")}, and ${clean.length - limit} more`;
+  return null;
 }
 
 function renderCollapsedPatientQuestions(presentations = []) {
   if (!presentations.length) return "";
-  const label = `Show ${presentations.length} more question${presentations.length === 1 ? "" : "s"}`;
+  const label = `Show ${presentations.length} more note${presentations.length === 1 ? "" : "s"}`;
   return `<details class="overview-more patient-more">
     <summary>${safePublicHtml(label)}</summary>
     <div class="overview-more-list patient-question-list">
@@ -1151,7 +1134,7 @@ function renderPatientQuestionCard(presentation = {}) {
         <div class="finding-discussion-text">${safePublicHtml(question)}</div>
       </div>
       <div class="patient-question-reason">
-        <div class="patient-question-reason-label">Why this came up</div>
+        <div class="patient-question-reason-label">For this list</div>
         <div class="patient-question-title">${safePublicHtml(title)}</div>
         ${affected ? `<div class="patient-question-meta">${safePublicHtml(affected)}</div>` : ""}
       </div>
@@ -1168,11 +1151,10 @@ function patientQuestionTone(severity = "") {
 
 function renderFindingOverviewFooter(totalCount = 0) {
   if (isPatientAudience()) {
-    return `<div class="patient-clinician-note"><div><strong>Bring this list to a doctor or pharmacist.</strong> These questions are conversation starters, not medical advice. Ask them to review dose, timing, health history, symptoms, and anything not recognized here before making medication changes.</div></div>`;
+    return `<div class="patient-clinician-note"><div><strong>Do not start, stop, switch, or change medicines on your own.</strong> Bring this list to a doctor or pharmacist.</div></div>`;
   }
-  return totalCount > 4
-    ? `<div class="finding-empty">The highest-priority concerns are shown first. Expand the remaining concerns when needed, then use Mechanisms, Genes, Timing, and Evidence for supporting detail.</div>`
-    : `<div class="finding-empty">Clinical Review Priorities groups pathway, metabolite, timing, and evidence signals. Use each card action to jump into Mechanisms, Genes, Timing, or Evidence for supporting detail.</div>`;
+  if (totalCount <= 1) return "";
+  return `<div class="finding-empty">Additional concerns are collapsed above. Use the tabs only when mechanism, timing, gene, or evidence detail changes the decision.</div>`;
 }
 
 function renderReviewScopePanel() {
@@ -1749,12 +1731,11 @@ function renderPublicFindingCard(presentation, index = 0) {
   const trust = presentation.trustContract || (typeof buildV1FindingTrustContract === "function" ? buildV1FindingTrustContract(finding, { stack:activeStack }) : null);
   const changedText = patient ? patientFindingStepText(presentation, "changed") : presentation.whatChanged;
   const whyText = patient ? patientFindingStepText(presentation, "why") : presentation.whyItMatters;
-  const reviewText = patient ? patientFindingStepText(presentation, "review") : presentation.whatToReview;
+  const reviewText = patient ? patientFindingStepText(presentation, "review") : clinicianOverviewActionText(presentation, presentation.whatToReview);
   const detailButton = !patient && presentation.detailTab && presentation.detailElementId
     ? `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('${safeAttr(presentation.detailTab)}','${safeAttr(presentation.detailElementId)}')">Supporting detail</button>`
     : "";
   const sourceLinks = patient ? "" : renderFindingSourceLinks(presentation, trust);
-  const evidenceStep = patient ? "" : renderFindingStep("Evidence", presentation.evidenceSummary);
   const severityLabel = patient ? patientSeverityLabel(severity) : severity;
   const discussionGuide = renderFindingDiscussionGuide(presentation, trust, patient);
   const monitoringGuide = renderFindingMonitoringGuide(presentation, trust, patient);
@@ -1791,8 +1772,7 @@ function renderPublicFindingCard(presentation, index = 0) {
     <div class="finding-explain">
       ${renderFindingStep(patient ? "What this means" : "What changed", changedText)}
       ${renderFindingStep("Why it matters", whyText)}
-      ${renderFindingStep(patient ? "What to ask" : "What to review", reviewText)}
-      ${evidenceStep}
+      ${renderFindingStep(patient ? "What to ask" : "Review focus", reviewText)}
     </div>
     ${followupGuide}
     ${actionHtml}
@@ -1996,14 +1976,14 @@ function buildPatientDiscussionQuestion(presentation = {}, trust = null) {
   } else if (hasPatientSedationConcern(text)) {
     question = "Can you check whether this list raises sleepiness, breathing, confusion, or fall risk?";
   }
-  return `${question} I do not want to start, stop, or change anything without guidance.`;
+  return question;
 }
 
 function buildClinicianDiscussionGuide(presentation = {}, trust = null) {
   const affected = (presentation.affectedSubstances || []).join(" + ") || trust?.affected || "current stack";
   const change = trust?.expectedChange || presentation.whatChanged || "";
   const concern = trust?.clinicalConcern || presentation.whyItMatters || "";
-  const action = trust?.clinicianAction || presentation.whatToReview || "";
+  const action = clinicianOverviewActionText(presentation, trust?.clinicianAction || presentation.whatToReview || "");
   return [
     `Review ${affected}.`,
     change,
@@ -2016,7 +1996,7 @@ function renderFindingMonitoringGuide(presentation = {}, trust = null, patient =
   const items = buildFindingMonitoringItems(presentation, trust, { patient });
   if (!items.length) return "";
   return `<div class="finding-monitoring">
-    <div class="finding-monitoring-label">${safePublicHtml(patient ? "Mention if present" : "Monitoring focus")}</div>
+    <div class="finding-monitoring-label">${safePublicHtml(patient ? "Tell them if" : "Monitoring focus")}</div>
     <ul class="finding-monitoring-list">
       ${items.map(item => `<li>${safePublicHtml(item)}</li>`).join("")}
     </ul>
@@ -2061,6 +2041,9 @@ function buildFindingMonitoringItems(presentation = {}, trust = null, options = 
   const toxicMetabolite = hasToxicMetabolitePatientContext(text);
   const riskMarkerKind = patientRiskMarkerContext(text);
   if (patient) {
+    if (/statin|simvastatin|atorvastatin|rosuvastatin|pravastatin|lovastatin|myopathy|rhabdomyolysis|muscle injury|muscle pain/.test(text)) {
+      add("New muscle pain or weakness, dark urine, fever, or feeling very unwell.");
+    }
     add("New or worsening symptoms, side effects, missed doses, or recent dose changes.");
     if (hasAntiplateletPatientContext(text)) {
       add("Symptoms the medicine is meant to prevent or treat, especially if they are new or getting worse.");
@@ -2149,18 +2132,27 @@ function renderFindingSourceLinks(presentation = {}, trust = null) {
   if (!refs.length) {
     return `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('evidence','evidenceLadderLedger')">Evidence status</button>`;
   }
-  const chips = refs.slice(0, 3).map(ref => {
-    const label = typeof publicEvidenceReferenceLabel === "function" ? publicEvidenceReferenceLabel(ref) : "Source";
-    const url = typeof publicEvidenceReferenceUrl === "function" ? publicEvidenceReferenceUrl(ref) : "";
-    if (url) {
-      return `<a class="related-finding-btn secondary source-link" href="${safeAttr(url)}" target="_blank" rel="noopener">${safePublicHtml(label)}</a>`;
-    }
-    return `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('evidence','evidenceLadderLedger')">${safePublicHtml(label)}</button>`;
-  }).join("");
-  const more = refs.length > 3
-    ? `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('evidence','evidenceLadderLedger')">+${safePublicHtml(String(refs.length - 3))} sources</button>`
+  const primaryRef = refs.find(ref => /label|dailymed|fda/i.test(String(ref || ""))) || refs[0];
+  const label = compactOverviewEvidenceLabel(primaryRef);
+  const url = typeof publicEvidenceReferenceUrl === "function" ? publicEvidenceReferenceUrl(primaryRef) : "";
+  const primary = url
+    ? `<a class="related-finding-btn secondary source-link" href="${safeAttr(url)}" target="_blank" rel="noopener">${safePublicHtml(label)}</a>`
+    : `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('evidence','evidenceLadderLedger')">${safePublicHtml(label)}</button>`;
+  const more = refs.length > 1
+    ? `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('evidence','evidenceLadderLedger')">Evidence details</button>`
     : "";
-  return `${chips}${more}`;
+  return `${primary}${more}`;
+}
+
+function compactOverviewEvidenceLabel(ref = "") {
+  const study = typeof getStudy === "function" ? getStudy(ref) : (typeof STUDY_DB !== "undefined" ? STUDY_DB?.[ref] : null);
+  const text = `${ref || ""} ${study?.title || ""} ${study?.type || ""}`.toLowerCase();
+  if (/label|dailymed|fda/.test(text)) return "FDA label";
+  if (study?.pmid) return `PMID:${study.pmid}`;
+  if (study?.doi) return "DOI source";
+  if (/guideline|cpic/.test(text)) return "Guideline";
+  if (/clinical|pk/.test(text)) return "Clinical PK";
+  return "Evidence";
 }
 
 function renderFindingTrustStrip(trust, patient = false) {
@@ -2175,15 +2167,23 @@ function renderFindingTrustStrip(trust, patient = false) {
     </div>`;
   }
   const source = trust.sourceLinked ? "Source-linked" : "Modeled";
-  const status = trust.clinicalReviewStatus === "reviewed" ? "Reviewed" : "Sign-off not claimed";
+  const confidence = compactTrustConfidenceLabel(trust.confidence);
   const chips = [
     ["Concern", trust.concernCategory],
     ["Evidence", source],
-    patient ? ["Status", status] : ["Confidence", trust.confidence],
+    ["Confidence", confidence],
   ].filter(([, value]) => value);
   return `<div class="finding-trust-strip">
     ${chips.map(([label, value]) => `<span class="finding-trust-chip"><strong>${safePublicHtml(label)}</strong>${safePublicHtml(value)}</span>`).join("")}
   </div>`;
+}
+
+function compactTrustConfidenceLabel(value = "") {
+  const text = publicDisplayText(value);
+  if (/high/i.test(text)) return "High";
+  if (/moderate/i.test(text)) return "Moderate";
+  if (/low|limited/i.test(text)) return "Limited";
+  return text.replace(/\s*·\s*professional sign-off not claimed/ig, "").trim();
 }
 
 function patientConcernLabel(value = "") {
@@ -2680,10 +2680,44 @@ function buildClinicianPriorityStory(presentation = {}, fallbackStory = null) {
   const actors = (presentation.affectedSubstances || []).slice(0, 3).join(" + ");
   return {
     clinicianQueue:true,
-    why:publicDisplayText(`${presentation.title || fallbackStory?.why || "Top clinical review priority"}${actors ? ` (${actors})` : ""}.`),
+    why:publicDisplayText(presentation.whyItMatters || `${presentation.title || fallbackStory?.why || "Top clinical review priority"}${actors ? ` (${actors})` : ""}.`),
     changes:publicDisplayText(presentation.whatChanged || fallbackStory?.changes || "The selected list changes exposure, activation, timing, or safety context."),
-    review:publicDisplayText(presentation.whatToReview || fallbackStory?.review || "Review dose, timing, monitoring, and whether the combination is still appropriate."),
+    review:clinicianOverviewActionText(presentation, presentation.whatToReview || fallbackStory?.review || "Review dose, timing, monitoring, and whether the combination is still appropriate."),
   };
+}
+
+function clinicianOverviewActionText(presentation = {}, text = "") {
+  const raw = publicDisplayText(text || presentation.whatToReview || "");
+  const context = publicDisplayText([
+    presentation.title,
+    presentation.whatChanged,
+    presentation.whyItMatters,
+    raw,
+    ...(presentation.affectedSubstances || []),
+  ].join(" ")).toLowerCase();
+  const actors = (presentation.affectedSubstances || []).slice(0, 2).join(" + ") || "this combination";
+  if (/contraindicat|avoid|hold|suspend|strong cyp3a4|clarithromycin|simvastatin/.test(context) &&
+    /simvastatin/.test(context) &&
+    /clarithromycin/.test(context)) {
+    return "Review labeled contraindication. Determine whether interruption, substitution, timing, or monitoring is appropriate for the patient context.";
+  }
+  if (/contraindicat|avoid|do not use|do not take|hold|suspend/.test(context)) {
+    return `Review labeled contraindication or avoidance guidance for ${actors}; determine the appropriate plan in clinical context.`;
+  }
+  if (/substitut|alternative|switch/.test(context)) {
+    return `Review whether an alternative plan is appropriate for ${actors}.`;
+  }
+  return raw || "Review dose, timing, monitoring, and whether the combination is still appropriate.";
+}
+
+function compactClinicianEvidenceLine(presentation = {}) {
+  const trust = presentation.trustContract || null;
+  const sourceLinked = trust?.sourceLinked || /source-linked|fda|label|guideline/i.test(String(presentation.evidenceSummary || ""));
+  const labelLinked = /fda|label|dailymed/i.test(String(presentation.evidenceSummary || "")) ||
+    (presentation.sourceFinding?.evidenceRefs || []).some(ref => /label|dailymed/i.test(String(ref || "")));
+  if (labelLinked) return "FDA/DailyMed label-linked; source detail is in Evidence.";
+  if (sourceLinked) return "Source-linked; source detail is in Evidence.";
+  return "Modeled review signal; verify in Evidence before clinical use.";
 }
 
 function buildDefaultPriorityStory(count) {
@@ -2732,9 +2766,9 @@ function renderPriorityStory(story) {
   const patient = isPatientAudience();
   const clinicianQueue = !patient && story.clinicianQueue;
   return `<div class="summary-story ${clinicianQueue ? "clinician-priority" : ""}">
-    <div class="summary-story-row"><strong>${safePublicHtml(patient ? "Why this matters" : (clinicianQueue ? "Priority basis" : "Why this matters"))}</strong>${safePublicHtml(story.why)}</div>
+    <div class="summary-story-row"><strong>${safePublicHtml(patient ? "Why this matters" : (clinicianQueue ? "Rationale" : "Why this matters"))}</strong>${safePublicHtml(story.why)}</div>
     <div class="summary-story-row"><strong>${safePublicHtml(patient ? "What this means" : (clinicianQueue ? "Expected change" : "What changes"))}</strong>${safePublicHtml(story.changes)}</div>
-    <div class="summary-story-row"><strong>${safePublicHtml(patient ? "What to ask" : (clinicianQueue ? "Review action" : "Next review step"))}</strong>${safePublicHtml(story.review)}</div>
+    <div class="summary-story-row"><strong>${safePublicHtml(patient ? "What to ask" : (clinicianQueue ? "Review focus" : "Next review step"))}</strong>${safePublicHtml(story.review)}</div>
   </div>`;
 }
 

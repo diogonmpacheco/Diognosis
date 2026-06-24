@@ -930,22 +930,22 @@ assert(!/higher-priority safety note was found|safety note was found for this li
   'Patient mode top summary should not repeat report-style safety-note body copy before Safety Notes');
 assert(!/\bView note\b/i.test(audienceModeRegression.patient.summaryText),
   'Patient mode top summary should not show a redundant jump link when Safety Notes are directly below');
-assert(/Next step|doctor or pharmacist/i.test(audienceModeRegression.patient.summaryNext), 'Patient mode compact summary should still keep a plain next-step line');
+assert(/Next step|medication review|share this screen/i.test(audienceModeRegression.patient.summaryNext), 'Patient mode compact summary should still keep a plain next-step line');
 assert(audienceModeRegression.patient.summaryRisk.trim() === '', 'Patient mode should hide summary score badges');
 assert(audienceModeRegression.patient.findingTitle === 'Safety Notes', 'Patient mode should rename findings to Safety Notes');
 assert(/safety notes?/i.test(audienceModeRegression.patient.findingCount), 'Patient mode should label public finding count as safety notes');
 assert(audienceModeRegression.patient.patientQuestionCards > 0, 'Patient mode should render dedicated question cards');
-assert(/What to ask[\s\S]*Why this came up/i.test(audienceModeRegression.patient.findingText),
+assert(/What to ask[\s\S]*For this list/i.test(audienceModeRegression.patient.findingText),
   'Patient mode should make the question primary before the reason text');
-assert(audienceModeRegression.patient.patientStackSummary && /You entered|first thing to ask/i.test(audienceModeRegression.patient.patientStackSummary),
-  'Patient mode should render a short synthesis summary above the question cards');
+assert(!audienceModeRegression.patient.patientStackSummary,
+  'Patient mode should not repeat the top summary before visible Safety Notes');
 assert(audienceModeRegression.patient.patientMeaningCards === 0, 'Patient mode should not duplicate the same findings in a separate meaning grid');
 assert(audienceModeRegression.patient.exposureSummaryCount === 0, 'Patient mode should hide technical exposure summary rows from the selected list');
 assert(audienceModeRegression.patient.actionRows === 0, 'Patient mode should not render empty clinician action rows on patient question cards');
 assert(audienceModeRegression.patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
 assert(audienceModeRegression.patient.supportDetails === 0, 'Patient mode should hide clinician supporting detail drawers');
 assert(!/What this means/.test(audienceModeRegression.patient.findingText), 'Patient mode should fold the old meaning section into the synthesis summary');
-assert(/Bring this list to a doctor or pharmacist|conversation starters/i.test(audienceModeRegression.patient.findingText), 'Patient mode should use a plain-language bring-to-clinician footer');
+assert(/Do not start, stop, switch, or change medicines on your own|Bring this list to a doctor or pharmacist/i.test(audienceModeRegression.patient.findingText), 'Patient mode should use a plain-language bring-to-clinician footer');
 assert(!/(?:Technical details remain available in Review|Detailed technical context|pathway, metabolite, timing, and evidence signals|clinical concerns)/i.test(
   audienceModeRegression.patient.findingText
 ), 'Patient mode should not expose clinician-only Overview footer language');
@@ -973,12 +973,12 @@ assert(audienceModeRegression.clinician.compactMedListCss, 'Clinician mode shoul
 assert(audienceModeRegression.clinician.clinicianLayoutCss, 'Clinician mode should keep optional gene controls with the selected list before results');
 assert(/Genes \+ Metabolites|functional phenotype|parent\/metabolite direction|pathway consequences/i.test(audienceModeRegression.clinician.geneIntro), 'Clinician mode should restore clinician gene helper copy');
 assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mode should show tab navigation');
-assert(audienceModeRegression.clinician.summaryStoryCount > 0, 'Clinician mode should keep detailed summary story rows');
+assert(audienceModeRegression.clinician.summaryStoryCount === 0, 'Clinician mode should leave detailed rationale/action rows to the first priority card');
 assert(/Clinical Review Priorities/i.test(audienceModeRegression.clinician.summaryText), 'Clinician mode should orient the top summary around review priorities');
-assert(/Priority basis|Expected change|Review action/i.test(audienceModeRegression.clinician.summaryText), 'Clinician mode should label the summary story as a review workflow');
-assert(/Review first/i.test(audienceModeRegression.clinician.summaryNext), 'Clinician mode should make the first review action explicit');
+assert(/source detail is in Evidence|Use the first card/i.test(audienceModeRegression.clinician.summaryText), 'Clinician mode should use the top summary for orientation and routing');
+assert(/Use the first card|open Evidence/i.test(audienceModeRegression.clinician.summaryNext), 'Clinician mode should route details instead of repeating the card action');
 assert(audienceModeRegression.clinician.findingTitle === 'Clinical Review Priorities', 'Clinician mode should use a mixed drug/PGx priority title');
-assert(/Review first/i.test(audienceModeRegression.clinician.firstFindingText), 'Clinician mode should mark the first Overview card as the first review priority');
+assert(/Review first/i.test(audienceModeRegression.clinician.firstFindingText) && /Review focus/i.test(audienceModeRegression.clinician.firstFindingText), 'Clinician mode should mark the first Overview card as the first review priority');
 assert(audienceModeRegression.clinician.circulatingDisplay !== 'none', 'Clinician Overview should show circulating/exposure context');
 assert(audienceModeRegression.clinician.circulatingCards > 0, 'Clinician Overview should render circulating cards');
 assert(/parent|metabolite|current stack|CYP/i.test(audienceModeRegression.clinician.circulatingText), 'Clinician circulating cards should include actor context');
@@ -2209,7 +2209,7 @@ const publicFindingHierarchyRegression = window.eval(`(() => {
         targetElementId:p.targetElementId,
       })),
       cardCount:cards.length,
-      allCardsHaveSteps:cards.every(card => ["What changed", "Why it matters", "What to review", "Evidence"].every(label => card.textContent.includes(label))),
+      allCardsHaveSteps:cards.every(card => ["What changed", "Why it matters", "Review focus"].every(label => card.textContent.includes(label)) && !card.textContent.includes("What to review")),
       summaryOnclick,
       overviewText,
       trustText,
@@ -2231,13 +2231,14 @@ const publicFindingHierarchyRegression = window.eval(`(() => {
 for (const [scenarioName, result] of Object.entries(publicFindingHierarchyRegression)) {
   assert(result.presentations.length > 0, `${scenarioName}: expected at least one public Overview finding`);
   assert(result.cardCount === result.presentations.length || result.cardCount === Math.min(8, result.presentations.length), `${scenarioName}: Overview cards should match public finding presentations`);
-  assert(result.allCardsHaveSteps, `${scenarioName}: every primary Overview card should use What changed / Why / What to review / Evidence`);
+  assert(result.allCardsHaveSteps, `${scenarioName}: every primary Overview card should use What changed / Why / Review focus, with evidence routed through compact actions`);
   assert(result.presentations.every(p => p.whatChanged && p.whyItMatters && p.whatToReview && p.evidenceSummary), `${scenarioName}: public finding presentation fields must be non-empty`);
   assert(result.presentations.every(p => p.targetTab === "overview" && /^overview-finding-/.test(p.targetElementId || "")), `${scenarioName}: public finding targets should point to Overview cards`);
   assert(result.summaryOnclick.includes("focusPriorityFinding('overview','overview-finding-"), `${scenarioName}: Summary View finding should jump to a concrete Overview card`);
   assert(!/Phase\\s*\\d+|top-250|top-100|coverage adapter|route adapter|pending professional review|review prompt/i.test(result.overviewText), `${scenarioName}: Overview should not expose internal labels or repeated review wording`);
   assert(!/\b(?:pending review action|review needed action|insufficient action)\b/i.test(result.trustText), `${scenarioName}: trust chips should not expose awkward internal action-status wording`);
-  assert(/professional sign-off not claimed|action reviewed|action evidence limited/i.test(result.trustText), `${scenarioName}: trust chips should use readable clinical-action status copy`);
+  assert(/Concern|Evidence|Confidence/i.test(result.trustText) && /Source-linked|Modeled|High|Moderate|Limited/i.test(result.trustText),
+    `${scenarioName}: trust chips should use compact readable trust status copy`);
   assert(!/Phase\\s*\\d+|top-250|top-100|coverage adapter|route adapter|pending professional review/i.test(result.mechanismText), `${scenarioName}: Mechanisms should not expose internal labels`);
   assert(!/\b(?:Open review|reviewer panel|Raw warning paths|raw signals?|remain available in Review)\b/i.test(result.mechanismText), `${scenarioName}: normal V1 Mechanisms should not expose reviewer-only or raw-path actions`);
   assert(!/Related overview/i.test(`${result.mechanismText} ${result.genesText} ${result.evidenceText}`), `${scenarioName}: supporting tabs should use plain Open finding actions instead of Related overview`);

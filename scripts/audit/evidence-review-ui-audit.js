@@ -56,7 +56,7 @@ assert(/Additional matching sources/i.test(document.getElementById('evidenceBody
 assert(reviewNeededCards.length === cards.length, `Expected every evidence card to show source-linked state, found ${reviewNeededCards.length}/${cards.length}`);
 assert(findingCards.length > 0, 'Expected representative stack to expose normalized finding cards');
 assert(primaryFindingCards.length > 0, 'Expected Overview to expose primary finding cards');
-assert(primaryFindingCards.every((card) => ['What changed', 'Why it matters', 'What to review', 'Evidence'].every((label) => card.textContent.includes(label))), 'Primary finding cards must expose the four-part public explanation');
+assert(primaryFindingCards.every((card) => ['What changed', 'Why it matters', 'Review focus'].every((label) => card.textContent.includes(label)) && !card.textContent.includes('What to review')), 'Primary finding cards must expose the compact Overview explanation and route source detail to Evidence');
 assert(!/pending professional review/i.test(document.getElementById('evidenceBody')?.textContent || ''), 'Evidence explorer should not repeat pending-professional-review copy');
 assert(!/pending\s+[\w/-]+(?:\s+[\w/-]+){0,4}\s+review/i.test(document.getElementById('evidenceBody')?.textContent || ''), 'Evidence explorer should not expose human-review queue wording');
 assert(!document.querySelector('.ev-review-toggle'), 'Collapsed review-queue toggle should not return');

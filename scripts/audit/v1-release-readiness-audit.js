@@ -169,8 +169,8 @@ for (const scenario of clinicianScenarios) {
   assert(result.trustChips >= result.cards, `${scenario.name}: Overview cards should expose trust chips`);
   assert(!/\b(?:pending review action|review needed action|insufficient action)\b/i.test(result.trustChipText),
     `${scenario.name}: trust chips should not expose awkward internal action-status wording`);
-  assert(/professional sign-off not claimed|action reviewed|action evidence limited/i.test(result.trustChipText),
-    `${scenario.name}: trust chips should use readable clinical-action status copy`);
+  assert(/Concern|Evidence|Confidence/i.test(result.trustChipText) && /Source-linked|Modeled|High|Moderate|Limited/i.test(result.trustChipText),
+    `${scenario.name}: trust chips should use compact readable trust status copy`);
   assert(result.discussionGuides >= result.cards, `${scenario.name}: Overview cards should expose discussion guides`);
   assert(result.monitoringGuides >= result.cards, `${scenario.name}: Overview cards should expose monitoring focus`);
   assert(result.summaryActions >= 2, `${scenario.name}: Overview summary should expose copy/share actions`);
@@ -273,7 +273,7 @@ assert(patient.summaryRisk.trim() === '', 'Patient mode should hide score-style 
 assert(patient.findingTitle === 'Safety Notes', 'Patient mode should rename public findings');
 assert(/safety notes?/i.test(patient.findingCount), 'Patient mode should label public finding count as safety notes');
 assert(patient.exposureSummaryCount === 0, 'Patient mode should hide technical exposure summary rows from the selected list');
-assert(/What to ask|Why this came up/i.test(patient.findingText), 'Patient mode should use plain-language labels');
+assert(/What to ask|For this list/i.test(patient.findingText), 'Patient mode should use plain-language labels');
 assert(/Question to ask|Can you check/i.test(patient.findingText), 'Patient mode should expose a plain-language discussion question');
 assert(/Safety notes group related concerns|doctor or pharmacist/i.test(patient.findingText), 'Patient mode should use a plain-language Safety Notes footer');
 assert(patient.discussionGuides > 0, 'Patient mode should render discussion guides on safety notes');

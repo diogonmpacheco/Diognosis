@@ -1,6 +1,6 @@
 {
   "schema": "diognosis.reference-facts.v1",
-  "generatedAt": "2026-06-24T06:50:16.496Z",
+  "generatedAt": "2026-06-24T07:44:58.235Z",
   "lastmod": "2026-06-24",
   "source": "Generated from the committed Diognosis app runtime and data/medication-class-guides.json validated examples.",
   "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not professionally reviewed. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
@@ -33,7 +33,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Muscle injury risk may increase",
-      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk?",
       "clinicianSummary": "Simvastatin exposure may rise with Clarithromycin",
       "mechanismSummary": "Clarithromycin may increase Simvastatin exposure, raising Simvastatin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is poor function (18% capacity). Drivers: Clarithromycin inhibitor, current stack substrate burden. Affects Simvastatin, Clarithromycin.",
@@ -148,7 +148,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -176,7 +176,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Muscle injury risk may increase",
-      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk?",
       "clinicianSummary": "Simvastatin exposure may rise with Itraconazole",
       "mechanismSummary": "Itraconazole may increase Simvastatin exposure, raising Simvastatin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is poor function (18% capacity). Drivers: Itraconazole inhibitor, current stack substrate burden. Affects Simvastatin, Itraconazole.",
@@ -291,7 +291,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -319,7 +319,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Muscle injury risk may increase",
-      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk?",
       "clinicianSummary": "Simvastatin exposure may rise with Gemfibrozil",
       "mechanismSummary": "Gemfibrozil may increase Simvastatin exposure, raising Simvastatin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Gemfibrozil inhibits OATP1B1 and CYP2C8, raising simvastatin acid exposure about 10-fold",
@@ -392,7 +392,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -420,7 +420,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Muscle injury risk may increase",
-      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk?",
       "clinicianSummary": "Atorvastatin exposure may rise with Clarithromycin",
       "mechanismSummary": "Clarithromycin may increase Atorvastatin exposure, raising Atorvastatin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is poor function (18% capacity). Drivers: Clarithromycin inhibitor, current stack substrate burden. Affects Atorvastatin, Clarithromycin.",
@@ -502,7 +502,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -530,7 +530,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Muscle injury risk may increase",
-      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk?",
       "clinicianSummary": "Rosuvastatin exposure may rise with Gemfibrozil",
       "mechanismSummary": "Gemfibrozil may increase Rosuvastatin exposure, raising Rosuvastatin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Gemfibrozil inhibits OATP1B1, raising rosuvastatin exposure about 2-fold",
@@ -583,7 +583,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -611,7 +611,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Muscle injury risk may increase",
-      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk?",
       "clinicianSummary": "Simvastatin exposure may rise with Nirmatrelvir/Ritonavir",
       "mechanismSummary": "Nirmatrelvir/Ritonavir may increase Simvastatin exposure, raising Simvastatin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is poor function (18% capacity). Drivers: Nirmatrelvir/Ritonavir inhibitor, current stack substrate burden. Affects Nirmatrelvir/Ritonavir, Simvasta...",
@@ -726,7 +726,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -754,7 +754,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Muscle injury risk may increase",
-      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk?",
       "clinicianSummary": "Darolutamide exposure may rise with Rosuvastatin",
       "mechanismSummary": "Rosuvastatin may increase Darolutamide exposure, raising Darolutamide toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Darolutamide inhibits BCRP/OATP transport and can markedly raise rosuvastatin exposure.",
@@ -807,7 +807,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -835,7 +835,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Muscle injury risk may increase",
-      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk?",
       "clinicianSummary": "Rosuvastatin exposure may rise with Leflunomide",
       "mechanismSummary": "Leflunomide may increase Rosuvastatin exposure, raising Rosuvastatin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Active metabolite teriflunomide inhibits BCRP/OATP transporters and can raise rosuvastatin exposure.",
@@ -877,7 +877,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -905,7 +905,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "High potassium risk may increase",
-      "patientQuestion": "Can you check whether this list could raise potassium or kidney-related monitoring concerns? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this list could raise potassium or kidney-related monitoring concerns?",
       "clinicianSummary": "High potassium risk may increase",
       "mechanismSummary": "Pharmacodynamic burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "Potassium supplementation plus aldosterone antagonism reduces potassium excretion reserve.",
@@ -958,7 +958,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -986,7 +986,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "High potassium risk may increase",
-      "patientQuestion": "Can you check whether this list could raise potassium or kidney-related monitoring concerns? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this list could raise potassium or kidney-related monitoring concerns?",
       "clinicianSummary": "High potassium risk may increase",
       "mechanismSummary": "Pharmacodynamic burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "ACE inhibition lowers aldosterone-mediated potassium excretion while supplementation increases potassium load.",
@@ -1028,7 +1028,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -1056,7 +1056,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "High potassium risk may increase",
-      "patientQuestion": "Can you check whether this list could raise potassium or kidney-related monitoring concerns? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this list could raise potassium or kidney-related monitoring concerns?",
       "clinicianSummary": "High potassium risk may increase",
       "mechanismSummary": "Pharmacodynamic burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "Both block potassium excretion via different mechanisms",
@@ -1098,7 +1098,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -1126,7 +1126,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "High potassium risk may increase",
-      "patientQuestion": "Can you check whether this list could raise potassium or kidney-related monitoring concerns? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this list could raise potassium or kidney-related monitoring concerns?",
       "clinicianSummary": "High potassium risk may increase",
       "mechanismSummary": "Pharmacodynamic burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "Sacubitril/neprilysin inhibition plus ACE inhibition increases bradykinin-mediated angioedema risk.",
@@ -1168,7 +1168,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -1196,7 +1196,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Low blood pressure risk may increase",
-      "patientQuestion": "Can you check whether this combination could cause low blood pressure, dizziness, or fainting? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could cause low blood pressure, dizziness, or fainting?",
       "clinicianSummary": "Low blood pressure risk may increase",
       "mechanismSummary": "Pharmacodynamic burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "Both increase cGMP-mediated vasodilation; PDE5 inhibition amplifies nitrate hypotensive effects.",
@@ -1238,7 +1238,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -1266,7 +1266,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Low blood pressure risk may increase",
-      "patientQuestion": "Can you check whether this combination could cause low blood pressure, dizziness, or fainting? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could cause low blood pressure, dizziness, or fainting?",
       "clinicianSummary": "Low blood pressure risk may increase",
       "mechanismSummary": "Pharmacodynamic burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "PDE5 inhibitor + alpha-blocker — additive hypotension",
@@ -1294,7 +1294,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -1322,7 +1322,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "High potassium risk may increase",
-      "patientQuestion": "Can you check whether this list could raise potassium or kidney-related monitoring concerns? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this list could raise potassium or kidney-related monitoring concerns?",
       "clinicianSummary": "High potassium risk may increase",
       "mechanismSummary": "Pharmacodynamic burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "Multiple nephrotoxic agents: Ibuprofen, Lisinopril",
@@ -1350,7 +1350,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -1378,7 +1378,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Low blood pressure risk may increase",
-      "patientQuestion": "Can you check whether this combination could cause low blood pressure, dizziness, or fainting? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could cause low blood pressure, dizziness, or fainting?",
       "clinicianSummary": "Metoprolol exposure may rise with Terbinafine",
       "mechanismSummary": "Terbinafine may increase Metoprolol exposure, raising Metoprolol toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP2D6 genetic phenotype is normal metabolizer; functional phenotype is poor function (20% capacity). Drivers: Terbinafine inhibitor. Affects Metoprolol.",
@@ -1450,7 +1450,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -1484,7 +1484,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Warfarin bleeding risk may increase",
-      "patientQuestion": "Can you check whether Ibuprofen + Warfarin needs closer bleeding or clotting monitoring? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Ibuprofen + Warfarin needs closer bleeding or clotting monitoring?",
       "clinicianSummary": "Bleeding burden may rise",
       "mechanismSummary": "Bleeding burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "CYP2C9 genetic phenotype is normal metabolizer; functional phenotype is poor function (18% capacity). Drivers: Fluconazole inhibitor, current stack substrate burden. Affects Warfarin, Ibuprofen.",
@@ -1578,7 +1578,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -1606,7 +1606,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Warfarin bleeding risk may increase",
-      "patientQuestion": "Can you check whether Warfarin + Trimethoprim/Sulfamethoxazole needs closer bleeding or clotting monitoring? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Warfarin + Trimethoprim/Sulfamethoxazole needs closer bleeding or clotting monitoring?",
       "clinicianSummary": "Bleeding burden may rise",
       "mechanismSummary": "Bleeding burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "CYP2C9 genetic phenotype is normal metabolizer; functional phenotype is intermediate function (45% capacity). Drivers: Trimethoprim/Sulfamethoxazole inhibitor, current stack substrate burden. Affects Warfarin, Trimeth...",
@@ -1689,7 +1689,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -1719,7 +1719,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Clopidogrel may work less well with Omeprazole",
-      "patientQuestion": "Can you check whether Clopidogrel may work less well with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Clopidogrel may work less well with my current list?",
       "clinicianSummary": "Clopidogrel activation to Active thiol metabolite may be reduced with Omeprazole",
       "mechanismSummary": "Increased stent thrombosis and MI risk. FDA warning Additional grouped signal: Clopidogrel exposure may fall with Omeprazole; CYP2C19 behaves as poor function. Related genotype, pathway, and metabolite signals are grouped below.",
       "clinicalRationale": "CYP2C19 genetic phenotype is poor metabolizer; functional phenotype is poor function (15% capacity). Drivers: CYP2C19 genotype, Omeprazole inhibitor, current stack substrate burden. Affects Clopidogrel, Omeprazole.",
@@ -1825,7 +1825,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -1853,7 +1853,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Apixaban side-effect risk may increase",
-      "patientQuestion": "Can you check whether Apixaban side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Apixaban side effects or monitoring needs could increase?",
       "clinicianSummary": "Apixaban exposure may rise with Clarithromycin",
       "mechanismSummary": "Clarithromycin may increase Apixaban exposure, raising Apixaban toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is poor function (18% capacity). Drivers: Clarithromycin inhibitor, current stack substrate burden. Affects Apixaban, Clarithromycin.",
@@ -1956,7 +1956,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -1984,7 +1984,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Apixaban may work less well",
-      "patientQuestion": "Can you check whether Apixaban side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Apixaban side effects or monitoring needs could increase?",
       "clinicianSummary": "Apixaban exposure may rise with Rifampin",
       "mechanismSummary": "Rifampin may increase Apixaban exposure, raising Apixaban toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Rifampin induces CYP3A4 and P-gp, reducing apixaban AUC by ~54%",
@@ -2037,7 +2037,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -2065,7 +2065,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Warfarin side-effect risk may increase",
-      "patientQuestion": "Can you check whether Warfarin side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Warfarin side effects or monitoring needs could increase?",
       "clinicianSummary": "Warfarin exposure may rise with Amiodarone",
       "mechanismSummary": "Amiodarone may increase Warfarin exposure, raising Warfarin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is intermediate function (50% capacity). Drivers: Amiodarone inhibitor. Affects Amiodarone, Warfarin.",
@@ -2169,7 +2169,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -2197,7 +2197,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Acetaminophen side-effect risk may increase",
-      "patientQuestion": "Can you check whether Acetaminophen side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Acetaminophen side effects or monitoring needs could increase?",
       "clinicianSummary": "Acetaminophen exposure may rise with Warfarin",
       "mechanismSummary": "Warfarin may increase Acetaminophen exposure, raising Acetaminophen toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Acetaminophen's metabolite NAPQI inhibits vitamin K-dependent clotting factor synthesis at doses >2g/day",
@@ -2225,7 +2225,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -2253,7 +2253,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Rifampin may not absorb as expected",
-      "patientQuestion": "Can you check whether Rifampin may not absorb as expected with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Rifampin may not absorb as expected with my current list?",
       "clinicianSummary": "Rifampin absorption may fall with Dabigatran",
       "mechanismSummary": "Loss of anticoagulation — avoid/contraindicated Additional grouped signal: Dabigatran transport may change with Rifampin.",
       "clinicalRationale": "Rifampin induces P-gp, reducing dabigatran etexilate absorption and dabigatran AUC by ~67%",
@@ -2306,7 +2306,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -2334,7 +2334,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Metformin side-effect risk may increase",
-      "patientQuestion": "Can you check whether Metformin side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Metformin side effects or monitoring needs could increase?",
       "clinicianSummary": "Metformin exposure may rise with Trimethoprim/Sulfamethoxazole",
       "mechanismSummary": "Trimethoprim/Sulfamethoxazole may increase Metformin exposure, raising Metformin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Trimethoprim inhibits OCT2 and MATE1, reducing metformin renal secretion by ~40%",
@@ -2362,7 +2362,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -2390,7 +2390,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Metformin side-effect risk may increase",
-      "patientQuestion": "Can you check whether Metformin side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Metformin side effects or monitoring needs could increase?",
       "clinicianSummary": "Metformin exposure may rise with Dolutegravir",
       "mechanismSummary": "Dolutegravir may increase Metformin exposure, raising Metformin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Dolutegravir inhibits renal OCT2 and MATE1 transporters, blocking the clearance vectors for metformin.",
@@ -2432,7 +2432,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -2460,7 +2460,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Ranolazine side-effect risk may increase",
-      "patientQuestion": "Can you check whether Ranolazine side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Ranolazine side effects or monitoring needs could increase?",
       "clinicianSummary": "Ranolazine exposure may rise with Metformin",
       "mechanismSummary": "Metformin may increase Ranolazine exposure, raising Ranolazine toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Ranolazine inhibits OCT2-mediated metformin renal handling.",
@@ -2502,7 +2502,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -2530,7 +2530,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Safety note for Metoprolol + Insulin Glargine",
-      "patientQuestion": "Can you check whether Metoprolol + Insulin Glargine needs closer review? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Metoprolol + Insulin Glargine needs closer review?",
       "clinicianSummary": "Pharmacodynamic risk may increase",
       "mechanismSummary": "Pharmacodynamic burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "Beta-blockers can blunt adrenergic warning symptoms of hypoglycemia in patients using insulin.",
@@ -2572,7 +2572,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -2600,7 +2600,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Safety note for Metoprolol + Insulin Lispro",
-      "patientQuestion": "Can you check whether Metoprolol + Insulin Lispro needs closer review? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Metoprolol + Insulin Lispro needs closer review?",
       "clinicianSummary": "Pharmacodynamic risk may increase",
       "mechanismSummary": "Pharmacodynamic burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "Beta-blockers can blunt adrenergic warning symptoms of hypoglycemia in patients using rapid-acting insulin.",
@@ -2642,7 +2642,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -2670,7 +2670,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Safety note for Tirzepatide + Insulin Glargine",
-      "patientQuestion": "Can you check whether Tirzepatide + Insulin Glargine needs closer review? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Tirzepatide + Insulin Glargine needs closer review?",
       "clinicianSummary": "Pharmacodynamic risk may increase",
       "mechanismSummary": "Pharmacodynamic burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "Tirzepatide improves glycemic control and can increase hypoglycemia risk when combined with insulin.",
@@ -2722,7 +2722,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -2750,7 +2750,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Timing may need review",
-      "patientQuestion": "Can you check whether timing, overlap, or washout matters for this list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether timing, overlap, or washout matters for this list?",
       "clinicianSummary": "Switching and washout timing may need review",
       "mechanismSummary": "Timing and persistence context may remain relevant after stopping or switching. Parent, metabolite, and recovery signals are grouped below.",
       "clinicalRationale": "Conservative 14-day timing context for Tirzepatide based on half-life, class, and interaction persistence.; Display washout rule: 14 days before assuming recovery.",
@@ -2802,7 +2802,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -2830,7 +2830,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Warfarin bleeding risk may increase",
-      "patientQuestion": "Can you check whether Ibuprofen + Warfarin needs closer bleeding or clotting monitoring? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Ibuprofen + Warfarin needs closer bleeding or clotting monitoring?",
       "clinicianSummary": "Bleeding burden may rise",
       "mechanismSummary": "Bleeding burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "Warfarin anticoagulation plus NSAID platelet/GI injury effects reduce hemostatic reserve.",
@@ -2872,7 +2872,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -2900,7 +2900,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Lithium side-effect risk may increase",
-      "patientQuestion": "Can you check whether Lithium side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Lithium side effects or monitoring needs could increase?",
       "clinicianSummary": "Lithium exposure may rise with Naproxen",
       "mechanismSummary": "Naproxen may increase Lithium exposure, raising Lithium toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "NSAIDs reduce lithium renal clearance",
@@ -2942,7 +2942,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -2970,7 +2970,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Methotrexate side effects may increase",
-      "patientQuestion": "Can you check whether this combination could make Methotrexate side effects or lab problems stronger? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could make Methotrexate side effects or lab problems stronger?",
       "clinicianSummary": "Methotrexate exposure may rise with Ibuprofen",
       "mechanismSummary": "Ibuprofen may increase Methotrexate exposure, raising Methotrexate toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "NSAIDs reduce methotrexate renal clearance",
@@ -3012,7 +3012,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -3042,7 +3042,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Serotonin-related side effects may increase",
-      "patientQuestion": "Can you check whether this combination raises serotonin-related side effects or switching concerns? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination raises serotonin-related side effects or switching concerns?",
       "clinicianSummary": "Switching and washout timing may need review",
       "mechanismSummary": "Timing and persistence context may remain relevant after stopping or switching. Parent, metabolite, and recovery signals are grouped below.",
       "clinicalRationale": "Fluoxetine/norfluoxetine CYP2D6: ~5 weeks for enzyme resynthesis; Display washout rule: 35 days before assuming recovery.",
@@ -3147,7 +3147,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -3177,7 +3177,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Codeine may work less well with Bupropion",
-      "patientQuestion": "Can you check whether Codeine may work less well with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Codeine may work less well with my current list?",
       "clinicianSummary": "Codeine exposure may rise with Bupropion",
       "mechanismSummary": "Bupropion may increase Codeine exposure, raising Codeine toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP2D6 genetic phenotype is poor metabolizer; functional phenotype is minimal/no function (4% capacity). Drivers: CYP2D6 genotype, Bupropion inhibitor. Affects Codeine.",
@@ -3263,7 +3263,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -3291,7 +3291,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Serotonin-related side effects may increase",
-      "patientQuestion": "Can you check whether this combination raises serotonin-related side effects or switching concerns? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination raises serotonin-related side effects or switching concerns?",
       "clinicianSummary": "Serotonin toxicity may rise",
       "mechanismSummary": "Serotonin toxicity is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "Multiple serotonergic agents: Sertraline, Sumatriptan",
@@ -3319,7 +3319,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -3347,7 +3347,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Tizanidine side-effect risk may increase",
-      "patientQuestion": "Can you check whether Tizanidine side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Tizanidine side effects or monitoring needs could increase?",
       "clinicianSummary": "Tizanidine exposure may rise with Duloxetine",
       "mechanismSummary": "Duloxetine may increase Tizanidine exposure, raising Tizanidine toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Moderate-to-strong competitive inhibition of hepatic CYP1A2 networks.",
@@ -3389,7 +3389,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -3417,7 +3417,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Serotonin-related side effects may increase",
-      "patientQuestion": "Can you check whether this combination raises serotonin-related side effects or switching concerns? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination raises serotonin-related side effects or switching concerns?",
       "clinicianSummary": "Serotonin toxicity may rise",
       "mechanismSummary": "Serotonin toxicity is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "MAO-A inhibition + tramadol's serotonin reuptake inhibition + weak MAOI activity of parent compound. Serotonin syndrome + seizure risk.",
@@ -3459,7 +3459,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -3495,7 +3495,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Amitriptyline may work less well with Diphenhydramine",
-      "patientQuestion": "Can you check whether Amitriptyline may work less well with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Amitriptyline may work less well with my current list?",
       "clinicianSummary": "Amitriptyline activation to 10-Hydroxyamitriptyline may be reduced with Diphenhydramine",
       "mechanismSummary": "↑ Anticholinergic burden (confusion, dry mouth, constipation, urinary retention) Additional grouped signal: CYP2D6 behaves as poor function; Amitriptyline exposure may rise with Diphenhydramine. Related genotype, pathway, and metabolite signals are grouped below.",
       "clinicalRationale": "CYP2D6 genetic phenotype is poor metabolizer; functional phenotype is poor function (10% capacity). Drivers: CYP2D6 genotype, Diphenhydramine inhibitor, current stack substrate burden. Affects Amitriptyline, Diphenhyd...",
@@ -3557,7 +3557,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -3585,7 +3585,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Lamotrigine side-effect risk may increase",
-      "patientQuestion": "Can you check whether Lamotrigine side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Lamotrigine side effects or monitoring needs could increase?",
       "clinicianSummary": "Lamotrigine exposure may rise with Valproic Acid",
       "mechanismSummary": "Valproic Acid may increase Lamotrigine exposure, raising Lamotrigine toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Valproate inhibits lamotrigine glucuronidation, doubling its levels",
@@ -3627,7 +3627,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -3655,7 +3655,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Serotonin-related side effects may increase",
-      "patientQuestion": "Can you check whether this combination raises serotonin-related side effects or switching concerns? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination raises serotonin-related side effects or switching concerns?",
       "clinicianSummary": "Serotonin toxicity may rise",
       "mechanismSummary": "Serotonin toxicity is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "Irreversible MAO inhibition plus SERT blockade can produce excessive serotonergic signaling.",
@@ -3697,7 +3697,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -3725,7 +3725,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Serotonin-related side effects may increase",
-      "patientQuestion": "Can you check whether this combination raises serotonin-related side effects or switching concerns? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination raises serotonin-related side effects or switching concerns?",
       "clinicianSummary": "Serotonin toxicity may rise",
       "mechanismSummary": "Serotonin toxicity is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "Linezolid is a reversible non-selective MAO-A/B inhibitor. Combining with any serotonergic agent risks serotonin syndrome.",
@@ -3767,7 +3767,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -3795,7 +3795,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Low blood pressure risk may increase",
-      "patientQuestion": "Can you check whether this combination could cause low blood pressure, dizziness, or fainting? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could cause low blood pressure, dizziness, or fainting?",
       "clinicianSummary": "Low blood pressure risk may increase",
       "mechanismSummary": "Pharmacodynamic burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "Donepezil can have vagotonic effects on sinoatrial/atrioventricular nodes, and metoprolol also lowers heart rate.",
@@ -3837,7 +3837,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -3865,7 +3865,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Serotonin-related side effects may increase",
-      "patientQuestion": "Can you check whether this combination raises serotonin-related side effects or switching concerns? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination raises serotonin-related side effects or switching concerns?",
       "clinicianSummary": "Sertraline exposure may rise with Desmopressin",
       "mechanismSummary": "Desmopressin may increase Sertraline exposure, raising Sertraline toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "SSRI-associated SIADH tendency can add to desmopressin water retention.",
@@ -3918,7 +3918,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -3946,7 +3946,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Muscle injury risk may increase",
-      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk?",
       "clinicianSummary": "Simvastatin exposure may rise with Clarithromycin",
       "mechanismSummary": "Clarithromycin may increase Simvastatin exposure, raising Simvastatin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is poor function (18% capacity). Drivers: Clarithromycin inhibitor, current stack substrate burden. Affects Simvastatin, Clarithromycin.",
@@ -4061,7 +4061,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -4089,7 +4089,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Warfarin bleeding risk may increase",
-      "patientQuestion": "Can you check whether Warfarin + Trimethoprim/Sulfamethoxazole needs closer bleeding or clotting monitoring? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Warfarin + Trimethoprim/Sulfamethoxazole needs closer bleeding or clotting monitoring?",
       "clinicianSummary": "Bleeding burden may rise",
       "mechanismSummary": "Bleeding burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "CYP2C9 genetic phenotype is normal metabolizer; functional phenotype is intermediate function (45% capacity). Drivers: Trimethoprim/Sulfamethoxazole inhibitor, current stack substrate burden. Affects Warfarin, Trimeth...",
@@ -4172,7 +4172,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -4200,7 +4200,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Tacrolimus side-effect risk may increase",
-      "patientQuestion": "Can you check whether this combination could raise Tacrolimus side effects or monitoring needs? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could raise Tacrolimus side effects or monitoring needs?",
       "clinicianSummary": "Tacrolimus exposure may rise with Voriconazole",
       "mechanismSummary": "Voriconazole may increase Tacrolimus exposure, raising Tacrolimus toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is poor function (18% capacity). Drivers: Voriconazole inhibitor, current stack substrate burden. Affects Tacrolimus, Voriconazole.",
@@ -4348,7 +4348,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -4376,7 +4376,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Colchicine side-effect risk may increase",
-      "patientQuestion": "Can you check whether Colchicine side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Colchicine side effects or monitoring needs could increase?",
       "clinicianSummary": "Colchicine exposure may rise with Clarithromycin",
       "mechanismSummary": "Clarithromycin may increase Colchicine exposure, raising Colchicine toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is poor function (18% capacity). Drivers: Clarithromycin inhibitor, current stack substrate burden. Affects Colchicine, Clarithromycin.",
@@ -4480,7 +4480,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -4508,7 +4508,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Sleepiness, breathing, or fall risk may increase",
-      "patientQuestion": "Can you check whether this list raises confusion, constipation, urination, or fall risk? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this list raises confusion, constipation, urination, or fall risk?",
       "clinicianSummary": "CNS depression burden may rise",
       "mechanismSummary": "CNS depression burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "CYP1A2 genetic phenotype is normal metabolizer; functional phenotype is poor function (20% capacity). Drivers: Ciprofloxacin inhibitor. Affects Tizanidine, Ciprofloxacin.",
@@ -4581,7 +4581,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -4609,7 +4609,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Trimethoprim/Sulfamethoxazole side-effect risk may increase",
-      "patientQuestion": "Can you check whether Trimethoprim/Sulfamethoxazole side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Trimethoprim/Sulfamethoxazole side effects or monitoring needs could increase?",
       "clinicianSummary": "Trimethoprim/Sulfamethoxazole exposure may rise with Dofetilide",
       "mechanismSummary": "Dofetilide may increase Trimethoprim/Sulfamethoxazole exposure, raising Trimethoprim/Sulfamethoxazole toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Trimethoprim inhibits renal cation secretion involved in dofetilide elimination.",
@@ -4691,7 +4691,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -4719,7 +4719,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Muscle injury risk may increase",
-      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could raise muscle pain or muscle injury risk?",
       "clinicianSummary": "Simvastatin exposure may rise with Nirmatrelvir/Ritonavir",
       "mechanismSummary": "Nirmatrelvir/Ritonavir may increase Simvastatin exposure, raising Simvastatin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is poor function (18% capacity). Drivers: Nirmatrelvir/Ritonavir inhibitor, current stack substrate burden. Affects Nirmatrelvir/Ritonavir, Simvasta...",
@@ -4834,7 +4834,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -4862,7 +4862,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Darunavir may work less well",
-      "patientQuestion": "Can you check whether Darunavir side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Darunavir side effects or monitoring needs could increase?",
       "clinicianSummary": "Darunavir exposure may rise with Rifampin",
       "mechanismSummary": "Rifampin may increase Darunavir exposure, raising Darunavir toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Rifampin strongly induces CYP3A/P-gp and can sharply reduce boosted darunavir exposure.",
@@ -4904,7 +4904,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -4934,7 +4934,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Clopidogrel may work less well with Omeprazole",
-      "patientQuestion": "Can you check whether Clopidogrel may work less well with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Clopidogrel may work less well with my current list?",
       "clinicianSummary": "Clopidogrel activation to Active thiol metabolite may be reduced with Omeprazole",
       "mechanismSummary": "Increased stent thrombosis and MI risk. FDA warning Additional grouped signal: Clopidogrel exposure may fall with Omeprazole; CYP2C19 behaves as poor function. Related genotype, pathway, and metabolite signals are grouped below.",
       "clinicalRationale": "CYP2C19 genetic phenotype is poor metabolizer; functional phenotype is poor function (15% capacity). Drivers: CYP2C19 genotype, Omeprazole inhibitor, current stack substrate burden. Affects Clopidogrel, Omeprazole.",
@@ -5040,7 +5040,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -5068,7 +5068,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Erlotinib may not absorb as expected",
-      "patientQuestion": "Can you check whether Erlotinib may not absorb as expected with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Erlotinib may not absorb as expected with my current list?",
       "clinicianSummary": "Erlotinib absorption may fall with Omeprazole",
       "mechanismSummary": "↓↓ Marked 46% reduction in erlotinib systemic bio-availability, risking premature oncology therapeutic failure. Additional grouped signal: CYP3A4 behaves as intermediate function.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is intermediate function (72% capacity). Drivers: Erlotinib inhibitor, current stack substrate burden. Affects Erlotinib, Omeprazole.",
@@ -5151,7 +5151,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -5179,7 +5179,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Erlotinib may not absorb as expected",
-      "patientQuestion": "Can you check whether Erlotinib may not absorb as expected with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Erlotinib may not absorb as expected with my current list?",
       "clinicianSummary": "Erlotinib absorption may fall with Famotidine",
       "mechanismSummary": "Reduced EGFR TKI exposure; use label timing strategy or avoid chronic acid suppression when possible.",
       "clinicalRationale": "H2 antagonists raise gastric pH and decrease erlotinib plasma concentrations unless label timing separation is used.",
@@ -5221,7 +5221,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -5249,7 +5249,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Levothyroxine may not absorb as expected",
-      "patientQuestion": "Can you check whether Levothyroxine may not absorb as expected with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Levothyroxine may not absorb as expected with my current list?",
       "clinicianSummary": "Levothyroxine absorption may fall with Iron",
       "mechanismSummary": "Reduced levothyroxine exposure; separate administration and monitor thyroid response after chronic iron use.",
       "clinicalRationale": "Iron forms insoluble complexes with levothyroxine and reduces absorption.",
@@ -5291,7 +5291,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -5319,7 +5319,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Levothyroxine may not absorb as expected",
-      "patientQuestion": "Can you check whether Levothyroxine may not absorb as expected with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Levothyroxine may not absorb as expected with my current list?",
       "clinicianSummary": "Levothyroxine absorption may fall with Calcium",
       "mechanismSummary": "Reduced levothyroxine exposure and possible hypothyroid breakthrough; separate administration and monitor TSH after chronic changes.",
       "clinicalRationale": "Calcium binds levothyroxine in the GI tract, reducing absorption.",
@@ -5361,7 +5361,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -5389,7 +5389,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Ciprofloxacin may not absorb as expected",
-      "patientQuestion": "Can you check whether Ciprofloxacin may not absorb as expected with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Ciprofloxacin may not absorb as expected with my current list?",
       "clinicianSummary": "Ciprofloxacin absorption may fall with Iron",
       "mechanismSummary": "Reduced antibiotic exposure; separate ciprofloxacin from iron-containing products.",
       "clinicalRationale": "Iron chelates ciprofloxacin in the GI tract and reduces absorption.",
@@ -5431,7 +5431,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -5459,7 +5459,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Doxycycline may not absorb as expected",
-      "patientQuestion": "Can you check whether Doxycycline may not absorb as expected with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Doxycycline may not absorb as expected with my current list?",
       "clinicianSummary": "Doxycycline absorption may fall with Calcium",
       "mechanismSummary": "Reduced doxycycline exposure and possible treatment failure; separate dosing from calcium products.",
       "clinicalRationale": "Calcium-containing antacids/minerals impair tetracycline absorption through chelation.",
@@ -5501,7 +5501,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -5529,7 +5529,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Iron may not absorb as expected",
-      "patientQuestion": "Can you check whether Iron may not absorb as expected with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Iron may not absorb as expected with my current list?",
       "clinicianSummary": "Iron absorption may fall with Bictegravir",
       "mechanismSummary": "Use label timing/food strategy; treatment failure risk matters when mineral use is chronic.",
       "clinicalRationale": "Iron can chelate bictegravir and lower absorption if taken together incorrectly.",
@@ -5571,7 +5571,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -5599,7 +5599,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Rifampin may work less well",
-      "patientQuestion": "Can you check whether Rifampin side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Rifampin side effects or monitoring needs could increase?",
       "clinicianSummary": "Rifampin exposure may rise with Combined Oral Contraceptive",
       "mechanismSummary": "Combined Oral Contraceptive may increase Rifampin exposure, raising Rifampin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Rifampin strongly induces drug-metabolizing enzymes and can reduce estrogen/progestin exposure.",
@@ -5641,7 +5641,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -5669,7 +5669,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Carbamazepine may work less well",
-      "patientQuestion": "Can you check whether Carbamazepine side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Carbamazepine side effects or monitoring needs could increase?",
       "clinicianSummary": "Carbamazepine exposure may rise with Combined Oral Contraceptive",
       "mechanismSummary": "Combined Oral Contraceptive may increase Carbamazepine exposure, raising Carbamazepine toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is increased function (600% capacity). Drivers: Carbamazepine inducer, current stack substrate burden. Affects Combined Oral Contraceptive, Carbamaz...",
@@ -5741,7 +5741,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -5769,7 +5769,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Lamotrigine may work less well",
-      "patientQuestion": "Can you check whether Lamotrigine may work less well with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Lamotrigine may work less well with my current list?",
       "clinicianSummary": "Lamotrigine exposure may fall with Combined Oral Contraceptive",
       "mechanismSummary": "Combined Oral Contraceptive may reduce Lamotrigine exposure or effect. Related pathway and timing signals are grouped below.",
       "clinicalRationale": "Ethinyl estradiol-containing contraceptives induce lamotrigine glucuronidation and can reduce lamotrigine exposure by about half.",
@@ -5811,7 +5811,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -5839,7 +5839,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Rifampin may work less well",
-      "patientQuestion": "Can you check whether Rifampin may work less well with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Rifampin may work less well with my current list?",
       "clinicianSummary": "Rifampin exposure may fall with Ethinyl Estradiol",
       "mechanismSummary": "Ethinyl Estradiol may reduce Rifampin exposure or effect. Related pathway and timing signals are grouped below.",
       "clinicalRationale": "Rifampin strongly induces CYP3A4 and UGT pathways, lowering estrogen/progestin contraceptive exposure.",
@@ -5881,7 +5881,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -5909,7 +5909,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Lamotrigine may work less well",
-      "patientQuestion": "Can you check whether Lamotrigine may work less well with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Lamotrigine may work less well with my current list?",
       "clinicianSummary": "Lamotrigine exposure may fall with Ethinyl Estradiol",
       "mechanismSummary": "Ethinyl Estradiol may reduce Lamotrigine exposure or effect. Related pathway and timing signals are grouped below.",
       "clinicalRationale": "Ethinyl estradiol induces lamotrigine glucuronidation.",
@@ -5951,7 +5951,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -5979,7 +5979,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Levonorgestrel may work less well",
-      "patientQuestion": "Can you check whether Levonorgestrel may work less well with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Levonorgestrel may work less well with my current list?",
       "clinicianSummary": "Levonorgestrel exposure may fall with Efavirenz",
       "mechanismSummary": "Efavirenz may reduce Levonorgestrel exposure or effect. Related pathway and timing signals are grouped below.",
       "clinicalRationale": "Efavirenz induces CYP3A4 and can lower levonorgestrel exposure.",
@@ -6021,7 +6021,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -6049,7 +6049,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Sugammadex may not absorb as expected",
-      "patientQuestion": "Can you check whether Sugammadex may not absorb as expected with my current list? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Sugammadex may not absorb as expected with my current list?",
       "clinicianSummary": "Sugammadex absorption may fall with Ethinyl Estradiol",
       "mechanismSummary": "Use backup contraception for 7 days after sugammadex exposure.",
       "clinicalRationale": "Sugammadex can reduce hormonal contraceptive exposure via steroid binding.",
@@ -6091,7 +6091,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -6119,7 +6119,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Warfarin bleeding risk may increase",
-      "patientQuestion": "Can you check whether Warfarin + Pregnancy / Trying to Conceive needs closer bleeding or clotting monitoring? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Warfarin + Pregnancy / Trying to Conceive needs closer bleeding or clotting monitoring?",
       "clinicianSummary": "Bleeding burden may rise",
       "mechanismSummary": "Bleeding burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "Warfarin crosses the placenta and can cause fetal bleeding and warfarin embryopathy, with risk depending on timing/dose.",
@@ -6172,7 +6172,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -6202,7 +6202,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Flecainide side-effect risk may increase",
-      "patientQuestion": "Can you check whether Flecainide side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Flecainide side effects or monitoring needs could increase?",
       "clinicianSummary": "Flecainide exposure may rise with Fluoxetine",
       "mechanismSummary": "Fluoxetine may increase Flecainide exposure, raising Flecainide toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP2D6 genetic phenotype is poor metabolizer; functional phenotype is minimal/no function (3% capacity). Drivers: CYP2D6 genotype, Fluoxetine inhibitor, current stack substrate burden. Affects Flecainide, Fluoxetine.",
@@ -6317,7 +6317,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -6345,7 +6345,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Warfarin side-effect risk may increase",
-      "patientQuestion": "Can you check whether Warfarin side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Warfarin side effects or monitoring needs could increase?",
       "clinicianSummary": "Warfarin exposure may rise with Amiodarone",
       "mechanismSummary": "Amiodarone may increase Warfarin exposure, raising Warfarin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is intermediate function (50% capacity). Drivers: Amiodarone inhibitor. Affects Amiodarone, Warfarin.",
@@ -6449,7 +6449,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -6477,7 +6477,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Dofetilide side-effect risk may increase",
-      "patientQuestion": "Can you check whether Dofetilide side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Dofetilide side effects or monitoring needs could increase?",
       "clinicianSummary": "Dofetilide exposure may rise with Hydrochlorothiazide",
       "mechanismSummary": "Hydrochlorothiazide may increase Dofetilide exposure, raising Dofetilide toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Hydrochlorothiazide increases dofetilide plasma concentrations and QT interval effect.",
@@ -6519,7 +6519,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -6547,7 +6547,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Dofetilide side-effect risk may increase",
-      "patientQuestion": "Can you check whether Dofetilide side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Dofetilide side effects or monitoring needs could increase?",
       "clinicianSummary": "Dofetilide exposure may rise with Cimetidine",
       "mechanismSummary": "Cimetidine may increase Dofetilide exposure, raising Dofetilide toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is intermediate function (50% capacity). Drivers: Cimetidine inhibitor. Affects Dofetilide, Cimetidine.",
@@ -6619,7 +6619,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -6647,7 +6647,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Hydrochlorothiazide side-effect risk may increase",
-      "patientQuestion": "Can you check whether Hydrochlorothiazide side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Hydrochlorothiazide side effects or monitoring needs could increase?",
       "clinicianSummary": "Hydrochlorothiazide exposure may rise with Sotalol",
       "mechanismSummary": "Sotalol may increase Hydrochlorothiazide exposure, raising Hydrochlorothiazide toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Sotalol prolongs QT; thiazide-associated hypokalemia/hypomagnesemia lowers repolarization reserve.",
@@ -6689,7 +6689,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -6717,7 +6717,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Ranolazine side-effect risk may increase",
-      "patientQuestion": "Can you check whether Ranolazine side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Ranolazine side effects or monitoring needs could increase?",
       "clinicianSummary": "Ranolazine exposure may rise with Diltiazem",
       "mechanismSummary": "Diltiazem may increase Ranolazine exposure, raising Ranolazine toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is intermediate function (45% capacity). Drivers: Diltiazem inhibitor, current stack substrate burden. Affects Ranolazine, Diltiazem.",
@@ -6800,7 +6800,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -6828,7 +6828,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Slow heart-rate risk may increase",
-      "patientQuestion": "Can you check whether this combination could slow my heart rate or pulse too much? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could slow my heart rate or pulse too much?",
       "clinicianSummary": "Slow heart-rate risk may increase",
       "mechanismSummary": "Pharmacodynamic burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is poor function (18% capacity). Drivers: Clarithromycin inhibitor, current stack substrate burden. Affects Ivabradine, Clarithromycin.",
@@ -6911,7 +6911,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -6939,7 +6939,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Low blood pressure risk may increase",
-      "patientQuestion": "Can you check whether this combination could cause low blood pressure, dizziness, or fainting? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could cause low blood pressure, dizziness, or fainting?",
       "clinicianSummary": "Low blood pressure risk may increase",
       "mechanismSummary": "Pharmacodynamic burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "CYP2D6 genetic phenotype is normal metabolizer; functional phenotype is intermediate function (45% capacity). Drivers: Propafenone inhibitor, current stack substrate burden. Affects Propafenone, Metoprolol.",
@@ -7022,7 +7022,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -7050,7 +7050,7 @@
       "severity": "moderate",
       "priority": "moderate",
       "patientSummary": "Tacrolimus side-effect risk may increase",
-      "patientQuestion": "Can you check whether this combination could raise Tacrolimus side effects or monitoring needs? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could raise Tacrolimus side effects or monitoring needs?",
       "clinicianSummary": "Tacrolimus exposure may rise with Fluconazole",
       "mechanismSummary": "Fluconazole may increase Tacrolimus exposure, raising Tacrolimus toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP2C9 genetic phenotype is normal metabolizer; functional phenotype is poor function (20% capacity). Drivers: Fluconazole inhibitor.",
@@ -7165,7 +7165,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -7193,7 +7193,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Tacrolimus side-effect risk may increase",
-      "patientQuestion": "Can you check whether this combination could raise Tacrolimus side effects or monitoring needs? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether this combination could raise Tacrolimus side effects or monitoring needs?",
       "clinicianSummary": "Tacrolimus exposure may rise with Clarithromycin",
       "mechanismSummary": "Clarithromycin may increase Tacrolimus exposure, raising Tacrolimus toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is poor function (18% capacity). Drivers: Clarithromycin inhibitor, current stack substrate burden. Affects Tacrolimus, Clarithromycin.",
@@ -7319,7 +7319,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -7347,7 +7347,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Cyclosporine side-effect risk may increase",
-      "patientQuestion": "Can you check whether Cyclosporine side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Cyclosporine side effects or monitoring needs could increase?",
       "clinicianSummary": "Cyclosporine exposure may rise with Posaconazole",
       "mechanismSummary": "Posaconazole may increase Cyclosporine exposure, raising Cyclosporine toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Posaconazole inhibits CYP3A/P-gp and can increase cyclosporine exposure.",
@@ -7429,7 +7429,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -7460,7 +7460,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Azathioprine may cause stronger side effects",
-      "patientQuestion": "Can you check whether Azathioprine side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Azathioprine side effects or monitoring needs could increase?",
       "clinicianSummary": "Azathioprine exposure may rise with Allopurinol",
       "mechanismSummary": "Allopurinol may increase Azathioprine exposure, raising Azathioprine toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Allopurinol inhibits xanthine oxidase, blocking azathioprine/6-MP metabolism",
@@ -7513,7 +7513,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -7537,7 +7537,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Capecitabine may cause stronger side effects",
-      "patientQuestion": "Can you check whether Capecitabine side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Capecitabine side effects or monitoring needs could increase?",
       "clinicianSummary": "5-Fluorouracil may accumulate from Capecitabine",
       "mechanismSummary": "toxic metabolite accumulation: parent neutral, toxic metabolite up. 5-FU from capecitabine accumulates -> life-threatening toxicity",
       "clinicalRationale": "toxic metabolite accumulation: parent neutral, toxic metabolite up. 5-FU from capecitabine accumulates -> life-threatening toxicity",
@@ -7589,7 +7589,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -7613,7 +7613,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Irinotecan may cause stronger side effects",
-      "patientQuestion": "Can you check whether Irinotecan side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Irinotecan side effects or monitoring needs could increase?",
       "clinicianSummary": "SN-38 may accumulate from Irinotecan",
       "mechanismSummary": "toxic metabolite accumulation: parent neutral, toxic metabolite up. SN-38 exposure higher; reduce starting dose and monitor CBC",
       "clinicalRationale": "toxic metabolite accumulation: parent neutral, toxic metabolite up. SN-38 exposure higher; reduce starting dose and monitor CBC",
@@ -7709,7 +7709,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -7737,7 +7737,7 @@
       "severity": "critical",
       "priority": "critical",
       "patientSummary": "Venetoclax side-effect risk may increase",
-      "patientQuestion": "Can you check whether Venetoclax side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Venetoclax side effects or monitoring needs could increase?",
       "clinicianSummary": "Venetoclax exposure may rise with Ritonavir",
       "mechanismSummary": "Ritonavir may increase Venetoclax exposure, raising Venetoclax toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is poor function (18% capacity). Drivers: Ritonavir inhibitor, current stack substrate burden. Affects Venetoclax, Ritonavir.",
@@ -7820,7 +7820,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     },
     {
@@ -7848,7 +7848,7 @@
       "severity": "severe",
       "priority": "severe",
       "patientSummary": "Erlotinib may work less well",
-      "patientQuestion": "Can you check whether Erlotinib side effects or monitoring needs could increase? I do not want to start, stop, or change anything without guidance.",
+      "patientQuestion": "Can you check whether Erlotinib side effects or monitoring needs could increase?",
       "clinicianSummary": "Erlotinib exposure may rise with Rifampin",
       "mechanismSummary": "Rifampin may increase Erlotinib exposure, raising Erlotinib toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Rifampin induces CYP3A4 and CYP1A2, reducing erlotinib AUC by ~66%.",
@@ -7910,7 +7910,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T06:50:16.496Z",
+      "generatedAt": "2026-06-24T07:44:58.235Z",
       "lastmod": "2026-06-24"
     }
   ]
