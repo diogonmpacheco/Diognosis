@@ -128,7 +128,7 @@ function extractProductReadiness(window) {
       }),
       compactMedListCss:[...document.querySelectorAll('style')].some(style => {
         const css = style.textContent || '';
-        return css.includes('.med-chip{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,128px) 28px')
+        return css.includes('.med-chip{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,128px) 44px')
           && css.includes('.med-chip .x{grid-column:3');
       }),
       cards:document.querySelectorAll('#findingBody .primary-finding-card').length,

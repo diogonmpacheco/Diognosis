@@ -17,6 +17,20 @@ function handleSearchKeydown(event) {
   closeSearchResults({ clearInput:true, blurInput:true });
 }
 
+function handleGlobalDismissKeydown(event) {
+  if (!event || event.key !== "Escape") return;
+  if (viewMode === "browse") {
+    event.preventDefault();
+    closeBrowsePanel({ focusToggle:true });
+    return;
+  }
+  const results = document.getElementById("searchResults");
+  if (results?.classList.contains("show")) {
+    event.preventDefault();
+    closeSearchResults({ clearInput:true, blurInput:true });
+  }
+}
+
 function addDrug(name) {
   if (!activeStack.includes(name)) {
     clearSelectionUndoSnapshot();
@@ -91,6 +105,7 @@ let renderComputationCache = null;
 let lazyRenderState = { evidenceKey:"", reviewKey:"" };
 let manualSectionToggleKeys = {};
 let lastClearedSelection = null;
+let pendingBrowseFocusDrug = null;
 const DIOGNOSIS_TABS = ["overview","mechanisms","genes-metabolites","timing-levels","evidence","review"];
 const AUDIENCE_MODES = ["patient","clinician"];
 
@@ -323,21 +338,43 @@ function syncMainEmptyStateCopy(patient) {
   checks.innerHTML = items.map(item => `<div class="main-empty-check">${safePublicHtml(item)}</div>`).join("");
 }
 
-function setViewMode(m) {
-  viewMode = m;
-  if (document.body) document.body.dataset.addMode = m;
+function setViewMode(m, options = {}) {
+  viewMode = m === "browse" ? "browse" : "search";
+  const isBrowse = viewMode === "browse";
+  if (document.body) document.body.dataset.addMode = viewMode;
   const searchBtn = document.getElementById("searchModeBtn");
   const browseBtn = document.getElementById("browseModeBtn");
   if (searchBtn) {
-    searchBtn.className = "mode-btn" + (m==="search"?" active":"");
-    searchBtn.setAttribute("aria-pressed", m==="search" ? "true" : "false");
+    searchBtn.className = "mode-btn" + (!isBrowse ? " active" : "");
+    searchBtn.setAttribute("aria-pressed", !isBrowse ? "true" : "false");
   }
   if (browseBtn) {
-    browseBtn.className = "mode-btn" + (m==="browse"?" active":"");
-    browseBtn.setAttribute("aria-pressed", m==="browse" ? "true" : "false");
+    browseBtn.className = "mode-btn" + (isBrowse ? " active" : "");
+    browseBtn.setAttribute("aria-pressed", isBrowse ? "true" : "false");
+    browseBtn.setAttribute("aria-expanded", isBrowse ? "true" : "false");
   }
-  document.getElementById("browseWrap").className = "browse-wrap" + (m==="browse"?" show":"");
-  if (m==="browse") renderBrowse();
+  const browseWrap = document.getElementById("browseWrap");
+  if (browseWrap) browseWrap.className = "browse-wrap" + (isBrowse ? " show" : "");
+  if (isBrowse) {
+    closeSearchResults({ blurInput:true });
+    renderBrowse();
+  }
+  if (!isBrowse && options.focusSearchInput) {
+    const input = document.getElementById("searchInput");
+    if (input && typeof input.focus === "function") input.focus();
+  }
+}
+
+function toggleBrowseMode() {
+  setViewMode(viewMode === "browse" ? "search" : "browse");
+}
+
+function closeBrowsePanel(options = {}) {
+  setViewMode("search");
+  if (options.focusToggle) {
+    const btn = document.getElementById("browseModeBtn");
+    if (btn && typeof btn.focus === "function") btn.focus({ preventScroll:true });
+  }
 }
 
 function setTab(name) {
@@ -1096,12 +1133,17 @@ function renderPatientQuestionCard(presentation = {}) {
   const title = patientFindingTitleText(presentation);
   const affected = (presentation.affectedSubstances || []).slice(0, 3).join(" + ");
   const question = buildPatientDiscussionQuestion(presentation, trust);
+  const meaning = patientFindingStepText(presentation, "changed");
   const monitoringGuide = renderFindingMonitoringGuide(presentation, trust, true);
   return `<div id="${safeAttr(presentation.targetElementId)}" class="patient-question-card ${safeAttr(tone)}" data-finding-id="${safeAttr(presentation.id || "")}">
     <span class="patient-question-dot ${safeAttr(tone)}"></span>
     <div class="patient-question-main">
       <div class="patient-question-top">
         <span class="patient-question-tag">${safePublicHtml(patientSeverityLabel(severity))}</span>
+      </div>
+      <div class="patient-question-meaning">
+        <div class="patient-question-meaning-label">What this may mean</div>
+        <div class="patient-question-meaning-text">${safePublicHtml(meaning)}</div>
       </div>
       <div class="finding-discussion patient-question-discussion">
         <div class="finding-discussion-label">What to ask</div>
@@ -2735,6 +2777,9 @@ function applyAudienceModeVisibility() {
     ["scenarioSnapshotSection", "scenarioSnapshotBody", "scenarioSnapshotCount"],
     ["metaboliteGapSection", "metaboliteGapBody", "metaboliteGapCount"],
     ["warningPathSection", "warningPathBody", "warningPathCount"],
+    ["interSection", "interBody", "interCount"],
+    ["comboSection", "comboBody", "comboCount"],
+    ["matrixSection", "matrixBody", null],
     ["qualitySection", "qualityBody", "qualityCount"],
     ["contributeSection", "contributeBody", null],
   ];
@@ -3204,6 +3249,12 @@ const MEDICATION_CLASS_GUIDES = [
 
 function renderBrowse() {
   const el = document.getElementById("browseWrap");
+  if (!el) return;
+  const openCategories = new Set(
+    [...el.querySelectorAll(".browse-items.show[data-cat]")]
+      .map(node => node.getAttribute("data-cat"))
+      .filter(Boolean)
+  );
   const groups = {};
   DRUG_DB.forEach(d => {
     const cat = getBrowseCategory(d);
@@ -3213,20 +3264,37 @@ function renderBrowse() {
 
   const sortedCats = [...new Set([...BROWSE_CATEGORY_ORDER, ...Object.keys(groups)])];
 
-  el.innerHTML = renderBrowseClassGuides() + sortedCats.filter(c => groups[c]).map(cat => `
+  const categoryCount = sortedCats.filter(c => groups[c]).length;
+  el.innerHTML = `<div class="browse-head">
+    <div>
+      <div class="browse-head-title">Browse Categories</div>
+      <span class="browse-head-meta">${categoryCount} groups · select medicines, supplements, or foods</span>
+    </div>
+    <button type="button" class="sr-close" onclick="closeBrowsePanel({ focusToggle:true })" aria-label="Close browse categories">&times;</button>
+  </div>` + renderBrowseClassGuides() + sortedCats.filter(c => groups[c]).map(cat => {
+    const open = openCategories.has(cat);
+    return `
     <div class="browse-cat">
-      <div class="browse-cat-title" ${keyboardButtonAttrs()} aria-expanded="false" onclick="toggleBrowseCat(this)">
+      <div class="browse-cat-title${open ? " open" : ""}" ${keyboardButtonAttrs()} aria-expanded="${open ? "true" : "false"}" onclick="toggleBrowseCat(this)">
         ${cat} <span style="font-weight:400;font-size:12px;color:var(--text2)">(${groups[cat].length})</span>
         <span class="arrow">▶</span>
       </div>
-      <div class="browse-items" data-cat="${cat}">
+      <div class="browse-items${open ? " show" : ""}" data-cat="${safeAttr(cat)}">
         ${groups[cat].sort((a,b)=>a.name.localeCompare(b.name)).map(d => {
           const alias = typeof getDrugSecondaryLabel === "function" ? getDrugSecondaryLabel(d, 2) : "";
-          return `<div class="browse-chip ${activeStack.includes(d.name)?'added':''}" ${keyboardButtonAttrs()} onclick="toggleDrug('${d.name.replace(/'/g,"\\'")}')">${d.name}<span class="browse-chip-class">${d.cls}</span>${alias ? `<span class="browse-chip-alias">${alias}</span>` : ""}</div>`;
+          const selected = activeStack.includes(d.name);
+          return `<div class="browse-chip ${selected?'added':''}" ${keyboardButtonAttrs()} aria-pressed="${selected ? "true" : "false"}" data-browse-name="${safeAttr(d.name)}" onclick="toggleDrug('${d.name.replace(/'/g,"\\'")}')">${d.name}<span class="browse-chip-class">${d.cls}</span>${alias ? `<span class="browse-chip-alias">${alias}</span>` : ""}</div>`;
         }).join("")}
       </div>
     </div>
-  `).join("");
+  `}).join("");
+  if (pendingBrowseFocusDrug) {
+    const focusName = pendingBrowseFocusDrug;
+    pendingBrowseFocusDrug = null;
+    const focusChip = [...el.querySelectorAll(".browse-chip[data-browse-name]")]
+      .find(chip => chip.getAttribute("data-browse-name") === focusName);
+    if (focusChip && typeof focusChip.focus === "function") focusChip.focus({ preventScroll:true });
+  }
 }
 
 function renderBrowseClassGuides() {
@@ -3251,6 +3319,7 @@ function loadMedicationClassGuide(index) {
     if (GENOTYPE_EFFECTS[gene] && GENOTYPE_EFFECTS[gene][phenotype]) setGenotypeState(gene, phenotype);
   }
   setActiveTab(guide.tab || "overview");
+  setViewMode("search");
   renderAll();
 }
 
@@ -3261,6 +3330,7 @@ function toggleBrowseCat(el) {
 }
 
 function toggleDrug(name) {
+  pendingBrowseFocusDrug = viewMode === "browse" ? name : null;
   if (activeStack.includes(name)) removeDrug(name);
   else addDrug(name);
 }
@@ -3487,18 +3557,24 @@ function renderAll() {
     renderInteractionFindingsOverview(risk);
     renderCirculatingOverview();
     if (typeof renderMechanismWhyPaths === "function") renderMechanismWhyPaths();
-    renderInteractions(risk.interactions);
-    renderCombinationProducts();
     renderTransporterDDI();
-    renderMatrix(risk.interactions);
     renderAlternatives();
     document.getElementById("riskSection").style.display = "";
     if (isReviewerMode()) document.getElementById("scopeSection").style.display = "";
     document.getElementById("findingSection").style.display = "";
-    document.getElementById("interSection").style.display = "";
-    document.getElementById("comboSection").style.display = "";
+    if (isReviewerMode()) {
+      renderInteractions(risk.interactions);
+      renderCombinationProducts();
+      renderMatrix(risk.interactions);
+      document.getElementById("interSection").style.display = "";
+      document.getElementById("comboSection").style.display = "";
+      document.getElementById("matrixSection").style.display = "";
+    } else {
+      hideSectionAndClear("interSection", "interBody", "interCount");
+      hideSectionAndClear("comboSection", "comboBody", "comboCount");
+      hideSectionAndClear("matrixSection", "matrixBody");
+    }
     document.getElementById("transporterSection").style.display = "";
-    document.getElementById("matrixSection").style.display = "";
     document.getElementById("altSection").style.display = "";
   } else {
     if (activeDrugNames.length) {

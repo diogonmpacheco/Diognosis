@@ -197,8 +197,20 @@ assert(!searchResults.classList.contains('show') && searchInput.value === '',
 window.removeDrug('Not In This Database');
 
 window.setViewMode('browse');
-const keyboardGuide = doc.querySelector('.class-guide-card[role="button"][tabindex="0"]');
+let keyboardGuide = doc.querySelector('.class-guide-card[role="button"][tabindex="0"]');
 assert(keyboardGuide?.getAttribute('onkeydown')?.includes('activateKeyboardButton'), 'Browse example cards should support keyboard activation');
+assert(doc.getElementById('browseModeBtn')?.getAttribute('aria-expanded') === 'true', 'Browse mode button should expose expanded state while browse panel is open');
+doc.getElementById('browseModeBtn')?.click();
+assert(doc.getElementById('browseWrap')?.classList.contains('show') === false, 'Clicking the active Browse Categories button should close the browse panel');
+doc.getElementById('browseModeBtn')?.click();
+assert(doc.getElementById('browseWrap')?.classList.contains('show') === true, 'Clicking Browse Categories again should reopen the browse panel');
+doc.querySelector('#browseWrap .sr-close')?.click();
+assert(doc.getElementById('browseWrap')?.classList.contains('show') === false, 'Browse panel close button should dismiss the browse panel');
+window.setViewMode('browse');
+doc.dispatchEvent(new window.KeyboardEvent('keydown', { key:'Escape', bubbles:true, cancelable:true }));
+assert(doc.getElementById('browseWrap')?.classList.contains('show') === false, 'Escape should dismiss the browse panel');
+window.setViewMode('browse');
+keyboardGuide = doc.querySelector('.class-guide-card[role="button"][tabindex="0"]');
 keyboardGuide.dispatchEvent(new window.KeyboardEvent('keydown', { key:'Enter', bubbles:true, cancelable:true }));
 assert(evalInPage(window, 'activeStack.length') > 0, 'Enter on a browse example card should load its example stack');
 evalInPage(window, `(() => { activeStack = []; renderAll(); setViewMode('browse'); })()`);
@@ -209,6 +221,13 @@ assert(keyboardBrowseCategory.getAttribute('aria-expanded') === 'true' && keyboa
   'Space on a browse category header should expand the category');
 const keyboardBrowseChip = doc.querySelector('.browse-chip[role="button"][tabindex="0"]');
 assert(keyboardBrowseChip?.getAttribute('onkeydown')?.includes('activateKeyboardButton'), 'Browse medication chips should support keyboard activation');
+keyboardBrowseChip.dispatchEvent(new window.KeyboardEvent('keydown', { key:'Enter', bubbles:true, cancelable:true }));
+assert(doc.querySelector('.browse-cat-title[aria-expanded="true"]') && doc.querySelector('.browse-items.show'),
+  'Browse should keep the currently expanded category open after adding a chip');
+const focusedBrowseChip = doc.activeElement?.classList?.contains('browse-chip') ? doc.activeElement : null;
+assert(focusedBrowseChip?.getAttribute('aria-pressed') === 'true',
+  'Browse should return focus to the selected chip and expose selected state after adding it');
+evalInPage(window, `(() => { activeStack = []; renderAll(); })()`);
 window.setViewMode('search');
 
 window.addDrug('Paroxetine');

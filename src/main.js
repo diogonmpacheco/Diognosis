@@ -7,6 +7,8 @@ document.addEventListener("click", function(e) {
   }
 });
 
+document.addEventListener("keydown", handleGlobalDismissKeydown);
+
 const DEMO_CASES = {
   'ssri-switch': {
     drugs: ['Paroxetine', 'Fluoxetine'],

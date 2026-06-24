@@ -842,11 +842,16 @@ const audienceModeRegression = window.eval(`(() => {
     }),
     compactMedListCss:[...document.querySelectorAll('style')].some(style => {
       const css = style.textContent || '';
-      return css.includes('.med-chip{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,128px) 28px')
+      return css.includes('.med-chip{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,128px) 44px')
         && css.includes('.med-chip .x{grid-column:3');
     }),
     reviewButtonDisplay:document.getElementById('tabbtn-review')?.style.display || '',
     reviewPanelDisplay:document.getElementById('tab-review')?.style.display || '',
+    diagnosticPanelDisplays:[
+      document.getElementById('interSection')?.style.display || '',
+      document.getElementById('comboSection')?.style.display || '',
+      document.getElementById('matrixSection')?.style.display || '',
+    ],
     scopeDisplay:document.getElementById('scopeSection')?.style.display || '',
     scopeText:document.getElementById('scopeBody')?.textContent || '',
     circulatingDisplay:document.getElementById('circulatingSection')?.style.display || '',
@@ -945,6 +950,8 @@ assert(audienceModeRegression.clinician.circulatingCards > 0, 'Clinician Overvie
 assert(/parent|metabolite|current stack|CYP/i.test(audienceModeRegression.clinician.circulatingText), 'Clinician circulating cards should include actor context');
 assert(audienceModeRegression.clinician.reviewButtonDisplay === 'none', 'Clinician V1 mode should hide reviewer-only console navigation');
 assert(audienceModeRegression.clinician.reviewPanelDisplay === 'none', 'Clinician V1 mode should keep the reviewer panel hidden');
+assert(audienceModeRegression.clinician.diagnosticPanelDisplays.every(value => value === 'none'),
+  `Clinician V1 mode should keep raw reviewer diagnostic panels hidden; got ${audienceModeRegression.clinician.diagnosticPanelDisplays.join('|')}`);
 assert(audienceModeRegression.clinician.scopeDisplay === 'none', 'Clinician V1 mode should hide reviewer-only console scope');
 assert(!String(audienceModeRegression.clinician.scopeText || '').replace(/\s+/g, ' ').trim(), 'Clinician V1 mode should not render reviewer-only console scope copy');
 assert(audienceModeRegression.clinician.actionRows > 0, 'Clinician mode should restore finding action rows');

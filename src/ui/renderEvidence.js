@@ -67,10 +67,10 @@ function renderEvidenceExplorer() {
   // Tier filter buttons span every displayed card.
   const tiers = [...new Set(combinedStudies.map(s => s.type).filter(Boolean))].sort();
   const tierFilterHTML = combinedStudies.length ? `<div class="ev-explorer-filter" id="evFilterWrap">
-    <span class="ev-filter-btn active" onclick="filterEvidenceTier(null,this)">All (${combinedStudies.length})</span>
+    <button type="button" class="ev-filter-btn active" aria-pressed="true" onclick="filterEvidenceTier(null,this)">All (${combinedStudies.length})</button>
     ${tiers.map(t => {
       const count = combinedStudies.filter(s => s.type === t).length;
-      return `<span class="ev-filter-btn" onclick="filterEvidenceTier('${t}',this)">${t.replace(/_/g,' ')} (${count})</span>`;
+      return `<button type="button" class="ev-filter-btn" aria-pressed="false" onclick="filterEvidenceTier('${t}',this)">${t.replace(/_/g,' ')} (${count})</button>`;
     }).join('')}
   </div>` : '';
 
@@ -89,8 +89,14 @@ function renderEvidenceExplorer() {
 function filterEvidenceTier(tier, btn) {
   // Update active button
   const wrap = document.getElementById('evFilterWrap');
-  if (wrap) wrap.querySelectorAll('.ev-filter-btn').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
+  if (wrap) wrap.querySelectorAll('.ev-filter-btn').forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-pressed', 'false');
+  });
+  if (btn) {
+    btn.classList.add('active');
+    btn.setAttribute('aria-pressed', 'true');
+  }
   // Show/hide cards
   const container = document.getElementById('evCardsContainer');
   if (!container) return;

@@ -71,9 +71,10 @@ a{color:var(--accent)}
 body[data-add-mode="browse"] .search-wrap{display:none}
 .search-results-head{position:sticky;top:0;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 12px;background:var(--card);border-bottom:1px solid var(--border)}
 .search-results-title{font-size:11px;font-weight:800;text-transform:uppercase;color:var(--text2);letter-spacing:.3px}
-.sr-close{width:30px;height:30px;border:1px solid var(--border);border-radius:8px;background:var(--card2);color:var(--text2);font-size:20px;line-height:1;cursor:pointer}
+.sr-close{width:44px;height:44px;min-width:44px;border:1px solid var(--border);border-radius:8px;background:var(--card2);color:var(--text2);font-size:20px;line-height:1;cursor:pointer}
 .sr-close:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .sr-close:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.sr-item:focus-visible,.browse-cat-title:focus-visible,.browse-chip:focus-visible,.class-guide-card:focus-visible,.section-title.collapsible:focus-visible,.tab-btn:focus-visible,.ev-filter-btn:focus-visible,.related-finding-btn:focus-visible,.summary-jump:focus-visible,.gene-remove:focus-visible,.med-chip .x:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
 .sr-item{padding:12px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);transition:background 0.15s}
 .sr-item:hover{background:var(--accentBg)}
 .sr-item.sr-unrecognized{background:var(--amberBg)}
@@ -89,7 +90,7 @@ body[data-add-mode="browse"] .search-wrap{display:none}
 
 /* MODE TOGGLE */
 .mode-toggle{display:grid;grid-template-columns:1fr 1fr;gap:2px;max-width:none;width:100%;min-width:0;margin:0 0 14px;padding:3px;border:1px solid #e4e3db;background:#efeee8;border-radius:10px}
-.mode-btn{appearance:none;font-family:var(--font);flex:1;min-width:0;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);cursor:pointer;font-size:12px;font-weight:800;color:var(--text2);text-align:center;transition:all 0.2s;overflow-wrap:break-word}
+.mode-btn{appearance:none;font-family:var(--font);flex:1;min-width:0;min-height:44px;padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:var(--card);cursor:pointer;font-size:12px;font-weight:800;color:var(--text2);text-align:center;transition:all 0.2s;overflow-wrap:break-word}
 .mode-btn.active{border-color:var(--accent);color:#fff;background:var(--accent)}
 .mode-btn:hover{border-color:var(--accent2);background:var(--accentBg);color:var(--accent)}
 .mode-btn.active:hover{background:var(--accent);color:#fff}
@@ -97,21 +98,24 @@ body[data-add-mode="browse"] .search-wrap{display:none}
 .audience-wrap{max-width:none;margin:0;padding:0;display:flex;align-items:center;gap:10px}
 .audience-label{display:none}
 .audience-segment{display:inline-grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid #e4e3db;background:#efeee8;border-radius:11px;padding:3px;box-shadow:none;min-width:196px}
-.audience-btn{border:none;border-radius:7px;background:transparent;color:var(--text2);font-family:var(--font);font-size:12px;font-weight:800;padding:7px 10px;cursor:pointer;transition:background .15s,color .15s}
+.audience-btn{border:none;border-radius:7px;background:transparent;color:var(--text2);font-family:var(--font);font-size:12px;font-weight:800;min-height:44px;padding:7px 10px;cursor:pointer;transition:background .15s,color .15s}
 .audience-btn.active{background:var(--accent);color:#fff}
 .audience-btn:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
 
 /* BROWSE GRID */
 .browse-wrap{max-width:none;margin:0;padding:0;display:none}
 .browse-wrap.show{display:block}
+.browse-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 10px;padding:9px 11px;border:1px solid var(--border);border-radius:12px;background:var(--card)}
+.browse-head-title{font-size:12px;font-weight:850;color:var(--text);line-height:1.2}
+.browse-head-meta{display:block;margin-top:1px;font-size:10px;font-weight:650;color:var(--text2)}
 .browse-cat{margin-bottom:12px}
-.browse-cat-title{font-size:13px;font-weight:700;color:var(--accent);cursor:pointer;padding:10px 12px;background:var(--card);border:1px solid var(--border);border-radius:12px;display:flex;justify-content:space-between;align-items:center;box-shadow:none}
+.browse-cat-title{font-size:13px;font-weight:700;color:var(--accent);cursor:pointer;min-height:44px;padding:10px 12px;background:var(--card);border:1px solid var(--border);border-radius:12px;display:flex;justify-content:space-between;align-items:center;box-shadow:none}
 .browse-cat-title:hover{background:var(--accentBg)}
 .browse-cat-title .arrow{transition:transform 0.2s}
 .browse-cat-title.open .arrow{transform:rotate(90deg)}
 .browse-items{display:none;padding:6px 0}
-.browse-items.show{display:flex;flex-wrap:wrap;gap:6px;padding:8px 4px}
-.browse-chip{padding:6px 11px;border-radius:8px;font-size:13px;cursor:pointer;border:1px solid var(--border);background:#f5f4ef;transition:all 0.15s;white-space:nowrap}
+.browse-items.show{display:flex;flex-wrap:wrap;gap:6px;padding:8px 4px;max-height:min(55vh,520px);overflow:auto;overscroll-behavior:contain}
+.browse-chip{padding:7px 11px;min-height:44px;border-radius:8px;font-size:13px;cursor:pointer;border:1px solid var(--border);background:#f5f4ef;transition:all 0.15s;white-space:nowrap}
 .browse-chip:hover{border-color:var(--accent);background:var(--accentBg)}
 .browse-chip.added{border-color:var(--green);background:var(--greenBg);color:var(--green)}
 .browse-chip-class{display:block;font-size:9px;color:var(--text2);font-weight:600;margin-top:1px;max-width:150px;overflow:hidden;text-overflow:ellipsis}
@@ -134,10 +138,10 @@ body[data-add-mode="browse"] .search-wrap{display:none}
 .section-title svg{color:var(--accent)}
 .section-body{padding:12px 16px;overflow-x:auto}
 
-.med-chip{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,128px) 28px;align-items:center;gap:8px;width:100%;max-width:100%;justify-content:flex-start;padding:11px 12px 11px 14px;margin:0;border-radius:12px;background:var(--card);border:1px solid var(--border);font-size:14px;font-weight:500;color:var(--text)}
+.med-chip{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,128px) 44px;align-items:center;gap:8px;width:100%;max-width:100%;justify-content:flex-start;padding:11px 12px 11px 14px;margin:0;border-radius:12px;background:var(--card);border:1px solid var(--border);font-size:14px;font-weight:500;color:var(--text)}
 .med-chip + .med-chip{margin-top:8px}
 .med-chip.unrecognized{background:var(--amberBg);border-color:rgba(168,120,27,.32);color:var(--text)}
-.med-chip .x{grid-column:3;appearance:none;background:#f4f3ee;font-family:var(--font);padding:0;cursor:pointer;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--faint);transition:all 0.15s;border:1px solid transparent}
+.med-chip .x{grid-column:3;appearance:none;background:#f4f3ee;font-family:var(--font);padding:0;cursor:pointer;width:44px;min-width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--faint);transition:all 0.15s;border:1px solid transparent}
 .med-chip.unrecognized .x{color:var(--amber);border-color:color-mix(in srgb, var(--amber) 35%, transparent)}
 .med-chip .x:hover{background:var(--accent);color:#fff}
 .med-chip.unrecognized .x:hover{background:var(--amber);color:#fff}
@@ -164,13 +168,13 @@ body[data-audience="patient"] #geneticsSection{order:2}
 body[data-audience="patient"] .result-area{order:3}
 body[data-audience="patient"] #selectedListSection .section-body{padding:10px 12px}
 body[data-audience="patient"] #medList{display:grid;gap:8px;overflow-x:visible}
-body[data-audience="patient"] .med-chip{display:grid;grid-template-columns:minmax(0,1fr) 34px;align-items:center;gap:10px;margin:0;padding:11px 12px;border-radius:12px;border-width:1px;background:var(--card);color:var(--text)}
+body[data-audience="patient"] .med-chip{display:grid;grid-template-columns:minmax(0,1fr) 44px;align-items:center;gap:10px;margin:0;padding:11px 12px;border-radius:12px;border-width:1px;background:var(--card);color:var(--text)}
 body[data-audience="patient"] .med-chip.unrecognized{background:var(--amberBg);color:var(--text)}
 body[data-audience="patient"] .med-chip-name{gap:2px}
 body[data-audience="patient"] .med-chip-primary{font-size:14px;color:var(--text)}
 body[data-audience="patient"] .med-chip-secondary{font-size:11px;line-height:1.25;white-space:normal;overflow:visible;text-overflow:clip;max-width:none}
 body[data-audience="patient"] .med-chip .dose-select{display:none}
-body[data-audience="patient"] .med-chip .x{grid-column:2;width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.76);color:var(--text2);border-color:var(--border)}
+body[data-audience="patient"] .med-chip .x{grid-column:2;width:44px;height:44px;border-radius:8px;background:rgba(255,255,255,.76);color:var(--text2);border-color:var(--border)}
 body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .empty-state{text-align:center;padding:30px 20px;color:var(--text2);font-size:14px}
 .empty-state .icon{font-size:40px;margin-bottom:8px}
@@ -246,7 +250,7 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 .gene-badge.intermediate{background:var(--amberBg);color:var(--amber)}
 .gene-badge.ultrarapid{background:var(--purpleBg);color:var(--purple)}
 .gene-badge.rapid{background:var(--blueBg);color:var(--blue)}
-.gene-remove{background:none;border:none;cursor:pointer;font-size:16px;color:var(--text2);padding:4px}
+.gene-remove{background:none;border:none;cursor:pointer;font-size:16px;color:var(--text2);min-width:44px;min-height:44px;padding:4px}
 .gene-add{display:flex;gap:8px;padding:8px 4px}
 .gene-add select{flex:1;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px}
 .gene-add button{padding:6px 16px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:12px}
@@ -342,7 +346,7 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 
 /* EVIDENCE EXPLORER SECTION */
 .ev-explorer-filter{display:flex;gap:6px;flex-wrap:wrap;padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid var(--border)}
-.ev-filter-btn{padding:4px 12px;border:1.5px solid var(--border);border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;background:var(--card);color:var(--text2);transition:all 0.15s}
+.ev-filter-btn{appearance:none;font-family:var(--font);min-height:44px;padding:4px 12px;border:1.5px solid var(--border);border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;background:var(--card);color:var(--text2);transition:all 0.15s}
 .ev-filter-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accentBg)}
 .ev-explorer-empty{text-align:center;padding:24px;color:var(--text2);font-size:13px}
 .evidence-ledger{border:1px solid var(--border);border-radius:10px;background:var(--card2);padding:10px 11px;margin-bottom:10px}
@@ -582,7 +586,7 @@ body[data-audience="clinician"] .summary-story.clinician-priority .summary-story
 .summary-risk .lbl{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-top:0}
 .summary-next{display:flex;align-items:center;gap:8px;padding:0;border-radius:0;background:transparent;color:var(--text2);font-size:13px;line-height:1.45;border:0;max-width:680px}
 .summary-next-pill{font-size:10px;font-weight:800;text-transform:uppercase;color:var(--accent);background:var(--accentBg);border:1px solid var(--accentLine);border-radius:999px;padding:3px 8px;white-space:nowrap}
-.summary-jump{appearance:none;border:0;background:transparent;padding:0;font-size:12px;color:var(--accent);cursor:pointer;font-weight:800;text-decoration:underline}
+.summary-jump{appearance:none;border:0;background:transparent;display:inline-flex;align-items:center;min-height:32px;padding:0;font-size:12px;color:var(--accent);cursor:pointer;font-weight:800;text-decoration:underline}
 .summary-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .summary-action-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid var(--border);border-radius:11px;background:var(--card);color:var(--text);font-size:13px;font-weight:750;padding:11px 16px;font-family:var(--font);cursor:pointer}
 .summary-action-btn:first-child{background:var(--text);border-color:var(--text);color:#fff}
@@ -668,7 +672,7 @@ body[data-audience="clinician"] .summary-story.clinician-priority .summary-story
 .finding-monitoring-list li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:7px;vertical-align:1px}
 .finding-actions,.supporting-actions{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:9px}
 .supporting-actions{margin:8px 0}
-.related-finding-btn{appearance:none;border:1px solid rgba(234,88,12,.24);border-radius:999px;background:var(--accentBg);color:var(--accent);font-size:10px;font-weight:900;padding:5px 9px;cursor:pointer;white-space:nowrap}
+.related-finding-btn{appearance:none;border:1px solid rgba(234,88,12,.24);border-radius:999px;background:var(--accentBg);color:var(--accent);font-size:10px;font-weight:900;min-height:36px;padding:5px 10px;cursor:pointer;white-space:nowrap}
 .related-finding-btn.secondary{background:var(--card);border-color:var(--border);color:var(--text2)}
 .related-finding-btn.source-link{text-decoration:none;display:inline-flex;align-items:center}
 .related-finding-btn:hover{border-color:var(--accent);background:#fff7ed;color:var(--accent)}
@@ -722,6 +726,9 @@ body[data-audience="clinician"] .summary-story.clinician-priority .summary-story
 .patient-question-tag{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:0;border:1px solid var(--border);border-radius:999px;background:var(--card2);color:var(--text2);padding:3px 7px}
 .patient-question-card.high .patient-question-tag{border-color:rgba(194,58,52,.28);background:var(--redBg);color:var(--red)}
 .patient-question-card.medium .patient-question-tag{border-color:rgba(168,120,27,.3);background:var(--warn-bg,var(--amberBg));color:var(--amber)}
+.patient-question-meaning{padding:10px 12px;margin-bottom:9px;border-radius:10px;background:var(--card2);border:1px solid var(--border)}
+.patient-question-meaning-label{font-size:10px;font-weight:900;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
+.patient-question-meaning-text{font-size:13px;line-height:1.45;color:var(--text);font-weight:650}
 .patient-question-title{font-size:14px;font-weight:760;line-height:1.35;color:var(--text)}
 .patient-question-meta{font-size:12px;color:var(--faint);font-weight:700;margin-top:2px}
 .patient-question-discussion{margin-top:0;padding:12px 13px}
@@ -869,7 +876,7 @@ body[data-audience="clinician"] .summary-story.clinician-priority .summary-story
 .tab-bar::-webkit-scrollbar{height:4px}
 .tab-bar::-webkit-scrollbar-thumb{background:var(--border);border-radius:999px}
 .tab-btn{
-  flex:0 0 auto;min-width:92px;padding:15px 10px;border:none;border-radius:0;background:transparent;
+  flex:0 0 auto;min-width:92px;min-height:44px;padding:15px 10px;border:none;border-radius:0;background:transparent;
   cursor:pointer;font-size:13px;font-weight:700;color:var(--text2);
   font-family:var(--font);transition:all .15s;white-space:nowrap;
 }
@@ -922,7 +929,7 @@ body[data-audience="clinician"] .summary-story.clinician-priority .summary-story
   .summary-next{display:grid;grid-template-columns:1fr;gap:7px;align-items:start}
   .summary-next-pill{justify-self:start}
   .med-chip-secondary{max-width:180px}
-  .med-chip{grid-template-columns:minmax(0,1fr) minmax(84px,112px) 32px;gap:6px}
+  .med-chip{grid-template-columns:minmax(0,1fr) minmax(84px,112px) 44px;gap:6px}
   .med-chip .dose-select{min-width:0;flex-shrink:0;font-size:11px;padding:6px}
   .med-chip .x{flex-shrink:0}
   .selected-list-actions{grid-template-columns:1fr}
@@ -982,7 +989,7 @@ body[data-audience="clinician"] .summary-story.clinician-priority .summary-story
   <div class="input-rail">
     <div class="mode-toggle" role="group" aria-label="Choose how to add items">
       <button type="button" class="mode-btn active" id="searchModeBtn" onclick="setViewMode('search')" aria-pressed="true">Search by Name</button>
-      <button type="button" class="mode-btn" id="browseModeBtn" onclick="setViewMode('browse')" aria-pressed="false">Browse Categories</button>
+      <button type="button" class="mode-btn" id="browseModeBtn" onclick="toggleBrowseMode()" aria-pressed="false" aria-controls="browseWrap" aria-expanded="false">Browse Categories</button>
     </div>
 
     <div class="search-wrap">
