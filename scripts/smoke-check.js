@@ -263,7 +263,6 @@ assert(doc.getElementById('phenoconversionSection')?.closest('.tab-panel')?.id =
 assert(doc.getElementById('activeMoietySection')?.closest('.tab-panel')?.id === 'tab-genes-metabolites', 'Drug & Metabolite Balance should live under Genes + Metabolites');
 assert(doc.getElementById('pkSimSection')?.closest('.tab-panel')?.id === 'tab-timing-levels', 'PK simulation should live under Timing + Levels');
 assert(doc.getElementById('persistenceTimelineSection')?.closest('.tab-panel')?.id === 'tab-timing-levels', 'Persistence & Washout should live under Timing + Levels');
-assert(doc.getElementById('reviewWorkbenchSection')?.closest('.tab-panel')?.id === 'tab-review', 'Reviewer workbench should live under Reviewer Console');
 assert(doc.getElementById('reviewSummarySection')?.closest('.tab-panel')?.id === 'tab-review', 'Reviewer Summary should live under Reviewer Console');
 assert(doc.getElementById('scenarioSnapshotSection')?.closest('.tab-panel')?.id === 'tab-review', 'Scenario Snapshots should live under Reviewer Console');
 assert(doc.getElementById('metaboliteGapSection')?.closest('.tab-panel')?.id === 'tab-review', 'Metabolite Coverage Gaps should live under Reviewer Console');

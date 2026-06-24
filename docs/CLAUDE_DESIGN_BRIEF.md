@@ -145,7 +145,6 @@ When enabled, it adds a `Reviewer Console` tab with:
 - Reviewer Summary.
 - Scenario Snapshots.
 - Metabolite Coverage Gaps.
-- Review Workbench.
 - Technical Pathways.
 - Report / Contribute.
 - Other legacy reviewer/contributor sections may exist behind the scenes.

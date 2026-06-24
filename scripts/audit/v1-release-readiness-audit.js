@@ -620,7 +620,7 @@ assert(reviewerIsolation.patientPressed === 'false' && reviewerIsolation.clinici
   'Reviewer URL should not leave Patient selected');
 assert(reviewerIsolation.reviewButtonDisplay !== 'none' && reviewerIsolation.reviewPanelDisplay !== 'none',
   'Reviewer URL should expose the Reviewer Console only in reviewer mode');
-assert(/Review Workbench|Reviewer Console|Review Summary/i.test(reviewerIsolation.reviewText),
+assert(/Reviewer Console|Reviewer Summary/i.test(reviewerIsolation.reviewText),
   'Reviewer URL should render reviewer-only console content inside the Review tab');
 
 console.log(`V1 release readiness audit passed: ${clinicianScenarios.length} clinician scenarios, Patient mode boundary, and static readiness surface.`);

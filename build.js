@@ -69,8 +69,6 @@ const MODULE_ORDER = [
   'ui/renderInteractions.js', // renderInteractions, renderFoldBars, renderMatrix, renderTiming
   'ui/renderMechanisticPredictions.js', // experimental predictions below warnings
   'ui/renderEvidence.js',     // renderEvidenceExplorer
-  'ui/renderExternalSafetyContext.js', // imported external context cards
-  'ui/renderOpenTargetsReviewWorkbench.js', // generated review workbench
   'ui/renderActiveMoiety.js', // Parent-Metabolite Balance panel
   'ui/renderPhenoconversion.js', // Functional Gene Status dashboard
   'ui/renderPersistenceTimeline.js', // Persistence & Washout timeline

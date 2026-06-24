@@ -24,7 +24,6 @@ run('V1 release readiness audit', node, ['scripts/audit/v1-release-readiness-aud
 run('V1 feedback privacy audit', node, ['scripts/audit/v1-feedback-privacy-audit.js']);
 run('Evidence calculation audit', node, ['scripts/audit/evidence-calculation-audit.js']);
 run('External context firewall audit', node, ['scripts/audit/external-context-firewall-audit.js']);
-run('External context UI audit', node, ['scripts/audit/external-safety-context-ui-audit.js']);
 run('Scenario snapshot audit', node, ['scripts/audit/scenario-snapshot-audit.js']);
 run('Deep launch QA audit', node, ['scripts/launch-qa-audit.js']);
 run('Regression check', node, ['scripts/regression-check.js']);

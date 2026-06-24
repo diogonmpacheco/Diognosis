@@ -481,7 +481,6 @@ function renderLazyTab(tabId = activeTab) {
     if (!isReviewerMode()) return;
     if (lazyRenderState.reviewKey === key) return;
     if (typeof renderReviewSummary === "function") renderReviewSummary();
-    if (typeof renderReviewWorkbench === "function") renderReviewWorkbench();
     if (typeof renderQualityDashboard === "function") renderQualityDashboard();
     if (typeof renderWarningPathReview === "function") renderWarningPathReview();
     if (typeof renderScenarioSnapshotsReview === "function") renderScenarioSnapshotsReview();
@@ -2732,9 +2731,7 @@ function applyAudienceModeVisibility() {
   const reviewerSections = [
     ["scopeSection", "scopeBody", "scopeCount"],
     ["sourceIntegrationCandidateSection", "sourceIntegrationCandidateBody", "sourceIntegrationCandidateCount"],
-    ["externalContextSection", "externalContextBody", "externalContextCount"],
     ["reviewSummarySection", "reviewSummaryBody", "reviewSummaryCount"],
-    ["reviewWorkbenchSection", "reviewWorkbenchBody", "reviewWorkbenchCount"],
     ["scenarioSnapshotSection", "scenarioSnapshotBody", "scenarioSnapshotCount"],
     ["metaboliteGapSection", "metaboliteGapBody", "metaboliteGapCount"],
     ["warningPathSection", "warningPathBody", "warningPathCount"],
@@ -2759,8 +2756,8 @@ function arrangeAdvancedSections() {
     mechanisms:["mechanismWhySection","mechanisticSection","transporterSection","pdSection","cascadeSection","phenoAccumSection","graphSection"],
     "genes-metabolites":["genotypeSection","phenoconversionSection","activeMoietySection","metabSection"],
     "timing-levels":["foldSection","pkSimSection","persistenceTimelineSection","washoutSection","burdenSection"],
-    evidence:["externalContextSection","evidenceSection"],
-    review:["reviewSummarySection","reviewWorkbenchSection","scenarioSnapshotSection","metaboliteGapSection","warningPathSection","matrixSection","interSection","comboSection","qualitySection","contributeSection"],
+    evidence:["evidenceSection"],
+    review:["reviewSummarySection","scenarioSnapshotSection","metaboliteGapSection","warningPathSection","matrixSection","interSection","comboSection","qualitySection","contributeSection"],
   };
   Object.entries(placements).forEach(([tabId, sectionIds]) => {
     const panel = document.getElementById("tab-" + tabId);
@@ -3437,7 +3434,6 @@ function renderAll() {
     renderMetabolites();
     renderPathwayDiversions();
     renderCascade();                // Phase 3: graph traversal
-    renderExternalSafetyContext();  // External context, not severity-bearing
     renderGenotypePanel();          // Phase 5 #2: genotype-stratified evidence
     if (typeof renderPhenoconversionDashboard === "function") renderPhenoconversionDashboard();
     if (typeof renderActiveMoietyBalance === "function") renderActiveMoietyBalance();
@@ -3466,8 +3462,6 @@ function renderAll() {
     hideSectionAndClear("cascadeSection", "cascadeBody");
     hideSectionAndClear("evidenceSection", "evidenceBody", "evidenceCount");
     hideSectionAndClear("sourceIntegrationCandidateSection", "sourceIntegrationCandidateBody", "sourceIntegrationCandidateCount");
-    hideSectionAndClear("externalContextSection", "externalContextBody", "externalContextCount");
-    hideSectionAndClear("reviewWorkbenchSection", "reviewWorkbenchBody", "reviewWorkbenchCount");
     hideSectionAndClear("reviewSummarySection", "reviewSummaryBody", "reviewSummaryCount");
     hideSectionAndClear("mechanismWhySection", "mechanismWhyBody", "mechanismWhyCount");
     hideSectionAndClear("scenarioSnapshotSection", "scenarioSnapshotBody", "scenarioSnapshotCount");

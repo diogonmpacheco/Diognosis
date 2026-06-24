@@ -200,16 +200,9 @@ function renderQualityDashboard() {
   const stackStudies = publicStudies.filter(s => activeStack.some(name =>
     JSON.stringify([s.id,s.title,s.source,s.supports,s.quantifiedEffects]).toLowerCase().includes(name.toLowerCase())
   ));
-  const openTargetsSnapshot = typeof getOpenTargetsSnapshot === "function" ? getOpenTargetsSnapshot() : null;
-  const openTargetsSummary = openTargetsSnapshot?.summary || {};
-  const openTargetsPromotionSummary = typeof OPEN_TARGETS_PROMOTION_QUEUE_SUMMARY !== "undefined" ? OPEN_TARGETS_PROMOTION_QUEUE_SUMMARY : null;
-  const stackExternalContextCount = typeof collectOpenTargetsSafetyContext === "function"
-    ? collectOpenTargetsSafetyContext(activeStack, openTargetsSnapshot).length
-    : 0;
-  const openTargetsRelease = openTargetsSummary.release || openTargetsSnapshot?.release || "not imported";
 
   if (section) section.style.display = "";
-  if (countEl) countEl.textContent = `${publicStudies.length} evidence · ${v3ProfessionalCandidates} v3 sign-off candidates · ${stackExternalContextCount} external context cards`;
+  if (countEl) countEl.textContent = `${publicStudies.length} evidence · ${v3ProfessionalCandidates} v3 sign-off candidates`;
 
   const issueItems = [
     ...missingSignals.slice(0,3).map(x => `<div class="quality-item"><strong>Schema upgrade:</strong> add explicit exposure/action metadata for ${safePublicHtml(x)}</div>`),
@@ -223,7 +216,6 @@ function renderQualityDashboard() {
       <div class="quality-tile"><div class="quality-num">${quantified.length}</div><div class="quality-label">Quantified Gene Effects</div><div class="quality-note">Metabolite/active-form rows with numeric folds</div></div>
       <div class="quality-tile"><div class="quality-num">${qualitative.length}</div><div class="quality-label">Qualitative Gene Effects</div><div class="quality-note">Shown without invented fold numbers</div></div>
       <div class="quality-tile"><div class="quality-num">${professionalReviewed.length}</div><div class="quality-label">V3 Professional Sign-Offs</div><div class="quality-note">${v3ProfessionalCandidates} source-integrated entries remain eligible for future sign-off</div></div>
-      <div class="quality-tile"><div class="quality-num">${stackExternalContextCount}</div><div class="quality-label">External Context Cards</div><div class="quality-note">${safePublicHtml(openTargetsSummary.contextFactsIncluded || 0)} imported facts · ${safePublicHtml(openTargetsPromotionSummary?.unreviewed || 0)} awaiting review · ${safePublicHtml(openTargetsRelease)}</div></div>
       <div class="quality-tile"><div class="quality-num">${estimatedFoldCount}</div><div class="quality-label">Live Model Estimates</div><div class="quality-note">Estimated folds visible in the current stack</div></div>
     </div>
     ${issueItems ? `<div class="quality-list">${issueItems}</div>` : `<div class="quality-list"><div class="quality-item"><strong>Current stack:</strong> no structural quality warnings surfaced by the local dashboard.</div></div>`}

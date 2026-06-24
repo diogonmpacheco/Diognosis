@@ -77,10 +77,10 @@ Each relation has:
 Run:
 
 ```bash
-node scripts/audit/data-hygiene-audit.js
+npm run validate:strict
 ```
 
-The audit enforces the canonical export shape and keeps budgets for remaining known ambiguity:
+The strict validator enforces the canonical export shape and keeps budgets for remaining known ambiguity:
 
 - alias collisions
 - duplicate canonical facts

@@ -37,7 +37,6 @@ src/
   data/
     constants, rules, drugs, enzymes, metabolites, transporters,
     actors, pharmacology, evidence, clinical standards, interactions, generated stats,
-    generated evidence diagnostics, Open Targets snapshots,
     generated review diagnostics
   engine/
     evidenceEngine
@@ -62,8 +61,6 @@ src/
     renderInteractions
     renderMechanisticPredictions
     renderEvidence
-    renderExternalSafetyContext
-    renderOpenTargetsReviewWorkbench
     renderActiveMoiety
     renderPhenoconversion
     renderPersistenceTimeline
@@ -188,7 +185,7 @@ Review/safety limitations: source-linked does not mean professionally signed off
 
 Purpose: keep technical audit surfaces available without making them compete with the primary user flow.
 
-Input data: current findings, generated review workbench rows, scenario snapshots, metabolite coverage gaps, evidence diagnostics, Open Targets diagnostics, raw warning paths, and interaction matrices.
+Input data: current findings, scenario snapshots, metabolite coverage gaps, evidence diagnostics, raw warning paths, and interaction matrices.
 
 Output shape: reviewer summary tiles, scenario snapshot cards, gap cards, raw warning path payloads, technical tables, and contribution links.
 
@@ -276,7 +273,7 @@ Each tier carries a calibrated confidence weight used by graph and finding-level
 
 Important evidence helpers include `normalizeEvidence()`, `getEvidenceSummary()`, `assertEvidencedSeverity()`, `createStudyDraft()`, `reviewStudyDraft()`, `computeEvidenceLadder()`, and `attachEvidenceLaddersToFindings()`.
 
-Committed source-context entries can carry internal source-governance flags until explicitly signed off. Open Targets-derived context remains local/static at runtime and defaults to context-only, sign-off-required, and not severity-bearing unless explicitly promoted by Diognosis governance.
+Committed source-context entries can carry internal source-governance flags until explicitly signed off. External-source context remains local/static at runtime and defaults to context-only, sign-off-required, and not severity-bearing unless explicitly promoted by Diognosis governance.
 
 ## Source Governance
 
