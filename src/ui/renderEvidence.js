@@ -58,32 +58,54 @@ function renderEvidenceExplorer() {
     .sort((a, b) => {
       return (EVIDENCE_WEIGHT[b.type] || 0) - (EVIDENCE_WEIGHT[a.type] || 0);
     });
+  const findingEvidenceRefs = new Set((findings || []).flatMap(finding => finding.evidenceRefs || []));
+  const findingLinkedStudies = combinedStudies.filter(study => findingEvidenceRefs.has(study.id));
+  const focusedStudies = findingLinkedStudies.length ? findingLinkedStudies : combinedStudies.slice(0, Math.min(12, combinedStudies.length));
+  const additionalStudies = combinedStudies.filter(study => !focusedStudies.includes(study));
+  const standardMode = typeof isReviewerMode === "function" && !isReviewerMode();
+  const sourceDetailsState = standardMode ? "" : " open";
 
   if (countEl) {
     const pendingRows = combinedStudies.filter(study => study.pendingSourceSignal).length;
     countEl.textContent = `${combinedStudies.length} source-integrated evidence${pendingRows ? ` · ${pendingRows} source context signal${pendingRows === 1 ? "" : "s"}` : ""} · professional sign-off not claimed`;
   }
 
-  // Tier filter buttons span every displayed card.
-  const tiers = [...new Set(combinedStudies.map(s => s.type).filter(Boolean))].sort();
-  const tierFilterHTML = combinedStudies.length ? `<div class="ev-explorer-filter" id="evFilterWrap">
-    <button type="button" class="ev-filter-btn active" aria-pressed="true" onclick="filterEvidenceTier(null,this)">All (${combinedStudies.length})</button>
+  // Tier filter buttons span the focused source cards, not every stack-adjacent entry.
+  const tiers = [...new Set(focusedStudies.map(s => s.type).filter(Boolean))].sort();
+  const tierFilterHTML = focusedStudies.length ? `<div class="ev-explorer-filter" id="evFilterWrap">
+    <button type="button" class="ev-filter-btn active" aria-pressed="true" onclick="filterEvidenceTier(null,this)">All (${focusedStudies.length})</button>
     ${tiers.map(t => {
-      const count = combinedStudies.filter(s => s.type === t).length;
+      const count = focusedStudies.filter(s => s.type === t).length;
       return `<button type="button" class="ev-filter-btn" aria-pressed="false" onclick="filterEvidenceTier('${t}',this)">${t.replace(/_/g,' ')} (${count})</button>`;
     }).join('')}
   </div>` : '';
 
-  const cardsHTML = combinedStudies
+  const cardsHTML = focusedStudies
     .map(s => `<div class="ev-explorer-card" data-tier="${s.type || 'uncategorized'}">${studyCardHTML(s)}</div>`)
     .join('') || `<div class="ev-explorer-empty" style="color:var(--text2);font-size:13px;padding:8px 4px">No evidence entries match this stack yet.</div>`;
+  const additionalCardsHTML = additionalStudies.length
+    ? (standardMode
+      ? `<div class="ev-source-empty">Broader stack-matched source entries are not shown in the default V1 view because they are not primary citations for the ranked findings.</div>`
+      : additionalStudies.map(s => `<div class="ev-explorer-card" data-tier="${s.type || 'uncategorized'}">${studyCardHTML(s)}</div>`).join(""))
+    : `<div class="ev-source-empty">No additional stack-matched sources beyond the current findings.</div>`;
+  const focusedSourceBrowser = `<details class="ev-source-details"${sourceDetailsState}>
+    <summary>Source details for current findings (${focusedStudies.length})</summary>
+    <div class="ev-source-note">These cards expand the citations directly attached to the current finding priorities. Use the ledger above for the quickest trust check.</div>
+    ${tierFilterHTML}
+    <div id="evCardsContainer">${cardsHTML}</div>
+  </details>`;
+  const additionalSourceBrowser = additionalStudies.length ? `<details class="ev-source-details"${sourceDetailsState}>
+    <summary>Additional matching sources (${additionalStudies.length})</summary>
+    <div class="ev-source-note">These are source-integrated entries that match the selected stack, but are not the primary citations for the ranked findings.</div>
+    <div id="evAdditionalCardsContainer">${additionalCardsHTML}</div>
+  </details>` : "";
   const ladderLedger = renderEvidenceLadderLedger(findings);
 
   const reviewNotice = `<div class="ev-review-notice" style="margin-bottom:10px;border:1px solid var(--amber);background:var(--amberBg);border-radius:8px;padding:8px 10px;font-size:11px;color:var(--amber);line-height:1.5">
     Mechanistic review only. Source entries are integrated for traceability; professional sign-off is not claimed and severity output is explanatory, not medical advice.
   </div>`;
 
-  el.innerHTML = reviewNotice + ladderLedger + tierFilterHTML + `<div id="evCardsContainer">${cardsHTML}</div>`;
+  el.innerHTML = reviewNotice + ladderLedger + focusedSourceBrowser + additionalSourceBrowser;
 }
 
 function filterEvidenceTier(tier, btn) {

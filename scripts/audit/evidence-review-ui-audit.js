@@ -37,6 +37,7 @@ const countText = document.getElementById('evidenceCount')?.textContent || '';
 const notice = document.querySelector('.ev-review-notice');
 const ledger = document.getElementById('evidenceLadderLedger');
 const cards = [...document.querySelectorAll('#evCardsContainer .ev-explorer-card')];
+const additionalCards = [...document.querySelectorAll('#evAdditionalCardsContainer .ev-explorer-card')];
 const reviewNeededCards = cards
   .filter((card) => card.querySelector('.ev-review-badge.needs-review'));
 const findingCards = [...document.querySelectorAll('#findingBody .finding-card')];
@@ -50,6 +51,8 @@ assert(ledger, 'Evidence explorer must render the evidence ladder ledger');
 assert(/no sign-off claimed/i.test(ledger.textContent || ''), 'Evidence ladder ledger must expose compact sign-off boundary');
 assert(/Evidence Browser \/ Evidence Ledger/i.test(ledger.textContent || ''), 'Evidence ladder ledger title is missing');
 assert(cards.length > 0, 'Expected representative stack to expose evidence cards');
+assert(additionalCards.length === 0, 'Standard Evidence tab should not render the broad stack-matched source browser by default');
+assert(/Additional matching sources/i.test(document.getElementById('evidenceBody')?.textContent || ''), 'Standard Evidence tab should disclose additional stack-matched source count');
 assert(reviewNeededCards.length === cards.length, `Expected every evidence card to show source-linked state, found ${reviewNeededCards.length}/${cards.length}`);
 assert(findingCards.length > 0, 'Expected representative stack to expose normalized finding cards');
 assert(primaryFindingCards.length > 0, 'Expected Overview to expose primary finding cards');
