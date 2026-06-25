@@ -65,7 +65,7 @@ const start = '<!-- DIOGNOSIS_STATS_START -->';
 const end = '<!-- DIOGNOSIS_STATS_END -->';
 const statsBlock = `${start}
 - **${stats.drugs} drugs** in DRUG_DB
-- **${stats.studies} evidence entries** in STUDY_DB (${stats.studiesWithPmid} with PMIDs; ${stats.sourceIntegratedStudies} source-integrated for V1; ${stats.professionalReviewedStudies} with v3 professional sign-off)
+- **${stats.studies} evidence entries** in STUDY_DB (${stats.studiesWithPmid} with PMIDs; ${stats.sourceIntegratedStudies} source-integrated for V1)
 - **${stats.ddiPairs} interaction pairs** (${stats.severeDdi} severe, ${stats.moderateDdi} moderate, ${stats.mildDdi} mild)
 - **${stats.metaboliteEntries} metabolite entries** across **${stats.metaboliteParents} parent substances** (${stats.metaboliteActors} first-class metabolite actors)
 - **${stats.pkParams} absolute PK simulation profiles** with relative fallback for half-life-only drugs
@@ -92,8 +92,8 @@ if (existsSync(publicTrustPath)) {
   const trustEnd = '<!-- PUBLIC_TRUST_STATS_END -->';
 const trustBlock = `${trustStart}
 - **${stats.sourceIntegratedStudies} \`STUDY_DB\` entries** are source-integrated for V1 evidence display and calculations.
-- **${stats.professionalReviewedStudies} entries** have explicit v3 professional sign-off metadata.
-- **${stats.notProfessionallyReviewedStudies} entries** publish source-linked context without claiming professional sign-off.
+- **${stats.studiesWithPmid} entries** include PMIDs; label, guideline, DOI, and URL sources are also retained where available.
+- Source integration means the claim is traceable to committed Diognosis data and source identifiers; it does not mean medical advice or clinical validation.
 ${trustEnd}`;
   let trust = readFileSync(publicTrustPath, 'utf8')
     .replace(/^Generated: .*/m, `Generated: ${generatedDate(stats)}`);
@@ -111,8 +111,7 @@ if (existsSync(launchTrustPath)) {
 | Drugs in \`DRUG_DB\` | ${stats.drugs} |
 | Evidence entries in \`STUDY_DB\` | ${stats.studies} |
 | Source-integrated V1 evidence entries | ${stats.sourceIntegratedStudies} |
-| V3 professional sign-off entries | ${stats.professionalReviewedStudies} |
-| Evidence entries without professional sign-off claims | ${stats.notProfessionallyReviewedStudies} |
+| Evidence entries with PMIDs | ${stats.studiesWithPmid} |
 | RxNorm identity mappings | ${stats.externalSubstanceMappings} |
 | PGx marker rows | ${stats.pgxMarkerRows} |
 | CPIC-linked action summaries | ${stats.pgxActionSummaries} |

@@ -2808,7 +2808,7 @@ const STUDY_DB = {
 
   // Source-integrated literature rows from an earlier discovery campaign.
   // These entries contain citation metadata and paraphrased abstract-level findings only.
-  // They are source-integrated V1 evidence; professional sign-off remains a separate metadata layer.
+  // They are source-integrated V1 evidence; clinical validation remains outside source integration.
   "draft_metformin_oct2_elsby2018_28971610": {
     id:"draft_metformin_oct2_elsby2018_28971610",
     public:true,
@@ -2833,7 +2833,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -2865,7 +2865,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -2897,7 +2897,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -2929,7 +2929,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -2961,7 +2961,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -2993,7 +2993,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3025,7 +3025,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3057,7 +3057,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3089,7 +3089,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3121,7 +3121,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3153,7 +3153,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3186,8 +3186,8 @@ const STUDY_DB = {
     ],
     contradicts:[],
     limitations:[
-      "Abstract-level extraction only; requires professional sign-off before promotion",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Abstract-level extraction only; requires source-specific confirmation before promotion",
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"moderate",
     needsFullText:false,
@@ -3220,7 +3220,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3253,7 +3253,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3286,7 +3286,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3319,7 +3319,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3352,7 +3352,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3385,7 +3385,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3418,7 +3418,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3451,7 +3451,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3484,7 +3484,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3517,7 +3517,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3550,7 +3550,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3583,7 +3583,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3616,7 +3616,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3649,7 +3649,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3682,7 +3682,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3715,7 +3715,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3748,7 +3748,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3780,7 +3780,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3812,7 +3812,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3844,7 +3844,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3876,7 +3876,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3908,7 +3908,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3940,7 +3940,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -3972,7 +3972,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4004,7 +4004,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4036,7 +4036,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4068,7 +4068,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4100,7 +4100,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4132,7 +4132,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4164,7 +4164,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4196,7 +4196,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4228,7 +4228,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4261,7 +4261,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4294,8 +4294,8 @@ const STUDY_DB = {
     ],
     contradicts:[],
     limitations:[
-      "Abstract-level extraction only; requires professional sign-off before promotion",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Abstract-level extraction only; requires source-specific confirmation before promotion",
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"moderate",
     needsFullText:false,
@@ -4328,7 +4328,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4361,7 +4361,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4394,7 +4394,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4427,7 +4427,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4460,7 +4460,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4493,7 +4493,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4526,7 +4526,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4559,7 +4559,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4592,7 +4592,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4625,7 +4625,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4658,7 +4658,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4691,7 +4691,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4724,7 +4724,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4757,7 +4757,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4790,7 +4790,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4823,8 +4823,8 @@ const STUDY_DB = {
     ],
     contradicts:[],
     limitations:[
-      "Abstract-level extraction only; requires professional sign-off before promotion",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Abstract-level extraction only; requires source-specific confirmation before promotion",
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"moderate",
     needsFullText:false,
@@ -4857,7 +4857,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4890,7 +4890,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4923,8 +4923,8 @@ const STUDY_DB = {
     ],
     contradicts:[],
     limitations:[
-      "Abstract-level extraction only; requires professional sign-off before promotion",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Abstract-level extraction only; requires source-specific confirmation before promotion",
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"moderate",
     needsFullText:false,
@@ -4956,7 +4956,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -4988,7 +4988,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -5020,7 +5020,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -5052,7 +5052,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -5084,7 +5084,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -5116,7 +5116,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -5148,7 +5148,7 @@ const STUDY_DB = {
     contradicts:[],
     limitations:[
       "No abstract-extractable quantitative value",
-      "Source-linked literature context; professional sign-off not claimed and not standalone clinical guidance"
+      "Source-linked literature context; source-integrated V1 context and not standalone clinical guidance"
     ],
     confidence:"low",
     needsFullText:true,
@@ -6506,7 +6506,7 @@ const STUDY_DB = {
     confidence: "moderate"
   },
 
-  // ── Curated Gemini salvage batch 2 evidence stubs: without professional sign-off ──
+  // ── Curated Gemini salvage batch 2 evidence stubs: source-integrated without clinical validation ──
   "ev_loperamide_pgp_inhibitor_cns": {
     id:"ev_loperamide_pgp_inhibitor_cns", public:true, type:EVIDENCE_TIER.CLINICAL_PK,
     title:"P-glycoprotein inhibition permits central loperamide opioid effects",
@@ -6728,7 +6728,7 @@ const STUDY_DB = {
     temporal:{mechanism:"P-gp efflux transporter function at gut, blood-brain barrier, kidney, liver, and placenta"},
     supports:["ABCB1_P-gp_reduced_efflux_context", "ABCB1_digoxin_dabigatran_loperamide_calcineurin_context"],
     contradicts:["ABCB1_effects_are_context_dependent_and_not_uniform_across_substrates"],
-    limitations:["Not a CPIC-style prescribing rule; drug-specific magnitude requires professional sign-off and primary-source confirmation before verified use."],
+    limitations:["Not a CPIC-style prescribing rule; drug-specific magnitude requires source-specific confirmation and primary-source confirmation before verified use."],
     verified:false
   },
 "ev_gstm1_null_detox_context": {
@@ -6784,7 +6784,7 @@ const STUDY_DB = {
     temporal:{mechanism:"phase II detoxification and conjugation of anticancer drugs/intermediates"},
     supports:["GSTP1_GSTT1_anticancer_detox_context","phase_II_oncology_pgx_review_context"],
     contradicts:["GST_variants_are_not_global_anticancer_dose_rules"],
-    limitations:["Narrative synthesis; drug-specific implementation needs professional sign-off and stronger regimen-specific evidence."],
+    limitations:["Narrative synthesis; drug-specific implementation needs source-specific confirmation and stronger regimen-specific evidence."],
     verified:false
   },
   "ev_mthfr_c677t_methotrexate_toxicity_meta": {
@@ -8942,7 +8942,7 @@ const STUDY_DB = {
     pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
     studyDesign:"coverage_adapter_group", n:null,
     phenotypes:["CYP3A4","CYP2D6","CYP2C19","CYP2C9","CYP2C8","UGT","P-gp","BCRP","OATP1B1","OAT/OCT/MATE","washout","burden","older_adult_burden"],
-    quantifiedEffects:{note:"Shared evidence anchor for live top-100 promotion adapters. Rows expose existing route, transporter, timing, genotype, and burden knowledge in calculation pathways while detailed source-specific professional sign-off is not claimed."},
+    quantifiedEffects:{note:"Shared evidence anchor for live top-100 promotion adapters. Rows expose existing route, transporter, timing, genotype, and burden knowledge in calculation pathways while detailed source-specific source-integrated."},
     temporal:{mechanism:"route_transporter_pgx_pk_washout_and_burden_context", onset:"same_day", offset:"hours-months"},
     supports:["phase7_top100_live_ddi_coverage","phase7_top100_live_metabolite_actor_coverage","phase7_top100_live_transporter_coverage","phase7_top100_live_washout_coverage","phase7_top100_live_pgx_coverage","phase7_top100_live_burden_coverage"],
     contradicts:[],
@@ -8956,7 +8956,7 @@ const STUDY_DB = {
     pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
     studyDesign:"coverage_adapter_group", n:null,
     phenotypes:["CYP3A4","CYP2D6","CYP2C19","CYP2C9","CYP2C8","UGT","NAT","TPMT","NUDT15","P-gp","BCRP","OATP1B1","renal_transport","washout","burden"],
-    quantifiedEffects:{note:"Shared evidence anchor for extending live route, DDI, metabolite, PK, PGx, transporter, washout, and burden coverage from the top 100 to the top 250 high-priority drugs. Rows remain without source-specific professional sign-off."},
+    quantifiedEffects:{note:"Shared evidence anchor for extending live route, DDI, metabolite, PK, PGx, transporter, washout, and burden coverage from the top 100 to the top 250 high-priority drugs. Rows remain without source-specific clinical validation."},
     temporal:{mechanism:"route_transporter_pgx_pk_washout_and_burden_context", onset:"same_day", offset:"hours-months"},
     supports:["phase8_top250_live_ddi_coverage","phase8_top250_live_metabolite_actor_coverage","phase8_top250_live_transporter_coverage","phase8_top250_live_washout_coverage","phase8_top250_live_pgx_coverage","phase8_top250_live_burden_coverage"],
     contradicts:[],
@@ -8970,7 +8970,7 @@ const STUDY_DB = {
     pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
     studyDesign:"top100_gold_live_surface_enrichment", n:null,
     phenotypes:["DDI","active_moiety","PK","washout","PGx_context","transporter_context","phenotype_burden","receptor_burden","older_adult_burden"],
-    quantifiedEffects:{note:"Shared evidence anchor for strengthening the top-100 cohort so each drug has gold-tagged live rows across DDI, metabolite/actor, PK, washout, PGx context, transporter, burden, and receptor score surfaces. Rows are without source-specific professional sign-off."},
+    quantifiedEffects:{note:"Shared evidence anchor for strengthening the top-100 cohort so each drug has gold-tagged live rows across DDI, metabolite/actor, PK, washout, PGx context, transporter, burden, and receptor score surfaces. Rows are without source-specific clinical validation."},
     temporal:{mechanism:"top100_complete_live_surface_context", onset:"baseline/same_day", offset:"hours-months"},
     supports:["phase13_top100_gold_ddi","phase13_top100_gold_metabolite_actor","phase13_top100_gold_pk_washout","phase13_top100_gold_pgx_transporter","phase13_top100_gold_burden_receptor"],
     contradicts:[],
@@ -8988,7 +8988,7 @@ const STUDY_DB = {
     temporal:{mechanism:"route_class_half_life_transporter_and_burden_context", onset:"same_day", offset:"hours-months"},
     supports:["phase16_ninety_percent_ddi_coverage","phase16_ninety_percent_pk_coverage","phase16_ninety_percent_washout_coverage","phase16_ninety_percent_transporter_coverage","phase16_ninety_percent_burden_coverage","phase16_ninety_percent_beers_coverage","phase16_ninety_percent_receptor_coverage"],
     contradicts:[],
-    limitations:["Coverage rows are live screening/source-priority signals, not final clinical recommendations, dose rules, contraindication labels, or professional sign-off. Drug-specific labels, CPIC/DPWG guidance, receptor-binding sources, TDM, ECG/electrolytes, renal/hepatic assessment, indication, dose, age/frailty, pregnancy/transplant/procedure context, and professional judgment remain decisive."],
+    limitations:["Coverage rows are live screening/source-priority signals, not final clinical recommendations, dose rules, contraindication labels, or clinical validation. Drug-specific labels, CPIC/DPWG guidance, receptor-binding sources, TDM, ECG/electrolytes, renal/hepatic assessment, indication, dose, age/frailty, pregnancy/transplant/procedure context, and professional judgment remain decisive."],
     verified:false
   },
   "ev_fluorouracil_warfarin_label": {
@@ -9434,7 +9434,7 @@ const STUDY_DB = {
     temporal:{mechanism:"source_backed_gene_drug_context", onset:"baseline", offset:"persistent"},
     supports:["phase15_source_backed_pgx_pair_cleanup","phase15_backlog_noise_reduction"],
     contradicts:[],
-    limitations:["Rows are source-backed context links, not final genotype-specific prescribing recommendations. They remain without source-specific professional sign-off and should be replaced with precise CPIC/DPWG/FDA-label recommendation rows over time."],
+    limitations:["Rows are source-backed context links, not final genotype-specific prescribing recommendations. They remain without source-specific clinical validation and should be replaced with precise CPIC/DPWG/FDA-label recommendation rows over time."],
     verified:false
   },
   "ev_drug_count_expansion_batch": {
@@ -9444,7 +9444,7 @@ const STUDY_DB = {
     pmid:null, doi:null, url:"https://dailymed.nlm.nih.gov/dailymed/",
     studyDesign:"drug_identity_and_route_context_expansion", n:null,
     phenotypes:["drug_identity","route_context","PK_fallback","metabolite_context","DDI_context","transporter_context","burden_context"],
-    quantifiedEffects:{note:"Shared evidence anchor for net-new drug records added with conservative class, half-life, route, PK, metabolite, DDI, transporter, washout, and burden hooks. All rows remain without professional/source-specific sign-off."},
+    quantifiedEffects:{note:"Shared evidence anchor for net-new drug records added with conservative class, half-life, route, PK, metabolite, DDI, transporter, washout, and burden hooks. All rows remain without source-specific clinical validation."},
     temporal:{mechanism:"drug_identity_live_hook_context", onset:"same_day", offset:"hours-weeks"},
     supports:["phase12_drug_count_push","phase12_new_drug_live_hooks","phase12_no_hollow_drug_records"],
     contradicts:[],
@@ -9464,7 +9464,7 @@ const STUDY_DB = {
 //   PubMed / FDA / CPIC search
 //   → structured extraction → normalized draft (createStudyDraft)
 //   → INGESTION_QUEUE (source candidate)
-//   → professional sign-off and approval
+//   → source confirmation and approval
 //   → merge into STUDY_DB
 //
 // In a future version, this queue will be backed by a server-side review UI.
@@ -9495,7 +9495,7 @@ function createStudyDraft({pmid, doi, title, year, source, journal, type, studyD
     contradicts: contradicts || [],
     limitations: limitations || [],
     verified: false,
-    verifyNote:'Auto-extracted draft — requires professional sign-off before use',
+    verifyNote:'Auto-extracted draft — requires source-specific confirmation before use',
     _createdAt: new Date().toISOString(),
   };
   INGESTION_QUEUE.push(draft);
@@ -9515,7 +9515,7 @@ function reviewStudyDraft(draftId, reviewerNotes, approve) {
     return { status: 'rejected' };
   }
   const published = { ...draft, _status:'approved', verified:false,
-    verifyNote: reviewerNotes || 'Merged draft without professional sign-off', _approvedAt: new Date().toISOString() };
+    verifyNote: reviewerNotes || 'Merged draft source-integrated without clinical validation', _approvedAt: new Date().toISOString() };
   delete published._createdAt;
   STUDY_DB[published.id] = published;
   INGESTION_QUEUE.splice(idx, 1);

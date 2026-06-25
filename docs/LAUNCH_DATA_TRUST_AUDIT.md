@@ -4,7 +4,7 @@ Audit date: 2026-06-25
 
 ## Scope
 
-This audit describes the launch-facing data trust boundary for the current static bundle. Diognosis can show source-linked evidence, pathway reasoning, pharmacogenomic context, and high-priority findings, but source-linked does not mean professionally reviewed and no output should be treated as medical advice.
+This audit describes the launch-facing data trust boundary for the current static bundle. Diognosis can show source-integrated evidence, pathway reasoning, pharmacogenomic context, and high-priority findings, but source-integrated evidence does not equal medical advice or clinical validation.
 
 ## Current Counts
 
@@ -14,8 +14,7 @@ This audit describes the launch-facing data trust boundary for the current stati
 | Drugs in `DRUG_DB` | 1549 |
 | Evidence entries in `STUDY_DB` | 502 |
 | Source-integrated V1 evidence entries | 502 |
-| V3 professional sign-off entries | 0 |
-| Evidence entries without professional sign-off claims | 502 |
+| Evidence entries with PMIDs | 269 |
 | RxNorm identity mappings | 1251 |
 | PGx marker rows | 43 |
 | CPIC-linked action summaries | 18 |
@@ -27,10 +26,10 @@ This audit describes the launch-facing data trust boundary for the current stati
 
 ## Required Boundaries
 
-- Public evidence can be source-integrated for V1 without claiming professional sign-off.
-- Source integration and professional sign-off are separate states; V1 can publish traceable evidence without claiming clinical validation.
-- Severe and critical findings can be visible as educational review priorities, but severity is not clinically final and does not carry professional sign-off.
-- Source-linked rows need explicit reviewer role, decision, date, scope, and source snapshot before professional sign-off metadata can change.
+- Public evidence can be source-integrated for V1 when it is traceable to committed data and source identifiers.
+- Source integration does not equal medical advice, clinical validation, or proof that a medication list is safe.
+- Severe and critical findings can be visible as educational review priorities, but severity is not clinically final.
+- Source-linked rows need source identifiers, boundary notes, and passing release checks before they should affect shipped behavior.
 - The browser app must remain static and local-first: no accounts, analytics, tracking, medication-data collection, or runtime clinical API calls.
 - GitHub feedback links must be privacy-preserving by default: they must not transmit the current medication list, genotype settings, share URL, browser URL, or selected-card context unless a contributor intentionally adds that information.
 
@@ -64,6 +63,6 @@ Run:
 npm run release:check
 ```
 
-## Human Review Priorities
+## Future Clinical Validation Priorities
 
-The later professional sign-off pass should prioritize severe/critical findings, public demo and deep-QA scenarios, calculation-bearing evidence, source-linked guideline/label claims, and any row that implies a quantified fold change, dose strategy, avoidance/substitution decision, contraindication, or monitoring plan.
+Any later clinical-validation pass should prioritize severe/critical findings, public demo and deep-QA scenarios, calculation-bearing evidence, source-linked guideline/label claims, and any row that implies a quantified fold change, dose strategy, avoidance/substitution decision, contraindication, or monitoring plan.

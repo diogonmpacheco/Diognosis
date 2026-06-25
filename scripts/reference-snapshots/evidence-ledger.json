@@ -2,7 +2,7 @@
   "schema": "diognosis-evidence-ledger-v1",
   "snapshot": "bootstrap-current-curated-pmids",
   "created": "2026-05-29",
-  "source": "Current curated Diognosis codebase plus source-linked evidence and severe-pair provenance; professional sign-off is represented only by explicit review metadata.",
+  "source": "Current curated Diognosis codebase plus source-linked evidence and severe-pair provenance; source integration does not equal clinical validation.",
   "mode": "bootstrap",
   "pmids": [
     "1531823",

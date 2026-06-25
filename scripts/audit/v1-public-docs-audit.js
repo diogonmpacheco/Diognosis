@@ -99,8 +99,8 @@ assert(/Node\.js-24%2B/.test(readme), 'README Node.js badge should advertise the
 
 assertIncludes('Public Trust', publicTrust, '<!-- PUBLIC_TRUST_STATS_START -->');
 assertIncludes('Public Trust', publicTrust, `**${stats.sourceIntegratedStudies} \`STUDY_DB\` entries** are source-integrated for V1 evidence display and calculations.`);
-assertIncludes('Public Trust', publicTrust, `**${stats.professionalReviewedStudies} entries** have explicit v3 professional sign-off metadata.`);
-assertIncludes('Public Trust', publicTrust, `**${stats.notProfessionallyReviewedStudies} entries** publish source-linked context without claiming professional sign-off.`);
+assertIncludes('Public Trust', publicTrust, `**${stats.studiesWithPmid} entries** include PMIDs; label, guideline, DOI, and URL sources are also retained where available.`);
+assertIncludes('Public Trust', publicTrust, 'Source integration means the claim is traceable to committed Diognosis data and source identifiers; it does not mean medical advice or clinical validation.');
 assert(!/reviewRequired:true/i.test(publicTrust), 'Public Trust should not expose internal reviewRequired flags as V1 backlog');
 assert(/not medical advice|not a clinical decision support system|does not replace a licensed clinician or pharmacist/i.test(publicTrust),
   'Public Trust must preserve medical-boundary wording');
@@ -111,15 +111,14 @@ assertIncludes('Launch Data Trust Audit', launchTrust, '<!-- LAUNCH_DATA_TRUST_S
 assertIncludes('Launch Data Trust Audit', launchTrust, `| Drugs in \`DRUG_DB\` | ${stats.drugs} |`);
 assertIncludes('Launch Data Trust Audit', launchTrust, `| Evidence entries in \`STUDY_DB\` | ${stats.studies} |`);
 assertIncludes('Launch Data Trust Audit', launchTrust, `| Source-integrated V1 evidence entries | ${stats.sourceIntegratedStudies} |`);
-assertIncludes('Launch Data Trust Audit', launchTrust, `| V3 professional sign-off entries | ${stats.professionalReviewedStudies} |`);
-assertIncludes('Launch Data Trust Audit', launchTrust, `| Evidence entries without professional sign-off claims | ${stats.notProfessionallyReviewedStudies} |`);
+assertIncludes('Launch Data Trust Audit', launchTrust, `| Evidence entries with PMIDs | ${stats.studiesWithPmid} |`);
 assert(!/reviewRequired:true|Future professional sign-off candidates/i.test(launchTrust), 'Launch Data Trust Audit should not expose internal sign-off backlog counters');
 assertIncludes('Launch Data Trust Audit', launchTrust, `| RxNorm identity mappings | ${stats.externalSubstanceMappings} |`);
 assertIncludes('Launch Data Trust Audit', launchTrust, `| PGx marker rows | ${stats.pgxMarkerRows} |`);
 assertIncludes('Launch Data Trust Audit', launchTrust, `| CPIC-linked action summaries | ${stats.pgxActionSummaries} |`);
 assertIncludes('Launch Data Trust Audit', launchTrust, `| Interaction pairs | ${stats.ddiPairs} |`);
-assert(/source-linked does not mean professionally reviewed/i.test(launchTrust),
-  'Launch Data Trust Audit must preserve source-linked/professional-review boundary');
+assert(/source-integrated evidence does not equal medical advice or clinical validation/i.test(launchTrust),
+  'Launch Data Trust Audit must preserve source-integrated clinical-boundary wording');
 assert(/no accounts, analytics, tracking, medication-data collection, or runtime clinical API calls/i.test(launchTrust),
   'Launch Data Trust Audit must preserve static privacy boundary');
 

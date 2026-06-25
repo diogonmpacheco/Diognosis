@@ -248,7 +248,7 @@ function collect({ name, why, drugs, genotypes = [], tab = 'genes-metabolites', 
   assert(includesAny(whyText, [...expect.summary, ...expect.metabolites]), `${name}: missing per-warning why-path signal\n${debug()}`);
   assert(includesAny(activeMoietyText, expect.metabolites), `${name}: missing parent-metabolite balance signal ${expect.metabolites.join(' / ')}\n${debug()}`);
   assert(includesAny(persistenceText, [...expect.metabolites, ...expect.summary]), `${name}: missing persistence timeline signal\n${debug()}`);
-  assert(/findings/i.test(reviewSummaryText) && /No Sign-Off Claimed/i.test(reviewSummaryText), `${name}: missing Reviewer Summary diagnostics\n${debug()}`);
+  assert(/findings/i.test(reviewSummaryText) && /V1 Source Context/i.test(reviewSummaryText), `${name}: missing Reviewer Summary diagnostics\n${debug()}`);
   assert(rawPathText.length > 0 && /copy technical path/i.test(rawPathText), `${name}: missing technical pathway diagnostics\n${debug()}`);
   assert(window.document.querySelectorAll('#findingBody .primary-finding-card').length > 0, `${name}: finding cards must show primary public findings\n${debug()}`);
   assert([...window.document.querySelectorAll('#findingBody .primary-finding-card')].every(card => /Evidence/i.test(card.textContent || "")), `${name}: finding cards must show Evidence steps\n${debug()}`);

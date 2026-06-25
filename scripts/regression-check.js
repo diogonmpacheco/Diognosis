@@ -1914,7 +1914,7 @@ assert(evidenceLadderRegression.reviewedClaims === 0, 'No finding should claim p
 assert(evidenceLadderRegression.severeWithoutRefsOrReviewRequired === 0, 'Severe/critical findings without refs must stay marked reviewRequired');
 assert(evidenceLadderRegression.strongestTier, 'Evidence ladder should report strongest tier or unknown');
 assert(
-  ['source_linked_no_signoff', 'source_linked', 'professionally_reviewed_source_linked'].includes(evidenceLadderRegression.sourceSupportStatus),
+  ['source_linked_integrated', 'source_linked', 'reviewed_source_linked'].includes(evidenceLadderRegression.sourceSupportStatus),
   `Source-linked findings should expose source support status, got ${evidenceLadderRegression.sourceSupportStatus}`
 );
 assert(
@@ -1922,8 +1922,8 @@ assert(
   `Evidence-free findings should show modeled/insufficient source support, got ${evidenceLadderRegression.evidenceFreeSourceSupportStatus}`
 );
 assert(evidenceLadderRegression.modelOnlyStrongestTier === 'unknown', 'Modeled evidence ladder should not display FDA/guideline backing');
-assert(/modeled|no linked source yet|professional sign-off not claimed/i.test(evidenceLadderRegression.modelOnlyCompact), 'Compact ladder should visibly identify modeled support and source boundaries');
-assert(evidenceLadderRegression.clinicalActionConfidence === 'no_signoff' || evidenceLadderRegression.clinicalActionConfidence === 'insufficient', 'Clinical action confidence should remain conservative');
+assert(/modeled|no linked source yet|source-integrated|source-linked/i.test(evidenceLadderRegression.modelOnlyCompact), 'Compact ladder should visibly identify modeled support and source boundaries');
+assert(evidenceLadderRegression.clinicalActionConfidence === 'source_integrated' || evidenceLadderRegression.clinicalActionConfidence === 'insufficient', 'Clinical action confidence should remain conservative');
 assert(evidenceLadderRegression.primaryFindingCards > 0, 'Finding cards should render primary public finding UI');
 assert(evidenceLadderRegression.primaryFindingEvidenceSteps === evidenceLadderRegression.primaryFindingCards, 'Each primary finding card should include an Evidence step');
 assert(evidenceLadderRegression.ledgerExists, 'Evidence tab should render the evidence ladder ledger');
@@ -2121,7 +2121,7 @@ assert(reviewHomeRegression.scenarioCards === 0, 'Generated scenario snapshots s
 assert(reviewHomeRegression.gapCards === 0, 'Generated metabolite coverage gaps should stay out of the slim bundle');
 assert(reviewHomeRegression.warningPaths > 0, 'Reviewer Console should expose technical pathway diagnostics');
 assert(reviewHomeRegression.actionButtons >= 3, 'Reviewer Console should expose report/contribute actions');
-assert(/No Sign-Off Claimed/i.test(reviewHomeRegression.summaryText), 'Reviewer Summary should expose sign-off boundary diagnostics');
+assert(/V1 Source Context/i.test(reviewHomeRegression.summaryText), 'Reviewer Summary should expose source-context diagnostics');
 
 const crossTabFindingRegression = window.eval(`(() => {
   activeStack = [];

@@ -17,7 +17,7 @@ const LLMS_PATH = resolve(ROOT, 'llms.txt');
 const SITEMAP_PATH = resolve(ROOT, 'sitemap.xml');
 const CHECK_ONLY = process.argv.includes('--check');
 const BASE_URL = 'https://diogonmpacheco.github.io/Diognosis/';
-const BOUNDARY = 'Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not professionally reviewed. Do not start, stop, or change medicines without a qualified doctor or pharmacist.';
+const BOUNDARY = 'Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.';
 
 function html(value) {
   return String(value ?? '')
@@ -180,7 +180,7 @@ function renderAudience(window, example, audience) {
         evidenceRefs:p.trustContract?.evidenceRefs || p.evidenceRefs || p.sourceFinding?.evidenceRefs || [],
         sourceLinked:!!p.trustContract?.sourceLinked,
         reviewed:!!p.trustContract?.reviewed,
-        clinicalReviewStatus:p.trustContract?.clinicalReviewStatus || "professional sign-off not claimed",
+        clinicalReviewStatus:p.trustContract?.clinicalReviewStatus || "source-integrated",
         concernCategory:p.trustContract?.concernCategory || p.sourceFinding?.clinicalConcernDomain || "",
         expectedChange:p.trustContract?.expectedChange || "",
         sourceFindingTitle:p.sourceFinding?.title || "",
@@ -280,8 +280,8 @@ function buildFact(window, data, resolveSubstance, guide, example, index) {
     evidenceSources,
     sourceUrls,
     sourceLinked:!!presentation.sourceLinked || refs.length > 0,
-    professionalReviewStatus:presentation.clinicalReviewStatus || 'professional sign-off not claimed',
-    professionalReviewed:!!presentation.reviewed,
+    sourceIntegrationStatus:presentation.clinicalReviewStatus || 'source-integrated',
+    sourceIntegrated:!!presentation.sourceLinked || refs.length > 0,
     boundary:BOUNDARY,
     appUrl:absoluteUrl(exampleHref(example, 'patient')),
     clinicianAppUrl:absoluteUrl(exampleHref(example, 'clinician')),
@@ -337,7 +337,7 @@ function factsPayload(facts) {
     boundary:BOUNDARY,
     factCount:facts.length,
     sourceLinkedFacts:facts.filter((fact) => fact.sourceLinked).length,
-    professionalReviewedFacts:facts.filter((fact) => fact.professionalReviewed).length,
+    sourceIntegratedFacts:facts.filter((fact) => fact.sourceLinked).length,
     facts,
   };
 }
@@ -440,7 +440,7 @@ function renderReferencePage(payload) {
       <div class="support-strip" aria-label="Reference fact snapshot">
         <span><strong>${html(payload.factCount)}</strong> facts</span>
         <span><strong>${html(payload.sourceLinkedFacts)}</strong> source-linked</span>
-        <span><strong>${html(payload.professionalReviewedFacts)}</strong> professionally reviewed</span>
+        <span><strong>${html(payload.sourceIntegratedFacts)}</strong> source-integrated</span>
         <span class="support-boundary">Educational only; no runtime uploads</span>
       </div>
       <nav class="fact-nav" aria-label="Reference fact anchors">
@@ -499,7 +499,7 @@ ${payload.facts.map((fact) => `    <article class="fact" id="${html(fact.id)}">
 function renderLlms(payload) {
   return `# Diognosis
 
-> Source-linked educational medication and pharmacogenomic interaction review. Diognosis is not medical advice, not a clinical decision support system, and not professionally reviewed.
+> Source-linked educational medication and pharmacogenomic interaction review. Diognosis is not medical advice, not a clinical decision support system, and not clinical validation.
 
 ## Best Retrieval Entry Points
 
@@ -518,7 +518,7 @@ ${payload.boundary}
 
 - Facts: ${payload.factCount}
 - Source-linked facts: ${payload.sourceLinkedFacts}
-- Professionally reviewed facts: ${payload.professionalReviewedFacts}
+- Source-integrated facts: ${payload.sourceIntegratedFacts}
 - Last modified: ${payload.lastmod}
 `;
 }
@@ -606,7 +606,7 @@ console.log(JSON.stringify({
   mode:CHECK_ONLY ? 'check' : 'write',
   facts:facts.length,
   sourceLinkedFacts:payload.sourceLinkedFacts,
-  professionalReviewedFacts:payload.professionalReviewedFacts,
+  sourceIntegratedFacts:payload.sourceIntegratedFacts,
   outputs:[
     relative(ROOT, REFERENCE_PATH),
     relative(ROOT, FACTS_JSON_PATH),

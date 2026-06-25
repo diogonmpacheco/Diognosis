@@ -1,7 +1,7 @@
 {
   "schema": "diognosis.pharmgx-reference.v1",
   "generatedAt": "2026-06-21",
-  "source": "Local source-linked PGx baseline derived from committed CPIC/PharmGKB/ClinPGx-backed rows; used as a strict-validation drift guard, not as professional clinical sign-off.",
+  "source": "Local source-linked PGx baseline derived from committed CPIC/PharmGKB/ClinPGx-backed rows; used as a strict-validation drift guard, not as clinical validation.",
   "GENOTYPE_EFFECTS": {
     "CYP2D6": {
       "poor_metabolizer": { "auc_fold": 4.5, "tolerance": 0.4 },

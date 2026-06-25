@@ -124,7 +124,7 @@ function timelineRowsToFindings(rows) {
       sourceRows: [row],
       groupedFindings: [],
       clinicalAction: "Review stop date, switch timing, enzyme recovery, and active-metabolite persistence before applying standard timing assumptions.",
-      evidenceStatus: (row.evidenceRefs || []).length ? "source-linked; professional sign-off not claimed" : "inferred/review required",
+      evidenceStatus: (row.evidenceRefs || []).length ? "source-linked; source-integrated" : "inferred/review required",
     };
   });
 }

@@ -506,7 +506,7 @@ const KNOWN_DDI = [
     ]
   }
 },
-  // ── Salvaged Gemini enrichment: reviewed for duplicates, without professional sign-off ──
+  // ── Salvaged Gemini enrichment: reviewed for duplicates, source-integrated without clinical validation ──
 {
     drug1: "Dronedarone",
     drug2: "Rosuvastatin",

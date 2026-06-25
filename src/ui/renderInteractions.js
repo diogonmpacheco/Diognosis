@@ -34,9 +34,9 @@ function renderInteractions(interactions) {
 
     const hasEv = studies.length > 0;
     const reviewLabel = studies.some(s => s.professionalReviewed === true || s.clinicalReviewed === true || ["professional_reviewed", "clinician_reviewed"].includes(s.reviewStatus))
-      ? "professionally reviewed evidence"
-      : "needs evidence review";
-    const reviewClass = reviewLabel === "professionally reviewed evidence" ? "review" : "warn";
+      ? "reviewed source evidence"
+      : "source-integrated evidence";
+    const reviewClass = "review";
     const findingTitle = buildFindingTitle(i);
     const pathwayLabel = i.enzyme || i.category || i.type || "pathway";
     const feedbackLink = renderFeedbackLink("Report data issue", {

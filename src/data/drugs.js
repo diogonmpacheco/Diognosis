@@ -4957,7 +4957,7 @@ function phase12DrugExpansionTemplate(name, index) {
     inh:[], ind:[],
     evidenceRefs:[...PHASE12_DRUG_EXPANSION_EVIDENCE_REFS],
     note:
-      "Phase 12 net-new drug expansion record. Professional sign-off not claimed; route/class values are conservative live hooks for screening and should be replaced with source-specific labels over time.",
+      "Phase 12 net-new drug expansion record. Source-integrated V1 context; route/class values are conservative live hooks for screening and should be replaced with source-specific labels over time.",
     alts:[{name:"Source-specific alternative", reason:"Alternatives depend on indication, organ function, and professional judgment"}],
   };
 }

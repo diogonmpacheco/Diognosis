@@ -44,11 +44,11 @@ const findingCards = [...document.querySelectorAll('#findingBody .finding-card')
 const primaryFindingCards = [...document.querySelectorAll('#findingBody .primary-finding-card')];
 
 assert(browserErrors.length === 0, `Evidence UI emitted browser errors: ${browserErrors.join('; ')}`);
-assert(/source-integrated evidence/i.test(countText) && /professional sign-off not claimed/i.test(countText), `Evidence count must present the source-integrated trust status, got "${countText}"`);
+assert(/source-integrated evidence/i.test(countText) && !/professional sign-off/i.test(countText), `Evidence count must present source-integrated status without sign-off backlog wording, got "${countText}"`);
 assert(notice, 'Evidence explorer must render the panel-level source-integration notice');
-assert(/source entries are integrated for traceability/i.test(notice.textContent || '') && /professional sign-off is not claimed/i.test(notice.textContent || ''), 'Evidence notice lost source-integration wording');
+assert(/source entries are integrated for traceability/i.test(notice.textContent || '') && /not medical advice or clinical validation/i.test(notice.textContent || ''), 'Evidence notice lost source-integration wording');
 assert(ledger, 'Evidence explorer must render the evidence ladder ledger');
-assert(/no sign-off claimed/i.test(ledger.textContent || ''), 'Evidence ladder ledger must expose compact sign-off boundary');
+assert(/source-linked findings/i.test(ledger.textContent || '') && /modeled findings/i.test(ledger.textContent || ''), 'Evidence ladder ledger must expose source-linked and modeled boundaries');
 assert(/Evidence Browser \/ Evidence Ledger/i.test(ledger.textContent || ''), 'Evidence ladder ledger title is missing');
 assert(cards.length > 0, 'Expected representative stack to expose evidence cards');
 assert(additionalCards.length === 0, 'Standard Evidence tab should not render the broad stack-matched source browser by default');

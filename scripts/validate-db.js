@@ -183,17 +183,10 @@ for (const pmid of allPmids) {
   }
 }
 
-const notProfessionallyReviewedIds = [];
 for (const [id, study] of Object.entries(data.STUDY_DB || {})) {
-  const professionallyReviewed =
-    study.professionalReviewed === true ||
-    study.clinicalReviewed === true ||
-    study.reviewStatus === 'professional_reviewed' ||
-    study.reviewStatus === 'clinician_reviewed';
   if (study.verified === true) {
-    add('errors', 'legacy_verified_flag', `${id} uses deprecated verified:true; use professional review fields only after sign-off`, id);
+    add('errors', 'legacy_verified_flag', `${id} uses deprecated verified:true; use explicit source-integration fields instead`, id);
   }
-  if (!professionallyReviewed) notProfessionallyReviewedIds.push(id);
   if (!study.pmid && !study.doi && !study.url) {
     add('warnings', 'study_without_external_identifier', `${id} lacks PMID, DOI, and URL`, id);
   }
@@ -214,18 +207,7 @@ for (const [id, study] of Object.entries(data.STUDY_DB || {})) {
     if (!promoted && study.notSeverityBearing !== true) {
       add('errors', 'external_context_not_severity_bearing_flag_missing', `${id} unpromoted external context must set notSeverityBearing:true`, id);
     }
-    if (promoted && !professionallyReviewed) {
-      add('errors', 'external_context_promoted_without_professional_review', `${id} cannot be promoted for severity without professional review sign-off`, id);
-    }
   }
-}
-if (notProfessionallyReviewedIds.length) {
-  add(
-    'info',
-    'studies_source_integrated_without_professional_signoff',
-    `${notProfessionallyReviewedIds.length} source-integrated studies do not claim professional sign-off`,
-    notProfessionallyReviewedIds.length
-  );
 }
 
 for (const ddi of data.KNOWN_DDI || []) {

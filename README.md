@@ -28,7 +28,7 @@ Diognosis is a mechanistic medication intelligence platform that models parent s
 
 Diognosis is an AI-assisted, vibe-coded research project built by **Diogo Pacheco** in collaboration with OpenAI Codex and ChatGPT. Diogo directs the product vision, data priorities, clinical-safety boundaries, and final acceptance of changes. AI assistance is used for implementation, refactoring, tests, documentation, and data-organization support.
 
-> **Note:** AI-assisted development does not mean clinical validation. Professional clinical sign-off remains a later review layer.
+> **Note:** AI-assisted development does not mean clinical validation. Source-integrated data still needs qualified clinical judgment before real medication decisions.
 
 ## Medication Safety Explorer
 
@@ -118,7 +118,7 @@ The goal is not to replace clinical judgment. It is to make mechanism, timing, a
 
 Diognosis V1 ships committed, source-linked static data. There is no active enrichment pipeline in the fork path: new evidence should be added directly to the source data with identifiers, boundary notes, and validation passing.
 
-Source-linked does not mean professionally reviewed. Public evidence can be source-integrated for V1 without claiming professional sign-off, and future professional clinical reviews remain a separate metadata layer.
+Source-integrated evidence means the claim is traceable to committed Diognosis data, source identifiers, and release checks. It does not mean medical advice, clinical validation, or proof that a medication list is safe.
 
 ## Current Limitations
 
@@ -126,7 +126,7 @@ Diognosis is intentionally conservative about what it claims:
 
 - PK curves use a one-compartment model or relative-exposure fallback — they **do not** replace therapeutic drug monitoring, multi-compartment/nonlinear PK models, or active-metabolite clinical interpretation.
 - Extreme exposure shifts may be capped for display clarity.
-- Source-linked evidence is included for V1 traceability, but professional sign-off is not claimed unless explicit sign-off metadata exists.
+- Source-linked evidence is included for V1 traceability; it still needs clinical judgment before any real medication decision.
 
 ---
 
@@ -134,14 +134,14 @@ Diognosis is intentionally conservative about what it claims:
 
 <!-- DIOGNOSIS_STATS_START -->
 - **1549 drugs** in DRUG_DB
-- **502 evidence entries** in STUDY_DB (269 with PMIDs; 502 source-integrated for V1; 0 with v3 professional sign-off)
+- **502 evidence entries** in STUDY_DB (269 with PMIDs; 502 source-integrated for V1)
 - **3183 interaction pairs** (1610 severe, 1538 moderate, 35 mild)
 - **2817 metabolite entries** across **1549 parent substances** (2375 first-class metabolite actors)
 - **1407 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **69 genotype genes** and **588 receptor score profiles**
 - **1251 RxNorm identity mappings**, **43 PGx marker rows**, and **18 CPIC-linked action summaries**
 - **218 Beers flags** and **1411 washout rules**
-- **3269 KB** generated bundle (2403 lines)
+- **3268 KB** generated bundle (2403 lines)
 <!-- DIOGNOSIS_STATS_END -->
 
 ---
@@ -164,11 +164,11 @@ GitHub Pages uses the workflow in `.github/workflows/pages.yml` to build the app
 
 ## Contribute / Review Data
 
-Diognosis contains source-linked data. **No evidence entry has professional sign-off metadata yet.** Source integration means the claim is traceable to a committed source; it does not mean the claim has been clinically verified.
+Diognosis contains source-linked data. Source integration means the claim is traceable to a committed source; it does not mean the claim has been clinically verified.
 
-> **The safety contract is simple:** a warning should explain the pathway, affected actor, predicted direction, and supporting evidence. Severity should not be treated as clinically final without explicit professional sign-off.
+> **The safety contract is simple:** a warning should explain the pathway, affected actor, predicted direction, and supporting evidence. Severity should not be treated as clinically final or proof that a medication plan is safe.
 
-Helpful contributions include data review, missing evidence refs, duplicate or stale interaction reports, reproducible app bugs, and focused pull requests. Use the report links on warning and evidence cards, or start with the priority list in [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md). Cite public sources such as labels, guidelines, PubMed records, PMIDs, DOIs, or URLs, and keep professional sign-off metadata separate until an appropriate reviewer signs off.
+Helpful contributions include data review, missing evidence refs, duplicate or stale interaction reports, reproducible app bugs, and focused pull requests. Use the report links on warning and evidence cards, or start with the priority list in [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md). Cite public sources such as labels, guidelines, PubMed records, PMIDs, DOIs, or URLs, and keep source-specific claims traceable.
 
 ---
 

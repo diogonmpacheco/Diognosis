@@ -366,7 +366,7 @@ ${source.guides.map((guide) => `        <a href="#${html(guide.id)}">${html(guid
   </header>
   <main>
     <section class="note">
-      <p><strong>Not a clinical ranking.</strong> These are discovery prompts for common-use or high-attention classes. All Diognosis evidence remains source-linked and without professional sign-off.</p>
+      <p><strong>Not a clinical ranking.</strong> These are discovery prompts for common-use or high-attention classes. Diognosis evidence is source-integrated context, not medical advice or clinical validation.</p>
       <p style="margin-top:8px">Scale rationale uses public U.S. prescription-use signals from <a href="https://www.cdc.gov/nchs/fastats/drug-use-therapeutic.htm">CDC/NCHS</a> and MEPS-derived <a href="https://clincalc.com/blog/2025/08/clincalc-drugstats-most-commonly-prescribed-medications-in-2023/">ClinCalc DrugStats</a>; examples are chosen because they are useful Diognosis discovery prompts, not because they are the most dangerous combinations.</p>
     </section>
 

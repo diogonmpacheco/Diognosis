@@ -1429,5 +1429,5 @@ function buildRiskInterpretation(riskKey, status, details = {}) {
 // IMPORTANT: Every entry here has been curated from primary literature or
 // regulatory documents. PMIDs marked verify:true should be independently
 // confirmed before clinical use. AI hallucination risk applies — human
-// Professional sign-off is required before any clinical application.
+// Source integration is not clinical validation and must not be used as medical advice.
 //

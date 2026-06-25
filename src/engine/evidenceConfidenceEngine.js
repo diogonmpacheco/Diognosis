@@ -34,7 +34,7 @@ function computeEvidenceLadder(evidenceRefs = [], context = {}) {
   const notes = uniqueEvidenceLadderRefs([
     !studies.length && context.reviewRequired !== false ? "No source-linked evidence refs on this finding." : "",
     studies.length && !severityBearingStudies.length ? "Linked studies are context-only and not severity-bearing." : "",
-    professionalReviewStatus === "pending" ? "Professional sign-off not claimed." : "",
+    professionalReviewStatus === "pending" ? "Source-integrated V1 context." : "",
     context.calculationBearing ? "Calculation-bearing evidence." : "",
   ]);
   return {
@@ -60,8 +60,8 @@ function computeEvidenceLadder(evidenceRefs = [], context = {}) {
 }
 
 function classifySourceSupportStatus(sourceLinked, professionalReviewStatus = "unknown", context = {}) {
-  if (professionalReviewStatus === "reviewed" && sourceLinked) return "professionally_reviewed_source_linked";
-  if (sourceLinked && professionalReviewStatus === "pending") return "source_linked_no_signoff";
+  if (professionalReviewStatus === "reviewed" && sourceLinked) return "reviewed_source_linked";
+  if (sourceLinked && professionalReviewStatus === "pending") return "source_linked_integrated";
   if (sourceLinked) return "source_linked";
   if (context.supportingSignals?.modelOnly || context.reviewRequired === true) return "model_only_review_prompt";
   return "insufficient_source_support";
@@ -69,8 +69,8 @@ function classifySourceSupportStatus(sourceLinked, professionalReviewStatus = "u
 
 function sourceSupportStatusLabel(status) {
   const labels = {
-    professionally_reviewed_source_linked: "professionally reviewed source-linked",
-    source_linked_no_signoff: "source-linked; professional sign-off not claimed",
+    reviewed_source_linked: "reviewed source-linked",
+    source_linked_integrated: "source-linked; source-integrated",
     source_linked: "source-linked",
     model_only_review_prompt: "modeled review prompt",
     insufficient_source_support: "insufficient source support",
@@ -100,7 +100,7 @@ function classifyClinicalActionConfidence(evidenceRefsOrStudies = [], reviewStat
     typeof item === "string" ? (typeof getStudy === "function" ? getStudy(item) : STUDY_DB?.[item]) : item
   ).filter(Boolean);
   if (reviewStatus === "reviewed") return "reviewed";
-  if (studies.length || context.sourceLinked || context.reviewRequired === true) return "no_signoff";
+  if (studies.length || context.sourceLinked || context.reviewRequired === true) return "source_integrated";
   return "insufficient";
 }
 
@@ -111,9 +111,9 @@ function summarizeEvidenceLadder(ladder) {
     : sourceSupportStatusLabel(ladder.sourceSupportStatus || "insufficient_source_support");
   const count = ladder.studyCount ? `${ladder.studyCount} source${ladder.studyCount === 1 ? "" : "s"}` : "no linked sources";
   const review = ladder.professionalReviewStatus === "reviewed"
-    ? "professionally reviewed"
+    ? "reviewed source"
     : ladder.professionalReviewStatus === "pending"
-    ? "professional sign-off not claimed"
+    ? "source-integrated V1 context"
     : "review status unknown";
   return `${tier} · ${count} · mechanistic ${ladder.mechanisticConfidence || "unknown"} · ${review}`;
 }

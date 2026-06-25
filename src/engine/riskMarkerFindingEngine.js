@@ -61,7 +61,7 @@ function riskMarkerRowsToFindings(rows) {
       groupedFindings: [],
       clinicalAction: row.clinicalAction || "",
       evidenceStatus: (row.evidenceRefs || []).length
-        ? "source-linked; professional sign-off not claimed"
+        ? "source-linked; source-integrated"
         : "risk-marker review prompt",
     };
   });

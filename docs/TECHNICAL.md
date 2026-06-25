@@ -6,7 +6,7 @@ This page keeps implementation details out of the README front page while preser
 
 Diognosis models medication stacks as connected parent-metabolite-gene systems. The engine combines curated DDI pairs, parent/metabolite directionality, functional enzyme status, PK and washout timing, pathway graph traversal, receptor/phenotype burden, and source-linked evidence confidence into normalized interaction findings.
 
-Status: V1 platform scope, source-linked, under active validation, not professionally signed off, and not medical advice.
+Status: V1 platform scope, source-linked, source-integrated, under active validation, and not medical advice.
 
 Diognosis currently ships as a single self-contained HTML file. All computation runs in the browser with no backend, no API, no accounts, no analytics, and no medication-data collection. D3.js is vendored locally and bundled at build time for graph visualization.
 
@@ -26,7 +26,7 @@ Diognosis currently models:
 - Parent persistence, active/toxic metabolite persistence, washout rules, enzyme recovery, and induction offset
 - Receptor occupancy and syndrome-style burden detection
 - Anticholinergic, sedative, fall-risk, Beers, and washout summaries
-- Evidence browsing, evidence confidence ladders, and review diagnostics with V1 source-integrated evidence and separate v3 professional sign-off metadata
+- Evidence browsing, evidence confidence ladders, and review diagnostics with V1 source-integrated evidence and explicit clinical-validation boundaries
 
 ## Source Layout
 
@@ -143,7 +143,7 @@ Output shape: rows with enzyme, genetic phenotype, functional phenotype, capacit
 
 UI placement: changed functional status can feed Overview findings; the full Functional Gene Status dashboard appears in Genes + Metabolites, with relevant normal rows collapsed.
 
-Review/safety limitations: normal/relevant rows are context. Changed functional status is still a mechanistic signal and does not claim professional sign-off unless explicit sign-off metadata exists.
+Review/safety limitations: normal/relevant rows are context. Changed functional status is still a mechanistic signal and does not claim clinical validation.
 
 ### Per-Warning Why Paths
 
@@ -246,11 +246,11 @@ These concepts are deliberately separate:
 
 - Source-linked evidence: a finding has linked public refs, labels, guidelines, papers, or curated source rows.
 - Mechanistic confidence: the strength of the pathway/source support for the mechanism.
-- Clinical-action confidence: whether the app can treat the finding as professionally signed off, source-integrated without sign-off, or insufficient for action.
-- Professional sign-off status: explicit professional sign-off metadata. This must never be inferred from source links alone.
+- Clinical-action confidence: whether the app can treat the finding as source-integrated, modeled, or insufficient for action.
+- Clinical-validation status: this must never be inferred from source links alone.
 - Model-only screening signal: a mechanistic or computed finding without linked source refs on that specific finding.
 
-Source-linked does not mean professionally reviewed. The current public evidence ledger is intentionally presented as V1 source-integrated evidence with professional sign-off not claimed. Severe and critical findings can be visible as educational review priorities, but severity should not be treated as clinically final.
+Source-integrated evidence means traceable committed source context. It does not mean medical advice, clinical validation, or proof that severity is clinically final.
 
 ## Biochemical Graph Engine
 
@@ -273,7 +273,7 @@ Each tier carries a calibrated confidence weight used by graph and finding-level
 
 Important evidence helpers include `normalizeEvidence()`, `getEvidenceSummary()`, `assertEvidencedSeverity()`, `createStudyDraft()`, `reviewStudyDraft()`, `computeEvidenceLadder()`, and `attachEvidenceLaddersToFindings()`.
 
-Committed source-context entries can carry internal source-governance flags until explicitly signed off. External-source context remains local/static at runtime and defaults to context-only, sign-off-required, and not severity-bearing unless explicitly promoted by Diognosis governance.
+Committed source-context entries can carry internal source-governance flags. External-source context remains local/static at runtime and defaults to context-only and not severity-bearing unless explicitly promoted by Diognosis governance.
 
 ## Source Governance
 
@@ -388,6 +388,6 @@ No interaction should be presented as clinically final without enough provenance
 - the enzyme, transporter, receptor, metabolite, phenotype, or time window involved
 - the expected direction of effect
 - the evidence basis and source-support status
-- whether professional sign-off metadata exists
+- whether clinical-validation metadata exists
 
 The safe default is to show a source-linked or model-only explanation, not a final medical instruction.

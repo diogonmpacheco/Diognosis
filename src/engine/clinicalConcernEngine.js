@@ -1212,7 +1212,7 @@ function buildV1FindingTrustContract(finding = {}, context = {}) {
     clinicianAction: v1TrustClinicianAction(safeFinding, domain),
     limitationStatus: v1TrustLimitationStatus({ sourceLinked, reviewed, finding:safeFinding }),
     sourceLinked,
-    clinicalReviewStatus: reviewed ? "reviewed" : "professional sign-off not claimed",
+    clinicalReviewStatus: reviewed ? "reviewed" : "source-integrated",
     evidenceRefs,
     sourceCount: safeFinding.evidenceLadder?.studyCount || evidenceRefs.length,
     sourceTypes: uniqueClinicalValues(studies.map(study => String(study.type || "").replace(/_/g, " "))),
@@ -1351,15 +1351,14 @@ function v1TrustConfidenceLabel(finding = {}) {
 
 function v1TrustActionStatusLabel(value) {
   const key = String(value || "").trim().toLowerCase().replace(/_/g, " ");
-  if (key === "reviewed" || key === "professionally reviewed") return "action reviewed";
+  if (key === "reviewed") return "action reviewed";
   if (
     key === "no signoff" ||
     key === "no sign off" ||
     key === "pending review" ||
     key === "review needed" ||
-    key === "clinical review needed" ||
-    key === "professional sign off not claimed"
-  ) return "professional sign-off not claimed";
+    key === "clinical review needed"
+  ) return "source-integrated";
   if (key === "insufficient") return "action evidence limited";
   return `${v1TrustLabelCase(value)} action`;
 }
@@ -1407,8 +1406,8 @@ function v1TrustClinicianAction(finding = {}, domain = "") {
 }
 
 function v1TrustLimitationStatus({ sourceLinked = false, reviewed = false, finding = {} } = {}) {
-  if (reviewed) return "Professionally reviewed source-linked finding.";
-  if (sourceLinked) return "Source-linked; professional sign-off not claimed.";
+  if (reviewed) return "Reviewed source-linked finding.";
+  if (sourceLinked) return "Source-linked; source-integrated.";
   if (finding.reviewRequired === false) return "Reviewed modeled context.";
   return "Modeled signal; verify before clinical use.";
 }
@@ -1421,7 +1420,7 @@ function v1TrustLabelCase(value) {
 
 function v1TrustCompactText(value) {
   return String(value || "")
-    .replace(/\bpending\s+professional\s+(?:clinical\s+)?review\b/gi, "professional sign-off not claimed")
+    .replace(/\bpending\s+professional\s+(?:clinical\s+)?review\b/gi, "source-integrated")
     .replace(/\bmodel-only\b/gi, "modeled")
     .replace(/_/g, " ")
     .replace(/\s+/g, " ")

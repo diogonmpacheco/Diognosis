@@ -1802,7 +1802,7 @@ function publicEvidenceSummaryForFinding(finding = {}) {
       : "";
     const source = ladder.sourceLinked ? "source-linked" : "modeled";
     const count = ladder.studyCount ? `${ladder.studyCount} source${ladder.studyCount === 1 ? "" : "s"}` : "";
-    const review = ladder.professionalReviewStatus === "reviewed" ? "reviewed" : "professional sign-off not claimed";
+    const review = ladder.professionalReviewStatus === "reviewed" ? "reviewed source" : "source-integrated";
     return publicDisplayText([source, tier, count, review].filter(Boolean).join(" · "));
   }
   return publicEvidenceSummaryFromRefs(finding.evidenceRefs || []);
@@ -1810,7 +1810,7 @@ function publicEvidenceSummaryForFinding(finding = {}) {
 
 function publicEvidenceSummaryFromRefs(refs = []) {
   const count = [...new Set(refs || [])].length;
-  if (count) return `${count} linked source${count === 1 ? "" : "s"} · professional sign-off not claimed`;
+  if (count) return `${count} linked source${count === 1 ? "" : "s"} · source-integrated`;
   return "modeled signal · no linked source yet";
 }
 
@@ -2406,7 +2406,7 @@ function compactTrustConfidenceLabel(value = "") {
   if (/high/i.test(text)) return "High";
   if (/moderate/i.test(text)) return "Moderate";
   if (/low|limited/i.test(text)) return "Limited";
-  return text.replace(/\s*·\s*professional sign-off not claimed/ig, "").trim();
+  return text.trim();
 }
 
 function patientConcernLabel(value = "") {
@@ -2804,12 +2804,11 @@ function renderConcernSupportingSignals(finding) {
 
 function compactReviewStatus(value) {
   return publicDisplayText(value || "")
-    .replace(/\bno sign[-\s]?off\b/gi, "professional sign-off not claimed")
-    .replace(/\bpending professional review\b/gi, "professional sign-off not claimed")
+    .replace(/\bno sign[-\s]?off\b/gi, "source-integrated")
+    .replace(/\bpending professional review\b/gi, "source-integrated")
     .replace(/\bneeds review\b/gi, "review needed")
     .replace(/\breview prompt\b/gi, "modeled support")
     .replace(/\bsource linked, pending review\b/gi, "source-linked support")
-    .replace(/\bsource-linked;\s*professional sign-off not claimed\b/gi, "source-linked support")
     .trim();
 }
 
@@ -2823,9 +2822,9 @@ function renderEvidenceLadderCompact(ladder) {
     : sourceStatus;
   const clinical = compactReviewStatus(String(ladder.clinicalActionConfidence || "insufficient").replace(/_/g, " "));
   const review = ladder.professionalReviewStatus === "reviewed"
-    ? "reviewed"
+    ? "reviewed source"
     : ladder.professionalReviewStatus === "pending"
-    ? "professional sign-off not claimed"
+    ? "source-integrated"
     : "review status unknown";
   return `<div class="evidence-ladder-compact">
     <span>Evidence: ${safePublicHtml(tier)}</span>
