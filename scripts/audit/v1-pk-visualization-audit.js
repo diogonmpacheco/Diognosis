@@ -108,10 +108,10 @@ const result = window.eval(`(() => {
       continue;
     }
     if (!cardHasNonBlankCurve(card)) addFailure(drug.name + ': PK SVG curve is blank or under-sampled');
-    if (!/AUC/i.test(text) || !/Cmax/i.test(text)) addFailure(drug.name + ': missing AUC/Cmax metric labels');
+    if (!/AUC/i.test(text) || !/Modeled peak/i.test(text)) addFailure(drug.name + ': missing AUC/modeled peak metric labels');
     if (!/Educational model only/i.test(text)) addFailure(drug.name + ': missing PK safety disclaimer');
-    if (absoluteModel && !/absolute model/i.test(text)) addFailure(drug.name + ': missing absolute model badge');
-    if (relativeModel && !/relative fallback/i.test(text)) addFailure(drug.name + ': missing relative fallback badge');
+    if (absoluteModel && !/modeled estimate/i.test(text)) addFailure(drug.name + ': missing modeled estimate badge');
+    if (relativeModel && !/relative estimate/i.test(text)) addFailure(drug.name + ': missing relative estimate badge');
     if (/Curve window compressed/i.test(text)) compressed += 1;
   }
 

@@ -24,7 +24,7 @@ function renderPKSimulation() {
   }
 
   html += '</div>';
-  html += '<div class="pk-disclaimer">Educational model only. Absolute cards use simplified one-compartment estimates; relative cards are normalized exposure curves for drugs without full PK parameters. Not for clinical dosing decisions.</div>';
+  html += '<div class="pk-disclaimer">Educational model only. Curves show directional exposure comparison using simplified assumptions; they are not calibrated for patient-specific dosing decisions.</div>';
   el.innerHTML = html;
 }
 
@@ -90,22 +90,22 @@ function renderAbsolutePKCard(name) {
   return `<div class="pk-card">
     <div class="pk-title">${safePublicHtml(name)}${genoBadge}${intBadge}</div>
     <div class="pk-trust-row">
-      <span class="pk-trust-badge absolute">absolute model</span>
-      <span class="pk-trust-badge">baseline vs adjusted</span>
+      <span class="pk-trust-badge absolute">modeled estimate</span>
+      <span class="pk-trust-badge">directional comparison</span>
       ${adjAuc ? `<span class="pk-trust-badge shift">AUC shift ${safePublicHtml(fmtFold(exposureShift))}</span>` : ""}
     </div>
     <div class="pk-params">F=${safePublicHtml(Math.round(params.F*100))}% · t½=${safePublicHtml(params.halfLife)}h · τ=${safePublicHtml(tau)}h · dose=${safePublicHtml(params.dose_mg)}mg · Vd=${safePublicHtml(params.Vd)}L/kg</div>
     ${svg}
     ${renderPKLegend(!!adjPts, false)}
-    ${displayWindow.compressed ? `<div class="pk-window-note">Curve window compressed to show the early concentration peak for a short-acting profile; AUC and steady-state metrics still use τ=${safePublicHtml(tau)}h.</div>` : ""}
+    ${displayWindow.compressed ? `<div class="pk-window-note">Curve window compressed to show the early concentration peak for a short-acting profile; modeled AUC and steady-state metrics still use τ=${safePublicHtml(tau)}h.</div>` : ""}
     <div class="pk-metrics">
       <span title="Accumulation factor">R = ${safePublicHtml(Math.round(baseMetrics.accum * 10)/10)}x</span>
-      <span title="Estimated steady-state dose-interval area under the curve">AUCτ: ${safePublicHtml(fmtPK(baseAuc))} ng*h/mL</span>
-      <span title="Steady-state peak concentration">Cmax_ss: ${fmtPK(baseMetrics.cmax_ss)} ng/mL</span>
-      ${showTrough ? `<span title="Trough concentration">Ctrough: ${safePublicHtml(fmtPK(baseMetrics.ctrough_ss))} ng/mL</span>` : ''}
+      <span title="Modeled steady-state dose-interval area under the curve">Modeled AUCτ: ${safePublicHtml(fmtPK(baseAuc))} ng*h/mL</span>
+      <span title="Modeled steady-state peak concentration">Modeled peak: ${fmtPK(baseMetrics.cmax_ss)} ng/mL</span>
+      ${showTrough ? `<span title="Modeled trough concentration">Modeled trough: ${safePublicHtml(fmtPK(baseMetrics.ctrough_ss))} ng/mL</span>` : ''}
       <span title="Time to reach about 97% of true steady state">SS in ~${safePublicHtml(daysStr)}</span>
-      ${adjMetrics ? `<span class="pk-int-metric" title="Steady-state Cmax with DDI adjustment">Adj Cmax_ss: ${fmtPK(adjMetrics.cmax_ss)} ng/mL</span>` : ''}
-      ${adjAuc ? `<span class="pk-int-metric" title="Adjusted steady-state AUC over one dosing interval">Adj AUCτ: ${safePublicHtml(fmtPK(adjAuc))} ng*h/mL</span>` : ''}
+      ${adjMetrics ? `<span class="pk-int-metric" title="Modeled peak with DDI adjustment">Modeled adjusted peak: ${fmtPK(adjMetrics.cmax_ss)} ng/mL</span>` : ''}
+      ${adjAuc ? `<span class="pk-int-metric" title="Modeled adjusted AUC over one dosing interval">Modeled adjusted AUCτ: ${safePublicHtml(fmtPK(adjAuc))} ng*h/mL</span>` : ''}
     </div>
     ${noteHtml}
     ${params.nonlinear ? `<div class="pk-warning">Nonlinear kinetics: first-order simulation is approximate.</div>` : ''}
@@ -142,7 +142,7 @@ function renderRelativePKCard(name) {
   return `<div class="pk-card">
     <div class="pk-title">${safePublicHtml(name)}<span class="pk-geno-badge">Relative</span>${genoBadge}${intBadge}</div>
     <div class="pk-trust-row">
-      <span class="pk-trust-badge relative">relative fallback</span>
+      <span class="pk-trust-badge relative">relative estimate</span>
       <span class="pk-trust-badge">reference vs current context</span>
       <span class="pk-trust-badge shift">AUC ${safePublicHtml(fmtFold(metrics.aucFold))}</span>
     </div>
@@ -150,8 +150,8 @@ function renderRelativePKCard(name) {
     ${svg}
     ${renderPKLegend(true, true)}
     <div class="pk-metrics">
-      <span title="Relative AUC versus NM/no-interaction reference">AUC ${safePublicHtml(fmtFold(metrics.aucFold))}</span>
-      <span title="Relative steady-state peak versus reference single-dose peak">Cmax_ss: ${fmtPK(metrics.cmax_ss)} rel</span>
+      <span title="Relative AUC versus NM/no-interaction reference">Relative AUC ${safePublicHtml(fmtFold(metrics.aucFold))}</span>
+      <span title="Relative modeled peak versus reference single-dose peak">Modeled peak: ${fmtPK(metrics.cmax_ss)} rel</span>
       <span title="Accumulation factor">R = ${safePublicHtml(Math.round(metrics.accumRatio * 10) / 10)}x</span>
       <span title="Approximate time to 90% steady state">90% SS ~${safePublicHtml(ssDays)}</span>
       ${activeFold ? `<span class="pk-int-metric">${activeFold}</span>` : ''}

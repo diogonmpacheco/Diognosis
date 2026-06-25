@@ -3400,7 +3400,8 @@ function hideSectionAndClear(sectionId, bodyId, countId = null) {
   if (count) count.textContent = "";
 }
 
-function currentStackUrlParams(tab = activeTab) {
+function currentStackUrlParams(tab = activeTab, options = {}) {
+  const includeReviewer = options.includeReviewer !== false;
   const params = [];
   if (activeStack.length) {
     params.push(["substances", activeStack.map(name => {
@@ -3411,20 +3412,20 @@ function currentStackUrlParams(tab = activeTab) {
   }
   for (const token of activeGenotypeUrlTokens()) params.push(["genotype", token]);
   params.push(["audience", audienceMode]);
-  if (isReviewerMode()) params.push(["reviewer", "1"]);
+  if (includeReviewer && isReviewerMode()) params.push(["reviewer", "1"]);
   const shareTab = tab === "review" && !isReviewerMode() ? "overview" : tab;
   if (shareTab) params.push(["tab", shareTab]);
   return params;
 }
 
-function currentStackQuery(tab = activeTab) {
-  return currentStackUrlParams(tab)
+function currentStackQuery(tab = activeTab, options = {}) {
+  return currentStackUrlParams(tab, options)
     .map(([key, value]) => `${encodeURIComponent(key)}=${encodeUrlStateValueLocal(value)}`)
     .join("&");
 }
 
-function currentStackShareUrl(tab = activeTab) {
-  const query = currentStackQuery(tab);
+function currentStackShareUrl(tab = activeTab, options = {}) {
+  const query = currentStackQuery(tab, { includeReviewer:false, ...options });
   return `https://diogonmpacheco.github.io/Diognosis/index.html${query ? `?${query}` : ""}`;
 }
 

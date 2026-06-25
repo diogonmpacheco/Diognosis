@@ -1,7 +1,7 @@
 {
   "schema": "diognosis.reference-facts.v1",
-  "generatedAt": "2026-06-24T08:49:51.204Z",
-  "lastmod": "2026-06-24",
+  "generatedAt": "2026-06-25T08:40:10.700Z",
+  "lastmod": "2026-06-25",
   "source": "Generated from the committed Diognosis app runtime and data/medication-class-guides.json validated examples.",
   "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not professionally reviewed. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
   "factCount": 85,
@@ -37,7 +37,7 @@
       "clinicianSummary": "Simvastatin exposure may rise with Clarithromycin",
       "mechanismSummary": "Clarithromycin may increase Simvastatin exposure, raising Simvastatin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is poor function (18% capacity). Drivers: Clarithromycin inhibitor, current stack substrate burden. Affects Simvastatin, Clarithromycin.",
-      "reviewAction": "CONTRAINDICATED. Hold statin or use azithromycin",
+      "reviewAction": "Review whether this combination needs a different plan, dose context, timing, monitoring, or specialist/pharmacist input before any medication changes.",
       "evidenceSummary": "source-linked · fda label · 8 sources · professional sign-off not claimed",
       "evidenceStatus": "fda label · 8 sources · mechanistic high · professional sign-off not claimed",
       "evidenceRefs": [
@@ -148,8 +148,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -291,8 +291,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -392,8 +392,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -424,7 +424,7 @@
       "clinicianSummary": "Atorvastatin exposure may rise with Clarithromycin",
       "mechanismSummary": "Clarithromycin may increase Atorvastatin exposure, raising Atorvastatin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is poor function (18% capacity). Drivers: Clarithromycin inhibitor, current stack substrate burden. Affects Atorvastatin, Clarithromycin.",
-      "reviewAction": "CYP3A4 severely impaired (<25% normal). Substrates may have large exposure increases, but dose changes must be drug-specific. Review labeling/guidelines, indication, symptoms, and monitoring before changing therapy.",
+      "reviewAction": "Review whether this combination needs a different plan, dose context, timing, monitoring, or specialist/pharmacist input before any medication changes.",
       "evidenceSummary": "source-linked · guideline · 5 sources · professional sign-off not claimed",
       "evidenceStatus": "guideline · 5 sources · mechanistic high · professional sign-off not claimed",
       "evidenceRefs": [
@@ -502,8 +502,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -583,8 +583,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -726,8 +726,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -807,8 +807,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -877,8 +877,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -958,8 +958,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1028,8 +1028,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1098,8 +1098,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1168,8 +1168,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1238,8 +1238,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1294,8 +1294,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1326,7 +1326,7 @@
       "clinicianSummary": "High potassium risk may increase",
       "mechanismSummary": "Pharmacodynamic burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "Multiple nephrotoxic agents: Ibuprofen, Lisinopril",
-      "reviewAction": "Avoid chronic NSAIDs with ACEi; short courses <5 days",
+      "reviewAction": "Review whether this combination needs a different plan, dose context, timing, monitoring, or specialist/pharmacist input before any medication changes.",
       "evidenceSummary": "modeled · professional sign-off not claimed",
       "evidenceStatus": "modeled review prompt · no linked sources · mechanistic moderate · review status unknown",
       "evidenceRefs": [],
@@ -1350,8 +1350,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1382,7 +1382,7 @@
       "clinicianSummary": "Metoprolol exposure may rise with Terbinafine",
       "mechanismSummary": "Terbinafine may increase Metoprolol exposure, raising Metoprolol toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP2D6 genetic phenotype is normal metabolizer; functional phenotype is poor function (20% capacity). Drivers: Terbinafine inhibitor. Affects Metoprolol.",
-      "reviewAction": "CYP2D6 severely impaired (<25% normal). Substrates may have large exposure increases, but dose changes must be drug-specific. Review labeling/guidelines, indication, symptoms, and monitoring before changing therapy.",
+      "reviewAction": "Review whether this combination needs a different plan, dose context, timing, monitoring, or specialist/pharmacist input before any medication changes.",
       "evidenceSummary": "source-linked · guideline · 4 sources · professional sign-off not claimed",
       "evidenceStatus": "guideline · 4 sources · mechanistic high · professional sign-off not claimed",
       "evidenceRefs": [
@@ -1450,8 +1450,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1578,8 +1578,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1689,8 +1689,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1723,7 +1723,7 @@
       "clinicianSummary": "Clopidogrel activation to Active thiol metabolite may be reduced with Omeprazole",
       "mechanismSummary": "Increased stent thrombosis and MI risk. FDA warning Additional grouped signal: Clopidogrel exposure may fall with Omeprazole; CYP2C19 behaves as poor function. Related genotype, pathway, and metabolite signals are grouped below.",
       "clinicalRationale": "CYP2C19 genetic phenotype is poor metabolizer; functional phenotype is poor function (15% capacity). Drivers: CYP2C19 genotype, Omeprazole inhibitor, current stack substrate burden. Affects Clopidogrel, Omeprazole.",
-      "reviewAction": "Use pantoprazole or famotidine",
+      "reviewAction": "Review whether this combination needs a different plan, dose context, timing, monitoring, or specialist/pharmacist input before any medication changes.",
       "evidenceSummary": "source-linked · rct · 7 sources · professional sign-off not claimed",
       "evidenceStatus": "rct · 7 sources · mechanistic high · professional sign-off not claimed",
       "evidenceRefs": [
@@ -1825,8 +1825,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1956,8 +1956,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2037,8 +2037,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2169,8 +2169,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2225,8 +2225,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2306,8 +2306,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2362,8 +2362,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2432,8 +2432,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2502,8 +2502,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2572,8 +2572,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2642,8 +2642,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2722,8 +2722,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2753,7 +2753,7 @@
       "patientQuestion": "Can you check whether timing, overlap, or washout matters for this list?",
       "clinicianSummary": "Switching and washout timing may need review",
       "mechanismSummary": "Timing and persistence context may remain relevant after stopping or switching. Parent, metabolite, and recovery signals are grouped below.",
-      "clinicalRationale": "Conservative 14-day timing context for Tirzepatide based on half-life, class, and interaction persistence.; Display washout rule: 14 days before assuming recovery.",
+      "clinicalRationale": "Conservative 14-day timing context for Tirzepatide based on half-life, class, and interaction persistence.; Modeled timing context: 14 days before assuming baseline recovery.",
       "reviewAction": "Review stop date, switch timing, enzyme recovery, and active-metabolite persistence before applying standard timing assumptions.",
       "evidenceSummary": "source-linked · fda label · 2 sources · professional sign-off not claimed",
       "evidenceStatus": "fda label · 2 sources · mechanistic high · professional sign-off not claimed",
@@ -2802,8 +2802,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2872,8 +2872,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2942,8 +2942,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2974,7 +2974,7 @@
       "clinicianSummary": "Methotrexate exposure may rise with Ibuprofen",
       "mechanismSummary": "Ibuprofen may increase Methotrexate exposure, raising Methotrexate toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "NSAIDs reduce methotrexate renal clearance",
-      "reviewAction": "Avoid NSAIDs with high-dose MTX; space >48h",
+      "reviewAction": "Review whether this combination needs a different plan, dose context, timing, monitoring, or specialist/pharmacist input before any medication changes.",
       "evidenceSummary": "source-linked · clinical pk · 1 source · professional sign-off not claimed",
       "evidenceStatus": "clinical pk · 1 source · mechanistic high · professional sign-off not claimed",
       "evidenceRefs": [
@@ -3012,8 +3012,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3045,7 +3045,7 @@
       "patientQuestion": "Can you check whether this combination raises serotonin-related side effects or switching concerns?",
       "clinicianSummary": "Switching and washout timing may need review",
       "mechanismSummary": "Timing and persistence context may remain relevant after stopping or switching. Parent, metabolite, and recovery signals are grouped below.",
-      "clinicalRationale": "Fluoxetine/norfluoxetine CYP2D6: ~5 weeks for enzyme resynthesis; Display washout rule: 35 days before assuming recovery.",
+      "clinicalRationale": "Fluoxetine/norfluoxetine CYP2D6: ~5 weeks for enzyme resynthesis; Modeled timing context: 35 days before assuming baseline recovery.",
       "reviewAction": "Review stop date, switch timing, enzyme recovery, and active-metabolite persistence before applying standard timing assumptions.",
       "evidenceSummary": "source-linked · fda label · 7 sources · professional sign-off not claimed",
       "evidenceStatus": "fda label · 7 sources · mechanistic high · professional sign-off not claimed",
@@ -3147,8 +3147,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3181,7 +3181,7 @@
       "clinicianSummary": "Codeine exposure may rise with Bupropion",
       "mechanismSummary": "Bupropion may increase Codeine exposure, raising Codeine toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP2D6 genetic phenotype is poor metabolizer; functional phenotype is minimal/no function (4% capacity). Drivers: CYP2D6 genotype, Bupropion inhibitor. Affects Codeine.",
-      "reviewAction": "CYP2D6 near-zero functional activity. All substrates at extreme exposure risk. Avoid new CYP2D6 substrates. Consider therapeutic drug monitoring.",
+      "reviewAction": "Review whether this combination needs a different plan, dose context, timing, monitoring, or specialist/pharmacist input before any medication changes.",
       "evidenceSummary": "source-linked · fda label · 5 sources · professional sign-off not claimed",
       "evidenceStatus": "fda label · 5 sources · mechanistic high · professional sign-off not claimed",
       "evidenceRefs": [
@@ -3263,8 +3263,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3319,8 +3319,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3389,8 +3389,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3459,8 +3459,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3557,8 +3557,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3589,7 +3589,7 @@
       "clinicianSummary": "Lamotrigine exposure may rise with Valproic Acid",
       "mechanismSummary": "Valproic Acid may increase Lamotrigine exposure, raising Lamotrigine toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "Valproate inhibits lamotrigine glucuronidation, doubling its levels",
-      "reviewAction": "MUST halve lamotrigine dose; titrate 25mg q2wk",
+      "reviewAction": "Review whether this combination needs a different plan, dose context, timing, monitoring, or specialist/pharmacist input before any medication changes.",
       "evidenceSummary": "source-linked · clinical pk · 1 source · professional sign-off not claimed",
       "evidenceStatus": "clinical pk · 1 source · mechanistic high · professional sign-off not claimed",
       "evidenceRefs": [
@@ -3627,8 +3627,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3697,8 +3697,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3767,8 +3767,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3837,8 +3837,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3918,8 +3918,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3950,7 +3950,7 @@
       "clinicianSummary": "Simvastatin exposure may rise with Clarithromycin",
       "mechanismSummary": "Clarithromycin may increase Simvastatin exposure, raising Simvastatin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is poor function (18% capacity). Drivers: Clarithromycin inhibitor, current stack substrate burden. Affects Simvastatin, Clarithromycin.",
-      "reviewAction": "CONTRAINDICATED. Hold statin or use azithromycin",
+      "reviewAction": "Review whether this combination needs a different plan, dose context, timing, monitoring, or specialist/pharmacist input before any medication changes.",
       "evidenceSummary": "source-linked · fda label · 8 sources · professional sign-off not claimed",
       "evidenceStatus": "fda label · 8 sources · mechanistic high · professional sign-off not claimed",
       "evidenceRefs": [
@@ -4061,8 +4061,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4172,8 +4172,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4348,8 +4348,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4480,8 +4480,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4581,8 +4581,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4691,8 +4691,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4834,8 +4834,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4904,8 +4904,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4938,7 +4938,7 @@
       "clinicianSummary": "Clopidogrel activation to Active thiol metabolite may be reduced with Omeprazole",
       "mechanismSummary": "Increased stent thrombosis and MI risk. FDA warning Additional grouped signal: Clopidogrel exposure may fall with Omeprazole; CYP2C19 behaves as poor function. Related genotype, pathway, and metabolite signals are grouped below.",
       "clinicalRationale": "CYP2C19 genetic phenotype is poor metabolizer; functional phenotype is poor function (15% capacity). Drivers: CYP2C19 genotype, Omeprazole inhibitor, current stack substrate burden. Affects Clopidogrel, Omeprazole.",
-      "reviewAction": "Use pantoprazole or famotidine",
+      "reviewAction": "Review whether this combination needs a different plan, dose context, timing, monitoring, or specialist/pharmacist input before any medication changes.",
       "evidenceSummary": "source-linked · rct · 7 sources · professional sign-off not claimed",
       "evidenceStatus": "rct · 7 sources · mechanistic high · professional sign-off not claimed",
       "evidenceRefs": [
@@ -5040,8 +5040,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5151,8 +5151,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5221,8 +5221,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5291,8 +5291,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5361,8 +5361,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5431,8 +5431,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5501,8 +5501,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5571,8 +5571,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5641,8 +5641,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5741,8 +5741,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5811,8 +5811,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5881,8 +5881,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5951,8 +5951,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6021,8 +6021,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6091,8 +6091,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6172,8 +6172,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6206,7 +6206,7 @@
       "clinicianSummary": "Flecainide exposure may rise with Fluoxetine",
       "mechanismSummary": "Fluoxetine may increase Flecainide exposure, raising Flecainide toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP2D6 genetic phenotype is poor metabolizer; functional phenotype is minimal/no function (3% capacity). Drivers: CYP2D6 genotype, Fluoxetine inhibitor, current stack substrate burden. Affects Flecainide, Fluoxetine.",
-      "reviewAction": "CYP2D6 near-zero functional activity. All substrates at extreme exposure risk. Avoid new CYP2D6 substrates. Consider therapeutic drug monitoring.",
+      "reviewAction": "Review whether this combination needs a different plan, dose context, timing, monitoring, or specialist/pharmacist input before any medication changes.",
       "evidenceSummary": "source-linked · fda label · 8 sources · professional sign-off not claimed",
       "evidenceStatus": "fda label · 8 sources · mechanistic high · professional sign-off not claimed",
       "evidenceRefs": [
@@ -6317,8 +6317,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6449,8 +6449,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6519,8 +6519,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6619,8 +6619,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6689,8 +6689,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6800,8 +6800,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6911,8 +6911,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7022,8 +7022,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7054,7 +7054,7 @@
       "clinicianSummary": "Tacrolimus exposure may rise with Fluconazole",
       "mechanismSummary": "Fluconazole may increase Tacrolimus exposure, raising Tacrolimus toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP2C9 genetic phenotype is normal metabolizer; functional phenotype is poor function (20% capacity). Drivers: Fluconazole inhibitor.",
-      "reviewAction": "CYP2C9 severely impaired (<25% normal). Substrates may have large exposure increases, but dose changes must be drug-specific. Review labeling/guidelines, indication, symptoms, and monitoring before changing therapy.",
+      "reviewAction": "Review whether this combination needs a different plan, dose context, timing, monitoring, or specialist/pharmacist input before any medication changes.",
       "evidenceSummary": "source-linked · guideline · 8 sources · professional sign-off not claimed",
       "evidenceStatus": "guideline · 8 sources · mechanistic high · professional sign-off not claimed",
       "evidenceRefs": [
@@ -7165,8 +7165,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7319,8 +7319,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7429,8 +7429,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7513,8 +7513,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7589,8 +7589,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7709,8 +7709,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7820,8 +7820,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7910,8 +7910,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-24T08:49:51.204Z",
-      "lastmod": "2026-06-24"
+      "generatedAt": "2026-06-25T08:40:10.700Z",
+      "lastmod": "2026-06-25"
     }
   ]
 }

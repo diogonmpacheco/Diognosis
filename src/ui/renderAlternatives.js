@@ -24,6 +24,7 @@ function pgxGuidanceTitle(level) {
 function renderGenetics() {
   const body = document.getElementById("geneList");
   const addSel = document.getElementById("geneAddSelect");
+  const summary = document.getElementById("geneActiveSummary");
   const activeGenes = Object.keys(userGenetics);
 
   const available = GENE_ENZYMES.filter(e => !userGenetics.hasOwnProperty(e));
@@ -34,12 +35,23 @@ function renderGenetics() {
   }).join("");
 
   if (!activeGenes.length) {
+    if (summary) {
+      summary.style.display = "none";
+      summary.innerHTML = "";
+    }
     body.innerHTML = '<div style="font-size:12px;color:var(--text2);text-align:center;padding:8px;">No gene or marker results set yet. Add a result above if you know it.</div>';
     return;
   }
 
   const badgeText = { ultrarapid:"UM", rapid:"RM", normal:"NM", intermediate:"IM", poor:"PM", null:"NULL" };
   const lvlColor = { A:"#c0392b", B:"#e67e22", C:"#7f8c8d" };
+  const labels = typeof activeGenotypeHandoffLabels === "function"
+    ? activeGenotypeHandoffLabels()
+    : activeGenes.map(enzyme => `${enzyme} ${userGenetics[enzyme]}`);
+  if (summary) {
+    summary.style.display = "";
+    summary.innerHTML = `<strong>Gene results in this check</strong> <span>${safePublicHtml(labels.join(", "))}</span>`;
+  }
 
   body.innerHTML = activeGenes.map(enzyme => {
     const pheno = userGenetics[enzyme];

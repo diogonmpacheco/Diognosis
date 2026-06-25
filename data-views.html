@@ -126,8 +126,8 @@
       </div>
       <nav aria-label="Draft views">
         <button class="nav-btn active" data-view="genotype"><span>GT</span><span>Genotype lookup<small>Gene-first substance index</small></span></button>
-        <button class="nav-btn" data-view="action"><span>RA</span><span>Review actions<small>Discovery grouping</small></span></button>
-        <button class="nav-btn" data-view="ranking"><span>GR</span><span>Gene ranking<small>Severity and reach</small></span></button>
+        <button class="nav-btn" data-view="action"><span>RP</span><span>Review prompts<small>Discovery grouping</small></span></button>
+        <button class="nav-btn" data-view="ranking"><span>GR</span><span>Gene ranking<small>Coverage and reach</small></span></button>
       </nav>
       <div class="view-nav-note">Alternate entry points for exploring Diognosis data. Example links open the app with focused medication stacks.</div>
     </div>
@@ -208,17 +208,17 @@
         <section class="view" id="view-ranking">
           <div class="toolbar">
             <input class="field" id="rankingSearch" placeholder="Search gene, CYP, transporter, or class" aria-label="Ranking search">
-            <select class="select" id="rankingSort" aria-label="Ranking sort"><option value="score">Sort by impact score</option><option value="total">Total parent + metabolite substances</option><option value="high">High-severity rows</option><option value="inhibitors">Inhibitors</option><option value="inducers">Inducers / promoters</option><option value="az">A to Z</option></select>
+            <select class="select" id="rankingSort" aria-label="Ranking sort"><option value="score">Sort by coverage score</option><option value="total">Total parent + metabolite substances</option><option value="high">High-severity rows</option><option value="inhibitors">Inhibitors</option><option value="inducers">Inducers / promoters</option><option value="az">A to Z</option></select>
           </div>
           <div class="metric-row" id="rankingMetrics"></div>
           <div class="grid two">
             <article class="card">
               <div class="card-head"><h3>Top Gene Ranking</h3><span class="tag red" id="rankingCountTag">0 genes</span></div>
               <div class="card-body">
-                <p class="rank-note">Impact score weights high-severity rows, actionable rows, parent substances, metabolites, modulators, transporters, and evidence density.</p>
+                <p class="rank-note">Coverage score weights high-severity rows, review-prompt rows, parent substances, metabolites, modulators, transporters, and evidence density.</p>
                 <div class="table-wrap">
                   <table class="table rank-table">
-                    <thead><tr><th>Rank</th><th>Gene</th><th>Impact</th><th>Total substances</th><th>Parents</th><th>Metabolites</th><th>Inhibitors</th><th>Inducers / promoters</th><th>Transporters</th><th>Minor routes</th><th>High severity</th><th>Actionable</th><th>Evidence</th></tr></thead>
+                    <thead><tr><th>Rank</th><th>Gene</th><th>Coverage</th><th>Total substances</th><th>Parents</th><th>Metabolites</th><th>Inhibitors</th><th>Inducers / promoters</th><th>Transporters</th><th>Minor routes</th><th>High severity</th><th>Review rows</th><th>Evidence</th></tr></thead>
                     <tbody id="rankingRows"></tbody>
                   </table>
                 </div>
@@ -517,10 +517,10 @@
         return `<tr><td class="rank-cell">#${rank}</td><td class="rank-gene"><a href="${esc(href)}">${esc(item.gene)}</a><br>${tag(item.classes.slice(0, 2).join(" / ") || "gene")}</td><td><div class="score"><strong>${item.score}</strong><div class="scorebar"><span style="width:${width}%"></span></div></div></td><td>${item.totalSubstances}</td><td>${item.parents}</td><td>${item.metabolites}</td><td>${item.inhibitors}</td><td>${item.inducers}</td><td>${item.transporters}</td><td>${item.minors}</td><td>${tag(item.high, item.high ? "red" : "")}</td><td>${item.actionable}</td><td>${item.evidence}</td></tr>`;
       }).join("") || `<tr><td colspan="13">No genes match this ranking filter.</td></tr>`;
       $("#rankingHighlights").innerHTML = [
-        ["Highest overall impact", topImpact, "red", (item) => `${item.score} score from ${item.totalSubstances} parent/metabolite substances and ${item.high} high-severity rows.`],
+        ["Highest coverage score", topImpact, "red", (item) => `${item.score} coverage score from ${item.totalSubstances} parent/metabolite substances and ${item.high} high-severity rows.`],
         ["Broadest parent/metabolite reach", topTotal, "amber", (item) => `${item.totalSubstances} total substances: ${item.parents} parents and ${item.metabolites} metabolites.`],
         ["Most inhibitor pressure", topInhibitors, "violet", (item) => `${item.inhibitors} inhibitor substances and ${item.inducers} inducer/promoter substances.`],
-        ["Most high-severity burden", topHigh, "red", (item) => `${item.high} red-severity rows across ${item.actionable} actionable rows.`],
+        ["Most high-severity burden", topHigh, "red", (item) => `${item.high} red-severity rows across ${item.actionable} review-prompt rows.`],
       ].filter(([, item]) => item).map(([title, item, color, body]) => rowLink(`./data-views.html?view=genotype&gene=${encodeURIComponent(item.gene)}`, `${title}: ${item.gene}`, `${item.rows.length} rows`, color, body(item), item.classes.slice(0, 4))).join("");
       renderPager($("#rankingPager"), rows.length, shown.length, "rankingShowAll", renderRankingView);
     }

@@ -74,6 +74,25 @@ function unique(values = []) {
   return [...new Set(values.filter((value) => value != null && String(value).trim() !== ''))];
 }
 
+function normalizeReferenceText(value) {
+  return String(value || '').replace(/\s+/g, ' ').trim();
+}
+
+function safeReferenceMechanismText(value) {
+  return normalizeReferenceText(value)
+    .replace(/\bDisplay washout rule:\s*/gi, 'Modeled timing context: ')
+    .replace(/\bbefore assuming recovery\b/gi, 'before assuming baseline recovery')
+    .replace(/\bfully recovered\b/gi, 'closer to baseline');
+}
+
+function safeReferenceReviewAction(value) {
+  const text = normalizeReferenceText(value);
+  if (!text) return '';
+  const directivePattern = /\b(?:contraindicat(?:ed|ion)?|avoid|hold|use\s+[a-z][a-z-]*|replace|substitut|reduce|halve|titrate|do not combine|do not use|dose[-\s]?(?:adjust|reduc|limit)|space\s*>|washout required|must)\b/i;
+  if (!directivePattern.test(text)) return safeReferenceMechanismText(text);
+  return 'Review whether this combination needs a different plan, dose context, timing, monitoring, or specialist/pharmacist input before any medication changes.';
+}
+
 function exampleHref(example, audience = 'patient') {
   const params = [
     ['substances', example.substances.join(',')],
@@ -252,9 +271,9 @@ function buildFact(window, data, resolveSubstance, guide, example, index) {
     patientSummary:patient.topTitle,
     patientQuestion:patient.topBody,
     clinicianSummary:clinician.topTitle || presentation.title || '',
-    mechanismSummary:presentation.whatChanged || clinician.topBody || '',
-    clinicalRationale:presentation.whyItMatters || '',
-    reviewAction:presentation.whatToReview || '',
+    mechanismSummary:safeReferenceMechanismText(presentation.whatChanged || clinician.topBody || ''),
+    clinicalRationale:safeReferenceMechanismText(presentation.whyItMatters || ''),
+    reviewAction:safeReferenceReviewAction(presentation.whatToReview || ''),
     evidenceSummary:presentation.evidenceSummary || clinician.clinicalConcerns[0]?.evidenceStatus || '',
     evidenceStatus:clinician.clinicalConcerns[0]?.evidenceStatus || presentation.evidenceSummary || '',
     evidenceRefs:refs,
@@ -297,6 +316,9 @@ function validateFacts(facts, browserErrors) {
       fail(`${fact.id} has no evidence refs and no clear model-only/insufficient boundary.`);
     }
     if (!fact.boundary.includes('Not medical advice')) fail(`${fact.id} is missing the not-medical-advice boundary.`);
+    if (/\b(?:CONTRAINDICATED|hold|avoid|do not combine|do not use|must halve|reduce starting dose|use [a-z]+|washout required)\b/i.test(fact.reviewAction)) {
+      fail(`${fact.id} reviewAction exposes standalone medication-change wording: ${fact.reviewAction}`);
+    }
     if (/\b(?:AUC|Cmax|SN-38|5-Fluorouracil|thiol metabolite|Endoxifen)\b/i.test(fact.patientSummary)) {
       fail(`${fact.id} patientSummary exposes technical metabolite or PK copy: ${fact.patientSummary}`);
     }

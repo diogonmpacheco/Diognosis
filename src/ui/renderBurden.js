@@ -20,9 +20,9 @@ function renderWashoutCalendar() {
   const maxDays = Math.max(...events.map(e => e.days));
   let html = `<p style="font-size:12px;color:var(--text2);margin:0 0 10px">
     Stopping date: <strong>Today (${new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})})</strong>.
-    Estimated days before enzyme activity is fully recovered.
+    Modeled days before pathway activity may be closer to baseline.
   </p>`;
-  html += '<table class="washout-table"><thead><tr><th>Agent</th><th>Mechanism</th><th>Recovery Time</th><th>Safe-to-Switch Date</th></tr></thead><tbody>';
+  html += '<table class="washout-table"><thead><tr><th>Agent</th><th>Mechanism</th><th>Recovery Time</th><th>Modeled Review Window</th></tr></thead><tbody>';
   for (const ev of events) {
     const pct = Math.round((ev.days / maxDays) * 100);
     html += `<tr>
@@ -39,7 +39,7 @@ function renderWashoutCalendar() {
     </tr>`;
   }
   html += '</tbody></table>';
-  html += '<div style="font-size:10px;color:var(--text2);margin-top:8px">⚠ Estimates based on population PK data. Individual variation is substantial. Consult clinical pharmacist before switching medications.</div>';
+  html += '<div style="font-size:10px;color:var(--text2);margin-top:8px">Estimates are based on population PK data. Individual variation is substantial; review timing with a clinician or pharmacist before changing medicines.</div>';
   el.innerHTML = html;
 }
 
