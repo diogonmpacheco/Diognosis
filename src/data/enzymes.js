@@ -230,23 +230,23 @@ const PHARMGKB_EVIDENCE = {
     grade:"A",
     guideline:"CPIC",
     pairs:[
-      {drug:"Fluorouracil",level:"A",action:"PM: AVOID — fatal toxicity risk; IM: reduce dose 50%"},
-      {drug:"Capecitabine",level:"A",action:"PM: AVOID; IM: reduce dose 50%"}
+      {drug:"Fluorouracil",level:"A",action:"DPYD poor/no function can cause life-threatening 5-FU toxicity; use CPIC/oncology-protocol genotype-guided avoidance or major starting-dose reduction with close toxicity monitoring"},
+      {drug:"Capecitabine",level:"A",action:"DPYD poor/no function can cause life-threatening 5-FU accumulation from capecitabine; use CPIC/oncology-protocol genotype-guided avoidance or major starting-dose reduction with close toxicity monitoring"}
     ]
   },
   "TPMT":{
     grade:"A",
     guideline:"CPIC",
     pairs:[
-      {drug:"Azathioprine",level:"A",action:"PM: reduce dose 90%; IM: reduce dose 30-70%"},
-      {drug:"Mercaptopurine",level:"A",action:"PM: reduce dose 90%; IM: reduce dose 30-70%"}
+      {drug:"Azathioprine",level:"A",action:"Use CPIC thiopurine genotype-guided dosing with TPMT plus NUDT15, CBC/TDM where available, and disease-specific protocol; do not apply a fixed percentage from this app alone"},
+      {drug:"Mercaptopurine",level:"A",action:"Use CPIC thiopurine genotype-guided dosing with TPMT plus NUDT15, CBC/TDM where available, and oncology/IBD protocol; do not apply a fixed percentage from this app alone"}
     ]
   },
   "NUDT15":{
     grade:"A",
     guideline:"CPIC",
     pairs:[
-      {drug:"Thioguanine",level:"A",action:"NUDT15 IM: start 30-80% of standard dose; NUDT15 PM: 10-fold dose reduction and thrice-weekly rather than daily dosing",guidelineName:"TPMT, NUDT15 and Thiopurines",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251442",pmids:["21270794","23422873","30447069","41618934"],evidenceRefs:["ev_thiopurine_tpmt_nudt15_cpic2025"],classification:"Strong"}
+      {drug:"Thioguanine",level:"A",action:"Use CPIC thiopurine genotype-guided dosing with NUDT15 plus TPMT, CBC/TDM where available, and oncology protocol; DNA-thioguanine myelosuppression risk is the key concern",guidelineName:"TPMT, NUDT15 and Thiopurines",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251442",pmids:["21270794","23422873","30447069","41618934"],evidenceRefs:["ev_thiopurine_tpmt_nudt15_cpic2025"],classification:"Strong"}
     ]
   },
   "UGT1A1":{
@@ -254,7 +254,7 @@ const PHARMGKB_EVIDENCE = {
     guideline:"CPIC",
     pairs:[
       {drug:"Atazanavir",level:"A",action:"*28/*28: ↑ hyperbilirubinemia, but usually benign"},
-      {drug:"Irinotecan",level:"A",action:"*28/*28: reduce dose 30%; severe neutropenia risk"},
+      {drug:"Irinotecan",level:"A",action:"UGT1A1 poor function can increase SN-38 exposure; review regimen-specific starting dose strategy, CBC/diarrhea monitoring, bilirubin context, and oncology protocol"},
       {drug:"Sacituzumab Govitecan",level:"B",action:"Reduced UGT1A1 function can increase SN-38 toxicity context; monitor neutropenia and diarrhea per oncology label/protocol",evidenceRefs:["ev_batch_adc_payload_labels"]}
     ]
   },

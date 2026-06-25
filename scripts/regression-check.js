@@ -2352,6 +2352,47 @@ for (const row of statinSlcoStandardsRegression) {
   assert(/muscle|myopathy|statin-associated/i.test(row.text), `${row.drugName} SLCO1B1 action should describe statin muscle-risk context`);
 }
 
+const oncologyPgxActionRegression = window.eval(`(() => {
+  const scenarios = [
+    { drug:"Capecitabine", gene:"DPYD", phenotype:GENOTYPE_PHENOTYPE.PM, required:/5-FU|fluoropyrimidine|oncology-protocol/i },
+    { drug:"Fluorouracil", gene:"DPYD", phenotype:GENOTYPE_PHENOTYPE.PM, required:/5-FU|fluoropyrimidine|oncology-protocol/i },
+    { drug:"Irinotecan", gene:"UGT1A1", phenotype:GENOTYPE_PHENOTYPE.PM, required:/SN-38|bilirubin|CBC|diarrhea/i },
+    { drug:"Azathioprine", gene:"TPMT", phenotype:GENOTYPE_PHENOTYPE.PM, required:/6-TGN|CBC|NUDT15|thiopurine/i },
+    { drug:"Mercaptopurine", gene:"NUDT15", phenotype:GENOTYPE_PHENOTYPE.PM, required:/DNA-thioguanine|CBC|TPMT|thiopurine/i },
+    { drug:"Thioguanine", gene:"NUDT15", phenotype:GENOTYPE_PHENOTYPE.PM, required:/DNA-thioguanine|CBC|TPMT|thiopurine/i },
+  ];
+  const rows = scenarios.map(scenario => {
+    activeStack = [scenario.drug];
+    activeGenotype = {};
+    Object.keys(GENOTYPE_EFFECTS || {}).forEach(g => activeGenotype[g] = GENOTYPE_PHENOTYPE.NM);
+    activeGenotype[scenario.gene] = scenario.phenotype;
+    const row = getPgxActionSummariesForStack(activeStack, activeGenotype || {}).find(item => item.gene === scenario.gene);
+    return {
+      label: scenario.drug + ":" + scenario.gene,
+      hasRow: !!row,
+      text: row ? [row.whatChanged, row.reviewDirection, row.safetyBoundary].join(" ") : "",
+      requiredOk: row ? scenario.required.test([row.whatChanged, row.reviewDirection, row.safetyBoundary].join(" ")) : false,
+    };
+  });
+  const enzymeActions = [
+    PHARMGKB_EVIDENCE.DPYD.pairs.find(row => row.drug === "Fluorouracil")?.action || "",
+    PHARMGKB_EVIDENCE.DPYD.pairs.find(row => row.drug === "Capecitabine")?.action || "",
+    PHARMGKB_EVIDENCE.TPMT.pairs.find(row => row.drug === "Azathioprine")?.action || "",
+    PHARMGKB_EVIDENCE.TPMT.pairs.find(row => row.drug === "Mercaptopurine")?.action || "",
+    PHARMGKB_EVIDENCE.NUDT15.pairs.find(row => row.drug === "Thioguanine")?.action || "",
+    PHARMGKB_EVIDENCE.UGT1A1.pairs.find(row => row.drug === "Irinotecan")?.action || "",
+  ].join(" ");
+  return { rows, enzymeActions };
+})()`);
+const fixedOncologyDosePattern = /reduce dose\s*\d|reduce dose by|reduce starting dose|start\s+\d|standard dose|10-fold|thrice-weekly|\d+\s*-\s*\d+%|\b(?:30|50|70|80|90)%\b/i;
+for (const row of oncologyPgxActionRegression.rows) {
+  assert(row.hasRow, `${row.label} should expose an oncology PGx action summary`);
+  assert(row.requiredOk, `${row.label} should name the specific metabolite/pathway and monitoring context, got ${row.text}`);
+  assert(!fixedOncologyDosePattern.test(row.text), `${row.label} should not expose fixed dose percentages in public action copy: ${row.text}`);
+}
+assert(!fixedOncologyDosePattern.test(oncologyPgxActionRegression.enzymeActions),
+  `Oncology PGx enzyme table should avoid fixed percentage dosing instructions: ${oncologyPgxActionRegression.enzymeActions}`);
+
 loadCase(window, ['Fluoxetine']);
 const fluoxetineWashout = window.eval('computeWashoutCalendar(["Fluoxetine"]).find(e => e.actorId === "norfluoxetine")');
 assert(fluoxetineWashout && fluoxetineWashout.days === 35, 'Norfluoxetine washout should remain 35 days');
