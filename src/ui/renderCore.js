@@ -1737,7 +1737,8 @@ function renderPublicFindingCard(presentation, index = 0) {
     : "";
   const sourceLinks = patient ? "" : renderFindingSourceLinks(presentation, trust);
   const severityLabel = patient ? patientSeverityLabel(severity) : severity;
-  const discussionGuide = renderFindingDiscussionGuide(presentation, trust, patient);
+  const showDiscussionGuide = patient || typeof isReviewerMode !== "function" || isReviewerMode();
+  const discussionGuide = showDiscussionGuide ? renderFindingDiscussionGuide(presentation, trust, patient) : "";
   const monitoringGuide = renderFindingMonitoringGuide(presentation, trust, patient);
   const followupGuide = !patient && typeof isReviewerMode === "function" && !isReviewerMode() && (discussionGuide || monitoringGuide)
     ? `<details class="finding-followup-details"><summary>Review notes</summary>${discussionGuide}${monitoringGuide}</details>`
@@ -2696,7 +2697,10 @@ function clinicianOverviewActionText(presentation = {}, text = "") {
     ...(presentation.affectedSubstances || []),
   ].join(" ")).toLowerCase();
   const actors = (presentation.affectedSubstances || []).slice(0, 2).join(" + ") || "this combination";
-  if (/contraindicat|avoid|hold|suspend|strong cyp3a4|clarithromycin|simvastatin/.test(context) &&
+  if (/\b(?:washout|persistence|timing|switch|overlap|enzyme resynthesis|after stopping|recovery)\b/.test(context)) {
+    return `Review stop/start dates, overlap, washout, and whether timing changes the plan for ${actors}.`;
+  }
+  if (/contraindicat|avoid|hold|suspend|strong cyp3a4/.test(context) &&
     /simvastatin/.test(context) &&
     /clarithromycin/.test(context)) {
     return "Review labeled contraindication. Determine whether interruption, substitution, timing, or monitoring is appropriate for the patient context.";

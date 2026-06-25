@@ -53,15 +53,18 @@ function getMechanismWhyPathFindings() {
   return (currentInteractionFindings || []).length ? currentInteractionFindings : (cache.findings || []);
 }
 
-function renderMechanismSupportingSignals(finding) {
+function renderMechanismSupportingSignals(finding, options = {}) {
   const signals = finding?.supportingSignals || [];
   if (!signals.length) return "";
   const shown = signals.slice(0, 5);
   const extraLocation = typeof isReviewerMode === "function" && isReviewerMode()
     ? "in Review"
     : "across supporting tabs";
+  const titleHtml = options.includeTitle === false
+    ? ""
+    : '<div class="mechanism-supporting-title">Grouped supporting signals</div>';
   return `<div class="mechanism-supporting">
-    <div class="mechanism-supporting-title">Grouped supporting signals</div>
+    ${titleHtml}
     <ul>
       ${shown.map(signal => `<li>
         <span>${safePublicHtml(signal.label || "Related pathway signal")}</span>
@@ -94,8 +97,9 @@ function renderMechanismWhyPaths() {
     const reviewerButton = typeof isReviewerMode === "function" && isReviewerMode()
       ? `<button class="mini-btn" onclick="setTab('review')">Open reviewer panel</button>`
       : "";
-    const supportingSignals = renderMechanismSupportingSignals(finding);
-    const supportingSignalHtml = supportingSignals && typeof isReviewerMode === "function" && !isReviewerMode()
+    const standardMode = typeof isReviewerMode === "function" && !isReviewerMode();
+    const supportingSignals = renderMechanismSupportingSignals(finding, { includeTitle:!standardMode });
+    const supportingSignalHtml = supportingSignals && standardMode
       ? `<details class="supporting-signal-details"><summary>Grouped supporting signals</summary>${supportingSignals}</details>`
       : supportingSignals;
     return `<div id="${safeAttr(rowId)}" class="mechanism-why-row supporting-context-row">
