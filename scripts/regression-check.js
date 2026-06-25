@@ -1073,27 +1073,32 @@ const patientGeneResultListRegression = window.eval(`(() => {
     medListText:document.getElementById('medList')?.textContent || '',
     doseSelects:document.querySelectorAll('#medList .dose-select').length,
     exposureSummaryCount:document.querySelectorAll('#medList .exposure-summary').length,
+    summaryExposureCount:document.querySelectorAll('#summaryBar .summary-exposure-strip').length,
     summaryText:document.getElementById('summaryBar')?.textContent || '',
     findingText:document.getElementById('findingBody')?.textContent || '',
   };
   setAudienceMode('clinician');
   const clinician = {
     exposureSummaryCount:document.querySelectorAll('#medList .exposure-summary').length,
+    summaryExposureCount:document.querySelectorAll('#summaryBar .summary-exposure-strip').length,
     doseSelects:document.querySelectorAll('#medList .dose-select').length,
     medListText:document.getElementById('medList')?.textContent || '',
+    summaryText:document.getElementById('summaryBar')?.textContent || '',
   };
   return { patient, clinician };
 })()`);
 assert(patientGeneResultListRegression.patient.audienceMode === 'patient', 'Patient gene-result selected-list regression should stay in Patient mode');
 assert(patientGeneResultListRegression.patient.doseSelects === 0, 'Patient gene-result selected list should not expose dose-tier selectors');
 assert(patientGeneResultListRegression.patient.exposureSummaryCount === 0, 'Patient gene-result selected list should hide exposure summary rows');
+assert(patientGeneResultListRegression.patient.summaryExposureCount === 0, 'Patient gene-result summary should hide technical exposure snapshot');
 assert(!/\b(?:AUC|Cmax|metabolite-level|active thiol|CYP\d|clearance|confidence|parent\s+[↑↓]|direction only)\b/i.test(
   patientGeneResultListRegression.patient.medListText
 ), 'Patient gene-result selected list should not expose technical metabolite/level rows');
-assert(patientGeneResultListRegression.clinician.exposureSummaryCount > 0, 'Clinician mode should keep exposure summary rows for gene-result stacks');
+assert(patientGeneResultListRegression.clinician.exposureSummaryCount === 0, 'Clinician selected list should keep exposure detail out of the sidebar');
+assert(patientGeneResultListRegression.clinician.summaryExposureCount > 0, 'Clinician mode should keep exposure summary rows for gene-result stacks');
 assert(patientGeneResultListRegression.clinician.doseSelects > 0, 'Clinician mode should keep dose-tier controls for gene-result stacks');
-assert(/\b(?:AUC|CYP\d|metabolite|parent\s+[↑↓])\b/i.test(patientGeneResultListRegression.clinician.medListText),
-  'Clinician selected list should retain technical exposure context');
+assert(/\b(?:CYP\d|metabolite|parent|higher|lower)\b/i.test(patientGeneResultListRegression.clinician.summaryText),
+  'Clinician summary should retain technical exposure context');
 
 const patientActiveMetaboliteFallbackRegression = window.eval(`(() => {
   activeStack = [];

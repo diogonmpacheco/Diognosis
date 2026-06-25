@@ -697,6 +697,7 @@ function renderSummaryBar() {
       </div>`}
     </div>
     ${patient ? "" : summaryStoryHtml}
+    ${renderSummaryExposureSnapshot(patient)}
     <div class="summary-next"><span class="summary-next-pill">${safePublicHtml(nextLabel)}</span><span>${safePublicHtml(visibleNextStep)}</span></div>
     ${renderSummaryActions(patient)}
   </div>`;
@@ -721,6 +722,73 @@ function renderSummaryActions(patient = isPatientAudience()) {
     ${shareUrl ? `<a class="summary-action-btn" href="${safeAttr(shareUrl)}" target="_blank" rel="noopener">Share link</a>` : ""}
     <span class="summary-action-status" id="summaryCopyStatus" role="status" aria-live="polite" aria-atomic="true"></span>
     <pre class="summary-copy-text" id="summaryCopyText" tabindex="0" aria-label="${safeAttr(copyAriaLabel)}" hidden></pre>
+  </div>`;
+}
+
+function renderSummaryExposureSnapshot(patient = isPatientAudience()) {
+  if (patient || !activeStack.length || typeof computeActorExposureDeltas !== "function") return "";
+  const rows = computeActorExposureDeltas(activeStack)
+    .filter(row => row && row.direction && row.direction !== "baseline")
+    .slice(0, 8);
+  if (!rows.length) return "";
+  const shown = rows.slice(0, 3);
+  const extra = rows.length - shown.length;
+  return `<div class="summary-exposure-strip" aria-label="Exposure direction snapshot">
+    <div class="summary-exposure-top">
+      <div class="summary-exposure-title">Exposure snapshot</div>
+      <button type="button" class="summary-exposure-link" onclick="focusPriorityFinding('overview','circulatingSection')">Open full view</button>
+    </div>
+    <div class="summary-exposure-items">${shown.map(renderSummaryExposureItem).join("")}</div>
+    ${extra > 0 ? `<button type="button" class="summary-exposure-more" onclick="focusPriorityFinding('overview','circulatingSection')">+${extra} more exposure signal${extra === 1 ? "" : "s"} in Overview</button>` : ""}
+  </div>`;
+}
+
+function renderSummaryExposureItem(row = {}) {
+  const direction = row.direction || "baseline";
+  const tone = direction === "increase" ? "up" : direction === "decrease" ? "down" : "";
+  const fold = Number(row.fold);
+  const directionLabel = direction === "increase" ? "higher" : direction === "decrease" ? "lower" : "changed";
+  const value = Number.isFinite(fold) && fold > 0
+    ? `${fold.toFixed(fold >= 10 ? 1 : 2)}x ${directionLabel}`
+    : `${directionLabel}, estimate pending`;
+  const parent = row.type === "metabolite" && row.parent ? ` from ${row.parent}` : "";
+  const meta = [
+    row.type || "actor",
+    parent.trim(),
+    row.driver || "current stack",
+  ].filter(Boolean).join(" · ");
+  return `<div class="summary-exposure-item">
+    <div class="summary-exposure-label">
+      <div class="summary-exposure-name">${safePublicHtml(row.name || "Unknown actor")}</div>
+      <div class="summary-exposure-meta">${safePublicHtml(meta)}</div>
+    </div>
+    <div class="summary-exposure-visual">
+      <div class="summary-exposure-value ${safeAttr(tone)}">${safePublicHtml(value)}</div>
+      ${renderSummaryExposureMeter(row)}
+    </div>
+  </div>`;
+}
+
+function renderSummaryExposureMeter(row = {}) {
+  const direction = row.direction || "baseline";
+  const fold = Number(row.fold);
+  let marker = 50;
+  if (Number.isFinite(fold) && fold > 0) {
+    marker = 50 + Math.log2(fold) * 18;
+  } else if (direction === "increase") {
+    marker = 68;
+  } else if (direction === "decrease") {
+    marker = 32;
+  }
+  marker = Math.max(4, Math.min(96, Math.round(marker)));
+  const center = 50;
+  const left = Math.min(center, marker);
+  const width = Math.max(2, Math.abs(marker - center));
+  const tone = direction === "increase" ? "up" : direction === "decrease" ? "down" : "";
+  return `<div class="summary-exposure-meter" aria-hidden="true">
+    <div class="summary-exposure-band"></div>
+    <div class="summary-exposure-fill ${safeAttr(tone)}" style="left:${safeAttr(left)}%;width:${safeAttr(width)}%"></div>
+    <div class="summary-exposure-marker" style="left:calc(${safeAttr(marker)}% - 1.5px)"></div>
   </div>`;
 }
 
@@ -3814,7 +3882,7 @@ function renderMedList() {
     const chipClass = recognized ? "med-chip" : "med-chip unrecognized";
     const removeLabel = `Remove ${primary}`;
     return `<span class="${chipClass}" title="${secondary ? safeAttr(secondary) : ""}">${labelHtml}${doseHtml}<button type="button" class="x" aria-label="${safeAttr(removeLabel)}" onclick="${removeAction}">×</button></span>`;
-  }).join("") + renderActorExposureSummary() + renderSelectedListActions();
+  }).join("") + renderSelectedListActions();
 }
 
 function renderSelectedListActions() {
@@ -3831,29 +3899,6 @@ function inlineJsString(value) {
     .replace(/\\/g, "\\\\")
     .replace(/'/g, "\\'")
     .replace(/[\u0000-\u001f\u007f]/g, " ");
-}
-
-function renderActorExposureSummary() {
-  if (isPatientAudience()) return "";
-  if (!activeStack.length || typeof computeActorExposureDeltas !== "function") return "";
-  const rows = computeActorExposureDeltas(activeStack)
-    .filter(row => row.direction !== "baseline")
-    .slice(0, 8);
-  if (!rows.length) return "";
-  return `<div class="exposure-summary">${rows.map(row => {
-    const up = row.direction === "increase";
-    const low = row.confidence === "low" || row.qualitative || !row.fold;
-    const chipClass = low ? "low" : (up ? "up" : "down");
-    const arrow = up ? "↑" : row.direction === "decrease" ? "↓" : "↔";
-    const value = row.fold ? `${arrow} ${row.fold.toFixed(row.fold >= 10 ? 1 : 2)}×` : `${arrow} direction only`;
-    const parent = row.type === "metabolite" ? ` from ${row.parent}` : "";
-    return `<div class="exposure-line">
-      <span class="exposure-name">${row.name}</span>
-      <span class="exposure-type">${row.type}</span>
-      <span class="exposure-chip ${chipClass}">${value}</span>
-      <span>${safePublicHtml(row.driver || "current stack")}${safePublicHtml(parent)}${row.note ? ` · ${safePublicHtml(row.note)}` : ""}</span>
-    </div>`;
-  }).join("")}</div>`;
 }
 
 function renderCirculatingOverview() {

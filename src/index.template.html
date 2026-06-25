@@ -178,14 +178,6 @@ body[data-audience="patient"] .med-chip .x{grid-column:2;width:44px;height:44px;
 body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .empty-state{text-align:center;padding:30px 20px;color:var(--text2);font-size:14px}
 .empty-state .icon{font-size:40px;margin-bottom:8px}
-.exposure-summary{margin-top:10px;padding-top:8px;border-top:1px solid var(--border);display:grid;gap:6px}
-.exposure-line{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:12px;color:var(--text2)}
-.exposure-name{font-weight:700;color:var(--text)}
-.exposure-type{font-size:9px;font-weight:800;text-transform:uppercase;padding:1px 5px;border-radius:6px;background:var(--card2);color:var(--text2)}
-.exposure-chip{font-size:11px;font-weight:800;padding:2px 7px;border-radius:8px}
-.exposure-chip.up{background:var(--amberBg);color:var(--amber)}
-.exposure-chip.down{background:var(--blueBg);color:var(--blue)}
-.exposure-chip.low{background:#f1f5f9;color:#64748b}
 .genotype-preview{margin-top:8px;padding:8px 10px;border-radius:8px;background:var(--card2);border:1px solid var(--border)}
 .genotype-preview-title{font-size:11px;font-weight:800;color:var(--text);margin-bottom:5px}
 .genotype-preview-row{font-size:11px;line-height:1.4;color:var(--text2);padding:3px 0}
@@ -595,6 +587,25 @@ body[data-audience="clinician"] .summary-story.clinician-priority .summary-story
 .summary-next{display:flex;align-items:center;gap:8px;padding:0;border-radius:0;background:transparent;color:var(--text2);font-size:13px;line-height:1.45;border:0;max-width:680px}
 .summary-next-pill{font-size:10px;font-weight:800;text-transform:uppercase;color:var(--accent);background:var(--accentBg);border:1px solid var(--accentLine);border-radius:999px;padding:3px 8px;white-space:nowrap}
 .summary-jump{appearance:none;border:0;background:transparent;display:inline-flex;align-items:center;min-height:32px;padding:0;font-size:12px;color:var(--accent);cursor:pointer;font-weight:800;text-decoration:underline}
+.summary-exposure-strip{display:grid;gap:8px;max-width:760px;padding:10px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.summary-exposure-top{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0}
+.summary-exposure-title{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--text)}
+.summary-exposure-link,.summary-exposure-more{appearance:none;border:0;background:transparent;color:var(--accent);font-family:var(--font);font-size:11px;font-weight:850;line-height:1.2;padding:0;text-decoration:underline;cursor:pointer;text-align:left}
+.summary-exposure-items{display:grid;gap:7px}
+.summary-exposure-item{display:grid;grid-template-columns:minmax(0,190px) minmax(150px,1fr);gap:12px;align-items:center;min-width:0;padding-top:7px;border-top:1px solid var(--border)}
+.summary-exposure-item:first-child{padding-top:0;border-top:0}
+.summary-exposure-label,.summary-exposure-visual{min-width:0}
+.summary-exposure-name{font-size:12px;font-weight:850;line-height:1.25;color:var(--text);overflow-wrap:anywhere}
+.summary-exposure-meta{margin-top:2px;font-size:10px;line-height:1.35;color:var(--text2);font-family:var(--mono);overflow-wrap:anywhere}
+.summary-exposure-value{font-family:var(--mono);font-size:11px;font-weight:900;text-align:right;color:var(--text2);line-height:1.2}
+.summary-exposure-value.up{color:var(--amber)}
+.summary-exposure-value.down{color:var(--blue)}
+.summary-exposure-meter{position:relative;height:7px;border-radius:999px;background:#f0efe9;margin-top:6px;overflow:hidden}
+.summary-exposure-band{position:absolute;top:0;bottom:0;left:45%;width:10%;background:var(--accentBg);border-left:1px solid var(--accentLine);border-right:1px solid var(--accentLine)}
+.summary-exposure-fill{position:absolute;top:0;bottom:0;border-radius:999px;background:var(--accent);opacity:.28}
+.summary-exposure-fill.up{background:var(--amber);opacity:.38}
+.summary-exposure-fill.down{background:var(--blue);opacity:.34}
+.summary-exposure-marker{position:absolute;top:-3px;width:3px;height:13px;border-radius:999px;background:var(--text);box-shadow:0 0 0 2px var(--surface)}
 .summary-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .summary-action-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid var(--border);border-radius:11px;background:var(--card);color:var(--text);font-size:13px;font-weight:750;padding:11px 16px;font-family:var(--font);cursor:pointer}
 .summary-action-btn:first-child{background:var(--text);border-color:var(--text);color:#fff}
@@ -948,6 +959,8 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
   .section-body{padding:10px 12px}
   .summary-next{display:grid;grid-template-columns:1fr;gap:7px;align-items:start}
   .summary-next-pill{justify-self:start}
+  .summary-exposure-item{grid-template-columns:1fr;gap:5px}
+  .summary-exposure-value{text-align:left}
   .med-chip-secondary{max-width:180px}
   .med-chip{grid-template-columns:minmax(0,1fr) minmax(84px,112px) 44px;gap:6px}
   .med-chip .dose-select{min-width:0;flex-shrink:0;font-size:11px;padding:6px}
