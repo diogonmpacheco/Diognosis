@@ -945,7 +945,7 @@ function renderPatientQuestionsPage(presentations = []) {
 }
 
 function renderClinicianFindingsOverview(presentations = []) {
-  const ranked = rankPublicFindingPresentations(presentations);
+  const ranked = rankPublicFindingPresentations(getClinicianFacingPublicFindingPresentations(presentations));
   const shown = ranked.slice(0, 1);
   const remaining = ranked.slice(1);
   return `
@@ -1032,6 +1032,71 @@ function getPatientFacingPublicFindingPresentations(presentations = getCurrentPu
     deduped.push(presentation);
   }
   return deduped;
+}
+
+function getClinicianFacingPublicFindingPresentations(presentations = getCurrentPublicFindingPresentations()) {
+  const list = Array.isArray(presentations) ? presentations.filter(Boolean) : [];
+  const deduped = [];
+  const seen = new Set();
+  for (const presentation of list) {
+    const keyParts = clinicianOverviewDedupeKeys(presentation);
+    if (keyParts.some(key => seen.has(key))) continue;
+    keyParts.forEach(key => seen.add(key));
+    deduped.push(presentation);
+  }
+  return deduped;
+}
+
+function clinicianOverviewDedupeKeys(presentation = {}) {
+  const actorKey = clinicianOverviewActorKey(presentation);
+  const review = normalizeClinicianOverviewText(clinicianOverviewActionText(presentation, presentation.whatToReview || ""));
+  const why = normalizeClinicianOverviewText(presentation.whyItMatters || "");
+  const changed = normalizeClinicianOverviewText(presentation.whatChanged || "");
+  const category = clinicianOverviewConcernCategory([
+    presentation.title,
+    presentation.whatChanged,
+    presentation.whyItMatters,
+    presentation.whatToReview,
+    review,
+  ].join(" "));
+  return [
+    `${category}|${actorKey}|review|${review}`,
+    why.length > 24 ? `${category}|${actorKey}|why|${why}` : "",
+    changed.length > 32 && category !== "general" ? `${category}|${actorKey}|changed|${changed}` : "",
+  ].filter(Boolean);
+}
+
+function clinicianOverviewActorKey(presentation = {}) {
+  const actors = (presentation.affectedSubstances || [])
+    .map(actor => normalizeFindingToken(actor))
+    .filter(Boolean)
+    .sort();
+  if (actors.length) return actors.join("|");
+  return (activeStack || [])
+    .map(actor => normalizeFindingToken(actor))
+    .filter(Boolean)
+    .sort()
+    .join("|") || "current-stack";
+}
+
+function normalizeClinicianOverviewText(value = "") {
+  return publicDisplayText(value)
+    .toLowerCase()
+    .replace(/\([^)]*\)/g, "")
+    .replace(/\b\d+(?:\.\d+)?\b/g, "#")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function clinicianOverviewConcernCategory(value = "") {
+  const text = publicDisplayText(value).toLowerCase();
+  if (/\b(?:washout|persistence|timing|switch|overlap|enzyme resynthesis|after stopping|recovery)\b/.test(text)) return "timing";
+  if (/contraindicat|avoid|do not use|do not take|hold|suspend|strong cyp3a4/.test(text)) return "avoidance";
+  if (/bleed|clot|anticoagul|platelet|inr/.test(text)) return "hemostasis";
+  if (/qt|torsades|arrhythm|heart rhythm|bradycard/.test(text)) return "rhythm";
+  if (/genotype|pgx|phenotype|cyp\d|ugt1a1|dpyd|tpmt|nudt15|hla-b/.test(text)) return "pgx";
+  if (/exposure|auc|substrate|inhibitor|inducer|metabolite|toxicity/.test(text)) return "exposure";
+  return "general";
 }
 
 function patientTimingPresentation(presentation = {}, trust = null) {
