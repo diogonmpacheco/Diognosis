@@ -578,7 +578,7 @@ function renderSummaryBar() {
     severeCount = severePairs.length;
     riskClass = severeCount || interactionScore >= 60 ? "high" : interactionScore >= 30 ? "moderate" : "low";
     scoreValue = interactionScore;
-    scoreLabel = risk.level.split(" ")[0];
+    scoreLabel = "Priority";
     const topSevere = severePairs.slice(0, 2).join(", ");
     headline = severeCount > 0 ? "High-priority interaction found" :
       interactionScore >= 30 ? "Some monitoring may be needed" :
