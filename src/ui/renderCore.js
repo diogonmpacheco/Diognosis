@@ -908,7 +908,9 @@ function renderInteractionFindingsOverview(risk) {
   currentPublicFindingPresentations = rankPublicFindingPresentations(buildPublicFindingPresentations(overviewFindings));
   const visiblePresentations = isPatientAudience()
     ? rankPublicFindingPresentations(getPatientFacingPublicFindingPresentations(currentPublicFindingPresentations))
-    : rankPublicFindingPresentations(getClinicianFacingPublicFindingPresentations(currentPublicFindingPresentations));
+    : rankPublicFindingPresentations(isReviewerMode()
+      ? currentPublicFindingPresentations
+      : getClinicianFacingPublicFindingPresentations(currentPublicFindingPresentations));
   if (!currentPublicFindingPresentations.length) {
     if (activeStack.length < 2) {
       hideSectionAndClear("findingSection", "findingBody", "findingCount");
@@ -945,7 +947,9 @@ function renderPatientQuestionsPage(presentations = []) {
 }
 
 function renderClinicianFindingsOverview(presentations = []) {
-  const ranked = rankPublicFindingPresentations(getClinicianFacingPublicFindingPresentations(presentations));
+  const ranked = rankPublicFindingPresentations(isReviewerMode()
+    ? presentations
+    : getClinicianFacingPublicFindingPresentations(presentations));
   const shown = ranked.slice(0, 1);
   const remaining = ranked.slice(1);
   return `
@@ -1268,7 +1272,9 @@ function buildReviewScopeSummary(cache = {}) {
     : buildPublicFindingPresentations(concerns);
   const publicPresentations = isPatientAudience()
     ? getPatientFacingPublicFindingPresentations(allPublicPresentations)
-    : getClinicianFacingPublicFindingPresentations(allPublicPresentations);
+    : (isReviewerMode()
+      ? allPublicPresentations
+      : getClinicianFacingPublicFindingPresentations(allPublicPresentations));
   const sourceLinked = publicPresentations.filter(presentation => presentation.trustContract?.sourceLinked).length;
   const modeled = publicPresentations.filter(presentation => presentation.trustContract && !presentation.trustContract.sourceLinked).length;
   const trustReady = publicPresentations.filter(presentation => presentation.trustContract?.ready).length;
