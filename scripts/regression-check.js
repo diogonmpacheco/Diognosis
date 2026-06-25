@@ -2239,6 +2239,11 @@ const publicFindingHierarchyRegression = window.eval(`(() => {
     tramadolPm:resetScenario(["Tramadol"], () => { activeGenotype.CYP2D6 = GENOTYPE_PHENOTYPE.PM; }),
     tramadolUm:resetScenario(["Tramadol"], () => { activeGenotype.CYP2D6 = GENOTYPE_PHENOTYPE.UM; }),
     clopidogrel:resetScenario(["Clopidogrel", "Omeprazole"], () => { activeGenotype.CYP2C19 = GENOTYPE_PHENOTYPE.PM; }),
+    warfarin:resetScenario(["Warfarin"], () => {
+      activeGenotype.CYP2C9 = GENOTYPE_PHENOTYPE.PM;
+      activeGenotype.VKORC1 = GENOTYPE_PHENOTYPE.PM;
+      activeGenotype.CYP4F2 = GENOTYPE_PHENOTYPE.PM;
+    }),
     anesthesia:resetScenario(["Succinylcholine"], () => {
       activeGenotype.BCHE = GENOTYPE_PHENOTYPE.PM;
       activeGenotype["RYR1/CACNA1S MH variant"] = GENOTYPE_RISK_STATUS.PRESENT;
@@ -2278,10 +2283,35 @@ assert(publicFindingHierarchyRegression.clopidogrel.presentations.some(p => /Clo
 assert(!/Clopidogrel exposure may rise|Clopidogrel.*levels may rise|genotype may change Clopidogrel exposure|PM: ineffective; use prasugrel/i.test(publicFindingHierarchyRegression.clopidogrel.overviewText),
   'Clopidogrel + CYP2C19 PM should not show a generic exposure card or raw alternative directive ahead of activation context');
 assert(publicFindingHierarchyRegression.clopidogrel.evidenceRelatedButtons > 0, 'Clopidogrel evidence support should link back to the Overview finding');
+assert(/Warfarin|CYP2C9|INR|VKORC1|CYP4F2/i.test(publicFindingHierarchyRegression.warfarin.overviewText),
+  'Warfarin PGx Overview should frame CYP2C9 together with INR and multi-gene dosing context');
+assert(!/reduce dose 30-50|reduce dose by|dose requirement ~1mg|standalone dose instruction/i.test(publicFindingHierarchyRegression.warfarin.overviewText),
+  'Warfarin PGx Overview should not expose fixed genotype-only dosing instructions');
 assert(publicFindingHierarchyRegression.anesthesia.presentations.some(p => /BCHE|paralysis|apnea|Malignant-hyperthermia|RYR1|CACNA1S/i.test(p.title + " " + p.whatChanged + " " + p.whatToReview)),
   'Succinylcholine + BCHE/RYR1 should lead with procedural anesthesia risk context');
 assert(!/Succinylcholine exposure may rise|TDM|levels may rise|genotype may change Succinylcholine exposure/i.test(publicFindingHierarchyRegression.anesthesia.overviewText),
   'Succinylcholine + BCHE/RYR1 should not show generic exposure/TDM wording as the Overview priority');
+
+const warfarinStandardsRegression = window.eval(`(() => {
+  activeStack = ["Warfarin"];
+  userGenetics = {};
+  activeGenotype = {};
+  Object.keys(GENOTYPE_EFFECTS || {}).forEach(g => activeGenotype[g] = GENOTYPE_PHENOTYPE.NM);
+  activeGenotype.CYP2C9 = GENOTYPE_PHENOTYPE.PM;
+  activeGenotype.VKORC1 = GENOTYPE_PHENOTYPE.PM;
+  activeGenotype.CYP4F2 = GENOTYPE_PHENOTYPE.PM;
+  const rows = getPgxActionSummariesForStack(activeStack, activeGenotype || {});
+  return {
+    genes: rows.map(row => row.gene),
+    text: rows.map(row => [row.whatChanged, row.reviewDirection, row.safetyBoundary].join(" ")).join(" "),
+    markers: rows.flatMap(row => row.markerMappings || []).map(marker => marker.dbsnp || marker.label),
+  };
+})()`);
+assert(["CYP2C9","VKORC1","CYP4F2"].every(gene => warfarinStandardsRegression.genes.includes(gene)),
+  `Warfarin standards should expose CYP2C9, VKORC1, and CYP4F2 action rows, got ${warfarinStandardsRegression.genes.join(', ')}`);
+assert(warfarinStandardsRegression.markers.includes("rs2108622"), 'Warfarin CYP4F2 standards should include rs2108622 marker identity');
+assert(/INR|algorithm/i.test(warfarinStandardsRegression.text) && !/reduce dose 30-50|~1mg\/day/i.test(warfarinStandardsRegression.text),
+  'Warfarin standards copy should be algorithm/INR based and avoid fixed dose-change phrases');
 
 loadCase(window, ['Fluoxetine']);
 const fluoxetineWashout = window.eval('computeWashoutCalendar(["Fluoxetine"]).find(e => e.actorId === "norfluoxetine")');

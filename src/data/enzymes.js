@@ -82,7 +82,7 @@ const PHARMGKB_EVIDENCE = {
     grade:"A",
     guideline:"CPIC",
     pairs:[
-      {drug:"Warfarin",level:"A",action:"PM (*2/*3): reduce dose 30-50%; use pharmacogenomic dosing"},
+      {drug:"Warfarin",level:"A",action:"Use CPIC genotype-guided warfarin dosing algorithms with CYP2C9, VKORC1, CYP4F2, clinical factors, and INR response; do not apply a fixed genotype-only percentage"},
       {drug:"Phenytoin",level:"A",action:"PM: reduce dose by 25-50%; monitor levels closely"},
       {drug:"Celecoxib",level:"B",action:"PM: reduce dose 50%; increased GI/CV risk"},
       {drug:"Ibuprofen",level:"B",action:"PM: ↑ AUC ~2×; consider dose reduction"},
@@ -371,7 +371,7 @@ const PHARMGKB_EVIDENCE = {
     grade:"B",
     guideline:"CPIC",
     pairs:[
-      {drug:"Warfarin",level:"B",action:"V433M (*3): ↑ dose requirement ~1mg/day"}
+      {drug:"Warfarin",level:"B",action:"CYP4F2 V433M/*3 is a modest warfarin dose-modifier; include it in genotype-guided dosing algorithms and INR follow-up, not as a standalone dose instruction",guidelineName:"CYP2C9, VKORC1, CYP4F2 and Warfarin",guidelineUrl:"https://www.clinpgx.org/guideline/PA166251465",pmids:["21900891","28198005"],evidenceRefs:["ev_warfarin_cyp2c9_vkorc1_cyp4f2_cpic2017"],classification:"Optional/Modest modifier"}
     ]
   },
   "VKORC1":{
