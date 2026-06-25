@@ -1066,6 +1066,7 @@ function clinicianOverviewDedupeKeys(presentation = {}) {
   return [
     `${category}|${actorKey}|review|${review}`,
     why.length > 24 ? `${category}|${actorKey}|why|${why}` : "",
+    why.length > 24 ? `${actorKey}|why|${why}` : "",
     changed.length > 32 && category !== "general" ? `${category}|${actorKey}|changed|${changed}` : "",
   ].filter(Boolean);
 }
@@ -1129,6 +1130,7 @@ function shouldSuppressPatientTimingPresentation(presentation = {}, presentation
   ].join(" ")).toLowerCase();
   const dominantRiskMarker = patientRiskMarkerContext(dominantText);
   if (dominantRiskMarker) return true;
+  if (hasPatientAnticholinergicConcern(dominantText) || hasPatientSedationConcern(dominantText)) return true;
   if (nonTiming.length >= 2) return true;
   if ((activeStack || []).length <= 1 && (
     hasToxicMetabolitePatientContext(dominantText) ||
@@ -1801,7 +1803,7 @@ function renderPublicFindingCard(presentation, index = 0) {
   const title = patient ? patientFindingTitleText(presentation) : presentation.title;
   const trust = presentation.trustContract || (typeof buildV1FindingTrustContract === "function" ? buildV1FindingTrustContract(finding, { stack:activeStack }) : null);
   const changedText = patient ? patientFindingStepText(presentation, "changed") : presentation.whatChanged;
-  const whyText = patient ? patientFindingStepText(presentation, "why") : presentation.whyItMatters;
+  const whyText = patient ? patientFindingStepText(presentation, "why") : clinicianOverviewWhyText(presentation);
   const reviewText = patient ? patientFindingStepText(presentation, "review") : clinicianOverviewActionText(presentation, presentation.whatToReview);
   const detailButton = !patient && presentation.detailTab && presentation.detailElementId
     ? `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('${safeAttr(presentation.detailTab)}','${safeAttr(presentation.detailElementId)}')">Supporting detail</button>`
@@ -1810,7 +1812,8 @@ function renderPublicFindingCard(presentation, index = 0) {
   const severityLabel = patient ? patientSeverityLabel(severity) : severity;
   const showDiscussionGuide = patient || typeof isReviewerMode !== "function" || isReviewerMode();
   const discussionGuide = showDiscussionGuide ? renderFindingDiscussionGuide(presentation, trust, patient) : "";
-  const monitoringGuide = renderFindingMonitoringGuide(presentation, trust, patient);
+  const showMonitoringGuide = patient || typeof isReviewerMode !== "function" || isReviewerMode() || index === 0;
+  const monitoringGuide = showMonitoringGuide ? renderFindingMonitoringGuide(presentation, trust, patient) : "";
   const followupGuide = !patient && typeof isReviewerMode === "function" && !isReviewerMode() && (discussionGuide || monitoringGuide)
     ? `<details class="finding-followup-details"><summary>Review notes</summary>${discussionGuide}${monitoringGuide}</details>`
     : `${discussionGuide}${monitoringGuide}`;
@@ -1862,6 +1865,22 @@ function renderFindingDiscussionGuide(presentation = {}, trust = null, patient =
     <div class="finding-discussion-label">${safePublicHtml(label)}</div>
     <div class="finding-discussion-text">${safePublicHtml(text)}</div>
   </div>`;
+}
+
+function clinicianOverviewWhyText(presentation = {}) {
+  const why = publicDisplayText(presentation.whyItMatters || "");
+  if (!why) return "";
+  const changed = publicDisplayText(presentation.whatChanged || "");
+  const whyNorm = normalizeClinicianOverviewText(why);
+  const changedNorm = normalizeClinicianOverviewText(changed);
+  const firstWhyClause = whyNorm.split(/[.;]/)[0]?.trim() || "";
+  if (
+    (firstWhyClause.length > 60 && changedNorm.includes(firstWhyClause.slice(0, 60))) ||
+    (whyNorm.length > 80 && changedNorm.includes(whyNorm.slice(0, 80)))
+  ) {
+    return "Same mechanism as the expected-change statement above; source detail is grouped in Evidence.";
+  }
+  return why;
 }
 
 function hasAntiplateletPatientContext(text = "") {
@@ -2310,7 +2329,7 @@ function patientFindingStepText(presentation = {}, field = "changed") {
     if (hasPatientNebivololGeneContext(lower)) {
       return "Your gene result and current medicines may raise nebivolol levels and side-effect risk, so follow-up may be needed.";
     }
-    if (timingPresentation || /washout|persistence|timing|switch/.test(lower)) {
+    if (timingPresentation) {
       return "Timing may matter because some effects can last after a medicine is changed.";
     }
     if (riskMarkerKind === "g6pd") {
