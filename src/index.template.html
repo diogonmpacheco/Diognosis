@@ -767,6 +767,27 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
 .patient-question-discussion .finding-discussion-text{font-size:15px;line-height:1.48}
 .patient-question-reason{margin-top:10px}
 .patient-question-reason-label{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:0;color:var(--faint);margin-bottom:4px}
+.circulating-map{display:grid;gap:10px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.circulating-map-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;min-width:0}
+.circulating-map-kicker{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:3px}
+.circulating-map-title{font-size:14px;line-height:1.3;font-weight:850;color:var(--text);overflow-wrap:anywhere}
+.circulating-map-counts{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:5px;font-size:10px;font-family:var(--mono);font-weight:850;color:var(--text2)}
+.circulating-map-counts span{white-space:nowrap}
+.circulating-map-rows{display:grid;gap:8px}
+.circulating-map-row{display:grid;grid-template-columns:minmax(104px,.7fr) minmax(150px,1fr) minmax(74px,auto);gap:10px;align-items:center;min-width:0}
+.circulating-map-label{display:grid;gap:2px;min-width:0}
+.circulating-map-name{font-size:12px;font-weight:850;line-height:1.25;color:var(--text);overflow-wrap:anywhere}
+.circulating-map-kind{font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:var(--faint);overflow-wrap:anywhere}
+.circulating-map-track{position:relative;height:10px;border-radius:999px;background:#f0efe9;overflow:hidden}
+.circulating-map-band{position:absolute;top:0;bottom:0;left:45%;width:10%;background:var(--accentBg);border-left:1px solid var(--accentLine);border-right:1px solid var(--accentLine)}
+.circulating-map-fill{position:absolute;top:0;bottom:0;border-radius:999px;background:var(--accent);opacity:.3}
+.circulating-map-fill.up{background:var(--amber);opacity:.4}
+.circulating-map-fill.down{background:var(--blue);opacity:.36}
+.circulating-map-marker{position:absolute;top:-3px;width:4px;height:16px;border-radius:999px;background:var(--text);box-shadow:0 0 0 2px var(--card)}
+.circulating-map-value{font-family:var(--mono);font-size:10px;font-weight:900;text-align:right;color:var(--text2);white-space:nowrap}
+.circulating-map-value.up{color:var(--amber)}
+.circulating-map-value.down{color:var(--blue)}
+.circulating-map-more{font-size:10px;font-family:var(--mono);font-weight:850;color:var(--text2)}
 .circulating-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
 .circulating-card{border:1px solid var(--border);border-radius:12px;background:var(--card);padding:14px 15px}
 .circulating-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
@@ -775,13 +796,6 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
 .circulating-value{font-family:var(--mono);font-size:11px;font-weight:800;border:1px solid var(--border);border-radius:999px;background:var(--card2);color:var(--text2);padding:3px 7px;white-space:nowrap}
 .circulating-value.up{color:var(--amber);background:var(--amberBg);border-color:rgba(168,120,27,.3)}
 .circulating-value.down{color:var(--blue);background:var(--blueBg);border-color:rgba(49,95,143,.25)}
-.circulating-meter{position:relative;height:8px;border-radius:999px;background:#f0efe9;margin-top:12px;overflow:hidden}
-.circulating-band{position:absolute;top:0;bottom:0;left:45%;width:10%;background:var(--accentBg);border-left:1px solid var(--accentLine);border-right:1px solid var(--accentLine)}
-.circulating-fill{position:absolute;top:0;bottom:0;border-radius:999px;background:var(--accent);opacity:.32}
-.circulating-fill.up{background:var(--amber);opacity:.38}
-.circulating-fill.down{background:var(--blue);opacity:.34}
-.circulating-marker{position:absolute;top:-3px;width:3px;height:14px;border-radius:999px;background:var(--text);box-shadow:0 0 0 2px var(--card)}
-.circulating-axis{display:flex;justify-content:space-between;gap:8px;margin-top:5px;font-size:10px;font-weight:750;color:var(--faint);font-family:var(--mono)}
 .circulating-note{font-size:12px;line-height:1.45;color:var(--text2);margin-top:8px}
 .circulating-empty{font-size:13px;line-height:1.5;color:var(--text2);border:1px dashed var(--border);border-radius:12px;background:var(--card);padding:16px 18px;text-align:center}
 .no-signal-card{border:1px solid rgba(245,158,11,.28);border-radius:10px;background:var(--amberBg);padding:13px 14px}
@@ -978,6 +992,10 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
   .patient-question-title{font-size:14px;line-height:1.35}
   .patient-question-discussion .finding-discussion-text{font-size:14px}
   .finding-discussion,.finding-monitoring{padding:9px 10px}
+  .circulating-map-head{display:grid;gap:7px}
+  .circulating-map-counts{justify-content:flex-start}
+  .circulating-map-row{grid-template-columns:1fr;gap:5px}
+  .circulating-map-value{text-align:left}
   .inter-head,.pd-head,.tr-head{flex-wrap:wrap;gap:4px}
   .inter-sev,.pd-sev{font-size:11px}
   #matrixBody table{font-size:11px}

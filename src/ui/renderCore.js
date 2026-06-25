@@ -746,11 +746,7 @@ function renderSummaryExposureSnapshot(patient = isPatientAudience()) {
 function renderSummaryExposureItem(row = {}) {
   const direction = row.direction || "baseline";
   const tone = direction === "increase" ? "up" : direction === "decrease" ? "down" : "";
-  const fold = Number(row.fold);
-  const directionLabel = direction === "increase" ? "higher" : direction === "decrease" ? "lower" : "changed";
-  const value = Number.isFinite(fold) && fold > 0
-    ? `${fold.toFixed(fold >= 10 ? 1 : 2)}x ${directionLabel}`
-    : `${directionLabel}, estimate pending`;
+  const value = formatExposureDirectionValue(row, { words:true });
   const parent = row.type === "metabolite" && row.parent ? ` from ${row.parent}` : "";
   const meta = [
     row.type || "actor",
@@ -770,6 +766,15 @@ function renderSummaryExposureItem(row = {}) {
 }
 
 function renderSummaryExposureMeter(row = {}) {
+  const { marker, left, width, tone } = exposureMeterGeometry(row);
+  return `<div class="summary-exposure-meter" aria-hidden="true">
+    <div class="summary-exposure-band"></div>
+    <div class="summary-exposure-fill ${safeAttr(tone)}" style="left:${safeAttr(left)}%;width:${safeAttr(width)}%"></div>
+    <div class="summary-exposure-marker" style="left:calc(${safeAttr(marker)}% - 1.5px)"></div>
+  </div>`;
+}
+
+function exposureMeterGeometry(row = {}) {
   const direction = row.direction || "baseline";
   const fold = Number(row.fold);
   let marker = 50;
@@ -785,11 +790,7 @@ function renderSummaryExposureMeter(row = {}) {
   const left = Math.min(center, marker);
   const width = Math.max(2, Math.abs(marker - center));
   const tone = direction === "increase" ? "up" : direction === "decrease" ? "down" : "";
-  return `<div class="summary-exposure-meter" aria-hidden="true">
-    <div class="summary-exposure-band"></div>
-    <div class="summary-exposure-fill ${safeAttr(tone)}" style="left:${safeAttr(left)}%;width:${safeAttr(width)}%"></div>
-    <div class="summary-exposure-marker" style="left:calc(${safeAttr(marker)}% - 1.5px)"></div>
-  </div>`;
+  return { marker, left, width, tone };
 }
 
 function buildOverviewHandoffText() {
@@ -3919,8 +3920,54 @@ function renderCirculatingOverview() {
     body.innerHTML = `<div class="circulating-empty">No exposure or metabolite direction changes are available for the selected list.</div>`;
     return rows;
   }
-  body.innerHTML = `<div class="circulating-grid">${rows.map(renderCirculatingCard).join("")}</div>`;
+  body.innerHTML = `${renderCirculatingDirectionMap(rows)}<div class="circulating-grid">${rows.map(renderCirculatingCard).join("")}</div>`;
   return rows;
+}
+
+function renderCirculatingDirectionMap(rows = []) {
+  const changedRows = rows.filter(row => row.direction !== "baseline");
+  const lead = changedRows[0] || rows[0] || {};
+  const counts = {
+    higher: rows.filter(row => row.direction === "increase").length,
+    lower: rows.filter(row => row.direction === "decrease").length,
+    expected: rows.filter(row => row.direction === "baseline").length,
+  };
+  const leadText = lead.name
+    ? `${lead.name}: ${formatExposureDirectionValue(lead, { words:true })}`
+    : "No directional signal";
+  return `<div class="circulating-map" aria-label="Exposure direction map">
+    <div class="circulating-map-head">
+      <div>
+        <div class="circulating-map-kicker">Direction map</div>
+        <div class="circulating-map-title">${safePublicHtml(leadText)}</div>
+      </div>
+      <div class="circulating-map-counts">
+        <span>${counts.higher} higher</span>
+        <span>${counts.expected} expected</span>
+        <span>${counts.lower} lower</span>
+      </div>
+    </div>
+    <div class="circulating-map-rows">${rows.slice(0, 6).map(renderCirculatingMapRow).join("")}</div>
+    ${rows.length > 6 ? `<div class="circulating-map-more">+${rows.length - 6} more below</div>` : ""}
+  </div>`;
+}
+
+function renderCirculatingMapRow(row = {}) {
+  const { marker, left, width, tone } = exposureMeterGeometry(row);
+  const parent = row.type === "metabolite" && row.parent ? ` from ${row.parent}` : "";
+  const kind = `${row.type || "actor"}${parent}`;
+  return `<div class="circulating-map-row">
+    <div class="circulating-map-label">
+      <span class="circulating-map-name">${safePublicHtml(row.name || "Unknown actor")}</span>
+      <span class="circulating-map-kind">${safePublicHtml(kind)}</span>
+    </div>
+    <div class="circulating-map-track" aria-label="${safeAttr(`${row.name || "Unknown actor"} ${formatExposureDirectionValue(row, { words:true })}`)}">
+      <div class="circulating-map-band"></div>
+      <div class="circulating-map-fill ${safeAttr(tone)}" style="left:${safeAttr(left)}%;width:${safeAttr(width)}%"></div>
+      <div class="circulating-map-marker" style="left:calc(${safeAttr(marker)}% - 2px)"></div>
+    </div>
+    <div class="circulating-map-value ${safeAttr(tone)}">${safePublicHtml(formatExposureDirectionValue(row, { words:true }))}</div>
+  </div>`;
 }
 
 function renderCirculatingCard(row = {}) {
@@ -3928,16 +3975,13 @@ function renderCirculatingCard(row = {}) {
   const up = direction === "increase";
   const down = direction === "decrease";
   const tone = up ? "up" : down ? "down" : "";
-  const value = row.fold
-    ? `${up ? "↑" : down ? "↓" : "↔"} ${row.fold.toFixed(row.fold >= 10 ? 1 : 2)}×`
-    : (direction === "baseline" ? "baseline" : `${up ? "↑" : down ? "↓" : "↔"} direction`);
+  const value = formatExposureDirectionValue(row);
   const parent = row.type === "metabolite" && row.parent ? ` from ${row.parent}` : "";
   const note = [
     row.driver || "current stack",
     parent ? parent.trim() : "",
     row.note || "",
   ].filter(Boolean).join(" · ");
-  const meter = renderCirculatingMeter(row);
   return `<div class="circulating-card">
     <div class="circulating-head">
       <div>
@@ -3946,33 +3990,24 @@ function renderCirculatingCard(row = {}) {
       </div>
       <span class="circulating-value ${safeAttr(tone)}">${safePublicHtml(value)}</span>
     </div>
-    ${meter}
     <div class="circulating-note">${safePublicHtml(note || "No directional change detected.")}</div>
   </div>`;
 }
 
-function renderCirculatingMeter(row = {}) {
+function formatExposureDirectionValue(row = {}, options = {}) {
   const direction = row.direction || "baseline";
   const fold = Number(row.fold);
-  let marker = 50;
-  if (Number.isFinite(fold) && fold > 0) {
-    marker = 50 + Math.log2(fold) * 18;
-  } else if (direction === "increase") {
-    marker = 68;
-  } else if (direction === "decrease") {
-    marker = 32;
+  const up = direction === "increase";
+  const down = direction === "decrease";
+  const directionLabel = up ? "higher" : down ? "lower" : "expected";
+  if (direction === "baseline") return options.words ? "expected" : "baseline";
+  if (options.words) {
+    return Number.isFinite(fold) && fold > 0
+      ? `${fold.toFixed(fold >= 10 ? 1 : 2)}x ${directionLabel}`
+      : directionLabel;
   }
-  marker = Math.max(4, Math.min(96, Math.round(marker)));
-  const center = 50;
-  const left = Math.min(center, marker);
-  const width = Math.max(2, Math.abs(marker - center));
-  const tone = direction === "increase" ? "up" : direction === "decrease" ? "down" : "";
-  return `<div class="circulating-meter" aria-label="Relative exposure direction">
-    <div class="circulating-band" title="Expected range"></div>
-    <div class="circulating-fill ${safeAttr(tone)}" style="left:${safeAttr(left)}%;width:${safeAttr(width)}%"></div>
-    <div class="circulating-marker" style="left:calc(${safeAttr(marker)}% - 1.5px)"></div>
-  </div>
-  <div class="circulating-axis"><span>lower</span><span>expected</span><span>higher</span></div>`;
+  if (Number.isFinite(fold) && fold > 0) return `${up ? "↑" : down ? "↓" : "↔"} ${fold.toFixed(fold >= 10 ? 1 : 2)}×`;
+  return `${up ? "↑" : down ? "↓" : "↔"} direction`;
 }
 
 function renderRiskGauge(risk) {
