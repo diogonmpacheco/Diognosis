@@ -1109,15 +1109,69 @@ function getPatientFacingPublicFindingPresentations(presentations = getCurrentPu
 
 function getClinicianFacingPublicFindingPresentations(presentations = getCurrentPublicFindingPresentations()) {
   const list = Array.isArray(presentations) ? presentations.filter(Boolean) : [];
+  const filtered = list.filter(presentation =>
+    !shouldSuppressClinicianRedundantPresentation(presentation, list)
+  );
   const deduped = [];
   const seen = new Set();
-  for (const presentation of list) {
+  for (const presentation of filtered) {
     const keyParts = clinicianOverviewDedupeKeys(presentation);
     if (keyParts.some(key => seen.has(key))) continue;
     keyParts.forEach(key => seen.add(key));
     deduped.push(presentation);
   }
   return deduped;
+}
+
+function shouldSuppressClinicianRedundantPresentation(presentation = {}, presentations = []) {
+  if (!isGenericClinicianExposurePresentation(presentation)) return false;
+  const currentActors = clinicianOverviewActorTokens(presentation);
+  if (!currentActors.size) return false;
+  return (presentations || []).some(candidate => {
+    if (!candidate || candidate === presentation) return false;
+    if (publicFindingSeverityScore(candidate.severity) < publicFindingSeverityScore(presentation.severity)) return false;
+    if (!clinicianActorSetsOverlap(currentActors, clinicianOverviewActorTokens(candidate))) return false;
+    return isSpecificClinicianPgxOrProcedurePresentation(candidate);
+  });
+}
+
+function clinicianOverviewActorTokens(presentation = {}) {
+  const actors = [
+    ...(presentation.affectedSubstances || []),
+    ...(presentation.sourceFinding?.affectedActors || []).map(actor => actor?.id),
+    ...(presentation.sourceFinding?.victimActors || []).map(actor => actor?.id),
+    ...(presentation.sourceFinding?.perpetratorActors || []).map(actor => actor?.id),
+    ...(presentation.sourceFinding?.sourceFindings || []).flatMap(row => [row.drug1, row.drug2, row.parent, row.actor, row.victim, row.perpetrator]),
+    ...(presentation.sourceFinding?.sourceFindingsFull || []).flatMap(finding => [
+      ...(finding?.affectedActors || []).map(actor => actor?.id),
+      ...(finding?.victimActors || []).map(actor => actor?.id),
+      ...(finding?.perpetratorActors || []).map(actor => actor?.id),
+      ...(finding?.sourceRows || []).flatMap(row => [row.drug1, row.drug2, row.parent, row.actor, row.victim, row.perpetrator]),
+    ]),
+  ];
+  return new Set(actors.map(actor => normalizeFindingToken(actor)).filter(Boolean));
+}
+
+function clinicianActorSetsOverlap(left = new Set(), right = new Set()) {
+  for (const actor of left) {
+    if (right.has(actor)) return true;
+  }
+  return false;
+}
+
+function isGenericClinicianExposurePresentation(presentation = {}) {
+  const domain = presentation.sourceFinding?.clinicalConcernDomain || presentation.trustContract?.concernCategory || "";
+  const text = publicFindingSearchText(presentation);
+  if (presentation.signal?.kind === "exposure") return true;
+  return /exposure|level|auc|substrate|inhibitor|inducer|tdm|enzyme|genotype may change/.test(text) &&
+    /exposure_increase_toxicity|exposure_decrease_failure|induction_loss_of_efficacy|parent_accumulation|model_only|metabolism|exposure/i.test(domain);
+}
+
+function isSpecificClinicianPgxOrProcedurePresentation(presentation = {}) {
+  const domain = presentation.sourceFinding?.clinicalConcernDomain || "";
+  const text = publicFindingSearchText(presentation);
+  return /activation_failure|risk_marker_context|hypersensitivity_or_scar|toxic_metabolite_accumulation|active_metabolite_accumulation/i.test(domain) ||
+    /\b(?:activation|active thiol|morphine|o-desmethyltramadol|m1|bche|pseudocholinesterase|paralysis|apnea|malignant hyperthermia|anesthesia|risk marker|sn-38|5-fu|6-tgn)\b/.test(text);
 }
 
 function clinicianOverviewDedupeKeys(presentation = {}) {
@@ -2881,6 +2935,13 @@ function clinicianOverviewActionText(presentation = {}, text = "") {
     /simvastatin/.test(context) &&
     /clarithromycin/.test(context)) {
     return "Review labeled contraindication. Determine whether interruption, substitution, timing, or monitoring is appropriate for the patient context.";
+  }
+  if (/\breduce(?: [a-z0-9-]+)? dose (?:by )?(?:~)?75%|\b75%\b/i.test(raw)) {
+    return `Review label- or guideline-supported dose adjustment and monitoring for ${actors}; do not apply a fixed percentage without indication, labs, and protocol context.`;
+  }
+  if (/^(?:use|choose|prefer)\s+/i.test(raw) ||
+    /\b(?:use|choose|prefer)\s+(?:morphine|pantoprazole|famotidine|azithromycin|prasugrel|ticagrelor|citalopram|escitalopram|venlafaxine)\b/i.test(raw)) {
+    return `Review whether the suggested option or another plan is appropriate for ${actors}; confirm indication, contraindications, and patient context.`;
   }
   if (/contraindicat|avoid|do not use|do not take|hold|suspend/.test(context)) {
     return `Review labeled contraindication or avoidance guidance for ${actors}; determine the appropriate plan in clinical context.`;

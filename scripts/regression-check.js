@@ -2192,7 +2192,7 @@ const publicFindingHierarchyRegression = window.eval(`(() => {
     if (typeof setup === "function") setup();
     renderAll();
     setTab("overview");
-    const presentations = getCurrentPublicFindingPresentations();
+    const presentations = getClinicianFacingPublicFindingPresentations(getCurrentPublicFindingPresentations());
     const cards = Array.from(document.querySelectorAll("#findingBody .primary-finding-card"));
     const overviewText = document.getElementById("findingBody")?.textContent || "";
     const trustText = [...document.querySelectorAll("#findingBody .finding-trust-chip")]
@@ -2239,6 +2239,10 @@ const publicFindingHierarchyRegression = window.eval(`(() => {
     tramadolPm:resetScenario(["Tramadol"], () => { activeGenotype.CYP2D6 = GENOTYPE_PHENOTYPE.PM; }),
     tramadolUm:resetScenario(["Tramadol"], () => { activeGenotype.CYP2D6 = GENOTYPE_PHENOTYPE.UM; }),
     clopidogrel:resetScenario(["Clopidogrel", "Omeprazole"], () => { activeGenotype.CYP2C19 = GENOTYPE_PHENOTYPE.PM; }),
+    anesthesia:resetScenario(["Succinylcholine"], () => {
+      activeGenotype.BCHE = GENOTYPE_PHENOTYPE.PM;
+      activeGenotype["RYR1/CACNA1S MH variant"] = GENOTYPE_RISK_STATUS.PRESENT;
+    }),
   };
 })()`);
 for (const [scenarioName, result] of Object.entries(publicFindingHierarchyRegression)) {
@@ -2271,7 +2275,13 @@ assert(publicFindingHierarchyRegression.tramadolPm.presentations.some(p => /Tram
 assert(publicFindingHierarchyRegression.tramadolUm.presentations.some(p => /O-desmethyltramadol|M1|opioid toxicity/i.test(p.title + " " + p.whatChanged + " " + p.whatToReview)), 'Tramadol CYP2D6 UM should lead with M1/opioid toxicity context');
 assert(publicFindingHierarchyRegression.codeine.genesRelatedButtons > 0, 'Codeine PGx/metabolite support should link back to the Overview finding');
 assert(publicFindingHierarchyRegression.clopidogrel.presentations.some(p => /Clopidogrel activation|active thiol/i.test(p.title + " " + p.whatChanged)), 'Clopidogrel + Omeprazole + CYP2C19 PM should keep prodrug activation traceability in Overview');
+assert(!/Clopidogrel exposure may rise|Clopidogrel.*levels may rise|genotype may change Clopidogrel exposure|PM: ineffective; use prasugrel/i.test(publicFindingHierarchyRegression.clopidogrel.overviewText),
+  'Clopidogrel + CYP2C19 PM should not show a generic exposure card or raw alternative directive ahead of activation context');
 assert(publicFindingHierarchyRegression.clopidogrel.evidenceRelatedButtons > 0, 'Clopidogrel evidence support should link back to the Overview finding');
+assert(publicFindingHierarchyRegression.anesthesia.presentations.some(p => /BCHE|paralysis|apnea|Malignant-hyperthermia|RYR1|CACNA1S/i.test(p.title + " " + p.whatChanged + " " + p.whatToReview)),
+  'Succinylcholine + BCHE/RYR1 should lead with procedural anesthesia risk context');
+assert(!/Succinylcholine exposure may rise|TDM|levels may rise|genotype may change Succinylcholine exposure/i.test(publicFindingHierarchyRegression.anesthesia.overviewText),
+  'Succinylcholine + BCHE/RYR1 should not show generic exposure/TDM wording as the Overview priority');
 
 loadCase(window, ['Fluoxetine']);
 const fluoxetineWashout = window.eval('computeWashoutCalendar(["Fluoxetine"]).find(e => e.actorId === "norfluoxetine")');
