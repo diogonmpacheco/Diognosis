@@ -66,6 +66,7 @@ function loadUrlDemoState() {
   const reviewerRequested = typeof isReviewerParamEnabled === "function" && isReviewerParamEnabled(params);
   setAudienceMode(reviewerRequested ? "clinician" : (audience || "patient"), { render:false });
   const drugParam = params.substances || params.drugs || params.medications;
+  const hasSharedSelectionState = Boolean(params.demo || drugParam || params.genotype);
   const drugNames = demo ? demo.drugs : (drugParam ? drugParam.split(',').map(d => d.trim()) : []);
   if ((drugNames.length || params.genotype) && typeof resetActiveGenotypeState === "function") resetActiveGenotypeState();
   if (drugNames.length) {
@@ -122,6 +123,35 @@ function loadUrlDemoState() {
   const tab = params.tab || demo?.tab;
   if (tab) setActiveTab(tab);
   if (demo && params.demo && !params.substances) replaceDemoUrlWithSubstances(demo);
+  return {
+    hasSharedSelectionState,
+    selectedCount:activeStack.length,
+  };
+}
+
+function focusSharedMobileReview(loadState = {}) {
+  if (!shouldFocusSharedMobileReview(loadState)) return;
+  const runFocus = () => {
+    const target = ["summaryBar", "findingSection", "tabBar", "mainEmptyState"]
+      .map(id => document.getElementById(id))
+      .find(el => el && !el.hidden && el.style.display !== "none");
+    if (!target || typeof target.scrollIntoView !== "function") return;
+    if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+    target.scrollIntoView({ behavior:"auto", block:"start" });
+    if (typeof target.focus === "function") target.focus({ preventScroll:true });
+  };
+  if (typeof requestAnimationFrame === "function") requestAnimationFrame(() => window.setTimeout(runFocus, 0));
+  else window.setTimeout(runFocus, 0);
+}
+
+function shouldFocusSharedMobileReview(loadState = {}) {
+  if (!loadState.hasSharedSelectionState || !loadState.selectedCount) return false;
+  if (typeof window === "undefined" || typeof document === "undefined") return false;
+  const width = Math.min(
+    window.innerWidth || Number.POSITIVE_INFINITY,
+    document.documentElement?.clientWidth || Number.POSITIVE_INFINITY
+  );
+  return Number.isFinite(width) && width <= 700;
 }
 
 function getUrlStateParams() {
@@ -259,9 +289,10 @@ function encodeUrlStateValue(value) {
 }
 
 // Initialize
-loadUrlDemoState();
+const initialUrlState = loadUrlDemoState();
 renderGenetics();
 renderAll();
+focusSharedMobileReview(initialUrlState);
 installV1RuntimeFacade();
 
 // ── Populate version display ──
