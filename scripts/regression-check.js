@@ -2244,6 +2244,8 @@ const publicFindingHierarchyRegression = window.eval(`(() => {
       activeGenotype.VKORC1 = GENOTYPE_PHENOTYPE.PM;
       activeGenotype.CYP4F2 = GENOTYPE_PHENOTYPE.PM;
     }),
+    atorvastatinSlco1b1:resetScenario(["Atorvastatin"], () => { activeGenotype.SLCO1B1 = GENOTYPE_PHENOTYPE.PM; }),
+    rosuvastatinSlco1b1:resetScenario(["Rosuvastatin"], () => { activeGenotype.SLCO1B1 = GENOTYPE_PHENOTYPE.PM; }),
     anesthesia:resetScenario(["Succinylcholine"], () => {
       activeGenotype.BCHE = GENOTYPE_PHENOTYPE.PM;
       activeGenotype["RYR1/CACNA1S MH variant"] = GENOTYPE_RISK_STATUS.PRESENT;
@@ -2287,6 +2289,17 @@ assert(/Warfarin|CYP2C9|INR|VKORC1|CYP4F2/i.test(publicFindingHierarchyRegressio
   'Warfarin PGx Overview should frame CYP2C9 together with INR and multi-gene dosing context');
 assert(!/reduce dose 30-50|reduce dose by|dose requirement ~1mg|standalone dose instruction/i.test(publicFindingHierarchyRegression.warfarin.overviewText),
   'Warfarin PGx Overview should not expose fixed genotype-only dosing instructions');
+for (const [label, result] of Object.entries({
+  atorvastatinSlco1b1: publicFindingHierarchyRegression.atorvastatinSlco1b1,
+  rosuvastatinSlco1b1: publicFindingHierarchyRegression.rosuvastatinSlco1b1,
+})) {
+  assert(/SLCO1B1|OATP1B1|statin|muscle/i.test(result.overviewText),
+    `${label}: statin SLCO1B1 Overview should frame transporter-mediated muscle-symptom risk`);
+  assert(/rs4149056|CPIC-linked|statin-associated muscle/i.test(result.genesText),
+    `${label}: Genes + Metabolites should expose SLCO1B1 marker/action source context`);
+  assert(/CPIC Guideline for SLCO1B1, ABCG2, and CYP2C9|statin-associated musculoskeletal/i.test(result.evidenceText),
+    `${label}: Evidence should expose CPIC statin SLCO1B1 source context`);
+}
 assert(publicFindingHierarchyRegression.anesthesia.presentations.some(p => /BCHE|paralysis|apnea|Malignant-hyperthermia|RYR1|CACNA1S/i.test(p.title + " " + p.whatChanged + " " + p.whatToReview)),
   'Succinylcholine + BCHE/RYR1 should lead with procedural anesthesia risk context');
 assert(!/Succinylcholine exposure may rise|TDM|levels may rise|genotype may change Succinylcholine exposure/i.test(publicFindingHierarchyRegression.anesthesia.overviewText),
@@ -2312,6 +2325,32 @@ assert(["CYP2C9","VKORC1","CYP4F2"].every(gene => warfarinStandardsRegression.ge
 assert(warfarinStandardsRegression.markers.includes("rs2108622"), 'Warfarin CYP4F2 standards should include rs2108622 marker identity');
 assert(/INR|algorithm/i.test(warfarinStandardsRegression.text) && !/reduce dose 30-50|~1mg\/day/i.test(warfarinStandardsRegression.text),
   'Warfarin standards copy should be algorithm/INR based and avoid fixed dose-change phrases');
+
+const statinSlcoStandardsRegression = window.eval(`(() => {
+  const statins = ["Simvastatin", "Atorvastatin", "Rosuvastatin"];
+  return statins.map(drugName => {
+    activeStack = [drugName];
+    userGenetics = {};
+    activeGenotype = {};
+    Object.keys(GENOTYPE_EFFECTS || {}).forEach(g => activeGenotype[g] = GENOTYPE_PHENOTYPE.NM);
+    activeGenotype.SLCO1B1 = GENOTYPE_PHENOTYPE.PM;
+    const rows = getPgxActionSummariesForStack(activeStack, activeGenotype || {});
+    const row = rows.find(item => item.gene === "SLCO1B1");
+    return {
+      drugName,
+      hasRow: !!row,
+      evidenceRefs: row?.evidenceRefs || [],
+      markers: (row?.markerMappings || []).map(marker => marker.dbsnp || marker.label),
+      text: row ? [row.whatChanged, row.reviewDirection, row.safetyBoundary].join(" ") : "",
+    };
+  });
+})()`);
+for (const row of statinSlcoStandardsRegression) {
+  assert(row.hasRow, `${row.drugName} should expose a SLCO1B1 CPIC-linked action row`);
+  assert(row.evidenceRefs.includes("ev_statin_slco1b1_abcg2_cpic2022"), `${row.drugName} SLCO1B1 action should include CPIC statin evidence`);
+  assert(row.markers.includes("rs4149056"), `${row.drugName} SLCO1B1 action should include rs4149056 marker identity`);
+  assert(/muscle|myopathy|statin-associated/i.test(row.text), `${row.drugName} SLCO1B1 action should describe statin muscle-risk context`);
+}
 
 loadCase(window, ['Fluoxetine']);
 const fluoxetineWashout = window.eval('computeWashoutCalendar(["Fluoxetine"]).find(e => e.actorId === "norfluoxetine")');

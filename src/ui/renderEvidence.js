@@ -21,6 +21,10 @@ function renderEvidenceExplorer() {
   const stackContext = typeof getStackEvidenceContext === "function"
     ? getStackEvidenceContext()
     : { evidenceRefs:new Set() };
+  const pgxActionRows = typeof getPgxActionSummariesForStack === "function"
+    ? getPgxActionSummariesForStack(activeStack, activeGenotype || {})
+    : [];
+  const pgxActionEvidenceRefs = new Set(pgxActionRows.flatMap(row => row.evidenceRefs || []));
   const pendingCalculationContext = typeof getRenderComputationCache === "function"
     ? getRenderComputationCache().pendingCalculationContext
     : (typeof getActivePendingCalculationContext === "function" ? getActivePendingCalculationContext() : null);
@@ -42,7 +46,8 @@ function renderEvidenceExplorer() {
     const relevantToStack = drugNames.some(name =>
       title.includes(name) || source.includes(name) || supports.includes(name)) ||
       geneNames.some(name => title.includes(name) || source.includes(name) || supports.includes(name)) ||
-      stackContext.evidenceRefs?.has?.(sid);
+      stackContext.evidenceRefs?.has?.(sid) ||
+      pgxActionEvidenceRefs.has(sid);
     if (!relevantToStack) continue;
     relevantStudies.set(sid, study);
   }
@@ -58,7 +63,10 @@ function renderEvidenceExplorer() {
     .sort((a, b) => {
       return (EVIDENCE_WEIGHT[b.type] || 0) - (EVIDENCE_WEIGHT[a.type] || 0);
     });
-  const findingEvidenceRefs = new Set((findings || []).flatMap(finding => finding.evidenceRefs || []));
+  const findingEvidenceRefs = new Set([
+    ...(findings || []).flatMap(finding => finding.evidenceRefs || []),
+    ...pgxActionEvidenceRefs,
+  ]);
   const findingLinkedStudies = combinedStudies.filter(study => findingEvidenceRefs.has(study.id));
   const focusedStudies = findingLinkedStudies.length ? findingLinkedStudies : combinedStudies.slice(0, Math.min(12, combinedStudies.length));
   const additionalStudies = combinedStudies.filter(study => !focusedStudies.includes(study));

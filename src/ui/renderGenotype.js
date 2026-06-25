@@ -233,6 +233,7 @@ function getHighestGenotypePrioritySignal() {
       const note = genotypeExposureNoteForDrug(drugName, enzyme, phenotype, effect, fold);
       const nebivololCyp2d6 = isNebivololCyp2d6Signal(drugName, enzyme);
       const warfarinCyp2c9 = isWarfarinCyp2c9Signal(drugName, enzyme);
+      const statinSlco1b1 = isStatinSlco1b1Signal(drugName, enzyme);
       const actionSummary = typeof getPgxActionSummaryForDrugGene === "function"
         ? getPgxActionSummaryForDrugGene(drugName, enzyme, phenotype)
         : null;
@@ -248,6 +249,8 @@ function getHighestGenotypePrioritySignal() {
         why:publicDisplayText(`${drugName} depends on ${enzyme}, and the selected ${enzyme} phenotype is not the reference state.`),
         changes:warfarinCyp2c9
           ? "CYP2C9 reduced function can slow S-warfarin clearance and increase INR/bleeding sensitivity; VKORC1, CYP4F2, clinical factors, interactions, diet, and INR response remain part of the same dosing context."
+          : statinSlco1b1
+          ? `${drugName} exposure and statin-associated muscle symptom risk can rise when SLCO1B1/OATP1B1 uptake is reduced; dose intensity, transporter inhibitors, renal/hepatic context, and symptoms still matter.`
           : nebivololCyp2d6
           ? "Nebivolol parent exposure can be higher in CYP2D6 poor/null status; clinical response is usually checked with pulse, blood pressure, and symptoms."
           : `Expected parent-drug exposure shifts to about ${fold}x the normal-metabolizer baseline.`,
@@ -370,6 +373,10 @@ function genotypeExposureNoteForDrug(drugName, enzyme, phenotype, effect = {}, f
     const foldText = Number.isFinite(value) ? `about ${value}x in this model` : "higher";
     return `Warfarin has CYP2C9/VKORC1/CYP4F2 dosing guidance for ${phenotypeText}: reduced CYP2C9 can raise S-warfarin exposure (${foldText}) and INR/bleeding sensitivity, but any dosing decision must use a validated warfarin algorithm plus INR follow-up.`;
   }
+  if (isStatinSlco1b1Signal(drugName, enzyme)) {
+    const foldText = Number.isFinite(value) ? `about ${value}x in this model` : "higher";
+    return `${drugName} has CPIC-linked SLCO1B1/OATP1B1 statin guidance for ${phenotypeText}: reduced uptake can raise statin exposure (${foldText}) and statin-associated muscle symptom risk. Review dose intensity, interacting drugs, prior tolerance, CK/symptoms, and ASCVD treatment target.`;
+  }
   const direction = value > 1.15
     ? "higher parent exposure"
     : value < 0.85
@@ -390,6 +397,10 @@ function isNebivololCyp2d6Signal(drugName, enzyme) {
 
 function isWarfarinCyp2c9Signal(drugName, enzyme) {
   return String(drugName || "").toLowerCase() === "warfarin" && enzyme === "CYP2C9";
+}
+
+function isStatinSlco1b1Signal(drugName, enzyme) {
+  return enzyme === "SLCO1B1" && /^(?:simvastatin|atorvastatin|rosuvastatin)$/i.test(String(drugName || ""));
 }
 
 function phenotypeLabelForGene(gene, phenotype) {
