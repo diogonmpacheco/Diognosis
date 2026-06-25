@@ -2828,13 +2828,12 @@ function applyAudienceModeVisibility() {
   [
     ["riskSection", "riskBody", null],
     ["circulatingSection", "circulatingBody", "circulatingCount"],
-    ["altSection", "altBody", null],
   ].forEach(([sectionId, bodyId, countId]) => hideSectionAndClear(sectionId, bodyId, countId));
 }
 
 function arrangeAdvancedSections() {
   const placements = {
-    overview:["scopeSection","findingSection","circulatingSection","riskSection","altSection"],
+    overview:["scopeSection","findingSection","circulatingSection","riskSection"],
     mechanisms:["mechanismWhySection","mechanisticSection","transporterSection","pdSection","cascadeSection","phenoAccumSection","graphSection"],
     "genes-metabolites":["genotypeSection","phenoconversionSection","activeMoietySection","metabSection"],
     "timing-levels":["foldSection","pkSimSection","persistenceTimelineSection","washoutSection","burdenSection"],
@@ -3634,7 +3633,6 @@ function renderAll() {
     renderCirculatingOverview();
     if (typeof renderMechanismWhyPaths === "function") renderMechanismWhyPaths();
     renderTransporterDDI();
-    renderAlternatives();
     document.getElementById("riskSection").style.display = "";
     if (isReviewerMode()) document.getElementById("scopeSection").style.display = "";
     document.getElementById("findingSection").style.display = "";
@@ -3651,7 +3649,6 @@ function renderAll() {
       hideSectionAndClear("matrixSection", "matrixBody");
     }
     document.getElementById("transporterSection").style.display = "";
-    document.getElementById("altSection").style.display = "";
   } else {
     if (activeDrugNames.length) {
       renderInteractionFindingsOverview({ interactions:[] });
@@ -3671,7 +3668,6 @@ function renderAll() {
     hideSectionAndClear("comboSection", "comboBody", "comboCount");
     hideSectionAndClear("transporterSection", "transporterBody", "transporterCount");
     hideSectionAndClear("matrixSection", "matrixBody");
-    hideSectionAndClear("altSection", "altBody");
   }
   renderSummaryBar();
   applyAudienceModeVisibility();

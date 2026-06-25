@@ -75,7 +75,7 @@ const MODULE_ORDER = [
   'ui/renderWhyPath.js', // compact warning path cards and raw review paths
   'ui/renderReview.js', // Review tab summary, diagnostics, and contribution actions
   'ui/renderCascade.js',      // renderCascade
-  'ui/renderAlternatives.js', // renderAlternatives, renderGenetics, renderMetabolites, etc.
+  'ui/renderAlternatives.js', // renderGenetics, renderMetabolites, etc. (legacy filename)
   'ui/renderGenotype.js',     // renderGenotypePanel, setGenotype
   'ui/renderPhenotype.js',    // renderPhenotypeAccumulation
   'ui/renderPK.js',           // renderPKSimulation

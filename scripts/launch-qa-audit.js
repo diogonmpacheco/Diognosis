@@ -51,7 +51,6 @@ const PANEL_DEFS = [
   { name:'mechanistic interpretation', sectionId:'mechanisticSection', bodyId:'mechanisticBody' },
   { name:'transporter interactions', sectionId:'transporterSection', bodyId:'transporterBody' },
   { name:'interaction grid', sectionId:'matrixSection', bodyId:'matrixBody' },
-  { name:'alternatives', sectionId:'altSection', bodyId:'altBody' },
   { name:'fold exposure', sectionId:'foldSection', bodyId:'foldBody' },
   { name:'genotype effects', sectionId:'genotypeSection', bodyId:'genotypeBody' },
   { name:'functional gene status', sectionId:'phenoconversionSection', bodyId:'phenoconversionBody' },

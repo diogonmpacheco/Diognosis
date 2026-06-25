@@ -1,38 +1,5 @@
-// Diognosis — Alternatives, genetics panel, combinations, transporters, metabolites
+// Diognosis — Genetics panel, combinations, transporters, metabolites
 // Phase A: modular source — concatenated by build.js
-
-function renderAlternatives() {
-  const el = document.getElementById("altBody");
-  const interactions = findInteractions();
-  const involvedDrugs = new Set();
-  interactions.filter(i => i.severity === "severe").forEach(i => { involvedDrugs.add(i.drug1); involvedDrugs.add(i.drug2); });
-
-  const alts = [];
-  activeStack.forEach(name => {
-    const drug = getDrug(name);
-    if (!drug || !drug.alts.length) return;
-    if (!involvedDrugs.has(name)) return;
-    drug.alts.forEach(alt => {
-      if (!activeStack.includes(alt.name)) {
-        alts.push({ forDrug: name, ...alt });
-      }
-    });
-  });
-
-  if (!alts.length) {
-    el.innerHTML = '<div style="text-align:center;color:var(--text2);padding:12px;font-size:13px">No alternative review prompts surfaced for this list.</div>';
-    return;
-  }
-
-  el.innerHTML = alts.map(a => `
-    <div class="alt-card">
-      <button class="alt-swap" onclick="swapDrug('${a.forDrug.replace(/'/g,"\\'")}','${a.name.replace(/'/g,"\\'")}')">Preview option</button>
-      <div class="alt-for">Discussion option for ${a.forDrug}:</div>
-      <div class="alt-name">${a.name}</div>
-      <div class="alt-reason">${a.reason}</div>
-    </div>
-  `).join("");
-}
 
 const PGX_GUIDANCE_LABELS = {
   A: "Strong PGx",
