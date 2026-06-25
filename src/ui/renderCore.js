@@ -1968,6 +1968,13 @@ function hasToxicMetabolitePatientContext(text = "") {
   return /\b(?:toxic metabolite|accumulat(?:e|ion)|5-fluorouracil|5-fu|sn-38|6-tgn|6-thioguanine|life-threatening toxicity|myelosuppression|neutropenia|mucositis|severe side effects)\b/i.test(String(text || ""));
 }
 
+function hasOpioidActiveMetaboliteIncreaseContext(text = "") {
+  const value = String(text || "").toLowerCase();
+  return /\b(?:codeine|tramadol)\b/.test(value) &&
+    /\b(?:morphine|o-desmethyltramadol|m1|opioid-active|active metabolite)\b/.test(value) &&
+    /\b(?:rise|increase|higher|ultrarapid|toxicity|respiratory depression|side-effect)\b/.test(value);
+}
+
 function patientRiskMarkerContext(text = "") {
   const value = String(text || "").toLowerCase();
   if (/\bg6pd\b|hemolys|methemoglobin|oxidant/.test(value)) return "g6pd";
@@ -2105,6 +2112,8 @@ function buildPatientDiscussionQuestion(presentation = {}, trust = null) {
     question = actors[0]
       ? `Can you check whether ${actors[0]} may not absorb as expected with my current list?`
       : "Can you check whether one of my medicines may not absorb as expected?";
+  } else if (hasOpioidActiveMetaboliteIncreaseContext(text)) {
+    question = "Can you check whether my gene result could raise opioid side effects or breathing-risk concerns?";
   } else if (hasPatientSerotoninConcern(text, actors)) {
     question = "Can you check whether this combination raises serotonin-related side effects or switching concerns?";
   } else if (hasAntiplateletPatientContext(text) || hasActiveMetabolitePatientContext(text)) {
@@ -2437,6 +2446,9 @@ function patientFindingStepText(presentation = {}, field = "changed") {
     if (hasPatientAbsorptionConcern(lower)) {
       return "This combination may reduce how much of one medicine is absorbed.";
     }
+    if (hasOpioidActiveMetaboliteIncreaseContext(lower)) {
+      return "Your gene result may form more opioid-active metabolite, which can raise side-effect or breathing-risk concerns.";
+    }
     if (hasPatientSerotoninConcern(lower, actors)) {
       return "This combination may add serotonin-related side-effect risk.";
     }
@@ -2520,6 +2532,9 @@ function patientFindingStepText(presentation = {}, field = "changed") {
     }
     if (hasPatientExposureIncreaseConcern(lower)) {
       return "A second medicine can raise the level or expected effect of another medicine.";
+    }
+    if (hasOpioidActiveMetaboliteIncreaseContext(lower)) {
+      return "Some gene results can make opioid-active metabolites form faster, so side effects can be stronger than expected.";
     }
     if (toxicMetabolite) {
       return "Your body may process or clear this medicine differently, so harmful buildup can happen more easily.";
@@ -2675,6 +2690,9 @@ function patientFindingTitleText(presentation = {}) {
       : (actors[0] ? `${actors[0]} may work less well` : "A medicine may work less well");
   }
   if (hasPatientSerotoninConcern(text, actors)) return "Serotonin-related side effects may increase";
+  if (hasOpioidActiveMetaboliteIncreaseContext(text)) {
+    return actors[0] ? `${actors[0]} opioid side-effect risk may increase` : "Opioid side-effect risk may increase";
+  }
   if (hasPatientExposureDecreaseConcern(text)) return actors[0]
     ? `${actors[0]} may work less well`
     : "A medicine may work less well";

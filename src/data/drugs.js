@@ -5192,12 +5192,10 @@ const CLINICAL_FOLD = {
   "Risperidone":     { "CYP2D6": { poor:1.7, null: 2.5 } },
   // Aripiprazole: PM AUC ~1.8× for active moiety (FDA label; dehydro-arip compensates)
   "Aripiprazole":    { "CYP2D6": { poor:1.8, null: 2.8 } },
-  // Codeine: PM REDUCED efficacy (prodrug). Active metabolite (morphine) formation ↓70%
-  // Engine floor: f_2D6=0.6 → min fold = 0.006 + 0.4 = 0.41 (parent AUC; active metabolite far lower)
-  "Codeine":         { "CYP2D6": { poor:0.41, null: 0.21 } },
-  // Tramadol: PM reduced O-desmethyltramadol (M1) formation. Active metabolite ↓70%
-  // Engine floor: f_2D6=0.5 → min fold = 0.005 + 0.5 = 0.51 (parent AUC)
-  "Tramadol":        { "CYP2D6": { poor:0.51, null: 0.31 } },
+  // Codeine/tramadol CYP2D6 actionability is active-metabolite formation, not lower parent exposure.
+  // Keep parent exposure neutral here so the active-moiety engine leads with morphine/M1 formation.
+  "Codeine":         { "CYP2D6": { poor:1.0, null: 1.0 } },
+  "Tramadol":        { "CYP2D6": { poor:1.0, null: 1.0 } },
   // DXM: PM accumulates parent 5-10× (Capon 2018); dissociative risk
   "DXM (Dextromethorphan)": { "CYP2D6": { poor:8.0, null: 15.0 } },
   // Oxycodone: PM ~1.5× parent AUC (minor CYP2D6 pathway; FDA label)

@@ -1246,11 +1246,12 @@ const clinicalFoldMatrixRegression = window.eval(`(() => {
   const cases = [
     { drug:'Flecainide', gene:'CYP2D6', expected:2.5 },
     { drug:'Omeprazole', gene:'CYP2C19', expected:5.0 },
-    { drug:'Codeine', gene:'CYP2D6', expected:0.41 },
+    { drug:'Codeine', gene:'CYP2D6', expected:1.0, neutralParent:true },
+    { drug:'Tramadol', gene:'CYP2D6', expected:1.0, neutralParent:true },
     { drug:'Tamoxifen', gene:'CYP2D6', expected:0.25 },
     { drug:'Clopidogrel', gene:'CYP2C19', expected:0.36 },
   ];
-  return cases.map(({ drug, gene, expected }) => {
+  return cases.map(({ drug, gene, expected, neutralParent }) => {
     activeStack = [drug];
     userGenetics = {};
     activeGenotypeDetails = {};
@@ -1269,6 +1270,7 @@ const clinicalFoldMatrixRegression = window.eval(`(() => {
       drug,
       gene,
       expected,
+      neutralParent:!!neutralParent,
       fold:calcFold(drug).fold,
       targetTab:priority?.targetTab || '',
       targetElementId:priority?.targetElementId || '',
@@ -1279,7 +1281,9 @@ const clinicalFoldMatrixRegression = window.eval(`(() => {
 for (const row of clinicalFoldMatrixRegression) {
   assert(
     Math.abs(row.fold - row.expected) < 0.01,
-    `${row.drug} ${row.gene} PM should use observed clinical fold ${row.expected}x, not route-diluted ${row.fold}x`
+    row.neutralParent
+      ? `${row.drug} ${row.gene} PM should keep parent fold neutral and route actionability through active-metabolite formation, got ${row.fold}x`
+      : `${row.drug} ${row.gene} PM should use observed clinical fold ${row.expected}x, not route-diluted ${row.fold}x`
   );
   assert(row.targetTab && row.targetElementId, `${row.drug} ${row.gene} PM should expose a functional View finding target`);
   assert(!row.leakedExamples, `${row.drug} ${row.gene} PM should not leak unrelated CYP2D6 example text`);
@@ -2231,6 +2235,9 @@ const publicFindingHierarchyRegression = window.eval(`(() => {
     ssri:resetScenario(["Paroxetine", "Fluoxetine"]),
     nebivolol:resetScenario(["Nebivolol"], () => { activeGenotype.CYP2D6 = GENOTYPE_PHENOTYPE.PM; }),
     codeine:resetScenario(["Codeine", "Fluoxetine"], () => { activeGenotype.CYP2D6 = GENOTYPE_PHENOTYPE.PM; }),
+    codeineUm:resetScenario(["Codeine"], () => { activeGenotype.CYP2D6 = GENOTYPE_PHENOTYPE.UM; }),
+    tramadolPm:resetScenario(["Tramadol"], () => { activeGenotype.CYP2D6 = GENOTYPE_PHENOTYPE.PM; }),
+    tramadolUm:resetScenario(["Tramadol"], () => { activeGenotype.CYP2D6 = GENOTYPE_PHENOTYPE.UM; }),
     clopidogrel:resetScenario(["Clopidogrel", "Omeprazole"], () => { activeGenotype.CYP2C19 = GENOTYPE_PHENOTYPE.PM; }),
   };
 })()`);
@@ -2258,6 +2265,10 @@ assert(publicFindingHierarchyRegression.nebivolol.cardCount <= 3, 'Nebivolol + C
 assert(/Nebivolol/i.test(publicFindingHierarchyRegression.nebivolol.overviewText), 'Nebivolol PGx Overview should name Nebivolol');
 assert(!/Codeine|Tamoxifen|TCAs/i.test(publicFindingHierarchyRegression.nebivolol.overviewText + publicFindingHierarchyRegression.nebivolol.genesText), 'Nebivolol PGx copy should not leak generic CYP2D6 examples');
 assert(publicFindingHierarchyRegression.codeine.presentations.some(p => /Codeine activation|Morphine/i.test(p.title + " " + p.whatChanged)), 'Codeine + Fluoxetine + CYP2D6 PM should keep activation-failure interpretation in Overview');
+assert(!/parent down|parent exposure may fall/i.test(publicFindingHierarchyRegression.codeine.overviewText), 'Codeine CYP2D6 PM should not claim lower parent-codeine exposure');
+assert(publicFindingHierarchyRegression.codeineUm.presentations.some(p => /Morphine|active metabolite|opioid toxicity/i.test(p.title + " " + p.whatChanged + " " + p.whatToReview)), 'Codeine CYP2D6 UM should lead with active-metabolite/opioid toxicity context');
+assert(publicFindingHierarchyRegression.tramadolPm.presentations.some(p => /Tramadol activation|O-desmethyltramadol|M1/i.test(p.title + " " + p.whatChanged)), 'Tramadol CYP2D6 PM should keep M1 activation-failure interpretation in Overview');
+assert(publicFindingHierarchyRegression.tramadolUm.presentations.some(p => /O-desmethyltramadol|M1|opioid toxicity/i.test(p.title + " " + p.whatChanged + " " + p.whatToReview)), 'Tramadol CYP2D6 UM should lead with M1/opioid toxicity context');
 assert(publicFindingHierarchyRegression.codeine.genesRelatedButtons > 0, 'Codeine PGx/metabolite support should link back to the Overview finding');
 assert(publicFindingHierarchyRegression.clopidogrel.presentations.some(p => /Clopidogrel activation|active thiol/i.test(p.title + " " + p.whatChanged)), 'Clopidogrel + Omeprazole + CYP2C19 PM should keep prodrug activation traceability in Overview');
 assert(publicFindingHierarchyRegression.clopidogrel.evidenceRelatedButtons > 0, 'Clopidogrel evidence support should link back to the Overview finding');
@@ -2579,6 +2590,9 @@ const patientCopyAuditRegression = window.eval(`(() => {
     tmpSmxAliasClinician: resetScenario('/index.html?substances=warfarin,sulfamethoxazole-trimethoprim&tab=overview', 'clinician'),
     ivabradinePatient: resetScenario('/index.html?substances=ivabradine,clarithromycin&tab=timing-levels'),
     codeineBupropionPatient: resetScenario('/index.html?substances=bupropion,codeine&genotype=CYP2D6:PM&tab=genes-metabolites'),
+    codeineUmPatient: resetScenario('/index.html?substances=codeine&genotype=CYP2D6:UM&tab=overview'),
+    tramadolPmPatient: resetScenario('/index.html?substances=tramadol&genotype=CYP2D6:PM&tab=overview'),
+    tramadolUmPatient: resetScenario('/index.html?substances=tramadol&genotype=CYP2D6:UM&tab=overview'),
   };
 })()`);
 assert(/Tacrolimus exposure may rise with Fluconazole/i.test(patientCopyAuditRegression.tacrolimusClinician.titles[0] || ''),
@@ -2651,6 +2665,15 @@ assert(patientCopyAuditRegression.codeineBupropionPatient.patientCards <= 2 &&
   patientCopyAuditRegression.codeineBupropionPatient.titles.some(title => /Codeine may work less well with Bupropion/i.test(title)) &&
   !patientCopyAuditRegression.codeineBupropionPatient.titles.some(title => /may change medicine effects/i.test(title)),
   `Bupropion + codeine patient view should suppress generic exposure wording, got ${patientCopyAuditRegression.codeineBupropionPatient.titles.join(' | ')}`);
+assert(patientCopyAuditRegression.codeineUmPatient.titles.some(title => /Codeine opioid side-effect risk may increase/i.test(title)) &&
+  !patientCopyAuditRegression.codeineUmPatient.titles.some(title => /work less well|build up|may change medicine effects/i.test(title)),
+  `Codeine CYP2D6 UM patient view should describe opioid side-effect risk, got ${patientCopyAuditRegression.codeineUmPatient.titles.join(' | ')}`);
+assert(patientCopyAuditRegression.tramadolPmPatient.titles.some(title => /Tramadol may work less well/i.test(title)) &&
+  !patientCopyAuditRegression.tramadolPmPatient.titles.some(title => /may change medicine effects/i.test(title)),
+  `Tramadol CYP2D6 PM patient view should describe reduced analgesic effect, got ${patientCopyAuditRegression.tramadolPmPatient.titles.join(' | ')}`);
+assert(patientCopyAuditRegression.tramadolUmPatient.titles.some(title => /Tramadol opioid side-effect risk may increase/i.test(title)) &&
+  !patientCopyAuditRegression.tramadolUmPatient.titles.some(title => /work less well|build up|may change medicine effects/i.test(title)),
+  `Tramadol CYP2D6 UM patient view should describe opioid side-effect risk, got ${patientCopyAuditRegression.tramadolUmPatient.titles.join(' | ')}`);
 
 assert(browserErrors.length === 0, `Browser errors:\n${browserErrors.join('\n')}`);
 

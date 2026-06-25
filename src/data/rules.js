@@ -277,6 +277,7 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     evidenceRefs:["ev_opioid_cyp2d6_cpic_2020","ev_codeine_cyp2d6_cpic","ev_codeine_ultrarapid_deaths"],
     inhibitionDirection:"decrease",
     inhibitionLabel:"CYP2D6 inhibition/phenoconversion context: lower morphine formation expected",
+    clinicalAction:"Review CPIC opioid PGx guidance. CYP2D6 poor/null and ultrarapid phenotypes usually need a non-CYP2D6-dependent analgesic plan rather than assuming standard codeine response.",
     effects:{
       [GENOTYPE_PHENOTYPE.PM]: { direction:"decrease", label:"near-zero morphine formation; analgesia failure risk" },
       [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
@@ -292,6 +293,7 @@ const GENOTYPE_METABOLITE_EFFECTS = [
     evidenceRefs:["ev_opioid_cyp2d6_cpic_2020","ev_cyp2d6_codeine_genotype"],
     inhibitionDirection:"decrease",
     inhibitionLabel:"CYP2D6 inhibition/phenoconversion context: lower M1 formation expected",
+    clinicalAction:"Review CPIC opioid PGx guidance. CYP2D6 poor/null can reduce opioid analgesia from M1, while ultrarapid status can raise opioid toxicity concern; parent tramadol effects still need review.",
     effects:{
       [GENOTYPE_PHENOTYPE.PM]: { direction:"decrease", label:"M1 formation substantially reduced; analgesia failure risk" },
       [GENOTYPE_PHENOTYPE.NM]: { fold:1.0, direction:"baseline", label:"baseline" },
