@@ -908,7 +908,7 @@ function renderInteractionFindingsOverview(risk) {
   currentPublicFindingPresentations = rankPublicFindingPresentations(buildPublicFindingPresentations(overviewFindings));
   const visiblePresentations = isPatientAudience()
     ? rankPublicFindingPresentations(getPatientFacingPublicFindingPresentations(currentPublicFindingPresentations))
-    : currentPublicFindingPresentations;
+    : rankPublicFindingPresentations(getClinicianFacingPublicFindingPresentations(currentPublicFindingPresentations));
   if (!currentPublicFindingPresentations.length) {
     if (activeStack.length < 2) {
       hideSectionAndClear("findingSection", "findingBody", "findingCount");
@@ -926,7 +926,7 @@ function renderInteractionFindingsOverview(risk) {
   }
   body.innerHTML = isPatientAudience()
     ? renderPatientQuestionsPage(visiblePresentations)
-    : renderClinicianFindingsOverview(currentPublicFindingPresentations);
+    : renderClinicianFindingsOverview(visiblePresentations);
   return currentPublicFindingPresentations;
 }
 
@@ -1268,7 +1268,7 @@ function buildReviewScopeSummary(cache = {}) {
     : buildPublicFindingPresentations(concerns);
   const publicPresentations = isPatientAudience()
     ? getPatientFacingPublicFindingPresentations(allPublicPresentations)
-    : allPublicPresentations;
+    : getClinicianFacingPublicFindingPresentations(allPublicPresentations);
   const sourceLinked = publicPresentations.filter(presentation => presentation.trustContract?.sourceLinked).length;
   const modeled = publicPresentations.filter(presentation => presentation.trustContract && !presentation.trustContract.sourceLinked).length;
   const trustReady = publicPresentations.filter(presentation => presentation.trustContract?.ready).length;
