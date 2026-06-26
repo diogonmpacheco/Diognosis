@@ -112,6 +112,18 @@
     .pgx-context span{font-size:12px;color:var(--text2);overflow-wrap:anywhere}
     .pgx-actor{font-size:12px;color:var(--text2);overflow-wrap:anywhere}
     .pgx-source{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+    .pgx-medication-list{gap:10px}
+    .pgx-medication-card{display:grid;gap:10px}
+    .pgx-medication-card .row-main{grid-template-columns:1fr;align-items:start}
+    .pgx-card-body{display:grid;gap:8px}
+    .pgx-card-line{margin:0;color:var(--text2);font-size:12px;overflow-wrap:anywhere}
+    .pgx-card-line strong{color:var(--text);font-weight:900}
+    .supporting-context{margin-top:10px}
+    .supporting-context details{border:1px solid var(--border);border-radius:8px;background:var(--surface2);padding:9px 10px}
+    .supporting-context summary{cursor:pointer;font-size:12px;font-weight:900;color:var(--text)}
+    .supporting-context p{font-size:12px;color:var(--text2);margin:8px 0 0}
+    .action-context-card{display:grid;gap:8px}
+    .action-card-note{font-size:12px;color:var(--text2);margin:0 0 10px}
     .text-link{font-weight:900;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
     .pager{display:grid;gap:8px;justify-items:start;margin:10px 0 0;color:var(--text2);font-size:12px;font-weight:800}
     .pager button{border:1px solid var(--border);background:var(--surface2);border-radius:8px;padding:6px 10px;color:var(--text);font-weight:850;cursor:pointer}
@@ -134,10 +146,10 @@
           <span>PGx explorer and data views</span>
         </div>
       </div>
-      <nav aria-label="Draft views">
+      <nav aria-label="Data views">
         <button class="nav-btn active" data-view="genotype"><span>PGx</span><span>PGx Explorer<small>Gene result to medication context</small></span></button>
-        <button class="nav-btn" data-view="action"><span>RP</span><span>Review prompts<small>Discovery grouping</small></span></button>
-        <button class="nav-btn" data-view="ranking"><span>GR</span><span>Gene ranking<small>Coverage and reach</small></span></button>
+        <button class="nav-btn" data-view="action"><span>RQ</span><span>Review Questions<small>Medication context groups</small></span></button>
+        <button class="nav-btn" data-view="ranking"><span>GC</span><span>Gene Coverage<small>Data reach</small></span></button>
       </nav>
       <div class="view-nav-note">Gene-first discovery for Diognosis data. Medication rows open the main app for stack-specific review.</div>
     </div>
@@ -169,7 +181,7 @@
           <article class="card genetics-card">
             <div class="card-head"><h3>PGx Explorer</h3><span class="tag violet" id="genotypePickTag">CYP2D6</span></div>
             <div class="card-body">
-              <p class="genetics-copy">Pick a reported gene or marker result first. The table below shows medication contexts that may be affected, including parent-drug, metabolite, transporter, and source-linked PGx rows.</p>
+              <p class="genetics-copy">Pick a reported gene or marker result first. The medication cards below show linkable medication contexts that may be affected, including parent-drug, metabolite, transporter, and source-linked PGx rows.</p>
               <div class="toolbar genotype-toolbar">
                 <select class="select" id="geneSearch" aria-label="Gene"></select>
                 <select class="select" id="phenotypeSelect" aria-label="Status"></select>
@@ -199,12 +211,8 @@
             <article class="card">
               <div class="card-head"><h3>Affected Medication Contexts</h3><span class="tag green">opens Diognosis review</span></div>
               <div class="card-body">
-                <div class="table-wrap">
-                  <table class="table">
-                    <thead><tr><th>Medication</th><th>PGx context</th><th>Metabolite / actor</th><th>Review</th></tr></thead>
-                    <tbody id="geneSubstanceRows"></tbody>
-                  </table>
-                </div>
+                <div class="list pgx-medication-list" id="geneSubstanceRows"></div>
+                <div class="supporting-context" id="geneSupportingContext"></div>
                 <div class="pager" id="genePager"></div>
               </div>
             </article>
@@ -213,8 +221,8 @@
 
         <section class="view" id="view-action">
           <div class="toolbar">
-            <input class="field" id="actionSearch" value="review, monitoring, option" aria-label="Action search">
-            <select class="select" id="actionEvidence" aria-label="Evidence"><option value="all">Evidence: all</option><option value="high">High / level A only</option><option value="actionable">Review prompt only</option></select>
+            <input class="field" id="actionSearch" placeholder="Search medication, gene, source, or review context" aria-label="Action search">
+            <select class="select" id="actionEvidence" aria-label="Evidence"><option value="all">Evidence: all</option><option value="high">High / level A only</option><option value="actionable">Medication-context rows only</option></select>
             <select class="select" id="actionArea" aria-label="Area"><option value="all">All therapy areas</option></select>
             <button class="primary" id="actionFilter">Filter</button>
           </div>
@@ -224,17 +232,17 @@
         <section class="view" id="view-ranking">
           <div class="toolbar">
             <input class="field" id="rankingSearch" placeholder="Search gene, CYP, transporter, or class" aria-label="Ranking search">
-            <select class="select" id="rankingSort" aria-label="Ranking sort"><option value="score">Sort by coverage score</option><option value="total">Total parent + metabolite substances</option><option value="high">High-severity rows</option><option value="inhibitors">Inhibitors</option><option value="inducers">Inducers / promoters</option><option value="az">A to Z</option></select>
+            <select class="select" id="rankingSort" aria-label="Ranking sort"><option value="score">Sort by coverage score</option><option value="total">Total parent + metabolite substances</option><option value="high">Priority context rows</option><option value="inhibitors">Inhibitors</option><option value="inducers">Inducers / promoters</option><option value="az">A to Z</option></select>
           </div>
           <div class="metric-row" id="rankingMetrics"></div>
           <div class="grid two">
             <article class="card">
-              <div class="card-head"><h3>Top Gene Ranking</h3><span class="tag red" id="rankingCountTag">0 genes</span></div>
+              <div class="card-head"><h3>Gene Coverage</h3><span class="tag violet" id="rankingCountTag">0 genes</span></div>
               <div class="card-body">
-                <p class="rank-note">Coverage score weights high-severity rows, review-prompt rows, parent substances, metabolites, modulators, transporters, and evidence density.</p>
+                <p class="rank-note">Coverage score ranks how much Diognosis data is available for exploration. It is not a patient-risk score and does not rank genes by clinical danger.</p>
                 <div class="table-wrap">
                   <table class="table rank-table">
-                    <thead><tr><th>Rank</th><th>Gene</th><th>Coverage</th><th>Total substances</th><th>Parents</th><th>Metabolites</th><th>Inhibitors</th><th>Inducers / promoters</th><th>Transporters</th><th>Minor routes</th><th>High severity</th><th>Review rows</th><th>Evidence</th></tr></thead>
+                    <thead><tr><th>Rank</th><th>Gene</th><th>Coverage</th><th>Total substances</th><th>Parents</th><th>Metabolites</th><th>Inhibitors</th><th>Inducers / promoters</th><th>Transporters</th><th>Minor routes</th><th>Priority rows</th><th>Review contexts</th><th>Evidence</th></tr></thead>
                     <tbody id="rankingRows"></tbody>
                   </table>
                 </div>
@@ -242,10 +250,10 @@
               </div>
             </article>
             <article class="card">
-              <div class="card-head"><h3>Ranking Leaders</h3><span class="tag violet">live</span></div>
+              <div class="card-head"><h3>Coverage Leaders</h3><span class="tag violet">live</span></div>
               <div class="card-body">
                 <div class="rank-summary" id="rankingHighlights"></div>
-                <div class="legend"><span class="tag red">high severity</span><span class="tag amber">dose/action</span><span class="tag green">transport</span><span class="tag violet">evidence</span></div>
+                <div class="legend"><span class="tag red">priority context</span><span class="tag amber">dose/timing</span><span class="tag green">transport</span><span class="tag violet">evidence</span></div>
               </div>
             </article>
           </div>
@@ -279,10 +287,16 @@
     const state = { geneShowAll:false, actionShowAll:{}, rankingShowAll:false };
     const copy = {
       genotype:["PGx Explorer","Select a reported gene result and review medication contexts that may be affected. Open any row in Diognosis for medication-list-specific review."],
-      action:["Review Question View","Group source-linked rows by the next review question: use-together concern, dose/timing context, monitoring, option review, or context only. These groupings are discovery prompts, not clinical instructions."],
-      ranking:["Gene Ranking","Rank genotype-linked genes by substance reach, metabolite coverage, modulators, transporter rows, evidence, and high-severity burden."],
+      action:["Review Questions","Group medication contexts into safe review questions: use-together, dose/timing, monitoring, treatment-plan context, and source context. These are review supports, not prescribing instructions."],
+      ranking:["Gene Coverage","Rank genes by how much medication-context data Diognosis can explore. This is a coverage map, not a clinical risk ranking."],
     };
-    const actionGroups = [["Use-together review","red"], ["Dose/timing review","amber"], ["Option review","violet"], ["Monitoring review","green"], ["Context only",""]];
+    const actionGroups = [
+      { key:"Use-together review", label:"Use-together review", color:"red", note:"Contexts where the medication list itself may need a clinician/pharmacist review before use together." },
+      { key:"Dose/timing review", label:"Dose/timing review", color:"amber", note:"Contexts where dose, timing, overlap, route, washout, or organ function may change interpretation." },
+      { key:"Monitoring review", label:"Monitoring review", color:"green", note:"Contexts where symptoms, labs, vitals, or follow-up checks may matter." },
+      { key:"Option review", label:"Treatment-plan context", color:"violet", note:"Contexts that should be discussed inside the clinician-owned treatment plan, without implying a medication change from this page." },
+      { key:"Context only", label:"Context-only", color:"", note:"Source-linked background rows that may help explain why a medication appears in Diognosis." },
+    ];
 
     function renderDataSnapshot() {
       const stats = window.DIOGNOSIS_STATS || {};
@@ -307,10 +321,6 @@
       if (view === "ranking") renderRankingView();
     }
 
-    function appLinkForRelation(relation, opts = {}) {
-      return index.appLink(relation.linkSubstances || [relation.subject, relation.object], opts);
-    }
-
     function rowLink(href, title, badge, badgeColor, body, tags = []) {
       return `<a class="row" href="${esc(href)}"><div class="row-main"><h4>${esc(title)}</h4>${tag(badge, badgeColor)}</div><p>${esc(body)}</p>${tags.length ? `<div class="meta">${tags.map((t) => tag(t)).join("")}</div>` : ""}</a>`;
     }
@@ -322,47 +332,89 @@
       if (button) button.addEventListener("click", () => { state[key] = !state[key]; renderFn(); });
     }
 
-    function relationTitle(relation) {
-      return relation.object ? `${relation.subject} + ${relation.object}` : relation.subject;
-    }
-
-    function relationBody(relation) {
-      return `${relation.signal || ""}${relation.actionText && relation.actionText !== relation.signal ? `. ${relation.actionText}` : ""}`.replace(/^\.\s*/, "");
-    }
-
     function relationMentionsActivation(relation) {
       const text = `${relation.actionText || ""} ${relation.signal || ""}`.toLowerCase().replace(/\binactive\b|\bnot active\b/g, "");
       return /activat|\bactive\b|prodrug|ineffective|failure|loss of analgesia|loss of efficacy|reduced conversion|reduced formation|avoid/.test(text);
     }
 
-    function pgxGenotypeValue(gene = selectedGene(), phenotype = $("#phenotypeSelect").value || "") {
-      return phenotype ? `${gene}:${phenotype}` : "";
+    function modelsForGene(gene) {
+      return (index.modeledGenotypes || []).filter((item) => item.gene === gene);
+    }
+
+    function modelForPhenotype(gene, phenotype = "") {
+      const models = modelsForGene(gene);
+      if (phenotype) {
+        const exact = models.find((item) => (item.phenotypeValues || []).includes(phenotype));
+        if (exact) return exact;
+      }
+      return models.find((item) => item.kind === "modeled_gene" && (item.phenotypeValues || []).length) ||
+        models.find((item) => item.kind === "risk_variant") ||
+        models[0] ||
+        null;
+    }
+
+    function pgxAppGenotypeValue(gene = selectedGene(), phenotype = $("#phenotypeSelect").value || "") {
+      if (!phenotype) return "";
+      const model = modelForPhenotype(gene, phenotype);
+      if (model?.kind === "risk_variant") {
+        const riskKey = model.riskKey || model.label || gene;
+        if (phenotype === "risk_allele_present") {
+          if (gene === "G6PD") return "G6PD:deficiency";
+          if (gene === "RYR1" || /RYR1|CACNA1S/i.test(riskKey)) return "RYR1:present";
+          return `${riskKey}:present`;
+        }
+        if (phenotype === "risk_allele_absent") return `${riskKey}:normal`;
+      }
+      return `${gene}:${phenotype}`;
+    }
+
+    function canonicalMedicationEntity(name) {
+      const drug = index.getDrugRecord(name);
+      if (!drug) return null;
+      const entity = index.getEntity(drug.name);
+      const kind = String(entity?.substanceKind || "").toLowerCase();
+      if (!entity?.linkable) return null;
+      if (/class_placeholder|external_substance|non_drug_context|gene|actor|metabolite/.test(kind)) return null;
+      if (/fluoropyrimidines|and tropisetron|and oxcarbazepine/i.test(drug.name)) return null;
+      return { drug, entity };
+    }
+
+    function canonicalMedicationName(name) {
+      return canonicalMedicationEntity(name)?.drug?.name || "";
+    }
+
+    function relationMedicationNames(row) {
+      return [...new Set([
+        canonicalMedicationName(row.subject),
+        ...(row.linkSubstances || []).map(canonicalMedicationName),
+      ].filter(Boolean))];
     }
 
     function pgxPrimaryMedication(row) {
-      const subjectDrug = index.getDrugRecord(row.subject);
-      if (subjectDrug) return subjectDrug.name;
-      const linked = (row.linkSubstances || [])
-        .map((name) => index.getDrugRecord(name))
-        .find(Boolean);
-      return linked?.name || "";
+      return relationMedicationNames(row)[0] || "";
     }
 
-    function pgxMechanismBucket(row) {
+    function pgxMechanismBucketForRow(row) {
       const text = `${row.role || ""} ${row.source || ""} ${row.signal || ""} ${row.actionText || ""} ${row.object || ""}`.toLowerCase();
-      if (/g6pd|hla|hypersens|scar|sjs|ten|hemolys|malignant hyperthermia|bche|paralysis|apnea|risk/.test(text)) return ["Risk marker", "red"];
-      if (/toxic|toxicity|sn-38|5-fu|fluorouracil|6-tgn|myelosuppression|hydroxylamine|oxidant/.test(text)) return ["Toxic/metabolite risk", "red"];
-      if (/active metabolite|activation|prodrug|morphine|endoxifen|active thiol|o-desmethyltramadol|loss of analgesia|loss of efficacy|ineffective/.test(text)) return ["Active-metabolite effect", "amber"];
-      if (/transporter|oatp|bcrp|p-gp|pgp|slco|abc/.test(text)) return ["Transporter context", "violet"];
-      if (/auc|exposure|level|clearance|dose|fold|poor metabolizer|intermediate metabolizer|ultrarapid/.test(text)) return ["Parent exposure context", "amber"];
-      if (/cpic|pharmgkb|guideline|label|evidence/.test(text)) return ["Guideline/source context", "green"];
-      return ["Mechanism context", ""];
+      if (row.source === "GENOTYPE_RISK_EFFECTS" || row.role === "risk") return ["Risk marker", "red", 0];
+      if (row.role === "metabolite" && /toxic|toxicity|sn-38|5-fu|fluorouracil|6-tgn|myelosuppression|hydroxylamine|oxidant|hemolys|methemoglobin/.test(text)) return ["Toxic/metabolite risk", "red", 1];
+      if (row.role === "metabolite" && /active metabolite|activation|prodrug|morphine|endoxifen|active thiol|o-desmethyltramadol|loss of analgesia|loss of efficacy|ineffective|reduced conversion|reduced formation/.test(text)) return ["Active-metabolite effect", "amber", 2];
+      if (row.role === "evidence" || row.source === "PHARMGKB_EVIDENCE" || String(row.evidenceLevel || "").toUpperCase() === "A") return ["Guideline/source context", "green", 3];
+      if (row.role === "transporter" || /transporter|oatp|bcrp|p-gp|pgp|slco|abc/.test(text)) return ["Transporter context", "violet", 4];
+      if (row.role === "modulator") return ["Modulator context", "violet", 5];
+      if (row.role === "parent" || /auc|exposure|level|clearance|dose|fold|poor metabolizer|intermediate metabolizer|ultrarapid/.test(text)) return ["Parent exposure context", "amber", 6];
+      return ["Mechanism context", "", 7];
+    }
+
+    function pgxMechanismBucket(group) {
+      const candidates = group.rows.map(pgxMechanismBucketForRow).sort((a, b) => a[2] - b[2]);
+      return candidates[0] || ["Mechanism context", "", 7];
     }
 
     function pgxReviewPhrase(group) {
       const joined = group.rows.map((row) => `${row.signal || ""} ${row.actionText || ""}`).join(" ");
       if (/contraindicat|avoid|do not use|black box|black-box|life-threatening/i.test(joined)) {
-        return "High-priority source-linked review context. Confirm the report, indication, dose, route, alternatives, and clinician/pharmacist plan before any medication decision.";
+        return "High-priority source-linked review context. Confirm the report, indication, dose, route, timing, and clinician/pharmacist plan before any medication decision.";
       }
       if (/dose|monitor|tdm|cbc|inr|ecg|toxicity|bleeding|bradycardia|myopathy|hemolys/i.test(joined)) {
         return "Review dose, monitoring, symptoms, organ function, timing, and interacting medicines in the full medication-list context.";
@@ -394,22 +446,27 @@
       const evidence = group.rows.some((row) => String(row.evidenceLevel || "").toUpperCase() === "A") ? -3 : 0;
       const source = group.rows.some((row) => row.source === "PHARMGKB_EVIDENCE") ? -2 : 0;
       const metabolite = group.rows.some((row) => row.role === "metabolite") ? -1 : 0;
-      return severity * 10 + evidence + source + metabolite;
+      const bucketRank = ({ "Risk marker":0, "Toxic/metabolite risk":1, "Active-metabolite effect":2, "Guideline/source context":3, "Parent exposure context":4, "Transporter context":5, "Modulator context":6, "Mechanism context":7 })[group.bucket] ?? 7;
+      const text = group.rows.map((row) => `${row.signal || ""} ${row.actionText || ""} ${row.object || ""}`).join(" ").toLowerCase();
+      const criticalMechanism = /contraindicat|avoid|do not use|active thiol|morphine|5-fu|fluorouracil|sn-38|hydroxylamine|hemolys|methemoglobin|loss of analgesia|loss of efficacy/.test(text) ? -12 : 0;
+      return bucketRank * 25 + severity * 8 + evidence + source + metabolite + criticalMechanism;
     }
 
     function buildPgxMedicationGroups(rows) {
       const groups = new Map();
       for (const row of rows) {
-        const medication = pgxPrimaryMedication(row);
-        if (!medication) continue;
-        if (!groups.has(medication)) {
-          const entity = index.getEntity(medication);
-          groups.set(medication, { medication, class:entity?.class || row.class || "Medication", rows:[] });
+        const medications = relationMedicationNames(row);
+        if (!medications.length) continue;
+        for (const medication of medications) {
+          if (!groups.has(medication)) {
+            const entity = index.getEntity(medication);
+            groups.set(medication, { medication, class:entity?.class || row.class || "Medication", rows:[] });
+          }
+          groups.get(medication).rows.push(row);
         }
-        groups.get(medication).rows.push(row);
       }
       return [...groups.values()].map((group) => {
-        const [bucket, color] = pgxMechanismBucket(group.rows.find((row) => row.role === "metabolite") || group.rows[0] || {});
+        const [bucket, color] = pgxMechanismBucket(group);
         return {
           ...group,
           bucket,
@@ -424,7 +481,7 @@
 
     function selectedModel() {
       const gene = selectedGene();
-      return (index.modeledGenotypes || []).find((item) => item.kind === "modeled_gene" && item.gene === gene) || null;
+      return modelForPhenotype(gene, $("#phenotypeSelect")?.value || "");
     }
 
     function phenotypeLabel(gene, value, model = selectedModel()) {
@@ -469,10 +526,22 @@
     }
 
     function phenotypeOptions(gene) {
-      const model = selectedModel();
-      const values = model?.gene === gene ? model.phenotypeValues : Object.keys(genotypeEffectsModel?.[gene] || {});
-      if (!values.length) return [`<option value="">Evidence/context only</option>`].join("");
-      return values.map((value) => `<option value="${esc(value)}">${esc(phenotypeLabel(gene, value, model))}</option>`).join("");
+      const entries = [];
+      const seen = new Set();
+      for (const model of modelsForGene(gene)) {
+        for (const value of model.phenotypeValues || []) {
+          if (seen.has(value)) continue;
+          seen.add(value);
+          entries.push({ value, label:phenotypeLabel(gene, value, model) });
+        }
+      }
+      for (const value of Object.keys(genotypeEffectsModel?.[gene] || {})) {
+        if (seen.has(value)) continue;
+        seen.add(value);
+        entries.push({ value, label:phenotypeLabel(gene, value, modelForPhenotype(gene, value)) });
+      }
+      if (!entries.length) return [`<option value="">Evidence/context only</option>`].join("");
+      return entries.map((item) => `<option value="${esc(item.value)}">${esc(item.label)}</option>`).join("");
     }
 
     function selectedGene() {
@@ -493,7 +562,7 @@
       const rows = filteredGeneRelations();
       const groups = buildPgxMedicationGroups(rows);
       const shown = state.geneShowAll ? groups : groups.slice(0, pageSize);
-      const uniqueSubjects = new Set(groups.map((group) => group.medication));
+      const supportingRows = rows.filter((row) => !relationMedicationNames(row).length);
       const modelText = model ? `${model.label} · ${model.stateLabel}` : `${gene} custom relation search`;
       $("#geneStatus").textContent = `${modelText}. ${groups.length} affected medication contexts from ${rows.length} indexed source rows. ${phenotype ? phenotypeLabel(gene, phenotype, model) : "Evidence/context only"}.`;
       $("#geneMetrics").innerHTML = [
@@ -513,19 +582,85 @@
         ["Parent exposure context", buildPgxMedicationGroups(exposureRows).length, "amber", "Medication contexts suggesting exposure, clearance, level, dose, or toxicity review.", exposureRows.slice(0, 8)],
         ["Transport or modulation", buildPgxMedicationGroups(modulatorRows).length, "violet", "Inhibitors, inducers, transporters, and actor-context edges that may change interpretation.", modulatorRows.slice(0, 8)],
       ].map(([title, count, color, body, items]) => {
-        return rowLink(index.appLink(items.flatMap((item) => item.linkSubstances), { genotype:pgxGenotypeValue(gene, phenotype), tab:"genes-metabolites" }), title, `${count} meds`, color, body, items.map((item) => item.subject).slice(0, 6));
+        return rowLink(index.appLink(items.flatMap((item) => item.linkSubstances), { genotype:pgxAppGenotypeValue(gene, phenotype), tab:"genes-metabolites" }), title, `${count} meds`, color, body, items.map((item) => item.subject).slice(0, 6));
       }).join("");
       $("#geneSubstanceRows").innerHTML = shown.map((group) => {
-        const href = index.appLink([group.medication], { genotype:pgxGenotypeValue(gene, phenotype), tab:"genes-metabolites" });
+        const href = index.appLink([group.medication], { genotype:pgxAppGenotypeValue(gene, phenotype), tab:"genes-metabolites" });
         const roles = [...new Set(group.rows.map((row) => sentence(row.role)).filter(Boolean))].slice(0, 3);
-        return `<tr>
-          <td><a class="text-link" href="${esc(href)}">${esc(group.medication)}</a><br>${tag(group.class)}<div class="pgx-source">${roles.map((role) => tag(role)).join("")}</div></td>
-          <td><div class="pgx-context"><strong>${esc(group.bucket)}</strong><span>${esc(group.review)}</span><div class="pgx-source">${tag(group.evidence, group.color)}${tag(`${group.rows.length} source row${group.rows.length === 1 ? "" : "s"}`)}</div></div></td>
-          <td><div class="pgx-actor">${esc(group.actor)}</div></td>
-          <td><a class="pgx-review-link" href="${esc(href)}">Open in Diognosis review</a></td>
-        </tr>`;
-      }).join("") || `<tr><td colspan="4">No medication contexts found for ${esc(gene)}.</td></tr>`;
+        return `<article class="row pgx-medication-card">
+          <div class="row-main">
+            <h4><a class="text-link" href="${esc(href)}">${esc(group.medication)}</a></h4>
+            <div class="meta">${tag(group.class)}${roles.map((role) => tag(role)).join("")}</div>
+          </div>
+          <div class="pgx-card-body">
+            <p class="pgx-card-line"><strong>${esc(group.bucket)}:</strong> ${esc(group.review)}</p>
+            <p class="pgx-card-line"><strong>Metabolite / actor:</strong> ${esc(group.actor)}</p>
+            <div class="pgx-source">${tag(group.evidence, group.color)}${tag(`${group.rows.length} source row${group.rows.length === 1 ? "" : "s"}`)}</div>
+          </div>
+          <a class="pgx-review-link" href="${esc(href)}">Open in Diognosis review</a>
+        </article>`;
+      }).join("") || `<div class="row"><p>No linkable medication contexts found for ${esc(gene)}.</p></div>`;
+      const supportingSubjects = [...new Set(supportingRows.map((row) => row.subject).filter(Boolean))]
+        .filter((name) => !canonicalMedicationName(name))
+        .slice(0, 14);
+      $("#geneSupportingContext").innerHTML = supportingRows.length
+        ? `<details><summary>Supporting context (${supportingRows.length} broad or marker-only rows)</summary><p>These are class, marker, metabolite, or external context rows kept out of the primary medication list. Use them as background only after opening a linkable medication in Diognosis.</p>${supportingSubjects.length ? `<div class="meta">${supportingSubjects.map((item) => tag(item)).join("")}</div>` : ""}</details>`
+        : "";
       renderPager($("#genePager"), groups.length, shown.length, "geneShowAll", renderGeneView);
+    }
+
+    function publicAreaLabel(value) {
+      if (value === "Option review") return "Treatment-plan context";
+      if (value === "Context only") return "Context-only";
+      return value;
+    }
+
+    function actionEvidenceStatus(group) {
+      const levels = group.rows.map((row) => String(row.evidenceLevel || "").toUpperCase()).filter(Boolean);
+      const sources = new Set(group.rows.map((row) => row.source).filter(Boolean));
+      if (levels.includes("A") || sources.has("PHARMGKB_EVIDENCE")) return "Source-linked PGx or level-A evidence context";
+      if (levels.includes("LINKED") || [...sources].some((source) => /METAB|PATHWAY|GENOTYPE|KNOWN_DDI/i.test(source))) return "Source-linked medication-context data";
+      if (levels.includes("HIGH")) return "High-confidence indexed context";
+      return "Indexed educational context";
+    }
+
+    function actionReviewQuestion(group, label) {
+      const text = group.rows.map((row) => `${row.signal || ""} ${row.actionText || ""}`).join(" ");
+      if (/Use-together/i.test(label)) return "Whether these selected items should be reviewed together in the actual medication list, including timing, route, dose, and patient context.";
+      if (/Dose\/timing/i.test(label)) return "Whether dose, timing, overlap, washout, route, organ function, or recent changes affect the review.";
+      if (/Monitoring/i.test(label)) return "Which symptoms, labs, vitals, side effects, or follow-up checks should be discussed for this context.";
+      if (/Treatment-plan/i.test(label)) return "Which plan details a clinician or pharmacist should confirm before any start, stop, dose, or substitution decision.";
+      if (/contraindicat|avoid|do not use/i.test(text)) return "Whether this source-linked context changes the review priority for the selected medication list.";
+      return "Whether this background context is relevant to the actual medication list and patient history.";
+    }
+
+    function buildActionMedicationGroups(rows) {
+      const groups = new Map();
+      for (const row of rows) {
+        const meds = relationMedicationNames(row);
+        if (!meds.length) continue;
+        const key = meds.slice().sort((a, b) => a.localeCompare(b)).join(" + ");
+        if (!groups.has(key)) groups.set(key, { medications:meds, rows:[] });
+        groups.get(key).rows.push(row);
+      }
+      return [...groups.values()].map((group) => {
+        const severity = Math.min(...group.rows.map((row) => ({ red:0, amber:1, violet:2, green:3 })[row.severity] ?? 2));
+        const evidence = group.rows.some((row) => /^(A|high|linked)$/i.test(row.evidenceLevel || "")) ? -2 : 0;
+        return { ...group, score:severity * 10 + evidence, title:group.medications.join(" + ") };
+      }).sort((a, b) => a.score - b.score || a.title.localeCompare(b.title));
+    }
+
+    function actionCard(group, label, color) {
+      const href = index.appLink(group.medications, { tab:"overview" });
+      const sources = [...new Set(group.rows.map((row) => row.source).filter(Boolean))].slice(0, 3);
+      const genes = [...new Set(group.rows.map((row) => row.gene).filter(Boolean))].slice(0, 3);
+      const classes = [...new Set(group.rows.map((row) => row.class).filter(Boolean))].slice(0, 2);
+      return `<a class="row action-context-card" href="${esc(href)}">
+        <div class="row-main"><h4>${esc(group.title)}</h4>${tag(label, color)}</div>
+        <p class="pgx-card-line"><strong>What to review:</strong> ${esc(actionReviewQuestion(group, label))}</p>
+        <p class="pgx-card-line"><strong>Evidence status:</strong> ${esc(actionEvidenceStatus(group))}</p>
+        <div class="meta">${[...sources, ...genes, ...classes, `${group.rows.length} source row${group.rows.length === 1 ? "" : "s"}`].filter(Boolean).map((item) => tag(item)).join("")}</div>
+      </a>`;
     }
 
     function renderActionView() {
@@ -539,12 +674,13 @@
         const areaOk = area === "all" || row.class === area || row.source === area || row.role === area || row.actionGroup === area;
         return queryOk && evidenceOk && areaOk;
       });
-      $("#actionCards").innerHTML = actionGroups.map(([group, color]) => {
-        const bucket = rows.filter((row) => row.actionGroup === group);
-        const key = `actionShowAll:${group}`;
+      $("#actionCards").innerHTML = actionGroups.map((group) => {
+        const bucketRows = rows.filter((row) => row.actionGroup === group.key);
+        const bucket = buildActionMedicationGroups(bucketRows);
+        const key = `actionShowAll:${group.key}`;
         const showAll = Boolean(state.actionShowAll[key]);
         const matches = showAll ? bucket : bucket.slice(0, pageSize);
-        return `<article class="card"><div class="card-head"><h3>${group}</h3>${tag(`${bucket.length} matches`, color)}</div><div class="card-body list">${matches.map((row) => rowLink(appLinkForRelation(row, { tab:"overview" }), relationTitle(row), row.source, color, relationBody(row), [row.class, row.gene, row.evidenceLevel].filter(Boolean))).join("") || `<div class="row"><p>No matching rows.</p></div>`}<div class="pager"><span>Showing ${Math.min(matches.length, bucket.length)} of ${bucket.length} rows</span>${bucket.length > pageSize ? `<button type="button" data-action-group="${esc(group)}">${showAll ? "Show 50" : "Show all"}</button>` : ""}</div></div></article>`;
+        return `<article class="card"><div class="card-head"><h3>${esc(group.label)}</h3>${tag(`${bucket.length} contexts`, group.color)}</div><div class="card-body"><p class="action-card-note">${esc(group.note)}</p><div class="list">${matches.map((item) => actionCard(item, group.label, group.color)).join("") || `<div class="row"><p>No matching medication contexts.</p></div>`}</div><div class="pager"><span>Showing ${Math.min(matches.length, bucket.length)} of ${bucket.length} contexts</span>${bucket.length > pageSize ? `<button type="button" data-action-group="${esc(group.key)}">${showAll ? "Show 50" : "Show all"}</button>` : ""}</div></div></article>`;
       }).join("");
       $("#actionCards").querySelectorAll("[data-action-group]").forEach((button) => {
         button.addEventListener("click", () => {
@@ -612,10 +748,10 @@
       const topInhibitors = sortRanking([...rows], "inhibitors")[0];
       $("#rankingCountTag").textContent = `${rows.length} genes`;
       $("#rankingMetrics").innerHTML = [
-        [topImpact?.gene || "-", "top impact"],
+        [topImpact?.gene || "-", "largest coverage"],
         [topTotal ? `${topTotal.gene} · ${topTotal.totalSubstances}` : "-", "most substances"],
-        [topHigh ? `${topHigh.gene} · ${topHigh.high}` : "-", "high-severity rows"],
-        [topInhibitors ? `${topInhibitors.gene} · ${topInhibitors.inhibitors}` : "-", "inhibitors"],
+        [topHigh ? `${topHigh.gene} · ${topHigh.high}` : "-", "priority context rows"],
+        [topInhibitors ? `${topInhibitors.gene} · ${topInhibitors.inhibitors}` : "-", "inhibitor contexts"],
       ].map(([num, label]) => `<div class="metric"><strong>${esc(num)}</strong><span>${esc(label)}</span></div>`).join("");
       $("#rankingRows").innerHTML = shown.map((item) => {
         const rank = rows.indexOf(item) + 1;
@@ -624,10 +760,10 @@
         return `<tr><td class="rank-cell">#${rank}</td><td class="rank-gene"><a href="${esc(href)}">${esc(item.gene)}</a><br>${tag(item.classes.slice(0, 2).join(" / ") || "gene")}</td><td><div class="score"><strong>${item.score}</strong><div class="scorebar"><span style="width:${width}%"></span></div></div></td><td>${item.totalSubstances}</td><td>${item.parents}</td><td>${item.metabolites}</td><td>${item.inhibitors}</td><td>${item.inducers}</td><td>${item.transporters}</td><td>${item.minors}</td><td>${tag(item.high, item.high ? "red" : "")}</td><td>${item.actionable}</td><td>${item.evidence}</td></tr>`;
       }).join("") || `<tr><td colspan="13">No genes match this ranking filter.</td></tr>`;
       $("#rankingHighlights").innerHTML = [
-        ["Highest coverage score", topImpact, "red", (item) => `${item.score} coverage score from ${item.totalSubstances} parent/metabolite substances and ${item.high} high-severity rows.`],
+        ["Largest coverage footprint", topImpact, "violet", (item) => `${item.score} coverage score from ${item.totalSubstances} parent/metabolite substances and ${item.evidence} evidence rows.`],
         ["Broadest parent/metabolite reach", topTotal, "amber", (item) => `${item.totalSubstances} total substances: ${item.parents} parents and ${item.metabolites} metabolites.`],
         ["Most inhibitor pressure", topInhibitors, "violet", (item) => `${item.inhibitors} inhibitor substances and ${item.inducers} inducer/promoter substances.`],
-        ["Most high-severity burden", topHigh, "red", (item) => `${item.high} red-severity rows across ${item.actionable} review-prompt rows.`],
+        ["Most priority context rows", topHigh, "red", (item) => `${item.high} priority rows across ${item.actionable} medication-context rows.`],
       ].filter(([, item]) => item).map(([title, item, color, body]) => rowLink(`./data-views.html?view=genotype&gene=${encodeURIComponent(item.gene)}`, `${title}: ${item.gene}`, `${item.rows.length} rows`, color, body(item), item.classes.slice(0, 4))).join("");
       renderPager($("#rankingPager"), rows.length, shown.length, "rankingShowAll", renderRankingView);
     }
@@ -658,6 +794,29 @@
       history.replaceState(null, "", `?${params.toString().replaceAll("%3A", ":")}`);
     }
 
+    function syncActionViewUrl() {
+      if (!window.history?.replaceState) return;
+      const params = new URLSearchParams();
+      params.set("view", "action");
+      const action = ($("#actionSearch").value || "").trim();
+      if (action) params.set("action", action);
+      history.replaceState(null, "", `?${params.toString().replaceAll("%2C", ",")}`);
+    }
+
+    function syncRankingViewUrl() {
+      if (!window.history?.replaceState) return;
+      const params = new URLSearchParams();
+      params.set("view", "ranking");
+      params.set("sort", $("#rankingSort")?.value || "score");
+      history.replaceState(null, "", `?${params.toString()}`);
+    }
+
+    function syncCurrentViewUrl(view) {
+      if (view === "genotype") syncGenotypeExplorerUrl();
+      else if (view === "action") syncActionViewUrl();
+      else if (view === "ranking") syncRankingViewUrl();
+    }
+
     function initDataViews() {
       const params = new URLSearchParams(location.search);
       renderDataSnapshot();
@@ -667,7 +826,7 @@
       const geneOptions = [...new Set([...priorityGenes, ...index.genes])];
       document.body.insertAdjacentHTML("beforeend", `<datalist id="geneOptions">${geneOptions.map((gene) => `<option value="${esc(gene)}"></option>`).join("")}</datalist>`);
       const areas = [...new Set([...Object.keys(index.byClass), ...Object.keys(index.byActionGroup), "parent", "metabolite", "transporter", "modulator", "evidence", "risk"])].sort();
-      $("#actionArea").innerHTML += areas.map((area) => `<option value="${esc(area)}">${esc(area)}</option>`).join("");
+      $("#actionArea").innerHTML += areas.map((area) => `<option value="${esc(area)}">${esc(publicAreaLabel(area))}</option>`).join("");
       setGeneSelection(params.get("gene") || "CYP2D6");
       updatePhenotypeOptions();
       if (params.get("phenotype") && [...$("#phenotypeSelect").options].some((option) => option.value === params.get("phenotype"))) $("#phenotypeSelect").value = params.get("phenotype");
@@ -677,16 +836,16 @@
       if (params.get("area") && [...$("#actionArea").options].some((option) => option.value === params.get("area"))) $("#actionArea").value = params.get("area");
       if (params.get("rankingSearch")) $("#rankingSearch").value = params.get("rankingSearch");
       if (params.get("sort") && [...$("#rankingSort").options].some((option) => option.value === params.get("sort"))) $("#rankingSort").value = params.get("sort");
-      document.querySelectorAll(".nav-btn").forEach((button) => button.addEventListener("click", () => { activateView(button.dataset.view); history.replaceState(null, "", `?view=${button.dataset.view}`); }));
+      document.querySelectorAll(".nav-btn").forEach((button) => button.addEventListener("click", () => { activateView(button.dataset.view); syncCurrentViewUrl(button.dataset.view); }));
       $("#geneSearch").addEventListener("change", () => { updatePhenotypeOptions(); state.geneShowAll = false; renderGeneView(); syncGenotypeExplorerUrl(); });
       $("#phenotypeSelect").addEventListener("change", () => { updatePhenotypeOptions(); renderGeneView(); syncGenotypeExplorerUrl(); });
       $("#relationshipSelect").addEventListener("change", () => { state.geneShowAll = false; renderGeneView(); syncGenotypeExplorerUrl(); });
-      $("#actionFilter").addEventListener("click", renderActionView);
-      $("#actionSearch").addEventListener("input", renderActionView);
+      $("#actionFilter").addEventListener("click", () => { renderActionView(); syncActionViewUrl(); });
+      $("#actionSearch").addEventListener("input", () => { renderActionView(); syncActionViewUrl(); });
       $("#actionEvidence").addEventListener("change", renderActionView);
       $("#actionArea").addEventListener("change", renderActionView);
       $("#rankingSearch").addEventListener("input", () => { state.rankingShowAll = false; renderRankingView(); });
-      $("#rankingSort").addEventListener("change", () => { state.rankingShowAll = false; renderRankingView(); });
+      $("#rankingSort").addEventListener("change", () => { state.rankingShowAll = false; renderRankingView(); syncRankingViewUrl(); });
       renderGeneView();
       renderActionView();
       activateView(params.get("view") || "genotype");

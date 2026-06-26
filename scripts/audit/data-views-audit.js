@@ -15,12 +15,13 @@ const pageSize = 50;
 const requiredUrls = [
   "?view=genotype&gene=CYP2D6",
   "?view=genotype&gene=CYP2D6&phenotype=poor_metabolizer",
-  "?view=genotype&gene=CYP2C19",
+  "?view=genotype&gene=CYP2C19&phenotype=poor_metabolizer",
   "?view=genotype&gene=SLCO1B1&relationship=transporter",
   "?view=genotype&gene=ABCB1",
   "?view=genotype&gene=ABCG2",
   "?view=genotype&gene=CYP3A4",
-  "?view=genotype&gene=DPYD",
+  "?view=genotype&gene=DPYD&phenotype=poor_metabolizer",
+  "?view=genotype&gene=G6PD&phenotype=risk_allele_present",
   "?view=action&action=digoxin",
   "?view=ranking&sort=total",
 ];
@@ -64,8 +65,19 @@ function loadPage(search) {
   return { dom, consoleErrors };
 }
 
+function activePanel(document) {
+  return document.querySelector(".view.active");
+}
+
+function activeText(document) {
+  const panel = activePanel(document);
+  return `${document.querySelector("#pageTitle")?.textContent || ""} ${document.querySelector("#pageCopy")?.textContent || ""} ${panel?.textContent || ""}`;
+}
+
 function visibleRows(document, selector) {
-  return [...document.querySelectorAll(selector)].filter((node) => !/No indexed|No matching|No edges|No impacts/.test(node.textContent || "")).length;
+  const panel = activePanel(document);
+  if (!panel) return 0;
+  return [...panel.querySelectorAll(selector)].filter((node) => !/No indexed|No matching|No edges|No impacts|No linkable/.test(node.textContent || "")).length;
 }
 
 function expectPager(document, selector, expectedTotal, label, search) {
@@ -83,20 +95,35 @@ function actionExpectedRows(index, action) {
   return index.relations.filter((row) => terms.some((term) => row.searchText.includes(term)));
 }
 
-function genotypeMedicationContextCount(index, rows) {
+function genotypeMedicationContextCount(window, rows) {
+  if (typeof window.buildPgxMedicationGroups === "function") return window.buildPgxMedicationGroups(rows).length;
   const contexts = new Set();
   for (const row of rows) {
-    const subjectDrug = index.getDrugRecord(row.subject);
-    if (subjectDrug) {
-      contexts.add(subjectDrug.name);
-      continue;
-    }
-    const linked = (row.linkSubstances || [])
-      .map((name) => index.getDrugRecord(name))
-      .find(Boolean);
-    if (linked) contexts.add(linked.name);
+    const meds = typeof window.relationMedicationNames === "function" ? window.relationMedicationNames(row) : [];
+    meds.forEach((name) => contexts.add(name));
   }
   return contexts.size;
+}
+
+function pgxCards(document) {
+  return [...document.querySelectorAll("#view-genotype.active #geneSubstanceRows .pgx-medication-card")];
+}
+
+function cardByMedication(document, medication) {
+  const normalized = String(medication || "").toLowerCase();
+  return pgxCards(document).find((card) => (card.querySelector("h4")?.textContent || "").trim().toLowerCase() === normalized);
+}
+
+function cardText(card) {
+  return (card?.textContent || "").replace(/\s+/g, " ").trim();
+}
+
+function cardHref(card) {
+  return card?.querySelector(".pgx-review-link")?.getAttribute("href") || card?.querySelector("a.text-link")?.getAttribute("href") || "";
+}
+
+function cardMedicationNames(document) {
+  return pgxCards(document).map((card) => (card.querySelector("h4")?.textContent || "").trim()).filter(Boolean);
 }
 
 const base = loadPage("?view=genotype&gene=CYP2D6");
@@ -165,7 +192,11 @@ for (const search of requiredUrls) {
   if (view === "network") view = "ranking";
 
   if (consoleErrors.length) fail(`${search}: console/runtime errors: ${consoleErrors.join(" | ")}`);
-  if (/Unresolved/i.test(document.body.textContent || "")) fail(`${search}: visible unresolved text rendered.`);
+  const expectedActiveId = `view-${view}`;
+  if (activePanel(document)?.id !== expectedActiveId) {
+    fail(`${search}: active panel should be ${expectedActiveId}, found ${activePanel(document)?.id || "(missing)"}.`);
+  }
+  if (/Unresolved/i.test(activeText(document))) fail(`${search}: visible unresolved text rendered.`);
   if (!index) {
     fail(`${search}: missing DATA_VIEW_INDEX.`);
     continue;
@@ -175,13 +206,13 @@ for (const search of requiredUrls) {
     const gene = (params.get("gene") || "CYP2D6").toUpperCase();
     const relationship = params.get("relationship") || "all";
     const rows = (index.byGene[gene] || []).filter((row) => relationship === "all" || row.role === relationship);
-    const medicationContextCount = genotypeMedicationContextCount(index, rows);
+    const medicationContextCount = genotypeMedicationContextCount(dom.window, rows);
     const relationshipTag = document.querySelector("#geneRelationshipTag")?.textContent || "";
     if (!relationshipTag.toUpperCase().includes(gene)) fail(`${search}: relationship map tag is not scoped to ${gene}. Found: ${relationshipTag || "(missing)"}`);
     if (gene === "CYP3A4" && /CYP2D6\s+PM|Complete loss of analgesia/i.test(document.querySelector("#view-genotype")?.textContent || "")) {
       fail(`${search}: CYP3A4 genotype view includes CYP2D6-specific Codeine clinical text.`);
     }
-    if (rows.length && visibleRows(document, "#geneSubstanceRows tr") === 0) fail(`${search}: genotype view rendered zero rows for ${rows.length} index matches.`);
+    if (rows.length && visibleRows(document, "#geneSubstanceRows .pgx-medication-card") === 0) fail(`${search}: genotype view rendered zero medication cards for ${rows.length} index matches.`);
     if (rows.length && !/Affected Medication Contexts/i.test(document.querySelector("#view-genotype")?.textContent || "")) {
       fail(`${search}: PGx Explorer should label grouped medication contexts.`);
     }
@@ -189,17 +220,78 @@ for (const search of requiredUrls) {
     if (rows.length && !reviewLinks.some((href) => href.includes("index.html?substances="))) {
       fail(`${search}: PGx Explorer medication rows should link back to Diognosis review.`);
     }
-    if (params.get("phenotype") && !reviewLinks.some((href) => href.includes(`genotype=${gene}:${params.get("phenotype")}`))) {
+    const selectedPhenotype = params.get("phenotype");
+    const expectedGenotypeToken = gene === "G6PD" && selectedPhenotype === "risk_allele_present"
+      ? "G6PD:deficiency"
+      : `${gene}:${selectedPhenotype}`;
+    if (selectedPhenotype && !reviewLinks.some((href) => href.includes(`genotype=${expectedGenotypeToken}`))) {
       fail(`${search}: PGx Explorer back-links should preserve selected genotype phenotype.`);
     }
     expectPager(document, "#genePager", medicationContextCount, "genotype", search);
+
+    if (gene === "CYP2C19" && selectedPhenotype === "poor_metabolizer") {
+      const cards = pgxCards(document);
+      const clopidogrel = cardByMedication(document, "Clopidogrel");
+      if (!clopidogrel) {
+        fail(`${search}: CYP2C19 PM should show Clopidogrel as a medication context.`);
+      } else {
+        if (cards.indexOf(clopidogrel) > 2) fail(`${search}: Clopidogrel should appear near the top for CYP2C19 PM.`);
+        if (!/active thiol|active-metabolite/i.test(cardText(clopidogrel))) fail(`${search}: Clopidogrel card should expose active-thiol / active-metabolite context.`);
+        const href = cardHref(clopidogrel);
+        if (!/substances=clopidogrel/.test(href) || !/genotype=CYP2C19:poor_metabolizer/.test(href) || !/tab=genes-metabolites/.test(href)) {
+          fail(`${search}: Clopidogrel card has incorrect Diognosis back-link: ${href}`);
+        }
+      }
+    }
+
+    if (gene === "CYP2D6" && selectedPhenotype === "poor_metabolizer") {
+      const codeine = cardByMedication(document, "Codeine");
+      if (!codeine) {
+        fail(`${search}: CYP2D6 PM should show Codeine as a medication context.`);
+      } else if (!/morphine|active-metabolite/i.test(cardText(codeine))) {
+        fail(`${search}: Codeine card should expose morphine / active-metabolite context.`);
+      }
+      const fluoxetine = cardByMedication(document, "Fluoxetine");
+      if (!fluoxetine) {
+        fail(`${search}: CYP2D6 PM should show Fluoxetine in the first PGx card page.`);
+      } else if (/Risk marker/i.test(cardText(fluoxetine))) {
+        fail(`${search}: Fluoxetine should not be mislabeled as a risk marker.`);
+      }
+    }
+
+    if (gene === "DPYD" && selectedPhenotype === "poor_metabolizer") {
+      const meds = cardMedicationNames(document);
+      for (const medication of ["Capecitabine", "Fluorouracil", "Tegafur"]) {
+        if (!meds.includes(medication)) fail(`${search}: DPYD PM should show ${medication} as a primary medication context.`);
+      }
+      if (meds.includes("Fluoropyrimidines")) fail(`${search}: Fluoropyrimidines should not appear as a primary medication row.`);
+    }
+
+    if (gene === "G6PD" && selectedPhenotype === "risk_allele_present") {
+      const text = activeText(document);
+      if (!/Present/i.test(text)) fail(`${search}: G6PD risk-marker status should render as Present.`);
+      const meds = cardMedicationNames(document);
+      for (const medication of ["Rasburicase", "Primaquine", "Dapsone", "Tafenoquine", "Nitrofurantoin"]) {
+        if (!meds.includes(medication)) fail(`${search}: G6PD present should show ${medication} context.`);
+      }
+      const g6pdLinks = pgxCards(document).map(cardHref).filter(Boolean);
+      if (!g6pdLinks.some((href) => /genotype=G6PD:deficiency/.test(href))) {
+        fail(`${search}: G6PD medication cards should link back with the Diognosis G6PD deficiency genotype token.`);
+      }
+    }
   }
 
   if (view === "action") {
     const rows = actionExpectedRows(index, params.get("action") || "");
-    if (rows.length && visibleRows(document, "#actionCards .row") === 0) fail(`${search}: action view rendered zero rows for ${rows.length} index matches.`);
-    for (const group of ["Use-together review", "Dose/timing review", "Option review", "Monitoring review", "Context only"]) {
-      if (!document.querySelector("#actionCards")?.textContent.includes(group)) fail(`${search}: missing action group ${group}.`);
+    const text = activeText(document);
+    if (rows.length && visibleRows(document, "#actionCards .action-context-card") === 0) fail(`${search}: action view rendered zero medication-context cards for ${rows.length} index matches.`);
+    for (const group of ["Use-together review", "Dose/timing review", "Treatment-plan context", "Monitoring review", "Context-only"]) {
+      if (!text.includes(group)) fail(`${search}: missing Review Questions group ${group}.`);
+    }
+    if (/Option review|Review prompts/i.test(text)) fail(`${search}: Review Questions should not expose old option/prompt wording.`);
+    if (!/Digoxin/i.test(text)) fail(`${search}: Review Questions should show digoxin contexts for action=digoxin.`);
+    if (/Amitriptyline TCAEvidenceMetaboliteParent|Codeine OpioidMetaboliteEvidenceParent/i.test(text)) {
+      fail(`${search}: Review Questions active panel is leaking default CYP2D6 PGx rows.`);
     }
   }
 
@@ -208,7 +300,12 @@ for (const search of requiredUrls) {
     if (rows && visibleRows(document, "#rankingRows tr") === 0) fail(`${search}: ranking view rendered zero rows for ${rows} displayed matches.`);
     expectPager(document, "#rankingPager", rows, "ranking", search);
     if (!document.querySelector("#rankingCountTag")?.textContent.match(/\d+ genes/)) fail(`${search}: ranking view missing visible gene count.`);
-    if (!document.querySelector("#rankingRows")?.textContent.includes("CYP2D6")) fail(`${search}: ranking view should expose CYP2D6 in the top ranking page.`);
+    const text = activeText(document);
+    if (!/Gene Coverage/i.test(text)) fail(`${search}: ranking view should be labeled Gene Coverage.`);
+    if (/Gene Ranking|high-severity burden|high severity/i.test(text)) fail(`${search}: Gene Coverage should not use clinical-risk ranking language.`);
+    if (!document.querySelector("#rankingRows")?.textContent.includes("CYP2D6")) fail(`${search}: ranking view should expose CYP2D6 in the top coverage page.`);
+    const cyp2d6Link = [...document.querySelectorAll("#rankingRows a")].find((link) => link.textContent.trim() === "CYP2D6")?.getAttribute("href") || "";
+    if (!cyp2d6Link.includes("data-views.html?view=genotype&gene=CYP2D6")) fail(`${search}: Gene Coverage CYP2D6 row should link into PGx Explorer.`);
   }
 
 }
