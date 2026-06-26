@@ -28,6 +28,7 @@ const requiredUrls = [
   "?view=genotype&gene=HLA-B*15:02&phenotype=risk_allele_present",
   "?view=genotype&profile=CYP2D6:poor_metabolizer,CYP2C19:poor_metabolizer,HLA-B*57:01:risk_allele_present&gene=CYP2D6&phenotype=poor_metabolizer",
   "?view=action&action=digoxin",
+  "?view=ranking",
   "?view=ranking&sort=total",
 ];
 
@@ -392,8 +393,19 @@ for (const search of requiredUrls) {
     if (!/Gene Coverage/i.test(text)) fail(`${search}: ranking view should be labeled Gene Coverage.`);
     if (/Gene Ranking|high-severity burden|high severity|coverage score/i.test(text)) fail(`${search}: Gene Coverage should not use clinical-risk or synthetic-score ranking language.`);
     if ([...document.querySelectorAll("#rankingSort option")].some((option) => option.value === "score" || /coverage score/i.test(option.textContent || ""))) fail(`${search}: Gene Coverage sort options should not expose synthetic coverage scores.`);
+    if (!params.get("sort") && document.querySelector("#rankingSort")?.value !== "priority") fail(`${search}: Gene Coverage should default to priority medication contexts.`);
     const rankedGenes = [...document.querySelectorAll("#rankingRows .rank-gene a")].map((link) => link.textContent.trim()).filter(Boolean);
     if (rankedGenes.some((gene) => /CYP[^,;]*\/|\/[^,;]*CYP/i.test(gene))) fail(`${search}: Gene Coverage should not rank composite CYP route labels as genes.`);
+    const firstRankingCells = [...document.querySelectorAll("#rankingRows tr:first-child td")].map((cell) => (cell.textContent || "").replace(/\s+/g, " ").trim());
+    if (!params.get("sort") && firstRankingCells.length) {
+      const firstGene = firstRankingCells[1] || "";
+      const priorityContexts = Number(firstRankingCells[2]);
+      const contextRows = Number(firstRankingCells[3]);
+      if (!Number.isFinite(priorityContexts) || !Number.isFinite(contextRows) || priorityContexts <= 0 || contextRows <= priorityContexts) {
+        fail(`${search}: default Gene Coverage row should show priority contexts before larger raw context rows. Found: ${firstRankingCells.join(" | ")}`);
+      }
+      if (firstGene === "CYP3A4" && priorityContexts >= 1000) fail(`${search}: CYP3A4 should show priority-context count, not the old volume/score count. Found ${priorityContexts}.`);
+    }
     if (!document.querySelector("#rankingRows")?.textContent.includes("CYP2D6")) fail(`${search}: ranking view should expose CYP2D6 in the top coverage page.`);
     const cyp2d6Link = [...document.querySelectorAll("#rankingRows a")].find((link) => link.textContent.trim() === "CYP2D6")?.getAttribute("href") || "";
     if (!cyp2d6Link.includes("data-views.html?view=genotype&gene=CYP2D6")) fail(`${search}: Gene Coverage CYP2D6 row should link into PGx Explorer.`);

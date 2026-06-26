@@ -246,7 +246,7 @@
         <section class="view" id="view-ranking">
           <div class="toolbar">
             <input class="field" id="rankingSearch" placeholder="Search gene, CYP, transporter, or class" aria-label="Ranking search">
-            <select class="select" id="rankingSort" aria-label="Ranking sort"><option value="contexts">Medication context rows</option><option value="total">Total parent + metabolite substances</option><option value="high">Priority context rows</option><option value="inhibitors">Inhibitors</option><option value="inducers">Inducers / promoters</option><option value="az">A to Z</option></select>
+            <select class="select" id="rankingSort" aria-label="Ranking sort"><option value="priority">Priority medication contexts</option><option value="contexts">Medication context rows</option><option value="total">Total parent + metabolite substances</option><option value="inhibitors">Inhibitors</option><option value="inducers">Inducers / promoters</option><option value="evidence">Evidence rows</option><option value="az">A to Z</option></select>
           </div>
           <div class="metric-row" id="rankingMetrics"></div>
           <div class="grid two">
@@ -256,7 +256,7 @@
                 <p class="rank-note">Gene Coverage shows raw indexed data reach: medication-context rows, distinct parent/metabolite substances, and evidence rows. It is not a patient-risk score and does not rank genes by clinical danger.</p>
                 <div class="table-wrap">
                   <table class="table rank-table">
-                    <thead><tr><th>Rank</th><th>Gene</th><th>Contexts</th><th>Total substances</th><th>Parents</th><th>Metabolites</th><th>Inhibitors</th><th>Inducers / promoters</th><th>Transporters</th><th>Minor routes</th><th>Priority rows</th><th>Review contexts</th><th>Evidence</th></tr></thead>
+                    <thead><tr><th>Rank</th><th>Gene</th><th>Priority contexts</th><th>Context rows</th><th>Total substances</th><th>Parents</th><th>Metabolites</th><th>Inhibitors</th><th>Inducers / promoters</th><th>Transporters</th><th>Minor routes</th><th>Review contexts</th><th>Evidence</th></tr></thead>
                     <tbody id="rankingRows"></tbody>
                   </table>
                 </div>
@@ -899,6 +899,17 @@
       return new Set(rows.filter(predicate).map((row) => row.subject).filter(Boolean)).size;
     }
 
+    function medicationContextCount(rows, predicate = () => true) {
+      const keys = new Set();
+      for (const row of rows) {
+        if (!predicate(row)) continue;
+        const medications = relationMedicationNames(row);
+        const names = medications.length ? medications : (row.subject ? [row.subject] : []);
+        for (const name of names) keys.add(String(name).toLowerCase());
+      }
+      return keys.size;
+    }
+
     function isInhibitor(row) {
       return row.role === "modulator" && /inhibit|inhibitor|inhibition|blocks?|decrease.*activity/i.test(`${row.signal} ${row.actionText}`);
     }
@@ -928,47 +939,49 @@
         const transporters = setCount(rows, (row) => row.role === "transporter");
         const minors = setCount(rows, (row) => /minor|secondary|weak/i.test(`${row.signal} ${row.actionText}`));
         const high = rows.filter((row) => row.severity === "red").length;
+        const priorityContexts = medicationContextCount(rows, (row) => row.severity === "red");
+        const medicationContexts = medicationContextCount(rows);
         const actionable = rows.filter((row) => row.actionGroup !== "Context only").length;
         const evidence = rows.filter((row) => row.role === "evidence" || row.source === "PHARMGKB_EVIDENCE").length;
         const classes = [...new Set(rows.map((row) => row.class).filter(Boolean))];
-        return { gene, rows, totalSubstances, parents, metabolites, inhibitors, inducers, transporters, minors, high, actionable, evidence, classes };
+        return { gene, rows, medicationContexts, priorityContexts, totalSubstances, parents, metabolites, inhibitors, inducers, transporters, minors, high, actionable, evidence, classes };
       }).filter((item) => item.rows.length);
     }
 
     function sortRanking(rows, sort) {
-      const valueFor = (item) => sort === "total" ? item.totalSubstances : sort === "high" ? item.high : sort === "inhibitors" ? item.inhibitors : sort === "inducers" ? item.inducers : item.rows.length;
-      return rows.sort((a, b) => sort === "az" ? a.gene.localeCompare(b.gene) : (valueFor(b) - valueFor(a)) || b.totalSubstances - a.totalSubstances || b.high - a.high || a.gene.localeCompare(b.gene));
+      const valueFor = (item) => sort === "total" ? item.totalSubstances : sort === "contexts" ? item.rows.length : sort === "inhibitors" ? item.inhibitors : sort === "inducers" ? item.inducers : sort === "evidence" ? item.evidence : item.priorityContexts;
+      return rows.sort((a, b) => sort === "az" ? a.gene.localeCompare(b.gene) : (valueFor(b) - valueFor(a)) || b.priorityContexts - a.priorityContexts || b.high - a.high || b.evidence - a.evidence || b.totalSubstances - a.totalSubstances || a.gene.localeCompare(b.gene));
     }
 
     function renderRankingView() {
       const query = ($("#rankingSearch")?.value || "").toLowerCase();
-      const sort = $("#rankingSort")?.value || "contexts";
+      const sort = $("#rankingSort")?.value || "priority";
       let rows = rankingStats().filter((item) => !query || item.gene.toLowerCase().includes(query) || item.classes.some((name) => name.toLowerCase().includes(query)));
       rows = sortRanking(rows, sort);
       const shown = state.rankingShowAll ? rows : rows.slice(0, pageSize);
-      const maxContexts = Math.max(...rows.map((item) => item.rows.length), 1);
-      const topImpact = rows[0];
+      const maxPriorityContexts = Math.max(...rows.map((item) => item.priorityContexts), 1);
+      const topPriority = sortRanking([...rows], "priority")[0];
+      const topContexts = sortRanking([...rows], "contexts")[0];
       const topTotal = sortRanking([...rows], "total")[0];
-      const topHigh = sortRanking([...rows], "high")[0];
       const topInhibitors = sortRanking([...rows], "inhibitors")[0];
       $("#rankingCountTag").textContent = `${rows.length} genes`;
       $("#rankingMetrics").innerHTML = [
-        [topImpact ? `${topImpact.gene} · ${topImpact.rows.length}` : "-", "most contexts"],
+        [topPriority ? `${topPriority.gene} · ${topPriority.priorityContexts}` : "-", "priority contexts"],
+        [topContexts ? `${topContexts.gene} · ${topContexts.rows.length}` : "-", "context rows"],
         [topTotal ? `${topTotal.gene} · ${topTotal.totalSubstances}` : "-", "most substances"],
-        [topHigh ? `${topHigh.gene} · ${topHigh.high}` : "-", "priority context rows"],
         [topInhibitors ? `${topInhibitors.gene} · ${topInhibitors.inhibitors}` : "-", "inhibitor contexts"],
       ].map(([num, label]) => `<div class="metric"><strong>${esc(num)}</strong><span>${esc(label)}</span></div>`).join("");
       $("#rankingRows").innerHTML = shown.map((item) => {
         const rank = rows.indexOf(item) + 1;
-        const width = Math.max(6, Math.round(item.rows.length / maxContexts * 100));
+        const width = Math.max(6, Math.round(item.priorityContexts / maxPriorityContexts * 100));
         const href = `./data-views.html?view=genotype&gene=${encodeURIComponent(item.gene)}`;
-        return `<tr><td class="rank-cell">#${rank}</td><td class="rank-gene"><a href="${esc(href)}">${esc(item.gene)}</a><br>${tag(item.classes.slice(0, 2).join(" / ") || "gene")}</td><td><div class="score"><strong>${item.rows.length}</strong><div class="scorebar"><span style="width:${width}%"></span></div></div></td><td>${item.totalSubstances}</td><td>${item.parents}</td><td>${item.metabolites}</td><td>${item.inhibitors}</td><td>${item.inducers}</td><td>${item.transporters}</td><td>${item.minors}</td><td>${tag(item.high, item.high ? "red" : "")}</td><td>${item.actionable}</td><td>${item.evidence}</td></tr>`;
+        return `<tr><td class="rank-cell">#${rank}</td><td class="rank-gene"><a href="${esc(href)}">${esc(item.gene)}</a><br>${tag(item.classes.slice(0, 2).join(" / ") || "gene")}</td><td><div class="score"><strong>${item.priorityContexts}</strong><div class="scorebar"><span style="width:${width}%"></span></div></div></td><td>${item.rows.length}</td><td>${item.totalSubstances}</td><td>${item.parents}</td><td>${item.metabolites}</td><td>${item.inhibitors}</td><td>${item.inducers}</td><td>${item.transporters}</td><td>${item.minors}</td><td>${item.actionable}</td><td>${item.evidence}</td></tr>`;
       }).join("") || `<tr><td colspan="13">No genes match this ranking filter.</td></tr>`;
       $("#rankingHighlights").innerHTML = [
-        ["Most indexed contexts", topImpact, "violet", (item) => `${item.rows.length} medication-context rows, ${item.totalSubstances} parent/metabolite substances, and ${item.evidence} evidence rows.`],
+        ["Most priority medication contexts", topPriority, "red", (item) => `${item.priorityContexts} unique medication contexts with high-priority rows, from ${item.high} high-priority source rows.`],
+        ["Most indexed rows", topContexts, "violet", (item) => `${item.rows.length} medication-context rows, ${item.medicationContexts} unique medication contexts, and ${item.evidence} evidence rows.`],
         ["Broadest parent/metabolite reach", topTotal, "amber", (item) => `${item.totalSubstances} total substances: ${item.parents} parents and ${item.metabolites} metabolites.`],
         ["Most inhibitor pressure", topInhibitors, "violet", (item) => `${item.inhibitors} inhibitor substances and ${item.inducers} inducer/promoter substances.`],
-        ["Most priority context rows", topHigh, "red", (item) => `${item.high} priority rows across ${item.actionable} medication-context rows.`],
       ].filter(([, item]) => item).map(([title, item, color, body]) => rowLink(`./data-views.html?view=genotype&gene=${encodeURIComponent(item.gene)}`, `${title}: ${item.gene}`, `${item.rows.length} rows`, color, body(item), item.classes.slice(0, 4))).join("");
       renderPager($("#rankingPager"), rows.length, shown.length, "rankingShowAll", renderRankingView);
     }
@@ -1027,7 +1040,7 @@
       if (!window.history?.replaceState) return;
       const params = new URLSearchParams();
       params.set("view", "ranking");
-      params.set("sort", $("#rankingSort")?.value || "contexts");
+      params.set("sort", $("#rankingSort")?.value || "priority");
       history.replaceState(null, "", `?${params.toString()}`);
     }
 
