@@ -22,6 +22,8 @@ const requiredUrls = [
   "?view=genotype&gene=CYP3A4",
   "?view=genotype&gene=DPYD&phenotype=poor_metabolizer",
   "?view=genotype&gene=G6PD&phenotype=risk_allele_present",
+  "?view=genotype&gene=HLA-B*57:01&phenotype=risk_allele_present",
+  "?view=genotype&gene=HLA-B*15:02&phenotype=risk_allele_present",
   "?view=action&action=digoxin",
   "?view=ranking&sort=total",
 ];
@@ -203,12 +205,18 @@ for (const search of requiredUrls) {
   }
 
   if (view === "genotype") {
-    const gene = (params.get("gene") || "CYP2D6").toUpperCase();
+    const requestedTarget = params.get("gene") || "CYP2D6";
+    const gene = typeof dom.window.selectedGene === "function"
+      ? dom.window.selectedGene()
+      : requestedTarget.toUpperCase();
     const relationship = params.get("relationship") || "all";
-    const rows = (index.byGene[gene] || []).filter((row) => relationship === "all" || row.role === relationship);
+    const rows = typeof dom.window.filteredGeneRelations === "function"
+      ? dom.window.filteredGeneRelations()
+      : (index.byGene[gene] || []).filter((row) => relationship === "all" || row.role === relationship);
     const medicationContextCount = genotypeMedicationContextCount(dom.window, rows);
     const relationshipTag = document.querySelector("#geneRelationshipTag")?.textContent || "";
-    if (!relationshipTag.toUpperCase().includes(gene)) fail(`${search}: relationship map tag is not scoped to ${gene}. Found: ${relationshipTag || "(missing)"}`);
+    const expectedScopeLabel = requestedTarget.includes("*") ? requestedTarget : gene;
+    if (!relationshipTag.toUpperCase().includes(expectedScopeLabel.toUpperCase())) fail(`${search}: relationship map tag is not scoped to ${expectedScopeLabel}. Found: ${relationshipTag || "(missing)"}`);
     if (gene === "CYP3A4" && /CYP2D6\s+PM|Complete loss of analgesia/i.test(document.querySelector("#view-genotype")?.textContent || "")) {
       fail(`${search}: CYP3A4 genotype view includes CYP2D6-specific Codeine clinical text.`);
     }
@@ -221,9 +229,12 @@ for (const search of requiredUrls) {
       fail(`${search}: PGx Explorer medication rows should link back to Diognosis review.`);
     }
     const selectedPhenotype = params.get("phenotype");
+    const isRiskMarkerTarget = selectedPhenotype === "risk_allele_present" && /[*:]|deficiency|variant|m\./i.test(requestedTarget);
     const expectedGenotypeToken = gene === "G6PD" && selectedPhenotype === "risk_allele_present"
       ? "G6PD:deficiency"
-      : `${gene}:${selectedPhenotype}`;
+      : isRiskMarkerTarget
+        ? `${requestedTarget}:present`
+        : `${gene}:${selectedPhenotype}`;
     if (selectedPhenotype && !reviewLinks.some((href) => href.includes(`genotype=${expectedGenotypeToken}`))) {
       fail(`${search}: PGx Explorer back-links should preserve selected genotype phenotype.`);
     }
@@ -278,6 +289,28 @@ for (const search of requiredUrls) {
       if (!g6pdLinks.some((href) => /genotype=G6PD:deficiency/.test(href))) {
         fail(`${search}: G6PD medication cards should link back with the Diognosis G6PD deficiency genotype token.`);
       }
+    }
+
+    if (requestedTarget === "HLA-B*57:01" && selectedPhenotype === "risk_allele_present") {
+      const text = activeText(document);
+      if (!/HLA-B\*57:01/i.test(text)) fail(`${search}: HLA-B*57:01 selection should render the exact allele marker.`);
+      const abacavir = cardByMedication(document, "Abacavir");
+      if (!abacavir) fail(`${search}: HLA-B*57:01 present should show Abacavir context.`);
+      if (cardByMedication(document, "Carbamazepine")) fail(`${search}: HLA-B*57:01 should not pull in HLA-B*15:02 Carbamazepine context.`);
+      const href = cardHref(abacavir);
+      if (!/genotype=HLA-B\*57:01:present/.test(href)) fail(`${search}: HLA-B*57:01 Abacavir link should preserve exact allele marker. Found: ${href}`);
+    }
+
+    if (requestedTarget === "HLA-B*15:02" && selectedPhenotype === "risk_allele_present") {
+      const text = activeText(document);
+      if (!/HLA-B\*15:02/i.test(text)) fail(`${search}: HLA-B*15:02 selection should render the exact allele marker.`);
+      for (const medication of ["Carbamazepine", "Oxcarbazepine", "Phenytoin"]) {
+        if (!cardByMedication(document, medication)) fail(`${search}: HLA-B*15:02 present should show ${medication} context.`);
+      }
+      if (cardByMedication(document, "Abacavir")) fail(`${search}: HLA-B*15:02 should not pull in HLA-B*57:01 Abacavir context.`);
+      const carbamazepine = cardByMedication(document, "Carbamazepine");
+      const href = cardHref(carbamazepine);
+      if (!/genotype=HLA-B\*15:02:present/.test(href)) fail(`${search}: HLA-B*15:02 Carbamazepine link should preserve exact allele marker. Found: ${href}`);
     }
   }
 

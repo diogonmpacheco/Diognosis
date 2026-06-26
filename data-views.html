@@ -337,11 +337,32 @@
       return /activat|\bactive\b|prodrug|ineffective|failure|loss of analgesia|loss of efficacy|reduced conversion|reduced formation|avoid/.test(text);
     }
 
+    function selectedTargetValue() {
+      return ($("#geneSearch").value || "CYP2D6").trim();
+    }
+
+    function riskModelForTarget(value) {
+      const raw = String(value || "").trim();
+      const exact = (index.modeledGenotypes || []).find((item) =>
+        item.kind === "risk_variant" &&
+        (item.riskKey === raw || item.label === raw || item.key === raw || item.riskKey?.toUpperCase() === raw.toUpperCase()));
+      if (exact) return exact;
+      const geneMatches = (index.modeledGenotypes || []).filter((item) => item.kind === "risk_variant" && item.gene === raw.toUpperCase());
+      return geneMatches.length === 1 ? geneMatches[0] : null;
+    }
+
+    function geneModelForTarget(value) {
+      const gene = String(value || "").trim().toUpperCase();
+      return (index.modeledGenotypes || []).find((item) => item.kind === "modeled_gene" && item.gene === gene) || null;
+    }
+
     function modelsForGene(gene) {
       return (index.modeledGenotypes || []).filter((item) => item.gene === gene);
     }
 
-    function modelForPhenotype(gene, phenotype = "") {
+    function modelForPhenotype(gene = selectedGene(), phenotype = "") {
+      const targetModel = riskModelForTarget(selectedTargetValue()) || geneModelForTarget(selectedTargetValue());
+      if (targetModel) return targetModel;
       const models = modelsForGene(gene);
       if (phenotype) {
         const exact = models.find((item) => (item.phenotypeValues || []).includes(phenotype));
@@ -359,7 +380,7 @@
       if (model?.kind === "risk_variant") {
         const riskKey = model.riskKey || model.label || gene;
         if (phenotype === "risk_allele_present") {
-          if (gene === "G6PD") return "G6PD:deficiency";
+          if (riskKey === "G6PD deficiency" || gene === "G6PD") return "G6PD:deficiency";
           if (gene === "RYR1" || /RYR1|CACNA1S/i.test(riskKey)) return "RYR1:present";
           return `${riskKey}:present`;
         }
@@ -480,8 +501,7 @@
     }
 
     function selectedModel() {
-      const gene = selectedGene();
-      return modelForPhenotype(gene, $("#phenotypeSelect")?.value || "");
+      return modelForPhenotype(selectedGene(), $("#phenotypeSelect")?.value || "");
     }
 
     function phenotypeLabel(gene, value, model = selectedModel()) {
@@ -500,13 +520,23 @@
     function renderGeneSelect() {
       const genes = sortedSelectableGenes();
       const transporterGenes = new Set(["ABCB1", "ABCG2", "SLCO1B1", "SLC22A1", "SLC22A2", "SLC47A1", "ABCC2", "ABCC4", "OATP1B1"]);
+      const modeledGenes = (index.modeledGenotypes || [])
+        .filter((item) => item.kind === "modeled_gene" && (item.phenotypeValues || []).length)
+        .map((item) => item.gene);
+      const riskMarkers = (index.modeledGenotypes || [])
+        .filter((item) => item.kind === "risk_variant")
+        .map((item) => item.riskKey || item.label)
+        .filter(Boolean);
+      const modeledGeneSet = new Set(modeledGenes);
+      const riskGeneSet = new Set((index.modeledGenotypes || []).filter((item) => item.kind === "risk_variant").map((item) => item.gene));
       const groups = [
-        ["CYP enzymes", genes.filter((gene) => gene.startsWith("CYP"))],
-        ["Transporters", genes.filter((gene) => !gene.startsWith("CYP") && transporterGenes.has(gene))],
-        ["Other genotype signals", genes.filter((gene) => !gene.startsWith("CYP") && !transporterGenes.has(gene))],
+        ["Reportable PGx genes", modeledGenes],
+        ["Reportable risk markers", riskMarkers],
+        ["Transporter / exposure genes", genes.filter((gene) => !modeledGeneSet.has(gene) && !riskGeneSet.has(gene) && transporterGenes.has(gene))],
+        ["Exploratory coverage genes", genes.filter((gene) => !modeledGeneSet.has(gene) && !riskGeneSet.has(gene) && !transporterGenes.has(gene))],
       ];
       $("#geneSearch").innerHTML = groups.filter(([, items]) => items.length).map(([label, items]) => {
-        const options = items.map((gene) => {
+        const options = [...new Set(items)].map((gene) => {
           const evidence = typeof PHARMGKB_EVIDENCE !== "undefined" ? PHARMGKB_EVIDENCE[gene] : null;
           const suffix = evidence ? ` (${evidence.guideline || "PGx"}${evidence.grade ? ` ${evidence.grade}` : ""})` : "";
           return `<option value="${esc(gene)}">${esc(gene + suffix)}</option>`;
@@ -516,7 +546,9 @@
     }
 
     function setGeneSelection(gene) {
-      const value = String(gene || "CYP2D6").trim().toUpperCase();
+      const raw = String(gene || "CYP2D6").trim();
+      const riskModel = riskModelForTarget(raw);
+      const value = riskModel ? (riskModel.riskKey || riskModel.label) : raw.toUpperCase();
       if (![...$("#geneSearch").options].some((option) => option.value === value)) {
         const evidence = typeof PHARMGKB_EVIDENCE !== "undefined" ? PHARMGKB_EVIDENCE[value] : null;
         const suffix = evidence ? ` (${evidence.guideline || "PGx"}${evidence.grade ? ` ${evidence.grade}` : ""})` : "";
@@ -528,30 +560,33 @@
     function phenotypeOptions(gene) {
       const entries = [];
       const seen = new Set();
-      for (const model of modelsForGene(gene)) {
-        for (const value of model.phenotypeValues || []) {
-          if (seen.has(value)) continue;
-          seen.add(value);
-          entries.push({ value, label:phenotypeLabel(gene, value, model) });
-        }
-      }
-      for (const value of Object.keys(genotypeEffectsModel?.[gene] || {})) {
+      const targetModel = riskModelForTarget(selectedTargetValue()) || geneModelForTarget(selectedTargetValue());
+      const sourceValues = targetModel?.phenotypeValues?.length
+        ? targetModel.phenotypeValues
+        : Object.keys(genotypeEffectsModel?.[gene] || {});
+      for (const value of sourceValues) {
         if (seen.has(value)) continue;
         seen.add(value);
-        entries.push({ value, label:phenotypeLabel(gene, value, modelForPhenotype(gene, value)) });
+        entries.push({ value, label:phenotypeLabel(gene, value, targetModel || modelForPhenotype(gene, value)) });
       }
       if (!entries.length) return [`<option value="">Evidence/context only</option>`].join("");
       return entries.map((item) => `<option value="${esc(item.value)}">${esc(item.label)}</option>`).join("");
     }
 
     function selectedGene() {
-      return ($("#geneSearch").value || "CYP2D6").trim().toUpperCase();
+      const riskModel = riskModelForTarget(selectedTargetValue());
+      return riskModel?.gene || selectedTargetValue().toUpperCase();
     }
 
     function filteredGeneRelations() {
       const gene = selectedGene();
       const relationship = $("#relationshipSelect").value || "all";
       let rows = index.byGene[gene] || [];
+      const model = selectedModel();
+      if (model?.kind === "risk_variant" && model.riskKey) {
+        const marker = model.riskKey.toLowerCase();
+        rows = rows.filter((row) => String(row.riskKey || "").toLowerCase() === marker || row.searchText.includes(marker));
+      }
       return relationship === "all" ? rows : rows.filter((row) => row.role === relationship);
     }
 
@@ -776,17 +811,18 @@
       if ([...$("#phenotypeSelect").options].some((option) => option.value === current)) $("#phenotypeSelect").value = current;
       const phenotype = $("#phenotypeSelect").value || "";
       const model = selectedModel();
-      $("#genotypePickTag").textContent = `${model?.label || gene} ${phenotype ? phenotypeLabel(gene, phenotype, model) : "Context"}`;
+      const targetLabel = model?.label || gene;
+      $("#genotypePickTag").textContent = `${targetLabel} ${phenotype ? phenotypeLabel(gene, phenotype, model) : "Context"}`;
       $("#genotypePickDetail").innerHTML = phenotype
-        ? `<b>${esc(gene)}</b> is set to <b>${esc(phenotypeLabel(gene, phenotype, model))}</b>; rows below show where that signal touches substances, metabolites, transporters, or evidence.`
-        : `<b>${esc(gene)}</b> does not have a modeled status list here; rows below show evidence and context links only.`;
+        ? `<b>${esc(targetLabel)}</b> is set to <b>${esc(phenotypeLabel(gene, phenotype, model))}</b>; rows below show where that signal touches substances, metabolites, transporters, or evidence.`
+        : `<b>${esc(targetLabel)}</b> does not have a modeled status list here; rows below show evidence and context links only.`;
     }
 
     function syncGenotypeExplorerUrl() {
       if (!window.history?.replaceState) return;
       const params = new URLSearchParams();
       params.set("view", "genotype");
-      params.set("gene", selectedGene());
+      params.set("gene", selectedTargetValue());
       const phenotype = $("#phenotypeSelect").value || "";
       const relationship = $("#relationshipSelect").value || "all";
       if (phenotype) params.set("phenotype", phenotype);

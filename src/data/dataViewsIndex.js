@@ -429,13 +429,14 @@
       actionText,
       evidenceLevel:input.evidenceLevel || "",
       signal:input.signal || actionText,
+      riskKey:input.riskKey || "",
       linkSubstances,
       phenotype:input.phenotype || "",
       searchText:"",
     };
     relation.searchText = [
       relation.source, relation.role, relation.gene, relation.subject, relation.object, relation.entityKind,
-      relation.subjectSubstanceKind, relation.objectSubstanceKind, relation.class, relation.severity, relation.actionGroup, relation.actionText, relation.evidenceLevel, relation.signal,
+      relation.subjectSubstanceKind, relation.objectSubstanceKind, relation.class, relation.severity, relation.actionGroup, relation.actionText, relation.evidenceLevel, relation.signal, relation.riskKey,
     ].join(" ").toLowerCase();
     relations.push(relation);
     registerCanonicalFact(relation);
@@ -529,7 +530,21 @@
       signal:`${riskKey}: ${effect.note || effect.label || "risk context"}`,
       actionText:effect.note || effect.label || "risk context",
       evidenceLevel:effect.evidenceLevel || "",
+      riskKey,
     });
+    for (const drugEffect of effect.drugEffects || []) {
+      addRelation({
+        source:"GENOTYPE_RISK_EFFECTS",
+        role:"risk",
+        gene,
+        subject:drugEffect.parent,
+        severity:/contraindicat|avoid|do not use|not recommended/i.test(`${drugEffect.clinicalAction || ""} ${drugEffect.note || ""}`) ? "red" : "amber",
+        signal:`${riskKey}: ${drugEffect.phenotype || drugEffect.parent}`,
+        actionText:drugEffect.note || drugEffect.clinicalAction || `${riskKey} drug-specific risk context`,
+        evidenceLevel:(drugEffect.evidenceRefs || []).length ? "linked" : "",
+        riskKey,
+      });
+    }
   }
 
   for (const item of genotypeMetaboliteEffects) {
