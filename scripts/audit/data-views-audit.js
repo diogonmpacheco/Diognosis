@@ -28,9 +28,11 @@ const requiredUrls = [
   "?view=genotype&gene=HLA-B*15:02&phenotype=risk_allele_present",
   "?view=genotype&profile=CYP2D6:poor_metabolizer,CYP2C19:poor_metabolizer,HLA-B*57:01:risk_allele_present&gene=CYP2D6&phenotype=poor_metabolizer",
   "?view=action&action=digoxin",
+  "?view=action&action=CYP3A4",
   "?view=ranking",
   "?view=ranking&sort=total",
 ];
+const pathwayContextTargets = new Set(["CYP3A4"]);
 
 const failures = [];
 
@@ -181,15 +183,29 @@ if (!baseIndex) {
   if (codeineCyp3aLeaks.length) {
     fail(`Codeine CYP3A4 rows include CYP2D6-specific activation/loss text. Sample: ${codeineCyp3aLeaks.map((row) => `${row.source}:${row.signal}`).slice(0, 5).join(", ")}`);
   }
+  const cyp3a4TacrolimusLeaks = (baseIndex.byGene.CYP3A4 || []).filter((row) =>
+    row.subject === "Tacrolimus" && /CYP3A5\s+express/i.test(`${row.signal || ""} ${row.actionText || ""}`));
+  if (cyp3a4TacrolimusLeaks.length) {
+    fail(`CYP3A4 should not own CYP3A5 tacrolimus expression guidance. Sample: ${cyp3a4TacrolimusLeaks.map((row) => `${row.source}:${row.signal}`).slice(0, 5).join(", ")}`);
+  }
+  const cyp3a5TacrolimusEvidence = (baseIndex.byGene.CYP3A5 || []).filter((row) =>
+    row.subject === "Tacrolimus" && /express|clearance|trough|dose/i.test(`${row.signal || ""} ${row.actionText || ""}`));
+  if (!cyp3a5TacrolimusEvidence.length) {
+    fail("CYP3A5 should retain tacrolimus expression evidence/context.");
+  }
 
   const optionValues = new Set([...base.dom.window.document.querySelectorAll("#geneSearch option")].map((option) => option.value));
   const expectedPickerTargets = (baseIndex.modeledGenotypes || [])
     .filter((item) => (item.phenotypeValues || []).length && item.relationCount > 0)
     .map((item) => item.kind === "risk_variant" ? (item.riskKey || item.label) : item.gene)
-    .filter((value) => value && !/CYP[^,;]*\/|\/[^,;]*CYP/i.test(value));
+    .filter((value) => value && !/CYP[^,;]*\/|\/[^,;]*CYP/i.test(value) && !pathwayContextTargets.has(String(value).toUpperCase()));
   const missingPickerTargets = [...new Set(expectedPickerTargets)].filter((value) => !optionValues.has(value));
   if (missingPickerTargets.length) {
     fail(`PGx picker is missing ${missingPickerTargets.length} reportable targets. Sample: ${missingPickerTargets.slice(0, 10).join(", ")}`);
+  }
+  const pathwayContextPickerTargets = [...optionValues].filter((value) => pathwayContextTargets.has(String(value).toUpperCase()));
+  if (pathwayContextPickerTargets.length) {
+    fail(`PGx picker exposes pathway-context genes as reportable PGx targets. Sample: ${pathwayContextPickerTargets.join(", ")}`);
   }
   const compositeCypPickerTargets = [...optionValues].filter((value) => /CYP[^,;]*\/|\/[^,;]*CYP/i.test(value));
   if (compositeCypPickerTargets.length) {
@@ -247,6 +263,10 @@ for (const search of requiredUrls) {
     if (/CYP[^,;]*\/|\/[^,;]*CYP/i.test(requestedTarget)) {
       if (/CYP[^,;]*\/|\/[^,;]*CYP/i.test(selectedTarget)) fail(`${search}: composite CYP route URL should not remain selected.`);
       if (selectedTarget || rows.length || visibleRows(document, "#geneSubstanceRows .pgx-medication-card") !== 0) fail(`${search}: composite CYP route URL should render the neutral choose-result state.`);
+    }
+    if (pathwayContextTargets.has(requestedTarget.toUpperCase())) {
+      if (selectedTarget) fail(`${search}: pathway-context gene should not remain selected in PGx Explorer. Found: ${selectedTarget}.`);
+      if (rows.length || visibleRows(document, "#geneSubstanceRows .pgx-medication-card") !== 0) fail(`${search}: pathway-context gene should render the neutral choose-result state in PGx Explorer.`);
     }
     if (params.get("profile")) {
       if (!/PGx Profile/i.test(relationshipTag)) fail(`${search}: relationship map tag should show PGx Profile for multi-result URLs. Found: ${relationshipTag || "(missing)"}`);
@@ -378,7 +398,9 @@ for (const search of requiredUrls) {
       if (!text.includes(group)) fail(`${search}: missing Review Questions group ${group}.`);
     }
     if (/Option review|Review prompts/i.test(text)) fail(`${search}: Review Questions should not expose old option/prompt wording.`);
-    if (!/Digoxin/i.test(text)) fail(`${search}: Review Questions should show digoxin contexts for action=digoxin.`);
+    const requestedAction = params.get("action") || "";
+    if (requestedAction === "digoxin" && !/Digoxin/i.test(text)) fail(`${search}: Review Questions should show digoxin contexts for action=digoxin.`);
+    if (requestedAction === "CYP3A4" && !/CYP3A4/i.test(text)) fail(`${search}: Review Questions should show CYP3A4 pathway contexts for action=CYP3A4.`);
     if (/Amitriptyline TCAEvidenceMetaboliteParent|Codeine OpioidMetaboliteEvidenceParent/i.test(text)) {
       fail(`${search}: Review Questions active panel is leaking default CYP2D6 PGx rows.`);
     }
@@ -392,6 +414,9 @@ for (const search of requiredUrls) {
     const text = activeText(document);
     if (!/Gene Coverage/i.test(text)) fail(`${search}: ranking view should be labeled Gene Coverage.`);
     if (/Gene Ranking|high-severity burden|high severity|coverage score/i.test(text)) fail(`${search}: Gene Coverage should not use clinical-risk or synthetic-score ranking language.`);
+    if (!/Broad pathway genes such as CYP3A4 can rank high/i.test(text) || !/not a patient-risk score/i.test(text) || !/actionable by itself/i.test(text)) {
+      fail(`${search}: Gene Coverage should explain broad pathway counts without implying clinical risk or standalone actionability.`);
+    }
     if ([...document.querySelectorAll("#rankingSort option")].some((option) => option.value === "score" || /coverage score/i.test(option.textContent || ""))) fail(`${search}: Gene Coverage sort options should not expose synthetic coverage scores.`);
     if (!params.get("sort") && document.querySelector("#rankingSort")?.value !== "priority") fail(`${search}: Gene Coverage should default to priority medication contexts.`);
     const rankedGenes = [...document.querySelectorAll("#rankingRows .rank-gene a")].map((link) => link.textContent.trim()).filter(Boolean);
@@ -409,6 +434,8 @@ for (const search of requiredUrls) {
     if (!document.querySelector("#rankingRows")?.textContent.includes("CYP2D6")) fail(`${search}: ranking view should expose CYP2D6 in the top coverage page.`);
     const cyp2d6Link = [...document.querySelectorAll("#rankingRows a")].find((link) => link.textContent.trim() === "CYP2D6")?.getAttribute("href") || "";
     if (!cyp2d6Link.includes("data-views.html?view=genotype&gene=CYP2D6")) fail(`${search}: Gene Coverage CYP2D6 row should link into PGx Explorer.`);
+    const cyp3a4Link = [...document.querySelectorAll("#rankingRows a")].find((link) => link.textContent.trim() === "CYP3A4")?.getAttribute("href") || "";
+    if (cyp3a4Link && !cyp3a4Link.includes("data-views.html?view=action&action=CYP3A4")) fail(`${search}: Gene Coverage CYP3A4 row should link to pathway-context Review Questions, not PGx Explorer.`);
   }
 
 }

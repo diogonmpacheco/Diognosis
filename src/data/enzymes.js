@@ -172,7 +172,6 @@ const PHARMGKB_EVIDENCE = {
     pairs:[
       {drug:"Simvastatin",level:"B",action:"CYP3A4 inhibitors → 10-15× ↑ levels; rhabdomyolysis"},
       {drug:"Atorvastatin",level:"B",action:"CYP3A4 inhibitors → 3-4× ↑ levels"},
-      {drug:"Tacrolimus",level:"A",action:"CYP3A5 expressors: need higher doses"},
       {drug:"Cyclosporine",level:"B",action:"Monitor with CYP3A4 inhibitors/inducers"},
       {drug:"Fentanyl",level:"B",action:"CYP3A4 inhibitors → respiratory depression risk"},
       {drug:"Midazolam",level:"B",action:"CYP3A4 inhibitors → excessive sedation"},

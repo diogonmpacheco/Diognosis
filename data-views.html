@@ -253,7 +253,7 @@
             <article class="card">
               <div class="card-head"><h3>Gene Coverage</h3><span class="tag violet" id="rankingCountTag">0 genes</span></div>
               <div class="card-body">
-                <p class="rank-note">Gene Coverage shows raw indexed data reach: medication-context rows, distinct parent/metabolite substances, and evidence rows. It is not a patient-risk score and does not rank genes by clinical danger.</p>
+                <p class="rank-note">Gene Coverage shows local Diognosis data reach: medication-context rows, parent/metabolite substances, pathway modulators, and evidence rows. Broad pathway genes such as CYP3A4 can rank high because many medicines use or modulate the pathway. This is not a patient-risk score, a clinical-danger ranking, or proof that a gene result is actionable by itself.</p>
                 <div class="table-wrap">
                   <table class="table rank-table">
                     <thead><tr><th>Rank</th><th>Gene</th><th>Priority contexts</th><th>Context rows</th><th>Total substances</th><th>Parents</th><th>Metabolites</th><th>Inhibitors</th><th>Inducers / promoters</th><th>Transporters</th><th>Minor routes</th><th>Review contexts</th><th>Evidence</th></tr></thead>
@@ -311,6 +311,7 @@
       { key:"Option review", label:"Treatment-plan context", color:"violet", note:"Contexts that should be discussed inside the clinician-owned treatment plan, without implying a medication change from this page." },
       { key:"Context only", label:"Context-only", color:"", note:"Source-linked background rows that may help explain why a medication appears in Diognosis." },
     ];
+    const pathwayContextGenes = new Set(["CYP3A4"]);
 
     function renderDataSnapshot() {
       const stats = window.DIOGNOSIS_STATS || {};
@@ -609,7 +610,8 @@
         item.kind === "modeled_gene" &&
         (item.phenotypeValues || []).length &&
         item.relationCount > 0 &&
-        !/[\/,;]/.test(item.gene));
+        !/[\/,;]/.test(item.gene) &&
+        geneSurfaceForTarget(item.gene) === "report_pgx");
     }
 
     function reportableRiskModels() {
@@ -624,6 +626,20 @@
         ...reportablePgxModels().map((item) => item.gene),
         ...reportableRiskModels().map((item) => item.riskKey || item.label).filter(Boolean),
       ]);
+    }
+
+    function geneSurfaceForTarget(value) {
+      const model = riskModelForTarget(value);
+      if (model) return "risk_marker";
+      const gene = String(value || "").trim().toUpperCase();
+      if (pathwayContextGenes.has(gene)) return "pathway_context";
+      return "report_pgx";
+    }
+
+    function geneCoverageHref(gene) {
+      return geneSurfaceForTarget(gene) === "pathway_context"
+        ? `./data-views.html?view=action&action=${encodeURIComponent(gene)}`
+        : `./data-views.html?view=genotype&gene=${encodeURIComponent(gene)}`;
     }
 
     function renderGeneSelect() {
@@ -974,7 +990,7 @@
       $("#rankingRows").innerHTML = shown.map((item) => {
         const rank = rows.indexOf(item) + 1;
         const width = Math.max(6, Math.round(item.priorityContexts / maxPriorityContexts * 100));
-        const href = `./data-views.html?view=genotype&gene=${encodeURIComponent(item.gene)}`;
+        const href = geneCoverageHref(item.gene);
         return `<tr><td class="rank-cell">#${rank}</td><td class="rank-gene"><a href="${esc(href)}">${esc(item.gene)}</a><br>${tag(item.classes.slice(0, 2).join(" / ") || "gene")}</td><td><div class="score"><strong>${item.priorityContexts}</strong><div class="scorebar"><span style="width:${width}%"></span></div></div></td><td>${item.rows.length}</td><td>${item.totalSubstances}</td><td>${item.parents}</td><td>${item.metabolites}</td><td>${item.inhibitors}</td><td>${item.inducers}</td><td>${item.transporters}</td><td>${item.minors}</td><td>${item.actionable}</td><td>${item.evidence}</td></tr>`;
       }).join("") || `<tr><td colspan="13">No genes match this ranking filter.</td></tr>`;
       $("#rankingHighlights").innerHTML = [
@@ -982,7 +998,7 @@
         ["Most indexed rows", topContexts, "violet", (item) => `${item.rows.length} medication-context rows, ${item.medicationContexts} unique medication contexts, and ${item.evidence} evidence rows.`],
         ["Broadest parent/metabolite reach", topTotal, "amber", (item) => `${item.totalSubstances} total substances: ${item.parents} parents and ${item.metabolites} metabolites.`],
         ["Most inhibitor pressure", topInhibitors, "violet", (item) => `${item.inhibitors} inhibitor substances and ${item.inducers} inducer/promoter substances.`],
-      ].filter(([, item]) => item).map(([title, item, color, body]) => rowLink(`./data-views.html?view=genotype&gene=${encodeURIComponent(item.gene)}`, `${title}: ${item.gene}`, `${item.rows.length} rows`, color, body(item), item.classes.slice(0, 4))).join("");
+      ].filter(([, item]) => item).map(([title, item, color, body]) => rowLink(geneCoverageHref(item.gene), `${title}: ${item.gene}`, `${item.rows.length} rows`, color, body(item), item.classes.slice(0, 4))).join("");
       renderPager($("#rankingPager"), rows.length, shown.length, "rankingShowAll", renderRankingView);
     }
 
