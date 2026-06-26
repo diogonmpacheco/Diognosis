@@ -92,8 +92,10 @@ Review whether Diognosis is presenting PGx results as report-style patient input
    - Important for trust and calibration.
 
 5. CYP2D6 edge cases
-   - Pending: cases like nebivolol + CYP2D6 null need source-by-source refinement.
-   - Especially when labels say "no dose change" but mechanism suggests exposure shift.
+   - Implemented: CYP2D6 edge-case review note saved in `docs/V1_CYP2D6_EDGE_CASE_REVIEW.md`.
+   - Implemented: nebivolol wording now separates parent exposure increase from lower 4-hydroxy-nebivolol formation while keeping the no automatic genotype-only dose-change boundary.
+   - Pending: manual Patient and Clinician QA for atomoxetine, tamoxifen, and inhibitor-driven phenoconversion.
+   - Pending: decide whether V1 needs a compact "parent vs active metabolite" visual cue or copy-only handling is enough.
 
 ## Product / UX Pending
 

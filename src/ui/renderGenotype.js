@@ -252,7 +252,7 @@ function getHighestGenotypePrioritySignal() {
           : statinSlco1b1
           ? `${drugName} exposure and statin-associated muscle symptom risk can rise when SLCO1B1/OATP1B1 uptake is reduced; dose intensity, transporter inhibitors, renal/hepatic context, and symptoms still matter.`
           : nebivololCyp2d6
-          ? "Nebivolol parent exposure can be higher in CYP2D6 poor/null status; clinical response is usually checked with pulse, blood pressure, and symptoms."
+          ? "Nebivolol parent exposure can be higher in CYP2D6 poor/null status while 4-hydroxy-nebivolol formation may fall; clinical response is usually checked with pulse, blood pressure, and symptoms."
           : `Expected parent-drug exposure shifts to about ${fold}x the normal-metabolizer baseline.`,
         review:actionSummary?.reviewDirection || (nebivololCyp2d6
           ? "Review pulse, blood pressure, dizziness/syncope, breathing symptoms, dose tolerance, and CYP2D6 inhibitors; routine genotype-only dose change is not established."
@@ -367,7 +367,7 @@ function genotypeExposureNoteForDrug(drugName, enzyme, phenotype, effect = {}, f
   const phenotypeText = phenotypeLabelForGene(enzyme, phenotype);
   if (isNebivololCyp2d6Signal(drugName, enzyme)) {
     const foldText = Number.isFinite(value) ? `about ${value}x in PK studies` : "substantially higher in PK studies";
-    return `Nebivolol has CYP2D6 clinical PK data for ${phenotypeText}: parent exposure can be ${foldText}, but prescribing information does not recommend a routine dose change based on CYP2D6 status alone. Review pulse, blood pressure, symptoms, and co-medications.`;
+    return `Nebivolol has CYP2D6 clinical PK data for ${phenotypeText}: parent exposure can be ${foldText} while 4-hydroxy-nebivolol formation may fall, but prescribing information does not recommend a routine dose change based on CYP2D6 status alone. Review pulse, blood pressure, symptoms, dose tolerance, and co-medications.`;
   }
   if (isWarfarinCyp2c9Signal(drugName, enzyme)) {
     const foldText = Number.isFinite(value) ? `about ${value}x in this model` : "higher";

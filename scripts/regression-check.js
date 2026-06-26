@@ -1236,6 +1236,7 @@ const nebivololPgxFocusRegression = window.eval(`(() => {
 assert(nebivololPgxDisplayRegression.fold === 15, 'Nebivolol + CYP2D6 PM should use the observed drug-specific 15x clinical fold');
 assert(/15x/i.test(nebivololPgxDisplayRegression.summaryText), 'Nebivolol priority summary should show the drug-specific 15x fold');
 assert(/CYP2D6 clinical PK data/i.test(nebivololPgxDisplayRegression.summaryText), 'Nebivolol priority summary should explain the PK basis');
+assert(/4-hydroxy-nebivolol formation may fall/i.test(nebivololPgxDisplayRegression.summaryText), 'Nebivolol priority summary should explain active-metabolite formation can fall while parent exposure rises');
 assert(/does not recommend a routine dose change/i.test(nebivololPgxDisplayRegression.summaryText), 'Nebivolol priority summary should not imply an automatic genotype-only dose change');
 assert(!/Codeine|Tamoxifen|TCAs/i.test(`${nebivololPgxDisplayRegression.summaryText} ${nebivololPgxDisplayRegression.genotypeText}`), 'Nebivolol genotype display should not inherit unrelated CYP2D6 example-drug text');
 assert(/15\.0×|15\.0x/i.test(nebivololPgxFocusRegression.targetText), 'Nebivolol genotype card should display the 15x fold');
