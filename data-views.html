@@ -437,6 +437,9 @@
       const cleanPhenotype = String(phenotype || "").trim();
       if (!cleanTarget || !cleanPhenotype) return null;
       const model = targetModelFor(cleanTarget, cleanPhenotype);
+      if (!model) return null;
+      if (model.kind === "modeled_gene" && !selectableTargetValues().has(model.gene)) return null;
+      if (model.kind === "risk_variant" && !selectableTargetValues().has(model.riskKey || model.label)) return null;
       const gene = geneForTarget(cleanTarget);
       const targetLabel = model?.label || gene;
       const label = `${targetLabel} ${phenotypeLabel(gene, cleanPhenotype, model)}`;
@@ -593,31 +596,44 @@
       return model?.phenotypeLabels?.[value] || semantics.optionLabels?.[value] || semantics.phenotypeLabels?.[value] || sentence(value);
     }
 
-    function sortedSelectableGenes() {
-      return [...new Set([...(index.genes || []), ...Object.keys(genotypeEffectsModel || {})])].sort((a, b) => {
+    function sortedSelectableGenes(genes) {
+      return [...new Set(genes || [])].sort((a, b) => {
         const aCyp = a.startsWith("CYP") ? 0 : 1;
         const bCyp = b.startsWith("CYP") ? 0 : 1;
         return aCyp - bCyp || a.localeCompare(b);
       });
     }
 
+    function reportablePgxModels() {
+      return (index.modeledGenotypes || []).filter((item) =>
+        item.kind === "modeled_gene" &&
+        (item.phenotypeValues || []).length &&
+        item.relationCount > 0 &&
+        !/[\/,;]/.test(item.gene));
+    }
+
+    function reportableRiskModels() {
+      return (index.modeledGenotypes || []).filter((item) =>
+        item.kind === "risk_variant" &&
+        (item.phenotypeValues || []).length &&
+        item.relationCount > 0);
+    }
+
+    function selectableTargetValues() {
+      return new Set([
+        ...reportablePgxModels().map((item) => item.gene),
+        ...reportableRiskModels().map((item) => item.riskKey || item.label).filter(Boolean),
+      ]);
+    }
+
     function renderGeneSelect() {
-      const genes = sortedSelectableGenes();
-      const transporterGenes = new Set(["ABCB1", "ABCG2", "SLCO1B1", "SLC22A1", "SLC22A2", "SLC47A1", "ABCC2", "ABCC4", "OATP1B1"]);
-      const modeledGenes = (index.modeledGenotypes || [])
-        .filter((item) => item.kind === "modeled_gene" && (item.phenotypeValues || []).length)
-        .map((item) => item.gene);
-      const riskMarkers = (index.modeledGenotypes || [])
-        .filter((item) => item.kind === "risk_variant")
+      const modeledGenes = sortedSelectableGenes(reportablePgxModels().map((item) => item.gene));
+      const riskMarkers = reportableRiskModels()
         .map((item) => item.riskKey || item.label)
         .filter(Boolean);
-      const modeledGeneSet = new Set(modeledGenes);
-      const riskGeneSet = new Set((index.modeledGenotypes || []).filter((item) => item.kind === "risk_variant").map((item) => item.gene));
       const groups = [
         ["Reportable PGx genes", modeledGenes],
         ["Reportable risk markers", riskMarkers],
-        ["Transporter / exposure genes", genes.filter((gene) => !modeledGeneSet.has(gene) && !riskGeneSet.has(gene) && transporterGenes.has(gene))],
-        ["Exploratory coverage genes", genes.filter((gene) => !modeledGeneSet.has(gene) && !riskGeneSet.has(gene) && !transporterGenes.has(gene))],
       ];
       $("#geneSearch").innerHTML = groups.filter(([, items]) => items.length).map(([label, items]) => {
         const options = [...new Set(items)].map((gene) => {
@@ -632,12 +648,8 @@
     function setGeneSelection(gene) {
       const raw = String(gene || "CYP2D6").trim();
       const riskModel = riskModelForTarget(raw);
-      const value = riskModel ? (riskModel.riskKey || riskModel.label) : raw.toUpperCase();
-      if (![...$("#geneSearch").options].some((option) => option.value === value)) {
-        const evidence = typeof PHARMGKB_EVIDENCE !== "undefined" ? PHARMGKB_EVIDENCE[value] : null;
-        const suffix = evidence ? ` (${evidence.guideline || "PGx"}${evidence.grade ? ` ${evidence.grade}` : ""})` : "";
-        $("#geneSearch").insertAdjacentHTML("beforeend", `<option value="${esc(value)}">${esc(value + suffix)}</option>`);
-      }
+      let value = riskModel ? (riskModel.riskKey || riskModel.label) : raw.toUpperCase();
+      if (!selectableTargetValues().has(value)) value = "CYP2D6";
       $("#geneSearch").value = value;
     }
 
@@ -877,6 +889,8 @@
 
     function isRankableGene(gene) {
       const value = String(gene || "").toUpperCase();
+      if (/[\/,;]/.test(value)) return false;
+      if (/\b(?:CLEAVAGE|OXIDATION|DEALKYLATION|HYDROLYSIS|METABOLISM|EXCRETION|LOCAL|KIDNEY)\b/.test(value)) return false;
       if (/^(NONE|RENAL|RENAL EXCRETION|RENAL EXCRETION UNCHANGED|HEPATIC|BILIARY|UNKNOWN|OTHER|UGT)$/.test(value)) return false;
       if ((index.modeledGenotypes || []).some((item) => item.kind === "modeled_gene" && item.gene === value)) return true;
       if (typeof PHARMGKB_EVIDENCE !== "undefined" && PHARMGKB_EVIDENCE[value]) return true;
@@ -996,10 +1010,6 @@
       const params = new URLSearchParams(location.search);
       renderDataSnapshot();
       renderGeneSelect();
-      $("#geneSearch").setAttribute("list", "geneOptions");
-      const priorityGenes = (index.modeledGenotypes || []).filter((item) => item.kind === "modeled_gene").map((item) => item.gene);
-      const geneOptions = [...new Set([...priorityGenes, ...index.genes])];
-      document.body.insertAdjacentHTML("beforeend", `<datalist id="geneOptions">${geneOptions.map((gene) => `<option value="${esc(gene)}"></option>`).join("")}</datalist>`);
       const areas = [...new Set([...Object.keys(index.byClass), ...Object.keys(index.byActionGroup), "parent", "metabolite", "transporter", "modulator", "evidence", "risk"])].sort();
       $("#actionArea").innerHTML += areas.map((area) => `<option value="${esc(area)}">${esc(publicAreaLabel(area))}</option>`).join("");
       setGeneSelection(params.get("gene") || "CYP2D6");

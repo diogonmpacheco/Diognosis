@@ -20,6 +20,7 @@ const requiredUrls = [
   "?view=genotype&gene=ABCB1",
   "?view=genotype&gene=ABCG2",
   "?view=genotype&gene=CYP3A4",
+  "?view=genotype&gene=CYP2B6%2FCYP3A4%2FCYP2C19",
   "?view=genotype&gene=DPYD&phenotype=poor_metabolizer",
   "?view=genotype&gene=G6PD&phenotype=risk_allele_present",
   "?view=genotype&gene=HLA-B*57:01&phenotype=risk_allele_present",
@@ -179,10 +180,18 @@ if (!baseIndex) {
     fail(`Codeine CYP3A4 rows include CYP2D6-specific activation/loss text. Sample: ${codeineCyp3aLeaks.map((row) => `${row.source}:${row.signal}`).slice(0, 5).join(", ")}`);
   }
 
-  const optionValues = new Set([...base.dom.window.document.querySelectorAll("#geneOptions option")].map((option) => option.value));
-  const missingGenes = baseIndex.genes.filter((gene) => !optionValues.has(gene));
-  if (missingGenes.length) {
-    fail(`Gene picker is missing ${missingGenes.length} indexed genes. Sample: ${missingGenes.slice(0, 10).join(", ")}`);
+  const optionValues = new Set([...base.dom.window.document.querySelectorAll("#geneSearch option")].map((option) => option.value));
+  const expectedPickerTargets = (baseIndex.modeledGenotypes || [])
+    .filter((item) => (item.phenotypeValues || []).length && item.relationCount > 0)
+    .map((item) => item.kind === "risk_variant" ? (item.riskKey || item.label) : item.gene)
+    .filter((value) => value && !/CYP[^,;]*\/|\/[^,;]*CYP/i.test(value));
+  const missingPickerTargets = [...new Set(expectedPickerTargets)].filter((value) => !optionValues.has(value));
+  if (missingPickerTargets.length) {
+    fail(`PGx picker is missing ${missingPickerTargets.length} reportable targets. Sample: ${missingPickerTargets.slice(0, 10).join(", ")}`);
+  }
+  const compositeCypPickerTargets = [...optionValues].filter((value) => /CYP[^,;]*\/|\/[^,;]*CYP/i.test(value));
+  if (compositeCypPickerTargets.length) {
+    fail(`PGx picker exposes composite CYP route labels. Sample: ${compositeCypPickerTargets.slice(0, 10).join(", ")}`);
   }
 }
 
@@ -207,16 +216,29 @@ for (const search of requiredUrls) {
 
   if (view === "genotype") {
     const requestedTarget = params.get("gene") || "CYP2D6";
+    const selectedTarget = document.querySelector("#geneSearch")?.value || requestedTarget;
     const gene = typeof dom.window.selectedGene === "function"
       ? dom.window.selectedGene()
-      : requestedTarget.toUpperCase();
+      : selectedTarget.toUpperCase();
     const relationship = params.get("relationship") || "all";
     const rows = typeof dom.window.filteredGeneRelations === "function"
       ? dom.window.filteredGeneRelations()
       : (index.byGene[gene] || []).filter((row) => relationship === "all" || row.role === relationship);
     const medicationContextCount = genotypeMedicationContextCount(dom.window, rows);
     const relationshipTag = document.querySelector("#geneRelationshipTag")?.textContent || "";
-    const expectedScopeLabel = requestedTarget.includes("*") ? requestedTarget : gene;
+    const expectedScopeLabel = selectedTarget.includes("*") ? selectedTarget : gene;
+    const pickerGroups = [...document.querySelectorAll("#geneSearch optgroup")].map((item) => item.label || "");
+    if (pickerGroups.some((label) => /Exploratory coverage genes|Transporter \/ exposure genes/i.test(label))) {
+      fail(`${search}: PGx Explorer selector should not expose exploratory coverage groups.`);
+    }
+    const pickerValues = [...document.querySelectorAll("#geneSearch option")].map((option) => option.value || "");
+    if (pickerValues.some((value) => /CYP[^,;]*\/|\/[^,;]*CYP/i.test(value))) {
+      fail(`${search}: PGx Explorer selector should not expose composite CYP route labels.`);
+    }
+    if (/CYP[^,;]*\/|\/[^,;]*CYP/i.test(requestedTarget)) {
+      if (/CYP[^,;]*\/|\/[^,;]*CYP/i.test(selectedTarget)) fail(`${search}: composite CYP route URL should not remain selected.`);
+      if (!rows.length || visibleRows(document, "#geneSubstanceRows .pgx-medication-card") === 0) fail(`${search}: composite CYP route URL should fall back to a populated reportable PGx target.`);
+    }
     if (params.get("profile")) {
       if (!/PGx Profile/i.test(relationshipTag)) fail(`${search}: relationship map tag should show PGx Profile for multi-result URLs. Found: ${relationshipTag || "(missing)"}`);
     } else if (!relationshipTag.toUpperCase().includes(expectedScopeLabel.toUpperCase())) {
@@ -361,6 +383,8 @@ for (const search of requiredUrls) {
     const text = activeText(document);
     if (!/Gene Coverage/i.test(text)) fail(`${search}: ranking view should be labeled Gene Coverage.`);
     if (/Gene Ranking|high-severity burden|high severity/i.test(text)) fail(`${search}: Gene Coverage should not use clinical-risk ranking language.`);
+    const rankedGenes = [...document.querySelectorAll("#rankingRows .rank-gene a")].map((link) => link.textContent.trim()).filter(Boolean);
+    if (rankedGenes.some((gene) => /CYP[^,;]*\/|\/[^,;]*CYP/i.test(gene))) fail(`${search}: Gene Coverage should not rank composite CYP route labels as genes.`);
     if (!document.querySelector("#rankingRows")?.textContent.includes("CYP2D6")) fail(`${search}: ranking view should expose CYP2D6 in the top coverage page.`);
     const cyp2d6Link = [...document.querySelectorAll("#rankingRows a")].find((link) => link.textContent.trim() === "CYP2D6")?.getAttribute("href") || "";
     if (!cyp2d6Link.includes("data-views.html?view=genotype&gene=CYP2D6")) fail(`${search}: Gene Coverage CYP2D6 row should link into PGx Explorer.`);
