@@ -50,9 +50,10 @@ Flow:
    - Start with nebivolol, metoprolol, codeine, tramadol, atomoxetine, tamoxifen, and fluoxetine/paroxetine inhibitor contexts.
 
 6. Decide Pathway Explorer minimum viable scope
-   - V1-safe option: keep Pathway Explorer as a planned surface and add clearer boundaries now.
-   - Larger option: add a separate Pathway Explorer panel only after CYP3A4/CYP3A5 rules are reviewed.
-   - Avoid building a new surface until it prevents real confusion in PGx Explorer or Gene Coverage.
+   - Implemented decision note: `docs/V1_PATHWAY_EXPLORER_DECISION.md`.
+   - V1 decision: do not build a dedicated Pathway Explorer yet.
+   - Current V1 behavior: route broad pathway context through Gene Coverage -> Review Questions.
+   - Revisit after manual QA if broad CYP3A4/CYP3A5/UGT/transporter context still feels confusing.
 
 ### Pharmacogenetics Agent Scope
 
@@ -100,8 +101,9 @@ Review whether Diognosis is presenting PGx results as report-style patient input
 ## Product / UX Pending
 
 6. Pathway Explorer
-   - Not implemented.
-   - Would separate broad CYP3A4/CYP3A5/UGT/transporter exploration from report-style PGx results.
+   - V1 decision: not implemented as a separate panel.
+   - Broad CYP3A4/CYP3A5/UGT/transporter context uses Gene Coverage plus Review Questions for now.
+   - Post-V1 option if manual QA shows the current surfaces are not enough.
 
 7. PGx Profile presets/import
    - Current PGx Profile works manually.
