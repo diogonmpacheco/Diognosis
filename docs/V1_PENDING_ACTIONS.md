@@ -86,7 +86,9 @@ Review whether Diognosis is presenting PGx results as report-style patient input
 
 4. Compare PGx output to other PGx tools
    - Implemented: 10-example comparison set selected above.
-   - Pending: run the comparison set as a human-readable QA matrix.
+   - Implemented: human-readable comparison matrix saved in `docs/V1_PGX_COMPARISON_MATRIX.md`.
+   - Implemented: PGx Explorer audit coverage added for the 10 comparison families.
+   - Pending: manual Patient and Clinician view QA for the same 10 cases.
    - Important for trust and calibration.
 
 5. CYP2D6 edge cases

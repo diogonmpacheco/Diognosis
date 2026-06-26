@@ -16,13 +16,22 @@ const requiredUrls = [
   "?view=genotype",
   "?view=genotype&gene=CYP2D6",
   "?view=genotype&gene=CYP2D6&phenotype=poor_metabolizer",
+  "?view=genotype&gene=CYP2D6&phenotype=ultrarapid_metabolizer",
   "?view=genotype&gene=CYP2C19&phenotype=poor_metabolizer",
+  "?view=genotype&gene=CYP2C9&phenotype=poor_metabolizer",
+  "?view=genotype&gene=VKORC1&phenotype=poor_metabolizer",
+  "?view=genotype&gene=CYP4F2&phenotype=intermediate_metabolizer",
+  "?view=genotype&gene=SLCO1B1&phenotype=poor_metabolizer",
   "?view=genotype&gene=SLCO1B1&relationship=transporter",
   "?view=genotype&gene=ABCB1",
   "?view=genotype&gene=ABCG2",
+  "?view=genotype&gene=CYP3A5&phenotype=intermediate_metabolizer",
   "?view=genotype&gene=CYP3A4",
   "?view=genotype&gene=CYP2B6%2FCYP3A4%2FCYP2C19",
   "?view=genotype&gene=DPYD&phenotype=poor_metabolizer",
+  "?view=genotype&gene=TPMT&phenotype=poor_metabolizer",
+  "?view=genotype&gene=NUDT15&phenotype=poor_metabolizer",
+  "?view=genotype&gene=UGT1A1&phenotype=poor_metabolizer",
   "?view=genotype&gene=G6PD&phenotype=risk_allele_present",
   "?view=genotype&gene=HLA-B*57:01&phenotype=risk_allele_present",
   "?view=genotype&gene=HLA-B*15:02&phenotype=risk_allele_present",
@@ -311,12 +320,27 @@ for (const search of requiredUrls) {
       }
     }
 
-    if (gene === "CYP2D6" && selectedPhenotype === "poor_metabolizer") {
+    if (gene === "CYP2D6" && ["poor_metabolizer", "ultrarapid_metabolizer"].includes(selectedPhenotype)) {
       const codeine = cardByMedication(document, "Codeine");
       if (!codeine) {
-        fail(`${search}: CYP2D6 PM should show Codeine as a medication context.`);
+        fail(`${search}: CYP2D6 extreme-function context should show Codeine as a medication context.`);
       } else if (!/morphine|active-metabolite/i.test(cardText(codeine))) {
         fail(`${search}: Codeine card should expose morphine / active-metabolite context.`);
+      }
+      const tramadol = cardByMedication(document, "Tramadol");
+      if (!tramadol) {
+        fail(`${search}: CYP2D6 extreme-function context should show Tramadol as a medication context.`);
+      } else if (!/o-desmethyltramadol|active-metabolite/i.test(cardText(tramadol))) {
+        fail(`${search}: Tramadol card should expose O-desmethyltramadol / active-metabolite context.`);
+      }
+    }
+
+    if (gene === "CYP2D6" && selectedPhenotype === "poor_metabolizer") {
+      const metoprolol = cardByMedication(document, "Metoprolol");
+      if (!metoprolol) {
+        fail(`${search}: CYP2D6 PM should show Metoprolol as a parent-exposure/hemodynamic medication context.`);
+      } else if (!/Metoprolol|O-Desmethylmetoprolol|Guideline\/source-linked/i.test(cardText(metoprolol))) {
+        fail(`${search}: Metoprolol card should expose source-linked CYP2D6 exposure/metabolite context.`);
       }
       const fluoxetine = cardByMedication(document, "Fluoxetine");
       if (!fluoxetine) {
@@ -326,12 +350,64 @@ for (const search of requiredUrls) {
       }
     }
 
+    if (["CYP2C9", "VKORC1", "CYP4F2"].includes(gene) && ["poor_metabolizer", "intermediate_metabolizer"].includes(selectedPhenotype)) {
+      const warfarin = cardByMedication(document, "Warfarin");
+      if (!warfarin) {
+        fail(`${search}: ${gene} warfarin PGx context should show Warfarin as a medication context.`);
+      } else if (!/Warfarin|INR|dose sensitivity|Vitamin K|Guideline\/source/i.test(cardText(warfarin))) {
+        fail(`${search}: Warfarin card should expose algorithm/source-linked anticoagulation context.`);
+      }
+    }
+
+    if (gene === "SLCO1B1" && selectedPhenotype === "poor_metabolizer") {
+      for (const medication of ["Simvastatin", "Atorvastatin", "Rosuvastatin"]) {
+        const card = cardByMedication(document, medication);
+        if (!card) {
+          fail(`${search}: SLCO1B1 reduced function should show ${medication} statin context.`);
+        } else if (!/OATP1B1|SLCO1B1|exposure|Guideline\/source/i.test(cardText(card))) {
+          fail(`${search}: ${medication} card should expose OATP1B1/statin exposure context.`);
+        }
+      }
+    }
+
+    if (gene === "CYP3A5" && selectedPhenotype === "intermediate_metabolizer") {
+      const tacrolimus = cardByMedication(document, "Tacrolimus");
+      if (!tacrolimus) {
+        fail(`${search}: CYP3A5 expresser context should show Tacrolimus.`);
+      } else if (!/Tacrolimus exposure|trough|CYP3A5|Guideline\/source/i.test(cardText(tacrolimus))) {
+        fail(`${search}: Tacrolimus card should expose CYP3A5 expression / trough context.`);
+      }
+      if (/CYP3A4[^\\n]{0,80}CYP3A5 express/i.test(activeText(document))) {
+        fail(`${search}: CYP3A5 tacrolimus expression context should not be presented as CYP3A4 guidance.`);
+      }
+    }
+
     if (gene === "DPYD" && selectedPhenotype === "poor_metabolizer") {
       const meds = cardMedicationNames(document);
       for (const medication of ["Capecitabine", "Fluorouracil", "Tegafur"]) {
         if (!meds.includes(medication)) fail(`${search}: DPYD PM should show ${medication} as a primary medication context.`);
       }
       if (meds.includes("Fluoropyrimidines")) fail(`${search}: Fluoropyrimidines should not appear as a primary medication row.`);
+    }
+
+    if (["TPMT", "NUDT15"].includes(gene) && selectedPhenotype === "poor_metabolizer") {
+      for (const medication of ["Azathioprine", "Mercaptopurine", "Thioguanine"]) {
+        const card = cardByMedication(document, medication);
+        if (!card) {
+          fail(`${search}: ${gene} poor function should show ${medication} thiopurine context.`);
+        } else if (!/6-TGN|Thioguanine|toxic\/metabolite|Guideline\/source|Metabolite\/source/i.test(cardText(card))) {
+          fail(`${search}: ${medication} card should expose thiopurine toxic-metabolite/source context.`);
+        }
+      }
+    }
+
+    if (gene === "UGT1A1" && selectedPhenotype === "poor_metabolizer") {
+      const irinotecan = cardByMedication(document, "Irinotecan");
+      if (!irinotecan) {
+        fail(`${search}: UGT1A1 poor function should show Irinotecan context.`);
+      } else if (!/SN-38|toxicity|Guideline\/source/i.test(cardText(irinotecan))) {
+        fail(`${search}: Irinotecan card should expose SN-38 toxicity/source context.`);
+      }
     }
 
     if (gene === "G6PD" && selectedPhenotype === "risk_allele_present") {
