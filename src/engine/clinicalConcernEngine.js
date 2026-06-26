@@ -35,7 +35,11 @@ function buildClinicalConcerns(findings, context = {}) {
 function pruneRedundantClinicalConcerns(concerns = []) {
   const activationConcerns = (concerns || []).filter(concern => concern?.clinicalConcernDomain === "activation_failure");
   const absorptionConcerns = (concerns || []).filter(concern => concern?.clinicalConcernDomain === "absorption_or_chelation");
+  const nonTimingConcerns = (concerns || []).filter(concern => concern?.clinicalConcernDomain !== "washout_or_persistence");
   return (concerns || []).filter(concern => {
+    if (concern?.clinicalConcernDomain === "washout_or_persistence") {
+      return clinicalConcernIsHighRiskSwitchContext(concern) || nonTimingConcerns.length === 0;
+    }
     if (concern?.clinicalConcernDomain !== "exposure_increase_toxicity") return true;
     if (clinicalConcernIsActivationFailureCompanion(concern) &&
       activationConcerns.some(primary => clinicalConcernsShareActionability(primary, concern))) {
@@ -493,12 +497,18 @@ function makeClinicalConcernTitle(concern, context = {}) {
     return victim && perp ? `${victim} absorption may ${direction} with ${perp}` : `${victim || "Absorption"} concern`;
   }
   if (domain === "parent_accumulation") {
+    if (/\bwarfarin\b/i.test(String(victim || row.parent || ""))) {
+      return "Warfarin INR sensitivity may increase";
+    }
     return `${victim || row.parent || "Parent drug"} exposure may rise${perp ? ` with ${perp}` : ""}`;
   }
   if (domain === "mixed_parent_metabolite_direction") {
     return `${victim || row.parent || "Parent drug"} parent-metabolite balance may shift${perp ? ` with ${perp}` : ""}`;
   }
   if (domain === "exposure_increase_toxicity") {
+    if (/\bwarfarin\b/i.test(String(victim || row.parent || ""))) {
+      return "Warfarin INR sensitivity may increase";
+    }
     return victim && perp ? `${victim} exposure may rise with ${perp}` : `${victim || "Exposure"} may rise`;
   }
   const stackLabel = clinicalActorListLabel([...(victims || []), ...(perpetrators || [])]);

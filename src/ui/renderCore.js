@@ -2055,6 +2055,16 @@ function hasPatientNebivololGeneContext(text = "") {
     /\b(?:cyp2d6|gene|genotype|pgx|exposure)\b/i.test(String(text || ""));
 }
 
+function hasPatientMetoprololGeneContext(text = "") {
+  return /\bmetoprolol\b/i.test(String(text || "")) &&
+    /\b(?:cyp2d6|gene|genotype|pgx|exposure|level|clearance|poor metabolizer|ultrarapid)\b/i.test(String(text || ""));
+}
+
+function hasPatientAtomoxetineGeneContext(text = "") {
+  return /\batomoxetine\b/i.test(String(text || "")) &&
+    /\b(?:cyp2d6|gene|genotype|pgx|exposure|level|clearance|poor metabolizer|ultrarapid)\b/i.test(String(text || ""));
+}
+
 function hasPatientHyperkalemiaConcern(text = "") {
   return /\b(?:hyperkalemia|high potassium|potassium)\b/i.test(String(text || ""));
 }
@@ -2154,6 +2164,10 @@ function buildPatientDiscussionQuestion(presentation = {}, trust = null) {
     question = "Can you check whether this combination could raise Tacrolimus side effects or monitoring needs?";
   } else if (hasPatientNebivololGeneContext(text)) {
     question = "Can you check whether my gene result and current medicines could raise Nebivolol side effects or monitoring needs?";
+  } else if (hasPatientMetoprololGeneContext(text)) {
+    question = "Can you check whether my gene result could raise Metoprolol side effects, pulse, blood pressure, or monitoring needs?";
+  } else if (hasPatientAtomoxetineGeneContext(text)) {
+    question = "Can you check whether my gene result could raise Atomoxetine side effects, dose tolerance, pulse, or blood pressure concerns?";
   } else if (hasPatientHyperkalemiaConcern(text)) {
     question = "Can you check whether this list could raise potassium or kidney-related monitoring concerns?";
   } else if (hasPatientHypotensionConcern(text)) {
@@ -2459,6 +2473,12 @@ function patientFindingStepText(presentation = {}, field = "changed") {
     if (hasPatientNebivololGeneContext(lower)) {
       return "Your gene result and current medicines may raise nebivolol levels and side-effect risk, so follow-up may be needed.";
     }
+    if (hasPatientMetoprololGeneContext(lower)) {
+      return "Your gene result may raise metoprolol levels, so pulse, blood pressure, dizziness, tiredness, or dose tolerance may need review.";
+    }
+    if (hasPatientAtomoxetineGeneContext(lower)) {
+      return "Your gene result may raise atomoxetine levels, so side effects, dose tolerance, sleep, appetite, pulse, or blood pressure may need review.";
+    }
     if (timingPresentation) {
       return "Timing may matter because some effects can last after a medicine is changed.";
     }
@@ -2552,6 +2572,12 @@ function patientFindingStepText(presentation = {}, field = "changed") {
     if (hasPatientNebivololGeneContext(lower)) {
       return "Nebivolol can become more sensitive to gene-related processing differences, especially when another medicine pushes levels even higher.";
     }
+    if (hasPatientMetoprololGeneContext(lower)) {
+      return "Metoprolol can become more sensitive when CYP2D6 processing is lower, so pulse and blood-pressure effects can be stronger.";
+    }
+    if (hasPatientAtomoxetineGeneContext(lower)) {
+      return "Atomoxetine can become more sensitive when CYP2D6 processing is lower, so side effects can be stronger at the same dose.";
+    }
     if (riskMarkerKind === "abacavir_hypersensitivity" || riskMarkerKind === "allopurinol_scar" || riskMarkerKind === "hypersensitivity") {
       return "Some medicines become much riskier when a known gene result changes immune reaction risk.";
     }
@@ -2623,6 +2649,12 @@ function patientFindingStepText(presentation = {}, field = "changed") {
   }
   if (hasPatientTacrolimusToxicityConcern(lower)) {
     return "Ask a doctor or pharmacist whether tacrolimus monitoring, side effects, or dose timing should be reviewed with this combination.";
+  }
+  if (hasPatientMetoprololGeneContext(lower)) {
+    return "Ask a doctor or pharmacist whether metoprolol side effects, pulse, blood pressure, dose tolerance, or monitoring should be reviewed.";
+  }
+  if (hasPatientAtomoxetineGeneContext(lower)) {
+    return "Ask a doctor or pharmacist whether atomoxetine side effects, dose tolerance, pulse, blood pressure, or monitoring should be reviewed.";
   }
   if (hasPatientHyperkalemiaConcern(lower)) {
     return "Ask a doctor or pharmacist whether potassium, kidney function, symptoms, or lab monitoring should be reviewed.";
@@ -2712,6 +2744,12 @@ function patientFindingTitleText(presentation = {}) {
   const timingPresentation = patientTimingPresentation(presentation, presentation?.trustContract || null);
   if (hasPatientNebivololGeneContext(text)) {
     return "Nebivolol side-effect risk may increase";
+  }
+  if (hasPatientMetoprololGeneContext(text)) {
+    return "Metoprolol side-effect risk may increase";
+  }
+  if (hasPatientAtomoxetineGeneContext(text)) {
+    return "Atomoxetine side-effect risk may increase";
   }
   if (timingPresentation) return "Timing may need review";
   if (riskMarkerKind === "g6pd") return "G6PD-related blood reaction risk may increase";

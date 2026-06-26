@@ -2712,8 +2712,15 @@ const patientCopyAuditRegression = window.eval(`(() => {
     ivabradinePatient: resetScenario('/index.html?substances=ivabradine,clarithromycin&tab=timing-levels'),
     codeineBupropionPatient: resetScenario('/index.html?substances=bupropion,codeine&genotype=CYP2D6:PM&tab=genes-metabolites'),
     codeineUmPatient: resetScenario('/index.html?substances=codeine&genotype=CYP2D6:UM&tab=overview'),
+    codeineUmClinician: resetScenario('/index.html?substances=codeine&genotype=CYP2D6:UM&tab=overview', 'clinician'),
     tramadolPmPatient: resetScenario('/index.html?substances=tramadol&genotype=CYP2D6:PM&tab=overview'),
     tramadolUmPatient: resetScenario('/index.html?substances=tramadol&genotype=CYP2D6:UM&tab=overview'),
+    metoprololPatient: resetScenario('/index.html?substances=metoprolol&genotype=CYP2D6:PM&tab=overview'),
+    metoprololClinician: resetScenario('/index.html?substances=metoprolol&genotype=CYP2D6:PM&tab=overview', 'clinician'),
+    atomoxetinePatient: resetScenario('/index.html?substances=atomoxetine&genotype=CYP2D6:PM&tab=overview'),
+    atomoxetineClinician: resetScenario('/index.html?substances=atomoxetine&genotype=CYP2D6:PM&tab=overview', 'clinician'),
+    warfarinPgxClinician: resetScenario('/index.html?substances=warfarin&genotype=CYP2C9:PM&genotype=VKORC1:PM&genotype=CYP4F2:IM&tab=overview', 'clinician'),
+    g6pdClinician: resetScenario('/index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency', 'clinician'),
   };
 })()`);
 assert(/Tacrolimus exposure may rise with Fluconazole/i.test(patientCopyAuditRegression.tacrolimusClinician.titles[0] || ''),
@@ -2789,12 +2796,31 @@ assert(patientCopyAuditRegression.codeineBupropionPatient.patientCards <= 2 &&
 assert(patientCopyAuditRegression.codeineUmPatient.titles.some(title => /Codeine opioid side-effect risk may increase/i.test(title)) &&
   !patientCopyAuditRegression.codeineUmPatient.titles.some(title => /work less well|build up|may change medicine effects/i.test(title)),
   `Codeine CYP2D6 UM patient view should describe opioid side-effect risk, got ${patientCopyAuditRegression.codeineUmPatient.titles.join(' | ')}`);
+assert(!patientCopyAuditRegression.codeineUmClinician.titles.some(title => /Switching and washout timing may need review/i.test(title)),
+  `Codeine CYP2D6 UM clinician view should suppress routine timing clutter, got ${patientCopyAuditRegression.codeineUmClinician.titles.join(' | ')}`);
 assert(patientCopyAuditRegression.tramadolPmPatient.titles.some(title => /Tramadol may work less well/i.test(title)) &&
   !patientCopyAuditRegression.tramadolPmPatient.titles.some(title => /may change medicine effects/i.test(title)),
   `Tramadol CYP2D6 PM patient view should describe reduced analgesic effect, got ${patientCopyAuditRegression.tramadolPmPatient.titles.join(' | ')}`);
 assert(patientCopyAuditRegression.tramadolUmPatient.titles.some(title => /Tramadol opioid side-effect risk may increase/i.test(title)) &&
   !patientCopyAuditRegression.tramadolUmPatient.titles.some(title => /work less well|build up|may change medicine effects/i.test(title)),
   `Tramadol CYP2D6 UM patient view should describe opioid side-effect risk, got ${patientCopyAuditRegression.tramadolUmPatient.titles.join(' | ')}`);
+assert(/Metoprolol side-effect risk may increase/i.test(patientCopyAuditRegression.metoprololPatient.titles[0] || '') &&
+  /pulse|blood pressure/i.test(patientCopyAuditRegression.metoprololPatient.questions[0] || '') &&
+  !patientCopyAuditRegression.metoprololPatient.titles.some(title => /may change medicine effects/i.test(title)),
+  `Metoprolol CYP2D6 PM patient view should be specific, got ${patientCopyAuditRegression.metoprololPatient.titles.join(' | ')}`);
+assert(!patientCopyAuditRegression.metoprololClinician.titles.some(title => /Switching and washout timing may need review/i.test(title)),
+  `Metoprolol CYP2D6 PM clinician view should suppress routine timing clutter, got ${patientCopyAuditRegression.metoprololClinician.titles.join(' | ')}`);
+assert(/Atomoxetine side-effect risk may increase/i.test(patientCopyAuditRegression.atomoxetinePatient.titles[0] || '') &&
+  /pulse|blood pressure|dose tolerance/i.test(patientCopyAuditRegression.atomoxetinePatient.questions[0] || '') &&
+  !patientCopyAuditRegression.atomoxetinePatient.titles.some(title => /may change medicine effects/i.test(title)),
+  `Atomoxetine CYP2D6 PM patient view should be specific, got ${patientCopyAuditRegression.atomoxetinePatient.titles.join(' | ')}`);
+assert(!patientCopyAuditRegression.atomoxetineClinician.titles.some(title => /Switching and washout timing may need review/i.test(title)),
+  `Atomoxetine CYP2D6 PM clinician view should suppress routine timing clutter, got ${patientCopyAuditRegression.atomoxetineClinician.titles.join(' | ')}`);
+assert(/Warfarin INR sensitivity may increase/i.test(patientCopyAuditRegression.warfarinPgxClinician.titles[0] || '') &&
+  !patientCopyAuditRegression.warfarinPgxClinician.titles.some(title => /Switching and washout timing may need review/i.test(title)),
+  `Warfarin PGx clinician view should lead with INR sensitivity and suppress routine timing clutter, got ${patientCopyAuditRegression.warfarinPgxClinician.titles.join(' | ')}`);
+assert(!patientCopyAuditRegression.g6pdClinician.titles.some(title => /Switching and washout timing may need review/i.test(title)),
+  `G6PD clinician view should suppress routine timing clutter when a risk-marker concern exists, got ${patientCopyAuditRegression.g6pdClinician.titles.join(' | ')}`);
 
 assert(browserErrors.length === 0, `Browser errors:\n${browserErrors.join('\n')}`);
 

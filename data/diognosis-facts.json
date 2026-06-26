@@ -1,6 +1,6 @@
 {
   "schema": "diognosis.reference-facts.v1",
-  "generatedAt": "2026-06-26T08:42:07.189Z",
+  "generatedAt": "2026-06-26T16:58:10.075Z",
   "lastmod": "2026-06-26",
   "source": "Generated from the committed Diognosis app runtime and data/medication-class-guides.json validated examples.",
   "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
@@ -148,7 +148,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -291,7 +291,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -392,7 +392,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -502,7 +502,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -583,7 +583,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -726,7 +726,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -807,7 +807,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -877,7 +877,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -958,7 +958,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -1028,7 +1028,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -1098,7 +1098,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -1168,7 +1168,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -1238,7 +1238,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -1294,7 +1294,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -1350,7 +1350,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -1377,8 +1377,8 @@
       "genotypes": [],
       "severity": "moderate",
       "priority": "moderate",
-      "patientSummary": "Low blood pressure risk may increase",
-      "patientQuestion": "Can you check whether this combination could cause low blood pressure, dizziness, or fainting?",
+      "patientSummary": "Metoprolol side-effect risk may increase",
+      "patientQuestion": "Can you check whether my gene result could raise Metoprolol side effects, pulse, blood pressure, or monitoring needs?",
       "clinicianSummary": "Metoprolol exposure may rise with Terbinafine",
       "mechanismSummary": "Terbinafine may increase Metoprolol exposure, raising Metoprolol toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP2D6 genetic phenotype is normal metabolizer; functional phenotype is poor function (20% capacity). Drivers: Terbinafine inhibitor. Affects Metoprolol.",
@@ -1450,7 +1450,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -1578,7 +1578,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -1689,7 +1689,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -1825,7 +1825,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -1956,7 +1956,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -2037,7 +2037,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -2066,7 +2066,7 @@
       "priority": "severe",
       "patientSummary": "Warfarin side-effect risk may increase",
       "patientQuestion": "Can you check whether Warfarin side effects or monitoring needs could increase?",
-      "clinicianSummary": "Warfarin exposure may rise with Amiodarone",
+      "clinicianSummary": "Warfarin INR sensitivity may increase",
       "mechanismSummary": "Amiodarone may increase Warfarin exposure, raising Warfarin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is intermediate function (50% capacity). Drivers: Amiodarone inhibitor. Affects Amiodarone, Warfarin.",
       "reviewAction": "Review whether this combination needs a different plan, dose context, timing, or monitoring before any medication changes.",
@@ -2169,7 +2169,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -2225,7 +2225,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -2306,7 +2306,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -2362,7 +2362,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -2432,7 +2432,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -2502,7 +2502,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -2572,7 +2572,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -2642,7 +2642,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -2722,7 +2722,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -2747,19 +2747,18 @@
         }
       ],
       "genotypes": [],
-      "severity": "moderate",
-      "priority": "moderate",
-      "patientSummary": "Timing may need review",
-      "patientQuestion": "Can you check whether timing, overlap, or washout matters for this list?",
-      "clinicianSummary": "Switching and washout timing may need review",
-      "mechanismSummary": "Timing and persistence context may remain relevant after stopping or switching. Parent, metabolite, and recovery signals are grouped below.",
-      "clinicalRationale": "Conservative 14-day timing context for Tirzepatide based on half-life, class, and interaction persistence.; Modeled timing context: 14 days before assuming baseline recovery.",
-      "reviewAction": "Review stop date, switch timing, enzyme recovery, and active-metabolite persistence before applying standard timing assumptions.",
-      "evidenceSummary": "source-linked · fda label · 2 sources · source-integrated",
-      "evidenceStatus": "fda label · 2 sources · mechanistic high · source-integrated V1 context",
+      "severity": "monitor",
+      "priority": "monitor",
+      "patientSummary": "Tirzepatide may not absorb as expected",
+      "patientQuestion": "Can you check whether Tirzepatide may not absorb as expected with my current list?",
+      "clinicianSummary": "Tirzepatide absorption may change with Warfarin",
+      "mechanismSummary": "Monitor INR after tirzepatide initiation or dose escalation if warfarin control changes.",
+      "clinicalRationale": "Tirzepatide delays gastric emptying and can alter oral drug absorption timing; warfarin has a narrow therapeutic margin.",
+      "reviewAction": "Review this supporting context with symptoms, doses, timing, and the rest of the medication list.",
+      "evidenceSummary": "source-linked · fda label · 1 source · source-integrated",
+      "evidenceStatus": "fda label · 1 source · mechanistic high · source-integrated V1 context",
       "evidenceRefs": [
-        "ev_tirzepatide_oral_absorption_label",
-        "ev_metabolite_expansion_pack_adapter"
+        "ev_tirzepatide_oral_absorption_label"
       ],
       "evidenceSources": [
         {
@@ -2770,15 +2769,6 @@
           "doi": "",
           "url": "https://dailymed.nlm.nih.gov/dailymed/",
           "directUrl": true
-        },
-        {
-          "ref": "ev_metabolite_expansion_pack_adapter",
-          "title": "Phase 10 metabolite expansion pack — parent maps, active-moiety context, and graph actors",
-          "type": "guideline",
-          "pmid": "",
-          "doi": "",
-          "url": "https://dailymed.nlm.nih.gov/dailymed/",
-          "directUrl": false
         }
       ],
       "sourceUrls": [
@@ -2802,7 +2792,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -2872,7 +2862,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -2942,7 +2932,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -3012,7 +3002,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -3147,7 +3137,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -3263,7 +3253,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -3319,7 +3309,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -3389,7 +3379,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -3459,7 +3449,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -3557,7 +3547,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -3627,7 +3617,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -3697,7 +3687,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -3767,7 +3757,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -3837,7 +3827,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -3918,7 +3908,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -4061,7 +4051,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -4172,7 +4162,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -4348,7 +4338,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -4480,7 +4470,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -4581,7 +4571,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -4691,7 +4681,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -4834,7 +4824,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -4904,7 +4894,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -5040,7 +5030,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -5151,7 +5141,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -5221,7 +5211,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -5291,7 +5281,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -5361,7 +5351,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -5431,7 +5421,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -5501,7 +5491,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -5571,7 +5561,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -5641,7 +5631,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -5741,7 +5731,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -5811,7 +5801,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -5881,7 +5871,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -5951,7 +5941,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -6021,7 +6011,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -6091,7 +6081,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -6172,7 +6162,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -6317,7 +6307,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -6346,7 +6336,7 @@
       "priority": "severe",
       "patientSummary": "Warfarin side-effect risk may increase",
       "patientQuestion": "Can you check whether Warfarin side effects or monitoring needs could increase?",
-      "clinicianSummary": "Warfarin exposure may rise with Amiodarone",
+      "clinicianSummary": "Warfarin INR sensitivity may increase",
       "mechanismSummary": "Amiodarone may increase Warfarin exposure, raising Warfarin toxicity review priority. Related pathway, metabolite, and evidence signals are grouped below.",
       "clinicalRationale": "CYP3A4 genetic phenotype is normal metabolizer; functional phenotype is intermediate function (50% capacity). Drivers: Amiodarone inhibitor. Affects Amiodarone, Warfarin.",
       "reviewAction": "Review whether this combination needs a different plan, dose context, timing, or monitoring before any medication changes.",
@@ -6449,7 +6439,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -6519,7 +6509,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -6619,7 +6609,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -6689,7 +6679,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -6800,7 +6790,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -6911,7 +6901,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -6938,8 +6928,8 @@
       "genotypes": [],
       "severity": "moderate",
       "priority": "moderate",
-      "patientSummary": "Low blood pressure risk may increase",
-      "patientQuestion": "Can you check whether this combination could cause low blood pressure, dizziness, or fainting?",
+      "patientSummary": "Metoprolol side-effect risk may increase",
+      "patientQuestion": "Can you check whether my gene result could raise Metoprolol side effects, pulse, blood pressure, or monitoring needs?",
       "clinicianSummary": "Low blood pressure risk may increase",
       "mechanismSummary": "Pharmacodynamic burden is the shared concern. Pairwise and pathway signals that feed this burden are grouped below.",
       "clinicalRationale": "CYP2D6 genetic phenotype is normal metabolizer; functional phenotype is intermediate function (45% capacity). Drivers: Propafenone inhibitor, current stack substrate burden. Affects Propafenone, Metoprolol.",
@@ -7022,7 +7012,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -7165,7 +7155,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -7319,7 +7309,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -7429,7 +7419,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -7513,7 +7503,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -7589,7 +7579,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -7709,7 +7699,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -7820,7 +7810,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     },
     {
@@ -7910,7 +7900,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T08:42:07.189Z",
+      "generatedAt": "2026-06-26T16:58:10.075Z",
       "lastmod": "2026-06-26"
     }
   ]

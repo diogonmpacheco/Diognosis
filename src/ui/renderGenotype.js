@@ -323,8 +323,24 @@ function getHighestGenotypePrioritySignal() {
       });
     }
   }
-  signals.sort((a,b) => b.score - a.score);
+  signals.sort((a,b) =>
+    genotypeSignalPriorityTier(b) - genotypeSignalPriorityTier(a) ||
+    Number(genotypeSignalSourceLinked(b)) - Number(genotypeSignalSourceLinked(a)) ||
+    b.score - a.score
+  );
   return signals[0] || null;
+}
+
+function genotypeSignalPriorityTier(signal = {}) {
+  const score = Number(signal.score || 0);
+  if (score >= 70) return 3;
+  if (score >= 45) return 2;
+  if (score >= 30) return 1;
+  return 0;
+}
+
+function genotypeSignalSourceLinked(signal = {}) {
+  return (signal.evidenceRefs || []).some(Boolean);
 }
 
 function phenotypeLabel(phenotype) {
