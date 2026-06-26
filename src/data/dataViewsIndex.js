@@ -879,6 +879,9 @@
     if (!substances) return "./index.html";
     const params = new URLSearchParams();
     params.set("substances", substances);
+    if (Array.isArray(opts.genotypes)) {
+      for (const genotype of opts.genotypes.filter(Boolean)) params.append("genotype", genotype);
+    }
     if (opts.genotype) params.set("genotype", opts.genotype);
     params.set("tab", opts.tab || "genes-metabolites");
     return `./index.html?${params.toString().replaceAll("%2C", ",").replaceAll("%3A", ":")}`;

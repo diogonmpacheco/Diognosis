@@ -24,6 +24,7 @@ const requiredUrls = [
   "?view=genotype&gene=G6PD&phenotype=risk_allele_present",
   "?view=genotype&gene=HLA-B*57:01&phenotype=risk_allele_present",
   "?view=genotype&gene=HLA-B*15:02&phenotype=risk_allele_present",
+  "?view=genotype&profile=CYP2D6:poor_metabolizer,CYP2C19:poor_metabolizer,HLA-B*57:01:risk_allele_present&gene=CYP2D6&phenotype=poor_metabolizer",
   "?view=action&action=digoxin",
   "?view=ranking&sort=total",
 ];
@@ -216,7 +217,11 @@ for (const search of requiredUrls) {
     const medicationContextCount = genotypeMedicationContextCount(dom.window, rows);
     const relationshipTag = document.querySelector("#geneRelationshipTag")?.textContent || "";
     const expectedScopeLabel = requestedTarget.includes("*") ? requestedTarget : gene;
-    if (!relationshipTag.toUpperCase().includes(expectedScopeLabel.toUpperCase())) fail(`${search}: relationship map tag is not scoped to ${expectedScopeLabel}. Found: ${relationshipTag || "(missing)"}`);
+    if (params.get("profile")) {
+      if (!/PGx Profile/i.test(relationshipTag)) fail(`${search}: relationship map tag should show PGx Profile for multi-result URLs. Found: ${relationshipTag || "(missing)"}`);
+    } else if (!relationshipTag.toUpperCase().includes(expectedScopeLabel.toUpperCase())) {
+      fail(`${search}: relationship map tag is not scoped to ${expectedScopeLabel}. Found: ${relationshipTag || "(missing)"}`);
+    }
     if (gene === "CYP3A4" && /CYP2D6\s+PM|Complete loss of analgesia/i.test(document.querySelector("#view-genotype")?.textContent || "")) {
       fail(`${search}: CYP3A4 genotype view includes CYP2D6-specific Codeine clinical text.`);
     }
@@ -311,6 +316,26 @@ for (const search of requiredUrls) {
       const carbamazepine = cardByMedication(document, "Carbamazepine");
       const href = cardHref(carbamazepine);
       if (!/genotype=HLA-B\*15:02:present/.test(href)) fail(`${search}: HLA-B*15:02 Carbamazepine link should preserve exact allele marker. Found: ${href}`);
+    }
+
+    if (params.get("profile")) {
+      const text = activeText(document);
+      if (!/PGx Profile/i.test(text) || !/3 selected results/i.test(text)) fail(`${search}: PGx Profile should render selected-result summary.`);
+      const chips = [...document.querySelectorAll("#profileResultChips .profile-chip")].map((chip) => chip.textContent || "");
+      for (const label of ["CYP2D6", "CYP2C19", "HLA-B*57:01"]) {
+        if (!chips.some((chip) => chip.includes(label))) fail(`${search}: PGx Profile chips should include ${label}.`);
+      }
+      for (const medication of ["Clopidogrel", "Codeine", "Abacavir"]) {
+        const card = cardByMedication(document, medication);
+        if (!card) {
+          fail(`${search}: PGx Profile should show ${medication}.`);
+          continue;
+        }
+        const href = cardHref(card);
+        for (const token of ["CYP2D6:poor_metabolizer", "CYP2C19:poor_metabolizer", "HLA-B*57:01:present"]) {
+          if (!href.includes(`genotype=${token}`)) fail(`${search}: ${medication} profile link should preserve ${token}. Found: ${href}`);
+        }
+      }
     }
   }
 

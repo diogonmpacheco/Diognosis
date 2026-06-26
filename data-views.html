@@ -124,6 +124,13 @@
     .supporting-context p{font-size:12px;color:var(--text2);margin:8px 0 0}
     .action-context-card{display:grid;gap:8px}
     .action-card-note{font-size:12px;color:var(--text2);margin:0 0 10px}
+    .profile-controls{display:grid;gap:10px;margin-top:12px}
+    .profile-actions{display:flex;flex-wrap:wrap;gap:8px}
+    .secondary{height:38px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-weight:850;padding:0 11px;cursor:pointer}
+    .profile-chips{display:flex;flex-wrap:wrap;gap:7px}
+    .profile-chip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--border);border-radius:999px;background:var(--surface2);padding:5px 7px 5px 10px;font-size:12px;font-weight:850;color:var(--text)}
+    .profile-chip button{width:22px;height:22px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text2);font-weight:900;line-height:1;cursor:pointer}
+    .profile-chip button:hover{border-color:var(--accent);color:var(--accent)}
     .text-link{font-weight:900;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
     .pager{display:grid;gap:8px;justify-items:start;margin:10px 0 0;color:var(--text2);font-size:12px;font-weight:800}
     .pager button{border:1px solid var(--border);background:var(--surface2);border-radius:8px;padding:6px 10px;color:var(--text);font-weight:850;cursor:pointer}
@@ -181,13 +188,20 @@
           <article class="card genetics-card">
             <div class="card-head"><h3>PGx Explorer</h3><span class="tag violet" id="genotypePickTag">CYP2D6</span></div>
             <div class="card-body">
-              <p class="genetics-copy">Pick a reported gene or marker result first. The medication cards below show linkable medication contexts that may be affected, including parent-drug, metabolite, transporter, and source-linked PGx rows.</p>
+              <p class="genetics-copy">Add reported gene or marker results to build a PGx profile. The medication cards below show linkable medication contexts that may be affected, including parent-drug, metabolite, transporter, and source-linked PGx rows.</p>
               <div class="toolbar genotype-toolbar">
                 <select class="select" id="geneSearch" aria-label="Gene"></select>
                 <select class="select" id="phenotypeSelect" aria-label="Status"></select>
                 <select class="select" id="relationshipSelect" aria-label="Relationship"><option value="all">All relationships</option><option value="parent">Parent substance</option><option value="metabolite">Child metabolite</option><option value="modulator">Inhibitor/inducer</option><option value="transporter">Transporter</option><option value="evidence">PGx evidence</option><option value="risk">Risk/context</option></select>
               </div>
               <div class="genotype-detail" id="genotypePickDetail"></div>
+              <div class="profile-controls">
+                <div class="profile-actions">
+                  <button class="primary" type="button" id="addProfileResult">Add result</button>
+                  <button class="secondary" type="button" id="clearProfileResults">Clear profile</button>
+                </div>
+                <div class="profile-chips" id="profileResultChips" aria-label="Selected PGx profile"></div>
+              </div>
             </div>
           </article>
           <div class="callout pgx-boundary">
@@ -284,7 +298,7 @@
     const sentence = (value) => String(value || "").replace(/_/g, " ").replace(/\b\w/g, (m) => m.toUpperCase());
     const tag = (text, color = "") => `<span class="tag ${color}">${esc(text)}</span>`;
     const pageSize = 50;
-    const state = { geneShowAll:false, actionShowAll:{}, rankingShowAll:false };
+    const state = { geneShowAll:false, actionShowAll:{}, rankingShowAll:false, profile:[] };
     const copy = {
       genotype:["PGx Explorer","Select a reported gene result and review medication contexts that may be affected. Open any row in Diognosis for medication-list-specific review."],
       action:["Review Questions","Group medication contexts into safe review questions: use-together, dose/timing, monitoring, treatment-plan context, and source context. These are review supports, not prescribing instructions."],
@@ -356,12 +370,32 @@
       return (index.modeledGenotypes || []).find((item) => item.kind === "modeled_gene" && item.gene === gene) || null;
     }
 
+    function targetModelFor(value, phenotype = "") {
+      const targetModel = riskModelForTarget(value) || geneModelForTarget(value);
+      if (targetModel) return targetModel;
+      const gene = String(value || "").trim().toUpperCase();
+      const models = modelsForGene(gene);
+      if (phenotype) {
+        const exact = models.find((item) => (item.phenotypeValues || []).includes(phenotype));
+        if (exact) return exact;
+      }
+      return models.find((item) => item.kind === "modeled_gene" && (item.phenotypeValues || []).length) ||
+        models.find((item) => item.kind === "risk_variant") ||
+        models[0] ||
+        null;
+    }
+
+    function geneForTarget(value) {
+      const model = targetModelFor(value);
+      return model?.gene || String(value || "").trim().toUpperCase();
+    }
+
     function modelsForGene(gene) {
       return (index.modeledGenotypes || []).filter((item) => item.gene === gene);
     }
 
     function modelForPhenotype(gene = selectedGene(), phenotype = "") {
-      const targetModel = riskModelForTarget(selectedTargetValue()) || geneModelForTarget(selectedTargetValue());
+      const targetModel = targetModelFor(selectedTargetValue(), phenotype);
       if (targetModel) return targetModel;
       const models = modelsForGene(gene);
       if (phenotype) {
@@ -374,9 +408,10 @@
         null;
     }
 
-    function pgxAppGenotypeValue(gene = selectedGene(), phenotype = $("#phenotypeSelect").value || "") {
+    function pgxAppGenotypeValueForTarget(target = selectedTargetValue(), phenotype = $("#phenotypeSelect").value || "") {
       if (!phenotype) return "";
-      const model = modelForPhenotype(gene, phenotype);
+      const model = targetModelFor(target, phenotype);
+      const gene = geneForTarget(target);
       if (model?.kind === "risk_variant") {
         const riskKey = model.riskKey || model.label || gene;
         if (phenotype === "risk_allele_present") {
@@ -387,6 +422,53 @@
         if (phenotype === "risk_allele_absent") return `${riskKey}:normal`;
       }
       return `${gene}:${phenotype}`;
+    }
+
+    function pgxAppGenotypeValue(gene = selectedGene(), phenotype = $("#phenotypeSelect").value || "") {
+      return pgxAppGenotypeValueForTarget(selectedTargetValue(), phenotype);
+    }
+
+    function profileEntryKey(target, phenotype) {
+      return `${String(target || "").trim()}:${String(phenotype || "").trim()}`;
+    }
+
+    function profileEntryFromTarget(target, phenotype) {
+      const cleanTarget = String(target || "").trim();
+      const cleanPhenotype = String(phenotype || "").trim();
+      if (!cleanTarget || !cleanPhenotype) return null;
+      const model = targetModelFor(cleanTarget, cleanPhenotype);
+      const gene = geneForTarget(cleanTarget);
+      const targetLabel = model?.label || gene;
+      const label = `${targetLabel} ${phenotypeLabel(gene, cleanPhenotype, model)}`;
+      const appToken = pgxAppGenotypeValueForTarget(cleanTarget, cleanPhenotype);
+      if (!appToken) return null;
+      return {
+        key:profileEntryKey(model?.kind === "risk_variant" ? (model.riskKey || model.label || cleanTarget) : gene, cleanPhenotype),
+        target:model?.kind === "risk_variant" ? (model.riskKey || model.label || cleanTarget) : gene,
+        gene,
+        phenotype:cleanPhenotype,
+        label,
+        appToken,
+        modelKind:model?.kind || "",
+        riskKey:model?.riskKey || "",
+      };
+    }
+
+    function selectedProfileEntry() {
+      return profileEntryFromTarget(selectedTargetValue(), $("#phenotypeSelect").value || "");
+    }
+
+    function activeProfileEntries() {
+      const selected = selectedProfileEntry();
+      return state.profile.length ? state.profile : (selected ? [selected] : []);
+    }
+
+    function activeProfileMode() {
+      return state.profile.length > 0;
+    }
+
+    function activeAppGenotypeValues() {
+      return [...new Set(activeProfileEntries().map((entry) => entry.appToken).filter(Boolean))];
     }
 
     function canonicalMedicationEntity(name) {
@@ -488,6 +570,7 @@
       }
       return [...groups.values()].map((group) => {
         const [bucket, color] = pgxMechanismBucket(group);
+        const profileLabels = [...new Set(group.rows.map((row) => row.profileLabel).filter(Boolean))];
         return {
           ...group,
           bucket,
@@ -495,6 +578,7 @@
           evidence:pgxEvidenceLabel(group),
           actor:pgxActorSummary(group),
           review:pgxReviewPhrase(group),
+          profileLabels,
           score:pgxGroupScore(group),
         };
       }).sort((a, b) => a.score - b.score || a.medication.localeCompare(b.medication));
@@ -574,58 +658,110 @@
     }
 
     function selectedGene() {
-      const riskModel = riskModelForTarget(selectedTargetValue());
-      return riskModel?.gene || selectedTargetValue().toUpperCase();
+      return geneForTarget(selectedTargetValue());
+    }
+
+    function filteredRelationsForProfileEntry(entry) {
+      const relationship = $("#relationshipSelect").value || "all";
+      let rows = index.byGene[entry.gene] || [];
+      if (entry.modelKind === "risk_variant" && entry.riskKey) {
+        const marker = entry.riskKey.toLowerCase();
+        rows = rows.filter((row) => String(row.riskKey || "").toLowerCase() === marker || row.searchText.includes(marker));
+      }
+      rows = relationship === "all" ? rows : rows.filter((row) => row.role === relationship);
+      return rows.map((row) => ({ ...row, profileKey:entry.key, profileLabel:entry.label, profileAppToken:entry.appToken }));
     }
 
     function filteredGeneRelations() {
-      const gene = selectedGene();
-      const relationship = $("#relationshipSelect").value || "all";
-      let rows = index.byGene[gene] || [];
-      const model = selectedModel();
-      if (model?.kind === "risk_variant" && model.riskKey) {
-        const marker = model.riskKey.toLowerCase();
-        rows = rows.filter((row) => String(row.riskKey || "").toLowerCase() === marker || row.searchText.includes(marker));
-      }
-      return relationship === "all" ? rows : rows.filter((row) => row.role === relationship);
+      return activeProfileEntries().flatMap(filteredRelationsForProfileEntry);
+    }
+
+    function renderProfileChips() {
+      const container = $("#profileResultChips");
+      if (!container) return;
+      container.innerHTML = state.profile.length
+        ? state.profile.map((entry) => `<span class="profile-chip">${esc(entry.label)}<button type="button" aria-label="Remove ${esc(entry.label)}" data-remove-profile="${esc(entry.key)}">x</button></span>`).join("")
+        : `<span class="muted">Single-result view</span>`;
+      container.querySelectorAll("[data-remove-profile]").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.profile = state.profile.filter((entry) => entry.key !== button.dataset.removeProfile);
+          state.geneShowAll = false;
+          renderGeneView();
+          syncGenotypeExplorerUrl();
+        });
+      });
+    }
+
+    function addSelectedProfileResult() {
+      const entry = selectedProfileEntry();
+      if (!entry) return;
+      if (!state.profile.some((item) => item.key === entry.key)) state.profile.push(entry);
+      state.geneShowAll = false;
+      renderGeneView();
+      syncGenotypeExplorerUrl();
+    }
+
+    function clearProfileResults() {
+      state.profile = [];
+      state.geneShowAll = false;
+      renderGeneView();
+      syncGenotypeExplorerUrl();
+    }
+
+    function parseProfileParam(value) {
+      return String(value || "").split(",").map((token) => {
+        const clean = token.trim();
+        const sep = clean.lastIndexOf(":");
+        if (sep <= 0) return null;
+        return profileEntryFromTarget(clean.slice(0, sep), clean.slice(sep + 1));
+      }).filter(Boolean);
+    }
+
+    function serializeProfileEntries(entries = state.profile) {
+      return entries.map((entry) => `${entry.target}:${entry.phenotype}`).join(",");
     }
 
     function renderGeneView() {
       const gene = selectedGene();
       const phenotype = $("#phenotypeSelect").value || "";
       const model = selectedModel();
+      const entries = activeProfileEntries();
+      const profileMode = activeProfileMode();
       const rows = filteredGeneRelations();
       const groups = buildPgxMedicationGroups(rows);
       const shown = state.geneShowAll ? groups : groups.slice(0, pageSize);
       const supportingRows = rows.filter((row) => !relationMedicationNames(row).length);
       const modelText = model ? `${model.label} · ${model.stateLabel}` : `${gene} custom relation search`;
-      $("#geneStatus").textContent = `${modelText}. ${groups.length} affected medication contexts from ${rows.length} indexed source rows. ${phenotype ? phenotypeLabel(gene, phenotype, model) : "Evidence/context only"}.`;
+      $("#geneStatus").textContent = profileMode
+        ? `PGx Profile. ${groups.length} affected medication contexts from ${rows.length} indexed source rows across ${entries.length} selected result${entries.length === 1 ? "" : "s"}.`
+        : `${modelText}. ${groups.length} affected medication contexts from ${rows.length} indexed source rows. ${phenotype ? phenotypeLabel(gene, phenotype, model) : "Evidence/context only"}.`;
       $("#geneMetrics").innerHTML = [
         [groups.length, "affected meds"],
         [groups.filter((group) => group.rows.some((r) => r.role === "evidence" || String(r.evidenceLevel || "").toUpperCase() === "A")).length, "source-linked"],
         [groups.filter((group) => group.rows.some((r) => r.role === "metabolite")).length, "metabolite contexts"],
-        [groups.filter((group) => group.rows.some((r) => r.severity === "red")).length, "higher priority"],
+        [profileMode ? entries.length : groups.filter((group) => group.rows.some((r) => r.severity === "red")).length, profileMode ? "selected results" : "higher priority"],
       ].map(([num, label]) => `<div class="metric"><strong>${num}</strong><span>${label}</span></div>`).join("");
-      const focusLabel = `${model?.label || gene} ${phenotype ? phenotypeLabel(gene, phenotype, model) : "Context"}`;
+      const focusLabel = profileMode ? `PGx Profile · ${entries.length} results` : `${model?.label || gene} ${phenotype ? phenotypeLabel(gene, phenotype, model) : "Context"}`;
       $("#genotypePickTag").textContent = focusLabel;
       $("#geneRelationshipTag").textContent = focusLabel;
       const activationRows = rows.filter(relationMentionsActivation);
       const exposureRows = rows.filter((r) => /exposure|auc|level|clearance|dose|fold/i.test(r.actionText + r.signal));
       const modulatorRows = rows.filter((r) => r.role === "modulator" || r.role === "transporter");
+      const activeGenotypes = activeAppGenotypeValues();
       $("#geneRelationshipList").innerHTML = [
         ["Active-metabolite effect", buildPgxMedicationGroups(activationRows).length, "red", "Medication contexts where the gene may change active-metabolite formation or expected response.", activationRows.slice(0, 8)],
         ["Parent exposure context", buildPgxMedicationGroups(exposureRows).length, "amber", "Medication contexts suggesting exposure, clearance, level, dose, or toxicity review.", exposureRows.slice(0, 8)],
         ["Transport or modulation", buildPgxMedicationGroups(modulatorRows).length, "violet", "Inhibitors, inducers, transporters, and actor-context edges that may change interpretation.", modulatorRows.slice(0, 8)],
       ].map(([title, count, color, body, items]) => {
-        return rowLink(index.appLink(items.flatMap((item) => item.linkSubstances), { genotype:pgxAppGenotypeValue(gene, phenotype), tab:"genes-metabolites" }), title, `${count} meds`, color, body, items.map((item) => item.subject).slice(0, 6));
+        return rowLink(index.appLink(items.flatMap((item) => item.linkSubstances), { genotypes:activeGenotypes, tab:"genes-metabolites" }), title, `${count} meds`, color, body, items.map((item) => item.subject).slice(0, 6));
       }).join("");
       $("#geneSubstanceRows").innerHTML = shown.map((group) => {
-        const href = index.appLink([group.medication], { genotype:pgxAppGenotypeValue(gene, phenotype), tab:"genes-metabolites" });
+        const href = index.appLink([group.medication], { genotypes:activeGenotypes, tab:"genes-metabolites" });
         const roles = [...new Set(group.rows.map((row) => sentence(row.role)).filter(Boolean))].slice(0, 3);
         return `<article class="row pgx-medication-card">
           <div class="row-main">
             <h4><a class="text-link" href="${esc(href)}">${esc(group.medication)}</a></h4>
-            <div class="meta">${tag(group.class)}${roles.map((role) => tag(role)).join("")}</div>
+            <div class="meta">${tag(group.class)}${roles.map((role) => tag(role)).join("")}${group.profileLabels.map((label) => tag(label, "violet")).join("")}</div>
           </div>
           <div class="pgx-card-body">
             <p class="pgx-card-line"><strong>${esc(group.bucket)}:</strong> ${esc(group.review)}</p>
@@ -641,6 +777,7 @@
       $("#geneSupportingContext").innerHTML = supportingRows.length
         ? `<details><summary>Supporting context (${supportingRows.length} broad or marker-only rows)</summary><p>These are class, marker, metabolite, or external context rows kept out of the primary medication list. Use them as background only after opening a linkable medication in Diognosis.</p>${supportingSubjects.length ? `<div class="meta">${supportingSubjects.map((item) => tag(item)).join("")}</div>` : ""}</details>`
         : "";
+      renderProfileChips();
       renderPager($("#genePager"), groups.length, shown.length, "geneShowAll", renderGeneView);
     }
 
@@ -816,6 +953,7 @@
       $("#genotypePickDetail").innerHTML = phenotype
         ? `<b>${esc(targetLabel)}</b> is set to <b>${esc(phenotypeLabel(gene, phenotype, model))}</b>; rows below show where that signal touches substances, metabolites, transporters, or evidence.`
         : `<b>${esc(targetLabel)}</b> does not have a modeled status list here; rows below show evidence and context links only.`;
+      renderProfileChips();
     }
 
     function syncGenotypeExplorerUrl() {
@@ -825,6 +963,7 @@
       params.set("gene", selectedTargetValue());
       const phenotype = $("#phenotypeSelect").value || "";
       const relationship = $("#relationshipSelect").value || "all";
+      if (state.profile.length) params.set("profile", serializeProfileEntries());
       if (phenotype) params.set("phenotype", phenotype);
       if (relationship !== "all") params.set("relationship", relationship);
       history.replaceState(null, "", `?${params.toString().replaceAll("%3A", ":")}`);
@@ -867,6 +1006,15 @@
       updatePhenotypeOptions();
       if (params.get("phenotype") && [...$("#phenotypeSelect").options].some((option) => option.value === params.get("phenotype"))) $("#phenotypeSelect").value = params.get("phenotype");
       updatePhenotypeOptions();
+      if (params.get("profile")) {
+        state.profile = parseProfileParam(params.get("profile"));
+        if (state.profile[0]) {
+          setGeneSelection(state.profile[0].target);
+          updatePhenotypeOptions();
+          if ([...$("#phenotypeSelect").options].some((option) => option.value === state.profile[0].phenotype)) $("#phenotypeSelect").value = state.profile[0].phenotype;
+          updatePhenotypeOptions();
+        }
+      }
       if (params.get("relationship") && [...$("#relationshipSelect").options].some((option) => option.value === params.get("relationship"))) $("#relationshipSelect").value = params.get("relationship");
       if (params.get("action")) $("#actionSearch").value = params.get("action");
       if (params.get("area") && [...$("#actionArea").options].some((option) => option.value === params.get("area"))) $("#actionArea").value = params.get("area");
@@ -876,6 +1024,8 @@
       $("#geneSearch").addEventListener("change", () => { updatePhenotypeOptions(); state.geneShowAll = false; renderGeneView(); syncGenotypeExplorerUrl(); });
       $("#phenotypeSelect").addEventListener("change", () => { updatePhenotypeOptions(); renderGeneView(); syncGenotypeExplorerUrl(); });
       $("#relationshipSelect").addEventListener("change", () => { state.geneShowAll = false; renderGeneView(); syncGenotypeExplorerUrl(); });
+      $("#addProfileResult").addEventListener("click", addSelectedProfileResult);
+      $("#clearProfileResults").addEventListener("click", clearProfileResults);
       $("#actionFilter").addEventListener("click", () => { renderActionView(); syncActionViewUrl(); });
       $("#actionSearch").addEventListener("input", () => { renderActionView(); syncActionViewUrl(); });
       $("#actionEvidence").addEventListener("change", renderActionView);
