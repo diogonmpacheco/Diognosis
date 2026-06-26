@@ -1933,10 +1933,8 @@ function renderPublicFindingCard(presentation, index = 0) {
     : "";
   const sourceLinks = patient ? "" : renderFindingSourceLinks(presentation, trust);
   const severityLabel = patient ? patientSeverityLabel(severity) : severity;
-  const showDiscussionGuide = patient || typeof isReviewerMode !== "function" || isReviewerMode();
-  const discussionGuide = showDiscussionGuide ? renderFindingDiscussionGuide(presentation, trust, patient) : "";
-  const showMonitoringGuide = patient || typeof isReviewerMode !== "function" || isReviewerMode() || index === 0;
-  const monitoringGuide = showMonitoringGuide ? renderFindingMonitoringGuide(presentation, trust, patient) : "";
+  const discussionGuide = renderFindingDiscussionGuide(presentation, trust, patient);
+  const monitoringGuide = renderFindingMonitoringGuide(presentation, trust, patient);
   const followupGuide = !patient && typeof isReviewerMode === "function" && !isReviewerMode() && (discussionGuide || monitoringGuide)
     ? `<details class="finding-followup-details"><summary>Review notes</summary>${discussionGuide}${monitoringGuide}</details>`
     : `${discussionGuide}${monitoringGuide}`;

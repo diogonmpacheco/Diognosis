@@ -7644,7 +7644,7 @@ const STUDY_DB = {
     temporal:{mechanism:"CYP2D6_CYP3A4_parent_and_metabolite_exposure"},
     supports:["chlorpromazine_METABOLIZED_TO_7-hydroxychlorpromazine","chlorpromazine_METABOLIZED_TO_n-desmethylchlorpromazine","chlorpromazine_cyp2d6_parent_exposure_context"],
     contradicts:[],
-    limitations:["Metabolite fractions and activity vary across sources; launch data should be treated as review-required until specialist curation."],
+    limitations:["Metabolite fractions and activity vary across sources; source-integrated V1 context is for medication review support and not standalone clinical guidance."],
     verified:false
   },
   "ev_propylthiouracil_label": {
