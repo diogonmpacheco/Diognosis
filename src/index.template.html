@@ -632,6 +632,10 @@ body[data-audience="clinician"] .summary-story.clinician-priority .summary-story
 .main-empty-check::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);margin-top:5px;flex:0 0 auto}
 .main-empty-note{margin-top:22px;border-top:1px solid var(--border);padding-top:14px;font-size:12px;line-height:1.45;color:var(--text2)}
 .main-empty-note strong{color:var(--text)}
+.main-empty-actions,.gene-helper-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.main-empty-action,.gene-helper-link{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:10px;background:var(--card2);color:var(--text);font-size:12px;font-weight:850;line-height:1.2;text-decoration:none;padding:9px 11px}
+.main-empty-action.primary,.gene-helper-link.primary{border-color:var(--accentLine);background:var(--accentBg);color:var(--accent)}
+.main-empty-action:hover,.gene-helper-link:hover{border-color:var(--accent);color:var(--accent)}
 @media(min-width:760px){
   .summary-main{grid-template-columns:minmax(0,1fr);align-items:start}
   .summary-risk{min-height:0}
@@ -1073,6 +1077,9 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
       </div>
       <div class="section-body coll-body" id="geneticsBody">
         <p id="geneSectionIntro" style="font-size:12px;color:var(--text2);margin-bottom:10px;line-height:1.4">Only add a medication gene-test result if you already have one. Do not guess a result; bring the original report to a doctor or pharmacist.</p>
+        <div class="gene-helper-links">
+          <a class="gene-helper-link primary" href="./data-views.html?view=genotype">Open PGx Explorer</a>
+        </div>
         <div class="active-gene-summary" id="geneActiveSummary"></div>
         <div class="gene-add">
           <select id="geneAddSelect"></select>
@@ -1112,6 +1119,10 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
         </div>
       </div>
       <div class="main-empty-note"><strong>Boundary:</strong> Diognosis is a mechanistic medication intelligence platform for medication review. It is not medical advice, diagnosis, prescribing guidance, or proof that a list is safe. Source-integrated evidence is traceable context, not clinical validation. No personal data is uploaded or sent to runtime APIs.</div>
+      <div class="main-empty-actions">
+        <a class="main-empty-action primary" href="./data-views.html?view=genotype">Explore by gene result</a>
+        <a class="main-empty-action" href="./medication-classes.html">Browse medication class guides</a>
+      </div>
     </div>
   </div>
 

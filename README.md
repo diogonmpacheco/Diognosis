@@ -6,7 +6,7 @@
 
 Diognosis is a mechanistic medication intelligence platform that models parent substances, active and toxic metabolites, enzymes, transporters, receptors, pharmacogenomic phenotypes, PK shifts, washout timing, pathway explanations, and source-linked evidence as **connected actors** rather than isolated parent-drug names.
 
-**Live app:** [diogonmpacheco.github.io/Diognosis](https://diogonmpacheco.github.io/Diognosis/) · [Reference Facts](https://diogonmpacheco.github.io/Diognosis/reference/) · [Data Views](https://diogonmpacheco.github.io/Diognosis/data-views.html) · [Medication Class Guides](https://diogonmpacheco.github.io/Diognosis/medication-classes.html)
+**Live app:** [diogonmpacheco.github.io/Diognosis](https://diogonmpacheco.github.io/Diognosis/) · [Reference Facts](https://diogonmpacheco.github.io/Diognosis/reference/) · [PGx Explorer / Data Views](https://diogonmpacheco.github.io/Diognosis/data-views.html?view=genotype) · [Medication Class Guides](https://diogonmpacheco.github.io/Diognosis/medication-classes.html)
 
 **Machine-readable reference:** [Facts JSON](https://diogonmpacheco.github.io/Diognosis/data/diognosis-facts.json) · [Facts JSONL](https://diogonmpacheco.github.io/Diognosis/data/diognosis-facts.jsonl) · [llms.txt](https://diogonmpacheco.github.io/Diognosis/llms.txt)
 
@@ -141,7 +141,7 @@ Diognosis is intentionally conservative about what it claims:
 - **69 genotype genes** and **588 receptor score profiles**
 - **1251 RxNorm identity mappings**, **43 PGx marker rows**, and **18 CPIC-linked action summaries**
 - **218 Beers flags** and **1411 washout rules**
-- **3268 KB** generated bundle (2403 lines)
+- **3269 KB** generated bundle (2414 lines)
 <!-- DIOGNOSIS_STATS_END -->
 
 ---

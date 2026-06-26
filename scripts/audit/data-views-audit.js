@@ -14,6 +14,7 @@ const pageSize = 50;
 
 const requiredUrls = [
   "?view=genotype&gene=CYP2D6",
+  "?view=genotype&gene=CYP2D6&phenotype=poor_metabolizer",
   "?view=genotype&gene=CYP2C19",
   "?view=genotype&gene=SLCO1B1&relationship=transporter",
   "?view=genotype&gene=ABCB1",
@@ -82,6 +83,22 @@ function actionExpectedRows(index, action) {
   return index.relations.filter((row) => terms.some((term) => row.searchText.includes(term)));
 }
 
+function genotypeMedicationContextCount(index, rows) {
+  const contexts = new Set();
+  for (const row of rows) {
+    const subjectDrug = index.getDrugRecord(row.subject);
+    if (subjectDrug) {
+      contexts.add(subjectDrug.name);
+      continue;
+    }
+    const linked = (row.linkSubstances || [])
+      .map((name) => index.getDrugRecord(name))
+      .find(Boolean);
+    if (linked) contexts.add(linked.name);
+  }
+  return contexts.size;
+}
+
 const base = loadPage("?view=genotype&gene=CYP2D6");
 const baseIndex = base.dom.window.DATA_VIEW_INDEX;
 if (!baseIndex) {
@@ -100,6 +117,10 @@ if (!baseIndex) {
   }
   if (!snapshotText.includes(String(baseIndex.genes.length))) {
     fail(`Data Views support strip should expose gene count ${baseIndex.genes.length}. Found: ${snapshotText || "(missing)"}`);
+  }
+  const bodyText = base.dom.window.document.body.textContent || "";
+  if (!/PGx Explorer/i.test(bodyText) || !/Medication-context boundary/i.test(bodyText)) {
+    fail("PGx Explorer should expose a visible gene-first title and medication-context safety boundary.");
   }
 
   const unresolved = baseIndex.relations.filter((row) => row.entityKind === "unresolved");
@@ -154,13 +175,24 @@ for (const search of requiredUrls) {
     const gene = (params.get("gene") || "CYP2D6").toUpperCase();
     const relationship = params.get("relationship") || "all";
     const rows = (index.byGene[gene] || []).filter((row) => relationship === "all" || row.role === relationship);
+    const medicationContextCount = genotypeMedicationContextCount(index, rows);
     const relationshipTag = document.querySelector("#geneRelationshipTag")?.textContent || "";
     if (!relationshipTag.toUpperCase().includes(gene)) fail(`${search}: relationship map tag is not scoped to ${gene}. Found: ${relationshipTag || "(missing)"}`);
     if (gene === "CYP3A4" && /CYP2D6\s+PM|Complete loss of analgesia/i.test(document.querySelector("#view-genotype")?.textContent || "")) {
       fail(`${search}: CYP3A4 genotype view includes CYP2D6-specific Codeine clinical text.`);
     }
     if (rows.length && visibleRows(document, "#geneSubstanceRows tr") === 0) fail(`${search}: genotype view rendered zero rows for ${rows.length} index matches.`);
-    expectPager(document, "#genePager", rows.length, "genotype", search);
+    if (rows.length && !/Affected Medication Contexts/i.test(document.querySelector("#view-genotype")?.textContent || "")) {
+      fail(`${search}: PGx Explorer should label grouped medication contexts.`);
+    }
+    const reviewLinks = [...document.querySelectorAll("#geneSubstanceRows a.pgx-review-link")].map((link) => link.getAttribute("href") || "");
+    if (rows.length && !reviewLinks.some((href) => href.includes("index.html?substances="))) {
+      fail(`${search}: PGx Explorer medication rows should link back to Diognosis review.`);
+    }
+    if (params.get("phenotype") && !reviewLinks.some((href) => href.includes(`genotype=${gene}:${params.get("phenotype")}`))) {
+      fail(`${search}: PGx Explorer back-links should preserve selected genotype phenotype.`);
+    }
+    expectPager(document, "#genePager", medicationContextCount, "genotype", search);
   }
 
   if (view === "action") {
