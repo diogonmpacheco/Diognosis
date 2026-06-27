@@ -470,6 +470,22 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 .pheno-drugs{font-size:11px;color:var(--text2);margin-top:4px}
 /* PK CURVES — Phase E */
 .pk-grid{display:grid;grid-template-columns:1fr;gap:10px}
+.pk-snapshot{display:grid;gap:10px;padding:12px;border:1px solid var(--border);border-radius:8px;background:var(--card2);margin-bottom:10px}
+.pk-snapshot-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;min-width:0}
+.pk-snapshot-kicker{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:3px}
+.pk-snapshot-title{font-size:13px;font-weight:850;line-height:1.35;color:var(--text);overflow-wrap:anywhere}
+.pk-snapshot-counts{display:flex;flex-wrap:wrap;gap:5px;justify-content:flex-end;flex:0 0 auto}
+.pk-snapshot-counts span{font-size:9px;font-weight:850;color:var(--text2);border:1px solid var(--border);background:var(--card);border-radius:999px;padding:3px 7px;white-space:nowrap}
+.pk-snapshot-items{display:grid;gap:7px}
+.pk-snapshot-item{display:grid;grid-template-columns:minmax(0,1fr) minmax(120px,.55fr);gap:10px;align-items:center;padding-top:7px;border-top:1px solid var(--border)}
+.pk-snapshot-item:first-child{padding-top:0;border-top:0}
+.pk-snapshot-label{min-width:0}
+.pk-snapshot-label strong{display:block;font-size:12px;line-height:1.25;color:var(--text);overflow-wrap:anywhere}
+.pk-snapshot-label span{display:block;margin-top:2px;font-size:10px;line-height:1.35;color:var(--text2);overflow-wrap:anywhere}
+.pk-snapshot-visual{min-width:0}
+.pk-snapshot-value{font-family:var(--mono);font-size:11px;font-weight:900;color:var(--text2);text-align:right;line-height:1.2}
+.pk-snapshot-item.up .pk-snapshot-value,.pk-takeaway.up .pk-takeaway-visual span{color:var(--amber)}
+.pk-snapshot-item.down .pk-snapshot-value,.pk-takeaway.down .pk-takeaway-visual span{color:var(--blue)}
 .pk-card{padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card)}
 .pk-title{font-size:12px;font-weight:700;margin-bottom:2px;display:flex;flex-wrap:wrap;align-items:center;gap:4px}
 .pk-params{font-size:10px;color:var(--text2);margin-bottom:6px}
@@ -481,6 +497,17 @@ body[data-audience="patient"] .med-chip .x:hover{background:var(--accent);border
 .pk-trust-badge.absolute{border-color:rgba(37,99,235,0.25);color:var(--accent)}
 .pk-trust-badge.relative{border-color:rgba(100,116,139,0.35);color:var(--text2)}
 .pk-trust-badge.shift{border-color:rgba(217,119,6,0.35);color:var(--amber);background:var(--amberBg)}
+.pk-takeaway{display:grid;grid-template-columns:minmax(0,1fr) minmax(110px,.45fr);gap:10px;align-items:center;margin:6px 0 7px;padding:7px 8px;border-radius:7px;border:1px solid var(--border);background:rgba(255,255,255,.55)}
+.pk-takeaway strong{display:block;font-size:11px;line-height:1.25;color:var(--text)}
+.pk-takeaway span{display:block;font-size:10px;line-height:1.35;color:var(--text2);margin-top:2px}
+.pk-takeaway-visual{min-width:0}
+.pk-takeaway-visual>span{font-family:var(--mono);font-size:11px;font-weight:900;text-align:right;line-height:1.2}
+.pk-shift-meter{position:relative;height:7px;border-radius:999px;background:#f0efe9;margin-top:6px;overflow:hidden}
+.pk-shift-band{position:absolute;top:0;bottom:0;left:45%;width:10%;background:var(--accentBg);border-left:1px solid var(--accentLine);border-right:1px solid var(--accentLine)}
+.pk-shift-fill{position:absolute;top:0;bottom:0;border-radius:999px;background:var(--accent);opacity:.28}
+.pk-shift-fill.up{background:var(--amber);opacity:.38}
+.pk-shift-fill.down{background:var(--blue);opacity:.34}
+.pk-shift-marker{position:absolute;top:-3px;width:3px;height:13px;border-radius:999px;background:var(--text);box-shadow:0 0 0 2px var(--surface)}
 .pk-legend{display:flex;gap:10px;align-items:center;margin:2px 0 4px;font-size:9px;color:var(--text2)}
 .pk-legend span{display:inline-flex;align-items:center;gap:4px}
 .pk-legend i{width:14px;height:0;border-top:2px solid var(--accent);display:inline-block}
@@ -813,6 +840,12 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
 .no-signal-list li{font-size:12px;line-height:1.4;color:var(--text2);overflow-wrap:anywhere}
 .no-signal-list li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--amber);margin-right:7px;vertical-align:1px}
 .active-moiety-intro{font-size:11px;line-height:1.45;color:var(--text2);margin-bottom:10px}
+.active-moiety-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:10px}
+.active-moiety-summary-tile{border:1px solid var(--border);border-radius:8px;background:var(--card2);padding:9px 10px;min-width:0}
+.active-moiety-summary-tile.wide{grid-column:span 2}
+.active-moiety-summary-tile strong{display:block;font-size:18px;font-weight:900;color:var(--text);line-height:1.1;overflow-wrap:anywhere}
+.active-moiety-summary-tile span{display:block;font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.03em;margin-top:4px}
+.active-moiety-summary-tile small{display:block;font-size:10px;line-height:1.35;color:var(--text2);margin-top:3px;overflow-wrap:anywhere}
 .active-moiety-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
 .active-moiety-card{border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:8px;background:var(--card2);padding:12px 13px}
 .active-moiety-card.severe{border-left-color:var(--red);background:var(--redBg)}
@@ -982,6 +1015,12 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
   .summary-next-pill{justify-self:start}
   .summary-exposure-item{grid-template-columns:1fr;gap:5px}
   .summary-exposure-value{text-align:left}
+  .pk-snapshot-head{display:grid;gap:7px}
+  .pk-snapshot-counts{justify-content:flex-start}
+  .pk-snapshot-item,.pk-takeaway{grid-template-columns:1fr;gap:6px}
+  .pk-snapshot-value,.pk-takeaway-visual>span{text-align:left}
+  .active-moiety-summary{grid-template-columns:1fr}
+  .active-moiety-summary-tile.wide{grid-column:auto}
   .med-chip-secondary{max-width:180px}
   .med-chip{grid-template-columns:minmax(0,1fr) minmax(84px,112px) 44px;gap:6px}
   .med-chip .dose-select{min-width:0;flex-shrink:0;font-size:11px;padding:6px}

@@ -107,6 +107,8 @@ const result = window.eval(`(() => {
       addFailure(drug.name + ': missing PK card');
       continue;
     }
+    if (!body?.querySelector('.pk-snapshot')) addFailure(drug.name + ': missing PK exposure snapshot');
+    if (!card.querySelector('.pk-takeaway')) addFailure(drug.name + ': missing PK takeaway row');
     if (!cardHasNonBlankCurve(card)) addFailure(drug.name + ': PK SVG curve is blank or under-sampled');
     if (!/AUC/i.test(text) || !/Modeled peak/i.test(text)) addFailure(drug.name + ': missing AUC/modeled peak metric labels');
     if (!/Educational model only/i.test(text)) addFailure(drug.name + ': missing PK safety disclaimer');
@@ -125,6 +127,13 @@ const result = window.eval(`(() => {
     : [];
   if (!simvastatinCard) addFailure('Simvastatin + clarithromycin: missing Simvastatin PK card');
   else {
+    const snapshotText = document.querySelector('#pkSimBody .pk-snapshot')?.textContent || '';
+    if (!/Exposure snapshot/i.test(snapshotText) || !/Simvastatin/i.test(snapshotText)) {
+      addFailure('Simvastatin + clarithromycin: missing focused PK exposure snapshot');
+    }
+    if (!/Higher modeled exposure/i.test(simvastatinText)) {
+      addFailure('Simvastatin + clarithromycin: missing PK card takeaway');
+    }
     if (!/DDI t½/i.test(simvastatinText)) addFailure('Simvastatin + clarithromycin: missing DDI half-life badge');
     if (!/AUC shift/i.test(simvastatinText)) addFailure('Simvastatin + clarithromycin: missing AUC shift label');
     if (simvastatinStrokePaths.length < 2) addFailure('Simvastatin + clarithromycin: missing adjusted PK curve path');

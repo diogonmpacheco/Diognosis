@@ -2071,6 +2071,7 @@ const rawMetaboliteMapRegression = window.eval(`(() => {
   const collapsedByDefault = body ? !body.classList.contains("open") : false;
   const parentBalanceVisible = document.getElementById("activeMoietySection")?.style.display !== "none" &&
     document.querySelectorAll("#activeMoietyBody .active-moiety-card").length > 0;
+  const parentBalanceSummaryVisible = document.querySelectorAll("#activeMoietyBody .active-moiety-summary-tile").length >= 4;
   const helperText = body?.textContent || "";
   toggleSection("metab");
   const manualOpen = body?.classList.contains("open") || false;
@@ -2081,6 +2082,7 @@ const rawMetaboliteMapRegression = window.eval(`(() => {
     accessible:Boolean(body),
     collapsedByDefault,
     parentBalanceVisible,
+    parentBalanceSummaryVisible,
     helperText,
     manualOpen,
     manualOpenPreserved,
@@ -2090,6 +2092,7 @@ assert(/Supporting Metabolite Details/.test(rawMetaboliteMapRegression.titleText
 assert(rawMetaboliteMapRegression.accessible, 'Raw metabolite map should remain accessible');
 assert(rawMetaboliteMapRegression.collapsedByDefault, 'Raw metabolite map should collapse by default when active-moiety rows exist');
 assert(rawMetaboliteMapRegression.parentBalanceVisible, 'Drug & Metabolite Balance should remain visible above supporting metabolite details');
+assert(rawMetaboliteMapRegression.parentBalanceSummaryVisible, 'Drug & Metabolite Balance should expose a section-level snapshot');
 assert(/supporting details list modeled metabolites/i.test(rawMetaboliteMapRegression.helperText), 'Supporting metabolite details should explain that they are supporting data');
 assert(rawMetaboliteMapRegression.manualOpen && rawMetaboliteMapRegression.manualOpenPreserved, 'Manual raw-map expansion should be preserved for the same stack');
 

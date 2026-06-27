@@ -18,7 +18,9 @@ function renderPKSimulation() {
   }
   if (sec) sec.style.display = "";
 
-  let html = '<div class="pk-grid">';
+  const summaries = drugsWithPK.map(pkVisualizationSummaryForDrug).filter(Boolean);
+  let html = renderPKSectionSnapshot(summaries);
+  html += '<div class="pk-grid">';
   for (const name of drugsWithPK) {
     html += getPKParams(name) ? renderAbsolutePKCard(name) : renderRelativePKCard(name);
   }
@@ -34,9 +36,171 @@ function getPKParams(name) {
   return PK_PARAMS[key] || (drug?.id && PK_PARAMS[drug.id]) || PK_PARAMS[name.toLowerCase()];
 }
 
+function pkVisualizationSummaryForDrug(name) {
+  const params = getPKParams(name);
+  if (params) return pkAbsoluteVisualizationSummary(name, params);
+  return pkRelativeVisualizationSummary(name);
+}
+
+function pkAbsoluteVisualizationSummary(name, params = getPKParams(name)) {
+  if (!params) return null;
+  const drug = getDrug(name);
+  const primaryEnz = drug?.routes?.[0]?.enzyme;
+  let genotypeFold = 1;
+  let genotypeLabel = "";
+  if (primaryEnz && GENOTYPE_EFFECTS[primaryEnz]) {
+    genotypeFold = genotypeAdjustedPK(name, primaryEnz);
+    const genotype = activeGenotype[primaryEnz];
+    const shortLabel = Object.entries(GENOTYPE_PHENOTYPE).find(([_, value]) => value === genotype)?.[0] || "NM";
+    if (shortLabel !== "NM") genotypeLabel = `${primaryEnz} ${shortLabel}`;
+  }
+  const ddiFold = pkGetInteractionFold(name);
+  const activeFold = ddiFold > 1.1 ? ddiFold : (genotypeFold !== 1 ? genotypeFold : 1);
+  const drivers = [
+    ddiFold > 1.1 ? `DDI ${fmtFold(ddiFold)}` : "",
+    genotypeLabel ? `${genotypeLabel} ${fmtFold(genotypeFold)}` : "",
+  ].filter(Boolean);
+  const reason = drivers.join(" · ") || "baseline PK profile";
+  return {
+    name,
+    modelType:"absolute",
+    fold:activeFold,
+    direction:pkShiftDirection(activeFold),
+    reason,
+    value:pkShiftValue(activeFold),
+    note:ddiFold > 1.1
+      ? "Adjusted curve compares baseline with current co-medication context."
+      : genotypeLabel
+      ? "Curve uses the selected gene result; no separate adjusted line is shown unless a DDI also changes clearance."
+      : "Absolute curve uses stored F, dose, half-life, and volume assumptions.",
+  };
+}
+
+function pkRelativeVisualizationSummary(name) {
+  const sim = pkRelativeForDrug(name, { nPoints:40 });
+  if (!sim) return null;
+  const genotypeDriver = sim.enzyme && sim.genotypeFold !== 1 ? `${sim.enzyme} ${fmtFold(sim.genotypeFold)}` : "";
+  const ddiDriver = sim.dampedInteractionFold !== 1 ? `DDI ${fmtFold(sim.dampedInteractionFold)}` : "";
+  return {
+    name,
+    modelType:"relative",
+    fold:sim.metrics.aucFold,
+    direction:pkShiftDirection(sim.metrics.aucFold),
+    reason:[genotypeDriver, ddiDriver].filter(Boolean).join(" · ") || "relative fallback profile",
+    value:pkShiftValue(sim.metrics.aucFold),
+    note:`${pkRelativeInterpretationLabel(sim.interpretation)}; full absolute PK parameters are not available.`,
+  };
+}
+
+function renderPKSectionSnapshot(summaries = []) {
+  if (!summaries.length) return "";
+  const meaningful = summaries
+    .filter(summary => summary && pkShiftMagnitude(summary.fold) > 0.18)
+    .sort((a, b) => pkShiftMagnitude(b.fold) - pkShiftMagnitude(a.fold));
+  const lead = meaningful[0] || summaries[0];
+  const shiftedCount = meaningful.length;
+  const absoluteCount = summaries.filter(summary => summary.modelType === "absolute").length;
+  const relativeCount = summaries.length - absoluteCount;
+  const shown = [lead, ...meaningful.filter(summary => summary.name !== lead.name)].slice(0, 3);
+  return `<div class="pk-snapshot">
+    <div class="pk-snapshot-head">
+      <div>
+        <div class="pk-snapshot-kicker">Exposure snapshot</div>
+        <div class="pk-snapshot-title">${safePublicHtml(pkSnapshotTitle(lead, shiftedCount))}</div>
+      </div>
+      <div class="pk-snapshot-counts">
+        <span>${safePublicHtml(`${absoluteCount} absolute`)}</span>
+        ${relativeCount ? `<span>${safePublicHtml(`${relativeCount} relative`)}</span>` : ""}
+      </div>
+    </div>
+    <div class="pk-snapshot-items">${shown.map(renderPKSnapshotItem).join("")}</div>
+  </div>`;
+}
+
+function pkSnapshotTitle(lead = {}, shiftedCount = 0) {
+  if (!lead) return "No exposure shift is modeled for this stack.";
+  const shifted = pkShiftMagnitude(lead.fold) > 0.18;
+  if (!shifted) return "No major modeled AUC shift stands out in this stack.";
+  const direction = lead.direction === "down" ? "falls" : "rises";
+  const count = shiftedCount > 1 ? `; ${shiftedCount - 1} more shift${shiftedCount === 2 ? "" : "s"} also appear` : "";
+  return `${lead.name} modeled AUC ${direction} most (${lead.value})${count}.`;
+}
+
+function renderPKSnapshotItem(summary = {}) {
+  return `<div class="pk-snapshot-item ${safeAttr(summary.direction || "")}">
+    <div class="pk-snapshot-label">
+      <strong>${safePublicHtml(summary.name || "Unknown")}</strong>
+      <span>${safePublicHtml(summary.reason || "current context")}</span>
+    </div>
+    <div class="pk-snapshot-visual">
+      <div class="pk-snapshot-value">${safePublicHtml(summary.value || "baseline")}</div>
+      ${renderPKShiftMeter(summary)}
+    </div>
+  </div>`;
+}
+
+function renderPKShiftMeter(summary = {}) {
+  const geometry = pkShiftMeterGeometry(summary.fold);
+  return `<div class="pk-shift-meter" aria-hidden="true">
+    <div class="pk-shift-band"></div>
+    <div class="pk-shift-fill ${safeAttr(summary.direction || "")}" style="left:${safeAttr(geometry.left)}%;width:${safeAttr(geometry.width)}%"></div>
+    <div class="pk-shift-marker" style="left:calc(${safeAttr(geometry.marker)}% - 1.5px)"></div>
+  </div>`;
+}
+
+function pkShiftMeterGeometry(fold) {
+  let marker = 50;
+  const value = Number(fold);
+  if (Number.isFinite(value) && value > 0) marker = 50 + Math.log2(value) * 18;
+  marker = Math.max(4, Math.min(96, Math.round(marker)));
+  const left = Math.min(50, marker);
+  const width = Math.max(2, Math.abs(marker - 50));
+  return { marker, left, width };
+}
+
+function pkShiftMagnitude(fold) {
+  const value = Number(fold);
+  return Number.isFinite(value) && value > 0 ? Math.abs(Math.log2(value)) : 0;
+}
+
+function pkShiftDirection(fold) {
+  const value = Number(fold);
+  if (!Number.isFinite(value)) return "";
+  if (value > 1.15) return "up";
+  if (value < 0.85) return "down";
+  return "";
+}
+
+function pkShiftValue(fold) {
+  const value = Number(fold);
+  if (!Number.isFinite(value) || value <= 0) return "directional";
+  if (value > 1.15 || value < 0.85) return fmtFold(value);
+  return "near baseline";
+}
+
+function renderPKTakeaway(summary = {}) {
+  if (!summary) return "";
+  const prefix = summary.direction === "up"
+    ? "Higher modeled exposure"
+    : summary.direction === "down"
+    ? "Lower modeled exposure"
+    : "Modeled exposure near baseline";
+  return `<div class="pk-takeaway ${safeAttr(summary.direction || "")}">
+    <div>
+      <strong>${safePublicHtml(prefix)}</strong>
+      <span>${safePublicHtml(summary.note || "Directional comparison only.")}</span>
+    </div>
+    <div class="pk-takeaway-visual">
+      <span>${safePublicHtml(summary.value || "baseline")}</span>
+      ${renderPKShiftMeter(summary)}
+    </div>
+  </div>`;
+}
+
 function renderAbsolutePKCard(name) {
   const key = toGraphId(name);
   const params = getPKParams(name);
+  const summary = pkAbsoluteVisualizationSummary(name, params);
   const tau = pkGetTau(name);
   const nDoses = 5;
   const drug = getDrug(name);
@@ -94,6 +258,7 @@ function renderAbsolutePKCard(name) {
       <span class="pk-trust-badge">directional comparison</span>
       ${adjAuc ? `<span class="pk-trust-badge shift">AUC shift ${safePublicHtml(fmtFold(exposureShift))}</span>` : ""}
     </div>
+    ${renderPKTakeaway(summary)}
     <div class="pk-params">F=${safePublicHtml(Math.round(params.F*100))}% · t½=${safePublicHtml(params.halfLife)}h · τ=${safePublicHtml(tau)}h · dose=${safePublicHtml(params.dose_mg)}mg · Vd=${safePublicHtml(params.Vd)}L/kg</div>
     ${svg}
     ${renderPKLegend(!!adjPts, false)}
@@ -116,6 +281,7 @@ function renderAbsolutePKCard(name) {
 function renderRelativePKCard(name) {
   const sim = pkRelativeForDrug(name, { nPoints:200 });
   if (!sim) return '';
+  const summary = pkRelativeVisualizationSummary(name);
   const key = `rel_${toGraphId(name)}`;
   const metrics = sim.metrics;
   const yMax = Math.max(...sim.curve.map(p => p.c), ...sim.refCurve.map(p => p.c), 1) * 1.15;
@@ -146,6 +312,7 @@ function renderRelativePKCard(name) {
       <span class="pk-trust-badge">reference vs current context</span>
       <span class="pk-trust-badge shift">AUC ${safePublicHtml(fmtFold(metrics.aucFold))}</span>
     </div>
+    ${renderPKTakeaway(summary)}
     <div class="pk-params">t½=${safePublicHtml(Math.round(metrics.effectiveHalfLifeH * 10) / 10)}h effective · τ=${safePublicHtml(sim.tau)}h · reference peak = 1.0</div>
     ${svg}
     ${renderPKLegend(true, true)}

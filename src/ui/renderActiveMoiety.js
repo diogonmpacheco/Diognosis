@@ -33,8 +33,61 @@ function renderActiveMoietyBalance() {
   section.style.display = "";
   if (count) count.textContent = `${displayRows.length} row${displayRows.length === 1 ? "" : "s"}`;
   body.innerHTML = `<div class="active-moiety-intro">This section separates parent drugs from active, toxic, and inactive metabolites. A gene, inhibitor, inducer, or clearance pathway can move them in different directions.</div>` +
+    renderActiveMoietySummary(displayRows) +
     `<div class="active-moiety-grid">${displayRows.map(renderActiveMoietyRow).join("")}</div>`;
   return rows;
+}
+
+function renderActiveMoietySummary(rows = []) {
+  if (!rows.length) return "";
+  const priority = { severe:4, moderate:3, monitor:2, info:1 };
+  const top = rows.slice().sort((a, b) =>
+    (priority[b.severityHint] || 0) - (priority[a.severityHint] || 0) ||
+    activeMoietyPatternWeight(b.netPattern) - activeMoietyPatternWeight(a.netPattern)
+  )[0];
+  const toxicCount = rows.filter(row => row.actorType === "toxic_metabolite" || /toxic/.test(row.netPattern || "")).length;
+  const activeCount = rows.filter(row => row.actorType === "active_metabolite" || /active/.test(row.netPattern || "")).length;
+  const divergentCount = rows.filter(activeMoietyDirectionsDiverge).length;
+  const topPattern = safePublicHtml((ACTIVE_MOIETY_PATTERN_LABELS[top?.netPattern] || top?.netPattern || "modeled balance").replace(/_/g, " "));
+  const topPair = top ? `${top.parent} -> ${top.actor}` : "No top row";
+  return `<div class="active-moiety-summary" aria-label="Parent-metabolite balance snapshot">
+    <div class="active-moiety-summary-tile wide">
+      <strong>${safePublicHtml(topPair)}</strong>
+      <span>top balance signal</span>
+      <small>${topPattern}</small>
+    </div>
+    <div class="active-moiety-summary-tile">
+      <strong>${safePublicHtml(String(toxicCount))}</strong>
+      <span>toxic metabolite</span>
+      <small>rows to review</small>
+    </div>
+    <div class="active-moiety-summary-tile">
+      <strong>${safePublicHtml(String(activeCount))}</strong>
+      <span>active metabolite</span>
+      <small>rows to review</small>
+    </div>
+    <div class="active-moiety-summary-tile">
+      <strong>${safePublicHtml(String(divergentCount))}</strong>
+      <span>direction split</span>
+      <small>parent and metabolite differ</small>
+    </div>
+  </div>`;
+}
+
+function activeMoietyPatternWeight(pattern = "") {
+  if (/toxic/.test(pattern)) return 4;
+  if (/activation_failure/.test(pattern)) return 3;
+  if (/active_metabolite/.test(pattern)) return 2;
+  if (/mixed/.test(pattern)) return 1;
+  return 0;
+}
+
+function activeMoietyDirectionsDiverge(row = {}) {
+  const parent = row.parentDirection || "";
+  const metabolite = row.metaboliteDirection || "";
+  if (!parent || !metabolite || metabolite === "risk_context") return false;
+  if (parent === "unknown" || metabolite === "unknown") return false;
+  return parent !== metabolite;
 }
 
 function renderActiveMoietyRow(row) {
