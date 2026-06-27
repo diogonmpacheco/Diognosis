@@ -108,12 +108,13 @@ function renderEvidenceExplorer() {
     <div id="evAdditionalCardsContainer">${additionalCardsHTML}</div>
   </details>` : "";
   const ladderLedger = renderEvidenceLadderLedger(findings);
+  const sourceStrengthStrip = renderEvidenceAtAGlance(focusedStudies, findings, combinedStudies);
 
   const reviewNotice = `<div class="ev-review-notice" style="margin-bottom:10px;border:1px solid var(--amber);background:var(--amberBg);border-radius:8px;padding:8px 10px;font-size:11px;color:var(--amber);line-height:1.5">
     Mechanistic review only. Source entries are integrated for traceability; severity output is explanatory, not medical advice or clinical validation.
   </div>`;
 
-  el.innerHTML = reviewNotice + ladderLedger + focusedSourceBrowser + additionalSourceBrowser;
+  el.innerHTML = reviewNotice + sourceStrengthStrip + ladderLedger + focusedSourceBrowser + additionalSourceBrowser;
 }
 
 function filterEvidenceTier(tier, btn) {
@@ -195,6 +196,46 @@ function renderEvidenceLadderLedger(findings = []) {
     <div class="evidence-ledger-label">Evidence Browser / Evidence Ledger</div>
     <div class="evidence-ledger-list">${rowHtml}</div>
   </div>`;
+}
+
+function renderEvidenceAtAGlance(focusedStudies = [], findings = [], allStudies = []) {
+  const groups = evidenceAtAGlanceGroups(focusedStudies);
+  const sourceLinkedFindings = (findings || []).filter(finding => finding.evidenceLadder?.sourceLinked).length;
+  const quantifiedStudies = (focusedStudies || []).filter(study => study.quantifiedEffects).length;
+  const strongest = focusedStudies.length
+    ? focusedStudies.reduce((best, study) => (EVIDENCE_WEIGHT[study.type] || 0) > (EVIDENCE_WEIGHT[best.type] || 0) ? study : best, focusedStudies[0])
+    : null;
+  const strongestLabel = strongest?.type ? strongest.type.replace(/_/g, " ") : "none yet";
+  const tiles = groups.map(group => `<div class="evidence-glance-tile ${safePublicHtml(group.className)}">
+    <strong>${safePublicHtml(String(group.count))}</strong>
+    <span>${safePublicHtml(group.label)}</span>
+    <small>${safePublicHtml(group.note)}</small>
+  </div>`).join("");
+  return `<div class="evidence-at-glance">
+    <div class="evidence-glance-head">
+      <div>
+        <div class="evidence-glance-kicker">Evidence at a glance</div>
+        <div class="evidence-glance-title">${safePublicHtml(String(sourceLinkedFindings))} source-linked finding${sourceLinkedFindings === 1 ? "" : "s"} · strongest source: ${safePublicHtml(strongestLabel.toLowerCase())}</div>
+      </div>
+      <div class="evidence-glance-count">${safePublicHtml(String(focusedStudies.length))} focused source${focusedStudies.length === 1 ? "" : "s"}</div>
+    </div>
+    <div class="evidence-glance-grid">${tiles}</div>
+    <div class="evidence-glance-note">${safePublicHtml(String(quantifiedStudies))} focused source${quantifiedStudies === 1 ? "" : "s"} include quantified exposure/effect data. Broader stack-matched sources (${safePublicHtml(String(allStudies.length))}) stay collapsed below unless they directly support the ranked findings.</div>
+  </div>`;
+}
+
+function evidenceAtAGlanceGroups(studies = []) {
+  const hasType = type => studies.filter(study => study.type === type).length;
+  const labelGuidance = hasType(EVIDENCE_TIER.FDA_LABEL) + hasType(EVIDENCE_TIER.GUIDELINE);
+  const clinical = hasType(EVIDENCE_TIER.META_ANALYSIS) + hasType(EVIDENCE_TIER.RCT) + hasType(EVIDENCE_TIER.CLINICAL_PK);
+  const observational = hasType(EVIDENCE_TIER.OBSERVATIONAL) + hasType(EVIDENCE_TIER.CASE_REPORT);
+  const mechanism = hasType(EVIDENCE_TIER.IN_VITRO) + hasType(EVIDENCE_TIER.ANIMAL) + hasType(EVIDENCE_TIER.MECHANISTIC) + hasType(EVIDENCE_TIER.REVIEW);
+  return [
+    { label:"Label / guideline", count:labelGuidance, className:"guidance", note:"Regulatory or guideline context" },
+    { label:"Clinical PK / trials", count:clinical, className:"clinical", note:"Human exposure or trial evidence" },
+    { label:"Human observations", count:observational, className:"observational", note:"Clinical reports and cohorts" },
+    { label:"Mechanistic context", count:mechanism, className:"mechanistic", note:"Biology, in-vitro, or review context" },
+  ];
 }
 
 function renderQualityDashboard() {

@@ -1847,6 +1847,8 @@ const persistenceTimelineRegression = window.eval(`(() => {
   const unknownRow = computeActorPersistence('Unmodeled Review Actor', 'Unmodeled Review Actor', {});
   reset(['Fluoxetine', 'Paroxetine']);
   const overviewFindings = buildInteractionFindings(activeStack, activeGenotype, { interactions:calcRisk().interactions });
+  renderPersistenceTimeline();
+  const persistenceBody = document.getElementById('persistenceTimelineBody');
   return {
     norfluoxetineMetabolite:ssriRows.find(row => /Norfluoxetine/i.test(row.actor) && row.persistenceType === 'metabolite'),
     norfluoxetineMetaboliteCount:ssriRows.filter(row => /Norfluoxetine/i.test(row.actor) && row.persistenceType === 'metabolite').length,
@@ -1859,6 +1861,9 @@ const persistenceTimelineRegression = window.eval(`(() => {
     diazepamMetabolite:diazepamRows.find(row => /Nordiazepam/i.test(row.actor) && row.persistenceType === 'metabolite'),
     unknownRow,
     overviewTimingCount:overviewFindings.filter(f => f.type === 'timing_washout' || (f.sourceRows || []).some(row => row?.persistenceType)).length,
+    snapshotCount:document.querySelectorAll('#persistenceTimelineBody .persistence-snapshot').length,
+    laneCount:document.querySelectorAll('#persistenceTimelineBody .persistence-lane').length,
+    snapshotText:persistenceBody?.textContent || '',
   };
 })()`);
 assert(persistenceTimelineRegression.norfluoxetineMetabolite?.riskWindow === 'weeks', 'Norfluoxetine should display as a long-lived active metabolite');
@@ -1872,6 +1877,9 @@ assert(persistenceTimelineRegression.diazepamParent?.riskWindow === 'days', 'Dia
 assert(persistenceTimelineRegression.diazepamMetabolite?.riskWindow === 'weeks', 'Diazepam active metabolite persistence should display separately');
 assert(persistenceTimelineRegression.unknownRow.riskWindow === 'unknown' && persistenceTimelineRegression.unknownRow.estimatedPersistenceDays === null, 'Unknown persistence should be shown as unknown, not zero');
 assert(persistenceTimelineRegression.overviewTimingCount > 0, 'Timing/washout rows should feed Overview interaction findings');
+assert(persistenceTimelineRegression.snapshotCount === 1, 'Timing + Levels should render one persistence timing snapshot');
+assert(persistenceTimelineRegression.laneCount >= 3, 'Timing snapshot should show multiple top persistence lanes');
+assert(/Timing snapshot/i.test(persistenceTimelineRegression.snapshotText) && /longest modeled window/i.test(persistenceTimelineRegression.snapshotText), 'Timing snapshot should summarize the longest modeled window');
 
 const evidenceLadderRegression = window.eval(`(() => {
   activeStack = [];
@@ -1906,6 +1914,7 @@ const evidenceLadderRegression = window.eval(`(() => {
     cardLadderCount:document.querySelectorAll('#findingBody .evidence-ladder-compact').length,
     primaryFindingCards:document.querySelectorAll('#findingBody .primary-finding-card').length,
     primaryFindingEvidenceSteps:Array.from(document.querySelectorAll('#findingBody .primary-finding-card')).filter(card => /Evidence/i.test(card.textContent || '')).length,
+    evidenceAtGlance:Boolean(document.querySelector('#evidenceBody .evidence-at-glance')),
     ledgerExists:Boolean(document.getElementById('evidenceLadderLedger')),
   };
 })()`);
@@ -1927,6 +1936,7 @@ assert(/modeled|no linked source yet|source-integrated|source-linked/i.test(evid
 assert(evidenceLadderRegression.clinicalActionConfidence === 'source_integrated' || evidenceLadderRegression.clinicalActionConfidence === 'insufficient', 'Clinical action confidence should remain conservative');
 assert(evidenceLadderRegression.primaryFindingCards > 0, 'Finding cards should render primary public finding UI');
 assert(evidenceLadderRegression.primaryFindingEvidenceSteps === evidenceLadderRegression.primaryFindingCards, 'Each primary finding card should include an Evidence step');
+assert(evidenceLadderRegression.evidenceAtGlance, 'Evidence tab should render the evidence at-a-glance strip before the ledger');
 assert(evidenceLadderRegression.ledgerExists, 'Evidence tab should render the evidence ladder ledger');
 
 const renderCacheRegression = window.eval(`(() => {
@@ -2141,8 +2151,12 @@ const crossTabFindingRegression = window.eval(`(() => {
     .find(step => /Why it matters/i.test(step.textContent || ''))?.textContent || '';
   setTab('mechanisms');
   const mechanismsHas = document.querySelectorAll('#mechanismWhyBody .mechanism-why-row .why-path').length > 0;
+  const networkOverviewHas = Boolean(document.querySelector('#graphBody .network-overview')) &&
+    /Network at a glance/i.test(document.getElementById('graphBody')?.textContent || '');
   setTab('evidence');
   const evidenceHas = Boolean(document.getElementById('evidenceLadderLedger')) && /Evidence Browser \\/ Evidence Ledger/i.test(document.getElementById('evidenceLadderLedger')?.textContent || '');
+  const evidenceAtGlanceHas = Boolean(document.querySelector('#evidenceBody .evidence-at-glance')) &&
+    /Evidence at a glance/i.test(document.getElementById('evidenceBody')?.textContent || '');
   const reviewHiddenInV1 = document.getElementById('tabbtn-review')?.style.display === 'none';
   setTab('review');
   const activeAfterStandardReview = activeTab;
@@ -2155,7 +2169,9 @@ const crossTabFindingRegression = window.eval(`(() => {
     overviewFullPathCount,
     overviewWhyText,
     mechanismsHas,
+    networkOverviewHas,
     evidenceHas,
+    evidenceAtGlanceHas,
     reviewHiddenInV1,
     activeAfterStandardReview,
     standardReviewHas,
@@ -2174,7 +2190,9 @@ assert(
   `Overview why summary should be one compact line <=260 chars, got ${crossTabFindingRegression.overviewWhyText}`
 );
 assert(crossTabFindingRegression.mechanismsHas, 'Mechanisms should explain findings with why paths');
+assert(crossTabFindingRegression.networkOverviewHas, 'Mechanisms should render a network at-a-glance summary before the graph');
 assert(crossTabFindingRegression.evidenceHas, 'Evidence should detail finding support through the evidence ledger');
+assert(crossTabFindingRegression.evidenceAtGlanceHas, 'Evidence should render an at-a-glance source summary before detailed rows');
 assert(crossTabFindingRegression.reviewHiddenInV1, 'Normal V1 navigation should hide reviewer-only console');
 assert(crossTabFindingRegression.activeAfterStandardReview === 'overview', 'Normal V1 should route reviewer-console requests back to Overview');
 assert(!crossTabFindingRegression.standardReviewHas, 'Normal V1 should not render reviewer-only technical pathways');

@@ -35,6 +35,7 @@ window.renderEvidenceExplorer();
 const document = window.document;
 const countText = document.getElementById('evidenceCount')?.textContent || '';
 const notice = document.querySelector('.ev-review-notice');
+const atGlance = document.querySelector('.evidence-at-glance');
 const ledger = document.getElementById('evidenceLadderLedger');
 const cards = [...document.querySelectorAll('#evCardsContainer .ev-explorer-card')];
 const additionalCards = [...document.querySelectorAll('#evAdditionalCardsContainer .ev-explorer-card')];
@@ -47,6 +48,8 @@ assert(browserErrors.length === 0, `Evidence UI emitted browser errors: ${browse
 assert(/source-integrated evidence/i.test(countText) && !/professional sign-off/i.test(countText), `Evidence count must present source-integrated status without sign-off backlog wording, got "${countText}"`);
 assert(notice, 'Evidence explorer must render the panel-level source-integration notice');
 assert(/source entries are integrated for traceability/i.test(notice.textContent || '') && /not medical advice or clinical validation/i.test(notice.textContent || ''), 'Evidence notice lost source-integration wording');
+assert(atGlance, 'Evidence explorer must render the source-strength at-a-glance strip');
+assert(/Evidence at a glance/i.test(atGlance.textContent || '') && /source-linked finding/i.test(atGlance.textContent || ''), 'Evidence at-a-glance strip must summarize source-linked findings');
 assert(ledger, 'Evidence explorer must render the evidence ladder ledger');
 assert(/source-linked findings/i.test(ledger.textContent || '') && /modeled findings/i.test(ledger.textContent || ''), 'Evidence ladder ledger must expose source-linked and modeled boundaries');
 assert(/Evidence Browser \/ Evidence Ledger/i.test(ledger.textContent || ''), 'Evidence ladder ledger title is missing');

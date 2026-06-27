@@ -20,18 +20,68 @@ function renderPersistenceTimeline() {
   }
   const summary = classifyPersistenceRisk(rows);
   body.innerHTML = `<div class="persistence-intro">Some risks persist after the parent drug level falls. This timeline separates parent drug, active or toxic metabolites, washout rules, and enzyme recovery where data exists.</div>` +
-    renderPersistenceSummary(summary) +
+    renderPersistenceSummary(summary, rows) +
     `<div class="persistence-grid">${rows.slice(0, 18).map(renderPersistenceRow).join("")}</div>` +
     (rows.length > 18 ? `<div class="persistence-more">Showing 18 of ${rows.length} modeled timeline rows.</div>` : "");
   return rows;
 }
 
-function renderPersistenceSummary(summary) {
-  return `<div class="persistence-summary">
-    <div><strong>${safeHtml(summary.maxDays == null ? "Unknown" : formatPersistenceDays(summary.maxDays))}</strong><span>longest modeled window</span></div>
-    <div><strong>${safeHtml(String(summary.washoutCount || 0))}</strong><span>washout/recovery rows</span></div>
-    <div><strong>${safeHtml(String(summary.unknownCount || 0))}</strong><span>unknown durations</span></div>
+function renderPersistenceSummary(summary, rows = []) {
+  const knownRows = (rows || []).filter(row => Number.isFinite(row.estimatedPersistenceDays));
+  const longestRow = knownRows.sort((a, b) => b.estimatedPersistenceDays - a.estimatedPersistenceDays)[0] || null;
+  const activeMetaboliteRows = (rows || []).filter(row => ["active_metabolite", "toxic_metabolite"].includes(row.actorType));
+  const topRows = [...(rows || [])]
+    .sort((a, b) => persistenceTimelineDisplayWeight(b) - persistenceTimelineDisplayWeight(a))
+    .slice(0, 5);
+  const longestLabel = longestRow
+    ? `${longestRow.actor}${longestRow.actor !== longestRow.parent ? ` from ${longestRow.parent}` : ""}`
+    : "Unknown duration rows";
+  return `<div class="persistence-snapshot">
+    <div class="persistence-snapshot-head">
+      <div>
+        <div class="persistence-kicker">Timing snapshot</div>
+        <div class="persistence-snapshot-title">${safePublicHtml(longestRow ? `${longestLabel} lasts longest` : "Some timing windows are unknown")}</div>
+      </div>
+      <div class="persistence-snapshot-window">${safePublicHtml(summary.maxDays == null ? "unknown" : formatPersistenceDays(summary.maxDays))}</div>
+    </div>
+    <div class="persistence-summary">
+      <div><strong>${safeHtml(summary.maxDays == null ? "Unknown" : formatPersistenceDays(summary.maxDays))}</strong><span>longest modeled window</span></div>
+      <div><strong>${safeHtml(String(summary.washoutCount || 0))}</strong><span>washout/recovery rows</span></div>
+      <div><strong>${safeHtml(String(activeMetaboliteRows.length || 0))}</strong><span>active/toxic metabolite rows</span></div>
+      <div><strong>${safeHtml(String(summary.unknownCount || 0))}</strong><span>unknown durations</span></div>
+    </div>
+    <div class="persistence-lanes">
+      ${topRows.map(row => renderPersistenceLane(row, summary.maxDays)).join("")}
+    </div>
   </div>`;
+}
+
+function renderPersistenceLane(row, maxDays) {
+  const days = Number.isFinite(row.estimatedPersistenceDays) ? row.estimatedPersistenceDays : null;
+  const width = days == null || !Number.isFinite(maxDays) || maxDays <= 0
+    ? 18
+    : Math.max(8, Math.min(100, Math.round((days / maxDays) * 100)));
+  const type = safeChoice(row.persistenceType, ["parent","metabolite","enzyme_recovery","induction_offset","washout_rule"], "parent");
+  const label = PERSISTENCE_TYPE_LABELS[type] || type.replace(/_/g, " ");
+  const windowClass = safeChoice(row.riskWindow, ["hours","days","weeks","unknown"], "unknown");
+  const actorLabel = row.actor === row.parent ? row.actor : `${row.actor} from ${row.parent}`;
+  const duration = days == null ? "unknown" : formatPersistenceDays(days);
+  return `<div class="persistence-lane ${windowClass}">
+    <div class="persistence-lane-label">
+      <strong>${safePublicHtml(actorLabel)}</strong>
+      <span>${safePublicHtml(label)} · ${safePublicHtml(duration)}</span>
+    </div>
+    <div class="persistence-lane-track" aria-hidden="true">
+      <i style="width:${safeHtml(String(width))}%"></i>
+    </div>
+  </div>`;
+}
+
+function persistenceTimelineDisplayWeight(row) {
+  const days = Number.isFinite(row.estimatedPersistenceDays) ? row.estimatedPersistenceDays : 0;
+  const typeWeight = { washout_rule:40, induction_offset:35, enzyme_recovery:30, metabolite:20, parent:10 }[row.persistenceType] || 0;
+  const actorWeight = row.actorType === "toxic_metabolite" ? 20 : row.actorType === "active_metabolite" ? 12 : 0;
+  return days + typeWeight + actorWeight;
 }
 
 function renderPersistenceRow(row) {

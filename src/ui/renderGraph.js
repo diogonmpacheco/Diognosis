@@ -16,7 +16,7 @@ function renderInteractionGraph() {
   // Build D3 nodes/edges filtered to relevant actors (depth-limited)
   const relevantIds = new Set();
   for (const drugName of activeStack) {
-    const drugId = toGraphId(drugName);
+    const drugId = graphDrugIdForName(drugName);
     relevantIds.add(drugId);
     // Add direct neighbors
     for (const e of (graph.edges||[])) {
@@ -72,8 +72,8 @@ function renderInteractionGraph() {
   }
   legendHTML += '</div>';
 
-  el.innerHTML = legendHTML + `<div id="d3-graph-container"></div>
-    <div style="font-size:10px;color:var(--text2);margin-top:6px">Hover nodes to highlight connections. Drag to reposition. Scroll to zoom.</div>`;
+  el.innerHTML = renderNetworkOverview(nodes, links, graph) + legendHTML + `<div id="d3-graph-container"></div>
+    <div class="network-help">Hover nodes to highlight connections. Drag to reposition. Scroll to zoom.</div>`;
 
   // D3 rendering (deferred to next tick so DOM is ready)
   requestAnimationFrame(() => {
@@ -107,7 +107,7 @@ function renderInteractionGraph() {
       .attr('stroke-width', 1.5).attr('stroke-opacity', 0.6)
       .attr('marker-end','url(#arrowhead)');
 
-    const isActive = id => activeStack.some(n => toGraphId(n) === id);
+    const isActive = id => activeStack.some(n => graphDrugIdForName(n) === id);
     const node = svg.append('g').selectAll('circle').data(nodes).join('circle')
       .attr('r', d => isActive(d.id) ? 14 : 9)
       .attr('fill', d => typeColor[d.type] || '#999')
@@ -157,6 +157,105 @@ function renderInteractionGraph() {
       label.attr('x',d=>d.x).attr('y',d=>d.y);
     });
   });
+}
+
+function graphDrugIdForName(name) {
+  if (typeof getDrugGraphId === "function") return getDrugGraphId(name);
+  return toGraphId(name);
+}
+
+function renderNetworkOverview(nodes = [], links = [], graph = {}) {
+  const activeIds = new Set((activeStack || []).map(graphDrugIdForName));
+  const typeCounts = nodes.reduce((acc, node) => {
+    const key = networkTypeLabel(node.type);
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {});
+  const directLinks = links
+    .filter(link => activeIds.has(link.source) || activeIds.has(link.target))
+    .sort((a, b) => networkEdgeWeight(b.type) - networkEdgeWeight(a.type))
+    .slice(0, 6);
+  const pathRows = directLinks.map(link => {
+    const source = graph.actors?.[link.source] || nodes.find(node => node.id === link.source);
+    const target = graph.actors?.[link.target] || nodes.find(node => node.id === link.target);
+    return `<div class="network-route-row">
+      <span class="network-route-node">${safePublicHtml(source?.name || link.source)}</span>
+      <span class="network-route-edge ${safePublicHtml(networkEdgeClass(link.type))}">${safePublicHtml(networkEdgeLabel(link.type))}</span>
+      <span class="network-route-node">${safePublicHtml(target?.name || link.target)}</span>
+    </div>`;
+  }).join("");
+  const dominantTypes = Object.entries(typeCounts)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, 4)
+    .map(([label, count]) => `<div><strong>${safePublicHtml(String(count))}</strong><span>${safePublicHtml(label)}</span></div>`)
+    .join("");
+  const selectedLabel = (activeStack || []).slice(0, 4).join(" + ");
+  return `<div class="network-overview">
+    <div class="network-overview-head">
+      <div>
+        <div class="network-kicker">Network at a glance</div>
+        <div class="network-title">${safePublicHtml(selectedLabel || "Selected stack")}</div>
+      </div>
+      <div class="network-count">${safePublicHtml(String(nodes.length))} actors · ${safePublicHtml(String(links.length))} links</div>
+    </div>
+    <div class="network-summary-grid">
+      ${dominantTypes || `<div><strong>0</strong><span>visible actors</span></div>`}
+    </div>
+    <div class="network-route-list">
+      <div class="network-route-label">Top visible routes</div>
+      ${pathRows || `<div class="network-empty">No direct routes are visible for this stack yet.</div>`}
+    </div>
+  </div>`;
+}
+
+function networkTypeLabel(type) {
+  const labels = {
+    [ACTOR_TYPE.DRUG]:"Substances",
+    [ACTOR_TYPE.METABOLITE]:"Metabolites",
+    [ACTOR_TYPE.ENZYME]:"Enzymes",
+    [ACTOR_TYPE.TRANSPORTER]:"Transporters",
+    [ACTOR_TYPE.FOOD]:"Food / supplement",
+    [ACTOR_TYPE.ENVIRONMENTAL]:"Context",
+    [ACTOR_TYPE.ENDOGENOUS]:"Endogenous",
+    [ACTOR_TYPE.RECEPTOR]:"Receptors",
+    [ACTOR_TYPE.PHENOTYPE]:"Effects",
+  };
+  return labels[type] || "Other actors";
+}
+
+function networkEdgeLabel(type) {
+  const labels = {
+    [EDGE_TYPE.INHIBITS]:"inhibits",
+    [EDGE_TYPE.INDUCES]:"induces",
+    [EDGE_TYPE.METABOLIZED_TO]:"forms",
+    [EDGE_TYPE.SUBSTRATE_OF]:"uses pathway",
+    [EDGE_TYPE.TRANSPORTED_BY]:"transported by",
+    [EDGE_TYPE.ACTIVATES]:"activates",
+    [EDGE_TYPE.BLOCKS]:"blocks",
+    [EDGE_TYPE.PRODUCES]:"produces",
+    [EDGE_TYPE.SUPPRESSES]:"suppresses",
+    [EDGE_TYPE.COMPETES_WITH]:"competes",
+    [EDGE_TYPE.ACCUMULATES_IN]:"accumulates in",
+  };
+  return labels[type] || String(type || "links to").replace(/_/g, " ");
+}
+
+function networkEdgeClass(type) {
+  if (type === EDGE_TYPE.INHIBITS || type === EDGE_TYPE.BLOCKS || type === EDGE_TYPE.SUPPRESSES) return "down";
+  if (type === EDGE_TYPE.INDUCES || type === EDGE_TYPE.ACTIVATES || type === EDGE_TYPE.PRODUCES) return "up";
+  return "neutral";
+}
+
+function networkEdgeWeight(type) {
+  const weights = {
+    [EDGE_TYPE.INHIBITS]:9,
+    [EDGE_TYPE.INDUCES]:8,
+    [EDGE_TYPE.METABOLIZED_TO]:7,
+    [EDGE_TYPE.ACTIVATES]:7,
+    [EDGE_TYPE.TRANSPORTED_BY]:6,
+    [EDGE_TYPE.SUBSTRATE_OF]:5,
+  };
+  return weights[type] || 1;
 }
 
 // ── renderWashoutCalendar (#9) ──────────────────────────────────────
