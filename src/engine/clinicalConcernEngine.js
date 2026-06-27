@@ -1133,6 +1133,7 @@ function clinicalDomainLabel(domain) {
     toxic_metabolite_accumulation: "Toxic-metabolite accumulation",
     parent_accumulation: "Parent accumulation",
     mixed_parent_metabolite_direction: "Parent-metabolite balance",
+    food_biomarker_context: "Food/biomarker context",
     risk_marker_context: "Risk-marker context",
     hypersensitivity_or_scar: "Hypersensitivity / SCAR",
     pharmacodynamic_burden: "Pharmacodynamic burden",
@@ -1255,9 +1256,11 @@ function buildV1GenotypeSignalTrustContract(signal = {}, severity = "monitor", c
       mechanism: signal.why || "",
       management: signal.review || signal.nextStep || "",
     }],
-    clinicalConcernDomain: /activat|prodrug|metabolite/i.test(`${signal.headline || ""} ${signal.summary || ""}`)
-      ? "activation_failure"
-      : "risk_marker_context",
+    clinicalConcernDomain: signal.contextKind === "food_biomarker"
+      ? "food_biomarker_context"
+      : /activat|prodrug|metabolite/i.test(`${signal.headline || ""} ${signal.summary || ""}`)
+        ? "activation_failure"
+        : "risk_marker_context",
   };
   return buildV1FindingTrustContract(syntheticFinding, context);
 }
@@ -1310,6 +1313,9 @@ function v1TrustMechanism(finding = {}, domain = "", context = {}) {
   if (domain === "washout_or_persistence") {
     return text || "Parent drug, metabolite, or enzyme-recovery timing may outlast the visible dosing window.";
   }
+  if (domain === "food_biomarker_context") {
+    return text || "A diet-derived biomarker may reflect pathway activity without creating medication-style guidance.";
+  }
   if (domain === "risk_marker_context" || domain === "hypersensitivity_or_scar") {
     return text || "A selected genetic or risk marker matches a medication-specific safety context.";
   }
@@ -1335,6 +1341,7 @@ function v1TrustExpectedChange(finding = {}, domain = "", context = {}) {
   if (domain === "parent_accumulation") return victim ? `${victim} parent-drug exposure may rise.` : "Parent-drug exposure may rise.";
   if (domain === "mixed_parent_metabolite_direction") return "Parent and metabolite directions may diverge.";
   if (domain === "washout_or_persistence") return "Effect or pathway context may persist after a dose change or stop.";
+  if (domain === "food_biomarker_context") return "Diet-derived biomarker interpretation may change.";
   if (clinicalBurdenDomain(domain)) return `${clinicalDomainLabel(domain)} may increase.`;
   if (domain === "risk_marker_context" || domain === "hypersensitivity_or_scar") return "A selected marker may increase review priority.";
   return v1TrustCompactText(finding.summary) || "Exposure, activation, timing, or safety context may change.";
@@ -1347,6 +1354,7 @@ function v1TrustClinicalConcern(finding = {}, domain = "", context = {}) {
   if (domain === "active_metabolite_accumulation") return "Active-metabolite accumulation can increase effect or adverse effects.";
   if (domain === "toxic_metabolite_accumulation") return "Toxic-metabolite accumulation can increase adverse-effect risk.";
   if (domain === "washout_or_persistence") return "Timing can matter when starting, stopping, or switching medicines.";
+  if (domain === "food_biomarker_context") return "Food biomarker context is not a medication dose, stop, or avoidance rule.";
   if (domain === "hypersensitivity_or_scar") return "Marker-linked hypersensitivity needs careful clinical review.";
   if (clinicalBurdenDomain(domain)) return `${clinicalDomainLabel(domain)} can become clinically important when multiple contributors stack.`;
   return `${clinicalDomainLabel(domain)} should be reviewed with dose, timing, symptoms, and source evidence.`;
@@ -1387,6 +1395,9 @@ function v1TrustEvidenceLabel(finding = {}, evidenceRefs = [], sourceLinked = fa
 
 function v1TrustPatientAction(finding = {}, domain = "") {
   const severity = finding.severity || "info";
+  if (domain === "food_biomarker_context") {
+    return "Ask whether this is only biomarker context; do not change diet or medicines from this result alone.";
+  }
   if (severity === "critical" || severity === "severe") {
     return "Ask a doctor or pharmacist before using or changing this combination. Do not stop or change medicines without medical advice.";
   }
@@ -1400,6 +1411,9 @@ function v1TrustPatientAction(finding = {}, domain = "") {
 }
 
 function v1TrustClinicianAction(finding = {}, domain = "") {
+  if (domain === "food_biomarker_context") {
+    return "Review exposure history, symptoms, and toxicology context only when clinically relevant; do not treat as a medication contraindication.";
+  }
   const rowActions = [
     finding.clinicalAction,
     finding.action,

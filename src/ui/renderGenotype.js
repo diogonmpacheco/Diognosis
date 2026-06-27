@@ -231,6 +231,7 @@ function getHighestGenotypePrioritySignal() {
       if (!effect || phenotype === GENOTYPE_PHENOTYPE.NM || effect.auc_fold === 1) continue;
       const fold = genotypeExposureFoldForDrug(drugName, enzyme, phenotype, effect);
       const note = genotypeExposureNoteForDrug(drugName, enzyme, phenotype, effect, fold);
+      if (isFoodBiomarkerDrug(drugName, drug)) continue;
       const nebivololCyp2d6 = isNebivololCyp2d6Signal(drugName, enzyme);
       const warfarinCyp2c9 = isWarfarinCyp2c9Signal(drugName, enzyme);
       const statinSlco1b1 = isStatinSlco1b1Signal(drugName, enzyme);
@@ -273,26 +274,41 @@ function getHighestGenotypePrioritySignal() {
     for (const card of getGenotypeMetaboliteEffectCards(drugName)) {
       const { effect, phenotypeEffect, geno } = card;
       if (geno === GENOTYPE_PHENOTYPE.NM) continue;
-      const score = scoreGenotypeMetaboliteSignal(effect, phenotypeEffect);
-      if (score < 30) continue;
+      const rawScore = scoreGenotypeMetaboliteSignal(effect, phenotypeEffect);
+      if (rawScore < 30) continue;
       const direction = phenotypeEffect.direction === "decrease" ? "reduce" : "increase";
+      const foodBiomarker = isFoodBiomarkerGenotypeEffect(effect);
+      const score = foodBiomarker ? Math.min(rawScore, 35) : rawScore;
       const actionSummary = typeof getPgxActionSummaryForDrugGene === "function"
         ? getPgxActionSummaryForDrugGene(effect.parent, effect.enzyme, geno)
         : null;
       signals.push({
         kind:"metabolite",
+        contextKind:foodBiomarker ? "food_biomarker" : "",
         score,
-        label:score >= 70 ? "Gene High" : "Gene Watch",
-        headline:`${effect.enzyme} genotype may ${direction} ${effect.metaboliteName}`,
-        summary:publicDisplayText(`${effect.parent} is in your list and ${effect.enzyme} is set to ${phenotypeLabelForGene(effect.enzyme, geno)}. ${phenotypeEffect.label || effect.note}`),
-        why:`${effect.parent} has a genotype-sensitive metabolite pathway through ${effect.enzyme}.`,
-        changes:phenotypeEffect.fold
+        label:foodBiomarker ? "Food context" : (score >= 70 ? "Gene High" : "Gene Watch"),
+        headline:foodBiomarker
+          ? `${effect.enzyme} changes solanidine biomarker context`
+          : `${effect.enzyme} genotype may ${direction} ${effect.metaboliteName}`,
+        summary:foodBiomarker
+          ? publicDisplayText(`${effect.parent} is in your list and ${effect.enzyme} is set to ${phenotypeLabelForGene(effect.enzyme, geno)}. ${phenotypeEffect.label || effect.note}. This is diet-derived biomarker context, not potato-avoidance advice or a toxicity threshold.`)
+          : publicDisplayText(`${effect.parent} is in your list and ${effect.enzyme} is set to ${phenotypeLabelForGene(effect.enzyme, geno)}. ${phenotypeEffect.label || effect.note}`),
+        why:foodBiomarker
+          ? "Solanidine is a diet-derived biomarker of CYP2D6 activity. Potato glycoalkaloid risk depends more on exposure amount, greening, sprouting, peel burden, symptoms, and food-toxicology context than on this gene result alone."
+          : `${effect.parent} has a genotype-sensitive metabolite pathway through ${effect.enzyme}.`,
+        changes:foodBiomarker
+          ? "The selected CYP2D6 result may change solanidine biomarker levels. This does not mean ordinary potatoes are unsafe, and it does not create medication-style avoidance guidance."
+          : phenotypeEffect.fold
           ? `${publicMetaboliteLabel(effect, effect.parent)} is expected to shift to about ${phenotypeEffect.fold}x the normal-metabolizer reference.`
           : `${publicMetaboliteLabel(effect, effect.parent)} is expected to ${direction}; the direction is modeled but the fold is not calibrated.`,
-        review:actionSummary?.reviewDirection || effect.clinicalAction || (score >= 70
+        review:foodBiomarker
+          ? "Review only if there is unusual green, sprouted, or peel-heavy potato exposure, symptoms, or a clinician/toxicology reason to interpret the biomarker. Do not change diet or medicines from this result alone."
+          : actionSummary?.reviewDirection || effect.clinicalAction || (score >= 70
           ? "Review whether standard medication assumptions still apply before relying on efficacy or safety."
           : "Review metabolite-level context and relevant monitoring."),
-        nextStep:score >= 70
+        nextStep:foodBiomarker
+          ? "Treat this as bounded food/biomarker context, not a clinical action by itself."
+          : score >= 70
           ? "Review the pharmacogenomics finding before relying on this medication effect."
           : "Review metabolite-level pharmacogenomics context.",
         evidenceRefs:[...(effect.evidenceRefs || []), ...(actionSummary?.evidenceRefs || [])],
@@ -329,6 +345,18 @@ function getHighestGenotypePrioritySignal() {
     b.score - a.score
   );
   return signals[0] || null;
+}
+
+function isFoodBiomarkerGenotypeEffect(effect = {}) {
+  const text = `${effect.parent || ""} ${effect.metaboliteName || ""} ${effect.metaboliteId || ""} ${effect.note || ""}`.toLowerCase();
+  return /\b(?:potatoes?|solanidine|solanine|chaconine|glycoalkaloid|diet-derived|food-toxicology|biomarker)\b/.test(text);
+}
+
+function isFoodBiomarkerDrug(drugName = "", drug = {}) {
+  const metabolites = Array.isArray(drug.metabolites) ? drug.metabolites : [];
+  const tags = Array.isArray(drug.tags) ? drug.tags : [];
+  const text = `${drugName || ""} ${drug.name || ""} ${metabolites.join(" ")} ${tags.join(" ")}`.toLowerCase();
+  return /\b(?:potatoes?|solanidine|solanine|chaconine|glycoalkaloid|diet-derived|food-toxicology|biomarker)\b/.test(text);
 }
 
 function genotypeSignalPriorityTier(signal = {}) {

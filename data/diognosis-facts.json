@@ -1,7 +1,7 @@
 {
   "schema": "diognosis.reference-facts.v1",
-  "generatedAt": "2026-06-26T16:58:10.075Z",
-  "lastmod": "2026-06-26",
+  "generatedAt": "2026-06-27T04:05:36.884Z",
+  "lastmod": "2026-06-27",
   "source": "Generated from the committed Diognosis app runtime and data/medication-class-guides.json validated examples.",
   "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
   "factCount": 85,
@@ -148,8 +148,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -291,8 +291,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -392,8 +392,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -502,8 +502,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -583,8 +583,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -726,8 +726,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -807,8 +807,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -877,8 +877,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -958,8 +958,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1028,8 +1028,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1098,8 +1098,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1168,8 +1168,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1238,8 +1238,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1294,8 +1294,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1350,8 +1350,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1450,8 +1450,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1578,8 +1578,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1689,8 +1689,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1825,8 +1825,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1956,8 +1956,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2037,8 +2037,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2169,8 +2169,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2225,8 +2225,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2306,8 +2306,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2362,8 +2362,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2432,8 +2432,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2502,8 +2502,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2572,8 +2572,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2642,8 +2642,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2722,8 +2722,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2792,8 +2792,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2862,8 +2862,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2932,8 +2932,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3002,8 +3002,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3137,8 +3137,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3253,8 +3253,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3309,8 +3309,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3379,8 +3379,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3449,8 +3449,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3547,8 +3547,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3617,8 +3617,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3687,8 +3687,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3757,8 +3757,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3827,8 +3827,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3908,8 +3908,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4051,8 +4051,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4162,8 +4162,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4338,8 +4338,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4470,8 +4470,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4571,8 +4571,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4681,8 +4681,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4824,8 +4824,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4894,8 +4894,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5030,8 +5030,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5141,8 +5141,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5211,8 +5211,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5281,8 +5281,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5351,8 +5351,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5421,8 +5421,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5491,8 +5491,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5561,8 +5561,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5631,8 +5631,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5731,8 +5731,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5801,8 +5801,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5871,8 +5871,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5941,8 +5941,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6011,8 +6011,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6081,8 +6081,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6162,8 +6162,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6307,8 +6307,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6439,8 +6439,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6509,8 +6509,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6609,8 +6609,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6679,8 +6679,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6790,8 +6790,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6901,8 +6901,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7012,8 +7012,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7155,8 +7155,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7309,8 +7309,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7419,8 +7419,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7503,8 +7503,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7579,8 +7579,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7699,8 +7699,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7810,8 +7810,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7900,8 +7900,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-26T16:58:10.075Z",
-      "lastmod": "2026-06-26"
+      "generatedAt": "2026-06-27T04:05:36.884Z",
+      "lastmod": "2026-06-27"
     }
   ]
 }

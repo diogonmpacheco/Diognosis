@@ -2721,6 +2721,8 @@ const patientCopyAuditRegression = window.eval(`(() => {
     atomoxetineClinician: resetScenario('/index.html?substances=atomoxetine&genotype=CYP2D6:PM&tab=overview', 'clinician'),
     warfarinPgxClinician: resetScenario('/index.html?substances=warfarin&genotype=CYP2C9:PM&genotype=VKORC1:PM&genotype=CYP4F2:IM&tab=overview', 'clinician'),
     g6pdClinician: resetScenario('/index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency', 'clinician'),
+    potatoFoodBiomarkerPatient: resetScenario('/index.html?substances=potatoes_solanine&genotype=CYP2D6:UM&tab=overview'),
+    potatoFoodBiomarkerClinician: resetScenario('/index.html?substances=potatoes_solanine&genotype=CYP2D6:UM&tab=overview', 'clinician'),
   };
 })()`);
 assert(/Tacrolimus exposure may rise with Fluconazole/i.test(patientCopyAuditRegression.tacrolimusClinician.titles[0] || ''),
@@ -2821,6 +2823,14 @@ assert(/Warfarin INR sensitivity may increase/i.test(patientCopyAuditRegression.
   `Warfarin PGx clinician view should lead with INR sensitivity and suppress routine timing clutter, got ${patientCopyAuditRegression.warfarinPgxClinician.titles.join(' | ')}`);
 assert(!patientCopyAuditRegression.g6pdClinician.titles.some(title => /Switching and washout timing may need review/i.test(title)),
   `G6PD clinician view should suppress routine timing clutter when a risk-marker concern exists, got ${patientCopyAuditRegression.g6pdClinician.titles.join(' | ')}`);
+assert(/Food biomarker context may change/i.test(patientCopyAuditRegression.potatoFoodBiomarkerPatient.titles[0] || '') &&
+  !patientCopyAuditRegression.potatoFoodBiomarkerPatient.titles.some(title => /Timing may need review/i.test(title)),
+  `Potatoes + CYP2D6 patient view should lead with food/biomarker context, got ${patientCopyAuditRegression.potatoFoodBiomarkerPatient.titles.join(' | ')}`);
+assert(/food|biomarker/i.test(patientCopyAuditRegression.potatoFoodBiomarkerPatient.questions[0] || ''),
+  `Potatoes + CYP2D6 patient question should ask about food/biomarker context, got ${patientCopyAuditRegression.potatoFoodBiomarkerPatient.questions.join(' | ')}`);
+assert(/CYP2D6 changes solanidine biomarker context/i.test(patientCopyAuditRegression.potatoFoodBiomarkerClinician.titles[0] || '') &&
+  !patientCopyAuditRegression.potatoFoodBiomarkerClinician.titles.some(title => /Switching and washout timing may need review/i.test(title)),
+  `Potatoes + CYP2D6 clinician view should lead with biomarker context, got ${patientCopyAuditRegression.potatoFoodBiomarkerClinician.titles.join(' | ')}`);
 
 assert(browserErrors.length === 0, `Browser errors:\n${browserErrors.join('\n')}`);
 

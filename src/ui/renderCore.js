@@ -1312,6 +1312,7 @@ function renderPatientQuestionCard(presentation = {}) {
   const affected = (presentation.affectedSubstances || []).slice(0, 3).join(" + ");
   const question = buildPatientDiscussionQuestion(presentation, trust);
   const meaning = patientFindingStepText(presentation, "changed");
+  const contextBadges = renderFindingContextBadges(presentation, { patient:true });
   const monitoringGuide = renderFindingMonitoringGuide(presentation, trust, true);
   return `<div id="${safeAttr(presentation.targetElementId)}" class="patient-question-card ${safeAttr(tone)}" data-finding-id="${safeAttr(presentation.id || "")}">
     <span class="patient-question-dot ${safeAttr(tone)}"></span>
@@ -1319,6 +1320,7 @@ function renderPatientQuestionCard(presentation = {}) {
       <div class="patient-question-top">
         <span class="patient-question-tag">${safePublicHtml(patientSeverityLabel(severity))}</span>
       </div>
+      ${contextBadges}
       <div class="patient-question-meaning">
         <div class="patient-question-meaning-label">What this may mean</div>
         <div class="patient-question-meaning-text">${safePublicHtml(meaning)}</div>
@@ -1644,11 +1646,16 @@ function renderInteractionFindingCard(finding) {
 }
 
 function buildPublicFindingPresentations(overviewFindings = []) {
-  const presentations = (overviewFindings || [])
+  let presentations = (overviewFindings || [])
     .map(buildPublicFindingPresentationFromFinding)
     .filter(hasCompletePublicFindingPresentation);
   const genotypeSignal = typeof getHighestGenotypePrioritySignal === "function" ? getHighestGenotypePrioritySignal() : null;
   const genotypePresentation = buildPublicFindingPresentationFromGenotypeSignal(genotypeSignal);
+  if (isFoodBiomarkerSignal(genotypeSignal) && presentations.length && presentations.every(presentation =>
+    publicPresentationIsTimingContext(presentation) || publicPresentationIsFoodBiomarkerContext(presentation)
+  )) {
+    presentations = [];
+  }
   if (shouldAddGenotypePublicFinding(genotypePresentation, presentations, genotypeSignal)) {
     presentations.push(genotypePresentation);
     presentations.sort((a, b) => publicFindingSeverityScore(b.severity) - publicFindingSeverityScore(a.severity));
@@ -1716,7 +1723,7 @@ function buildPublicFindingPresentationFromGenotypeSignal(signal) {
     targetElementId:publicFindingElementId(id),
     detailTab:signal.targetTab || "genes-metabolites",
     detailElementId:signal.targetElementId || "genotypeSection",
-    tags:["PGx"],
+    tags:["PGx", signal.contextKind === "food_biomarker" ? "food/biomarker context" : ""].filter(Boolean),
     signal,
   };
 }
@@ -1724,6 +1731,7 @@ function buildPublicFindingPresentationFromGenotypeSignal(signal) {
 function shouldAddGenotypePublicFinding(genotypePresentation, presentations = [], signal = null) {
   if (!genotypePresentation || !signal || signal.score < 30) return false;
   if (!presentations.length) return true;
+  if (isFoodBiomarkerSignal(signal) && presentations.every(publicPresentationIsTimingContext)) return true;
   const signalEvidenceRefs = new Set(signal.evidenceRefs || []);
   const sourceBackedSignal = signalEvidenceRefs.size > 0;
   const equivalentSourceBackedPresentation = sourceBackedSignal && presentations.some(presentation => {
@@ -1748,6 +1756,31 @@ function shouldAddGenotypePublicFinding(genotypePresentation, presentations = []
   });
   if (overlapsPrimary) return false;
   return signal.score >= 70 && !presentations.some(presentation => publicFindingSearchText(presentation).includes(signalText.slice(0, 40)));
+}
+
+function isFoodBiomarkerSignal(signal = {}) {
+  if (!signal) return false;
+  const text = publicDisplayText([
+    signal.contextKind,
+    signal.headline,
+    signal.summary,
+    signal.why,
+    signal.changes,
+    signal.review,
+  ].join(" ")).toLowerCase();
+  return /\bfood_biomarker\b|food\/biomarker|diet-derived|food-toxicology|biomarker|solanidine|glycoalkaloid|potatoes?/i.test(text);
+}
+
+function publicPresentationIsTimingContext(presentation = {}) {
+  const domain = presentation.sourceFinding?.clinicalConcernDomain || presentation.trustContract?.concernCategory || "";
+  const text = publicFindingSearchText(presentation);
+  return /washout|persistence|timing/.test(String(domain || "").toLowerCase()) ||
+    /\b(?:washout|persistence|timing|after stopping)\b/.test(text);
+}
+
+function publicPresentationIsFoodBiomarkerContext(presentation = {}) {
+  const text = publicFindingSearchText(presentation);
+  return /\b(?:food\/biomarker|food biomarker|diet-derived|food-toxicology|biomarker|solanidine|solanine|chaconine|glycoalkaloid|potatoes?)\b/i.test(text);
 }
 
 function publicFindingAffectedSubstances(finding = {}) {
@@ -1909,6 +1942,68 @@ function renderRelatedFindingButton(context = {}, label = "Related finding") {
   return `<button type="button" class="related-finding-btn" onclick="focusPriorityFinding('overview','${safeAttr(presentation.targetElementId)}')">${safePublicHtml(label)}</button>`;
 }
 
+function renderFindingContextBadges(presentation = {}, options = {}) {
+  const badges = findingContextBadges(presentation).slice(0, options.patient ? 3 : 5);
+  if (!badges.length) return "";
+  const className = options.patient ? "finding-context-badges patient-context-badges" : "finding-context-badges";
+  return `<div class="${className}">${badges.map(label => `<span class="finding-tag context">${safePublicHtml(label)}</span>`).join("")}</div>`;
+}
+
+function findingContextBadges(presentation = {}) {
+  const finding = presentation.sourceFinding || {};
+  const signal = presentation.signal || null;
+  const trust = presentation.trustContract || null;
+  const domain = String(finding.clinicalConcernDomain || trust?.concernCategory || "").toLowerCase();
+  const geneEvidenceText = publicDisplayText([
+    signal?.gene,
+    signal?.marker,
+    signal?.phenotype,
+    signal?.label,
+    ...(finding.tags || []),
+    ...(presentation.tags || []),
+    ...(finding.sourceRows || []).flatMap(row => [
+      row.gene,
+      row.marker,
+      row.genotype,
+      row.phenotype,
+      row.result,
+      row.type,
+      row.category,
+      row.sourceType,
+    ]),
+  ].join(" ")).toLowerCase();
+  const text = publicDisplayText([
+    presentation.title,
+    presentation.whatChanged,
+    presentation.whyItMatters,
+    presentation.whatToReview,
+    signal?.contextKind,
+    signal?.kind,
+    ...(presentation.tags || []),
+  ].join(" ")).toLowerCase();
+  const badges = [];
+  const add = label => {
+    if (label && !badges.includes(label)) badges.push(label);
+  };
+  if (
+    signal ||
+    /\b(?:pgx|pharmacogen|genotype|phenotype|gene result|risk marker|poor metabolizer|intermediate metabolizer|ultrarapid metabolizer|deficiency|present|g6pd|hla|dpyd|tpmt|nudt|slco1b1|vkorc1|ugt1a1|cyp2c9|cyp2c19|cyp2d6)\b/.test(geneEvidenceText)
+  ) add("Gene result");
+  if (/food_biomarker|food\/biomarker|diet-derived|food-toxicology|glycoalkaloid|solanidine|solanine|chaconine|potatoes?/.test(text)) {
+    add("Food context");
+    add("Biomarker");
+  }
+  if (/risk.marker|hypersensitivity|scar|g6pd|hla/.test(domain + " " + text)) add("Risk marker");
+  if (/activation|prodrug|active-form|active form/.test(domain + " " + text)) add("Active metabolite");
+  if (/active-metabolite accumulation|active metabolite .*rise|o-desmethyltramadol|morphine|endoxifen|active thiol/.test(domain + " " + text)) add("Active metabolite");
+  if (/toxic-metabolite|toxic metabolite|sn-38|5-fluorouracil|6-tgn|hydroxylamine/.test(domain + " " + text)) add("Toxic metabolite");
+  if (/parent accumulation|parent-drug|parent drug|exposure may rise|exposure\/toxicity|levels? may rise/.test(domain + " " + text)) add("Parent drug");
+  if (/parent-metabolite|mixed direction|balance/.test(domain + " " + text)) add("Parent + metabolite");
+  if (/washout|persistence|timing/.test(domain)) add("Timing");
+  if (/absorption|chelation/.test(domain) || /\b(?:food absorption|with food|empty stomach)\b/.test(text)) add("Absorption");
+  return badges;
+}
+
 function renderPublicFindingCard(presentation, index = 0) {
   if (!presentation) return "";
   const severity = safeChoice(presentation.severity, ["critical","severe","moderate","monitor","info"], "info");
@@ -1935,6 +2030,7 @@ function renderPublicFindingCard(presentation, index = 0) {
   const severityLabel = patient ? patientSeverityLabel(severity) : severity;
   const discussionGuide = renderFindingDiscussionGuide(presentation, trust, patient);
   const monitoringGuide = renderFindingMonitoringGuide(presentation, trust, patient);
+  const contextBadges = renderFindingContextBadges(presentation, { patient });
   const followupGuide = !patient && typeof isReviewerMode === "function" && !isReviewerMode() && (discussionGuide || monitoringGuide)
     ? `<details class="finding-followup-details"><summary>Review notes</summary>${discussionGuide}${monitoringGuide}</details>`
     : `${discussionGuide}${monitoringGuide}`;
@@ -1964,6 +2060,7 @@ function renderPublicFindingCard(presentation, index = 0) {
       <span class="finding-sev ${severity}">${safePublicHtml(severityLabel)}</span>
     </div>
     ${renderFindingTrustStrip(trust, patient)}
+    ${contextBadges}
     ${actorHtml ? `<div class="finding-actors">${actorHtml}</div>` : ""}
     <div class="finding-explain">
       ${renderFindingStep(patient ? "What this means" : "What changed", changedText)}
@@ -2063,6 +2160,10 @@ function hasPatientMetoprololGeneContext(text = "") {
 function hasPatientAtomoxetineGeneContext(text = "") {
   return /\batomoxetine\b/i.test(String(text || "")) &&
     /\b(?:cyp2d6|gene|genotype|pgx|exposure|level|clearance|poor metabolizer|ultrarapid)\b/i.test(String(text || ""));
+}
+
+function hasPatientFoodBiomarkerContext(text = "") {
+  return /\b(?:food\/biomarker|food biomarker|diet-derived|food-toxicology|biomarker|solanidine|solanine|chaconine|glycoalkaloid|potatoes?)\b/i.test(String(text || ""));
 }
 
 function hasPatientHyperkalemiaConcern(text = "") {
@@ -2168,6 +2269,8 @@ function buildPatientDiscussionQuestion(presentation = {}, trust = null) {
     question = "Can you check whether my gene result could raise Metoprolol side effects, pulse, blood pressure, or monitoring needs?";
   } else if (hasPatientAtomoxetineGeneContext(text)) {
     question = "Can you check whether my gene result could raise Atomoxetine side effects, dose tolerance, pulse, or blood pressure concerns?";
+  } else if (hasPatientFoodBiomarkerContext(text)) {
+    question = "Can you check whether this is only food or biomarker context, and whether any symptoms or unusual exposure need review?";
   } else if (hasPatientHyperkalemiaConcern(text)) {
     question = "Can you check whether this list could raise potassium or kidney-related monitoring concerns?";
   } else if (hasPatientHypotensionConcern(text)) {
@@ -2479,6 +2582,9 @@ function patientFindingStepText(presentation = {}, field = "changed") {
     if (hasPatientAtomoxetineGeneContext(lower)) {
       return "Your gene result may raise atomoxetine levels, so side effects, dose tolerance, sleep, appetite, pulse, or blood pressure may need review.";
     }
+    if (hasPatientFoodBiomarkerContext(lower)) {
+      return "This is food and biomarker context. It does not mean ordinary potatoes are unsafe, and it is not medication-style avoidance advice.";
+    }
     if (timingPresentation) {
       return "Timing may matter because some effects can last after a medicine is changed.";
     }
@@ -2578,6 +2684,9 @@ function patientFindingStepText(presentation = {}, field = "changed") {
     if (hasPatientAtomoxetineGeneContext(lower)) {
       return "Atomoxetine can become more sensitive when CYP2D6 processing is lower, so side effects can be stronger at the same dose.";
     }
+    if (hasPatientFoodBiomarkerContext(lower)) {
+      return "Solanidine is a diet-derived CYP2D6 biomarker. Food risk depends more on exposure amount, greening, sprouting, peel burden, symptoms, and food-toxicity context.";
+    }
     if (riskMarkerKind === "abacavir_hypersensitivity" || riskMarkerKind === "allopurinol_scar" || riskMarkerKind === "hypersensitivity") {
       return "Some medicines become much riskier when a known gene result changes immune reaction risk.";
     }
@@ -2655,6 +2764,9 @@ function patientFindingStepText(presentation = {}, field = "changed") {
   }
   if (hasPatientAtomoxetineGeneContext(lower)) {
     return "Ask a doctor or pharmacist whether atomoxetine side effects, dose tolerance, pulse, blood pressure, or monitoring should be reviewed.";
+  }
+  if (hasPatientFoodBiomarkerContext(lower)) {
+    return "Ask whether this is only biomarker context, and mention unusual green, sprouted, or peel-heavy potato exposure, stomach symptoms, or neurologic symptoms if present.";
   }
   if (hasPatientHyperkalemiaConcern(lower)) {
     return "Ask a doctor or pharmacist whether potassium, kidney function, symptoms, or lab monitoring should be reviewed.";
@@ -2750,6 +2862,9 @@ function patientFindingTitleText(presentation = {}) {
   }
   if (hasPatientAtomoxetineGeneContext(text)) {
     return "Atomoxetine side-effect risk may increase";
+  }
+  if (hasPatientFoodBiomarkerContext(text)) {
+    return "Food biomarker context may change";
   }
   if (timingPresentation) return "Timing may need review";
   if (riskMarkerKind === "g6pd") return "G6PD-related blood reaction risk may increase";
@@ -2963,6 +3078,9 @@ function clinicianOverviewActionText(presentation = {}, text = "") {
     ...(presentation.affectedSubstances || []),
   ].join(" ")).toLowerCase();
   const actors = (presentation.affectedSubstances || []).slice(0, 2).join(" + ") || "this combination";
+  if (hasPatientFoodBiomarkerContext(context)) {
+    return "Review whether this is biomarker context only; consider exposure history, symptoms, and toxicology context before drawing clinical conclusions.";
+  }
   if (/\b(?:washout|persistence|timing|switch|overlap|enzyme resynthesis|after stopping|recovery)\b/.test(context)) {
     return `Review stop/start dates, overlap, washout, and whether timing changes the plan for ${actors}.`;
   }
