@@ -64,7 +64,7 @@ function loadUrlDemoState() {
   const demo = DEMO_CASES[params.demo || ''];
   const audience = normalizeAudienceMode(params.audience || params.view || demo?.audience);
   const reviewerRequested = typeof isReviewerParamEnabled === "function" && isReviewerParamEnabled(params);
-  setAudienceMode(reviewerRequested ? "clinician" : (audience || "patient"), { render:false });
+  setAudienceMode(reviewerRequested ? "clinician" : (audience || DEFAULT_AUDIENCE_MODE), { render:false });
   const drugParam = params.substances || params.drugs || params.medications;
   const hasSharedSelectionState = Boolean(params.demo || drugParam || params.genotype);
   const drugNames = demo ? demo.drugs : (drugParam ? drugParam.split(',').map(d => d.trim()) : []);

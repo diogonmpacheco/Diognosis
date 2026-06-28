@@ -109,13 +109,13 @@ assert(/--radius\s*:\s*14px\b/i.test(styleText),
 assert(/@media\(max-width:480px\)[\s\S]*\.summary-next\s*\{\s*display:grid;grid-template-columns:1fr/i.test(styleText),
   'Mobile Patient summary next-step card should stack label and text for readability');
 
-const patientEmptyText = doc.getElementById('mainEmptyState')?.textContent || '';
-assert(patientEmptyText.includes('Review priority signals first'), 'Default Patient landing copy should point to priority signals first');
-assert(!patientEmptyText.includes('Review the result tabs'), 'Default Patient landing copy should not point to hidden result tabs');
-window.setAudienceMode('clinician', { render:false });
-assert((doc.getElementById('mainEmptyState')?.textContent || '').includes('Review the priority signal'),
-  'Clinician landing copy should keep explicit priority-signal guidance');
-window.setAudienceMode('patient', { render:false });
+const defaultEmptyText = doc.getElementById('mainEmptyState')?.textContent || '';
+assert(defaultEmptyText.includes('Review the priority signal'), 'Default Detailed landing copy should point to the first priority signal');
+assert(!defaultEmptyText.includes('Review the result tabs'), 'Default Detailed landing copy should not mention hidden result tabs');
+window.setAudienceMode('plain', { render:false });
+assert((doc.getElementById('mainEmptyState')?.textContent || '').includes('Review priority signals first'),
+  'Plain landing copy should still point to priority signals first');
+window.setAudienceMode('detailed', { render:false });
 
 const inputRailOrder = Array.from(doc.querySelector('.input-rail')?.children || []).map((el) => el.id || el.className);
 const mainOrder = Array.from(doc.querySelector('.main')?.children || []).map((el) =>
@@ -262,12 +262,12 @@ window.copyOverviewHandoffSummary();
 assert(summaryCopyStatus.textContent === 'Select text below', 'Summary copy fallback should explain manual selection');
 assert(summaryCopyText.hidden === false && /Diognosis V1 handoff summary|Diognosis questions to ask/i.test(summaryCopyText.textContent),
   'Summary copy fallback should reveal the copyable handoff text');
-assert(/Handoff type: patient question list/i.test(summaryCopyText.textContent),
-  'Patient copy fallback should identify itself as a patient question list');
+assert(/Handoff type: clinician\/pharmacist medication-review handoff/i.test(summaryCopyText.textContent),
+  'Default Detailed copy fallback should identify itself as a medication-review handoff');
 assert(/Generated from local Diognosis/i.test(summaryCopyText.textContent) && /no patient-specific data was uploaded/i.test(summaryCopyText.textContent),
-  'Patient copy fallback should carry the local-data boundary');
-assert(!/V1 scope|Clinical context still needed/i.test(summaryCopyText.textContent),
-  'Patient question list should not expose clinician handoff sections');
+  'Default Detailed copy fallback should carry the local-data boundary');
+assert(/V1 scope|Clinical context still needed/i.test(summaryCopyText.textContent),
+  'Default Detailed copy fallback should preserve the review handoff sections');
 assert(doc.activeElement === summaryCopyText, 'Summary copy fallback should move focus to the copyable handoff text');
 doc.execCommand = originalExecCommand;
 assert(doc.getElementById('tab-overview')?.classList.contains('active'), 'Overview tab should be active by default');
@@ -287,29 +287,31 @@ assert(doc.getElementById('scenarioSnapshotSection')?.closest('.tab-panel')?.id 
 assert(doc.getElementById('metaboliteGapSection')?.closest('.tab-panel')?.id === 'tab-review', 'Metabolite Coverage Gaps should live under Reviewer Console');
 assert(doc.getElementById('contributeSection')?.closest('.tab-panel')?.id === 'tab-review', 'Report / Contribute should live under Reviewer Console');
 assert(doc.getElementById('warningPathSection')?.closest('.tab-panel')?.id === 'tab-review', 'Technical Warning Paths should live under Reviewer Console');
-assert(evalInPage(window, 'audienceMode') === 'patient', 'Default V1 smoke path should open in Patient mode');
-const patientSummaryText = Array.from(doc.querySelectorAll('#summaryBar .summary-title, #summaryBar .summary-copy, #summaryBar .summary-next'))
-  .map(el => el.textContent || '')
-  .join(' ');
-const patientFindingText = doc.getElementById('findingBody')?.textContent || '';
-assert(/questions? ready for your list/i.test(patientSummaryText), 'Patient summary should orient around prepared questions');
-assert(!/Can you check/i.test(patientSummaryText), 'Patient summary should leave exact questions to Safety Notes');
-assert(doc.querySelectorAll('#findingBody .patient-question-card').length > 0, 'Default Overview should render Patient safety-note cards');
-assert(!doc.querySelector('#findingBody .patient-stack-summary'), 'Default Patient Overview should avoid a duplicate stack summary when a Safety Note is present');
-assert(patientFindingText.includes('What to ask') && patientFindingText.includes('For this list'), 'Patient safety-note cards should render question-first plain-language guidance');
-assert(doc.querySelectorAll('#findingBody .primary-finding-card').length === 0, 'Default Patient Overview should not render clinician finding cards');
-window.setAudienceMode('clinician');
-assert(evalInPage(window, 'audienceMode') === 'clinician', 'Clinician smoke path should switch to Clinician mode');
-const clinicianSummaryText = doc.getElementById('summaryBar')?.textContent || '';
-assert(/Clinical Review Priorities/i.test(clinicianSummaryText), 'Clinician summary should present the Overview as review priorities');
-assert(/Review first/i.test(clinicianSummaryText), 'Clinician summary should point to the first review priority');
+assert(evalInPage(window, 'audienceMode') === 'clinician', 'Default V1 smoke path should open in Detailed mode');
+const detailedSummaryText = doc.getElementById('summaryBar')?.textContent || '';
+assert(/Review Priorities/i.test(detailedSummaryText), 'Default Detailed summary should present the Overview as review priorities');
+assert(/Review first/i.test(detailedSummaryText), 'Default Detailed summary should point to the first review priority');
+assert(doc.querySelectorAll('#findingBody .plain-question-bridge').length > 0, 'Default Detailed Overview should include plain-language questions before the detailed card');
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
 assert(doc.querySelectorAll('#findingBody .primary-finding-card').length > 0, 'Overview finding cards should render primary public finding cards');
-assert(/Review first/i.test(doc.querySelector('#findingBody .primary-finding-card')?.textContent || ''), 'Clinician first finding should be explicitly marked as the first review priority');
+assert(/Review first/i.test(doc.querySelector('#findingBody .primary-finding-card')?.textContent || ''), 'Detailed first finding should be explicitly marked as the first review priority');
 assert([...doc.querySelectorAll('#findingBody .primary-finding-card')].every(card => ['What changed', 'Why it matters', 'Review focus'].every(label => card.textContent.includes(label)) && !card.textContent.includes('What to review')), 'Overview finding cards should render the compact clinical priority explanation');
-const clinicianVisibleReviewText = `${doc.getElementById('summaryBar')?.textContent || ''} ${doc.getElementById('findingBody')?.textContent || ''}`;
-assert(!clinicianVisibleReviewText.includes('should be avoided, substituted, dose-adjusted, or monitored before use'),
-  'Clinician review copy should avoid the old directive medication-change fallback phrase');
+const detailedVisibleReviewText = `${doc.getElementById('summaryBar')?.textContent || ''} ${doc.getElementById('findingBody')?.textContent || ''}`;
+assert(!detailedVisibleReviewText.includes('should be avoided, substituted, dose-adjusted, or monitored before use'),
+  'Detailed review copy should avoid the old directive medication-change fallback phrase');
+window.setAudienceMode('plain');
+assert(evalInPage(window, 'audienceMode') === 'patient', 'Plain smoke path should switch to the simplified explanation depth');
+const plainSummaryText = Array.from(doc.querySelectorAll('#summaryBar .summary-title, #summaryBar .summary-copy, #summaryBar .summary-next'))
+  .map(el => el.textContent || '')
+  .join(' ');
+const plainFindingText = doc.getElementById('findingBody')?.textContent || '';
+assert(/questions? ready for your list/i.test(plainSummaryText), 'Plain summary should orient around prepared questions');
+assert(!/Can you check/i.test(plainSummaryText), 'Plain summary should leave exact questions to Safety Notes');
+assert(doc.querySelectorAll('#findingBody .patient-question-card').length > 0, 'Plain Overview should render safety-note cards');
+assert(!doc.querySelector('#findingBody .patient-stack-summary'), 'Plain Overview should avoid a duplicate stack summary when a Safety Note is present');
+assert(plainFindingText.includes('What to ask') && plainFindingText.includes('For this list'), 'Plain safety-note cards should render question-first guidance');
+assert(doc.querySelectorAll('#findingBody .primary-finding-card').length === 0, 'Plain Overview should not render detailed finding cards in the Overview panel');
+window.setAudienceMode('detailed');
 assert(doc.querySelectorAll('#findingBody .why-path').length === 0, 'Overview should not duplicate the full why-path chain');
 assert(doc.querySelectorAll('#findingBody .finding-step').length > 0, 'Overview finding cards should render compact explanation steps');
 assert(doc.querySelectorAll('#mechanismWhyBody .mechanism-why-row').length > 0, 'Mechanisms should render finding why paths');

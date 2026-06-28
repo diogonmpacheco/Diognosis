@@ -816,6 +816,18 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
 .overview-more-list{display:grid;gap:10px;padding:12px 14px 14px}
 .overview-more-list .finding-card{margin-bottom:0}
 .patient-question-list{display:grid;gap:10px}
+.plain-question-bridge{border:1px solid var(--accentLine);border-radius:10px;background:var(--greenBg);padding:12px 13px;margin-bottom:10px}
+.plain-question-bridge-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:9px}
+.plain-question-kicker{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:3px}
+.plain-question-title{font-size:13px;font-weight:850;line-height:1.35;color:var(--text)}
+.plain-question-bridge-head span{font-size:10px;font-weight:850;color:var(--accent2);border:1px solid var(--accentLine);background:rgba(255,255,255,.68);border-radius:999px;padding:4px 8px;white-space:nowrap}
+.plain-question-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}
+.plain-question-card{border:1px solid var(--border);border-radius:8px;background:rgba(255,255,255,.78);padding:10px 11px;min-width:0}
+.plain-question-card.high{border-color:rgba(194,58,52,.22);background:#fff8f7}
+.plain-question-card.medium{border-color:rgba(168,120,27,.25)}
+.plain-question-card-top{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:6px;font-size:10px;font-weight:800;color:var(--text2)}
+.plain-question-card-question{font-size:13px;font-weight:750;line-height:1.4;color:var(--text)}
+.plain-question-card-context{font-size:11px;line-height:1.35;color:var(--text2);margin-top:6px;padding-top:6px;border-top:1px solid rgba(61,44,30,.1)}
 .patient-question-card{display:flex;align-items:flex-start;gap:14px;border:1px solid var(--border);border-radius:14px;background:var(--card);padding:18px 20px}
 .patient-question-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);flex:0 0 auto;margin-top:6px}
 .patient-question-dot.high{background:var(--red)}
@@ -1071,6 +1083,8 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
   .pk-snapshot-value,.pk-takeaway-visual>span{text-align:left}
   .evidence-glance-head,.network-overview-head,.persistence-snapshot-head{display:grid;gap:7px}
   .evidence-glance-count,.network-count,.persistence-snapshot-window{justify-self:start}
+  .plain-question-bridge-head{display:grid;gap:7px}
+  .plain-question-bridge-head span{justify-self:start}
   .network-route-row{grid-template-columns:1fr;gap:4px}
   .network-route-edge{justify-self:start}
   .persistence-lane{grid-template-columns:1fr;gap:5px}
@@ -1113,22 +1127,22 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
 </style>
 <script>/* D3_BUNDLE */</script>
 </head>
-<body data-audience="patient" data-reviewer="standard">
+<body data-audience="clinician" data-reviewer="standard">
 <div class="app-shell">
 <div class="header">
   <div class="brand-lockup">
     <img class="brand-mark" src="assets/logo-mark.png" alt="" width="30" height="30" aria-hidden="true">
     <div class="brand-text">
       <h1>Diognosis</h1>
-      <p id="audienceTagline">Prepare medicine-list questions for your doctor or pharmacist</p>
+      <p id="audienceTagline">Mechanistic medication review with plain questions and source-linked evidence</p>
     </div>
   </div>
   <div class="header-actions">
-    <div class="audience-wrap" aria-label="Audience mode">
-      <div class="audience-label">Audience</div>
+    <div class="audience-wrap" aria-label="Explanation depth">
+      <div class="audience-label">Depth</div>
       <div class="audience-segment">
-        <button type="button" class="audience-btn active" id="audience-patient" onclick="setAudienceMode('patient')" aria-pressed="true">Patient</button>
-        <button type="button" class="audience-btn" id="audience-clinician" onclick="setAudienceMode('clinician')" aria-pressed="false">Clinician</button>
+        <button type="button" class="audience-btn" id="audience-patient" onclick="setAudienceMode('plain')" aria-pressed="false">Plain</button>
+        <button type="button" class="audience-btn active" id="audience-clinician" onclick="setAudienceMode('detailed')" aria-pressed="true">Detailed</button>
       </div>
     </div>
     <div class="device-pill">On-device</div>
@@ -1156,13 +1170,13 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
   <div class="section" id="selectedListSection">
       <div class="section-title">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
-        <span id="listTitle">My Medicine List</span>
+        <span id="listTitle">Selected List</span>
         <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="medCount"></span>
       </div>
       <div class="section-body" id="medList">
         <div class="empty-state">
           <div class="icon">💊</div>
-          Add medicines, supplements, or foods above to start a list for your doctor or pharmacist
+          Add medications, supplements, or foods above to start a mechanistic review
         </div>
       </div>
     </div>
@@ -1170,10 +1184,10 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
   <div class="section" id="geneticsSection">
       <div class="section-title collapsible" onclick="toggleSection('genetics')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
-        <span id="geneSectionTitle">My Gene Results <span style="font-size:11px;font-weight:400;color:var(--text2)">(optional)</span></span>
+        <span id="geneSectionTitle">Gene / Marker Results <span style="font-size:11px;font-weight:400;color:var(--text2)">(optional)</span></span>
       </div>
       <div class="section-body coll-body" id="geneticsBody">
-        <p id="geneSectionIntro" style="font-size:12px;color:var(--text2);margin-bottom:10px;line-height:1.4">Only add a medication gene-test result if you already have one. Do not guess a result; bring the original report to a doctor or pharmacist.</p>
+        <p id="geneSectionIntro" style="font-size:12px;color:var(--text2);margin-bottom:10px;line-height:1.4">Set inherited gene or marker results here. Genes + Metabolites maps functional phenotype, parent/metabolite direction, pathway consequences, and source-linked review context for the current stack.</p>
         <div class="gene-helper-links">
           <a class="gene-helper-link primary" href="./data-views.html?view=genotype">Open PGx Explorer</a>
         </div>
@@ -1254,7 +1268,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
   <div class="section" id="findingSection" style="display:none">
       <div class="section-title collapsible" onclick="toggleSection('finding')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-        <span id="findingTitle">Safety Notes</span>
+        <span id="findingTitle">Review Priorities</span>
         <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="findingCount"></span>
       </div>
       <div class="section-body coll-body open" id="findingBody"></div>

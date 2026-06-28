@@ -1,7 +1,7 @@
 {
   "schema": "diognosis.reference-facts.v1",
-  "generatedAt": "2026-06-27T10:16:34.732Z",
-  "lastmod": "2026-06-27",
+  "generatedAt": "2026-06-28T13:10:49.940Z",
+  "lastmod": "2026-06-28",
   "source": "Generated from the committed Diognosis app runtime and data/medication-class-guides.json validated examples.",
   "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
   "factCount": 85,
@@ -134,8 +134,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#statins-lipids-simvastatin-clarithromycin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -148,8 +151,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -277,8 +280,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,itraconazole&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,itraconazole&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,itraconazole&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,itraconazole&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,itraconazole&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,itraconazole&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,itraconazole&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#statins-lipids-simvastatin-itraconazole",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -291,8 +297,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -378,8 +384,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,gemfibrozil&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,gemfibrozil&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,gemfibrozil&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,gemfibrozil&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,gemfibrozil&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,gemfibrozil&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,gemfibrozil&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#statins-lipids-simvastatin-gemfibrozil",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -392,8 +401,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -488,8 +497,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=atorvastatin,clarithromycin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=atorvastatin,clarithromycin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=atorvastatin,clarithromycin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=atorvastatin,clarithromycin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=atorvastatin,clarithromycin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=atorvastatin,clarithromycin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=atorvastatin,clarithromycin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#statins-lipids-atorvastatin-clarithromycin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -502,8 +514,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -569,8 +581,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=rosuvastatin,gemfibrozil&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=rosuvastatin,gemfibrozil&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=rosuvastatin,gemfibrozil&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=rosuvastatin,gemfibrozil&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=rosuvastatin,gemfibrozil&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=rosuvastatin,gemfibrozil&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=rosuvastatin,gemfibrozil&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#statins-lipids-rosuvastatin-gemfibrozil",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -583,8 +598,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -712,8 +727,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nirmatrelvir_ritonavir,simvastatin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nirmatrelvir_ritonavir,simvastatin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nirmatrelvir_ritonavir,simvastatin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nirmatrelvir_ritonavir,simvastatin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nirmatrelvir_ritonavir,simvastatin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nirmatrelvir_ritonavir,simvastatin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nirmatrelvir_ritonavir,simvastatin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#statins-lipids-nirmatrelvir-ritonavir-simvastatin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -726,8 +744,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -793,8 +811,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=darolutamide,rosuvastatin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=darolutamide,rosuvastatin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=darolutamide,rosuvastatin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=darolutamide,rosuvastatin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=darolutamide,rosuvastatin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=darolutamide,rosuvastatin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=darolutamide,rosuvastatin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#statins-lipids-darolutamide-rosuvastatin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -807,8 +828,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -863,8 +884,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=leflunomide,rosuvastatin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=leflunomide,rosuvastatin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=leflunomide,rosuvastatin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=leflunomide,rosuvastatin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=leflunomide,rosuvastatin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=leflunomide,rosuvastatin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=leflunomide,rosuvastatin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#statins-lipids-leflunomide-rosuvastatin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -877,8 +901,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -944,8 +968,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=potassium_chloride,spironolactone&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=potassium_chloride,spironolactone&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=potassium_chloride,spironolactone&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=potassium_chloride,spironolactone&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=potassium_chloride,spironolactone&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=potassium_chloride,spironolactone&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=potassium_chloride,spironolactone&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#blood-pressure-heart-failure-potassium-chloride-spironolactone",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -958,8 +985,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1014,8 +1041,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=potassium_chloride,lisinopril&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=potassium_chloride,lisinopril&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=potassium_chloride,lisinopril&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=potassium_chloride,lisinopril&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=potassium_chloride,lisinopril&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=potassium_chloride,lisinopril&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=potassium_chloride,lisinopril&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#blood-pressure-heart-failure-potassium-chloride-lisinopril",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -1028,8 +1058,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1084,8 +1114,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=spironolactone,trimethoprim_sulfamethoxazole&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=spironolactone,trimethoprim_sulfamethoxazole&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=spironolactone,trimethoprim_sulfamethoxazole&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=spironolactone,trimethoprim_sulfamethoxazole&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=spironolactone,trimethoprim_sulfamethoxazole&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=spironolactone,trimethoprim_sulfamethoxazole&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=spironolactone,trimethoprim_sulfamethoxazole&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#blood-pressure-heart-failure-spironolactone-tmp-smx",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -1098,8 +1131,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1154,8 +1187,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sacubitril_valsartan,lisinopril&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sacubitril_valsartan,lisinopril&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sacubitril_valsartan,lisinopril&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sacubitril_valsartan,lisinopril&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sacubitril_valsartan,lisinopril&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sacubitril_valsartan,lisinopril&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sacubitril_valsartan,lisinopril&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#blood-pressure-heart-failure-sacubitril-valsartan-lisinopril",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -1168,8 +1204,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1224,8 +1260,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nitroglycerin,sildenafil&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nitroglycerin,sildenafil&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nitroglycerin,sildenafil&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nitroglycerin,sildenafil&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nitroglycerin,sildenafil&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nitroglycerin,sildenafil&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nitroglycerin,sildenafil&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#blood-pressure-heart-failure-nitroglycerin-sildenafil",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -1238,8 +1277,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1280,8 +1319,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": false,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sildenafil,tamsulosin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sildenafil,tamsulosin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sildenafil,tamsulosin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sildenafil,tamsulosin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sildenafil,tamsulosin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sildenafil,tamsulosin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sildenafil,tamsulosin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#blood-pressure-heart-failure-sildenafil-tamsulosin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -1294,8 +1336,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1336,8 +1378,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": false,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ibuprofen,lisinopril&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ibuprofen,lisinopril&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ibuprofen,lisinopril&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ibuprofen,lisinopril&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ibuprofen,lisinopril&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ibuprofen,lisinopril&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ibuprofen,lisinopril&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#blood-pressure-heart-failure-ibuprofen-lisinopril",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -1350,8 +1395,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1436,8 +1481,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=terbinafine,metoprolol&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=terbinafine,metoprolol&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=terbinafine,metoprolol&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=terbinafine,metoprolol&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=terbinafine,metoprolol&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=terbinafine,metoprolol&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=terbinafine,metoprolol&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#blood-pressure-heart-failure-terbinafine-metoprolol",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -1450,8 +1498,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1564,8 +1612,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,fluconazole,ibuprofen&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,fluconazole,ibuprofen&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,fluconazole,ibuprofen&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,fluconazole,ibuprofen&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,fluconazole,ibuprofen&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,fluconazole,ibuprofen&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,fluconazole,ibuprofen&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#anticoagulants-antiplatelets-warfarin-fluconazole-ibuprofen",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -1578,8 +1629,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1675,8 +1726,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,trimethoprim_sulfamethoxazole&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,trimethoprim_sulfamethoxazole&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,trimethoprim_sulfamethoxazole&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,trimethoprim_sulfamethoxazole&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,trimethoprim_sulfamethoxazole&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,trimethoprim_sulfamethoxazole&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,trimethoprim_sulfamethoxazole&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#anticoagulants-antiplatelets-warfarin-tmp-smx",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -1689,8 +1743,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1811,8 +1865,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#anticoagulants-antiplatelets-clopidogrel-omeprazole-cyp2c19-pm",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -1825,8 +1882,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -1942,8 +1999,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=apixaban,clarithromycin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=apixaban,clarithromycin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=apixaban,clarithromycin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=apixaban,clarithromycin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=apixaban,clarithromycin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=apixaban,clarithromycin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=apixaban,clarithromycin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#anticoagulants-antiplatelets-apixaban-clarithromycin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -1956,8 +2016,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2023,8 +2083,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=apixaban,rifampin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=apixaban,rifampin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=apixaban,rifampin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=apixaban,rifampin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=apixaban,rifampin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=apixaban,rifampin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=apixaban,rifampin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#anticoagulants-antiplatelets-apixaban-rifampin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -2037,8 +2100,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2155,8 +2218,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amiodarone,warfarin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amiodarone,warfarin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amiodarone,warfarin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amiodarone,warfarin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amiodarone,warfarin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amiodarone,warfarin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amiodarone,warfarin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#anticoagulants-antiplatelets-amiodarone-warfarin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -2169,8 +2235,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2211,8 +2277,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": false,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,acetaminophen&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,acetaminophen&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,acetaminophen&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,acetaminophen&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,acetaminophen&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,acetaminophen&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,acetaminophen&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#anticoagulants-antiplatelets-warfarin-acetaminophen",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -2225,8 +2294,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2292,8 +2361,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dabigatran,rifampin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dabigatran,rifampin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dabigatran,rifampin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dabigatran,rifampin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dabigatran,rifampin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dabigatran,rifampin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dabigatran,rifampin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#anticoagulants-antiplatelets-dabigatran-rifampin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -2306,8 +2378,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2348,8 +2420,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": false,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=metformin,trimethoprim_sulfamethoxazole&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=metformin,trimethoprim_sulfamethoxazole&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=metformin,trimethoprim_sulfamethoxazole&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=metformin,trimethoprim_sulfamethoxazole&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=metformin,trimethoprim_sulfamethoxazole&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=metformin,trimethoprim_sulfamethoxazole&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=metformin,trimethoprim_sulfamethoxazole&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#diabetes-weight-loss-metformin-tmp-smx",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -2362,8 +2437,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2418,8 +2493,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dolutegravir,metformin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dolutegravir,metformin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dolutegravir,metformin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dolutegravir,metformin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dolutegravir,metformin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dolutegravir,metformin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dolutegravir,metformin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#diabetes-weight-loss-dolutegravir-metformin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -2432,8 +2510,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2488,8 +2566,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ranolazine,metformin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ranolazine,metformin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ranolazine,metformin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ranolazine,metformin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ranolazine,metformin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ranolazine,metformin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ranolazine,metformin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#diabetes-weight-loss-ranolazine-metformin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -2502,8 +2583,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2558,8 +2639,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_glargine,metoprolol&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_glargine,metoprolol&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_glargine,metoprolol&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_glargine,metoprolol&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_glargine,metoprolol&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_glargine,metoprolol&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_glargine,metoprolol&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#diabetes-weight-loss-insulin-glargine-metoprolol",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -2572,8 +2656,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2628,8 +2712,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_lispro,metoprolol&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_lispro,metoprolol&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_lispro,metoprolol&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_lispro,metoprolol&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_lispro,metoprolol&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_lispro,metoprolol&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_lispro,metoprolol&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#diabetes-weight-loss-insulin-lispro-metoprolol",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -2642,8 +2729,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2708,8 +2795,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_glargine,tirzepatide&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_glargine,tirzepatide&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_glargine,tirzepatide&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_glargine,tirzepatide&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_glargine,tirzepatide&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_glargine,tirzepatide&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=insulin_glargine,tirzepatide&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#diabetes-weight-loss-insulin-glargine-tirzepatide",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -2722,8 +2812,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2778,8 +2868,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tirzepatide,warfarin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tirzepatide,warfarin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tirzepatide,warfarin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tirzepatide,warfarin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tirzepatide,warfarin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tirzepatide,warfarin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tirzepatide,warfarin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#diabetes-weight-loss-tirzepatide-warfarin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -2792,8 +2885,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2848,8 +2941,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,ibuprofen&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,ibuprofen&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,ibuprofen&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,ibuprofen&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,ibuprofen&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,ibuprofen&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,ibuprofen&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#pain-inflammation-migraine-warfarin-ibuprofen",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -2862,8 +2958,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2918,8 +3014,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=lithium,naproxen&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=lithium,naproxen&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=lithium,naproxen&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=lithium,naproxen&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=lithium,naproxen&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=lithium,naproxen&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=lithium,naproxen&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#pain-inflammation-migraine-lithium-naproxen",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -2932,8 +3031,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -2988,8 +3087,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=methotrexate,ibuprofen&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=methotrexate,ibuprofen&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=methotrexate,ibuprofen&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=methotrexate,ibuprofen&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=methotrexate,ibuprofen&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=methotrexate,ibuprofen&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=methotrexate,ibuprofen&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#pain-inflammation-migraine-methotrexate-ibuprofen",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -3002,8 +3104,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3123,8 +3225,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=fluoxetine,tramadol&genotype=CYP2D6:PM&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=fluoxetine,tramadol&genotype=CYP2D6:PM&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=fluoxetine,tramadol&genotype=CYP2D6:PM&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=fluoxetine,tramadol&genotype=CYP2D6:PM&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=fluoxetine,tramadol&genotype=CYP2D6:PM&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=fluoxetine,tramadol&genotype=CYP2D6:PM&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=fluoxetine,tramadol&genotype=CYP2D6:PM&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#pain-inflammation-migraine-fluoxetine-tramadol-cyp2d6-pm",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -3137,8 +3242,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3239,8 +3344,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=bupropion,codeine&genotype=CYP2D6:PM&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=bupropion,codeine&genotype=CYP2D6:PM&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=bupropion,codeine&genotype=CYP2D6:PM&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=bupropion,codeine&genotype=CYP2D6:PM&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=bupropion,codeine&genotype=CYP2D6:PM&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=bupropion,codeine&genotype=CYP2D6:PM&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=bupropion,codeine&genotype=CYP2D6:PM&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#pain-inflammation-migraine-bupropion-codeine-cyp2d6-pm",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -3253,8 +3361,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3295,8 +3403,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": false,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sertraline,sumatriptan&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sertraline,sumatriptan&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sertraline,sumatriptan&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sertraline,sumatriptan&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sertraline,sumatriptan&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sertraline,sumatriptan&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sertraline,sumatriptan&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#pain-inflammation-migraine-sertraline-sumatriptan",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -3309,8 +3420,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3365,8 +3476,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=duloxetine,tizanidine&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=duloxetine,tizanidine&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=duloxetine,tizanidine&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=duloxetine,tizanidine&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=duloxetine,tizanidine&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=duloxetine,tizanidine&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=duloxetine,tizanidine&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#pain-inflammation-migraine-duloxetine-tizanidine",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -3379,8 +3493,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3435,8 +3549,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=phenelzine,tramadol&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=phenelzine,tramadol&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=phenelzine,tramadol&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=phenelzine,tramadol&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=phenelzine,tramadol&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=phenelzine,tramadol&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=phenelzine,tramadol&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#pain-inflammation-migraine-phenelzine-tramadol",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -3449,8 +3566,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3533,8 +3650,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amitriptyline,diazepam,diphenhydramine&genotype=CYP2D6:PM&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amitriptyline,diazepam,diphenhydramine&genotype=CYP2D6:PM&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amitriptyline,diazepam,diphenhydramine&genotype=CYP2D6:PM&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amitriptyline,diazepam,diphenhydramine&genotype=CYP2D6:PM&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amitriptyline,diazepam,diphenhydramine&genotype=CYP2D6:PM&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amitriptyline,diazepam,diphenhydramine&genotype=CYP2D6:PM&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amitriptyline,diazepam,diphenhydramine&genotype=CYP2D6:PM&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#psychiatry-neurology-amitriptyline-diazepam-diphenhydramine-cyp2d6-pm",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -3547,8 +3667,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3603,8 +3723,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=lamotrigine,valproic_acid&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=lamotrigine,valproic_acid&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=lamotrigine,valproic_acid&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=lamotrigine,valproic_acid&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=lamotrigine,valproic_acid&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=lamotrigine,valproic_acid&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=lamotrigine,valproic_acid&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#psychiatry-neurology-lamotrigine-valproic-acid",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -3617,8 +3740,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3673,8 +3796,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=phenelzine,sertraline&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=phenelzine,sertraline&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=phenelzine,sertraline&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=phenelzine,sertraline&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=phenelzine,sertraline&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=phenelzine,sertraline&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=phenelzine,sertraline&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#psychiatry-neurology-phenelzine-sertraline",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -3687,8 +3813,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3743,8 +3869,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=linezolid,sertraline&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=linezolid,sertraline&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=linezolid,sertraline&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=linezolid,sertraline&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=linezolid,sertraline&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=linezolid,sertraline&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=linezolid,sertraline&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#psychiatry-neurology-linezolid-sertraline",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -3757,8 +3886,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3813,8 +3942,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=donepezil,metoprolol&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=donepezil,metoprolol&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=donepezil,metoprolol&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=donepezil,metoprolol&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=donepezil,metoprolol&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=donepezil,metoprolol&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=donepezil,metoprolol&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#psychiatry-neurology-donepezil-metoprolol",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -3827,8 +3959,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -3894,8 +4026,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=desmopressin,sertraline&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=desmopressin,sertraline&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=desmopressin,sertraline&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=desmopressin,sertraline&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=desmopressin,sertraline&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=desmopressin,sertraline&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=desmopressin,sertraline&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#psychiatry-neurology-desmopressin-sertraline",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -3908,8 +4043,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4037,8 +4172,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#infectious-disease-antiinfective-simvastatin-clarithromycin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -4051,8 +4189,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4148,8 +4286,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,trimethoprim_sulfamethoxazole&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,trimethoprim_sulfamethoxazole&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,trimethoprim_sulfamethoxazole&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,trimethoprim_sulfamethoxazole&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,trimethoprim_sulfamethoxazole&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,trimethoprim_sulfamethoxazole&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,trimethoprim_sulfamethoxazole&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#infectious-disease-antiinfective-warfarin-tmp-smx",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -4162,8 +4303,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4324,8 +4465,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,voriconazole&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,voriconazole&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,voriconazole&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,voriconazole&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,voriconazole&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,voriconazole&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,voriconazole&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#infectious-disease-tacrolimus-voriconazole",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -4338,8 +4482,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4456,8 +4600,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=colchicine,clarithromycin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=colchicine,clarithromycin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=colchicine,clarithromycin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=colchicine,clarithromycin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=colchicine,clarithromycin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=colchicine,clarithromycin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=colchicine,clarithromycin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#infectious-disease-colchicine-clarithromycin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -4470,8 +4617,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4557,8 +4704,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tizanidine,ciprofloxacin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tizanidine,ciprofloxacin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tizanidine,ciprofloxacin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tizanidine,ciprofloxacin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tizanidine,ciprofloxacin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tizanidine,ciprofloxacin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tizanidine,ciprofloxacin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#infectious-disease-tizanidine-ciprofloxacin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -4571,8 +4721,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4667,8 +4817,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,trimethoprim_sulfamethoxazole&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,trimethoprim_sulfamethoxazole&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,trimethoprim_sulfamethoxazole&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,trimethoprim_sulfamethoxazole&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,trimethoprim_sulfamethoxazole&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,trimethoprim_sulfamethoxazole&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,trimethoprim_sulfamethoxazole&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#infectious-disease-dofetilide-tmp-smx",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -4681,8 +4834,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4810,8 +4963,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nirmatrelvir_ritonavir,simvastatin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nirmatrelvir_ritonavir,simvastatin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nirmatrelvir_ritonavir,simvastatin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nirmatrelvir_ritonavir,simvastatin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nirmatrelvir_ritonavir,simvastatin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nirmatrelvir_ritonavir,simvastatin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=nirmatrelvir_ritonavir,simvastatin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#infectious-disease-antiinfective-nirmatrelvir-ritonavir-simvastatin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -4824,8 +4980,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -4880,8 +5036,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=darunavir,rifampin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=darunavir,rifampin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=darunavir,rifampin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=darunavir,rifampin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=darunavir,rifampin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=darunavir,rifampin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=darunavir,rifampin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#infectious-disease-darunavir-rifampin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -4894,8 +5053,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5016,8 +5175,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#acid-suppression-gi-minerals-gi-clopidogrel-omeprazole-cyp2c19-pm",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -5030,8 +5192,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5127,8 +5289,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,omeprazole&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,omeprazole&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,omeprazole&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,omeprazole&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,omeprazole&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,omeprazole&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,omeprazole&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#acid-suppression-gi-minerals-erlotinib-omeprazole",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -5141,8 +5306,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5197,8 +5362,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,famotidine&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,famotidine&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,famotidine&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,famotidine&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,famotidine&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,famotidine&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,famotidine&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#acid-suppression-gi-minerals-erlotinib-famotidine",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -5211,8 +5379,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5267,8 +5435,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levothyroxine,iron&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levothyroxine,iron&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levothyroxine,iron&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levothyroxine,iron&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levothyroxine,iron&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levothyroxine,iron&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levothyroxine,iron&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#acid-suppression-gi-minerals-levothyroxine-iron",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -5281,8 +5452,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5337,8 +5508,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levothyroxine,calcium&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levothyroxine,calcium&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levothyroxine,calcium&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levothyroxine,calcium&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levothyroxine,calcium&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levothyroxine,calcium&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levothyroxine,calcium&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#acid-suppression-gi-minerals-levothyroxine-calcium",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -5351,8 +5525,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5407,8 +5581,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ciprofloxacin,iron&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ciprofloxacin,iron&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ciprofloxacin,iron&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ciprofloxacin,iron&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ciprofloxacin,iron&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ciprofloxacin,iron&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ciprofloxacin,iron&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#acid-suppression-gi-minerals-ciprofloxacin-iron",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -5421,8 +5598,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5477,8 +5654,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=doxycycline,calcium&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=doxycycline,calcium&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=doxycycline,calcium&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=doxycycline,calcium&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=doxycycline,calcium&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=doxycycline,calcium&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=doxycycline,calcium&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#acid-suppression-gi-minerals-doxycycline-calcium",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -5491,8 +5671,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5547,8 +5727,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=bictegravir,iron&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=bictegravir,iron&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=bictegravir,iron&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=bictegravir,iron&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=bictegravir,iron&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=bictegravir,iron&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=bictegravir,iron&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#acid-suppression-gi-minerals-bictegravir-iron",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -5561,8 +5744,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5617,8 +5800,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,rifampin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,rifampin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,rifampin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,rifampin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,rifampin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,rifampin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,rifampin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#contraception-hormones-combined-oral-contraceptive-rifampin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -5631,8 +5817,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5717,8 +5903,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,carbamazepine&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,carbamazepine&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,carbamazepine&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,carbamazepine&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,carbamazepine&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,carbamazepine&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,carbamazepine&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#contraception-hormones-combined-oral-contraceptive-carbamazepine",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -5731,8 +5920,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5787,8 +5976,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,lamotrigine&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,lamotrigine&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,lamotrigine&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,lamotrigine&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,lamotrigine&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,lamotrigine&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=combined_oral_contraceptive,lamotrigine&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#contraception-hormones-combined-oral-contraceptive-lamotrigine",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -5801,8 +5993,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5857,8 +6049,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ethinyl_estradiol,rifampin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ethinyl_estradiol,rifampin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ethinyl_estradiol,rifampin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ethinyl_estradiol,rifampin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ethinyl_estradiol,rifampin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ethinyl_estradiol,rifampin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ethinyl_estradiol,rifampin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#contraception-hormones-ethinyl-estradiol-rifampin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -5871,8 +6066,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5927,8 +6122,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ethinyl_estradiol,lamotrigine&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ethinyl_estradiol,lamotrigine&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ethinyl_estradiol,lamotrigine&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ethinyl_estradiol,lamotrigine&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ethinyl_estradiol,lamotrigine&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ethinyl_estradiol,lamotrigine&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ethinyl_estradiol,lamotrigine&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#contraception-hormones-ethinyl-estradiol-lamotrigine",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -5941,8 +6139,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -5997,8 +6195,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levonorgestrel,efavirenz&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levonorgestrel,efavirenz&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levonorgestrel,efavirenz&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levonorgestrel,efavirenz&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levonorgestrel,efavirenz&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levonorgestrel,efavirenz&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=levonorgestrel,efavirenz&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#contraception-hormones-levonorgestrel-efavirenz",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -6011,8 +6212,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6067,8 +6268,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sugammadex,ethinyl_estradiol&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sugammadex,ethinyl_estradiol&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sugammadex,ethinyl_estradiol&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sugammadex,ethinyl_estradiol&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sugammadex,ethinyl_estradiol&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sugammadex,ethinyl_estradiol&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sugammadex,ethinyl_estradiol&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#contraception-hormones-sugammadex-ethinyl-estradiol",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -6081,8 +6285,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6148,8 +6352,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=pregnancy_trying_to_conceive,warfarin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=pregnancy_trying_to_conceive,warfarin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=pregnancy_trying_to_conceive,warfarin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=pregnancy_trying_to_conceive,warfarin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=pregnancy_trying_to_conceive,warfarin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=pregnancy_trying_to_conceive,warfarin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=pregnancy_trying_to_conceive,warfarin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#contraception-hormones-pregnancy-warfarin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -6162,8 +6369,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6293,8 +6500,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=flecainide,fluoxetine&genotype=CYP2D6:PM&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=flecainide,fluoxetine&genotype=CYP2D6:PM&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=flecainide,fluoxetine&genotype=CYP2D6:PM&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=flecainide,fluoxetine&genotype=CYP2D6:PM&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=flecainide,fluoxetine&genotype=CYP2D6:PM&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=flecainide,fluoxetine&genotype=CYP2D6:PM&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=flecainide,fluoxetine&genotype=CYP2D6:PM&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#cardiology-qt-flecainide-fluoxetine-cyp2d6-pm",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -6307,8 +6517,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6425,8 +6635,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amiodarone,warfarin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amiodarone,warfarin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amiodarone,warfarin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amiodarone,warfarin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amiodarone,warfarin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amiodarone,warfarin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=amiodarone,warfarin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#cardiology-qt-cardiology-amiodarone-warfarin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -6439,8 +6652,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6495,8 +6708,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,hydrochlorothiazide&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,hydrochlorothiazide&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,hydrochlorothiazide&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,hydrochlorothiazide&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,hydrochlorothiazide&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,hydrochlorothiazide&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,hydrochlorothiazide&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#cardiology-qt-dofetilide-hydrochlorothiazide",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -6509,8 +6725,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6595,8 +6811,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,cimetidine&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,cimetidine&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,cimetidine&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,cimetidine&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,cimetidine&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,cimetidine&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=dofetilide,cimetidine&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#cardiology-qt-dofetilide-cimetidine",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -6609,8 +6828,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6665,8 +6884,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sotalol,hydrochlorothiazide&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sotalol,hydrochlorothiazide&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sotalol,hydrochlorothiazide&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sotalol,hydrochlorothiazide&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sotalol,hydrochlorothiazide&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sotalol,hydrochlorothiazide&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=sotalol,hydrochlorothiazide&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#cardiology-qt-sotalol-hydrochlorothiazide",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -6679,8 +6901,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6776,8 +6998,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ranolazine,diltiazem&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ranolazine,diltiazem&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ranolazine,diltiazem&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ranolazine,diltiazem&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ranolazine,diltiazem&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ranolazine,diltiazem&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ranolazine,diltiazem&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#cardiology-qt-ranolazine-diltiazem",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -6790,8 +7015,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6887,8 +7112,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ivabradine,clarithromycin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ivabradine,clarithromycin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ivabradine,clarithromycin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ivabradine,clarithromycin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ivabradine,clarithromycin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ivabradine,clarithromycin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=ivabradine,clarithromycin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#cardiology-qt-ivabradine-clarithromycin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -6901,8 +7129,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -6998,8 +7226,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=propafenone,metoprolol&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=propafenone,metoprolol&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=propafenone,metoprolol&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=propafenone,metoprolol&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=propafenone,metoprolol&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=propafenone,metoprolol&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=propafenone,metoprolol&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#cardiology-qt-propafenone-metoprolol",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -7012,8 +7243,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7141,8 +7372,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,fluconazole&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,fluconazole&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,fluconazole&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,fluconazole&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,fluconazole&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,fluconazole&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,fluconazole&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#oncology-transplant-tacrolimus-fluconazole",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -7155,8 +7389,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7295,8 +7529,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,clarithromycin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,clarithromycin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,clarithromycin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,clarithromycin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,clarithromycin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,clarithromycin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=tacrolimus,clarithromycin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#oncology-transplant-tacrolimus-clarithromycin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -7309,8 +7546,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7405,8 +7642,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=cyclosporine,posaconazole&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=cyclosporine,posaconazole&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=cyclosporine,posaconazole&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=cyclosporine,posaconazole&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=cyclosporine,posaconazole&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=cyclosporine,posaconazole&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=cyclosporine,posaconazole&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#oncology-transplant-cyclosporine-posaconazole",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -7419,8 +7659,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7489,8 +7729,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#oncology-transplant-azathioprine-allopurinol-tpmt-nudt15-pm",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -7503,8 +7746,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7565,8 +7808,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=capecitabine&genotype=DPYD:PM&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=capecitabine&genotype=DPYD:PM&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=capecitabine&genotype=DPYD:PM&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=capecitabine&genotype=DPYD:PM&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=capecitabine&genotype=DPYD:PM&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=capecitabine&genotype=DPYD:PM&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=capecitabine&genotype=DPYD:PM&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#oncology-transplant-capecitabine-dpyd-pm",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -7579,8 +7825,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7685,8 +7931,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=irinotecan&genotype=UGT1A1:PM&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=irinotecan&genotype=UGT1A1:PM&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=irinotecan&genotype=UGT1A1:PM&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=irinotecan&genotype=UGT1A1:PM&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=irinotecan&genotype=UGT1A1:PM&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=irinotecan&genotype=UGT1A1:PM&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=irinotecan&genotype=UGT1A1:PM&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#oncology-transplant-irinotecan-ugt1a1-pm",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -7699,8 +7948,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7796,8 +8045,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=venetoclax,ritonavir&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=venetoclax,ritonavir&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=venetoclax,ritonavir&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=venetoclax,ritonavir&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=venetoclax,ritonavir&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=venetoclax,ritonavir&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=venetoclax,ritonavir&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#oncology-transplant-venetoclax-ritonavir",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -7810,8 +8062,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     },
     {
       "schema": "diognosis.reference-fact.v1",
@@ -7886,8 +8138,11 @@
       "sourceIntegrationStatus": "source-integrated",
       "sourceIntegrated": true,
       "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
-      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,rifampin&audience=patient&tab=overview",
-      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,rifampin&audience=clinician&tab=overview",
+      "appUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,rifampin&tab=overview",
+      "plainAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,rifampin&audience=plain&tab=overview",
+      "detailedAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,rifampin&tab=overview",
+      "patientAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,rifampin&audience=plain&tab=overview",
+      "clinicianAppUrl": "https://diogonmpacheco.github.io/Diognosis/index.html?substances=erlotinib,rifampin&tab=overview",
       "referenceUrl": "https://diogonmpacheco.github.io/Diognosis/reference/index.html#oncology-transplant-erlotinib-rifampin",
       "generatedFrom": {
         "source": "data/medication-class-guides.json",
@@ -7900,8 +8155,8 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-06-27T10:16:34.732Z",
-      "lastmod": "2026-06-27"
+      "generatedAt": "2026-06-28T13:10:49.940Z",
+      "lastmod": "2026-06-28"
     }
   ]
 }

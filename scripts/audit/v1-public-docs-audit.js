@@ -132,8 +132,8 @@ assert(/V1 PGx contract audit/i.test(launchTrust),
   'Launch Data Trust Audit must reference the V1 PGx contract gate');
 assert(/V1 PK visualization audit/i.test(launchTrust),
   'Launch Data Trust Audit must reference the V1 PK visualization gate');
-assert(/Patient mode|Clinician|patient\/clinician/i.test(launchQa),
-  'Launch QA Matrix must cover audience-mode behavior');
+assert(/Plain\/Detailed explanation-depth|Plain depth|Detailed depth/i.test(launchQa),
+  'Launch QA Matrix must cover explanation-depth behavior');
 assert(/npm run pages:check/i.test(publicTrust) && /npm run release:check/i.test(publicTrust),
   'Public Trust must document both deploy and release gates');
 assert(/npm run pages:check/i.test(technical) && /GitHub Pages deploy gate/i.test(technical),

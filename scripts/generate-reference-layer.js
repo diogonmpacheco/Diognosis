@@ -93,13 +93,15 @@ function safeReferenceReviewAction(value) {
   return 'Review whether this combination needs a different plan, dose context, timing, monitoring, or specialist/pharmacist input before any medication changes.';
 }
 
-function exampleHref(example, audience = 'patient') {
+function exampleHref(example, audience = 'detailed') {
   const params = [
     ['substances', example.substances.join(',')],
     ...(example.genotypes || []).map((genotype) => ['genotype', genotype]),
-    ['audience', audience],
     ['tab', 'overview'],
   ];
+  if (audience === 'plain') {
+    params.splice(params.length - 1, 0, ['audience', 'plain']);
+  }
   return `./index.html?${params.map(([key, value]) => `${encodeURIComponent(key)}=${encodeUrlValue(value)}`).join('&')}`;
 }
 
@@ -283,8 +285,11 @@ function buildFact(window, data, resolveSubstance, guide, example, index) {
     sourceIntegrationStatus:presentation.clinicalReviewStatus || 'source-integrated',
     sourceIntegrated:!!presentation.sourceLinked || refs.length > 0,
     boundary:BOUNDARY,
-    appUrl:absoluteUrl(exampleHref(example, 'patient')),
-    clinicianAppUrl:absoluteUrl(exampleHref(example, 'clinician')),
+    appUrl:absoluteUrl(exampleHref(example, 'detailed')),
+    plainAppUrl:absoluteUrl(exampleHref(example, 'plain')),
+    detailedAppUrl:absoluteUrl(exampleHref(example, 'detailed')),
+    patientAppUrl:absoluteUrl(exampleHref(example, 'plain')),
+    clinicianAppUrl:absoluteUrl(exampleHref(example, 'detailed')),
     referenceUrl:absoluteUrl(`reference/index.html#${id}`),
     generatedFrom:{
       source:'data/medication-class-guides.json',
@@ -436,7 +441,7 @@ function renderReferencePage(payload) {
       <a class="back" href="../data-views.html">Data views</a>
       <a class="back" href="../medication-classes.html">Class guides</a>
       <h1>Diognosis V1 Reference Facts</h1>
-      <p>Static patient and clinician summaries generated from the same local Diognosis runtime used by the app. This page is designed for humans, search crawlers, LLM retrieval, and audit checks without loading the full app bundle.</p>
+      <p>Static Plain and Detailed summaries generated from the same local Diognosis runtime used by the app. This page is designed for humans, search crawlers, LLM retrieval, and audit checks without loading the full app bundle.</p>
       <div class="support-strip" aria-label="Reference fact snapshot">
         <span><strong>${html(payload.factCount)}</strong> facts</span>
         <span><strong>${html(payload.sourceLinkedFacts)}</strong> source-linked</span>
@@ -470,12 +475,12 @@ ${payload.facts.map((fact) => `    <article class="fact" id="${html(fact.id)}">
       </div>
       <div class="fact-grid">
         <div class="panel">
-          <div class="label">Patient-safe summary</div>
+          <div class="label">Plain summary</div>
           <p class="summary">${html(fact.patientSummary)}</p>
           <p>${html(fact.patientQuestion)}</p>
         </div>
         <div class="panel">
-          <div class="label">Clinician/mechanism summary</div>
+          <div class="label">Detailed mechanism summary</div>
           <p class="summary">${html(fact.clinicianSummary)}</p>
           <p>${html(fact.mechanismSummary)}</p>
         </div>
@@ -486,8 +491,8 @@ ${payload.facts.map((fact) => `    <article class="fact" id="${html(fact.id)}">
         ${renderEvidenceLinks(fact)}
       </div>
       <div class="meta">
-        <a class="tag" href="${html(fact.appUrl)}">Open patient view</a>
-        <a class="tag" href="${html(fact.clinicianAppUrl)}">Open clinician view</a>
+        <a class="tag" href="${html(fact.plainAppUrl)}">Open Plain view</a>
+        <a class="tag" href="${html(fact.detailedAppUrl)}">Open Detailed view</a>
       </div>
     </article>`).join('\n')}
   </main>
@@ -503,7 +508,7 @@ function renderLlms(payload) {
 
 ## Best Retrieval Entry Points
 
-- [V1 Reference Facts](${BASE_URL}reference/index.html): static patient and clinician summaries generated from the app runtime.
+- [V1 Reference Facts](${BASE_URL}reference/index.html): static Plain and Detailed summaries generated from the app runtime.
 - [Facts JSON](${BASE_URL}data/diognosis-facts.json): full canonical fact payload with metadata.
 - [Facts JSONL](${BASE_URL}data/diognosis-facts.jsonl): one fact per line for retrieval pipelines.
 - [Data Views](${BASE_URL}data-views.html): alternate views over genotype, action, and ranking data.

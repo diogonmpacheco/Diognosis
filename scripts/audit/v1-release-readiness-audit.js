@@ -253,11 +253,11 @@ const patient = patientWindow.eval(`(() => ({
 
 assert(patient.audienceMode === 'patient', 'Patient URL should activate Patient mode');
 assert(patient.bodyAudience === 'patient', 'Patient mode should mark body data-audience');
-assert(patient.activeTab === 'overview', 'Patient mode should force Overview even if URL asks for Review');
-assert(/prepare medicine-list questions|doctor or pharmacist/i.test(patient.tagline),
-  'Patient mode should use patient-facing app tagline');
+assert(patient.activeTab === 'overview', 'Plain mode should route reviewer-console tab requests back to Overview');
+assert(/Plain-language questions with detailed review still available/i.test(patient.tagline),
+  'Plain mode should use the simplified-depth app tagline');
 assert(/Search medicines/i.test(patient.searchPlaceholder), 'Patient mode should use patient-facing search placeholder');
-assert(patient.listTitle === 'My Medicine List', 'Patient mode should use patient-facing list label');
+assert(patient.listTitle === 'Medicine List', 'Plain mode should use simplified list label');
 assert(/2 items selected/i.test(patient.medCount), 'Patient mode should use plain selected-item count copy');
 assert(!/substances?/i.test(patient.medCount), 'Patient mode selected-list count should not use substance terminology');
 assert(patient.doseSelects === 0, 'Patient mode selected list should not expose clinician dose-tier selectors');
@@ -267,11 +267,11 @@ assert(/Gene Results/i.test(patient.geneTitle) && /Do not guess|original report|
   'Patient mode should use patient-facing gene helper copy');
 assert(!/Genes \+ Metabolites tab|source-linked|parent drugs|PK timing|pathway activity|metabolite balance/i.test(
   `${patient.tagline} ${patient.geneIntro}`
-), 'Patient chrome should not refer to hidden clinician tabs or technical tagline language');
-assert(patient.tabBarDisplay === 'none', 'Patient mode should hide clinician tab navigation');
+), 'Plain chrome should avoid technical tagline language');
+assert(patient.tabBarDisplay !== 'none', 'Plain mode should keep detailed tabs available');
 assert(patient.summaryRisk.trim() === '', 'Patient mode should hide score-style summary badges');
 assert(patient.findingTitle === 'Safety Notes', 'Patient mode should rename public findings');
-assert(/safety notes?/i.test(patient.findingCount), 'Patient mode should label public finding count as safety notes');
+assert(/plain notes?/i.test(patient.findingCount), 'Plain mode should label public finding count as plain notes');
 assert(patient.exposureSummaryCount === 0, 'Patient mode should hide technical exposure summary rows from the selected list');
 assert(/What to ask|For this list/i.test(patient.findingText), 'Patient mode should use plain-language labels');
 assert(/Question to ask|Can you check/i.test(patient.findingText), 'Patient mode should expose a plain-language discussion question');
@@ -289,8 +289,8 @@ assert(patient.supportingDetails === 0, 'Patient mode should hide technical supp
 assert(patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
 assert(patient.severityLabels.length > 0 && patient.severityLabels.every(label => !/^(critical|severe|moderate|monitor|info)$/i.test(label)),
   `Patient mode should use plain priority labels instead of raw severity labels: ${patient.severityLabels.join(', ')}`);
-assert(patient.riskDisplay === 'none', 'Patient mode should hide score-style risk panel');
-assert(patient.shareUrl.includes('audience=patient'), 'Patient share URL should preserve audience mode');
+assert(patient.riskDisplay !== 'none', 'Plain mode should keep the detailed risk panel available');
+assert(patient.shareUrl.includes('audience=plain'), 'Plain share URL should preserve simplified explanation depth');
 assertNoPatientTechnicalLeak('Patient Summary', patient.summaryText);
 assertNoPatientTechnicalLeak('Patient Overview', patient.findingText);
 assertNoPatientTechnicalLeak('Patient Copy Summary', patient.overviewHandoffText);
@@ -430,8 +430,8 @@ assert(/Not checked here|Confirm spelling/i.test(unknownUrl.overviewHandoffText)
   'Unknown URL patient copy summary should explain the unrecognized item boundary');
 assert(/Do not start, stop, or change medication/i.test(unknownUrl.overviewHandoffText),
   'Unknown URL patient copy summary should preserve medication-change boundaries');
-assert(unknownUrl.shareUrl.includes('warfarin,mystery-mix') && unknownUrl.shareUrl.includes('audience=patient'),
-  'Share URL should preserve known and unknown substances plus patient audience mode');
+assert(unknownUrl.shareUrl.includes('warfarin,mystery-mix') && unknownUrl.shareUrl.includes('audience=plain'),
+  'Share URL should preserve known and unknown substances plus Plain depth');
 assertNoPatientTechnicalLeak('Unknown URL Patient Copy Summary', unknownUrl.overviewHandoffText);
 assertNoUnsafeCertainty('Unknown URL Patient Copy Summary', unknownUrl.overviewHandoffText);
 
@@ -497,8 +497,8 @@ assert(/quiet result here does not prove the list is safe|does not prove the lis
   'Patient no-signal copy summary should preserve bounded no-safety language');
 assert(/Bring to review/i.test(noSignalUnknown.overviewHandoffText),
   'Patient no-signal copy summary should keep practical review prompts');
-assert(noSignalUnknown.shareUrl.includes('mystery-mix,unknown-herb') && noSignalUnknown.shareUrl.includes('audience=patient'),
-  'Patient no-signal share URL should preserve unrecognized selections and audience');
+assert(noSignalUnknown.shareUrl.includes('mystery-mix,unknown-herb') && noSignalUnknown.shareUrl.includes('audience=plain'),
+  'Plain no-signal share URL should preserve unrecognized selections and explanation depth');
 assertNoPatientTechnicalLeak('Patient No-Signal Finding', noSignalUnknown.findingText);
 assertNoPatientTechnicalLeak('Patient No-Signal Summary', noSignalUnknown.summaryText);
 assertNoPatientTechnicalLeak('Patient No-Signal Copy Summary', noSignalUnknown.overviewHandoffText);
@@ -574,15 +574,15 @@ assert(structural.hasReadinessHelper, 'V1 readiness snapshot helper should be bu
 assert(structural.hasTrustHelper, 'V1 trust contract helper should be bundled');
 assert(structural.hasHandoffHelper, 'V1 handoff helper should be bundled');
 assert(structural.hasScopeHelper, 'Reviewer console scope helper should be bundled');
-assert(structural.patientButton && structural.clinicianButton, 'Audience toggle should be top-level and bundled');
-assert(structural.audienceMode === 'patient' && structural.bodyAudience === 'patient',
-  `Default public route should open Patient mode, got ${structural.audienceMode}/${structural.bodyAudience}`);
+assert(structural.patientButton && structural.clinicianButton, 'Explanation-depth toggle should be top-level and bundled');
+assert(structural.audienceMode === 'clinician' && structural.bodyAudience === 'clinician',
+  `Default public route should open Detailed mode, got ${structural.audienceMode}/${structural.bodyAudience}`);
 assert(structural.bodyReviewer === 'standard' && structural.reviewButtonDisplay === 'none' && structural.reviewPanelDisplay === 'none',
   'Default public route should keep Reviewer Console hidden');
-assert(structural.patientPressed === 'true' && structural.clinicianPressed === 'false',
-  'Default public route should mark Patient as selected');
-assert(/doctor or pharmacist/i.test(structural.tagline) && /Search medicines/i.test(structural.searchPlaceholder),
-  'Default public route should use patient-facing chrome');
+assert(structural.patientPressed === 'false' && structural.clinicianPressed === 'true',
+  'Default public route should mark Detailed as selected');
+assert(/Mechanistic medication review with plain questions and source-linked evidence/i.test(structural.tagline) && /Medication, supplement, or food/i.test(structural.searchPlaceholder),
+  'Default public route should use Detailed chrome');
 assert(structural.firstUseOrder.join('|').startsWith('audience|mode|search'),
   `Audience toggle should sit above add-mode controls and search; got ${structural.firstUseOrder.join('|')}`);
 assert(structural.modeGroupLabel === 'Choose how to add items', 'Search/Browse mode group should describe the add-choice control');
@@ -613,14 +613,14 @@ const reviewerIsolation = reviewerIsolationWindow.eval(`(() => ({
 
 assert(reviewerIsolation.reviewerMode === true, 'Reviewer URL should enable reviewer mode');
 assert(reviewerIsolation.audienceMode === 'clinician' && reviewerIsolation.bodyAudience === 'clinician',
-  'Reviewer URL should force the clinician-style surface instead of mixing with Patient mode');
+  'Reviewer URL should force the Detailed surface instead of mixing with Plain mode');
 assert(reviewerIsolation.bodyReviewer === 'reviewer', 'Reviewer URL should mark the body as reviewer mode');
 assert(reviewerIsolation.activeTab === 'review', 'Reviewer URL should open the Reviewer Console tab');
 assert(reviewerIsolation.patientPressed === 'false' && reviewerIsolation.clinicianPressed === 'true',
-  'Reviewer URL should not leave Patient selected');
+  'Reviewer URL should not leave Plain selected');
 assert(reviewerIsolation.reviewButtonDisplay !== 'none' && reviewerIsolation.reviewPanelDisplay !== 'none',
   'Reviewer URL should expose the Reviewer Console only in reviewer mode');
 assert(/Reviewer Console|Reviewer Summary/i.test(reviewerIsolation.reviewText),
   'Reviewer URL should render reviewer-only console content inside the Review tab');
 
-console.log(`V1 release readiness audit passed: ${clinicianScenarios.length} clinician scenarios, Patient mode boundary, and static readiness surface.`);
+console.log(`V1 release readiness audit passed: ${clinicianScenarios.length} detailed scenarios, Plain depth boundary, and static readiness surface.`);

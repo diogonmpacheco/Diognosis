@@ -97,7 +97,8 @@ function swapDrug(oldName, newName) {
 
 let viewMode = "search";
 let activeTab = "overview";
-let audienceMode = "patient";
+const DEFAULT_AUDIENCE_MODE = "clinician";
+let audienceMode = DEFAULT_AUDIENCE_MODE;
 let currentInteractionFindings = [];
 let currentClinicalConcerns = [];
 let currentPublicFindingPresentations = [];
@@ -231,7 +232,9 @@ function setActiveTab(name) {
 function normalizeAudienceMode(value) {
   const key = String(value || "").trim().toLowerCase();
   if (key === "patient" || key === "simple" || key === "public") return "patient";
+  if (key === "plain") return "patient";
   if (key === "clinician" || key === "clinical" || key === "professional" || key === "reviewer") return "clinician";
+  if (key === "detailed" || key === "review" || key === "mechanistic") return "clinician";
   return null;
 }
 
@@ -257,9 +260,8 @@ function setReviewerShellHidden(el, hidden) {
 }
 
 function setAudienceMode(mode, options = {}) {
-  const requested = normalizeAudienceMode(mode) || "patient";
+  const requested = normalizeAudienceMode(mode) || DEFAULT_AUDIENCE_MODE;
   audienceMode = isReviewerMode() ? "clinician" : requested;
-  if (isPatientAudience() && activeTab !== "overview") setActiveTab("overview");
   lazyRenderState = { evidenceKey:"", reviewKey:"" };
   syncAudienceModeUI();
   if (options.render !== false) renderAll();
@@ -278,8 +280,8 @@ function syncAudienceModeUI() {
   const tagline = document.getElementById("audienceTagline") || document.querySelector(".header p");
   if (tagline) {
     tagline.textContent = patient
-      ? "Prepare medicine-list questions for your doctor or pharmacist"
-      : "Mechanistic medication intelligence for source-linked review";
+      ? "Plain-language questions with detailed review still available"
+      : "Mechanistic medication review with plain questions and source-linked evidence";
   }
   const searchInput = document.getElementById("searchInput");
   if (searchInput) {
@@ -288,7 +290,7 @@ function syncAudienceModeUI() {
       : "Medication, supplement, or food";
   }
   const listTitle = document.getElementById("listTitle");
-  if (listTitle) listTitle.textContent = patient ? "My Medicine List" : "Selected List";
+  if (listTitle) listTitle.textContent = patient ? "Medicine List" : "Selected List";
   const geneTitle = document.getElementById("geneSectionTitle");
   if (geneTitle) {
     geneTitle.innerHTML = patient
@@ -302,7 +304,7 @@ function syncAudienceModeUI() {
       : "Set inherited gene or marker results here. Genes + Metabolites maps functional phenotype, parent/metabolite direction, pathway consequences, and source-linked review context for the current stack.";
   }
   const findingTitle = document.getElementById("findingTitle");
-  if (findingTitle) findingTitle.textContent = patient ? "Safety Notes" : "Clinical Review Priorities";
+  if (findingTitle) findingTitle.textContent = patient ? "Safety Notes" : "Review Priorities";
 }
 
 function syncMainEmptyStateCopy(patient) {
@@ -327,10 +329,10 @@ function syncMainEmptyStateCopy(patient) {
         "Questions worth discussing before changing anything",
         "Known gene-test results that may change what to ask",
         "Timing, food, or symptom context that may matter",
-        "Clear next steps for clinician or pharmacist follow-up",
+        "Clear next steps for doctor or pharmacist follow-up",
       ]
     : [
-        "Priority signals and grouped mechanistic concerns",
+        "Priority signals and grouped mechanistic review",
         "Gene, enzyme, transporter, and metabolite context that may change interpretation",
         "Timing, persistence, washout, and exposure-shift context",
         "Source links and review boundaries for follow-up",
@@ -549,8 +551,7 @@ function renderSummaryBar() {
 
   if (mainEmptyState) mainEmptyState.style.display = "none";
   bar.style.display = "";
-  if (isPatientAudience()) setActiveTab("overview");
-  tabBar.style.display = isPatientAudience() ? "none" : "";
+  tabBar.style.display = "";
   tabPanels.forEach(panel => { panel.style.display = ""; });
   setTab(activeTab);
 
@@ -670,7 +671,7 @@ function renderSummaryBar() {
 
   const summaryKicker = patient
     ? (primaryPresentation ? "Questions ready" : "Current check")
-    : (primaryPresentation ? "Clinical Review Priorities" : summaryBandLabel(riskClass, activeStack.length));
+    : (primaryPresentation ? "Review Priorities" : summaryBandLabel(riskClass, activeStack.length));
   const jumpLabel = patient ? "View note" : (primaryPresentation ? "Review first" : "View finding");
   const hasVisibleSummaryJump = !patient && (Boolean(primaryPresentation) || activeStack.length >= 2 || Boolean(isGenotypePriority));
   const summaryJumpHtml = hasVisibleSummaryJump
@@ -992,7 +993,7 @@ function renderInteractionFindingsOverview(risk) {
   }
   section.style.display = "";
   if (count) {
-    const label = isPatientAudience() ? "safety note" : "concern";
+    const label = isPatientAudience() ? "plain note" : "review priority";
     count.textContent = `${visiblePresentations.length} ${label}${visiblePresentations.length === 1 ? "" : "s"}`;
   }
   body.innerHTML = isPatientAudience()
@@ -1022,10 +1023,45 @@ function renderClinicianFindingsOverview(presentations = []) {
   const shown = ranked.slice(0, 1);
   const remaining = ranked.slice(1);
   return `
+    ${renderPlainQuestionBridge(getPatientFacingPublicFindingPresentations(currentPublicFindingPresentations))}
     ${shown.map((presentation, index) => renderPublicFindingCard(presentation, index)).join("")}
     ${renderCollapsedClinicianFindings(remaining, shown.length)}
     ${renderFindingOverviewFooter(ranked.length)}
   `;
+}
+
+function renderPlainQuestionBridge(presentations = []) {
+  const ranked = rankPublicFindingPresentations(presentations).slice(0, 2);
+  if (!ranked.length) return "";
+  return `<div class="plain-question-bridge">
+    <div class="plain-question-bridge-head">
+      <div>
+        <div class="plain-question-kicker">Plain-language questions</div>
+        <div class="plain-question-title">Start here, then use the detailed review below.</div>
+      </div>
+      <span>${safePublicHtml(String(ranked.length))} question${ranked.length === 1 ? "" : "s"}</span>
+    </div>
+    <div class="plain-question-grid">
+      ${ranked.map(renderPlainBridgeQuestion).join("")}
+    </div>
+  </div>`;
+}
+
+function renderPlainBridgeQuestion(presentation = {}) {
+  const trust = presentation.trustContract || null;
+  const question = buildPatientDiscussionQuestion(presentation, trust);
+  const title = patientFindingTitleText(presentation);
+  const affected = (presentation.affectedSubstances || []).slice(0, 3).join(" + ");
+  const severity = safeChoice(presentation.severity, ["critical","severe","moderate","monitor","info"], "info");
+  const tone = patientQuestionTone(severity);
+  return `<div class="plain-question-card ${safeAttr(tone)}">
+    <div class="plain-question-card-top">
+      <span class="patient-question-tag">${safePublicHtml(patientSeverityLabel(severity))}</span>
+      ${affected ? `<span>${safePublicHtml(affected)}</span>` : ""}
+    </div>
+    <div class="plain-question-card-question">${safePublicHtml(question)}</div>
+    <div class="plain-question-card-context">${safePublicHtml(title)}</div>
+  </div>`;
 }
 
 function renderPatientStackSummary(summary = null) {
@@ -3219,11 +3255,6 @@ function applyAudienceModeVisibility() {
     reviewerSections.forEach(([sectionId, bodyId, countId]) => hideSectionAndClear(sectionId, bodyId, countId));
     lazyRenderState.reviewKey = "";
   }
-  if (!isPatientAudience()) return;
-  [
-    ["riskSection", "riskBody", null],
-    ["circulatingSection", "circulatingBody", "circulatingCount"],
-  ].forEach(([sectionId, bodyId, countId]) => hideSectionAndClear(sectionId, bodyId, countId));
 }
 
 function arrangeAdvancedSections() {
@@ -3806,7 +3837,9 @@ function currentStackUrlParams(tab = activeTab, options = {}) {
     }).join(",")]);
   }
   for (const token of activeGenotypeUrlTokens()) params.push(["genotype", token]);
-  params.push(["audience", audienceMode]);
+  if (audienceMode !== DEFAULT_AUDIENCE_MODE) {
+    params.push(["audience", audienceMode === "patient" ? "plain" : "detailed"]);
+  }
   if (includeReviewer && isReviewerMode()) params.push(["reviewer", "1"]);
   const shareTab = tab === "review" && !isReviewerMode() ? "overview" : tab;
   if (shareTab) params.push(["tab", shareTab]);
@@ -3835,7 +3868,7 @@ function shouldExposeCurrentStateInUrl(tab = activeTab) {
   const shareTab = tab === "review" && !isReviewerMode() ? "overview" : tab;
   return activeStack.length > 0 ||
     activeGenotypeUrlTokens().length > 0 ||
-    audienceMode !== "patient" ||
+    audienceMode !== DEFAULT_AUDIENCE_MODE ||
     shareTab !== "overview" ||
     isReviewerMode();
 }
@@ -3965,7 +3998,6 @@ function renderFeedbackLink(label, options = {}) {
 // ── RENDER ALL ──
 function renderAll() {
   syncAudienceModeUI();
-  if (isPatientAudience() && activeTab !== "overview") setActiveTab("overview");
   const activeDrugNames = typeof getActiveDrugNames === "function" ? getActiveDrugNames() : activeStack.filter(name => getDrug(name));
   arrangeAdvancedSections();
   renderMedList();
@@ -4139,7 +4171,7 @@ function renderCirculatingOverview() {
   const body = document.getElementById("circulatingBody");
   const count = document.getElementById("circulatingCount");
   if (!section || !body) return [];
-  if (isPatientAudience() || !activeStack.length || typeof computeActorExposureDeltas !== "function") {
+  if (!activeStack.length || typeof computeActorExposureDeltas !== "function") {
     hideSectionAndClear("circulatingSection", "circulatingBody", "circulatingCount");
     return [];
   }

@@ -226,14 +226,16 @@ assert(/substances=codeine,fluoxetine/i.test(liveUrlStateRegression.withStack),
   `Live URL sync should include selected substances: ${liveUrlStateRegression.withStack}`);
 assert(/genotype=CYP2D6:PM/i.test(liveUrlStateRegression.withStack),
   `Live URL sync should include selected genotype: ${liveUrlStateRegression.withStack}`);
-assert(/audience=clinician/i.test(liveUrlStateRegression.withStack),
-  `Live URL sync should include current audience: ${liveUrlStateRegression.withStack}`);
+assert(!/audience=/i.test(liveUrlStateRegression.withStack),
+  `Live URL sync should omit the default Detailed audience: ${liveUrlStateRegression.withStack}`);
 assert(/tab=genes-metabolites/i.test(liveUrlStateRegression.withStack),
   `Live URL sync should include current tab: ${liveUrlStateRegression.withStack}`);
 assert(/substances=codeine/i.test(liveUrlStateRegression.afterRemove) && !/fluoxetine/i.test(liveUrlStateRegression.afterRemove),
   `Live URL sync should remove deselected substances: ${liveUrlStateRegression.afterRemove}`);
 assert(!/(?:substances|drugs|medications)=/i.test(liveUrlStateRegression.afterClear) && !/genotype=/i.test(liveUrlStateRegression.afterClear),
   `Live URL sync should clear stale stack/genotype params when the state is reset: ${liveUrlStateRegression.afterClear}`);
+assert(/audience=plain/i.test(liveUrlStateRegression.afterClear),
+  `Live URL sync should preserve non-default Plain depth when the stack is reset: ${liveUrlStateRegression.afterClear}`);
 
 const genotypeSemanticsAudit = window.eval(`(() => {
   const missing = [];
@@ -867,6 +869,7 @@ const audienceModeRegression = window.eval(`(() => {
     summaryNext:document.querySelector('#summaryBar .summary-next')?.textContent || '',
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
     firstFindingText:document.querySelector('#findingBody .primary-finding-card')?.textContent || '',
+    plainQuestionBridge:document.querySelectorAll('#findingBody .plain-question-bridge').length,
     doseSelects:document.querySelectorAll('#medList .dose-select').length,
     removeButtons:document.querySelectorAll('#medList button.x').length,
     clinicianLayoutCss:[...document.querySelectorAll('style')].some(style => {
@@ -900,10 +903,10 @@ const audienceModeRegression = window.eval(`(() => {
 })()`);
 assert(audienceModeRegression.patient.audienceMode === 'patient', 'Audience URL should set Patient mode');
 assert(audienceModeRegression.patient.bodyAudience === 'patient', 'Patient mode should mark body data-audience');
-assert(audienceModeRegression.patient.activeTab === 'overview', 'Patient mode should force the Overview tab');
-assert(/prepare medicine-list questions|doctor or pharmacist/i.test(audienceModeRegression.patient.tagline), 'Patient mode should use patient-facing app tagline');
+assert(audienceModeRegression.patient.activeTab === 'overview', 'Plain mode should still route reviewer-console tab requests back to Overview');
+assert(/Plain-language questions with detailed review still available/i.test(audienceModeRegression.patient.tagline), 'Plain mode should use the simplified-depth app tagline');
 assert(/Search medicines, supplements, or foods/i.test(audienceModeRegression.patient.searchPlaceholder), 'Patient mode should use patient-facing search placeholder');
-assert(audienceModeRegression.patient.listTitle === 'My Medicine List', 'Patient mode should use patient-facing selected-list label');
+assert(audienceModeRegression.patient.listTitle === 'Medicine List', 'Plain mode should use simplified selected-list label');
 assert(audienceModeRegression.patient.firstUseOrder.join('|').startsWith('audience|mode|search|selected-list|gene-results'),
   `Clinical Calm shell should keep audience in the header, then add controls and Gene Results in the rail; got ${audienceModeRegression.patient.firstUseOrder.join('|')}`);
 assert(audienceModeRegression.patient.modeGroupLabel === 'Choose how to add items', 'Search/Browse mode group should describe the add-choice control');
@@ -920,8 +923,8 @@ assert(audienceModeRegression.patient.patientLayoutCss, 'Patient mode should kee
 assert(/Gene Results/i.test(audienceModeRegression.patient.geneTitle) && /Do not guess|original report|doctor or pharmacist/i.test(audienceModeRegression.patient.geneIntro), 'Patient mode should use patient-facing gene helper copy');
 assert(!/Genes \+ Metabolites tab|source-linked|parent drugs|PK timing|pathway activity|metabolite balance/i.test(
   `${audienceModeRegression.patient.tagline} ${audienceModeRegression.patient.geneIntro}`
-), 'Patient mode should not refer to hidden clinician tabs or technical tagline copy');
-assert(audienceModeRegression.patient.tabBarDisplay === 'none', 'Patient mode should hide clinician tab navigation');
+), 'Plain mode should not put technical copy in the simplified chrome');
+assert(audienceModeRegression.patient.tabBarDisplay !== 'none', 'Plain mode should keep detailed tabs available instead of hiding the useful app surface');
 assert(audienceModeRegression.patient.summaryStoryCount === 0, 'Patient mode top summary should stay compact and leave detailed explanation to Safety Notes');
 assert(/questions? ready for your list/i.test(audienceModeRegression.patient.summaryText),
   'Patient mode top summary should orient around prepared questions');
@@ -934,7 +937,7 @@ assert(!/\bView note\b/i.test(audienceModeRegression.patient.summaryText),
 assert(/Next step|medication review|share this screen/i.test(audienceModeRegression.patient.summaryNext), 'Patient mode compact summary should still keep a plain next-step line');
 assert(audienceModeRegression.patient.summaryRisk.trim() === '', 'Patient mode should hide summary score badges');
 assert(audienceModeRegression.patient.findingTitle === 'Safety Notes', 'Patient mode should rename findings to Safety Notes');
-assert(/safety notes?/i.test(audienceModeRegression.patient.findingCount), 'Patient mode should label public finding count as safety notes');
+assert(/plain notes?/i.test(audienceModeRegression.patient.findingCount), 'Plain mode should label public finding count as plain notes');
 assert(audienceModeRegression.patient.patientQuestionCards > 0, 'Patient mode should render dedicated question cards');
 assert(/What to ask[\s\S]*For this list/i.test(audienceModeRegression.patient.findingText),
   'Patient mode should make the question primary before the reason text');
@@ -957,40 +960,41 @@ assert(!/\b(?:AUC|Cmax|RxNorm|PGx|PMID|source-linked|modeled|confidence|clinical
 ), 'Patient mode should avoid clinician-only technical vocabulary in visible Overview copy');
 assert(audienceModeRegression.patient.severityLabels.length > 0 && audienceModeRegression.patient.severityLabels.every(label => !/^(critical|severe|moderate|monitor|info)$/i.test(label)),
   `Patient mode should use plain priority labels instead of raw severity labels: ${audienceModeRegression.patient.severityLabels.join(', ')}`);
-assert(audienceModeRegression.patient.riskDisplay === 'none', 'Patient mode should hide the score-style risk panel');
-assert(!String(audienceModeRegression.patient.riskText || '').replace(/\s+/g, ' ').trim(), 'Patient mode should clear hidden score-style risk text');
+assert(audienceModeRegression.patient.riskDisplay !== 'none', 'Plain mode should no longer hide the score-style risk panel');
+assert(/Risk score/i.test(audienceModeRegression.patient.riskText), 'Plain mode should keep the detailed risk panel populated when visible');
 assert(!audienceModeRegression.patient.altExists, 'Patient mode should not expose an alternatives panel');
 assert(!String(audienceModeRegression.patient.altText || '').replace(/\s+/g, ' ').trim(), 'Patient mode should clear hidden clinician alternative text');
-assert(audienceModeRegression.patient.shareUrl.includes('audience=patient'), 'Patient-mode share URL should preserve audience mode');
-assert(audienceModeRegression.clinician.audienceMode === 'clinician', 'Clinician mode should restore clinician state');
-assert(audienceModeRegression.clinician.bodyAudience === 'clinician', 'Clinician mode should mark body data-audience');
-assert(/Mechanistic medication intelligence for source-linked review/i.test(audienceModeRegression.clinician.tagline), 'Clinician mode should restore clinician workbench tagline');
-assert(/Medication, supplement, or food/i.test(audienceModeRegression.clinician.searchPlaceholder), 'Clinician mode should restore clinician search placeholder');
-assert(audienceModeRegression.clinician.listTitle === 'Selected List', 'Clinician mode should restore selected-list label');
-assert(/2 substances/i.test(audienceModeRegression.clinician.medCount), 'Clinician mode should keep substance count copy');
-assert(audienceModeRegression.clinician.doseSelects > 0, 'Clinician mode should keep dose-tier selectors for supported medications');
-assert(audienceModeRegression.clinician.removeButtons === 2, 'Clinician mode selected list should use compact removable item buttons');
-assert(audienceModeRegression.clinician.compactMedListCss, 'Clinician mode should render selected medicines as compact rows');
-assert(audienceModeRegression.clinician.clinicianLayoutCss, 'Clinician mode should keep optional gene controls with the selected list before results');
-assert(/Genes \+ Metabolites|functional phenotype|parent\/metabolite direction|pathway consequences/i.test(audienceModeRegression.clinician.geneIntro), 'Clinician mode should restore clinician gene helper copy');
-assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Clinician mode should show tab navigation');
-assert(audienceModeRegression.clinician.summaryStoryCount === 0, 'Clinician mode should leave detailed rationale/action rows to the first priority card');
-assert(/Clinical Review Priorities/i.test(audienceModeRegression.clinician.summaryText), 'Clinician mode should orient the top summary around review priorities');
-assert(/source detail is in Evidence|Use the first card/i.test(audienceModeRegression.clinician.summaryText), 'Clinician mode should use the top summary for orientation and routing');
-assert(/Use the first card|open Evidence/i.test(audienceModeRegression.clinician.summaryNext), 'Clinician mode should route details instead of repeating the card action');
-assert(audienceModeRegression.clinician.findingTitle === 'Clinical Review Priorities', 'Clinician mode should use a mixed drug/PGx priority title');
-assert(/Review first/i.test(audienceModeRegression.clinician.firstFindingText) && /Review focus/i.test(audienceModeRegression.clinician.firstFindingText), 'Clinician mode should mark the first Overview card as the first review priority');
-assert(audienceModeRegression.clinician.circulatingDisplay !== 'none', 'Clinician Overview should show circulating/exposure context');
-assert(audienceModeRegression.clinician.circulatingCards > 0, 'Clinician Overview should render circulating cards');
-assert(/parent|metabolite|current stack|CYP/i.test(audienceModeRegression.clinician.circulatingText), 'Clinician circulating cards should include actor context');
-assert(audienceModeRegression.clinician.reviewButtonDisplay === 'none', 'Clinician V1 mode should hide reviewer-only console navigation');
-assert(audienceModeRegression.clinician.reviewPanelDisplay === 'none', 'Clinician V1 mode should keep the reviewer panel hidden');
+assert(audienceModeRegression.patient.shareUrl.includes('audience=plain'), 'Plain-mode share URL should preserve simplified explanation depth');
+assert(audienceModeRegression.clinician.audienceMode === 'clinician', 'Detailed mode should restore detailed state');
+assert(audienceModeRegression.clinician.bodyAudience === 'clinician', 'Detailed mode should mark body data-audience');
+assert(/Mechanistic medication review with plain questions and source-linked evidence/i.test(audienceModeRegression.clinician.tagline), 'Detailed mode should restore the review workbench tagline');
+assert(/Medication, supplement, or food/i.test(audienceModeRegression.clinician.searchPlaceholder), 'Detailed mode should restore detailed search placeholder');
+assert(audienceModeRegression.clinician.listTitle === 'Selected List', 'Detailed mode should restore selected-list label');
+assert(/2 substances/i.test(audienceModeRegression.clinician.medCount), 'Detailed mode should keep substance count copy');
+assert(audienceModeRegression.clinician.doseSelects > 0, 'Detailed mode should keep dose-tier selectors for supported medications');
+assert(audienceModeRegression.clinician.removeButtons === 2, 'Detailed mode selected list should use compact removable item buttons');
+assert(audienceModeRegression.clinician.compactMedListCss, 'Detailed mode should render selected medicines as compact rows');
+assert(audienceModeRegression.clinician.clinicianLayoutCss, 'Detailed mode should keep optional gene controls with the selected list before results');
+assert(/Genes \+ Metabolites|functional phenotype|parent\/metabolite direction|pathway consequences/i.test(audienceModeRegression.clinician.geneIntro), 'Detailed mode should restore detailed gene helper copy');
+assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Detailed mode should show tab navigation');
+assert(audienceModeRegression.clinician.summaryStoryCount === 0, 'Detailed mode should leave rationale/action rows to the first priority card');
+assert(/Review Priorities/i.test(audienceModeRegression.clinician.summaryText), 'Detailed mode should orient the top summary around review priorities');
+assert(/source detail is in Evidence|Use the first card/i.test(audienceModeRegression.clinician.summaryText), 'Detailed mode should use the top summary for orientation and routing');
+assert(/Use the first card|open Evidence/i.test(audienceModeRegression.clinician.summaryNext), 'Detailed mode should route details instead of repeating the card action');
+assert(audienceModeRegression.clinician.findingTitle === 'Review Priorities', 'Detailed mode should use a mixed drug/PGx priority title');
+assert(audienceModeRegression.clinician.plainQuestionBridge > 0, 'Detailed Overview should include plain-language questions before the detailed priority card');
+assert(/Review first/i.test(audienceModeRegression.clinician.firstFindingText) && /Review focus/i.test(audienceModeRegression.clinician.firstFindingText), 'Detailed mode should mark the first Overview card as the first review priority');
+assert(audienceModeRegression.clinician.circulatingDisplay !== 'none', 'Detailed Overview should show circulating/exposure context');
+assert(audienceModeRegression.clinician.circulatingCards > 0, 'Detailed Overview should render circulating cards');
+assert(/parent|metabolite|current stack|CYP/i.test(audienceModeRegression.clinician.circulatingText), 'Detailed circulating cards should include actor context');
+assert(audienceModeRegression.clinician.reviewButtonDisplay === 'none', 'Detailed V1 mode should hide reviewer-only console navigation');
+assert(audienceModeRegression.clinician.reviewPanelDisplay === 'none', 'Detailed V1 mode should keep the reviewer panel hidden');
 assert(audienceModeRegression.clinician.diagnosticPanelDisplays.every(value => value === 'none'),
-  `Clinician V1 mode should keep raw reviewer diagnostic panels hidden; got ${audienceModeRegression.clinician.diagnosticPanelDisplays.join('|')}`);
-assert(audienceModeRegression.clinician.scopeDisplay === 'none', 'Clinician V1 mode should hide reviewer-only console scope');
-assert(!String(audienceModeRegression.clinician.scopeText || '').replace(/\s+/g, ' ').trim(), 'Clinician V1 mode should not render reviewer-only console scope copy');
-assert(audienceModeRegression.clinician.actionRows > 0, 'Clinician mode should restore finding action rows');
-assert(audienceModeRegression.clinician.supportDetails > 0, 'Clinician mode should show supporting detail drawers');
+  `Detailed V1 mode should keep raw reviewer diagnostic panels hidden; got ${audienceModeRegression.clinician.diagnosticPanelDisplays.join('|')}`);
+assert(audienceModeRegression.clinician.scopeDisplay === 'none', 'Detailed V1 mode should hide reviewer-only console scope');
+assert(!String(audienceModeRegression.clinician.scopeText || '').replace(/\s+/g, ' ').trim(), 'Detailed V1 mode should not render reviewer-only console scope copy');
+assert(audienceModeRegression.clinician.actionRows > 0, 'Detailed mode should restore finding action rows');
+assert(audienceModeRegression.clinician.supportDetails > 0, 'Detailed mode should show supporting detail drawers');
 
 const handoffAudienceRegression = window.eval(`(() => {
   setAudienceMode('patient');
