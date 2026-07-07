@@ -74,7 +74,7 @@ body[data-add-mode="browse"] .search-wrap{display:none}
 .sr-close{width:44px;height:44px;min-width:44px;border:1px solid var(--border);border-radius:8px;background:var(--card2);color:var(--text2);font-size:20px;line-height:1;cursor:pointer}
 .sr-close:hover{background:var(--accent);border-color:var(--accent);color:#fff}
 .sr-close:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
-.sr-item:focus-visible,.browse-cat-title:focus-visible,.browse-chip:focus-visible,.class-guide-card:focus-visible,.section-title.collapsible:focus-visible,.tab-btn:focus-visible,.ev-filter-btn:focus-visible,.related-finding-btn:focus-visible,.summary-jump:focus-visible,.gene-remove:focus-visible,.med-chip .x:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+.sr-item:focus-visible,.browse-cat-title:focus-visible,.browse-chip:focus-visible,.class-guide-card:focus-visible,.section-title.collapsible:focus-visible,.tab-btn:focus-visible,.ev-filter-btn:focus-visible,.related-finding-btn:focus-visible,.summary-jump:focus-visible,.gene-add select:focus-visible,.gene-add button:focus-visible,.gene-select:focus-visible,.gene-remove:focus-visible,.med-chip .x:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
 .sr-item{padding:12px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);transition:background 0.15s}
 .sr-item:hover{background:var(--accentBg)}
 .sr-item.sr-unrecognized{background:var(--amberBg)}
@@ -131,6 +131,8 @@ body[data-add-mode="browse"] .search-wrap{display:none}
 .section-title{font-size:14px;font-weight:750;padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
 .section-title svg{color:var(--accent)}
 .section-body{padding:12px 16px;overflow-x:auto}
+.input-rail .section{overflow:visible}
+.input-rail .section-body{overflow:visible;min-width:0}
 
 .med-chip{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,128px) 44px;align-items:center;gap:8px;width:100%;max-width:100%;justify-content:flex-start;padding:11px 12px 11px 14px;margin:0;border-radius:12px;background:var(--card);border:1px solid var(--border);font-size:14px;font-weight:500;color:var(--text)}
 .med-chip + .med-chip{margin-top:8px}
@@ -145,8 +147,8 @@ body[data-add-mode="browse"] .search-wrap{display:none}
 .med-chip .dose-select{grid-column:2;background:#f3f2ec;color:var(--text2);border:1px solid var(--border);border-radius:8px;padding:6px 8px;font-size:11px;font-weight:700;cursor:pointer;outline:none;width:100%;min-width:70px;text-align:center;font-family:var(--mono)}
 .med-chip .dose-select:hover{border-color:var(--accent);background:var(--accentBg)}
 .med-chip .dose-select option{background:var(--bg);color:var(--text);padding:4px}
-.selected-list-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
-.selected-list-action,.empty-undo-btn{appearance:none;border:1px solid var(--border);border-radius:8px;background:var(--card2);color:var(--text2);font-family:var(--font);font-size:12px;font-weight:850;padding:9px 10px;cursor:pointer}
+.selected-list-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(116px,1fr));gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.selected-list-action,.empty-undo-btn{appearance:none;border:1px solid var(--border);border-radius:8px;background:var(--card2);color:var(--text2);font-family:var(--font);font-size:12px;font-weight:850;line-height:1.15;min-height:44px;min-width:0;padding:9px 10px;white-space:normal;cursor:pointer}
 .selected-list-action.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 .selected-list-action:hover,.empty-undo-btn:hover{border-color:var(--accent);background:var(--accentBg);color:var(--accent)}
 .selected-list-action.primary:hover{background:var(--accent2);border-color:var(--accent2);color:#fff}
@@ -210,21 +212,26 @@ body[data-add-mode="browse"] .search-wrap{display:none}
 .fold-metabolite-val{font-size:12px;width:64px}
 
 /* GENETICS */
-.gene-row{display:flex;align-items:center;gap:8px;padding:8px 4px;border-bottom:1px solid var(--border)}
+.gene-row{display:grid;grid-template-columns:minmax(0,1fr) 44px;align-items:center;gap:7px 8px;padding:9px 4px;border-bottom:1px solid var(--border);min-width:0}
 .gene-row:last-child{border-bottom:none}
-.gene-name{font-weight:700;font-size:13px;width:90px;flex-shrink:0}
-.gene-select{flex:1;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;background:var(--card);cursor:pointer}
-.gene-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:8px;min-width:32px;text-align:center}
+.gene-name{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:4px 5px;min-width:0;width:auto;font-weight:700;font-size:13px;overflow-wrap:anywhere}
+.gene-select{grid-column:1;grid-row:2;width:100%;min-width:0;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px;background:var(--card);cursor:pointer}
+.gene-badge{grid-column:1;grid-row:3;justify-self:start;max-width:100%;font-size:11px;font-weight:700;line-height:1.15;padding:3px 8px;border-radius:8px;min-width:32px;text-align:center;white-space:normal;overflow-wrap:anywhere}
 .gene-badge.normal{background:#e2e8f0;color:#64748b}
 .gene-badge.poor{background:var(--redBg);color:var(--red)}
 .gene-badge.null{background:#450a0a;color:#fca5a5}
 .gene-badge.intermediate{background:var(--amberBg);color:var(--amber)}
 .gene-badge.ultrarapid{background:var(--purpleBg);color:var(--purple)}
 .gene-badge.rapid{background:var(--blueBg);color:var(--blue)}
-.gene-remove{background:none;border:none;cursor:pointer;font-size:16px;color:var(--text2);min-width:44px;min-height:44px;padding:4px}
-.gene-add{display:flex;gap:8px;padding:8px 4px}
-.gene-add select{flex:1;padding:6px 8px;border:1.5px solid var(--border);border-radius:8px;font-size:12px}
-.gene-add button{padding:6px 16px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;font-size:12px}
+.gene-remove{grid-column:2;grid-row:2/4;justify-self:end;align-self:center;background:none;border:none;cursor:pointer;font-size:16px;color:var(--text2);min-width:44px;min-height:44px;padding:4px}
+.gene-detail-row,.gene-evidence-row{font-size:11px;color:var(--text2);line-height:1.35;padding:0 4px 5px;overflow-wrap:anywhere}
+.gene-detail-row strong,.gene-evidence-row strong{color:var(--text)}
+.gene-evidence-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:5px 6px}
+.gene-evidence-row span:last-child{min-width:0}
+.gene-add{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;padding:8px 4px;align-items:stretch;min-width:0}
+.gene-add select{width:100%;min-width:0;border:1.5px solid var(--border);border-radius:8px;background:var(--card);color:var(--text);font-family:var(--font);font-size:12px;padding:8px 10px}
+.gene-add button{appearance:none;border:1px solid var(--accent);border-radius:10px;background:var(--accent);color:#fff;font-family:var(--font);font-size:12px;font-weight:850;line-height:1.15;min-height:44px;min-width:104px;padding:8px 10px;white-space:normal;cursor:pointer}
+.gene-add button:hover{background:var(--accent2);border-color:var(--accent2)}
 
 
 /* ALTERNATIVES */
@@ -1060,6 +1067,8 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
   .med-chip .dose-select{min-width:0;flex-shrink:0;font-size:11px;padding:6px}
   .med-chip .x{flex-shrink:0}
   .selected-list-actions{grid-template-columns:1fr}
+  .gene-add{grid-template-columns:1fr}
+  .gene-add button{width:100%}
   .header h1{font-size:22px}
   .header{position:static;flex-wrap:wrap;gap:4px}
   .header p{width:100%;font-size:11px}

@@ -108,6 +108,14 @@ assert(/--radius\s*:\s*14px\b/i.test(styleText),
   'Clinical Calm theme should keep the card radius');
 assert(/@media\(max-width:480px\)[\s\S]*\.summary-next\s*\{\s*display:grid;grid-template-columns:1fr/i.test(styleText),
   'Mobile Patient summary next-step card should stack label and text for readability');
+assert(styleText.includes('.input-rail .section-body{overflow:visible;min-width:0}'),
+  'Left sidebar section bodies should not clip their own navigation controls');
+assert(styleText.includes('.selected-list-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(116px,1fr))'),
+  'Selected-list actions should use responsive sidebar-width columns');
+assert(styleText.includes('.gene-row{display:grid;grid-template-columns:minmax(0,1fr) 44px'),
+  'Gene result rows should use a narrow-sidebar grid layout');
+assert(styleText.includes('.gene-detail-row,.gene-evidence-row'),
+  'Gene result detail copy should use responsive classes instead of fixed indentation');
 
 const defaultEmptyText = doc.getElementById('mainEmptyState')?.textContent || '';
 assert(!doc.querySelector('.audience-wrap') && !doc.getElementById('audience-patient') && !doc.getElementById('audience-clinician'),
@@ -247,6 +255,24 @@ doc.querySelector('#medList .empty-undo-btn').click();
 await new Promise((resolveReady) => setTimeout(resolveReady, 40));
 assert(evalInPage(window, 'activeStack.join("|")') === 'Paroxetine|Codeine',
   'Selected-list undo should restore the cleared stack in order');
+const railNavigationLayoutRegression = evalInPage(window, `(() => {
+  setGenetics('CYP2D6', 'poor');
+  const geneList = document.getElementById('geneList');
+  return {
+    geneRows:geneList?.querySelectorAll('.gene-row').length || 0,
+    geneDetails:geneList?.querySelectorAll('.gene-detail-row').length || 0,
+    fixedIndent:/padding:\\s*0\\s+4px\\s+3px\\s+98px/i.test(geneList?.innerHTML || ''),
+    geneSelects:geneList?.querySelectorAll('.gene-select').length || 0,
+    actions:document.querySelectorAll('#medList .selected-list-action').length,
+  };
+})()`);
+assert(railNavigationLayoutRegression.actions === 2, 'Selected-list actions should remain available after PGx render');
+assert(railNavigationLayoutRegression.geneRows > 0 && railNavigationLayoutRegression.geneSelects > 0,
+  'Gene / Marker Results should render editable gene rows');
+assert(railNavigationLayoutRegression.geneDetails > 0,
+  'Gene / Marker Results should render detail rows with responsive classes');
+assert(!railNavigationLayoutRegression.fixedIndent,
+  'Gene / Marker Results should not render fixed 98px indent rows that overflow the sidebar');
 const summaryCopyStatus = doc.getElementById('summaryCopyStatus');
 const summaryCopyText = doc.getElementById('summaryCopyText');
 assert(summaryCopyStatus?.getAttribute('role') === 'status' && summaryCopyStatus?.getAttribute('aria-live') === 'polite',

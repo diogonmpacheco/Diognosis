@@ -72,9 +72,9 @@ function renderGenetics() {
       if (relevantPairs.length) {
         evidenceHtml = relevantPairs.map(p => {
           const col = lvlColor[p.level] || lvlColor.C;
-          return `<div style="font-size:11px;padding:3px 6px 3px 98px;display:flex;align-items:baseline;gap:6px">
+          return `<div class="gene-evidence-row">
             <span title="${pgxGuidanceTitle(p.level)}" style="font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;background:${col};color:#fff">${pgxGuidanceLabel(p.level)}</span>
-            <span style="color:var(--text1)"><b>${p.drug}</b>: ${p.action}</span>
+            <span style="color:var(--text)"><b>${p.drug}</b>: ${p.action}</span>
           </div>`;
         }).join("");
       }
@@ -100,8 +100,8 @@ function renderGenetics() {
       <span class="gene-badge ${cssClass}">${genotypeDisplayLabel(enzyme, phenotype) || badgeText[pheno] || "?"}</span>
       <button class="gene-remove" onclick="removeGenetics('${enzyme}')" title="Remove">✕</button>
     </div>
-    <div style="font-size:10px;color:var(--text2);padding:0 4px 3px 98px">Reported: <b>${escapeHtml(detail.reportedLabel)}</b> · Interpreted as: <b>${escapeHtml(detail.functionalState)}</b></div>
-    ${impactText ? `<div style="font-size:11px;color:var(--text2);padding:0 4px 3px 98px">${impactText}</div>` : ""}${evidenceHtml}`;
+    <div class="gene-detail-row">Reported: <b>${escapeHtml(detail.reportedLabel)}</b> · Interpreted as: <b>${escapeHtml(detail.functionalState)}</b></div>
+    ${impactText ? `<div class="gene-detail-row">${impactText}</div>` : ""}${evidenceHtml}`;
   }).join("") + renderGenotypeImpactPreview(activeGenes);
 }
 
