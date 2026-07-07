@@ -877,6 +877,12 @@ const audienceModeRegression = window.eval(`(() => {
     plainQuestionBridge:document.querySelectorAll('#findingBody .plain-question-bridge').length,
     plainQuestionCards:document.querySelectorAll('#findingBody .plain-question-card').length,
     findingNotes:document.querySelectorAll('#findingBody .primary-finding-card .finding-note').length,
+    contextBadgeRows:document.querySelectorAll('#findingBody .primary-finding-card .finding-context-badges').length,
+    actorRows:document.querySelectorAll('#findingBody .primary-finding-card .finding-actors').length,
+    trustChipText:[...document.querySelectorAll('#findingBody .primary-finding-card .finding-trust-chip')]
+      .map(chip => chip.textContent.replace(/\s+/g, ' ').trim())
+      .join(' | '),
+    trustChipHeadingCount:document.querySelectorAll('#findingBody .primary-finding-card .finding-trust-chip strong').length,
     hasOldOverviewLabels:/Plain-language questions|Start here, then use the detailed review below|What changed|Why it matters|Review focus/i.test(document.getElementById('findingBody')?.textContent || ''),
     doseSelects:document.querySelectorAll('#medList .dose-select').length,
     removeButtons:document.querySelectorAll('#medList button.x').length,
@@ -974,8 +980,14 @@ assert(/Use the first card|open Evidence/i.test(audienceModeRegression.clinician
 assert(audienceModeRegression.clinician.findingTitle === 'Review Priorities', 'Public Overview should use a mixed drug/PGx priority title');
 assert(audienceModeRegression.clinician.plainQuestionBridge > 0, 'Public Overview should include plain-language questions before the detailed priority card');
 assert(audienceModeRegression.clinician.plainQuestionCards > 0, 'Public Overview should show direct question cards after legacy switches');
-assert(/Review first/i.test(audienceModeRegression.clinician.firstFindingText) && audienceModeRegression.clinician.findingNotes >= 2,
-  'Public view should mark the first Overview card and render compact unlabeled review notes');
+assert(!/Review first/i.test(audienceModeRegression.clinician.firstFindingText) && audienceModeRegression.clinician.findingNotes >= 2,
+  'Public view should render compact unlabeled review notes without a queue label');
+assert(audienceModeRegression.clinician.contextBadgeRows === 0, 'Public Overview cards should not render extra context badge rows after legacy switches');
+assert(audienceModeRegression.clinician.actorRows === 0, 'Public Overview cards should not duplicate medicines as extra chips after legacy switches');
+assert(audienceModeRegression.clinician.trustChipHeadingCount === 0,
+  'Public trust chips should not restore label/value headings after legacy switches');
+assert(/Source-linked|Modeled|confidence/i.test(audienceModeRegression.clinician.trustChipText),
+  'Public trust chips should keep concise evidence and confidence values after legacy switches');
 assert(!audienceModeRegression.clinician.hasOldOverviewLabels,
   'Public view should not restore old overview labels after legacy switches');
 assert(audienceModeRegression.clinician.circulatingDisplay !== 'none', 'Public Overview should show circulating/exposure context');
@@ -2217,9 +2229,11 @@ const publicFindingHierarchyRegression = window.eval(`(() => {
     const presentations = getClinicianFacingPublicFindingPresentations(getCurrentPublicFindingPresentations());
     const cards = Array.from(document.querySelectorAll("#findingBody .primary-finding-card"));
     const overviewText = document.getElementById("findingBody")?.textContent || "";
+    const actorRows = document.querySelectorAll("#findingBody .primary-finding-card .finding-actors").length;
     const trustText = [...document.querySelectorAll("#findingBody .finding-trust-chip")]
       .map(chip => chip.textContent.replace(/\\s+/g, " ").trim())
       .join(" | ");
+    const trustHeadingCount = document.querySelectorAll("#findingBody .finding-trust-chip strong").length;
     const summaryOnclick = document.querySelector("#summaryBar .summary-jump")?.getAttribute("onclick") || "";
     setTab("mechanisms");
     const mechanismText = document.getElementById("mechanismWhyBody")?.textContent || "";
@@ -2247,7 +2261,9 @@ const publicFindingHierarchyRegression = window.eval(`(() => {
       ),
       summaryOnclick,
       overviewText,
+      actorRows,
       trustText,
+      trustHeadingCount,
       mechanismText,
       genesText,
       evidenceText,
@@ -2283,11 +2299,15 @@ for (const [scenarioName, result] of Object.entries(publicFindingHierarchyRegres
   assert(result.allCardsHaveCompactNotes, `${scenarioName}: every primary Overview card should use compact unlabeled notes, with evidence routed through compact actions`);
   assert(result.presentations.every(p => p.whatChanged && p.whyItMatters && p.whatToReview && p.evidenceSummary), `${scenarioName}: public finding presentation fields must be non-empty`);
   assert(result.presentations.every(p => p.targetTab === "overview" && /^overview-finding-/.test(p.targetElementId || "")), `${scenarioName}: public finding targets should point to Overview cards`);
-  assert(result.summaryOnclick.includes("focusPriorityFinding('overview','overview-finding-"), `${scenarioName}: Summary View finding should jump to a concrete Overview card`);
+  assert(result.summaryOnclick.includes("focusPriorityFinding('overview','overview-finding-"), `${scenarioName}: Summary Open action should jump to a concrete Overview card`);
   assert(!/Phase\\s*\\d+|top-250|top-100|coverage adapter|route adapter|pending professional review|review prompt/i.test(result.overviewText), `${scenarioName}: Overview should not expose internal labels or repeated review wording`);
+  assert(!/Review first/i.test(result.overviewText), `${scenarioName}: Overview should not add queue labels`);
+  assert(result.actorRows === 0, `${scenarioName}: Overview should not duplicate medicines as extra chip rows`);
   assert(!/\b(?:pending review action|review needed action|insufficient action)\b/i.test(result.trustText), `${scenarioName}: trust chips should not expose awkward internal action-status wording`);
-  assert(/Concern|Evidence|Confidence/i.test(result.trustText) && /Source-linked|Modeled|High|Moderate|Limited/i.test(result.trustText),
-    `${scenarioName}: trust chips should use compact readable trust status copy`);
+  assert(result.trustHeadingCount === 0,
+    `${scenarioName}: trust chips should not use label/value headings`);
+  assert(/Source-linked|Modeled/i.test(result.trustText) && /confidence/i.test(result.trustText),
+    `${scenarioName}: trust chips should use concise evidence and confidence values`);
   assert(!/Phase\\s*\\d+|top-250|top-100|coverage adapter|route adapter|pending professional review/i.test(result.mechanismText), `${scenarioName}: Mechanisms should not expose internal labels`);
   assert(!/\b(?:Open review|reviewer panel|Raw warning paths|raw signals?|remain available in Review)\b/i.test(result.mechanismText), `${scenarioName}: normal V1 Mechanisms should not expose reviewer-only or raw-path actions`);
   assert(!/Related overview/i.test(`${result.mechanismText} ${result.genesText} ${result.evidenceText}`), `${scenarioName}: supporting tabs should use plain Open finding actions instead of Related overview`);

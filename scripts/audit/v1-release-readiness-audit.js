@@ -106,6 +106,7 @@ function extractPublicReadiness(window) {
       primaryCards:document.querySelectorAll('#findingBody .primary-finding-card').length,
       plainQuestionCards:document.querySelectorAll('#findingBody .plain-question-card').length,
       findingNotes:document.querySelectorAll('#findingBody .primary-finding-card .finding-note').length,
+      actorRows:document.querySelectorAll('#findingBody .primary-finding-card .finding-actors').length,
       oldOverviewLabels:/Plain-language questions|Start here, then use the detailed review below|What changed|Why it matters|Review focus/i.test(document.getElementById('findingBody')?.textContent || ''),
       sourceLinks:document.querySelectorAll('#findingBody a.source-link').length,
       sourceActions:document.querySelectorAll('#findingBody .finding-actions .related-finding-btn').length,
@@ -113,6 +114,7 @@ function extractPublicReadiness(window) {
       discussionGuides:document.querySelectorAll('#findingBody .finding-discussion').length,
       monitoringGuides:document.querySelectorAll('#findingBody .finding-monitoring').length,
       trustChips:document.querySelectorAll('#findingBody .finding-trust-chip').length,
+      trustChipHeadingCount:document.querySelectorAll('#findingBody .finding-trust-chip strong').length,
       trustChipText:[...document.querySelectorAll('#findingBody .finding-trust-chip')]
         .map(chip => chip.textContent.replace(/\\s+/g, ' ').trim())
         .join(' | '),
@@ -177,10 +179,13 @@ for (const scenario of publicScenarios) {
   assert(result.findingTitle === 'Review Priorities', `${scenario.name}: Overview should use Review Priorities`);
   assert(/review priorit/i.test(result.findingCount), `${scenario.name}: finding count should use review-priority language`);
   assert(result.findingNotes >= 2, `${scenario.name}: Overview should include compact unlabeled review notes`);
+  assert(result.actorRows === 0, `${scenario.name}: Overview should not duplicate medicines as extra chip rows`);
   assert(!result.oldOverviewLabels, `${scenario.name}: Overview should not render the old question header or step labels`);
   assert(result.trustChips >= result.primaryCards, `${scenario.name}: priority cards should expose evidence/status chips`);
-  assert(/Concern|Evidence|Confidence/i.test(result.trustChipText) && /Source-linked|Modeled|High|Moderate|Limited/i.test(result.trustChipText),
-    `${scenario.name}: trust chips should use compact readable status copy`);
+  assert(result.trustChipHeadingCount === 0,
+    `${scenario.name}: trust chips should not use label/value headings`);
+  assert(/Source-linked|Modeled/i.test(result.trustChipText) && /confidence/i.test(result.trustChipText),
+    `${scenario.name}: trust chips should use concise evidence and confidence values`);
   assert(result.discussionGuides >= result.primaryCards, `${scenario.name}: priority cards should expose discussion guides`);
   assert(result.monitoringGuides >= result.primaryCards, `${scenario.name}: priority cards should expose monitoring focus`);
   assert(result.sourceActions > 0 || result.sourceLinks > 0, `${scenario.name}: source-linked evidence actions should remain reachable`);

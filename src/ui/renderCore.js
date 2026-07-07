@@ -622,7 +622,7 @@ function renderSummaryBar() {
     const genotypeAlsoCheck = genotypePriority && genotypePriority.score >= 70 && genotypePriority.summary
       ? ` Also check: ${genotypePriority.summary}`
       : "";
-    headline = `${clinicianPriorityHeadlineLabel(primaryPresentation.severity)}: ${primaryPresentation.title}`;
+    headline = primaryPresentation.title;
     summaryCopy = `${actorText ? `${actorText}. ` : ""}${compactClinicianEvidenceLine(primaryPresentation)}${genotypeAlsoCheck}`;
     nextStep = clinicianOverviewActionText(primaryPresentation, primaryPresentation.whatToReview || nextStep);
     priorityStory = buildClinicianPriorityStory(primaryPresentation, priorityStory);
@@ -631,7 +631,7 @@ function renderSummaryBar() {
   const summaryKicker = patient
     ? (primaryPresentation ? "Questions ready" : "Current check")
     : (primaryPresentation ? "Review Priorities" : summaryBandLabel(riskClass, activeStack.length));
-  const jumpLabel = patient ? "View note" : (primaryPresentation ? "Review first" : "View finding");
+  const jumpLabel = patient ? "View note" : (primaryPresentation ? "Open" : "View");
   const hasVisibleSummaryJump = !patient && (Boolean(primaryPresentation) || activeStack.length >= 2 || Boolean(isGenotypePriority));
   const summaryJumpHtml = hasVisibleSummaryJump
     ? `<button type="button" class="summary-jump" onclick="focusPriorityFinding('${safeAttr(jumpTab)}','${safeAttr(jumpTarget)}')">${safePublicHtml(jumpLabel)}</button>`
@@ -1977,9 +1977,6 @@ function renderPublicFindingCard(presentation, index = 0) {
   if (!presentation) return "";
   const severity = safeChoice(presentation.severity, ["critical","severe","moderate","monitor","info"], "info");
   const finding = presentation.sourceFinding || {};
-  const actorHtml = (presentation.affectedSubstances || []).slice(0, 8).map(actor => `
-    <span class="finding-actor">${safePublicHtml(actor)}</span>
-  `).join("");
   const tags = (presentation.tags || []).slice(0, 6).map(tag => `<span class="finding-tag">${safePublicHtml(tag)}</span>`).join("");
   const grouped = finding.groupedFindings?.length
     ? `<span class="finding-tag">${finding.groupedFindings.length + 1} grouped signals</span>`
@@ -1999,11 +1996,9 @@ function renderPublicFindingCard(presentation, index = 0) {
   const severityLabel = patient ? patientSeverityLabel(severity) : severity;
   const discussionGuide = renderFindingDiscussionGuide(presentation, trust, patient);
   const monitoringGuide = renderFindingMonitoringGuide(presentation, trust, patient);
-  const contextBadges = renderFindingContextBadges(presentation, { patient });
   const followupGuide = !patient && typeof isReviewerMode === "function" && !isReviewerMode() && (discussionGuide || monitoringGuide)
     ? `<details class="finding-followup-details"><summary>Review notes</summary>${discussionGuide}${monitoringGuide}</details>`
     : `${discussionGuide}${monitoringGuide}`;
-  const queueLabel = patient ? "" : (index === 0 ? "Review first" : `Review ${index + 1}`);
   const actionHtml = detailButton || sourceLinks
     ? `<div class="finding-actions">${detailButton}${sourceLinks}</div>`
     : "";
@@ -2022,15 +2017,12 @@ function renderPublicFindingCard(presentation, index = 0) {
   return `<div id="${safeAttr(presentation.targetElementId)}" class="finding-card primary-finding-card ${severity}" data-finding-id="${safeAttr(presentation.id)}">
     <div class="finding-top">
       <div>
-        ${queueLabel ? `<div class="finding-queue-label">${safePublicHtml(queueLabel)}</div>` : ""}
         <div class="finding-title">${safePublicHtml(title)}</div>
         <div class="finding-subtitle">${safePublicHtml((presentation.affectedSubstances || []).join(" + ") || "current stack")}</div>
       </div>
       <span class="finding-sev ${severity}">${safePublicHtml(severityLabel)}</span>
     </div>
     ${renderFindingTrustStrip(trust, patient)}
-    ${contextBadges}
-    ${actorHtml ? `<div class="finding-actors">${actorHtml}</div>` : ""}
     <div class="finding-explain">
       ${renderFindingNoteLine(changedText)}
       ${renderFindingNoteLine(whyText)}
@@ -2476,12 +2468,12 @@ function renderFindingTrustStrip(trust, patient = false) {
   const source = trust.sourceLinked ? "Source-linked" : "Modeled";
   const confidence = compactTrustConfidenceLabel(trust.confidence);
   const chips = [
-    ["Concern", trust.concernCategory],
-    ["Evidence", source],
-    ["Confidence", confidence],
-  ].filter(([, value]) => value);
+    trust.concernCategory,
+    source,
+    confidence ? `${confidence} confidence` : "",
+  ].filter(Boolean);
   return `<div class="finding-trust-strip">
-    ${chips.map(([label, value]) => `<span class="finding-trust-chip"><strong>${safePublicHtml(label)}</strong>${safePublicHtml(value)}</span>`).join("")}
+    ${chips.map(value => `<span class="finding-trust-chip">${safePublicHtml(value)}</span>`).join("")}
   </div>`;
 }
 
@@ -3025,14 +3017,6 @@ function buildGenotypePriorityStory(signal) {
     changes:signal.changes || signal.summary || "The genotype changes expected exposure, active metabolite formation, or hypersensitivity risk.",
     review:signal.review || signal.nextStep || "Review the pharmacogenomics panel before relying on the standard medication assumption.",
   };
-}
-
-function clinicianPriorityHeadlineLabel(severity = "") {
-  const key = safeChoice(severity, ["critical","severe","moderate","monitor","info"], "info");
-  if (key === "critical" || key === "severe") return "Review first";
-  if (key === "moderate") return "Review recommended";
-  if (key === "monitor") return "Monitoring review";
-  return "Review context";
 }
 
 function buildClinicianPriorityStory(presentation = {}, fallbackStory = null) {

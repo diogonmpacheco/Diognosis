@@ -287,14 +287,22 @@ assert(doc.getElementById('warningPathSection')?.closest('.tab-panel')?.id === '
 assert(evalInPage(window, 'audienceMode') === 'public', 'Default V1 smoke path should use the single public view');
 const publicSummaryText = doc.getElementById('summaryBar')?.textContent || '';
 assert(/Review Priorities/i.test(publicSummaryText), 'Public summary should present the Overview as review priorities');
-assert(/Review first/i.test(publicSummaryText), 'Public summary should point to the first review priority');
+assert(!/Review first/i.test(publicSummaryText), 'Public summary should not add Review first chrome');
+assert(/Open/i.test(publicSummaryText), 'Public summary should keep a concise jump action');
 assert(doc.querySelectorAll('#findingBody .plain-question-bridge').length > 0, 'Public Overview should include plain-language questions before the detailed card');
 assert(doc.querySelectorAll('#findingBody .plain-question-card').length > 0, 'Public Overview should show direct question cards');
 assert(!/Plain-language questions|Start here, then use the detailed review below/i.test(doc.getElementById('findingBody')?.textContent || ''),
   'Public Overview should not add explanatory question-section chrome');
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
 assert(doc.querySelectorAll('#findingBody .primary-finding-card').length > 0, 'Overview finding cards should render primary public finding cards');
-assert(/Review first/i.test(doc.querySelector('#findingBody .primary-finding-card')?.textContent || ''), 'Public first finding should be explicitly marked as the first review priority');
+assert(!/Review first/i.test(doc.querySelector('#findingBody .primary-finding-card')?.textContent || ''), 'Public first finding should not add a queue label');
+assert(doc.querySelectorAll('#findingBody .primary-finding-card .finding-context-badges').length === 0, 'Overview finding cards should not render extra context badge rows');
+assert(doc.querySelectorAll('#findingBody .primary-finding-card .finding-actors').length === 0, 'Overview finding cards should not duplicate medicines as extra chips');
+const publicTrustText = [...doc.querySelectorAll('#findingBody .primary-finding-card .finding-trust-chip')]
+  .map(chip => chip.textContent.replace(/\s+/g, ' ').trim())
+  .join(' | ');
+assert(doc.querySelectorAll('#findingBody .primary-finding-card .finding-trust-chip strong').length === 0, 'Public trust chips should not use label/value headings');
+assert(/Source-linked|Modeled|confidence/i.test(publicTrustText), 'Public trust chips should keep concise evidence and confidence values');
 assert([...doc.querySelectorAll('#findingBody .primary-finding-card')].every(card => card.querySelectorAll('.finding-note').length >= 2 && !/What changed|Why it matters|Review focus|What to review/i.test(card.textContent)), 'Overview finding cards should render compact unlabeled review notes');
 const publicVisibleReviewText = `${doc.getElementById('summaryBar')?.textContent || ''} ${doc.getElementById('findingBody')?.textContent || ''}`;
 assert(!publicVisibleReviewText.includes('should be avoided, substituted, dose-adjusted, or monitored before use'),
