@@ -110,11 +110,15 @@ assert(/@media\(max-width:480px\)[\s\S]*\.summary-next\s*\{\s*display:grid;grid-
   'Mobile Patient summary next-step card should stack label and text for readability');
 
 const defaultEmptyText = doc.getElementById('mainEmptyState')?.textContent || '';
-assert(defaultEmptyText.includes('Review the priority signal'), 'Default Detailed landing copy should point to the first priority signal');
-assert(!defaultEmptyText.includes('Review the result tabs'), 'Default Detailed landing copy should not mention hidden result tabs');
+assert(!doc.querySelector('.audience-wrap') && !doc.getElementById('audience-patient') && !doc.getElementById('audience-clinician'),
+  'Public V1 should not expose Plain/Detailed audience controls');
+assert(/Medication review with plain questions, mechanisms, timing, genes, and source-linked evidence/i.test(doc.getElementById('audienceTagline')?.textContent || ''),
+  'Public V1 should use single Medication Review chrome');
+assert(defaultEmptyText.includes('Review the priority signal'), 'Public landing copy should point to the first priority signal');
+assert(!defaultEmptyText.includes('Review the result tabs'), 'Public landing copy should not mention hidden result tabs');
 window.setAudienceMode('plain', { render:false });
-assert((doc.getElementById('mainEmptyState')?.textContent || '').includes('Review priority signals first'),
-  'Plain landing copy should still point to priority signals first');
+assert((doc.getElementById('mainEmptyState')?.textContent || '').includes('Review the priority signal'),
+  'Legacy setAudienceMode should be a no-op for the public landing copy');
 window.setAudienceMode('detailed', { render:false });
 
 const inputRailOrder = Array.from(doc.querySelector('.input-rail')?.children || []).map((el) => el.id || el.className);
@@ -127,14 +131,7 @@ assert(selectedListIndex >= 0 && geneticsIndex === selectedListIndex + 1,
   `Gene / Marker Results should stay directly after the selected list; got ${inputRailOrder.join('|')}`);
 assert(mainOrder.join('|') === 'input-rail|result-area',
   `Results should remain after the input rail; got ${mainOrder.join('|')}`);
-assert(/body\[data-audience="patient"\]\s*#geneticsSection\s*\{\s*order\s*:\s*2\s*\}/i.test(styleText),
-  'Patient mode should keep Gene Results before results');
-assert(/body\[data-audience="clinician"\]\s*#geneticsSection\s*\{\s*order\s*:\s*2\s*\}/i.test(styleText),
-  'Clinician mode should keep Gene / Marker Results before results');
-assert(/body\[data-audience="patient"\]\s*\.result-area\s*\{\s*order\s*:\s*3\s*\}/i.test(styleText),
-  'Patient mode should keep results after Gene Results');
-assert(/body\[data-audience="clinician"\]\s*\.result-area\s*\{\s*order\s*:\s*3\s*\}/i.test(styleText),
-  'Clinician mode should keep results after Gene / Marker Results');
+assert(!/body\[data-audience=/i.test(styleText), 'Single public view should not depend on data-audience CSS');
 const geneticsToggle = doc.querySelector('#geneticsSection .section-title.collapsible');
 const geneticsBody = doc.getElementById('geneticsBody');
 assert(geneticsToggle?.getAttribute('role') === 'button' && geneticsToggle?.getAttribute('tabindex') === '0',
@@ -263,11 +260,11 @@ assert(summaryCopyStatus.textContent === 'Select text below', 'Summary copy fall
 assert(summaryCopyText.hidden === false && /Diognosis V1 handoff summary|Diognosis questions to ask/i.test(summaryCopyText.textContent),
   'Summary copy fallback should reveal the copyable handoff text');
 assert(/Handoff type: clinician\/pharmacist medication-review handoff/i.test(summaryCopyText.textContent),
-  'Default Detailed copy fallback should identify itself as a medication-review handoff');
+  'Public copy fallback should identify itself as a medication-review handoff');
 assert(/Generated from local Diognosis/i.test(summaryCopyText.textContent) && /no patient-specific data was uploaded/i.test(summaryCopyText.textContent),
-  'Default Detailed copy fallback should carry the local-data boundary');
+  'Public copy fallback should carry the local-data boundary');
 assert(/V1 scope|Clinical context still needed/i.test(summaryCopyText.textContent),
-  'Default Detailed copy fallback should preserve the review handoff sections');
+  'Public copy fallback should preserve the review handoff sections');
 assert(doc.activeElement === summaryCopyText, 'Summary copy fallback should move focus to the copyable handoff text');
 doc.execCommand = originalExecCommand;
 assert(doc.getElementById('tab-overview')?.classList.contains('active'), 'Overview tab should be active by default');
@@ -287,30 +284,22 @@ assert(doc.getElementById('scenarioSnapshotSection')?.closest('.tab-panel')?.id 
 assert(doc.getElementById('metaboliteGapSection')?.closest('.tab-panel')?.id === 'tab-review', 'Metabolite Coverage Gaps should live under Reviewer Console');
 assert(doc.getElementById('contributeSection')?.closest('.tab-panel')?.id === 'tab-review', 'Report / Contribute should live under Reviewer Console');
 assert(doc.getElementById('warningPathSection')?.closest('.tab-panel')?.id === 'tab-review', 'Technical Warning Paths should live under Reviewer Console');
-assert(evalInPage(window, 'audienceMode') === 'clinician', 'Default V1 smoke path should open in Detailed mode');
-const detailedSummaryText = doc.getElementById('summaryBar')?.textContent || '';
-assert(/Review Priorities/i.test(detailedSummaryText), 'Default Detailed summary should present the Overview as review priorities');
-assert(/Review first/i.test(detailedSummaryText), 'Default Detailed summary should point to the first review priority');
-assert(doc.querySelectorAll('#findingBody .plain-question-bridge').length > 0, 'Default Detailed Overview should include plain-language questions before the detailed card');
+assert(evalInPage(window, 'audienceMode') === 'public', 'Default V1 smoke path should use the single public view');
+const publicSummaryText = doc.getElementById('summaryBar')?.textContent || '';
+assert(/Review Priorities/i.test(publicSummaryText), 'Public summary should present the Overview as review priorities');
+assert(/Review first/i.test(publicSummaryText), 'Public summary should point to the first review priority');
+assert(doc.querySelectorAll('#findingBody .plain-question-bridge').length > 0, 'Public Overview should include plain-language questions before the detailed card');
 assert(doc.querySelectorAll('#findingBody .finding-card').length > 0, 'Overview should render normalized finding cards');
 assert(doc.querySelectorAll('#findingBody .primary-finding-card').length > 0, 'Overview finding cards should render primary public finding cards');
-assert(/Review first/i.test(doc.querySelector('#findingBody .primary-finding-card')?.textContent || ''), 'Detailed first finding should be explicitly marked as the first review priority');
+assert(/Review first/i.test(doc.querySelector('#findingBody .primary-finding-card')?.textContent || ''), 'Public first finding should be explicitly marked as the first review priority');
 assert([...doc.querySelectorAll('#findingBody .primary-finding-card')].every(card => ['What changed', 'Why it matters', 'Review focus'].every(label => card.textContent.includes(label)) && !card.textContent.includes('What to review')), 'Overview finding cards should render the compact clinical priority explanation');
-const detailedVisibleReviewText = `${doc.getElementById('summaryBar')?.textContent || ''} ${doc.getElementById('findingBody')?.textContent || ''}`;
-assert(!detailedVisibleReviewText.includes('should be avoided, substituted, dose-adjusted, or monitored before use'),
-  'Detailed review copy should avoid the old directive medication-change fallback phrase');
+const publicVisibleReviewText = `${doc.getElementById('summaryBar')?.textContent || ''} ${doc.getElementById('findingBody')?.textContent || ''}`;
+assert(!publicVisibleReviewText.includes('should be avoided, substituted, dose-adjusted, or monitored before use'),
+  'Public review copy should avoid the old directive medication-change fallback phrase');
 window.setAudienceMode('plain');
-assert(evalInPage(window, 'audienceMode') === 'patient', 'Plain smoke path should switch to the simplified explanation depth');
-const plainSummaryText = Array.from(doc.querySelectorAll('#summaryBar .summary-title, #summaryBar .summary-copy, #summaryBar .summary-next'))
-  .map(el => el.textContent || '')
-  .join(' ');
-const plainFindingText = doc.getElementById('findingBody')?.textContent || '';
-assert(/questions? ready for your list/i.test(plainSummaryText), 'Plain summary should orient around prepared questions');
-assert(!/Can you check/i.test(plainSummaryText), 'Plain summary should leave exact questions to Safety Notes');
-assert(doc.querySelectorAll('#findingBody .patient-question-card').length > 0, 'Plain Overview should render safety-note cards');
-assert(!doc.querySelector('#findingBody .patient-stack-summary'), 'Plain Overview should avoid a duplicate stack summary when a Safety Note is present');
-assert(plainFindingText.includes('What to ask') && plainFindingText.includes('For this list'), 'Plain safety-note cards should render question-first guidance');
-assert(doc.querySelectorAll('#findingBody .primary-finding-card').length === 0, 'Plain Overview should not render detailed finding cards in the Overview panel');
+assert(evalInPage(window, 'audienceMode') === 'public', 'Legacy Plain switch should remain a public-view no-op');
+assert(doc.querySelectorAll('#findingBody .primary-finding-card').length > 0, 'Legacy Plain switch should not remove detailed public finding cards');
+assert(doc.querySelectorAll('#findingBody .plain-question-bridge').length > 0, 'Legacy Plain switch should keep the public question bridge');
 window.setAudienceMode('detailed');
 assert(doc.querySelectorAll('#findingBody .why-path').length === 0, 'Overview should not duplicate the full why-path chain');
 assert(doc.querySelectorAll('#findingBody .finding-step').length > 0, 'Overview finding cards should render compact explanation steps');

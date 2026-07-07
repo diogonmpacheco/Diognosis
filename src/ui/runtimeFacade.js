@@ -27,7 +27,7 @@ function currentV1HandoffState() {
       released: DIOGNOSIS_VERSION.released,
       drugCount: typeof DIOGNOSIS_STATS !== "undefined" && DIOGNOSIS_STATS.drugs ? DIOGNOSIS_STATS.drugs : DIOGNOSIS_VERSION.drugCount,
     },
-    audience: audienceMode,
+    audience: "public",
     reviewer: isReviewerMode(),
     activeTab,
     substances,

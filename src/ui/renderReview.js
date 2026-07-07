@@ -136,10 +136,10 @@ function buildV1ReadinessSnapshot(options = {}) {
       detail:shareUrl ? "Current list can be reopened from the generated share link." : "No share link is available.",
     },
     {
-      key:"audience",
-      label:"Audience mode",
-      ok:typeof setAudienceMode === "function" && !!document.getElementById("audience-patient") && !!document.getElementById("audience-clinician"),
-      detail:"Patient and Clinician presentation modes are available at the top level.",
+      key:"publicView",
+      label:"Single public view",
+      ok:!document.getElementById("audience-patient") && !document.getElementById("audience-clinician") && !document.querySelector(".audience-wrap"),
+      detail:"The normal product uses one Medication Review surface; reviewer tooling stays behind ?reviewer=1.",
     },
   ];
   const passed = checks.filter(check => check.ok).length;

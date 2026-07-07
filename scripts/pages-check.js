@@ -58,8 +58,8 @@ function verifyAuxiliaryPages() {
   assert(facts.schema === 'diognosis.reference-facts.v1' && facts.factCount >= 50 && facts.factCount <= 100,
     `Reference facts payload should expose 50-100 facts, got ${facts.factCount || 0}`);
   assert(jsonlLines.length === facts.factCount, 'Reference JSONL should contain one line per canonical fact');
-  assert(facts.facts.every((fact) => fact.patientSummary && fact.clinicianSummary && fact.evidenceStatus && fact.boundary),
-    'Every reference fact should expose patient summary, clinician summary, evidence status, and boundary');
+  assert(facts.facts.every((fact) => fact.summary && fact.reviewQuestion && fact.mechanismSummary && fact.evidenceStatus && fact.boundary),
+    'Every reference fact should expose public summary, review question, mechanism summary, evidence status, and boundary');
   assert(reference.includes('application/ld+json') && reference.includes('Diognosis V1 Reference Facts') && reference.includes('Educational only; no runtime uploads'),
     'Reference page should expose JSON-LD, title, and local/static boundary');
   assert(llms.includes('V1 Reference Facts') && llms.includes('Facts JSONL') && llms.includes('not medical advice'),

@@ -70,7 +70,7 @@ These links open the live app with example medication stacks already loaded:
 | [**Clopidogrel + CYP2C19 PM**](https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:poor_metabolizer&tab=genes-metabolites) | Clopidogrel is a prodrug. Genes + Metabolites shows CYP2C19 functional status and reduced active-thiol formation as an activation-failure prompt. |
 | [**Codeine + CYP2D6 PM**](https://diogonmpacheco.github.io/Diognosis/index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=genes-metabolites) | Codeine must convert into morphine. The app separates parent codeine, active morphine, CYP2D6 phenoconversion, and the why path behind reduced activation. |
 | [**Simvastatin + clarithromycin**](https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&tab=mechanisms) | Clarithromycin blocks a major simvastatin cleanup route. Mechanisms shows the CYP3A4 pathway chain and source-linked evidence status. |
-| [**Older-adult burden**](https://diogonmpacheco.github.io/Diognosis/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview) | Each medicine can add sedation, confusion, or fall risk. Overview groups the main interaction findings while Detailed depth keeps evidence and mechanisms inspectable. |
+| [**Older-adult burden**](https://diogonmpacheco.github.io/Diognosis/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview) | Each medicine can add sedation, confusion, or fall risk. Overview groups plain-language review questions with source-linked mechanisms, timing, genes, and evidence. |
 
 <details>
 <summary><strong>Deep demos</strong> — cases often missed when a checker only looks at parent drug names</summary>
@@ -96,7 +96,7 @@ You can also build custom share links:
 https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,ibuprofen&tab=overview
 ```
 
-Detailed depth is the default public experience: it keeps the mechanistic review visible while adding plain-language questions at the top of the Overview. Add `audience=plain` for the simplified question-first surface; old `audience=patient` links still work as an alias.
+The public app now has one **Diognosis Medication Review** view. Overview starts with plain-language questions and safety boundaries, then keeps the detailed mechanism, timing, gene, monitoring, evidence, and supporting-detail layers available in the same surface. Legacy `audience=plain`, `audience=patient`, `audience=detailed`, and `audience=clinician` links still load, but they are treated as old no-op parameters and are stripped from generated share URLs.
 
 ---
 
@@ -141,7 +141,7 @@ Diognosis is intentionally conservative about what it claims:
 - **69 genotype genes** and **588 receptor score profiles**
 - **1251 RxNorm identity mappings**, **43 PGx marker rows**, and **18 CPIC-linked action summaries**
 - **218 Beers flags** and **1411 washout rules**
-- **3305 KB** generated bundle (2657 lines)
+- **3299 KB** generated bundle (2624 lines)
 <!-- DIOGNOSIS_STATS_END -->
 
 ---
@@ -150,11 +150,11 @@ Diognosis is intentionally conservative about what it claims:
 
 1. Open the [live Diognosis app](https://diogonmpacheco.github.io/Diognosis/).
 2. Search for medications, supplements, foods, or substances.
-3. Use **Detailed** depth for the full Overview, Mechanisms, Genes + Metabolites, Timing + Levels, and Evidence surfaces, or **Plain** depth for question-first language.
+3. Start in **Overview** for Review Priorities, then open Mechanisms, Genes + Metabolites, Timing + Levels, and Evidence when you need the supporting detail.
 4. Set genotype phenotypes where relevant, or paste supported PharmGx report rows in the pharmacogenomics panel.
 5. Treat every result as an explanation to review, **not as medical advice**.
 
-> **Tip:** The Reviewer Console is not part of the normal V1 surface. It is available only through `?reviewer=1` for data review, QA, and contribution workflows; reviewer mode forces the Detailed surface instead of mixing with Plain depth.
+> **Tip:** The Reviewer Console is not part of the normal V1 surface. It is available only through `?reviewer=1` for data review, QA, and contribution workflows.
 
 For a plain-English map of what matters in the repo, what runs for release, and which generated files can be ignored, see the [Repo Guide](docs/REPO_GUIDE.md). For internals, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md) and the [Data Model](docs/DATA_MODEL.md). For launch readiness, see the [Launch QA Matrix](docs/LAUNCH_QA_MATRIX.md), [Public Trust Model](docs/PUBLIC_TRUST.md), and [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md). For redesign or wrapper apps, the built page exposes a small `window.DIOGNOSIS_V1` runtime handoff contract documented in [Technical Notes](docs/TECHNICAL.md#runtime-handoff-contract).
 

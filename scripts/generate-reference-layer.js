@@ -93,15 +93,12 @@ function safeReferenceReviewAction(value) {
   return 'Review whether this combination needs a different plan, dose context, timing, monitoring, or specialist/pharmacist input before any medication changes.';
 }
 
-function exampleHref(example, audience = 'detailed') {
+function exampleHref(example) {
   const params = [
     ['substances', example.substances.join(',')],
     ...(example.genotypes || []).map((genotype) => ['genotype', genotype]),
     ['tab', 'overview'],
   ];
-  if (audience === 'plain') {
-    params.splice(params.length - 1, 0, ['audience', 'plain']);
-  }
   return `./index.html?${params.map(([key, value]) => `${encodeURIComponent(key)}=${encodeUrlValue(value)}`).join('&')}`;
 }
 
@@ -141,8 +138,8 @@ function runtimeJson(window, expression) {
   return window.eval(`JSON.parse(JSON.stringify(${expression}))`);
 }
 
-function resetRuntime(window, example, audience) {
-  const path = exampleHref(example, audience).replace(/^\./, '');
+function resetRuntime(window, example) {
+  const path = exampleHref(example).replace(/^\./, '');
   window.history.replaceState(null, '', path);
   window.loadUrlDemoState();
   window.eval(`renderComputationCache = null;
@@ -150,21 +147,20 @@ function resetRuntime(window, example, audience) {
     currentClinicalConcerns = [];
     currentPublicFindingPresentations = [];
     if (typeof drugDoses !== "undefined") Object.keys(drugDoses).forEach(k => delete drugDoses[k]);`);
-  window.setAudienceMode(audience, { render:false });
   window.renderAll();
 }
 
-function renderAudience(window, example, audience) {
-  resetRuntime(window, example, audience);
+function renderPublicReview(window, example) {
+  resetRuntime(window, example);
   const { document } = window;
-  const titleSelector = audience === 'patient'
-    ? '#findingBody .patient-question-card .patient-question-title'
-    : '#findingBody .primary-finding-card .finding-title';
-  const bodySelector = audience === 'patient'
-    ? '#findingBody .patient-question-card .finding-discussion-text'
-    : '#findingBody .primary-finding-card .finding-discussion-text';
+  const titleSelector = '#findingBody .primary-finding-card .finding-title';
+  const bodySelector = '#findingBody .primary-finding-card .finding-discussion-text';
+  const plainTitleSelector = '#findingBody .plain-question-card .plain-question-card-context';
+  const questionSelector = '#findingBody .plain-question-card .plain-question-card-question';
   const titles = [...document.querySelectorAll(titleSelector)].map((node) => node.textContent.replace(/\s+/g, ' ').trim()).filter(Boolean);
   const bodies = [...document.querySelectorAll(bodySelector)].map((node) => node.textContent.replace(/\s+/g, ' ').trim()).filter(Boolean);
+  const plainTitles = [...document.querySelectorAll(plainTitleSelector)].map((node) => node.textContent.replace(/\s+/g, ' ').trim()).filter(Boolean);
+  const questions = [...document.querySelectorAll(questionSelector)].map((node) => node.textContent.replace(/\s+/g, ' ').trim()).filter(Boolean);
   const cache = runtimeJson(window, `(() => {
     const cache = getRenderComputationCache();
     const presentations = buildPublicFindingPresentations(cache.clinicalConcerns || []);
@@ -200,8 +196,11 @@ function renderAudience(window, example, audience) {
   return {
     titles,
     bodies,
+    questions,
     topTitle:titles[0] || '',
     topBody:bodies[0] || '',
+    topPlainTitle:plainTitles[0] || '',
+    topQuestion:questions[0] || '',
     summary:textContent(document, '#summaryBar'),
     presentations:cache.presentations,
     clinicalConcerns:cache.clinicalConcerns,
@@ -236,12 +235,11 @@ function isInternalAdapterRef(ref = '') {
 }
 
 function buildFact(window, data, resolveSubstance, guide, example, index) {
-  const patient = renderAudience(window, example, 'patient');
-  const clinician = renderAudience(window, example, 'clinician');
-  const presentation = clinician.presentations[0] || patient.presentations[0] || {};
+  const review = renderPublicReview(window, example);
+  const presentation = review.presentations[0] || {};
   const refs = unique([
     ...(presentation.evidenceRefs || []),
-    ...(clinician.clinicalConcerns[0]?.evidenceRefs || []),
+    ...(review.clinicalConcerns[0]?.evidenceRefs || []),
   ]);
   const resolvedSubstances = (example.substances || []).map((value) => {
     const drug = resolveSubstance(value);
@@ -268,16 +266,19 @@ function buildFact(window, data, resolveSubstance, guide, example, index) {
     factType:(example.genotypes || []).length ? 'interaction_or_pgx_example' : 'interaction_example',
     substances:resolvedSubstances,
     genotypes:example.genotypes || [],
-    severity:presentation.severity || clinician.clinicalConcerns[0]?.severity || 'info',
-    priority:presentation.severity || clinician.clinicalConcerns[0]?.severity || 'info',
-    patientSummary:patient.topTitle,
-    patientQuestion:patient.topBody,
-    clinicianSummary:clinician.topTitle || presentation.title || '',
-    mechanismSummary:safeReferenceMechanismText(presentation.whatChanged || clinician.topBody || ''),
+    severity:presentation.severity || review.clinicalConcerns[0]?.severity || 'info',
+    priority:presentation.severity || review.clinicalConcerns[0]?.severity || 'info',
+    summary:review.topTitle || presentation.title || '',
+    reviewQuestion:review.topQuestion || safeReferenceReviewAction(presentation.whatToReview || review.topBody || ''),
+    patientSummary:review.topPlainTitle || review.topQuestion || review.topTitle || presentation.title || '',
+    patientQuestion:review.topQuestion || safeReferenceReviewAction(presentation.whatToReview || review.topBody || ''),
+    clinicianSummary:review.topTitle || presentation.title || '',
+    mechanismSummary:safeReferenceMechanismText(presentation.whatChanged || review.topBody || ''),
     clinicalRationale:safeReferenceMechanismText(presentation.whyItMatters || ''),
+    reviewFocus:safeReferenceReviewAction(presentation.whatToReview || ''),
     reviewAction:safeReferenceReviewAction(presentation.whatToReview || ''),
-    evidenceSummary:presentation.evidenceSummary || clinician.clinicalConcerns[0]?.evidenceStatus || '',
-    evidenceStatus:clinician.clinicalConcerns[0]?.evidenceStatus || presentation.evidenceSummary || '',
+    evidenceSummary:presentation.evidenceSummary || review.clinicalConcerns[0]?.evidenceStatus || '',
+    evidenceStatus:review.clinicalConcerns[0]?.evidenceStatus || presentation.evidenceSummary || '',
     evidenceRefs:refs,
     evidenceSources,
     sourceUrls,
@@ -285,11 +286,7 @@ function buildFact(window, data, resolveSubstance, guide, example, index) {
     sourceIntegrationStatus:presentation.clinicalReviewStatus || 'source-integrated',
     sourceIntegrated:!!presentation.sourceLinked || refs.length > 0,
     boundary:BOUNDARY,
-    appUrl:absoluteUrl(exampleHref(example, 'detailed')),
-    plainAppUrl:absoluteUrl(exampleHref(example, 'plain')),
-    detailedAppUrl:absoluteUrl(exampleHref(example, 'detailed')),
-    patientAppUrl:absoluteUrl(exampleHref(example, 'plain')),
-    clinicianAppUrl:absoluteUrl(exampleHref(example, 'detailed')),
+    appUrl:absoluteUrl(exampleHref(example)),
     referenceUrl:absoluteUrl(`reference/index.html#${id}`),
     generatedFrom:{
       source:'data/medication-class-guides.json',
@@ -311,6 +308,8 @@ function validateFacts(facts, browserErrors) {
   for (const fact of facts) {
     if (ids.has(fact.id)) fail(`Duplicate fact id: ${fact.id}`);
     ids.add(fact.id);
+    if (!fact.summary) fail(`${fact.id} is missing summary.`);
+    if (!fact.reviewQuestion) fail(`${fact.id} is missing reviewQuestion.`);
     if (!fact.patientSummary) fail(`${fact.id} is missing patientSummary.`);
     if (!fact.patientQuestion) fail(`${fact.id} is missing patientQuestion.`);
     if (!fact.clinicianSummary) fail(`${fact.id} is missing clinicianSummary.`);
@@ -378,7 +377,7 @@ function renderReferencePage(payload) {
       '@type':'MedicalWebPage',
       name:fact.label,
       url:fact.referenceUrl,
-      description:fact.patientSummary,
+      description:fact.summary || fact.patientSummary,
       medicalAudience:[
         { '@type':'MedicalAudience', audienceType:'Patient' },
         { '@type':'MedicalAudience', audienceType:'Clinician' },
@@ -441,7 +440,7 @@ function renderReferencePage(payload) {
       <a class="back" href="../data-views.html">Data views</a>
       <a class="back" href="../medication-classes.html">Class guides</a>
       <h1>Diognosis V1 Reference Facts</h1>
-      <p>Static Plain and Detailed summaries generated from the same local Diognosis runtime used by the app. This page is designed for humans, search crawlers, LLM retrieval, and audit checks without loading the full app bundle.</p>
+      <p>Static medication-review summaries generated from the same local Diognosis runtime used by the app. This page is designed for humans, search crawlers, LLM retrieval, and audit checks without loading the full app bundle.</p>
       <div class="support-strip" aria-label="Reference fact snapshot">
         <span><strong>${html(payload.factCount)}</strong> facts</span>
         <span><strong>${html(payload.sourceLinkedFacts)}</strong> source-linked</span>
@@ -475,12 +474,12 @@ ${payload.facts.map((fact) => `    <article class="fact" id="${html(fact.id)}">
       </div>
       <div class="fact-grid">
         <div class="panel">
-          <div class="label">Plain summary</div>
-          <p class="summary">${html(fact.patientSummary)}</p>
-          <p>${html(fact.patientQuestion)}</p>
+          <div class="label">Review question</div>
+          <p class="summary">${html(fact.summary)}</p>
+          <p>${html(fact.reviewQuestion)}</p>
         </div>
         <div class="panel">
-          <div class="label">Detailed mechanism summary</div>
+          <div class="label">Mechanism summary</div>
           <p class="summary">${html(fact.clinicianSummary)}</p>
           <p>${html(fact.mechanismSummary)}</p>
         </div>
@@ -491,8 +490,7 @@ ${payload.facts.map((fact) => `    <article class="fact" id="${html(fact.id)}">
         ${renderEvidenceLinks(fact)}
       </div>
       <div class="meta">
-        <a class="tag" href="${html(fact.plainAppUrl)}">Open Plain view</a>
-        <a class="tag" href="${html(fact.detailedAppUrl)}">Open Detailed view</a>
+        <a class="tag" href="${html(fact.appUrl)}">Open Medication Review</a>
       </div>
     </article>`).join('\n')}
   </main>
@@ -508,7 +506,7 @@ function renderLlms(payload) {
 
 ## Best Retrieval Entry Points
 
-- [V1 Reference Facts](${BASE_URL}reference/index.html): static Plain and Detailed summaries generated from the app runtime.
+- [V1 Reference Facts](${BASE_URL}reference/index.html): static medication-review summaries generated from the app runtime.
 - [Facts JSON](${BASE_URL}data/diognosis-facts.json): full canonical fact payload with metadata.
 - [Facts JSONL](${BASE_URL}data/diognosis-facts.jsonl): one fact per line for retrieval pipelines.
 - [Data Views](${BASE_URL}data-views.html): alternate views over genotype, action, and ranking data.

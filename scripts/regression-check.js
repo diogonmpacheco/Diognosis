@@ -227,15 +227,15 @@ assert(/substances=codeine,fluoxetine/i.test(liveUrlStateRegression.withStack),
 assert(/genotype=CYP2D6:PM/i.test(liveUrlStateRegression.withStack),
   `Live URL sync should include selected genotype: ${liveUrlStateRegression.withStack}`);
 assert(!/audience=/i.test(liveUrlStateRegression.withStack),
-  `Live URL sync should omit the default Detailed audience: ${liveUrlStateRegression.withStack}`);
+  `Live URL sync should omit legacy audience state: ${liveUrlStateRegression.withStack}`);
 assert(/tab=genes-metabolites/i.test(liveUrlStateRegression.withStack),
   `Live URL sync should include current tab: ${liveUrlStateRegression.withStack}`);
 assert(/substances=codeine/i.test(liveUrlStateRegression.afterRemove) && !/fluoxetine/i.test(liveUrlStateRegression.afterRemove),
   `Live URL sync should remove deselected substances: ${liveUrlStateRegression.afterRemove}`);
 assert(!/(?:substances|drugs|medications)=/i.test(liveUrlStateRegression.afterClear) && !/genotype=/i.test(liveUrlStateRegression.afterClear),
   `Live URL sync should clear stale stack/genotype params when the state is reset: ${liveUrlStateRegression.afterClear}`);
-assert(/audience=plain/i.test(liveUrlStateRegression.afterClear),
-  `Live URL sync should preserve non-default Plain depth when the stack is reset: ${liveUrlStateRegression.afterClear}`);
+assert(!/audience=/i.test(liveUrlStateRegression.afterClear),
+  `Live URL sync should canonicalize away legacy audience params when the stack is reset: ${liveUrlStateRegression.afterClear}`);
 
 const genotypeSemanticsAudit = window.eval(`(() => {
   const missing = [];
@@ -791,6 +791,7 @@ const audienceModeRegression = window.eval(`(() => {
     audienceMode,
     bodyAudience:document.body.dataset.audience,
     activeTab,
+    locationSearch:window.location.search,
     tagline:document.getElementById('audienceTagline')?.textContent || '',
     searchPlaceholder:document.getElementById('searchInput')?.getAttribute('placeholder') || '',
     listTitle:document.getElementById('listTitle')?.textContent || '',
@@ -901,100 +902,80 @@ const audienceModeRegression = window.eval(`(() => {
   };
   return { patient, clinician };
 })()`);
-assert(audienceModeRegression.patient.audienceMode === 'patient', 'Audience URL should set Patient mode');
-assert(audienceModeRegression.patient.bodyAudience === 'patient', 'Patient mode should mark body data-audience');
-assert(audienceModeRegression.patient.activeTab === 'overview', 'Plain mode should still route reviewer-console tab requests back to Overview');
-assert(/Plain-language questions with detailed review still available/i.test(audienceModeRegression.patient.tagline), 'Plain mode should use the simplified-depth app tagline');
-assert(/Search medicines, supplements, or foods/i.test(audienceModeRegression.patient.searchPlaceholder), 'Patient mode should use patient-facing search placeholder');
-assert(audienceModeRegression.patient.listTitle === 'Medicine List', 'Plain mode should use simplified selected-list label');
-assert(audienceModeRegression.patient.firstUseOrder.join('|').startsWith('audience|mode|search|selected-list|gene-results'),
-  `Clinical Calm shell should keep audience in the header, then add controls and Gene Results in the rail; got ${audienceModeRegression.patient.firstUseOrder.join('|')}`);
+assert(audienceModeRegression.patient.audienceMode === 'public', 'Legacy audience URL should resolve to the single public view');
+assert(!audienceModeRegression.patient.bodyAudience, 'Single public view should not mark body data-audience');
+assert(audienceModeRegression.patient.activeTab === 'overview', 'Legacy reviewer-console tab requests should still route back to Overview');
+assert(!/audience=/i.test(audienceModeRegression.patient.locationSearch),
+  `Legacy audience URL should canonicalize away on render: ${audienceModeRegression.patient.locationSearch}`);
+assert(/Medication review with plain questions, mechanisms, timing, genes, and source-linked evidence/i.test(audienceModeRegression.patient.tagline),
+  'Public view should use the single Medication Review tagline');
+assert(/Medication, supplement, or food/i.test(audienceModeRegression.patient.searchPlaceholder), 'Public view should use the canonical search placeholder');
+assert(audienceModeRegression.patient.listTitle === 'Medicine List', 'Public view should use the Medicine List label');
+assert(audienceModeRegression.patient.firstUseOrder.join('|').startsWith('mode|search|selected-list|gene-results'),
+  `Clinical Calm shell should start with add controls and Gene Results after removing audience controls; got ${audienceModeRegression.patient.firstUseOrder.join('|')}`);
 assert(audienceModeRegression.patient.modeGroupLabel === 'Choose how to add items', 'Search/Browse mode group should describe the add-choice control');
 assert(audienceModeRegression.patient.modeLabels.join('|') === 'Search by Name|Browse Categories', 'Search/Browse mode labels should describe add modes, not submit actions');
 assert(audienceModeRegression.patient.modeTags.join('|') === 'BUTTON|BUTTON', 'Search/Browse mode controls should be keyboard-accessible buttons');
 assert(audienceModeRegression.patient.modePressed.join('|') === 'true|false', 'Search/Browse mode controls should expose the selected state');
 assert(audienceModeRegression.patient.compactChromeCss, 'V1 chrome should keep add-mode controls compact and database stats off the work surface');
 assert(audienceModeRegression.patient.browsePressedAfterToggle.join('|') === 'false|true', 'Browse mode control should expose the selected state after toggle');
-assert(/2 items selected/i.test(audienceModeRegression.patient.medCount), 'Patient mode should use plain selected-item count copy');
-assert(!/substances?/i.test(audienceModeRegression.patient.medCount), 'Patient mode selected-list count should not use substance terminology');
-assert(audienceModeRegression.patient.doseSelects === 0, 'Patient mode selected list should not expose clinician dose-tier selectors');
-assert(audienceModeRegression.patient.removeButtons === 2, 'Patient mode selected list should use compact removable item buttons');
-assert(audienceModeRegression.patient.patientLayoutCss, 'Patient mode should keep optional gene controls with the list before safety results');
-assert(/Gene Results/i.test(audienceModeRegression.patient.geneTitle) && /Do not guess|original report|doctor or pharmacist/i.test(audienceModeRegression.patient.geneIntro), 'Patient mode should use patient-facing gene helper copy');
-assert(!/Genes \+ Metabolites tab|source-linked|parent drugs|PK timing|pathway activity|metabolite balance/i.test(
-  `${audienceModeRegression.patient.tagline} ${audienceModeRegression.patient.geneIntro}`
-), 'Plain mode should not put technical copy in the simplified chrome');
-assert(audienceModeRegression.patient.tabBarDisplay !== 'none', 'Plain mode should keep detailed tabs available instead of hiding the useful app surface');
-assert(audienceModeRegression.patient.summaryStoryCount === 0, 'Patient mode top summary should stay compact and leave detailed explanation to Safety Notes');
-assert(/questions? ready for your list/i.test(audienceModeRegression.patient.summaryText),
-  'Patient mode top summary should orient around prepared questions');
-assert(!/Can you check/i.test(audienceModeRegression.patient.summaryText),
-  'Patient mode top summary should leave exact question wording to Safety Notes');
-assert(!/higher-priority safety note was found|safety note was found for this list/i.test(audienceModeRegression.patient.summaryText),
-  'Patient mode top summary should not repeat report-style safety-note body copy before Safety Notes');
-assert(!/\bView note\b/i.test(audienceModeRegression.patient.summaryText),
-  'Patient mode top summary should not show a redundant jump link when Safety Notes are directly below');
-assert(/Next step|medication review|share this screen/i.test(audienceModeRegression.patient.summaryNext), 'Patient mode compact summary should still keep a plain next-step line');
-assert(audienceModeRegression.patient.summaryRisk.trim() === '', 'Patient mode should hide summary score badges');
-assert(audienceModeRegression.patient.findingTitle === 'Safety Notes', 'Patient mode should rename findings to Safety Notes');
-assert(/plain notes?/i.test(audienceModeRegression.patient.findingCount), 'Plain mode should label public finding count as plain notes');
-assert(audienceModeRegression.patient.patientQuestionCards > 0, 'Patient mode should render dedicated question cards');
-assert(/What to ask[\s\S]*For this list/i.test(audienceModeRegression.patient.findingText),
-  'Patient mode should make the question primary before the reason text');
-assert(!audienceModeRegression.patient.patientStackSummary,
-  'Patient mode should not repeat the top summary before visible Safety Notes');
-assert(audienceModeRegression.patient.patientMeaningCards === 0, 'Patient mode should not duplicate the same findings in a separate meaning grid');
-assert(audienceModeRegression.patient.exposureSummaryCount === 0, 'Patient mode should hide technical exposure summary rows from the selected list');
-assert(audienceModeRegression.patient.actionRows === 0, 'Patient mode should not render empty clinician action rows on patient question cards');
-assert(audienceModeRegression.patient.detailButtons === 0, 'Patient mode should hide clinician supporting-detail buttons');
-assert(audienceModeRegression.patient.supportDetails === 0, 'Patient mode should hide clinician supporting detail drawers');
-assert(!/What this means/.test(audienceModeRegression.patient.findingText), 'Patient mode should fold the old meaning section into the synthesis summary');
-assert(/Do not start, stop, switch, or change medicines on your own|Bring this list to a doctor or pharmacist/i.test(audienceModeRegression.patient.findingText), 'Patient mode should use a plain-language bring-to-clinician footer');
-assert(!/(?:Technical details remain available in Review|Detailed technical context|pathway, metabolite, timing, and evidence signals|clinical concerns)/i.test(
-  audienceModeRegression.patient.findingText
-), 'Patient mode should not expose clinician-only Overview footer language');
-assert(audienceModeRegression.patient.scopeDisplay === 'none', 'Patient mode should hide the reviewer-only console scope panel');
-assert(!String(audienceModeRegression.patient.scopeText || '').replace(/\s+/g, ' ').trim(), 'Patient mode should not render hidden reviewer console scope copy');
-assert(!/\b(?:AUC|Cmax|RxNorm|PGx|PMID|source-linked|modeled|confidence|clinical review needed|pharmacogenomics|metabolite-level|CYP\d)/i.test(
-  `${audienceModeRegression.patient.tagline} ${audienceModeRegression.patient.geneIntro} ${audienceModeRegression.patient.summaryText} ${audienceModeRegression.patient.findingText} ${audienceModeRegression.patient.medListText} ${audienceModeRegression.patient.scopeText}`
-), 'Patient mode should avoid clinician-only technical vocabulary in visible Overview copy');
-assert(audienceModeRegression.patient.severityLabels.length > 0 && audienceModeRegression.patient.severityLabels.every(label => !/^(critical|severe|moderate|monitor|info)$/i.test(label)),
-  `Patient mode should use plain priority labels instead of raw severity labels: ${audienceModeRegression.patient.severityLabels.join(', ')}`);
-assert(audienceModeRegression.patient.riskDisplay !== 'none', 'Plain mode should no longer hide the score-style risk panel');
-assert(/Risk score/i.test(audienceModeRegression.patient.riskText), 'Plain mode should keep the detailed risk panel populated when visible');
-assert(!audienceModeRegression.patient.altExists, 'Patient mode should not expose an alternatives panel');
-assert(!String(audienceModeRegression.patient.altText || '').replace(/\s+/g, ' ').trim(), 'Patient mode should clear hidden clinician alternative text');
-assert(audienceModeRegression.patient.shareUrl.includes('audience=plain'), 'Plain-mode share URL should preserve simplified explanation depth');
-assert(audienceModeRegression.clinician.audienceMode === 'clinician', 'Detailed mode should restore detailed state');
-assert(audienceModeRegression.clinician.bodyAudience === 'clinician', 'Detailed mode should mark body data-audience');
-assert(/Mechanistic medication review with plain questions and source-linked evidence/i.test(audienceModeRegression.clinician.tagline), 'Detailed mode should restore the review workbench tagline');
-assert(/Medication, supplement, or food/i.test(audienceModeRegression.clinician.searchPlaceholder), 'Detailed mode should restore detailed search placeholder');
-assert(audienceModeRegression.clinician.listTitle === 'Selected List', 'Detailed mode should restore selected-list label');
-assert(/2 substances/i.test(audienceModeRegression.clinician.medCount), 'Detailed mode should keep substance count copy');
-assert(audienceModeRegression.clinician.doseSelects > 0, 'Detailed mode should keep dose-tier selectors for supported medications');
-assert(audienceModeRegression.clinician.removeButtons === 2, 'Detailed mode selected list should use compact removable item buttons');
-assert(audienceModeRegression.clinician.compactMedListCss, 'Detailed mode should render selected medicines as compact rows');
-assert(audienceModeRegression.clinician.clinicianLayoutCss, 'Detailed mode should keep optional gene controls with the selected list before results');
-assert(/Genes \+ Metabolites|functional phenotype|parent\/metabolite direction|pathway consequences/i.test(audienceModeRegression.clinician.geneIntro), 'Detailed mode should restore detailed gene helper copy');
-assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Detailed mode should show tab navigation');
-assert(audienceModeRegression.clinician.summaryStoryCount === 0, 'Detailed mode should leave rationale/action rows to the first priority card');
-assert(/Review Priorities/i.test(audienceModeRegression.clinician.summaryText), 'Detailed mode should orient the top summary around review priorities');
-assert(/source detail is in Evidence|Use the first card/i.test(audienceModeRegression.clinician.summaryText), 'Detailed mode should use the top summary for orientation and routing');
-assert(/Use the first card|open Evidence/i.test(audienceModeRegression.clinician.summaryNext), 'Detailed mode should route details instead of repeating the card action');
-assert(audienceModeRegression.clinician.findingTitle === 'Review Priorities', 'Detailed mode should use a mixed drug/PGx priority title');
-assert(audienceModeRegression.clinician.plainQuestionBridge > 0, 'Detailed Overview should include plain-language questions before the detailed priority card');
-assert(/Review first/i.test(audienceModeRegression.clinician.firstFindingText) && /Review focus/i.test(audienceModeRegression.clinician.firstFindingText), 'Detailed mode should mark the first Overview card as the first review priority');
-assert(audienceModeRegression.clinician.circulatingDisplay !== 'none', 'Detailed Overview should show circulating/exposure context');
-assert(audienceModeRegression.clinician.circulatingCards > 0, 'Detailed Overview should render circulating cards');
-assert(/parent|metabolite|current stack|CYP/i.test(audienceModeRegression.clinician.circulatingText), 'Detailed circulating cards should include actor context');
-assert(audienceModeRegression.clinician.reviewButtonDisplay === 'none', 'Detailed V1 mode should hide reviewer-only console navigation');
-assert(audienceModeRegression.clinician.reviewPanelDisplay === 'none', 'Detailed V1 mode should keep the reviewer panel hidden');
+assert(/2 items selected/i.test(audienceModeRegression.patient.medCount), 'Public selected-list count should use item terminology');
+assert(!/substances?/i.test(audienceModeRegression.patient.medCount), 'Public selected-list count should not use substance terminology');
+assert(audienceModeRegression.patient.doseSelects > 0, 'Public selected list should keep dose-tier selectors where supported');
+assert(audienceModeRegression.patient.removeButtons === 2, 'Public selected list should use compact removable item buttons');
+assert(!audienceModeRegression.patient.patientLayoutCss, 'Single public view should not depend on legacy patient layout CSS');
+assert(/Gene \/ Marker Results/i.test(audienceModeRegression.patient.geneTitle) && /Genes \+ Metabolites|functional phenotype|parent\/metabolite direction|source-linked review/i.test(audienceModeRegression.patient.geneIntro),
+  'Public view should keep the detailed gene helper copy with plain safety boundaries');
+assert(audienceModeRegression.patient.tabBarDisplay !== 'none', 'Public view should keep the full review tabs available');
+assert(/Review Priorities/i.test(audienceModeRegression.patient.summaryText), 'Public summary should orient around review priorities');
+assert(/Use the first card|open Evidence/i.test(audienceModeRegression.patient.summaryNext), 'Public summary should route from Overview into detailed review context');
+assert(audienceModeRegression.patient.summaryRisk.trim() !== '', 'Public view should keep the score-style summary panel available');
+assert(audienceModeRegression.patient.findingTitle === 'Review Priorities', 'Public Overview should use Review Priorities');
+assert(/review priorit/i.test(audienceModeRegression.patient.findingCount), 'Public finding count should use review-priority language');
+assert(audienceModeRegression.patient.patientQuestionCards === 0, 'Single public view should not render the old patient-only question cards');
+assert(audienceModeRegression.patient.patientMeaningCards === 0, 'Single public view should not render the old patient-only meaning grid');
+assert(/Plain-language questions[\s\S]*Review first[\s\S]*Review focus/i.test(audienceModeRegression.patient.findingText),
+  'Public Overview should show plain questions followed by the detailed priority card');
+assert(audienceModeRegression.patient.exposureSummaryCount === 0, 'Selected list should keep exposure detail out of the sidebar');
+assert(audienceModeRegression.patient.actionRows > 0, 'Public Overview should keep source/detail action rows');
+assert(audienceModeRegression.patient.detailButtons > 0, 'Public Overview should keep supporting-detail buttons');
+assert(audienceModeRegression.patient.supportDetails > 0, 'Public Overview should keep supporting detail drawers');
+assert(audienceModeRegression.patient.scopeDisplay === 'none', 'Public view should hide reviewer-only console scope');
+assert(!String(audienceModeRegression.patient.scopeText || '').replace(/\s+/g, ' ').trim(), 'Public view should not render hidden reviewer console scope copy');
+assert(audienceModeRegression.patient.riskDisplay !== 'none', 'Public view should keep the risk panel available');
+assert(/Risk score/i.test(audienceModeRegression.patient.riskText), 'Public risk panel should stay populated');
+assert(!audienceModeRegression.patient.altExists, 'Public view should not expose an alternatives panel');
+assert(!String(audienceModeRegression.patient.altText || '').replace(/\s+/g, ' ').trim(), 'Public view should clear hidden alternative text');
+assert(!/audience=/i.test(audienceModeRegression.patient.shareUrl), `Public share URL should strip legacy audience params: ${audienceModeRegression.patient.shareUrl}`);
+assert(audienceModeRegression.clinician.audienceMode === 'public', 'Legacy Detailed switch should remain a public-view no-op');
+assert(!audienceModeRegression.clinician.bodyAudience, 'Legacy Detailed switch should not restore body data-audience');
+assert(audienceModeRegression.clinician.tagline === audienceModeRegression.patient.tagline, 'Legacy audience switches should not change chrome copy');
+assert(audienceModeRegression.clinician.searchPlaceholder === audienceModeRegression.patient.searchPlaceholder, 'Legacy audience switches should not change search copy');
+assert(audienceModeRegression.clinician.listTitle === audienceModeRegression.patient.listTitle, 'Legacy audience switches should not change selected-list copy');
+assert(/2 items/i.test(audienceModeRegression.clinician.medCount), 'Public selected list should preserve item-count copy after legacy switches');
+assert(audienceModeRegression.clinician.doseSelects > 0, 'Public view should keep dose-tier selectors for supported medications');
+assert(audienceModeRegression.clinician.removeButtons === 2, 'Public selected list should use compact removable item buttons after legacy switches');
+assert(audienceModeRegression.clinician.compactMedListCss, 'Public view should render selected medicines as compact rows');
+assert(!audienceModeRegression.clinician.clinicianLayoutCss, 'Single public view should not depend on legacy clinician layout CSS');
+assert(/Genes \+ Metabolites|functional phenotype|parent\/metabolite direction|pathway consequences/i.test(audienceModeRegression.clinician.geneIntro), 'Public view should keep detailed gene helper copy');
+assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Public view should show tab navigation');
+assert(audienceModeRegression.clinician.summaryStoryCount === 0, 'Public summary should leave rationale/action rows to the first priority card');
+assert(/Review Priorities/i.test(audienceModeRegression.clinician.summaryText), 'Public summary should orient around review priorities');
+assert(/Use the first card|open Evidence/i.test(audienceModeRegression.clinician.summaryNext), 'Public summary should route details instead of repeating card action');
+assert(audienceModeRegression.clinician.findingTitle === 'Review Priorities', 'Public Overview should use a mixed drug/PGx priority title');
+assert(audienceModeRegression.clinician.plainQuestionBridge > 0, 'Public Overview should include plain-language questions before the detailed priority card');
+assert(/Review first/i.test(audienceModeRegression.clinician.firstFindingText) && /Review focus/i.test(audienceModeRegression.clinician.firstFindingText), 'Public view should mark the first Overview card as the first review priority');
+assert(audienceModeRegression.clinician.circulatingDisplay !== 'none', 'Public Overview should show circulating/exposure context');
+assert(audienceModeRegression.clinician.circulatingCards > 0, 'Public Overview should render circulating cards');
+assert(/parent|metabolite|current stack|CYP/i.test(audienceModeRegression.clinician.circulatingText), 'Public circulating cards should include actor context');
+assert(audienceModeRegression.clinician.reviewButtonDisplay === 'none', 'Public V1 mode should hide reviewer-only console navigation');
+assert(audienceModeRegression.clinician.reviewPanelDisplay === 'none', 'Public V1 mode should keep the reviewer panel hidden');
 assert(audienceModeRegression.clinician.diagnosticPanelDisplays.every(value => value === 'none'),
-  `Detailed V1 mode should keep raw reviewer diagnostic panels hidden; got ${audienceModeRegression.clinician.diagnosticPanelDisplays.join('|')}`);
-assert(audienceModeRegression.clinician.scopeDisplay === 'none', 'Detailed V1 mode should hide reviewer-only console scope');
-assert(!String(audienceModeRegression.clinician.scopeText || '').replace(/\s+/g, ' ').trim(), 'Detailed V1 mode should not render reviewer-only console scope copy');
-assert(audienceModeRegression.clinician.actionRows > 0, 'Detailed mode should restore finding action rows');
-assert(audienceModeRegression.clinician.supportDetails > 0, 'Detailed mode should show supporting detail drawers');
+  `Public V1 mode should keep raw reviewer diagnostic panels hidden; got ${audienceModeRegression.clinician.diagnosticPanelDisplays.join('|')}`);
+assert(audienceModeRegression.clinician.scopeDisplay === 'none', 'Public V1 mode should hide reviewer-only console scope');
+assert(!String(audienceModeRegression.clinician.scopeText || '').replace(/\s+/g, ' ').trim(), 'Public V1 mode should not render reviewer-only console scope copy');
+assert(audienceModeRegression.clinician.actionRows > 0, 'Public view should keep finding action rows');
+assert(audienceModeRegression.clinician.supportDetails > 0, 'Public view should show supporting detail drawers');
 
 const handoffAudienceRegression = window.eval(`(() => {
   setAudienceMode('patient');
@@ -1005,19 +986,21 @@ const handoffAudienceRegression = window.eval(`(() => {
   const clinicianAria = document.getElementById('summaryCopyText')?.getAttribute('aria-label') || '';
   return { patientText, clinicianText, patientAria, clinicianAria };
 })()`);
-assert(/Handoff type: patient question list/i.test(handoffAudienceRegression.patientText), 'Patient handoff should identify itself as a question list');
+assert(handoffAudienceRegression.patientText === handoffAudienceRegression.clinicianText,
+  'Legacy audience switches should not change the single public handoff text');
+assert(/Handoff type: clinician\/pharmacist medication-review handoff/i.test(handoffAudienceRegression.patientText),
+  'Public handoff should identify itself as the medication-review handoff');
+assert(['V1 scope', 'Clinical context still needed', 'Top concerns', 'Boundaries'].every(section => handoffAudienceRegression.patientText.includes(section)),
+  'Public handoff should preserve medication-review report sections');
 assert(/Generated from local Diognosis/i.test(handoffAudienceRegression.patientText) && /no patient-specific data was uploaded/i.test(handoffAudienceRegression.patientText),
-  'Patient handoff should carry the local-data boundary');
-assert(!/V1 scope|Clinical context still needed|clinician\/pharmacist medication-review/i.test(handoffAudienceRegression.patientText),
-  'Patient handoff should not expose clinician-only report sections');
-assert(/Handoff type: clinician\/pharmacist medication-review handoff/i.test(handoffAudienceRegression.clinicianText),
-  'Clinician handoff should identify itself as a clinician/pharmacist handoff');
-assert(['V1 scope', 'Clinical context still needed', 'Top concerns', 'Boundaries'].every(section => handoffAudienceRegression.clinicianText.includes(section)),
-  'Clinician handoff should preserve report sections');
-assert(/Selected gene\/marker results:/i.test(handoffAudienceRegression.clinicianText),
-  'Clinician handoff should include selected gene/marker result summary');
-assert(/question list/i.test(handoffAudienceRegression.patientAria) && /clinician handoff/i.test(handoffAudienceRegression.clinicianAria),
-  'Copy fallback aria labels should match Patient versus Clinician handoff types');
+  'Public handoff should carry the local-data boundary');
+assert(/Selected gene\/marker results:/i.test(handoffAudienceRegression.patientText),
+  'Public handoff should include selected gene/marker result summary');
+assert(!/patient question list/i.test(handoffAudienceRegression.patientText),
+  'Public handoff should not fall back to the removed patient-question mode');
+assert(/Copyable Diognosis medication review summary/i.test(handoffAudienceRegression.patientAria) &&
+  handoffAudienceRegression.patientAria === handoffAudienceRegression.clinicianAria,
+  'Copy fallback aria label should stay stable across legacy audience no-ops');
 
 const emptyAudienceListRegression = window.eval(`(() => {
   activeStack = [];
@@ -1045,19 +1028,16 @@ const emptyAudienceListRegression = window.eval(`(() => {
   };
   return { patient, clinician };
 })()`);
-assert(emptyAudienceListRegression.patient.audienceMode === 'patient', 'Empty selected-list regression should enter Patient mode');
-assert(/Add medicines, supplements, or foods above to start a list for your doctor or pharmacist/i.test(emptyAudienceListRegression.patient.medListText),
-  'Patient empty selected-list state should give patient-facing start guidance');
-assert(!/interact|substances?/i.test(emptyAudienceListRegression.patient.medListText),
-  'Patient empty selected-list state should avoid clinician-oriented interaction/substance wording');
-assert(emptyAudienceListRegression.patient.medCount.trim() === '', 'Patient empty selected-list state should not show a count');
-assert(/doctor or pharmacist/i.test(emptyAudienceListRegression.patient.mainEmptyText), 'Patient empty start state should orient around doctor/pharmacist follow-up');
-assert(!/\b(?:Switch to Clinician|clinical context|source-linked|metabolites?|PGx|CYP\d|AUC|Cmax|pharmacogenomic)\b/i.test(emptyAudienceListRegression.patient.mainEmptyText),
-  'Patient empty start state should avoid clinician-only technical copy');
-assert(emptyAudienceListRegression.clinician.audienceMode === 'clinician', 'Empty selected-list regression should return to Clinician mode');
-assert(/Add medications, supplements, or foods above to start a mechanistic review/i.test(emptyAudienceListRegression.clinician.medListText),
-  'Clinician empty selected-list state should keep mechanistic-review guidance');
-assert(emptyAudienceListRegression.clinician.medCount.trim() === '', 'Clinician empty selected-list state should not show a count');
+assert(emptyAudienceListRegression.patient.audienceMode === 'public', 'Legacy empty audience URL should enter the single public view');
+assert(/Add medicines, supplements, or foods above to start a medication review/i.test(emptyAudienceListRegression.patient.medListText),
+  'Public empty selected-list state should give medication-review start guidance');
+assert(emptyAudienceListRegression.patient.medCount.trim() === '', 'Public empty selected-list state should not show a count');
+assert(/Diognosis brings parent-drug exposure, metabolite balance, pharmacogenomics, pathway shifts, timing, and source-linked evidence into one medication review surface/i.test(emptyAudienceListRegression.patient.mainEmptyText),
+  'Public empty start state should describe the single medication-review surface');
+assert(emptyAudienceListRegression.clinician.audienceMode === 'public', 'Legacy Detailed switch should remain in the public view');
+assert(emptyAudienceListRegression.clinician.medListText === emptyAudienceListRegression.patient.medListText,
+  'Legacy audience switches should not change the empty selected-list copy');
+assert(emptyAudienceListRegression.clinician.medCount.trim() === '', 'Public empty selected-list state should not show a count after legacy switches');
 
 const patientGeneResultListRegression = window.eval(`(() => {
   activeStack = [];
@@ -1091,18 +1071,18 @@ const patientGeneResultListRegression = window.eval(`(() => {
   };
   return { patient, clinician };
 })()`);
-assert(patientGeneResultListRegression.patient.audienceMode === 'patient', 'Patient gene-result selected-list regression should stay in Patient mode');
-assert(patientGeneResultListRegression.patient.doseSelects === 0, 'Patient gene-result selected list should not expose dose-tier selectors');
-assert(patientGeneResultListRegression.patient.exposureSummaryCount === 0, 'Patient gene-result selected list should hide exposure summary rows');
-assert(patientGeneResultListRegression.patient.summaryExposureCount === 0, 'Patient gene-result summary should hide technical exposure snapshot');
+assert(patientGeneResultListRegression.patient.audienceMode === 'public', 'Legacy patient gene-result URL should stay in the single public view');
+assert(patientGeneResultListRegression.patient.doseSelects > 0, 'Public gene-result selected list should keep dose-tier selectors where supported');
+assert(patientGeneResultListRegression.patient.exposureSummaryCount === 0, 'Public selected list should keep exposure detail out of the sidebar');
+assert(patientGeneResultListRegression.patient.summaryExposureCount > 0, 'Public gene-result summary should keep exposure snapshot rows');
 assert(!/\b(?:AUC|Cmax|metabolite-level|active thiol|CYP\d|clearance|confidence|parent\s+[↑↓]|direction only)\b/i.test(
   patientGeneResultListRegression.patient.medListText
-), 'Patient gene-result selected list should not expose technical metabolite/level rows');
-assert(patientGeneResultListRegression.clinician.exposureSummaryCount === 0, 'Clinician selected list should keep exposure detail out of the sidebar');
-assert(patientGeneResultListRegression.clinician.summaryExposureCount > 0, 'Clinician mode should keep exposure summary rows for gene-result stacks');
-assert(patientGeneResultListRegression.clinician.doseSelects > 0, 'Clinician mode should keep dose-tier controls for gene-result stacks');
+), 'Public selected list should not expose technical metabolite/level rows');
+assert(patientGeneResultListRegression.clinician.exposureSummaryCount === 0, 'Public selected list should keep exposure detail out of the sidebar after legacy switches');
+assert(patientGeneResultListRegression.clinician.summaryExposureCount > 0, 'Public view should keep exposure summary rows for gene-result stacks');
+assert(patientGeneResultListRegression.clinician.doseSelects > 0, 'Public view should keep dose-tier controls for gene-result stacks');
 assert(/\b(?:CYP\d|metabolite|parent|higher|lower)\b/i.test(patientGeneResultListRegression.clinician.summaryText),
-  'Clinician summary should retain technical exposure context');
+  'Public summary should retain technical exposure context');
 
 const patientActiveMetaboliteFallbackRegression = window.eval(`(() => {
   activeStack = [];
@@ -1128,12 +1108,12 @@ const patientActiveMetaboliteFallbackRegression = window.eval(`(() => {
     ].join(' '),
   };
 })()`);
-assert(patientActiveMetaboliteFallbackRegression.audienceMode === 'patient', 'Active-metabolite fallback regression should run in Patient mode');
+assert(patientActiveMetaboliteFallbackRegression.audienceMode === 'public', 'Active-metabolite fallback regression should run in the public view');
 assert(patientActiveMetaboliteFallbackRegression.activeStack.join('|') === 'Bupropion|Tamoxifen',
   'Active-metabolite fallback regression should load Bupropion + Tamoxifen');
-assert(patientActiveMetaboliteFallbackRegression.findingTitle === 'Safety Notes', 'Active-metabolite fallback should render Patient Safety Notes');
+assert(patientActiveMetaboliteFallbackRegression.findingTitle === 'Review Priorities', 'Active-metabolite fallback should render public Review Priorities');
 assert(!/\b(?:undefined|NaN|\[object Object\])\b/i.test(patientActiveMetaboliteFallbackRegression.visibleText),
-  'Patient active-metabolite fallback copy should not expose undefined/NaN/object text');
+  'Public active-metabolite fallback copy should not expose undefined/NaN/object text');
 
 const singleItemSummaryJumpRegression = window.eval(`(() => {
   activeStack = [];
@@ -1162,12 +1142,14 @@ const singleItemSummaryJumpRegression = window.eval(`(() => {
   return { patient, clinician };
 })()`);
 assert(singleItemSummaryJumpRegression.patient.activeStack.join('|') === 'Mystery Mix', 'Single-item summary jump regression should preserve the unrecognized selection');
-assert(singleItemSummaryJumpRegression.patient.findingDisplay === 'none', 'Patient single-item mode should hide Safety Notes when no note exists');
-assert(singleItemSummaryJumpRegression.patient.summaryJumpCount === 0, 'Patient single-item mode should not show a View note jump to a hidden section');
-assert(/Current Check/i.test(singleItemSummaryJumpRegression.patient.summaryText), 'Patient single-item mode should label the summary as a current check when no safety note exists');
-assert(/Add another medicine to check the list/i.test(singleItemSummaryJumpRegression.patient.summaryText), 'Patient single-item mode should keep add-another-medicine guidance');
-assert(singleItemSummaryJumpRegression.clinician.findingDisplay === 'none', 'Clinician single-item mode should hide findings when no finding exists');
-assert(singleItemSummaryJumpRegression.clinician.summaryJumpCount === 0, 'Clinician single-item mode should not show a View finding jump to a hidden section');
+assert(singleItemSummaryJumpRegression.patient.findingDisplay === 'none', 'Public single-item mode should hide Review Priorities when no priority exists');
+assert(singleItemSummaryJumpRegression.patient.summaryJumpCount === 0, 'Public single-item mode should not show a jump to a hidden section');
+assert(/Current check|Add another substance to check interactions/i.test(singleItemSummaryJumpRegression.patient.summaryText),
+  'Public single-item mode should label the summary as a current check when no priority exists');
+assert(/Add a second medication|interaction risk needs at least two substances/i.test(singleItemSummaryJumpRegression.patient.summaryText),
+  'Public single-item mode should keep add-another-item guidance');
+assert(singleItemSummaryJumpRegression.clinician.findingDisplay === 'none', 'Legacy Detailed no-op should keep findings hidden when no finding exists');
+assert(singleItemSummaryJumpRegression.clinician.summaryJumpCount === 0, 'Legacy Detailed no-op should not show a jump to a hidden section');
 
 const olderAdultDemoPriorityRegression = window.eval(`(() => {
   activeStack = [];
@@ -2697,18 +2679,21 @@ const patientCopyAuditRegression = window.eval(`(() => {
     currentPublicFindingPresentations = [];
     setAudienceMode(audience, { render:false });
     renderAll();
+    const plainLayer = audience === 'patient';
     return {
-      titles: Array.from(document.querySelectorAll(audience === 'patient'
-        ? '#findingBody .patient-question-card .patient-question-title'
+      titles: Array.from(document.querySelectorAll(plainLayer
+        ? '#findingBody .plain-question-card .plain-question-card-context'
         : '#findingBody .primary-finding-card .finding-title'
-      )).map(el => el.textContent.replace(/\\s+/g, ' ').trim()),
-      questions: Array.from(document.querySelectorAll(audience === 'patient'
-        ? '#findingBody .patient-question-card .finding-discussion-text'
-        : '#findingBody .primary-finding-card .finding-discussion-text'
-      )).map(el => el.textContent.replace(/\\s+/g, ' ').trim()),
-      meanings: Array.from(document.querySelectorAll('#findingBody .patient-meaning-card .patient-meaning-title'))
+      ))
         .map(el => el.textContent.replace(/\\s+/g, ' ').trim()),
-      patientCards: document.querySelectorAll('#findingBody .patient-question-card').length,
+      questions: Array.from(document.querySelectorAll(plainLayer
+        ? '#findingBody .plain-question-card .plain-question-card-question'
+        : '#findingBody .primary-finding-card .finding-discussion-text'
+      ))
+        .map(el => el.textContent.replace(/\\s+/g, ' ').trim()),
+      meanings: Array.from(document.querySelectorAll('#findingBody .plain-question-card .plain-question-card-context'))
+        .map(el => el.textContent.replace(/\\s+/g, ' ').trim()),
+      patientCards: document.querySelectorAll('#findingBody .plain-question-card').length,
     };
   }
   return {

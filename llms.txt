@@ -4,7 +4,7 @@
 
 ## Best Retrieval Entry Points
 
-- [V1 Reference Facts](https://diogonmpacheco.github.io/Diognosis/reference/index.html): static Plain and Detailed summaries generated from the app runtime.
+- [V1 Reference Facts](https://diogonmpacheco.github.io/Diognosis/reference/index.html): static medication-review summaries generated from the app runtime.
 - [Facts JSON](https://diogonmpacheco.github.io/Diognosis/data/diognosis-facts.json): full canonical fact payload with metadata.
 - [Facts JSONL](https://diogonmpacheco.github.io/Diognosis/data/diognosis-facts.jsonl): one fact per line for retrieval pipelines.
 - [Data Views](https://diogonmpacheco.github.io/Diognosis/data-views.html): alternate views over genotype, action, and ranking data.
@@ -20,4 +20,4 @@ Educational medication-safety reference only. Not medical advice, not a clinical
 - Facts: 85
 - Source-linked facts: 80
 - Source-integrated facts: 80
-- Last modified: 2026-06-28
+- Last modified: 2026-07-07

@@ -33,6 +33,6 @@ This is a QA matrix, not a clinical-validation claim. Diognosis should explain m
 
 ## Still Pending
 
-- Manual Patient and Clinician view QA for the same 10 cases.
+- Manual public Medication Review QA for the same 10 cases.
 - CYP2D6 edge-case wording review for nebivolol, metoprolol, atomoxetine, tamoxifen, and inhibitor-driven phenoconversion.
 - Product decision on whether a dedicated Pathway Explorer is necessary for V1.

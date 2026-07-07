@@ -2,7 +2,7 @@
 
 Generated: 2026-06-19
 
-The launch QA matrix guards cases that are easy to miss when a medication checker only compares parent drug names. The goal is broad V1 behavior: the app must preserve active-metabolite, toxic-metabolite, pharmacogenomic, timing, evidence, hidden Reviewer Console, and Plain/Detailed explanation-depth surfaces without stale panels or unsafe wording.
+The launch QA matrix guards cases that are easy to miss when a medication checker only compares parent drug names. The goal is broad V1 behavior: the app must preserve active-metabolite, toxic-metabolite, pharmacogenomic, timing, evidence, the hidden Reviewer Console, and the single public Medication Review surface without stale panels or unsafe wording.
 
 ## What The Gate Checks
 
@@ -11,7 +11,8 @@ The launch QA matrix guards cases that are easy to miss when a medication checke
 - Genes + Metabolites shows genotype, marker, active-moiety, and metabolite context.
 - Timing + Levels renders PK, persistence, washout, and burden surfaces where applicable.
 - Evidence exposes source-linked context and review status, while the hidden Reviewer Console keeps contribution links, diagnostics, and the V1 handoff separate from normal V1.
-- Plain depth stays question-first and preserves safety boundaries, while Detailed depth remains the default full review surface.
+- The public Overview starts with plain-language questions and safety boundaries, then keeps mechanism, expected-change, review-focus, monitoring, evidence/status, and supporting-detail layers available in one view.
+- Legacy `audience=` URLs render the same public view and generated/share URLs strip the old parameter.
 - Hidden panels stay empty so one stack cannot leak stale content into the next.
 
 ## Deep Scenario Set

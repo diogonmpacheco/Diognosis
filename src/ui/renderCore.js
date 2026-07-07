@@ -97,8 +97,8 @@ function swapDrug(oldName, newName) {
 
 let viewMode = "search";
 let activeTab = "overview";
-const DEFAULT_AUDIENCE_MODE = "clinician";
-let audienceMode = DEFAULT_AUDIENCE_MODE;
+const PUBLIC_AUDIENCE_MODE = "public";
+let audienceMode = PUBLIC_AUDIENCE_MODE;
 let currentInteractionFindings = [];
 let currentClinicalConcerns = [];
 let currentPublicFindingPresentations = [];
@@ -108,7 +108,6 @@ let manualSectionToggleKeys = {};
 let lastClearedSelection = null;
 let pendingBrowseFocusDrug = null;
 const DIOGNOSIS_TABS = ["overview","mechanisms","genes-metabolites","timing-levels","evidence","review"];
-const AUDIENCE_MODES = ["patient","clinician"];
 
 function clearSelectionUndoSnapshot() {
   lastClearedSelection = null;
@@ -229,22 +228,12 @@ function setActiveTab(name) {
   return activeTab;
 }
 
-function normalizeAudienceMode(value) {
-  const key = String(value || "").trim().toLowerCase();
-  if (key === "patient" || key === "simple" || key === "public") return "patient";
-  if (key === "plain") return "patient";
-  if (key === "clinician" || key === "clinical" || key === "professional" || key === "reviewer") return "clinician";
-  if (key === "detailed" || key === "review" || key === "mechanistic") return "clinician";
-  return null;
-}
-
 function isPatientAudience() {
-  return audienceMode === "patient";
+  return false;
 }
 
 function isReviewerParamEnabled(params = {}) {
-  const raw = String(params.reviewer || params.reviewMode || "").trim().toLowerCase();
-  return raw === "1" || raw === "true" || raw === "yes" || raw === "reviewer";
+  return String(params.reviewer || "").trim() === "1";
 }
 
 function isReviewerMode() {
@@ -260,83 +249,54 @@ function setReviewerShellHidden(el, hidden) {
 }
 
 function setAudienceMode(mode, options = {}) {
-  const requested = normalizeAudienceMode(mode) || DEFAULT_AUDIENCE_MODE;
-  audienceMode = isReviewerMode() ? "clinician" : requested;
+  audienceMode = PUBLIC_AUDIENCE_MODE;
   lazyRenderState = { evidenceKey:"", reviewKey:"" };
   syncAudienceModeUI();
   if (options.render !== false) renderAll();
 }
 
 function syncAudienceModeUI() {
-  const patient = isPatientAudience();
-  if (document.body) document.body.dataset.audience = audienceMode;
-  syncMainEmptyStateCopy(patient);
-  for (const mode of AUDIENCE_MODES) {
-    const btn = document.getElementById(`audience-${mode}`);
-    if (!btn) continue;
-    btn.classList.toggle("active", mode === audienceMode);
-    btn.setAttribute("aria-pressed", mode === audienceMode ? "true" : "false");
-  }
+  audienceMode = PUBLIC_AUDIENCE_MODE;
+  syncMainEmptyStateCopy();
   const tagline = document.getElementById("audienceTagline") || document.querySelector(".header p");
   if (tagline) {
-    tagline.textContent = patient
-      ? "Plain-language questions with detailed review still available"
-      : "Mechanistic medication review with plain questions and source-linked evidence";
+    tagline.textContent = "Medication review with plain questions, mechanisms, timing, genes, and source-linked evidence";
   }
   const searchInput = document.getElementById("searchInput");
   if (searchInput) {
-    searchInput.placeholder = patient
-      ? "Search medicines, supplements, or foods"
-      : "Medication, supplement, or food";
+    searchInput.placeholder = "Medication, supplement, or food";
   }
   const listTitle = document.getElementById("listTitle");
-  if (listTitle) listTitle.textContent = patient ? "Medicine List" : "Selected List";
+  if (listTitle) listTitle.textContent = "Medicine List";
   const geneTitle = document.getElementById("geneSectionTitle");
   if (geneTitle) {
-    geneTitle.innerHTML = patient
-      ? 'Gene Results <span style="font-size:11px;font-weight:400;color:var(--text2)">(optional)</span>'
-      : 'Gene / Marker Results <span style="font-size:11px;font-weight:400;color:var(--text2)">(optional)</span>';
+    geneTitle.innerHTML = 'Gene / Marker Results <span style="font-size:11px;font-weight:400;color:var(--text2)">(optional)</span>';
   }
   const geneIntro = document.getElementById("geneSectionIntro");
   if (geneIntro) {
-    geneIntro.textContent = patient
-      ? "Only add a medication gene-test result if you already have one. Do not guess a result; bring the original report to a doctor or pharmacist."
-      : "Set inherited gene or marker results here. Genes + Metabolites maps functional phenotype, parent/metabolite direction, pathway consequences, and source-linked review context for the current stack.";
+    geneIntro.textContent = "Only add real gene or marker results from a report. Genes + Metabolites maps functional phenotype, parent/metabolite direction, pathway consequences, and source-linked review context for the current list.";
   }
   const findingTitle = document.getElementById("findingTitle");
-  if (findingTitle) findingTitle.textContent = patient ? "Safety Notes" : "Review Priorities";
+  if (findingTitle) findingTitle.textContent = "Review Priorities";
 }
 
-function syncMainEmptyStateCopy(patient) {
+function syncMainEmptyStateCopy() {
   const setText = (id, text) => {
     const el = document.getElementById(id);
     if (el) el.textContent = text;
   };
-  setText("mainEmptyTitle", patient
-    ? "See how medicines, genes, timing, and food context may connect"
-    : "Inspect a parent–metabolite–gene system");
-  setText("mainEmptyCopy", patient
-    ? "Diognosis runs on your device and turns a medication list into clearer safety questions about how medicines, timing, food, and known gene results may connect. Add only medicines, supplements, foods, and real gene-test results you already have."
-    : "Diognosis brings parent-drug exposure, metabolite balance, pharmacogenomics, pathway shifts, timing, and source-linked evidence into one mechanistic review surface.");
-  setText("mainEmptyStep3Title", patient ? "Review priority signals first" : "Review the priority signal");
-  setText("mainEmptyStep3Copy", patient
-    ? "Use the notes to prepare sharper questions for a doctor or pharmacist before making medication decisions."
-    : "Start with Overview, then open Mechanisms, Genes, Timing, and Evidence to explain the priority signal.");
+  setText("mainEmptyTitle", "Inspect a parent–metabolite–gene system");
+  setText("mainEmptyCopy", "Diognosis brings parent-drug exposure, metabolite balance, pharmacogenomics, pathway shifts, timing, and source-linked evidence into one medication review surface.");
+  setText("mainEmptyStep3Title", "Review the priority signal");
+  setText("mainEmptyStep3Copy", "Start with Overview, then open Mechanisms, Genes, Timing, and Evidence to explain the priority signal.");
   const checks = document.getElementById("mainEmptyChecks");
   if (!checks) return;
-  const items = patient
-      ? [
-        "Questions worth discussing before changing anything",
-        "Known gene-test results that may change what to ask",
-        "Timing, food, or symptom context that may matter",
-        "Clear next steps for doctor or pharmacist follow-up",
-      ]
-    : [
-        "Priority signals and grouped mechanistic review",
-        "Gene, enzyme, transporter, and metabolite context that may change interpretation",
-        "Timing, persistence, washout, and exposure-shift context",
-        "Source links and review boundaries for follow-up",
-      ];
+  const items = [
+    "Priority signals and grouped mechanistic review",
+    "Gene, enzyme, transporter, and metabolite context that may change interpretation",
+    "Timing, persistence, washout, and exposure-shift context",
+    "Source links and review boundaries for follow-up",
+  ];
   checks.innerHTML = items.map(item => `<div class="main-empty-check">${safePublicHtml(item)}</div>`).join("");
 }
 
@@ -446,7 +406,6 @@ function getRenderCacheKey() {
     genotype: activeGenotype || {},
     genetics: userGenetics || {},
     doses: typeof drugDoses !== "undefined" ? drugDoses : {},
-    audience: audienceMode,
   });
 }
 
@@ -716,8 +675,8 @@ function summaryBandLabel(riskClass = "neutral", stackCount = 0) {
 
 function renderSummaryActions(patient = isPatientAudience()) {
   const shareUrl = typeof currentStackShareUrl === "function" ? currentStackShareUrl("overview") : "";
-  const copyLabel = patient ? "Copy questions" : "Copy handoff";
-  const copyAriaLabel = patient ? "Copyable Diognosis question list" : "Copyable Diognosis clinician handoff text";
+  const copyLabel = "Copy review summary";
+  const copyAriaLabel = "Copyable Diognosis medication review summary";
   return `<div class="summary-actions">
     <button type="button" class="summary-action-btn" onclick="copyOverviewHandoffSummary()">${safePublicHtml(copyLabel)}</button>
     ${shareUrl ? `<a class="summary-action-btn" href="${safeAttr(shareUrl)}" target="_blank" rel="noopener">Share link</a>` : ""}
@@ -795,7 +754,6 @@ function exposureMeterGeometry(row = {}) {
 }
 
 function buildOverviewHandoffText() {
-  if (isPatientAudience()) return buildPatientQuestionSummaryText();
   if (typeof buildV1HandoffSummaryText === "function") return buildV1HandoffSummaryText({ limit:5 });
   return [
     "Diognosis V1 handoff summary",
@@ -863,37 +821,23 @@ function patientFallbackQuestionForCurrentStack() {
 }
 
 function renderNoPublicFindingPanel(scope = null) {
-  const patient = isPatientAudience();
   const currentScope = scope || (typeof buildReviewScopeSummary === "function"
     ? buildReviewScopeSummary(typeof getRenderComputationCache === "function" ? getRenderComputationCache() : {})
     : {});
   const unknownText = currentScope.unknownCount
-    ? `${patient ? "Not assessed here" : "Unrecognized selections"}: ${formatScopeUnknownItems(currentScope.unknownItems)}.`
+    ? `Not checked here: ${formatScopeUnknownItems(currentScope.unknownItems)}.`
     : "";
-  const title = patient ? "No major safety note found here" : "No public concern generated";
-  const body = patient
-    ? "Diognosis did not find a higher-priority safety note for this selected list. That does not prove the list is safe."
-    : "No public Overview concern was generated from the current local finding set. This is a bounded no-signal state, not a safety clearance.";
-  const label = patient ? "Still check" : "Review before relying on this";
-  const items = patient
-    ? [
-        unknownText,
-        "Exact product names, spelling, dose, strength, and formulation.",
-        "Recent starts, stops, missed doses, or timing changes.",
-        "New symptoms, allergies, pregnancy status, kidney or liver problems, and recent labs.",
-        "Ask a doctor or pharmacist before starting, stopping, or changing medicines.",
-      ]
-    : [
-        unknownText,
-        "Medication reconciliation: identity, formulation, route, dose, timing, adherence, and indication.",
-        "Clinical context: renal/hepatic function, allergies, pregnancy/lactation, labs, symptoms, diagnoses, and recent procedures.",
-        "Concomitants: OTC products, supplements, alcohol/substance exposure, duplicate classes, and unrecognized selected items.",
-        "Review detailed tabs and source evidence before treating this as clinically quiet.",
-      ];
-  return `<div class="no-signal-card ${patient ? "patient" : "clinician"}">
-    <div class="no-signal-title">${safePublicHtml(title)}</div>
-    <div class="no-signal-copy">${safePublicHtml(body)}</div>
-    <div class="no-signal-label">${safePublicHtml(label)}</div>
+  const items = [
+    unknownText,
+    "Medication reconciliation: exact product names, formulation, route, dose, timing, adherence, and indication.",
+    "Clinical context: kidney or liver function, allergies, pregnancy/lactation, labs, symptoms, diagnoses, and recent procedures.",
+    "Concomitants: OTC products, supplements, alcohol/substance exposure, duplicate classes, and unrecognized selected items.",
+    "A quiet result here does not prove the list is safe; review with a qualified clinician or pharmacist before changing medicines.",
+  ];
+  return `<div class="no-signal-card public">
+    <div class="no-signal-title">No major review priority generated</div>
+    <div class="no-signal-copy">No public Overview concern was generated from the current local finding set. This is a bounded no-signal state, not a safety clearance.</div>
+    <div class="no-signal-label">Review before relying on this</div>
     <ul class="no-signal-list">
       ${items.filter(Boolean).map(item => `<li>${safePublicHtml(item)}</li>`).join("")}
     </ul>
@@ -3227,7 +3171,7 @@ function updateEmptyTabs() {
   });
 }
 
-function applyAudienceModeVisibility() {
+function applyReviewerVisibility() {
   const reviewer = isReviewerMode();
   if (document.body) document.body.dataset.reviewer = reviewer ? "reviewer" : "standard";
   const reviewBtn = document.getElementById("tabbtn-review");
@@ -3837,9 +3781,6 @@ function currentStackUrlParams(tab = activeTab, options = {}) {
     }).join(",")]);
   }
   for (const token of activeGenotypeUrlTokens()) params.push(["genotype", token]);
-  if (audienceMode !== DEFAULT_AUDIENCE_MODE) {
-    params.push(["audience", audienceMode === "patient" ? "plain" : "detailed"]);
-  }
   if (includeReviewer && isReviewerMode()) params.push(["reviewer", "1"]);
   const shareTab = tab === "review" && !isReviewerMode() ? "overview" : tab;
   if (shareTab) params.push(["tab", shareTab]);
@@ -3868,7 +3809,6 @@ function shouldExposeCurrentStateInUrl(tab = activeTab) {
   const shareTab = tab === "review" && !isReviewerMode() ? "overview" : tab;
   return activeStack.length > 0 ||
     activeGenotypeUrlTokens().length > 0 ||
-    audienceMode !== DEFAULT_AUDIENCE_MODE ||
     shareTab !== "overview" ||
     isReviewerMode();
 }
@@ -4098,7 +4038,7 @@ function renderAll() {
     hideSectionAndClear("matrixSection", "matrixBody");
   }
   renderSummaryBar();
-  applyAudienceModeVisibility();
+  applyReviewerVisibility();
   updateEmptyTabs();
   if (viewMode === "browse") renderBrowse();
   syncCollapsibleSectionControls();
@@ -4108,11 +4048,8 @@ function renderAll() {
 function renderMedList() {
   const el = document.getElementById("medList");
   const countEl = document.getElementById("medCount");
-  const patient = isPatientAudience();
   if (!activeStack.length) {
-    const emptyCopy = patient
-      ? "Add medicines, supplements, or foods above to start a list for your doctor or pharmacist"
-      : "Add medications, supplements, or foods above to start a mechanistic review";
+    const emptyCopy = "Add medicines, supplements, or foods above to start a medication review";
     const undoHtml = lastClearedSelection?.stack?.length
       ? `<button type="button" class="empty-undo-btn" onclick="restoreClearedList()">Undo clear</button>`
       : "";
@@ -4120,9 +4057,7 @@ function renderMedList() {
     countEl.textContent = "";
     return;
   }
-  countEl.textContent = patient
-    ? `${activeStack.length} item${activeStack.length>1?"s":""} selected`
-    : `${activeStack.length} substance${activeStack.length>1?"s":""}`;
+  countEl.textContent = `${activeStack.length} item${activeStack.length>1?"s":""} selected`;
   el.innerHTML = activeStack.map(name => {
     const actor = typeof getStackSupplementActor === "function" ? getStackSupplementActor(name) : null;
     const drug = typeof getStackDrug === "function" ? getStackDrug(name) : getDrug(name);
@@ -4130,7 +4065,7 @@ function renderMedList() {
     const escaped = inlineJsString(drug ? drug.name : name);
     const tiers = DOSE_TIERS[name];
     let doseHtml = "";
-    if (!patient && drug && tiers) {
+    if (drug && tiers) {
       const current = getDoseTier(name);
       const opts = Object.entries(tiers.tiers).map(([k,v]) =>
         `<option value="${k}"${k===current?" selected":""}>${v.label}</option>`
@@ -4140,7 +4075,7 @@ function renderMedList() {
     const recognized = !!(drug || actor);
     const secondary = drug
       ? (typeof getDrugSecondaryLabel === "function" ? getDrugSecondaryLabel(drug, 2) : "")
-      : (actor ? formatActorSources(actor) : (isPatientAudience() ? "Not checked here" : "Not recognized by local dataset"));
+      : (actor ? formatActorSources(actor) : "Not checked here");
     const primary = drug ? getDrugDisplayName(drug) : (actor ? actor.name : name);
     const labelHtml = `<span class="med-chip-name"><span class="med-chip-primary">${safePublicHtml(primary)}</span>${secondary ? `<span class="med-chip-secondary">${safePublicHtml(secondary)}</span>` : ""}</span>`;
     const removeAction = actor && !drug ? `removeFoodActor('${actorId}')` : `removeDrug('${escaped}')`;
@@ -4152,7 +4087,7 @@ function renderMedList() {
 
 function renderSelectedListActions() {
   if (!activeStack.length) return "";
-  const reviewLabel = isPatientAudience() ? "Review notes" : "Review overview";
+  const reviewLabel = "Review overview";
   return `<div class="selected-list-actions">
     <button type="button" class="selected-list-action primary" onclick="focusReviewNotes()">${safePublicHtml(reviewLabel)}</button>
     <button type="button" class="selected-list-action" onclick="clearSelectedList()">Clear list</button>

@@ -35,11 +35,11 @@ Implemented guardrails:
 | Codeine | CYP2D6 PM/null can reduce morphine formation; UM can increase active-metabolite toxicity concern. | Covered by PGx comparison audit and source-linked action summary. |
 | Tramadol | CYP2D6 PM/null can reduce O-desmethyltramadol formation; UM can increase opioid-active metabolite concern while parent serotonergic/seizure risks still matter. | Covered by PGx comparison audit and source-linked action summary. |
 | Metoprolol | Parent exposure/hemodynamic monitoring; no genotype-only dose instruction. | Covered by PGx comparison audit and source-linked action summary. |
-| Atomoxetine | Parent exposure can rise; monitor tolerability and indication-specific response. | Present in PGx Explorer; needs manual Patient/Clinician QA. |
-| Tamoxifen | Active-metabolite/endoxifen formation can fall; oncology context and CYP2D6 inhibitors matter. | Present in PGx Explorer; needs manual Patient/Clinician QA. |
+| Atomoxetine | Parent exposure can rise; monitor tolerability and indication-specific response. | Present in PGx Explorer; needs manual public Medication Review QA. |
+| Tamoxifen | Active-metabolite/endoxifen formation can fall; oncology context and CYP2D6 inhibitors matter. | Present in PGx Explorer; needs manual public Medication Review QA. |
 | Fluoxetine/paroxetine/bupropion inhibitors | Functional activity can fall through phenoconversion; inherited null should not be double-counted. | Covered by regression checks for null/phenoconversion behavior; needs manual UX review for wording. |
 
 ## Still Pending
 
-- Manual Patient and Clinician QA for atomoxetine, tamoxifen, and inhibitor-driven phenoconversion.
+- Manual public Medication Review QA for atomoxetine, tamoxifen, and inhibitor-driven phenoconversion.
 - Decide whether CYP2D6 edge-case summaries need a compact "parent vs active metabolite" visual cue in V1 or can remain copy-only.

@@ -82,20 +82,20 @@ Review whether Diognosis is presenting PGx results as report-style patient input
    - This is small but important for trust.
 
 3. Formal QA matrix
-   - Pending: test 10-20 medication + gene examples across Patient view, Clinician view, PGx Explorer, Gene Coverage, and shared URLs.
+   - Pending: test 10-20 medication + gene examples across the public Medication Review, PGx Explorer, Gene Coverage, and shared URLs.
    - Current audits exist, but not a human-readable scenario matrix.
 
 4. Compare PGx output to other PGx tools
    - Implemented: 10-example comparison set selected above.
    - Implemented: human-readable comparison matrix saved in `docs/V1_PGX_COMPARISON_MATRIX.md`.
    - Implemented: PGx Explorer audit coverage added for the 10 comparison families.
-   - Pending: manual Patient and Clinician view QA for the same 10 cases.
+   - Pending: manual public Medication Review QA for the same 10 cases.
    - Important for trust and calibration.
 
 5. CYP2D6 edge cases
    - Implemented: CYP2D6 edge-case review note saved in `docs/V1_CYP2D6_EDGE_CASE_REVIEW.md`.
    - Implemented: nebivolol wording now separates parent exposure increase from lower 4-hydroxy-nebivolol formation while keeping the no automatic genotype-only dose-change boundary.
-   - Pending: manual Patient and Clinician QA for atomoxetine, tamoxifen, and inhibitor-driven phenoconversion.
+   - Pending: manual public Medication Review QA for atomoxetine, tamoxifen, and inhibitor-driven phenoconversion.
    - Pending: decide whether V1 needs a compact "parent vs active metabolite" visual cue or copy-only handling is enough.
 
 ## Product / UX Pending
@@ -113,8 +113,8 @@ Review whether Diognosis is presenting PGx results as report-style patient input
    - Functionally repaired.
    - Still pending: mobile/desktop polish pass for PGx Profile chips, Gene Coverage table, and dense rows.
 
-9. Patient/Clinician copy reduction
-   - Some repetition has been improved, but not a full final copy audit.
+9. Public Medication Review copy reduction
+   - The mode split has been removed; remaining work is a final copy audit of the single public Overview and supporting tabs.
    - Some panels may still have too much text.
 
 10. Reviewer mode full redesign
