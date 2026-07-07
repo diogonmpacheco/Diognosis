@@ -544,9 +544,10 @@ assert(
   'Genotype inputs and explanations should live in Genetics, not Summary metrics'
 );
 assert(
-  clopidogrelSummary.story.includes('Why this matters') &&
-  clopidogrelSummary.story.includes('What changes') &&
-  clopidogrelSummary.story.includes('Next review step'),
+  clopidogrelSummary.story.includes('Why') &&
+  clopidogrelSummary.story.includes('Change') &&
+  clopidogrelSummary.story.includes('Next') &&
+  !/Why this matters|What changes|Next review step/i.test(clopidogrelSummary.story),
   'Highest-priority gene-result summary should include only clinical narrative and next review step'
 );
 
@@ -842,6 +843,9 @@ const audienceModeRegression = window.eval(`(() => {
     detailButtons:document.querySelectorAll('#findingBody .related-finding-btn.secondary').length,
     supportDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
     findingText:document.getElementById('findingBody')?.textContent || '',
+    plainQuestionCards:document.querySelectorAll('#findingBody .plain-question-card').length,
+    findingNotes:document.querySelectorAll('#findingBody .primary-finding-card .finding-note').length,
+    hasOldOverviewLabels:/Plain-language questions|Start here, then use the detailed review below|What changed|Why it matters|Review focus/i.test(document.getElementById('findingBody')?.textContent || ''),
     patientQuestionCards:document.querySelectorAll('#findingBody .patient-question-card').length,
     patientMeaningCards:document.querySelectorAll('#findingBody .patient-meaning-card').length,
     patientStackSummary:document.querySelector('#findingBody .patient-stack-summary')?.textContent || '',
@@ -871,6 +875,9 @@ const audienceModeRegression = window.eval(`(() => {
     findingTitle:document.getElementById('findingTitle')?.textContent || '',
     firstFindingText:document.querySelector('#findingBody .primary-finding-card')?.textContent || '',
     plainQuestionBridge:document.querySelectorAll('#findingBody .plain-question-bridge').length,
+    plainQuestionCards:document.querySelectorAll('#findingBody .plain-question-card').length,
+    findingNotes:document.querySelectorAll('#findingBody .primary-finding-card .finding-note').length,
+    hasOldOverviewLabels:/Plain-language questions|Start here, then use the detailed review below|What changed|Why it matters|Review focus/i.test(document.getElementById('findingBody')?.textContent || ''),
     doseSelects:document.querySelectorAll('#medList .dose-select').length,
     removeButtons:document.querySelectorAll('#medList button.x').length,
     clinicianLayoutCss:[...document.querySelectorAll('style')].some(style => {
@@ -934,8 +941,10 @@ assert(audienceModeRegression.patient.findingTitle === 'Review Priorities', 'Pub
 assert(/review priorit/i.test(audienceModeRegression.patient.findingCount), 'Public finding count should use review-priority language');
 assert(audienceModeRegression.patient.patientQuestionCards === 0, 'Single public view should not render the old patient-only question cards');
 assert(audienceModeRegression.patient.patientMeaningCards === 0, 'Single public view should not render the old patient-only meaning grid');
-assert(/Plain-language questions[\s\S]*Review first[\s\S]*Review focus/i.test(audienceModeRegression.patient.findingText),
-  'Public Overview should show plain questions followed by the detailed priority card');
+assert(audienceModeRegression.patient.plainQuestionCards > 0, 'Public Overview should show direct question cards');
+assert(audienceModeRegression.patient.findingNotes >= 2, 'Public Overview should show compact unlabeled review notes');
+assert(!audienceModeRegression.patient.hasOldOverviewLabels,
+  'Public Overview should remove the old explanatory question heading and step labels');
 assert(audienceModeRegression.patient.exposureSummaryCount === 0, 'Selected list should keep exposure detail out of the sidebar');
 assert(audienceModeRegression.patient.actionRows > 0, 'Public Overview should keep source/detail action rows');
 assert(audienceModeRegression.patient.detailButtons > 0, 'Public Overview should keep supporting-detail buttons');
@@ -964,7 +973,11 @@ assert(/Review Priorities/i.test(audienceModeRegression.clinician.summaryText), 
 assert(/Use the first card|open Evidence/i.test(audienceModeRegression.clinician.summaryNext), 'Public summary should route details instead of repeating card action');
 assert(audienceModeRegression.clinician.findingTitle === 'Review Priorities', 'Public Overview should use a mixed drug/PGx priority title');
 assert(audienceModeRegression.clinician.plainQuestionBridge > 0, 'Public Overview should include plain-language questions before the detailed priority card');
-assert(/Review first/i.test(audienceModeRegression.clinician.firstFindingText) && /Review focus/i.test(audienceModeRegression.clinician.firstFindingText), 'Public view should mark the first Overview card as the first review priority');
+assert(audienceModeRegression.clinician.plainQuestionCards > 0, 'Public Overview should show direct question cards after legacy switches');
+assert(/Review first/i.test(audienceModeRegression.clinician.firstFindingText) && audienceModeRegression.clinician.findingNotes >= 2,
+  'Public view should mark the first Overview card and render compact unlabeled review notes');
+assert(!audienceModeRegression.clinician.hasOldOverviewLabels,
+  'Public view should not restore old overview labels after legacy switches');
 assert(audienceModeRegression.clinician.circulatingDisplay !== 'none', 'Public Overview should show circulating/exposure context');
 assert(audienceModeRegression.clinician.circulatingCards > 0, 'Public Overview should render circulating cards');
 assert(/parent|metabolite|current stack|CYP/i.test(audienceModeRegression.clinician.circulatingText), 'Public circulating cards should include actor context');
@@ -2133,8 +2146,8 @@ const crossTabFindingRegression = window.eval(`(() => {
   const firstId = document.querySelector('#findingBody .finding-card')?.getAttribute('data-finding-id') || '';
   const overviewHas = Boolean(firstId);
   const overviewFullPathCount = document.querySelectorAll('#findingBody .why-path').length;
-  const overviewWhyText = Array.from(document.querySelectorAll('#findingBody .finding-step'))
-    .find(step => /Why it matters/i.test(step.textContent || ''))?.textContent || '';
+  const overviewNotes = Array.from(document.querySelectorAll('#findingBody .primary-finding-card .finding-note'))
+    .map(note => (note.textContent || '').replace(/\\s+/g, ' ').trim());
   setTab('mechanisms');
   const mechanismsHas = document.querySelectorAll('#mechanismWhyBody .mechanism-why-row .why-path').length > 0;
   const networkOverviewHas = Boolean(document.querySelector('#graphBody .network-overview')) &&
@@ -2153,7 +2166,7 @@ const crossTabFindingRegression = window.eval(`(() => {
   const result = {
     overviewHas,
     overviewFullPathCount,
-    overviewWhyText,
+    overviewNotes,
     mechanismsHas,
     networkOverviewHas,
     evidenceHas,
@@ -2171,9 +2184,10 @@ const crossTabFindingRegression = window.eval(`(() => {
 assert(crossTabFindingRegression.overviewHas, 'Overview should summarize a finding card');
 assert(crossTabFindingRegression.overviewFullPathCount === 0, 'Overview should show compact why text, not the detailed vertical why path');
 assert(
-  /^Why it matters/.test(crossTabFindingRegression.overviewWhyText.trim()) &&
-    crossTabFindingRegression.overviewWhyText.replace(/^Why it matters\s*/,'').length <= 260,
-  `Overview why summary should be one compact line <=260 chars, got ${crossTabFindingRegression.overviewWhyText}`
+  crossTabFindingRegression.overviewNotes.length >= 2 &&
+    crossTabFindingRegression.overviewNotes.every(text => text.length <= 240) &&
+    !crossTabFindingRegression.overviewNotes.join(' ').match(/What changed|Why it matters|Review focus/i),
+  `Overview notes should be compact and unlabeled, got ${crossTabFindingRegression.overviewNotes.join(' | ')}`
 );
 assert(crossTabFindingRegression.mechanismsHas, 'Mechanisms should explain findings with why paths');
 assert(crossTabFindingRegression.networkOverviewHas, 'Mechanisms should render a network at-a-glance summary before the graph');
@@ -2227,7 +2241,10 @@ const publicFindingHierarchyRegression = window.eval(`(() => {
         targetElementId:p.targetElementId,
       })),
       cardCount:cards.length,
-      allCardsHaveSteps:cards.every(card => ["What changed", "Why it matters", "Review focus"].every(label => card.textContent.includes(label)) && !card.textContent.includes("What to review")),
+      allCardsHaveCompactNotes:cards.every(card =>
+        card.querySelectorAll('.finding-note').length >= 2 &&
+        !/What changed|Why it matters|Review focus|What to review/i.test(card.textContent || '')
+      ),
       summaryOnclick,
       overviewText,
       trustText,
@@ -2263,7 +2280,7 @@ const publicFindingHierarchyRegression = window.eval(`(() => {
 for (const [scenarioName, result] of Object.entries(publicFindingHierarchyRegression)) {
   assert(result.presentations.length > 0, `${scenarioName}: expected at least one public Overview finding`);
   assert(result.cardCount === result.presentations.length || result.cardCount === Math.min(8, result.presentations.length), `${scenarioName}: Overview cards should match public finding presentations`);
-  assert(result.allCardsHaveSteps, `${scenarioName}: every primary Overview card should use What changed / Why / Review focus, with evidence routed through compact actions`);
+  assert(result.allCardsHaveCompactNotes, `${scenarioName}: every primary Overview card should use compact unlabeled notes, with evidence routed through compact actions`);
   assert(result.presentations.every(p => p.whatChanged && p.whyItMatters && p.whatToReview && p.evidenceSummary), `${scenarioName}: public finding presentation fields must be non-empty`);
   assert(result.presentations.every(p => p.targetTab === "overview" && /^overview-finding-/.test(p.targetElementId || "")), `${scenarioName}: public finding targets should point to Overview cards`);
   assert(result.summaryOnclick.includes("focusPriorityFinding('overview','overview-finding-"), `${scenarioName}: Summary View finding should jump to a concrete Overview card`);
@@ -2680,19 +2697,21 @@ const patientCopyAuditRegression = window.eval(`(() => {
     setAudienceMode(audience, { render:false });
     renderAll();
     const plainLayer = audience === 'patient';
+    const presentations = getCurrentPublicFindingPresentations();
+    const visibleQuestionCount = document.querySelectorAll('#findingBody .plain-question-card').length || 2;
+    const visiblePlainPresentations = rankPublicFindingPresentations(getPatientFacingPublicFindingPresentations(presentations))
+      .slice(0, visibleQuestionCount);
+    const titles = plainLayer
+      ? visiblePlainPresentations.map(p => patientFindingTitleText(p))
+      : presentations.map(p => p.title || '');
     return {
-      titles: Array.from(document.querySelectorAll(plainLayer
-        ? '#findingBody .plain-question-card .plain-question-card-context'
-        : '#findingBody .primary-finding-card .finding-title'
-      ))
-        .map(el => el.textContent.replace(/\\s+/g, ' ').trim()),
+      titles: titles.map(text => String(text || '').replace(/\\s+/g, ' ').trim()).filter(Boolean),
       questions: Array.from(document.querySelectorAll(plainLayer
         ? '#findingBody .plain-question-card .plain-question-card-question'
         : '#findingBody .primary-finding-card .finding-discussion-text'
       ))
         .map(el => el.textContent.replace(/\\s+/g, ' ').trim()),
-      meanings: Array.from(document.querySelectorAll('#findingBody .plain-question-card .plain-question-card-context'))
-        .map(el => el.textContent.replace(/\\s+/g, ' ').trim()),
+      meanings: titles.map(text => String(text || '').replace(/\\s+/g, ' ').trim()).filter(Boolean),
       patientCards: document.querySelectorAll('#findingBody .plain-question-card').length,
     };
   }

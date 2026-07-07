@@ -978,23 +978,13 @@ function renderPlainQuestionBridge(presentations = []) {
   const ranked = rankPublicFindingPresentations(presentations).slice(0, 2);
   if (!ranked.length) return "";
   return `<div class="plain-question-bridge">
-    <div class="plain-question-bridge-head">
-      <div>
-        <div class="plain-question-kicker">Plain-language questions</div>
-        <div class="plain-question-title">Start here, then use the detailed review below.</div>
-      </div>
-      <span>${safePublicHtml(String(ranked.length))} question${ranked.length === 1 ? "" : "s"}</span>
-    </div>
-    <div class="plain-question-grid">
-      ${ranked.map(renderPlainBridgeQuestion).join("")}
-    </div>
+    ${ranked.map(renderPlainBridgeQuestion).join("")}
   </div>`;
 }
 
 function renderPlainBridgeQuestion(presentation = {}) {
   const trust = presentation.trustContract || null;
   const question = buildPatientDiscussionQuestion(presentation, trust);
-  const title = patientFindingTitleText(presentation);
   const affected = (presentation.affectedSubstances || []).slice(0, 3).join(" + ");
   const severity = safeChoice(presentation.severity, ["critical","severe","moderate","monitor","info"], "info");
   const tone = patientQuestionTone(severity);
@@ -1004,7 +994,6 @@ function renderPlainBridgeQuestion(presentation = {}) {
       ${affected ? `<span>${safePublicHtml(affected)}</span>` : ""}
     </div>
     <div class="plain-question-card-question">${safePublicHtml(question)}</div>
-    <div class="plain-question-card-context">${safePublicHtml(title)}</div>
   </div>`;
 }
 
@@ -2043,9 +2032,9 @@ function renderPublicFindingCard(presentation, index = 0) {
     ${contextBadges}
     ${actorHtml ? `<div class="finding-actors">${actorHtml}</div>` : ""}
     <div class="finding-explain">
-      ${renderFindingStep(patient ? "What this means" : "What changed", changedText)}
-      ${renderFindingStep("Why it matters", whyText)}
-      ${renderFindingStep(patient ? "What to ask" : "Review focus", reviewText)}
+      ${renderFindingNoteLine(changedText)}
+      ${renderFindingNoteLine(whyText)}
+      ${renderFindingNoteLine(reviewText, "review")}
     </div>
     ${followupGuide}
     ${actionHtml}
@@ -2910,11 +2899,19 @@ function patientPriorityStory(presentation = {}) {
   };
 }
 
-function renderFindingStep(label, value) {
-  return `<div class="finding-step">
-    <div class="finding-step-label">${safePublicHtml(label)}</div>
-    <div class="finding-step-text">${safePublicHtml(value)}</div>
-  </div>`;
+function compactOverviewLine(value = "", maxLength = 220) {
+  const text = publicDisplayText(value).replace(/\s+/g, " ").trim();
+  if (!text || text.length <= maxLength) return text;
+  const cut = text.slice(0, maxLength).replace(/\s+\S*$/, "").replace(/[;:,.\s-]+$/, "");
+  return `${cut || text.slice(0, maxLength)}…`;
+}
+
+function renderFindingNoteLine(value, tone = "") {
+  const fullText = publicDisplayText(value);
+  const text = compactOverviewLine(fullText);
+  if (!text) return "";
+  const title = fullText && fullText !== text ? ` title="${safeAttr(fullText)}"` : "";
+  return `<p class="finding-note ${safeAttr(tone)}"${title}>${safePublicHtml(text)}</p>`;
 }
 
 function renderConcernSupportingSignals(finding) {
@@ -3141,9 +3138,9 @@ function renderPriorityStory(story) {
   const patient = isPatientAudience();
   const clinicianQueue = !patient && story.clinicianQueue;
   return `<div class="summary-story ${clinicianQueue ? "clinician-priority" : ""}">
-    <div class="summary-story-row"><strong>${safePublicHtml(patient ? "Why this matters" : (clinicianQueue ? "Rationale" : "Why this matters"))}</strong>${safePublicHtml(story.why)}</div>
-    <div class="summary-story-row"><strong>${safePublicHtml(patient ? "What this means" : (clinicianQueue ? "Expected change" : "What changes"))}</strong>${safePublicHtml(story.changes)}</div>
-    <div class="summary-story-row"><strong>${safePublicHtml(patient ? "What to ask" : (clinicianQueue ? "Review focus" : "Next review step"))}</strong>${safePublicHtml(story.review)}</div>
+    <div class="summary-story-row"><strong>Why</strong>${safePublicHtml(story.why)}</div>
+    <div class="summary-story-row"><strong>Change</strong>${safePublicHtml(story.changes)}</div>
+    <div class="summary-story-row"><strong>Next</strong>${safePublicHtml(story.review)}</div>
   </div>`;
 }
 

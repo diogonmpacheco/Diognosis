@@ -105,6 +105,8 @@ function extractPublicReadiness(window) {
       doseSelects:document.querySelectorAll('#medList .dose-select').length,
       primaryCards:document.querySelectorAll('#findingBody .primary-finding-card').length,
       plainQuestionCards:document.querySelectorAll('#findingBody .plain-question-card').length,
+      findingNotes:document.querySelectorAll('#findingBody .primary-finding-card .finding-note').length,
+      oldOverviewLabels:/Plain-language questions|Start here, then use the detailed review below|What changed|Why it matters|Review focus/i.test(document.getElementById('findingBody')?.textContent || ''),
       sourceLinks:document.querySelectorAll('#findingBody a.source-link').length,
       sourceActions:document.querySelectorAll('#findingBody .finding-actions .related-finding-btn').length,
       supportDetails:document.querySelectorAll('#findingBody .finding-support-details').length,
@@ -171,11 +173,11 @@ for (const scenario of publicScenarios) {
   assert(result.removeButtons === result.selectedChips, `${scenario.name}: selected medicines should remain removable`);
   assert(result.doseSelects > 0, `${scenario.name}: dose selectors should remain available where supported`);
   assert(result.primaryCards > 0, `${scenario.name}: Overview should show detailed public priority cards`);
-  assert(result.plainQuestionCards > 0, `${scenario.name}: Overview should start with plain-language questions`);
+  assert(result.plainQuestionCards > 0, `${scenario.name}: Overview should show direct question cards`);
   assert(result.findingTitle === 'Review Priorities', `${scenario.name}: Overview should use Review Priorities`);
   assert(/review priorit/i.test(result.findingCount), `${scenario.name}: finding count should use review-priority language`);
-  assert(/Plain-language questions[\s\S]*Review first[\s\S]*What changed[\s\S]*Review focus/i.test(result.findingText),
-    `${scenario.name}: Overview should include plain questions plus detailed review fields`);
+  assert(result.findingNotes >= 2, `${scenario.name}: Overview should include compact unlabeled review notes`);
+  assert(!result.oldOverviewLabels, `${scenario.name}: Overview should not render the old question header or step labels`);
   assert(result.trustChips >= result.primaryCards, `${scenario.name}: priority cards should expose evidence/status chips`);
   assert(/Concern|Evidence|Confidence/i.test(result.trustChipText) && /Source-linked|Modeled|High|Moderate|Limited/i.test(result.trustChipText),
     `${scenario.name}: trust chips should use compact readable status copy`);

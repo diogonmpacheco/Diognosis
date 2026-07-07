@@ -718,10 +718,10 @@ body[data-add-mode="browse"] .search-wrap{display:none}
 .finding-trust-row strong{font-size:10px;color:var(--text);text-transform:uppercase;letter-spacing:.03em}
 .finding-trust-row span{min-width:0;overflow-wrap:anywhere}
 .finding-effect{font-size:13px;line-height:1.45;color:var(--text);font-weight:650;margin-bottom:10px}
-.finding-explain{display:grid;grid-template-columns:1fr;gap:8px;margin-top:10px}
-.finding-step{padding:10px 11px;border-radius:8px;background:var(--card2);border:1px solid var(--border)}
-.finding-step-label{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:var(--accent);margin-bottom:3px}
-.finding-step-text{font-size:12px;line-height:1.45;color:var(--text)}
+.finding-explain{display:grid;grid-template-columns:1fr;gap:6px;margin-top:10px;padding:10px 11px;border-radius:8px;background:var(--card2);border:1px solid var(--border)}
+.finding-note{font-size:12px;line-height:1.42;color:var(--text);margin:0;overflow-wrap:anywhere}
+.finding-note+.finding-note{padding-top:6px;border-top:1px solid rgba(61,44,30,.08)}
+.finding-note.review{font-weight:700;color:var(--accent2)}
 .finding-discussion{margin-top:10px;padding:10px 11px;border-radius:9px;background:var(--accentBg);border:1px solid var(--accentLine)}
 .finding-discussion-label{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:0;color:var(--accent);margin-bottom:4px}
 .finding-discussion-text{font-size:12px;line-height:1.45;color:var(--text);font-weight:650}
@@ -792,18 +792,12 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
 .overview-more-list{display:grid;gap:10px;padding:12px 14px 14px}
 .overview-more-list .finding-card{margin-bottom:0}
 .patient-question-list{display:grid;gap:10px}
-.plain-question-bridge{border:1px solid var(--accentLine);border-radius:10px;background:var(--greenBg);padding:12px 13px;margin-bottom:10px}
-.plain-question-bridge-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:9px}
-.plain-question-kicker{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:3px}
-.plain-question-title{font-size:13px;font-weight:850;line-height:1.35;color:var(--text)}
-.plain-question-bridge-head span{font-size:10px;font-weight:850;color:var(--accent2);border:1px solid var(--accentLine);background:rgba(255,255,255,.68);border-radius:999px;padding:4px 8px;white-space:nowrap}
-.plain-question-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}
+.plain-question-bridge{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px;margin-bottom:10px}
 .plain-question-card{border:1px solid var(--border);border-radius:8px;background:rgba(255,255,255,.78);padding:10px 11px;min-width:0}
 .plain-question-card.high{border-color:rgba(194,58,52,.22);background:#fff8f7}
 .plain-question-card.medium{border-color:rgba(168,120,27,.25)}
 .plain-question-card-top{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:6px;font-size:10px;font-weight:800;color:var(--text2)}
 .plain-question-card-question{font-size:13px;font-weight:750;line-height:1.4;color:var(--text)}
-.plain-question-card-context{font-size:11px;line-height:1.35;color:var(--text2);margin-top:6px;padding-top:6px;border-top:1px solid rgba(61,44,30,.1)}
 .patient-question-card{display:flex;align-items:flex-start;gap:14px;border:1px solid var(--border);border-radius:14px;background:var(--card);padding:18px 20px}
 .patient-question-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);flex:0 0 auto;margin-top:6px}
 .patient-question-dot.high{background:var(--red)}
@@ -1057,8 +1051,6 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
   .pk-snapshot-value,.pk-takeaway-visual>span{text-align:left}
   .evidence-glance-head,.network-overview-head,.persistence-snapshot-head{display:grid;gap:7px}
   .evidence-glance-count,.network-count,.persistence-snapshot-window{justify-self:start}
-  .plain-question-bridge-head{display:grid;gap:7px}
-  .plain-question-bridge-head span{justify-self:start}
   .network-route-row{grid-template-columns:1fr;gap:4px}
   .network-route-edge{justify-self:start}
   .persistence-lane{grid-template-columns:1fr;gap:5px}

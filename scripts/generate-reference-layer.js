@@ -155,11 +155,9 @@ function renderPublicReview(window, example) {
   const { document } = window;
   const titleSelector = '#findingBody .primary-finding-card .finding-title';
   const bodySelector = '#findingBody .primary-finding-card .finding-discussion-text';
-  const plainTitleSelector = '#findingBody .plain-question-card .plain-question-card-context';
   const questionSelector = '#findingBody .plain-question-card .plain-question-card-question';
   const titles = [...document.querySelectorAll(titleSelector)].map((node) => node.textContent.replace(/\s+/g, ' ').trim()).filter(Boolean);
   const bodies = [...document.querySelectorAll(bodySelector)].map((node) => node.textContent.replace(/\s+/g, ' ').trim()).filter(Boolean);
-  const plainTitles = [...document.querySelectorAll(plainTitleSelector)].map((node) => node.textContent.replace(/\s+/g, ' ').trim()).filter(Boolean);
   const questions = [...document.querySelectorAll(questionSelector)].map((node) => node.textContent.replace(/\s+/g, ' ').trim()).filter(Boolean);
   const cache = runtimeJson(window, `(() => {
     const cache = getRenderComputationCache();
@@ -176,6 +174,7 @@ function renderPublicReview(window, example) {
         evidenceSummary:p.evidenceSummary,
         tags:p.tags || [],
         evidenceRefs:p.trustContract?.evidenceRefs || p.evidenceRefs || p.sourceFinding?.evidenceRefs || [],
+        patientTitle:typeof patientFindingTitleText === "function" ? patientFindingTitleText(p) : "",
         sourceLinked:!!p.trustContract?.sourceLinked,
         reviewed:!!p.trustContract?.reviewed,
         clinicalReviewStatus:p.trustContract?.clinicalReviewStatus || "source-integrated",
@@ -199,7 +198,6 @@ function renderPublicReview(window, example) {
     questions,
     topTitle:titles[0] || '',
     topBody:bodies[0] || '',
-    topPlainTitle:plainTitles[0] || '',
     topQuestion:questions[0] || '',
     summary:textContent(document, '#summaryBar'),
     presentations:cache.presentations,
@@ -270,7 +268,7 @@ function buildFact(window, data, resolveSubstance, guide, example, index) {
     priority:presentation.severity || review.clinicalConcerns[0]?.severity || 'info',
     summary:review.topTitle || presentation.title || '',
     reviewQuestion:review.topQuestion || safeReferenceReviewAction(presentation.whatToReview || review.topBody || ''),
-    patientSummary:review.topPlainTitle || review.topQuestion || review.topTitle || presentation.title || '',
+    patientSummary:presentation.patientTitle || review.topQuestion || review.topTitle || presentation.title || '',
     patientQuestion:review.topQuestion || safeReferenceReviewAction(presentation.whatToReview || review.topBody || ''),
     clinicianSummary:review.topTitle || presentation.title || '',
     mechanismSummary:safeReferenceMechanismText(presentation.whatChanged || review.topBody || ''),
