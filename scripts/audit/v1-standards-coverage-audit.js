@@ -47,6 +47,10 @@ function standardsReport(window) {
       readiness,
       readinessText:document.getElementById('v1ReadinessPanel')?.textContent || '',
       pgxActionCards:document.querySelectorAll('#genotypeBody .pgx-action-card').length,
+      pgxActionSteps:document.querySelectorAll('#genotypeBody .pgx-action-step').length,
+      pgxActionNotes:document.querySelectorAll('#genotypeBody .pgx-action-note').length,
+      pgxActionDetails:document.querySelectorAll('#genotypeBody .pgx-action-details').length,
+      pgxActionText:document.getElementById('genotypeBody')?.textContent || '',
     };
   })()`);
 }
@@ -123,6 +127,10 @@ assert(betaBlockerAction.coverage.mappedDrugCount === 1, 'Metoprolol CPIC action
 assert(betaBlockerAction.coverage.markerMappingCount >= 3, 'Metoprolol CYP2D6 PM case should expose marker identity rows');
 assert(betaBlockerAction.coverage.pgxActionCount >= 1, 'Metoprolol CYP2D6 PM case should expose CPIC-linked action context');
 assert(betaBlockerAction.pgxActionCards >= 1, 'Metoprolol CYP2D6 PM case should render a PGx action card');
+assert(betaBlockerAction.pgxActionSteps === 0 && betaBlockerAction.pgxActionNotes >= 2 && betaBlockerAction.pgxActionDetails >= 1,
+  'Metoprolol CYP2D6 PM PGx action card should render compact notes with collapsed source context');
+assert(!/What changed|What to review|Boundary/i.test(betaBlockerAction.pgxActionText),
+  'Metoprolol CYP2D6 PM PGx action card should not render old labeled step blocks');
 assert(/Standards identity: 1\/1 recognized medications mapped to RxNorm/i.test(betaBlockerAction.handoffText),
   'V1 handoff should include full standards identity coverage for the Metoprolol CPIC action case');
 

@@ -120,6 +120,8 @@ assert(!styleText.includes('.gene-evidence-row'),
   'Left sidebar should not keep PGx evidence-row styling for analysis copy');
 assert(!styleText.includes('.genotype-preview'),
   'Left sidebar should not expose genetics-only actor prediction cards');
+assert(!styleText.includes('.pgx-action-step') && styleText.includes('.pgx-action-note'),
+  'PGx action cards should use compact unlabeled notes instead of labeled step blocks');
 
 const defaultEmptyText = doc.getElementById('mainEmptyState')?.textContent || '';
 assert(!doc.querySelector('.audience-wrap') && !doc.getElementById('audience-patient') && !doc.getElementById('audience-clinician'),

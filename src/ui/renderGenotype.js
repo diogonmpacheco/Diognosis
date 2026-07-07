@@ -195,6 +195,18 @@ function renderPgxActionSummaryCard(row = {}) {
   const evidenceButton = evidenceCount
     ? `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('evidence','evidenceLadderLedger')">Evidence</button>`
     : "";
+  const notes = [
+    row.whatChanged,
+    row.reviewDirection,
+  ].filter(Boolean).map((note, index) =>
+    `<p class="pgx-action-note ${index === 1 ? "review" : ""}">${safePublicHtml(note)}</p>`
+  ).join("");
+  const sourceContext = [
+    ...(row.matchedDrugs || []).map(name => `<span class="finding-tag">${safePublicHtml(name)}</span>`),
+    ...externalIds.slice(0, 3).map(id => `<span class="finding-tag">${safePublicHtml(id)}</span>`),
+    ...markers.slice(0, 3).map(label => `<span class="finding-tag">${safePublicHtml(label)}</span>`),
+    `<span class="finding-tag">${safePublicHtml(evidenceCount ? `${evidenceCount} linked source${evidenceCount === 1 ? "" : "s"}` : "source needed")}</span>`,
+  ].join("");
   return `<div class="pgx-action-card">
     <div class="pgx-action-head">
       <div>
@@ -203,15 +215,12 @@ function renderPgxActionSummaryCard(row = {}) {
       </div>
       <span class="ev-review-badge needs-review">source context</span>
     </div>
-    <div class="pgx-action-step"><strong>What changed</strong>${safePublicHtml(row.whatChanged || "")}</div>
-    <div class="pgx-action-step"><strong>What to review</strong>${safePublicHtml(row.reviewDirection || "")}</div>
-    <div class="pgx-action-step muted"><strong>Boundary</strong>${safePublicHtml(row.safetyBoundary || "This is source-linked review context, not medical advice.")}</div>
-    <div class="finding-meta">
-      ${(row.matchedDrugs || []).map(name => `<span class="finding-tag">${safePublicHtml(name)}</span>`).join("")}
-      ${externalIds.slice(0, 3).map(id => `<span class="finding-tag">${safePublicHtml(id)}</span>`).join("")}
-      ${markers.slice(0, 3).map(label => `<span class="finding-tag">${safePublicHtml(label)}</span>`).join("")}
-      <span class="finding-tag">${safePublicHtml(evidenceCount ? `${evidenceCount} linked source${evidenceCount === 1 ? "" : "s"}` : "source needed")}</span>
-    </div>
+    ${notes ? `<div class="pgx-action-notes">${notes}</div>` : ""}
+    <details class="pgx-action-details">
+      <summary>Source context</summary>
+      <p class="pgx-action-boundary">${safePublicHtml(row.safetyBoundary || "This is source-linked review context, not medical advice.")}</p>
+      <div class="finding-meta">${sourceContext}</div>
+    </details>
     <div class="finding-actions">${evidenceButton}${row.guidelineUrl ? `<a class="related-finding-btn secondary" href="${safeAttr(row.guidelineUrl)}" target="_blank" rel="noopener">Guideline</a>` : ""}</div>
   </div>`;
 }
