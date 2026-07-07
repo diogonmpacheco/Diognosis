@@ -274,7 +274,7 @@ function syncAudienceModeUI() {
   }
   const geneIntro = document.getElementById("geneSectionIntro");
   if (geneIntro) {
-    geneIntro.textContent = "Only add real gene or marker results from a report. Genes + Metabolites maps functional phenotype, parent/metabolite direction, pathway consequences, and source-linked review context for the current list.";
+    geneIntro.textContent = "Add a real gene or marker result from a report. Leave blank if you do not have one.";
   }
   const findingTitle = document.getElementById("findingTitle");
   if (findingTitle) findingTitle.textContent = "Review Priorities";

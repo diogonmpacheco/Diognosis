@@ -171,6 +171,8 @@ for (const scenario of publicScenarios) {
     `${scenario.name}: public tagline should describe the single Medication Review surface`);
   assert(/Medication, supplement, or food/i.test(result.searchPlaceholder), `${scenario.name}: search placeholder should stay canonical`);
   assert(result.listTitle === 'Medicine List', `${scenario.name}: selected list should be Medicine List`);
+  assert(/real gene or marker result from a report|Leave blank/i.test(result.geneIntro),
+    `${scenario.name}: gene-result input copy should stay concise and bounded`);
   assert(result.selectedChips >= 2, `${scenario.name}: selected medicines should render`);
   assert(result.removeButtons === result.selectedChips, `${scenario.name}: selected medicines should remain removable`);
   assert(result.doseSelects > 0, `${scenario.name}: dose selectors should remain available where supported`);

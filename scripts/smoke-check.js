@@ -114,8 +114,12 @@ assert(styleText.includes('.selected-list-actions{display:grid;grid-template-col
   'Selected-list actions should use responsive sidebar-width columns');
 assert(styleText.includes('.gene-row{display:grid;grid-template-columns:minmax(0,1fr) 44px'),
   'Gene result rows should use a narrow-sidebar grid layout');
-assert(styleText.includes('.gene-detail-row,.gene-evidence-row'),
-  'Gene result detail copy should use responsive classes instead of fixed indentation');
+assert(!styleText.includes('.gene-detail-row'),
+  'Left sidebar should not keep PGx interpretation detail-row styling');
+assert(!styleText.includes('.gene-evidence-row'),
+  'Left sidebar should not keep PGx evidence-row styling for analysis copy');
+assert(!styleText.includes('.genotype-preview'),
+  'Left sidebar should not expose genetics-only actor prediction cards');
 
 const defaultEmptyText = doc.getElementById('mainEmptyState')?.textContent || '';
 assert(!doc.querySelector('.audience-wrap') && !doc.getElementById('audience-patient') && !doc.getElementById('audience-clinician'),
@@ -263,16 +267,24 @@ const railNavigationLayoutRegression = evalInPage(window, `(() => {
     geneDetails:geneList?.querySelectorAll('.gene-detail-row').length || 0,
     fixedIndent:/padding:\\s*0\\s+4px\\s+3px\\s+98px/i.test(geneList?.innerHTML || ''),
     geneSelects:geneList?.querySelectorAll('.gene-select').length || 0,
+    genotypePreview:geneList?.querySelectorAll('.genotype-preview').length || 0,
+    evidenceRows:geneList?.querySelectorAll('.gene-evidence-row').length || 0,
     actions:document.querySelectorAll('#medList .selected-list-action').length,
+    text:geneList?.textContent || '',
+    addOptions:Array.from(document.getElementById('geneAddSelect')?.options || []).map(option => option.textContent || '').join('|'),
   };
 })()`);
 assert(railNavigationLayoutRegression.actions === 2, 'Selected-list actions should remain available after PGx render');
 assert(railNavigationLayoutRegression.geneRows > 0 && railNavigationLayoutRegression.geneSelects > 0,
   'Gene / Marker Results should render editable gene rows');
-assert(railNavigationLayoutRegression.geneDetails > 0,
-  'Gene / Marker Results should render detail rows with responsive classes');
+assert(railNavigationLayoutRegression.geneDetails === 0,
+  'Gene / Marker Results should keep interpretation detail rows out of the sidebar');
 assert(!railNavigationLayoutRegression.fixedIndent,
   'Gene / Marker Results should not render fixed 98px indent rows that overflow the sidebar');
+assert(railNavigationLayoutRegression.genotypePreview === 0 && !/Predicted affected actors from genetics alone/i.test(railNavigationLayoutRegression.text),
+  'Gene / Marker Results should not render genetics-only affected actor predictions in the sidebar');
+assert(railNavigationLayoutRegression.evidenceRows === 0 && !/\bAffects:|Strong PGx|Moderate PGx|Limited PGx|CPIC|PharmGKB/i.test(`${railNavigationLayoutRegression.text} ${railNavigationLayoutRegression.addOptions}`),
+  'Gene / Marker Results should keep PGx analysis and evidence labels out of the sidebar');
 const summaryCopyStatus = doc.getElementById('summaryCopyStatus');
 const summaryCopyText = doc.getElementById('summaryCopyText');
 assert(summaryCopyStatus?.getAttribute('role') === 'status' && summaryCopyStatus?.getAttribute('aria-live') === 'polite',

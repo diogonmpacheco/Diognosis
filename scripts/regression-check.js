@@ -937,8 +937,8 @@ assert(!/substances?/i.test(audienceModeRegression.patient.medCount), 'Public se
 assert(audienceModeRegression.patient.doseSelects > 0, 'Public selected list should keep dose-tier selectors where supported');
 assert(audienceModeRegression.patient.removeButtons === 2, 'Public selected list should use compact removable item buttons');
 assert(!audienceModeRegression.patient.patientLayoutCss, 'Single public view should not depend on legacy patient layout CSS');
-assert(/Gene \/ Marker Results/i.test(audienceModeRegression.patient.geneTitle) && /Genes \+ Metabolites|functional phenotype|parent\/metabolite direction|source-linked review/i.test(audienceModeRegression.patient.geneIntro),
-  'Public view should keep the detailed gene helper copy with plain safety boundaries');
+assert(/Gene \/ Marker Results/i.test(audienceModeRegression.patient.geneTitle) && /real gene or marker result from a report|Leave blank/i.test(audienceModeRegression.patient.geneIntro),
+  'Public view should keep concise gene-result input boundaries');
 assert(audienceModeRegression.patient.tabBarDisplay !== 'none', 'Public view should keep the full review tabs available');
 assert(/Review Priorities/i.test(audienceModeRegression.patient.summaryText), 'Public summary should orient around review priorities');
 assert(/Use the first card|open Evidence/i.test(audienceModeRegression.patient.summaryNext), 'Public summary should route from Overview into detailed review context');
@@ -972,7 +972,7 @@ assert(audienceModeRegression.clinician.doseSelects > 0, 'Public view should kee
 assert(audienceModeRegression.clinician.removeButtons === 2, 'Public selected list should use compact removable item buttons after legacy switches');
 assert(audienceModeRegression.clinician.compactMedListCss, 'Public view should render selected medicines as compact rows');
 assert(!audienceModeRegression.clinician.clinicianLayoutCss, 'Single public view should not depend on legacy clinician layout CSS');
-assert(/Genes \+ Metabolites|functional phenotype|parent\/metabolite direction|pathway consequences/i.test(audienceModeRegression.clinician.geneIntro), 'Public view should keep detailed gene helper copy');
+assert(/real gene or marker result from a report|Leave blank/i.test(audienceModeRegression.clinician.geneIntro), 'Public view should keep concise gene-result input boundaries');
 assert(audienceModeRegression.clinician.tabBarDisplay !== 'none', 'Public view should show tab navigation');
 assert(audienceModeRegression.clinician.summaryStoryCount === 0, 'Public summary should leave rationale/action rows to the first priority card');
 assert(/Review Priorities/i.test(audienceModeRegression.clinician.summaryText), 'Public summary should orient around review priorities');

@@ -1,90 +1,24 @@
 // Diognosis — Genetics panel, combinations, transporters, metabolites
 // Phase A: modular source — concatenated by build.js
 
-const PGX_GUIDANCE_LABELS = {
-  A: "Strong PGx",
-  B: "Moderate PGx",
-  C: "Limited PGx"
-};
-
-const PGX_GUIDANCE_TITLES = {
-  A: "High-confidence pharmacogenomic guidance is available for at least one drug in this gene.",
-  B: "Moderate pharmacogenomic guidance or clinically useful evidence is available.",
-  C: "Early or limited pharmacogenomic signal; use as context, not a standalone prescribing rule."
-};
-
-function pgxGuidanceLabel(level) {
-  return PGX_GUIDANCE_LABELS[level] || "PGx evidence";
-}
-
-function pgxGuidanceTitle(level) {
-  return PGX_GUIDANCE_TITLES[level] || "Pharmacogenomic evidence is available.";
-}
-
 function renderGenetics() {
   const body = document.getElementById("geneList");
   const addSel = document.getElementById("geneAddSelect");
-  const summary = document.getElementById("geneActiveSummary");
   const activeGenes = Object.keys(userGenetics);
 
   const available = GENE_ENZYMES.filter(e => !userGenetics.hasOwnProperty(e));
-  addSel.innerHTML = available.map(e => {
-    const ev = PHARMGKB_EVIDENCE[e];
-    const tag = ev ? ` (${pgxGuidanceLabel(ev.grade)})` : "";
-    return `<option value="${e}">${e}${tag}</option>`;
-  }).join("");
+  addSel.innerHTML = available.map(e => `<option value="${e}">${e}</option>`).join("");
 
   if (!activeGenes.length) {
-    if (summary) {
-      summary.style.display = "none";
-      summary.innerHTML = "";
-    }
-    body.innerHTML = '<div style="font-size:12px;color:var(--text2);text-align:center;padding:8px;">No gene or marker results set yet. Add a result above if you know it.</div>';
+    body.innerHTML = '<div class="gene-empty">No gene result added.</div>';
     return;
-  }
-
-  const badgeText = { ultrarapid:"UM", rapid:"RM", normal:"NM", intermediate:"IM", poor:"PM", null:"NULL" };
-  const lvlColor = { A:"#c0392b", B:"#e67e22", C:"#7f8c8d" };
-  const labels = typeof activeGenotypeHandoffLabels === "function"
-    ? activeGenotypeHandoffLabels()
-    : activeGenes.map(enzyme => `${enzyme} ${userGenetics[enzyme]}`);
-  if (summary) {
-    summary.style.display = "";
-    summary.innerHTML = `<strong>Gene results in this check</strong> <span>${safePublicHtml(labels.join(", "))}</span>`;
   }
 
   body.innerHTML = activeGenes.map(enzyme => {
     const pheno = userGenetics[enzyme];
-    const phenotype = typeof legacyPhenotypeToGenotype === "function"
-      ? legacyPhenotypeToGenotype(pheno)
-      : (activeGenotype?.[enzyme] || GENOTYPE_PHENOTYPE.NM);
-    const detail = activeGenotypeDetails?.[enzyme] || buildGeneInterpretation(enzyme, phenotype);
-    const opt = PHENOTYPE_OPTIONS.find(o => o.id === pheno);
-    const cssClass = opt ? opt.cssClass : "normal";
-    const affected = DRUG_DB.filter(d => d.routes.some(r => r.enzyme === enzyme)).map(d => d.name);
-    const inStack = affected.filter(n => activeStack.includes(n));
-
-    // PharmGKB evidence for drugs in stack
-    const ev = PHARMGKB_EVIDENCE[enzyme];
-    let evidenceHtml = "";
-    if (ev && inStack.length && pheno !== "normal") {
-      const relevantPairs = ev.pairs.filter(p => inStack.includes(p.drug));
-      if (relevantPairs.length) {
-        evidenceHtml = relevantPairs.map(p => {
-          const col = lvlColor[p.level] || lvlColor.C;
-          return `<div class="gene-evidence-row">
-            <span title="${pgxGuidanceTitle(p.level)}" style="font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;background:${col};color:#fff">${pgxGuidanceLabel(p.level)}</span>
-            <span style="color:var(--text)"><b>${p.drug}</b>: ${p.action}</span>
-          </div>`;
-        }).join("");
-      }
-    }
-
-    const impactText = inStack.length ? `Affects: ${inStack.join(", ")}` : "";
-    const gradeTag = ev ? `<span title="${pgxGuidanceTitle(ev.grade)}" style="font-size:9px;padding:1px 5px;border-radius:3px;background:${lvlColor[ev.grade]};color:#fff;margin-left:4px">${ev.guideline} · ${pgxGuidanceLabel(ev.grade)}</span>` : "";
 
     return `<div class="gene-row">
-      <div class="gene-name">${enzyme}${gradeTag}</div>
+      <div class="gene-name">${enzyme}</div>
       <select class="gene-select" onchange="setGenetics('${enzyme}', this.value)">
         ${PHENOTYPE_OPTIONS
           .filter(o => GENOTYPE_EFFECTS[enzyme]?.[legacyPhenotypeToGenotype(o.id)])
@@ -97,33 +31,9 @@ function renderGenetics() {
             return `<option value="${o.id}" ${o.id===pheno?"selected":""}>${label}</option>`;
           }).join("")}
       </select>
-      <span class="gene-badge ${cssClass}">${genotypeDisplayLabel(enzyme, phenotype) || badgeText[pheno] || "?"}</span>
       <button class="gene-remove" onclick="removeGenetics('${enzyme}')" title="Remove">✕</button>
-    </div>
-    <div class="gene-detail-row">Reported: <b>${escapeHtml(detail.reportedLabel)}</b> · Interpreted as: <b>${escapeHtml(detail.functionalState)}</b></div>
-    ${impactText ? `<div class="gene-detail-row">${impactText}</div>` : ""}${evidenceHtml}`;
-  }).join("") + renderGenotypeImpactPreview(activeGenes);
-}
-
-function renderGenotypeImpactPreview(activeGenes) {
-  if (activeStack.length || typeof traverseFromGenotype !== "function") return "";
-  const rows = [];
-  for (const enzyme of activeGenes) {
-    const pheno = userGenetics[enzyme];
-    if (!pheno || pheno === "normal") continue;
-    rows.push(...traverseFromGenotype(enzyme, pheno, { maxDepth:2 }).slice(0, 5));
-  }
-  if (!rows.length) return "";
-  return `<div class="genotype-preview">
-    <div class="genotype-preview-title">Predicted affected actors from genetics alone</div>
-    ${rows.slice(0, 10).map(row => {
-      const arrow = row.direction === "increase" ? "↑" : row.direction === "decrease" ? "↓" : "↔";
-      const fold = row.fold ? ` ${row.fold.toFixed(row.fold >= 10 ? 1 : 2)}×` : "";
-      const conf = row.confidence === "low" ? " · low confidence" : "";
-      const parent = row.parentDrug ? ` from ${row.parentDrug}` : "";
-      return `<div class="genotype-preview-row"><strong>${arrow}${fold} ${row.name}</strong>${parent} · ${row.chain}${conf}</div>`;
-    }).join("")}
-  </div>`;
+    </div>`;
+  }).join("");
 }
 
 /* ================================================================
