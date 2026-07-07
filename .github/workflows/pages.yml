@@ -39,6 +39,7 @@ jobs:
           cp index.html dist/index.html
           for asset in \
             data-views.html \
+            signal-board-v2-live.html \
             medication-classes.html \
             medication-class-examples.html \
             reference/index.html \

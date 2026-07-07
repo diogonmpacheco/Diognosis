@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diognosis V1 UI Redesign Prototypes</title>
+  <style>
+    :root {
+      --ink:#14161a;
+      --muted:#66707a;
+      --faint:#8b949e;
+      --line:#dfe3e6;
+      --soft:#f6f7f7;
+      --paper:#ffffff;
+      --green:#0f7f6d;
+      --green2:#0a5e52;
+      --mint:#e6f3ef;
+      --red:#c63d36;
+      --redSoft:#fff1ef;
+      --amber:#a66b10;
+      --amberSoft:#fff6e5;
+      --blue:#245c9d;
+      --blueSoft:#edf4ff;
+      --violet:#6c4eb6;
+      --violetSoft:#f2edff;
+      --shadow:0 18px 60px rgba(18,26,32,.12);
+      --radius:8px;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--ink);
+      background:#eef1f2;
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:linear-gradient(180deg,#f7f8f8 0,#eceff0 100%); }
+    button, input, select { font:inherit; }
+    button { cursor:pointer; }
+    .shell { min-height:100vh; display:grid; grid-template-rows:auto 1fr; }
+    .prototype-bar {
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:12px 18px;
+      background:rgba(255,255,255,.92);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(12px);
+    }
+    .brand { display:flex; align-items:center; gap:10px; min-width:0; font-weight:900; letter-spacing:.01em; }
+    .mark {
+      width:28px;
+      height:28px;
+      border-radius:8px;
+      background:linear-gradient(135deg,var(--green),#27a68e);
+      display:grid;
+      place-items:center;
+      color:#fff;
+      font-weight:950;
+      box-shadow:0 8px 22px rgba(15,127,109,.24);
+    }
+    .brand span:last-child { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .switcher {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(112px,1fr));
+      gap:6px;
+      padding:4px;
+      border:1px solid var(--line);
+      border-radius:10px;
+      background:#f7f8f8;
+      min-width:min(520px,100%);
+    }
+    .switcher button {
+      border:0;
+      border-radius:7px;
+      padding:9px 12px;
+      background:transparent;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:850;
+      min-height:38px;
+    }
+    .switcher button.active { background:var(--ink); color:#fff; }
+    .frame { padding:18px; }
+    .prototype { display:none; max-width:1480px; margin:0 auto; }
+    .prototype.active { display:block; }
+    .pill {
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:5px 9px;
+      background:#fff;
+      color:var(--muted);
+      font-size:11px;
+      font-weight:850;
+      line-height:1.1;
+      white-space:nowrap;
+    }
+    .pill.red { border-color:rgba(198,61,54,.24); background:var(--redSoft); color:var(--red); }
+    .pill.green { border-color:rgba(15,127,109,.22); background:var(--mint); color:var(--green2); }
+    .pill.blue { border-color:rgba(36,92,157,.22); background:var(--blueSoft); color:var(--blue); }
+    .pill.amber { border-color:rgba(166,107,16,.26); background:var(--amberSoft); color:var(--amber); }
+    .dot { width:7px; height:7px; border-radius:50%; background:currentColor; flex:0 0 auto; }
+    .icon-btn {
+      width:40px;
+      height:40px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:#fff;
+      display:grid;
+      place-items:center;
+      color:var(--muted);
+      font-weight:900;
+    }
+    .primary-btn, .secondary-btn {
+      min-height:40px;
+      border-radius:8px;
+      padding:0 14px;
+      font-weight:850;
+      border:1px solid transparent;
+    }
+    .primary-btn { background:var(--green); color:#fff; }
+    .secondary-btn { background:#fff; border-color:var(--line); color:var(--ink); }
+    .field {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-height:48px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:#fff;
+      padding:0 12px;
+      color:var(--faint);
+      min-width:0;
+    }
+    .field input { border:0; outline:0; width:100%; min-width:0; color:var(--ink); background:transparent; }
+    .field input::placeholder { color:var(--faint); opacity:1; }
+    .mini-label { font-size:10px; font-weight:900; color:var(--faint); text-transform:uppercase; letter-spacing:.04em; }
+    .card { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); box-shadow:none; }
+    .card-pad { padding:14px; }
+    .stack-item {
+      display:grid;
+      grid-template-columns:1fr auto;
+      align-items:center;
+      gap:10px;
+      padding:10px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .stack-item:last-child { border-bottom:0; }
+    .stack-item strong { font-size:14px; }
+    .stack-item span { display:block; color:var(--muted); font-size:12px; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .metric { display:grid; gap:4px; padding:12px; border:1px solid var(--line); border-radius:8px; background:#fff; }
+    .metric strong { font-size:20px; line-height:1; }
+    .metric span { font-size:11px; color:var(--muted); font-weight:750; }
+    .tabs { display:flex; gap:6px; flex-wrap:wrap; }
+    .tabs button {
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--muted);
+      border-radius:999px;
+      padding:8px 11px;
+      font-size:12px;
+      font-weight:850;
+    }
+    .tabs button.active { border-color:var(--green); background:var(--mint); color:var(--green2); }
+    .notes { display:grid; gap:8px; margin:12px 0 0; }
+    .note { margin:0; font-size:14px; line-height:1.45; color:var(--ink); }
+    .note.muted { color:var(--muted); }
+    .note.strong { font-weight:800; color:var(--green2); }
+    .boundary { margin:12px 0 0; color:var(--muted); font-size:12px; line-height:1.45; }
+    .split { display:grid; gap:14px; }
+
+    /* Prototype 1 */
+    .focus-shell {
+      display:grid;
+      grid-template-columns:318px minmax(0,1fr) 300px;
+      gap:14px;
+      min-height:calc(100vh - 96px);
+    }
+    .focus-rail, .focus-side {
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-width:0;
+    }
+    .focus-main { min-width:0; display:flex; flex-direction:column; gap:12px; }
+    .focus-head {
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:12px;
+      align-items:start;
+      padding:18px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:10px;
+    }
+    .focus-head h1 { margin:0; font-size:26px; line-height:1.08; letter-spacing:0; }
+    .focus-head p { margin:8px 0 0; color:var(--muted); line-height:1.45; max-width:760px; }
+    .priority-card {
+      padding:18px;
+      border:1px solid rgba(198,61,54,.22);
+      background:#fff;
+      border-radius:10px;
+      display:grid;
+      gap:14px;
+    }
+    .priority-card h2 { margin:0; font-size:24px; line-height:1.15; letter-spacing:0; }
+    .priority-top { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
+    .priority-actions { display:flex; flex-wrap:wrap; gap:8px; }
+    .question-strip { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+    .question-card { padding:12px; border-radius:8px; border:1px solid var(--line); background:#fafbfb; min-width:0; }
+    .question-card strong { display:block; font-size:13px; line-height:1.35; }
+    .question-card span { display:block; margin-top:5px; font-size:12px; color:var(--muted); line-height:1.35; }
+    .detail-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+    .detail-card { padding:13px; border:1px solid var(--line); border-radius:8px; background:#fff; min-width:0; }
+    .detail-card strong { display:block; margin-bottom:7px; font-size:13px; }
+    .detail-card p { margin:0; color:var(--muted); font-size:12px; line-height:1.42; }
+    .evidence-list { display:grid; gap:8px; }
+    .evidence-row { padding:11px; border:1px solid var(--line); border-radius:8px; background:#fff; }
+    .evidence-row strong { display:block; font-size:13px; line-height:1.3; }
+    .evidence-row span { display:block; margin-top:3px; color:var(--muted); font-size:12px; }
+
+    /* Prototype 2 */
+    .brief-shell {
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 340px;
+      gap:16px;
+      align-items:start;
+    }
+    .brief-paper {
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:10px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .brief-cover {
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:16px;
+      padding:22px 24px;
+      background:linear-gradient(90deg,#ffffff 0,#f5fbf8 100%);
+      border-bottom:1px solid var(--line);
+    }
+    .brief-cover h1 { margin:0; font-size:28px; line-height:1.08; }
+    .brief-cover p { margin:8px 0 0; color:var(--muted); line-height:1.45; max-width:740px; }
+    .brief-score {
+      align-self:start;
+      min-width:120px;
+      padding:14px;
+      border-radius:8px;
+      background:var(--redSoft);
+      color:var(--red);
+      text-align:center;
+      border:1px solid rgba(198,61,54,.22);
+    }
+    .brief-score strong { display:block; font-size:28px; line-height:1; }
+    .brief-score span { display:block; margin-top:5px; font-size:11px; font-weight:900; text-transform:uppercase; }
+    .brief-body { padding:20px 24px 24px; display:grid; gap:18px; }
+    .brief-row {
+      display:grid;
+      grid-template-columns:48px minmax(0,1fr) auto;
+      gap:14px;
+      align-items:start;
+      padding:14px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .brief-row:last-child { border-bottom:0; }
+    .rank {
+      width:38px;
+      height:38px;
+      border-radius:8px;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      background:var(--red);
+      font-weight:950;
+    }
+    .brief-row h2 { margin:0; font-size:19px; line-height:1.2; }
+    .brief-row p { margin:7px 0 0; color:var(--muted); line-height:1.45; }
+    .brief-row .row-actions { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:7px; }
+    .brief-sidebar { display:grid; gap:12px; }
+    .brief-sidebar h3 { margin:0 0 10px; font-size:14px; }
+    .checklist { display:grid; gap:9px; margin:0; padding:0; list-style:none; }
+    .checklist li { display:grid; grid-template-columns:18px 1fr; gap:8px; color:var(--muted); font-size:13px; line-height:1.35; }
+    .check { width:18px; height:18px; border-radius:5px; border:1px solid var(--green); background:var(--mint); display:grid; place-items:center; color:var(--green2); font-size:12px; font-weight:900; }
+    .brief-inputs { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+
+    /* Prototype 3 */
+    .board-shell { display:grid; gap:12px; }
+    .board-command {
+      display:grid;
+      grid-template-columns:280px minmax(0,1fr) 320px;
+      gap:12px;
+      align-items:stretch;
+    }
+    .board-panel {
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:10px;
+      min-width:0;
+      overflow:hidden;
+    }
+    .board-panel-head {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      min-height:48px;
+      padding:12px 14px;
+      border-bottom:1px solid var(--line);
+      background:#fbfcfc;
+    }
+    .board-panel-head strong { font-size:13px; }
+    .board-panel-body { padding:14px; }
+    .board-hero {
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:16px;
+      align-items:start;
+      padding:18px;
+      background:
+        linear-gradient(120deg,#ffffff 0,#f8fbfa 62%,#edf7f4 100%);
+      border:1px solid var(--line);
+      border-radius:10px;
+      min-width:0;
+    }
+    .board-kicker {
+      margin:0 0 8px;
+      color:var(--green2);
+      font-size:11px;
+      font-weight:950;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+    .board-hero h1 { margin:0; font-size:30px; line-height:1.05; letter-spacing:0; }
+    .board-hero p { margin:10px 0 0; max-width:720px; color:var(--muted); line-height:1.48; }
+    .board-hero-actions { display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end; }
+    .board-status-grid {
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:8px;
+      margin-top:14px;
+    }
+    .board-status {
+      padding:10px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:#fff;
+      min-width:0;
+    }
+    .board-status strong { display:block; font-size:16px; line-height:1; }
+    .board-status span { display:block; margin-top:5px; font-size:11px; color:var(--muted); font-weight:800; }
+    .board-active-card {
+      display:grid;
+      gap:14px;
+      padding:18px;
+      border:1px solid rgba(198,61,54,.24);
+      border-radius:10px;
+      background:#fff;
+      box-shadow:0 16px 48px rgba(24,32,38,.08);
+      min-width:0;
+    }
+    .board-active-top {
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .board-active-title { margin:0; font-size:24px; line-height:1.13; letter-spacing:0; }
+    .board-active-body { margin:0; color:var(--muted); font-size:14px; line-height:1.48; max-width:740px; }
+    .board-active-focus {
+      margin:0;
+      padding:11px 12px;
+      border-radius:8px;
+      background:var(--mint);
+      color:var(--green2);
+      font-size:13px;
+      font-weight:800;
+      line-height:1.42;
+    }
+    .signal-path {
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:8px;
+    }
+    .path-step {
+      min-height:74px;
+      padding:10px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:#fbfcfc;
+      position:relative;
+      min-width:0;
+    }
+    .path-step:not(:last-child)::after {
+      content:">";
+      position:absolute;
+      right:-9px;
+      top:50%;
+      transform:translateY(-50%);
+      color:var(--faint);
+      font-weight:950;
+      z-index:1;
+    }
+    .path-step strong { display:block; font-size:12px; line-height:1.25; }
+    .path-step span { display:block; margin-top:5px; font-size:11px; color:var(--muted); line-height:1.3; }
+    .board-canvas {
+      display:grid;
+      grid-template-columns:1.2fr 1fr 1fr 1fr;
+      gap:12px;
+      align-items:start;
+    }
+    .lane {
+      background:#f8f9f9;
+      border:1px solid var(--line);
+      border-radius:10px;
+      min-width:0;
+      overflow:hidden;
+    }
+    .lane.priority-lane { background:#fff8f7; border-color:rgba(198,61,54,.22); }
+    .lane-head {
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      padding:12px;
+      border-bottom:1px solid var(--line);
+      background:#fff;
+      font-weight:950;
+    }
+    .lane-head span { color:var(--muted); font-size:12px; font-weight:850; }
+    .lane-body { display:grid; gap:8px; padding:10px; }
+    .signal {
+      display:grid;
+      gap:9px;
+      padding:12px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:#fff;
+      min-width:0;
+      text-align:left;
+      color:var(--ink);
+    }
+    button.signal { width:100%; }
+    .signal.active { border-color:rgba(198,61,54,.45); box-shadow:0 0 0 3px rgba(198,61,54,.08); }
+    .signal h2 { margin:0; font-size:15px; line-height:1.25; }
+    .signal p { margin:0; color:var(--muted); font-size:12px; line-height:1.4; }
+    .signal-actions { display:flex; flex-wrap:wrap; gap:6px; }
+    .board-stack-list { display:grid; gap:8px; }
+    .board-stack-item {
+      padding:10px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:#fff;
+      min-width:0;
+    }
+    .board-stack-item strong { display:block; font-size:14px; }
+    .board-stack-item span { display:block; margin-top:3px; color:var(--muted); font-size:12px; line-height:1.35; }
+    .review-packet { display:grid; gap:10px; }
+    .packet-row {
+      display:grid;
+      grid-template-columns:24px minmax(0,1fr);
+      gap:9px;
+      align-items:start;
+      padding:9px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:#fff;
+    }
+    .packet-number {
+      width:24px;
+      height:24px;
+      border-radius:7px;
+      display:grid;
+      place-items:center;
+      background:var(--mint);
+      color:var(--green2);
+      font-size:12px;
+      font-weight:950;
+    }
+    .packet-row strong { display:block; font-size:12px; line-height:1.3; }
+    .packet-row span { display:block; margin-top:3px; color:var(--muted); font-size:11px; line-height:1.35; }
+    .mini-map {
+      min-height:136px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:
+        radial-gradient(circle at 18% 34%, rgba(15,127,109,.22) 0 18px, transparent 19px),
+        radial-gradient(circle at 55% 22%, rgba(198,61,54,.20) 0 15px, transparent 16px),
+        radial-gradient(circle at 74% 70%, rgba(36,92,157,.18) 0 19px, transparent 20px),
+        linear-gradient(135deg,#fff,#f6f7f7);
+      position:relative;
+      overflow:hidden;
+    }
+    .mini-map::before,
+    .mini-map::after {
+      content:"";
+      position:absolute;
+      width:58%;
+      height:1px;
+      background:rgba(20,22,26,.18);
+      transform:rotate(16deg);
+      top:42%;
+      left:19%;
+    }
+    .mini-map::after { width:44%; transform:rotate(-28deg); top:56%; left:34%; }
+
+    @media (max-width:1180px) {
+      .focus-shell { grid-template-columns:290px minmax(0,1fr); }
+      .focus-side { grid-column:1/-1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); }
+      .brief-shell { grid-template-columns:1fr; }
+      .brief-sidebar { grid-template-columns:repeat(3,minmax(0,1fr)); }
+      .board-canvas { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+    @media (max-width:760px) {
+      .prototype-bar { align-items:stretch; flex-direction:column; padding:12px; }
+      .switcher { grid-template-columns:1fr; min-width:0; width:100%; }
+      .frame { padding:12px; }
+      .focus-shell, .brief-shell, .board-command, .board-canvas { grid-template-columns:1fr; }
+      .focus-head, .priority-top, .brief-cover, .board-hero { grid-template-columns:1fr; }
+      .question-strip, .detail-grid, .focus-side, .brief-sidebar, .brief-inputs { grid-template-columns:1fr; }
+      .brief-row { grid-template-columns:38px minmax(0,1fr); }
+      .brief-row .row-actions { grid-column:1/-1; justify-content:flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="prototype-bar">
+      <div class="brand">
+        <div class="mark">D</div>
+        <span>Diognosis UI Prototypes</span>
+      </div>
+      <nav class="switcher" aria-label="Prototype switcher">
+        <button data-target="focus">Focus Review</button>
+        <button data-target="brief">Clinical Brief</button>
+        <button class="active" data-target="board">Signal Board</button>
+      </nav>
+    </header>
+
+    <main class="frame">
+      <section class="prototype" id="focus">
+        <div class="focus-shell">
+          <aside class="focus-rail">
+            <div class="field"><span>Search</span><input value="Atomoxetine" aria-label="Search substances"></div>
+            <div class="card card-pad">
+              <div class="mini-label">Medicine List</div>
+              <div class="stack-item"><div><strong>Atomoxetine</strong><span>Capsule, current list</span></div><button class="icon-btn" aria-label="Remove Atomoxetine">x</button></div>
+              <button class="secondary-btn" style="width:100%;margin-top:10px">Add medicine</button>
+            </div>
+            <div class="card card-pad">
+              <div class="mini-label">Gene / Marker Results</div>
+              <div class="stack-item"><div><strong>CYP2D6</strong><span>PM - No Function</span></div><button class="icon-btn" aria-label="Remove CYP2D6">x</button></div>
+              <select class="field" aria-label="Add gene result" style="width:100%;margin-top:10px;color:var(--ink)"><option>CYP2C19</option><option>SLCO1B1</option><option>UGT1A1</option></select>
+            </div>
+            <button class="primary-btn">Review</button>
+          </aside>
+
+          <section class="focus-main">
+            <div class="focus-head">
+              <div>
+                <div class="tabs">
+                  <button class="active">Overview</button>
+                  <button>Genes</button>
+                  <button>Timing</button>
+                  <button>Evidence</button>
+                </div>
+                <h1 style="margin-top:14px">Medication Review</h1>
+                <p>One priority first. Details stay available, but the screen does not ask the user to decode the system.</p>
+              </div>
+              <span class="pill red"><span class="dot"></span>High priority</span>
+            </div>
+
+            <article class="priority-card">
+              <div class="priority-top">
+                <div>
+                  <span class="pill green">Gene result</span>
+                  <span class="pill blue">Source-linked</span>
+                  <h2 style="margin-top:10px">Atomoxetine effects may be stronger with CYP2D6 no function</h2>
+                  <div class="notes">
+                    <p class="note">Atomoxetine uses CYP2D6. A no-function result can raise exposure and side-effect sensitivity.</p>
+                    <p class="note strong">Review dose tolerance, pulse, blood pressure, sleep, appetite, and other CYP2D6 blockers before changing anything.</p>
+                    <p class="boundary">Not medical advice. Bring the real gene report and current medicine list to a doctor or pharmacist.</p>
+                  </div>
+                </div>
+                <span class="pill red">Severe</span>
+              </div>
+              <div class="question-strip">
+                <div class="question-card"><strong>What should I ask?</strong><span>Could this result make Atomoxetine harder to tolerate?</span></div>
+                <div class="question-card"><strong>What matters now?</strong><span>Symptoms, dose, timing, and the actual gene report.</span></div>
+                <div class="question-card"><strong>What should stay off-limits?</strong><span>No start, stop, switch, or dose change from this app.</span></div>
+              </div>
+              <div class="priority-actions">
+                <button class="primary-btn">Open Evidence</button>
+                <button class="secondary-btn">Mechanism</button>
+                <button class="secondary-btn">Timing</button>
+              </div>
+            </article>
+
+            <div class="detail-grid">
+              <div class="detail-card"><strong>Mechanism</strong><p>CYP2D6 lower function can reduce clearance and raise parent-drug exposure.</p></div>
+              <div class="detail-card"><strong>Timing</strong><p>Review current dose timing and when symptoms started or changed.</p></div>
+              <div class="detail-card"><strong>Evidence</strong><p>CPIC and label-linked context stays traceable without becoming prescribing guidance.</p></div>
+            </div>
+          </section>
+
+          <aside class="focus-side">
+            <div class="metric"><strong>1</strong><span>priority</span></div>
+            <div class="metric"><strong>1</strong><span>medicine</span></div>
+            <div class="metric"><strong>1</strong><span>gene result</span></div>
+            <div class="card card-pad">
+              <div class="mini-label">Evidence</div>
+              <div class="evidence-list" style="margin-top:10px">
+                <div class="evidence-row"><strong>CPIC context</strong><span>CYP2D6 and Atomoxetine review signal</span></div>
+                <div class="evidence-row"><strong>FDA label</strong><span>Exposure and tolerability context</span></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="prototype" id="brief">
+        <div class="brief-shell">
+          <article class="brief-paper">
+            <div class="brief-cover">
+              <div>
+                <div class="tabs"><button class="active">Brief</button><button>Evidence</button><button>Timeline</button></div>
+                <h1 style="margin-top:14px">Medication Review Brief</h1>
+                <p>Atomoxetine with CYP2D6 PM - No Function. Prepared as a concise discussion handoff, not a treatment plan.</p>
+              </div>
+              <div class="brief-score"><strong>1</strong><span>priority</span></div>
+            </div>
+            <div class="brief-body">
+              <section class="brief-row">
+                <div class="rank">1</div>
+                <div>
+                  <h2>Atomoxetine exposure may be higher</h2>
+                  <p>CYP2D6 no function can make Atomoxetine effects stronger at the same dose. Review tolerance and monitoring context before any medication decision.</p>
+                </div>
+                <div class="row-actions"><span class="pill red">Severe</span><span class="pill blue">Source-linked</span></div>
+              </section>
+              <section class="brief-row">
+                <div class="rank" style="background:var(--green)">2</div>
+                <div>
+                  <h2>What to bring to review</h2>
+                  <p>Current dose, start date, pulse or blood pressure changes, sleep/appetite changes, side effects, and the original gene report.</p>
+                </div>
+                <div class="row-actions"><button class="secondary-btn">Copy handoff</button></div>
+              </section>
+              <section class="brief-row">
+                <div class="rank" style="background:var(--blue)">3</div>
+                <div>
+                  <h2>Evidence stays traceable</h2>
+                  <p>The source context remains linked, while action language stays bounded to clinician or pharmacist review.</p>
+                </div>
+                <div class="row-actions"><button class="secondary-btn">Open sources</button></div>
+              </section>
+            </div>
+          </article>
+
+          <aside class="brief-sidebar">
+            <div class="card card-pad">
+              <h3>Inputs</h3>
+              <div class="brief-inputs">
+                <div class="metric"><strong>1</strong><span>medicine</span></div>
+                <div class="metric"><strong>1</strong><span>gene</span></div>
+              </div>
+              <div class="stack-item"><div><strong>Atomoxetine</strong><span>Recognized</span></div><span class="pill green">Active</span></div>
+              <div class="stack-item"><div><strong>CYP2D6</strong><span>PM - No Function</span></div><span class="pill blue">Report</span></div>
+            </div>
+            <div class="card card-pad">
+              <h3>Checked</h3>
+              <ul class="checklist">
+                <li><span class="check">OK</span><span>Medicine recognized in local data</span></li>
+                <li><span class="check">OK</span><span>Gene result mapped to current medicine</span></li>
+                <li><span class="check">OK</span><span>Source context available</span></li>
+                <li><span class="check">OK</span><span>Reviewer console hidden from public view</span></li>
+              </ul>
+            </div>
+            <div class="card card-pad">
+              <h3>Boundary</h3>
+              <p class="boundary" style="margin:0">This is educational medication-review context. It is not prescribing guidance or proof of safety.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="prototype active" id="board">
+        <div class="board-shell">
+          <div class="board-hero">
+            <div>
+              <p class="board-kicker">Lead direction</p>
+              <h1>Signal Board</h1>
+              <p>Inputs stay quiet. The center shows the active clinical question. Supporting signals sit around it by job: priority, mechanism, timing, and evidence.</p>
+              <div class="board-status-grid">
+                <div class="board-status"><strong>1</strong><span>priority to discuss</span></div>
+                <div class="board-status"><strong>2</strong><span>inputs checked</span></div>
+                <div class="board-status"><strong>0</strong><span>prescribing actions</span></div>
+              </div>
+            </div>
+            <div class="board-hero-actions">
+              <button class="primary-btn">Copy review brief</button>
+              <button class="secondary-btn">Open evidence</button>
+            </div>
+          </div>
+
+          <div class="board-command">
+            <aside class="board-panel">
+              <div class="board-panel-head">
+                <strong>Inputs</strong>
+                <span class="pill green">ready</span>
+              </div>
+              <div class="board-panel-body">
+                <div class="board-stack-list">
+                  <div class="board-stack-item"><strong>Atomoxetine</strong><span>Medicine in current review</span></div>
+                  <div class="board-stack-item"><strong>CYP2D6</strong><span>PM - No Function from a report</span></div>
+                </div>
+                <p class="boundary">Only real medicine lists and real gene reports belong here. The board does not infer a medication plan.</p>
+              </div>
+            </aside>
+
+            <article class="board-active-card" aria-live="polite">
+              <div class="board-active-top">
+                <div>
+                  <span class="pill red">Active signal</span>
+                  <h2 class="board-active-title" id="boardActiveTitle">Atomoxetine effects may be stronger</h2>
+                </div>
+                <span class="pill blue" id="boardActiveMeta">Gene + medicine</span>
+              </div>
+              <p class="board-active-body" id="boardActiveBody">CYP2D6 no function can reduce Atomoxetine clearance, so the same dose may be harder to tolerate.</p>
+              <p class="board-active-focus" id="boardActiveFocus">Ask a doctor or pharmacist whether dose tolerance, pulse, blood pressure, sleep, appetite, and other CYP2D6 blockers should be reviewed.</p>
+              <div class="signal-path" aria-label="Signal path">
+                <div class="path-step"><strong>Gene report</strong><span>CYP2D6 PM - No Function</span></div>
+                <div class="path-step"><strong>Pathway</strong><span>Lower clearance capacity</span></div>
+                <div class="path-step"><strong>Expected shift</strong><span>Higher parent exposure</span></div>
+                <div class="path-step"><strong>Review point</strong><span>Tolerance and monitoring</span></div>
+              </div>
+            </article>
+
+            <aside class="board-panel">
+              <div class="board-panel-head">
+                <strong>Review Packet</strong>
+                <span class="pill amber">bounded</span>
+              </div>
+              <div class="board-panel-body">
+                <div class="review-packet">
+                  <div class="packet-row"><span class="packet-number">1</span><div><strong>Bring the real report</strong><span>Do not guess gene status from memory.</span></div></div>
+                  <div class="packet-row"><span class="packet-number">2</span><div><strong>Bring dose and timing</strong><span>Current dose, start date, and recent changes.</span></div></div>
+                  <div class="packet-row"><span class="packet-number">3</span><div><strong>Discuss symptoms</strong><span>Pulse, blood pressure, sleep, appetite, and side effects.</span></div></div>
+                </div>
+                <p class="boundary">Not medical advice. No start, stop, switch, or dose change from this app.</p>
+              </div>
+            </aside>
+          </div>
+
+          <div class="board-canvas">
+            <section class="lane priority-lane">
+              <div class="lane-head">Priority <span>1 active</span></div>
+              <div class="lane-body">
+                <button class="signal active" type="button" data-signal="exposure">
+                  <span class="pill red">Severe</span>
+                  <h2>Higher Atomoxetine exposure</h2>
+                  <p>Same dose may be harder to tolerate with CYP2D6 no function.</p>
+                </button>
+                <button class="signal" type="button" data-signal="question">
+                  <span class="pill green">Question</span>
+                  <h2>What should I ask?</h2>
+                  <p>Could my gene result change Atomoxetine side effects or monitoring?</p>
+                </button>
+              </div>
+            </section>
+            <section class="lane">
+              <div class="lane-head">Mechanism <span>why</span></div>
+              <div class="lane-body">
+                <div class="mini-map" aria-label="Mechanism map"></div>
+                <button class="signal" type="button" data-signal="mechanism">
+                  <h2>CYP2D6 clearance bottleneck</h2>
+                  <p>Lower function can reduce clearance capacity for the parent medicine.</p>
+                </button>
+              </div>
+            </section>
+            <section class="lane">
+              <div class="lane-head">Timing <span>what changed</span></div>
+              <div class="lane-body">
+                <button class="signal" type="button" data-signal="timing">
+                  <h2>Dose and symptom timeline</h2>
+                  <p>Connect side effects to start date, dose changes, and co-medications.</p>
+                </button>
+                <button class="signal" type="button" data-signal="monitoring">
+                  <h2>Monitoring window</h2>
+                  <p>Pulse, blood pressure, sleep, appetite, and tolerability.</p>
+                </button>
+              </div>
+            </section>
+            <section class="lane">
+              <div class="lane-head">Evidence <span>traceable</span></div>
+              <div class="lane-body">
+                <button class="signal" type="button" data-signal="evidence">
+                  <span class="pill blue">Source-linked</span>
+                  <h2>CPIC + label context</h2>
+                  <p>Evidence remains traceable without becoming a prescription.</p>
+                </button>
+                <button class="signal" type="button" data-signal="boundary">
+                  <span class="pill amber">Boundary</span>
+                  <h2>What this cannot decide</h2>
+                  <p>No proof of safety and no medication-change instruction.</p>
+                </button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const buttons = Array.from(document.querySelectorAll("[data-target]"));
+    const prototypes = Array.from(document.querySelectorAll(".prototype"));
+    const boardSignals = {
+      exposure: {
+        title: "Atomoxetine effects may be stronger",
+        meta: "Gene + medicine",
+        body: "CYP2D6 no function can reduce Atomoxetine clearance, so the same dose may be harder to tolerate.",
+        focus: "Ask a doctor or pharmacist whether dose tolerance, pulse, blood pressure, sleep, appetite, and other CYP2D6 blockers should be reviewed."
+      },
+      question: {
+        title: "The review question is simple",
+        meta: "Question",
+        body: "The user does not need a mechanism lecture first. The first question is whether this gene result changes tolerability or monitoring.",
+        focus: "Bring the current dose, side effects, and real gene report. Do not change the medicine from this screen."
+      },
+      mechanism: {
+        title: "CYP2D6 clearance is the mechanism",
+        meta: "Mechanism",
+        body: "The board keeps the pathway visible but short: lower CYP2D6 function can lower clearance capacity for the parent medicine.",
+        focus: "Use mechanism as supporting context, not as a standalone prescribing instruction."
+      },
+      timing: {
+        title: "Timing makes the signal useful",
+        meta: "Timing",
+        body: "Dose changes, start date, new inhibitors, and when symptoms began can change how important the signal is.",
+        focus: "Ask what changed recently before interpreting the gene result in isolation."
+      },
+      monitoring: {
+        title: "Monitoring is the practical handoff",
+        meta: "Monitoring",
+        body: "Pulse, blood pressure, sleep, appetite, agitation, and other side effects are the concrete review points.",
+        focus: "The board should help prepare a better conversation, not produce an automatic medication decision."
+      },
+      evidence: {
+        title: "Evidence stays traceable",
+        meta: "Evidence",
+        body: "Source links stay reachable without dominating the first screen or creating another text wall.",
+        focus: "Traceability supports review; it does not prove the current list is safe."
+      },
+      boundary: {
+        title: "The boundary is part of the product",
+        meta: "Safety boundary",
+        body: "The app should clearly refuse to imply proof of safety or direct start, stop, switch, or dose-change advice.",
+        focus: "Every path leads to review with a qualified doctor or pharmacist when action is needed."
+      }
+    };
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const target = button.dataset.target;
+        buttons.forEach((item) => item.classList.toggle("active", item === button));
+        prototypes.forEach((item) => item.classList.toggle("active", item.id === target));
+      });
+    });
+    document.querySelectorAll("[data-signal]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const signal = boardSignals[button.dataset.signal];
+        if (!signal) return;
+        document.querySelectorAll("[data-signal]").forEach((item) => item.classList.toggle("active", item === button));
+        document.getElementById("boardActiveTitle").textContent = signal.title;
+        document.getElementById("boardActiveMeta").textContent = signal.meta;
+        document.getElementById("boardActiveBody").textContent = signal.body;
+        document.getElementById("boardActiveFocus").textContent = signal.focus;
+      });
+    });
+  </script>
+</body>
+</html>

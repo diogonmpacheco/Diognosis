@@ -12,6 +12,7 @@ function assert(condition, message) {
 function verifyAuxiliaryPages() {
   const requiredArtifactFiles = [
     'data-views.html',
+    'signal-board-v2-live.html',
     'medication-classes.html',
     'medication-class-examples.html',
     'reference/index.html',
