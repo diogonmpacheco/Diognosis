@@ -124,8 +124,10 @@ Review whether Diognosis is presenting PGx results as report-style patient input
 ## Data / Evidence Pending
 
 11. Formal clinical validation
-   - Not implemented intentionally.
-   - App is source-linked/source-integrated, not professionally validated.
+   - Not a V1 launch dependency and may remain unavailable.
+   - V1 instead distinguishes exact authority links, claim-specific primary literature, other linked context, and quarantined modeled context.
+   - Internal adapters are hidden from public evidence, are not severity-bearing, and cannot preserve severe output on their own.
+   - Any future independent review remains additive and must record reviewer role, scope, decision, date, and source snapshot.
 
 12. More reference facts
    - Reference layer exists, but only covers selected facts.
@@ -155,4 +157,4 @@ Review whether Diognosis is presenting PGx results as report-style patient input
 2. Product QA matrix for item 3.
 3. Data Views and copy polish for items 8 and 9.
 4. Repo simplification for item 14.
-5. Defer items 10, 11, 15, and 16 until after V1.
+5. Treat item 11 as optional future validation rather than a launch blocker; defer items 10, 15, and 16 until after V1.

@@ -111,7 +111,7 @@ function activeMoietyRowsToFindings(rows) {
         sourceRows: [row],
         groupedFindings: [],
         clinicalAction: row.clinicalAction || "",
-        evidenceStatus: (row.evidenceRefs || []).length ? "source-linked; source-integrated" : "inferred/review required",
+        evidenceStatus: (row.evidenceRefs || []).length ? "source-linked; provenance classified in Evidence" : "inferred/review required",
       };
     });
 }

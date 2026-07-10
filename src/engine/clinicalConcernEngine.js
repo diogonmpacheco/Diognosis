@@ -1223,7 +1223,7 @@ function buildV1FindingTrustContract(finding = {}, context = {}) {
     clinicianAction: v1TrustClinicianAction(safeFinding, domain),
     limitationStatus: v1TrustLimitationStatus({ sourceLinked, reviewed, finding:safeFinding }),
     sourceLinked,
-    clinicalReviewStatus: reviewed ? "reviewed" : "source-integrated",
+    clinicalReviewStatus: reviewed ? "reviewed" : "not_independently_reviewed",
     evidenceRefs,
     sourceCount: safeFinding.evidenceLadder?.studyCount || evidenceRefs.length,
     sourceTypes: uniqueClinicalValues(studies.map(study => String(study.type || "").replace(/_/g, " "))),
@@ -1370,13 +1370,16 @@ function v1TrustConfidenceLabel(finding = {}) {
 function v1TrustActionStatusLabel(value) {
   const key = String(value || "").trim().toLowerCase().replace(/_/g, " ");
   if (key === "reviewed") return "action reviewed";
+  if (key === "authority linked") return "authority-linked action context";
+  if (key === "literature linked") return "literature-linked action context";
+  if (key === "modeled or linked context") return "context only; verify applicability";
   if (
     key === "no signoff" ||
     key === "no sign off" ||
     key === "pending review" ||
     key === "review needed" ||
     key === "clinical review needed"
-  ) return "source-integrated";
+  ) return "not independently reviewed";
   if (key === "insufficient") return "action evidence limited";
   return `${v1TrustLabelCase(value)} action`;
 }
@@ -1388,7 +1391,14 @@ function v1TrustEvidenceLabel(finding = {}, evidenceRefs = [], sourceLinked = fa
     ? String(ladder.strongestTier).replace(/_/g, " ").toLowerCase()
     : "";
   if (sourceLinked || count) {
-    return `${tier ? `${tier}; ` : ""}${count || 1} linked source${(count || 1) === 1 ? "" : "s"}`;
+    const provenance = ladder.authorityLinked
+      ? "authority-linked"
+      : ladder.primaryLiteratureLinked
+        ? "primary-literature linked"
+        : ladder.modeledOnly
+          ? "modeled context; not severity-bearing"
+          : "linked source";
+    return `${tier ? `${tier}; ` : ""}${count || 1} source${(count || 1) === 1 ? "" : "s"}; ${provenance}`;
   }
   return "modeled signal; no linked source yet";
 }
@@ -1431,7 +1441,7 @@ function v1TrustClinicianAction(finding = {}, domain = "") {
 
 function v1TrustLimitationStatus({ sourceLinked = false, reviewed = false, finding = {} } = {}) {
   if (reviewed) return "Reviewed source-linked finding.";
-  if (sourceLinked) return "Source-linked; source-integrated.";
+  if (sourceLinked) return "Source-linked; not independently reviewed.";
   if (finding.reviewRequired === false) return "Reviewed modeled context.";
   return "Modeled signal; verify before clinical use.";
 }
@@ -1444,7 +1454,7 @@ function v1TrustLabelCase(value) {
 
 function v1TrustCompactText(value) {
   return String(value || "")
-    .replace(/\bpending\s+professional\s+(?:clinical\s+)?review\b/gi, "source-integrated")
+    .replace(/\bpending\s+professional\s+(?:clinical\s+)?review\b/gi, "not independently reviewed")
     .replace(/\bmodel-only\b/gi, "modeled")
     .replace(/_/g, " ")
     .replace(/\s+/g, " ")

@@ -145,17 +145,17 @@ function extractPublicReadiness(window) {
 const publicScenarios = [
   {
     name:'Warfarin + Amiodarone legacy plain URL',
-    url:'http://localhost/index.html?substances=warfarin,amiodarone&audience=patient&tab=review',
+    url:'http://localhost/index.html#substances=warfarin,amiodarone&audience=patient&tab=review',
     expected:['Warfarin', 'Amiodarone'],
   },
   {
     name:'Clopidogrel + Omeprazole with CYP2C19 PM legacy detailed URL',
-    url:'http://localhost/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&audience=detailed&tab=review',
+    url:'http://localhost/index.html#substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&audience=detailed&tab=review',
     expected:['Clopidogrel', 'Omeprazole', 'CYP2C19'],
   },
   {
     name:'Codeine + Fluoxetine with CYP2D6 PM legacy clinician URL',
-    url:'http://localhost/index.html?substances=codeine,fluoxetine&genotype=CYP2D6:PM&audience=clinician&tab=review',
+    url:'http://localhost/index.html#substances=codeine,fluoxetine&genotype=CYP2D6:PM&audience=clinician&tab=review',
     expected:['Codeine', 'Fluoxetine', 'CYP2D6'],
   },
 ];
@@ -189,8 +189,8 @@ for (const scenario of publicScenarios) {
   assert(result.trustChips >= result.primaryCards, `${scenario.name}: priority cards should expose evidence/status chips`);
   assert(result.trustChipHeadingCount === 0,
     `${scenario.name}: trust chips should not use label/value headings`);
-  assert(/Source-linked|Modeled/i.test(result.trustChipText) && /confidence/i.test(result.trustChipText),
-    `${scenario.name}: trust chips should use concise evidence and confidence values`);
+  assert(/Authority-linked|Primary-literature linked|Linked source|Modeled/i.test(result.trustChipText) && /Mechanism:/i.test(result.trustChipText),
+    `${scenario.name}: trust chips should use concise provenance and mechanistic-confidence values`);
   assert(result.discussionGuides >= result.primaryCards, `${scenario.name}: priority cards should expose discussion guides`);
   assert(result.monitoringGuides >= result.primaryCards, `${scenario.name}: priority cards should expose monitoring focus`);
   assert(result.sourceActions > 0 || result.sourceLinks > 0, `${scenario.name}: source-linked evidence actions should remain reachable`);
@@ -227,7 +227,7 @@ for (const scenario of publicScenarios) {
   assertNoInternalLeak(`${scenario.name} Overview`, result.findingText);
 }
 
-const unknownWindow = await loadPage('http://localhost/index.html?substances=warfarin,mystery-mix&audience=plain&tab=overview');
+const unknownWindow = await loadPage('http://localhost/index.html#substances=warfarin,mystery-mix&audience=plain&tab=overview');
 const unknown = extractPublicReadiness(unknownWindow);
 assert(unknown.audienceMode === 'public' && !unknown.bodyAudience, 'Unknown legacy URL should still use the public view');
 assert(unknown.selectedChips === 2 && unknown.unrecognizedChips === 1, 'Unknown selections should stay visible beside recognized medicines');
@@ -237,7 +237,7 @@ assert(/not recognized by the local dataset|Unrecognized selections/i.test(unkno
 assert(!/audience=/i.test(`${unknown.locationSearch} ${unknown.shareUrl} ${unknown.handoffText}`), 'Unknown legacy URL should canonicalize away audience params');
 assertNoUnsafeCertainty('Unknown public handoff', unknown.handoffText);
 
-const noSignalWindow = await loadPage('http://localhost/index.html?substances=mystery-mix,unknown-herb&audience=patient&tab=overview');
+const noSignalWindow = await loadPage('http://localhost/index.html#substances=mystery-mix,unknown-herb&audience=patient&tab=overview');
 const noSignal = extractPublicReadiness(noSignalWindow);
 assert(noSignal.primaryCards === 0, 'Unknown-only no-signal scenario should not render priority cards');
 assert(/No major review priority generated|not a safety clearance|A quiet result here does not prove the list is safe|Not checked here/i.test(noSignal.findingText),
@@ -264,7 +264,7 @@ assert(/not medical advice|No information is uploaded/i.test(normalizedText(stru
 assert(!/\bpre-v1\b|research prototype/i.test(normalizedText(structural.bodyText)),
   'Static disclaimer should describe the active app as current platform scope');
 
-const reviewerWindow = await loadPage('http://localhost/index.html?substances=warfarin,amiodarone&audience=patient&reviewer=1&tab=review');
+const reviewerWindow = await loadPage('http://localhost/index.html#substances=warfarin,amiodarone&audience=patient&reviewer=1&tab=review');
 const reviewer = extractPublicReadiness(reviewerWindow);
 assert(reviewer.reviewerMode === true, 'Reviewer URL should enable reviewer mode');
 assert(reviewer.audienceMode === 'public' && !reviewer.bodyAudience, 'Reviewer URL should keep the single public audience state');

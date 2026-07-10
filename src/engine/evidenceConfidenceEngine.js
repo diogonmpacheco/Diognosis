@@ -11,6 +11,7 @@ const EVIDENCE_LADDER_TIER_KEYS = [
   "REVIEW",
   "ANIMAL",
   "IN_VITRO",
+  "MODELED_CONTEXT",
 ];
 
 function computeEvidenceLadder(evidenceRefs = [], context = {}) {
@@ -25,16 +26,20 @@ function computeEvidenceLadder(evidenceRefs = [], context = {}) {
   const strongestStudy = strongestEvidenceStudy(studies);
   const strongestTierKey = strongestStudy ? evidenceTierKey(strongestStudy.type) : "unknown";
   const sourceLinked = studies.length > 0 || uniqueEvidenceLadderRefs(evidenceRefs).length > 0 || Boolean(context.inlineEvidence);
+  const authorityStudies = studies.filter(study => typeof isAuthorityEvidence === "function" && isAuthorityEvidence(study));
+  const primaryLiteratureStudies = studies.filter(study => typeof isPrimaryLiteratureEvidence === "function" && isPrimaryLiteratureEvidence(study));
+  const modeledStudies = studies.filter(study => typeof isModeledContextEvidence === "function" && isModeledContextEvidence(study));
   const professionalReviewStatus = classifyProfessionalReviewStatus(studies, context.reviewStatus);
   const supportingSignals = context.supportingSignals || {};
   const mechanisticConfidence = classifyMechanisticConfidence(studies, supportingSignals);
   const clinicalActionConfidence = classifyClinicalActionConfidence(studies, professionalReviewStatus, context);
-  const sourceSupportStatus = classifySourceSupportStatus(sourceLinked, professionalReviewStatus, context);
-  const hasPublicIdentifier = studies.some(study => Boolean(study.pmid || study.doi || study.url || study.source));
+  const sourceSupportStatus = classifySourceSupportStatus(studies, professionalReviewStatus, context);
+  const hasPublicIdentifier = studies.some(study => Boolean(study.pmid || study.doi || study.url));
   const notes = uniqueEvidenceLadderRefs([
     !studies.length && context.reviewRequired !== false ? "No source-linked evidence refs on this finding." : "",
     studies.length && !severityBearingStudies.length ? "Linked studies are context-only and not severity-bearing." : "",
-    professionalReviewStatus === "pending" ? "Source-integrated V1 context." : "",
+    authorityStudies.length ? `${authorityStudies.length} authority source${authorityStudies.length === 1 ? "" : "s"}.` : "",
+    modeledStudies.length && modeledStudies.length === studies.length ? "Modeled context only; not severity-bearing." : "",
     context.calculationBearing ? "Calculation-bearing evidence." : "",
   ]);
   return {
@@ -42,6 +47,9 @@ function computeEvidenceLadder(evidenceRefs = [], context = {}) {
     tiersPresent: tierKeysPresent,
     strongestTier: strongestTierKey,
     sourceLinked,
+    authorityLinked:authorityStudies.length > 0,
+    primaryLiteratureLinked:primaryLiteratureStudies.length > 0,
+    modeledOnly:studies.length > 0 && modeledStudies.length === studies.length,
     sourceSupportStatus,
     hasPublicIdentifier,
     professionalReviewStatus,
@@ -49,6 +57,9 @@ function computeEvidenceLadder(evidenceRefs = [], context = {}) {
     clinicalActionConfidence,
     notes,
     studyCount: studies.length,
+    authoritySourceCount:authorityStudies.length,
+    primaryLiteratureCount:primaryLiteratureStudies.length,
+    modeledContextCount:modeledStudies.length,
     severityBearingStudyCount: severityBearingStudies.length,
     contextOnlyStudyCount: studies.length - severityBearingStudies.length,
     publicIdentifiers: uniqueEvidenceLadderRefs(studies.flatMap(study => [
@@ -59,19 +70,26 @@ function computeEvidenceLadder(evidenceRefs = [], context = {}) {
   };
 }
 
-function classifySourceSupportStatus(sourceLinked, professionalReviewStatus = "unknown", context = {}) {
-  if (professionalReviewStatus === "reviewed" && sourceLinked) return "reviewed_source_linked";
-  if (sourceLinked && professionalReviewStatus === "pending") return "source_linked_integrated";
-  if (sourceLinked) return "source_linked";
+function classifySourceSupportStatus(studies = [], professionalReviewStatus = "unknown", context = {}) {
+  const authorityLinked = studies.some(study => typeof isAuthorityEvidence === "function" && isAuthorityEvidence(study));
+  const primaryLinked = studies.some(study => typeof isPrimaryLiteratureEvidence === "function" && isPrimaryLiteratureEvidence(study));
+  const modeledOnly = studies.length > 0 && studies.every(study => typeof isModeledContextEvidence === "function" && isModeledContextEvidence(study));
+  if (professionalReviewStatus === "reviewed" && authorityLinked) return "reviewed_authority_linked";
+  if (authorityLinked) return "authority_linked";
+  if (primaryLinked) return "primary_literature_linked";
+  if (modeledOnly) return "modeled_context_only";
+  if (studies.length) return "linked_source";
   if (context.supportingSignals?.modelOnly || context.reviewRequired === true) return "model_only_review_prompt";
   return "insufficient_source_support";
 }
 
 function sourceSupportStatusLabel(status) {
   const labels = {
-    reviewed_source_linked: "reviewed source-linked",
-    source_linked_integrated: "source-linked; source-integrated",
-    source_linked: "source-linked",
+    reviewed_authority_linked: "reviewed authority source",
+    authority_linked: "authority-linked",
+    primary_literature_linked: "primary-literature linked",
+    linked_source: "linked source",
+    modeled_context_only: "modeled context · not severity-bearing",
     model_only_review_prompt: "modeled review prompt",
     insufficient_source_support: "insufficient source support",
   };
@@ -79,9 +97,10 @@ function sourceSupportStatusLabel(status) {
 }
 
 function classifyMechanisticConfidence(evidenceRefsOrStudies = [], supportingSignals = {}) {
-  const studies = evidenceRefsOrStudies.map(item =>
+  const allStudies = evidenceRefsOrStudies.map(item =>
     typeof item === "string" ? (typeof getStudy === "function" ? getStudy(item) : STUDY_DB?.[item]) : item
   ).filter(Boolean);
+  const studies = allStudies.filter(study => !(typeof isModeledContextEvidence === "function" && isModeledContextEvidence(study)));
   const types = new Set(studies.map(study => study.type));
   if (
     types.has(EVIDENCE_TIER.FDA_LABEL) ||
@@ -91,7 +110,7 @@ function classifyMechanisticConfidence(evidenceRefsOrStudies = [], supportingSig
     types.has(EVIDENCE_TIER.CLINICAL_PK)
   ) return "high";
   if (studies.length >= 2 || types.has(EVIDENCE_TIER.OBSERVATIONAL) || types.has(EVIDENCE_TIER.CASE_REPORT) || supportingSignals.pathwayLinked) return "moderate";
-  if (types.has(EVIDENCE_TIER.IN_VITRO) || types.has(EVIDENCE_TIER.ANIMAL) || types.has(EVIDENCE_TIER.REVIEW) || supportingSignals.modelOnly) return "low";
+  if (allStudies.length || types.has(EVIDENCE_TIER.IN_VITRO) || types.has(EVIDENCE_TIER.ANIMAL) || types.has(EVIDENCE_TIER.REVIEW) || supportingSignals.modelOnly) return "low";
   return "unknown";
 }
 
@@ -100,7 +119,9 @@ function classifyClinicalActionConfidence(evidenceRefsOrStudies = [], reviewStat
     typeof item === "string" ? (typeof getStudy === "function" ? getStudy(item) : STUDY_DB?.[item]) : item
   ).filter(Boolean);
   if (reviewStatus === "reviewed") return "reviewed";
-  if (studies.length || context.sourceLinked || context.reviewRequired === true) return "source_integrated";
+  if (studies.some(study => typeof isAuthorityEvidence === "function" && isAuthorityEvidence(study))) return "authority_linked";
+  if (studies.some(study => typeof isPrimaryLiteratureEvidence === "function" && isPrimaryLiteratureEvidence(study))) return "literature_linked";
+  if (studies.length || context.sourceLinked || context.reviewRequired === true) return "modeled_or_linked_context";
   return "insufficient";
 }
 
@@ -110,12 +131,8 @@ function summarizeEvidenceLadder(ladder) {
     ? evidenceTierLabel(ladder.strongestTier)
     : sourceSupportStatusLabel(ladder.sourceSupportStatus || "insufficient_source_support");
   const count = ladder.studyCount ? `${ladder.studyCount} source${ladder.studyCount === 1 ? "" : "s"}` : "no linked sources";
-  const review = ladder.professionalReviewStatus === "reviewed"
-    ? "reviewed source"
-    : ladder.professionalReviewStatus === "pending"
-    ? "source-integrated V1 context"
-    : "review status unknown";
-  return `${tier} · ${count} · mechanistic ${ladder.mechanisticConfidence || "unknown"} · ${review}`;
+  const provenance = sourceSupportStatusLabel(ladder.sourceSupportStatus || "insufficient_source_support");
+  return `${tier} · ${count} · mechanistic ${ladder.mechanisticConfidence || "unknown"} · ${provenance}`;
 }
 
 function attachEvidenceLaddersToFindings(findings = []) {

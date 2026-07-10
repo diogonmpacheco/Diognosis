@@ -70,9 +70,68 @@ function getEvidenceStudyEntries(context = null) {
   ];
 }
 
+const INTERNAL_MODELED_EVIDENCE_ID_PATTERN = /(?:coverage_adapter|enrichment_adapter|expansion_pack_adapter|drug_count_expansion_batch|phase\d+_(?:high_priority_metabolite_labels|label_interaction_expansion|pk_washout_labels|genotype_metabolite_expansion|receptor_burden_profiles|clinical_context_enrichment|source_backed_pgx_pairs)|batch_prodrug_active_metabolite_labels)/i;
+
+function isModeledContextEvidence(study) {
+  if (!study) return false;
+  return study.type === EVIDENCE_TIER.MODELED_CONTEXT ||
+    study.sourceCategory === SOURCE_CATEGORY.MODELED_CONTEXT ||
+    study.claimSpecificity === "context_only" ||
+    study.notSeverityBearing === true ||
+    study.importedContextOnly === true ||
+    INTERNAL_MODELED_EVIDENCE_ID_PATTERN.test(String(study.id || ""));
+}
+
+function authoritySourceHost(study) {
+  const raw = String(study?.url || "");
+  if (!raw) return "";
+  try {
+    if (typeof URL === "function") return new URL(raw).hostname.toLowerCase();
+  } catch (_) {}
+  return (raw.match(/^https?:\/\/([^/:?#]+)/i)?.[1] || "").toLowerCase();
+}
+
+function isAuthorityEvidence(study) {
+  if (!study || isModeledContextEvidence(study)) return false;
+  if (study.sourceCategory === SOURCE_CATEGORY.AUTHORITY_SOURCE) return true;
+  const host = authoritySourceHost(study);
+  const officialHost = /(?:^|\.)(?:fda\.gov|dailymed\.nlm\.nih\.gov|cpicpgx\.org|clinpgx\.org)$/.test(host);
+  if (study.type === EVIDENCE_TIER.FDA_LABEL) return officialHost;
+  if (study.type === EVIDENCE_TIER.GUIDELINE && officialHost) return true;
+  return study.type === EVIDENCE_TIER.GUIDELINE && /\bCPIC\b/i.test(String(study.source || "")) && Boolean(study.pmid || study.doi);
+}
+
+function isPrimaryLiteratureEvidence(study) {
+  if (!study || isModeledContextEvidence(study) || isAuthorityEvidence(study)) return false;
+  return Boolean(study.pmid || study.doi) && [
+    EVIDENCE_TIER.META_ANALYSIS, EVIDENCE_TIER.RCT, EVIDENCE_TIER.CLINICAL_PK,
+    EVIDENCE_TIER.OBSERVATIONAL, EVIDENCE_TIER.CASE_REPORT, EVIDENCE_TIER.IN_VITRO,
+    EVIDENCE_TIER.ANIMAL,
+  ].includes(study.type);
+}
+
+function evidenceProvenanceClass(study) {
+  if (isModeledContextEvidence(study)) return "modeled_context";
+  if (isAuthorityEvidence(study)) return "authority_source";
+  if (isPrimaryLiteratureEvidence(study)) return "primary_literature";
+  if (study?.pmid || study?.doi || study?.url) return "linked_source";
+  return "unresolved";
+}
+
+function evidenceProvenanceLabel(study) {
+  return {
+    authority_source:"Authority source",
+    primary_literature:"Primary literature",
+    linked_source:"Linked source",
+    modeled_context:"Modeled context · not severity-bearing",
+    unresolved:"Unresolved source",
+  }[evidenceProvenanceClass(study)] || "Unresolved source";
+}
+
 function isExternalContextEvidence(study) {
   if (!study) return false;
   return Boolean(
+    isModeledContextEvidence(study) ||
     study.importedContextOnly === true ||
     study.notSeverityBearing === true ||
     study.sourceCategory === SOURCE_CATEGORY.OPEN_TARGETS_CONTEXT ||
@@ -94,6 +153,7 @@ function isPromotedSeverityEvidence(study) {
 
 function isSeverityBearingEvidence(study) {
   if (!study) return false;
+  if (isModeledContextEvidence(study)) return false;
   if (!isExternalContextEvidence(study)) return true;
   return isPromotedSeverityEvidence(study);
 }
@@ -316,7 +376,7 @@ function studyBadgeHTML(study) {
 //   reproducibility  — 'established'|'replicated'|'single'|'conflicting'
 //   humanData        — true if any human study supports it
 //   genotypeSpecific — true if evidence stratified by genotype
-//   lastReviewed     — year of most recent supporting study
+//   latestSourceYear — year of most recent supporting source (not a review date)
 //   contradictions   — any directly contradicting studies
 //
 // Severity may NEVER be output without calling normalizeEvidence() first.
@@ -352,7 +412,7 @@ function normalizeEvidence(interaction, studies) {
         ['FDA label','clinical','RCT','observational'].some(k => s.toLowerCase().includes(k))
       )),
       genotypeSpecific: false,
-      lastReviewed: null,
+      latestSourceYear: null,
       contradictions: [],
       studies: resolvedStudies || [],
       severityBearingStudies: [],
@@ -405,9 +465,9 @@ function normalizeEvidence(interaction, studies) {
     (s.title || '').toLowerCase().includes('phenotype')
   );
 
-  // Last reviewed: most recent study year
+  // Latest publication/source year. This is not a Diognosis review date.
   const years = severityBearingStudies.map(s => s.year).filter(Boolean);
-  const lastReviewed = years.length > 0 ? Math.max(...years) : null;
+  const latestSourceYear = years.length > 0 ? Math.max(...years) : null;
 
   // All PMIDs
   const pmids = severityBearingStudies.map(s => s.pmid).filter(Boolean).map(String);
@@ -419,7 +479,7 @@ function normalizeEvidence(interaction, studies) {
     (rcts.length > 0 ? ` (${rcts.length} RCT/meta)` : '') +
     (genotypeSpecific ? ' · genotype-stratified' : '') +
     (contradictions.length > 0 ? ` · ⚠ ${contradictions.length} contradicting source(s)` : '') +
-    (lastReviewed ? ` · reviewed ${lastReviewed}` : '');
+    (latestSourceYear ? ` · latest source ${latestSourceYear}` : '');
 
   return {
     sourceType: bestStudy.type,
@@ -428,7 +488,7 @@ function normalizeEvidence(interaction, studies) {
     reproducibility,
     humanData: humanStudies.length > 0,
     genotypeSpecific,
-    lastReviewed,
+    latestSourceYear,
     contradictions,
     studies: resolvedStudies,
     severityBearingStudies,
@@ -498,6 +558,7 @@ function getDdiEvidenceProfile(ddi) {
   const studies = resolveEvidenceRefs(refs, getInteractionEvidenceSupportKeys(ddi));
   const severityBearingStudies = getSeverityBearingStudies(studies);
   const sourceText = `${(ddi.evidence?.sources || []).join(" ")} ${ddi.evidence?.confidence || ""}`.toLowerCase();
+  const internalInline = ddi.internalProvenance?.reviewStatus === "no_signoff" || /\b(?:phase\s*\d+|adapter|internal|coverage context|expansion pack)\b/i.test(sourceText);
   const highTiers = new Set([
     EVIDENCE_TIER.FDA_LABEL,
     EVIDENCE_TIER.GUIDELINE,
@@ -516,14 +577,17 @@ function getDdiEvidenceProfile(ddi) {
       study.quantifiedEffects &&
       (study.quantifiedEffects.aucFold || study.quantifiedEffects.clearanceReductionPct || study.quantifiedEffects.oddsRatio)
     ),
-    hasStrongInline: /fda|label|cpic|guideline|clinical pk|meta-analysis|rct/.test(sourceText) && ddi.evidence?.confidence === "high",
+    hasStrongInline: refs.length === 0 && !internalInline && /fda|label|cpic|guideline|clinical pk|meta-analysis|rct/.test(sourceText) && ddi.evidence?.confidence === "high",
+    authorityStudies: studies.filter(isAuthorityEvidence),
+    primaryLiteratureStudies: studies.filter(isPrimaryLiteratureEvidence),
+    modeledContextStudies: studies.filter(isModeledContextEvidence),
   };
 }
 
 function calibrateDdiSeverity(ddi) {
-  if (!ddi || ddi.severity !== "severe") return ddi?.severity || "mild";
+  if (!ddi || !["severe", "critical"].includes(ddi.severity)) return ddi?.severity || "mild";
   const profile = getDdiEvidenceProfile(ddi);
-  if (profile.hasHighTierStudy || profile.hasQuantifiedClinicalPk || profile.hasStrongInline) return "severe";
+  if (profile.hasHighTierStudy || profile.hasQuantifiedClinicalPk || profile.hasStrongInline) return ddi.severity;
   return "moderate";
 }
 
@@ -538,13 +602,17 @@ function studyCardHTML(study) {
     .replace(/'/g, "&#39;");
   const publicText = typeof publicDisplayText === "function" ? publicDisplayText : (value) => String(value ?? "");
   const publicTitle = typeof publicEvidenceTitle === "function" ? publicEvidenceTitle(study) : publicText(study.title || study.id || "Evidence entry");
+  const authorityUrl = typeof safeUrl === "function" ? safeUrl(study.url, "") : String(study.url || "");
+  const authorityLink = typeof isAuthorityEvidence === "function" && isAuthorityEvidence(study) && authorityUrl
+    ? `<a href="${esc(authorityUrl)}" target="_blank" rel="noopener" style="color:var(--blue);text-decoration:none;font-weight:600">Authority source</a>`
+    : '';
   const pmidLink = study.pmid
     ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${encodeURIComponent(study.pmid)}/" target="_blank" style="color:var(--blue);text-decoration:none;font-weight:600">PMID:${esc(study.pmid)}</a>`
     : '';
   const doiLink = study.doi
     ? `<a href="https://doi.org/${encodeURIComponent(study.doi)}" target="_blank" style="color:var(--blue);text-decoration:none">DOI</a>`
     : '';
-  const links = [pmidLink, doiLink].filter(Boolean).join(' · ');
+  const links = [authorityLink, pmidLink, doiLink].filter(Boolean).join(' · ');
 
   const qe = study.quantifiedEffects || {};
   const qeItems = [];
@@ -560,7 +628,9 @@ function studyCardHTML(study) {
     ? `<div style="font-size:11px;color:var(--text2);margin-top:4px">Limitations: ${study.limitations.map(item => esc(publicText(item))).join(' · ')}</div>` : '';
   const unverified = study.verifyNote
     ? `<div style="font-size:10px;color:var(--amber);margin-top:3px">Source note: ${esc(publicText(study.verifyNote))}</div>` : '';
-  const reviewBadge = '<span class="ev-review-badge needs-review">source-linked</span>';
+  const provenanceLabel = typeof evidenceProvenanceLabel === "function" ? evidenceProvenanceLabel(study) : "Linked source";
+  const provenanceClass = typeof evidenceProvenanceClass === "function" ? evidenceProvenanceClass(study) : "linked_source";
+  const reviewBadge = `<span class="ev-review-badge ${provenanceClass === "authority_source" ? "reviewed" : "needs-review"}">${esc(provenanceLabel)}</span>`;
   const liveBadge = study.livePendingReview === true
     ? '<span class="ev-review-badge needs-review">source preview</span><span class="ev-review-badge needs-review">not clinical guidance</span>'
     : study.pendingSourceSignal === true

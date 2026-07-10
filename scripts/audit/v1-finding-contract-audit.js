@@ -264,7 +264,7 @@ for (const seed of seeds) {
   if (/this list is safe|proved safe|no risk/i.test(result.scopeText || '')) {
     failures.push(`${seed.label}: Reviewer Console scope panel implies safety instead of bounded review`);
   }
-  if (!['Diognosis V1 handoff summary', 'Handoff type: clinician/pharmacist medication-review handoff', 'V1 scope', 'Clinical context still needed', 'Top concerns', 'Boundaries'].every(section => (result.handoffText || '').includes(section)) || !/Share link:/i.test(result.handoffText || '')) {
+  if (!['Diognosis V1 handoff summary', 'Handoff type: clinician/pharmacist medication-review handoff', 'V1 scope', 'Clinical context supplied', 'Additional review context to verify', 'Top concerns', 'Boundaries'].every(section => (result.handoffText || '').includes(section)) || !/Share link[^\n]*:/i.test(result.handoffText || '')) {
     failures.push(`${seed.label}: V1 handoff summary missing required sections`);
   }
   if (!/Generated from local Diognosis/i.test(result.handoffText || '') || !/no patient-specific data was uploaded/i.test(result.handoffText || '')) {

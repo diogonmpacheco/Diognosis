@@ -65,12 +65,12 @@ const start = '<!-- DIOGNOSIS_STATS_START -->';
 const end = '<!-- DIOGNOSIS_STATS_END -->';
 const statsBlock = `${start}
 - **${stats.drugs} drugs** in DRUG_DB
-- **${stats.studies} evidence entries** in STUDY_DB (${stats.studiesWithPmid} with PMIDs; ${stats.sourceIntegratedStudies} source-integrated for V1)
+- **${stats.studies} evidence entries** in STUDY_DB (${stats.authoritySourceStudies} authority-source; ${stats.primaryLiteratureStudies} primary-literature; ${stats.modeledContextStudies} modeled context)
 - **${stats.ddiPairs} interaction pairs** (${stats.severeDdi} severe, ${stats.moderateDdi} moderate, ${stats.mildDdi} mild)
 - **${stats.metaboliteEntries} metabolite entries** across **${stats.metaboliteParents} parent substances** (${stats.metaboliteActors} first-class metabolite actors)
 - **${stats.pkParams} absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **${stats.genotypeGenes} genotype genes** and **${stats.receptorScores} receptor score profiles**
-- **${stats.externalSubstanceMappings} RxNorm identity mappings**, **${stats.pgxMarkerRows} PGx marker rows**, and **${stats.pgxActionSummaries} CPIC-linked action summaries**
+- **${stats.externalSubstanceMappings} RxNorm identity mappings**, **${stats.pgxMarkerRows} PGx marker rows**, and **${stats.pgxActionSummaries} PGx action summaries** (${stats.authorityLinkedPgxActions} linked to an FDA authority table)
 - **${stats.beersFlags} Beers flags** and **${stats.washoutRules} washout rules**
 - **${stats.bundleKB || 'Not yet built'} KB** generated bundle${stats.bundleLines ? ` (${stats.bundleLines} lines)` : ''}
 ${end}`;
@@ -91,9 +91,9 @@ if (existsSync(publicTrustPath)) {
   const trustStart = '<!-- PUBLIC_TRUST_STATS_START -->';
   const trustEnd = '<!-- PUBLIC_TRUST_STATS_END -->';
 const trustBlock = `${trustStart}
-- **${stats.sourceIntegratedStudies} \`STUDY_DB\` entries** are source-integrated for V1 evidence display and calculations.
-- **${stats.studiesWithPmid} entries** include PMIDs; label, guideline, DOI, and URL sources are also retained where available.
-- Source integration means the claim is traceable to committed Diognosis data and source identifiers; it does not mean medical advice or clinical validation.
+- **${stats.authoritySourceStudies} \`STUDY_DB\` entries** link to regulatory authorities or recognized guideline publishers.
+- **${stats.primaryLiteratureStudies} entries** link to claim-specific primary literature; **${stats.modeledContextStudies} entries** are explicitly modeled context and cannot preserve severe output.
+- **${stats.studiesWithPmid} entries** include PMIDs. Authority and literature linkage describe provenance, not independent Diognosis clinical validation.
 ${trustEnd}`;
   let trust = readFileSync(publicTrustPath, 'utf8')
     .replace(/^Generated: .*/m, `Generated: ${generatedDate(stats)}`);
@@ -110,11 +110,14 @@ if (existsSync(launchTrustPath)) {
 | --- | ---: |
 | Drugs in \`DRUG_DB\` | ${stats.drugs} |
 | Evidence entries in \`STUDY_DB\` | ${stats.studies} |
-| Source-integrated V1 evidence entries | ${stats.sourceIntegratedStudies} |
+| Authority-source evidence entries | ${stats.authoritySourceStudies} |
+| Primary-literature evidence entries | ${stats.primaryLiteratureStudies} |
+| Modeled-context entries (not severity-bearing) | ${stats.modeledContextStudies} |
 | Evidence entries with PMIDs | ${stats.studiesWithPmid} |
 | RxNorm identity mappings | ${stats.externalSubstanceMappings} |
 | PGx marker rows | ${stats.pgxMarkerRows} |
-| CPIC-linked action summaries | ${stats.pgxActionSummaries} |
+| PGx action summaries | ${stats.pgxActionSummaries} |
+| PGx actions linked to FDA authority table | ${stats.authorityLinkedPgxActions} |
 | Interaction pairs | ${stats.ddiPairs} |
 | Severe interaction pairs | ${stats.severeDdi} |
 | Moderate interaction pairs | ${stats.moderateDdi} |

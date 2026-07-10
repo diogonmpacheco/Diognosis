@@ -290,7 +290,7 @@ for (const search of requiredUrls) {
       fail(`${search}: PGx Explorer should label grouped medication contexts.`);
     }
     const reviewLinks = [...document.querySelectorAll("#geneSubstanceRows a.pgx-review-link")].map((link) => link.getAttribute("href") || "");
-    if (rows.length && !reviewLinks.some((href) => href.includes("index.html?substances="))) {
+    if (rows.length && !reviewLinks.some((href) => href.includes("index.html#substances="))) {
       fail(`${search}: PGx Explorer medication rows should link back to Diognosis review.`);
     }
     const selectedPhenotype = params.get("phenotype");

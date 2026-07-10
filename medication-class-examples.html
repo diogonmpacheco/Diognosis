@@ -55,7 +55,7 @@
         <span><strong>1549</strong> drugs</span>
         <span><strong>11</strong> class guides</span>
         <span><strong>85</strong> validated examples</span>
-        <span><strong>502</strong> evidence entries</span>
+        <span><strong>503</strong> evidence entries</span>
         <span class="support-boundary">Static examples; no runtime uploads</span>
       </div>
       <nav class="nav" aria-label="Medication class example sections">
@@ -75,7 +75,7 @@
   </header>
   <main>
     <section class="note">
-      <p><strong>Not a clinical ranking.</strong> These are discovery prompts for common-use or high-attention classes. Diognosis evidence is source-integrated context, not medical advice or clinical validation.</p>
+      <p><strong>Not a clinical ranking.</strong> These are discovery prompts for common-use or high-attention classes. Diognosis separates authority, literature, linked, and modeled provenance; none is medical advice or clinical validation.</p>
       <p style="margin-top:8px">Scale rationale uses public U.S. prescription-use signals from <a href="https://www.cdc.gov/nchs/fastats/drug-use-therapeutic.htm">CDC/NCHS</a> and MEPS-derived <a href="https://clincalc.com/blog/2025/08/clincalc-drugstats-most-commonly-prescribed-medications-in-2023/">ClinCalc DrugStats</a>; examples are chosen because they are useful Diognosis discovery prompts, not because they are the most dangerous combinations.</p>
     </section>
 
@@ -83,14 +83,14 @@
       <h2>Statins and Lipid Medicines</h2>
       <p>Common chronic therapy where CYP3A inhibition, transporter blockade, fibrates, boosters, and oncology drugs can raise muscle-toxicity risk.</p>
       <div class="examples">
-        <a class="example" href="./index.html?substances=simvastatin,clarithromycin&amp;tab=timing-levels"><strong>Simvastatin + clarithromycin</strong><span>CYP3A inhibition and rhabdomyolysis warning.</span></a>
-        <a class="example" href="./index.html?substances=simvastatin,itraconazole&amp;tab=timing-levels"><strong>Simvastatin + itraconazole</strong><span>Strong azole inhibition of sensitive statin exposure.</span></a>
-        <a class="example" href="./index.html?substances=simvastatin,gemfibrozil&amp;tab=overview"><strong>Simvastatin + gemfibrozil</strong><span>Fibrate/statin myopathy risk.</span></a>
-        <a class="example" href="./index.html?substances=atorvastatin,clarithromycin&amp;tab=timing-levels"><strong>Atorvastatin + clarithromycin</strong><span>Common statin plus common macrolide example.</span></a>
-        <a class="example" href="./index.html?substances=rosuvastatin,gemfibrozil&amp;tab=overview"><strong>Rosuvastatin + gemfibrozil</strong><span>Non-CYP statin still has myopathy exposure context.</span></a>
-        <a class="example" href="./index.html?substances=nirmatrelvir_ritonavir,simvastatin&amp;tab=overview"><strong>Nirmatrelvir/ritonavir + simvastatin</strong><span>Short-course booster with chronic statin.</span></a>
-        <a class="example" href="./index.html?substances=darolutamide,rosuvastatin&amp;tab=timing-levels"><strong>Darolutamide + rosuvastatin</strong><span>Transporter-sensitive statin exposure in oncology care.</span></a>
-        <a class="example" href="./index.html?substances=leflunomide,rosuvastatin&amp;tab=timing-levels"><strong>Leflunomide + rosuvastatin</strong><span>Dose-limit and muscle-toxicity review.</span></a>
+        <a class="example" href="./index.html#substances=simvastatin,clarithromycin&amp;tab=timing-levels"><strong>Simvastatin + clarithromycin</strong><span>CYP3A inhibition and rhabdomyolysis warning.</span></a>
+        <a class="example" href="./index.html#substances=simvastatin,itraconazole&amp;tab=timing-levels"><strong>Simvastatin + itraconazole</strong><span>Strong azole inhibition of sensitive statin exposure.</span></a>
+        <a class="example" href="./index.html#substances=simvastatin,gemfibrozil&amp;tab=overview"><strong>Simvastatin + gemfibrozil</strong><span>Fibrate/statin myopathy risk.</span></a>
+        <a class="example" href="./index.html#substances=atorvastatin,clarithromycin&amp;tab=timing-levels"><strong>Atorvastatin + clarithromycin</strong><span>Common statin plus common macrolide example.</span></a>
+        <a class="example" href="./index.html#substances=rosuvastatin,gemfibrozil&amp;tab=overview"><strong>Rosuvastatin + gemfibrozil</strong><span>Non-CYP statin still has myopathy exposure context.</span></a>
+        <a class="example" href="./index.html#substances=nirmatrelvir_ritonavir,simvastatin&amp;tab=overview"><strong>Nirmatrelvir/ritonavir + simvastatin</strong><span>Short-course booster with chronic statin.</span></a>
+        <a class="example" href="./index.html#substances=darolutamide,rosuvastatin&amp;tab=timing-levels"><strong>Darolutamide + rosuvastatin</strong><span>Transporter-sensitive statin exposure in oncology care.</span></a>
+        <a class="example" href="./index.html#substances=leflunomide,rosuvastatin&amp;tab=timing-levels"><strong>Leflunomide + rosuvastatin</strong><span>Dose-limit and muscle-toxicity review.</span></a>
       </div>
       <div class="tagline"><span class="tag high">myopathy</span><span class="tag warn">CYP3A4</span><span class="tag">OATP/BCRP</span></div>
     </section>
@@ -99,14 +99,14 @@
       <h2>Blood Pressure and Heart Failure</h2>
       <p>Common medicines where the biggest misses are often potassium, renal function, bradycardia, hypotension, or timing rules rather than CYP alone.</p>
       <div class="examples">
-        <a class="example" href="./index.html?substances=potassium_chloride,spironolactone&amp;tab=overview"><strong>Potassium chloride + spironolactone</strong><span>Hyperkalemia risk from supplement plus potassium-sparing drug.</span></a>
-        <a class="example" href="./index.html?substances=potassium_chloride,lisinopril&amp;tab=overview"><strong>Potassium chloride + lisinopril</strong><span>ACE inhibitor plus potassium supplement.</span></a>
-        <a class="example" href="./index.html?substances=spironolactone,trimethoprim_sulfamethoxazole&amp;tab=overview"><strong>Spironolactone + TMP-SMX</strong><span>Antibiotic choice can become a potassium problem.</span></a>
-        <a class="example" href="./index.html?substances=sacubitril_valsartan,lisinopril&amp;tab=overview"><strong>Sacubitril/valsartan + lisinopril</strong><span>ARNI/ACE inhibitor washout rule.</span></a>
-        <a class="example" href="./index.html?substances=nitroglycerin,sildenafil&amp;tab=overview"><strong>Nitroglycerin + sildenafil</strong><span>Nitrate/PDE5 hypotension contraindication.</span></a>
-        <a class="example" href="./index.html?substances=sildenafil,tamsulosin&amp;tab=overview"><strong>Sildenafil + tamsulosin</strong><span>Additive orthostatic hypotension context.</span></a>
-        <a class="example" href="./index.html?substances=ibuprofen,lisinopril&amp;tab=overview"><strong>Ibuprofen + lisinopril</strong><span>NSAID blunts antihypertensive effect and raises renal risk.</span></a>
-        <a class="example" href="./index.html?substances=terbinafine,metoprolol&amp;tab=timing-levels"><strong>Terbinafine + metoprolol</strong><span>CYP2D6 inhibition can increase beta-blocker effect.</span></a>
+        <a class="example" href="./index.html#substances=potassium_chloride,spironolactone&amp;tab=overview"><strong>Potassium chloride + spironolactone</strong><span>Hyperkalemia risk from supplement plus potassium-sparing drug.</span></a>
+        <a class="example" href="./index.html#substances=potassium_chloride,lisinopril&amp;tab=overview"><strong>Potassium chloride + lisinopril</strong><span>ACE inhibitor plus potassium supplement.</span></a>
+        <a class="example" href="./index.html#substances=spironolactone,trimethoprim_sulfamethoxazole&amp;tab=overview"><strong>Spironolactone + TMP-SMX</strong><span>Antibiotic choice can become a potassium problem.</span></a>
+        <a class="example" href="./index.html#substances=sacubitril_valsartan,lisinopril&amp;tab=overview"><strong>Sacubitril/valsartan + lisinopril</strong><span>ARNI/ACE inhibitor washout rule.</span></a>
+        <a class="example" href="./index.html#substances=nitroglycerin,sildenafil&amp;tab=overview"><strong>Nitroglycerin + sildenafil</strong><span>Nitrate/PDE5 hypotension contraindication.</span></a>
+        <a class="example" href="./index.html#substances=sildenafil,tamsulosin&amp;tab=overview"><strong>Sildenafil + tamsulosin</strong><span>Additive orthostatic hypotension context.</span></a>
+        <a class="example" href="./index.html#substances=ibuprofen,lisinopril&amp;tab=overview"><strong>Ibuprofen + lisinopril</strong><span>NSAID blunts antihypertensive effect and raises renal risk.</span></a>
+        <a class="example" href="./index.html#substances=terbinafine,metoprolol&amp;tab=timing-levels"><strong>Terbinafine + metoprolol</strong><span>CYP2D6 inhibition can increase beta-blocker effect.</span></a>
       </div>
       <div class="tagline"><span class="tag high">potassium</span><span class="tag high">hypotension</span><span class="tag warn">renal</span></div>
     </section>
@@ -115,14 +115,14 @@
       <h2>Anticoagulants and Antiplatelets</h2>
       <p>High-scale and high-review burden: bleeding, INR shifts, transporter induction, antiplatelet activation, NSAIDs, SSRIs, antibiotics, and supplements converge.</p>
       <div class="examples">
-        <a class="example" href="./index.html?substances=warfarin,fluconazole,ibuprofen&amp;tab=overview"><strong>Warfarin + fluconazole + ibuprofen</strong><span>INR increase plus NSAID bleeding stack.</span></a>
-        <a class="example" href="./index.html?substances=warfarin,trimethoprim_sulfamethoxazole&amp;tab=overview"><strong>Warfarin + TMP-SMX</strong><span>Common antibiotic with strong INR review signal.</span></a>
-        <a class="example" href="./index.html?substances=clopidogrel,omeprazole&amp;genotype=CYP2C19:PM&amp;tab=genes-metabolites"><strong>Clopidogrel + omeprazole with CYP2C19 PM</strong><span>Parent drug can look fine while activation fails.</span></a>
-        <a class="example" href="./index.html?substances=apixaban,clarithromycin&amp;tab=timing-levels"><strong>Apixaban + clarithromycin</strong><span>DOAC exposure with P-gp/CYP3A inhibition context.</span></a>
-        <a class="example" href="./index.html?substances=apixaban,rifampin&amp;tab=overview"><strong>Apixaban + rifampin</strong><span>Induction can reduce anticoagulant protection.</span></a>
-        <a class="example" href="./index.html?substances=amiodarone,warfarin&amp;tab=overview"><strong>Amiodarone + warfarin</strong><span>Classic INR monitoring and dose-adjustment scenario.</span></a>
-        <a class="example" href="./index.html?substances=warfarin,acetaminophen&amp;tab=overview"><strong>Warfarin + acetaminophen</strong><span>Common OTC pain medicine with INR context.</span></a>
-        <a class="example" href="./index.html?substances=dabigatran,rifampin&amp;tab=overview"><strong>Dabigatran + rifampin</strong><span>P-gp induction and loss-of-anticoagulation risk.</span></a>
+        <a class="example" href="./index.html#substances=warfarin,fluconazole,ibuprofen&amp;tab=overview"><strong>Warfarin + fluconazole + ibuprofen</strong><span>INR increase plus NSAID bleeding stack.</span></a>
+        <a class="example" href="./index.html#substances=warfarin,trimethoprim_sulfamethoxazole&amp;tab=overview"><strong>Warfarin + TMP-SMX</strong><span>Common antibiotic with strong INR review signal.</span></a>
+        <a class="example" href="./index.html#substances=clopidogrel,omeprazole&amp;genotype=CYP2C19:PM&amp;tab=genes-metabolites"><strong>Clopidogrel + omeprazole with CYP2C19 PM</strong><span>Parent drug can look fine while activation fails.</span></a>
+        <a class="example" href="./index.html#substances=apixaban,clarithromycin&amp;tab=timing-levels"><strong>Apixaban + clarithromycin</strong><span>DOAC exposure with P-gp/CYP3A inhibition context.</span></a>
+        <a class="example" href="./index.html#substances=apixaban,rifampin&amp;tab=overview"><strong>Apixaban + rifampin</strong><span>Induction can reduce anticoagulant protection.</span></a>
+        <a class="example" href="./index.html#substances=amiodarone,warfarin&amp;tab=overview"><strong>Amiodarone + warfarin</strong><span>Classic INR monitoring and dose-adjustment scenario.</span></a>
+        <a class="example" href="./index.html#substances=warfarin,acetaminophen&amp;tab=overview"><strong>Warfarin + acetaminophen</strong><span>Common OTC pain medicine with INR context.</span></a>
+        <a class="example" href="./index.html#substances=dabigatran,rifampin&amp;tab=overview"><strong>Dabigatran + rifampin</strong><span>P-gp induction and loss-of-anticoagulation risk.</span></a>
       </div>
       <div class="tagline"><span class="tag high">bleeding</span><span class="tag warn">INR</span><span class="tag">P-gp</span></div>
     </section>
@@ -131,13 +131,13 @@
       <h2>Diabetes and Weight-Loss Medicines</h2>
       <p>Common and growing exposure. Useful for metformin renal/exposure checks, insulin hypoglycemia masking, GLP-1/GIP insulin changes, and anticoagulant monitoring.</p>
       <div class="examples">
-        <a class="example" href="./index.html?substances=metformin,trimethoprim_sulfamethoxazole&amp;tab=timing-levels"><strong>Metformin + TMP-SMX</strong><span>Metformin exposure and renal/lactic-acidosis context.</span></a>
-        <a class="example" href="./index.html?substances=dolutegravir,metformin&amp;tab=timing-levels"><strong>Dolutegravir + metformin</strong><span>Transporter effect on metformin exposure.</span></a>
-        <a class="example" href="./index.html?substances=ranolazine,metformin&amp;tab=timing-levels"><strong>Ranolazine + metformin</strong><span>Exposure and dose-limit review.</span></a>
-        <a class="example" href="./index.html?substances=insulin_glargine,metoprolol&amp;tab=overview"><strong>Insulin glargine + metoprolol</strong><span>Hypoglycemia symptoms can be masked.</span></a>
-        <a class="example" href="./index.html?substances=insulin_lispro,metoprolol&amp;tab=overview"><strong>Insulin lispro + metoprolol</strong><span>Rapid-acting insulin plus beta-blocker context.</span></a>
-        <a class="example" href="./index.html?substances=insulin_glargine,tirzepatide&amp;tab=overview"><strong>Insulin glargine + tirzepatide</strong><span>Starting or escalating GLP-1/GIP therapy may require insulin review.</span></a>
-        <a class="example" href="./index.html?substances=tirzepatide,warfarin&amp;tab=overview"><strong>Tirzepatide + warfarin</strong><span>Monitor INR if control changes after dose escalation.</span></a>
+        <a class="example" href="./index.html#substances=metformin,trimethoprim_sulfamethoxazole&amp;tab=timing-levels"><strong>Metformin + TMP-SMX</strong><span>Metformin exposure and renal/lactic-acidosis context.</span></a>
+        <a class="example" href="./index.html#substances=dolutegravir,metformin&amp;tab=timing-levels"><strong>Dolutegravir + metformin</strong><span>Transporter effect on metformin exposure.</span></a>
+        <a class="example" href="./index.html#substances=ranolazine,metformin&amp;tab=timing-levels"><strong>Ranolazine + metformin</strong><span>Exposure and dose-limit review.</span></a>
+        <a class="example" href="./index.html#substances=insulin_glargine,metoprolol&amp;tab=overview"><strong>Insulin glargine + metoprolol</strong><span>Hypoglycemia symptoms can be masked.</span></a>
+        <a class="example" href="./index.html#substances=insulin_lispro,metoprolol&amp;tab=overview"><strong>Insulin lispro + metoprolol</strong><span>Rapid-acting insulin plus beta-blocker context.</span></a>
+        <a class="example" href="./index.html#substances=insulin_glargine,tirzepatide&amp;tab=overview"><strong>Insulin glargine + tirzepatide</strong><span>Starting or escalating GLP-1/GIP therapy may require insulin review.</span></a>
+        <a class="example" href="./index.html#substances=tirzepatide,warfarin&amp;tab=overview"><strong>Tirzepatide + warfarin</strong><span>Monitor INR if control changes after dose escalation.</span></a>
       </div>
       <div class="tagline"><span class="tag warn">metformin</span><span class="tag warn">hypoglycemia</span><span class="tag">GLP-1/GIP</span></div>
     </section>
@@ -146,14 +146,14 @@
       <h2>Pain, Inflammation, and Migraine</h2>
       <p>High-scale because OTC and prescription pain medicines commonly overlap with anticoagulants, antidepressants, lithium, methotrexate, kidneys, and CYP2D6 activation.</p>
       <div class="examples">
-        <a class="example" href="./index.html?substances=warfarin,ibuprofen&amp;tab=overview"><strong>Warfarin + ibuprofen</strong><span>Major GI bleeding pattern.</span></a>
-        <a class="example" href="./index.html?substances=lithium,naproxen&amp;tab=timing-levels"><strong>Lithium + naproxen</strong><span>NSAID can raise lithium exposure.</span></a>
-        <a class="example" href="./index.html?substances=methotrexate,ibuprofen&amp;tab=overview"><strong>Methotrexate + ibuprofen</strong><span>Renal clearance and bone-marrow toxicity concern.</span></a>
-        <a class="example" href="./index.html?substances=fluoxetine,tramadol&amp;genotype=CYP2D6:PM&amp;tab=genes-metabolites"><strong>Fluoxetine + tramadol with CYP2D6 PM</strong><span>Serotonin risk plus impaired active-metabolite analgesia.</span></a>
-        <a class="example" href="./index.html?substances=bupropion,codeine&amp;genotype=CYP2D6:PM&amp;tab=genes-metabolites"><strong>Bupropion + codeine with CYP2D6 PM</strong><span>Parent analgesic can fail when activation is blocked.</span></a>
-        <a class="example" href="./index.html?substances=sertraline,sumatriptan&amp;tab=overview"><strong>Sertraline + sumatriptan</strong><span>Serotonergic migraine-treatment review.</span></a>
-        <a class="example" href="./index.html?substances=duloxetine,tizanidine&amp;tab=timing-levels"><strong>Duloxetine + tizanidine</strong><span>Muscle relaxant exposure and hypotension/sedation concern.</span></a>
-        <a class="example" href="./index.html?substances=phenelzine,tramadol&amp;tab=overview"><strong>Phenelzine + tramadol</strong><span>MAOI plus opioid-like analgesic danger pattern.</span></a>
+        <a class="example" href="./index.html#substances=warfarin,ibuprofen&amp;tab=overview"><strong>Warfarin + ibuprofen</strong><span>Major GI bleeding pattern.</span></a>
+        <a class="example" href="./index.html#substances=lithium,naproxen&amp;tab=timing-levels"><strong>Lithium + naproxen</strong><span>NSAID can raise lithium exposure.</span></a>
+        <a class="example" href="./index.html#substances=methotrexate,ibuprofen&amp;tab=overview"><strong>Methotrexate + ibuprofen</strong><span>Renal clearance and bone-marrow toxicity concern.</span></a>
+        <a class="example" href="./index.html#substances=fluoxetine,tramadol&amp;genotype=CYP2D6:PM&amp;tab=genes-metabolites"><strong>Fluoxetine + tramadol with CYP2D6 PM</strong><span>Serotonin risk plus impaired active-metabolite analgesia.</span></a>
+        <a class="example" href="./index.html#substances=bupropion,codeine&amp;genotype=CYP2D6:PM&amp;tab=genes-metabolites"><strong>Bupropion + codeine with CYP2D6 PM</strong><span>Parent analgesic can fail when activation is blocked.</span></a>
+        <a class="example" href="./index.html#substances=sertraline,sumatriptan&amp;tab=overview"><strong>Sertraline + sumatriptan</strong><span>Serotonergic migraine-treatment review.</span></a>
+        <a class="example" href="./index.html#substances=duloxetine,tizanidine&amp;tab=timing-levels"><strong>Duloxetine + tizanidine</strong><span>Muscle relaxant exposure and hypotension/sedation concern.</span></a>
+        <a class="example" href="./index.html#substances=phenelzine,tramadol&amp;tab=overview"><strong>Phenelzine + tramadol</strong><span>MAOI plus opioid-like analgesic danger pattern.</span></a>
       </div>
       <div class="tagline"><span class="tag high">bleeding</span><span class="tag warn">CYP2D6</span><span class="tag warn">renal</span></div>
     </section>
@@ -162,12 +162,12 @@
       <h2>Psychiatry, Neurology, Sleep, and OTC Sedating Medicines</h2>
       <p>Captures serotonin toxicity, CYP2D6/CYP2C19 phenotype shifts, anticholinergic/sedation burden, seizure threshold, sodium, and bradycardia in older-adult patterns.</p>
       <div class="examples">
-        <a class="example" href="./index.html?substances=amitriptyline,diazepam,diphenhydramine&amp;genotype=CYP2D6:PM&amp;tab=genes-metabolites"><strong>Amitriptyline + diazepam + diphenhydramine with CYP2D6 PM</strong><span>Burden plus genotype-exposure signal.</span></a>
-        <a class="example" href="./index.html?substances=lamotrigine,valproic_acid&amp;tab=overview"><strong>Lamotrigine + valproic acid</strong><span>Lamotrigine exposure and rash/SJS context.</span></a>
-        <a class="example" href="./index.html?substances=phenelzine,sertraline&amp;tab=overview"><strong>Phenelzine + sertraline</strong><span>MAOI plus SSRI contraindication pattern.</span></a>
-        <a class="example" href="./index.html?substances=linezolid,sertraline&amp;tab=overview"><strong>Linezolid + sertraline</strong><span>Antibiotic with MAOI-like serotonin concern.</span></a>
-        <a class="example" href="./index.html?substances=donepezil,metoprolol&amp;tab=overview"><strong>Donepezil + metoprolol</strong><span>Bradycardia and syncope context.</span></a>
-        <a class="example" href="./index.html?substances=desmopressin,sertraline&amp;tab=overview"><strong>Desmopressin + sertraline</strong><span>Hyponatremia and neurologic symptom monitoring.</span></a>
+        <a class="example" href="./index.html#substances=amitriptyline,diazepam,diphenhydramine&amp;genotype=CYP2D6:PM&amp;tab=genes-metabolites"><strong>Amitriptyline + diazepam + diphenhydramine with CYP2D6 PM</strong><span>Burden plus genotype-exposure signal.</span></a>
+        <a class="example" href="./index.html#substances=lamotrigine,valproic_acid&amp;tab=overview"><strong>Lamotrigine + valproic acid</strong><span>Lamotrigine exposure and rash/SJS context.</span></a>
+        <a class="example" href="./index.html#substances=phenelzine,sertraline&amp;tab=overview"><strong>Phenelzine + sertraline</strong><span>MAOI plus SSRI contraindication pattern.</span></a>
+        <a class="example" href="./index.html#substances=linezolid,sertraline&amp;tab=overview"><strong>Linezolid + sertraline</strong><span>Antibiotic with MAOI-like serotonin concern.</span></a>
+        <a class="example" href="./index.html#substances=donepezil,metoprolol&amp;tab=overview"><strong>Donepezil + metoprolol</strong><span>Bradycardia and syncope context.</span></a>
+        <a class="example" href="./index.html#substances=desmopressin,sertraline&amp;tab=overview"><strong>Desmopressin + sertraline</strong><span>Hyponatremia and neurologic symptom monitoring.</span></a>
       </div>
       <div class="tagline"><span class="tag high">serotonin</span><span class="tag warn">burden</span><span class="tag">CYP2D6</span></div>
     </section>
@@ -176,14 +176,14 @@
       <h2>Antibiotics, Antifungals, and Antivirals</h2>
       <p>Common short courses can collide with chronic medicines through CYP3A, CYP2C9, P-gp, OATP, QT, and absorption.</p>
       <div class="examples">
-        <a class="example" href="./index.html?substances=simvastatin,clarithromycin&amp;tab=timing-levels"><strong>Simvastatin + clarithromycin</strong><span>Macrolide plus statin contraindication pattern.</span></a>
-        <a class="example" href="./index.html?substances=warfarin,trimethoprim_sulfamethoxazole&amp;tab=overview"><strong>Warfarin + TMP-SMX</strong><span>Antibiotic choice can destabilize INR.</span></a>
-        <a class="example" href="./index.html?substances=tacrolimus,voriconazole&amp;tab=timing-levels"><strong>Tacrolimus + voriconazole</strong><span>Azole inhibition in transplant monitoring.</span></a>
-        <a class="example" href="./index.html?substances=colchicine,clarithromycin&amp;tab=timing-levels"><strong>Colchicine + clarithromycin</strong><span>Narrow-index toxicity warning.</span></a>
-        <a class="example" href="./index.html?substances=tizanidine,ciprofloxacin&amp;tab=timing-levels"><strong>Tizanidine + ciprofloxacin</strong><span>CYP1A2 inhibition and hypotension/sedation.</span></a>
-        <a class="example" href="./index.html?substances=dofetilide,trimethoprim_sulfamethoxazole&amp;tab=overview"><strong>Dofetilide + TMP-SMX</strong><span>Renal cation transport and torsades risk.</span></a>
-        <a class="example" href="./index.html?substances=nirmatrelvir_ritonavir,simvastatin&amp;tab=overview"><strong>Nirmatrelvir/ritonavir + simvastatin</strong><span>COVID treatment plus chronic statin review.</span></a>
-        <a class="example" href="./index.html?substances=darunavir,rifampin&amp;tab=overview"><strong>Darunavir + rifampin</strong><span>HIV regimen failure and resistance risk.</span></a>
+        <a class="example" href="./index.html#substances=simvastatin,clarithromycin&amp;tab=timing-levels"><strong>Simvastatin + clarithromycin</strong><span>Macrolide plus statin contraindication pattern.</span></a>
+        <a class="example" href="./index.html#substances=warfarin,trimethoprim_sulfamethoxazole&amp;tab=overview"><strong>Warfarin + TMP-SMX</strong><span>Antibiotic choice can destabilize INR.</span></a>
+        <a class="example" href="./index.html#substances=tacrolimus,voriconazole&amp;tab=timing-levels"><strong>Tacrolimus + voriconazole</strong><span>Azole inhibition in transplant monitoring.</span></a>
+        <a class="example" href="./index.html#substances=colchicine,clarithromycin&amp;tab=timing-levels"><strong>Colchicine + clarithromycin</strong><span>Narrow-index toxicity warning.</span></a>
+        <a class="example" href="./index.html#substances=tizanidine,ciprofloxacin&amp;tab=timing-levels"><strong>Tizanidine + ciprofloxacin</strong><span>CYP1A2 inhibition and hypotension/sedation.</span></a>
+        <a class="example" href="./index.html#substances=dofetilide,trimethoprim_sulfamethoxazole&amp;tab=overview"><strong>Dofetilide + TMP-SMX</strong><span>Renal cation transport and torsades risk.</span></a>
+        <a class="example" href="./index.html#substances=nirmatrelvir_ritonavir,simvastatin&amp;tab=overview"><strong>Nirmatrelvir/ritonavir + simvastatin</strong><span>COVID treatment plus chronic statin review.</span></a>
+        <a class="example" href="./index.html#substances=darunavir,rifampin&amp;tab=overview"><strong>Darunavir + rifampin</strong><span>HIV regimen failure and resistance risk.</span></a>
       </div>
       <div class="tagline"><span class="tag high">CYP3A4</span><span class="tag warn">CYP2C9</span><span class="tag">P-gp</span></div>
     </section>
@@ -192,14 +192,14 @@
       <h2>Acid Suppression, GI, Minerals, and Binding Interactions</h2>
       <p>Useful for non-CYP misses: pH-dependent absorption, chelation, binding, dose separation, thyroid monitoring, and antiviral/antibiotic treatment failure.</p>
       <div class="examples">
-        <a class="example" href="./index.html?substances=clopidogrel,omeprazole&amp;genotype=CYP2C19:PM&amp;tab=genes-metabolites"><strong>Clopidogrel + omeprazole with CYP2C19 PM</strong><span>Activation failure with PPI plus genotype context.</span></a>
-        <a class="example" href="./index.html?substances=erlotinib,omeprazole&amp;tab=timing-levels"><strong>Erlotinib + omeprazole</strong><span>pH-dependent oncology exposure loss.</span></a>
-        <a class="example" href="./index.html?substances=erlotinib,famotidine&amp;tab=timing-levels"><strong>Erlotinib + famotidine</strong><span>Timing strategy for acid suppression.</span></a>
-        <a class="example" href="./index.html?substances=levothyroxine,iron&amp;tab=overview"><strong>Levothyroxine + iron</strong><span>Binding and TSH monitoring after sustained use.</span></a>
-        <a class="example" href="./index.html?substances=levothyroxine,calcium&amp;tab=overview"><strong>Levothyroxine + calcium</strong><span>Common supplement timing interaction.</span></a>
-        <a class="example" href="./index.html?substances=ciprofloxacin,iron&amp;tab=overview"><strong>Ciprofloxacin + iron</strong><span>Chelation and antibiotic treatment-failure risk.</span></a>
-        <a class="example" href="./index.html?substances=doxycycline,calcium&amp;tab=overview"><strong>Doxycycline + calcium</strong><span>Tetracycline-mineral separation example.</span></a>
-        <a class="example" href="./index.html?substances=bictegravir,iron&amp;tab=overview"><strong>Bictegravir + iron</strong><span>Integrase inhibitor timing/food strategy.</span></a>
+        <a class="example" href="./index.html#substances=clopidogrel,omeprazole&amp;genotype=CYP2C19:PM&amp;tab=genes-metabolites"><strong>Clopidogrel + omeprazole with CYP2C19 PM</strong><span>Activation failure with PPI plus genotype context.</span></a>
+        <a class="example" href="./index.html#substances=erlotinib,omeprazole&amp;tab=timing-levels"><strong>Erlotinib + omeprazole</strong><span>pH-dependent oncology exposure loss.</span></a>
+        <a class="example" href="./index.html#substances=erlotinib,famotidine&amp;tab=timing-levels"><strong>Erlotinib + famotidine</strong><span>Timing strategy for acid suppression.</span></a>
+        <a class="example" href="./index.html#substances=levothyroxine,iron&amp;tab=overview"><strong>Levothyroxine + iron</strong><span>Binding and TSH monitoring after sustained use.</span></a>
+        <a class="example" href="./index.html#substances=levothyroxine,calcium&amp;tab=overview"><strong>Levothyroxine + calcium</strong><span>Common supplement timing interaction.</span></a>
+        <a class="example" href="./index.html#substances=ciprofloxacin,iron&amp;tab=overview"><strong>Ciprofloxacin + iron</strong><span>Chelation and antibiotic treatment-failure risk.</span></a>
+        <a class="example" href="./index.html#substances=doxycycline,calcium&amp;tab=overview"><strong>Doxycycline + calcium</strong><span>Tetracycline-mineral separation example.</span></a>
+        <a class="example" href="./index.html#substances=bictegravir,iron&amp;tab=overview"><strong>Bictegravir + iron</strong><span>Integrase inhibitor timing/food strategy.</span></a>
       </div>
       <div class="tagline"><span class="tag warn">absorption</span><span class="tag warn">timing</span><span class="tag">minerals</span></div>
     </section>
@@ -208,14 +208,14 @@
       <h2>Contraception, Hormones, and Reproductive Health</h2>
       <p>High-scale counseling category where induction, lamotrigine level shifts, perioperative drugs, and pregnancy-context flags matter.</p>
       <div class="examples">
-        <a class="example" href="./index.html?substances=combined_oral_contraceptive,rifampin&amp;tab=overview"><strong>Combined oral contraceptive + rifampin</strong><span>Contraceptive failure risk.</span></a>
-        <a class="example" href="./index.html?substances=combined_oral_contraceptive,carbamazepine&amp;tab=overview"><strong>Combined oral contraceptive + carbamazepine</strong><span>Enzyme induction and backup/alternative counseling.</span></a>
-        <a class="example" href="./index.html?substances=combined_oral_contraceptive,lamotrigine&amp;tab=timing-levels"><strong>Combined oral contraceptive + lamotrigine</strong><span>Lamotrigine exposure falls during active-pill weeks.</span></a>
-        <a class="example" href="./index.html?substances=ethinyl_estradiol,rifampin&amp;tab=overview"><strong>Ethinyl estradiol + rifampin</strong><span>Hormone exposure reduction from strong induction.</span></a>
-        <a class="example" href="./index.html?substances=ethinyl_estradiol,lamotrigine&amp;tab=timing-levels"><strong>Ethinyl estradiol + lamotrigine</strong><span>Seizure/mood control and level rebound context.</span></a>
-        <a class="example" href="./index.html?substances=levonorgestrel,efavirenz&amp;tab=overview"><strong>Levonorgestrel + efavirenz</strong><span>Contraceptive efficacy concern in antiviral care.</span></a>
-        <a class="example" href="./index.html?substances=sugammadex,ethinyl_estradiol&amp;tab=overview"><strong>Sugammadex + ethinyl estradiol</strong><span>Short-term backup contraception counseling.</span></a>
-        <a class="example" href="./index.html?substances=pregnancy_trying_to_conceive,warfarin&amp;tab=overview"><strong>Pregnancy / trying to conceive + warfarin</strong><span>Pregnancy context as a medication-safety flag.</span></a>
+        <a class="example" href="./index.html#substances=combined_oral_contraceptive,rifampin&amp;tab=overview"><strong>Combined oral contraceptive + rifampin</strong><span>Contraceptive failure risk.</span></a>
+        <a class="example" href="./index.html#substances=combined_oral_contraceptive,carbamazepine&amp;tab=overview"><strong>Combined oral contraceptive + carbamazepine</strong><span>Enzyme induction and backup/alternative counseling.</span></a>
+        <a class="example" href="./index.html#substances=combined_oral_contraceptive,lamotrigine&amp;tab=timing-levels"><strong>Combined oral contraceptive + lamotrigine</strong><span>Lamotrigine exposure falls during active-pill weeks.</span></a>
+        <a class="example" href="./index.html#substances=ethinyl_estradiol,rifampin&amp;tab=overview"><strong>Ethinyl estradiol + rifampin</strong><span>Hormone exposure reduction from strong induction.</span></a>
+        <a class="example" href="./index.html#substances=ethinyl_estradiol,lamotrigine&amp;tab=timing-levels"><strong>Ethinyl estradiol + lamotrigine</strong><span>Seizure/mood control and level rebound context.</span></a>
+        <a class="example" href="./index.html#substances=levonorgestrel,efavirenz&amp;tab=overview"><strong>Levonorgestrel + efavirenz</strong><span>Contraceptive efficacy concern in antiviral care.</span></a>
+        <a class="example" href="./index.html#substances=sugammadex,ethinyl_estradiol&amp;tab=overview"><strong>Sugammadex + ethinyl estradiol</strong><span>Short-term backup contraception counseling.</span></a>
+        <a class="example" href="./index.html#substances=pregnancy_trying_to_conceive,warfarin&amp;tab=overview"><strong>Pregnancy / trying to conceive + warfarin</strong><span>Pregnancy context as a medication-safety flag.</span></a>
       </div>
       <div class="tagline"><span class="tag high">contraception</span><span class="tag warn">induction</span><span class="tag">pregnancy</span></div>
     </section>
@@ -224,14 +224,14 @@
       <h2>QT Risk, Antiarrhythmics, and Rate Control</h2>
       <p>Narrow-index and electrophysiology checks: QT stacking, renal cation transport, beta-blockade, CYP2D6 phenotype, and bradycardia.</p>
       <div class="examples">
-        <a class="example" href="./index.html?substances=flecainide,fluoxetine&amp;genotype=CYP2D6:PM&amp;tab=genes-metabolites"><strong>Flecainide + fluoxetine with CYP2D6 PM</strong><span>Antiarrhythmic exposure plus genotype/phenoconversion.</span></a>
-        <a class="example" href="./index.html?substances=amiodarone,warfarin&amp;tab=overview"><strong>Amiodarone + warfarin</strong><span>Cardiology drug that changes anticoagulation plan.</span></a>
-        <a class="example" href="./index.html?substances=dofetilide,hydrochlorothiazide&amp;tab=overview"><strong>Dofetilide + hydrochlorothiazide</strong><span>Electrolyte and renal clearance torsades risk.</span></a>
-        <a class="example" href="./index.html?substances=dofetilide,cimetidine&amp;tab=overview"><strong>Dofetilide + cimetidine</strong><span>Renal cation transport contraindication pattern.</span></a>
-        <a class="example" href="./index.html?substances=sotalol,hydrochlorothiazide&amp;tab=overview"><strong>Sotalol + hydrochlorothiazide</strong><span>QT risk plus electrolyte context.</span></a>
-        <a class="example" href="./index.html?substances=ranolazine,diltiazem&amp;tab=timing-levels"><strong>Ranolazine + diltiazem</strong><span>CYP3A dose-limit and QT monitoring.</span></a>
-        <a class="example" href="./index.html?substances=ivabradine,clarithromycin&amp;tab=timing-levels"><strong>Ivabradine + clarithromycin</strong><span>Bradycardia/conduction risk from CYP3A inhibition.</span></a>
-        <a class="example" href="./index.html?substances=propafenone,metoprolol&amp;tab=overview"><strong>Propafenone + metoprolol</strong><span>Excess beta-blockade and conduction monitoring.</span></a>
+        <a class="example" href="./index.html#substances=flecainide,fluoxetine&amp;genotype=CYP2D6:PM&amp;tab=genes-metabolites"><strong>Flecainide + fluoxetine with CYP2D6 PM</strong><span>Antiarrhythmic exposure plus genotype/phenoconversion.</span></a>
+        <a class="example" href="./index.html#substances=amiodarone,warfarin&amp;tab=overview"><strong>Amiodarone + warfarin</strong><span>Cardiology drug that changes anticoagulation plan.</span></a>
+        <a class="example" href="./index.html#substances=dofetilide,hydrochlorothiazide&amp;tab=overview"><strong>Dofetilide + hydrochlorothiazide</strong><span>Electrolyte and renal clearance torsades risk.</span></a>
+        <a class="example" href="./index.html#substances=dofetilide,cimetidine&amp;tab=overview"><strong>Dofetilide + cimetidine</strong><span>Renal cation transport contraindication pattern.</span></a>
+        <a class="example" href="./index.html#substances=sotalol,hydrochlorothiazide&amp;tab=overview"><strong>Sotalol + hydrochlorothiazide</strong><span>QT risk plus electrolyte context.</span></a>
+        <a class="example" href="./index.html#substances=ranolazine,diltiazem&amp;tab=timing-levels"><strong>Ranolazine + diltiazem</strong><span>CYP3A dose-limit and QT monitoring.</span></a>
+        <a class="example" href="./index.html#substances=ivabradine,clarithromycin&amp;tab=timing-levels"><strong>Ivabradine + clarithromycin</strong><span>Bradycardia/conduction risk from CYP3A inhibition.</span></a>
+        <a class="example" href="./index.html#substances=propafenone,metoprolol&amp;tab=overview"><strong>Propafenone + metoprolol</strong><span>Excess beta-blockade and conduction monitoring.</span></a>
       </div>
       <div class="tagline"><span class="tag high">QT</span><span class="tag warn">NTI</span><span class="tag">CYP2D6</span></div>
     </section>
@@ -240,14 +240,14 @@
       <h2>Oncology, Immunology, and Transplant</h2>
       <p>Specialist, not scale-first, but important because many examples are active-metabolite, genotype, transporter, or narrow-index cases that ordinary parent-drug checks miss.</p>
       <div class="examples">
-        <a class="example" href="./index.html?substances=tacrolimus,fluconazole&amp;tab=timing-levels"><strong>Tacrolimus + fluconazole</strong><span>Transplant trough and renal-toxicity context.</span></a>
-        <a class="example" href="./index.html?substances=tacrolimus,clarithromycin&amp;tab=timing-levels"><strong>Tacrolimus + clarithromycin</strong><span>Macrolide inhibition with narrow-index immunosuppression.</span></a>
-        <a class="example" href="./index.html?substances=cyclosporine,posaconazole&amp;tab=timing-levels"><strong>Cyclosporine + posaconazole</strong><span>Azole exposure and trough-guided dose adjustment.</span></a>
-        <a class="example" href="./index.html?substances=azathioprine,allopurinol&amp;genotype=TPMT:PM&amp;genotype=NUDT15:PM&amp;tab=genes-metabolites"><strong>Azathioprine + allopurinol with TPMT/NUDT15 PM</strong><span>Thiopurine active-metabolite and marrow-toxicity stack.</span></a>
-        <a class="example" href="./index.html?substances=capecitabine&amp;genotype=DPYD:PM&amp;tab=genes-metabolites"><strong>Capecitabine with DPYD PM</strong><span>5-FU accumulation from a prodrug.</span></a>
-        <a class="example" href="./index.html?substances=irinotecan&amp;genotype=UGT1A1:PM&amp;tab=genes-metabolites"><strong>Irinotecan with UGT1A1 PM</strong><span>SN-38 detoxification and CBC monitoring.</span></a>
-        <a class="example" href="./index.html?substances=venetoclax,ritonavir&amp;tab=timing-levels"><strong>Venetoclax + ritonavir</strong><span>CYP3A/P-gp inhibition and tumor-lysis/toxicity context.</span></a>
-        <a class="example" href="./index.html?substances=erlotinib,rifampin&amp;tab=timing-levels"><strong>Erlotinib + rifampin</strong><span>Strong induction and oncology efficacy loss.</span></a>
+        <a class="example" href="./index.html#substances=tacrolimus,fluconazole&amp;tab=timing-levels"><strong>Tacrolimus + fluconazole</strong><span>Transplant trough and renal-toxicity context.</span></a>
+        <a class="example" href="./index.html#substances=tacrolimus,clarithromycin&amp;tab=timing-levels"><strong>Tacrolimus + clarithromycin</strong><span>Macrolide inhibition with narrow-index immunosuppression.</span></a>
+        <a class="example" href="./index.html#substances=cyclosporine,posaconazole&amp;tab=timing-levels"><strong>Cyclosporine + posaconazole</strong><span>Azole exposure and trough-guided dose adjustment.</span></a>
+        <a class="example" href="./index.html#substances=azathioprine,allopurinol&amp;genotype=TPMT:PM&amp;genotype=NUDT15:PM&amp;tab=genes-metabolites"><strong>Azathioprine + allopurinol with TPMT/NUDT15 PM</strong><span>Thiopurine active-metabolite and marrow-toxicity stack.</span></a>
+        <a class="example" href="./index.html#substances=capecitabine&amp;genotype=DPYD:PM&amp;tab=genes-metabolites"><strong>Capecitabine with DPYD PM</strong><span>5-FU accumulation from a prodrug.</span></a>
+        <a class="example" href="./index.html#substances=irinotecan&amp;genotype=UGT1A1:PM&amp;tab=genes-metabolites"><strong>Irinotecan with UGT1A1 PM</strong><span>SN-38 detoxification and CBC monitoring.</span></a>
+        <a class="example" href="./index.html#substances=venetoclax,ritonavir&amp;tab=timing-levels"><strong>Venetoclax + ritonavir</strong><span>CYP3A/P-gp inhibition and tumor-lysis/toxicity context.</span></a>
+        <a class="example" href="./index.html#substances=erlotinib,rifampin&amp;tab=timing-levels"><strong>Erlotinib + rifampin</strong><span>Strong induction and oncology efficacy loss.</span></a>
       </div>
       <div class="tagline"><span class="tag high">NTI</span><span class="tag warn">active metabolites</span><span class="tag">PGx</span></div>
     </section>

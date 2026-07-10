@@ -28,7 +28,7 @@ Diognosis is a mechanistic medication intelligence platform that models parent s
 
 Diognosis is an AI-assisted, vibe-coded research project built by **Diogo Pacheco** in collaboration with OpenAI Codex and ChatGPT. Diogo directs the product vision, data priorities, clinical-safety boundaries, and final acceptance of changes. AI assistance is used for implementation, refactoring, tests, documentation, and data-organization support.
 
-> **Note:** AI-assisted development does not mean clinical validation. Source-integrated data still needs qualified clinical judgment before real medication decisions.
+> **Note:** AI-assisted development does not mean clinical validation. Authority and literature links make provenance inspectable; qualified clinical judgment is still required for real medication decisions.
 
 ## Medication Safety Explorer
 
@@ -46,7 +46,7 @@ Most medication checkers begin with parent drug names and return pairwise warnin
 - Is a **prodrug** failing activation?
 - Has a **genotype** been phenoconverted by an inhibitor or inducer?
 - Is the warning driven by an enzyme, transporter, receptor, metabolite, phenotype, PK shift, or washout window?
-- Is the evidence label-backed, guideline-backed, clinical-PK-backed, mechanistic, source-integrated, or still missing a direct source?
+- Is the evidence authority-linked, primary-literature linked, modeled context, or still missing a direct source?
 
 This makes Diognosis especially useful for review scenarios where the clinically important signal is not the original pill itself, but **what the body turns it into — or fails to turn it into**.
 
@@ -58,7 +58,7 @@ This makes Diognosis especially useful for review scenarios where the clinically
 | **Phenoconversion dashboard** | Shows how genotype plus inhibitors, inducers, and substrate burden can change functional enzyme status. |
 | **Per-warning why graph** | Displays the pathway chain behind each major warning. |
 | **Persistence & washout timeline** | Separates parent persistence, metabolite persistence, and enzyme recovery / induction offset. |
-| **Evidence confidence ladder** | Distinguishes mechanistic confidence, clinical-action confidence, source type, and professional-review status. |
+| **Evidence confidence ladder** | Separates authority sources, primary literature, modeled context, mechanistic confidence, action confidence, and independent-review status. |
 
 ## Try a Demo
 
@@ -81,7 +81,7 @@ The important signal may come from an active metabolite, a toxic metabolite, a b
 
 | Deep demo | Why it is often missed |
 |---|---|
-| [Azathioprine + allopurinol + TPMT/NUDT15 PM](https://diogonmpacheco.github.io/Diognosis/index.html#substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=genes-metabolites) | Allopurinol can push azathioprine down a more toxic route. The parent–metabolite view highlights 6-TGN accumulation, genotype context, and source-integrated evidence status. |
+| [Azathioprine + allopurinol + TPMT/NUDT15 PM](https://diogonmpacheco.github.io/Diognosis/index.html#substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=genes-metabolites) | Allopurinol can push azathioprine down a more toxic route. The parent–metabolite view highlights 6-TGN accumulation, genotype context, and authority-linked evidence status. |
 | [Capecitabine + DPYD PM](https://diogonmpacheco.github.io/Diognosis/index.html#substances=capecitabine&genotype=DPYD:PM&tab=genes-metabolites) | Capecitabine is designed to become 5-FU. If DPYD cleanup is weak, the active/toxic metabolite can accumulate, so toxicity can come from the metabolite rather than the parent drug. |
 | [Irinotecan + UGT1A1 PM](https://diogonmpacheco.github.io/Diognosis/index.html#substances=irinotecan&genotype=UGT1A1:PM&tab=genes-metabolites) | Irinotecan becomes SN-38, the stronger active metabolite. UGT1A1 helps clear SN-38; the app shows this as toxic-metabolite accumulation with a why path. |
 | [Bupropion + clopidogrel + nebivolol + CYP2D6 no-function](https://diogonmpacheco.github.io/Diognosis/index.html#substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null&tab=overview) | This stack hides several parent/metabolite directions at once: bupropion parent exposure, hydroxybupropion uncertainty, nebivolol clearance, and clopidogrel activation context. |
@@ -96,7 +96,7 @@ You can also build custom share links:
 https://diogonmpacheco.github.io/Diognosis/index.html#substances=warfarin,ibuprofen&tab=overview
 ```
 
-Medication and gene state is placed after the URL `#`, so it is not sent to the static host in the page request. Anyone who receives a share link can still read the selected items encoded in that link.
+Medication and gene state is placed after the URL `#`, so it is not sent to the static host in the page request. Anyone who receives a share link can still read the selected items encoded in that link. Doses, indications, timing, age range, organ-function context, symptoms, labs, pregnancy/feeding status, and allergy checks are deliberately excluded from share links.
 
 The public app now has one **Diognosis Medication Review** view. Overview starts with plain-language questions and safety boundaries, then keeps the detailed mechanism, timing, gene, monitoring, evidence, and supporting-detail layers available in the same surface. Legacy `audience=plain`, `audience=patient`, `audience=detailed`, and `audience=clinician` links still load, but they are treated as old no-op parameters and are stripped from generated share URLs.
 
@@ -104,7 +104,7 @@ The public app now has one **Diognosis Medication Review** view. Overview starts
 
 ## Privacy
 
-Diognosis ships as a static client-side app. It does not use accounts, analytics, cookies, tracking pixels, backend logging, or medication-data collection. Searches, medication stacks, genotype settings, and pasted report rows stay in your browser.
+Diognosis ships as a static client-side app. It does not use accounts, analytics, cookies, tracking pixels, backend logging, or medication-data collection. Searches, medication stacks, genotype settings, pasted report rows, and Review Context fields stay in your browser.
 
 There are no routine third-party runtime requests. Evidence links, demo links, and GitHub feedback links are only opened when selected.
 
@@ -118,9 +118,9 @@ The goal is not to replace clinical judgment. It is to make mechanism, timing, a
 
 ## Data Governance
 
-Diognosis V1 ships committed, source-linked static data. There is no active enrichment pipeline in the fork path: new evidence should be added directly to the source data with identifiers, boundary notes, and validation passing.
+Diognosis V1 ships committed, source-linked static data. There is no active browser enrichment pipeline: new evidence is added to source data with identifiers, provenance categories, boundary notes, and passing validation.
 
-Source-integrated evidence means the claim is traceable to committed Diognosis data, source identifiers, and release checks. It does not mean medical advice, clinical validation, or proof that a medication list is safe.
+Authority-linked evidence points to an official regulator or recognized guideline publisher. Primary-literature evidence points to a claim-specific study. Modeled context is quarantined from public evidence and cannot preserve severe output. These categories improve traceability; none means independent Diognosis clinical validation or proof that a medication list is safe.
 
 ## Current Limitations
 
@@ -128,7 +128,7 @@ Diognosis is intentionally conservative about what it claims:
 
 - PK curves use a one-compartment model or relative-exposure fallback — they **do not** replace therapeutic drug monitoring, multi-compartment/nonlinear PK models, or active-metabolite clinical interpretation.
 - Extreme exposure shifts may be capped for display clarity.
-- Source-linked evidence is included for V1 traceability; it still needs clinical judgment before any real medication decision.
+- Authority and primary-literature evidence is included for V1 traceability; it still needs patient-specific context and clinical judgment before any real medication decision.
 
 ---
 
@@ -136,14 +136,14 @@ Diognosis is intentionally conservative about what it claims:
 
 <!-- DIOGNOSIS_STATS_START -->
 - **1549 drugs** in DRUG_DB
-- **502 evidence entries** in STUDY_DB (269 with PMIDs; 502 source-integrated for V1)
+- **503 evidence entries** in STUDY_DB (233 authority-source; 218 primary-literature; 16 modeled context)
 - **3183 interaction pairs** (1610 severe, 1538 moderate, 35 mild)
 - **2817 metabolite entries** across **1549 parent substances** (2375 first-class metabolite actors)
 - **1407 absolute PK simulation profiles** with relative fallback for half-life-only drugs
 - **69 genotype genes** and **588 receptor score profiles**
-- **1251 RxNorm identity mappings**, **43 PGx marker rows**, and **18 CPIC-linked action summaries**
+- **1251 RxNorm identity mappings**, **43 PGx marker rows**, and **18 PGx action summaries** (16 linked to an FDA authority table)
 - **218 Beers flags** and **1411 washout rules**
-- **3325 KB** generated bundle (4139 lines)
+- **3361 KB** generated bundle (4391 lines)
 <!-- DIOGNOSIS_STATS_END -->
 
 ---
@@ -156,7 +156,7 @@ Diognosis is intentionally conservative about what it claims:
 4. Set genotype phenotypes where relevant, or paste supported PharmGx report rows in the pharmacogenomics panel.
 5. Treat every result as an explanation to review, **not as medical advice**.
 
-> **Tip:** The Reviewer Console is not part of the normal V1 surface. It is available only through `?reviewer=1` for data review, QA, and contribution workflows.
+> **Tip:** The Reviewer Console is not part of the normal V1 surface. It is available only through `#reviewer=1` for data review, QA, and contribution workflows.
 
 For a plain-English map of what matters in the repo, what runs for release, and which generated files can be ignored, see the [Repo Guide](docs/REPO_GUIDE.md). For internals, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md) and the [Data Model](docs/DATA_MODEL.md). For launch readiness, see the [Launch QA Matrix](docs/LAUNCH_QA_MATRIX.md), [Public Trust Model](docs/PUBLIC_TRUST.md), and [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md). For redesign or wrapper apps, the built page exposes a small `window.DIOGNOSIS_V1` runtime handoff contract documented in [Technical Notes](docs/TECHNICAL.md#runtime-handoff-contract).
 
@@ -166,7 +166,7 @@ GitHub Pages uses the workflow in `.github/workflows/pages.yml` to build the app
 
 ## Contribute / Review Data
 
-Diognosis contains source-linked data. Source integration means the claim is traceable to a committed source; it does not mean the claim has been clinically verified.
+Diognosis contains source-linked data. Authority and literature provenance make claims traceable to committed sources; they do not mean the claims have been independently clinically verified.
 
 > **The safety contract is simple:** a warning should explain the pathway, affected actor, predicted direction, and supporting evidence. Severity should not be treated as clinically final or proof that a medication plan is safe.
 

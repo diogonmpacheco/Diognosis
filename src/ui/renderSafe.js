@@ -47,7 +47,7 @@ function safeTextList(values = [], separator = " · ") {
     .join(separator);
 }
 
-const PUBLIC_INTERNAL_REF_PATTERN = /ev_(?:top100_live_coverage_adapter|top250_live_coverage_adapter|top100_gold_enrichment_adapter|ninety_percent_live_coverage_adapter|ddi_expansion_pack_adapter|metabolite_expansion_pack_adapter|pgx_transporter_expansion_adapter|drug_count_expansion_batch)/i;
+const PUBLIC_INTERNAL_REF_PATTERN = /ev_(?:top100_live_coverage_adapter|top250_live_coverage_adapter|top100_gold_enrichment_adapter|ninety_percent_live_coverage_adapter|ddi_expansion_pack_adapter|metabolite_expansion_pack_adapter|pgx_transporter_expansion_adapter|drug_count_expansion_batch|phase\d+_(?:high_priority_metabolite_labels|label_interaction_expansion|pk_washout_labels|genotype_metabolite_expansion|receptor_burden_profiles|clinical_context_enrichment|source_backed_pgx_pairs)|batch_prodrug_active_metabolite_labels)/i;
 
 function hasInternalCoverageRef(refs = []) {
   return (refs || []).some(ref => PUBLIC_INTERNAL_REF_PATTERN.test(String(ref || "")));
@@ -64,15 +64,15 @@ function publicDisplayText(value, fallback = "") {
     .replace(/\b(?:90%|ninety[-\s]?percent)\s+(?:live\s+)?/gi, "")
     .replace(/\bInternal Diognosis\b/gi, "Diognosis")
     .replace(/\bsource[-_\s]?specific\b/gi, "source linked")
-    .replace(/\bpending\s+(?:source linked\s+)?(?:professional\s+)?(?:clinical\s+)?review\b/gi, "source-integrated")
-    .replace(/\bpending\s+[\w/-]+(?:\s+[\w/-]+){0,4}\s+review\b/gi, "source-integrated")
-    .replace(/\bpending[-_\s]?review\b/gi, "source-integrated")
-    .replace(/\bprofessional\s+sign[-\s]?off\s+(?:is\s+)?not\s+claimed\b/gi, "source-integrated")
-    .replace(/\bwithout\s+professional\s+sign[-\s]?off\b/gi, "source-integrated")
-    .replace(/\b(?:live\s+)?(?:coverage|enrichment)\s+adapters?\b/gi, "coverage context")
-    .replace(/\b(?:route|class|class route|transporter route|pending review|gold pair|half life class|route half life|drug count|metabolite|DDI|PGx\/transporter|transporter)\s+adapters?\b/gi, "coverage context")
-    .replace(/\badapters?\b/gi, "context")
-    .replace(/\bexpansion(?: pack)?\b/gi, "coverage")
+    .replace(/\bpending\s+(?:source linked\s+)?(?:professional\s+)?(?:clinical\s+)?review\b/gi, "not independently reviewed")
+    .replace(/\bpending\s+[\w/-]+(?:\s+[\w/-]+){0,4}\s+review\b/gi, "not independently reviewed")
+    .replace(/\bpending[-_\s]?review\b/gi, "not independently reviewed")
+    .replace(/\bprofessional\s+sign[-\s]?off\s+(?:is\s+)?not\s+claimed\b/gi, "not independently reviewed")
+    .replace(/\bwithout\s+professional\s+sign[-\s]?off\b/gi, "not independently reviewed")
+    .replace(/\b(?:live\s+)?(?:coverage|enrichment)\s+adapters?\b/gi, "modeled context")
+    .replace(/\b(?:route|class|class route|transporter route|pending review|gold pair|half life class|route half life|drug count|metabolite|DDI|PGx\/transporter|transporter)\s+adapters?\b/gi, "modeled context")
+    .replace(/\badapters?\b/gi, "modeled context")
+    .replace(/\bexpansion(?: pack)?\b/gi, "modeled context")
     .replace(/\bsource_specific\b/gi, "source linked")
     .replace(/\broute_adapter\b/gi, "route context")
     .replace(/\bclass_route\b/gi, "class route")
@@ -147,6 +147,11 @@ function publicEvidenceTitle(study = {}) {
 
 function publicEvidenceReferenceLabel(ref) {
   const study = typeof getStudy === "function" ? getStudy(ref) : (typeof STUDY_DB !== "undefined" ? STUDY_DB?.[ref] : null);
+  if (typeof isAuthorityEvidence === "function" && isAuthorityEvidence(study)) {
+    if (study.type === EVIDENCE_TIER.FDA_LABEL || /FDA|DailyMed/i.test(String(study.source || ""))) return "FDA / DailyMed";
+    if (/CPIC/i.test(String(study.source || study.title || ""))) return "CPIC guideline";
+    return "Authority source";
+  }
   if (study?.pmid) return `PMID:${study.pmid}`;
   if (study?.doi) return "DOI";
   if (hasInternalCoverageRef([ref])) return publicEvidenceTitle({ id:ref });
@@ -156,6 +161,7 @@ function publicEvidenceReferenceLabel(ref) {
 function publicEvidenceReferenceUrl(ref) {
   const study = typeof getStudy === "function" ? getStudy(ref) : (typeof STUDY_DB !== "undefined" ? STUDY_DB?.[ref] : null);
   if (!study) return "";
+  if (typeof isAuthorityEvidence === "function" && isAuthorityEvidence(study) && study.url) return safeUrl(study.url, "");
   if (study.pmid) return `https://pubmed.ncbi.nlm.nih.gov/${encodeURIComponent(study.pmid)}/`;
   if (study.doi) return `https://doi.org/${encodeURIComponent(study.doi)}`;
   if (study.url) return safeUrl(study.url, "");

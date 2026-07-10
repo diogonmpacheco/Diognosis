@@ -884,7 +884,7 @@
     }
     if (opts.genotype) params.set("genotype", opts.genotype);
     params.set("tab", opts.tab || "genes-metabolites");
-    return `./index.html?${params.toString().replaceAll("%2C", ",").replaceAll("%3A", ":")}`;
+    return `./index.html#${params.toString().replaceAll("%2C", ",").replaceAll("%3A", ":")}`;
   }
 
   global.DATA_VIEW_INDEX = {

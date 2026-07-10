@@ -90,7 +90,7 @@ const missingPublicMappings = structuralWindow.eval(`(${JSON.stringify(publicV1S
 })`);
 assert(missingPublicMappings.length === 0, `Public V1 launch/demo substances missing RxNorm mappings: ${missingPublicMappings.join(', ')}`);
 
-const fullyMapped = standardsReport(await loadWindow('http://localhost/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&tab=review'));
+const fullyMapped = standardsReport(await loadWindow('http://localhost/index.html#substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&tab=review'));
 assert(fullyMapped.coverage.version === 'v1-clinical-standards-coverage-1', 'Standards coverage contract version missing');
 assert(fullyMapped.coverage.recognizedDrugCount === 2, 'Clopidogrel + omeprazole should resolve as two recognized drugs');
 assert(fullyMapped.coverage.mappedDrugCount === 2, 'Clopidogrel + omeprazole should both have RxNorm mappings');
@@ -108,7 +108,7 @@ assert(/Standards identity/i.test(fullyMapped.readinessText), 'V1 readiness pane
 assert(fullyMapped.readiness.ready === true, 'Fully mapped PGx standards case should remain V1-ready');
 assert(fullyMapped.pgxActionCards >= 1, 'Fully mapped PGx case should render CPIC-linked PGx action card');
 
-const betaBlockerMapped = standardsReport(await loadWindow('http://localhost/index.html?substances=warfarin,metoprolol&genotype=CYP2C9:IM&tab=review'));
+const betaBlockerMapped = standardsReport(await loadWindow('http://localhost/index.html#substances=warfarin,metoprolol&genotype=CYP2C9:IM&tab=review'));
 assert(betaBlockerMapped.coverage.recognizedDrugCount === 2, 'Warfarin + metoprolol should resolve as two recognized drugs');
 assert(betaBlockerMapped.coverage.mappedDrugCount === 2, 'Warfarin + metoprolol should both have RxNorm mappings');
 assert(betaBlockerMapped.coverage.unmappedDrugCount === 0, 'Metoprolol standards case should not report unmapped drugs');
@@ -121,7 +121,7 @@ assert(/Standards identity: 2\/2 recognized medications mapped to RxNorm/i.test(
 assert(betaBlockerMapped.readiness.checks.some(check => check.key === 'standards' && check.ok === true),
   'Mapped Metoprolol standards case should keep the Standards identity readiness check passing');
 
-const betaBlockerAction = standardsReport(await loadWindow('http://localhost/index.html?substances=metoprolol&genotype=CYP2D6:PM&tab=review'));
+const betaBlockerAction = standardsReport(await loadWindow('http://localhost/index.html#substances=metoprolol&genotype=CYP2D6:PM&tab=review'));
 assert(betaBlockerAction.coverage.recognizedDrugCount === 1, 'Metoprolol CPIC action case should resolve as one recognized drug');
 assert(betaBlockerAction.coverage.mappedDrugCount === 1, 'Metoprolol CPIC action case should have RxNorm coverage');
 assert(betaBlockerAction.coverage.markerMappingCount >= 3, 'Metoprolol CYP2D6 PM case should expose marker identity rows');
@@ -134,7 +134,7 @@ assert(!/What changed|What to review|Boundary/i.test(betaBlockerAction.pgxAction
 assert(/Standards identity: 1\/1 recognized medications mapped to RxNorm/i.test(betaBlockerAction.handoffText),
   'V1 handoff should include full standards identity coverage for the Metoprolol CPIC action case');
 
-const irinotecanMarker = standardsReport(await loadWindow('http://localhost/index.html?substances=irinotecan&genotype=UGT1A1:PM&tab=review'));
+const irinotecanMarker = standardsReport(await loadWindow('http://localhost/index.html#substances=irinotecan&genotype=UGT1A1:PM&tab=review'));
 assert(irinotecanMarker.coverage.recognizedDrugCount === 1, 'Irinotecan UGT1A1 marker case should resolve as one recognized drug');
 assert(irinotecanMarker.coverage.mappedDrugCount === 1, 'Irinotecan UGT1A1 marker case should have RxNorm coverage');
 assert(irinotecanMarker.coverage.markerMappingCount >= 2, 'Irinotecan UGT1A1 PM case should expose UGT1A1 marker identity rows');
@@ -142,7 +142,7 @@ assert(/PGx marker identity row/i.test(irinotecanMarker.scopeText), 'Reviewer Co
 assert(/Standards identity: 1\/1 recognized medications mapped to RxNorm/i.test(irinotecanMarker.handoffText),
   'V1 handoff should include full standards identity coverage for the UGT1A1 marker case');
 
-const atenololMapped = standardsReport(await loadWindow('http://localhost/index.html?substances=warfarin,atenolol&genotype=CYP2C9:IM&tab=review'));
+const atenololMapped = standardsReport(await loadWindow('http://localhost/index.html#substances=warfarin,atenolol&genotype=CYP2C9:IM&tab=review'));
 assert(atenololMapped.coverage.recognizedDrugCount === 2, 'Warfarin + atenolol should resolve as two recognized drugs');
 assert(atenololMapped.coverage.mappedDrugCount === 2, 'Warfarin + atenolol should both have RxNorm mappings');
 assert(atenololMapped.coverage.unmappedDrugCount === 0, 'Atenolol standards case should not report unmapped drugs after enrichment');

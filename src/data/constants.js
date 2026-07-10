@@ -70,8 +70,21 @@ const TISSUE_COMPARTMENT = Object.freeze({
 // evidenceConfidence() helper to extract a normalized confidence value.
 const EVIDENCE_SCHEMA_VERSION = 2;
 
+const INPUT_LIMITS = Object.freeze({
+  sharedStateCharacters: 4096,
+  selectedSubstances: 24,
+  genotypeTokens: 32,
+  unrecognizedSubstanceCharacters: 80,
+  pharmGxImportCharacters: 20000,
+  searchResultsPrimary: 10,
+  searchResultsAdvanced: 4,
+});
+
 const SOURCE_CATEGORY = Object.freeze({
   DIOGNOSIS_CURATED: 'diognosis_curated',
+  AUTHORITY_SOURCE: 'authority_source',
+  PRIMARY_LITERATURE: 'primary_literature',
+  MODELED_CONTEXT: 'modeled_context',
   OPEN_TARGETS_CONTEXT: 'open_targets_context',
   EXTERNAL_CONTEXT: 'external_context',
 });
@@ -85,6 +98,7 @@ const REVIEW_DECISION = Object.freeze({
 });
 
 const EVIDENCE_TIER = Object.freeze({
+  MODELED_CONTEXT:'modeled_context', // internal hypothesis/coverage scaffolding; never severity-bearing
   IN_VITRO:     'in_vitro',       // cell/microsome assay only
   ANIMAL:       'animal',         // rodent/primate PK
   CASE_REPORT:  'case_report',    // individual patient observation
@@ -102,6 +116,7 @@ const EVIDENCE_TIER = Object.freeze({
 // FDA label is high but not 1.0 — it reflects regulatory consensus, not always RCT quality.
 // Meta-analysis can exceed FDA label for quantified pharmacokinetics.
 const EVIDENCE_WEIGHT = {
+  [EVIDENCE_TIER.MODELED_CONTEXT]:0.05,
   [EVIDENCE_TIER.FDA_LABEL]:    0.95,
   [EVIDENCE_TIER.META_ANALYSIS]:0.92,
   [EVIDENCE_TIER.RCT]:          0.90,

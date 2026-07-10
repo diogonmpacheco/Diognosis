@@ -302,6 +302,29 @@ select {
   padding: 12px 15px;
 }
 
+.sr-cat-advanced {
+  color: #635f73;
+  background: #f4f2f8;
+}
+
+.sr-item.sr-advanced {
+  background: #fbfafd;
+}
+
+.sr-item.sr-advanced:hover,
+.sr-item.sr-advanced:focus-visible {
+  background: #f1eef7;
+}
+
+.sr-limit-note {
+  padding: 10px 14px 12px;
+  border-top: 1px solid var(--border2);
+  color: var(--text2);
+  background: #f7f9f7;
+  font-size: 10.5px;
+  line-height: 1.45;
+}
+
 .input-rail .section {
   border-color: #dce4df;
   border-radius: 15px;
@@ -323,6 +346,23 @@ select {
 
 .input-rail .section-body {
   padding: 12px;
+}
+
+.selection-status {
+  min-height: 0;
+  padding: 0 12px;
+  color: var(--text2);
+  font-size: 11px;
+  font-weight: 680;
+  line-height: 1.4;
+}
+
+.selection-status:not(:empty) {
+  padding-block: 0 12px;
+}
+
+.selection-status[data-tone="warning"] {
+  color: var(--amber);
 }
 
 .empty-state {
@@ -437,6 +477,140 @@ select {
 .rail-trust span {
   font-size: 10px;
   line-height: 1.42;
+}
+
+/* Patient-specific review context */
+.context-section .section-title {
+  align-items: center;
+}
+
+.context-count {
+  min-width: 38px;
+  margin-left: auto;
+  padding: 3px 7px;
+  border-radius: 999px;
+  color: #6c5b28;
+  background: var(--amberBg);
+  font-size: 10px;
+  font-weight: 880;
+  text-align: center;
+}
+
+.context-count[data-level="partial"] {
+  color: #315f7d;
+  background: var(--blueBg);
+}
+
+.context-count[data-level="substantial"] {
+  color: var(--accent2);
+  background: var(--accentBg);
+}
+
+.context-intro {
+  margin: 0 0 11px;
+  color: var(--text2);
+  font-size: 11px;
+  line-height: 1.48;
+}
+
+.context-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.context-field {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+  margin-bottom: 9px;
+}
+
+.context-field > span {
+  color: var(--text2);
+  font-size: 10px;
+  font-weight: 820;
+  line-height: 1.25;
+}
+
+.context-field input,
+.context-field select {
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 8px 9px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--text);
+  background: #fff;
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.context-field input:focus,
+.context-field select:focus {
+  border-color: var(--accent);
+  outline: 3px solid rgba(13, 124, 105, 0.11);
+}
+
+.context-check {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin: 2px 0 10px;
+  color: var(--text2);
+  font-size: 11px;
+  font-weight: 720;
+  line-height: 1.4;
+}
+
+.context-check input {
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  accent-color: var(--accent);
+  flex: 0 0 auto;
+}
+
+.context-completeness {
+  display: grid;
+  gap: 3px;
+  padding: 10px 11px;
+  border: 1px solid #e3dfce;
+  border-radius: 10px;
+  color: #675b38;
+  background: #faf7ec;
+  font-size: 10.5px;
+  line-height: 1.42;
+}
+
+.context-completeness strong,
+.context-completeness span {
+  display: block;
+}
+
+.context-symptom-note {
+  margin-top: 4px;
+  color: var(--red);
+}
+
+.context-reset {
+  min-height: 40px;
+  margin-top: 8px;
+  padding: 8px 11px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--text2);
+  background: #fff;
+  font-size: 10.5px;
+  font-weight: 820;
+  cursor: pointer;
+}
+
+.context-reset:hover {
+  color: var(--accent2);
+  border-color: var(--accent);
+  background: var(--accentBg);
 }
 
 /* Launch empty state */
@@ -850,6 +1024,32 @@ select {
   z-index: 1;
   gap: 14px;
   max-width: 980px;
+}
+
+.summary-context {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 10px;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  color: rgba(241, 250, 247, 0.78);
+  background: rgba(255, 255, 255, 0.07);
+  font-size: 10.5px;
+  line-height: 1.4;
+}
+
+.summary-context-label {
+  color: #fff;
+  font-weight: 880;
+}
+
+.summary-context.substantial {
+  border-color: rgba(142, 223, 200, 0.34);
+  background: rgba(74, 174, 146, 0.12);
 }
 
 @media (min-width: 760px) {
@@ -1405,6 +1605,10 @@ details > summary {
 
   .input-rail {
     padding: 22px 14px;
+  }
+
+  .context-grid {
+    grid-template-columns: 1fr;
   }
 
   .rail-intro h2 {

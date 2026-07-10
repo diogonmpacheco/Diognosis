@@ -19,7 +19,7 @@ function renderGenetics() {
 
     return `<div class="gene-row">
       <div class="gene-name">${enzyme}</div>
-      <select class="gene-select" onchange="setGenetics('${enzyme}', this.value)">
+      <select class="gene-select" data-action="set-genetics" data-gene="${safeAttr(enzyme)}">
         ${PHENOTYPE_OPTIONS
           .filter(o => GENOTYPE_EFFECTS[enzyme]?.[legacyPhenotypeToGenotype(o.id)])
           .map(o => {
@@ -31,7 +31,7 @@ function renderGenetics() {
             return `<option value="${o.id}" ${o.id===pheno?"selected":""}>${label}</option>`;
           }).join("")}
       </select>
-      <button class="gene-remove" onclick="removeGenetics('${enzyme}')" title="Remove">✕</button>
+      <button type="button" class="gene-remove" data-action="remove-genetics" data-gene="${safeAttr(enzyme)}" title="Remove">✕</button>
     </div>`;
   }).join("");
 }

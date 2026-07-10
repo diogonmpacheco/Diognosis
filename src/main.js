@@ -2,12 +2,19 @@
 // Phase A: modular source — concatenated by build.js
 
 document.addEventListener("click", function(e) {
+  handleDelegatedUiClick(e);
   if (!e.target.closest(".search-wrap")) {
     closeSearchResults();
   }
 });
 
-document.addEventListener("keydown", handleGlobalDismissKeydown);
+document.addEventListener("change", handleDelegatedUiChange);
+document.addEventListener("input", handleDelegatedUiInput);
+document.addEventListener("focusin", handleDelegatedUiFocus);
+document.addEventListener("keydown", function(e) {
+  handleDelegatedUiKeydown(e);
+  handleGlobalDismissKeydown(e);
+});
 
 const DEMO_CASES = {
   'ssri-switch': {
@@ -59,13 +66,16 @@ const DEMO_CASES = {
   },
 };
 
+let rejectedSensitiveQueryState = false;
+
 function loadUrlDemoState() {
   const params = getUrlStateParams();
   const demo = DEMO_CASES[params.demo || ''];
   if (typeof setAudienceMode === "function") setAudienceMode("public", { render:false });
   const drugParam = params.substances || params.drugs || params.medications;
   const hasSharedSelectionState = Boolean(params.demo || drugParam || params.genotype);
-  const drugNames = demo ? demo.drugs : (drugParam ? drugParam.split(',').map(d => d.trim()) : []);
+  const drugNames = (demo ? demo.drugs : (drugParam ? drugParam.split(',').map(d => d.trim()) : []))
+    .slice(0, INPUT_LIMITS.selectedSubstances);
   if ((drugNames.length || params.genotype) && typeof resetActiveGenotypeState === "function") resetActiveGenotypeState();
   if (drugNames.length) {
     const seen = new Set();
@@ -91,7 +101,8 @@ function loadUrlDemoState() {
   }
   const genotypeParam = params.genotype;
   if (genotypeParam) {
-    const genotypeParams = Array.isArray(genotypeParam) ? genotypeParam : [genotypeParam];
+    const genotypeParams = (Array.isArray(genotypeParam) ? genotypeParam : [genotypeParam])
+      .slice(0, INPUT_LIMITS.genotypeTokens);
     genotypeParams.forEach(param => {
       String(param || '').split(/[;,]/).forEach(pair => {
         const sep = pair.lastIndexOf(':');
@@ -154,13 +165,26 @@ function shouldFocusSharedMobileReview(loadState = {}) {
 
 function getUrlStateParams() {
   const searchParams = parseQueryParams(window.location.search || '');
+  const sensitiveKeys = ["substances", "drugs", "medications", "genotype"];
+  rejectedSensitiveQueryState = sensitiveKeys.some(key => searchParams[key] != null);
+  sensitiveKeys.forEach(key => delete searchParams[key]);
+  if (rejectedSensitiveQueryState) stripSensitiveQueryStateFromAddress();
   const hashParams = parseHashParams(window.location.hash || '');
   return { ...searchParams, ...hashParams };
 }
 
+function stripSensitiveQueryStateFromAddress() {
+  if (!window.history || typeof window.history.replaceState !== "function") return;
+  const params = new URLSearchParams(window.location.search || "");
+  ["substances", "drugs", "medications", "genotype"].forEach(key => params.delete(key));
+  const remaining = params.toString();
+  const next = `${window.location.pathname || "/index.html"}${remaining ? `?${remaining}` : ""}${window.location.hash || ""}`;
+  window.history.replaceState(null, "", next);
+}
+
 function parseHashParams(hash) {
   const raw = String(hash || '').replace(/^#/, '').replace(/^\/?/, '');
-  if (!raw) return {};
+  if (!raw || raw.length > INPUT_LIMITS.sharedStateCharacters) return {};
   if (raw.includes('=') || raw.includes('&')) return parseQueryParams(raw.replace(/^\?/, ''));
   if (DEMO_CASES[raw]) return { demo:raw };
   return {};
@@ -168,22 +192,32 @@ function parseHashParams(hash) {
 
 function parseQueryParams(search) {
   const out = {};
-  String(search || '').replace(/^\?/, '').split('&').forEach(part => {
+  const source = String(search || '').slice(0, INPUT_LIMITS.sharedStateCharacters);
+  source.replace(/^\?/, '').split('&').forEach(part => {
     if (!part) return;
     const eq = part.indexOf('=');
     const rawKey = eq >= 0 ? part.slice(0, eq) : part;
     const rawVal = eq >= 0 ? part.slice(eq + 1) : '';
-    const key = decodeURIComponent(rawKey.replace(/\+/g, ' '));
-    const val = decodeURIComponent(rawVal.replace(/\+/g, ' '));
+    const key = safeDecodeUrlComponent(rawKey);
+    const val = safeDecodeUrlComponent(rawVal);
     if (!key) return;
     if (key === 'genotype') {
       if (!Array.isArray(out.genotype)) out.genotype = out.genotype ? [out.genotype] : [];
-      out.genotype.push(val);
+      if (out.genotype.length < INPUT_LIMITS.genotypeTokens) out.genotype.push(val);
     } else {
       out[key] = val;
     }
   });
   return out;
+}
+
+function safeDecodeUrlComponent(value) {
+  const normalized = String(value || '').replace(/\+/g, ' ');
+  try {
+    return decodeURIComponent(normalized);
+  } catch (_) {
+    return "";
+  }
 }
 
 function normalizeUrlPhenotype(geneOrValue, maybeValue) {
@@ -234,10 +268,10 @@ function sanitizeUrlUnknownSubstance(value) {
   const cleaned = String(value || "")
     .replace(/[_-]+/g, " ")
     .replace(/[\u0000-\u001f\u007f]/g, " ")
-    .replace(/[<>`{}[\]\\]/g, " ")
+    .replace(/[<>`{}[\]\\"'=;]/g, " ")
     .replace(/\s+/g, " ")
     .trim()
-    .slice(0, 80)
+    .slice(0, INPUT_LIMITS.unrecognizedSubstanceCharacters)
     .trim();
   if (!cleaned || !/[a-z0-9]/i.test(cleaned)) return null;
   if (/^(?:null|undefined|nan)$/i.test(cleaned)) return null;
@@ -309,8 +343,11 @@ installV1RuntimeFacade();
   }
   const statsLine = el("statsLine");
   if (statsLine && typeof DIOGNOSIS_STATS !== "undefined") {
-    const sourceIntegrated = DIOGNOSIS_STATS.sourceIntegratedStudies || DIOGNOSIS_STATS.sourceLinkedStudies || DIOGNOSIS_STATS.studies || 0;
-    const evidenceLabel = `${sourceIntegrated} source-integrated evidence entries`;
+    const authoritySources = DIOGNOSIS_STATS.authoritySourceStudies || 0;
+    const primarySources = DIOGNOSIS_STATS.primaryLiteratureStudies || 0;
+    const evidenceLabel = authoritySources || primarySources
+      ? `${authoritySources} authority · ${primarySources} primary-literature sources`
+      : `${DIOGNOSIS_STATS.sourceLinkedStudies || DIOGNOSIS_STATS.studies || 0} linked evidence entries`;
     const metaboliteLabel = DIOGNOSIS_STATS.metaboliteEntries
       ? `${DIOGNOSIS_STATS.metaboliteEntries} metabolites across ${DIOGNOSIS_STATS.metaboliteParents} parent substances`
       : null;

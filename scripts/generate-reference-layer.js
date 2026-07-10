@@ -99,7 +99,7 @@ function exampleHref(example) {
     ...(example.genotypes || []).map((genotype) => ['genotype', genotype]),
     ['tab', 'overview'],
   ];
-  return `./index.html?${params.map(([key, value]) => `${encodeURIComponent(key)}=${encodeUrlValue(value)}`).join('&')}`;
+  return `./index.html#${params.map(([key, value]) => `${encodeURIComponent(key)}=${encodeUrlValue(value)}`).join('&')}`;
 }
 
 function absoluteUrl(relativePath) {
@@ -177,7 +177,7 @@ function renderPublicReview(window, example) {
         patientTitle:typeof patientFindingTitleText === "function" ? patientFindingTitleText(p) : "",
         sourceLinked:!!p.trustContract?.sourceLinked,
         reviewed:!!p.trustContract?.reviewed,
-        clinicalReviewStatus:p.trustContract?.clinicalReviewStatus || "source-integrated",
+        clinicalReviewStatus:p.trustContract?.clinicalReviewStatus || "not_independently_reviewed",
         concernCategory:p.trustContract?.concernCategory || p.sourceFinding?.clinicalConcernDomain || "",
         expectedChange:p.trustContract?.expectedChange || "",
         sourceFindingTitle:p.sourceFinding?.title || "",
@@ -218,11 +218,14 @@ function evidenceDetails(window, refs) {
         type:study?.type || "",
         pmid:study?.pmid || "",
         doi:study?.doi || "",
-        url:url || study?.url || ""
+        url:url || study?.url || "",
+        public:study?.public !== false,
+        modeled:typeof isModeledContextEvidence === "function" ? isModeledContextEvidence(study) : false,
+        provenance:typeof evidenceProvenanceClass === "function" ? evidenceProvenanceClass(study) : "linked_source"
       };
     });
   })()`);
-  return details.map((source) => ({
+  return details.filter((source) => source.public && !source.modeled).map((source) => ({
     ...source,
     directUrl:!isInternalAdapterRef(source.ref) && !!source.url,
   }));
@@ -235,7 +238,7 @@ function isInternalAdapterRef(ref = '') {
 function buildFact(window, data, resolveSubstance, guide, example, index) {
   const review = renderPublicReview(window, example);
   const presentation = review.presentations[0] || {};
-  const refs = unique([
+  const rawRefs = unique([
     ...(presentation.evidenceRefs || []),
     ...(review.clinicalConcerns[0]?.evidenceRefs || []),
   ]);
@@ -250,7 +253,8 @@ function buildFact(window, data, resolveSubstance, guide, example, index) {
   });
   const version = runtimeJson(window, `({ engine:DIOGNOSIS_VERSION.engine, drugDb:DIOGNOSIS_VERSION.drugDb, schema:DIOGNOSIS_VERSION.schema, released:DIOGNOSIS_VERSION.released })`);
   const stats = runtimeJson(window, `typeof DIOGNOSIS_STATS !== "undefined" ? DIOGNOSIS_STATS : { generatedAt:"" }`);
-  const evidenceSources = evidenceDetails(window, refs);
+  const evidenceSources = evidenceDetails(window, rawRefs);
+  const refs = evidenceSources.map((source) => source.ref);
   const id = slug(`${guide.id}-${example.id || index}`);
   const lastmod = String(stats.generatedAt || version.released || '').slice(0, 10) || version.released || '2026-06-10';
   const sourceUrls = unique(evidenceSources.filter((source) => source.directUrl).map((source) => source.url).filter(Boolean));
@@ -280,9 +284,11 @@ function buildFact(window, data, resolveSubstance, guide, example, index) {
     evidenceRefs:refs,
     evidenceSources,
     sourceUrls,
-    sourceLinked:!!presentation.sourceLinked || refs.length > 0,
-    sourceIntegrationStatus:presentation.clinicalReviewStatus || 'source-integrated',
-    sourceIntegrated:!!presentation.sourceLinked || refs.length > 0,
+    sourceLinked:refs.length > 0,
+    provenanceStatus:presentation.evidenceSummary || (refs.length ? 'linked source' : 'modeled context'),
+    independentReviewStatus:presentation.clinicalReviewStatus || 'not_independently_reviewed',
+    sourceIntegrationStatus:presentation.clinicalReviewStatus || 'not_independently_reviewed',
+    sourceIntegrated:refs.length > 0,
     boundary:BOUNDARY,
     appUrl:absoluteUrl(exampleHref(example)),
     referenceUrl:absoluteUrl(`reference/index.html#${id}`),
@@ -339,6 +345,7 @@ function factsPayload(facts) {
     boundary:BOUNDARY,
     factCount:facts.length,
     sourceLinkedFacts:facts.filter((fact) => fact.sourceLinked).length,
+    provenanceClassifiedFacts:facts.filter((fact) => fact.provenanceStatus).length,
     sourceIntegratedFacts:facts.filter((fact) => fact.sourceLinked).length,
     facts,
   };
@@ -442,7 +449,7 @@ function renderReferencePage(payload) {
       <div class="support-strip" aria-label="Reference fact snapshot">
         <span><strong>${html(payload.factCount)}</strong> facts</span>
         <span><strong>${html(payload.sourceLinkedFacts)}</strong> source-linked</span>
-        <span><strong>${html(payload.sourceIntegratedFacts)}</strong> source-integrated</span>
+        <span><strong>${html(payload.provenanceClassifiedFacts)}</strong> provenance-classified</span>
         <span class="support-boundary">Educational only; no runtime uploads</span>
       </div>
       <nav class="fact-nav" aria-label="Reference fact anchors">
@@ -519,7 +526,7 @@ ${payload.boundary}
 
 - Facts: ${payload.factCount}
 - Source-linked facts: ${payload.sourceLinkedFacts}
-- Source-integrated facts: ${payload.sourceIntegratedFacts}
+- Provenance-classified facts: ${payload.provenanceClassifiedFacts}
 - Last modified: ${payload.lastmod}
 `;
 }
@@ -607,7 +614,7 @@ console.log(JSON.stringify({
   mode:CHECK_ONLY ? 'check' : 'write',
   facts:facts.length,
   sourceLinkedFacts:payload.sourceLinkedFacts,
-  sourceIntegratedFacts:payload.sourceIntegratedFacts,
+  provenanceClassifiedFacts:payload.provenanceClassifiedFacts,
   outputs:[
     relative(ROOT, REFERENCE_PATH),
     relative(ROOT, FACTS_JSON_PATH),

@@ -50,7 +50,7 @@ function renderV1HandoffSummary() {
     <div class="v1-handoff-note">Copyable clinician/pharmacist review handoff for the current stack. It preserves the same source-linked and clinical-review boundaries as the finding cards.</div>
     <pre class="v1-handoff-text" id="v1HandoffText">${safePublicHtml(text)}</pre>
     <div class="review-actions">
-      <button type="button" class="review-action-btn" onclick="copyV1HandoffSummary()">Copy summary</button>
+      <button type="button" class="review-action-btn" data-action="copy-v1-handoff">Copy summary</button>
       ${shareUrl ? `<a class="review-action-btn" href="${safeAttr(shareUrl)}" target="_blank" rel="noopener">Open share link</a>` : ""}
       <span class="review-action-status" id="v1HandoffCopyStatus" role="status" aria-live="polite" aria-atomic="true"></span>
     </div>
@@ -139,7 +139,7 @@ function buildV1ReadinessSnapshot(options = {}) {
       key:"publicView",
       label:"Single public view",
       ok:!document.getElementById("audience-patient") && !document.getElementById("audience-clinician") && !document.querySelector(".audience-wrap"),
-      detail:"The normal product uses one Medication Review surface; reviewer tooling stays behind ?reviewer=1.",
+      detail:"The normal product uses one Medication Review surface; reviewer tooling stays behind #reviewer=1.",
     },
   ];
   const passed = checks.filter(check => check.ok).length;
@@ -193,7 +193,7 @@ function buildV1HandoffSummaryText(options = {}) {
     "Handoff type: clinician/pharmacist medication-review handoff",
     `Stack: ${(activeStack || []).join(" + ") || "none selected"}`,
     typeof currentHandoffGeneResultSummary === "function" ? currentHandoffGeneResultSummary({ patient:false }) : "",
-    shareUrl ? `Share link: ${shareUrl}` : "",
+    shareUrl ? `Share link (medicines and gene results only; review context is excluded): ${shareUrl}` : "",
     typeof currentHandoffDataBoundaryLine === "function" ? currentHandoffDataBoundaryLine() : "Generated from local Diognosis static data; no patient-specific data was uploaded.",
     "",
     "V1 scope",
@@ -204,7 +204,10 @@ function buildV1HandoffSummaryText(options = {}) {
     scope?.unknownCount ? `- Unrecognized selections: ${typeof formatScopeUnknownItems === "function" ? formatScopeUnknownItems(scope.unknownItems) : `${scope.unknownCount} item(s)`}` : "",
     scope?.standardsCoverage ? `- Standards identity: ${scope.standardsCoverage.mappedDrugCount}/${scope.standardsCoverage.recognizedDrugCount} recognized medications mapped to RxNorm; ${scope.standardsCoverage.markerMappingCount} PGx marker rows; ${scope.standardsCoverage.pgxActionCount} CPIC-linked action contexts` : "",
     "",
-    "Clinical context still needed",
+    "Clinical context supplied",
+    ...(typeof clinicalContextHandoffLines === "function" ? clinicalContextHandoffLines().map(item => `- ${item}`) : []),
+    "",
+    "Additional review context to verify",
     ...(typeof buildReviewContextChecklist === "function"
       ? buildReviewContextChecklist(scope, { patient:false }).map(item => `- ${item}`)
       : ["- Medication reconciliation, patient context, labs, timing, and source evidence should be reviewed."]),
@@ -214,7 +217,7 @@ function buildV1HandoffSummaryText(options = {}) {
     "",
     "Boundaries",
     "- This is a medication-safety review aid, not medical advice, diagnosis, prescribing, or proof of safety.",
-    "- Source-linked evidence is traceability; it does not equal professional clinical validation.",
+    "- Authority-linked evidence points to a regulator or recognized guideline; literature-linked evidence points to a claim-specific study. Neither is independent Diognosis clinical validation.",
     "- Do not start, stop, or change medication without a qualified doctor or pharmacist.",
     scope?.unknownCount ? `- ${scope.unknownCount} selected item${scope.unknownCount === 1 ? " was" : "s were"} not recognized by the local dataset: ${typeof formatScopeUnknownItems === "function" ? formatScopeUnknownItems(scope.unknownItems) : "unrecognized item"}.` : "- Dose, timing, allergies, diagnoses, labs, pregnancy status, and clinical history are not fully assessed.",
   ].filter(line => line !== "");
@@ -231,7 +234,7 @@ function buildV1HandoffConcernLines(presentations = []) {
       `${index + 1}. ${presentation.title || "Clinical concern"} [${presentation.severity || "info"}]`,
       `   Concern: ${trust.clinicalConcern || presentation.whatChanged || "Review current stack context."}`,
       `   Mechanism: ${trust.mechanism || presentation.whyItMatters || "Mechanism needs review."}`,
-      `   Evidence/status: ${trust.evidence || presentation.evidenceSummary || "Evidence status unknown"}; ${trust.limitationStatus || "source-integrated V1 context"}`,
+      `   Evidence/status: ${trust.evidence || presentation.evidenceSummary || "Evidence status unknown"}; ${trust.limitationStatus || "provenance and limits require review"}`,
       `   Patient-safe next step: ${trust.patientAction || "Review with a doctor or pharmacist before making medication changes."}`,
       `   Clinician review: ${trust.clinicianAction || presentation.whatToReview || "Review dose, timing, source evidence, and clinical context."}`,
       `   Monitoring focus: ${typeof buildFindingMonitoringItems === "function" ? buildFindingMonitoringItems(presentation, trust, { patient:false }).join("; ") : "Review symptoms, dose, timing, labs, organ function, and current medication context."}`,

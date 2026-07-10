@@ -52,6 +52,35 @@ JSON.stringify((() => {
     study.type === EVIDENCE_TIER.GUIDELINE ||
     /label|guideline|dailymed|fda/i.test(String(study.source || ''))
   );
+  const modeledContextStudies = studyValues.filter((study) =>
+    study.type === EVIDENCE_TIER.MODELED_CONTEXT ||
+    study.sourceCategory === SOURCE_CATEGORY.MODELED_CONTEXT ||
+    study.importedContextOnly === true ||
+    study.notSeverityBearing === true ||
+    study.claimSpecificity === 'context_only'
+  );
+  const authoritySourceStudies = studyValues.filter((study) => {
+    if (modeledContextStudies.includes(study)) return false;
+    if (study.sourceCategory === SOURCE_CATEGORY.AUTHORITY_SOURCE) return true;
+    const url = String(study.url || '');
+    return (study.type === EVIDENCE_TIER.FDA_LABEL && /(?:fda\.gov|dailymed\.nlm\.nih\.gov)/i.test(url)) ||
+      (study.type === EVIDENCE_TIER.GUIDELINE && /(?:fda\.gov|dailymed\.nlm\.nih\.gov|cpicpgx\.org|clinpgx\.org)/i.test(url)) ||
+      (study.type === EVIDENCE_TIER.GUIDELINE && /\\bCPIC\\b/i.test(String(study.source || '')) && Boolean(study.pmid || study.doi));
+  });
+  const primaryLiteratureStudies = studyValues.filter((study) =>
+    !modeledContextStudies.includes(study) &&
+    !authoritySourceStudies.includes(study) &&
+    Boolean(study.pmid || study.doi) &&
+    [
+      EVIDENCE_TIER.META_ANALYSIS,
+      EVIDENCE_TIER.RCT,
+      EVIDENCE_TIER.CLINICAL_PK,
+      EVIDENCE_TIER.OBSERVATIONAL,
+      EVIDENCE_TIER.CASE_REPORT,
+      EVIDENCE_TIER.IN_VITRO,
+      EVIDENCE_TIER.ANIMAL,
+    ].includes(study.type)
+  );
   const professionalReviewedStudies = studyValues.filter((study) =>
     study.professionalReviewed === true ||
     study.clinicalReviewed === true ||
@@ -77,6 +106,9 @@ JSON.stringify((() => {
     studies: studyValues.length,
     sourceLinkedStudies: sourceLinkedStudies.length,
     sourceIntegratedStudies: sourceLinkedStudies.length,
+    authoritySourceStudies: authoritySourceStudies.length,
+    primaryLiteratureStudies: primaryLiteratureStudies.length,
+    modeledContextStudies: modeledContextStudies.length,
     professionalReviewedStudies: professionalReviewedStudies.length,
     notProfessionallyReviewedStudies,
     livePendingReviewStudies: studyValues.filter((study) => study.livePendingReview === true).length,
@@ -84,6 +116,7 @@ JSON.stringify((() => {
     externalSubstanceMappings: typeof EXTERNAL_SUBSTANCE_MAPPINGS === 'undefined' ? 0 : EXTERNAL_SUBSTANCE_MAPPINGS.length,
     pgxMarkerRows,
     pgxActionSummaries: typeof PGX_ACTION_SUMMARIES === 'undefined' ? 0 : PGX_ACTION_SUMMARIES.length,
+    authorityLinkedPgxActions: typeof PGX_ACTION_SUMMARIES === 'undefined' ? 0 : PGX_ACTION_SUMMARIES.filter((row) => (row.authorityEvidenceRefs || []).length > 0).length,
     nonRegulatoryUncited: nonRegulatoryUncited.length,
     ddiPairs: KNOWN_DDI.length,
     severeDdi: severitySplit.severe || 0,

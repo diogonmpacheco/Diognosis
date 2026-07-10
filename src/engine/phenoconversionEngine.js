@@ -113,7 +113,7 @@ function phenoconversionRowsToFindings(rows, options = {}) {
       sourceRows: [row],
       groupedFindings: [],
       clinicalAction: row.clinicalNote || "",
-      evidenceStatus: (row.evidenceRefs || []).length ? "source-linked; source-integrated" : "inferred/review required",
+      evidenceStatus: (row.evidenceRefs || []).length ? "source-linked; provenance classified in Evidence" : "inferred/review required",
     }));
 }
 

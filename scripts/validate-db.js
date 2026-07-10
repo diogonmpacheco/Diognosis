@@ -58,6 +58,7 @@ globalThis.__VALIDATE__ = {
   PGX_ACTION_SUMMARIES: typeof PGX_ACTION_SUMMARIES !== 'undefined' ? PGX_ACTION_SUMMARIES : [],
   resolveUrlDrugName, normalizeDrugLookupKey, getDrugAliases,
   normalizePharmGxGene, normalizeUrlPhenotype,
+  isModeledContextEvidence, calibrateDdiSeverity,
 };`, context);
   return context.__VALIDATE__;
 }
@@ -93,6 +94,18 @@ function isExternalContextStudy(study) {
     study.openTargetsDrugId ||
     study.chemblId ||
     study.openTargetsSourceDataset
+  );
+}
+
+function isModeledContextStudy(study) {
+  return Boolean(
+    study && (
+      study.type === data.EVIDENCE_TIER.MODELED_CONTEXT ||
+      study.sourceCategory === data.SOURCE_CATEGORY.MODELED_CONTEXT ||
+      study.claimSpecificity === 'context_only' ||
+      study.notSeverityBearing === true ||
+      study.importedContextOnly === true
+    )
   );
 }
 
@@ -190,7 +203,20 @@ for (const [id, study] of Object.entries(data.STUDY_DB || {})) {
   if (!study.pmid && !study.doi && !study.url) {
     add('warnings', 'study_without_external_identifier', `${id} lacks PMID, DOI, and URL`, id);
   }
-  if (isExternalContextStudy(study)) {
+  if (isModeledContextStudy(study)) {
+    if (study.sourceCategory !== data.SOURCE_CATEGORY.MODELED_CONTEXT) {
+      add('errors', 'modeled_context_missing_source_category', `${id} modeled context must use sourceCategory:MODELED_CONTEXT`, id);
+    }
+    if (study.type !== data.EVIDENCE_TIER.MODELED_CONTEXT) {
+      add('errors', 'modeled_context_missing_tier', `${id} modeled context must use the MODELED_CONTEXT evidence tier`, id);
+    }
+    if (study.importedContextOnly !== true || study.notSeverityBearing !== true || study.claimSpecificity !== 'context_only') {
+      add('errors', 'modeled_context_boundary_incomplete', `${id} modeled context must be context-only and not severity-bearing`, id);
+    }
+    if (study.public !== false) {
+      add('errors', 'modeled_context_public', `${id} modeled context must remain hidden from the public evidence browser`, id);
+    }
+  } else if (isExternalContextStudy(study)) {
     const promoted = isPromotedSeverityStudy(study);
     if (!study.sourceCategory) {
       add('errors', 'external_context_missing_source_category', `${id} has external identifiers/context flags but no sourceCategory`, id);
@@ -220,11 +246,14 @@ for (const ddi of data.KNOWN_DDI || []) {
     const linkedStudies = (ddi.evidenceRefs || []).map(ref => data.STUDY_DB?.[ref]).filter(Boolean);
     const externalContextStudies = linkedStudies.filter(isExternalContextStudy);
     const severityBearingStudies = linkedStudies.filter(isSeverityBearingStudy);
-    if (externalContextStudies.length && severityBearingStudies.length === 0) {
+    const calibratedSeverity = typeof data.calibrateDdiSeverity === 'function'
+      ? data.calibrateDdiSeverity(ddi)
+      : ddi.severity;
+    if (externalContextStudies.length && severityBearingStudies.length === 0 && ['severe', 'critical'].includes(calibratedSeverity)) {
       add(
         'errors',
         'severe_ddi_supported_only_by_external_context',
-        `${ddi.drug1}+${ddi.drug2} is ${ddi.severity} but its linked evidence is external context only`,
+        `${ddi.drug1}+${ddi.drug2} remains ${calibratedSeverity} at runtime even though its linked evidence is context-only`,
         `${ddi.drug1}/${ddi.drug2}`
       );
     }
@@ -327,8 +356,8 @@ for (const row of data.PGX_ACTION_SUMMARIES || []) {
     add('errors', 'pgx_action_duplicate_id', `Duplicate PGx action summary id ${row.id}`, row.id);
   }
   if (row.id) pgxActionIds.add(row.id);
-  if (row.source === 'CPIC' && !/^https:\/\/www\.clinpgx\.org\/guideline\//.test(String(row.guidelineUrl || ''))) {
-    add('errors', 'pgx_action_missing_guideline_url', `${label} is CPIC-linked but lacks a ClinPGx guideline URL`, label);
+  if (row.source === 'CPIC' && !/^https:\/\/(?:www\.clinpgx\.org\/guideline\/|(?:files\.)?cpicpgx\.org\/)/.test(String(row.guidelineUrl || ''))) {
+    add('errors', 'pgx_action_missing_guideline_url', `${label} is CPIC-linked but lacks an official CPIC or ClinPGx guideline URL`, label);
   }
   if (!row.reviewDirection || !row.whatChanged || !row.safetyBoundary) {
     add('errors', 'pgx_action_missing_review_context', `${label} must include whatChanged, reviewDirection, and safetyBoundary`, label);

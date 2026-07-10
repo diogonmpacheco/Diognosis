@@ -155,7 +155,7 @@ const loadStateResetRegression = window.eval(`(() => {
   };
 
   setGenotypeState('CYP2D6', GENOTYPE_PHENOTYPE.PM);
-  window.history.replaceState(null, '', '/index.html?substances=warfarin,ibuprofen&tab=overview');
+  window.history.replaceState(null, '', '/index.html#substances=warfarin,ibuprofen&tab=overview');
   loadUrlDemoState();
   const urlNoGenotype = {
     stack:activeStack.slice(),
@@ -444,9 +444,9 @@ assert(
 assert(hasInteraction(window, {
   drug1: 'Paroxetine',
   drug2: 'Codeine',
-  severity: 'severe',
+  severity: 'moderate',
   text: 'activation blocked',
-}), 'Paroxetine + Codeine should flag severe CYP2D6 prodrug activation loss');
+}), 'Paroxetine + Codeine adapter-only signal should remain visible but downgrade to moderate until claim-specific evidence is linked');
 const cyp2d6Cap = window.eval('computeEnzymeCapacity("CYP2D6", activeStack)');
 assert(cyp2d6Cap.capacity_pct <= 25, `Paroxetine should severely impair CYP2D6, got ${cyp2d6Cap.capacity_pct}%`);
 
@@ -706,7 +706,7 @@ const urlNullAudit = window.eval(`(() => {
   activeStack = [];
   userGenetics = {};
   activeGenotypeDetails = {};
-  window.history.replaceState(null, '', '/index.html?substances=codeine,fluoxetine&genotype=CYP2D6:null&tab=pgx');
+  window.history.replaceState(null, '', '/index.html#substances=codeine,fluoxetine&genotype=CYP2D6:null&tab=pgx');
   loadUrlDemoState();
   return {
     phenotype:activeGenotype.CYP2D6,
@@ -729,7 +729,7 @@ const publicNebivololNullDemoAudit = window.eval(`(() => {
     CYP2C19: GENOTYPE_PHENOTYPE.NM,
     CYP2C9: GENOTYPE_PHENOTYPE.NM,
   };
-  window.history.replaceState(null, '', '/index.html?substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null&tab=safety');
+  window.history.replaceState(null, '', '/index.html#substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null&tab=safety');
   loadUrlDemoState();
   renderAll();
   const interactions = findInteractions();
@@ -787,7 +787,7 @@ const audienceModeRegression = window.eval(`(() => {
     CYP2C19: GENOTYPE_PHENOTYPE.NM,
     CYP2C9: GENOTYPE_PHENOTYPE.NM,
   };
-  window.history.replaceState(null, '', '/index.html?substances=warfarin,amiodarone&audience=patient&tab=review');
+  window.history.replaceState(null, '', '/index.html#substances=warfarin,amiodarone&audience=patient&tab=review');
   loadUrlDemoState();
   renderAll();
   const patient = {
@@ -991,8 +991,8 @@ assert(audienceModeRegression.clinician.contextBadgeRows === 0, 'Public Overview
 assert(audienceModeRegression.clinician.actorRows === 0, 'Public Overview cards should not duplicate medicines as extra chips after legacy switches');
 assert(audienceModeRegression.clinician.trustChipHeadingCount === 0,
   'Public trust chips should not restore label/value headings after legacy switches');
-assert(/Source-linked|Modeled|confidence/i.test(audienceModeRegression.clinician.trustChipText),
-  'Public trust chips should keep concise evidence and confidence values after legacy switches');
+assert(/Authority-linked|Primary-literature linked|Linked source|Modeled|Mechanism:/i.test(audienceModeRegression.clinician.trustChipText),
+  'Public trust chips should keep concise provenance and mechanistic-confidence values after legacy switches');
 assert(!audienceModeRegression.clinician.hasOldOverviewLabels,
   'Public view should not restore old overview labels after legacy switches');
 assert(audienceModeRegression.clinician.circulatingDisplay !== 'none', 'Public Overview should show circulating/exposure context');
@@ -1020,7 +1020,7 @@ assert(handoffAudienceRegression.patientText === handoffAudienceRegression.clini
   'Legacy audience switches should not change the single public handoff text');
 assert(/Handoff type: clinician\/pharmacist medication-review handoff/i.test(handoffAudienceRegression.patientText),
   'Public handoff should identify itself as the medication-review handoff');
-assert(['V1 scope', 'Clinical context still needed', 'Top concerns', 'Boundaries'].every(section => handoffAudienceRegression.patientText.includes(section)),
+assert(['V1 scope', 'Clinical context supplied', 'Additional review context to verify', 'Top concerns', 'Boundaries'].every(section => handoffAudienceRegression.patientText.includes(section)),
   'Public handoff should preserve medication-review report sections');
 assert(/Generated from local Diognosis/i.test(handoffAudienceRegression.patientText) && /no patient-specific data was uploaded/i.test(handoffAudienceRegression.patientText),
   'Public handoff should carry the local-data boundary');
@@ -1079,7 +1079,7 @@ const patientGeneResultListRegression = window.eval(`(() => {
     CYP2C19: GENOTYPE_PHENOTYPE.NM,
     CYP2C9: GENOTYPE_PHENOTYPE.NM,
   };
-  window.history.replaceState(null, '', '/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&audience=patient&tab=overview');
+  window.history.replaceState(null, '', '/index.html#substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&audience=patient&tab=overview');
   loadUrlDemoState();
   renderComputationCache = null;
   renderAll();
@@ -1124,7 +1124,7 @@ const patientActiveMetaboliteFallbackRegression = window.eval(`(() => {
     CYP2C19: GENOTYPE_PHENOTYPE.NM,
     CYP2C9: GENOTYPE_PHENOTYPE.NM,
   };
-  window.history.replaceState(null, '', '/index.html?substances=bupropion,tamoxifen&audience=patient&tab=overview');
+  window.history.replaceState(null, '', '/index.html#substances=bupropion,tamoxifen&audience=patient&tab=overview');
   loadUrlDemoState();
   renderComputationCache = null;
   renderAll();
@@ -1155,7 +1155,7 @@ const singleItemSummaryJumpRegression = window.eval(`(() => {
     CYP2C19: GENOTYPE_PHENOTYPE.NM,
     CYP2C9: GENOTYPE_PHENOTYPE.NM,
   };
-  window.history.replaceState(null, '', '/index.html?substances=mystery-mix&audience=patient&tab=overview');
+  window.history.replaceState(null, '', '/index.html#substances=mystery-mix&audience=patient&tab=overview');
   loadUrlDemoState();
   renderAll();
   const patient = {
@@ -1191,7 +1191,7 @@ const olderAdultDemoPriorityRegression = window.eval(`(() => {
     CYP2C19: GENOTYPE_PHENOTYPE.NM,
     CYP2C9: GENOTYPE_PHENOTYPE.NM,
   };
-  window.history.replaceState(null, '', '/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview');
+  window.history.replaceState(null, '', '/index.html#substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview');
   loadUrlDemoState();
   renderComputationCache = null;
   renderAll();
@@ -1311,13 +1311,13 @@ const urlReportedValueAudit = window.eval(`(() => {
   activeStack = [];
   activeGenotypeDetails = {};
   userGenetics = {};
-  window.history.replaceState(null, '', '/index.html?substances=tacrolimus,busulfan&genotype=CYP3A5:non_expresser&genotype=GSTM1:null&genotype=GSTT1:null&tab=pgx');
+  window.history.replaceState(null, '', '/index.html#substances=tacrolimus,busulfan&genotype=CYP3A5:non_expresser&genotype=GSTM1:null&genotype=GSTT1:null&tab=pgx');
   loadUrlDemoState();
   return {
     cyp3a5: { phenotype:activeGenotype.CYP3A5, legacy:userGenetics.CYP3A5, detail:activeGenotypeDetails.CYP3A5 },
     gstm1: { phenotype:activeGenotype.GSTM1, legacy:userGenetics.GSTM1, detail:activeGenotypeDetails.GSTM1 },
     gstt1: { phenotype:activeGenotype.GSTT1, legacy:userGenetics.GSTT1, detail:activeGenotypeDetails.GSTT1 },
-    params:parseQueryParams(window.location.search).genotype,
+    params:parseHashParams(window.location.hash).genotype,
   };
 })()`);
 assert(Array.isArray(urlReportedValueAudit.params) && urlReportedValueAudit.params.length === 3, 'Repeated URL genotype params should preserve every reported value');
@@ -1425,8 +1425,9 @@ assert(hasInteraction(window, {
   text: 'bleeding',
 }), 'Warfarin + Ibuprofen should flag severe bleeding risk');
 const warfarinIbuprofenIx = interactions(window).find((i) =>
-  (i.drug1 === 'Warfarin' && i.drug2 === 'Ibuprofen') ||
-  (i.drug1 === 'Ibuprofen' && i.drug2 === 'Warfarin')
+  ((i.drug1 === 'Warfarin' && i.drug2 === 'Ibuprofen') ||
+  (i.drug1 === 'Ibuprofen' && i.drug2 === 'Warfarin')) &&
+  i.evidenceRefs?.includes('ev_warfarin_nsaid_bleed')
 );
 assert(warfarinIbuprofenIx.evidenceRefs.includes('ev_warfarin_nsaid_bleed'), 'Warfarin + Ibuprofen should retain explicit evidenceRefs');
 assert(warfarinIbuprofenIx.evidenceStatus === 'explicit', 'Warfarin + Ibuprofen should be marked explicit evidence');
@@ -1941,7 +1942,7 @@ assert(evidenceLadderRegression.reviewedClaims === 0, 'No finding should claim p
 assert(evidenceLadderRegression.severeWithoutRefsOrReviewRequired === 0, 'Severe/critical findings without refs must stay marked reviewRequired');
 assert(evidenceLadderRegression.strongestTier, 'Evidence ladder should report strongest tier or unknown');
 assert(
-  ['source_linked_integrated', 'source_linked', 'reviewed_source_linked'].includes(evidenceLadderRegression.sourceSupportStatus),
+  ['reviewed_authority_linked', 'authority_linked', 'primary_literature_linked', 'linked_source'].includes(evidenceLadderRegression.sourceSupportStatus),
   `Source-linked findings should expose source support status, got ${evidenceLadderRegression.sourceSupportStatus}`
 );
 assert(
@@ -1949,8 +1950,8 @@ assert(
   `Evidence-free findings should show modeled/insufficient source support, got ${evidenceLadderRegression.evidenceFreeSourceSupportStatus}`
 );
 assert(evidenceLadderRegression.modelOnlyStrongestTier === 'unknown', 'Modeled evidence ladder should not display FDA/guideline backing');
-assert(/modeled|no linked source yet|source-integrated|source-linked/i.test(evidenceLadderRegression.modelOnlyCompact), 'Compact ladder should visibly identify modeled support and source boundaries');
-assert(evidenceLadderRegression.clinicalActionConfidence === 'source_integrated' || evidenceLadderRegression.clinicalActionConfidence === 'insufficient', 'Clinical action confidence should remain conservative');
+assert(/modeled|no linked source yet|linked source|authority|literature/i.test(evidenceLadderRegression.modelOnlyCompact), 'Compact ladder should visibly identify modeled support and source boundaries');
+assert(['authority_linked', 'literature_linked', 'modeled_or_linked_context', 'insufficient'].includes(evidenceLadderRegression.clinicalActionConfidence), 'Clinical action confidence should preserve explicit provenance boundaries');
 assert(evidenceLadderRegression.primaryFindingCards > 0, 'Finding cards should render primary public finding UI');
 assert(evidenceLadderRegression.primaryFindingEvidenceSteps === evidenceLadderRegression.primaryFindingCards, 'Each primary finding card should include an Evidence step');
 assert(evidenceLadderRegression.evidenceAtGlance, 'Evidence tab should render the evidence at-a-glance strip before the ledger');
@@ -2240,7 +2241,7 @@ const publicFindingHierarchyRegression = window.eval(`(() => {
       .map(chip => chip.textContent.replace(/\\s+/g, " ").trim())
       .join(" | ");
     const trustHeadingCount = document.querySelectorAll("#findingBody .finding-trust-chip strong").length;
-    const summaryOnclick = document.querySelector("#summaryBar .summary-jump")?.getAttribute("onclick") || "";
+    const summaryJump = document.querySelector("#summaryBar .summary-jump");
     setTab("mechanisms");
     const mechanismText = document.getElementById("mechanismWhyBody")?.textContent || "";
     const mechanismRelatedButtons = document.querySelectorAll("#mechanismWhyBody .related-finding-btn").length;
@@ -2265,7 +2266,9 @@ const publicFindingHierarchyRegression = window.eval(`(() => {
         card.querySelectorAll('.finding-note').length >= 2 &&
         !/What changed|Why it matters|Review focus|What to review/i.test(card.textContent || '')
       ),
-      summaryOnclick,
+      summaryAction:summaryJump?.dataset.action || "",
+      summaryTab:summaryJump?.dataset.tab || "",
+      summaryTarget:summaryJump?.dataset.target || "",
       overviewText,
       actorRows,
       trustText,
@@ -2305,15 +2308,15 @@ for (const [scenarioName, result] of Object.entries(publicFindingHierarchyRegres
   assert(result.allCardsHaveCompactNotes, `${scenarioName}: every primary Overview card should use compact unlabeled notes, with evidence routed through compact actions`);
   assert(result.presentations.every(p => p.whatChanged && p.whyItMatters && p.whatToReview && p.evidenceSummary), `${scenarioName}: public finding presentation fields must be non-empty`);
   assert(result.presentations.every(p => p.targetTab === "overview" && /^overview-finding-/.test(p.targetElementId || "")), `${scenarioName}: public finding targets should point to Overview cards`);
-  assert(result.summaryOnclick.includes("focusPriorityFinding('overview','overview-finding-"), `${scenarioName}: Summary Open action should jump to a concrete Overview card`);
+  assert(result.summaryAction === "focus-priority" && result.summaryTab === "overview" && /^overview-finding-/.test(result.summaryTarget), `${scenarioName}: Summary Open action should jump to a concrete Overview card`);
   assert(!/Phase\\s*\\d+|top-250|top-100|coverage adapter|route adapter|pending professional review|review prompt/i.test(result.overviewText), `${scenarioName}: Overview should not expose internal labels or repeated review wording`);
   assert(!/Review first/i.test(result.overviewText), `${scenarioName}: Overview should not add queue labels`);
   assert(result.actorRows === 0, `${scenarioName}: Overview should not duplicate medicines as extra chip rows`);
   assert(!/\b(?:pending review action|review needed action|insufficient action)\b/i.test(result.trustText), `${scenarioName}: trust chips should not expose awkward internal action-status wording`);
   assert(result.trustHeadingCount === 0,
     `${scenarioName}: trust chips should not use label/value headings`);
-  assert(/Source-linked|Modeled/i.test(result.trustText) && /confidence/i.test(result.trustText),
-    `${scenarioName}: trust chips should use concise evidence and confidence values`);
+  assert(/Authority-linked|Primary-literature linked|Linked source|Modeled/i.test(result.trustText) && /Mechanism:/i.test(result.trustText),
+    `${scenarioName}: trust chips should use concise provenance and mechanistic-confidence values`);
   assert(!/Phase\\s*\\d+|top-250|top-100|coverage adapter|route adapter|pending professional review/i.test(result.mechanismText), `${scenarioName}: Mechanisms should not expose internal labels`);
   assert(!/\b(?:Open review|reviewer panel|Raw warning paths|raw signals?|remain available in Review)\b/i.test(result.mechanismText), `${scenarioName}: normal V1 Mechanisms should not expose reviewer-only or raw-path actions`);
   assert(!/Related overview/i.test(`${result.mechanismText} ${result.genesText} ${result.evidenceText}`), `${scenarioName}: supporting tabs should use plain Open finding actions instead of Related overview`);
@@ -2681,9 +2684,9 @@ const publicQuestionRegression = window.eval(`(() => {
     };
   }
   return {
-    methotrexate: resetScenario('/index.html?substances=methotrexate,ibuprofen'),
-    tamoxifen: resetScenario('/index.html?substances=tamoxifen,paroxetine'),
-    clopidogrel: resetScenario('/index.html?substances=clopidogrel,omeprazole'),
+    methotrexate: resetScenario('/index.html#substances=methotrexate,ibuprofen'),
+    tamoxifen: resetScenario('/index.html#substances=tamoxifen,paroxetine'),
+    clopidogrel: resetScenario('/index.html#substances=clopidogrel,omeprazole'),
     olderAdult: resetScenario('/index.html?demo=older-adult-burden'),
     capecitabine: resetScenario('/index.html?demo=fluoropyrimidine-dpyd-toxicity'),
     irinotecan: resetScenario('/index.html?demo=irinotecan-sn38-toxicity'),
@@ -2742,42 +2745,42 @@ const patientCopyAuditRegression = window.eval(`(() => {
     };
   }
   return {
-    tacrolimusClinician: resetScenario('/index.html?substances=tacrolimus,fluconazole', 'clinician'),
-    simvastatinPatient: resetScenario('/index.html?substances=simvastatin,clarithromycin'),
-    grapefruitPatient: resetScenario('/index.html?substances=grapefruit%20juice,simvastatin'),
-    methotrexatePatient: resetScenario('/index.html?substances=methotrexate,ibuprofen'),
-    tamoxifenPatient: resetScenario('/index.html?substances=tamoxifen&genotype=CYP2D6:PM'),
-    g6pdPatient: resetScenario('/index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency'),
-    abacavirPatient: resetScenario('/index.html?substances=abacavir&genotype=HLA-B*57:01:present'),
-    allopurinolPatient: resetScenario('/index.html?substances=allopurinol&genotype=HLA-B*58:01:present'),
-    capecitabinePatient: resetScenario('/index.html?substances=capecitabine&genotype=DPYD:PM'),
-    clopidogrelPatient: resetScenario('/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:PM'),
+    tacrolimusClinician: resetScenario('/index.html#substances=tacrolimus,fluconazole', 'clinician'),
+    simvastatinPatient: resetScenario('/index.html#substances=simvastatin,clarithromycin'),
+    grapefruitPatient: resetScenario('/index.html#substances=grapefruit%20juice,simvastatin'),
+    methotrexatePatient: resetScenario('/index.html#substances=methotrexate,ibuprofen'),
+    tamoxifenPatient: resetScenario('/index.html#substances=tamoxifen&genotype=CYP2D6:PM'),
+    g6pdPatient: resetScenario('/index.html#substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency'),
+    abacavirPatient: resetScenario('/index.html#substances=abacavir&genotype=HLA-B*57:01:present'),
+    allopurinolPatient: resetScenario('/index.html#substances=allopurinol&genotype=HLA-B*58:01:present'),
+    capecitabinePatient: resetScenario('/index.html#substances=capecitabine&genotype=DPYD:PM'),
+    clopidogrelPatient: resetScenario('/index.html#substances=clopidogrel,omeprazole&genotype=CYP2C19:PM'),
     olderAdultPatient: resetScenario('/index.html?demo=older-adult-burden'),
     ssriPatient: resetScenario('/index.html?demo=ssri-switch'),
     anesthesiaPatient: resetScenario('/index.html?demo=anesthesia-pgx-risk'),
-    nebivololNullPatient: resetScenario('/index.html?substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null'),
-    nebivololNullClinician: resetScenario('/index.html?substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null', 'clinician'),
+    nebivololNullPatient: resetScenario('/index.html#substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null'),
+    nebivololNullClinician: resetScenario('/index.html#substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null', 'clinician'),
     thiopurinePatient: resetScenario('/index.html?demo=thiopurine-marrow-toxicity'),
-    potassiumClinician: resetScenario('/index.html?substances=potassium_chloride,spironolactone&tab=overview', 'clinician'),
-    nitrateClinician: resetScenario('/index.html?substances=nitroglycerin,sildenafil&tab=overview', 'clinician'),
-    ciprofloxacinIronPatient: resetScenario('/index.html?substances=ciprofloxacin,iron&tab=overview'),
-    ciprofloxacinIronClinician: resetScenario('/index.html?substances=ciprofloxacin,iron&tab=overview', 'clinician'),
-    tmpSmxAliasPatient: resetScenario('/index.html?substances=warfarin,sulfamethoxazole-trimethoprim&tab=overview'),
-    tmpSmxAliasClinician: resetScenario('/index.html?substances=warfarin,sulfamethoxazole-trimethoprim&tab=overview', 'clinician'),
-    ivabradinePatient: resetScenario('/index.html?substances=ivabradine,clarithromycin&tab=timing-levels'),
-    codeineBupropionPatient: resetScenario('/index.html?substances=bupropion,codeine&genotype=CYP2D6:PM&tab=genes-metabolites'),
-    codeineUmPatient: resetScenario('/index.html?substances=codeine&genotype=CYP2D6:UM&tab=overview'),
-    codeineUmClinician: resetScenario('/index.html?substances=codeine&genotype=CYP2D6:UM&tab=overview', 'clinician'),
-    tramadolPmPatient: resetScenario('/index.html?substances=tramadol&genotype=CYP2D6:PM&tab=overview'),
-    tramadolUmPatient: resetScenario('/index.html?substances=tramadol&genotype=CYP2D6:UM&tab=overview'),
-    metoprololPatient: resetScenario('/index.html?substances=metoprolol&genotype=CYP2D6:PM&tab=overview'),
-    metoprololClinician: resetScenario('/index.html?substances=metoprolol&genotype=CYP2D6:PM&tab=overview', 'clinician'),
-    atomoxetinePatient: resetScenario('/index.html?substances=atomoxetine&genotype=CYP2D6:PM&tab=overview'),
-    atomoxetineClinician: resetScenario('/index.html?substances=atomoxetine&genotype=CYP2D6:PM&tab=overview', 'clinician'),
-    warfarinPgxClinician: resetScenario('/index.html?substances=warfarin&genotype=CYP2C9:PM&genotype=VKORC1:PM&genotype=CYP4F2:IM&tab=overview', 'clinician'),
-    g6pdClinician: resetScenario('/index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency', 'clinician'),
-    potatoFoodBiomarkerPatient: resetScenario('/index.html?substances=potatoes_solanine&genotype=CYP2D6:UM&tab=overview'),
-    potatoFoodBiomarkerClinician: resetScenario('/index.html?substances=potatoes_solanine&genotype=CYP2D6:UM&tab=overview', 'clinician'),
+    potassiumClinician: resetScenario('/index.html#substances=potassium_chloride,spironolactone&tab=overview', 'clinician'),
+    nitrateClinician: resetScenario('/index.html#substances=nitroglycerin,sildenafil&tab=overview', 'clinician'),
+    ciprofloxacinIronPatient: resetScenario('/index.html#substances=ciprofloxacin,iron&tab=overview'),
+    ciprofloxacinIronClinician: resetScenario('/index.html#substances=ciprofloxacin,iron&tab=overview', 'clinician'),
+    tmpSmxAliasPatient: resetScenario('/index.html#substances=warfarin,sulfamethoxazole-trimethoprim&tab=overview'),
+    tmpSmxAliasClinician: resetScenario('/index.html#substances=warfarin,sulfamethoxazole-trimethoprim&tab=overview', 'clinician'),
+    ivabradinePatient: resetScenario('/index.html#substances=ivabradine,clarithromycin&tab=timing-levels'),
+    codeineBupropionPatient: resetScenario('/index.html#substances=bupropion,codeine&genotype=CYP2D6:PM&tab=genes-metabolites'),
+    codeineUmPatient: resetScenario('/index.html#substances=codeine&genotype=CYP2D6:UM&tab=overview'),
+    codeineUmClinician: resetScenario('/index.html#substances=codeine&genotype=CYP2D6:UM&tab=overview', 'clinician'),
+    tramadolPmPatient: resetScenario('/index.html#substances=tramadol&genotype=CYP2D6:PM&tab=overview'),
+    tramadolUmPatient: resetScenario('/index.html#substances=tramadol&genotype=CYP2D6:UM&tab=overview'),
+    metoprololPatient: resetScenario('/index.html#substances=metoprolol&genotype=CYP2D6:PM&tab=overview'),
+    metoprololClinician: resetScenario('/index.html#substances=metoprolol&genotype=CYP2D6:PM&tab=overview', 'clinician'),
+    atomoxetinePatient: resetScenario('/index.html#substances=atomoxetine&genotype=CYP2D6:PM&tab=overview'),
+    atomoxetineClinician: resetScenario('/index.html#substances=atomoxetine&genotype=CYP2D6:PM&tab=overview', 'clinician'),
+    warfarinPgxClinician: resetScenario('/index.html#substances=warfarin&genotype=CYP2C9:PM&genotype=VKORC1:PM&genotype=CYP4F2:IM&tab=overview', 'clinician'),
+    g6pdClinician: resetScenario('/index.html#substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency', 'clinician'),
+    potatoFoodBiomarkerPatient: resetScenario('/index.html#substances=potatoes_solanine&genotype=CYP2D6:UM&tab=overview'),
+    potatoFoodBiomarkerClinician: resetScenario('/index.html#substances=potatoes_solanine&genotype=CYP2D6:UM&tab=overview', 'clinician'),
   };
 })()`);
 assert(/Tacrolimus exposure may rise with Fluconazole/i.test(patientCopyAuditRegression.tacrolimusClinician.titles[0] || ''),

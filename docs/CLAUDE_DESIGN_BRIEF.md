@@ -28,7 +28,7 @@ Selected medicines and gene results are synchronized after the URL `#` fragment,
 
 ## Reviewer Console
 
-Reviewer tooling remains hidden behind `?reviewer=1`. It is for QA, diagnostics, contribution workflows, raw paths, coverage gaps, and release-readiness review. Do not bring reviewer concepts into the normal public Medication Review.
+Reviewer tooling remains hidden behind `#reviewer=1`. It is for QA, diagnostics, contribution workflows, raw paths, coverage gaps, and release-readiness review. Do not bring reviewer concepts into the normal public Medication Review.
 
 ## Design Goals
 
@@ -48,4 +48,4 @@ Reviewer tooling remains hidden behind `?reviewer=1`. It is for QA, diagnostics,
 - Clopidogrel + omeprazole with CYP2C19 poor metabolizer.
 - Codeine + fluoxetine with CYP2D6 poor metabolizer.
 - Unknown or unrecognized selected items.
-- Reviewer Console with `?reviewer=1`.
+- Reviewer Console with `#reviewer=1`.

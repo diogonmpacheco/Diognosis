@@ -35,6 +35,11 @@ function currentV1HandoffState() {
       title: publicDisplayText(document.querySelector("#summaryBar .summary-title")?.textContent || ""),
       nextStep: publicDisplayText(document.querySelector("#summaryBar .summary-next")?.textContent || ""),
     },
+    clinicalContext: {
+      ...activeClinicalContext,
+      assessment:getClinicalContextAssessment(),
+      shareLinkIncludesContext:false,
+    },
     counts: {
       findings: findings.length,
       clinicalConcerns: currentClinicalConcerns.length,

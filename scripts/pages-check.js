@@ -76,6 +76,9 @@ verifyReleaseMetadata();
 verifyAuxiliaryPages();
 
 run('Smoke check', node, ['scripts/smoke-check.js']);
+run('V1 security boundary audit', node, ['scripts/audit/v1-security-boundary-audit.js']);
+run('V1 authority evidence audit', node, ['scripts/audit/v1-authority-evidence-audit.js']);
+run('V1 clinical context audit', node, ['scripts/audit/v1-clinical-context-audit.js']);
 run('Privacy/static audit', node, ['scripts/audit/privacy-static-audit.js']);
 run('Whitespace diff check', 'git', ['diff', '--check']);
 

@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta http-equiv="Content-Security-Policy" content="/* CSP_POLICY */">
+<meta name="referrer" content="no-referrer">
 <title>Diognosis — Mechanistic Medication Intelligence</title>
 <meta name="description" content="Diognosis is a mechanistic medication intelligence platform for source-linked review of parent drugs, metabolites, pharmacogenomics, timing, and pathway-driven safety signals.">
 <meta name="keywords" content="pharmacogenomics, medication safety, drug interactions, pharmacokinetics, CYP2D6, CYP enzymes, active metabolites, toxic metabolites, transporter pathways, evidence modeling, source-linked evidence, computational pharmacology">
@@ -1120,14 +1122,14 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
     <div class="mode-toggle" role="group" aria-label="Choose how to add items">
-      <button type="button" class="mode-btn active" id="searchModeBtn" onclick="setViewMode('search')" aria-pressed="true">Search by Name</button>
-      <button type="button" class="mode-btn" id="browseModeBtn" onclick="toggleBrowseMode()" aria-pressed="false" aria-controls="browseWrap" aria-expanded="false">Browse Categories</button>
+      <button type="button" class="mode-btn active" id="searchModeBtn" data-action="set-view-mode" data-mode="search" aria-pressed="true">Search by Name</button>
+      <button type="button" class="mode-btn" id="browseModeBtn" data-action="toggle-browse-mode" aria-pressed="false" aria-controls="browseWrap" aria-expanded="false">Browse Categories</button>
     </div>
 
     <div class="search-wrap">
       <div class="search-box">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="text" id="searchInput" placeholder="Search medicines, supplements, or foods" oninput="onSearch(this.value)" onfocus="onSearch(this.value)" onkeydown="handleSearchKeydown(event)" autocomplete="off">
+        <input type="text" id="searchInput" placeholder="Search medicines, supplements, or foods" autocomplete="off">
       </div>
       <div class="search-results" id="searchResults"></div>
     </div>
@@ -1145,10 +1147,11 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
           Add medicines, supplements, or foods above to start a medication review
         </div>
       </div>
+      <div class="selection-status" id="selectionStatus" role="status" aria-live="polite" aria-atomic="true"></div>
     </div>
 
   <div class="section" id="geneticsSection">
-      <div class="section-title collapsible" onclick="toggleSection('genetics')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="genetics">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
         <span id="geneSectionTitle">Gene / Marker Results <span style="font-size:11px;font-weight:400;color:var(--text2)">(optional)</span></span>
       </div>
@@ -1156,9 +1159,42 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
         <p id="geneSectionIntro" style="font-size:12px;color:var(--text2);margin-bottom:10px;line-height:1.4">Add a real gene or marker result from a report. Leave blank if you do not have one.</p>
         <div class="gene-add">
           <select id="geneAddSelect"></select>
-          <button onclick="addGeneFromSelect()">+ Add Gene / Marker</button>
+          <button type="button" data-action="add-gene-from-select">+ Add Gene / Marker</button>
         </div>
         <div id="geneList"></div>
+      </div>
+    </div>
+    <div class="section context-section" id="clinicalContextSection">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="clinicalContext">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"/><path d="M12 7v5l3 2"/></svg>
+        <span>Review Context <span style="font-size:11px;font-weight:400;color:var(--text2)">(recommended)</span></span>
+        <span class="context-count" id="clinicalContextCount"></span>
+      </div>
+      <div class="section-body coll-body open" id="clinicalContextBody">
+        <p class="context-intro">Add the details that can change how relevant a signal is. These fields stay in this browser and are excluded from share links.</p>
+        <label class="context-field context-field-wide">
+          <span>Exact regimen</span>
+          <input type="text" maxlength="240" data-context-field="regimen" placeholder="Product, strength, route and frequency">
+        </label>
+        <label class="context-field context-field-wide">
+          <span>Reason for use</span>
+          <input type="text" maxlength="200" data-context-field="indications" placeholder="Indication for each medicine">
+        </label>
+        <label class="context-field context-field-wide">
+          <span>Timing and recent changes</span>
+          <input type="text" maxlength="240" data-context-field="timing" placeholder="Last dose, starts, stops, switches or missed doses">
+        </label>
+        <div class="context-grid">
+          <label class="context-field"><span>Age range</span><select data-context-field="ageBand"><option value="unknown">Not added</option><option value="under18">Under 18</option><option value="18-64">18–64</option><option value="65-74">65–74</option><option value="75-plus">75+</option></select></label>
+          <label class="context-field"><span>Kidney function</span><select data-context-field="renalFunction"><option value="unknown">Not added</option><option value="no-known-impairment">No known impairment</option><option value="reduced">Reduced</option><option value="dialysis">Dialysis</option></select></label>
+          <label class="context-field"><span>Liver function</span><select data-context-field="hepaticFunction"><option value="unknown">Not added</option><option value="no-known-impairment">No known impairment</option><option value="reduced">Reduced</option></select></label>
+          <label class="context-field"><span>Pregnancy / feeding</span><select data-context-field="pregnancyStatus"><option value="unknown">Not added</option><option value="not-applicable">Not applicable</option><option value="pregnant">Pregnant / trying</option><option value="breastfeeding">Breastfeeding</option></select></label>
+          <label class="context-field"><span>Current symptoms</span><select data-context-field="symptomsStatus"><option value="unknown">Not added</option><option value="none-reported">None reported</option><option value="new-or-worsening">New or worsening</option></select></label>
+          <label class="context-field"><span>Relevant labs</span><select data-context-field="labsStatus"><option value="unknown">Not added</option><option value="not-available">Not available</option><option value="reviewed">Added / reviewed</option></select></label>
+        </div>
+        <label class="context-check"><input type="checkbox" data-context-field="allergiesReviewed"> <span>Allergies and previous serious reactions checked</span></label>
+        <div class="context-completeness" id="clinicalContextStatus"></div>
+        <button type="button" class="context-reset" data-action="reset-clinical-context">Reset context</button>
       </div>
     </div>
     <div class="rail-trust">
@@ -1218,7 +1254,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
           <a class="main-empty-demo-card" href="./index.html#demo=statin-inhibitor"><span>Pathway inhibition</span><strong>Statin + inhibitor</strong><small>Trace a clearance bottleneck</small></a>
         </div>
       </div>
-      <div class="main-empty-note"><strong>Boundary:</strong> Diognosis is a mechanistic medication intelligence platform for medication review. It is not medical advice, diagnosis, prescribing guidance, or proof that a list is safe. Source-integrated evidence is traceable context, not clinical validation. No personal data is uploaded or sent to runtime APIs.</div>
+      <div class="main-empty-note"><strong>Boundary:</strong> Diognosis is a mechanistic medication intelligence platform for medication review. It is not medical advice, diagnosis, prescribing guidance, or proof that a list is safe. Authority- and literature-linked evidence is traceable context, not independent Diognosis clinical validation. No personal data is uploaded or sent to runtime APIs.</div>
       <div class="main-empty-actions">
         <a class="main-empty-action primary" href="./data-views.html?view=genotype">Explore by gene result</a>
         <a class="main-empty-action" href="./medication-classes.html">Browse medication class guides</a>
@@ -1228,17 +1264,17 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
 
   <!-- Tab navigation (hidden until a stack exists) -->
   <div class="tab-bar" id="tabBar" role="tablist" aria-label="Medication review sections" style="display:none">
-    <button class="tab-btn active" id="tabbtn-overview" role="tab" aria-selected="true" aria-controls="tab-overview" tabindex="0" onclick="setTab('overview')" onkeydown="handleReviewTabKeydown(event)">Overview</button>
-    <button class="tab-btn" id="tabbtn-mechanisms" role="tab" aria-selected="false" aria-controls="tab-mechanisms" tabindex="-1" onclick="setTab('mechanisms')" onkeydown="handleReviewTabKeydown(event)">Mechanisms</button>
-    <button class="tab-btn" id="tabbtn-genes-metabolites" role="tab" aria-selected="false" aria-controls="tab-genes-metabolites" tabindex="-1" onclick="setTab('genes-metabolites')" onkeydown="handleReviewTabKeydown(event)">Genes + Metabolites</button>
-    <button class="tab-btn" id="tabbtn-timing-levels" role="tab" aria-selected="false" aria-controls="tab-timing-levels" tabindex="-1" onclick="setTab('timing-levels')" onkeydown="handleReviewTabKeydown(event)">Timing + Levels</button>
-    <button class="tab-btn" id="tabbtn-evidence" role="tab" aria-selected="false" aria-controls="tab-evidence" tabindex="-1" onclick="setTab('evidence')" onkeydown="handleReviewTabKeydown(event)">Evidence</button>
-    <button class="tab-btn" id="tabbtn-review" role="tab" aria-selected="false" aria-controls="tab-review" tabindex="-1" onclick="setTab('review')" onkeydown="handleReviewTabKeydown(event)" hidden aria-hidden="true">Reviewer Console</button>
+    <button class="tab-btn active" id="tabbtn-overview" role="tab" aria-selected="true" aria-controls="tab-overview" tabindex="0" data-action="set-tab" data-tab="overview">Overview</button>
+    <button class="tab-btn" id="tabbtn-mechanisms" role="tab" aria-selected="false" aria-controls="tab-mechanisms" tabindex="-1" data-action="set-tab" data-tab="mechanisms">Mechanisms</button>
+    <button class="tab-btn" id="tabbtn-genes-metabolites" role="tab" aria-selected="false" aria-controls="tab-genes-metabolites" tabindex="-1" data-action="set-tab" data-tab="genes-metabolites">Genes + Metabolites</button>
+    <button class="tab-btn" id="tabbtn-timing-levels" role="tab" aria-selected="false" aria-controls="tab-timing-levels" tabindex="-1" data-action="set-tab" data-tab="timing-levels">Timing + Levels</button>
+    <button class="tab-btn" id="tabbtn-evidence" role="tab" aria-selected="false" aria-controls="tab-evidence" tabindex="-1" data-action="set-tab" data-tab="evidence">Evidence</button>
+    <button class="tab-btn" id="tabbtn-review" role="tab" aria-selected="false" aria-controls="tab-review" tabindex="-1" data-action="set-tab" data-tab="review" hidden aria-hidden="true">Reviewer Console</button>
   </div>
 
   <div class="tab-panel active" id="tab-overview" role="tabpanel" aria-labelledby="tabbtn-overview" aria-hidden="false">
   <div class="section" id="scopeSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('scope')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="scope">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/></svg>
         <span>Reviewer Console Scope</span>
         <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="scopeCount"></span>
@@ -1255,7 +1291,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="findingSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('finding')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="finding">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
         <span id="findingTitle">Review Priorities</span>
         <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="findingCount"></span>
@@ -1264,7 +1300,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="circulatingSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('circulating')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="circulating">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16"/><path d="M4 15l5-5 4 4 7-9"/><path d="M15 5h5v5"/></svg>
         <span>What's Circulating</span>
         <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="circulatingCount"></span>
@@ -1273,7 +1309,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="interSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('inter')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="inter">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
         <span>Interaction Details</span>
         <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="interCount"></span>
@@ -1282,7 +1318,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="comboSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('combo')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="combo">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         <span>Combination Alerts</span>
         <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="comboCount"></span>
@@ -1291,7 +1327,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="mechanisticSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('mechanistic')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="mechanistic">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M4 4.5A2.5 2.5 0 0 1 6.5 7H20"/><path d="M8 7v10"/><path d="M16 7v10"/></svg>
         <span>Pathway Explanation</span>
         <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="mechanisticCount"></span>
@@ -1300,7 +1336,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="transporterSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('transporter')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="transporter">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
         <span>Transporter Interactions</span>
         <span style="margin-left:auto;font-size:12px;color:var(--text2)" id="transporterCount"></span>
@@ -1309,7 +1345,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="matrixSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('matrix')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="matrix">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
         Interaction Grid
       </div>
@@ -1317,7 +1353,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="pdSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('pd')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="pd">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22V8"/><path d="M3 3l5 5"/><path d="M21 3l-5 5"/></svg>
         <span>Blocked Pathways</span>
         <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">How pathway changes can reroute effects</span>
@@ -1329,7 +1365,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
 
   <div class="tab-panel" id="tab-genes-metabolites" role="tabpanel" aria-labelledby="tabbtn-genes-metabolites" aria-hidden="true">
   <div class="section" id="foldSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('fold')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="fold">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         <span>Level Changes</span>
       </div>
@@ -1337,7 +1373,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="genotypeSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('genotype')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="genotype">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M12 2a4 4 0 0 1 4 4v12a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
           <path d="M8 10h8M8 14h8"/>
@@ -1349,7 +1385,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="phenoconversionSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('phenoconversion')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="phenoconversion">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M4 7h8"/>
           <path d="M4 17h8"/>
@@ -1365,7 +1401,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="activeMoietySection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('activeMoiety')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="activeMoiety">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M6 4h12"/>
           <path d="M8 4v5a4 4 0 0 0 8 0V4"/>
@@ -1379,7 +1415,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="metabSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('metab')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="metab">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2v11m0 0a5 5 0 0 0 10 0V2"/><path d="M4 15a8 8 0 0 0 16 0"/></svg>
         <span>Supporting Metabolite Details</span>
         <span style="margin-left:auto;font-size:11px;color:var(--text2);font-weight:400">Metabolite data used by Drug &amp; Metabolite Balance</span>
@@ -1388,7 +1424,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="cascadeSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('cascade')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="cascade">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>
           <line x1="12" y1="7" x2="5" y2="17"/><line x1="12" y1="7" x2="19" y2="17"/>
@@ -1400,7 +1436,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="phenoAccumSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('phenoAccum')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="phenoAccum">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
         </svg>
@@ -1413,7 +1449,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
 
   <div class="tab-panel" id="tab-timing-levels" role="tabpanel" aria-labelledby="tabbtn-timing-levels" aria-hidden="true">
   <div class="section" id="pkSimSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('pkSim')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="pkSim">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="3 17 9 11 13 15 21 7"/>
           <polyline points="14 7 21 7 21 14"/>
@@ -1425,7 +1461,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="persistenceTimelineSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('persistenceTimeline')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="persistenceTimeline">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="10"/>
           <polyline points="12 6 12 12 16 14"/>
@@ -1437,7 +1473,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="washoutSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('washout')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="washout">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
           <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
@@ -1450,7 +1486,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="burdenSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('burden')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="burden">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
           <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
@@ -1464,7 +1500,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
 
   <div class="tab-panel" id="tab-mechanisms" role="tabpanel" aria-labelledby="tabbtn-mechanisms" aria-hidden="true">
   <div class="section" id="mechanismWhySection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('mechanismWhy')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="mechanismWhy">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M4 7h5"/>
           <path d="M15 7h5"/>
@@ -1479,7 +1515,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="graphSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('graph')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="graph">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/>
           <line x1="8" y1="12" x2="16" y2="7"/><line x1="8" y1="12" x2="16" y2="17"/>
@@ -1493,7 +1529,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
 
   <div class="tab-panel" id="tab-review" role="tabpanel" aria-labelledby="tabbtn-review" hidden aria-hidden="true">
   <div class="section" id="reviewSummarySection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('reviewSummary')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="reviewSummary">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M9 11l3 3L22 4"/>
           <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
@@ -1505,7 +1541,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="scenarioSnapshotSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('scenarioSnapshot')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="scenarioSnapshot">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <rect x="3" y="4" width="18" height="16" rx="2"/>
           <path d="M7 8h10M7 12h6M7 16h8"/>
@@ -1517,7 +1553,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="metaboliteGapSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('metaboliteGap')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="metaboliteGap">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M12 2v20"/>
           <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/>
@@ -1529,7 +1565,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="warningPathSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('warningPath')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="warningPath">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="5" cy="5" r="2"/>
           <circle cx="19" cy="5" r="2"/>
@@ -1545,7 +1581,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="contributeSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('contribute')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="contribute">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
           <polyline points="17 8 12 3 7 8"/>
@@ -1559,7 +1595,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
 
   <div class="tab-panel" id="tab-evidence" role="tabpanel" aria-labelledby="tabbtn-evidence" aria-hidden="true">
   <div class="section" id="sourceIntegrationCandidateSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('sourceIntegrationCandidate')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="sourceIntegrationCandidate">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/>
         </svg>
@@ -1570,7 +1606,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
 
   <div class="section" id="evidenceSection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('evidence')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="evidence">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
         </svg>
@@ -1584,7 +1620,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
 
   <div id="legacyContributorSections" style="display:none">
   <div class="section" id="qualitySection" style="display:none">
-      <div class="section-title collapsible" onclick="toggleSection('quality')">
+      <div class="section-title collapsible" data-action="toggle-section" data-section="quality">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-5"/>
         </svg>
@@ -1601,7 +1637,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
 <footer class="disclaimer">
   <div class="disclaimer-box">
     <strong>Important Disclaimer</strong>
-    Diognosis is a mechanistic medication intelligence platform for source-linked review of parent drugs, metabolites, pharmacogenomics, timing, and pathway-driven safety signals. It is not medical advice and not a clinical decision support system. Source-integrated evidence is traceable context; it does not equal clinical validation. Always consult a qualified doctor or pharmacist before making any medication decision. No personal data is uploaded, collected, stored, tracked, or sent to runtime APIs; Diognosis runs locally in your browser.
+    Diognosis is a mechanistic medication intelligence platform for source-linked review of parent drugs, metabolites, pharmacogenomics, timing, and pathway-driven safety signals. It is not medical advice and not a clinical decision support system. Authority- and literature-linked evidence is traceable context; it is not independent Diognosis clinical validation. Always consult a qualified doctor or pharmacist before making any medication decision. No personal data is uploaded, collected, stored, tracked, or sent to runtime APIs; Diognosis runs locally in your browser.
   </div>
   <div class="version-strip" aria-label="Diognosis version">
     <span><strong>Diognosis</strong></span>
@@ -1609,7 +1645,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     <span>Drug DB <strong id="ver-db">...</strong></span>
     <span>Drugs <strong id="ver-count">...</strong></span>
     <span>Schema <strong id="ver-schema">...</strong></span>
-    <span>Reviewed <strong id="ver-date">...</strong></span>
+    <span>Release <strong id="ver-date">...</strong></span>
     <span><a href="https://github.com/diogonmpacheco/Diognosis" rel="noopener">Source repository</a></span>
   </div>
 </footer>

@@ -37,7 +37,7 @@ function renderWarningPathReview() {
             <div class="warning-path-title">${safePublicHtml(finding.title || finding.id)}</div>
             <div class="warning-path-meta">${safePublicHtml(finding.source || finding.type || "finding")} · ${safePublicHtml(finding.severity || "info")}</div>
           </div>
-          <button class="mini-btn" onclick="copyWarningPath('${safeAttr(finding.id)}')">Copy technical path</button>
+          <button type="button" class="mini-btn" data-action="copy-warning-path" data-finding-id="${safeAttr(finding.id)}">Copy technical path</button>
         </div>
         ${renderWhyPath(finding.whyPath)}
       </div>`;
@@ -95,7 +95,7 @@ function renderMechanismWhyPaths() {
       ? renderRelatedFindingButton({ finding }, "Open finding")
       : "";
     const reviewerButton = typeof isReviewerMode === "function" && isReviewerMode()
-      ? `<button class="mini-btn" onclick="setTab('review')">Open reviewer panel</button>`
+      ? `<button type="button" class="mini-btn" data-action="set-tab" data-tab="review">Open reviewer panel</button>`
       : "";
     const standardMode = typeof isReviewerMode === "function" && !isReviewerMode();
     const supportingSignals = renderMechanismSupportingSignals(finding, { includeTitle:!standardMode });

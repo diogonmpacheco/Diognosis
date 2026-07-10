@@ -33,9 +33,13 @@ function renderInteractions(interactions) {
       : '';
 
     const hasEv = studies.length > 0;
-    const reviewLabel = studies.some(s => s.professionalReviewed === true || s.clinicalReviewed === true || ["professional_reviewed", "clinician_reviewed"].includes(s.reviewStatus))
-      ? "reviewed source evidence"
-      : "source-integrated evidence";
+    const reviewLabel = studies.some(s => typeof isAuthorityEvidence === "function" && isAuthorityEvidence(s))
+      ? "authority-linked evidence"
+      : studies.some(s => typeof isPrimaryLiteratureEvidence === "function" && isPrimaryLiteratureEvidence(s))
+        ? "primary-literature linked"
+        : studies.every(s => typeof isModeledContextEvidence === "function" && isModeledContextEvidence(s))
+          ? "modeled context · not severity-bearing"
+          : "linked evidence";
     const reviewClass = "review";
     const findingTitle = buildFindingTitle(i);
     const pathwayLabel = i.enzyme || i.category || i.type || "pathway";
@@ -67,7 +71,7 @@ function renderInteractions(interactions) {
         ${hasEv ? `<span class="finding-tag">${studies.length} stud${studies.length===1?'y':'ies'}</span>` : '<span class="finding-tag warn">no linked study yet</span>'}
         ${hasEv ? `<span class="finding-tag ${reviewClass}">${reviewLabel}</span>` : ""}
       </div>
-      ${hasEv ? `${evSummary}<div class="ev-summary-line"><button type="button" class="summary-jump" onclick="focusPriorityFinding('evidence','evidenceLadderLedger')">Open Evidence tab</button> for citations and review status.</div>` : ''}
+      ${hasEv ? `${evSummary}<div class="ev-summary-line"><button type="button" class="summary-jump" data-action="focus-priority" data-tab="evidence" data-target="evidenceLadderLedger">Open Evidence tab</button> for citations and review status.</div>` : ''}
       <div class="feedback-row">${feedbackLink}</div>
     </div>`;
   }).join("");

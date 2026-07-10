@@ -1,6 +1,6 @@
 # Diognosis Public Trust Model
 
-Generated: 2026-07-07
+Generated: 2026-07-10
 
 ## Launch Status
 
@@ -8,16 +8,16 @@ Diognosis is a source-linked mechanistic medication intelligence platform in act
 
 Diognosis explores drug-drug interactions, pharmacogenomics, active and toxic metabolites, pharmacokinetic exposure shifts, transporter pathways, medication class effects, and source-linked evidence through a privacy-preserving static web application built for mechanistic review.
 
-Status: V1 platform scope, source-linked, source-integrated, under active validation, and not medical advice.
+Status: V1 platform scope, authority/literature provenance visible, modeled context quarantined, under active validation, and not medical advice.
 
 Diognosis is a source-linked mechanistic review platform. It is designed to make pharmacology, pharmacogenomics, metabolites, timing, and interaction pathways easier to inspect. It is not medical advice, not a clinical decision support system, and it does not replace a licensed clinician or pharmacist.
 
 Current evidence status:
 
 <!-- PUBLIC_TRUST_STATS_START -->
-- **502 `STUDY_DB` entries** are source-integrated for V1 evidence display and calculations.
-- **269 entries** include PMIDs; label, guideline, DOI, and URL sources are also retained where available.
-- Source integration means the claim is traceable to committed Diognosis data and source identifiers; it does not mean medical advice or clinical validation.
+- **233 `STUDY_DB` entries** link to regulatory authorities or recognized guideline publishers.
+- **218 entries** link to claim-specific primary literature; **16 entries** are explicitly modeled context and cannot preserve severe output.
+- **269 entries** include PMIDs. Authority and literature linkage describe provenance, not independent Diognosis clinical validation.
 <!-- PUBLIC_TRUST_STATS_END -->
 - Severe and critical warnings remain visible for discovery, but severity is not clinically final and does not prove a medication plan is safe.
 
@@ -25,11 +25,22 @@ Current evidence status:
 
 Diognosis V1 ships committed, static source data. It does not run automated external-source import jobs for PubMed, Europe PMC, OpenAlex, Unpaywall, CPIC Data, ClinPGx, or Open Targets.
 
-External records can affect scoring, public severity, contraindication wording, genotype rules, metabolite maps, or shipped database behavior only after they are intentionally added to committed Diognosis source files and pass validation. CPIC, ClinPGx, label, literature, and Open Targets context can be source-integrated for V1 when local mapping and boundary checks pass.
+External records can affect scoring, public severity, contraindication wording, genotype rules, metabolite maps, or shipped database behavior only after they are intentionally added to committed Diognosis source files, assigned a provenance class, and pass validation. Official FDA/DailyMed and recognized guideline-publisher links are classified as authority sources; claim-specific PMID/DOI records are classified as primary literature; internal expansion records remain modeled context and are not severity-bearing.
 
 ClinPGx, CPIC Data, PubMed, Open Targets, and label sources are not queried from the browser.
 
-Diognosis may continue adding source-linked data. Source integration is shown explicitly and does not equal professional clinical review.
+Diognosis may continue adding source-linked data. Provenance is shown explicitly and does not equal independent professional clinical review.
+
+## Authority Without A Professional Sign-Off Dependency
+
+V1 does not depend on obtaining a professional sign-off that may never be available. Instead, it uses an auditable provenance hierarchy:
+
+1. Authority sources link to the exact regulator or recognized guideline page where available.
+2. Primary literature links to claim-specific PMIDs or DOIs.
+3. Other linked sources stay labeled as linked context.
+4. Internal adapters and expansion scaffolds are modeled context, hidden from the public evidence browser, and unable to preserve severe output.
+
+This makes the basis of a claim inspectable without pretending that source authority is the same as patient-specific clinical judgment.
 
 ## What A Reviewer Should Check
 
@@ -86,7 +97,7 @@ This adds the database, V1 public-docs, standards/readiness, strict validation, 
 Any later clinical-validation phase should prioritize:
 
 - Severe/critical warnings used in public demos.
-- Calculation-bearing source-integrated evidence.
+- Calculation-bearing authority or primary-literature evidence.
 - High-impact transplant, oncology, anesthesia, G6PD, and anticoagulation cases.
 - Evidence entries linked to many severe or critical rows.
 - Any report that claims a quantified fold, dose reduction, contraindication, or guideline-backed action.

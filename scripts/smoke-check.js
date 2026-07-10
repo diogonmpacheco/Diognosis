@@ -8,7 +8,8 @@ import { JSDOM, VirtualConsole } from 'jsdom';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
-const OUT = resolve(ROOT, '.tmp', 'smoke-index.html');
+const USE_EXISTING_BUILD = process.argv.includes('--existing-build');
+const OUT = USE_EXISTING_BUILD ? resolve(ROOT, 'index.html') : resolve(ROOT, '.tmp', 'smoke-index.html');
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -18,8 +19,12 @@ function evalInPage(win, expression) {
   return win.eval(expression);
 }
 
-console.log('Building smoke-test HTML...');
-execFileSync(process.execPath, ['build.js', '--out', OUT], { cwd: ROOT, stdio: 'pipe' });
+if (!USE_EXISTING_BUILD) {
+  console.log('Building smoke-test HTML...');
+  execFileSync(process.execPath, ['build.js', '--out', OUT], { cwd: ROOT, stdio: 'pipe' });
+} else {
+  console.log('Using existing smoke-test HTML from index.html...');
+}
 
 const html = readFileSync(OUT, 'utf8');
 const readme = readFileSync(resolve(ROOT, 'README.md'), 'utf8');
@@ -184,7 +189,8 @@ assert(!searchResults.classList.contains('show') && searchInput.value === '',
 searchInput.value = 'parox';
 window.onSearch(searchInput.value);
 let keyboardSearchResult = doc.querySelector('#searchResults .sr-item[role="button"][tabindex="0"]');
-assert(keyboardSearchResult?.getAttribute('onkeydown')?.includes('activateKeyboardButton'), 'Search results should support keyboard activation');
+assert(keyboardSearchResult?.dataset.keyboardButton === 'true' && !keyboardSearchResult.hasAttribute('onkeydown'),
+  'Search results should support delegated keyboard activation without inline handlers');
 keyboardSearchResult.dispatchEvent(new window.KeyboardEvent('keydown', { key:'Enter', bubbles:true, cancelable:true }));
 assert(evalInPage(window, 'activeStack.includes("Paroxetine")'), 'Enter on a search result should add the selected medication');
 assert(!searchResults.classList.contains('show') && searchInput.value === '',
@@ -214,7 +220,8 @@ window.removeDrug('Not In This Database');
 
 window.setViewMode('browse');
 let keyboardGuide = doc.querySelector('.class-guide-card[role="button"][tabindex="0"]');
-assert(keyboardGuide?.getAttribute('onkeydown')?.includes('activateKeyboardButton'), 'Browse example cards should support keyboard activation');
+assert(keyboardGuide?.dataset.keyboardButton === 'true' && !keyboardGuide.hasAttribute('onkeydown'),
+  'Browse example cards should support delegated keyboard activation');
 assert(doc.getElementById('browseModeBtn')?.getAttribute('aria-expanded') === 'true', 'Browse mode button should expose expanded state while browse panel is open');
 doc.getElementById('browseModeBtn')?.click();
 assert(doc.getElementById('browseWrap')?.classList.contains('show') === false, 'Clicking the active Browse Categories button should close the browse panel');
@@ -236,7 +243,8 @@ keyboardBrowseCategory.dispatchEvent(new window.KeyboardEvent('keydown', { key:'
 assert(keyboardBrowseCategory.getAttribute('aria-expanded') === 'true' && keyboardBrowseCategory.nextElementSibling?.classList.contains('show'),
   'Space on a browse category header should expand the category');
 const keyboardBrowseChip = doc.querySelector('.browse-chip[role="button"][tabindex="0"]');
-assert(keyboardBrowseChip?.getAttribute('onkeydown')?.includes('activateKeyboardButton'), 'Browse medication chips should support keyboard activation');
+assert(keyboardBrowseChip?.dataset.keyboardButton === 'true' && !keyboardBrowseChip.hasAttribute('onkeydown'),
+  'Browse medication chips should support delegated keyboard activation');
 keyboardBrowseChip.dispatchEvent(new window.KeyboardEvent('keydown', { key:'Enter', bubbles:true, cancelable:true }));
 assert(doc.querySelector('.browse-cat-title[aria-expanded="true"]') && doc.querySelector('.browse-items.show'),
   'Browse should keep the currently expanded category open after adding a chip');
@@ -347,7 +355,8 @@ const publicTrustText = [...doc.querySelectorAll('#findingBody .primary-finding-
   .map(chip => chip.textContent.replace(/\s+/g, ' ').trim())
   .join(' | ');
 assert(doc.querySelectorAll('#findingBody .primary-finding-card .finding-trust-chip strong').length === 0, 'Public trust chips should not use label/value headings');
-assert(/Source-linked|Modeled|confidence/i.test(publicTrustText), 'Public trust chips should keep concise evidence and confidence values');
+assert(/Authority-linked|Primary-literature linked|Linked source|Modeled/i.test(publicTrustText) && /Mechanism:/i.test(publicTrustText),
+  'Public trust chips should keep concise provenance and mechanistic-confidence values');
 assert([...doc.querySelectorAll('#findingBody .primary-finding-card')].every(card => card.querySelectorAll('.finding-note').length >= 2 && !/What changed|Why it matters|Review focus|What to review/i.test(card.textContent)), 'Overview finding cards should render compact unlabeled review notes');
 const publicVisibleReviewText = `${doc.getElementById('summaryBar')?.textContent || ''} ${doc.getElementById('findingBody')?.textContent || ''}`;
 assert(!publicVisibleReviewText.includes('should be avoided, substituted, dose-adjusted, or monitored before use'),

@@ -110,4 +110,4 @@ assert(report.findingReviewedClaimCount === 0, 'Normalized findings must not cla
 assert(report.severeFindingWithoutRefsOrReviewRequired === 0, 'Severe/critical findings without refs must remain reviewRequired');
 assert(report.danglingFindingEvidenceRefs.length === 0, `Normalized findings contain dangling evidence refs: ${report.danglingFindingEvidenceRefs.join(', ')}`);
 
-console.log(`Evidence calculation audit passed: ${report.graphSourceLinkedEvidenceCount} source-linked studies feed graph confidence; ${report.ddiSourceLinkedEvidenceCount} feed DDI profiles; clinical validation remains outside source integration.`);
+console.log(`Evidence calculation audit passed: ${report.graphSourceLinkedEvidenceCount} source-linked studies feed graph confidence; ${report.ddiSourceLinkedEvidenceCount} feed DDI profiles; provenance does not imply clinical validation.`);

@@ -22,6 +22,9 @@ run('V1 PK visualization audit', node, ['scripts/audit/v1-pk-visualization-audit
 run('V1 finding contract audit', node, ['scripts/audit/v1-finding-contract-audit.js']);
 run('V1 release readiness audit', node, ['scripts/audit/v1-release-readiness-audit.js']);
 run('V1 feedback privacy audit', node, ['scripts/audit/v1-feedback-privacy-audit.js']);
+run('V1 security boundary audit', node, ['scripts/audit/v1-security-boundary-audit.js']);
+run('V1 authority evidence audit', node, ['scripts/audit/v1-authority-evidence-audit.js']);
+run('V1 clinical context audit', node, ['scripts/audit/v1-clinical-context-audit.js']);
 run('Evidence calculation audit', node, ['scripts/audit/evidence-calculation-audit.js']);
 run('External context firewall audit', node, ['scripts/audit/external-context-firewall-audit.js']);
 run('Scenario snapshot audit', node, ['scripts/audit/scenario-snapshot-audit.js']);

@@ -64,8 +64,8 @@ function renderGenotypePanel() {
       const label = genotypeDisplayLabel(enz, k);
       const freq = GENOTYPE_EFFECTS[enz]?.[k]?.freq_pct || '?';
       const semanticTitle = genotypeOptionTitle(enz, k);
-      html += `<button class="geno-btn ${cur===k?'active':''}"
-        onclick="setGenotype('${enz}','${k}')"
+      html += `<button type="button" class="geno-btn ${cur===k?'active':''}"
+        data-action="set-genotype" data-gene="${safeAttr(enz)}" data-phenotype="${safeAttr(k)}"
         title="${safeAttr(publicDisplayText(semanticTitle))}; frequency: ~${safeAttr(freq)}% of population">${safePublicHtml(label)} <span style="font-weight:400;font-size:9px">${safePublicHtml(freq)}%</span></button>`;
     }
     html += '</div>';
@@ -81,8 +81,8 @@ function renderGenotypePanel() {
       <span class="geno-enz-label">${risk.label}</span>`;
     for (const [status, label] of buttons) {
       const effect = risk.effects?.[status];
-      html += `<button class="geno-btn ${cur===status?'active':''}"
-        onclick="setGenotype('${riskKey}','${status}')"
+      html += `<button type="button" class="geno-btn ${cur===status?'active':''}"
+        data-action="set-genotype" data-gene="${safeAttr(riskKey)}" data-phenotype="${safeAttr(status)}"
         title="${safeAttr(publicDisplayText(effect?.note || ""))}">${safePublicHtml(label)}</button>`;
     }
     html += '</div>';
@@ -193,7 +193,7 @@ function renderPgxActionSummaryCard(row = {}) {
     .flatMap(name => typeof getExternalIdentifiersForSubstance === "function" ? getExternalIdentifiersForSubstance(name) : [])
     .map(item => item.label);
   const evidenceButton = evidenceCount
-    ? `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('evidence','evidenceLadderLedger')">Evidence</button>`
+    ? `<button type="button" class="related-finding-btn secondary" data-action="focus-priority" data-tab="evidence" data-target="evidenceLadderLedger">Evidence</button>`
     : "";
   const notes = [
     row.whatChanged,
@@ -830,9 +830,9 @@ function renderPharmGxImportCard() {
   return `<div class="geno-import-card">
     <div class="geno-import-title">DNA / PharmGx report import <span>local preview</span></div>
     <div class="geno-import-note">Paste gene phenotype rows from a PharmGx report or structured text with gene and phenotype/status fields. Nothing is uploaded.</div>
-    <textarea id="${id}" class="geno-import-text" placeholder="CYP2C19 | *1/*2 | Intermediate Metabolizer&#10;CYP2D6 | *4/*4 | Poor Metabolizer&#10;HLA-B*57:01 | detected"></textarea>
+    <textarea id="${id}" class="geno-import-text" maxlength="${INPUT_LIMITS.pharmGxImportCharacters}" placeholder="CYP2C19 | *1/*2 | Intermediate Metabolizer&#10;CYP2D6 | *4/*4 | Poor Metabolizer&#10;HLA-B*57:01 | detected"></textarea>
     <div class="geno-import-actions">
-      <button onclick="applyPharmGxImport()">Apply genotypes</button>
+      <button type="button" data-action="apply-pharmgx-import">Apply genotypes</button>
       <span id="pharmgxImportStatus"></span>
     </div>
   </div>`;
@@ -840,6 +840,11 @@ function renderPharmGxImportCard() {
 
 function applyPharmGxImport() {
   const input = document.getElementById("pharmgxImportText");
+  if ((input?.value || "").length > INPUT_LIMITS.pharmGxImportCharacters) {
+    const status = document.getElementById("pharmgxImportStatus");
+    if (status) status.textContent = `Import is too large. Keep it under ${INPUT_LIMITS.pharmGxImportCharacters.toLocaleString()} characters.`;
+    return;
+  }
   const result = parsePharmGxImportDetailed(input?.value || "");
   const parsed = result.rows;
   const applied = [];
@@ -873,10 +878,12 @@ function parsePharmGxImport(text) {
 }
 
 function parsePharmGxImportDetailed(text) {
-  const raw = String(text || "").trim();
+  const raw = String(text || "").slice(0, INPUT_LIMITS.pharmGxImportCharacters).trim();
   if (!raw) return { rows:[], skipped:[] };
   const jsonRows = parsePharmGxJson(raw);
-  if (jsonRows.rows.length || jsonRows.skipped.length) return jsonRows;
+  if (jsonRows.rows.length || jsonRows.skipped.length) {
+    return { rows:jsonRows.rows.slice(0, INPUT_LIMITS.genotypeTokens), skipped:jsonRows.skipped };
+  }
   const rows = [];
   const skipped = [];
   for (const line of raw.split(/\r?\n/)) {
@@ -884,7 +891,7 @@ function parsePharmGxImportDetailed(text) {
     if (parsed) rows.push(parsed);
     else if (line.trim() && !line.trim().startsWith("|---") && !/^gene\s*[,\t|]/i.test(line.trim())) skipped.push(line.trim());
   }
-  return { rows, skipped };
+  return { rows:rows.slice(0, INPUT_LIMITS.genotypeTokens), skipped };
 }
 
 function parsePharmGxJson(raw) {

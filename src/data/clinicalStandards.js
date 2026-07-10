@@ -3151,6 +3151,23 @@ const PGX_MARKER_MAPPINGS = Object.freeze({
   ]),
 });
 
+const FDA_PGX_AUTHORITY_KEYS = new Set([
+  "clopidogrel|CYP2C19", "codeine|CYP2D6", "tramadol|CYP2D6",
+  "capecitabine|DPYD", "fluorouracil|DPYD",
+  "azathioprine|TPMT", "azathioprine|NUDT15",
+  "mercaptopurine|TPMT", "mercaptopurine|NUDT15", "thioguanine|NUDT15",
+  "metoprolol|CYP2D6", "simvastatin|SLCO1B1", "atorvastatin|SLCO1B1", "rosuvastatin|SLCO1B1",
+  "warfarin|CYP2C9", "warfarin|VKORC1", "warfarin|CYP4F2",
+  "tacrolimus|CYP3A5", "irinotecan|UGT1A1", "succinylcholine|BCHE",
+]);
+
+function authorityEvidenceRefsForPgxAction(row = {}) {
+  const drugs = [row.drug, ...(row.drugs || [])].filter(Boolean);
+  return drugs.some(drug => FDA_PGX_AUTHORITY_KEYS.has(`${String(drug).toLowerCase()}|${row.gene}`))
+    ? ["ev_fda_pharmacogenetic_associations_2026"]
+    : [];
+}
+
 const PGX_ACTION_SUMMARIES = Object.freeze([
   {
     id:"pgx_action_clopidogrel_cyp2c19_reduced_function",
@@ -3159,7 +3176,7 @@ const PGX_ACTION_SUMMARIES = Object.freeze([
     phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.IM],
     level:"A",
     source:"CPIC",
-    guidelineUrl:"https://www.clinpgx.org/guideline/PA166251443",
+    guidelineUrl:"https://files.cpicpgx.org/data/guideline/publication/clopidogrel/2022/35034351.pdf",
     title:"CPIC-linked clopidogrel activation review",
     whatChanged:"Reduced CYP2C19 function can lower clopidogrel active-thiol formation.",
     reviewDirection:"Review the indication and whether a non-CYP2C19-dependent P2Y12 option such as prasugrel or ticagrelor is appropriate and not contraindicated.",
@@ -3173,12 +3190,12 @@ const PGX_ACTION_SUMMARIES = Object.freeze([
     phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.UM],
     level:"A",
     source:"CPIC",
-    guidelineUrl:"https://www.clinpgx.org/guideline/PA166251454",
+    guidelineUrl:"https://cpicpgx.org/content/guideline/publication/opioids/2020/CPIC_opioids_PREPRINT.pdf",
     title:"CPIC-linked codeine activation review",
     whatChanged:"CYP2D6 poor metabolism can reduce morphine formation, while ultrarapid metabolism can increase active-metabolite toxicity risk.",
     reviewDirection:"Review whether codeine should be avoided in favor of an analgesic plan that does not depend on CYP2D6 activation.",
     safetyBoundary:"Pain indication, age, respiratory risk, opioid tolerance, and local protocols still govern the final choice.",
-    evidenceRefs:["ev_codeine_cyp2d6_cpic","ev_cyp2d6_codeine_genotype"],
+    evidenceRefs:["ev_codeine_cyp2d6_cpic","ev_opioid_cyp2d6_cpic_2020","ev_cyp2d6_codeine_genotype"],
   },
   {
     id:"pgx_action_tramadol_cyp2d6_extreme_function",
@@ -3187,7 +3204,7 @@ const PGX_ACTION_SUMMARIES = Object.freeze([
     phenotypes:[GENOTYPE_PHENOTYPE.PM, GENOTYPE_PHENOTYPE.UM],
     level:"A",
     source:"CPIC",
-    guidelineUrl:"https://www.clinpgx.org/guideline/PA166251454",
+    guidelineUrl:"https://cpicpgx.org/content/guideline/publication/opioids/2020/CPIC_opioids_PREPRINT.pdf",
     title:"CPIC-linked tramadol activation review",
     whatChanged:"CYP2D6 poor metabolism can reduce O-desmethyltramadol (M1) formation, while ultrarapid metabolism can increase opioid-active metabolite toxicity risk.",
     reviewDirection:"Review whether tramadol should be avoided in favor of an analgesic plan that does not depend on CYP2D6 activation, while accounting for parent tramadol serotonergic effects.",
@@ -3404,7 +3421,14 @@ const PGX_ACTION_SUMMARIES = Object.freeze([
     safetyBoundary:"A negative genotype does not fully exclude malignant-hyperthermia susceptibility; anesthesia history and specialist planning remain necessary.",
     evidenceRefs:["ev_volatile_succinylcholine_ryr1_cacna1s_cpic2019"],
   },
-]);
+].map(row => {
+  const authorityEvidenceRefs = authorityEvidenceRefsForPgxAction(row);
+  return Object.freeze({
+    ...row,
+    authorityEvidenceRefs:Object.freeze(authorityEvidenceRefs),
+    evidenceRefs:Object.freeze([...new Set([...(row.evidenceRefs || []), ...authorityEvidenceRefs])]),
+  });
+}));
 
 function clinicalStandardKey(value) {
   return String(value || "")

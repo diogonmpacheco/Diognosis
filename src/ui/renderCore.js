@@ -33,6 +33,7 @@ function handleGlobalDismissKeydown(event) {
 
 function addDrug(name) {
   if (!activeStack.includes(name)) {
+    if (!canAddSelection()) return;
     clearSelectionUndoSnapshot();
     activeStack.push(name);
     closeSearchResults({ clearInput:true, blurInput:true });
@@ -42,6 +43,7 @@ function addDrug(name) {
 
 function removeDrug(name) {
   activeStack = activeStack.filter(n => n !== name);
+  setSelectionStatus("");
   delete drugDoses[name];
   closeSearchResults({ clearInput:true, blurInput:true });
   renderAll();
@@ -51,6 +53,7 @@ function addFoodActor(id) {
   const actor = typeof getSupplementActor === "function" ? getSupplementActor(id) : null;
   const actorId = actor ? actor.id : id;
   if (!activeStack.includes(actorId)) {
+    if (!canAddSelection()) return;
     clearSelectionUndoSnapshot();
     activeStack.push(actorId);
     closeSearchResults({ clearInput:true, blurInput:true });
@@ -69,11 +72,28 @@ function addUnrecognizedSubstance(value) {
     return itemKey === key;
   });
   if (!alreadySelected) {
+    if (!canAddSelection()) return;
     clearSelectionUndoSnapshot();
     activeStack.push(name);
   }
   closeSearchResults({ clearInput:true, blurInput:true });
   renderAll();
+}
+
+function canAddSelection() {
+  if (activeStack.length < INPUT_LIMITS.selectedSubstances) {
+    setSelectionStatus("");
+    return true;
+  }
+  setSelectionStatus(`Up to ${INPUT_LIMITS.selectedSubstances} items can be reviewed at once. Remove an item before adding another.`, "warning");
+  return false;
+}
+
+function setSelectionStatus(message = "", tone = "") {
+  const status = document.getElementById("selectionStatus");
+  if (!status) return;
+  status.textContent = message;
+  if (status.dataset) status.dataset.tone = tone;
 }
 
 function removeFoodActor(id) {
@@ -83,12 +103,14 @@ function removeFoodActor(id) {
     const selectedActor = typeof getStackSupplementActor === "function" ? getStackSupplementActor(n) : null;
     return (selectedActor ? selectedActor.id : n) !== actorId;
   });
+  setSelectionStatus("");
   closeSearchResults({ clearInput:true, blurInput:true });
   renderAll();
 }
 
 function swapDrug(oldName, newName) {
   const idx = activeStack.indexOf(oldName);
+  if (idx < 0 && !canAddSelection()) return;
   clearSelectionUndoSnapshot();
   if (idx >= 0) activeStack[idx] = newName;
   else activeStack.push(newName);
@@ -108,6 +130,166 @@ let manualSectionToggleKeys = {};
 let lastClearedSelection = null;
 let pendingBrowseFocusDrug = null;
 const DIOGNOSIS_TABS = ["overview","mechanisms","genes-metabolites","timing-levels","evidence","review"];
+
+const CLINICAL_CONTEXT_DEFAULTS = Object.freeze({
+  regimen:"",
+  indications:"",
+  timing:"",
+  ageBand:"unknown",
+  renalFunction:"unknown",
+  hepaticFunction:"unknown",
+  pregnancyStatus:"unknown",
+  symptomsStatus:"unknown",
+  labsStatus:"unknown",
+  allergiesReviewed:false,
+});
+let activeClinicalContext = { ...CLINICAL_CONTEXT_DEFAULTS };
+
+const CLINICAL_CONTEXT_SELECT_VALUES = Object.freeze({
+  ageBand:["unknown","under18","18-64","65-74","75-plus"],
+  renalFunction:["unknown","no-known-impairment","reduced","dialysis"],
+  hepaticFunction:["unknown","no-known-impairment","reduced"],
+  pregnancyStatus:["unknown","not-applicable","pregnant","breastfeeding"],
+  symptomsStatus:["unknown","none-reported","new-or-worsening"],
+  labsStatus:["unknown","not-available","reviewed"],
+});
+
+function updateClinicalContextField(field, value) {
+  if (!Object.prototype.hasOwnProperty.call(CLINICAL_CONTEXT_DEFAULTS, field)) return;
+  if (field === "allergiesReviewed") activeClinicalContext[field] = Boolean(value);
+  else if (CLINICAL_CONTEXT_SELECT_VALUES[field]) {
+    activeClinicalContext[field] = CLINICAL_CONTEXT_SELECT_VALUES[field].includes(value) ? value : "unknown";
+  } else {
+    activeClinicalContext[field] = safeText(value).slice(0, field === "indications" ? 200 : 240);
+  }
+  renderClinicalContextPanel();
+  renderSummaryBar();
+  refreshFindingContextApplicability();
+}
+
+function resetClinicalContext() {
+  activeClinicalContext = { ...CLINICAL_CONTEXT_DEFAULTS };
+  document.querySelectorAll("[data-context-field]").forEach(control => {
+    const field = control.dataset.contextField;
+    const value = CLINICAL_CONTEXT_DEFAULTS[field];
+    if (control.type === "checkbox") control.checked = Boolean(value);
+    else control.value = value == null ? "" : String(value);
+  });
+  renderClinicalContextPanel();
+  renderSummaryBar();
+  refreshFindingContextApplicability();
+}
+
+function getClinicalContextAssessment(context = activeClinicalContext) {
+  const checks = [
+    [Boolean(context.regimen), "exact regimen"],
+    [Boolean(context.indications), "reason for use"],
+    [Boolean(context.timing), "timing / recent changes"],
+    [context.ageBand !== "unknown", "age range"],
+    [context.renalFunction !== "unknown", "kidney function"],
+    [context.hepaticFunction !== "unknown", "liver function"],
+    [context.pregnancyStatus !== "unknown", "pregnancy / feeding status"],
+    [context.symptomsStatus !== "unknown", "current symptoms"],
+    [context.labsStatus !== "unknown", "relevant labs"],
+    [context.allergiesReviewed === true, "allergies / previous reactions"],
+  ];
+  const completed = checks.filter(([done]) => done).length;
+  const percent = Math.round((completed / checks.length) * 100);
+  const missing = checks.filter(([done]) => !done).map(([, label]) => label);
+  const level = percent >= 80 ? "substantial" : percent >= 50 ? "partial" : "limited";
+  return {
+    completed,
+    total:checks.length,
+    percent,
+    missing,
+    level,
+    preliminary:percent < 80,
+    hasNewSymptoms:context.symptomsStatus === "new-or-worsening",
+  };
+}
+
+function renderClinicalContextPanel() {
+  const count = document.getElementById("clinicalContextCount");
+  const status = document.getElementById("clinicalContextStatus");
+  if (!count || !status) return;
+  const assessment = getClinicalContextAssessment();
+  count.textContent = `${assessment.percent}%`;
+  if (count.dataset) count.dataset.level = assessment.level;
+  const missing = assessment.missing.slice(0, 4).join(", ");
+  const symptomNote = assessment.hasNewSymptoms
+    ? `<strong>New or worsening symptoms selected.</strong> Use prompt professional review; urgent or severe symptoms need urgent local care.`
+    : "";
+  status.innerHTML = `<strong>${assessment.preliminary ? "Preliminary context" : "Context substantially supplied"}</strong>
+    <span>${assessment.preliminary ? `Still missing ${safePublicHtml(missing)}${assessment.missing.length > 4 ? ` and ${assessment.missing.length - 4} more` : ""}.` : "These details qualify relevance but do not turn the result into medical advice."}</span>
+    ${symptomNote ? `<span class="context-symptom-note">${symptomNote}</span>` : ""}`;
+}
+
+function renderClinicalContextStatus() {
+  if (!activeStack.length) return "";
+  const assessment = getClinicalContextAssessment();
+  const missing = assessment.missing.slice(0, 3).join(", ");
+  const label = assessment.preliminary ? "Preliminary review" : "Context supplied";
+  const detail = assessment.preliminary
+    ? `${assessment.percent}% context complete · missing ${missing}${assessment.missing.length > 3 ? ` +${assessment.missing.length - 3} more` : ""}`
+    : `${assessment.percent}% context complete · verify against the actual record`;
+  return `<div class="summary-context ${safeAttr(assessment.level)}">
+    <span class="summary-context-label">${safePublicHtml(label)}</span>
+    <span>${safePublicHtml(detail)}</span>
+  </div>`;
+}
+
+function clinicalContextHandoffLines() {
+  const context = activeClinicalContext || CLINICAL_CONTEXT_DEFAULTS;
+  const assessment = getClinicalContextAssessment(context);
+  const values = [
+    context.regimen ? `Regimen: ${context.regimen}` : "",
+    context.indications ? `Reason for use: ${context.indications}` : "",
+    context.timing ? `Timing / recent changes: ${context.timing}` : "",
+    context.ageBand !== "unknown" ? `Age range: ${clinicalContextValueLabel("ageBand", context.ageBand)}` : "",
+    context.renalFunction !== "unknown" ? `Kidney function: ${clinicalContextValueLabel("renalFunction", context.renalFunction)}` : "",
+    context.hepaticFunction !== "unknown" ? `Liver function: ${clinicalContextValueLabel("hepaticFunction", context.hepaticFunction)}` : "",
+    context.pregnancyStatus !== "unknown" ? `Pregnancy / feeding: ${clinicalContextValueLabel("pregnancyStatus", context.pregnancyStatus)}` : "",
+    context.symptomsStatus !== "unknown" ? `Symptoms: ${clinicalContextValueLabel("symptomsStatus", context.symptomsStatus)}` : "",
+    context.labsStatus !== "unknown" ? `Labs: ${clinicalContextValueLabel("labsStatus", context.labsStatus)}` : "",
+    context.allergiesReviewed ? "Allergies / previous reactions: checked" : "",
+  ].filter(Boolean);
+  return [
+    `Context completeness: ${assessment.percent}% (${assessment.level})`,
+    ...values,
+    assessment.missing.length ? `Context still missing: ${assessment.missing.join(", ")}` : "",
+  ].filter(Boolean);
+}
+
+function clinicalContextValueLabel(field, value) {
+  const labels = {
+    ageBand:{ under18:"under 18", "18-64":"18–64", "65-74":"65–74", "75-plus":"75+" },
+    renalFunction:{ "no-known-impairment":"no known impairment", reduced:"reduced", dialysis:"dialysis" },
+    hepaticFunction:{ "no-known-impairment":"no known impairment", reduced:"reduced" },
+    pregnancyStatus:{ "not-applicable":"not applicable", pregnant:"pregnant / trying", breastfeeding:"breastfeeding" },
+    symptomsStatus:{ "none-reported":"none reported", "new-or-worsening":"new or worsening" },
+    labsStatus:{ "not-available":"not available", reviewed:"added / reviewed" },
+  };
+  return labels[field]?.[value] || publicDisplayText(value).replace(/-/g, " ");
+}
+
+function clinicalContextApplicability() {
+  const assessment = getClinicalContextAssessment();
+  if (assessment.level === "substantial") return { label:"Context fit", value:"Substantially assessed", level:assessment.level };
+  if (assessment.level === "partial") return { label:"Context fit", value:"Partly assessed", level:assessment.level };
+  return { label:"Context fit", value:"Preliminary", level:assessment.level };
+}
+
+function refreshFindingContextApplicability() {
+  const applicability = clinicalContextApplicability();
+  document.querySelectorAll(".finding-context-applicability").forEach(chip => {
+    if (chip.dataset.contextFormat === "labelled") {
+      chip.innerHTML = `<strong>${safePublicHtml(applicability.label)}</strong>${safePublicHtml(applicability.value)}`;
+    } else {
+      chip.textContent = `${applicability.label}: ${applicability.value}`;
+    }
+    chip.dataset.contextLevel = applicability.level;
+  });
+}
 
 function clearSelectionUndoSnapshot() {
   lastClearedSelection = null;
@@ -164,27 +346,94 @@ function focusReviewNotes() {
 }
 
 function keyboardButtonAttrs() {
-  return `role="button" tabindex="0" onkeydown="activateKeyboardButton(event)"`;
+  return `role="button" tabindex="0" data-keyboard-button="true"`;
 }
 
 function activateKeyboardButton(event) {
   if (!event || (event.key !== "Enter" && event.key !== " ")) return;
   event.preventDefault();
-  event.currentTarget?.click();
+  const target = event.target?.closest?.('[data-keyboard-button="true"]') || event.currentTarget;
+  target?.click();
 }
 
 function syncCollapsibleSectionControls() {
-  document.querySelectorAll(".section-title.collapsible[onclick^=\"toggleSection\"]").forEach(title => {
-    const match = String(title.getAttribute("onclick") || "").match(/toggleSection\('([^']+)'\)/);
-    const id = match?.[1] || "";
+  document.querySelectorAll('.section-title.collapsible[data-action="toggle-section"]').forEach(title => {
+    const id = title.dataset.section || "";
     const body = id ? document.getElementById(id + "Body") : null;
     if (!body) return;
     title.setAttribute("role", "button");
     title.setAttribute("tabindex", "0");
-    title.setAttribute("onkeydown", "activateKeyboardButton(event)");
+    title.setAttribute("data-keyboard-button", "true");
     title.setAttribute("aria-controls", body.id);
     title.setAttribute("aria-expanded", body.classList.contains("open") ? "true" : "false");
   });
+}
+
+function handleDelegatedUiClick(event) {
+  if (!event?.target?.closest) return;
+  if (event.target.closest('[data-stop-propagation="true"], .feedback-link')) event.stopPropagation();
+  const control = event.target.closest("[data-action]");
+  if (!control) return;
+  const action = control.dataset.action || "";
+  const value = key => control.dataset[key] || "";
+  switch (action) {
+    case "set-view-mode": setViewMode(value("mode")); break;
+    case "toggle-browse-mode": toggleBrowseMode(); break;
+    case "toggle-section": toggleSection(value("section")); break;
+    case "add-gene-from-select": addGeneFromSelect(); break;
+    case "set-tab": setTab(value("tab")); break;
+    case "filter-evidence": filterEvidenceTier(value("tier") || null, control); break;
+    case "copy-warning-path": copyWarningPath(value("findingId")); break;
+    case "copy-v1-handoff": copyV1HandoffSummary(); break;
+    case "set-genotype": setGenotype(value("gene"), value("phenotype")); break;
+    case "focus-priority": focusPriorityFinding(value("tab") || "overview", value("target")); break;
+    case "apply-pharmgx-import": applyPharmGxImport(); break;
+    case "copy-overview": copyOverviewHandoffSummary(); break;
+    case "close-search": closeSearchResults({ clearInput:true, blurInput:true }); break;
+    case "add-drug": addDrug(value("name")); break;
+    case "remove-drug": removeDrug(value("name")); break;
+    case "add-food-actor": addFoodActor(value("actorId")); break;
+    case "remove-food-actor": removeFoodActor(value("actorId")); break;
+    case "add-unrecognized": addUnrecognizedSubstance(value("name")); break;
+    case "close-browse": closeBrowsePanel({ focusToggle:true }); break;
+    case "toggle-browse-category": toggleBrowseCat(control); break;
+    case "toggle-drug": toggleDrug(value("name")); break;
+    case "load-class-guide": loadMedicationClassGuide(Number(value("index"))); break;
+    case "restore-cleared-list": restoreClearedList(); break;
+    case "focus-review-notes": focusReviewNotes(); break;
+    case "clear-selected-list": clearSelectedList(); break;
+    case "remove-genetics": removeGenetics(value("gene")); break;
+    case "reset-clinical-context": resetClinicalContext(); break;
+  }
+}
+
+function handleDelegatedUiChange(event) {
+  const control = event?.target;
+  if (!control?.matches) return;
+  if (control.matches('[data-action="set-genetics"]')) setGenetics(control.dataset.gene || "", control.value);
+  else if (control.matches('[data-action="set-dose-tier"]')) setDoseTier(control.dataset.name || "", control.value);
+  else if (control.matches("[data-context-field]")) updateClinicalContextField(control.dataset.contextField, control.type === "checkbox" ? control.checked : control.value);
+}
+
+function handleDelegatedUiInput(event) {
+  const control = event?.target;
+  if (control?.id === "searchInput") onSearch(control.value);
+  else if (control?.matches?.('[data-context-field]') && control.type !== "checkbox") {
+    updateClinicalContextField(control.dataset.contextField, control.value);
+  }
+}
+
+function handleDelegatedUiFocus(event) {
+  const control = event?.target;
+  if (control?.id === "searchInput") onSearch(control.value);
+}
+
+function handleDelegatedUiKeydown(event) {
+  const control = event?.target;
+  if (!control?.closest) return;
+  if (control.id === "searchInput") handleSearchKeydown(event);
+  else if (control.closest('[role="tab"]')) handleReviewTabKeydown(event);
+  else if (control.closest('[data-keyboard-button="true"]')) activateKeyboardButton(event);
 }
 
 function clearCurrentFindingState() {
@@ -368,7 +617,8 @@ function handleReviewTabKeydown(event) {
     .map(tab => document.getElementById("tabbtn-" + tab))
     .filter(button => button && !button.hidden && button.style.display !== "none");
   if (!buttons.length) return;
-  const currentIndex = Math.max(0, buttons.indexOf(event.currentTarget));
+  const currentButton = event.target?.closest?.('[role="tab"]') || event.currentTarget;
+  const currentIndex = Math.max(0, buttons.indexOf(currentButton));
   let nextIndex = currentIndex;
   if (event.key === "Home") nextIndex = 0;
   else if (event.key === "End") nextIndex = buttons.length - 1;
@@ -652,7 +902,7 @@ function renderSummaryBar() {
   const jumpLabel = patient ? "View note" : (primaryPresentation ? "Open" : "View");
   const hasVisibleSummaryJump = !patient && (Boolean(primaryPresentation) || activeStack.length >= 2 || Boolean(isGenotypePriority));
   const summaryJumpHtml = hasVisibleSummaryJump
-    ? `<button type="button" class="summary-jump" onclick="focusPriorityFinding('${safeAttr(jumpTab)}','${safeAttr(jumpTarget)}')">${safePublicHtml(jumpLabel)}</button>`
+    ? `<button type="button" class="summary-jump" data-action="focus-priority" data-tab="${safeAttr(jumpTab)}" data-target="${safeAttr(jumpTarget)}">${safePublicHtml(jumpLabel)}</button>`
     : "";
   const nextLabel = patient ? "Next step" : (primaryPresentation ? "Next" : "Next review");
   const visibleNextStep = !patient && primaryPresentation && !isGenotypePriority
@@ -676,6 +926,7 @@ function renderSummaryBar() {
         <div class="lbl">${safePublicHtml(priorityMetricLabel)}</div>
       </div>`}
     </div>
+    ${renderClinicalContextStatus()}
     ${patient ? "" : summaryStoryHtml}
     ${renderSummaryExposureSnapshot(patient)}
     <div class="summary-next"><span class="summary-next-pill">${safePublicHtml(nextLabel)}</span><span>${safePublicHtml(visibleNextStep)}</span></div>
@@ -698,7 +949,7 @@ function renderSummaryActions(patient = isPatientAudience()) {
   const copyLabel = "Copy review summary";
   const copyAriaLabel = "Copyable Diognosis medication review summary";
   return `<div class="summary-actions">
-    <button type="button" class="summary-action-btn" onclick="copyOverviewHandoffSummary()">${safePublicHtml(copyLabel)}</button>
+    <button type="button" class="summary-action-btn" data-action="copy-overview">${safePublicHtml(copyLabel)}</button>
     ${shareUrl ? `<a class="summary-action-btn" href="${safeAttr(shareUrl)}" target="_blank" rel="noopener" title="Includes the selected medicines and gene results">Share review link</a><span class="summary-share-note">Includes selected medicines and gene results</span>` : ""}
     <span class="summary-action-status" id="summaryCopyStatus" role="status" aria-live="polite" aria-atomic="true"></span>
     <pre class="summary-copy-text" id="summaryCopyText" tabindex="0" aria-label="${safeAttr(copyAriaLabel)}" hidden></pre>
@@ -716,10 +967,10 @@ function renderSummaryExposureSnapshot(patient = isPatientAudience()) {
   return `<div class="summary-exposure-strip" aria-label="Exposure direction snapshot">
     <div class="summary-exposure-top">
       <div class="summary-exposure-title">Exposure snapshot</div>
-      <button type="button" class="summary-exposure-link" onclick="focusPriorityFinding('overview','circulatingSection')">Open full view</button>
+      <button type="button" class="summary-exposure-link" data-action="focus-priority" data-tab="overview" data-target="circulatingSection">Open full view</button>
     </div>
     <div class="summary-exposure-items">${shown.map(renderSummaryExposureItem).join("")}</div>
-    ${extra > 0 ? `<button type="button" class="summary-exposure-more" onclick="focusPriorityFinding('overview','circulatingSection')">+${extra} more exposure signal${extra === 1 ? "" : "s"} in Overview</button>` : ""}
+    ${extra > 0 ? `<button type="button" class="summary-exposure-more" data-action="focus-priority" data-tab="overview" data-target="circulatingSection">+${extra} more exposure signal${extra === 1 ? "" : "s"} in Overview</button>` : ""}
   </div>`;
 }
 
@@ -1392,6 +1643,9 @@ function buildReviewScopeSummary(cache = {}) {
       ? allPublicPresentations
       : getClinicianFacingPublicFindingPresentations(allPublicPresentations));
   const sourceLinked = publicPresentations.filter(presentation => presentation.trustContract?.sourceLinked).length;
+  const authorityLinked = publicPresentations.filter(presentation =>
+    presentation.sourceFinding?.evidenceLadder?.authorityLinked || presentation.evidenceLadder?.authorityLinked
+  ).length;
   const modeled = publicPresentations.filter(presentation => presentation.trustContract && !presentation.trustContract.sourceLinked).length;
   const trustReady = publicPresentations.filter(presentation => presentation.trustContract?.ready).length;
   const maxSeverity = publicPresentations.reduce((best, presentation) =>
@@ -1401,6 +1655,7 @@ function buildReviewScopeSummary(cache = {}) {
   const statusLabel = publicPresentations.length
     ? `${publicPresentations.length} concern${publicPresentations.length === 1 ? "" : "s"}`
     : "No major signal";
+  const contextAssessment = getClinicalContextAssessment();
   const checks = [
     stack.length >= 2
       ? `Checked pairwise and grouped interaction logic across ${stack.length} selected substances.`
@@ -1417,14 +1672,17 @@ function buildReviewScopeSummary(cache = {}) {
     findings.length
       ? `Normalized ${findings.length} engine signal${findings.length === 1 ? "" : "s"} into ${publicPresentations.length} public concern${publicPresentations.length === 1 ? "" : "s"}.`
       : "No major normalized signal was found in the current local dataset.",
+    `Clinical context is ${contextAssessment.percent}% complete (${contextAssessment.level}).`,
   ].filter(Boolean);
   const limits = [
     "No result means no major signal was found here; it does not prove the list is safe.",
-    "Source-linked evidence is traceability, not professional clinical validation.",
+    "Authority-linked evidence identifies a regulator or recognized guideline; literature-linked evidence identifies a claim-specific study. Neither is independent Diognosis clinical validation.",
     ...(standardsCoverage?.limitations || []),
     unknownCount
       ? `${unknownCount} selected item${unknownCount === 1 ? " was" : "s were"} not recognized by the medication dataset: ${formatScopeUnknownItems(unknownItems)}.`
-      : "Dose, timing, allergies, diagnoses, labs, pregnancy status, and clinical history are not fully assessed.",
+      : (contextAssessment.missing.length
+        ? `Context still missing: ${contextAssessment.missing.join(", ")}.`
+        : "Context fields are substantially supplied but still require verification against the clinical record."),
   ];
   return {
     selectedCount: stack.length,
@@ -1436,6 +1694,7 @@ function buildReviewScopeSummary(cache = {}) {
     rawFindingCount: findings.length,
     publicConcernCount: publicPresentations.length,
     sourceLinked,
+    authorityLinked,
     modeled,
     trustReady,
     standardsCoverage,
@@ -1445,6 +1704,7 @@ function buildReviewScopeSummary(cache = {}) {
     pgxActionCount:standardsCoverage?.pgxActionCount || 0,
     maxSeverity,
     statusLabel,
+    contextAssessment,
     checks,
     limits,
   };
@@ -1822,17 +2082,34 @@ function publicEvidenceSummaryForFinding(finding = {}) {
     const tier = ladder.strongestTier && ladder.strongestTier !== "unknown"
       ? ladder.strongestTier.replace(/_/g, " ").toLowerCase()
       : "";
-    const source = ladder.sourceLinked ? "source-linked" : "modeled";
+    const source = ladder.authorityLinked
+      ? "authority-linked"
+      : ladder.primaryLiteratureLinked
+        ? "primary-literature linked"
+        : ladder.modeledOnly
+          ? "modeled context"
+          : ladder.sourceLinked
+            ? "linked source"
+            : "modeled signal";
     const count = ladder.studyCount ? `${ladder.studyCount} source${ladder.studyCount === 1 ? "" : "s"}` : "";
-    const review = ladder.professionalReviewStatus === "reviewed" ? "reviewed source" : "source-integrated";
-    return publicDisplayText([source, tier, count, review].filter(Boolean).join(" · "));
+    return publicDisplayText([source, tier, count].filter(Boolean).join(" · "));
   }
   return publicEvidenceSummaryFromRefs(finding.evidenceRefs || []);
 }
 
 function publicEvidenceSummaryFromRefs(refs = []) {
-  const count = [...new Set(refs || [])].length;
-  if (count) return `${count} linked source${count === 1 ? "" : "s"} · source-integrated`;
+  const uniqueRefs = [...new Set(refs || [])];
+  const studies = uniqueRefs
+    .map(ref => typeof getStudy === "function" ? getStudy(ref) : STUDY_DB?.[ref])
+    .filter(Boolean);
+  const authorityCount = studies.filter(study => typeof isAuthorityEvidence === "function" && isAuthorityEvidence(study)).length;
+  const literatureCount = studies.filter(study => typeof isPrimaryLiteratureEvidence === "function" && isPrimaryLiteratureEvidence(study)).length;
+  const modeledCount = studies.filter(study => typeof isModeledContextEvidence === "function" && isModeledContextEvidence(study)).length;
+  const count = uniqueRefs.length;
+  if (authorityCount) return `${authorityCount} authority source${authorityCount === 1 ? "" : "s"}${count > authorityCount ? ` · ${count} linked total` : ""}`;
+  if (literatureCount) return `${literatureCount} primary source${literatureCount === 1 ? "" : "s"}${count > literatureCount ? ` · ${count} linked total` : ""}`;
+  if (modeledCount && modeledCount === studies.length) return "modeled context · not severity-bearing";
+  if (count) return `${count} linked source${count === 1 ? "" : "s"}`;
   return "modeled signal · no linked source yet";
 }
 
@@ -1928,7 +2205,7 @@ function findRelatedPublicFindingPresentation(context = {}) {
 function renderRelatedFindingButton(context = {}, label = "Related finding") {
   const presentation = findRelatedPublicFindingPresentation(context);
   if (!presentation) return "";
-  return `<button type="button" class="related-finding-btn" onclick="focusPriorityFinding('overview','${safeAttr(presentation.targetElementId)}')">${safePublicHtml(label)}</button>`;
+  return `<button type="button" class="related-finding-btn" data-action="focus-priority" data-tab="overview" data-target="${safeAttr(presentation.targetElementId)}">${safePublicHtml(label)}</button>`;
 }
 
 function renderFindingContextBadges(presentation = {}, options = {}) {
@@ -2010,7 +2287,7 @@ function renderPublicFindingCard(presentation, index = 0) {
   const whyText = patient ? patientFindingStepText(presentation, "why") : clinicianOverviewWhyText(presentation);
   const reviewText = patient ? patientFindingStepText(presentation, "review") : clinicianOverviewActionText(presentation, presentation.whatToReview);
   const detailButton = !patient && presentation.detailTab && presentation.detailElementId
-    ? `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('${safeAttr(presentation.detailTab)}','${safeAttr(presentation.detailElementId)}')">Supporting detail</button>`
+    ? `<button type="button" class="related-finding-btn secondary" data-action="focus-priority" data-tab="${safeAttr(presentation.detailTab)}" data-target="${safeAttr(presentation.detailElementId)}">Supporting detail</button>`
     : "";
   const sourceLinks = patient ? "" : renderFindingSourceLinks(presentation, trust);
   const severityLabel = patient ? patientSeverityLabel(severity) : severity;
@@ -2449,16 +2726,16 @@ function renderFindingSourceLinks(presentation = {}, trust = null) {
     ...(presentation.signal?.evidenceRefs || []),
   ])].filter(Boolean);
   if (!refs.length) {
-    return `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('evidence','evidenceLadderLedger')">Evidence status</button>`;
+    return `<button type="button" class="related-finding-btn secondary" data-action="focus-priority" data-tab="evidence" data-target="evidenceLadderLedger">Evidence status</button>`;
   }
   const primaryRef = refs.find(ref => /label|dailymed|fda/i.test(String(ref || ""))) || refs[0];
   const label = compactOverviewEvidenceLabel(primaryRef);
   const url = typeof publicEvidenceReferenceUrl === "function" ? publicEvidenceReferenceUrl(primaryRef) : "";
   const primary = url
     ? `<a class="related-finding-btn secondary source-link" href="${safeAttr(url)}" target="_blank" rel="noopener">${safePublicHtml(label)}</a>`
-    : `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('evidence','evidenceLadderLedger')">${safePublicHtml(label)}</button>`;
+    : `<button type="button" class="related-finding-btn secondary" data-action="focus-priority" data-tab="evidence" data-target="evidenceLadderLedger">${safePublicHtml(label)}</button>`;
   const more = refs.length > 1
-    ? `<button type="button" class="related-finding-btn secondary" onclick="focusPriorityFinding('evidence','evidenceLadderLedger')">Evidence details</button>`
+    ? `<button type="button" class="related-finding-btn secondary" data-action="focus-priority" data-tab="evidence" data-target="evidenceLadderLedger">Evidence details</button>`
     : "";
   return `${primary}${more}`;
 }
@@ -2476,24 +2753,37 @@ function compactOverviewEvidenceLabel(ref = "") {
 
 function renderFindingTrustStrip(trust, patient = false) {
   if (!trust) return "";
+  const applicability = clinicalContextApplicability();
   if (patient) {
     const chips = [
       ["Note", patientConcernLabel(trust.concernCategory)],
+      [applicability.label, applicability.value],
       ["Status", trust.clinicalReviewStatus === "reviewed" ? "Reviewed" : "Ask a doctor or pharmacist"],
     ].filter(([, value]) => value);
     return `<div class="finding-trust-strip">
-      ${chips.map(([label, value]) => `<span class="finding-trust-chip"><strong>${safePublicHtml(label)}</strong>${safePublicHtml(value)}</span>`).join("")}
+      ${chips.map(([label, value]) => `<span class="finding-trust-chip${label === applicability.label ? " finding-context-applicability" : ""}"${label === applicability.label ? ` data-context-format="labelled" data-context-level="${safeAttr(applicability.level)}"` : ""}><strong>${safePublicHtml(label)}</strong>${safePublicHtml(value)}</span>`).join("")}
     </div>`;
   }
-  const source = trust.sourceLinked ? "Source-linked" : "Modeled";
+  const refs = trust.evidenceRefs || [];
+  const studies = refs.map(ref => typeof getStudy === "function" ? getStudy(ref) : STUDY_DB?.[ref]).filter(Boolean);
+  const source = studies.some(study => typeof isAuthorityEvidence === "function" && isAuthorityEvidence(study))
+    ? "Authority-linked"
+    : studies.some(study => typeof isPrimaryLiteratureEvidence === "function" && isPrimaryLiteratureEvidence(study))
+      ? "Primary-literature linked"
+      : studies.length && studies.every(study => typeof isModeledContextEvidence === "function" && isModeledContextEvidence(study))
+        ? "Modeled context"
+        : trust.sourceLinked
+          ? "Linked source"
+          : "Modeled signal";
   const confidence = compactTrustConfidenceLabel(trust.confidence);
   const chips = [
     trust.concernCategory,
     source,
-    confidence ? `${confidence} confidence` : "",
+    confidence ? `Mechanism: ${confidence}` : "",
+    `${applicability.label}: ${applicability.value}`,
   ].filter(Boolean);
   return `<div class="finding-trust-strip">
-    ${chips.map(value => `<span class="finding-trust-chip">${safePublicHtml(value)}</span>`).join("")}
+    ${chips.map(value => `<span class="finding-trust-chip${value.startsWith(`${applicability.label}:`) ? " finding-context-applicability" : ""}"${value.startsWith(`${applicability.label}:`) ? ` data-context-format="inline" data-context-level="${safeAttr(applicability.level)}"` : ""}>${safePublicHtml(value)}</span>`).join("")}
   </div>`;
 }
 
@@ -2944,11 +3234,11 @@ function renderConcernSupportingSignals(finding) {
 
 function compactReviewStatus(value) {
   return publicDisplayText(value || "")
-    .replace(/\bno sign[-\s]?off\b/gi, "source-integrated")
-    .replace(/\bpending professional review\b/gi, "source-integrated")
-    .replace(/\bneeds review\b/gi, "review needed")
-    .replace(/\breview prompt\b/gi, "modeled support")
-    .replace(/\bsource linked, pending review\b/gi, "source-linked support")
+    .replace(/\bno sign[-\s]?off\b/gi, "not independently reviewed")
+    .replace(/\bpending professional review\b/gi, "not independently reviewed")
+    .replace(/\bneeds review\b/gi, "not independently reviewed")
+    .replace(/\breview prompt\b/gi, "modeled context")
+    .replace(/\bsource linked, pending review\b/gi, "linked source · not independently reviewed")
     .trim();
 }
 
@@ -2964,7 +3254,7 @@ function renderEvidenceLadderCompact(ladder) {
   const review = ladder.professionalReviewStatus === "reviewed"
     ? "reviewed source"
     : ladder.professionalReviewStatus === "pending"
-    ? "source-integrated"
+    ? "not independently reviewed"
     : "review status unknown";
   return `<div class="evidence-ladder-compact">
     <span>Evidence: ${safePublicHtml(tier)}</span>
@@ -3224,18 +3514,19 @@ function arrangeAdvancedSections() {
 function onSearch(q) {
   const el = document.getElementById("searchResults");
   if (!q || q.length < 1) { closeSearchResults(); return; }
-  const panelHead = `<div class="search-results-head"><span class="search-results-title">Matches</span><button type="button" class="sr-close" onclick="closeSearchResults({ clearInput:true, blurInput:true })" aria-label="Close search suggestions">&times;</button></div>`;
+  const panelHead = `<div class="search-results-head"><span class="search-results-title">Best matches</span><button type="button" class="sr-close" data-action="close-search" aria-label="Close search suggestions">&times;</button></div>`;
   const seen = new Set();
   const seenAliasMatches = new Set();
   const rawMatches = DRUG_DB
     .map(d => ({ drug:d, match:scoreDrugSearch(d, q) }))
     .filter(row => row.match.score > 0)
     .sort((a,b) =>
+      Number(isAdvancedSearchDrug(a.drug)) - Number(isAdvancedSearchDrug(b.drug)) ||
       b.match.score - a.match.score ||
       drugSearchRichness(b.drug) - drugSearchRichness(a.drug) ||
       a.drug.name.localeCompare(b.drug.name)
     );
-  const matches = rawMatches.filter(row => {
+  const dedupedMatches = rawMatches.filter(row => {
     const d = row.drug;
     if (seen.has(d.name)) return false;
     const aliasKey = getSearchAliasDedupeKey(row);
@@ -3244,7 +3535,15 @@ function onSearch(q) {
     if (aliasKey) seenAliasMatches.add(aliasKey);
     return true;
   });
-  const actorMatches = findSupplementActorMatches(q);
+  const primaryMatches = dedupedMatches
+    .filter(row => !isAdvancedSearchDrug(row.drug) || row.match.score >= 110)
+    .slice(0, INPUT_LIMITS.searchResultsPrimary);
+  const primaryNames = new Set(primaryMatches.map(row => row.drug.name));
+  const advancedMatches = dedupedMatches
+    .filter(row => isAdvancedSearchDrug(row.drug) && !primaryNames.has(row.drug.name))
+    .slice(0, INPUT_LIMITS.searchResultsAdvanced);
+  const actorMatches = findSupplementActorMatches(q).slice(0, 6);
+  const matches = [...primaryMatches, ...advancedMatches];
   if (!matches.length && !actorMatches.length) {
     el.innerHTML = panelHead + renderUnrecognizedSearchResult(q);
     el.classList.add("show");
@@ -3253,7 +3552,7 @@ function onSearch(q) {
 
   // Group by practical browse category, while preserving exact class on the row.
   const groups = {};
-  matches.forEach(row => {
+  primaryMatches.forEach(row => {
     const d = row.drug;
     const cat = getBrowseCategory(d);
     if (!groups[cat]) groups[cat] = [];
@@ -3262,7 +3561,7 @@ function onSearch(q) {
 
   let html = panelHead;
   for (const [cls, rows] of Object.entries(groups)) {
-    if (matches.length > 5) html += `<div class="sr-cat">${cls}</div>`;
+    if (primaryMatches.length > 5) html += `<div class="sr-cat">${safePublicHtml(cls)}</div>`;
     rows.forEach(row => {
       const d = row.drug;
       const added = activeStack.includes(d.name);
@@ -3270,10 +3569,22 @@ function onSearch(q) {
       const secondary = typeof getDrugSecondaryLabel === "function" ? getDrugSecondaryLabel(d) : "";
       const displayName = matchedAlias ? `${highlight(matchedAlias, q)} -> ${d.name}` : highlight(d.name, q);
       const matchNote = row.match.reason && row.match.reason !== "name" ? `<span class="sr-match">${row.match.reason}</span>` : "";
-      const secondaryHtml = secondary || matchNote ? `<span class="sr-secondary">${[secondary, matchNote].filter(Boolean).join(" ")}</span>` : "";
-      html += `<div class="sr-item" ${keyboardButtonAttrs()} onclick="${added ? `removeDrug('${d.name.replace(/'/g,"\\'")}')` : `addDrug('${d.name.replace(/'/g,"\\'")}')` }">
+      const secondaryHtml = secondary || matchNote ? `<span class="sr-secondary">${[safePublicHtml(secondary), matchNote].filter(Boolean).join(" ")}</span>` : "";
+      html += `<div class="sr-item" ${keyboardButtonAttrs()} data-action="${added ? "remove-drug" : "add-drug"}" data-name="${safeAttr(d.name)}">
         <span><span class="sr-name">${displayName}</span>${secondaryHtml}</span>
-        <span>${added ? '<span class="sr-added">✓ Added</span>' : `<span class="sr-class">${d.cls}</span>`}</span>
+        <span>${added ? '<span class="sr-added">✓ Added</span>' : `<span class="sr-class">${safePublicHtml(d.cls)}</span>`}</span>
+      </div>`;
+    });
+  }
+  if (advancedMatches.length) {
+    html += `<div class="sr-cat sr-cat-advanced">Advanced model actors</div>`;
+    advancedMatches.forEach(row => {
+      const d = row.drug;
+      const added = activeStack.includes(d.name);
+      const secondary = typeof getDrugSecondaryLabel === "function" ? getDrugSecondaryLabel(d) : "";
+      html += `<div class="sr-item sr-advanced" ${keyboardButtonAttrs()} data-action="${added ? "remove-drug" : "add-drug"}" data-name="${safeAttr(d.name)}">
+        <span><span class="sr-name">${highlight(d.name, q)}</span><span class="sr-secondary">${safePublicHtml(secondary || "Modeled metabolite, research actor, or source-candidate record")}</span></span>
+        <span>${added ? '<span class="sr-added">✓ Added</span>' : '<span class="sr-class">Advanced</span>'}</span>
       </div>`;
     });
   }
@@ -3288,11 +3599,14 @@ function onSearch(q) {
       const secondary = formatActorSources(actor);
       const matchedAlias = row.match.term && row.match.term !== actor.name && row.match.term !== actor.id ? row.match.term : "";
       const displayName = matchedAlias ? `${highlight(matchedAlias, q)} -> ${actor.name}` : highlight(actor.name, q);
-      html += `<div class="sr-item" ${keyboardButtonAttrs()} onclick="${added ? `removeFoodActor('${actor.id}')` : `addFoodActor('${actor.id}')`}">
-        <span><span class="sr-name">${displayName}</span>${secondary ? `<span class="sr-secondary">${secondary}</span>` : ""}</span>
+      html += `<div class="sr-item" ${keyboardButtonAttrs()} data-action="${added ? "remove-food-actor" : "add-food-actor"}" data-actor-id="${safeAttr(actor.id)}">
+        <span><span class="sr-name">${displayName}</span>${secondary ? `<span class="sr-secondary">${safePublicHtml(secondary)}</span>` : ""}</span>
         <span>${added ? '<span class="sr-added">✓ Added</span>' : '<span class="sr-class">Food/Supplement</span>'}</span>
       </div>`;
     });
+  }
+  if (dedupedMatches.length > matches.length || findSupplementActorMatches(q).length > actorMatches.length) {
+    html += `<div class="sr-limit-note">Showing the most relevant results. Use a more specific name or brand to narrow the list.</div>`;
   }
   el.innerHTML = html;
   el.classList.add("show");
@@ -3310,14 +3624,23 @@ function renderUnrecognizedSearchResult(query) {
     const itemKey = typeof stackSelectionDedupeKey === "function" ? stackSelectionDedupeKey(item) : String(item).toLowerCase();
     return itemKey === key;
   });
-  const action = added ? `removeDrug('${inlineJsString(name)}')` : `addUnrecognizedSubstance('${inlineJsString(name)}')`;
-  return `<div class="sr-item sr-unrecognized" ${keyboardButtonAttrs()} onclick="${action}">
+  return `<div class="sr-item sr-unrecognized" ${keyboardButtonAttrs()} data-action="${added ? "remove-drug" : "add-unrecognized"}" data-name="${safeAttr(name)}">
     <span>
       <span class="sr-name">${safePublicHtml(name)}</span>
       <span class="sr-secondary">Not recognized here. Diognosis will keep it in the list but will not assess interactions for it.</span>
     </span>
     <span>${added ? '<span class="sr-added">✓ Added</span>' : '<span class="sr-class sr-unrecognized-class">Add unrecognized</span>'}</span>
   </div>`;
+}
+
+function isAdvancedSearchDrug(drug) {
+  if (!drug) return true;
+  const refs = drug.evidenceRefs || [];
+  const id = typeof toGraphId === "function" ? toGraphId(drug.name || drug.id || "") : String(drug.id || "");
+  return refs.includes("ev_drug_count_expansion_batch") ||
+    /source candidate|identity context/i.test(String(drug.cls || "")) ||
+    /phase\s*12|source-candidate|screening\/enrichment scaffold/i.test(String(drug.note || "")) ||
+    Boolean(typeof METABOLITE_ACTORS !== "undefined" && METABOLITE_ACTORS[id]);
 }
 
 function findSupplementActorMatches(query) {
@@ -3677,12 +4000,12 @@ function renderBrowse() {
       <div class="browse-head-title">Browse Categories</div>
       <span class="browse-head-meta">${categoryCount} groups · select medicines, supplements, or foods</span>
     </div>
-    <button type="button" class="sr-close" onclick="closeBrowsePanel({ focusToggle:true })" aria-label="Close browse categories">&times;</button>
+    <button type="button" class="sr-close" data-action="close-browse" aria-label="Close browse categories">&times;</button>
   </div>` + renderBrowseClassGuides() + sortedCats.filter(c => groups[c]).map(cat => {
     const open = openCategories.has(cat);
     return `
     <div class="browse-cat">
-      <div class="browse-cat-title${open ? " open" : ""}" ${keyboardButtonAttrs()} aria-expanded="${open ? "true" : "false"}" onclick="toggleBrowseCat(this)">
+      <div class="browse-cat-title${open ? " open" : ""}" ${keyboardButtonAttrs()} aria-expanded="${open ? "true" : "false"}" data-action="toggle-browse-category">
         ${cat} <span style="font-weight:400;font-size:12px;color:var(--text2)">(${groups[cat].length})</span>
         <span class="arrow">▶</span>
       </div>
@@ -3690,7 +4013,7 @@ function renderBrowse() {
         ${groups[cat].sort((a,b)=>a.name.localeCompare(b.name)).map(d => {
           const alias = typeof getDrugSecondaryLabel === "function" ? getDrugSecondaryLabel(d, 2) : "";
           const selected = activeStack.includes(d.name);
-          return `<div class="browse-chip ${selected?'added':''}" ${keyboardButtonAttrs()} aria-pressed="${selected ? "true" : "false"}" data-browse-name="${safeAttr(d.name)}" onclick="toggleDrug('${d.name.replace(/'/g,"\\'")}')">${d.name}<span class="browse-chip-class">${d.cls}</span>${alias ? `<span class="browse-chip-alias">${alias}</span>` : ""}</div>`;
+          return `<div class="browse-chip ${selected?'added':''}" ${keyboardButtonAttrs()} aria-pressed="${selected ? "true" : "false"}" data-browse-name="${safeAttr(d.name)}" data-action="toggle-drug" data-name="${safeAttr(d.name)}">${safePublicHtml(d.name)}<span class="browse-chip-class">${safePublicHtml(d.cls)}</span>${alias ? `<span class="browse-chip-alias">${safePublicHtml(alias)}</span>` : ""}</div>`;
         }).join("")}
       </div>
     </div>
@@ -3706,7 +4029,7 @@ function renderBrowse() {
 
 function renderBrowseClassGuides() {
   return `<div class="class-guide-list">
-    ${MEDICATION_CLASS_GUIDES.map((guide, idx) => `<div class="class-guide-card" ${keyboardButtonAttrs()} onclick="loadMedicationClassGuide(${idx})">
+    ${MEDICATION_CLASS_GUIDES.map((guide, idx) => `<div class="class-guide-card" ${keyboardButtonAttrs()} data-action="load-class-guide" data-index="${idx}">
       <div class="class-guide-title">${guide.title}</div>
       <div class="class-guide-note">${guide.note}</div>
       <div class="class-guide-tags">${guide.tags.map(tag => `<span class="class-guide-tag">${tag}</span>`).join("")}</div>
@@ -3933,7 +4256,7 @@ function buildDiognosisIssueUrl({ type = "data", title = "", focus = "", details
 
 function renderFeedbackLink(label, options = {}) {
   const href = buildDiognosisIssueUrl(options);
-  return `<a class="feedback-link" href="${escapeHtml(href)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${escapeHtml(label)}</a>`;
+  return `<a class="feedback-link" href="${escapeHtml(href)}" target="_blank" rel="noopener" data-stop-propagation="true">${escapeHtml(label)}</a>`;
 }
 
 // ── RENDER ALL ──
@@ -3943,6 +4266,7 @@ function renderAll() {
   arrangeAdvancedSections();
   renderMedList();
   renderGenetics();
+  renderClinicalContextPanel();
   if (activeStack.length >= 1) {
     renderFoldBars();
     renderMetabolites();
@@ -4056,7 +4380,7 @@ function renderMedList() {
   if (!activeStack.length) {
     const emptyCopy = "Add medicines, supplements, or foods above to start a medication review";
     const undoHtml = lastClearedSelection?.stack?.length
-      ? `<button type="button" class="empty-undo-btn" onclick="restoreClearedList()">Undo clear</button>`
+      ? `<button type="button" class="empty-undo-btn" data-action="restore-cleared-list">Undo clear</button>`
       : "";
     el.innerHTML = `<div class="empty-state"><div class="icon">💊</div>${emptyCopy}${undoHtml ? ` ${undoHtml}` : ""}</div>`;
     countEl.textContent = "";
@@ -4067,7 +4391,7 @@ function renderMedList() {
     const actor = typeof getStackSupplementActor === "function" ? getStackSupplementActor(name) : null;
     const drug = typeof getStackDrug === "function" ? getStackDrug(name) : getDrug(name);
     const actorId = actor?.id || "";
-    const escaped = inlineJsString(drug ? drug.name : name);
+    const actionName = drug ? drug.name : name;
     const tiers = DOSE_TIERS[name];
     let doseHtml = "";
     if (drug && tiers) {
@@ -4075,7 +4399,7 @@ function renderMedList() {
       const opts = Object.entries(tiers.tiers).map(([k,v]) =>
         `<option value="${k}"${k===current?" selected":""}>${v.label}</option>`
       ).join("");
-      doseHtml = `<select class="dose-select" onclick="event.stopPropagation()" onchange="setDoseTier('${escaped}',this.value)">${opts}</select>`;
+      doseHtml = `<select class="dose-select" data-action="set-dose-tier" data-name="${safeAttr(actionName)}" data-stop-propagation="true">${opts}</select>`;
     }
     const recognized = !!(drug || actor);
     const secondary = drug
@@ -4083,10 +4407,11 @@ function renderMedList() {
       : (actor ? formatActorSources(actor) : "Not checked here");
     const primary = drug ? getDrugDisplayName(drug) : (actor ? actor.name : name);
     const labelHtml = `<span class="med-chip-name"><span class="med-chip-primary">${safePublicHtml(primary)}</span>${secondary ? `<span class="med-chip-secondary">${safePublicHtml(secondary)}</span>` : ""}</span>`;
-    const removeAction = actor && !drug ? `removeFoodActor('${actorId}')` : `removeDrug('${escaped}')`;
+    const removeAction = actor && !drug ? "remove-food-actor" : "remove-drug";
+    const removeData = actor && !drug ? `data-actor-id="${safeAttr(actorId)}"` : `data-name="${safeAttr(actionName)}"`;
     const chipClass = recognized ? "med-chip" : "med-chip unrecognized";
     const removeLabel = `Remove ${primary}`;
-    return `<span class="${chipClass}" title="${secondary ? safeAttr(secondary) : ""}">${labelHtml}${doseHtml}<button type="button" class="x" aria-label="${safeAttr(removeLabel)}" onclick="${removeAction}">×</button></span>`;
+    return `<span class="${chipClass}" title="${secondary ? safeAttr(secondary) : ""}">${labelHtml}${doseHtml}<button type="button" class="x" aria-label="${safeAttr(removeLabel)}" data-action="${removeAction}" ${removeData}>×</button></span>`;
   }).join("") + renderSelectedListActions();
 }
 
@@ -4094,8 +4419,8 @@ function renderSelectedListActions() {
   if (!activeStack.length) return "";
   const reviewLabel = "Review overview";
   return `<div class="selected-list-actions">
-    <button type="button" class="selected-list-action primary" onclick="focusReviewNotes()">${safePublicHtml(reviewLabel)}</button>
-    <button type="button" class="selected-list-action" onclick="clearSelectedList()">Clear list</button>
+    <button type="button" class="selected-list-action primary" data-action="focus-review-notes">${safePublicHtml(reviewLabel)}</button>
+    <button type="button" class="selected-list-action" data-action="clear-selected-list">Clear list</button>
   </div>`;
 }
 

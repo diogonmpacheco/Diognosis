@@ -98,9 +98,9 @@ assert(/actions\/setup-node@v6/.test(ciWorkflow), 'CI workflow should use the cu
 assert(/Node\.js-24%2B/.test(readme), 'README Node.js badge should advertise the current supported runtime');
 
 assertIncludes('Public Trust', publicTrust, '<!-- PUBLIC_TRUST_STATS_START -->');
-assertIncludes('Public Trust', publicTrust, `**${stats.sourceIntegratedStudies} \`STUDY_DB\` entries** are source-integrated for V1 evidence display and calculations.`);
-assertIncludes('Public Trust', publicTrust, `**${stats.studiesWithPmid} entries** include PMIDs; label, guideline, DOI, and URL sources are also retained where available.`);
-assertIncludes('Public Trust', publicTrust, 'Source integration means the claim is traceable to committed Diognosis data and source identifiers; it does not mean medical advice or clinical validation.');
+assertIncludes('Public Trust', publicTrust, `**${stats.authoritySourceStudies} \`STUDY_DB\` entries** link to regulatory authorities or recognized guideline publishers.`);
+assertIncludes('Public Trust', publicTrust, `**${stats.primaryLiteratureStudies} entries** link to claim-specific primary literature; **${stats.modeledContextStudies} entries** are explicitly modeled context and cannot preserve severe output.`);
+assertIncludes('Public Trust', publicTrust, `**${stats.studiesWithPmid} entries** include PMIDs. Authority and literature linkage describe provenance, not independent Diognosis clinical validation.`);
 assert(!/reviewRequired:true/i.test(publicTrust), 'Public Trust should not expose internal reviewRequired flags as V1 backlog');
 assert(/not medical advice|not a clinical decision support system|does not replace a licensed clinician or pharmacist/i.test(publicTrust),
   'Public Trust must preserve medical-boundary wording');
@@ -110,15 +110,18 @@ assert(/privacy-preserving GitHub issue drafts/i.test(publicTrust) && /do not in
 assertIncludes('Launch Data Trust Audit', launchTrust, '<!-- LAUNCH_DATA_TRUST_STATS_START -->');
 assertIncludes('Launch Data Trust Audit', launchTrust, `| Drugs in \`DRUG_DB\` | ${stats.drugs} |`);
 assertIncludes('Launch Data Trust Audit', launchTrust, `| Evidence entries in \`STUDY_DB\` | ${stats.studies} |`);
-assertIncludes('Launch Data Trust Audit', launchTrust, `| Source-integrated V1 evidence entries | ${stats.sourceIntegratedStudies} |`);
+assertIncludes('Launch Data Trust Audit', launchTrust, `| Authority-source evidence entries | ${stats.authoritySourceStudies} |`);
+assertIncludes('Launch Data Trust Audit', launchTrust, `| Primary-literature evidence entries | ${stats.primaryLiteratureStudies} |`);
+assertIncludes('Launch Data Trust Audit', launchTrust, `| Modeled-context entries (not severity-bearing) | ${stats.modeledContextStudies} |`);
 assertIncludes('Launch Data Trust Audit', launchTrust, `| Evidence entries with PMIDs | ${stats.studiesWithPmid} |`);
 assert(!/reviewRequired:true|Future professional sign-off candidates/i.test(launchTrust), 'Launch Data Trust Audit should not expose internal sign-off backlog counters');
 assertIncludes('Launch Data Trust Audit', launchTrust, `| RxNorm identity mappings | ${stats.externalSubstanceMappings} |`);
 assertIncludes('Launch Data Trust Audit', launchTrust, `| PGx marker rows | ${stats.pgxMarkerRows} |`);
-assertIncludes('Launch Data Trust Audit', launchTrust, `| CPIC-linked action summaries | ${stats.pgxActionSummaries} |`);
+assertIncludes('Launch Data Trust Audit', launchTrust, `| PGx action summaries | ${stats.pgxActionSummaries} |`);
+assertIncludes('Launch Data Trust Audit', launchTrust, `| PGx actions linked to FDA authority table | ${stats.authorityLinkedPgxActions} |`);
 assertIncludes('Launch Data Trust Audit', launchTrust, `| Interaction pairs | ${stats.ddiPairs} |`);
-assert(/source-integrated evidence does not equal medical advice or clinical validation/i.test(launchTrust),
-  'Launch Data Trust Audit must preserve source-integrated clinical-boundary wording');
+assert(/provenance does not equal medical advice, independent clinical validation, or patient-specific applicability/i.test(launchTrust),
+  'Launch Data Trust Audit must preserve provenance and clinical-applicability boundary wording');
 assert(/no accounts, analytics, tracking, medication-data collection, or runtime clinical API calls/i.test(launchTrust),
   'Launch Data Trust Audit must preserve static privacy boundary');
 

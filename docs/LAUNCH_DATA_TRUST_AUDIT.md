@@ -1,10 +1,10 @@
 # Launch Data Trust Audit
 
-Audit date: 2026-07-07
+Audit date: 2026-07-10
 
 ## Scope
 
-This audit describes the launch-facing data trust boundary for the current static bundle. Diognosis can show source-integrated evidence, pathway reasoning, pharmacogenomic context, and high-priority findings, but source-integrated evidence does not equal medical advice or clinical validation.
+This audit describes the launch-facing data trust boundary for the current static bundle. Diognosis can show authority-linked evidence, primary-literature evidence, pathway reasoning, pharmacogenomic context, and high-priority findings, but provenance does not equal medical advice, independent clinical validation, or patient-specific applicability.
 
 ## Current Counts
 
@@ -12,12 +12,15 @@ This audit describes the launch-facing data trust boundary for the current stati
 | Metric | Count |
 | --- | ---: |
 | Drugs in `DRUG_DB` | 1549 |
-| Evidence entries in `STUDY_DB` | 502 |
-| Source-integrated V1 evidence entries | 502 |
+| Evidence entries in `STUDY_DB` | 503 |
+| Authority-source evidence entries | 233 |
+| Primary-literature evidence entries | 218 |
+| Modeled-context entries (not severity-bearing) | 16 |
 | Evidence entries with PMIDs | 269 |
 | RxNorm identity mappings | 1251 |
 | PGx marker rows | 43 |
-| CPIC-linked action summaries | 18 |
+| PGx action summaries | 18 |
+| PGx actions linked to FDA authority table | 16 |
 | Interaction pairs | 3183 |
 | Severe interaction pairs | 1610 |
 | Moderate interaction pairs | 1538 |
@@ -26,11 +29,13 @@ This audit describes the launch-facing data trust boundary for the current stati
 
 ## Required Boundaries
 
-- Public evidence can be source-integrated for V1 when it is traceable to committed data and source identifiers.
-- Source integration does not equal medical advice, clinical validation, or proof that a medication list is safe.
+- Authority-linked evidence must resolve to an official regulator or recognized guideline publisher; primary-literature evidence must resolve to a claim-specific source identifier.
+- Modeled context must be identified, excluded from the public evidence browser, and unable to preserve severe output on its own.
+- Source provenance does not equal medical advice, clinical validation, patient-specific applicability, or proof that a medication list is safe.
 - Severe and critical findings can be visible as educational review priorities, but severity is not clinically final.
 - Source-linked rows need source identifiers, boundary notes, and passing release checks before they should affect shipped behavior.
 - The browser app must remain static and local-first: no accounts, analytics, tracking, medication-data collection, or runtime clinical API calls.
+- Medication and genotype share state must use URL fragments; Review Context fields must remain local and be excluded from share links.
 - GitHub feedback links must be privacy-preserving by default: they must not transmit the current medication list, genotype settings, share URL, browser URL, or selected-card context unless a contributor intentionally adds that information.
 
 ## Deploy And Release Evidence
@@ -54,7 +59,7 @@ The full release gate checks the deeper trust boundary through:
 - database, V1 no-warning database, public docs, standards coverage, readiness, and data-view audits;
 - evidence citation and evidence-review UI audits;
 - V1 PGx contract audit, V1 PK visualization audit, V1 finding contract audit including all recognized shipped `KNOWN_DDI` pairs, and V1 release readiness audit;
-- V1 feedback privacy audit;
+- V1 feedback privacy, CSP/security-boundary, authority-evidence, and clinical-context audits;
 - evidence calculation, external-context firewall, patient/clinician wording, standards identity, scenario snapshot, launch QA, regression, smoke, strict validation, privacy/static, and whitespace checks.
 
 Run:

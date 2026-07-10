@@ -7,7 +7,8 @@ import { JSDOM, VirtualConsole } from 'jsdom';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
-const OUT = resolve(ROOT, '.tmp', 'launch-qa-index.html');
+const USE_EXISTING_BUILD = process.argv.includes('--existing-build');
+const OUT = USE_EXISTING_BUILD ? resolve(ROOT, 'index.html') : resolve(ROOT, '.tmp', 'launch-qa-index.html');
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -31,7 +32,7 @@ function stackUrl(drugs, genotypes, tab = 'genes-metabolites', options = {}) {
   for (const genotype of genotypes) parts.push(`genotype=${encodeURIComponent(genotype).replace(/%3A/g, ':')}`);
   if (options.reviewer) parts.push('reviewer=1');
   parts.push(`tab=${tab}`);
-  return `index.html?${parts.join('&')}`;
+  return `index.html#${parts.join('&')}`;
 }
 
 function firstEvidenceLink(study) {
@@ -146,8 +147,12 @@ const DEEP_CASES = [
   },
 ];
 
-console.log('Building launch QA HTML...');
-execFileSync(process.execPath, ['build.js', '--out', OUT], { cwd: ROOT, stdio: 'pipe' });
+if (!USE_EXISTING_BUILD) {
+  console.log('Building launch QA HTML...');
+  execFileSync(process.execPath, ['build.js', '--out', OUT], { cwd: ROOT, stdio: 'pipe' });
+} else {
+  console.log('Using existing launch QA HTML from index.html...');
+}
 
 const browserErrors = [];
 const virtualConsole = new VirtualConsole();

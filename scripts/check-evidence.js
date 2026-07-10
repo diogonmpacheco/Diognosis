@@ -10,6 +10,9 @@ const files = [
 ];
 const code = `${files.map((file) => readFileSync(resolve(root, file), 'utf8')).join('\n')}
 JSON.stringify(Object.values(STUDY_DB).filter((study) =>
+  study.type !== EVIDENCE_TIER.MODELED_CONTEXT &&
+  study.sourceCategory !== SOURCE_CATEGORY.MODELED_CONTEXT &&
+  study.notSeverityBearing !== true &&
   study.type !== EVIDENCE_TIER.FDA_LABEL &&
   study.type !== EVIDENCE_TIER.GUIDELINE &&
   !study.pmid &&

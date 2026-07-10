@@ -61,7 +61,7 @@ function riskMarkerRowsToFindings(rows) {
       groupedFindings: [],
       clinicalAction: row.clinicalAction || "",
       evidenceStatus: (row.evidenceRefs || []).length
-        ? "source-linked; source-integrated"
+        ? "source-linked; provenance classified in Evidence"
         : "risk-marker review prompt",
     };
   });

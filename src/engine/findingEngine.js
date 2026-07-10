@@ -405,9 +405,15 @@ function mergeFindingActors(actors = []) {
 
 function summarizeFindingEvidenceStatus(evidenceRefs = [], studies = []) {
   if (!evidenceRefs.length && !studies.length) return "inferred/review required";
-  const reviewed = hasProfessionalFindingReview(studies);
   const tier = strongestFindingEvidenceTier(studies);
-  return `${tier || "source-linked"}; ${reviewed ? "reviewed source" : "source-integrated"}`;
+  const provenance = studies.some(study => typeof isAuthorityEvidence === "function" && isAuthorityEvidence(study))
+    ? "authority-linked"
+    : studies.some(study => typeof isPrimaryLiteratureEvidence === "function" && isPrimaryLiteratureEvidence(study))
+      ? "primary-literature linked"
+      : studies.length && studies.every(study => typeof isModeledContextEvidence === "function" && isModeledContextEvidence(study))
+        ? "modeled context; not severity-bearing"
+        : "linked source";
+  return `${tier || "source-linked"}; ${provenance}`;
 }
 
 function strongestFindingEvidenceTier(studies = []) {

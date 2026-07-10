@@ -6,9 +6,11 @@ This page keeps implementation details out of the README front page while preser
 
 Diognosis models medication stacks as connected parent-metabolite-gene systems. The engine combines curated DDI pairs, parent/metabolite directionality, functional enzyme status, PK and washout timing, pathway graph traversal, receptor/phenotype burden, and source-linked evidence confidence into normalized interaction findings.
 
-Status: V1 platform scope, source-linked, source-integrated, under active validation, and not medical advice.
+Status: V1 platform scope, authority/literature provenance visible, modeled context quarantined, under active validation, and not medical advice.
 
 Diognosis currently ships as a single self-contained HTML file. All computation runs in the browser with no backend, no API, no accounts, no analytics, and no medication-data collection. D3.js is vendored locally and bundled at build time for graph visualization.
+
+The built page uses a hash-based Content Security Policy, blocks inline event-handler attributes and runtime network connections, delegates UI events through trusted bundle code, caps shared/import/search inputs, and rejects medication or genotype state supplied in the HTTP query string.
 
 The central design principle is reviewable mechanism visibility: drugs, genes, metabolites, receptors, transporters, foods, evidence, and time are modeled as connected actors because the important signal often emerges from the whole system rather than from isolated parent-drug names.
 
@@ -26,7 +28,7 @@ Diognosis currently models:
 - Parent persistence, active/toxic metabolite persistence, washout rules, enzyme recovery, and induction offset
 - Receptor occupancy and syndrome-style burden detection
 - Anticholinergic, sedative, fall-risk, Beers, and washout summaries
-- Evidence browsing, evidence confidence ladders, and review diagnostics with V1 source-integrated evidence and explicit clinical-validation boundaries
+- Evidence browsing, evidence confidence ladders, and review diagnostics with authority, primary-literature, linked-context, and modeled-context provenance kept distinct
 
 ## Source Layout
 
@@ -189,7 +191,7 @@ Input data: current findings, scenario snapshots, metabolite coverage gaps, evid
 
 Output shape: reviewer summary tiles, scenario snapshot cards, gap cards, raw warning path payloads, technical tables, and contribution links.
 
-UI placement: hidden Reviewer Console, available through `?reviewer=1`.
+UI placement: hidden Reviewer Console, available through `#reviewer=1`.
 
 Review/safety limitations: diagnostics are for audit, debugging, and contribution workflows. They are not user-facing clinical advice.
 
@@ -205,7 +207,9 @@ The normal V1 product uses one public Diognosis Medication Review view. It expos
 
 Overview is the canonical first layer. It uses the title `Review Priorities`, starts with plain-language questions and patient-safe boundaries, then keeps the detailed public card below: what changed, mechanism/why it matters, review focus, monitoring focus, evidence/status chips, source actions, and supporting detail. Dose selectors and technical supporting details remain available where they already exist, but medication-change language stays bounded as review context rather than advice.
 
-The Reviewer Console is a separate hidden reviewer-only surface. It is available only with `?reviewer=1` and contains raw paths, diagnostics, scenario snapshots, coverage gaps, technical interaction tables, review workbench, and contribution links. Reviewer-only scope, readiness, raw paths, and contribution tooling stay out of normal V1.
+The Reviewer Console is a separate hidden reviewer-only surface. It is available only with `#reviewer=1` and contains raw paths, diagnostics, scenario snapshots, coverage gaps, technical interaction tables, review workbench, and contribution links. Reviewer-only scope, readiness, raw paths, and contribution tooling stay out of normal V1.
+
+The setup rail also contains local-only Review Context fields for exact regimen, indication, recent timing changes, age range, kidney/liver function, pregnancy/feeding, symptoms, labs, and allergy/reaction review. Findings show context applicability separately from mechanistic confidence. These fields enter the copyable clinician/pharmacist handoff but never enter browser or share URLs.
 
 There is no public Patient/Clinician or Plain/Detailed presentation switch. Legacy `audience=plain`, `audience=patient`, `audience=detailed`, `audience=clinician`, and similar URL params are accepted as no-op compatibility inputs for old links and are canonicalized away from browser/share URLs on render. `window.DIOGNOSIS_V1.getState()` returns `audience: "public"`; `setAudience()` remains as a deprecated no-op for one release.
 
@@ -240,19 +244,21 @@ window.DIOGNOSIS_V1.setTab("overview");
 window.DIOGNOSIS_V1.render();
 ```
 
-`getState()` returns release metadata, `audience: "public"` for compatibility, reviewer mode, active tab, selected substances, compact summary text, public finding summaries, counts, and the current share URL. The facade intentionally does not expose private scoring internals, raw reviewer diagnostics, or mutable data tables. Normal V1 keeps reviewer surfaces hidden unless the page is opened with `#reviewer=1` (the legacy query-string form remains accepted).
+`getState()` returns release metadata, `audience: "public"` for compatibility, reviewer mode, active tab, selected substances, compact summary text, public finding summaries, local Review Context plus its completeness assessment, counts, and the current share URL. It also declares `shareLinkIncludesContext: false`. The facade intentionally does not expose private scoring internals, raw reviewer diagnostics, or mutable data tables. Normal V1 keeps reviewer surfaces hidden unless the page is opened with `#reviewer=1`.
 
 ## Evidence Status Boundaries
 
 These concepts are deliberately separate:
 
-- Source-linked evidence: a finding has linked public refs, labels, guidelines, papers, or curated source rows.
+- Authority-linked evidence: a finding points to an official regulator or recognized guideline publisher.
+- Primary-literature linked evidence: a finding points to a claim-specific PMID or DOI record.
+- Other linked evidence: a finding has a traceable public source that does not meet the authority or primary-literature definitions.
 - Mechanistic confidence: the strength of the pathway/source support for the mechanism.
-- Clinical-action confidence: whether the app can treat the finding as source-integrated, modeled, or insufficient for action.
+- Clinical-action confidence: whether action context is authority-linked, literature-linked, contextual/model-based, or insufficient.
 - Clinical-validation status: this must never be inferred from source links alone.
-- Model-only screening signal: a mechanistic or computed finding without linked source refs on that specific finding.
+- Modeled context: internal coverage/expansion scaffolding that is hidden from public evidence and cannot preserve severe output.
 
-Source-integrated evidence means traceable committed source context. It does not mean medical advice, clinical validation, or proof that severity is clinically final.
+Source provenance means traceable committed source context. It does not mean medical advice, clinical validation, patient-specific applicability, or proof that severity is clinically final.
 
 ## Biochemical Graph Engine
 
@@ -264,11 +270,13 @@ Supported edge types include `SUBSTRATE_OF`, `INHIBITS`, `INDUCES`, `METABOLIZED
 
 ## Evidence System
 
-`STUDY_DB` entries use a 9-tier hierarchy:
+Public `STUDY_DB` evidence uses a 9-tier hierarchy, with modeled context kept in a separate lowest-weight quarantine tier:
 
 ```text
 IN_VITRO -> ANIMAL -> CASE_REPORT -> OBSERVATIONAL -> CLINICAL_PK
 -> RCT -> META_ANALYSIS -> GUIDELINE -> FDA_LABEL
+
+MODELED_CONTEXT -> context-only, not severity-bearing, not public evidence
 ```
 
 Each tier carries a calibrated confidence weight used by graph and finding-level evidence helpers. Contradictory evidence can be modeled directly rather than suppressed.
@@ -293,7 +301,7 @@ PharmCAT remains a future session-input source. It is not a global database enri
 
 Runtime rule: the browser app remains local-first/static and does not call CPIC, ClinPGx, PharmCAT, PubMed, Europe PMC, OpenAlex, Unpaywall, or Open Targets.
 
-Standards rule: RxNorm, PGx marker, and CPIC-linked action rows may be displayed only when they are committed as local reviewed source data and pass validation. They are identity/review aids, not live EHR integration and not automatic clinical orders.
+Standards rule: RxNorm and PGx marker mappings may be displayed only when they are committed as local source data and pass validation. PGx action rows gain authority status only through an exact official source link. They remain identity/review aids, not live EHR integration or automatic clinical orders.
 
 ## Enzyme Capacity Model
 
@@ -338,7 +346,7 @@ Legacy named demos, hash links, and old tab params are also supported for static
 #substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx
 ```
 
-Custom links should put `substances=` and optional gene results after the URL `#`. Fragment state is read locally by the app and is not sent to the static host in the page request. The older query-string form and the `drugs=` and `medications=` names remain accepted as compatibility inputs, then canonicalize to fragment state. Link-loaded substances that are not recognized by the local medication/actor dataset are preserved in the selected list, shown as unrecognized, included in share/copy context, and excluded from modeled interaction evidence rather than being silently dropped.
+Custom links must put `substances=` and optional gene results after the URL `#`. Fragment state is read locally by the app and is not sent to the static host in the page request. Medication or genotype state in the HTTP query string is rejected and stripped from the address. The `drugs=` and `medications=` aliases remain available only inside fragment state. Link-loaded substances that are not recognized by the local medication/actor dataset are sanitized, preserved in the selected list, shown as unrecognized, included in share/copy context, and excluded from modeled interaction evidence rather than being silently dropped. Shared state is capped at 24 substances and 32 gene-result tokens.
 
 ## DNA / PharmGx Report Import
 

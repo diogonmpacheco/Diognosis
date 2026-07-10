@@ -18,6 +18,6 @@ Educational medication-safety reference only. Not medical advice, not a clinical
 ## Snapshot
 
 - Facts: 85
-- Source-linked facts: 80
-- Source-integrated facts: 80
-- Last modified: 2026-07-07
+- Source-linked facts: 79
+- Provenance-classified facts: 85
+- Last modified: 2026-07-10
