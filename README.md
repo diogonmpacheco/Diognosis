@@ -66,11 +66,11 @@ These links open the live app with example medication stacks already loaded:
 
 | Demo | What it shows |
 |---|---|
-| [**SSRI switch / washout**](https://diogonmpacheco.github.io/Diognosis/index.html?substances=paroxetine,fluoxetine&tab=timing-levels) | Fluoxetine and norfluoxetine can persist for weeks. Timing + Levels separates parent persistence, metabolite persistence, washout rules, and enzyme recovery. |
-| [**Clopidogrel + CYP2C19 PM**](https://diogonmpacheco.github.io/Diognosis/index.html?substances=clopidogrel,omeprazole&genotype=CYP2C19:poor_metabolizer&tab=genes-metabolites) | Clopidogrel is a prodrug. Genes + Metabolites shows CYP2C19 functional status and reduced active-thiol formation as an activation-failure prompt. |
-| [**Codeine + CYP2D6 PM**](https://diogonmpacheco.github.io/Diognosis/index.html?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=genes-metabolites) | Codeine must convert into morphine. The app separates parent codeine, active morphine, CYP2D6 phenoconversion, and the why path behind reduced activation. |
-| [**Simvastatin + clarithromycin**](https://diogonmpacheco.github.io/Diognosis/index.html?substances=simvastatin,clarithromycin&tab=mechanisms) | Clarithromycin blocks a major simvastatin cleanup route. Mechanisms shows the CYP3A4 pathway chain and source-linked evidence status. |
-| [**Older-adult burden**](https://diogonmpacheco.github.io/Diognosis/index.html?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview) | Each medicine can add sedation, confusion, or fall risk. Overview groups plain-language review questions with source-linked mechanisms, timing, genes, and evidence. |
+| [**SSRI switch / washout**](https://diogonmpacheco.github.io/Diognosis/index.html#substances=paroxetine,fluoxetine&tab=timing-levels) | Fluoxetine and norfluoxetine can persist for weeks. Timing + Levels separates parent persistence, metabolite persistence, washout rules, and enzyme recovery. |
+| [**Clopidogrel + CYP2C19 PM**](https://diogonmpacheco.github.io/Diognosis/index.html#substances=clopidogrel,omeprazole&genotype=CYP2C19:poor_metabolizer&tab=genes-metabolites) | Clopidogrel is a prodrug. Genes + Metabolites shows CYP2C19 functional status and reduced active-thiol formation as an activation-failure prompt. |
+| [**Codeine + CYP2D6 PM**](https://diogonmpacheco.github.io/Diognosis/index.html#substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=genes-metabolites) | Codeine must convert into morphine. The app separates parent codeine, active morphine, CYP2D6 phenoconversion, and the why path behind reduced activation. |
+| [**Simvastatin + clarithromycin**](https://diogonmpacheco.github.io/Diognosis/index.html#substances=simvastatin,clarithromycin&tab=mechanisms) | Clarithromycin blocks a major simvastatin cleanup route. Mechanisms shows the CYP3A4 pathway chain and source-linked evidence status. |
+| [**Older-adult burden**](https://diogonmpacheco.github.io/Diognosis/index.html#substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview) | Each medicine can add sedation, confusion, or fall risk. Overview groups plain-language review questions with source-linked mechanisms, timing, genes, and evidence. |
 
 <details>
 <summary><strong>Deep demos</strong> — cases often missed when a checker only looks at parent drug names</summary>
@@ -81,20 +81,22 @@ The important signal may come from an active metabolite, a toxic metabolite, a b
 
 | Deep demo | Why it is often missed |
 |---|---|
-| [Azathioprine + allopurinol + TPMT/NUDT15 PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=genes-metabolites) | Allopurinol can push azathioprine down a more toxic route. The parent–metabolite view highlights 6-TGN accumulation, genotype context, and source-integrated evidence status. |
-| [Capecitabine + DPYD PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=capecitabine&genotype=DPYD:PM&tab=genes-metabolites) | Capecitabine is designed to become 5-FU. If DPYD cleanup is weak, the active/toxic metabolite can accumulate, so toxicity can come from the metabolite rather than the parent drug. |
-| [Irinotecan + UGT1A1 PM](https://diogonmpacheco.github.io/Diognosis/index.html?substances=irinotecan&genotype=UGT1A1:PM&tab=genes-metabolites) | Irinotecan becomes SN-38, the stronger active metabolite. UGT1A1 helps clear SN-38; the app shows this as toxic-metabolite accumulation with a why path. |
-| [Bupropion + clopidogrel + nebivolol + CYP2D6 no-function](https://diogonmpacheco.github.io/Diognosis/index.html?substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null&tab=overview) | This stack hides several parent/metabolite directions at once: bupropion parent exposure, hydroxybupropion uncertainty, nebivolol clearance, and clopidogrel activation context. |
-| [G6PD oxidant stack](https://diogonmpacheco.github.io/Diognosis/index.html?substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency&tab=genes-metabolites) | These drugs look unrelated by name, but all can stress red blood cells. The app groups G6PD risk with toxic-metabolite and oxidant-stress screening signals. |
-| [Succinylcholine + BCHE/RYR1 risk](https://diogonmpacheco.github.io/Diognosis/index.html?substances=succinylcholine&genotype=BCHE:null&genotype=RYR1:present&tab=genes-metabolites) | The issue is not a common drug-drug pair. BCHE weakness can make paralysis last too long, while RYR1/CACNA1S context flags malignant-hyperthermia susceptibility. |
+| [Azathioprine + allopurinol + TPMT/NUDT15 PM](https://diogonmpacheco.github.io/Diognosis/index.html#substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=genes-metabolites) | Allopurinol can push azathioprine down a more toxic route. The parent–metabolite view highlights 6-TGN accumulation, genotype context, and source-integrated evidence status. |
+| [Capecitabine + DPYD PM](https://diogonmpacheco.github.io/Diognosis/index.html#substances=capecitabine&genotype=DPYD:PM&tab=genes-metabolites) | Capecitabine is designed to become 5-FU. If DPYD cleanup is weak, the active/toxic metabolite can accumulate, so toxicity can come from the metabolite rather than the parent drug. |
+| [Irinotecan + UGT1A1 PM](https://diogonmpacheco.github.io/Diognosis/index.html#substances=irinotecan&genotype=UGT1A1:PM&tab=genes-metabolites) | Irinotecan becomes SN-38, the stronger active metabolite. UGT1A1 helps clear SN-38; the app shows this as toxic-metabolite accumulation with a why path. |
+| [Bupropion + clopidogrel + nebivolol + CYP2D6 no-function](https://diogonmpacheco.github.io/Diognosis/index.html#substances=bupropion,clopidogrel,nebivolol&genotype=CYP2D6:null&tab=overview) | This stack hides several parent/metabolite directions at once: bupropion parent exposure, hydroxybupropion uncertainty, nebivolol clearance, and clopidogrel activation context. |
+| [G6PD oxidant stack](https://diogonmpacheco.github.io/Diognosis/index.html#substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency&tab=genes-metabolites) | These drugs look unrelated by name, but all can stress red blood cells. The app groups G6PD risk with toxic-metabolite and oxidant-stress screening signals. |
+| [Succinylcholine + BCHE/RYR1 risk](https://diogonmpacheco.github.io/Diognosis/index.html#substances=succinylcholine&genotype=BCHE:null&genotype=RYR1:present&tab=genes-metabolites) | The issue is not a common drug-drug pair. BCHE weakness can make paralysis last too long, while RYR1/CACNA1S context flags malignant-hyperthermia susceptibility. |
 
 </details>
 
 You can also build custom share links:
 
 ```
-https://diogonmpacheco.github.io/Diognosis/index.html?substances=warfarin,ibuprofen&tab=overview
+https://diogonmpacheco.github.io/Diognosis/index.html#substances=warfarin,ibuprofen&tab=overview
 ```
+
+Medication and gene state is placed after the URL `#`, so it is not sent to the static host in the page request. Anyone who receives a share link can still read the selected items encoded in that link.
 
 The public app now has one **Diognosis Medication Review** view. Overview starts with plain-language questions and safety boundaries, then keeps the detailed mechanism, timing, gene, monitoring, evidence, and supporting-detail layers available in the same surface. Legacy `audience=plain`, `audience=patient`, `audience=detailed`, and `audience=clinician` links still load, but they are treated as old no-op parameters and are stripped from generated share URLs.
 
@@ -141,7 +143,7 @@ Diognosis is intentionally conservative about what it claims:
 - **69 genotype genes** and **588 receptor score profiles**
 - **1251 RxNorm identity mappings**, **43 PGx marker rows**, and **18 CPIC-linked action summaries**
 - **218 Beers flags** and **1411 washout rules**
-- **3293 KB** generated bundle (2576 lines)
+- **3325 KB** generated bundle (4139 lines)
 <!-- DIOGNOSIS_STATS_END -->
 
 ---

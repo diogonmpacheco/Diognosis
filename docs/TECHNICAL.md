@@ -240,7 +240,7 @@ window.DIOGNOSIS_V1.setTab("overview");
 window.DIOGNOSIS_V1.render();
 ```
 
-`getState()` returns release metadata, `audience: "public"` for compatibility, reviewer mode, active tab, selected substances, compact summary text, public finding summaries, counts, and the current share URL. The facade intentionally does not expose private scoring internals, raw reviewer diagnostics, or mutable data tables. Normal V1 keeps reviewer surfaces hidden unless the page is opened with `?reviewer=1`.
+`getState()` returns release metadata, `audience: "public"` for compatibility, reviewer mode, active tab, selected substances, compact summary text, public finding summaries, counts, and the current share URL. The facade intentionally does not expose private scoring internals, raw reviewer diagnostics, or mutable data tables. Normal V1 keeps reviewer surfaces hidden unless the page is opened with `#reviewer=1` (the legacy query-string form remains accepted).
 
 ## Evidence Status Boundaries
 
@@ -322,24 +322,23 @@ The relative fallback normalizes curves against a no-interaction, normal-metabol
 The live app supports preloaded examples such as:
 
 ```text
-?substances=paroxetine,fluoxetine&tab=timing-levels
-?substances=clopidogrel,omeprazole&genotype=CYP2C19:poor_metabolizer&tab=genes-metabolites
-?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=genes-metabolites
-?substances=simvastatin,clarithromycin&tab=mechanisms
-?substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview
+#substances=paroxetine,fluoxetine&tab=timing-levels
+#substances=clopidogrel,omeprazole&genotype=CYP2C19:poor_metabolizer&tab=genes-metabolites
+#substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=genes-metabolites
+#substances=simvastatin,clarithromycin&tab=mechanisms
+#substances=amitriptyline,diazepam,diphenhydramine,oxycodone&tab=overview
 ```
 
 Legacy named demos, hash links, and old tab params are also supported for static-hosting compatibility:
 
 ```text
-?demo=ssri-switch
 #demo=ssri-switch
 #clopidogrel-cyp2c19
-?substances=warfarin,ibuprofen&tab=safety
-?substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx
+#substances=warfarin,ibuprofen&tab=safety
+#substances=codeine,fluoxetine&genotype=CYP2D6:poor_metabolizer&tab=pgx
 ```
 
-Custom links should use `substances=`. The older `drugs=` and `medications=` names remain accepted as aliases. Link-loaded substances that are not recognized by the local medication/actor dataset are preserved in the selected list, shown as unrecognized, included in share/copy context, and excluded from modeled interaction evidence rather than being silently dropped.
+Custom links should put `substances=` and optional gene results after the URL `#`. Fragment state is read locally by the app and is not sent to the static host in the page request. The older query-string form and the `drugs=` and `medications=` names remain accepted as compatibility inputs, then canonicalize to fragment state. Link-loaded substances that are not recognized by the local medication/actor dataset are preserved in the selected list, shown as unrecognized, included in share/copy context, and excluded from modeled interaction evidence rather than being silently dropped.
 
 ## DNA / PharmGx Report Import
 

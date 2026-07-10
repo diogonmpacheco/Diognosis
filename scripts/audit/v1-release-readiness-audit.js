@@ -98,6 +98,9 @@ function extractPublicReadiness(window) {
       findingCount:document.getElementById('findingCount')?.textContent || '',
       findingText:document.getElementById('findingBody')?.textContent || '',
       summaryText:document.getElementById('summaryBar')?.textContent || '',
+      visibleOverviewText:visibleTextForAudit(document.getElementById('tab-overview')),
+      riskDisplay:document.getElementById('riskSection')?.style.display || '',
+      riskText:document.getElementById('riskBody')?.textContent || '',
       medListText:document.getElementById('medList')?.textContent || '',
       selectedChips:document.querySelectorAll('#medList .med-chip').length,
       unrecognizedChips:document.querySelectorAll('#medList .med-chip.unrecognized').length,
@@ -193,6 +196,15 @@ for (const scenario of publicScenarios) {
   assert(result.sourceActions > 0 || result.sourceLinks > 0, `${scenario.name}: source-linked evidence actions should remain reachable`);
   assert(result.supportDetails > 0, `${scenario.name}: supporting detail should remain reachable`);
   assert(result.summaryActions >= 2, `${scenario.name}: summary should expose copy/share actions`);
+  const publicShareUrl = new URL(result.shareUrl);
+  assert(publicShareUrl.search === '' && /(?:^|[&#])substances=/i.test(publicShareUrl.hash),
+    `${scenario.name}: share state should use the URL fragment so selected medicines and gene results are not sent to the host`);
+  assert(/\d+\s*priorit/i.test(result.summaryText),
+    `${scenario.name}: summary should expose a transparent count of review priorities`);
+  assert(result.riskDisplay === 'none' && !normalizedText(result.riskText),
+    `${scenario.name}: public Overview should keep internal model-score diagnostics hidden`);
+  assert(!/\bRisk score\b|\b\d{1,3}\s*\/\s*100\b/i.test(`${result.summaryText} ${result.visibleOverviewText}`),
+    `${scenario.name}: public Overview should not expose a pseudo-precise model score`);
   assert(result.reviewButtonDisplay === 'none' && result.reviewPanelDisplay === 'none',
     `${scenario.name}: Reviewer Console should stay hidden outside reviewer mode`);
   assert(result.scopeDisplay === 'none' && !normalizedText(result.scopeText),

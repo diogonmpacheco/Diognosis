@@ -268,7 +268,7 @@ function replaceDemoUrlWithSubstances(demo) {
   const path = (window.location.pathname || '').endsWith('/')
     ? `${window.location.pathname}index.html`
     : (window.location.pathname || 'index.html');
-  window.history.replaceState(null, '', `${path}?${query}`);
+  window.history.replaceState(null, '', `${path}#${query}`);
 }
 
 function demoGenotypeUrlToken(gene, phenotype) {

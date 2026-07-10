@@ -67,6 +67,11 @@ assert(
   tabLabels.join('|') === 'Overview|Mechanisms|Genes + Metabolites|Timing + Levels|Evidence|Reviewer Console',
   `Unexpected top-level tabs: ${tabLabels.join('|')}`
 );
+assert(doc.getElementById('tabBar')?.getAttribute('role') === 'tablist' && doc.getElementById('tabBar')?.getAttribute('aria-label'),
+  'Review sections should expose a labelled tab list');
+assert(Array.from(doc.querySelectorAll('#tabBar .tab-btn')).every((btn) =>
+  btn.getAttribute('role') === 'tab' && !!btn.getAttribute('aria-controls') && btn.hasAttribute('aria-selected')),
+  'Every review tab should expose its selected state and controlled panel');
 const reviewTabButton = doc.getElementById('tabbtn-review');
 const reviewTabPanel = doc.getElementById('tab-review');
 assert(reviewTabButton?.hidden && reviewTabButton?.getAttribute('aria-hidden') === 'true',
@@ -128,10 +133,10 @@ assert(!doc.querySelector('.audience-wrap') && !doc.getElementById('audience-pat
   'Public V1 should not expose Plain/Detailed audience controls');
 assert(/Medication review with plain questions, mechanisms, timing, genes, and source-linked evidence/i.test(doc.getElementById('audienceTagline')?.textContent || ''),
   'Public V1 should use single Medication Review chrome');
-assert(defaultEmptyText.includes('Review the priority signal'), 'Public landing copy should point to the first priority signal');
+assert(defaultEmptyText.includes('Start with Review Priorities'), 'Public landing copy should point to the first review priorities');
 assert(!defaultEmptyText.includes('Review the result tabs'), 'Public landing copy should not mention hidden result tabs');
 window.setAudienceMode('plain', { render:false });
-assert((doc.getElementById('mainEmptyState')?.textContent || '').includes('Review the priority signal'),
+assert((doc.getElementById('mainEmptyState')?.textContent || '').includes('Start with Review Priorities'),
   'Legacy setAudienceMode should be a no-op for the public landing copy');
 window.setAudienceMode('detailed', { render:false });
 
@@ -473,6 +478,9 @@ assert(evalInPage(window, 'activeTab') === 'genes-metabolites', 'Legacy pgx tab 
 assert(doc.getElementById('tab-genes-metabolites')?.classList.contains('active'), 'Legacy pgx alias should activate Genes + Metabolites');
 window.setTab('network');
 assert(evalInPage(window, 'activeTab') === 'mechanisms', 'Legacy network tab alias should resolve to Mechanisms');
+assert(doc.getElementById('tabbtn-mechanisms')?.getAttribute('aria-selected') === 'true' &&
+  doc.getElementById('tabbtn-overview')?.getAttribute('aria-selected') === 'false',
+  'Changing review sections should synchronize the programmatic selected state');
 window.setTab('advanced');
 assert(evalInPage(window, 'activeTab') === 'overview', 'Legacy advanced tab alias should resolve to Overview in normal V1 mode');
 window.history.replaceState(null, '', '/index.html?reviewer=1');

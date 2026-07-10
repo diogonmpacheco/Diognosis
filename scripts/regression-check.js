@@ -211,16 +211,16 @@ const liveUrlStateRegression = window.eval(`(() => {
   addDrug('Fluoxetine');
   setGenotype('CYP2D6', GENOTYPE_PHENOTYPE.PM);
   setTab('genes-metabolites');
-  const withStack = window.location.search;
+  const withStack = window.location.hash;
   removeDrug('Fluoxetine');
-  const afterRemove = window.location.search;
+  const afterRemove = window.location.hash;
   removeDrug('Codeine');
   if (typeof resetActiveGenotypeState === "function") resetActiveGenotypeState();
   setAudienceMode('patient');
   setTab('overview');
   renderAll();
-  const afterClear = window.location.search;
-  return { withStack, afterRemove, afterClear };
+  const afterClear = window.location.hash;
+  return { withStack, afterRemove, afterClear, query:window.location.search };
 })()`);
 assert(/substances=codeine,fluoxetine/i.test(liveUrlStateRegression.withStack),
   `Live URL sync should include selected substances: ${liveUrlStateRegression.withStack}`);
@@ -236,6 +236,8 @@ assert(!/(?:substances|drugs|medications)=/i.test(liveUrlStateRegression.afterCl
   `Live URL sync should clear stale stack/genotype params when the state is reset: ${liveUrlStateRegression.afterClear}`);
 assert(!/audience=/i.test(liveUrlStateRegression.afterClear),
   `Live URL sync should canonicalize away legacy audience params when the stack is reset: ${liveUrlStateRegression.afterClear}`);
+assert(liveUrlStateRegression.query === '',
+  `Live URL state should stay in the fragment so selected medicines and gene results are not sent to the host: ${liveUrlStateRegression.query}`);
 
 const genotypeSemanticsAudit = window.eval(`(() => {
   const missing = [];
@@ -534,8 +536,8 @@ const clopidogrelSummary = {
 assert(
   clopidogrelSummary.title.includes('CYP2C19 genotype') &&
   clopidogrelSummary.title.includes('Active thiol metabolite') &&
-  clopidogrelSummary.label === 'Gene High',
-  'Clopidogrel + CYP2C19 PM should be highest-priority gene-result context, not a generic single-medication prompt'
+  /^priorit(?:y|ies)$/i.test(clopidogrelSummary.label),
+  'Clopidogrel + CYP2C19 PM should be the review priority without exposing a pseudo-precise gene score'
 );
 assert(
   clopidogrelSummary.metrics === 0 &&
@@ -560,8 +562,8 @@ const abacavirSummary = {
 assert(
   abacavirSummary.title.includes('HLA-B*57:01') &&
   abacavirSummary.title.includes('Abacavir') &&
-  abacavirSummary.label === 'Gene High',
-  'Abacavir + HLA-B*57:01 present should surface as highest-priority gene-result risk'
+  /^priorit(?:y|ies)$/i.test(abacavirSummary.label),
+  'Abacavir + HLA-B*57:01 present should surface as a review priority without exposing a pseudo-precise score'
 );
 
 const pharmGxImportAudit = window.eval(`(() => {
@@ -942,7 +944,9 @@ assert(/Gene \/ Marker Results/i.test(audienceModeRegression.patient.geneTitle) 
 assert(audienceModeRegression.patient.tabBarDisplay !== 'none', 'Public view should keep the full review tabs available');
 assert(/Review Priorities/i.test(audienceModeRegression.patient.summaryText), 'Public summary should orient around review priorities');
 assert(/Use the first card|open Evidence/i.test(audienceModeRegression.patient.summaryNext), 'Public summary should route from Overview into detailed review context');
-assert(audienceModeRegression.patient.summaryRisk.trim() !== '', 'Public view should keep the score-style summary panel available');
+assert(/\d+\s*priorit/i.test(audienceModeRegression.patient.summaryRisk), 'Public view should summarize a transparent priority count');
+assert(!/\b\d{1,3}\s*\/\s*100\b|Risk score|Gene High/i.test(audienceModeRegression.patient.summaryRisk),
+  'Public summary should not expose an opaque model score or score-derived label');
 assert(audienceModeRegression.patient.findingTitle === 'Review Priorities', 'Public Overview should use Review Priorities');
 assert(/review priorit/i.test(audienceModeRegression.patient.findingCount), 'Public finding count should use review-priority language');
 assert(audienceModeRegression.patient.patientQuestionCards === 0, 'Single public view should not render the old patient-only question cards');
@@ -957,8 +961,9 @@ assert(audienceModeRegression.patient.detailButtons > 0, 'Public Overview should
 assert(audienceModeRegression.patient.supportDetails > 0, 'Public Overview should keep supporting detail drawers');
 assert(audienceModeRegression.patient.scopeDisplay === 'none', 'Public view should hide reviewer-only console scope');
 assert(!String(audienceModeRegression.patient.scopeText || '').replace(/\s+/g, ' ').trim(), 'Public view should not render hidden reviewer console scope copy');
-assert(audienceModeRegression.patient.riskDisplay !== 'none', 'Public view should keep the risk panel available');
-assert(/Risk score/i.test(audienceModeRegression.patient.riskText), 'Public risk panel should stay populated');
+assert(audienceModeRegression.patient.riskDisplay === 'none', 'Public view should hide the internal model-score panel');
+assert(!String(audienceModeRegression.patient.riskText || '').replace(/\s+/g, ' ').trim(),
+  'Public view should clear internal model-score text');
 assert(!audienceModeRegression.patient.altExists, 'Public view should not expose an alternatives panel');
 assert(!String(audienceModeRegression.patient.altText || '').replace(/\s+/g, ' ').trim(), 'Public view should clear hidden alternative text');
 assert(!/audience=/i.test(audienceModeRegression.patient.shareUrl), `Public share URL should strip legacy audience params: ${audienceModeRegression.patient.shareUrl}`);
@@ -1057,8 +1062,9 @@ assert(emptyAudienceListRegression.patient.audienceMode === 'public', 'Legacy em
 assert(/Add medicines, supplements, or foods above to start a medication review/i.test(emptyAudienceListRegression.patient.medListText),
   'Public empty selected-list state should give medication-review start guidance');
 assert(emptyAudienceListRegression.patient.medCount.trim() === '', 'Public empty selected-list state should not show a count');
-assert(/Diognosis brings parent-drug exposure, metabolite balance, pharmacogenomics, pathway shifts, timing, and source-linked evidence into one medication review surface/i.test(emptyAudienceListRegression.patient.mainEmptyText),
-  'Public empty start state should describe the single medication-review surface');
+assert(/Diognosis follows medicines through genes, enzymes, metabolites, timing, and evidence/i.test(emptyAudienceListRegression.patient.mainEmptyText) &&
+  /Evidence status and limits behind every signal/i.test(emptyAudienceListRegression.patient.mainEmptyText),
+  'Public empty start state should describe the connected review promise and its trust boundary');
 assert(emptyAudienceListRegression.clinician.audienceMode === 'public', 'Legacy Detailed switch should remain in the public view');
 assert(emptyAudienceListRegression.clinician.medListText === emptyAudienceListRegression.patient.medListText,
   'Legacy audience switches should not change the empty selected-list copy');

@@ -285,17 +285,17 @@ function syncMainEmptyStateCopy() {
     const el = document.getElementById(id);
     if (el) el.textContent = text;
   };
-  setText("mainEmptyTitle", "Inspect a parent–metabolite–gene system");
-  setText("mainEmptyCopy", "Diognosis brings parent-drug exposure, metabolite balance, pharmacogenomics, pathway shifts, timing, and source-linked evidence into one medication review surface.");
-  setText("mainEmptyStep3Title", "Review the priority signal");
-  setText("mainEmptyStep3Copy", "Start with Overview, then open Mechanisms, Genes, Timing, and Evidence to explain the priority signal.");
+  setText("mainEmptyTitle", "See what changes — not just what interacts.");
+  setText("mainEmptyCopy", "Diognosis follows medicines through genes, enzymes, metabolites, timing, and evidence to surface the signals worth reviewing first.");
+  setText("mainEmptyStep3Title", "Start with Review Priorities");
+  setText("mainEmptyStep3Copy", "Then inspect mechanism, genes and metabolites, timing, and the source trail.");
   const checks = document.getElementById("mainEmptyChecks");
   if (!checks) return;
   const items = [
-    "Priority signals and grouped mechanistic review",
-    "Gene, enzyme, transporter, and metabolite context that may change interpretation",
-    "Timing, persistence, washout, and exposure-shift context",
-    "Source links and review boundaries for follow-up",
+    "Priority signals across the full medication list",
+    "Parent-drug and metabolite direction, not names alone",
+    "Timing, persistence, washout, and exposure context",
+    "Evidence status and limits behind every signal",
   ];
   checks.innerHTML = items.map(item => `<div class="main-empty-check">${safePublicHtml(item)}</div>`).join("");
 }
@@ -347,16 +347,36 @@ function setTab(name) {
     const reviewerTab = t === "review";
     if (panel) {
       panel.classList.toggle("active", t === resolvedTab);
+      panel.setAttribute("aria-hidden", t === resolvedTab ? "false" : "true");
       if (reviewerTab) setReviewerShellHidden(panel, !isReviewerMode());
     }
     if (btn) {
       btn.classList.toggle("active", t === resolvedTab);
+      btn.setAttribute("aria-selected", t === resolvedTab ? "true" : "false");
+      btn.setAttribute("tabindex", t === resolvedTab ? "0" : "-1");
       if (reviewerTab) setReviewerShellHidden(btn, !isReviewerMode());
     }
   });
   renderLazyTab(resolvedTab);
   updateEmptyTabs();
   syncUrlStateFromSelection(resolvedTab);
+}
+
+function handleReviewTabKeydown(event) {
+  if (!event || !["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+  const buttons = DIOGNOSIS_TABS
+    .map(tab => document.getElementById("tabbtn-" + tab))
+    .filter(button => button && !button.hidden && button.style.display !== "none");
+  if (!buttons.length) return;
+  const currentIndex = Math.max(0, buttons.indexOf(event.currentTarget));
+  let nextIndex = currentIndex;
+  if (event.key === "Home") nextIndex = 0;
+  else if (event.key === "End") nextIndex = buttons.length - 1;
+  else if (event.key === "ArrowRight") nextIndex = (currentIndex + 1) % buttons.length;
+  else if (event.key === "ArrowLeft") nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+  event.preventDefault();
+  buttons[nextIndex].focus();
+  buttons[nextIndex].click();
 }
 
 function focusPriorityFinding(tabName = "overview", elementId = "") {
@@ -515,8 +535,6 @@ function renderSummaryBar() {
   setTab(activeTab);
 
   let riskClass = "neutral";
-  let scoreValue = "—";
-  let scoreLabel = "Add 2+";
   let headline = "";
   let summaryCopy = "";
   let nextStep = "";
@@ -537,8 +555,6 @@ function renderSummaryBar() {
     const moderatePairs = uniqueInteractionPairLabels(moderateInteractions);
     severeCount = severePairs.length;
     riskClass = severeCount || interactionScore >= 60 ? "high" : interactionScore >= 30 ? "moderate" : "low";
-    scoreValue = interactionScore;
-    scoreLabel = "Priority";
     const topSevere = severePairs.slice(0, 2).join(", ");
     headline = severeCount > 0 ? "High-priority interaction found" :
       interactionScore >= 30 ? "Some monitoring may be needed" :
@@ -564,8 +580,6 @@ function renderSummaryBar() {
   }
   if (genotypePriority && genotypePriority.score > interactionScore) {
     riskClass = genotypePriority.score >= 70 ? "high" : genotypePriority.score >= 45 ? "moderate" : "low";
-    scoreValue = genotypePriority.score;
-    scoreLabel = genotypePriority.label;
     headline = genotypePriority.headline;
     summaryCopy = genotypePriority.summary;
     nextStep = genotypePriority.nextStep;
@@ -581,7 +595,11 @@ function renderSummaryBar() {
 
   const patient = isPatientAudience();
   const publicPresentations = getCurrentPublicFindingPresentations();
-  const visiblePresentations = patient ? getPatientFacingPublicFindingPresentations(publicPresentations) : publicPresentations;
+  const visiblePresentations = patient
+    ? getPatientFacingPublicFindingPresentations(publicPresentations)
+    : (isReviewerMode()
+      ? publicPresentations
+      : getClinicianFacingPublicFindingPresentations(publicPresentations));
   const primaryPresentation = visiblePresentations[0] || null;
   const isGenotypePriority = genotypePriority && genotypePriority.score > interactionScore;
   const jumpTab = primaryPresentation ? primaryPresentation.targetTab : (isGenotypePriority ? (genotypePriority.targetTab || "genes-metabolites") : "overview");
@@ -643,17 +661,19 @@ function renderSummaryBar() {
   const summaryStoryHtml = !patient && primaryPresentation && !isGenotypePriority
     ? ""
     : renderPriorityStory(priorityStory);
+  const priorityMetricValue = visiblePresentations.length;
+  const priorityMetricLabel = priorityMetricValue === 1 ? "priority" : "priorities";
 
     bar.innerHTML = `<div class="summary-card">
     <div class="summary-main">
       <div>
         <div class="summary-kicker"><span class="summary-band-dot ${safeAttr(riskClass)}"></span><span>${safePublicHtml(summaryKicker)}</span></div>
-        <div class="summary-title">${safePublicHtml(headline)}</div>
+        <h2 class="summary-title">${safePublicHtml(headline)}</h2>
         <div class="summary-copy">${summaryCopy ? `${safePublicHtml(summaryCopy)} ` : ""}${summaryJumpHtml}</div>
       </div>
-      ${patient ? "" : `<div class="summary-risk ${riskClass}">
-        <div class="num">${scoreValue}</div>
-        <div class="lbl">${safePublicHtml(scoreLabel)}</div>
+      ${patient ? "" : `<div class="summary-risk summary-priority-count ${riskClass}" aria-label="${safeAttr(`${priorityMetricValue} review ${priorityMetricLabel}`)}">
+        <div class="num">${priorityMetricValue}</div>
+        <div class="lbl">${safePublicHtml(priorityMetricLabel)}</div>
       </div>`}
     </div>
     ${patient ? "" : summaryStoryHtml}
@@ -669,7 +689,7 @@ function summaryBandLabel(riskClass = "neutral", stackCount = 0) {
   if (stackCount < 2) return "Current check";
   if (riskClass === "high") return "High priority";
   if (riskClass === "moderate") return "Review recommended";
-  if (riskClass === "low") return "Looks manageable";
+  if (riskClass === "low") return "No high-priority signal surfaced";
   return "Current check";
 }
 
@@ -679,7 +699,7 @@ function renderSummaryActions(patient = isPatientAudience()) {
   const copyAriaLabel = "Copyable Diognosis medication review summary";
   return `<div class="summary-actions">
     <button type="button" class="summary-action-btn" onclick="copyOverviewHandoffSummary()">${safePublicHtml(copyLabel)}</button>
-    ${shareUrl ? `<a class="summary-action-btn" href="${safeAttr(shareUrl)}" target="_blank" rel="noopener">Share link</a>` : ""}
+    ${shareUrl ? `<a class="summary-action-btn" href="${safeAttr(shareUrl)}" target="_blank" rel="noopener" title="Includes the selected medicines and gene results">Share review link</a><span class="summary-share-note">Includes selected medicines and gene results</span>` : ""}
     <span class="summary-action-status" id="summaryCopyStatus" role="status" aria-live="polite" aria-atomic="true"></span>
     <pre class="summary-copy-text" id="summaryCopyText" tabindex="0" aria-label="${safeAttr(copyAriaLabel)}" hidden></pre>
   </div>`;
@@ -3776,7 +3796,7 @@ function currentStackQuery(tab = activeTab, options = {}) {
 
 function currentStackShareUrl(tab = activeTab, options = {}) {
   const query = currentStackQuery(tab, { includeReviewer:false, ...options });
-  return `https://diogonmpacheco.github.io/Diognosis/index.html${query ? `?${query}` : ""}`;
+  return `https://diogonmpacheco.github.io/Diognosis/index.html${query ? `#${query}` : ""}`;
 }
 
 function hasUrlSelectionState() {
@@ -3804,8 +3824,8 @@ function syncUrlStateFromSelection(tab = activeTab) {
   const shouldExpose = shouldExposeCurrentStateInUrl(tab);
   if (!shouldExpose && !hasUrlSelectionState()) return;
   const query = shouldExpose ? currentStackQuery(tab) : "";
-  const nextUrl = `${currentBrowserUrlPath()}${query ? `?${query}` : ""}`;
-  const currentUrl = `${window.location.pathname || ""}${window.location.search || ""}`;
+  const nextUrl = `${currentBrowserUrlPath()}${query ? `#${query}` : ""}`;
+  const currentUrl = `${window.location.pathname || ""}${window.location.search || ""}${window.location.hash || ""}`;
   if (nextUrl !== currentUrl) window.history.replaceState(null, "", nextUrl);
 }
 
@@ -3977,12 +3997,16 @@ function renderAll() {
       ? getRenderComputationCache().risk
       : calcRisk();
     renderReviewScopePanel();
-    renderRiskGauge(risk);
+    if (isReviewerMode()) {
+      renderRiskGauge(risk);
+      document.getElementById("riskSection").style.display = "";
+    } else {
+      hideSectionAndClear("riskSection", "riskBody");
+    }
     renderInteractionFindingsOverview(risk);
     renderCirculatingOverview();
     if (typeof renderMechanismWhyPaths === "function") renderMechanismWhyPaths();
     renderTransporterDDI();
-    document.getElementById("riskSection").style.display = "";
     if (isReviewerMode()) document.getElementById("scopeSection").style.display = "";
     document.getElementById("findingSection").style.display = "";
     if (isReviewerMode()) {

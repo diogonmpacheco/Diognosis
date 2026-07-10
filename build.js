@@ -16,6 +16,7 @@ import { createRequire } from 'module';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SRC = resolve(__dirname, 'src');
 const VENDOR_D3_PATH = resolve(__dirname, 'vendor/d3/d3.v7.8.5.min.js');
+const V1_CSS_PATH = resolve(__dirname, 'assets/app-v1.css');
 const require = createRequire(import.meta.url);
 
 const args = process.argv.slice(2);
@@ -140,14 +141,22 @@ function injectIntoTemplate(bundle) {
   const templatePath = resolve(SRC, 'index.template.html');
   const template = readFileSync(templatePath, 'utf8');
   const d3Bundle = readFileSync(VENDOR_D3_PATH, 'utf8');
+  const v1Css = readFileSync(V1_CSS_PATH, 'utf8');
+  const withV1Styles = template.replace(
+    '<style>/* V1_STYLES */</style>',
+    () => `<style>\n${v1Css}\n</style>`
+  );
+  if (withV1Styles === template) {
+    throw new Error('Template placeholder not found: <style>/* V1_STYLES */</style>');
+  }
   // Use a function replacer — prevents $& / $1 / $` special substitutions in
   // String.prototype.replace() from corrupting bundle content (e.g. the "\\$&"
   // in highlight()'s RegExp call would otherwise expand to the placeholder text).
-  const withD3 = template.replace(
+  const withD3 = withV1Styles.replace(
     '<script>/* D3_BUNDLE */</script>',
     () => `<script>\n${d3Bundle}\n</script>`
   );
-  if (withD3 === template) {
+  if (withD3 === withV1Styles) {
     throw new Error('Template placeholder not found: <script>/* D3_BUNDLE */</script>');
   }
   const injected = withD3.replace(
