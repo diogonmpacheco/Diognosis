@@ -33,6 +33,6 @@ This is a QA matrix, not a clinical-validation claim. Diognosis should explain m
 
 ## Still Pending
 
-- Manual public Medication Review QA for the same 10 cases.
-- CYP2D6 edge-case wording review for nebivolol, metoprolol, atomoxetine, tamoxifen, and inhibitor-driven phenoconversion.
-- Product decision on whether a dedicated Pathway Explorer is necessary for V1.
+- Real-user comprehension testing beyond the executable Phase 4 matrix.
+- Ongoing CYP2D6 wording review when new labels, guidelines, or user-feedback evidence changes the parent-versus-active-metabolite framing.
+- Revisit the post-V1 Pathway Explorer decision only if user testing shows that Gene Coverage plus Review Questions remains confusing.

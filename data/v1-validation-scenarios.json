@@ -1,0 +1,186 @@
+{
+  "schema": "diognosis.v1-validation-scenarios.v1",
+  "updated": "2026-07-10",
+  "boundary": "Release QA scenarios verify product behavior and source framing. They are not clinical validation, prescribing instructions, or proof that a medication plan is safe.",
+  "sourceFrames": [
+    {
+      "name": "FDA Table of Pharmacogenetic Associations",
+      "url": "https://www.fda.gov/medical-devices/precision-medicine/table-pharmacogenetic-associations"
+    },
+    {
+      "name": "CPIC Guidelines",
+      "url": "https://cpicpgx.org/guidelines/"
+    },
+    {
+      "name": "PharmCAT recommendation matching",
+      "url": "https://pharmcat.org/methods/Matching-Recommendations/"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "clopidogrel-cyp2c19-activation",
+      "group": "authority_pgx",
+      "title": "Clopidogrel activation with CYP2C19 reduced function",
+      "sharePath": "index.html#substances=clopidogrel,omeprazole&genotype=CYP2C19:PM&tab=overview",
+      "substances": ["Clopidogrel", "Omeprazole"],
+      "genotypePatterns": ["CYP2C19"],
+      "expectedPatterns": ["active thiol|active-metabolite|activation", "CYP2C19", "antiplatelet|cardiovascular|stent"],
+      "expectedMechanism": "active-metabolite formation",
+      "guardrail": "No automatic antiplatelet substitution; indication, procedure timing, bleeding risk, and contraindications still decide."
+    },
+    {
+      "id": "codeine-cyp2d6-activation",
+      "group": "authority_pgx",
+      "title": "Codeine activation with CYP2D6 poor metabolism",
+      "sharePath": "index.html#substances=codeine&genotype=CYP2D6:PM&tab=overview",
+      "substances": ["Codeine"],
+      "genotypePatterns": ["CYP2D6"],
+      "expectedPatterns": ["Morphine", "activation|formation", "reduced|lower|failure"],
+      "expectedMechanism": "active-metabolite formation",
+      "guardrail": "Keep parent codeine separate from morphine formation and do not issue an automatic opioid substitution."
+    },
+    {
+      "id": "metoprolol-cyp2d6-parent-exposure",
+      "group": "authority_pgx",
+      "title": "Metoprolol parent exposure with CYP2D6 poor metabolism",
+      "sharePath": "index.html#substances=metoprolol&genotype=CYP2D6:PM&tab=overview",
+      "substances": ["Metoprolol"],
+      "genotypePatterns": ["CYP2D6"],
+      "expectedPatterns": ["Metoprolol", "exposure|accumul|clearance", "pulse|blood pressure|hemodynamic|bradycardia"],
+      "expectedMechanism": "parent exposure",
+      "guardrail": "No genotype-only dose instruction; pulse, blood pressure, indication, tolerance, and inhibitors remain necessary."
+    },
+    {
+      "id": "warfarin-multigene-inr",
+      "group": "authority_pgx",
+      "title": "Warfarin multi-gene interpretation",
+      "sharePath": "index.html#substances=warfarin&genotype=CYP2C9:PM&genotype=VKORC1:PM&genotype=CYP4F2:IM&tab=overview",
+      "substances": ["Warfarin"],
+      "genotypePatterns": ["CYP2C9", "VKORC1", "CYP4F2"],
+      "expectedPatterns": ["Warfarin", "INR|anticoag", "CYP2C9", "VKORC1", "CYP4F2"],
+      "expectedMechanism": "multi-gene algorithm and monitoring",
+      "guardrail": "Never calculate a fixed dose from the scenario; INR and the anticoagulation protocol remain mandatory."
+    },
+    {
+      "id": "simvastatin-slco1b1-transport",
+      "group": "authority_pgx",
+      "title": "Statin transport with SLCO1B1 reduced function",
+      "sharePath": "index.html#substances=simvastatin&genotype=SLCO1B1:PM&tab=overview",
+      "substances": ["Simvastatin"],
+      "genotypePatterns": ["SLCO1B1"],
+      "expectedPatterns": ["SLCO1B1|OATP1B1", "Simvastatin", "exposure|transport|muscle"],
+      "expectedMechanism": "transporter-mediated exposure",
+      "guardrail": "Do not imply one universal statin replacement; dose, goals, symptoms, organ function, and co-medications matter."
+    },
+    {
+      "id": "tacrolimus-cyp3a5-expression",
+      "group": "authority_pgx",
+      "title": "Tacrolimus exposure with CYP3A5 expression",
+      "sharePath": "index.html#substances=tacrolimus&genotype=CYP3A5:IM&tab=overview",
+      "substances": ["Tacrolimus"],
+      "genotypePatterns": ["CYP3A5"],
+      "expectedPatterns": ["Tacrolimus", "CYP3A5", "trough|exposure|clearance|concentration"],
+      "expectedMechanism": "expression-dependent clearance",
+      "guardrail": "Keep CYP3A5 guidance separate from CYP3A4 and preserve therapeutic-drug-monitoring and transplant-protocol context."
+    },
+    {
+      "id": "capecitabine-dpyd-detoxification",
+      "group": "authority_pgx",
+      "title": "Fluoropyrimidine detoxification with DPYD poor metabolism",
+      "sharePath": "index.html#substances=capecitabine&genotype=DPYD:PM&tab=overview",
+      "substances": ["Capecitabine"],
+      "genotypePatterns": ["DPYD"],
+      "expectedPatterns": ["5-Fluorouracil|5-FU", "DPYD", "toxic|toxicity|accumul|catabolism"],
+      "expectedMechanism": "toxic-metabolite detoxification",
+      "guardrail": "Do not calculate a chemotherapy dose; oncology protocol, organ function, prior toxicity, and monitoring remain decisive."
+    },
+    {
+      "id": "thiopurine-tpmt-nudt15-marrow",
+      "group": "authority_pgx",
+      "title": "Thiopurine marrow toxicity with TPMT and NUDT15 reduced function",
+      "sharePath": "index.html#substances=azathioprine,allopurinol&genotype=TPMT:PM&genotype=NUDT15:PM&tab=overview",
+      "substances": ["Azathioprine", "Allopurinol"],
+      "genotypePatterns": ["TPMT", "NUDT15"],
+      "expectedPatterns": ["6-TGN|Thioguanine", "TPMT", "NUDT15", "marrow|myelosuppression|toxic"],
+      "expectedMechanism": "active/toxic metabolite accumulation",
+      "guardrail": "Do not calculate a thiopurine dose; CBC, liver tests, metabolite monitoring, disease protocol, and specialist oversight decide."
+    },
+    {
+      "id": "irinotecan-ugt1a1-sn38",
+      "group": "authority_pgx",
+      "title": "SN-38 detoxification with UGT1A1 reduced function",
+      "sharePath": "index.html#substances=irinotecan&genotype=UGT1A1:PM&tab=overview",
+      "substances": ["Irinotecan"],
+      "genotypePatterns": ["UGT1A1"],
+      "expectedPatterns": ["SN-38", "UGT1A1", "neutropenia|diarrhea|toxic|glucuron"],
+      "expectedMechanism": "active-metabolite detoxification",
+      "guardrail": "Do not calculate an irinotecan dose; regimen intensity, bilirubin, CBC, symptoms, and oncology protocol decide."
+    },
+    {
+      "id": "g6pd-oxidant-reserve",
+      "group": "authority_pgx",
+      "title": "G6PD oxidant-drug convergence",
+      "sharePath": "index.html#substances=rasburicase,primaquine,dapsone&genotype=G6PD:deficiency&tab=overview",
+      "substances": ["Rasburicase", "Primaquine", "Dapsone"],
+      "genotypePatterns": ["G6PD"],
+      "expectedPatterns": ["G6PD", "oxidative|oxidant", "hemolysis|red-cell|red cell"],
+      "expectedMechanism": "risk-marker and oxidative reserve",
+      "guardrail": "Preserve drug-specific risk tiers rather than applying blanket avoidance language to every oxidant medication."
+    },
+    {
+      "id": "succinylcholine-bche-ryr1-anesthesia",
+      "group": "edge_and_journey",
+      "title": "Anesthesia risk across BCHE and RYR1",
+      "sharePath": "index.html#substances=succinylcholine&genotype=BCHE:null&genotype=RYR1:present&tab=overview",
+      "substances": ["Succinylcholine"],
+      "genotypePatterns": ["BCHE", "RYR1"],
+      "expectedPatterns": ["BCHE", "RYR1|malignant hyperthermia", "paralysis|neuromuscular|hyperthermia"],
+      "expectedMechanism": "hydrolysis plus anesthesia susceptibility",
+      "guardrail": "Separate prolonged neuromuscular blockade from malignant-hyperthermia susceptibility."
+    },
+    {
+      "id": "atomoxetine-cyp2d6-parent-exposure",
+      "group": "edge_and_journey",
+      "title": "Atomoxetine parent exposure with CYP2D6 poor metabolism",
+      "sharePath": "index.html#substances=atomoxetine&genotype=CYP2D6:PM&tab=overview",
+      "substances": ["Atomoxetine"],
+      "genotypePatterns": ["CYP2D6"],
+      "expectedPatterns": ["Atomoxetine", "CYP2D6", "exposure|concentration|clearance|accumul"],
+      "expectedMechanism": "parent exposure",
+      "guardrail": "Keep titration and tolerability inside indication-specific clinical review."
+    },
+    {
+      "id": "tamoxifen-cyp2d6-endoxifen",
+      "group": "edge_and_journey",
+      "title": "Tamoxifen active-metabolite formation with CYP2D6 poor metabolism",
+      "sharePath": "index.html#substances=tamoxifen&genotype=CYP2D6:PM&tab=overview",
+      "substances": ["Tamoxifen"],
+      "genotypePatterns": ["CYP2D6"],
+      "expectedPatterns": ["Endoxifen|active metabolite", "Tamoxifen", "reduced|lower|formation|activation"],
+      "expectedMechanism": "active-metabolite formation",
+      "guardrail": "Keep oncology context and CYP2D6 inhibitor review visible without claiming an automatic medication change."
+    },
+    {
+      "id": "codeine-fluoxetine-phenoconversion",
+      "group": "edge_and_journey",
+      "title": "Inhibitor-driven CYP2D6 phenoconversion",
+      "sharePath": "index.html#substances=codeine,fluoxetine&genotype=CYP2D6:NM&tab=overview",
+      "substances": ["Codeine", "Fluoxetine"],
+      "genotypePatterns": ["CYP2D6"],
+      "expectedPatterns": ["Fluoxetine", "CYP2D6", "Morphine", "inhibit|functional|phenoconversion|activation"],
+      "expectedMechanism": "drug-driven functional phenotype",
+      "guardrail": "Distinguish inherited phenotype from inhibitor-driven functional activity and avoid double-counting no-function states."
+    },
+    {
+      "id": "ssri-switch-persistence",
+      "group": "edge_and_journey",
+      "title": "SSRI switching and persistence",
+      "sharePath": "index.html#substances=paroxetine,fluoxetine&tab=overview",
+      "substances": ["Paroxetine", "Fluoxetine"],
+      "genotypePatterns": [],
+      "expectedPatterns": ["Paroxetine", "Fluoxetine", "timing|persistence|washout|switch|recovery"],
+      "expectedMechanism": "parent/metabolite persistence",
+      "guardrail": "Review actual stop/start dates and symptoms; a modeled washout window is not a patient-specific switching instruction."
+    }
+  ]
+}

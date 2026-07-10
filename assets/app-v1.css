@@ -46,6 +46,40 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: 10px;
+  left: 12px;
+  padding: 10px 13px;
+  border: 2px solid var(--accent);
+  border-radius: 9px;
+  color: #fff;
+  background: var(--accent2);
+  font-size: 12px;
+  font-weight: 850;
+  text-decoration: none;
+  cursor: pointer;
+  transform: translateY(-160%);
+  transition: transform 120ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 button,
 input,
 select {
@@ -314,6 +348,12 @@ select {
 .sr-item.sr-advanced:hover,
 .sr-item.sr-advanced:focus-visible {
   background: #f1eef7;
+}
+
+.sr-item.active-descendant {
+  outline: 3px solid rgba(13, 124, 105, 0.22);
+  outline-offset: -3px;
+  background: var(--accentBg);
 }
 
 .sr-limit-note {
@@ -1600,7 +1640,9 @@ details > summary {
 
   .product-nav-link {
     min-height: 44px;
-    padding-inline: 10px;
+    flex: 0 0 auto;
+    padding-inline: 8px;
+    font-size: 9.8px;
   }
 
   .input-rail {

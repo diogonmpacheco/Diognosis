@@ -145,6 +145,19 @@ function cardMedicationNames(document) {
 
 const base = loadPage("?view=genotype&gene=CYP2D6");
 const baseIndex = base.dom.window.DATA_VIEW_INDEX;
+const baseDocument = base.dom.window.document;
+if (!baseDocument.querySelector('.skip-link[href="#dataViewsMain"]')) {
+  fail("Data Views should expose a keyboard skip link to the main content.");
+}
+if (!baseDocument.querySelector('main#dataViewsMain[tabindex="-1"]')) {
+  fail("Data Views main content should be programmatically focusable.");
+}
+if (baseDocument.querySelectorAll('nav[role="tablist"] .nav-btn[role="tab"]').length !== 3) {
+  fail("Data Views should expose three semantic view tabs.");
+}
+if (baseDocument.querySelectorAll('.view[role="tabpanel"][aria-labelledby]').length !== 3) {
+  fail("Data Views should expose three labelled tabpanels.");
+}
 if (!baseIndex) {
   fail("DATA_VIEW_INDEX was not created.");
 } else {
@@ -515,6 +528,21 @@ for (const search of requiredUrls) {
   }
 
 }
+
+const keyboardView = loadPage("?view=genotype&gene=CYP2D6");
+const keyboardDocument = keyboardView.dom.window.document;
+const keyboardStart = keyboardDocument.querySelector('.nav-btn[role="tab"][aria-selected="true"]');
+if (!keyboardStart) {
+  fail("Data Views should expose one selected view tab.");
+} else {
+  keyboardStart.dispatchEvent(new keyboardView.dom.window.KeyboardEvent("keydown", { key:"ArrowRight", bubbles:true }));
+  const actionTab = keyboardDocument.querySelector('.nav-btn[data-view="action"]');
+  const actionPanel = keyboardDocument.getElementById("view-action");
+  if (actionTab?.getAttribute("aria-selected") !== "true" || actionPanel?.getAttribute("aria-hidden") !== "false") {
+    fail("ArrowRight should move Data Views from PGx Explorer to Review Questions and synchronize tabpanel state.");
+  }
+}
+keyboardView.dom.window.close();
 
 if (failures.length) {
   console.error(`data-views audit failed with ${failures.length} issue(s):`);

@@ -82,21 +82,21 @@ Review whether Diognosis is presenting PGx results as report-style patient input
    - This is small but important for trust.
 
 3. Formal QA matrix
-   - Pending: test 10-20 medication + gene examples across the public Medication Review, PGx Explorer, Gene Coverage, and shared URLs.
-   - Current audits exist, but not a human-readable scenario matrix.
+   - Implemented: fixed 15-journey Phase 4 matrix covers 10 authority-framed PGx families and five edge/journey cases across Medication Review, PGx Explorer/Data Views expectations, and shared URLs.
+   - Implemented: human-readable matrix, machine-readable scenario definitions, and an executable release audit now stay linked.
 
 4. Compare PGx output to other PGx tools
    - Implemented: 10-example comparison set selected above.
    - Implemented: human-readable comparison matrix saved in `docs/V1_PGX_COMPARISON_MATRIX.md`.
    - Implemented: PGx Explorer audit coverage added for the 10 comparison families.
-   - Pending: manual public Medication Review QA for the same 10 cases.
+   - Implemented: the Phase 4 Medication Review matrix executes the same 10 authority-framed PGx families; the existing Data Views audit covers PGx Explorer, Review Questions, Gene Coverage, and back-links.
    - Important for trust and calibration.
 
 5. CYP2D6 edge cases
    - Implemented: CYP2D6 edge-case review note saved in `docs/V1_CYP2D6_EDGE_CASE_REVIEW.md`.
    - Implemented: nebivolol wording now separates parent exposure increase from lower 4-hydroxy-nebivolol formation while keeping the no automatic genotype-only dose-change boundary.
-   - Pending: manual public Medication Review QA for atomoxetine, tamoxifen, and inhibitor-driven phenoconversion.
-   - Pending: decide whether V1 needs a compact "parent vs active metabolite" visual cue or copy-only handling is enough.
+   - Implemented: atomoxetine, tamoxifen, and inhibitor-driven phenoconversion are fixed Phase 4 acceptance journeys.
+   - Implemented V1 decision: existing parent/metabolite direction surfaces plus explicit mechanism copy are sufficient for V1; revisit a dedicated compact cue after user testing.
 
 ## Product / UX Pending
 
@@ -111,7 +111,7 @@ Review whether Diognosis is presenting PGx results as report-style patient input
 
 8. Data Views visual QA
    - Functionally repaired.
-   - Still pending: mobile/desktop polish pass for PGx Profile chips, Gene Coverage table, and dense rows.
+   - Phase 4: semantic view tabs, arrow-key navigation, skip-link access, visible focus, reduced-motion handling, and mobile/desktop browser QA added.
 
 9. Public Medication Review copy reduction
    - The mode split has been removed; remaining work is a final copy audit of the single public Overview and supporting tabs.

@@ -143,7 +143,7 @@ Diognosis is intentionally conservative about what it claims:
 - **69 genotype genes** and **588 receptor score profiles**
 - **1251 RxNorm identity mappings**, **43 PGx marker rows**, and **18 PGx action summaries** (16 linked to an FDA authority table)
 - **218 Beers flags** and **1411 washout rules**
-- **3361 KB** generated bundle (4391 lines)
+- **3365 KB** generated bundle (4435 lines)
 <!-- DIOGNOSIS_STATS_END -->
 
 ---
@@ -158,7 +158,7 @@ Diognosis is intentionally conservative about what it claims:
 
 > **Tip:** The Reviewer Console is not part of the normal V1 surface. It is available only through `#reviewer=1` for data review, QA, and contribution workflows.
 
-For a plain-English map of what matters in the repo, what runs for release, and which generated files can be ignored, see the [Repo Guide](docs/REPO_GUIDE.md). For internals, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md) and the [Data Model](docs/DATA_MODEL.md). For launch readiness, see the [Launch QA Matrix](docs/LAUNCH_QA_MATRIX.md), [Public Trust Model](docs/PUBLIC_TRUST.md), and [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md). For redesign or wrapper apps, the built page exposes a small `window.DIOGNOSIS_V1` runtime handoff contract documented in [Technical Notes](docs/TECHNICAL.md#runtime-handoff-contract).
+For a plain-English map of what matters in the repo, what runs for release, and which generated files can be ignored, see the [Repo Guide](docs/REPO_GUIDE.md). For internals, data structures, build instructions, and validation workflow, see [Technical Notes](docs/TECHNICAL.md) and the [Data Model](docs/DATA_MODEL.md). For launch readiness, see the [Launch QA Matrix](docs/LAUNCH_QA_MATRIX.md), [Phase 4 Validation Matrix](docs/V1_VALIDATION_MATRIX.md), [Public Trust Model](docs/PUBLIC_TRUST.md), and [Launch Data Trust Audit](docs/LAUNCH_DATA_TRUST_AUDIT.md). For redesign or wrapper apps, the built page exposes a small `window.DIOGNOSIS_V1` runtime handoff contract documented in [Technical Notes](docs/TECHNICAL.md#runtime-handoff-contract).
 
 GitHub Pages uses the workflow in `.github/workflows/pages.yml` to build the app from `src/` with the lean `npm run pages:check` deploy gate; tagged releases, public launch claims, and clinical-review milestones use the deeper `npm run release:check`.
 

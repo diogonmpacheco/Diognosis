@@ -1091,6 +1091,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
 <script>/* D3_BUNDLE */</script>
 </head>
 <body data-reviewer="standard">
+<button type="button" class="skip-link" data-action="focus-review-results" data-keyboard-button="true">Skip to medication review results</button>
 <div class="app-shell">
 <header class="header">
   <a class="brand-lockup" href="./index.html" aria-label="Diognosis medication review home">
@@ -1113,7 +1114,7 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
 
 <div class="stats-line" id="statsLine"></div>
 
-<main class="main">
+<main class="main" id="reviewWorkspace">
   <aside class="input-rail" aria-labelledby="reviewSetupTitle">
     <div class="rail-intro">
       <div class="rail-kicker">Review setup</div>
@@ -1129,7 +1130,8 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     <div class="search-wrap">
       <div class="search-box">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <input type="text" id="searchInput" placeholder="Search medicines, supplements, or foods" autocomplete="off">
+        <label class="visually-hidden" for="searchInput">Medication, supplement, or food</label>
+        <input type="text" id="searchInput" placeholder="Search medicines, supplements, or foods" autocomplete="off" role="combobox" aria-autocomplete="list" aria-controls="searchOptions" aria-expanded="false" aria-haspopup="listbox">
       </div>
       <div class="search-results" id="searchResults"></div>
     </div>
@@ -1172,28 +1174,28 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
       </div>
       <div class="section-body coll-body open" id="clinicalContextBody">
         <p class="context-intro">Add the details that can change how relevant a signal is. These fields stay in this browser and are excluded from share links.</p>
-        <label class="context-field context-field-wide">
+        <label class="context-field context-field-wide" for="contextRegimen">
           <span>Exact regimen</span>
-          <input type="text" maxlength="240" data-context-field="regimen" placeholder="Product, strength, route and frequency">
+          <input id="contextRegimen" type="text" maxlength="240" data-context-field="regimen" placeholder="Product, strength, route and frequency">
         </label>
-        <label class="context-field context-field-wide">
+        <label class="context-field context-field-wide" for="contextIndications">
           <span>Reason for use</span>
-          <input type="text" maxlength="200" data-context-field="indications" placeholder="Indication for each medicine">
+          <input id="contextIndications" type="text" maxlength="200" data-context-field="indications" placeholder="Indication for each medicine">
         </label>
-        <label class="context-field context-field-wide">
+        <label class="context-field context-field-wide" for="contextTiming">
           <span>Timing and recent changes</span>
-          <input type="text" maxlength="240" data-context-field="timing" placeholder="Last dose, starts, stops, switches or missed doses">
+          <input id="contextTiming" type="text" maxlength="240" data-context-field="timing" placeholder="Last dose, starts, stops, switches or missed doses">
         </label>
         <div class="context-grid">
-          <label class="context-field"><span>Age range</span><select data-context-field="ageBand"><option value="unknown">Not added</option><option value="under18">Under 18</option><option value="18-64">18–64</option><option value="65-74">65–74</option><option value="75-plus">75+</option></select></label>
-          <label class="context-field"><span>Kidney function</span><select data-context-field="renalFunction"><option value="unknown">Not added</option><option value="no-known-impairment">No known impairment</option><option value="reduced">Reduced</option><option value="dialysis">Dialysis</option></select></label>
-          <label class="context-field"><span>Liver function</span><select data-context-field="hepaticFunction"><option value="unknown">Not added</option><option value="no-known-impairment">No known impairment</option><option value="reduced">Reduced</option></select></label>
-          <label class="context-field"><span>Pregnancy / feeding</span><select data-context-field="pregnancyStatus"><option value="unknown">Not added</option><option value="not-applicable">Not applicable</option><option value="pregnant">Pregnant / trying</option><option value="breastfeeding">Breastfeeding</option></select></label>
-          <label class="context-field"><span>Current symptoms</span><select data-context-field="symptomsStatus"><option value="unknown">Not added</option><option value="none-reported">None reported</option><option value="new-or-worsening">New or worsening</option></select></label>
-          <label class="context-field"><span>Relevant labs</span><select data-context-field="labsStatus"><option value="unknown">Not added</option><option value="not-available">Not available</option><option value="reviewed">Added / reviewed</option></select></label>
+          <label class="context-field" for="contextAgeBand"><span>Age range</span><select id="contextAgeBand" data-context-field="ageBand"><option value="unknown">Not added</option><option value="under18">Under 18</option><option value="18-64">18–64</option><option value="65-74">65–74</option><option value="75-plus">75+</option></select></label>
+          <label class="context-field" for="contextRenalFunction"><span>Kidney function</span><select id="contextRenalFunction" data-context-field="renalFunction"><option value="unknown">Not added</option><option value="no-known-impairment">No known impairment</option><option value="reduced">Reduced</option><option value="dialysis">Dialysis</option></select></label>
+          <label class="context-field" for="contextHepaticFunction"><span>Liver function</span><select id="contextHepaticFunction" data-context-field="hepaticFunction"><option value="unknown">Not added</option><option value="no-known-impairment">No known impairment</option><option value="reduced">Reduced</option></select></label>
+          <label class="context-field" for="contextPregnancyStatus"><span>Pregnancy / feeding</span><select id="contextPregnancyStatus" data-context-field="pregnancyStatus"><option value="unknown">Not added</option><option value="not-applicable">Not applicable</option><option value="pregnant">Pregnant / trying</option><option value="breastfeeding">Breastfeeding</option></select></label>
+          <label class="context-field" for="contextSymptomsStatus"><span>Current symptoms</span><select id="contextSymptomsStatus" data-context-field="symptomsStatus"><option value="unknown">Not added</option><option value="none-reported">None reported</option><option value="new-or-worsening">New or worsening</option></select></label>
+          <label class="context-field" for="contextLabsStatus"><span>Relevant labs</span><select id="contextLabsStatus" data-context-field="labsStatus"><option value="unknown">Not added</option><option value="not-available">Not available</option><option value="reviewed">Added / reviewed</option></select></label>
         </div>
-        <label class="context-check"><input type="checkbox" data-context-field="allergiesReviewed"> <span>Allergies and previous serious reactions checked</span></label>
-        <div class="context-completeness" id="clinicalContextStatus"></div>
+        <label class="context-check" for="contextAllergiesReviewed"><input id="contextAllergiesReviewed" type="checkbox" data-context-field="allergiesReviewed"> <span>Allergies and previous serious reactions checked</span></label>
+        <div class="context-completeness" id="clinicalContextStatus" role="status" aria-live="polite" aria-atomic="true"></div>
         <button type="button" class="context-reset" data-action="reset-clinical-context">Reset context</button>
       </div>
     </div>
@@ -1203,9 +1205,9 @@ body[data-reviewer="standard"] .supporting-context-row .supporting-actions{margi
     </div>
   </aside>
 
-  <section class="result-area" aria-label="Medication review results">
+  <section class="result-area" id="reviewResults" aria-label="Medication review results" tabindex="-1">
   <!-- Summary bar (populated by renderSummaryBar; hidden until a stack exists) -->
-  <div class="summary-bar" id="summaryBar" style="display:none"></div>
+  <div class="summary-bar" id="summaryBar" role="region" aria-label="Review summary" tabindex="-1" style="display:none"></div>
 
   <div class="main-empty-state" id="mainEmptyState">
     <div class="main-empty-panel">

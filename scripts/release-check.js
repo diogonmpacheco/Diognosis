@@ -25,6 +25,7 @@ run('V1 feedback privacy audit', node, ['scripts/audit/v1-feedback-privacy-audit
 run('V1 security boundary audit', node, ['scripts/audit/v1-security-boundary-audit.js']);
 run('V1 authority evidence audit', node, ['scripts/audit/v1-authority-evidence-audit.js']);
 run('V1 clinical context audit', node, ['scripts/audit/v1-clinical-context-audit.js']);
+run('V1 Phase 4 validation matrix audit', node, ['scripts/audit/v1-validation-matrix-audit.js']);
 run('Evidence calculation audit', node, ['scripts/audit/evidence-calculation-audit.js']);
 run('External context firewall audit', node, ['scripts/audit/external-context-firewall-audit.js']);
 run('Scenario snapshot audit', node, ['scripts/audit/scenario-snapshot-audit.js']);

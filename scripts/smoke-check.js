@@ -153,8 +153,15 @@ const selectedListIndex = inputRailOrder.indexOf('selectedListSection');
 const geneticsIndex = inputRailOrder.indexOf('geneticsSection');
 assert(selectedListIndex >= 0 && geneticsIndex === selectedListIndex + 1,
   `Gene / Marker Results should stay directly after the selected list; got ${inputRailOrder.join('|')}`);
-assert(mainOrder.join('|') === 'input-rail|result-area',
+assert(mainOrder.join('|') === 'input-rail|reviewResults',
   `Results should remain after the input rail; got ${mainOrder.join('|')}`);
+const skipReviewControl = doc.querySelector('.skip-link[data-action="focus-review-results"]');
+const urlBeforeSkip = window.location.href;
+skipReviewControl?.click();
+assert(skipReviewControl && doc.activeElement?.id === 'reviewResults',
+  'Medication Review skip control should move keyboard focus to the results landmark');
+assert(window.location.href === urlBeforeSkip,
+  'Medication Review skip control must not overwrite fragment-based medication or genotype state');
 assert(!/body\[data-audience=/i.test(styleText), 'Single public view should not depend on data-audience CSS');
 const geneticsToggle = doc.querySelector('#geneticsSection .section-title.collapsible');
 const geneticsBody = doc.getElementById('geneticsBody');
@@ -188,10 +195,13 @@ assert(!searchResults.classList.contains('show') && searchInput.value === '',
 
 searchInput.value = 'parox';
 window.onSearch(searchInput.value);
-let keyboardSearchResult = doc.querySelector('#searchResults .sr-item[role="button"][tabindex="0"]');
+let keyboardSearchResult = doc.querySelector('#searchOptions .sr-item[role="option"][tabindex="-1"]');
 assert(keyboardSearchResult?.dataset.keyboardButton === 'true' && !keyboardSearchResult.hasAttribute('onkeydown'),
-  'Search results should support delegated keyboard activation without inline handlers');
-keyboardSearchResult.dispatchEvent(new window.KeyboardEvent('keydown', { key:'Enter', bubbles:true, cancelable:true }));
+  'Search results should expose delegated combobox options without inline handlers');
+searchInput.dispatchEvent(new window.KeyboardEvent('keydown', { key:'ArrowDown', bubbles:true, cancelable:true }));
+assert(searchInput.getAttribute('aria-activedescendant') === keyboardSearchResult.id && keyboardSearchResult.getAttribute('aria-selected') === 'true',
+  'ArrowDown in search should expose the first active combobox option');
+searchInput.dispatchEvent(new window.KeyboardEvent('keydown', { key:'Enter', bubbles:true, cancelable:true }));
 assert(evalInPage(window, 'activeStack.includes("Paroxetine")'), 'Enter on a search result should add the selected medication');
 assert(!searchResults.classList.contains('show') && searchInput.value === '',
   'Selecting a search result should clear and dismiss the suggestions panel');
@@ -200,8 +210,9 @@ assert(handoffAfterSearchAdd.substances.some(item => item.name === 'Paroxetine')
   'V1 facade should expose the selected medication for redesign handoff');
 searchInput.value = 'parox';
 window.onSearch(searchInput.value);
-keyboardSearchResult = doc.querySelector('#searchResults .sr-item[role="button"][tabindex="0"]');
-keyboardSearchResult.dispatchEvent(new window.KeyboardEvent('keydown', { key:'Enter', bubbles:true, cancelable:true }));
+keyboardSearchResult = doc.querySelector('#searchOptions .sr-item[role="option"][tabindex="-1"]');
+searchInput.dispatchEvent(new window.KeyboardEvent('keydown', { key:'ArrowDown', bubbles:true, cancelable:true }));
+searchInput.dispatchEvent(new window.KeyboardEvent('keydown', { key:'Enter', bubbles:true, cancelable:true }));
 assert(!evalInPage(window, 'activeStack.includes("Paroxetine")'), 'Enter on an already-selected search result should remove the medication');
 assert(!searchResults.classList.contains('show') && searchInput.value === '',
   'Removing from a search result should also dismiss the suggestions panel');
@@ -210,10 +221,11 @@ assert(!window.DIOGNOSIS_V1.getState().substances.some(item => item.name === 'Pa
 
 searchInput.value = 'not in this database';
 window.onSearch(searchInput.value);
-const keyboardUnknownResult = doc.querySelector('#searchResults .sr-unrecognized[role="button"][tabindex="0"]');
-assert(keyboardUnknownResult, 'Unrecognized search row should support keyboard activation');
-keyboardUnknownResult.dispatchEvent(new window.KeyboardEvent('keydown', { key:' ', bubbles:true, cancelable:true }));
-assert(evalInPage(window, 'activeStack.includes("Not In This Database")'), 'Space on an unrecognized search row should keep the item in the selected list');
+const keyboardUnknownResult = doc.querySelector('#searchOptions .sr-unrecognized[role="option"][tabindex="-1"]');
+assert(keyboardUnknownResult, 'Unrecognized search row should remain available as a combobox option');
+searchInput.dispatchEvent(new window.KeyboardEvent('keydown', { key:'ArrowDown', bubbles:true, cancelable:true }));
+searchInput.dispatchEvent(new window.KeyboardEvent('keydown', { key:'Enter', bubbles:true, cancelable:true }));
+assert(evalInPage(window, 'activeStack.includes("Not In This Database")'), 'Enter on an unrecognized combobox option should keep the item in the selected list');
 assert(!searchResults.classList.contains('show') && searchInput.value === '',
   'Adding an unrecognized search row should dismiss the suggestions panel');
 window.removeDrug('Not In This Database');

@@ -1,6 +1,6 @@
 {
   "schema": "diognosis.reference-facts.v1",
-  "generatedAt": "2026-07-10T14:45:50.658Z",
+  "generatedAt": "2026-07-10T20:54:10.260Z",
   "lastmod": "2026-07-10",
   "source": "Generated from the committed Diognosis app runtime and data/medication-class-guides.json validated examples.",
   "boundary": "Educational medication-safety reference only. Not medical advice, not a clinical decision support system, and not clinical validation. Do not start, stop, or change medicines without a qualified doctor or pharmacist.",
@@ -125,7 +125,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -244,7 +244,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -335,7 +335,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -412,7 +412,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -503,7 +503,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -622,7 +622,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -713,7 +713,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -790,7 +790,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -881,7 +881,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -958,7 +958,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -1035,7 +1035,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -1112,7 +1112,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -1189,7 +1189,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -1249,7 +1249,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -1309,7 +1309,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -1386,7 +1386,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -1497,7 +1497,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -1588,7 +1588,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -1723,7 +1723,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -1814,7 +1814,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -1905,7 +1905,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -1996,7 +1996,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -2056,7 +2056,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -2147,7 +2147,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -2207,7 +2207,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -2284,7 +2284,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -2361,7 +2361,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -2438,7 +2438,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -2515,7 +2515,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -2605,7 +2605,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -2682,7 +2682,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -2759,7 +2759,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -2836,7 +2836,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -2913,7 +2913,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -3034,7 +3034,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -3169,7 +3169,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -3229,7 +3229,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -3306,7 +3306,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -3383,7 +3383,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -3451,7 +3451,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -3528,7 +3528,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -3605,7 +3605,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -3682,7 +3682,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -3759,7 +3759,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -3836,7 +3836,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -3955,7 +3955,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -4046,7 +4046,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -4193,7 +4193,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -4284,7 +4284,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -4361,7 +4361,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -4451,7 +4451,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -4570,7 +4570,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -4647,7 +4647,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -4782,7 +4782,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -4859,7 +4859,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -4936,7 +4936,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -5013,7 +5013,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -5090,7 +5090,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -5167,7 +5167,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -5244,7 +5244,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -5321,7 +5321,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -5398,7 +5398,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -5475,7 +5475,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -5552,7 +5552,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -5629,7 +5629,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -5706,7 +5706,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -5783,7 +5783,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -5860,7 +5860,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -5951,7 +5951,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -6072,7 +6072,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -6163,7 +6163,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -6240,7 +6240,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -6317,7 +6317,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -6394,7 +6394,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -6471,7 +6471,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -6548,7 +6548,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -6639,7 +6639,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -6758,7 +6758,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -6891,7 +6891,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -6968,7 +6968,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -7062,7 +7062,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -7135,7 +7135,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -7250,7 +7250,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -7327,7 +7327,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     },
     {
@@ -7404,7 +7404,7 @@
         "schema": "graph-v1",
         "released": "2026-06-10"
       },
-      "generatedAt": "2026-07-10T14:45:50.658Z",
+      "generatedAt": "2026-07-10T20:54:10.260Z",
       "lastmod": "2026-07-10"
     }
   ]

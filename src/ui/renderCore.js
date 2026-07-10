@@ -5,6 +5,10 @@ function closeSearchResults(options = {}) {
   const input = document.getElementById("searchInput");
   const results = document.getElementById("searchResults");
   if (input && options.clearInput) input.value = "";
+  if (input) {
+    input.setAttribute("aria-expanded", "false");
+    input.removeAttribute("aria-activedescendant");
+  }
   if (results) {
     results.classList.remove("show");
     results.innerHTML = "";
@@ -13,8 +17,68 @@ function closeSearchResults(options = {}) {
 }
 
 function handleSearchKeydown(event) {
-  if (!event || event.key !== "Escape") return;
-  closeSearchResults({ clearInput:true, blurInput:true });
+  if (!event) return;
+  if (event.key === "Escape") {
+    closeSearchResults({ clearInput:true, blurInput:true });
+    return;
+  }
+  const options = getSearchResultOptions();
+  if (!options.length || !["ArrowDown", "ArrowUp", "Enter"].includes(event.key)) return;
+  const input = document.getElementById("searchInput");
+  const activeId = input?.getAttribute("aria-activedescendant") || "";
+  const activeIndex = options.findIndex(option => option.id === activeId);
+  if (event.key === "Enter") {
+    if (activeIndex < 0) return;
+    event.preventDefault();
+    options[activeIndex].click();
+    return;
+  }
+  event.preventDefault();
+  const nextIndex = event.key === "ArrowDown"
+    ? (activeIndex + 1) % options.length
+    : (activeIndex <= 0 ? options.length - 1 : activeIndex - 1);
+  setActiveSearchOption(options, nextIndex);
+}
+
+function getSearchResultOptions() {
+  const listbox = document.getElementById("searchOptions");
+  return listbox ? [...listbox.querySelectorAll('.sr-item[data-action][role="option"]')] : [];
+}
+
+function setActiveSearchOption(options = getSearchResultOptions(), index = -1) {
+  const input = document.getElementById("searchInput");
+  options.forEach((option, optionIndex) => {
+    const active = optionIndex === index;
+    option.classList.toggle("active-descendant", active);
+    option.setAttribute("aria-selected", active ? "true" : "false");
+  });
+  if (!input) return;
+  if (index >= 0 && options[index]) input.setAttribute("aria-activedescendant", options[index].id);
+  else input.removeAttribute("aria-activedescendant");
+}
+
+function finalizeSearchResultsAccessibility() {
+  const input = document.getElementById("searchInput");
+  const results = document.getElementById("searchResults");
+  if (!input || !results) return;
+  const listbox = document.createElement("div");
+  listbox.id = "searchOptions";
+  listbox.setAttribute("role", "listbox");
+  listbox.setAttribute("aria-label", "Medication, supplement, and food suggestions");
+  [...results.children]
+    .filter(child => !child.classList.contains("search-results-head"))
+    .forEach(child => listbox.appendChild(child));
+  results.appendChild(listbox);
+  [...listbox.querySelectorAll(".sr-cat, .sr-limit-note")].forEach(item => item.setAttribute("role", "presentation"));
+  const options = [...listbox.querySelectorAll(".sr-item[data-action]")];
+  options.forEach((option, index) => {
+    option.id = `search-option-${index + 1}`;
+    option.setAttribute("role", "option");
+    option.setAttribute("aria-selected", "false");
+    option.setAttribute("tabindex", "-1");
+  });
+  input.setAttribute("aria-expanded", options.length ? "true" : "false");
+  input.removeAttribute("aria-activedescendant");
 }
 
 function handleGlobalDismissKeydown(event) {
@@ -217,7 +281,7 @@ function renderClinicalContextPanel() {
   if (count.dataset) count.dataset.level = assessment.level;
   const missing = assessment.missing.slice(0, 4).join(", ");
   const symptomNote = assessment.hasNewSymptoms
-    ? `<strong>New or worsening symptoms selected.</strong> Use prompt professional review; urgent or severe symptoms need urgent local care.`
+    ? `<strong>New or worsening symptoms selected.</strong> Contact a qualified healthcare professional promptly; urgent or severe symptoms need urgent local care.`
     : "";
   status.innerHTML = `<strong>${assessment.preliminary ? "Preliminary context" : "Context substantially supplied"}</strong>
     <span>${assessment.preliminary ? `Still missing ${safePublicHtml(missing)}${assessment.missing.length > 4 ? ` and ${assessment.missing.length - 4} more` : ""}.` : "These details qualify relevance but do not turn the result into medical advice."}</span>
@@ -345,6 +409,13 @@ function focusReviewNotes() {
   else runFocus();
 }
 
+function focusReviewResults() {
+  const target = document.getElementById("reviewResults");
+  if (!target) return;
+  if (typeof target.scrollIntoView === "function") target.scrollIntoView({ behavior:"smooth", block:"start" });
+  if (typeof target.focus === "function") target.focus({ preventScroll:true });
+}
+
 function keyboardButtonAttrs() {
   return `role="button" tabindex="0" data-keyboard-button="true"`;
 }
@@ -401,6 +472,7 @@ function handleDelegatedUiClick(event) {
     case "load-class-guide": loadMedicationClassGuide(Number(value("index"))); break;
     case "restore-cleared-list": restoreClearedList(); break;
     case "focus-review-notes": focusReviewNotes(); break;
+    case "focus-review-results": focusReviewResults(); break;
     case "clear-selected-list": clearSelectedList(); break;
     case "remove-genetics": removeGenetics(value("gene")); break;
     case "reset-clinical-context": resetClinicalContext(); break;
@@ -3547,6 +3619,7 @@ function onSearch(q) {
   if (!matches.length && !actorMatches.length) {
     el.innerHTML = panelHead + renderUnrecognizedSearchResult(q);
     el.classList.add("show");
+    finalizeSearchResultsAccessibility();
     return;
   }
 
@@ -3610,6 +3683,7 @@ function onSearch(q) {
   }
   el.innerHTML = html;
   el.classList.add("show");
+  finalizeSearchResultsAccessibility();
 }
 
 function renderUnrecognizedSearchResult(query) {

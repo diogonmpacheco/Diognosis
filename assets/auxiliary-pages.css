@@ -13,6 +13,9 @@ html,body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font
 a{color:var(--accent);font-weight:800;text-decoration:none}
 a:hover{text-decoration:underline}
 button,input,select{font:inherit}
+.skip-link{position:fixed;z-index:1000;top:10px;left:12px;padding:10px 13px;border:2px solid var(--accent);border-radius:9px;color:#fff;background:var(--accent2);font-size:12px;font-weight:850;text-decoration:none;transform:translateY(-160%);transition:transform 120ms ease}
+.skip-link:focus{transform:translateY(0);color:#fff;text-decoration:none}
+:where(a,button,input,select,[tabindex]):focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:3px}
 header,.view-nav{background:rgba(251,251,249,.9);border-bottom:1px solid var(--border2);backdrop-filter:saturate(160%) blur(14px)}
 .view-nav{position:sticky;top:0;z-index:20;padding:16px 28px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:18px;color:var(--text)}
 .brand,.top{max-width:1180px}
@@ -86,6 +89,7 @@ main{padding:24px 28px 44px}
 .pager button{border:1px solid var(--border);background:var(--card);border-radius:9px;padding:6px 10px;color:var(--text);font-weight:850;cursor:pointer}
 .scorebar,.track{background:#f0efe9}
 .fill,.scorebar span{background:var(--accent)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 @media(max-width:760px){
   .view-nav{position:static;grid-template-columns:1fr;padding:14px 16px}
   .view-nav nav{justify-content:flex-start}

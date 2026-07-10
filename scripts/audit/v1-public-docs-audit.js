@@ -34,6 +34,7 @@ function localMarkdownLinks(markdown) {
 const readme = read('README.md');
 const publicTrust = read('docs/PUBLIC_TRUST.md');
 const launchQa = read('docs/LAUNCH_QA_MATRIX.md');
+const validationMatrix = read('docs/V1_VALIDATION_MATRIX.md');
 const launchTrust = read('docs/LAUNCH_DATA_TRUST_AUDIT.md');
 const technical = read('docs/TECHNICAL.md');
 const dataModel = read('docs/DATA_MODEL.md');
@@ -42,6 +43,8 @@ const pagesWorkflow = existsSync(resolve(root, pagesWorkflowPath)) ? read(pagesW
 const ciWorkflow = read('.github/workflows/ci.yml');
 const gitignore = read('.gitignore');
 const pkg = JSON.parse(read('package.json'));
+const validationScenarios = JSON.parse(read('data/v1-validation-scenarios.json'));
+const releaseCheck = read('scripts/release-check.js');
 
 const missingLinks = localMarkdownLinks(readme)
   .filter(href => !existsSync(resolve(root, href)));
@@ -137,6 +140,16 @@ assert(/V1 PK visualization audit/i.test(launchTrust),
   'Launch Data Trust Audit must reference the V1 PK visualization gate');
 assert(/single public Medication Review|one public Medication Review|one public review/i.test(launchQa),
   'Launch QA Matrix must cover the single public Medication Review surface');
+assert(/Phase 4 Validation Matrix/i.test(readme) && /V1_VALIDATION_MATRIX\.md/.test(readme),
+  'README must link to the Phase 4 validation matrix');
+assert(/15-journey Phase 4 validation matrix|15-journey Phase 4 validation/i.test(launchQa),
+  'Launch QA Matrix must describe the Phase 4 journey gate');
+assert(validationScenarios.schema === 'diognosis.v1-validation-scenarios.v1' && validationScenarios.scenarios?.length === 15,
+  'Phase 4 validation source must contain exactly 15 canonical scenarios');
+assert(/FDA Table of Pharmacogenetic Associations/i.test(validationMatrix) && /CPIC Guidelines/i.test(validationMatrix) && /PharmCAT recommendation matching/i.test(validationMatrix),
+  'Phase 4 validation documentation must preserve its authority/tool comparison frame');
+assert(/v1-validation-matrix-audit\.js/.test(releaseCheck),
+  'Full release gate must execute the Phase 4 validation matrix audit');
 assert(/npm run pages:check/i.test(publicTrust) && /npm run release:check/i.test(publicTrust),
   'Public Trust must document both deploy and release gates');
 assert(/npm run pages:check/i.test(technical) && /GitHub Pages deploy gate/i.test(technical),

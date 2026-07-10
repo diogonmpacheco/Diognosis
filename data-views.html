@@ -144,6 +144,7 @@
   <link rel="stylesheet" href="assets/auxiliary-pages.css">
 </head>
 <body>
+  <a class="skip-link" href="#dataViewsMain">Skip to data view content</a>
   <div class="shell">
     <div class="view-nav">
       <div class="brand">
@@ -153,10 +154,10 @@
           <span>PGx explorer and data views</span>
         </div>
       </div>
-      <nav aria-label="Data views">
-        <button class="nav-btn active" data-view="genotype"><span>PGx</span><span>PGx Explorer<small>Gene result to medication context</small></span></button>
-        <button class="nav-btn" data-view="action"><span>RQ</span><span>Review Questions<small>Medication context groups</small></span></button>
-        <button class="nav-btn" data-view="ranking"><span>GC</span><span>Gene Coverage<small>Data reach</small></span></button>
+      <nav aria-label="Data views" role="tablist">
+        <button type="button" class="nav-btn active" id="viewTabGenotype" data-view="genotype" role="tab" aria-selected="true" aria-controls="view-genotype" tabindex="0"><span>PGx</span><span>PGx Explorer<small>Gene result to medication context</small></span></button>
+        <button type="button" class="nav-btn" id="viewTabAction" data-view="action" role="tab" aria-selected="false" aria-controls="view-action" tabindex="-1"><span>RQ</span><span>Review Questions<small>Medication context groups</small></span></button>
+        <button type="button" class="nav-btn" id="viewTabRanking" data-view="ranking" role="tab" aria-selected="false" aria-controls="view-ranking" tabindex="-1"><span>GC</span><span>Gene Coverage<small>Data reach</small></span></button>
       </nav>
       <div class="view-nav-note">Gene-first discovery for Diognosis data. Medication rows open the main app for stack-specific review.</div>
     </div>
@@ -183,8 +184,8 @@
         </div>
       </header>
 
-      <main>
-        <section class="view active" id="view-genotype">
+      <main id="dataViewsMain" tabindex="-1">
+        <section class="view active" id="view-genotype" role="tabpanel" aria-labelledby="viewTabGenotype" aria-hidden="false">
           <article class="card genetics-card">
             <div class="card-head"><h3>PGx Explorer</h3><span class="tag violet" id="genotypePickTag">Choose result</span></div>
             <div class="card-body">
@@ -233,7 +234,7 @@
           </div>
         </section>
 
-        <section class="view" id="view-action">
+        <section class="view" id="view-action" role="tabpanel" aria-labelledby="viewTabAction" aria-hidden="true">
           <div class="toolbar">
             <input class="field" id="actionSearch" placeholder="Search medication, gene, source, or review context" aria-label="Action search">
             <select class="select" id="actionEvidence" aria-label="Evidence"><option value="all">Evidence: all</option><option value="high">High / level A only</option><option value="actionable">Medication-context rows only</option></select>
@@ -243,7 +244,7 @@
           <div class="grid three" id="actionCards"></div>
         </section>
 
-        <section class="view" id="view-ranking">
+        <section class="view" id="view-ranking" role="tabpanel" aria-labelledby="viewTabRanking" aria-hidden="true">
           <div class="toolbar">
             <input class="field" id="rankingSearch" placeholder="Search gene, CYP, transporter, or class" aria-label="Ranking search">
             <select class="select" id="rankingSort" aria-label="Ranking sort"><option value="priority">Priority medication contexts</option><option value="contexts">Medication context rows</option><option value="total">Total parent + metabolite substances</option><option value="inhibitors">Inhibitors</option><option value="inducers">Inducers / promoters</option><option value="evidence">Evidence rows</option><option value="az">A to Z</option></select>
@@ -329,11 +330,37 @@
       if (view === "network") view = "ranking";
       const button = document.querySelector(`.nav-btn[data-view="${view}"]`);
       if (!button || !copy[view]) return;
-      document.querySelectorAll(".nav-btn").forEach((item) => item.classList.toggle("active", item === button));
-      document.querySelectorAll(".view").forEach((panel) => panel.classList.toggle("active", panel.id === `view-${view}`));
+      document.querySelectorAll(".nav-btn").forEach((item) => {
+        const selected = item === button;
+        item.classList.toggle("active", selected);
+        item.setAttribute("aria-selected", selected ? "true" : "false");
+        item.setAttribute("tabindex", selected ? "0" : "-1");
+      });
+      document.querySelectorAll(".view").forEach((panel) => {
+        const selected = panel.id === `view-${view}`;
+        panel.classList.toggle("active", selected);
+        panel.setAttribute("aria-hidden", selected ? "false" : "true");
+      });
       $("#pageTitle").textContent = copy[view][0];
       $("#pageCopy").textContent = copy[view][1];
       if (view === "ranking") renderRankingView();
+    }
+
+    function handleViewTabKeydown(event) {
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+      const buttons = [...document.querySelectorAll('.nav-btn[role="tab"]')];
+      const currentIndex = buttons.indexOf(event.currentTarget);
+      if (currentIndex < 0) return;
+      let nextIndex = currentIndex;
+      if (event.key === "Home") nextIndex = 0;
+      else if (event.key === "End") nextIndex = buttons.length - 1;
+      else if (event.key === "ArrowRight") nextIndex = (currentIndex + 1) % buttons.length;
+      else if (event.key === "ArrowLeft") nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+      event.preventDefault();
+      const next = buttons[nextIndex];
+      activateView(next.dataset.view);
+      syncCurrentViewUrl(next.dataset.view);
+      next.focus();
     }
 
     function rowLink(href, title, badge, badgeColor, body, tags = []) {
@@ -1090,7 +1117,10 @@
       if (params.get("area") && [...$("#actionArea").options].some((option) => option.value === params.get("area"))) $("#actionArea").value = params.get("area");
       if (params.get("rankingSearch")) $("#rankingSearch").value = params.get("rankingSearch");
       if (params.get("sort") && [...$("#rankingSort").options].some((option) => option.value === params.get("sort"))) $("#rankingSort").value = params.get("sort");
-      document.querySelectorAll(".nav-btn").forEach((button) => button.addEventListener("click", () => { activateView(button.dataset.view); syncCurrentViewUrl(button.dataset.view); }));
+      document.querySelectorAll(".nav-btn").forEach((button) => {
+        button.addEventListener("click", () => { activateView(button.dataset.view); syncCurrentViewUrl(button.dataset.view); });
+        button.addEventListener("keydown", handleViewTabKeydown);
+      });
       $("#geneSearch").addEventListener("change", () => { updatePhenotypeOptions(); state.geneShowAll = false; renderGeneView(); syncGenotypeExplorerUrl(); });
       $("#phenotypeSelect").addEventListener("change", () => { updatePhenotypeOptions(); renderGeneView(); syncGenotypeExplorerUrl(); });
       $("#relationshipSelect").addEventListener("change", () => { state.geneShowAll = false; renderGeneView(); syncGenotypeExplorerUrl(); });
